@@ -73,6 +73,9 @@ public:
     return Spherical(isnan(longitude) ? 0.0 : longitude, isnan(latitude) ? 0.0 : latitude, abs());
   }
 
+  static Position origin() {
+    return Position(0.0, 0.0, 0.0);
+  }
 };
 
 } // namespace supernovas

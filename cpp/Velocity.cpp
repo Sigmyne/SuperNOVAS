@@ -68,6 +68,10 @@ public:
     return Velocity(-_component[0], -_component[1], -_component[2]);
   }
 
+  static Velocity stationary() {
+    return Velocity(0.0, 0.0, 0.0);
+  }
+
 };
 
 

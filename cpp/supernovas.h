@@ -117,6 +117,7 @@ public:
   static constexpr double kPa = 1000.0;
   static constexpr double MPa = 1e6;
   static constexpr double torr = 133.3223684211;
+  static constexpr double atm = 101325.0;
 
   static constexpr double R_earth = NOVAS_GRS80_RADIUS;
 };
@@ -338,6 +339,8 @@ public:
   Position inv() const;
 
   Spherical as_spherical() const;
+
+  static Position origin();
 };
 
 
@@ -372,6 +375,8 @@ public:
   Speed along(const Vector v) const;
 
   Velocity& inv() const;
+
+  static Velocity stationary();
 };
 
 
@@ -548,6 +553,8 @@ public:
 
   double torr() const;
 
+  double atm() const;
+
   std::string str() const;
 
   static Pressure Pa(double value);
@@ -561,6 +568,8 @@ public:
   static Pressure bar(double value);
 
   static Pressure torr(double value);
+
+  static Pressure atm(double value);
 };
 
 class Weather {
@@ -732,27 +741,27 @@ public:
 
   Speed radial_velocity() const;
 
-  void proper_motion(double ra, double dec);
+  CatalogEntry& proper_motion(double ra, double dec);
 
-  void parallax(double angle);
+  CatalogEntry& parallax(double angle);
 
-  void parallax(Angle& angle);
+  CatalogEntry& parallax(Angle& angle);
 
-  void distance(double dist);
+  CatalogEntry& distance(double dist);
 
-  void distance(Distance& dist);
+  CatalogEntry& distance(Distance& dist);
 
-  void v_lsr(double v);
+  CatalogEntry& v_lsr(double v);
 
-  void v_lsr(Speed& v);
+  CatalogEntry& v_lsr(Speed& v);
 
-  void radial_velocity(double v);
+  CatalogEntry& radial_velocity(double v);
 
-  void radial_velocity(Speed& v);
+  CatalogEntry& radial_velocity(Speed& v);
 
-  void redshift(double z);
+  CatalogEntry& redshift(double z);
 
-  void catalog(std::string& name, long number);
+  CatalogEntry& catalog(std::string& name, long number);
 };
 
 class Source {

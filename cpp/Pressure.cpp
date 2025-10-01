@@ -41,6 +41,10 @@ public:
     return _pascal / Unit::torr;
   }
 
+  double atm() const {
+    return _pascal / Unit::atm;
+  }
+
   std::string str() const {
     char s[40] = {'\0'};
     snprintf(s, sizeof(s), "%.1f mbar", _pascal / Unit::mbar);
@@ -71,6 +75,9 @@ public:
     return Pressure(value * Unit::torr);
   }
 
+  static Pressure atm(double value) {
+    return Pressure(value * Unit::atm);
+  }
 
 };
 

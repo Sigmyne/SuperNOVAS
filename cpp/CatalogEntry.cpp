@@ -67,48 +67,59 @@ public:
     return Speed(_entry.radialvelocity * Unit::km / Unit::sec);
   }
 
-  void proper_motion(double ra, double dec) {
+  CatalogEntry& proper_motion(double ra, double dec) {
     novas_set_proper_motion(&_entry, ra / (Unit::mas / Unit::yr), dec / (Unit::mas / Unit::yr));
+    return *this;
   }
 
-  void parallax(double angle) {
+  CatalogEntry& parallax(double angle) {
     novas_set_parallax(&_entry, angle / Unit::mas);
+    return *this;
   }
 
-  void parallax(Angle& angle) {
+  CatalogEntry& parallax(Angle& angle) {
     novas_set_parallax(&_entry, angle.mas());
+    return *this;
   }
 
-  void distance(double dist) {
+  CatalogEntry& distance(double dist) {
     novas_set_distance(&_entry, dist / Unit::pc);
+    return *this;
   }
 
-  void distance(Distance dist) {
+  CatalogEntry& distance(Distance dist) {
     novas_set_distance(&_entry, dist.pc());
+    return *this;
   }
 
-  void v_lsr(double v) {
+  CatalogEntry& v_lsr(double v) {
     novas_set_lsr_vel(&_entry, _epoch, v / (Unit::km / Unit::sec));
+    return *this;
   }
 
-  void v_lsr(Speed& v) {
+  CatalogEntry& v_lsr(Speed& v) {
     novas_set_lsr_vel(&_entry, _epoch, v.kms());
+    return *this;
   }
 
-  void radial_velocity(double v) {
+  CatalogEntry& radial_velocity(double v) {
     novas_set_ssb_vel(&_entry, v / (Unit::km / Unit::sec));
+    return *this;
   }
 
-  void radial_velocity(Speed& v) {
+  CatalogEntry& radial_velocity(Speed& v) {
     novas_set_ssb_vel(&_entry, v.kms());
+    return *this;
   }
 
-  void redshift(double z) {
+  CatalogEntry& redshift(double z) {
     novas_set_redshift(&_entry, z);
+    return *this;
   }
 
-  void catalog(std::string& name, long number) {
+  CatalogEntry& catalog(std::string& name, long number) {
     novas_set_catalog(&_entry, name.c_str(), number);
+    return *this;
   }
 };
 
