@@ -60,6 +60,10 @@ static double v_add(double v1, double v2) {
   return (v1 + v2) / (1.0 + v1 * v2) * Constant::c;
 }
 
+std::string Velocity::str() const {
+  return "VEL ( " + Speed(x_ms()).str() + ", " + Speed(y_ms()).str() + ", " + Speed(z_ms()).str() + ")";
+}
+
 Velocity operator+(const Velocity& l, const Velocity& r) {
   return Velocity(v_add(l.x_ms(), r.x_ms()), v_add(l.y_ms(), r.y_ms()), v_add(l.z_ms(), r.z_ms()));
 }

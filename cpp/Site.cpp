@@ -11,6 +11,7 @@
 
 using namespace supernovas;
 
+
 Site::Site() {}
 
 Site::Site(double longitude, double latitude, double altitude, enum novas_reference_ellipsoid ellipsoid) {

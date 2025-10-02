@@ -11,7 +11,6 @@
 using namespace supernovas;
 
 
-
 void CatalogEntry::set_epoch() {
   _epoch = (novas_epoch(_sys.c_str()) - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;
 }

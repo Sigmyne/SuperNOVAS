@@ -12,6 +12,7 @@
 
 using namespace supernovas;
 
+
 Spherical::Spherical(): Spherical(0.0, 0.0) {}
 
 

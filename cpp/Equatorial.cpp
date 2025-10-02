@@ -8,8 +8,8 @@
 
 #include "supernovas.h"
 
-
 using namespace supernovas;
+
 
 Equatorial::Equatorial(double ra, double dec, const std::string& system, double distance)
 : Spherical(ra, dec, distance), _sys(system) {}

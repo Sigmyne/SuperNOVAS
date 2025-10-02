@@ -53,6 +53,10 @@ Position Position::origin() {
   return Position(0.0, 0.0, 0.0);
 }
 
+std::string Position::str() const {
+  return "POS ( " + Distance(x_m()).str() + ", " + Distance(y_m()).str() + ", " + Distance(z_m()).str() + ")";
+}
+
 Position operator+(const Position& l, const Position& r) {
   return Position(l.x_m() + r.x_m(), l.y_m() + r.y_m(), l.z_m() + r.z_m());
 }

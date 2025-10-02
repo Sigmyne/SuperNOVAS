@@ -11,7 +11,7 @@
 using namespace supernovas;
 
 
-Distance::Distance(double x) : _meters(fabs(x)) {}
+Distance::Distance(double x) : _meters(x) {}
 
 double Distance::m() const {
   return _meters;
@@ -40,7 +40,8 @@ Angle Distance::parallax() const {
 std::string Distance::str() const {
   char s[40] = {'\0'};
 
-  if(_meters < 1e9) snprintf(s, sizeof(s), "%.1f m", _meters);
+  if(_meters < 1e4) snprintf(s, sizeof(s), "%.1f m", _meters);
+  else if(_meters < 1e9) snprintf(s, sizeof(s), "%.3f km", km());
   else if(_meters < 1000.0 * Unit::au) snprintf(s, sizeof(s), "%.3f AU", au());
   else if(_meters < 1000.0 * Unit::pc) snprintf(s, sizeof(s), "%.3f pc", pc());
   else if(_meters < 1e6 * Unit::pc) snprintf(s, sizeof(s), "%.3f kpc", pc() / 1e3);

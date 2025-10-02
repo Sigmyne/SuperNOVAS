@@ -21,11 +21,13 @@
 
 extern "C" {
 #  include <novas.h>
-}
+} // extern "C"
 
 #define NOVAS_DEFAULT_DISTANCE      (1e9 * NOVAS_PARSEC)  ///< [AU] Default distance assumed for siderela sources, unless specified otherwise.
 
 namespace supernovas {
+
+
 
 // Forward class declarations.
 class Unit;
@@ -331,6 +333,8 @@ public:
 
   Spherical as_spherical() const;
 
+  std::string str() const;
+
   static Position origin();
 };
 
@@ -360,6 +364,8 @@ public:
   Position travel(const Interval& t) const;
 
   Position travel(double seconds) const;
+
+  std::string str() const;
 
   static Velocity stationary();
 };
@@ -392,9 +398,9 @@ public:
 
   Distance travel(Interval& time) const;
 
-  std::string str() const;
-
   Velocity to_velocity(const Vector& direction) const;
+
+  std::string str() const;
 
   static Speed from_redshift(double z);
 };
@@ -578,6 +584,8 @@ public:
 
   double humidity_fraction() const;
 
+  std::string str() const;
+
   static Weather guess(const Site& site);
 };
 
@@ -605,6 +613,8 @@ public:
   EOP itrf_transformed(int from_year, int to_year) const;
 
   EOP diurnal_corrected(const Time& time) const;
+
+  std::string str() const;
 };
 
 class Site {
@@ -728,6 +738,8 @@ public:
 
   Time(double jd, const EOP& eop, enum novas_timescale timescale = NOVAS_TT);
 
+  Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale = NOVAS_TT);
+
   Time(const std::string& timestamp, const EOP& eop, enum novas_timescale timescale = NOVAS_UTC);
 
   Time(const struct timespec *t, const EOP& eop);
@@ -746,11 +758,21 @@ public:
 
   double epoch() const;
 
+  TimeAngle gst(enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
+
+  TimeAngle lst(const Site& site, enum novas_accuracy accuracy) const;
+
+  TimeAngle era() const;
+
   std::string str(enum novas_timescale timescale = NOVAS_UTC) const;
 
   std::string iso_str() const;
 
   std::string epoch_str() const;
+
+  Time offset_time(double seconds) const;
+
+  Time offset_time(Interval offset) const;
 
   static Time now(const EOP& eop);
 };
@@ -760,7 +782,6 @@ private:
   novas_frame _frame;
   Observer _observer;
   Time _time;
-  EOP _eop;
 
 public:
   Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY);
@@ -770,6 +791,10 @@ public:
   const Observer& observer() const;
 
   const Time& time() const;
+
+  Apparent approx_apparent(const Planet& planet, enum novas_reference_system system = NOVAS_TOD) const;
+
+  double clock_skew(enum novas_timescale = NOVAS_TT) const;
 };
 
 
@@ -791,17 +816,17 @@ public:
 
   Geometric geometric(const Frame &frame, enum novas_reference_system system = NOVAS_TOD) const;
 
-  Time rises_above(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const;
-
-  Time transits(const Frame &frame) const;
-
-  Time sets_below(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const;
-
   Angle sun_angle(const Frame &frame) const;
 
   Angle moon_angle(const Frame &frame) const;
 
   Angle angle_to(const Source& source, const Frame& frame) const;
+
+  Time rises_above(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const;
+
+  Time transits(const Frame &frame) const;
+
+  Time sets_below(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const;
 };
 
 class CatalogEntry {
@@ -869,6 +894,8 @@ public:
 
   const cat_entry * _cat_entry() const;
 
+  long catalog_number() const;
+
   const System& system() const;
 
   CatalogEntry catalog_entry() const;
@@ -892,16 +919,31 @@ public:
   Planet(enum novas_planet number);
 
   Planet(const std::string& name);
+
+  enum novas_planet novas_id() const;
+
+  int naif_id() const;
+
+  double mean_radius() const;
+
+  double mass() const;
+
+
+
 };
 
 class EphemerisSource : public SolarSystemSource {
 public:
   EphemerisSource(const std::string &name, long number);
+
+  long number() const;
 };
 
 class OrbitalSource : public SolarSystemSource {
 public:
   OrbitalSource(const std::string& name, long number, const novas_orbital *orbit);
+
+
 };
 
 

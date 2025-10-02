@@ -7,7 +7,6 @@
 
 #include "supernovas.h"
 
-
 using namespace supernovas;
 
 Angle::Angle() : _rad(NAN) {}

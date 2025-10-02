@@ -33,6 +33,14 @@ double Weather::humidity_fraction() const {
   return 0.01 * _humidity;
 }
 
+std::string Weather::str() const {
+  char sT[20] = {'\0'}, sP[20] = {'\0'}, sH[20] = {'\0'};
+  snprintf(sT, sizeof(sT), "T = %.2f C", temperature().celsius());
+  snprintf(sP, sizeof(sT), "p = %.2f mbar", pressure().mbar());
+  snprintf(sH, sizeof(sT), "h = %.1f %%", humidity());
+  return "Weather ( " + std::string(sT) + ", " + std::string(sP) + ", " + std::string(sH) + " )";
+}
+
 Weather Weather::guess(const Site& site) {
   on_surface s = *site._on_surface();
   novas_set_default_weather(&s);

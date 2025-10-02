@@ -10,6 +10,7 @@
 
 using namespace supernovas;
 
+
 EOP::EOP(int leap_seconds, double dut1, double xp, double yp)
 : _leap(leap_seconds), _xp(xp), _yp(yp), _t(dut1) {}
 
@@ -50,4 +51,12 @@ EOP EOP::diurnal_corrected(const Time& time) const {
   eop._dt = dt;
 
   return eop;
+}
+
+std::string EOP::str() const {
+  char sx[20] = {'\0'}, sy[20] = {'\0'}, st[20] = {'\0'};
+  snprintf(st, sizeof(st), "dUT1 = %.6f s", _t);
+  snprintf(sx, sizeof(sx), "xp = %.3f mas", _xp);
+  snprintf(sy, sizeof(sy), "yp = %.3f mas", _yp);
+  return "EOP ( leap = " + std::to_string(_leap) + ", "   + st + ", " + sx + ", " + sy + " )";
 }

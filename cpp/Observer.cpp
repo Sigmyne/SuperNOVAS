@@ -51,6 +51,8 @@ SolarSystemObserver Observer::at_ssb() {
   return SolarSystemObserver();
 }
 
+
+
 GeocentricObserver::GeocentricObserver()
 : Observer() {
   make_observer_at_geocenter(&_observer);
@@ -60,7 +62,6 @@ GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
 : Observer() {
   make_observer_in_space(pos.scaled(1.0 / Unit::km)._array(), vel.scaled(Unit::sec / Unit::km)._array(), &_observer);
 }
-
 
 Position GeocentricObserver::geocetric_position() const {
   return Position(_observer.near_earth.sc_pos, Unit::km);
@@ -73,6 +74,8 @@ Velocity GeocentricObserver::geocentric_velocity() const {
 bool GeocentricObserver::is_geocentric() const {
   return true;
 }
+
+
 
 SolarSystemObserver::SolarSystemObserver() : Observer() {
   double zero[3] = {};
@@ -91,6 +94,8 @@ Position SolarSystemObserver::ssb_position() const {
 Velocity SolarSystemObserver::ssb_velocity() const {
   return Velocity(_observer.near_earth.sc_vel, Unit::au / Unit::day);
 }
+
+
 
 
 GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)

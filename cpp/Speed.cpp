@@ -7,8 +7,8 @@
 
 #include "supernovas.h"
 
-
 using namespace supernovas;
+
 
 Speed::Speed(double ms) : _ms(ms) {}
 
@@ -44,7 +44,7 @@ Distance Speed::travel(Interval& time) const {
 
 std::string Speed::str() const {
   char s[40] = {'\0'};
-  snprintf(s, sizeof(s), "%.3g km/s", kms());
+  snprintf(s, sizeof(s), "%.3f km/s", kms());
   return std::string(s);
 }
 

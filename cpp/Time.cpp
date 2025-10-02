@@ -6,13 +6,30 @@
  */
 
 
+extern "C" {
+#include "novas.h"
+}
+
+static double novas_era(long ijd, double fjd) {
+  return era((double) ijd, fjd);
+}
+
+
 #include "supernovas.h"
+
+#define E9      1000000000L
+
 
 using namespace supernovas;
 
 
+
 Time::Time(double jd, const EOP& eop, enum novas_timescale timescale) {
   novas_set_time(timescale, jd, eop.leap_seconds(), eop.dUT1(), &_ts);
+}
+
+Time::Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale) {
+  novas_set_split_time(timescale, ijd, fjd, eop.leap_seconds(), eop.dUT1(), &_ts);
 }
 
 Time::Time(const std::string& timestamp, const EOP& eop, enum novas_timescale timescale) {
@@ -35,6 +52,18 @@ double Time::jd(enum novas_timescale timescale) const {
 
 double Time::epoch() const {
   return 2000.0 + (jd() - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;
+}
+
+TimeAngle Time::gst(enum novas_accuracy accuracy) const {
+  return TimeAngle(novas_time_gst(&_ts, accuracy) * TWOPI);
+}
+
+TimeAngle Time::lst(const Site& site, enum novas_accuracy accuracy) const {
+  return TimeAngle(novas_time_lst(&_ts, site.longitude().deg(), accuracy) * TWOPI);
+}
+
+TimeAngle Time::era() const {
+  return TimeAngle(novas_era(_ts.ijd_tt, _ts.fjd_tt) * TWOPI);
 }
 
 TimeAngle Time::time_of_day(enum novas_timescale timescale) const {
@@ -67,6 +96,23 @@ Time Time::now(const EOP& eop) {
   Time time = Time();
   novas_set_current_time(eop.leap_seconds(), eop.dUT1(), &time._ts);
   return time;
+}
+
+Time Time::offset_time(double seconds) const {
+  struct novas_timespec ts = _ts;
+  double djd = seconds / Unit::day;
+  long idjd = (long) floor(djd);
+  ts.ijd_tt += idjd;
+  ts.fjd_tt += (djd - idjd);
+  if(ts.fjd_tt > 1.0) {
+    ts.ijd_tt++;
+    ts.fjd_tt -= 1.0;
+  }
+  return Time(&ts);
+}
+
+Time Time::offset_time(Interval offset) const {
+  return offset_time(offset.seconds());
 }
 
 Interval operator-(const Time& l, const Time &r) {

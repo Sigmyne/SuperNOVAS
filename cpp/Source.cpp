@@ -87,6 +87,10 @@ const cat_entry * CatalogSource::_cat_entry() const {
   return &_object.star;
 }
 
+long CatalogSource::catalog_number() const {
+  return _object.number;
+}
+
 const System& CatalogSource::system() const {
   return _system;
 }
@@ -124,8 +128,23 @@ Planet::Planet(const std::string& name) : SolarSystemSource() {
   make_planet(novas_planet_for_name(name.c_str()), &_object);
 }
 
+enum novas_planet Planet::novas_id() const {
+  return (enum novas_planet) _object.number;
+}
 
+int Planet::naif_id() const {
+  return novas_to_naif_planet(novas_id());
+}
 
+double Planet::mean_radius() const {
+  static double r[] = NOVAS_PLANET_RADII_INIT;
+  return r[_object.number];
+}
+
+double Planet::mass() const {
+  static double r[] = NOVAS_RMASS_INIT;
+  return Constant::GM_sun / Constant::G / r[_object.number];
+}
 
 
 
