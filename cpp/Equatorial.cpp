@@ -41,13 +41,13 @@ const Angle& Equatorial::dec() const {
 Ecliptic Equatorial::as_ecliptic() const {
   double longitude, latitude;
   equ2ecl(_sys.jd(), NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, ra().hours(), dec().deg(), &longitude, &latitude);
-  return Ecliptic(longitude, latitude, _sys.name(), _distance.m());
+  return Ecliptic(longitude * Unit::deg, latitude * Unit::deg, _sys.name(), _distance.m());
 }
 
 Galactic Equatorial::as_galactic() const {
   double longitude, latitude;
   equ2gal(ra().hours(), dec().deg(), &longitude, &latitude);
-  return Galactic(longitude, latitude, _distance.m());
+  return Galactic(longitude * Unit::deg, latitude * Unit::deg, _distance.m());
 }
 
 const std::string Equatorial::str(enum novas_separator_type separator, int decimals) const {

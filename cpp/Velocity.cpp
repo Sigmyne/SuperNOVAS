@@ -18,7 +18,6 @@ Velocity::Velocity(const double vel[3], double unit)
 : Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
 
 
-
 double Velocity::x_ms() const {
   return _component[0];
 }

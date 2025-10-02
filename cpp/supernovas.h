@@ -16,15 +16,14 @@
 #  if __cplusplus
 
 #include <string>
+#include <time.h>
 #include <errno.h>
 
 extern "C" {
 #  include <novas.h>
 }
 
-#define NOVAS_DEFAULT_DISTANCE      (1e9 * NOVAS_PARSEC)
-
-#include <time.h>
+#define NOVAS_DEFAULT_DISTANCE      (1e9 * NOVAS_PARSEC)  ///< [AU] Default distance assumed for siderela sources, unless specified otherwise.
 
 namespace supernovas {
 
@@ -586,7 +585,7 @@ private:
   int _leap;
   Angle _xp, _yp;
   double _t;
-  double _dxp = 0.0, _dyp = 0.0, _dt = 0.0;  // [mas, s] Applied corrections, in novas units.
+  double _dxp = 0.0, _dyp = 0.0, _dt = 0.0;  // [arcsec, s] Applied corrections, in novas units.
 
 public:
   EOP(int leap_seconds, double dut1 = 0.0, double xp = 0.0, double yp = 0.0);

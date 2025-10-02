@@ -52,8 +52,8 @@ Horizontal Horizontal::to_unrefracted(const Frame &frame, RefractionModel ref, c
 Apparent Horizontal::to_apparent(const Frame& frame, double rv, double distance) const {
   sky_pos p = {};
   novas_hor_to_app(frame._novas_frame(), _lon.deg(), _lat.deg(), NULL, NOVAS_TOD, &p.ra, &p.dec);
-  p.rv = rv * Unit::au / Unit::day;
-  p.dis = distance * Unit::au;
+  p.rv = rv / (Unit::au / Unit::day);
+  p.dis = distance / Unit::au;
   radec2vector(p.ra, p.dec, 1.0, p.r_hat);
   return Apparent(frame, &p, NOVAS_TOD);
 }

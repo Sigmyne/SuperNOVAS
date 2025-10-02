@@ -43,10 +43,11 @@ EOP EOP::diurnal_corrected(const Time& time) const {
   novas_diurnal_eop_at_time(time._novas_timespec(), &dxp, &dyp, &dt);
 
   // Apply correction rel. to prior correction.
-  EOP eop = EOP(_leap, _t + dt - _dt, (_xp.rad() + dxp - _dxp) * Unit::arcsec, (_yp.rad() + dyp - _dyp) * Unit::arcsec);
+  EOP eop = EOP(_leap, _t + dt - _dt, _xp.rad() + (dxp - _dxp) * Unit::arcsec, _yp.rad() + (dyp - _dyp) * Unit::arcsec);
 
   eop._dxp = dxp;
   eop._dyp = dyp;
   eop._dt = dt;
+
   return eop;
 }
