@@ -8,77 +8,72 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
+using namespace supernovas;
 
-class Pressure {
-private:
-  double _pascal;
 
-  Pressure(double value) : _pascal(value) {}
 
-public:
-  double Pa() const {
-    return _pascal;
-  }
+Pressure::Pressure(double value) : _pascal(value) {}
 
-  double hPa() const {
-    return 0.01 * _pascal;
-  }
 
-  double kPa() const {
-    return 1e-3 * _pascal;
-  }
+double Pressure::Pa() const {
+  return _pascal;
+}
 
-  double mbar() const {
-    return _pascal / Unit::mbar;
-  }
+double Pressure::hPa() const {
+  return 0.01 * _pascal;
+}
 
-  double bar() const {
-    return _pascal / Unit::bar;
-  }
+double Pressure::kPa() const {
+  return 1e-3 * _pascal;
+}
 
-  double torr() const {
-    return _pascal / Unit::torr;
-  }
+double Pressure::mbar() const {
+  return _pascal / Unit::mbar;
+}
 
-  double atm() const {
-    return _pascal / Unit::atm;
-  }
+double Pressure::bar() const {
+  return _pascal / Unit::bar;
+}
 
-  std::string str() const {
-    char s[40] = {'\0'};
-    snprintf(s, sizeof(s), "%.1f mbar", _pascal / Unit::mbar);
-    return std::string(s);
-  }
+double Pressure::torr() const {
+  return _pascal / Unit::torr;
+}
 
-  static Pressure Pa(double value) {
-    return Pressure(value);
-  }
+double Pressure::atm() const {
+  return _pascal / Unit::atm;
+}
 
-  static Pressure hPa(double value) {
-    return Pressure(100.0 * value);
-  }
+std::string Pressure::str() const {
+  char s[40] = {'\0'};
+  snprintf(s, sizeof(s), "%.1f mbar", _pascal / Unit::mbar);
+  return std::string(s);
+}
 
-  static Pressure kPa(double value) {
-    return Pressure(1000.0 * value);
-  }
+Pressure Pressure::Pa(double value) {
+  return Pressure(value);
+}
 
-  static Pressure mbar(double value) {
-    return Pressure(value * Unit::mbar);
-  }
+Pressure Pressure::hPa(double value) {
+  return Pressure(100.0 * value);
+}
 
-  static Pressure bar(double value) {
-    return Pressure(value * Unit::bar);
-  }
+Pressure Pressure::kPa(double value) {
+  return Pressure(1000.0 * value);
+}
 
-  static Pressure torr(double value) {
-    return Pressure(value * Unit::torr);
-  }
+Pressure Pressure::mbar(double value) {
+  return Pressure(value * Unit::mbar);
+}
 
-  static Pressure atm(double value) {
-    return Pressure(value * Unit::atm);
-  }
+Pressure Pressure::bar(double value) {
+  return Pressure(value * Unit::bar);
+}
 
-};
+Pressure Pressure::torr(double value) {
+  return Pressure(value * Unit::torr);
+}
 
-} // namespace supernovas
+Pressure Pressure::atm(double value) {
+  return Pressure(value * Unit::atm);
+}
+

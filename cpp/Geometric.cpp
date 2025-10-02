@@ -8,65 +8,54 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
+using namespace supernovas;
 
-class Geometric {
-private:
-  Frame _frame;
-  enum novas_reference_system _sys;
 
-  Position _pos;
-  Velocity _vel;
+Geometric::Geometric(const Frame& frame, enum novas_reference_system system, const Position& p, const Velocity& v)
+          : _frame(frame), _sys(system) , _pos(p), _vel(v) {}
 
-public:
+const Frame& Geometric::frame() const {
+  return _frame;
+}
 
-  Geometric(const Frame& frame, enum novas_reference_system system, const Position& p, const Velocity& v)
-  : _frame(frame), _sys(system) , _pos(p), _vel(v) {}
+enum novas_reference_system Geometric::system() const {
+  return _sys;
+}
 
-  const Frame& frame() const {
-    return _frame;
-  }
+const Position& Geometric::position() const {
+  return _pos;
+}
 
-  enum novas_reference_system system() const {
-    return _sys;
-  }
+const Velocity& Geometric::velocity() const {
+  return _vel;
+}
 
-  const Position& position() const {
-    return _pos;
-  }
+Equatorial Geometric::equatorial() const {
+  return Equatorial(_pos);
+}
 
-  const Velocity& velocity() const {
-    return _vel;
-  }
+Ecliptic Geometric::ecliptic() const {
+  return equatorial().as_ecliptic();
+}
 
-  Equatorial equatorial() const {
-    return Equatorial(_pos);
-  }
+Galactic Geometric::galactic() const {
+  return equatorial().as_galactic();
+}
 
-  Ecliptic ecliptic() const {
-    return equatorial().as_ecliptic();
-  }
+Geometric Geometric::to_system(enum novas_reference_system system) const {
+  if(system == _sys)
+    return *this;
 
-  Galactic galactic() const {
-    return equatorial().as_galactic();
-  }
+  novas_transform T = {};
+  double p[3] = {0.0}, v[3] = {0.0};
 
-  Geometric to_system(enum novas_reference_system system) const {
-    if(system == _sys)
-      return *this;
+  novas_make_transform(_frame._novas_frame(), _sys, system, &T);
+  novas_transform_vector(_pos._array(), &T, p);
+  novas_transform_vector(_vel._array(), &T, v);
 
-    novas_transform T = {};
-    double p[3] = {0.0}, v[3] = {0.0};
+  return Geometric(_frame, _sys, p, v);
+}
 
-    novas_make_transform(_frame._novas_frame(), _sys, system, &T);
-    novas_transform_vector(_pos._array(), &T, p);
-    novas_transform_vector(_vel._array(), &T, v);
 
-    return Geometric(_frame, _sys, p, v);
-  }
-
-};
-
-} // namespace supernovas
 
 

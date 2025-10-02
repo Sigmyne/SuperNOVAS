@@ -7,54 +7,30 @@
 
 #include "supernovas.h"
 
+using namespace supernovas;
 
-namespace supernovas {
-class Frame {
-private:
-  novas_frame _frame;
-  Observer _observer;
-  Time _time;
-  EOP _eop;
 
-public:
+Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy)
+: _observer(obs), _time(time), _eop({}) {
+  double xp = 0.0, yp = 0.0;
 
-  Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY)
-  : _observer(obs), _time(time), _eop({}) {
-    novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), 0.0, 0.0, &_frame);
+  if(obs.is_geodetic()) {
+    GeodeticObserver& eobs = (GeodeticObserver&) obs;
+    xp = eobs.eop().xp().mas();
+    yp = eobs.eop().yp().mas();
   }
 
-  Frame(const Observer& obs, const Time& time, const EOP& eop, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY)
-  : _observer(obs), _time(time), _eop(eop) {
-    novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), eop.xp().mas(), eop.yp().mas(), &_frame);
-  }
+  novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), xp, yp, &_frame);
+}
 
-  Weather weather() const {
-    const on_surface *s = &_observer._novas_observer()->on_surf;
-    return Weather(s->temperature, s->pressure * Unit::mbar, s->humidity);
-  }
+const novas_frame * Frame::_novas_frame() const {
+  return &_frame;
+}
 
-  void set_weather(const Weather& weather) {
-    on_surface *s = (on_surface *) &_observer._novas_observer()->on_surf;
-    s->temperature = weather.temperature().celsius();
-    s->pressure = weather.pressure().mbar();
-    s->humidity = weather.humidity();
-  }
+const Time& Frame::time() const {
+  return _time;
+}
 
-  const novas_frame *_novas_frame() const {
-    return &_frame;
-  }
-
-  const Time& time() const {
-    return _time;
-  }
-
-  const Observer& observer() const {
-    return _observer;
-  }
-
-  const EOP& eop() const {
-    return _eop;
-  }
-};
-
-} // namespace supernovas
+const Observer& Frame::observer() const {
+  return _observer;
+}

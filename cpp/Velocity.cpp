@@ -8,72 +8,63 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
-
-class Velocity : public Vector<Speed> {
-protected:
-
-  Velocity cast(double u) {
-    return Velocity(_component[0] / u, _component[1] / u, _component[2] / u);
-  }
-
-public:
-  Velocity(double x = 0.0, double y = 0.0, double z = 0.0)
-  : Vector(x, y, z) {}
-
-  Velocity(const double vel[3], double unit = 1.0)
-  : Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
-
-  Velocity operator+(const Velocity& r) const {
-    return Velocity(_component[0] + r._component[0], _component[1] + r._component[1], _component[2] + r._component[2]);
-  }
-
-  Velocity operator-(const Velocity &r) const {
-    return Velocity(_component[0] - r._component[0], _component[1] - r._component[1], _component[2] - r._component[2]);
-  }
-
-  double x_ms() const {
-    return _component[0];
-  }
-
-  double y_ms() const {
-    return _component[1];
-  }
-
-  double z_ms() const {
-    return _component[2];
-  }
-
-  Speed x() const {
-    return Speed(_component[0]);
-  }
-
-  Speed y() const {
-    return Speed(_component[1]);
-  }
-
-  Speed z() const {
-    return Speed(_component[2]);
-  }
-
-  Speed length() const {
-    return Speed(abs());
-  }
-
-  Speed along(Vector v) const {
-    return Speed(dot(v) / v.abs());
-  }
-
-  Velocity inv() const {
-    return Velocity(-_component[0], -_component[1], -_component[2]);
-  }
-
-  static Velocity stationary() {
-    return Velocity(0.0, 0.0, 0.0);
-  }
-
-};
+using namespace supernovas;
 
 
-} // namespace supernovas
+Velocity::Velocity(double x, double y, double z)
+: Vector(x, y, z) {}
 
+Velocity::Velocity(const double vel[3], double unit)
+: Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
+
+
+
+double Velocity::x_ms() const {
+  return _component[0];
+}
+
+double Velocity::y_ms() const {
+  return _component[1];
+}
+
+double Velocity::z_ms() const {
+  return _component[2];
+}
+
+Speed Velocity::speed() const {
+  return Speed(abs());
+}
+
+Speed Velocity::along(Vector v) const {
+  return Speed(projection_on(v));
+}
+
+Position Velocity::travel(const Interval& t) const {
+  return travel(t.seconds());
+}
+
+Position Velocity::travel(double seconds) const {
+  return Position(x_ms() * seconds, y_ms() * seconds, z_ms() * seconds);
+}
+
+Velocity Velocity::inv() const {
+  return Velocity(-_component[0], -_component[1], -_component[2]);
+}
+
+Velocity Velocity::stationary() {
+  return Velocity(0.0, 0.0, 0.0);
+}
+
+static double v_add(double v1, double v2) {
+  v1 /= Constant::c;
+  v2 /= Constant::c;
+  return (v1 + v2) / (1.0 + v1 * v2) * Constant::c;
+}
+
+Velocity operator+(const Velocity& l, const Velocity& r) {
+  return Velocity(v_add(l.x_ms(), r.x_ms()), v_add(l.y_ms(), r.y_ms()), v_add(l.z_ms(), r.z_ms()));
+}
+
+Velocity operator-(const Velocity& l, const Velocity& r) {
+  return Velocity(v_add(l.x_ms(), -r.x_ms()), v_add(l.y_ms(), -r.y_ms()), v_add(l.z_ms(), -r.z_ms()));
+}

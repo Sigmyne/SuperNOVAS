@@ -9,83 +9,77 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
-class Interval {
-private:
+using namespace supernovas;
 
-  double tt() const {
-    switch(_scale) {
-      case NOVAS_TCB: return  _seconds / (1.0 + Constant::L_B);
-      case NOVAS_TCG: return  _seconds / (1.0 + Constant::L_G);
-      default: return _seconds;
-    }
+
+
+static Interval from_tt(double x, enum novas_timescale timescale) {
+  switch(timescale) {
+    case NOVAS_TCB: return Interval(x * (1.0 + Constant::L_B), timescale);
+    case NOVAS_TCG: return Interval(x * (1.0 + Constant::L_G), timescale);
+    default: return Interval(x, timescale);
   }
+}
 
-  double from_tt(double x) const {
-    switch(_scale) {
-      case NOVAS_TCB: return x * (1.0 + Constant::L_B);
-      case NOVAS_TCG: return x * (1.0 + Constant::L_G);
-      default: return x;
-    }
+static double tt_seconds(const Interval& interval) {
+  switch(interval.timescale()) {
+    case NOVAS_TCB: return  interval.seconds() / (1.0 + Constant::L_B);
+    case NOVAS_TCG: return  interval.seconds() / (1.0 + Constant::L_G);
+    default: return interval.seconds();
   }
+}
 
-protected:
-  double _seconds;
-  enum novas_timescale _scale;
 
-public:
+Interval::Interval(double seconds, enum novas_timescale timescale)
+: _seconds(seconds), _scale(timescale) {}
 
-  Interval(double seconds, enum novas_timescale timescale = NOVAS_TT)
-  : _seconds(seconds), _scale(timescale) {}
 
-  Interval operator+(const Interval& r) const {
-    return Interval(from_tt(tt() + r.tt()), _scale);
-  }
 
-  Interval operator-(const Interval& r) const {
-    return Interval(from_tt(tt() - r.tt()), _scale);
-  }
+enum novas_timescale Interval::timescale() const {
+  return _scale;
+}
 
-  TimeAngle operator+(const TimeAngle& base) const {
-    return TimeAngle(_seconds + base.seconds());
-  }
+double Interval::milliseconds() const {
+  return _seconds / Unit::ms;
+}
 
-  enum novas_timescale timescale() const {
-    return _scale;
-  }
-
-  double milliseconds() const {
-    return _seconds / Unit::ms;
-  }
-
-  double seconds() const {
-    return _seconds;
-  };
-
-  double minutes() const {
-    return _seconds / Unit::min;
-  }
-
-  double hours() const {
-    return _seconds / Unit::hour;
-  }
-
-  double days() const {
-    return _seconds / Unit::day;
-  }
-
-  double years() const {
-    return _seconds / Unit::yr;
-  }
-
-  double julian_years() const {
-    return _seconds / Unit::julianYear;
-  }
-
-  double julian_centuries() const {
-    return _seconds / Unit::julianCentury;
-  }
-
+double Interval::seconds() const {
+  return _seconds;
 };
 
-} // namespace supernovas
+double Interval::minutes() const {
+  return _seconds / Unit::min;
+}
+
+double Interval::hours() const {
+  return _seconds / Unit::hour;
+}
+
+double Interval::days() const {
+  return _seconds / Unit::day;
+}
+
+double Interval::years() const {
+  return _seconds / Unit::yr;
+}
+
+double Interval::julian_years() const {
+  return _seconds / Unit::julianYear;
+}
+
+double Interval::julian_centuries() const {
+  return _seconds / Unit::julianCentury;
+}
+
+
+Interval operator+(const Interval& l, const Interval& r) {
+  return from_tt(tt_seconds(l) + tt_seconds(r), l.timescale());
+}
+
+Interval operator-(const Interval& l, const Interval& r) {
+  return from_tt(tt_seconds(l) - tt_seconds(r), l.timescale());
+}
+
+TimeAngle operator+(const Interval& l, const TimeAngle& base) {
+  return TimeAngle(l.seconds() + base.seconds());
+}

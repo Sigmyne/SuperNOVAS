@@ -10,53 +10,45 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
+using namespace supernovas;
 
-class Spherical {
-protected:
-  Angle _lon, _lat;
-  Distance _distance;
-
-  Spherical(): Spherical(0.0, 0.0) {}
-
-public:
-  Spherical(double longitude, double latitude, double distance = NOVAS_DEFAULT_DISTANCE)
-  : _lon(longitude), _lat(latitude), _distance(distance) {}
-
-  Spherical(const Angle& longitude, const Angle& latitude, double distance = NOVAS_DEFAULT_DISTANCE)
-  : _lon(longitude), _lat(latitude), _distance(distance) {}
-
-  Spherical(const Angle& longitude, const Angle& latitude, const Distance distance)
-  : _lon(longitude), _lat(latitude), _distance(distance) {}
+Spherical::Spherical(): Spherical(0.0, 0.0) {}
 
 
-  Position xyz() const {
-    double pos[3];
-    double xy = cos(_lat.rad());
+Spherical::Spherical(double longitude, double latitude, double distance)
+: _lon(longitude), _lat(latitude), _distance(distance) {}
 
-    pos[0] = xy * cos(_lon.rad());
-    pos[1] = xy * sin(_lon.rad());
-    pos[2] = sin(_lat.rad());
+Spherical::Spherical(const Angle& longitude, const Angle& latitude, double distance)
+: _lon(longitude), _lat(latitude), _distance(distance) {}
 
-    return Position(pos);
-  }
-
-  const Angle& longitude() const {
-    return _lon;
-  }
-
-  const Angle& latitude() const {
-    return _lat;
-  }
-
-  const Distance& distance() const {
-    return _distance;
-  }
-
-  const std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const {
-    return _lon.str(separator, decimals) + "  " + _lat.str(separator, decimals);
-  }
-};
+Spherical::Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance)
+: _lon(longitude), _lat(latitude), _distance(distance) {}
 
 
-} // namespace supernovas
+Position Spherical::xyz() const {
+  double pos[3];
+  double xy = cos(_lat.rad());
+
+  pos[0] = xy * cos(_lon.rad());
+  pos[1] = xy * sin(_lon.rad());
+  pos[2] = sin(_lat.rad());
+
+  return Position(pos);
+}
+
+const Angle& Spherical::longitude() const {
+  return _lon;
+}
+
+const Angle& Spherical::latitude() const {
+  return _lat;
+}
+
+const Distance& Spherical::distance() const {
+  return _distance;
+}
+
+const std::string Spherical::str(enum novas_separator_type separator, int decimals) const {
+  return _lon.str(separator, decimals) + "  " + _lat.str(separator, decimals);
+}
+

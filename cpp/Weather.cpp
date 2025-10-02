@@ -9,44 +9,33 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
+using namespace supernovas;
 
-class Weather {
-private:
-  Temperature _temperature;
-  Pressure _pressure;
-  double _humidity;
+Weather::Weather(const Temperature& T, const Pressure& p, double humidity_percent)
+: _temperature(T), _pressure(p), _humidity(humidity_percent) {}
 
-public:
+Weather::Weather(double celsius, double pascal, double humidity_percent)
+: _temperature(Temperature::celsius(celsius)), _pressure(Pressure::Pa(pascal)), _humidity(humidity_percent) {}
 
-  Weather(const Temperature& T, const Pressure& p, double humidity_percent)
-  : _temperature(T), _pressure(p), _humidity(humidity_percent) {}
+const Temperature& Weather::temperature() const {
+  return _temperature;
+}
 
-  Weather(double celsius, double pascal, double humidity_percent)
-  : _temperature(Temperature::celsius(celsius)), _pressure(Pressure::Pa(pascal)), _humidity(humidity_percent) {}
+const Pressure& Weather::pressure() const {
+  return _pressure;
+}
 
-  const Temperature& temperature() const {
-    return _temperature;
-  }
+double Weather::humidity() const {
+  return _humidity;
+}
 
-  const Pressure& pressure() const {
-    return _pressure;
-  }
+double Weather::humidity_fraction() const {
+  return 0.01 * _humidity;
+}
 
-  double humidity() const {
-    return _humidity;
-  }
+Weather Weather::guess(const Site& site) {
+  on_surface s = *site._on_surface();
+  novas_set_default_weather(&s);
+  return Weather(s.temperature, s.pressure * Unit::mbar, s.humidity);
+}
 
-  double humidity_fraction() const {
-    return 0.01 * _humidity;
-  }
-
-  static Weather guess(const Site& site) {
-    on_surface s = *site._on_surface();
-    novas_set_default_weather(&s);
-    return Weather(s.temperature, s.pressure * Unit::mbar, s.humidity);
-  }
-
-};
-
-} // namespace supernovas

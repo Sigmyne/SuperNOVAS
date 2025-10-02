@@ -8,65 +8,56 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
+using namespace supernovas;
 
-class Angle {
-protected:
-  double _rad;
+Angle::Angle() : _rad(NAN) {}
 
-protected:
-  Angle() : _rad(NAN) {}
+Angle::Angle(double x) : _rad(remainder(x, TWOPI)) {}
 
-public:
+Angle::Angle(const std::string& str) {
+  _rad = novas_str_degrees(str.c_str()) * Unit::deg;
+}
 
-  Angle(double x) : _rad(remainder(x, TWOPI)) {}
+Angle operator+(const Angle& l, const Angle& r) {
+  return Angle(l.rad() + r.rad());
+}
 
-  Angle(const std::string& str) {
-    _rad = novas_str_degrees(str.c_str()) * Unit::deg;
-  }
+Angle operator-(const Angle& l, const Angle& r) {
+  return Angle(l.rad() - r.rad());
+}
 
-  Angle operator+(const Angle& r) const {
-    return Angle(rad() + r.rad());
-  }
+double Angle::rad() const {
+  return _rad;
+}
 
-  Angle operator-(const Angle& r) const {
-    return Angle(rad() - r.rad());
-  }
+double Angle::deg() const {
+  return rad() / Unit::deg;
+}
 
-  double rad() const {
-    return _rad;
-  }
+double Angle::arcmin() const {
+  return rad() / Unit::arcsec;
+}
 
-  double deg() const {
-    return rad() / Unit::deg;
-  }
+double Angle::arcsec() const {
+  return rad() / Unit::arcsec;
+}
 
-  double arcmin() const {
-    return rad() / Unit::arcsec;
-  }
+double Angle::mas() const {
+  return rad() / Unit::mas;
+}
 
-  double arcsec() const {
-    return rad() / Unit::arcsec;
-  }
+double Angle::uas() const {
+  return rad() / Unit::uas;
+}
 
-  double mas() const {
-    return rad() / Unit::mas;
-  }
+double Angle::fraction() const {
+  return _rad / TWOPI;
+}
 
-  double uas() const {
-    return rad() / Unit::uas;
-  }
-
-  double fraction() {
-    return _rad / TWOPI;
-  }
-
-  const std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const {
-    char s[100] = {'\0'};
-    novas_print_dms(deg(), separator, decimals, s, sizeof(s));
-    return std::string(s);
-  }
-};
+const std::string Angle::str(enum novas_separator_type separator, int decimals) const {
+  char s[100] = {'\0'};
+  novas_print_dms(deg(), separator, decimals, s, sizeof(s));
+  return std::string(s);
+}
 
 
-} // namespace supernovas

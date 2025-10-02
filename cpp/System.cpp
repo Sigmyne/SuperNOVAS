@@ -11,31 +11,24 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
+using namespace supernovas;
 
-class System {
-protected:
-  std::string _name;
-  double _jd;
 
-public:
-  System(const std::string& name) : _name(name), _jd(novas_epoch(name.c_str())) {}
+System::System(const std::string& name) : _name(name), _jd(novas_epoch(name.c_str())) {}
 
-  double jd() const {
-    return _jd;
-  }
+double System::jd() const {
+  return _jd;
+}
 
-  double epoch() const {
-    return 2000.0 + (_jd - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;
-  }
+double System::epoch() const {
+  return 2000.0 + (_jd - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;
+}
 
-  const std::string& name() const {
-    return _name;
-  }
+const std::string& System::name() const {
+  return _name;
+}
 
-  std::string str() const {
-    return _name;
-  }
-};
+std::string System::str() const {
+  return _name;
+}
 
-} // namespace supernovas

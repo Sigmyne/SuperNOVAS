@@ -8,70 +8,58 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
-class Speed {
-protected:
-  double _ms;
+using namespace supernovas;
 
-public:
-  Speed(double ms) : _ms(ms) {}
+Speed::Speed(double ms) : _ms(ms) {}
 
-  Speed(const Distance d, const Interval& time) : _ms(d.m() / time.seconds()) {}
+Speed::Speed(const Distance d, const Interval& time) : _ms(d.m() / time.seconds()) {}
 
-  Speed operator+(const Speed& r) const {
-    return Speed((beta() + r.beta()) / (1 + beta() * r.beta()) * Constant::c);
-  }
+double Speed::ms() const {
+  return _ms;
+}
 
-  Speed operator-(const Speed& r) const {
-    return Speed((beta() - r.beta()) / (1 + beta() * r.beta()) * Constant::c);
-  }
+double Speed::kms() const {
+  return 1e-3 * _ms;
+}
 
-  double ms() const {
-    return _ms;
-  }
+double Speed::auday() const {
+  return _ms * Unit::day / Unit::au;
+}
 
-  double kms() const {
-    return 1e-3 * _ms;
-  }
+double Speed::beta() const {
+  return _ms / Constant::c;
+}
 
-  double auday() const {
-    return _ms * Unit::day / Unit::au;
-  }
+double Speed::redshift() const {
+  return sqrt((1.0 + beta()) / (1.0 - beta()));
+}
 
-  double beta() const {
-    return _ms / Constant::c;
-  }
+Distance Speed::travel(double seconds) const {
+  return Distance(_ms / seconds);
+}
 
-  double redshift() const {
-    return sqrt((1.0 + beta()) / (1.0 - beta()));
-  }
+Distance Speed::travel(Interval& time) const {
+  return travel(time.seconds());
+}
 
-  Distance travel(double seconds) const {
-    return Distance(_ms / seconds);
-  }
+std::string Speed::str() const {
+  char s[40] = {'\0'};
+  snprintf(s, sizeof(s), "%.3g km/s", kms());
+  return std::string(s);
+}
 
-  Distance travel(Interval& time) const {
-    return travel(time.seconds());
-  }
+Velocity Speed::to_velocity(const Vector& direction) const {
+  return Velocity(direction._array(), _ms / direction.abs());
+}
 
-  std::string str() const {
-    char s[40] = {'\0'};
-    snprintf(s, sizeof(s), "%.3g km/s", kms());
-    return std::string(s);
-  }
+Speed Speed::from_redshift(double z) {
+  return Speed(novas_z2v(z) * Unit::km / Unit::sec);
+}
 
-  template <typename T>
-  Velocity to_velocity(const Vector<T>& direction) const {
-    return Velocity(direction._array(), _ms / direction.abs());
-  }
+Speed operator+(const Speed& l, const Speed& r) {
+  return Speed((l.beta() + r.beta()) / (1 + l.beta() * r.beta()) * Constant::c);
+}
 
-  static Speed from_redshift(double z) {
-    return Speed(novas_z2v(z) * Unit::km / Unit::sec);
-  }
-
-
-
-
-};
-
-} // namespace supernovas
+Speed operator-(const Speed& l, const Speed& r) {
+  return Speed((l.beta() - r.beta()) / (1 + l.beta() * r.beta()) * Constant::c);
+}

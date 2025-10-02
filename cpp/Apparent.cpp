@@ -8,97 +8,86 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
+using namespace supernovas;
 
 
-class Apparent {
-private:
-  Frame _frame;
-  enum novas_reference_system _sys;
+Apparent::Apparent(const Frame& f, enum novas_reference_system system)
+: _frame(f), _sys(system) {}
 
-  sky_pos _pos;
+Apparent::Apparent(const Frame& f, const Equatorial& eq, double rv, enum novas_reference_system system)
+: Apparent(f, system) {
+  _pos.ra = eq.ra().hours();
+  _pos.dec = eq.dec().deg();
+  _pos.rv = rv / (Unit::au / Unit::day);
+  _pos.dis = NOVAS_DEFAULT_DISTANCE;
+  radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
+}
 
-  Apparent(const Frame& f, enum novas_reference_system system) : _frame(f), _sys(system) {}
+Apparent::Apparent(const Frame& f, const Equatorial& eq, const Speed& rv, enum novas_reference_system system)
+: Apparent(f, eq, rv.ms(), system) {}
 
-public:
+Apparent::Apparent(const Frame& f, const sky_pos *p, enum novas_reference_system system)
+: Apparent(f, system) {
+  _pos = *p;
+}
 
-  Apparent(const Frame& f, const Equatorial& eq, double rv = 0.0, enum novas_reference_system system = NOVAS_TOD)
-  : Apparent(f, system) {
-    _pos.ra = eq.ra().hours();
-    _pos.dec = eq.dec().deg();
-    _pos.rv = rv / (Unit::au / Unit::day);
-    _pos.dis = NOVAS_DEFAULT_DISTANCE;
-    radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
-  }
+const Frame& Apparent::frame() const {
+  return _frame;
+}
 
-  Apparent(const Frame& f, const Equatorial& eq, const Speed& rv, enum novas_reference_system system = NOVAS_TOD)
-  : Apparent(f, eq, rv.ms(), system) {}
+enum novas_reference_system Apparent::system() const {
+  return _sys;
+}
 
-  Apparent(const Frame& f, const sky_pos *p, enum novas_reference_system system = NOVAS_TOD)
-  : Apparent(f, system) {
-    _pos = *p;
-  }
+const sky_pos *Apparent::_sky_pos() const {
+  return &_pos;
+}
 
-  const Frame& frame() const {
-    return _frame;
-  }
+Angle Apparent::ra() const {
+  return Angle(_pos.ra * Unit::hourAngle);
+}
 
-  enum novas_reference_system system() const {
-    return _sys;
-  }
+Angle Apparent::dec() const {
+  return Angle(_pos.dec * Unit::deg);
+}
 
-  const sky_pos *_sky_pos() const {
-    return &_pos;
-  }
+Speed Apparent::radial_velocity() const {
+  return Speed(_pos.rv * Unit::au / Unit::day);
+}
 
-  Angle ra() const {
-    return Angle(_pos.ra * Unit::hourAngle);
-  }
+Distance Apparent::distance() const {
+  return Distance(_pos.dis * Unit::au);
+}
 
-  Angle dec() const {
-    return Angle(_pos.dec * Unit::deg);
-  }
+Equatorial Apparent::equatorial() const {
+  return Equatorial(_pos.ra * Unit::hourAngle, _pos.dec * Unit::deg, _frame.time().epoch_str(), _pos.dis * Unit::au);
+}
 
-  Speed radial_velocity() const {
-    return Speed(_pos.rv * Unit::au / Unit::day);
-  }
+Ecliptic Apparent::ecliptic() const {
+  return equatorial().as_ecliptic();
+}
 
-  Distance distance() const {
-    return Distance(_pos.dis * Unit::au);
-  }
+Galactic Apparent::galactic() const {
+  return equatorial().as_galactic();
+}
 
-  Equatorial equatorial() const {
-    return Equatorial(_pos.ra * Unit::hourAngle, _pos.dec * Unit::deg, _frame.time().epoch_str(), _pos.dis * Unit::au);
-  }
+Horizontal Apparent::horizontal() const {
+  double az = 0.0, el = 0.0;
+  novas_app_to_hor(_frame._novas_frame(), _sys, _pos.ra, _pos.dec, NULL, &az, &el);
+  return Horizontal(az * Unit::deg, el * Unit::deg, _pos.dis * Unit::au);
+}
 
-  Ecliptic ecliptic() const {
-    return equatorial().as_ecliptic();
-  }
+Apparent Apparent::to_system(enum novas_reference_system system) const {
+  if(system == _sys)
+    return *this;
 
-  Galactic galactic() const {
-    return equatorial().as_galactic();
-  }
+  Apparent app = Apparent(_frame, system);
+  novas_transform T;
 
-  Horizontal horizontal() const {
-    double az = 0.0, el = 0.0;
-    novas_app_to_hor(_frame._novas_frame(), _sys, _pos.ra, _pos.dec, NULL, &az, &el);
-    return Horizontal(az * Unit::deg, el * Unit::deg, _pos.dis * Unit::au);
-  }
+  novas_make_transform(_frame._novas_frame(), _sys, system, &T);
+  novas_transform_sky_pos(&_pos, &T, &app._pos);
+  return app;
+}
 
-  Apparent to_system(enum novas_reference_system system) const {
-    if(system == _sys)
-      return *this;
-
-    Apparent app = Apparent(_frame, system);
-    novas_transform T;
-
-    novas_make_transform(_frame._novas_frame(), _sys, system, &T);
-    novas_transform_sky_pos(&_pos, &T, &app._pos);
-    return app;
-  }
-};
-
-
-} // namespace supernovas
 
 

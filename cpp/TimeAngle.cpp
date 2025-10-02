@@ -9,51 +9,41 @@
 #include "supernovas.h"
 
 
-namespace supernovas {
+using namespace supernovas;
 
-class TimeAngle : Angle {
+TimeAngle::TimeAngle(double x)
+: Angle(x) {
+  if(_rad < 0.0) _rad += TWOPI;
+}
 
-public:
+TimeAngle::TimeAngle(const std::string& str)
+: Angle(novas_str_hours(str.c_str()) * Unit::hourAngle) {}
 
-  TimeAngle(double x)
-  : Angle(x) {
-    if(_rad < 0.0) _rad += TWOPI;
-  }
+TimeAngle::TimeAngle(const Angle& angle)
+: Angle(angle) {}
 
-  TimeAngle(const std::string& str)
-  : Angle(novas_str_hours(str.c_str()) * Unit::hourAngle) {}
+double TimeAngle::hours() const {
+  return _rad / Unit::hourAngle;
+}
 
-  TimeAngle(const Angle& angle)
-  : Angle(angle) {}
+double TimeAngle::minutes() const {
+  return hours() * 60.0;
+}
 
-  TimeAngle operator+(const Interval& offset) const {
-    return TimeAngle(_rad + offset.seconds());
-  }
+double TimeAngle::seconds() const {
+  return hours() * 3600.0;
+}
 
-  TimeAngle operator-(const Interval& offset) const {
-    return TimeAngle(_rad - offset.seconds());
-  }
+std::string TimeAngle::str(enum novas_separator_type separator, int decimals) const {
+  char s[100] = {'\0'};
+  novas_print_hms(hours(), separator, decimals, s, sizeof(s));
+  return std::string(s);
+}
 
-  double hours() const {
-    return _rad / Unit::hourAngle;
-  }
+TimeAngle operator+(const TimeAngle& l, const Interval& offset) {
+  return TimeAngle(l.rad() + offset.hours() * Unit::hourAngle);
+}
 
-  double minutes() const {
-    return hours() * 60.0;
-  }
-
-  double seconds() const {
-    return hours() * 3600.0;
-  }
-
-  std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) {
-    char s[100] = {'\0'};
-    novas_print_hms(hours(), separator, decimals, s, sizeof(s));
-    return std::string(s);
-  }
-
-};
-
-
-
-} // namespace supernovas
+TimeAngle operator-(const TimeAngle&l, const Interval& offset) {
+  return TimeAngle(l.rad() - offset.hours() * Unit::hourAngle);
+}
