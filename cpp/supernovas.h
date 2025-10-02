@@ -31,19 +31,19 @@ namespace supernovas {
 class Unit;
 class Constant;
 class Vector;
+class   Position;
+class   Velocity;
 class System;
 class Distance;
 class Interval;
 class Angle;
-class TimeAngle;
-class Position;
-class Velocity;
+class   TimeAngle;
 class Speed;
 class Spherical;
-class Horizontal;
-class Equatorial;
-class Ecliptic;
-class Galactic;
+class   Horizontal;
+class   Equatorial;
+class   Ecliptic;
+class   Galactic;
 class EOP;
 class Time;
 class Temperature;
@@ -51,14 +51,16 @@ class Pressure;
 class Weather;
 class Site;
 class Observer;
-class GeodeticObserver;
+class   GeodeticObserver;
+class   GeocentricObserver;
+class   SolarSystemObserver;
 class CatalogEntry;
 class Source;
-class CatalogSource;
-class SolarSystemSource;
-class Planet;
-class EphemerisSource;
-class OrbitalSource;
+class   CatalogSource;
+class   SolarSystemSource;
+class     Planet;
+class     EphemerisSource;
+class     OrbitalSource;
 class Frame;
 class Apparent;
 class Geometric;
@@ -655,19 +657,47 @@ public:
 
   enum novas_observer_place type() const;
 
-  bool is_geodetic() const;
+  virtual bool is_geodetic() const;
+
+  virtual bool is_geocentric() const;
 
   static GeodeticObserver on_earth(const Site& site, const EOP& eop);
 
   static GeodeticObserver on_earth(const Site& geodetic, const Velocity& vel, const EOP& eop);
 
-  static Observer in_earth_orbit(const Position& pos, const Velocity& vel);
+  static GeocentricObserver in_earth_orbit(const Position& pos, const Velocity& vel);
 
-  static Observer in_solar_system(const Position& pos, const Velocity& vel);
+  static GeocentricObserver at_geocenter();
 
-  static Observer at_geocenter();
+  static SolarSystemObserver in_solar_system(const Position& pos, const Velocity& vel);
 
-  static Observer at_ssb();
+  static SolarSystemObserver at_ssb();
+};
+
+class GeocentricObserver : public Observer {
+public:
+  GeocentricObserver();
+
+  GeocentricObserver(const Position& pos, const Velocity& vel);
+
+  bool is_geocentric() const override;
+
+  Position geocetric_position() const;
+
+  Velocity geocentric_velocity() const;
+};
+
+
+class SolarSystemObserver : public Observer {
+public:
+
+  SolarSystemObserver();
+
+  SolarSystemObserver(const Position& pos, const Velocity& vel);
+
+  Position ssb_position() const;
+
+  Velocity ssb_velocity() const;
 };
 
 class GeodeticObserver : public Observer {
@@ -679,7 +709,7 @@ public:
 
   GeodeticObserver(const Site& site, const Velocity& vel, const EOP& eop);
 
-  bool is_geodetic() const;
+  bool is_geodetic() const override;
 
   Site site() const;
 
