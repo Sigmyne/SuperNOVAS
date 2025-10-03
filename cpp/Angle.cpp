@@ -8,6 +8,8 @@
 #include "supernovas.h"
 
 using namespace supernovas;
+using namespace novas;
+
 
 Angle::Angle() : _rad(NAN) {}
 

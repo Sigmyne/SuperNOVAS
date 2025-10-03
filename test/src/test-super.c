@@ -6,7 +6,7 @@
 #if !defined(_MSC_VER) && __STDC_VERSION__ < 201112L
 #  define _POSIX_C_SOURCE 199309L   ///< struct timespec
 #endif
-#define _GNU_SOURCE                 ///< for strcasecmp()
+#define _DEFAULT_SOURCE             ///< for strcasecmp()
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,9 +15,6 @@
 #include <string.h>
 #include <time.h>
 
-#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
-#include "novas.h"
-
 #if __Lynx__ && __powerpc__
 // strcasecmp() / strncasecmp() are not defined on PowerPC / LynxOS 3.1
 extern int strcasecmp(const char *s1, const char *s2);
@@ -25,6 +22,15 @@ extern int strncasecmp(const char *s1, const char *s2, size_t n);
 #elif defined(_MSC_VER)
 #  define strcasecmp _stricmp                       /// MSVC equivalent
 #  define strncasecmp _strnicmp                     /// MSVC equivalent
+#endif
+
+#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+#include "novas.h"
+
+#if __cplusplus
+#  ifdef NOVAS_NAMESPACE
+using namespace novas;
+#  endif
 #endif
 
 #define J2000   NOVAS_JD_J2000

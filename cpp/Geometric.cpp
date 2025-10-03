@@ -9,6 +9,7 @@
 
 
 using namespace supernovas;
+using namespace novas;
 
 
 Geometric::Geometric(const Frame& frame, enum novas_reference_system system, const Position& p, const Velocity& v)

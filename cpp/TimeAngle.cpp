@@ -10,6 +10,8 @@
 
 
 using namespace supernovas;
+using namespace novas;
+
 
 TimeAngle::TimeAngle(double x)
 : Angle(x) {

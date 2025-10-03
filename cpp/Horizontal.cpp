@@ -8,6 +8,7 @@
 #include "supernovas.h"
 
 using namespace supernovas;
+using namespace novas;
 
 
 int Horizontal::location_with_weather(const Frame& frame, const Weather& weather, on_surface *s) {

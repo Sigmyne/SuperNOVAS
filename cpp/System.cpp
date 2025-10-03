@@ -12,6 +12,8 @@
 
 
 using namespace supernovas;
+using namespace novas;
+
 
 static double _epoch_for(double jd) {
   return 2000.0 + (jd - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;

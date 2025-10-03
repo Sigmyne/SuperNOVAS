@@ -8,6 +8,7 @@
 #include "supernovas.h"
 
 using namespace supernovas;
+using namespace novas;
 
 
 Speed::Speed(double ms) : _ms(ms) {}

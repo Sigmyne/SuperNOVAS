@@ -9,6 +9,7 @@
 
 
 using namespace supernovas;
+using namespace novas;
 
 
 Apparent::Apparent(const Frame& f, enum novas_reference_system system)

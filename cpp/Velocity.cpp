@@ -9,6 +9,7 @@
 
 
 using namespace supernovas;
+using namespace novas;
 
 
 Velocity::Velocity(double x, double y, double z)

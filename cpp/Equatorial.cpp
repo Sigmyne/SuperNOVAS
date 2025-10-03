@@ -9,6 +9,7 @@
 #include "supernovas.h"
 
 using namespace supernovas;
+using namespace novas;
 
 
 Equatorial::Equatorial(double ra, double dec, const std::string& system, double distance)

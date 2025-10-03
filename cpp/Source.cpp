@@ -9,6 +9,7 @@
 
 
 using namespace supernovas;
+using namespace novas;
 
 
 const struct novas_object *Source::_novas_object() const {

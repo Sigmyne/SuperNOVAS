@@ -11,7 +11,6 @@
 using namespace supernovas;
 
 
-
 Pressure::Pressure(double value) : _pascal(value) {}
 
 

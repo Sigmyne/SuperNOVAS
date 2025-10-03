@@ -9,6 +9,7 @@
 
 
 using namespace supernovas;
+using namespace novas;
 
 
 const observer * Observer::_novas_observer() const {

@@ -39,6 +39,12 @@
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
 #include "novas.h"
 
+#if __cplusplus
+#  ifdef NOVAS_NAMESPACE
+namespace novas {
+#  endif
+#endif
+
 #define MOIST_ADIABATIC_LAPSE_RATE        0.005     ///< [C/m] Moist adiabatic lapse rate (see Feulner et al. 2013).
 
 #define ANTARCTIC_ADIABATIC_LAPSE_RATE    0.0098    ///< [C/m] Moist adiabatic lapse rate (see Feulner et al. 2013).

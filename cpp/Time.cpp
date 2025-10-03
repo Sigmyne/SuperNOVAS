@@ -6,22 +6,16 @@
  */
 
 
-extern "C" {
-#include "novas.h"
-}
+#include "supernovas.h"
 
 static double novas_era(long ijd, double fjd) {
-  return era((double) ijd, fjd);
+  return novas::era((double) ijd, fjd);
 }
-
-
-#include "supernovas.h"
 
 #define E9      1000000000L
 
-
 using namespace supernovas;
-
+using namespace novas;
 
 
 Time::Time(double jd, const EOP& eop, enum novas_timescale timescale) {

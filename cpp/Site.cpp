@@ -10,6 +10,7 @@
 
 
 using namespace supernovas;
+using namespace novas;
 
 
 Site::Site() {}

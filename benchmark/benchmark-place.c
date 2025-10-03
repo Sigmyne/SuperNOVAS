@@ -17,6 +17,12 @@
 
 #include <novas.h>      ///< SuperNOVAS functions and definitions
 
+#if __cplusplus
+#  ifdef NOVAS_NAMESPACE
+using namespace novas;
+#  endif
+#endif
+
 #define  LEAP_SECONDS     37        ///< [s] current leap seconds from IERS Bulletin C
 #define  DUT1             0.114     ///< [s] current UT1 - UTC time difference from IERS Bulletin A
 #define  POLAR_DX         230.0     ///< [mas] Earth polar offset x, e.g. from IERS Bulletin A.

@@ -8,6 +8,7 @@
 #include "supernovas.h"
 
 using namespace supernovas;
+using namespace novas;
 
 
 Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy)

@@ -10,7 +10,7 @@
 
 
 using namespace supernovas;
-
+using namespace novas;
 
 Vector::Vector(double x, double y, double z) {
   _component[0] = x;

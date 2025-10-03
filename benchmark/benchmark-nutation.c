@@ -23,6 +23,12 @@
 
 #include <novas.h>      ///< SuperNOVAS functions and definitions
 
+#if __cplusplus
+#  ifdef NOVAS_NAMESPACE
+using namespace novas;
+#  endif
+#endif
+
 #define  LEAP_SECONDS     37        ///< [s] current leap seconds from IERS Bulletin C
 #define  DUT1             0.114     ///< [s] current UT1 - UTC time difference from IERS Bulletin A
 

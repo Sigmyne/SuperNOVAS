@@ -11,22 +11,18 @@
 #ifndef INCLUDE_SUPERMOVAS_H_
 #define INCLUDE_SUPERMOVAS_H_
 
-#define SUPERNOVAS_CPP_API_VERSION    0.1.0
+#define SUPERNOVAS_CPP_API_VERSION    0.1.0   ///< C++ API version (different from library version)
 
-#  if __cplusplus
+#if __cplusplus
 
 #include <string>
 #include <time.h>
 #include <errno.h>
 
-extern "C" {
-#  include <novas.h>
-}
-
-#define NOVAS_DEFAULT_DISTANCE    (1e9 * NOVAS_PARSEC)
+#define NOVAS_NAMESPACE                       /// Make C API available under the 'novas' namespace
+#include <novas.h>
 
 namespace supernovas {
-
 
 
 // Forward class declarations.
@@ -227,11 +223,11 @@ class Interval {
 private:
 
   double _seconds;
-  enum novas_timescale _scale;
+  enum novas::novas_timescale _scale;
 
 public:
 
-  Interval(double seconds, enum novas_timescale timescale = NOVAS_TT);
+  Interval(double seconds, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
   Interval operator+(const Interval& r) const;
 
@@ -239,7 +235,7 @@ public:
 
   TimeAngle operator+(const TimeAngle& base) const;
 
-  enum novas_timescale timescale() const;
+  enum novas::novas_timescale timescale() const;
 
   double milliseconds() const;
 
@@ -289,7 +285,7 @@ public:
 
   double fraction() const;
 
-  const std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
+  const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 };
 
 class TimeAngle : public Angle {
@@ -311,7 +307,7 @@ public:
 
   double seconds() const;
 
-  std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
+  std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 };
 
 
@@ -464,7 +460,7 @@ public:
 
   const Distance& distance() const;
 
-  virtual const std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
+  virtual const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 };
 
 
@@ -489,7 +485,7 @@ public:
 
   Galactic as_galactic() const;
 
-  const std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
+  const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 };
 
 class Ecliptic : public Spherical {
@@ -509,7 +505,7 @@ public:
 
   Galactic as_galactic() const;
 
-  const std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
+  const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 };
 
 class Galactic : public Spherical {
@@ -524,7 +520,7 @@ public:
 
   Ecliptic as_ecliptic() const;
 
-  const std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
+  const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 };
 
 class Temperature {
@@ -642,17 +638,17 @@ public:
 
 class Site {
 private:
-  on_surface _site;
+  novas::on_surface _site;
 
   Site();
 
 public:
 
-  Site(double longitude, double latitude, double altitude=0.0, enum novas_reference_ellipsoid ellipsoid = NOVAS_GRS80_ELLIPSOID);
+  Site(double longitude, double latitude, double altitude=0.0, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
 
   Site(const Position& xyz);
 
-  const on_surface *_on_surface() const;
+  const novas::on_surface *_on_surface() const;
 
   const Angle longitude() const;
 
@@ -660,13 +656,13 @@ public:
 
   const Distance altitude() const;
 
-  const Position xyz(enum novas_reference_ellipsoid ellipsoid = NOVAS_GRS80_ELLIPSOID) const;
+  const Position xyz(enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID) const;
 
   Site itrf_transformed(int from_year, int to_year) const;
 
   Position xyz() const;
 
-  std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
+  std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 
   static Site from_GPS(double longitude, double latitude, double altitude = 0.0);
 
@@ -678,7 +674,7 @@ public:
 
 class Observer {
 protected:
-  observer _observer;
+  novas::observer _observer;
 
   Observer() {};
 
@@ -686,9 +682,9 @@ public:
 
   virtual ~Observer() {}; // something virtual to make class polymorphic for dynamic casting.
 
-  const observer * _novas_observer() const;
+  const novas::observer * _novas_observer() const;
 
-  enum novas_observer_place type() const;
+  enum novas::novas_observer_place type() const;
 
   virtual bool is_geodetic() const;
 
@@ -753,41 +749,41 @@ public:
 
 class Time {
 protected:
-  novas_timespec _ts;
+  novas::novas_timespec _ts;
 
   Time() {};
 
 public:
 
-  Time(double jd, const EOP& eop, enum novas_timescale timescale = NOVAS_TT);
+  Time(double jd, const EOP& eop, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
-  Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale = NOVAS_TT);
+  Time(long ijd, double fjd, const EOP& eop, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
-  Time(const std::string& timestamp, const EOP& eop, enum novas_timescale timescale = NOVAS_UTC);
+  Time(const std::string& timestamp, const EOP& eop, enum novas::novas_timescale timescale = novas::NOVAS_UTC);
 
   Time(const struct timespec *t, const EOP& eop);
 
-  Time(const novas_timespec *t);
+  Time(const novas::novas_timespec *t);
 
   Interval operator-(const Time &other) const;
 
-  const novas_timespec * _novas_timespec() const;
+  const novas::novas_timespec * _novas_timespec() const;
 
-  double jd(enum novas_timescale timescale = NOVAS_TT) const;
+  double jd(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
-  TimeAngle time_of_day(enum novas_timescale timescale = NOVAS_TT) const;
+  TimeAngle time_of_day(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
-  int day_of_week(enum novas_timescale timescale) const;
+  int day_of_week(enum novas::novas_timescale timescale) const;
 
   double epoch() const;
 
-  TimeAngle gst(enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
+  TimeAngle gst(enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
 
-  TimeAngle lst(const Site& site, enum novas_accuracy accuracy) const;
+  TimeAngle lst(const Site& site, enum novas::novas_accuracy accuracy) const;
 
   TimeAngle era() const;
 
-  std::string str(enum novas_timescale timescale = NOVAS_UTC) const;
+  std::string str(enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
 
   std::string iso_str() const;
 
@@ -802,44 +798,44 @@ public:
 
 class Frame {
 private:
-  novas_frame _frame;
+  novas::novas_frame _frame;
   Observer _observer;
   Time _time;
 
 public:
-  Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY);
+  Frame(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
 
-  const novas_frame *_novas_frame() const;
+  const novas::novas_frame *_novas_frame() const;
 
   const Observer& observer() const;
 
   const Time& time() const;
 
-  enum novas_accuracy accuracy() const;
+  enum novas::novas_accuracy accuracy() const;
 
-  Apparent approx_apparent(const Planet& planet, enum novas_reference_system system = NOVAS_TOD) const;
+  Apparent approx_apparent(const Planet& planet, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
 
-  double clock_skew(enum novas_timescale = NOVAS_TT) const;
+  double clock_skew(enum novas::novas_timescale = novas::NOVAS_TT) const;
 };
 
 
 
 class Source {
 protected:
-  struct novas_object _object;
+  struct novas::novas_object _object;
 
   Source() {}
 
 public:
   virtual ~Source() {}; // something virtual to make class polymorphic for dynamic casting.
 
-  const struct novas_object *_novas_object() const;
+  const struct novas::novas_object *_novas_object() const;
 
   std::string name() const;
 
-  Apparent apparent(const Frame &frame, enum novas_reference_system system = NOVAS_TOD) const;
+  Apparent apparent(const Frame &frame, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
 
-  Geometric geometric(const Frame &frame, enum novas_reference_system system = NOVAS_TOD) const;
+  Geometric geometric(const Frame &frame, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
 
   Angle sun_angle(const Frame &frame) const;
 
@@ -847,11 +843,11 @@ public:
 
   Angle angle_to(const Source& source, const Frame& frame) const;
 
-  Time rises_above(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const;
+  Time rises_above(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
 
   Time transits(const Frame &frame) const;
 
-  Time sets_below(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const;
+  Time sets_below(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
 
   static void set_case_sensitive(bool value);
 };
@@ -859,7 +855,7 @@ public:
 class CatalogEntry {
 private:
   double _epoch;
-  cat_entry _entry;
+  novas::cat_entry _entry;
   System _sys;
 
   void set_epoch();
@@ -869,9 +865,9 @@ public:
 
   CatalogEntry(const std::string &name, const Angle& RA, const Angle& Dec, const System& system = System::icrs());
 
-  CatalogEntry(const cat_entry *e, const std::string& system = "ICRS");
+  CatalogEntry(const novas::cat_entry *e, const std::string& system = "ICRS");
 
-  const cat_entry* _cat_entry() const;
+  const novas::cat_entry* _cat_entry() const;
 
   const System& system() const;
 
@@ -925,7 +921,7 @@ private:
 public:
   CatalogSource(const CatalogEntry& e);
 
-  const cat_entry * _cat_entry() const;
+  const novas::cat_entry * _cat_entry() const;
 
   CatalogEntry catalog_entry() const;
 };
@@ -945,11 +941,11 @@ public:
 
 class Planet : public SolarSystemSource {
 public:
-  Planet(enum novas_planet number);
+  Planet(enum novas::novas_planet number);
 
   Planet(const std::string& name);
 
-  enum novas_planet novas_id() const;
+  enum novas::novas_planet novas_id() const;
 
   int naif_id() const;
 
@@ -998,34 +994,37 @@ public:
 
 class OrbitalSource : public SolarSystemSource {
 public:
-  OrbitalSource(const std::string& name, long number, const novas_orbital *orbit);
+  OrbitalSource(const std::string& name, long number, const novas::novas_orbital *orbit);
 
-  const novas_orbital *_novas_orbital() const;
+  const novas::novas_orbital *_novas_orbital() const;
 
+  Position orbital_position(const Time& time) const; // TODO
+
+  Velocity orbital_velocity(const Time& time) const; // TODO
 };
 
 
 class Apparent {
 private:
   Frame _frame;
-  enum novas_reference_system _sys;
+  enum novas::novas_reference_system _sys;
 
-  sky_pos _pos;
+  novas::sky_pos _pos;
 
-  Apparent(const Frame& frame, enum novas_reference_system system);
+  Apparent(const Frame& frame, enum novas::novas_reference_system system);
 
 public:
-  Apparent(const Frame& frame, const Equatorial& eq, double rv = 0.0, enum novas_reference_system system = NOVAS_TOD);
+  Apparent(const Frame& frame, const Equatorial& eq, double rv = 0.0, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
-  Apparent(const Frame& frame, const Equatorial& eq, const Speed& rv, enum novas_reference_system system = NOVAS_TOD);
+  Apparent(const Frame& frame, const Equatorial& eq, const Speed& rv, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
-  Apparent(const Frame& frame, const sky_pos *p, enum novas_reference_system system = NOVAS_TOD);
+  Apparent(const Frame& frame, const novas::sky_pos *p, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
-  const sky_pos *_sky_pos() const;
+  const novas::sky_pos *_sky_pos() const;
 
   const Frame& frame() const;
 
-  enum novas_reference_system system() const;
+  enum novas::novas_reference_system system() const;
 
   Angle ra() const;
 
@@ -1043,24 +1042,24 @@ public:
 
   Horizontal horizontal() const;
 
-  Apparent to_system(enum novas_reference_system system) const;
+  Apparent to_system(enum novas::novas_reference_system system) const;
 };
 
 
 class Geometric {
 private:
   Frame _frame;
-  enum novas_reference_system _sys;
+  enum novas::novas_reference_system _sys;
 
   Position _pos;
   Velocity _vel;
 
 public:
-  Geometric(const Frame& frame, enum novas_reference_system system, const Position& p, const Velocity& v);
+  Geometric(const Frame& frame, enum novas::novas_reference_system system, const Position& p, const Velocity& v);
 
   const Frame& frame() const;
 
-  enum novas_reference_system system() const;
+  enum novas::novas_reference_system system() const;
 
   const Position& position() const;
 
@@ -1072,14 +1071,14 @@ public:
 
   Galactic galactic() const;
 
-  Geometric to_system(enum novas_reference_system system) const;
+  Geometric to_system(enum novas::novas_reference_system system) const;
 
 };
 
 class Horizontal : public Spherical {
 private:
 
-  int location_with_weather(const Frame& frame, const Weather& weather, on_surface *s);
+  int location_with_weather(const Frame& frame, const Weather& weather, novas::on_surface *s);
 
 public:
   Horizontal(double azimuth, double elevation, double distance = NOVAS_DEFAULT_DISTANCE);
@@ -1090,15 +1089,15 @@ public:
 
   const Angle& elevation() const;
 
-  Horizontal to_refracted(const Frame &frame, RefractionModel ref, const Weather& weather);
+  Horizontal to_refracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather);
 
-  Horizontal to_unrefracted(const Frame &frame, RefractionModel ref, const Weather& weather);
+  Horizontal to_unrefracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather);
 
   Apparent to_apparent(const Frame& frame, double rv = 0.0, double distance = NOVAS_DEFAULT_DISTANCE) const;
 
   Apparent to_apparent(const Frame& frame, const Speed& rv = Speed::stationary(), const Distance& distance = Distance::at_Gpc()) const;
 
-  const std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
+  const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 };
 
 

@@ -9,6 +9,7 @@
 
 
 using namespace supernovas;
+using namespace novas;
 
 
 Ecliptic::Ecliptic(double longitude, double latitude, const std::string& system, double distance)

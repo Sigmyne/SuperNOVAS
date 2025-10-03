@@ -9,6 +9,7 @@
 
 
 using namespace supernovas;
+using namespace novas;
 
 
 EOP::EOP(int leap_seconds, double dut1, double xp, double yp)

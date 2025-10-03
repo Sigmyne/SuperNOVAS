@@ -10,7 +10,7 @@
 
 
 using namespace supernovas;
-
+using namespace novas;
 
 
 static Interval from_tt(double x, enum novas_timescale timescale) {

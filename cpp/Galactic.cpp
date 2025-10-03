@@ -8,6 +8,7 @@
 #include "supernovas.h"
 
 using namespace supernovas;
+using namespace novas;
 
 
 Galactic::Galactic(double longitude, double latitude, double distance)
