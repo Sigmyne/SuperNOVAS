@@ -8,7 +8,7 @@
 
 #include "supernovas.h"
 
-using namespace supernovas;
+namespace supernovas {
 
 
 Distance::Distance(double x) : _meters(x) {}
@@ -71,3 +71,6 @@ static const Distance _at_Gpc = Distance(Unit::Gpc);
 const Distance& Distance::at_Gpc() {
   return _at_Gpc;
 }
+
+
+} // namespace supernovas

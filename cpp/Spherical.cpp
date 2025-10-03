@@ -10,9 +10,10 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
 
+
+namespace supernovas {
 
 Spherical::Spherical(): Spherical(0.0, 0.0) {}
 
@@ -51,3 +52,5 @@ const std::string Spherical::str(enum novas_separator_type separator, int decima
   return _lon.str(separator, decimals) + "  " + _lat.str(separator, decimals);
 }
 
+
+} // namespace supernovas

@@ -8,7 +8,7 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
+namespace supernovas {
 
 
 Pressure::Pressure(double value) : _pascal(value) {}
@@ -76,3 +76,5 @@ Pressure Pressure::atm(double value) {
   return Pressure(value * Unit::atm);
 }
 
+
+}

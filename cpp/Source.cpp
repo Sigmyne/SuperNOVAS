@@ -8,9 +8,9 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
 
+namespace supernovas {
 
 const struct novas_object *Source::_novas_object() const {
   return &_object;
@@ -236,5 +236,5 @@ const novas_orbital * OrbitalSource::_novas_orbital() const {
   return &_object.orbit;
 }
 
-
+} // namespace supernovas
 

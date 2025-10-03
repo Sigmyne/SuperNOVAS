@@ -7,9 +7,11 @@
 
 #include "supernovas.h"
 
-using namespace supernovas;
+
 using namespace novas;
 
+
+namespace supernovas {
 
 Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy)
 : _observer(obs), _time(time) {
@@ -49,3 +51,5 @@ Apparent Frame::approx_apparent(const Planet& planet, enum novas_reference_syste
   novas_approx_sky_pos(planet.novas_id(), _novas_frame(), system, &pos);
   return Apparent(*this, &pos, system);
 }
+
+} // namespace supernovas

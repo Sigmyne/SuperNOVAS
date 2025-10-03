@@ -9,9 +9,9 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
 
+namespace supernovas {
 
 TimeAngle::TimeAngle(double x)
 : Angle(x) {
@@ -49,3 +49,5 @@ TimeAngle operator+(const TimeAngle& l, const Interval& offset) {
 TimeAngle operator-(const TimeAngle&l, const Interval& offset) {
   return TimeAngle(l.rad() - offset.hours() * Unit::hourAngle);
 }
+
+} // namespace supernovas

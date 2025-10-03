@@ -8,9 +8,10 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
+
 using namespace novas;
 
+namespace supernovas {
 
 void CatalogEntry::set_epoch() {
   _epoch = (_sys.jd() - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;
@@ -129,5 +130,5 @@ CatalogEntry& CatalogEntry::catalog(const std::string& name, long number) {
   return *this;
 }
 
-
+} // namespace supernovas
 

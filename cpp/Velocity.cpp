@@ -8,9 +8,10 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
 
+
+namespace supernovas {
 
 Velocity::Velocity(double x, double y, double z)
 : Vector(x, y, z) {}
@@ -72,4 +73,6 @@ Velocity operator+(const Velocity& l, const Velocity& r) {
 
 Velocity operator-(const Velocity& l, const Velocity& r) {
   return Velocity(v_add(l.x_ms(), -r.x_ms()), v_add(l.y_ms(), -r.y_ms()), v_add(l.z_ms(), -r.z_ms()));
+}
+
 }

@@ -14,9 +14,11 @@ static double novas_era(long ijd, double fjd) {
 
 #define E9      1000000000L
 
-using namespace supernovas;
+
 using namespace novas;
 
+
+namespace supernovas {
 
 Time::Time(double jd, const EOP& eop, enum novas_timescale timescale) {
   novas_set_time(timescale, jd, eop.leap_seconds(), eop.dUT1(), &_ts);
@@ -112,5 +114,7 @@ Time Time::shifted(Interval offset) const {
 Interval operator-(const Time& l, const Time &r) {
   return Interval(novas_diff_time(l._novas_timespec(), r._novas_timespec()), NOVAS_TT);
 }
+
+} // namespace supernovas
 
 

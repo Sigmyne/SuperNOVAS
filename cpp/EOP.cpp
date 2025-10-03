@@ -7,10 +7,10 @@
 
 #include "supernovas.h"
 
-
-using namespace supernovas;
 using namespace novas;
 
+
+namespace supernovas {
 
 EOP::EOP(int leap_seconds, double dut1, double xp, double yp)
 : _leap(leap_seconds), _xp(xp), _yp(yp), _t(dut1) {}
@@ -61,3 +61,5 @@ std::string EOP::str() const {
   snprintf(sy, sizeof(sy), "yp = %.3f mas", _yp);
   return "EOP ( leap = " + std::to_string(_leap) + ", "   + st + ", " + sx + ", " + sy + " )";
 }
+
+} // namespace supernovas

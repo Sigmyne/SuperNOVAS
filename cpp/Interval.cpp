@@ -9,9 +9,9 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
 
+namespace supernovas {
 
 static Interval from_tt(double x, enum novas_timescale timescale) {
   switch(timescale) {
@@ -83,3 +83,6 @@ Interval operator-(const Interval& l, const Interval& r) {
 TimeAngle operator+(const Interval& l, const TimeAngle& base) {
   return TimeAngle(l.seconds() + base.seconds());
 }
+
+
+} // namespace supernovas

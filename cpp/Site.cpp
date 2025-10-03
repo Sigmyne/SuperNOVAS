@@ -9,9 +9,9 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
 
+namespace supernovas {
 
 Site::Site() {}
 
@@ -81,5 +81,5 @@ Site Site::from_GPS(double longitude, double latitude, double altitude) {
   return Site(longitude, latitude, altitude, NOVAS_WGS84_ELLIPSOID);
 }
 
-
+} // namespace supernovas
 

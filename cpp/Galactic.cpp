@@ -7,9 +7,10 @@
 
 #include "supernovas.h"
 
-using namespace supernovas;
+
 using namespace novas;
 
+namespace supernovas {
 
 Galactic::Galactic(double longitude, double latitude, double distance)
 : Spherical(longitude, latitude, distance) {}
@@ -34,5 +35,5 @@ const std::string Galactic::str(enum novas_separator_type separator, int decimal
   return "GAL  " + Spherical::str(separator, decimals);
 }
 
-
+} // namespace supernovas
 

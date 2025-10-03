@@ -9,8 +9,9 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
+
+namespace supernovas {
 
 Weather::Weather(const Temperature& T, const Pressure& p, double humidity_percent)
 : _temperature(T), _pressure(p), _humidity(humidity_percent) {}
@@ -48,3 +49,4 @@ Weather Weather::guess(const Site& site) {
   return Weather(s.temperature, s.pressure * Unit::mbar, s.humidity);
 }
 
+} // namespace supernovas
