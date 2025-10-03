@@ -22,13 +22,11 @@
 #define ERAD_AU             ( ERAD / NOVAS_AU )
 /// \endcond
 
-
 #if __cplusplus
 #  ifdef NOVAS_NAMESPACE
 namespace novas {
 #  endif
 #endif
-
 
 /// \cond PRIVATE
 /**

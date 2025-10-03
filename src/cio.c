@@ -51,16 +51,6 @@
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
 #include "novas.h"
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
-#define CIO_INTERP_POINTS   6     ///< Number of points to load from CIO interpolation table at once.
-
-#define CIO_ARRAY_STEP      1.2   ///< [day] Interval between CIO vs GCRS locator lookup entries.
 /// \endcond
 
 #if __cplusplus
@@ -68,6 +58,13 @@ namespace novas {
 namespace novas {
 #  endif
 #endif
+
+/// \cond PRIVATE
+#define CIO_INTERP_POINTS   6     ///< Number of points to load from CIO interpolation table at once.
+
+#define CIO_ARRAY_STEP      1.2   ///< [day] Interval between CIO vs GCRS locator lookup entries.
+/// \endcond
+
 
 /**
  * Computes the true right ascension of the celestial intermediate origin (CIO) vs the equinox of
