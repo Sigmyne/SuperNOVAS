@@ -8,9 +8,10 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
+
 using namespace novas;
 
+namespace supernovas {
 
 Apparent::Apparent(const Frame& f, enum novas_reference_system system)
 : _frame(f), _sys(system) {}
@@ -90,5 +91,5 @@ Apparent Apparent::to_system(enum novas_reference_system system) const {
   return app;
 }
 
-
+} //namespace supernovas
 

@@ -9,8 +9,9 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
+
+namespace supernovas {
 
 Vector::Vector(double x, double y, double z) {
   _component[0] = x;
@@ -47,3 +48,5 @@ Vector operator*(const Vector& l, double r) {
 Vector operator*(double l, const Vector& r) {
   return r.scaled(l);
 }
+
+} // namespace supernovas

@@ -7,9 +7,10 @@
 
 #include "supernovas.h"
 
-using namespace supernovas;
 using namespace novas;
 
+
+namespace supernovas {
 
 int Horizontal::location_with_weather(const Frame& frame, const Weather& weather, on_surface *s) {
   s->temperature = weather.temperature().celsius();
@@ -64,5 +65,5 @@ const std::string Horizontal::str(enum novas_separator_type separator, int decim
   return "HOR  " + Spherical::str(separator, decimals);
 }
 
-
+} // namespace supernovas
 

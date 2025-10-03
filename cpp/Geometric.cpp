@@ -8,9 +8,9 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
 
+namespace supernovas {
 
 Geometric::Geometric(const Frame& frame, enum novas_reference_system system, const Position& p, const Velocity& v)
           : _frame(frame), _sys(system) , _pos(p), _vel(v) {}
@@ -57,6 +57,7 @@ Geometric Geometric::to_system(enum novas_reference_system system) const {
   return Geometric(_frame, _sys, p, v);
 }
 
+} // namespace supernovas
 
 
 

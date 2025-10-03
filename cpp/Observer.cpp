@@ -8,9 +8,10 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
 
+
+namespace supernovas {
 
 const observer * Observer::_novas_observer() const {
   return &_observer;
@@ -77,7 +78,6 @@ bool GeocentricObserver::is_geocentric() const {
 }
 
 
-
 SolarSystemObserver::SolarSystemObserver() : Observer() {
   double zero[3] = {};
   make_solar_system_observer(zero, zero, &_observer);
@@ -123,4 +123,5 @@ const EOP& GeodeticObserver::eop() const {
 }
 
 
+} // namespace supernovas
 

@@ -11,7 +11,7 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
+namespace supernovas {
 
 
 Position::Position(double x, double y, double z)
@@ -65,3 +65,6 @@ Position operator+(const Position& l, const Position& r) {
 Position operator-(const Position& l, const Position& r) {
   return Position(l.x_m() - r.x_m(), l.y_m() - r.y_m(), l.z_m() - r.z_m());
 }
+
+} //namespace supernovas
+

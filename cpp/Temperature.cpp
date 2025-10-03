@@ -8,7 +8,7 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
+namespace supernovas {
 
 
 double Temperature::celsius() const {
@@ -41,3 +41,4 @@ Temperature Temperature::farenheit(double value) {
   return Temperature((value - 32.0) / 1.8);
 }
 
+} // namespace supernovas

@@ -8,9 +8,9 @@
 #include "supernovas.h"
 
 
-using namespace supernovas;
 using namespace novas;
 
+namespace supernovas {
 
 Ecliptic::Ecliptic(double longitude, double latitude, const std::string& system, double distance)
 : Spherical(longitude, latitude, distance), _sys(system) {}
@@ -39,5 +39,7 @@ const std::string Ecliptic::str(enum novas_separator_type separator, int decimal
   return "ECL  " + Spherical::str(separator, decimals) + "  " + _sys.str();
 }
 
+
+} // namespace supernovas
 
 

@@ -7,9 +7,11 @@
 
 #include "supernovas.h"
 
-using namespace supernovas;
+
 using namespace novas;
 
+
+namespace supernovas {
 
 Speed::Speed(double ms) : _ms(ms) {}
 
@@ -73,3 +75,5 @@ static const Speed _stationary = Speed(0.0);
 const Speed& Speed::stationary() {
   return _stationary;
 }
+
+} // namespace supernovas

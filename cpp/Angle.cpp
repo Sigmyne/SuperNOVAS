@@ -7,9 +7,9 @@
 
 #include "supernovas.h"
 
-using namespace supernovas;
 using namespace novas;
 
+namespace supernovas {
 
 Angle::Angle() : _rad(NAN) {}
 
@@ -61,4 +61,5 @@ const std::string Angle::str(enum novas_separator_type separator, int decimals) 
   return std::string(s);
 }
 
+} // namespace supernovas
 
