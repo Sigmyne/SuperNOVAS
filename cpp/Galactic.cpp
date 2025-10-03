@@ -13,13 +13,10 @@ using namespace supernovas;
 Galactic::Galactic(double longitude, double latitude, double distance)
 : Spherical(longitude, latitude, distance) {}
 
-Galactic::Galactic(const Angle& longitude, const Angle& latitude, double distance)
-: Spherical(longitude, latitude, distance) {}
-
 Galactic::Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance)
 : Spherical(longitude, latitude, distance) {}
 
-Galactic::Galactic(const Position& pos)
+Galactic::Galactic(const Position& pos, const Distance& distance)
 : Spherical(pos.as_spherical()) {}
 
 Equatorial Galactic::as_equatorial() const {

@@ -27,6 +27,10 @@ const novas_frame * Frame::_novas_frame() const {
   return &_frame;
 }
 
+enum novas_accuracy Frame::accuracy() const {
+  return _frame.accuracy;
+}
+
 const Time& Frame::time() const {
   return _time;
 }

@@ -21,9 +21,9 @@
 
 extern "C" {
 #  include <novas.h>
-} // extern "C"
+}
 
-#define NOVAS_DEFAULT_DISTANCE      (1e9 * NOVAS_PARSEC)  ///< [AU] Default distance assumed for siderela sources, unless specified otherwise.
+#define NOVAS_DEFAULT_DISTANCE    (1e9 * NOVAS_PARSEC)
 
 namespace supernovas {
 
@@ -90,6 +90,9 @@ public:
   static constexpr double angstrom = 1e-10;
   static constexpr double km = NOVAS_KM;
   static constexpr double pc = NOVAS_PARSEC;
+  static constexpr double kpc = 1000.0 * pc;
+  static constexpr double Mpc = 1e6 * pc;
+  static constexpr double Gpc = 1e9 * pc;
   static constexpr double lyr = NOVAS_LIGHT_YEAR;
 
   static constexpr double ns = 1e-9;
@@ -138,6 +141,9 @@ public:
   Constant(const Constant& obj) = delete;
   //Constant(Constant const&)     = delete;
 
+  static constexpr double pi = M_PI;
+  static constexpr double twoPi = TWOPI;
+
   static constexpr double c = NOVAS_C;                  ///< [m/s] speed of light
   static constexpr double G = 6.67428e-1;               ///< [m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>]
 
@@ -145,8 +151,10 @@ public:
   static constexpr double L_G = 6.969290134e-10;
 
   static constexpr double F_earth = NOVAS_GRS80_FLATTENING;
-  static constexpr double GM_sun = NOVAS_G_SUN;	        ///< [[m<sup>3</sup> s<sup>-2</sup>] Solar graviational constant
-  static constexpr double GM_earth = NOVAS_G_EARTH;     ///< [[m<sup>3</sup> s<sup>-2</sup>] Earth graviational constant
+  static constexpr double GM_sun = NOVAS_G_SUN;	        ///< [m<sup>3</sup> s<sup>-2</sup>] Solar graviational constant
+  static constexpr double GM_earth = NOVAS_G_EARTH;     ///< [m<sup>3</sup> s<sup>-2</sup>] Earth graviational constant
+  static constexpr double M_sun = GM_sun / G;           ///< [kg] Mass of the Sun
+  static constexpr double M_earth = GM_sun / G;         ///< [kg] Earth mass
 };
 
 
@@ -158,6 +166,8 @@ protected:
 public:
   System(const std::string& name);
 
+  System(double jd_tt);
+
   double jd() const;
 
   double epoch() const;
@@ -165,7 +175,20 @@ public:
   const std::string& name() const;
 
   std::string str() const;
+
+  static System true_of_date(double jd_tt);
+
+  static const System& icrs();
+
+  static const System& j2000();
+
+  static const System& hip();
+
+  static const System& b1950();
+
+  static const System& b1900();
 };
+
 
 class Distance {
 private:
@@ -184,11 +207,19 @@ public:
 
   double pc() const;
 
+  double kpc() const;
+
+  double Mpc() const;
+
+  double Gpc() const;
+
   Angle parallax() const;
 
   std::string str() const;
 
   static Distance from_parallax(double parallax);
+
+  static const Distance& at_Gpc();
 };
 
 
@@ -335,7 +366,7 @@ public:
 
   std::string str() const;
 
-  static Position origin();
+  static const Position& origin();
 };
 
 
@@ -367,7 +398,7 @@ public:
 
   std::string str() const;
 
-  static Velocity stationary();
+  static const Velocity& stationary();
 };
 
 
@@ -392,6 +423,8 @@ public:
 
   double beta() const;
 
+  double Gamma() const;
+
   double redshift() const;
 
   Distance travel(double seconds) const;
@@ -403,6 +436,8 @@ public:
   std::string str() const;
 
   static Speed from_redshift(double z);
+
+  static const Speed& stationary();
 };
 
 class Spherical {
@@ -417,9 +452,7 @@ public:
 
   Spherical(double longitude, double latitude, double distance = NOVAS_DEFAULT_DISTANCE);
 
-  Spherical(const Angle& longitude, const Angle& latitude, double distance = NOVAS_DEFAULT_DISTANCE);
-
-  Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance);
+  Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
   Spherical(const Position& pos);
 
@@ -442,13 +475,9 @@ private:
 public:
   Equatorial(double ra, double dec, const std::string& system = "ICRS", double distance = NOVAS_DEFAULT_DISTANCE);
 
-  Equatorial(const Angle& ra, const Angle& dec, const std::string& system = "ICRS", double distance = NOVAS_DEFAULT_DISTANCE);
+  Equatorial(const Angle& ra, const Angle& dec, const System& system = System::icrs(), const Distance& distance = Distance::at_Gpc());
 
-  Equatorial(const Angle& ra, const Angle& dec, const System &system, const Distance& distance);
-
-  Equatorial(const Position& pos, const std::string& system = "ICRS");
-
-  Equatorial(const Position& pos, const System& system);
+  Equatorial(const Position& pos, const System& system = System::icrs());
 
   TimeAngle ra() const;
 
@@ -470,13 +499,9 @@ private:
 public:
   Ecliptic(double longitude, double latitude, const std::string& system = "ICRS", double distance = NOVAS_DEFAULT_DISTANCE);
 
-  Ecliptic(const Angle& longitude, const Angle& latitude, const std::string& system = "ICRS", double distance = NOVAS_DEFAULT_DISTANCE);
+  Ecliptic(const Angle& ra, const Angle& dec, const System &system = System::icrs(), const Distance& distance = Distance::at_Gpc());
 
-  Ecliptic(const Angle& ra, const Angle& dec, const System &system, const Distance& distance);
-
-  Ecliptic(const Position& pos, const std::string& system = "ICRS");
-
-  Ecliptic(const Position& pos, const System& system);
+  Ecliptic(const Position& pos, const System& system = System::icrs());
 
   const System& system() const;
 
@@ -491,11 +516,9 @@ class Galactic : public Spherical {
 public:
   Galactic(double longitude, double latitude, double distance = NOVAS_DEFAULT_DISTANCE);
 
-  Galactic(const Angle& longitude, const Angle& latitude, double distance = NOVAS_DEFAULT_DISTANCE);
+  Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
-  Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance);
-
-  Galactic(const Position& pos);
+  Galactic(const Position& pos, const Distance& distance = Distance::at_Gpc());
 
   Equatorial as_equatorial() const;
 
@@ -770,9 +793,9 @@ public:
 
   std::string epoch_str() const;
 
-  Time offset_time(double seconds) const;
+  Time shifted(double seconds) const;
 
-  Time offset_time(Interval offset) const;
+  Time shifted(Interval offset) const;
 
   static Time now(const EOP& eop);
 };
@@ -791,6 +814,8 @@ public:
   const Observer& observer() const;
 
   const Time& time() const;
+
+  enum novas_accuracy accuracy() const;
 
   Apparent approx_apparent(const Planet& planet, enum novas_reference_system system = NOVAS_TOD) const;
 
@@ -827,26 +852,28 @@ public:
   Time transits(const Frame &frame) const;
 
   Time sets_below(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const;
+
+  static void set_case_sensitive(bool value);
 };
 
 class CatalogEntry {
 private:
   double _epoch;
   cat_entry _entry;
-  std::string _sys;
+  System _sys;
 
   void set_epoch();
 
 public:
   CatalogEntry(const std::string &name, double RA, double Dec, const std::string& system = "ICRS");
 
-  CatalogEntry(const std::string &name, const Angle& RA, const Angle& Dec, const std::string& system = "ICRS");
+  CatalogEntry(const std::string &name, const Angle& RA, const Angle& Dec, const System& system = System::icrs());
 
   CatalogEntry(const cat_entry *e, const std::string& system = "ICRS");
 
   const cat_entry* _cat_entry() const;
 
-  std::string system() const;
+  const System& system() const;
 
   std::string name() const;
 
@@ -859,6 +886,12 @@ public:
   Speed v_lsr() const;
 
   Speed radial_velocity() const;
+
+  Distance distance() const;
+
+  Angle parallax() const;
+
+  Equatorial equatorial() const;
 
   CatalogEntry& proper_motion(double ra, double dec);
 
@@ -894,10 +927,6 @@ public:
 
   const cat_entry * _cat_entry() const;
 
-  long catalog_number() const;
-
-  const System& system() const;
-
   CatalogEntry catalog_entry() const;
 };
 
@@ -924,11 +953,39 @@ public:
 
   int naif_id() const;
 
+  int de_number() const;
+
   double mean_radius() const;
 
   double mass() const;
 
+  static const Planet& ssb();
 
+  static const Planet& mercury();
+
+  static const Planet& venus();
+
+  static const Planet& earth();
+
+  static const Planet& mars();
+
+  static const Planet& jupiter();
+
+  static const Planet& saturn();
+
+  static const Planet& uranus();
+
+  static const Planet& neptune();
+
+  static const Planet& pluto();
+
+  static const Planet& sun();
+
+  static const Planet& moon();
+
+  static const Planet& emb();
+
+  static const Planet& pluto_system();
 
 };
 
@@ -943,6 +1000,7 @@ class OrbitalSource : public SolarSystemSource {
 public:
   OrbitalSource(const std::string& name, long number, const novas_orbital *orbit);
 
+  const novas_orbital *_novas_orbital() const;
 
 };
 
@@ -1026,9 +1084,7 @@ private:
 public:
   Horizontal(double azimuth, double elevation, double distance = NOVAS_DEFAULT_DISTANCE);
 
-  Horizontal(const Angle& azimuth, const Angle& elevation, double distance = NOVAS_DEFAULT_DISTANCE);
-
-  Horizontal(const Angle& azimuth, const Angle& elevation, const Distance& distance);
+  Horizontal(const Angle& azimuth, const Angle& elevation, const Distance& distance = Distance::at_Gpc());
 
   const Angle& azimuth() const;
 
@@ -1040,7 +1096,7 @@ public:
 
   Apparent to_apparent(const Frame& frame, double rv = 0.0, double distance = NOVAS_DEFAULT_DISTANCE) const;
 
-  Apparent to_apparent(const Frame& frame, Speed& rv, Distance& distance) const;
+  Apparent to_apparent(const Frame& frame, const Speed& rv = Speed::stationary(), const Distance& distance = Distance::at_Gpc()) const;
 
   const std::string str(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 };

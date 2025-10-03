@@ -73,6 +73,10 @@ Angle Source::angle_to(const Source& source, const Frame& frame) const {
 }
 
 
+void Source::set_case_sensitive(bool value) {
+  novas_case_sensitive(value);
+}
+
 
 
 
@@ -80,23 +84,15 @@ Angle Source::angle_to(const Source& source, const Frame& frame) const {
 
 CatalogSource::CatalogSource(const CatalogEntry& e)
 : Source(), _system(e.system()) {
-  make_cat_object_sys(e._cat_entry(), e.system().c_str(), &_object);
+  make_cat_object_sys(e._cat_entry(), e.system().name().c_str(), &_object);
 }
 
 const cat_entry * CatalogSource::_cat_entry() const {
   return &_object.star;
 }
 
-long CatalogSource::catalog_number() const {
-  return _object.number;
-}
-
-const System& CatalogSource::system() const {
-  return _system;
-}
-
 CatalogEntry CatalogSource::catalog_entry() const {
-  return CatalogEntry(&_object.star, _object.star.starname);
+  return CatalogEntry(&_object.star, std::string(_object.star.starname));
 }
 
 
@@ -136,6 +132,10 @@ int Planet::naif_id() const {
   return novas_to_naif_planet(novas_id());
 }
 
+int Planet::de_number() const {
+  return novas_to_dexxx_planet(novas_id());
+}
+
 double Planet::mean_radius() const {
   static double r[] = NOVAS_PLANET_RADII_INIT;
   return r[_object.number];
@@ -143,7 +143,78 @@ double Planet::mean_radius() const {
 
 double Planet::mass() const {
   static double r[] = NOVAS_RMASS_INIT;
-  return Constant::GM_sun / Constant::G / r[_object.number];
+  return Constant::M_sun / r[_object.number];
+}
+
+
+static Planet _ssb = Planet(NOVAS_SSB);
+const Planet& ssb() {
+  return _ssb;
+}
+
+static Planet _mercury = Planet(NOVAS_MERCURY);
+const Planet& mercury() {
+  return _mercury;
+}
+
+static Planet _venus = Planet(NOVAS_VENUS);
+const Planet& venus() {
+  return _venus;
+}
+
+static Planet _earth = Planet(NOVAS_EARTH);
+const Planet& earth() {
+  return _earth;
+}
+
+static Planet _mars = Planet(NOVAS_MARS);
+const Planet& mars() {
+  return _mars;
+}
+
+static Planet _jupiter = Planet(NOVAS_JUPITER);
+const Planet& jupiter() {
+  return _jupiter;
+}
+
+static Planet _saturn = Planet(NOVAS_SATURN);
+const Planet& saturn() {
+  return _saturn;
+}
+
+static Planet _uranus = Planet(NOVAS_URANUS);
+const Planet& uranus() {
+  return _uranus;
+}
+
+static Planet _neptune = Planet(NOVAS_NEPTUNE);
+const Planet& neptune() {
+  return _neptune;
+}
+
+static Planet _pluto = Planet(NOVAS_PLUTO);
+const Planet& pluto() {
+  return _pluto;
+}
+
+static Planet _sun = Planet(NOVAS_SUN);
+const Planet sun() {
+  return _sun;
+}
+
+static Planet _moon = Planet(NOVAS_MOON);
+const Planet& moon() {
+  return _moon;
+}
+
+static Planet _emb = Planet(NOVAS_EMB);
+const Planet& emb() {
+  return _emb;
+}
+
+static Planet _pluto_system = Planet(NOVAS_PLUTO_BARYCENTER);
+const Planet& pluto_system() {
+  return _pluto_system;
 }
 
 
@@ -160,6 +231,9 @@ OrbitalSource::OrbitalSource(const std::string& name, long number, const novas_o
   make_orbital_object(name.c_str(), number, orbit, &_object);
 }
 
+const novas_orbital * OrbitalSource::_novas_orbital() const {
+  return &_object.orbit;
+}
 
 
 

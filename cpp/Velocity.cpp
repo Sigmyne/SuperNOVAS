@@ -50,8 +50,9 @@ Velocity Velocity::inv() const {
   return Velocity(-_component[0], -_component[1], -_component[2]);
 }
 
-Velocity Velocity::stationary() {
-  return Velocity(0.0, 0.0, 0.0);
+static const Velocity _stationary = Velocity(0.0, 0.0, 0.0);
+const Velocity& Velocity::stationary() {
+  return _stationary;
 }
 
 static double v_add(double v1, double v2) {

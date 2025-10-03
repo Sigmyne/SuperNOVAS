@@ -21,9 +21,6 @@ int Horizontal::location_with_weather(const Frame& frame, const Weather& weather
 Horizontal::Horizontal(double azimuth, double elevation, double distance)
 : Spherical(azimuth, elevation, distance) {}
 
-Horizontal::Horizontal(const Angle& azimuth, const Angle& elevation, double distance)
-: Spherical(azimuth, elevation, distance) {}
-
 Horizontal::Horizontal(const Angle& azimuth, const Angle& elevation, const Distance& distance)
 : Spherical(azimuth, elevation, distance) {}
 
@@ -58,7 +55,7 @@ Apparent Horizontal::to_apparent(const Frame& frame, double rv, double distance)
   return Apparent(frame, &p, NOVAS_TOD);
 }
 
-Apparent Horizontal::to_apparent(const Frame& frame, Speed& rv, Distance& distance) const {
+Apparent Horizontal::to_apparent(const Frame& frame, const Speed& rv, const Distance& distance) const {
   return to_apparent(frame, rv.ms(), distance.m());
 }
 

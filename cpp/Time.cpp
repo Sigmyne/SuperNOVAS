@@ -55,15 +55,15 @@ double Time::epoch() const {
 }
 
 TimeAngle Time::gst(enum novas_accuracy accuracy) const {
-  return TimeAngle(novas_time_gst(&_ts, accuracy) * TWOPI);
+  return TimeAngle(novas_time_gst(&_ts, accuracy) * Unit::hourAngle);
 }
 
 TimeAngle Time::lst(const Site& site, enum novas_accuracy accuracy) const {
-  return TimeAngle(novas_time_lst(&_ts, site.longitude().deg(), accuracy) * TWOPI);
+  return TimeAngle(novas_time_lst(&_ts, site.longitude().deg(), accuracy) * Unit::hourAngle);
 }
 
 TimeAngle Time::era() const {
-  return TimeAngle(novas_era(_ts.ijd_tt, _ts.fjd_tt) * TWOPI);
+  return TimeAngle(novas_era(_ts.ijd_tt, _ts.fjd_tt) * Unit::deg);
 }
 
 TimeAngle Time::time_of_day(enum novas_timescale timescale) const {
@@ -98,7 +98,7 @@ Time Time::now(const EOP& eop) {
   return time;
 }
 
-Time Time::offset_time(double seconds) const {
+Time Time::shifted(double seconds) const {
   struct novas_timespec ts = _ts;
   double djd = seconds / Unit::day;
   long idjd = (long) floor(djd);
@@ -111,8 +111,8 @@ Time Time::offset_time(double seconds) const {
   return Time(&ts);
 }
 
-Time Time::offset_time(Interval offset) const {
-  return offset_time(offset.seconds());
+Time Time::shifted(Interval offset) const {
+  return shifted(offset.seconds());
 }
 
 Interval operator-(const Time& l, const Time &r) {

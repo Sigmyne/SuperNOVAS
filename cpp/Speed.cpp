@@ -30,6 +30,10 @@ double Speed::beta() const {
   return _ms / Constant::c;
 }
 
+double Speed::Gamma() const {
+  return 1.0 / sqrt(1.0 - beta() * beta());
+}
+
 double Speed::redshift() const {
   return sqrt((1.0 + beta()) / (1.0 - beta()));
 }
@@ -62,4 +66,9 @@ Speed operator+(const Speed& l, const Speed& r) {
 
 Speed operator-(const Speed& l, const Speed& r) {
   return Speed((l.beta() - r.beta()) / (1 + l.beta() * r.beta()) * Constant::c);
+}
+
+static const Speed _stationary = Speed(0.0);
+const Speed& Speed::stationary() {
+  return _stationary;
 }

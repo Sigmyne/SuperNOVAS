@@ -33,6 +33,18 @@ double Distance::pc() const {
   return _meters / Unit::pc;
 }
 
+double Distance::kpc() const {
+  return _meters / Unit::kpc;
+}
+
+double Distance::Mpc() const {
+  return _meters / Unit::Mpc;
+}
+
+double Distance::Gpc() const {
+  return _meters / Unit::Gpc;
+}
+
 Angle Distance::parallax() const {
   return Angle(Unit::arcsec / pc());
 }
@@ -44,8 +56,8 @@ std::string Distance::str() const {
   else if(_meters < 1e9) snprintf(s, sizeof(s), "%.3f km", km());
   else if(_meters < 1000.0 * Unit::au) snprintf(s, sizeof(s), "%.3f AU", au());
   else if(_meters < 1000.0 * Unit::pc) snprintf(s, sizeof(s), "%.3f pc", pc());
-  else if(_meters < 1e6 * Unit::pc) snprintf(s, sizeof(s), "%.3f kpc", pc() / 1e3);
-  else snprintf(s, sizeof(s), "%.3f Mpc", pc() / 1e6);
+  else if(_meters < 1e6 * Unit::pc) snprintf(s, sizeof(s), "%.3f kpc", kpc());
+  else snprintf(s, sizeof(s), "%.3f Mpc", Mpc());
 
   return std::string(s);
 }
@@ -53,4 +65,9 @@ std::string Distance::str() const {
 
 Distance Distance::from_parallax(double parallax) {
   return Distance(Unit::pc / (parallax / Unit::arcsec));
+}
+
+static const Distance _at_Gpc = Distance(Unit::Gpc);
+const Distance& Distance::at_Gpc() {
+  return _at_Gpc;
 }

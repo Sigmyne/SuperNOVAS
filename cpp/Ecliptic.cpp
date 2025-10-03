@@ -14,14 +14,8 @@ using namespace supernovas;
 Ecliptic::Ecliptic(double longitude, double latitude, const std::string& system, double distance)
 : Spherical(longitude, latitude, distance), _sys(system) {}
 
-Ecliptic::Ecliptic(const Angle& longitude, const Angle& latitude, const std::string& system, double distance)
-: Spherical(longitude, latitude, distance), _sys(system) {}
-
 Ecliptic::Ecliptic(const Angle& ra, const Angle& dec, const System &system, const Distance& distance)
 : Spherical(ra, dec, distance), _sys(system) {}
-
-Ecliptic::Ecliptic(const Position& pos, const std::string& system)
-: Spherical(pos.as_spherical()), _sys(system) {}
 
 Ecliptic::Ecliptic(const Position& pos, const System& system)
 : Spherical(pos.as_spherical()), _sys(system) {}

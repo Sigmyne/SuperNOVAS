@@ -14,14 +14,8 @@ using namespace supernovas;
 Equatorial::Equatorial(double ra, double dec, const std::string& system, double distance)
 : Spherical(ra, dec, distance), _sys(system) {}
 
-Equatorial::Equatorial(const Angle& ra, const Angle& dec, const std::string& system, double distance)
-: Spherical(ra, dec, distance), _sys(system) {}
-
 Equatorial::Equatorial(const Angle& ra, const Angle& dec, const System &system, const Distance& distance)
 : Spherical(ra, dec, distance), _sys(system) {}
-
-Equatorial::Equatorial(const Position& pos, const std::string& system)
-: Spherical(pos.as_spherical()), _sys(system) {}
 
 Equatorial::Equatorial(const Position& pos, const System& system)
 : Spherical(pos.as_spherical()), _sys(system) {}

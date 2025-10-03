@@ -19,9 +19,6 @@ Spherical::Spherical(): Spherical(0.0, 0.0) {}
 Spherical::Spherical(double longitude, double latitude, double distance)
 : _lon(longitude), _lat(latitude), _distance(distance) {}
 
-Spherical::Spherical(const Angle& longitude, const Angle& latitude, double distance)
-: _lon(longitude), _lat(latitude), _distance(distance) {}
-
 Spherical::Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance)
 : _lon(longitude), _lat(latitude), _distance(distance) {}
 

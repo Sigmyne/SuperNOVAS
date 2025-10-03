@@ -49,8 +49,9 @@ Spherical Position::as_spherical() const {
   return Spherical(isnan(longitude) ? 0.0 : longitude, isnan(latitude) ? 0.0 : latitude, abs());
 }
 
-Position Position::origin() {
-  return Position(0.0, 0.0, 0.0);
+static const Position _origin = Position(0.0, 0.0, 0.0);
+const Position& Position::origin() {
+  return _origin;
 }
 
 std::string Position::str() const {

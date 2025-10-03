@@ -12,7 +12,7 @@ using namespace supernovas;
 
 
 void CatalogEntry::set_epoch() {
-  _epoch = (novas_epoch(_sys.c_str()) - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;
+  _epoch = (_sys.jd() - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;
 }
 
 CatalogEntry::CatalogEntry(const std::string &name, double RA, double Dec, const std::string& system)
@@ -21,16 +21,16 @@ CatalogEntry::CatalogEntry(const std::string &name, double RA, double Dec, const
   set_epoch();
 }
 
-CatalogEntry::CatalogEntry(const std::string &name, const Angle& RA, const Angle& Dec, const std::string& system)
-: CatalogEntry(name, RA.rad(), Dec.rad(), system) {}
+CatalogEntry::CatalogEntry(const std::string &name, const Angle& RA, const Angle& Dec, const System& system)
+: CatalogEntry(name, RA.rad(), Dec.rad(), system.name()) {}
 
 CatalogEntry::CatalogEntry(const cat_entry *e, const std::string& system)
 : _entry(*e), _sys(system) {
   set_epoch();
 }
 
-std::string CatalogEntry::system() const {
-  return std::string(_sys);
+const System& CatalogEntry::system() const {
+  return _sys;
 }
 
 const cat_entry* CatalogEntry::_cat_entry() const {
@@ -59,6 +59,18 @@ Speed CatalogEntry::v_lsr() const {
 
 Speed CatalogEntry::radial_velocity() const {
   return Speed(_entry.radialvelocity * Unit::km / Unit::sec);
+}
+
+Distance CatalogEntry::distance() const {
+  return Distance(Unit::kpc / _entry.parallax);
+}
+
+Angle CatalogEntry::parallax() const {
+  return Angle(_entry.parallax * Unit::mas);
+}
+
+Equatorial CatalogEntry::equatorial() const {
+  return Equatorial(ra(), dec(), system(), distance());
 }
 
 CatalogEntry& CatalogEntry::proper_motion(double ra, double dec) {
