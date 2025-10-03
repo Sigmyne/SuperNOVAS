@@ -6,7 +6,7 @@
  */
 
 
-#include "supernovas.h"
+#include "supernovas.hpp"
 
 static double novas_era(long ijd, double fjd) {
   return novas::era((double) ijd, fjd);

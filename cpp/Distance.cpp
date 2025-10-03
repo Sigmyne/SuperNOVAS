@@ -6,7 +6,7 @@
  */
 
 
-#include "supernovas.h"
+#include "supernovas.hpp"
 
 namespace supernovas {
 
