@@ -63,6 +63,7 @@ class Frame;
 class Apparent;
 class Geometric;
 
+/// \ingroup util
 class Unit {
 private:
   // Private Constructor
@@ -124,6 +125,7 @@ public:
   static constexpr double R_earth = NOVAS_GRS80_RADIUS;
 };
 
+/// \ingroup util
 class Constant {
 private:
   // Private Constructor
@@ -153,7 +155,7 @@ public:
   static constexpr double M_earth = GM_sun / G;         ///< [kg] Earth mass
 };
 
-
+/// \ingroup equatorial nonequatorial
 class System {
 protected:
   std::string _name;
@@ -185,7 +187,7 @@ public:
   static const System& b1900();
 };
 
-
+/// \ingroup source apparent
 class Distance {
 private:
   double _meters;
@@ -218,7 +220,7 @@ public:
   static const Distance& at_Gpc();
 };
 
-
+/// \ingroup time
 class Interval {
 private:
 
@@ -255,6 +257,7 @@ public:
 
 };
 
+/// \ingroup util
 class Angle {
 protected:
   double _rad;
@@ -288,6 +291,7 @@ public:
   const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 };
 
+/// \ingroup time util
 class TimeAngle : public Angle {
 public:
 
@@ -310,7 +314,7 @@ public:
   std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 };
 
-
+/// \ingroup util
 class Vector {
 protected:
   double _component[3];
@@ -336,7 +340,7 @@ public:
   double projection_on(const Vector& v) const;
 };
 
-
+/// \ingroup geometric
 class Position : public Vector {
 public:
 
@@ -365,7 +369,7 @@ public:
   static const Position& origin();
 };
 
-
+/// \ingroup geometric
 class Velocity : public Vector {
 public:
   Velocity(double x = 0.0, double y = 0.0, double z = 0.0);
@@ -397,7 +401,7 @@ public:
   static const Velocity& stationary();
 };
 
-
+/// \ingroup source spectral apparent
 class Speed {
 protected:
   double _ms;
@@ -436,6 +440,7 @@ public:
   static const Speed& stationary();
 };
 
+/// \ingroup util
 class Spherical {
 protected:
   Angle _lon, _lat;
@@ -463,7 +468,7 @@ public:
   virtual const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 };
 
-
+/// \ingroup equatorial
 class Equatorial : public Spherical {
 private:
   System _sys;
@@ -488,6 +493,7 @@ public:
   const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 };
 
+/// \ingroup nonequatorial
 class Ecliptic : public Spherical {
 private:
   System _sys;
@@ -508,6 +514,7 @@ public:
   const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 };
 
+/// \ingroup nonequatorial
 class Galactic : public Spherical {
 public:
   Galactic(double longitude, double latitude, double distance = NOVAS_DEFAULT_DISTANCE);
@@ -523,6 +530,7 @@ public:
   const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 };
 
+/// \ingroup util
 class Temperature {
 private:
   double _deg_C;
@@ -545,7 +553,7 @@ public:
   static Temperature farenheit(double value);
 };
 
-
+/// \ingroup util
 class Pressure {
 private:
   double _pascal;
@@ -584,6 +592,7 @@ public:
   static Pressure atm(double value);
 };
 
+/// \ingroup refract
 class Weather {
 private:
   Temperature _temperature;
@@ -608,7 +617,7 @@ public:
   static Weather guess(const Site& site);
 };
 
-
+/// \ingroup earth nonequatorial
 class EOP {
 private:
   int _leap;
@@ -636,6 +645,7 @@ public:
   std::string str() const;
 };
 
+/// \ingroup observer
 class Site {
 private:
   novas::on_surface _site;
@@ -672,6 +682,7 @@ public:
 
 };
 
+/// \ingroup observer
 class Observer {
 protected:
   novas::observer _observer;
@@ -703,6 +714,7 @@ public:
   static SolarSystemObserver at_ssb();
 };
 
+/// \ingroup observer
 class GeocentricObserver : public Observer {
 public:
   GeocentricObserver();
@@ -716,7 +728,7 @@ public:
   Velocity geocentric_velocity() const;
 };
 
-
+/// \ingroup observer
 class SolarSystemObserver : public Observer {
 public:
 
@@ -729,6 +741,7 @@ public:
   Velocity ssb_velocity() const;
 };
 
+/// \ingroup observer
 class GeodeticObserver : public Observer {
 private:
   EOP _eop;
@@ -746,7 +759,7 @@ public:
 };
 
 
-
+/// \ingroup time
 class Time {
 protected:
   novas::novas_timespec _ts;
@@ -796,6 +809,7 @@ public:
   static Time now(const EOP& eop);
 };
 
+/// \ingroup frame
 class Frame {
 private:
   novas::novas_frame _frame;
@@ -819,7 +833,7 @@ public:
 };
 
 
-
+/// \ingroup source
 class Source {
 protected:
   struct novas::novas_object _object;
@@ -852,6 +866,7 @@ public:
   static void set_case_sensitive(bool value);
 };
 
+/// \ingroup source spectral
 class CatalogEntry {
 private:
   double _epoch;
@@ -912,8 +927,7 @@ public:
   CatalogEntry& catalog(const std::string& name, long number);
 };
 
-
-
+/// \ingroup source
 class CatalogSource : public Source {
 private:
   System _system;
@@ -926,6 +940,7 @@ public:
   CatalogEntry catalog_entry() const;
 };
 
+/// \ingroup source
 class SolarSystemSource : public Source {
 protected:
   SolarSystemSource() {}
@@ -938,7 +953,7 @@ public:
   double solar_power(const Time& time) const;
 };
 
-
+/// \ingroup source
 class Planet : public SolarSystemSource {
 public:
   Planet(enum novas::novas_planet number);
@@ -985,6 +1000,7 @@ public:
 
 };
 
+/// \ingroup source
 class EphemerisSource : public SolarSystemSource {
 public:
   EphemerisSource(const std::string &name, long number);
@@ -992,6 +1008,7 @@ public:
   long number() const;
 };
 
+/// \ingroup source
 class OrbitalSource : public SolarSystemSource {
 public:
   OrbitalSource(const std::string& name, long number, const novas::novas_orbital *orbit);
@@ -1003,7 +1020,7 @@ public:
   Velocity orbital_velocity(const Time& time) const; // TODO
 };
 
-
+/// \ingroup apparent spectral
 class Apparent {
 private:
   Frame _frame;
@@ -1045,7 +1062,7 @@ public:
   Apparent to_system(enum novas::novas_reference_system system) const;
 };
 
-
+/// \ingroup geometric
 class Geometric {
 private:
   Frame _frame;
@@ -1075,6 +1092,7 @@ public:
 
 };
 
+/// \ingroup nonequatorial refract
 class Horizontal : public Spherical {
 private:
 
