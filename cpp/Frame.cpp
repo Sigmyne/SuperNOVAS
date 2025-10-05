@@ -5,7 +5,11 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.hpp"
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
+#include "supernovas.h"
 
 
 using namespace novas;
@@ -26,6 +30,10 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
   novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), xp, yp, &_frame);
 }
 
+bool Frame::is_valid() const {
+  return _observer.is_valid() && _time.is_valid() && novas_frame_is_initialized(&_frame);
+}
+
 const novas_frame * Frame::_novas_frame() const {
   return &_frame;
 }
@@ -42,6 +50,28 @@ const Observer& Frame::observer() const {
   return _observer;
 }
 
+bool Frame::has_planet_data(enum novas::novas_planet planet) const {
+  return (_frame.planets.mask & (1 << planet)) != 0;
+}
+
+bool Frame::has_planet_data(const Planet& planet) const { return has_planet_data(planet.novas_id()); }
+
+Position Frame::ephemeris_position(enum novas::novas_planet planet) const {
+  if(!has_planet_data(planet))
+    return Position::invalid();
+  return Position(_frame.planets.pos[1 << planet], Unit::au);
+}
+
+Position Frame::ephemeris_position(const Planet& planet) const { return ephemeris_position(planet.novas_id()); }
+
+Velocity Frame::ephemeris_velocity(enum novas::novas_planet planet) const {
+  if(!has_planet_data(planet))
+    return Velocity::invalid();
+  return Velocity(_frame.planets.vel[1 << planet], Unit::au / Unit::day);
+}
+
+Velocity Frame::ephemeris_velocity(const Planet& planet) const { return ephemeris_velocity(planet.novas_id()); }
+
 double Frame::clock_skew(enum novas_timescale timescale) const {
   return novas_clock_skew(&_frame, timescale);
 }
@@ -49,7 +79,12 @@ double Frame::clock_skew(enum novas_timescale timescale) const {
 Apparent Frame::approx_apparent(const Planet& planet, enum novas_reference_system system) const {
   sky_pos pos = {};
   novas_approx_sky_pos(planet.novas_id(), _novas_frame(), system, &pos);
-  return Apparent(*this, &pos, system);
+  return Apparent(*this, pos, system);
+}
+
+static const Frame &_invalid = Frame(Observer::invalid(), Time::invalid(), (enum novas_accuracy) -1);
+const Frame& Frame::invalid() {
+  return _invalid;
 }
 
 } // namespace supernovas

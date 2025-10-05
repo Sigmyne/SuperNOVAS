@@ -70,7 +70,7 @@ int novas_trace(const char *restrict loc, int n, int offset) {
 /**
  * (<i>for internal use</i>) Traces an error before returning NAN.
  *
- * @param loc     Function [:location] where error was produced.
+ * @param loc    function [:location] where error was produced.
  * @return       NAN
  *
  * @since 1.1.1
@@ -81,6 +81,39 @@ double novas_trace_nan(const char *restrict loc) {
     fprintf(stderr, "       @ %s [=> NAN]\n", loc);
   }
   return NAN;
+}
+
+/**
+ * (<i>for internal use</i>) Traces invalid data.
+ *
+ * @param loc    function [:location] where error was produced.
+ *
+ * @since 1.1.1
+ * @author Attila Kovacs
+ */
+void novas_trace_invalid(const char *restrict loc) {
+  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF) {
+    fprintf(stderr, "       @ %s [=> invalid]\n", loc);
+  }
+}
+
+
+
+/**
+ * (<i>for internal use</i>) Checks a floating point value for NAN, before returning it.
+ * If it is NAN the error is traced.
+ *
+ * @param loc   function [:location] where error was produced.
+ * @param x     value to check
+ * @return      x
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ */
+double novas_check_nan(const char *loc, double x) {
+  if(isnan(x))
+    novas_trace_nan(loc);
+  return x;
 }
 
 /**

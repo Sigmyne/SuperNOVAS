@@ -8,14 +8,14 @@
 #include <cstring>
 
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 
 namespace supernovas {
 
 
-Position::Position(double x, double y, double z)
-: Vector(x, y, z) {}
+Position::Position(double x_m, double y_m, double z_m)
+: Vector(x_m, y_m, z_m) {}
 
 
 Position::Position(const double pos[3], double unit)
@@ -36,7 +36,6 @@ double Position::z_m() const {
 Distance Position::distance() const {
   return Distance(abs());
 }
-
 
 Position Position::inv() const {
   return Position(-_component[0], -_component[1], -_component[2]);
@@ -64,6 +63,11 @@ Position operator+(const Position& l, const Position& r) {
 
 Position operator-(const Position& l, const Position& r) {
   return Position(l.x_m() - r.x_m(), l.y_m() - r.y_m(), l.z_m() - r.z_m());
+}
+
+static const Position _nan = Position(NAN, NAN, NAN);
+const Position& invalid() {
+  return _nan;
 }
 
 } //namespace supernovas

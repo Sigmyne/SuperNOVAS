@@ -5,13 +5,23 @@
  * @author Attila Kovacs
  */
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
 
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 namespace supernovas {
 
 
-Distance::Distance(double x) : _meters(x) {}
+Distance::Distance(double meters) : _meters(meters) {
+  if(isnan(meters))
+    novas::novas_error(0, EINVAL, "Distance(double)", "input value is NAN");
+}
+
+bool Distance::is_valid() const {
+  return !isnan(_meters);
+}
 
 double Distance::m() const {
   return _meters;
@@ -71,6 +81,5 @@ static const Distance _at_Gpc = Distance(Unit::Gpc);
 const Distance& Distance::at_Gpc() {
   return _at_Gpc;
 }
-
 
 } // namespace supernovas

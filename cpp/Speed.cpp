@@ -5,7 +5,11 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.hpp"
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
+#include "supernovas.h"
 
 
 using namespace novas;
@@ -13,9 +17,16 @@ using namespace novas;
 
 namespace supernovas {
 
-Speed::Speed(double ms) : _ms(ms) {}
+Speed::Speed(double ms) : _ms(ms) {
+  if(isnan(ms))
+    novas_error(0, EINVAL, "Speed(double)", "input value is NAN");
+}
 
 Speed::Speed(const Distance d, const Interval& time) : _ms(d.m() / time.seconds()) {}
+
+bool Speed::is_valid() const {
+  return !isnan(_ms);
+}
 
 double Speed::ms() const {
   return _ms;
@@ -45,7 +56,7 @@ Distance Speed::travel(double seconds) const {
   return Distance(_ms / seconds);
 }
 
-Distance Speed::travel(Interval& time) const {
+Distance Speed::travel(const Interval& time) const {
   return travel(time.seconds());
 }
 
@@ -55,7 +66,7 @@ std::string Speed::str() const {
   return std::string(s);
 }
 
-Velocity Speed::to_velocity(const Vector& direction) const {
+Velocity Speed::in_direction(const Vector& direction) const {
   return Velocity(direction._array(), _ms / direction.abs());
 }
 

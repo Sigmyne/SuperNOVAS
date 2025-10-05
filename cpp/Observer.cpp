@@ -5,8 +5,9 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.hpp"
+#include <cstring>
 
+#include "supernovas.h"
 
 using namespace novas;
 
@@ -21,12 +22,8 @@ enum novas_observer_place Observer::type() const {
   return _observer.where;
 }
 
-bool Observer::is_geodetic() const {
-  return false;
-}
-
-bool Observer::is_geocentric() const {
-  return false;
+bool Observer::is_valid() const {
+  return _observer.where >= 0 && _observer.where < NOVAS_OBSERVER_PLACES;
 }
 
 GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
@@ -53,6 +50,11 @@ SolarSystemObserver Observer::at_ssb() {
   return SolarSystemObserver();
 }
 
+static Observer _invalid = GeocentricObserver(Position::invalid(), Velocity::invalid());
+
+const Observer& Observer::invalid() {
+  return _invalid;
+}
 
 
 GeocentricObserver::GeocentricObserver()
@@ -65,7 +67,11 @@ GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
   make_observer_in_space(pos.scaled(1.0 / Unit::km)._array(), vel.scaled(Unit::sec / Unit::km)._array(), &_observer);
 }
 
-Position GeocentricObserver::geocetric_position() const {
+bool GeocentricObserver::is_valid() const {
+  return Observer::is_valid() && geocentric_position().is_valid() && geocentric_velocity().is_valid();
+}
+
+Position GeocentricObserver::geocentric_position() const {
   return Position(_observer.near_earth.sc_pos, Unit::km);
 }
 
@@ -73,9 +79,7 @@ Velocity GeocentricObserver::geocentric_velocity() const {
   return Velocity(_observer.near_earth.sc_vel, Unit::km / Unit::sec);
 }
 
-bool GeocentricObserver::is_geocentric() const {
-  return true;
-}
+
 
 
 SolarSystemObserver::SolarSystemObserver() : Observer() {
@@ -86,6 +90,10 @@ SolarSystemObserver::SolarSystemObserver() : Observer() {
 SolarSystemObserver::SolarSystemObserver(const Position& pos, const Velocity& vel)
 : Observer() {
   make_solar_system_observer(pos.scaled(1.0 / Unit::au)._array(), vel.scaled(Unit::day / Unit::au)._array(), &_observer);
+}
+
+bool SolarSystemObserver::is_valid() const {
+  return Observer::is_valid() && ssb_position().is_valid() && ssb_velocity().is_valid();
 }
 
 Position SolarSystemObserver::ssb_position() const {
@@ -109,8 +117,8 @@ GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const 
   make_airborne_observer(site._on_surface(), vel._array(), &_observer);
 }
 
-bool GeodeticObserver::is_geodetic() const {
-  return true;
+bool GeodeticObserver::is_valid() const {
+  return Observer::is_valid() && site().is_valid();
 }
 
 Site GeodeticObserver::site() const {

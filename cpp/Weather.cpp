@@ -6,7 +6,7 @@
  */
 
 
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 
 using namespace novas;
@@ -18,6 +18,10 @@ Weather::Weather(const Temperature& T, const Pressure& p, double humidity_percen
 
 Weather::Weather(double celsius, double pascal, double humidity_percent)
 : _temperature(Temperature::celsius(celsius)), _pressure(Pressure::Pa(pascal)), _humidity(humidity_percent) {}
+
+bool Weather::is_valid() const {
+  return _temperature.is_valid() && _pressure.is_valid() && _humidity >= 0.0 && _humidity <= 100.0;
+}
 
 const Temperature& Weather::temperature() const {
   return _temperature;

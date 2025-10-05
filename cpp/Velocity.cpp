@@ -5,7 +5,7 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 
 using namespace novas;
@@ -13,8 +13,8 @@ using namespace novas;
 
 namespace supernovas {
 
-Velocity::Velocity(double x, double y, double z)
-: Vector(x, y, z) {}
+Velocity::Velocity(double x_ms, double y_ms, double z_ms)
+: Vector(x_ms, y_ms, z_ms) {}
 
 Velocity::Velocity(const double vel[3], double unit)
 : Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
@@ -36,7 +36,7 @@ Speed Velocity::speed() const {
   return Speed(abs());
 }
 
-Speed Velocity::along(Vector v) const {
+Speed Velocity::along(const Vector& v) const {
   return Speed(projection_on(v));
 }
 
@@ -73,6 +73,11 @@ Velocity operator+(const Velocity& l, const Velocity& r) {
 
 Velocity operator-(const Velocity& l, const Velocity& r) {
   return Velocity(v_add(l.x_ms(), -r.x_ms()), v_add(l.y_ms(), -r.y_ms()), v_add(l.z_ms(), -r.z_ms()));
+}
+
+static const Velocity _nan = Velocity(NAN, NAN, NAN);
+const Velocity& invalid() {
+  return _nan;
 }
 
 }

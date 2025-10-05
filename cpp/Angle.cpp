@@ -5,18 +5,27 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.hpp"
+#include <cmath>
+
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
+#include "supernovas.h"
 
 using namespace novas;
 
 namespace supernovas {
 
-Angle::Angle() : _rad(NAN) {}
-
-Angle::Angle(double x) : _rad(remainder(x, TWOPI)) {}
+Angle::Angle(double x) : _rad(remainder(x, TWOPI)) {
+  if(isnan(_rad))
+    novas_error(0, EINVAL, "Angle(double)", "input angle is NAN");
+}
 
 Angle::Angle(const std::string& str) {
   _rad = novas_str_degrees(str.c_str()) * Unit::deg;
+  if(isnan(_rad))
+    novas_error(0, EINVAL, "Angle(std::string)", "invalid input angle: %s", str.c_str());
 }
 
 Angle operator+(const Angle& l, const Angle& r) {
@@ -25,6 +34,14 @@ Angle operator+(const Angle& l, const Angle& r) {
 
 Angle operator-(const Angle& l, const Angle& r) {
   return Angle(l.rad() - r.rad());
+}
+
+bool Angle::is_valid() const {
+  return !isnan(_rad);
+}
+
+bool Angle::is_equal(const Angle& angle, double precision) const {
+  return fabs(remainder(_rad - angle._rad, Constant::twoPi)) < fabs(precision);
 }
 
 double Angle::rad() const {
@@ -55,9 +72,10 @@ double Angle::fraction() const {
   return _rad / TWOPI;
 }
 
-const std::string Angle::str(enum novas_separator_type separator, int decimals) const {
+std::string Angle::str(enum novas_separator_type separator, int decimals) const {
   char s[100] = {'\0'};
-  novas_print_dms(deg(), separator, decimals, s, sizeof(s));
+  if(novas_print_dms(deg(), separator, decimals, s, sizeof(s)) != 0)
+    novas_trace_nan("Angle::str");
   return std::string(s);
 }
 

@@ -1112,6 +1112,12 @@ enum novas_reference_plane {
 };
 
 /**
+ * @hideinitializer Number of entries in enum novas_reference_plane
+ * @since 1.6
+ */
+#define NOVAS_REFERENCE_PLANES (NOVAS_EQUATORIAL_PLANE + 1)
+
+/**
  * Fundamental Delaunay arguments of the Sun and Moon, from Simon section 3.4(b.3).
  *
  * @since 1.0
@@ -3291,6 +3297,8 @@ int novas_enu_to_itrs(const double *enu, double lon, double lat, double *itrf);
 
 int novas_trace(const char *restrict loc, int n, int offset);
 double novas_trace_nan(const char *restrict loc);
+double novas_check_nan(const char *loc, double x);
+void novas_trace_invalid(const char *loc);
 void novas_set_errno(int en, const char *restrict from, const char *restrict desc, ...);
 int novas_error(int ret, int en, const char *restrict from, const char *restrict desc, ...);
 
@@ -3324,6 +3332,8 @@ int novas_error(int ret, int en, const char *restrict from, const char *restrict
           return NAN; \
         } \
 }
+
+
 
 double novas_norm_ang(double angle);
 int novas_time_equals(double jd1, double jd2);

@@ -5,7 +5,7 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 
 namespace supernovas {
@@ -13,6 +13,9 @@ namespace supernovas {
 
 Pressure::Pressure(double value) : _pascal(value) {}
 
+bool Pressure::is_valid() const {
+  return _pascal >= 0.0;
+}
 
 double Pressure::Pa() const {
   return _pascal;

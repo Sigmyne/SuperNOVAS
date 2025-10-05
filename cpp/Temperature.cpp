@@ -5,11 +5,15 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 
 namespace supernovas {
 
+
+bool Temperature::is_valid() const {
+  return kelvin() >= 0.0;
+}
 
 double Temperature::celsius() const {
   return _deg_C;

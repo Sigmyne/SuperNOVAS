@@ -5,7 +5,7 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 using namespace novas;
 
@@ -54,7 +54,7 @@ Apparent Horizontal::to_apparent(const Frame& frame, double rv, double distance)
   p.rv = rv / (Unit::au / Unit::day);
   p.dis = distance / Unit::au;
   radec2vector(p.ra, p.dec, 1.0, p.r_hat);
-  return Apparent(frame, &p, NOVAS_TOD);
+  return Apparent(frame, p, NOVAS_TOD);
 }
 
 Apparent Horizontal::to_apparent(const Frame& frame, const Speed& rv, const Distance& distance) const {
@@ -63,6 +63,13 @@ Apparent Horizontal::to_apparent(const Frame& frame, const Speed& rv, const Dist
 
 const std::string Horizontal::str(enum novas_separator_type separator, int decimals) const {
   return "HOR  " + Spherical::str(separator, decimals);
+}
+
+
+
+static const Horizontal _invalid = Horizontal(NAN, NAN, NAN);
+const Horizontal& Horizontal::invalid() {
+  return _invalid;
 }
 
 } // namespace supernovas

@@ -5,7 +5,7 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 
 using namespace novas;
@@ -33,6 +33,11 @@ Ecliptic Galactic::as_ecliptic() const {
 
 const std::string Galactic::str(enum novas_separator_type separator, int decimals) const {
   return "GAL  " + Spherical::str(separator, decimals);
+}
+
+static const Galactic _invalid = Galactic(NAN, NAN, NAN);
+const Galactic& Galactic::invalid() {
+  return _invalid;
 }
 
 } // namespace supernovas

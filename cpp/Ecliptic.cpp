@@ -5,7 +5,7 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 
 using namespace novas;
@@ -15,13 +15,17 @@ namespace supernovas {
 Ecliptic::Ecliptic(double longitude, double latitude, const std::string& system, double distance)
 : Spherical(longitude, latitude, distance), _sys(system) {}
 
-Ecliptic::Ecliptic(const Angle& ra, const Angle& dec, const System &system, const Distance& distance)
+Ecliptic::Ecliptic(const Angle& ra, const Angle& dec, const CatalogSystem &system, const Distance& distance)
 : Spherical(ra, dec, distance), _sys(system) {}
 
-Ecliptic::Ecliptic(const Position& pos, const System& system)
+Ecliptic::Ecliptic(const Position& pos, const CatalogSystem& system)
 : Spherical(pos.as_spherical()), _sys(system) {}
 
-const System& Ecliptic::system() const {
+bool Ecliptic::is_valid() const {
+  return Spherical::is_valid() && _sys.is_valid();
+}
+
+const CatalogSystem& Ecliptic::system() const {
   return _sys;
 }
 
@@ -39,6 +43,10 @@ const std::string Ecliptic::str(enum novas_separator_type separator, int decimal
   return "ECL  " + Spherical::str(separator, decimals) + "  " + _sys.str();
 }
 
+static const Ecliptic _invalid = Ecliptic(NAN, NAN, NAN);
+const Ecliptic& Ecliptic::invalid() {
+  return _invalid;
+}
 
 } // namespace supernovas
 

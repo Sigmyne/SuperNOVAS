@@ -6,7 +6,7 @@
  */
 
 
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 
 using namespace novas;
@@ -24,6 +24,10 @@ Site::Site(double longitude, double latitude, double altitude, enum novas_refere
 
 Site::Site(const Position& xyz) {
   novas_cartesian_to_geodetic(xyz._array(), NOVAS_GRS80_ELLIPSOID, &_site.longitude, &_site.latitude, &_site.height);
+}
+
+bool Site::is_valid() const {
+  return !isnan(_site.longitude) && fabs(_site.latitude) < 90.0 && _site.height > -10000.0 && fabs(_site.latitude);
 }
 
 const on_surface *Site::_on_surface() const {

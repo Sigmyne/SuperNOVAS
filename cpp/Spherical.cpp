@@ -7,7 +7,7 @@
 
 #include <cmath>
 
-#include "supernovas.hpp"
+#include "supernovas.h"
 
 
 using namespace novas;
@@ -24,6 +24,9 @@ Spherical::Spherical(double longitude, double latitude, double distance)
 Spherical::Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance)
 : _lon(longitude), _lat(latitude), _distance(distance) {}
 
+bool Spherical::is_valid() const {
+  return _lon.is_valid() && fabs(_lat.deg()) < 90.0 && _distance.m() > 0.0;
+}
 
 Position Spherical::xyz() const {
   double pos[3];
@@ -51,6 +54,5 @@ const Distance& Spherical::distance() const {
 const std::string Spherical::str(enum novas_separator_type separator, int decimals) const {
   return _lon.str(separator, decimals) + "  " + _lat.str(separator, decimals);
 }
-
 
 } // namespace supernovas
