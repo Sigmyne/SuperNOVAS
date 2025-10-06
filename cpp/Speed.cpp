@@ -17,24 +17,26 @@ using namespace novas;
 
 namespace supernovas {
 
-Speed::Speed(double ms) : _ms(ms) {
-  if(isnan(ms))
+Speed::Speed(double v_ms) : _ms(v_ms) {
+  if(isnan(v_ms))
     novas_error(0, EINVAL, "Speed(double)", "input value is NAN");
+  if(fabs(v_ms) > Constant::c)
+    novas_error(0, ERANGE, "Speed(double)", "input speed exceeds the speed of light: %g m/s", m_per_s());
   else
     _valid = true;
 }
 
 Speed::Speed(const Distance d, const Interval& time) : _ms(d.m() / time.seconds()) {}
 
-double Speed::ms() const {
+double Speed::m_per_s() const {
   return _ms;
 }
 
-double Speed::kms() const {
+double Speed::km_per_s() const {
   return 1e-3 * _ms;
 }
 
-double Speed::auday() const {
+double Speed::au_per_day() const {
   return _ms * Unit::day / Unit::au;
 }
 
@@ -60,7 +62,7 @@ Distance Speed::travel(const Interval& time) const {
 
 std::string Speed::str() const {
   char s[40] = {'\0'};
-  snprintf(s, sizeof(s), "%.3f km/s", kms());
+  snprintf(s, sizeof(s), "%.3f km/s", km_per_s());
   return std::string(s);
 }
 
