@@ -256,6 +256,10 @@ public:
 
   static const CatalogSystem& hip();
 
+  static const CatalogSystem& fk5();
+
+  static const CatalogSystem& fk4();
+
   static const CatalogSystem& b1950();
 
   static const CatalogSystem& b1900();
@@ -343,7 +347,7 @@ public:
 /// \ingroup util
 class Angle : public Validating {
 protected:
-  double _rad;      ///< [rad] stored angle value, usually [-pi:pi], but can be different for subclasses.
+  double _rad;      ///< [rad] stored angle value, usually [-&pi;:&pi;), but can be different for subclasses.
 
 public:
 

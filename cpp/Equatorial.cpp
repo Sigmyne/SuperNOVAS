@@ -72,7 +72,7 @@ const std::string Equatorial::str(enum novas_separator_type separator, int decim
   return "EQU  " + ra().str(separator, (decimals > 1 ? decimals - 1 : decimals)) + "  " + _lat.str(separator, decimals) + "  " + _sys.str();
 }
 
-static const Equatorial _invalid = Equatorial(NAN, NAN, NAN);
+static const Equatorial _invalid = Equatorial(NAN, NAN, "None", NAN);
 const Equatorial& Equatorial::invalid() {
   return _invalid;
 }

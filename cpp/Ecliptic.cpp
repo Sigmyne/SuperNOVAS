@@ -61,7 +61,7 @@ const std::string Ecliptic::str(enum novas_separator_type separator, int decimal
   return "ECL  " + Spherical::str(separator, decimals) + "  " + _sys.str();
 }
 
-static const Ecliptic _invalid = Ecliptic(NAN, NAN, NAN);
+static const Ecliptic _invalid = Ecliptic(NAN, NAN, "none", NAN);
 const Ecliptic& Ecliptic::invalid() {
   return _invalid;
 }

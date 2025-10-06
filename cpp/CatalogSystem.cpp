@@ -42,10 +42,15 @@ static std::string _name_for(const char *base, double year) {
   return std::string(s);
 }
 
-CatalogSystem::CatalogSystem(const std::string& name, double jd_tt) : _name(name), _jd(jd_tt) {}
+CatalogSystem::CatalogSystem(const std::string& name, double jd_tt) : _name(name), _jd(jd_tt) {
+  if(isnan(_jd))
+    novas_error(0, EINVAL, "CatalogSystem()", "input date is NAN");
+  else
+    _valid = true;
+}
 
 /**
- * Constructor from name, such as 'ICRS', 'J2000', 'FK5', B1950' or 'HIP'. Unless you are certain
+ * Constructor from name, such as 'ICRS', 'J2000', 'FK5', B1950', or 'HIP'. Unless, you are certain
  * that SuperNOVAS will match the name to a system and corresponding dynamical epoch, you should
  * probably call is_valid() to verify that the name was in fact recongized by the library. E.g.:
  *
@@ -57,21 +62,17 @@ CatalogSystem::CatalogSystem(const std::string& name, double jd_tt) : _name(name
  *  }
  * ```
  *
+ * It is generally preferable to use one of the static initializers, such as icrs(), or j2000(),
+ * which are guaranteed to return a valid instance.
+ *
  * @param name      The name that defining the type of catalog system. If only a year is give,
  *                  then it prior to 1984.0 they map to Besselian epochs, e.g. '1950' &rarr;
  *                  'B1950', whereas for later dates Julian epochs are assumed, e.g. '2000'
  *                  &rarr; 'J2000'.
  *
- * @sa is_valid()
+ * @sa is_valid(), icrs(), j2000(), fk5(), fk4(), b1950(), b1900()
  */
-CatalogSystem::CatalogSystem(const std::string& name) : CatalogSystem(name, novas_epoch(name.c_str())) {
-  if(isnan(_jd))
-    novas_trace_invalid("CatalogSystem(string&)");
-  else
-    _valid = true;
-
-  signed char) *s);
-}
+CatalogSystem::CatalogSystem(const std::string& name) : CatalogSystem(name, novas_epoch(name.c_str())) {}
 
 /**
  * Returns the (TT-based) Julian date that corresponds to this system instance. That is it returns
@@ -182,6 +183,34 @@ const CatalogSystem& CatalogSystem::j2000() {
   return _j2000;
 }
 
+static const CatalogSystem _fk4 = CatalogSystem("FK4");
+
+/**
+ * The 4th fundamental catalog of stars (FK4). It is essentially the same as B1950, except for
+ * the name.
+ *
+ * @return A reference to a reusable statically allocated FK4 coordinate system instance.
+ *
+ * @sa b1950()
+ */
+const CatalogSystem& CatalogSystem::fk4() {
+  return _fk4;
+}
+
+static const CatalogSystem _fk5 = CatalogSystem("FK5");
+
+/**
+ * The 5th fundamental catalog of stars (FK5). It is essentially the same as J2000, except for
+ * the name.
+ *
+ * @return A reference to a reusable statically allocated FK5 coordinate system instance.
+ *
+ * @sa j2000()
+ */
+const CatalogSystem& CatalogSystem::fk5() {
+  return _fk5;
+}
+
 static const CatalogSystem _hip = CatalogSystem("HIP");
 
 /**
@@ -199,7 +228,7 @@ const CatalogSystem& CatalogSystem::hip() {
 static const CatalogSystem _b1950 = CatalogSystem("B1950");
 
 /**
- * The system of the dynamical equator at the B1950 epoch (12 UTC, 1 January 1950). This was a
+ * The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950). This was a
  * commonly used catalog coordinate system of old. It is also known as FK4, since the 4th
  * realization of the fundamental catalog of stars used B1950 also.
  *
@@ -214,7 +243,7 @@ const CatalogSystem& CatalogSystem::b1950() {
 static const CatalogSystem _b1900 = CatalogSystem("B1900");
 
 /**
- * The system of the dynamical equator at the B1900 epoch (12 UTC, 1 January 1900). This was a
+ * The system of the dynamical equator at the B1900 epoch (0 UTC, 1 January 1900). This was a
  * commonly used catalog coordinate system of old.
  *
  * @return A reference to a reusable statically allocated B1900 coordinate system instance.
