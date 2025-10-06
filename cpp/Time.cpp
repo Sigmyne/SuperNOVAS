@@ -13,9 +13,9 @@
 
 #include "supernovas.h"
 
-/// \internal
+/// \cond PROTECTED
 #define DTA         32.184        ///< [s] TT - TAI time difference
-/// \endinternal
+/// \endcond
 
 static double novas_era(long ijd, double fjd) {
   return novas::era((double) ijd, fjd);

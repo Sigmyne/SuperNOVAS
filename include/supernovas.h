@@ -22,6 +22,7 @@
 #define NOVAS_NAMESPACE                       /// Make C API available under the 'novas' namespace
 #include <novas.h>
 
+
 namespace supernovas {
 
 
@@ -228,6 +229,7 @@ public:
  * as TIRS, PER, or ITRS.
  *
  * @sa CatalogEntry, Equatorial, Ecliptic, Apparent, Geometric
+ * @ingroup source
  */
 class CatalogSystem : public Validating {
 private:
@@ -265,7 +267,7 @@ public:
   static const CatalogSystem& b1900();
 };
 
-/// \ingroup source apparent
+/// \ingroup util
 class Distance : public Validating {
 private:
   double _meters;
@@ -504,7 +506,7 @@ public:
   static const Velocity& invalid();
 };
 
-/// \ingroup source spectral apparent
+/// \ingroup util spectral
 class Speed : public Validating {
 protected:
   double _ms;

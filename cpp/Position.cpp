@@ -72,7 +72,7 @@ Position operator-(const Position& l, const Position& r) {
 }
 
 static const Position _nan = Position(NAN, NAN, NAN);
-const Position& invalid() {
+const Position& Position::invalid() {
   return _nan;
 }
 

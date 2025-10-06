@@ -179,72 +179,72 @@ double Planet::mass() const {
 
 
 static Planet _ssb = Planet(NOVAS_SSB);
-const Planet& ssb() {
+const Planet& Planet::ssb() {
   return _ssb;
 }
 
 static Planet _mercury = Planet(NOVAS_MERCURY);
-const Planet& mercury() {
+const Planet& Planet::mercury() {
   return _mercury;
 }
 
 static Planet _venus = Planet(NOVAS_VENUS);
-const Planet& venus() {
+const Planet& Planet::venus() {
   return _venus;
 }
 
 static Planet _earth = Planet(NOVAS_EARTH);
-const Planet& earth() {
+const Planet& Planet::earth() {
   return _earth;
 }
 
 static Planet _mars = Planet(NOVAS_MARS);
-const Planet& mars() {
+const Planet& Planet::mars() {
   return _mars;
 }
 
 static Planet _jupiter = Planet(NOVAS_JUPITER);
-const Planet& jupiter() {
+const Planet& Planet::jupiter() {
   return _jupiter;
 }
 
 static Planet _saturn = Planet(NOVAS_SATURN);
-const Planet& saturn() {
+const Planet& Planet::saturn() {
   return _saturn;
 }
 
 static Planet _uranus = Planet(NOVAS_URANUS);
-const Planet& uranus() {
+const Planet& Planet::uranus() {
   return _uranus;
 }
 
 static Planet _neptune = Planet(NOVAS_NEPTUNE);
-const Planet& neptune() {
+const Planet& Planet::neptune() {
   return _neptune;
 }
 
 static Planet _pluto = Planet(NOVAS_PLUTO);
-const Planet& pluto() {
+const Planet& Planet::pluto() {
   return _pluto;
 }
 
 static Planet _sun = Planet(NOVAS_SUN);
-const Planet sun() {
+const Planet& Planet::sun() {
   return _sun;
 }
 
 static Planet _moon = Planet(NOVAS_MOON);
-const Planet& moon() {
+const Planet& Planet::moon() {
   return _moon;
 }
 
 static Planet _emb = Planet(NOVAS_EMB);
-const Planet& emb() {
+const Planet& Planet::emb() {
   return _emb;
 }
 
 static Planet _pluto_system = Planet(NOVAS_PLUTO_BARYCENTER);
-const Planet& pluto_system() {
+const Planet& Planet::pluto_system() {
   return _pluto_system;
 }
 

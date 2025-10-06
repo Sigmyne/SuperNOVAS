@@ -86,7 +86,7 @@ Velocity operator-(const Velocity& l, const Velocity& r) {
 }
 
 static const Velocity _nan = Velocity(NAN, NAN, NAN);
-const Velocity& invalid() {
+const Velocity& Velocity::invalid() {
   return _nan;
 }
 
