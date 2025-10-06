@@ -5,9 +5,13 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.h"
-
 #include <cmath>
+
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
+#include "supernovas.h"
 
 /// \internal
 #define DTA         32.184        ///< [s] TT - TAI time difference
@@ -25,32 +29,70 @@ using namespace novas;
 
 namespace supernovas {
 
+bool Time::is_valid_parms(double dUT1,  enum novas_timescale timescale) const {
+  static const char *fn = "Time()";
+
+  if(isnan(dUT1))
+    return novas_error(0, EINVAL, fn, "input dUT1 is NAN");
+  else if(fabs(dUT1) > 1.0)
+    return novas_error(0, EINVAL, fn, "input dUT1 exceeds +/- 1s limit: %g", dUT1);
+  else if(timescale < 0 || timescale >= NOVAS_TIMESCALES)
+    return novas_error(0, EINVAL, fn, "invalid timescale: %d", timescale);
+  else
+    return 1;
+}
+
 Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
+  static const char *fn = "Time()";
+
   novas_set_time(timescale, jd, leap_seconds, dUT1, &_ts);
+
+  if(isnan(jd))
+    novas_error(0, EINVAL, fn, "input jd is NAN");
+  else
+    _valid = is_valid_parms(dUT1, timescale);
+
 }
 
 Time::Time(double jd, const EOP& eop, enum novas_timescale timescale)
 : Time(jd, eop.leap_seconds(), eop.dUT1(), timescale) {}
 
 Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
+  static const char *fn = "Time()";
+
   novas_set_split_time(timescale, ijd, fjd, leap_seconds, dUT1, &_ts);
+
+  if(isnan(fjd))
+    novas_error(0, EINVAL, fn, "input jd is NAN");
+  else
+    _valid = is_valid_parms(dUT1, timescale);
+
 }
 
 Time::Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale)
 : Time(ijd, fjd, eop.leap_seconds(), eop.dUT1(), timescale) {}
 
 Time::Time(const std::string& timestamp, int leap_seconds, double dUT1, enum novas_timescale timescale) {
-  novas_set_str_time(timescale, timestamp.c_str(), leap_seconds, dUT1, &_ts);
+  static const char *fn = "Time()";
+
+  if(novas_set_str_time(timescale, timestamp.c_str(), leap_seconds, dUT1, &_ts) != 0)
+    novas_trace_invalid(fn);
+  else
+    _valid = is_valid_parms(dUT1, timescale);
 }
 
 Time::Time(const std::string& timestamp, const EOP& eop, enum novas_timescale timescale)
 : Time(timestamp, eop.leap_seconds(), eop.dUT1(), timescale) {}
 
-Time::Time(const struct timespec *t, int leap_seconds, double dUT1) {
-  novas_set_unix_time(t->tv_sec, t->tv_nsec, leap_seconds, dUT1, &_ts);
+Time::Time(const struct timespec t, int leap_seconds, double dUT1) {
+  static const char *fn = "Time()";
+
+  novas_set_unix_time(t.tv_sec, t.tv_nsec, leap_seconds, dUT1, &_ts);
+
+  _valid = is_valid_parms(dUT1, NOVAS_UTC);
 }
 
-Time::Time(const struct timespec *t, const EOP& eop)
+Time::Time(const struct timespec t, const EOP& eop)
 : Time(t, eop.leap_seconds(), eop.dUT1()) {}
 
 Time::Time(const novas_timespec *t) : _ts(*t) {}
@@ -93,10 +135,6 @@ bool Time::operator>=(const Time& r) const {
 
 bool Time::operator>=(const novas_timespec *r) const {
   return novas_diff_time(&_ts, r) >= 0.0;
-}
-
-bool Time::is_valid() const {
-  return !isnan(_ts.ijd_tt) && !isnan(_ts.dut1);
 }
 
 bool Time::equals(const Time& time, double precision) const {

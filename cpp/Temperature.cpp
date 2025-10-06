@@ -5,14 +5,24 @@
  * @author Attila Kovacs
  */
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
 #include "supernovas.h"
 
 
 namespace supernovas {
 
+Temperature::Temperature(double deg_C) : _deg_C(deg_C) {
+  static const char *fn = "Temperature()";
 
-bool Temperature::is_valid() const {
-  return kelvin() >= 0.0;
+  if(isnan(deg_C))
+    novas::novas_error(0, EINVAL, fn, "input value is NAN");
+  else if(kelvin() < 0.0)
+    novas::novas_error(0, EINVAL, fn, "input value is below 0K");
+  else
+    _valid = true;
 }
 
 double Temperature::celsius() const {

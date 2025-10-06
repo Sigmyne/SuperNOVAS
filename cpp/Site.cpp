@@ -5,6 +5,9 @@
  * @author Attila Kovacs
  */
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
 
 #include "supernovas.h"
 
@@ -16,6 +19,23 @@ namespace supernovas {
 Site::Site() {}
 
 Site::Site(double longitude, double latitude, double altitude, enum novas_reference_ellipsoid ellipsoid) {
+  static const char *fn = "Site()";
+
+  if(isnan(longitude))
+    novas_error(0, EINVAL, fn, "input longitude is NAN");
+  else if(isnan(latitude))
+    novas_error(0, EINVAL, fn, "input latitude is NAN");
+  else if(fabs(latitude) < Constant::halfPi)
+    novas_error(0, EINVAL, fn, "input latitude is outside of [-pi:pi] range: %g", latitude);
+  else if(isnan(altitude))
+    novas_error(0, EINVAL, fn, "input altitude is NAN");
+  else if(altitude < -10000.0)
+    novas_error(0, EINVAL, fn, "altitude is more than 10 km below surface: %g m", altitude);
+  else if(altitude > 100000.0)
+    novas_error(0, EINVAL, fn, "altitude is more than 100 km above surface: %g m", altitude);
+  else
+    _valid = true;
+
   make_itrf_site(latitude / Unit::deg, longitude / Unit::deg, altitude, &_site);
 
   if(ellipsoid != NOVAS_GRS80_ELLIPSOID)
@@ -23,11 +43,19 @@ Site::Site(double longitude, double latitude, double altitude, enum novas_refere
 }
 
 Site::Site(const Position& xyz) {
-  novas_cartesian_to_geodetic(xyz._array(), NOVAS_GRS80_ELLIPSOID, &_site.longitude, &_site.latitude, &_site.height);
-}
+  static const char *fn = "Site()";
 
-bool Site::is_valid() const {
-  return !isnan(_site.longitude) && fabs(_site.latitude) < 90.0 && _site.height > -10000.0 && fabs(_site.latitude);
+  novas_cartesian_to_geodetic(xyz._array(), NOVAS_GRS80_ELLIPSOID, &_site.longitude, &_site.latitude, &_site.height);
+
+  if(!xyz.is_valid())
+    novas_error(0, EINVAL, fn, "input xyz coordinates have NAN component(s)");
+  else if(_site.height < -10000.0)
+    novas_error(0, EINVAL, fn, "altitude is more than 10 km below surface: %g m", _site.height);
+  else if(_site.height > 100000.0)
+    novas_error(0, EINVAL, fn, "altitude is more than 100 km above surface: %g m", _site.height);
+  else
+    _valid = true;
+
 }
 
 const on_surface *Site::_on_surface() const {

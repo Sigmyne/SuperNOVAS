@@ -7,6 +7,10 @@
 
 #include <cstring>
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
 #include "supernovas.h"
 
 using namespace novas;
@@ -14,16 +18,13 @@ using namespace novas;
 
 namespace supernovas {
 
+
 const observer * Observer::_novas_observer() const {
   return &_observer;
 }
 
 enum novas_observer_place Observer::type() const {
   return _observer.where;
-}
-
-bool Observer::is_valid() const {
-  return _observer.where >= 0 && _observer.where < NOVAS_OBSERVER_PLACES;
 }
 
 GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
@@ -60,15 +61,21 @@ const Observer& Observer::invalid() {
 GeocentricObserver::GeocentricObserver()
 : Observer() {
   make_observer_at_geocenter(&_observer);
+  _valid = true;
 }
 
 GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
 : Observer() {
-  make_observer_in_space(pos.scaled(1.0 / Unit::km)._array(), vel.scaled(Unit::sec / Unit::km)._array(), &_observer);
-}
+  static const char *fn = "GeocentricObserver()";
 
-bool GeocentricObserver::is_valid() const {
-  return Observer::is_valid() && geocentric_position().is_valid() && geocentric_velocity().is_valid();
+  make_observer_in_space(pos.scaled(1.0 / Unit::km)._array(), vel.scaled(Unit::sec / Unit::km)._array(), &_observer);
+
+  if(!pos.is_valid())
+    novas_error(0, EINVAL, fn, "input position contains NAN component(s).");
+  else if(!vel.is_valid())
+    novas_error(0, EINVAL, fn, "input velocity contains NAN component(s).");
+  else
+    _valid = true;
 }
 
 Position GeocentricObserver::geocentric_position() const {
@@ -85,15 +92,21 @@ Velocity GeocentricObserver::geocentric_velocity() const {
 SolarSystemObserver::SolarSystemObserver() : Observer() {
   double zero[3] = {};
   make_solar_system_observer(zero, zero, &_observer);
+  _valid = true;
 }
 
 SolarSystemObserver::SolarSystemObserver(const Position& pos, const Velocity& vel)
 : Observer() {
-  make_solar_system_observer(pos.scaled(1.0 / Unit::au)._array(), vel.scaled(Unit::day / Unit::au)._array(), &_observer);
-}
+  static const char *fn = "SolarSystemObserver()";
 
-bool SolarSystemObserver::is_valid() const {
-  return Observer::is_valid() && ssb_position().is_valid() && ssb_velocity().is_valid();
+  make_solar_system_observer(pos.scaled(1.0 / Unit::au)._array(), vel.scaled(Unit::day / Unit::au)._array(), &_observer);
+
+  if(!pos.is_valid())
+    novas_error(0, EINVAL, fn, "input position contains NAN component(s).");
+  else if(!vel.is_valid())
+    novas_error(0, EINVAL, fn, "input velocity contains NAN component(s).");
+  else
+    _valid = true;
 }
 
 Position SolarSystemObserver::ssb_position() const {
@@ -109,16 +122,32 @@ Velocity SolarSystemObserver::ssb_velocity() const {
 
 GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
 : Observer(), _eop(eop) {
+  static const char *fn = "GeodeticObserver()";
+
   make_observer_at_site(site._on_surface(), &_observer);
+
+  if(!site.is_valid())
+    novas_error(0, EINVAL, fn, "input site is invalid");
+  else if(!eop.is_valid())
+    novas_error(0, EINVAL, fn, "input EOP is invalid");
+  else
+    _valid = true;
 }
 
 GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const EOP& eop)
 : Observer(), _eop(eop) {
-  make_airborne_observer(site._on_surface(), vel._array(), &_observer);
-}
+  static const char *fn = "GeodeticObserver()";
 
-bool GeodeticObserver::is_valid() const {
-  return Observer::is_valid() && site().is_valid();
+  make_airborne_observer(site._on_surface(), vel._array(), &_observer);
+
+  if(!site.is_valid())
+    novas_error(0, EINVAL, fn, "input site is invalid.");
+  else if(!eop.is_valid())
+    novas_error(0, EINVAL, fn, "input EOP is invalid");
+  else if(!vel.is_valid())
+    novas_error(0, EINVAL, fn, "input velocity contains NAN component(s).");
+  else
+    _valid = true;
 }
 
 Site GeodeticObserver::site() const {

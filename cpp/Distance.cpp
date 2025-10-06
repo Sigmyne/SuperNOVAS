@@ -17,10 +17,8 @@ namespace supernovas {
 Distance::Distance(double meters) : _meters(meters) {
   if(isnan(meters))
     novas::novas_error(0, EINVAL, "Distance(double)", "input value is NAN");
-}
-
-bool Distance::is_valid() const {
-  return !isnan(_meters);
+  else
+    _valid = true;
 }
 
 double Distance::m() const {

@@ -5,16 +5,20 @@
  * @author Attila Kovacs
  */
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
 #include "supernovas.h"
-
-
-using namespace novas;
 
 
 namespace supernovas {
 
 Velocity::Velocity(double x_ms, double y_ms, double z_ms)
-: Vector(x_ms, y_ms, z_ms) {}
+: Vector(x_ms, y_ms, z_ms) {
+  if(!_valid)
+    novas::novas_trace_invalid("Velocity()");
+}
 
 Velocity::Velocity(const double vel[3], double unit)
 : Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}

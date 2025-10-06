@@ -5,17 +5,26 @@
  * @author Attila Kovacs
  */
 
-#include "supernovas.h"
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
 
+#include "supernovas.h"
 
 namespace supernovas {
 
 
-Pressure::Pressure(double value) : _pascal(value) {}
+Pressure::Pressure(double value) : _pascal(value) {
+  static const char *fn = "Pressure()";
 
-bool Pressure::is_valid() const {
-  return _pascal >= 0.0;
+  if(isnan(value))
+    novas::novas_error(0, EINVAL, fn, "input value is NAN");
+  else if(value < 0.0)
+    novas::novas_error(0, EINVAL, fn, "input value is negative");
+  else
+    _valid = true;
 }
+
 
 double Pressure::Pa() const {
   return _pascal;

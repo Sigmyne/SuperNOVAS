@@ -18,8 +18,10 @@ using namespace novas;
 namespace supernovas {
 
 Angle::Angle(double x) : _rad(remainder(x, TWOPI)) {
-  if(isnan(_rad))
+  if(isnan(x))
     novas_error(0, EINVAL, "Angle(double)", "input angle is NAN");
+  else
+    _valid = true;
 }
 
 Angle::Angle(const std::string& str) {
@@ -34,10 +36,6 @@ Angle operator+(const Angle& l, const Angle& r) {
 
 Angle operator-(const Angle& l, const Angle& r) {
   return Angle(l.rad() - r.rad());
-}
-
-bool Angle::is_valid() const {
-  return !isnan(_rad);
 }
 
 bool Angle::is_equal(const Angle& angle, double precision) const {
@@ -75,7 +73,7 @@ double Angle::fraction() const {
 std::string Angle::str(enum novas_separator_type separator, int decimals) const {
   char s[100] = {'\0'};
   if(novas_print_dms(deg(), separator, decimals, s, sizeof(s)) != 0)
-    novas_trace_nan("Angle::str");
+    novas_trace_invalid("Angle::str");
   return std::string(s);
 }
 
