@@ -38,6 +38,8 @@ Apparent::Apparent(const Frame& f, const Equatorial& eq, double rv, enum novas_r
       novas_error(0, EINVAL, fn, "input equatorial coordinates are invalid");
   else if(isnan(rv))
       novas_error(0, EINVAL, fn, "input radial velocity is NAN");
+  else if(fabs(rv) > Constant::c)
+      novas_error(0, EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", rv);
   else if(system < 0 || system >= NOVAS_REFERENCE_SYSTEMS)
       novas_error(0, EINVAL, fn, "input reference system %d is invalid", system);
   else
@@ -52,7 +54,7 @@ Apparent::Apparent(const Frame& f, const Equatorial& eq, double rv, enum novas_r
 }
 
 Apparent::Apparent(const Frame& f, const Equatorial& eq, const Speed& rv, enum novas_reference_system system)
-: Apparent(f, eq, rv.ms(), system) {}
+: Apparent(f, eq, rv.m_per_s(), system) {}
 
 Apparent::Apparent(const Frame& f, sky_pos p, enum novas_reference_system system)
 : Apparent(f, system) {
@@ -72,6 +74,9 @@ Apparent::Apparent(const Frame& f, sky_pos p, enum novas_reference_system system
 
   else if(isnan(p.rv))
     novas_error(0, EINVAL, fn, "input pos->rv is NAN");
+
+  else if(p.rv * Unit::au / Unit::day > Constant::c)
+    novas_error(0, EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", radial_velocity().m_per_s());
 
   else
     _valid = true;

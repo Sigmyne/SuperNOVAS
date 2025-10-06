@@ -174,8 +174,14 @@ CatalogEntry& CatalogEntry::distance(const Distance& dist) {
 }
 
 CatalogEntry& CatalogEntry::v_lsr(double v_ms) {
+  static const char *fn = "CatalogEntry::v_lsr()";
+
   if(isnan(v_ms)) {
-    novas_error(0, EINVAL, "CatalogEntry::v_lsr()", "input LSR velocity is NAN");
+    novas_error(0, EINVAL, fn, "input LSR velocity is NAN");
+    _valid = false;
+  }
+  else if(fabs(v_ms) > Constant::c) {
+    novas_error(0, EINVAL, fn, "input LSR velocity exceeds the speed of light: %g m/s", v_ms);
     _valid = false;
   }
 
@@ -184,12 +190,18 @@ CatalogEntry& CatalogEntry::v_lsr(double v_ms) {
 }
 
 CatalogEntry& CatalogEntry::v_lsr(const Speed& v) {
-  return v_lsr(v.ms());
+  return v_lsr(v.m_per_s());
 }
 
 CatalogEntry& CatalogEntry::radial_velocity(double v_ms) {
+  static const char *fn = "CatalogEntry::radial_velocity()";
+
   if(isnan(v_ms)) {
-    novas_error(0, EINVAL, "CatalogEntry::radial_velocity()", "input value is NAN");
+    novas_error(0, EINVAL, fn, "input value is NAN");
+    _valid = false;
+  }
+  else if(fabs(v_ms) > Constant::c) {
+    novas_error(0, EINVAL, fn, "radial velocity exceeds the speed of light: %g m/s", v_ms);
     _valid = false;
   }
 
@@ -198,7 +210,7 @@ CatalogEntry& CatalogEntry::radial_velocity(double v_ms) {
 }
 
 CatalogEntry& CatalogEntry::radial_velocity(const Speed& v) {
-  return radial_velocity(v.ms());
+  return radial_velocity(v.m_per_s());
 }
 
 CatalogEntry& CatalogEntry::redshift(double z) {

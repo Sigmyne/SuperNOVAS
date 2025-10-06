@@ -58,6 +58,10 @@ double Vector::projection_on(const Vector& v) const {
   return dot(v) / v.abs();
 }
 
+Vector Vector::unit_vector() const {
+  return scaled(1.0 / abs());
+}
+
 std::string Vector::str() const {
   char sx[20] = {'\0'}, sy[20] = {'\0'}, sz[20] = {'\0'};
   snprintf(sx, sizeof(sx), "%.6g", _component[0]);

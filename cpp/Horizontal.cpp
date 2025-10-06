@@ -58,7 +58,7 @@ Apparent Horizontal::to_apparent(const Frame& frame, double rv, double distance)
 }
 
 Apparent Horizontal::to_apparent(const Frame& frame, const Speed& rv, const Distance& distance) const {
-  return to_apparent(frame, rv.ms(), distance.m());
+  return to_apparent(frame, rv.m_per_s(), distance.m());
 }
 
 const std::string Horizontal::str(enum novas_separator_type separator, int decimals) const {
