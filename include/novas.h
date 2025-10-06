@@ -1592,7 +1592,7 @@ typedef struct novas_observer {
  * Celestial object's place on the sky; contains the output from place()
  *
  * @sa novas_sky_pos(), novas_transform_sky_pos(), SKY_POS_INIT
- * @ingroup apparent frame
+ * @ingroup apparent
  */
 typedef struct novas_sky_pos {
   double r_hat[3];  ///< unit vector toward object (dimensionless)
