@@ -18,10 +18,6 @@ using namespace novas;
 namespace supernovas {
 
 
-void CatalogEntry::set_epoch() {
-  _epoch = (_sys.jd() - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;
-}
-
 CatalogEntry::CatalogEntry(const std::string &name, double RA, double Dec, const std::string& system)
 : _sys(system) {
   static const char *fn = "CatalogEntry()";
@@ -38,8 +34,6 @@ CatalogEntry::CatalogEntry(const std::string &name, double RA, double Dec, const
     novas_error(0, EINVAL, fn, "input catalog system is invalid: %s", system);
   else
     _valid = true;
-
-  set_epoch();
 }
 
 CatalogEntry::CatalogEntry(const std::string &name, const Angle& RA, const Angle& Dec, const CatalogSystem& system)
@@ -98,7 +92,7 @@ Angle CatalogEntry::dec() const {
 }
 
 Speed CatalogEntry::v_lsr() const {
-  return Speed(novas_ssb_to_lsr_vel(_epoch, _entry.ra, _entry.dec, _entry.radialvelocity) * Unit::km / Unit::sec);
+  return Speed(novas_ssb_to_lsr_vel(_sys.epoch(), _entry.ra, _entry.dec, _entry.radialvelocity) * Unit::km / Unit::sec);
 }
 
 Speed CatalogEntry::radial_velocity() const {
@@ -185,7 +179,7 @@ CatalogEntry& CatalogEntry::v_lsr(double v_ms) {
     _valid = false;
   }
 
-  novas_set_lsr_vel(&_entry, _epoch, v_ms / (Unit::km / Unit::sec));
+  novas_set_lsr_vel(&_entry, _sys.epoch(), v_ms / (Unit::km / Unit::sec));
   return *this;
 }
 

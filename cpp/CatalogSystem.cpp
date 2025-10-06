@@ -7,6 +7,7 @@
 
 
 #include <string.h>
+#include <ctype.h>
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
@@ -24,9 +25,9 @@ static double _epoch_for(double jd) {
   return 2000.0 + (jd - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;
 }
 
-static std::string _name_for(double jd) {
+static std::string _name_for(const char *base, double year) {
   char s[20] = {'\0'};
-  snprintf(s, sizeof(s), "J%.3f", _epoch_for(jd));
+  snprintf(s, sizeof(s), "%s%.3f", base, year);
 
   // Remove trailing zeroes and decimal point.
   for(int i = strlen(s); --i >= 0; ) {
@@ -43,40 +44,82 @@ static std::string _name_for(double jd) {
 
 CatalogSystem::CatalogSystem(const std::string& name, double jd_tt) : _name(name), _jd(jd_tt) {}
 
-CatalogSystem::CatalogSystem(double jd_tt) : CatalogSystem(_name_for(jd_tt), jd_tt) {
-  if(isnan(jd_tt))
-    novas_trace_invalid("CatalogSystem(double)");
-  else
-    _valid = true;
-}
-
+/**
+ * Constructor from name, such as 'ICRS', 'J2000', 'FK5', B1950' or 'HIP'. Unless you are certain
+ * that SuperNOVAS will match the name to a system and corresponding dynamical epoch, you should
+ * probably call is_valid() to verify that the name was in fact recongized by the library. E.g.:
+ *
+ * ```c
+ *  CatalogSystem s = CatalogSystem("FK4");
+ *  if(!s.is_valid()) {
+ *    // Oops, that did not work, as expected...
+ *    ...
+ *  }
+ * ```
+ *
+ * @param name      The name that defining the type of catalog system. If only a year is give,
+ *                  then it prior to 1984.0 they map to Besselian epochs, e.g. '1950' &rarr;
+ *                  'B1950', whereas for later dates Julian epochs are assumed, e.g. '2000'
+ *                  &rarr; 'J2000'.
+ *
+ * @sa is_valid()
+ */
 CatalogSystem::CatalogSystem(const std::string& name) : CatalogSystem(name, novas_epoch(name.c_str())) {
   if(isnan(_jd))
     novas_trace_invalid("CatalogSystem(string&)");
   else
     _valid = true;
+
+  signed char) *s);
 }
 
+/**
+ * Returns the (TT-based) Julian date that corresponds to this system instance. That is it returns
+ * the date for which the mean dynamical equator best matches the equator of this catalog system.
+ *
+ * @return        [day] the (TT-based) Julian date at which the mean dynamical equator matches
+ *                this system. E.g. for 'ICRS' it will return the Julian date for the J2000.0
+ *                epoch.
+ *
+ * @sa Time
+ */
 double CatalogSystem::jd() const {
   return _jd;
 }
 
+/**
+ * Returns the years of the Julian epoch that matches this system. E.g. for both 'ICRS' and
+ * 'J2000' this will return 2000.0.
+ *
+ * @return      [yr] The Julian epoch year of this catalog system.
+ */
 double CatalogSystem::epoch() const {
   return _epoch_for(_jd);
 }
 
+/**
+ * Returns a reference to the name of this system.
+ *
+ * @return    A reference to the string that stores the system's name
+ */
 const std::string& CatalogSystem::name() const {
   return _name;
 }
 
+/**
+ * Provides a string representation of this system. It is pretty much the same as calling name(),
+ * except it returns a copy rather than the reference.
+ *
+ * @return    A string identification of this catalof system.
+ */
 std::string CatalogSystem::str() const {
   return _name;
 }
 
 /**
- * Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch. MOD
- * coordinates take into account Earth's precession but not nutation. Julian-date based MODs
- * were commonly used for catalogs, such as J2000, or HIP.
+ * Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch. MOD coordinates
+ * take into account Earth's slow precession but not nutation. Julian-date based MODs were
+ * commonly used for catalogs, such as J2000, or HIP.
  *
  * @param jd_tt     [day] TT-based Julian day.
  * @return          A reference system with the mean dynamical equator of date, with origin at
@@ -85,7 +128,7 @@ std::string CatalogSystem::str() const {
  * @sa at_besselial_epoch(), j2000(), hip()
  */
 CatalogSystem CatalogSystem::at_julian_date(double jd_tt) {
-  return CatalogSystem("J", jd_tt);
+  return CatalogSystem(_name_for("J", 2000.0 + (jd_tt - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS), jd_tt);
 }
 
 /**
@@ -101,7 +144,7 @@ CatalogSystem CatalogSystem::at_julian_date(double jd_tt) {
  * @sa at_julian_date(), b1900(), b1950()
  */
 CatalogSystem CatalogSystem::at_besselian_epoch(double year) {
-  return CatalogSystem("B", NOVAS_JD_B1950 + (year - 1950.0) * NOVAS_TROPICAL_YEAR_DAYS);
+  return CatalogSystem(_name_for("B", year), NOVAS_JD_B1950 + (year - 1950.0) * NOVAS_TROPICAL_YEAR_DAYS);
 }
 
 static const CatalogSystem _icrs = CatalogSystem("ICRS");

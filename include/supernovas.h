@@ -149,13 +149,7 @@ public:
  * velocity (im m/s) to a unitless &beta;:
  *
  * ```c
- *   double beta = 29500.0 / Constant::c;
- * ```
- *
- * or combined with units, say if the velocity is in AU/day:
- *
- * ```c
- *   double beta = 0.00614 * (Unit::km / Unit::sec) / Constant::c;
+ *   double beta = (29.5 * Unit::km / Unit::sec) / Constant::c;
  * ```
  *
  * @sa Unit
@@ -236,13 +230,13 @@ private:
   CatalogSystem(const std::string& name, double jd_tt);
 
 protected:
-  std::string _name;
-  double _jd;
+  std::string _name;    ///< name of the catalog system, e.g. 'ICRS' or 'J2000'
+  double _jd;           ///< [day] Julian date of the dynamical equator (or closest to it) that
+                        ///< matches the system
 
 public:
-  CatalogSystem(const std::string& name);
 
-  CatalogSystem(double jd_tt);
+  CatalogSystem(const std::string& name);
 
   double jd() const;
 
@@ -252,7 +246,7 @@ public:
 
   std::string str() const;
 
-  static CatalogSystem at_julian_date(double year);
+  static CatalogSystem at_julian_date(double jd_tt);
 
   static CatalogSystem at_besselian_epoch(double year);
 
@@ -270,7 +264,7 @@ public:
 /// \ingroup util
 class Distance : public Validating {
 private:
-  double _meters;
+  double _meters;         ///< [m] stored distance
 
 public:
   Distance(double meters);
@@ -304,8 +298,8 @@ public:
 class Interval : public Validating {
 private:
 
-  double _seconds;
-  enum novas::novas_timescale _scale;
+  double _seconds;                      ///< [s] stored time of the interval
+  enum novas::novas_timescale _scale;   ///< store timescale of the interval
 
 public:
 
@@ -349,7 +343,7 @@ public:
 /// \ingroup util
 class Angle : public Validating {
 protected:
-  double _rad;
+  double _rad;      ///< [rad] stored angle value, usually [-pi:pi], but can be different for subclasses.
 
 public:
 
@@ -380,6 +374,15 @@ public:
   double fraction() const;
 
   virtual std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
+
+  static constexpr int east = 1;      ///< East direction sign, e.g `19.5 * Unit::deg * Angle::east` for 19.5 deg East.
+
+  static constexpr int west = -1;     ///< West direction sign, e.g `155.1 * Unit::deg * Angle::west` for 155.1 deg West.
+
+  static constexpr int north = 1;     ///< North direction sign, e.g `33.4 * Unit::deg * Angle::north` for 33.4 deg North.
+
+  static constexpr int south = -1;    ///< South direction sign, e.g `90.0 * Unit::deg * Angle::south` for the South pole.
+
 };
 
 /// \ingroup time util
@@ -408,7 +411,7 @@ public:
 /// \ingroup util
 class Vector : public Validating {
 protected:
-  double _component[3];
+  double _component[3];       ///< [arb.u] Array containing the x, y, z components.
 
   Vector(double x = 0.0, double y = 0.0, double z = 0.0);
 
@@ -509,7 +512,7 @@ public:
 /// \ingroup util spectral
 class Speed : public Validating {
 protected:
-  double _ms;
+  double _ms;       ///< [m/s] stored speed
 
 public:
   Speed(double ms);
@@ -550,8 +553,9 @@ public:
 /// \ingroup util
 class Spherical : public Validating {
 protected:
-  Angle _lon, _lat;
-  Distance _distance;
+  Angle _lon;           ///< [rad] stored longitude value
+  Angle _lat;           ///< [rad] stored latitude value
+  Distance _distance;   ///< [m] stored distance
 
   Spherical();
 
@@ -578,7 +582,7 @@ public:
 /// \ingroup equatorial
 class Equatorial : public Spherical {
 private:
-  CatalogSystem _sys;
+  CatalogSystem _sys;     ///< stored catalog system
 
   void validate();
 
@@ -607,7 +611,7 @@ public:
 /// \ingroup nonequatorial
 class Ecliptic : public Spherical {
 private:
-  CatalogSystem _sys;
+  CatalogSystem _sys;     ///< stored catalog system
 
   void validate();
 
@@ -650,7 +654,7 @@ public:
 /// \ingroup util
 class Temperature : public Validating {
 private:
-  double _deg_C;
+  double _deg_C;        ///< [C] stored temperature
 
   Temperature(double deg_C);
 
@@ -673,7 +677,7 @@ public:
 /// \ingroup util
 class Pressure : public Validating {
 private:
-  double _pascal;
+  double _pascal;     ///< [Pa] stored pressure
 
   Pressure(double value);
 
@@ -712,9 +716,9 @@ public:
 /// \ingroup refract
 class Weather : public Validating {
 private:
-  Temperature _temperature;
-  Pressure _pressure;
-  double _humidity;
+  Temperature _temperature;   ///< stored temperature value
+  Pressure _pressure;         ///< stored pressure value
+  double _humidity;           ///< [%] stored humidity value
 
   void validate();
 
@@ -739,10 +743,13 @@ public:
 /// \ingroup earth nonequatorial
 class EOP : public Validating {
 private:
-  int _leap;
-  Angle _xp, _yp;
-  double _dut1;
-  double _dxp = 0.0, _dyp = 0.0, _dt = 0.0;  // [arcsec, s] Applied corrections, in novas units.
+  int _leap;          ///< [s] store leap seconds (UTC - TAI time difference).
+  Angle _xp;          ///< stored x pole offset (at midhight UTC).
+  Angle _yp;          ///< stored y pole offset (at midnight UTC).
+  double _dut1;       ///< [s] stored UT1 - UTC time difference.
+  double _dxp = 0.0;  ///< [arcsec] applied x pole correction, in NOVAS units.
+  double _dyp = 0.0;  ///< [arcsec] applied y pole correction, in NOVAS units.
+  double _dt = 0.0;   ///< [s] applied dUT1 corrections, in NOVAS units.
 
   void validate();
 
@@ -771,7 +778,7 @@ public:
 /// \ingroup observer
 class Site : public Validating {
 private:
-  novas::on_surface _site;
+  novas::on_surface _site;    ///< stored site information
 
   Site();
 
@@ -807,7 +814,7 @@ public:
 /// \ingroup observer
 class Observer : public Validating {
 protected:
-  novas::observer _observer = {};
+  novas::observer _observer = {};   ///< stored observer data
 
   Observer() {};
 
@@ -868,7 +875,7 @@ public:
 /// \ingroup observer
 class GeodeticObserver : public Observer {
 private:
-  EOP _eop;
+  EOP _eop;     ///< stored Earth orientation parameters
 
 public:
   GeodeticObserver(const Site& site, const EOP& eop);
@@ -886,7 +893,7 @@ public:
 /// \ingroup time
 class Time : public Validating {
 private:
-  novas::novas_timespec _ts;
+  novas::novas_timespec _ts;    ///< stored astronomical time specification
 
   Time() {};
 
@@ -988,9 +995,9 @@ public:
 /// \ingroup frame
 class Frame : public Validating {
 private:
-  novas::novas_frame _frame;
-  Observer _observer;
-  Time _time;
+  novas::novas_frame _frame;      ///< Stored frame data
+  Observer _observer;             ///< stored observer data
+  Time _time;                     ///< stored time data
 
 public:
   Frame(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
@@ -1026,7 +1033,7 @@ public:
 /// \ingroup source
 class Source : public Validating {
 protected:
-  struct novas::novas_object _object;
+  struct novas::novas_object _object;     /// stored data on source
 
   Source() {}
 
@@ -1059,9 +1066,8 @@ public:
 /// \ingroup source spectral
 class CatalogEntry : public Validating {
 private:
-  double _epoch;
-  novas::cat_entry _entry;
-  CatalogSystem _sys;
+  novas::cat_entry _entry;  ///< stored catalog entry
+  CatalogSystem _sys;       ///< stored catalog system
 
   void set_epoch();
 
@@ -1120,7 +1126,7 @@ public:
 /// \ingroup source
 class CatalogSource : public Source {
 private:
-  CatalogSystem _system;
+  CatalogSystem _system;      ///< stored catalog system
 
 public:
   CatalogSource(const CatalogEntry& e);
@@ -1210,13 +1216,24 @@ public:
   Velocity orbital_velocity(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
 };
 
-/// \ingroup apparent spectral
+///
+/**
+ * A class representing an apparent position on sky for a given observer at a specific time of
+ * observation. Apparent positions are corrected for aberration for a movig observer, and
+ * gravitational deflection around the major Solar-system bodies along the path of visibility.
+ *
+ * Apparent positions can also come directly from observations, such as from unrefracted
+ * horizontal coordinates.
+ *
+ * @sa Source::apparent(), Horizontal::to_apparent()
+ * \ingroup apparent spectral
+ */
 class Apparent : public Validating {
 private:
-  Frame _frame;
-  enum novas::novas_reference_system _sys;
+  Frame _frame;                               ///< stored frame data
+  enum novas::novas_reference_system _sys;    ///< stored coordinate reference system type
 
-  novas::sky_pos _pos;
+  novas::sky_pos _pos;                        ///< stored apparent position data
 
   Apparent(const Frame& frame, enum novas::novas_reference_system system);
 
@@ -1271,11 +1288,11 @@ public:
 /// \ingroup geometric
 class Geometric : public Validating {
 private:
-  Frame _frame;
-  enum novas::novas_reference_system _sys;
+  Frame _frame;                             ///< stored frame data
+  enum novas::novas_reference_system _sys;  ///< stored coordinate reference system type
 
-  Position _pos;
-  Velocity _vel;
+  Position _pos;                            ///< stored geometric position w.r.t. observer
+  Velocity _vel;                            ///< stored geometric velocity w.r.t. observer
 
 public:
   Geometric(const Frame& frame, enum novas::novas_reference_system system, const Position& p, const Velocity& v);
