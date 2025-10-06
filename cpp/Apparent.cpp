@@ -22,8 +22,10 @@ Apparent::Apparent(const Frame& f, enum novas_reference_system system)
 
   if(!f.is_valid())
     novas_error(0, EINVAL, fn, "frame is invalid");
-  if(system < 0 || system > NOVAS_REFERENCE_SYSTEMS)
+  else if(system < 0 || system > NOVAS_REFERENCE_SYSTEMS)
     novas_error(0, EINVAL, fn, "system %d is invalid", _sys);
+  else
+    _valid = true;
 }
 
 Apparent::Apparent(const Frame& f, const Equatorial& eq, double rv, enum novas_reference_system system)
@@ -32,12 +34,14 @@ Apparent::Apparent(const Frame& f, const Equatorial& eq, double rv, enum novas_r
 
   if(!f.is_valid())
       novas_error(0, EINVAL, fn, "input frame is invalid");
-  if(!eq.is_valid())
+  else if(!eq.is_valid())
       novas_error(0, EINVAL, fn, "input equatorial coordinates are invalid");
-  if(isnan(rv))
+  else if(isnan(rv))
       novas_error(0, EINVAL, fn, "input radial velocity is NAN");
-  if(system < 0 || system >= NOVAS_REFERENCE_SYSTEMS)
+  else if(system < 0 || system >= NOVAS_REFERENCE_SYSTEMS)
       novas_error(0, EINVAL, fn, "input reference system %d is invalid", system);
+  else
+    _valid = true;
 
   _pos.ra = eq.ra().hours();
   _pos.dec = eq.dec().deg();
@@ -57,17 +61,20 @@ Apparent::Apparent(const Frame& f, sky_pos p, enum novas_reference_system system
   if(!f.is_valid())
     novas_error(0, EINVAL, fn, "input frame is invalid");
 
-  if(isnan(p.ra))
+  else if(isnan(p.ra))
     novas_error(0, EINVAL, fn, "input pos->ra is NAN");
 
-  if(isnan(p.dec))
+  else if(isnan(p.dec))
     novas_error(0, EINVAL, fn, "input pos->dec is NAN");
 
-  if(!(p.dis > 0))
+  else if(!(p.dis > 0))
     novas_error(0, EINVAL, fn, "input pos->dis is invalid: %g AU", p.dis / Unit::au);
 
-  if(isnan(p.rv))
+  else if(isnan(p.rv))
     novas_error(0, EINVAL, fn, "input pos->rv is NAN");
+
+  else
+    _valid = true;
 
   _pos = p;
 
@@ -75,21 +82,6 @@ Apparent::Apparent(const Frame& f, sky_pos p, enum novas_reference_system system
   radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
 }
 
-bool Apparent::is_valid() const {
-  if(!_frame.is_valid())
-    return false;
-  if(_sys < 0 || _sys >= NOVAS_REFERENCE_SYSTEMS)
-    return false;
-  if(isnan(_pos.ra))
-    return false;
-  if(isnan(_pos.dec))
-    return false;
-  if(isnan(_pos.rv))
-    return false;
-  if(isnan(_pos.dis))
-    return false;
-  return true;
-}
 
 const Frame& Apparent::frame() const {
   return _frame;
@@ -134,7 +126,7 @@ Galactic Apparent::galactic() const {
 Horizontal Apparent::horizontal() const {
   double az = 0.0, el = 0.0;
   if(novas_app_to_hor(_frame._novas_frame(), _sys, _pos.ra, _pos.dec, NULL, &az, &el) != 0) {
-    novas_trace_nan("Apparent::horizontal");
+    novas_trace_invalid("Apparent::horizontal");
     return Horizontal::invalid();
   }
   return Horizontal(az * Unit::deg, el * Unit::deg, _pos.dis * Unit::au);
@@ -148,7 +140,7 @@ Apparent Apparent::in_system(enum novas_reference_system system) const {
   novas_transform T = {};
 
   if(novas_make_transform(_frame._novas_frame(), _sys, system, &T)) {
-    novas_trace_nan("Apparent::in_system");
+    novas_trace_invalid("Apparent::in_system");
     return Apparent::invalid();
   }
   novas_transform_sky_pos(&_pos, &T, &app._pos);

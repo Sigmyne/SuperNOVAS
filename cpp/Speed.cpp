@@ -20,13 +20,11 @@ namespace supernovas {
 Speed::Speed(double ms) : _ms(ms) {
   if(isnan(ms))
     novas_error(0, EINVAL, "Speed(double)", "input value is NAN");
+  else
+    _valid = true;
 }
 
 Speed::Speed(const Distance d, const Interval& time) : _ms(d.m() / time.seconds()) {}
-
-bool Speed::is_valid() const {
-  return !isnan(_ms);
-}
 
 double Speed::ms() const {
   return _ms;

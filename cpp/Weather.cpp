@@ -5,6 +5,9 @@
  * @author Attila Kovacs
  */
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
 
 #include "supernovas.h"
 
@@ -13,15 +16,29 @@ using namespace novas;
 
 namespace supernovas {
 
+void Weather::validate() {
+  static const char *fn = "Weather()";
+
+  if(!_temperature.is_valid())
+    novas_error(0, EINVAL, fn, "invalid temperature: %.6g C", _temperature.celsius());
+  else if(!_pressure.is_valid())
+    novas_error(0, EINVAL, fn, "invalid pressure: %.6g Pa", _pressure.Pa());
+  else if(isnan(_humidity) || _humidity < 0.0 || _humidity > 100.0)
+    novas_error(0, EINVAL, fn, "invalid humidity: %.6g %%", _humidity);
+  else
+    _valid = true;
+}
+
 Weather::Weather(const Temperature& T, const Pressure& p, double humidity_percent)
-: _temperature(T), _pressure(p), _humidity(humidity_percent) {}
+: _temperature(T), _pressure(p), _humidity(humidity_percent) {
+  validate();
+}
 
 Weather::Weather(double celsius, double pascal, double humidity_percent)
-: _temperature(Temperature::celsius(celsius)), _pressure(Pressure::Pa(pascal)), _humidity(humidity_percent) {}
-
-bool Weather::is_valid() const {
-  return _temperature.is_valid() && _pressure.is_valid() && _humidity >= 0.0 && _humidity <= 100.0;
+: _temperature(Temperature::celsius(celsius)), _pressure(Pressure::Pa(pascal)), _humidity(humidity_percent) {
+  validate();
 }
+
 
 const Temperature& Weather::temperature() const {
   return _temperature;

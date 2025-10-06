@@ -7,7 +7,10 @@
 
 #include <cstring>
 
+/// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
 #include "supernovas.h"
 
 
@@ -15,7 +18,10 @@ namespace supernovas {
 
 
 Position::Position(double x_m, double y_m, double z_m)
-: Vector(x_m, y_m, z_m) {}
+: Vector(x_m, y_m, z_m) {
+  if(!_valid)
+    novas::novas_trace_invalid("Position()");
+}
 
 
 Position::Position(const double pos[3], double unit)

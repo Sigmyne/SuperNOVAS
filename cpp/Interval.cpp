@@ -37,11 +37,12 @@ Interval::Interval(double seconds, enum novas_timescale timescale)
 : _seconds(seconds), _scale(timescale) {
   static const char *fn = "Interval(seconds, timescale)";
 
-  if(timescale < 0 || timescale >= NOVAS_TIMESCALES)
-    novas_error(0, EINVAL, fn , "invalid timescale: %d", timescale);
-
   if(isnan(seconds))
     novas_error(0, EINVAL, fn , "input seconds is NAN");
+  else if(timescale < 0 || timescale >= NOVAS_TIMESCALES)
+    novas_error(0, EINVAL, fn , "invalid timescale: %d", timescale);
+  else
+    _valid = true;
 }
 
 
@@ -62,9 +63,6 @@ Position Interval::operator*(const Velocity& v) const {
   return v.travel(*this);
 }
 
-bool Interval::is_valid() const {
-  return !isnan(_seconds);
-}
 
 bool Interval::is_equal(const Interval& interval, double precision) const {
   return fabs(_seconds - interval._seconds) < fabs(precision);

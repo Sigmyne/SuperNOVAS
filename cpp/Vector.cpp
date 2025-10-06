@@ -23,13 +23,11 @@ Vector::Vector(double x, double y, double z) {
 
   if(isnan(abs()))
     novas_error(0, EINVAL, "Vector()", "input has NAN component(s)");
+  else
+    _valid = true;
 }
 
 Vector::Vector(const double v[3]) : Vector(v[0], v[1], v[2]) {}
-
-bool Vector::is_valid() const {
-  return !isnan(_component[0]) && !isnan(_component[1]) && !isnan(_component[2]);
-}
 
 bool Vector::is_equal(const Vector& v, double precision) const {
   double d2 = 0.0;

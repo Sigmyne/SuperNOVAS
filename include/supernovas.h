@@ -185,13 +185,22 @@ public:
   static constexpr double M_earth = GM_sun / G;         ///< [kg] Earth mass
 };
 
+
+class Validating {
+protected:
+  bool _valid = false;
+
+public:
+  bool is_valid() const { return _valid; }
+};
+
 /**
  * Celestial coordinate reference system. This class does not include Earth-rotating systems, such
  * as TIRS, PER, or ITRS.
  *
  * @sa CatalogEntry, Equatorial, Ecliptic, Apparent, Geometric
  */
-class CatalogSystem {
+class CatalogSystem : public Validating {
 private:
   CatalogSystem(const std::string& name, double jd_tt);
 
@@ -203,8 +212,6 @@ public:
   CatalogSystem(const std::string& name);
 
   CatalogSystem(double jd_tt);
-
-  bool is_valid() const;
 
   double jd() const;
 
@@ -301,14 +308,12 @@ public:
 };
 
 /// \ingroup source apparent
-class Distance {
+class Distance : public Validating {
 private:
   double _meters;
 
 public:
   Distance(double meters);
-
-  bool is_valid() const;
 
   double m() const;
 
@@ -336,7 +341,7 @@ public:
 };
 
 /// \ingroup time
-class Interval {
+class Interval : public Validating {
 private:
 
   double _seconds;
@@ -357,8 +362,6 @@ public:
   Distance operator*(const Speed& v) const;
 
   Position operator*(const Velocity& v) const;
-
-  bool is_valid() const;
 
   bool is_equal(const Interval& interval, double precision = Unit::us) const;
 
@@ -384,7 +387,7 @@ public:
 };
 
 /// \ingroup util
-class Angle {
+class Angle : public Validating {
 protected:
   double _rad;
 
@@ -399,8 +402,6 @@ public:
   Angle operator+(const Angle& r);
 
   Angle operator-(const Angle& r);
-
-  bool is_valid() const;
 
   bool is_equal(const Angle& angle, double precision = Unit::uas) const;
 
@@ -445,7 +446,7 @@ public:
 };
 
 /// \ingroup util
-class Vector {
+class Vector : public Validating {
 protected:
   double _component[3];
 
@@ -458,8 +459,6 @@ public:
   virtual ~Vector() {}; // something virtual to make class polymorphic for dynamic casting.
 
   Vector operator*(double factor) const;
-
-  bool is_valid() const;
 
   bool is_equal(const Vector& v, double precision) const;
 
@@ -518,8 +517,6 @@ public:
 
   Velocity operator-(const Velocity& r) const;
 
-  bool is_valid() const;
-
   bool is_equal(const Interval& interval, double precision = Unit::us) const;
 
   Speed speed() const;
@@ -548,7 +545,7 @@ public:
 };
 
 /// \ingroup source spectral apparent
-class Speed {
+class Speed : public Validating {
 protected:
   double _ms;
 
@@ -560,8 +557,6 @@ public:
   Speed operator+(const Speed& r) const;
 
   Speed operator-(const Speed& r) const;
-
-  bool is_valid() const;
 
   double ms() const;
 
@@ -591,7 +586,7 @@ public:
 };
 
 /// \ingroup util
-class Spherical {
+class Spherical : public Validating {
 protected:
   Angle _lon, _lat;
   Distance _distance;
@@ -606,8 +601,6 @@ public:
   Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
   Spherical(const Position& pos);
-
-  virtual bool is_valid() const;
 
   Position xyz() const;
 
@@ -625,14 +618,14 @@ class Equatorial : public Spherical {
 private:
   CatalogSystem _sys;
 
+  void validate();
+
 public:
   Equatorial(double ra, double dec, const std::string& system = "ICRS", double distance = NOVAS_DEFAULT_DISTANCE);
 
   Equatorial(const Angle& ra, const Angle& dec, const CatalogSystem& system = CatalogSystem::icrs(), const Distance& distance = Distance::at_Gpc());
 
   Equatorial(const Position& pos, const CatalogSystem& system = CatalogSystem::icrs());
-
-  bool is_valid() const override;
 
   TimeAngle ra() const;
 
@@ -654,14 +647,14 @@ class Ecliptic : public Spherical {
 private:
   CatalogSystem _sys;
 
+  void validate();
+
 public:
   Ecliptic(double longitude, double latitude, const std::string& system = "ICRS", double distance = NOVAS_DEFAULT_DISTANCE);
 
   Ecliptic(const Angle& ra, const Angle& dec, const CatalogSystem &system = CatalogSystem::icrs(), const Distance& distance = Distance::at_Gpc());
 
   Ecliptic(const Position& pos, const CatalogSystem& system = CatalogSystem::icrs());
-
-  bool is_valid() const override;
 
   const CatalogSystem& system() const;
 
@@ -693,15 +686,13 @@ public:
 };
 
 /// \ingroup util
-class Temperature {
+class Temperature : public Validating {
 private:
   double _deg_C;
 
-  Temperature(double deg_C) : _deg_C(deg_C) {}
+  Temperature(double deg_C);
 
 public:
-  bool is_valid() const;
-
   double celsius() const;
 
   double kelvin() const;
@@ -718,15 +709,13 @@ public:
 };
 
 /// \ingroup util
-class Pressure {
+class Pressure : public Validating {
 private:
   double _pascal;
 
   Pressure(double value);
 
 public:
-  bool is_valid() const;
-
   double Pa() const;
 
   double hPa() const;
@@ -759,18 +748,18 @@ public:
 };
 
 /// \ingroup refract
-class Weather {
+class Weather : public Validating {
 private:
   Temperature _temperature;
   Pressure _pressure;
   double _humidity;
 
+  void validate();
+
 public:
   Weather(const Temperature& T, const Pressure& p, double humidity_percent);
 
   Weather(double celsius, double pascal, double humidity_percent);
-
-  bool is_valid() const;
 
   const Temperature& temperature() const;
 
@@ -786,19 +775,19 @@ public:
 };
 
 /// \ingroup earth nonequatorial
-class EOP {
+class EOP : public Validating {
 private:
   int _leap;
   Angle _xp, _yp;
-  double _t;
+  double _dut1;
   double _dxp = 0.0, _dyp = 0.0, _dt = 0.0;  // [arcsec, s] Applied corrections, in novas units.
+
+  void validate();
 
 public:
   EOP(int leap_seconds, double dut1 = 0.0, double xp = 0.0, double yp = 0.0);
 
   EOP(int leap_seconds, double dut1, const Angle& xp, const Angle& yp);
-
-  bool is_valid() const;
 
   int leap_seconds() const;
 
@@ -818,7 +807,7 @@ public:
 };
 
 /// \ingroup observer
-class Site {
+class Site : public Validating {
 private:
   novas::on_surface _site;
 
@@ -829,8 +818,6 @@ public:
   Site(double longitude, double latitude, double altitude=0.0, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
 
   Site(const Position& xyz);
-
-  bool is_valid() const;
 
   const novas::on_surface *_on_surface() const;
 
@@ -856,7 +843,7 @@ public:
 };
 
 /// \ingroup observer
-class Observer {
+class Observer : public Validating {
 protected:
   novas::observer _observer = {};
 
@@ -865,8 +852,6 @@ protected:
 public:
 
   virtual ~Observer() {}; // something virtual to make class polymorphic for dynamic casting.
-
-  virtual bool is_valid() const;
 
   const novas::observer * _novas_observer() const;
 
@@ -898,8 +883,6 @@ public:
 
   GeocentricObserver(const Position& pos, const Velocity& vel);
 
-  bool is_valid() const override;
-
   bool is_geocentric() const override { return true; }
 
   Position geocentric_position() const;
@@ -914,8 +897,6 @@ public:
   SolarSystemObserver();
 
   SolarSystemObserver(const Position& pos, const Velocity& vel);
-
-  bool is_valid() const override;
 
   Position ssb_position() const;
 
@@ -932,8 +913,6 @@ public:
 
   GeodeticObserver(const Site& site, const Velocity& vel, const EOP& eop);
 
-  bool is_valid() const override;
-
   bool is_geodetic() const override { return true; }
 
   Site site() const;
@@ -943,11 +922,13 @@ public:
 
 
 /// \ingroup time
-class Time {
-protected:
+class Time : public Validating {
+private:
   novas::novas_timespec _ts;
 
   Time() {};
+
+  bool is_valid_parms(double dUT1, enum novas::novas_timescale timescale) const;
 
 public:
 
@@ -963,9 +944,9 @@ public:
 
   Time(const std::string& timestamp, const EOP& eop, enum novas::novas_timescale timescale = novas::NOVAS_UTC);
 
-  Time(const struct timespec *t, int leap_seconds, double dUT1);
+  Time(const struct timespec t, int leap_seconds, double dUT1);
 
-  Time(const struct timespec *t, const EOP& eop);
+  Time(const struct timespec t, const EOP& eop);
 
   Time(const novas::novas_timespec *t);
 
@@ -992,8 +973,6 @@ public:
   bool operator>=(const Time &other) const;
 
   bool operator>=(const novas::novas_timespec *other) const;
-
-  bool is_valid() const;
 
   bool equals(const Time& time, double precision = Unit::sec / Unit::day) const;
 
@@ -1045,7 +1024,7 @@ public:
 };
 
 /// \ingroup frame
-class Frame {
+class Frame : public Validating {
 private:
   novas::novas_frame _frame;
   Observer _observer;
@@ -1053,8 +1032,6 @@ private:
 
 public:
   Frame(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
-
-  bool is_valid() const;
 
   const novas::novas_frame *_novas_frame() const;
 
@@ -1085,7 +1062,7 @@ public:
 
 
 /// \ingroup source
-class Source {
+class Source : public Validating {
 protected:
   struct novas::novas_object _object;
 
@@ -1093,8 +1070,6 @@ protected:
 
 public:
   virtual ~Source() {}; // something virtual to make class polymorphic for dynamic casting.
-
-  virtual bool is_valid() const;
 
   const struct novas::novas_object *_novas_object() const;
 
@@ -1120,7 +1095,7 @@ public:
 };
 
 /// \ingroup source spectral
-class CatalogEntry {
+class CatalogEntry : public Validating {
 private:
   double _epoch;
   novas::cat_entry _entry;
@@ -1134,8 +1109,6 @@ public:
   CatalogEntry(const std::string &name, const Angle& RA, const Angle& Dec, const CatalogSystem& system = CatalogSystem::icrs());
 
   CatalogEntry(novas::cat_entry e, const std::string& system = "ICRS");
-
-  bool is_valid() const;
 
   const novas::cat_entry* _cat_entry() const;
 
@@ -1190,8 +1163,6 @@ private:
 public:
   CatalogSource(const CatalogEntry& e);
 
-  bool is_valid() const override;
-
   const novas::cat_entry * _cat_entry() const;
 
   CatalogEntry catalog_entry() const;
@@ -1216,8 +1187,6 @@ public:
   Planet(enum novas::novas_planet number);
 
   Planet(const std::string& name);
-
-  bool is_valid() const override;
 
   enum novas::novas_planet novas_id() const;
 
@@ -1272,8 +1241,6 @@ class OrbitalSource : public SolarSystemSource {
 public:
   OrbitalSource(const std::string& name, long number, const novas::novas_orbital *orbit);
 
-  virtual bool is_valid() const override;
-
   const novas::novas_orbital *_novas_orbital() const;
 
   Position orbital_position(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
@@ -1282,7 +1249,7 @@ public:
 };
 
 /// \ingroup apparent spectral
-class Apparent {
+class Apparent : public Validating {
 private:
   Frame _frame;
   enum novas::novas_reference_system _sys;
@@ -1297,8 +1264,6 @@ public:
   Apparent(const Frame& frame, const Equatorial& eq, const Speed& rv, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
   Apparent(const Frame& frame, novas::sky_pos p, enum novas::novas_reference_system system = novas::NOVAS_TOD);
-
-  bool is_valid() const;
 
   const novas::sky_pos *_sky_pos() const;
 
@@ -1342,7 +1307,7 @@ public:
 };
 
 /// \ingroup geometric
-class Geometric {
+class Geometric : public Validating {
 private:
   Frame _frame;
   enum novas::novas_reference_system _sys;
@@ -1352,8 +1317,6 @@ private:
 
 public:
   Geometric(const Frame& frame, enum novas::novas_reference_system system, const Position& p, const Velocity& v);
-
-  bool is_valid() const;
 
   const Frame& frame() const;
 

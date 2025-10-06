@@ -19,7 +19,10 @@ namespace supernovas {
 
 Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy)
 : _observer(obs), _time(time) {
+  static const char *fn = "Frame()";
+
   double xp = 0.0, yp = 0.0;
+
 
   if(obs.is_geodetic()) {
     GeodeticObserver& eobs = (GeodeticObserver&) obs;
@@ -27,11 +30,14 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
     yp = eobs.eop().yp().mas();
   }
 
-  novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), xp, yp, &_frame);
-}
-
-bool Frame::is_valid() const {
-  return _observer.is_valid() && _time.is_valid() && novas_frame_is_initialized(&_frame);
+  if(novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), xp, yp, &_frame) != 0)
+    novas_trace_invalid(fn);
+  else if(!obs.is_valid())
+    novas_error(0, EINVAL, fn, "input observer is invalid");
+  else if(!time.is_valid())
+    novas_error(0, EINVAL, fn, "input time is invalid");
+  else
+    _valid = true;
 }
 
 const novas_frame * Frame::_novas_frame() const {

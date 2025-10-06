@@ -5,6 +5,9 @@
  * @author Attila Kovacs
  */
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
 
 #include "supernovas.h"
 
@@ -13,21 +16,36 @@ using namespace novas;
 
 namespace supernovas {
 
+void Equatorial::validate() {
+  static const char *fn = "Equatorial()";
+
+  if(!Spherical::is_valid())
+     novas_trace_invalid(fn);
+
+  else if(!_sys.is_valid()) {
+    _valid = false;
+    novas_error(0, EINVAL, fn, "Invalid catalog system: %s", _sys.str().c_str());
+  }
+}
+
+
 Equatorial::Equatorial(double ra, double dec, const std::string& system, double distance)
-: Spherical(ra, dec, distance), _sys(system) {}
+: Spherical(ra, dec, distance), _sys(system) {
+  validate();
+}
 
 Equatorial::Equatorial(const Angle& ra, const Angle& dec, const CatalogSystem &system, const Distance& distance)
-: Spherical(ra, dec, distance), _sys(system) {}
+: Spherical(ra, dec, distance), _sys(system) {
+  validate();
+}
 
 Equatorial::Equatorial(const Position& pos, const CatalogSystem& system)
-: Spherical(pos.as_spherical()), _sys(system) {}
+: Spherical(pos.as_spherical()), _sys(system) {
+  validate();
+}
 
 const CatalogSystem& Equatorial::system() const {
   return _sys;
-}
-
-bool Equatorial::is_valid() const {
-  return Spherical::is_valid() && _sys.is_valid();
 }
 
 TimeAngle Equatorial::ra() const {

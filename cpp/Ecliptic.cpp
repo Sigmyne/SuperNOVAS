@@ -5,6 +5,10 @@
  * @author Attila Kovacs
  */
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
 #include "supernovas.h"
 
 
@@ -12,17 +16,31 @@ using namespace novas;
 
 namespace supernovas {
 
+void Ecliptic::validate() {
+  static const char *fn = "Equatorial()";
+
+  if(!Spherical::is_valid())
+     novas_trace_invalid(fn);
+
+  else if(!_sys.is_valid()) {
+    _valid = false;
+    novas_error(0, EINVAL, fn, "Invalid catalog system: %s", _sys.str().c_str());
+  }
+}
+
 Ecliptic::Ecliptic(double longitude, double latitude, const std::string& system, double distance)
-: Spherical(longitude, latitude, distance), _sys(system) {}
+: Spherical(longitude, latitude, distance), _sys(system) {
+  validate();
+}
 
 Ecliptic::Ecliptic(const Angle& ra, const Angle& dec, const CatalogSystem &system, const Distance& distance)
-: Spherical(ra, dec, distance), _sys(system) {}
+: Spherical(ra, dec, distance), _sys(system) {
+  validate();
+}
 
 Ecliptic::Ecliptic(const Position& pos, const CatalogSystem& system)
-: Spherical(pos.as_spherical()), _sys(system) {}
-
-bool Ecliptic::is_valid() const {
-  return Spherical::is_valid() && _sys.is_valid();
+: Spherical(pos.as_spherical()), _sys(system) {
+  validate();
 }
 
 const CatalogSystem& Ecliptic::system() const {

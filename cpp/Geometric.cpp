@@ -5,6 +5,10 @@
  * @author Attila Kovacs
  */
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
 #include "supernovas.h"
 
 
@@ -13,10 +17,19 @@ using namespace novas;
 namespace supernovas {
 
 Geometric::Geometric(const Frame& frame, enum novas_reference_system system, const Position& p, const Velocity& v)
-          : _frame(frame), _sys(system) , _pos(p), _vel(v) {}
+          : _frame(frame), _sys(system) , _pos(p), _vel(v) {
+  static const char *fn = "Geometric()";
 
-bool Geometric::is_valid() const {
-  return _frame.is_valid() && _sys >= 0 && _sys < NOVAS_REFERENCE_SYSTEMS && _pos.is_valid() && _vel.is_valid();
+  if(! frame.is_valid())
+    novas_error(0, EINVAL, fn, "input frame is invalid");
+  else if(system < 0 || system >= NOVAS_REFERENCE_SYSTEMS)
+    novas_error(0, EINVAL, fn, "input system is invalid: %d", system);
+  else if(!p.is_valid())
+    novas_error(0, EINVAL, fn, "input position contains NAN coponent(s)");
+  else if(!v.is_valid())
+    novas_error(0, EINVAL, fn, "input velocity contains NAN coponent(s)");
+  else
+    _valid = true;
 }
 
 const Frame& Geometric::frame() const {

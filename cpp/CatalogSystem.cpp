@@ -46,15 +46,15 @@ CatalogSystem::CatalogSystem(const std::string& name, double jd_tt) : _name(name
 CatalogSystem::CatalogSystem(double jd_tt) : CatalogSystem(_name_for(jd_tt), jd_tt) {
   if(isnan(jd_tt))
     novas_trace_invalid("CatalogSystem(double)");
+  else
+    _valid = true;
 }
 
 CatalogSystem::CatalogSystem(const std::string& name) : CatalogSystem(name, novas_epoch(name.c_str())) {
   if(isnan(_jd))
     novas_trace_invalid("CatalogSystem(string&)");
-}
-
-bool CatalogSystem::is_valid() const {
-  return !isnan(_jd);
+  else
+    _valid = true;
 }
 
 double CatalogSystem::jd() const {
