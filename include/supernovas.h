@@ -28,6 +28,7 @@ namespace supernovas {
 // Forward class declarations.
 class Unit;
 class Constant;
+class Validating;
 class Vector;
 class   Position;
 class   Velocity;
@@ -89,52 +90,56 @@ public:
   Unit(const Unit& obj) = delete;
   //Unit(Unit const&)     = delete;
 
-  static constexpr double au = NOVAS_AU;
-  static constexpr double m = 1.0;
-  static constexpr double cm = 0.01;
-  static constexpr double mm = 1e-3;
-  static constexpr double um = 1e-6;
-  static constexpr double micron = um;
-  static constexpr double nm = 1e-9;
-  static constexpr double angstrom = 1e-10;
-  static constexpr double km = NOVAS_KM;
-  static constexpr double pc = NOVAS_PARSEC;
-  static constexpr double kpc = 1000.0 * pc;
-  static constexpr double Mpc = 1e6 * pc;
-  static constexpr double Gpc = 1e9 * pc;
-  static constexpr double lyr = NOVAS_LIGHT_YEAR;
+  static constexpr double au = NOVAS_AU;                  /// [m] 1 Astronomical Unit in meters.
+  static constexpr double m = 1.0;                        /// [m] 1 meter (standard unit of distance)
+  static constexpr double cm = 0.01;                      /// [m] 1 centimeter in meters
+  static constexpr double mm = 1e-3;                      /// [m] 1 millimeter in meters
+  static constexpr double um = 1e-6;                      /// [m] 1 micrometer (=micron) in meters
+  static constexpr double micron = um;                    /// [m] 1 micron (=micrometer) in meters, by another name.
+  static constexpr double nm = 1e-9;                      /// [m] 1 nanometer in meters
+  static constexpr double angstrom = 1e-10;               /// [m] 1 Angstrom in meters
+  static constexpr double km = NOVAS_KM;                  /// [m] 1 kilometer in meters
+  static constexpr double pc = NOVAS_PARSEC;              /// [m] 1 parsec in meters
+  static constexpr double kpc = 1000.0 * pc;              /// [m] 1 kiloparsec in meters
+  static constexpr double Mpc = 1e6 * pc;                 /// [m] 1 megaparsec in meters
+  static constexpr double Gpc = 1e9 * pc;                 /// [m] 1 gigaparsec in meters
+  static constexpr double lyr = NOVAS_LIGHT_YEAR;         /// [m] 1 light-year in meters
 
-  static constexpr double ns = 1e-9;
-  static constexpr double us = 1e-6;
-  static constexpr double ms = 1e-3;
-  static constexpr double sec = 1.0;
-  static constexpr double min = 60.0;
-  static constexpr double hour = 3600.0;
-  static constexpr double day = NOVAS_DAY;
-  static constexpr double week = 7 * day;
+  static constexpr double ns = 1e-9;                      /// [s] 1 nanoseconds in seconds
+  static constexpr double us = 1e-6;                      /// [s] 1 microsecond in seconds
+  static constexpr double ms = 1e-3;                      /// [s] 1 millisecond in seconds
+  static constexpr double sec = 1.0;                      /// [s] 1 second (standard unit of time)
+  static constexpr double min = 60.0;                     /// [s] 1 minute in seconds
+  static constexpr double hour = 3600.0;                  /// [s] 1 hour in seconds
+  static constexpr double day = NOVAS_DAY;                /// [s] 1 day in seconds
+  static constexpr double week = 7 * day;                 /// [s] 1 week in seconds
+  /// [s] 1 tropical calendar year in seconds (at J2000)
   static constexpr double yr = NOVAS_TROPICAL_YEAR_DAYS * NOVAS_DAY;
+  /// [s] 1 tropycal calendar century in seconds (at J2000)
   static constexpr double cy = 100.0 * yr;
+  /// [s] 1 Julian year in seconds
   static constexpr double julianYear = NOVAS_JULIAN_YEAR_DAYS * NOVAS_DAY;
+  /// [s] 1 Julian century in seconds
   static constexpr double julianCentury = NOVAS_JULIAN_YEAR_DAYS * NOVAS_DAY;
 
-  static constexpr double rad = 1.0;
-  static constexpr double hourAngle = NOVAS_HOURANGLE;
-  static constexpr double deg = NOVAS_DEGREE;
-  static constexpr double arcmin = deg / 60.0;
-  static constexpr double arcsec = NOVAS_ARCSEC;
-  static constexpr double mas = 1e-3 * arcsec;
-  static constexpr double uas = 1e-6 * arcsec;
+  static constexpr double rad = 1.0;                      /// [rad] 1 radian (standard unit of angle)
+  static constexpr double hourAngle = NOVAS_HOURANGLE;    /// [rad] 1 hour of angle in radians
+  static constexpr double deg = NOVAS_DEGREE;             /// [rad] 1 degree in radians
+  static constexpr double arcmin = deg / 60.0;            /// [rad] 1 minute of arc in radians
+  static constexpr double arcsec = NOVAS_ARCSEC;          /// [rad] 1 second or arc in radians
+  static constexpr double mas = 1e-3 * arcsec;            /// [rad] 1 millisecond of arc in radians
+  static constexpr double uas = 1e-6 * arcsec;            /// [rad] 1 microsecond of arc in radians
 
-  static constexpr double Pa = 1.0;
-  static constexpr double hPa = 100.0;
-  static constexpr double mbar = hPa;
-  static constexpr double bar = 1000.0 * mbar;
-  static constexpr double kPa = 1000.0;
-  static constexpr double MPa = 1e6;
-  static constexpr double torr = 133.3223684211;
-  static constexpr double atm = 101325.0;
+  static constexpr double Pa = 1.0;                       /// [Pa] 1 pascal (standard unit of perssure)
+  static constexpr double hPa = 100.0;                    /// [Pa] 1 hectopascal in pascals
+  static constexpr double mbar = hPa;                     /// [Pa] 1 millibar in pascals
+  static constexpr double bar = 1000.0 * mbar;            /// [Pa] 1 bar in pascals
+  static constexpr double kPa = 1000.0;                   /// [Pa] 1 kilopascal in pascals
+  static constexpr double MPa = 1e6;                      /// [Pa] 1 megapascal in pascals
+  static constexpr double torr = 133.3223684211;          /// [Pa] 1 torr (mm of Hg) in pascals
+  static constexpr double atm = 101325.0;                 /// [Pa] 1 atmosphere in pascals
 
-  static constexpr double R_earth = NOVAS_GRS80_RADIUS;
+  static constexpr double R_earth = NOVAS_GRS80_RADIUS;   /// [m] 1 Earth quatorial radius (GRS80) in meters
 };
 
 /**
@@ -168,16 +173,17 @@ public:
   Constant(const Constant& obj) = delete;
   //Constant(Constant const&)     = delete;
 
-  static constexpr double pi = M_PI;
-  static constexpr double twoPi = TWOPI;
-  static constexpr double halfPi = 0.5 * pi;
+  static constexpr double pi = M_PI;                    /// [rad] &pi;
+  static constexpr double twoPi = TWOPI;                /// [rad] 2&pi;
+  static constexpr double halfPi = 0.5 * pi;            /// [rad] &pi;/2
 
   static constexpr double c = NOVAS_C;                  ///< [m/s] speed of light
   static constexpr double G = 6.67428e-1;               ///< [m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>]
 
-  static constexpr double L_B = 1.550519768e-8;
-  static constexpr double L_G = 6.969290134e-10;
+  static constexpr double L_B = 1.550519768e-8;         ///< Barycentric clock rate increment over TT
+  static constexpr double L_G = 6.969290134e-10;        ///< Geocentric clock rate increment over TT
 
+  /// GRS80 Earth flattening
   static constexpr double F_earth = NOVAS_GRS80_FLATTENING;
   static constexpr double GM_sun = NOVAS_G_SUN;	        ///< [m<sup>3</sup> s<sup>-2</sup>] Solar graviational constant
   static constexpr double GM_earth = NOVAS_G_EARTH;     ///< [m<sup>3</sup> s<sup>-2</sup>] Earth graviational constant
@@ -186,11 +192,34 @@ public:
 };
 
 
+/**
+ * A simple interface class handling validation checking for classes that inherit it.
+ *
+ */
 class Validating {
 protected:
+  /**
+   * the state variable. Constructors should set it to `true` before returning if the instance has
+   * been initialized in a valid state.
+   *
+   * @sa is)valid()
+   */
   bool _valid = false;
 
+  /// dummy constructor;
+  Validating() {}
+
 public:
+
+  /**
+   * Returns the previously set 'valid' stae of the implementing instance. Generally 'valid' means
+   * that the class has all fields defined with sane values, such as floating-point values that
+   * are not NAN, and object fields that are themselves 'valid'. Some implementing classes may
+   * also apply additional range checking for values, for example, ensuring that a velocity does
+   * not exceed the speed of light, etc.
+   *
+   * @return    `true` if the instance is in a 'valid' state, or else `false`.
+   */
   bool is_valid() const { return _valid; }
 };
 
@@ -221,89 +250,18 @@ public:
 
   std::string str() const;
 
-  /**
-   * Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch. MOD
-   * coordinates take into account Earth's precession but not nutation. Julian-date based MODs
-   * were commonly used for catalogs, such as J2000, or HIP.
-   *
-   * @param jd_tt     [day] TT-based Julian day.
-   * @return          A reference system with the mean dynamical equator of date, with origin at
-   *                  the mean equinox of date.
-   *
-   * @sa at_besselial_epoch(), j2000(), hip()
-   */
   static CatalogSystem at_julian_date(double year);
 
-  /**
-   * Mean-of-date (MOD) dynamical coordinate system, at the specified Besselian epoch. MOD
-   * coordinates take into account Earth's precession but not nutation. Besselian-date based MODs,
-   * now a historical relic, were once commonly used for catalog systems, such as B1900, or B1950.
-   *
-   *
-   * @param year      [yr] UTC-based decimal calendar year.
-   * @return          A reference system with the mean dynamical equator of date, with origin at
-   *                  the mean equinox of date.
-   *
-   * @sa at_julian_date(), b1900(), b1950()
-   */
   static CatalogSystem at_besselian_epoch(double year);
 
-  /**
-   * International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.
-   * It is defined by distant quasars, and is aligned with the J2000 dynamical equator within 22 mas.
-   * In SuperNOVAS ICRS is the same as GCRS (the Geocentric Celestial Reference System) or BCRS (the
-   * Barycentric International Reference System), which have the same alignment and differ only in the
-   * location of their origin. In SuperNOVAS, the origin is determined by the @ref Observer location,
-   * while the coordinate system defines only the orientation of the celestial pole. Thus, there is
-   * no need to distinguish between these related systems explicitly in SuperNOVAS.
-   *
-   * @return A reference to a reusable statically allocated ICRS system instance.
-   *
-   * @sa NOVAS_ICRS, NOVAS_GCRS, NOVAS_SYSTEM_ICRS
-   */
   static const CatalogSystem& icrs();
 
-  /**
-   * The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000). This was a
-   * commonly used catalog coordinate system before the advent of the IAU 2000 standard ICRS system.
-   * It is also known as FK5, since the 5th realization of the fundamental catalog of stars used
-   * J2000 also.
-   *
-   * @return A reference to a reusable statically allocated J2000 coordinate system instance.
-   *
-   * @sa icrs(), mod(), Time::j2000(), NOVAS_JD_J2000, NOVAS_SYSTEM_J2000
-   */
   static const CatalogSystem& j2000();
 
-  /**
-   * The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal
-   * mean epoch of the Hipparcos catalog.
-   *
-   * @return A reference to a reusable statically allocated Hipparcos coordinate system instance.
-   *
-   * @sa icrs(), mod(), Time::hip() NOVAS_JD_HIP, NOVAS_SYSTEM_HIP
-   */
   static const CatalogSystem& hip();
 
-  /**
-   * The system of the dynamical equator at the B1950 epoch (12 UTC, 1 January 1950). This was a
-   * commonly used catalog coordinate system of old. It is also known as FK4, since the 4th
-   * realization of the fundamental catalog of stars used B1950 also.
-   *
-   * @return A reference to a reusable statically allocated B1950 coordinate system instance.
-   *
-   * @sa icrs(), mod(), Time::b1950(), NOVAS_JD_B1950, NOVAS_SYSTEM_B1950
-   */
   static const CatalogSystem& b1950();
 
-  /**
-   * The system of the dynamical equator at the B1900 epoch (12 UTC, 1 January 1900). This was a
-   * commonly used catalog coordinate system of old.
-   *
-   * @return A reference to a reusable statically allocated B1900 coordinate system instance.
-   *
-   * @sa icrs(), mod(), Time::b1900(), NOVAS_JD_B1900, NOVAS_SYSTEM_B1900
-   */
   static const CatalogSystem& b1900();
 };
 
@@ -472,6 +430,8 @@ public:
 
   double projection_on(const Vector& v) const;
 
+  Vector unit_vector() const;
+
   virtual std::string str() const;
 };
 
@@ -521,11 +481,11 @@ public:
 
   Speed speed() const;
 
-  double x_ms() const;
+  double x_m_per_s() const;
 
-  double y_ms() const;
+  double y_m_per_s() const;
 
-  double z_ms() const;
+  double z_m_per_s() const;
 
   Velocity inv() const;
 
@@ -558,11 +518,11 @@ public:
 
   Speed operator-(const Speed& r) const;
 
-  double ms() const;
+  double m_per_s() const;
 
-  double kms() const;
+  double km_per_s() const;
 
-  double auday() const;
+  double au_per_day() const;
 
   double beta() const;
 
