@@ -22,20 +22,20 @@ namespace supernovas {
 Spherical::Spherical(): Spherical(0.0, 0.0) {}
 
 
-Spherical::Spherical(double longitude, double latitude, double distance)
-: _lon(longitude), _lat(latitude), _distance(distance) {
+Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_m)
+: _lon(longitude_rad), _lat(latitude_rad), _distance(distance_m) {
   static const char *fn = "Spherical";
 
-  if(isnan(longitude))
+  if(isnan(longitude_rad))
     novas_error(0, EINVAL, fn, "input longitude is NAN");
-  else if(isnan(latitude))
+  else if(isnan(latitude_rad))
     novas_error(0, EINVAL, fn, "input latitude is NAN");
-  else if(fabs(latitude) > Constant::halfPi)
-    novas_error(0, EINVAL, fn, "input latitude is outside [-pi:pi] range: %g", latitude);
-  else if(isnan(distance))
+  else if(fabs(latitude_rad) > Constant::halfPi)
+    novas_error(0, EINVAL, fn, "input latitude is outside [-pi:pi] range: %g", latitude_rad);
+  else if(isnan(distance_m))
     novas_error(0, EINVAL, fn, "input distance is NAN");
-  else if(distance < 0.0)
-    novas_error(0, EINVAL, fn, "input distance is negative: %g", distance);
+  else if(distance_m < 0.0)
+    novas_error(0, EINVAL, fn, "input distance is negative: %g", distance_m);
   else
     _valid = true;
 }

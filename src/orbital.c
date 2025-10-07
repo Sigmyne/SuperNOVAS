@@ -29,7 +29,8 @@
  *    novas_set_orbsys_pole(NOVAS_ICRS, ra_pole, dec_pole, &orb.system);
  *  ```
  *
- *  Once the orbital is defined, you can use it to define a generic @ref object via
+ * @cond C_API
+ *  Once the orbital is defined, you can use it to define an orbital @ref object via
  *  `make_orbital_object()` to enable the the same astrometric calculations as for ephemeris
  *  sources, e.g.:
  *
@@ -44,7 +45,7 @@
  *  Or, you can calculate geometric orbital positions and velocities directly via
  *  `novas_orbit_posvel()`, while `novas_orbit_native_posvel()` will do the same, but in
  *  the native coordinate system in which the orbital is defined.
- *
+ * @endcond
  *
  * @date Created  on Mar 6, 2025
  * @author Attila Kovacs

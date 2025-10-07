@@ -101,40 +101,20 @@ Interval Time::operator-(const Time& r) const {
   return Interval(novas_diff_time(&_ts, &r._ts));
 }
 
-Interval Time::operator-(const novas_timespec *r) const {
-  return Interval(novas_diff_time(&_ts, r));
-}
-
 bool Time::operator<(const Time& r) const {
   return novas_diff_time(&_ts, &r._ts) < 0.0;
-}
-
-bool Time::operator<(const novas_timespec *r) const {
-  return novas_diff_time(&_ts, r) < 0.0;
 }
 
 bool Time::operator>(const Time& r) const {
   return novas_diff_time(&_ts, &r._ts) > 0.0;
 }
 
-bool Time::operator>(const novas_timespec *r) const {
-  return novas_diff_time(&_ts, r) > 0.0;
-}
-
 bool Time::operator<=(const Time& r) const {
   return novas_diff_time(&_ts, &r._ts) <= 0.0;
 }
 
-bool Time::operator<=(const novas_timespec *r) const {
-  return novas_diff_time(&_ts, r) <= 0.0;
-}
-
 bool Time::operator>=(const Time& r) const {
   return novas_diff_time(&_ts, &r._ts) >= 0.0;
-}
-
-bool Time::operator>=(const novas_timespec *r) const {
-  return novas_diff_time(&_ts, r) >= 0.0;
 }
 
 bool Time::equals(const Time& time, double precision) const {

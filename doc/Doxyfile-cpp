@@ -42,7 +42,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = SuperNOVAS
+PROJECT_NAME           = "SuperNOVAS C++ API"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -2010,7 +2010,7 @@ SEARCHDATA_FILE        = searchdata.xml
 # projects and redirect the results back to the right project.
 # This tag requires that the tag SEARCHENGINE is set to YES.
 
-EXTERNAL_SEARCH_ID     = supernovas
+EXTERNAL_SEARCH_ID     = supernovas++
 
 # The EXTRA_SEARCH_MAPPINGS tag can be used to enable searching through Doxygen
 # projects other than the one defined by this configuration file, but that are
@@ -2458,7 +2458,7 @@ ENABLE_PREPROCESSING   = YES
 # The default value is: NO.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
-MACRO_EXPANSION        = NO
+MACRO_EXPANSION        = YES
 
 # If the EXPAND_ONLY_PREDEF and MACRO_EXPANSION tags are both set to YES then
 # the macro expansion is limited to the macros specified with the PREDEFINED and
@@ -2547,7 +2547,7 @@ TAGFILES               =
 # tag file that is based on the input files it reads. See section "Linking to
 # external documentation" for more information about the usage of tag files.
 
-GENERATE_TAGFILE       = supernovas.tag
+GENERATE_TAGFILE       = supernovas++.tag
 
 # If the ALLEXTERNALS tag is set to YES, all external classes and namespaces
 # will be listed in the class and namespace index. If set to NO, only the

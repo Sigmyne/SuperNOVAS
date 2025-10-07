@@ -29,8 +29,8 @@ void Equatorial::validate() {
 }
 
 
-Equatorial::Equatorial(double ra, double dec, const std::string& system, double distance)
-: Spherical(ra, dec, distance), _sys(system) {
+Equatorial::Equatorial(double ra_rad, double dec_rad, const CatalogSystem &system, double distance_m)
+: Spherical(ra_rad, dec_rad, distance_m), _sys(system) {
   validate();
 }
 
@@ -59,7 +59,7 @@ const Angle& Equatorial::dec() const {
 Ecliptic Equatorial::as_ecliptic() const {
   double longitude, latitude;
   equ2ecl(_sys.jd(), NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, ra().hours(), dec().deg(), &longitude, &latitude);
-  return Ecliptic(longitude * Unit::deg, latitude * Unit::deg, _sys.name(), _distance.m());
+  return Ecliptic(longitude * Unit::deg, latitude * Unit::deg, _sys, _distance.m());
 }
 
 Galactic Equatorial::as_galactic() const {
@@ -72,7 +72,7 @@ const std::string Equatorial::str(enum novas_separator_type separator, int decim
   return "EQU  " + ra().str(separator, (decimals > 1 ? decimals - 1 : decimals)) + "  " + _lat.str(separator, decimals) + "  " + _sys.str();
 }
 
-static const Equatorial _invalid = Equatorial(NAN, NAN, "None", NAN);
+static const Equatorial _invalid = Equatorial(NAN, NAN);
 const Equatorial& Equatorial::invalid() {
   return _invalid;
 }

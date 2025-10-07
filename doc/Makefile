@@ -13,7 +13,7 @@ endif
 
 CC ?= gcc
 
-# Doxygen documentation (HTML and man pages) under apidocs/
+# Doxygen documentation (HTML and man pages) under docs/
 .PHONY: all
 all: Doxyfile README.md $(SRC) $(INC)
 	@echo "   [doxygen]"
@@ -35,5 +35,6 @@ clean:
 .PHONY: distclean
 distclean: clean
 	rm -rf README*.md html
+
 
 

@@ -30,8 +30,8 @@ void EOP::validate() {
 }
 
 
-EOP::EOP(int leap_seconds, double dut1, double xp, double yp)
-: _leap(leap_seconds), _xp(xp), _yp(yp), _dut1(dut1) {
+EOP::EOP(int leap_seconds, double dut1_sec, double xp_rad, double yp_rad)
+: _leap(leap_seconds), _xp(xp_rad), _yp(yp_rad), _dut1(dut1_sec) {
   validate();
 }
 

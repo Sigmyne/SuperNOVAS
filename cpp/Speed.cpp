@@ -17,16 +17,20 @@ using namespace novas;
 
 namespace supernovas {
 
-Speed::Speed(double v_ms) : _ms(v_ms) {
-  if(isnan(v_ms))
+Speed::Speed(double m_per_s) : _ms(m_per_s) {
+  if(isnan(m_per_s))
     novas_error(0, EINVAL, "Speed(double)", "input value is NAN");
-  if(fabs(v_ms) > Constant::c)
-    novas_error(0, ERANGE, "Speed(double)", "input speed exceeds the speed of light: %g m/s", m_per_s());
+  if(fabs(m_per_s) > Constant::c)
+    novas_error(0, ERANGE, "Speed(double)", "input speed exceeds the speed of light: %g m/s", m_per_s);
   else
     _valid = true;
 }
 
-Speed::Speed(const Distance d, const Interval& time) : _ms(d.m() / time.seconds()) {}
+Speed::Speed(const Distance& d, const Interval& time) : _ms(d.m() / time.seconds()) {}
+
+Speed Speed::abs() const {
+  return Speed(fabs(_ms));
+}
 
 double Speed::m_per_s() const {
   return _ms;
