@@ -12,8 +12,8 @@ using namespace novas;
 
 namespace supernovas {
 
-Galactic::Galactic(double longitude, double latitude, double distance)
-: Spherical(longitude, latitude, distance) {}
+Galactic::Galactic(double longitude_rad, double latitude_rad, double distance_m)
+: Spherical(longitude_rad, latitude_rad, distance_m) {}
 
 Galactic::Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance)
 : Spherical(longitude, latitude, distance) {}
@@ -24,7 +24,7 @@ Galactic::Galactic(const Position& pos, const Distance& distance)
 Equatorial Galactic::as_equatorial() const {
   double ra = 0.0, dec = 0.0;
   gal2equ(_lon.deg(), _lat.deg(), &ra, &dec);
-  return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, "ICRS", _distance.m());
+  return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, CatalogSystem::icrs(), _distance.m());
 }
 
 Ecliptic Galactic::as_ecliptic() const {

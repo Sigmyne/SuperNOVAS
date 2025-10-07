@@ -50,31 +50,6 @@ CatalogSystem::CatalogSystem(const std::string& name, double jd_tt) : _name(name
 }
 
 /**
- * Constructor from name, such as 'ICRS', 'J2000', 'FK5', B1950', or 'HIP'. Unless, you are certain
- * that SuperNOVAS will match the name to a system and corresponding dynamical epoch, you should
- * probably call is_valid() to verify that the name was in fact recongized by the library. E.g.:
- *
- * ```c
- *  CatalogSystem s = CatalogSystem("FK4");
- *  if(!s.is_valid()) {
- *    // Oops, that did not work, as expected...
- *    ...
- *  }
- * ```
- *
- * It is generally preferable to use one of the static initializers, such as icrs(), or j2000(),
- * which are guaranteed to return a valid instance.
- *
- * @param name      The name that defining the type of catalog system. If only a year is give,
- *                  then it prior to 1984.0 they map to Besselian epochs, e.g. '1950' &rarr;
- *                  'B1950', whereas for later dates Julian epochs are assumed, e.g. '2000'
- *                  &rarr; 'J2000'.
- *
- * @sa is_valid(), icrs(), j2000(), fk5(), fk4(), b1950(), b1900()
- */
-CatalogSystem::CatalogSystem(const std::string& name) : CatalogSystem(name, novas_epoch(name.c_str())) {}
-
-/**
  * Returns the (TT-based) Julian date that corresponds to this system instance. That is it returns
  * the date for which the mean dynamical equator best matches the equator of this catalog system.
  *
@@ -117,6 +92,30 @@ std::string CatalogSystem::str() const {
   return _name;
 }
 
+
+/**
+ * Returns a new CatalogSystem instance from a string, such as 'ICRS', 'J2000', 'FK5', B1950', or
+ * 'HIP'; or else `{}`. It is generally preferable to use one of the other static
+ * initializers, such as icrs(), or j2000(), which are guaranteed to return a valid instance.
+ *
+ * @param name      The name that defining the type of catalog system. If only a year is give,
+ *                  then it prior to 1984.0 they map to Besselian epochs, e.g. '1950' &rarr;
+ *                  'B1950', whereas for later dates Julian epochs are assumed, e.g. '2000'
+ *                  &rarr; 'J2000'.
+ *
+ * @sa is_valid(), icrs(), j2000(), fk5(), fk4(), b1950(), b1900()
+ */
+std::optional<CatalogSystem> CatalogSystem::from_string(const std::string& name) {
+  double jd = novas_epoch(name.c_str());
+
+  if(isnan(jd)) {
+    novas_error(0, EINVAL, "CatalogSystem::from_string", "No catalog system matching: '%s'", name);
+    return std::nullopt;
+  }
+
+  return CatalogSystem(name, jd);
+}
+
 /**
  * Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch. MOD coordinates
  * take into account Earth's slow precession but not nutation. Julian-date based MODs were
@@ -148,7 +147,7 @@ CatalogSystem CatalogSystem::at_besselian_epoch(double year) {
   return CatalogSystem(_name_for("B", year), NOVAS_JD_B1950 + (year - 1950.0) * NOVAS_TROPICAL_YEAR_DAYS);
 }
 
-static const CatalogSystem _icrs = CatalogSystem("ICRS");
+static const CatalogSystem _icrs = CatalogSystem::from_string("ICRS").value();
 
 /**
  * International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.
@@ -159,6 +158,8 @@ static const CatalogSystem _icrs = CatalogSystem("ICRS");
  * while the coordinate system defines only the orientation of the celestial pole. Thus, there is
  * no need to distinguish between these related systems explicitly in SuperNOVAS.
  *
+ * ICRS is also the system used for the 6th Catalog of Fundamental Stars (FK6).
+ *
  * @return A reference to a reusable statically allocated ICRS system instance.
  *
  * @sa NOVAS_ICRS, NOVAS_GCRS, NOVAS_SYSTEM_ICRS
@@ -167,7 +168,7 @@ const CatalogSystem& CatalogSystem::icrs() {
   return _icrs;
 }
 
-static const CatalogSystem _j2000 = CatalogSystem("J2000");
+static const CatalogSystem _j2000 = CatalogSystem::from_string("J2000").value();
 
 /**
  * The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000). This was a
@@ -183,39 +184,14 @@ const CatalogSystem& CatalogSystem::j2000() {
   return _j2000;
 }
 
-static const CatalogSystem _fk4 = CatalogSystem("FK4");
 
-/**
- * The 4th fundamental catalog of stars (FK4). It is essentially the same as B1950, except for
- * the name.
- *
- * @return A reference to a reusable statically allocated FK4 coordinate system instance.
- *
- * @sa b1950()
- */
-const CatalogSystem& CatalogSystem::fk4() {
-  return _fk4;
-}
-
-static const CatalogSystem _fk5 = CatalogSystem("FK5");
-
-/**
- * The 5th fundamental catalog of stars (FK5). It is essentially the same as J2000, except for
- * the name.
- *
- * @return A reference to a reusable statically allocated FK5 coordinate system instance.
- *
- * @sa j2000()
- */
-const CatalogSystem& CatalogSystem::fk5() {
-  return _fk5;
-}
-
-static const CatalogSystem _hip = CatalogSystem("HIP");
+static const CatalogSystem _hip = CatalogSystem::from_string("HIP").value();
 
 /**
  * The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal
  * mean epoch of the Hipparcos catalog.
+ *
+ * J2000 is also the system used for the 5th Catalog of Fundamental Stars (FK5).
  *
  * @return A reference to a reusable statically allocated Hipparcos coordinate system instance.
  *
@@ -225,12 +201,14 @@ const CatalogSystem& CatalogSystem::hip() {
   return _hip;
 }
 
-static const CatalogSystem _b1950 = CatalogSystem("B1950");
+static const CatalogSystem _b1950 = CatalogSystem::from_string("B1950").value();
 
 /**
  * The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950). This was a
  * commonly used catalog coordinate system of old. It is also known as FK4, since the 4th
  * realization of the fundamental catalog of stars used B1950 also.
+ *
+ * B1950 is also the system used for the 4th Catalog of Fundamental Stars (FK4).
  *
  * @return A reference to a reusable statically allocated B1950 coordinate system instance.
  *
@@ -240,7 +218,7 @@ const CatalogSystem& CatalogSystem::b1950() {
   return _b1950;
 }
 
-static const CatalogSystem _b1900 = CatalogSystem("B1900");
+static const CatalogSystem _b1900 = CatalogSystem::from_string("B1900").value();
 
 /**
  * The system of the dynamical equator at the B1900 epoch (0 UTC, 1 January 1900). This was a

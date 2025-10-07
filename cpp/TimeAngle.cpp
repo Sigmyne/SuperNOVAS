@@ -13,8 +13,8 @@ using namespace novas;
 
 namespace supernovas {
 
-TimeAngle::TimeAngle(double x)
-: Angle(x) {
+TimeAngle::TimeAngle(double radians)
+: Angle(radians) {
   if(_rad < 0.0) _rad += TWOPI;
 }
 

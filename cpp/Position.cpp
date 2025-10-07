@@ -27,18 +27,6 @@ Position::Position(double x_m, double y_m, double z_m)
 Position::Position(const double pos[3], double unit)
 : Vector(pos[0] * unit, pos[1] * unit, pos[2] * unit) {}
 
-double Position::x_m() const {
-  return _component[0];
-}
-
-double Position::y_m() const {
-  return _component[1];
-}
-
-double Position::z_m() const {
-  return _component[2];
-}
-
 Distance Position::distance() const {
   return Distance(abs());
 }
@@ -60,15 +48,15 @@ const Position& Position::origin() {
 }
 
 std::string Position::str() const {
-  return "POS ( " + Distance(x_m()).str() + ", " + Distance(y_m()).str() + ", " + Distance(z_m()).str() + ")";
+  return "POS ( " + Distance(x()).str() + ", " + Distance(y()).str() + ", " + Distance(z()).str() + ")";
 }
 
 Position operator+(const Position& l, const Position& r) {
-  return Position(l.x_m() + r.x_m(), l.y_m() + r.y_m(), l.z_m() + r.z_m());
+  return Position(l.x() + r.x(), l.y() + r.y(), l.z() + r.z());
 }
 
 Position operator-(const Position& l, const Position& r) {
-  return Position(l.x_m() - r.x_m(), l.y_m() - r.y_m(), l.z_m() - r.z_m());
+  return Position(l.x() - r.x(), l.y() - r.y(), l.z() - r.z());
 }
 
 static const Position _nan = Position(NAN, NAN, NAN);

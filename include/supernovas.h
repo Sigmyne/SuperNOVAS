@@ -3,7 +3,8 @@
  *
  * @date Created  on Sep 29, 2025
  * @author Attila Kovacs
- * @version 0.1.0
+ * @since 1.6
+ * @version 0.2.0
  *
  *  !!! Under construction !!!
  */
@@ -11,11 +12,12 @@
 #ifndef INCLUDE_SUPERMOVAS_H_
 #define INCLUDE_SUPERMOVAS_H_
 
-#define SUPERNOVAS_CPP_API_VERSION    0.1.0   ///< C++ API version (different from library version)
+#define SUPERNOVAS_CPP_API_VERSION    0.2.0   ///< C++ API version (different from library version)
 
 #if __cplusplus
 
 #include <string>
+#include <optional>
 #include <time.h>
 #include <errno.h>
 
@@ -87,9 +89,11 @@ private:
   void operator=(Unit const&);    // Don't implement
 
 public:
+  /// \cond PRIVATE
   // Deleting the copy constructor to prevent copies
   Unit(const Unit& obj) = delete;
   //Unit(Unit const&)     = delete;
+  /// \endcond
 
   static constexpr double au = NOVAS_AU;                  /// [m] 1 Astronomical Unit in meters.
   static constexpr double m = 1.0;                        /// [m] 1 meter (standard unit of distance)
@@ -109,7 +113,8 @@ public:
   static constexpr double ns = 1e-9;                      /// [s] 1 nanoseconds in seconds
   static constexpr double us = 1e-6;                      /// [s] 1 microsecond in seconds
   static constexpr double ms = 1e-3;                      /// [s] 1 millisecond in seconds
-  static constexpr double sec = 1.0;                      /// [s] 1 second (standard unit of time)
+  static constexpr double s = 1.0;                        /// [s] 1 second (standard unit of time)
+  static constexpr double sec = s;                        /// [s] 1 second by another name
   static constexpr double min = 60.0;                     /// [s] 1 minute in seconds
   static constexpr double hour = 3600.0;                  /// [s] 1 hour in seconds
   static constexpr double day = NOVAS_DAY;                /// [s] 1 day in seconds
@@ -144,7 +149,7 @@ public:
 };
 
 /**
- * Various physical constants that SuperNOVAS uses for astromtric calculations, all expressed in
+ * Various physical constants that SuperNOVAS uses for astrometric calculations, all expressed in
  * terms of SI units. You can use them also. For example, you might use Constant::c to turn a
  * velocity (im m/s) to a unitless &beta;:
  *
@@ -164,9 +169,11 @@ private:
   void operator=(Constant const&);    // Don't implement
 
 public:
+  /// \cond PRIVATE
   // Deleting the copy constructor to prevent copies
   Constant(const Constant& obj) = delete;
   //Constant(Constant const&)     = delete;
+  /// \endcond
 
   static constexpr double pi = M_PI;                    /// [rad] &pi;
   static constexpr double twoPi = TWOPI;                /// [rad] 2&pi;
@@ -235,9 +242,6 @@ protected:
                         ///< matches the system
 
 public:
-
-  CatalogSystem(const std::string& name);
-
   double jd() const;
 
   double epoch() const;
@@ -245,6 +249,8 @@ public:
   const std::string& name() const;
 
   std::string str() const;
+
+  static std::optional<CatalogSystem> from_string(const std::string& name);
 
   static CatalogSystem at_julian_date(double jd_tt);
 
@@ -256,22 +262,36 @@ public:
 
   static const CatalogSystem& hip();
 
-  static const CatalogSystem& fk5();
-
-  static const CatalogSystem& fk4();
-
   static const CatalogSystem& b1950();
 
   static const CatalogSystem& b1900();
 };
 
-/// \ingroup util
+
+/**
+ * A scalar separation between two points in space. It may be signed, such that that the distance
+ * from __A__ to __B__ is the negative of the distance __B__ to __A__, i.e.:
+ *
+ *  \| __A__ - __B__ \| = -\| __B__ - __A__ \|
+ *
+ * for two vector locations __A__ and __B__.
+ *
+ * @sa Position
+ * @ingroup util
+ */
 class Distance : public Validating {
 private:
   double _meters;         ///< [m] stored distance
 
 public:
   Distance(double meters);
+
+  /**
+   * Returns the magnitude of this distance, as a unsigned distance.
+   *
+   * @return    The absolute value of the (possibly signed) distance value represented by this instance.
+   */
+  Distance abs() const;
 
   double m() const;
 
@@ -293,12 +313,17 @@ public:
 
   std::string str() const;
 
-  static Distance from_parallax(double parallax);
+  static Distance from_parallax(const Angle& parallax);
 
   static const Distance& at_Gpc();
 };
 
-/// \ingroup time
+/**
+ * A signed time interval between two instants of time, in the astronomical timescale of choice.
+ *
+ * @sa Time, TimeAngle
+ * @ingroup time
+ */
 class Interval : public Validating {
 private:
 
@@ -344,7 +369,14 @@ public:
   double julian_centuries() const;
 };
 
-/// \ingroup util
+/**
+ * A representation of a regularized angle, which can be expressed in various commonly used
+ * angular units as needed. It can also be used to instantiate angles from decimal or
+ * [+]DDD:MM:SS.SSS string representations of the angle in degrees.
+ *
+ * @sa TimeAngle
+ * @ingroup util
+ */
 class Angle : public Validating {
 protected:
   double _rad;      ///< [rad] stored angle value, usually [-&pi;:&pi;), but can be different for subclasses.
@@ -353,7 +385,7 @@ public:
 
   virtual ~Angle() {};
 
-  Angle(double x);
+  Angle(double radians);
 
   Angle(const std::string& str);
 
@@ -389,11 +421,19 @@ public:
 
 };
 
-/// \ingroup time util
+/**
+ * A representation of a regularized angle, which can also be represented as a time value in the 0
+ * to 24h range. It can be expressed both in terms various commonly used angular units, or in terms
+ * of time units, as needed.  It may also be used to instantiate time-angles from decimal or
+ * from HH:MM:SS.SSS string representations of time in hours.
+ *
+ * @sa Time, Interval
+ * @ingroup time util
+ */
 class TimeAngle : public Angle {
 public:
 
-  TimeAngle(double x);
+  TimeAngle(double radians);
 
   TimeAngle(const std::string& str);
 
@@ -412,20 +452,31 @@ public:
   std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 };
 
-/// \ingroup util
+/**
+ * A generic 3D spatial vector, expressed in arbitrary units.
+ *
+ * @sa Position, Velocity
+ * @ingroup util
+ */
 class Vector : public Validating {
 protected:
   double _component[3];       ///< [arb.u] Array containing the x, y, z components.
 
   Vector(double x = 0.0, double y = 0.0, double z = 0.0);
 
-  Vector(const double v[3]);
+  Vector(const double v[3], double unit = 1.0);
 
 public:
 
   virtual ~Vector() {}; // something virtual to make class polymorphic for dynamic casting.
 
   Vector operator*(double factor) const;
+
+  double x() const;
+
+  double y() const;
+
+  double z() const;
 
   bool is_equal(const Vector& v, double precision) const;
 
@@ -444,23 +495,22 @@ public:
   virtual std::string str() const;
 };
 
-/// \ingroup geometric
+/**
+ * A 3D physical location vector in space.
+ *
+ * @sa Velocity, Geometric
+ * @ingroup geometric
+ */
 class Position : public Vector {
 public:
 
   Position(double x_m = 0.0, double y_m = 0.0, double z_m = 0.0);
 
-  Position(const double pos[3], double unit = 1.0);
+  Position(const double pos[3], double unit = Unit::m);
 
   Position operator+(const Position &r) const;
 
   Position operator-(const Position &r) const;
-
-  double x_m() const;
-
-  double y_m() const;
-
-  double z_m() const;
 
   Distance distance() const;
 
@@ -475,7 +525,12 @@ public:
   static const Position& invalid();
 };
 
-/// \ingroup geometric
+/**
+ * A 3D physical velocity vector in space.
+ *
+ * @sa Velocity, Geometric
+ * @ingroup geometric
+ */
 class Velocity : public Vector {
 public:
   Velocity(double x_ms = 0.0, double y_ms = 0.0, double z_ms = 0.0);
@@ -489,12 +544,6 @@ public:
   bool is_equal(const Interval& interval, double precision = Unit::us) const;
 
   Speed speed() const;
-
-  double x_m_per_s() const;
-
-  double y_m_per_s() const;
-
-  double z_m_per_s() const;
 
   Velocity inv() const;
 
@@ -513,19 +562,36 @@ public:
   static const Velocity& invalid();
 };
 
-/// \ingroup util spectral
+/**
+ * A scalar rate of movement in space reflecting the magnitude of a (relative) velocity and
+ * possibly signed to reflect its direction (+ away vs - towards) also. If the speed is signed,
+ * it is such that that for a velocity __v__ it is:
+ *
+ *  Speed( - __v__ ) = - Speed( __v__ ).
+ *
+ *
+ * @sa Position
+ * @ingroup util, spectral
+ */
 class Speed : public Validating {
 protected:
   double _ms;       ///< [m/s] stored speed
 
 public:
-  Speed(double ms);
+  Speed(double m_per_s);
 
-  Speed(const Distance d, const Interval& time);
+  Speed(const Distance& d, const Interval& time);
 
   Speed operator+(const Speed& r) const;
 
   Speed operator-(const Speed& r) const;
+
+  /**
+   * Returns the magnitude of this speed, as a unsigned speed.
+   *
+   * @return    The absolute value of the (possibly signed) speed value represented by this instance.
+   */
+  Speed abs() const;
 
   double m_per_s() const;
 
@@ -554,7 +620,13 @@ public:
   static const Speed& stationary();
 };
 
-/// \ingroup util
+/**
+ * Spherical coordinates (longitude, latitude, and distance), representing a direction on sky /
+ * location in space.
+ *
+ * @sa Position, Equatorial, Ecliptic, Galactic, Horizontal
+ * @ingroup util
+ */
 class Spherical : public Validating {
 protected:
   Angle _lon;           ///< [rad] stored longitude value
@@ -566,7 +638,7 @@ protected:
 public:
   virtual ~Spherical() {}; // something virtual to make class polymorphic for dynamic casting.
 
-  Spherical(double longitude, double latitude, double distance = NOVAS_DEFAULT_DISTANCE);
+  Spherical(double longitude_rad, double latitude_rad, double distance_m = NOVAS_DEFAULT_DISTANCE);
 
   Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
@@ -583,7 +655,13 @@ public:
   virtual const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 };
 
-/// \ingroup equatorial
+/**
+ * Equatorial coordinates (RA, Dec = &alpha;, &delta;) and distance, representing the direction on
+ * the sky, or location in space, for a particular type of equatorial coordinate reference system,
+ * relative to the equator and equinox on that system.
+ *
+ * @ingroup equatorial
+ */
 class Equatorial : public Spherical {
 private:
   CatalogSystem _sys;     ///< stored catalog system
@@ -591,7 +669,7 @@ private:
   void validate();
 
 public:
-  Equatorial(double ra, double dec, const std::string& system = "ICRS", double distance = NOVAS_DEFAULT_DISTANCE);
+  Equatorial(double ra_rad, double dec_rad, const CatalogSystem &system = CatalogSystem::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
 
   Equatorial(const Angle& ra, const Angle& dec, const CatalogSystem& system = CatalogSystem::icrs(), const Distance& distance = Distance::at_Gpc());
 
@@ -612,7 +690,13 @@ public:
   static const Equatorial& invalid();
 };
 
-/// \ingroup nonequatorial
+/**
+ * Ecliptic coordinates (_l_, _b_ or &lambda;, &beta;) and distance, representing the direction on
+ * the sky, or location in space, for a particular type of equatorial coordinate reference system,
+ * relatibe to the ecliptic and equinox of that system
+ *
+ * @ingroup nonequatorial
+ */
 class Ecliptic : public Spherical {
 private:
   CatalogSystem _sys;     ///< stored catalog system
@@ -620,7 +704,7 @@ private:
   void validate();
 
 public:
-  Ecliptic(double longitude, double latitude, const std::string& system = "ICRS", double distance = NOVAS_DEFAULT_DISTANCE);
+  Ecliptic(double longitude_rad, double latitude_rad, const CatalogSystem &system = CatalogSystem::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
 
   Ecliptic(const Angle& ra, const Angle& dec, const CatalogSystem &system = CatalogSystem::icrs(), const Distance& distance = Distance::at_Gpc());
 
@@ -637,10 +721,15 @@ public:
   static const Ecliptic& invalid();
 };
 
-/// \ingroup nonequatorial
+/**
+ * Galactic coordinates (_l_, _b_) and distance, representing the direction on the sky, or location
+ * in space relative to the galactic plane and the nominal Galactic center location.
+ *
+ * @ingroup nonequatorial
+ */
 class Galactic : public Spherical {
 public:
-  Galactic(double longitude, double latitude, double distance = NOVAS_DEFAULT_DISTANCE);
+  Galactic(double longitude_rad, double latitude_rad, double distance_m = NOVAS_DEFAULT_DISTANCE);
 
   Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
@@ -655,7 +744,15 @@ public:
   static const Galactic& invalid();
 };
 
-/// \ingroup util
+/**
+ * A physical temperature value, which can be instantiated, and then expressed, in different
+ * commonly used temperature units (C, K, or F). Within SuperNOVAS it is normally used to
+ * express ambient temperatures at an observing location, but users may utilize it in any
+ * other context also.
+ *
+ * @sa Weather
+ * @ingroup util
+ */
 class Temperature : public Validating {
 private:
   double _deg_C;        ///< [C] stored temperature
@@ -678,7 +775,15 @@ public:
   static Temperature farenheit(double value);
 };
 
-/// \ingroup util
+/**
+ * A physical pressure value, which can be instantiated, and then expressed, in different
+ * commonly used pressure units (kPa, mbar, torr, atm, and more). Within SuperNOVAS it is
+ * normally used to express atmospheric pressure at an observing location, but users may
+ * utilize it in any other context also.
+ *
+ * @sa Weather
+ * @ingroup util
+ */
 class Pressure : public Validating {
 private:
   double _pascal;     ///< [Pa] stored pressure
@@ -717,7 +822,13 @@ public:
   static Pressure atm(double value);
 };
 
-/// \ingroup refract
+/**
+ * Weather data, mainly for atmopsheric refraction correction for Earth-based (geodetic)
+ * observers.
+ *
+ * @sa Horizontal::to_refracted(), Horizontal::to_unrefracted(), Site
+ * @ingroup refract
+ */
 class Weather : public Validating {
 private:
   Temperature _temperature;   ///< stored temperature value
@@ -744,7 +855,30 @@ public:
   static Weather guess(const Site& site);
 };
 
-/// \ingroup earth nonequatorial
+/**
+ * IERS Earth Orientation Parameters (EOP). IERS publishes daily values, short-term and medium
+ * term forecasts, and historical data for the measured, unmodelled (by the IAU 2006
+ * precession-nutation model), _x_<sub>p</sub>, _y_<sub>p</sub> pole offsets, leap-seconds (UTC -
+ * TAI difference), and the current UT1 - UTC time difference.
+ *
+ * The _x_<sub>p</sub>, _y_<sub>p</sub> pole offsets define the true rotationa pole of Earth vs
+ * the dynamical equator of date, while the leap_seconds and UT1 - UTC time difference trace the
+ * variations in Earth's rotation.
+ *
+ * Beyond the published values, one may further apply corrections for diurnal effects of
+ * libration and the ocean tides, if precision below the milliarcsecond (mas) level is desired.
+ * And, the EOP values can be converted to different ITRF realizations to match the ITRF Site
+ * specification, if &mu;as precision is required (e.g for VLBI interferometry).
+ *
+ * EOP are necessary both for defining or accessing astronomical times of the UT1 timescale (e.g.
+ * for sidereal time or Earth-rotation angle (ERA) calculations), or for converting coordinates
+ * between the preudo Earth-fixed Terrestrial Intermediate Reference System (TIRS) on the
+ * dynamical equator of date, and the Earth-fixed International Terrestrial Reference System
+ * (ITRS) on the true rotational equator.
+ *
+ * @sa Time, GeodeticObserver, Apparent::to_itrs(), Geometric::to_itrs(), Horizontal::to_apparent()
+ * \ingroup earth nonequatorial
+ */
 class EOP : public Validating {
 private:
   int _leap;          ///< [s] store leap seconds (UTC - TAI time difference).
@@ -758,7 +892,7 @@ private:
   void validate();
 
 public:
-  EOP(int leap_seconds, double dut1 = 0.0, double xp = 0.0, double yp = 0.0);
+  EOP(int leap_seconds, double dut1_sec = 0.0, double xp_rad = 0.0, double yp_rad = 0.0);
 
   EOP(int leap_seconds, double dut1, const Angle& xp, const Angle& yp);
 
@@ -779,7 +913,19 @@ public:
   static const EOP& invalid();
 };
 
-/// \ingroup observer
+/**
+ * An Earth-based (geodetic) observer site location, or airborne observer location. Positions may
+ * be defined as GPS / WGS84 or else as ITRF / GRS80 geodetic locations, or as Cartesian geocentric
+ * _xyz_ positions in the International Terrestrial Reference Frame (ITRF).
+ *
+ * The class provides the means to convert between ITRF realizations, e.g. to match the ITRF
+ * realization used for the Eath Orientation Parameters (EOP) obtained from IERS, for &mu;as
+ * precision. (This is really only necessary for VLBI interferometry). Alternatively, one may also
+ * transform the EOP values to match the ITRF realization of the site.
+ *
+ * @sa GeodeticObserver, EOP
+ * @ingroup observer
+ */
 class Site : public Validating {
 private:
   novas::on_surface _site;    ///< stored site information
@@ -788,7 +934,7 @@ private:
 
 public:
 
-  Site(double longitude, double latitude, double altitude=0.0, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
+  Site(double longitude_rad, double latitude_rad, double altitude_m = 0.0, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
 
   Site(const Position& xyz);
 
@@ -811,11 +957,15 @@ public:
   static Site from_GPS(double longitude, double latitude, double altitude = 0.0);
 
   static Site from_xyz(const Position& xyz);
-
-  static Site from_xyz(double x, double y, double z);
 };
 
-/// \ingroup observer
+/**
+ * An observer location. Both Earth-bound (geodetic sites, airborne, or Earth-orbit), and locations elsewhere in
+ * the Solar-system are supported.
+ *
+ * @sa Frame
+ * @ingroup observer
+ */
 class Observer : public Validating {
 protected:
   novas::observer _observer = {};   ///< stored observer data
@@ -849,34 +999,14 @@ public:
   static const Observer& invalid();
 };
 
-/// \ingroup observer
-class GeocentricObserver : public Observer {
-public:
-  GeocentricObserver();
-
-  GeocentricObserver(const Position& pos, const Velocity& vel);
-
-  bool is_geocentric() const override { return true; }
-
-  Position geocentric_position() const;
-
-  Velocity geocentric_velocity() const;
-};
-
-/// \ingroup observer
-class SolarSystemObserver : public Observer {
-public:
-
-  SolarSystemObserver();
-
-  SolarSystemObserver(const Position& pos, const Velocity& vel);
-
-  Position ssb_position() const;
-
-  Velocity ssb_velocity() const;
-};
-
-/// \ingroup observer
+/**
+ * An observer location at a geodetic (longitude, latitude, altitude) location at the surface or
+ * above it (e.g. in an aircraft or balloon). The observer may be fixed at that location, or else
+ * moving with some velocity over the ground.
+ *
+ * @sa GeocentricObserver
+ * @ingroup observer
+ */
 class GeodeticObserver : public Observer {
 private:
   EOP _eop;     ///< stored Earth orientation parameters
@@ -893,8 +1023,51 @@ public:
   const EOP& eop() const;
 };
 
+/**
+ * An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit
+ * sattelite, or for a virtual observer located at the geocenter itself.
+ *
+ * @sa GeodeticObserver
+ * @ingroup observer
+ */
+class GeocentricObserver : public Observer {
+public:
+  GeocentricObserver();
 
-/// \ingroup time
+  GeocentricObserver(const Position& pos, const Velocity& vel);
+
+  bool is_geocentric() const override { return true; }
+
+  Position geocentric_position() const;
+
+  Velocity geocentric_velocity() const;
+};
+
+/**
+ * An observer location anywhere in the Solar System, defined by its momentary barycentric
+ * position and velocity vectors.
+ *
+ * @ingroup observer
+ */
+class SolarSystemObserver : public Observer {
+public:
+
+  SolarSystemObserver();
+
+  SolarSystemObserver(const Position& pos, const Velocity& vel);
+
+  Position ssb_position() const;
+
+  Velocity ssb_velocity() const;
+};
+
+/**
+ * Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,
+ * UTC, TAI, GPS, TT, TDB, TCG, and TCB).
+ *
+ * @sa Interval, TimeAngle, Observer
+ * @ingroup time
+ */
 class Time : public Validating {
 private:
   novas::novas_timespec _ts;    ///< stored astronomical time specification
@@ -925,27 +1098,17 @@ public:
 
   Interval operator-(const Time &other) const;
 
-  Interval operator-(const novas::novas_timespec *other) const;
-
   Time operator+(const Interval &delta) const;
 
   Time operator-(const Interval &delta) const;
 
   bool operator<(const Time &other) const;
 
-  bool operator<(const novas::novas_timespec *other) const;
-
   bool operator>(const Time &other) const;
-
-  bool operator>(const novas::novas_timespec *other) const;
 
   bool operator<=(const Time &other) const;
 
-  bool operator<=(const novas::novas_timespec *other) const;
-
   bool operator>=(const Time &other) const;
-
-  bool operator>=(const novas::novas_timespec *other) const;
 
   bool equals(const Time& time, double precision = Unit::sec / Unit::day) const;
 
@@ -996,14 +1159,32 @@ public:
   static const Time& invalid();
 };
 
-/// \ingroup frame
+/**
+ * An observing frame, defined by an observer location and precise time of observation. Frames can
+ * be created with full (default) and reduced accuracy, supporting calculations with mas, or &mu;as
+ * precisions typically. However note that full accuracy frames require SuperNOVAS to be configured
+ * with an appropriate high-precision planet ephemeris provider (see e.g. `novas_use_calceph()` or
+ * `novas_use_cspice()`), or else the resulting full-accuracy frame will be invalid.
+ *
+ * Reduced accuracy frames may also be invalid if the low precision planet ephemeris provider (
+ * which, by default, calculates approximate positions for the Earth and Sun only) cannot provide
+ * position for the Earth, Sun, the observer.
+ *
+ * Therefore, one is strongly advised to check the validity of an observing frame after instantiation
+ * (using the is_valid() method), or else use the static Frame::create() function to return an
+ * optional.
+ *
+ * @sa Source
+ * @ingroup frame
+ */
 class Frame : public Validating {
 private:
-  novas::novas_frame _frame;      ///< Stored frame data
+  novas::novas_frame _frame = {}; ///< Stored frame data
   Observer _observer;             ///< stored observer data
   Time _time;                     ///< stored time data
 
 public:
+  // TODO Should we use an optional here in case of high-accuracy failure?
   Frame(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
 
   const novas::novas_frame *_novas_frame() const;
@@ -1020,24 +1201,31 @@ public:
 
   bool has_planet_data(const Planet& planet) const;
 
-  Position ephemeris_position(enum novas::novas_planet planet) const;
+  std::optional<Position> ephemeris_position(enum novas::novas_planet planet) const;
 
-  Position ephemeris_position(const Planet& planet) const;
+  std::optional<Position> ephemeris_position(const Planet& planet) const;
 
-  Velocity ephemeris_velocity(enum novas::novas_planet planet) const;
+  std::optional<Velocity> ephemeris_velocity(enum novas::novas_planet planet) const;
 
-  Velocity ephemeris_velocity(const Planet& planet) const;
+  std::optional<Velocity> ephemeris_velocity(const Planet& planet) const;
 
   double clock_skew(enum novas::novas_timescale = novas::NOVAS_TT) const;
+
+  static std::optional<Frame> create(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
 
   static const Frame& invalid();
 };
 
 
-/// \ingroup source
+/**
+ * An astronomical source, or target of observation.
+ *
+ * @sa CatalogSource, Planet, EphemerisSource, OrbitalSource
+ * @ingroup source
+ */
 class Source : public Validating {
 protected:
-  struct novas::novas_object _object;     /// stored data on source
+  struct novas::novas_object _object = {};     /// stored data on source
 
   Source() {}
 
@@ -1058,29 +1246,33 @@ public:
 
   Angle angle_to(const Source& source, const Frame& frame) const;
 
-  Time rises_above(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
+  std::optional<Time> rises_above(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
 
-  Time transits(const Frame &frame) const;
+  std::optional<Time> transits(const Frame &frame) const;
 
-  Time sets_below(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
+  std::optional<Time> sets_below(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
 
   static void set_case_sensitive(bool value);
 };
 
-/// \ingroup source spectral
+/**
+ * Defines the cataloged parameters of a sidereal source, such as a star, a Galactic cloud, a distant
+ * galaxy or a quasar.
+ *
+ * @sa CatalogSource
+ * @ingroup source spectral
+ */
 class CatalogEntry : public Validating {
 private:
-  novas::cat_entry _entry;  ///< stored catalog entry
-  CatalogSystem _sys;       ///< stored catalog system
+  novas::cat_entry _entry = {};  ///< stored catalog entry
+  CatalogSystem _sys;            ///< stored catalog system
 
   void set_epoch();
 
 public:
-  CatalogEntry(const std::string &name, double RA, double Dec, const std::string& system = "ICRS");
+  CatalogEntry(const std::string &name, const Equatorial& coords);
 
-  CatalogEntry(const std::string &name, const Angle& RA, const Angle& Dec, const CatalogSystem& system = CatalogSystem::icrs());
-
-  CatalogEntry(novas::cat_entry e, const std::string& system = "ICRS");
+  CatalogEntry(novas::cat_entry e, const CatalogSystem& system = CatalogSystem::icrs());
 
   const novas::cat_entry* _cat_entry() const;
 
@@ -1127,7 +1319,11 @@ public:
   CatalogEntry& catalog(const std::string& name, long number);
 };
 
-/// \ingroup source
+/**
+ * A sidereal source, defined by its catalog coordinates and other catalog parameters.
+ *
+ * @ingroup source
+ */
 class CatalogSource : public Source {
 private:
   CatalogSystem _system;      ///< stored catalog system
@@ -1140,7 +1336,12 @@ public:
   CatalogEntry catalog_entry() const;
 };
 
-/// \ingroup source
+/**
+ * An abstract class of a source in the Solar-system.
+ *
+ * @sa Planet, EphemerisSource, OrbitalSource
+ * @ingroup source
+ */
 class SolarSystemSource : public Source {
 protected:
   SolarSystemSource() {}
@@ -1153,12 +1354,20 @@ public:
   double solar_power(const Time& time) const;
 };
 
-/// \ingroup source
+/**
+ * A major planet (including Pluto), or the Sun, Moon, Solar-system Barycenter (SSB), Earth-Moon
+ * Barycenter (EMB), or the Pluto-system barycenter. Planet positions are usually provided
+ * by the JPL DE ephemeris files, such as DE440 or DE440s. By default SuperNOVAS calculates
+ * approximate position for the Earth and Sun only. Thus to provide ephemeris positions for
+ * all planet-type osurces, you will have to configure a Solar-system ephemeris provider, e.g.
+ * via `novas::novas_use_calceph()` or `novas::novas_use_cspice()`.
+ *
+ * @sa EphemerisSource, OrbitalSource, novas::novas_use_calceph(), novas::novas_use_cspice().
+ * @ingroup source
+ */
 class Planet : public SolarSystemSource {
 public:
   Planet(enum novas::novas_planet number);
-
-  Planet(const std::string& name);
 
   enum novas::novas_planet novas_id() const;
 
@@ -1169,6 +1378,10 @@ public:
   double mean_radius() const;
 
   double mass() const;
+
+  static std::optional<Planet> for_naif_id(long naif);
+
+  static std::optional<Planet> for_name(const std::string& name);
 
   static const Planet& ssb();
 
@@ -1200,7 +1413,20 @@ public:
 
 };
 
-/// \ingroup source
+/**
+ * A Solar-system source, whose positions / velocities are provided from ephemeris data. SuperNOVAS
+ * does not support ephemeris data by itself, but can interface to other libraries (e.g. CALCEPH or
+ * CSPICE), or provide them via user-selected function(s). Depending on the external implementation
+ * that provides ephemeris data, sources may be looked up by name or ID number. Name-based lookup
+ * may be case-sensitive (in which case you may want to use `novas::novas_case_sensitive()` to enable
+ * case-sensitive source names in SuperNOVAS). ID-based lookup may use NAIF IDs, or else some other
+ * numbering convention. In any case, you should construct your ephemeris source to match the
+ * lookup method used by the ephemeris provider function(s) or library you will be using.
+ *
+ * @sa Planet, OrbitalSource, novas::novas_use_calceph(), novas::novas_use_cspice(),
+ *     novas::novas_case_sensitive()
+ * @ingroup source
+ */
 class EphemerisSource : public SolarSystemSource {
 public:
   EphemerisSource(const std::string &name, long number);
@@ -1208,23 +1434,56 @@ public:
   long number() const;
 };
 
-/// \ingroup source
+/**
+ * A Solar-system source, whose position and velocity can be calculated using Keplerian orbital
+ * elements. While Keplerian orbitals are not typically accurate for long-term predictions, they
+ * can be accurate in the short term, provided that one uses appropriate up-to-date orbital
+ * elements, e.g. such as published by the Minor Planet Center (daily or otherwise regularly)
+ * for asteroids, comets, an Near-Earth Objects (NEOs). For newly discovered objects, the
+ * Keplerian orbital elements by the MPC may be the most accurate, or the only, source of
+ * information.
+ *
+ * @sa EphemerisSource, Planet
+ * @ingroup source
+ */
 class OrbitalSource : public SolarSystemSource {
-public:
-  OrbitalSource(const std::string& name, long number, const novas::novas_orbital *orbit);
+private:
+  OrbitalSource(const std::string& name, long number, const novas::novas_orbital orbit);
 
+public:
   const novas::novas_orbital *_novas_orbital() const;
 
   Position orbital_position(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
 
   Velocity orbital_velocity(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
+
+  static std::optional<OrbitalSource> from_orbit(const std::string& name, long number, const novas::novas_orbital orbit);
 };
 
-///
+
 /**
- * A class representing an apparent position on sky for a given observer at a specific time of
- * observation. Apparent positions are corrected for aberration for a movig observer, and
- * gravitational deflection around the major Solar-system bodies along the path of visibility.
+ * Apparent position on sky as seen by an observer at a specific time of observation. Apparent
+ * positions are corrected for aberration for a movig observer, and gravitational deflection
+ * around the major Solar-system bodies along the path of visibility.
+ *
+ * The apparent position of a source is where it appears to the observer on the celestial sphere.
+ * As such it is mainly a direction on sky, which is corrected for light-travel time (i.e. where
+ * the source was at the time light originated from the Solar-system body, or the differential
+ * light-travel time between the Solar-system barycenter and the observer location for sidereal
+ * sources).
+ *
+ * Unlike geometric positions, the apparent location is also corrected for the observer's motion
+ * (aberration), as well as gravitational deflection around the major Solar-system bodies. Also,
+ * the radial valocity _v_<sub>r</sub> is calculated to reflect a spectroscopic measure, defined
+ * by the relation:
+ *
+ * &lambda;<sub>obs</sub> / &lambda;<sub>rest</sub> = ( (1.0 + _v_<sub>r</sub> / _c_) / (1.0 - _v_<sub>r</sub> / _c_) )<sup>1/2</sup>
+ *
+ * As such it contains appropriate relativistic corrections for the observer's relative motion
+ * as well as gravitational redshift corrections for the surface of major Solar-system bodies,
+ * where light is assumed to originate, and at the observer location. It is also corrected for
+ * the viewing angle difference when light is gravitationally deflected around major Solar-system
+ * bodies.
  *
  * Apparent positions can also come directly from observations, such as from unrefracted
  * horizontal coordinates.
@@ -1241,12 +1500,12 @@ private:
 
   Apparent(const Frame& frame, enum novas::novas_reference_system system);
 
+  Apparent(novas::sky_pos p, const Frame& frame, enum novas::novas_reference_system system = novas::NOVAS_TOD);
+
 public:
-  Apparent(const Frame& frame, const Equatorial& eq, double rv = 0.0, enum novas::novas_reference_system system = novas::NOVAS_TOD);
+  Apparent(const Equatorial& eq, const Frame& frame, double rv_ms = 0.0, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
-  Apparent(const Frame& frame, const Equatorial& eq, const Speed& rv, enum novas::novas_reference_system system = novas::NOVAS_TOD);
-
-  Apparent(const Frame& frame, novas::sky_pos p, enum novas::novas_reference_system system = novas::NOVAS_TOD);
+  Apparent(const Equatorial& eq, const Frame& frame, const Speed& rv, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
   const novas::sky_pos *_sky_pos() const;
 
@@ -1268,7 +1527,7 @@ public:
 
   Galactic galactic() const;
 
-  Horizontal horizontal() const;
+  std::optional<Horizontal> horizontal() const;
 
   Apparent in_system(enum novas::novas_reference_system system) const;
 
@@ -1284,22 +1543,37 @@ public:
 
   Apparent in_tirs() const { return in_system(novas::NOVAS_TIRS); }
 
-  Apparent in_itrs() const { return in_system(novas::NOVAS_ITRS); }
+  std::optional<Apparent> in_itrs(const EOP& eop = EOP::invalid()) const;
+
+  static std::optional<Apparent> from_sky_pos(novas::sky_pos p, const Frame& frame,
+          enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
   static const Apparent& invalid();
 };
 
-/// \ingroup geometric
+/**
+ * The geometric (3D) position and velocity of a source relative to an observer location. It
+ * denotes spatial location and velocity of the source at the time light originated from it, prior
+ * to detection by the observer. As such, geometric positions are necessarily antedated for light
+ * travel time (for Solar-system sources) or corrected for the differential light-travel between
+ * the Solar-system barycenter and the observer location (for sidereal sources).
+ *
+ * In other words, geometric positions are not the same as ephemeris positions for the equivalent
+ * time for Solar-system bodies. Rather, geometric positions match the ephemeris positions for
+ * an earlier time, when the observed light originated from the source.
+ *
+ * @sa apparent
+ * @ingroup geometric
+ */
 class Geometric : public Validating {
 private:
   Frame _frame;                             ///< stored frame data
-  enum novas::novas_reference_system _sys;  ///< stored coordinate reference system type
-
   Position _pos;                            ///< stored geometric position w.r.t. observer
   Velocity _vel;                            ///< stored geometric velocity w.r.t. observer
+  enum novas::novas_reference_system _sys;  ///< stored coordinate reference system type
 
 public:
-  Geometric(const Frame& frame, enum novas::novas_reference_system system, const Position& p, const Velocity& v);
+  Geometric(const Position& p, const Velocity& v, const Frame& frame, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
   const Frame& frame() const;
 
@@ -1329,12 +1603,20 @@ public:
 
   Geometric in_tirs() const { return in_system(novas::NOVAS_TIRS); }
 
-  Geometric in_itrs() const { return in_system(novas::NOVAS_ITRS); }
+  std::optional<Geometric> in_itrs(const EOP& eop = EOP::invalid()) const;
 
   static const Geometric& invalid();
 };
 
-/// \ingroup nonequatorial refract
+/**
+ * Horizontal (azimuth, elevation = Az/El) sky coordinates at a geodetic observing location, such
+ * as an observatory site, an aircraft, or a balloon. These represent positions relative to the
+ * local horizon and meridian, and can be used for both unrefracted (astrometric) or refracted
+ * (observed) values or for conbverting between those two.
+ *
+ * @sa Apparent, Site, Weather
+ * @ingroup nonequatorial
+ */
 class Horizontal : public Spherical {
 private:
   Horizontal();
@@ -1350,18 +1632,21 @@ public:
 
   const Angle& elevation() const;
 
+  const Angle zenith_angle() const;
+
   Horizontal to_refracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather);
 
   Horizontal to_unrefracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather);
 
-  Apparent to_apparent(const Frame& frame, double rv = 0.0, double distance = NOVAS_DEFAULT_DISTANCE) const;
+  std::optional<Apparent> to_apparent(const Frame& frame, double rv = 0.0, double distance = NOVAS_DEFAULT_DISTANCE) const;
 
-  Apparent to_apparent(const Frame& frame, const Speed& rv = Speed::stationary(), const Distance& distance = Distance::at_Gpc()) const;
+  std::optional<Apparent> to_apparent(const Frame& frame, const Speed& rv = Speed::stationary(), const Distance& distance = Distance::at_Gpc()) const;
 
   const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 
   static const Horizontal& invalid();
 };
+
 
 
 

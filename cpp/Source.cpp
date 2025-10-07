@@ -24,6 +24,46 @@ std::string Source::name() const {
   return std::string(_object.name);
 }
 
+/**
+ * Returns the apparent position of a source (if possible), or else an invalid position. After the
+ * return, you should probably check for validity:
+ *
+ * ```c
+ *   Apparent app = my_source.apparent(frame);
+ *   if(!app.is_valid()) {
+ *     // We could not obtain apparent coordinates for some reason.
+ *     ...
+ *   }
+ * ```
+ *
+ * There are multiple reasons why we might not be able to calculate valid apparent positions, such
+ * as:
+ *
+ *  - the frame itself may be invalid.
+ *  - the system parameter may be outside of the enum range
+ *  - For Solar system sources:
+ *     * SuperNOVAS may not have a planet or ephemeris provider function configured for the given
+ *       accuracy.
+ *     * The planet or ephemeris provider function does not have data for the source, or planet at
+ *       the orbital center (for orbital sources), for the requested time of observation.
+ *
+ * The apparent position of a source is where it appears to the observer on the celestial sphere.
+ * As such it is mainly a direction on sky, which is corrected for light-travel time (i.e. where
+ * the source was at the time light originated from the Solar-system body, or the differential
+ * light-travel time between the Solar-system barycenter and the observer location for sidereal
+ * sources).
+ *
+ * Unlike geometric positions, the apparent location is also corrected for the observer's motion
+ * (aberration), as well as gravitational deflection around the major Solar-system bodies.
+ *
+ * @param frame     observer frame, which defines the observer location and the time of
+ *                  observation, as well as the accuracy requirement.
+ * @param system    (optional) The coordinate reference system in which the apparent coordinates
+ *                  should be calculated (default is NOVAS_TOD for true-of-date coordinates).
+ * @return the apparent position of the source, or else an invalid position (with NAN values).
+ *
+ * @sa geometric()
+ */
 Apparent Source::apparent(const Frame& frame, enum novas_reference_system system) const {
   sky_pos pos = {};
 
@@ -32,9 +72,52 @@ Apparent Source::apparent(const Frame& frame, enum novas_reference_system system
     return Apparent::invalid();
   }
 
-  return Apparent(frame, pos, system);
+  return Apparent::from_sky_pos(pos, frame, system).value();
 }
 
+/**
+ * Returns the geometric position of a source (if possible), or else an invalid position. After
+ * the return, you should probably check for validity:
+ *
+ * ```c
+ *   Geometric geom = my_source.geometric(frame);
+ *   if(!geom.is_valid()) {
+ *     // We could not obtain geometric positions for some reason.
+ *     ...
+ *   }
+ * ```
+ * There are multiple reasons why we might not be able to calculate valid geometric positions,
+ * such as:
+ *
+ *  - the frame itself may be invalid.
+ *  - the system parameter may be outside of the enum range
+ *  - For Solar system sources:
+ *     * SuperNOVAS may not have a planet or ephemeris provider function configured for the given
+ *       accuracy.
+ *     * The planet or ephemeris provider function does not have data for the source, or planet at
+ *       the orbital center (for orbital sources), for the requested time of observation.
+ *
+ * A geometric position is the 3D location, relative to the observer location, where the light
+ * originated from the source before being detected by the observer at the time of observation. As
+ * such, geometric positions are necessarily antedated for light travel time (for Solar-system
+ * sources) or corrected for the differential light-travel between the Solar-system barycenter
+ * and the observer location (for sidereal sources).
+ *
+ * In other words, geometric positions are not the same as ephemeris positions for the equivalent
+ * time for Solar-system bodies. Rather, geometric positions match the ephemeris positions for
+ * an earlier time, when the observed light originated from the source.
+ *
+ *
+ *
+ * @param frame     observer frame, which defines the observer location and the time of
+ *                  observation, as well as the accuracy requirement.
+ * @param system    (optional) The coordinate reference system in which the apparent coordinates
+ *                  should be calculated (default is NOVAS_TOD for true-of-date coordinates).
+ * @return the geometric (3D) position and velocity of the source, or else an invalid position
+ *         (with NAN values).
+ *
+ * @sa apparent(), Frame::ephemeris_position(), Frame::ephemeris_velocity()
+ */
 Geometric Source::geometric(const Frame& frame, enum novas_reference_system system) const {
   double p[3] = {0.0}, v[3] = {0.0};
 
@@ -43,42 +126,58 @@ Geometric Source::geometric(const Frame& frame, enum novas_reference_system syst
     return Geometric::invalid();
   }
 
-  return Geometric(frame, system,
+  return Geometric(
           Position(p[0] * Unit::au, p[1] * Unit::au, p[2] * Unit::au),
-          Velocity(v[0] * Unit::au / Unit::day, v[1] * Unit::au / Unit::day, v[2] * Unit::au / Unit::day)
+          Velocity(v[0] * Unit::au / Unit::day, v[1] * Unit::au / Unit::day, v[2] * Unit::au / Unit::day),
+          frame, system
   );
 }
 
-static EOP no_eop = EOP(0, 0.0, 0.0, 0.0);
-
 static const EOP& extract_eop(const Frame &frame) {
-  if(!frame.observer().is_geodetic())
-    return no_eop;
-
   const GeodeticObserver& eobs = dynamic_cast<const GeodeticObserver&>(frame.observer());
   return eobs.eop();
 }
 
-Time Source::rises_above(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
-  if(ref)
-    el = Horizontal(0.0, el * Unit::deg).to_unrefracted(frame, ref, weather).elevation().deg();
-  Time t = Time(novas_rises_above(el / Unit::deg, &_object, frame._novas_frame(), NULL), extract_eop(frame));
-  novas_check_nan("Source::rises_above", t.jd());
-  return t;
+std::optional<Time> Source::rises_above(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
+  static const char *fn = "Source::rises_above";
+
+  if(frame.observer().is_geodetic()) {
+    if(ref)
+      el = Horizontal(0.0, el * Unit::deg).to_unrefracted(frame, ref, weather).elevation().deg();
+
+    Time t = Time(novas_check_nan(fn, novas_rises_above(el / Unit::deg, &_object, frame._novas_frame(), NULL)), extract_eop(frame));
+    return t;
+  }
+
+  novas_error(0, ENOSYS, fn, "Cannot calculate rises time for a non-geodetic observer.");
+  return std::nullopt;
 }
 
-Time Source::transits(const Frame &frame) const {
-  return Time(
+std::optional<Time> Source::transits(const Frame &frame) const {
+  static const char *fn = "Source::transits";
+
+  if(frame.observer().is_geodetic())
+    return Time(
           novas_check_nan("Source::transits", novas_transit_time(&_object, frame._novas_frame())),
           extract_eop(frame));
+
+  novas_error(0, ENOSYS, fn, "Cannot calculate transit time for a non-geodetic observer.");
+  return std::nullopt;
 }
 
-Time Source::sets_below(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
-  if(ref)
-    el = Horizontal(0.0, el * Unit::deg).to_unrefracted(frame, ref, weather).elevation().deg();
-  return Time(
+std::optional<Time> Source::sets_below(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
+  static const char *fn = "Source::sets_below";
+
+  if(frame.observer().is_geodetic()) {
+    if(ref)
+      el = Horizontal(0.0, el * Unit::deg).to_unrefracted(frame, ref, weather).elevation().deg();
+    return Time(
           novas_check_nan("Source::sets_below", novas_sets_below(el / Unit::deg, &_object, frame._novas_frame(), NULL)),
           extract_eop(frame));
+  }
+
+  novas_error(0, ENOSYS, fn, "Cannot calculate transit time for a non-geodetic observer.");
+  return std::nullopt;
 }
 
 Angle Source::sun_angle(const Frame& frame) const {
@@ -120,7 +219,7 @@ const cat_entry * CatalogSource::_cat_entry() const {
 }
 
 CatalogEntry CatalogSource::catalog_entry() const {
-  return CatalogEntry(_object.star, std::string(_object.star.starname));
+  return CatalogEntry(_object.star, _system);
 }
 
 
@@ -141,12 +240,23 @@ double SolarSystemSource::solar_power(const Time& time) const {
 
 Planet::Planet(enum novas_planet number) : SolarSystemSource() {
   if(make_planet(number, &_object) != 0)
-    novas_trace_invalid("Planet(number)");
+    novas_error(0, EINVAL, "Planet::for_novas_id", "no planet for NOVAS id number: %d", number);
+  else
+    _valid = true;
 }
 
-Planet::Planet(const std::string& name) : SolarSystemSource() {
-  if(make_planet(novas_planet_for_name(name.c_str()), &_object) != 0)
-    novas_trace_invalid("Planet(name)");
+std::optional<Planet> Planet::for_naif_id(long naif) {
+  enum novas_planet num = naif_to_novas_planet(naif);
+  if((int) num < 0)
+    return std::nullopt;
+  return Planet(num);
+}
+
+std::optional<Planet> Planet::for_name(const std::string& name) {
+  enum novas_planet num = novas_planet_for_name(name.c_str());
+  if((int) num < 0)
+    return std::nullopt;
+  return Planet(num);
 }
 
 enum novas_planet Planet::novas_id() const {
@@ -258,7 +368,7 @@ EphemerisSource::EphemerisSource(const std::string &name, long number) : SolarSy
 
 
 static bool is_valid_orbital_system(const novas_orbital_system *s) {
-  static const char *fn = "OrbitalSource()";
+  static const char *fn = "OrbitalSource::from:orbit";
 
   if(s->center < 0 || s->center >= NOVAS_PLANETS)
     return novas_error(0, EINVAL, fn, "orbital system center planet is invalid: %d", s->center);
@@ -274,7 +384,7 @@ static bool is_valid_orbital_system(const novas_orbital_system *s) {
 }
 
 static bool is_valid_orbit(const novas_orbital *o) {
-  static const char *fn = "OrbitalSource()";
+  static const char *fn = "OrbitalSource::from_orbit";
 
   if(!(o->a > 0.0))
     return novas_error(0, EINVAL, fn, "orbital system semi-major axis is invalid: %g AU", o->a);
@@ -300,11 +410,15 @@ static bool is_valid_orbit(const novas_orbital *o) {
 }
 
 
-OrbitalSource::OrbitalSource(const std::string& name, long number, const novas_orbital *orbit) : SolarSystemSource() {
-  if(make_orbital_object(name.c_str(), number, orbit, &_object) != 0)
-    novas_trace("OrbitalSource()", 0, 0);
-  else
-    _valid = is_valid_orbit(orbit);
+OrbitalSource::OrbitalSource(const std::string& name, long number, const novas_orbital orbit) : SolarSystemSource() {
+  _valid = true;
+}
+
+std::optional<OrbitalSource> OrbitalSource::from_orbit(const std::string& name, long number, const novas_orbital orbit) {
+  if(!is_valid_orbit(&orbit))
+    return std::nullopt;
+
+  return OrbitalSource(name, number, orbit);
 }
 
 Position OrbitalSource::orbital_position(const Time& time, enum novas_accuracy accuracy) const {

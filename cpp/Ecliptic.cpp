@@ -28,8 +28,8 @@ void Ecliptic::validate() {
   }
 }
 
-Ecliptic::Ecliptic(double longitude, double latitude, const std::string& system, double distance)
-: Spherical(longitude, latitude, distance), _sys(system) {
+Ecliptic::Ecliptic(double longitude_rad, double latitude_rad, const CatalogSystem &system, double distance_m)
+: Spherical(longitude_rad, latitude_rad, distance_m), _sys(system) {
   validate();
 }
 
@@ -50,7 +50,7 @@ const CatalogSystem& Ecliptic::system() const {
 Equatorial Ecliptic::as_equatorial() const {
   double ra = 0.0, dec = 0.0;
   ecl2equ(_sys.jd(), NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, _lon.deg(), _lat.deg(), &ra, &dec);
-  return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, _sys.name(), _distance.m());
+  return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, _sys, _distance.m());
 }
 
 Galactic Ecliptic::as_galactic() const {
@@ -61,7 +61,7 @@ const std::string Ecliptic::str(enum novas_separator_type separator, int decimal
   return "ECL  " + Spherical::str(separator, decimals) + "  " + _sys.str();
 }
 
-static const Ecliptic _invalid = Ecliptic(NAN, NAN, "none", NAN);
+static const Ecliptic _invalid = Ecliptic(NAN, NAN);
 const Ecliptic& Ecliptic::invalid() {
   return _invalid;
 }

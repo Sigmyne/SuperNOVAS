@@ -16,8 +16,8 @@ using namespace novas;
 
 namespace supernovas {
 
-Geometric::Geometric(const Frame& frame, enum novas_reference_system system, const Position& p, const Velocity& v)
-          : _frame(frame), _sys(system) , _pos(p), _vel(v) {
+Geometric::Geometric(const Position& p, const Velocity& v, const Frame& frame, enum novas_reference_system system)
+          : _frame(frame), _pos(p), _vel(v), _sys(system)  {
   static const char *fn = "Geometric()";
 
   if(! frame.is_valid())
@@ -64,17 +64,38 @@ Geometric Geometric::in_system(enum novas_reference_system system) const {
   if(system == _sys)
     return *this;
 
+  if(system == NOVAS_ITRS)
+    return in_itrs().value_or(Geometric::invalid());
+
   novas_transform T = {};
   double p[3] = {0.0}, v[3] = {0.0};
 
-  novas_make_transform(_frame._novas_frame(), _sys, system, &T);
+  if(novas_make_transform(_frame._novas_frame(), _sys, system, &T) != 0) {
+    novas_trace_invalid("Geometric::in_system");
+    return Geometric::invalid();
+  }
   novas_transform_vector(_pos._array(), &T, p);
   novas_transform_vector(_vel._array(), &T, v);
 
-  return Geometric(_frame, _sys, p, v);
+  return Geometric(p, v, _frame, _sys);
 }
 
-static const Geometric _invalid = Geometric(Frame::invalid(), (enum novas_reference_system) -1, Position::invalid(), Velocity::invalid());
+std::optional<Geometric> Geometric::in_itrs(const EOP& eop) const {
+  if(eop.is_valid()) {
+    Time t = Time(_frame.time().jd(), eop);
+    Geometric geom = Geometric(*this);
+    geom._frame = Frame(_frame.observer(), t, _frame.accuracy());
+    return geom.in_system(NOVAS_ITRS);
+  }
+
+  if(_frame.observer().is_geodetic())
+    return in_system(NOVAS_ITRS);
+
+  novas_error(0, EINVAL, "Geometric::in_itrs()", "Needs valid EOP for non geodetic observer frame");
+  return std::nullopt;
+}
+
+static const Geometric _invalid = Geometric(Position::invalid(), Velocity::invalid(), Frame::invalid(), (enum novas_reference_system) -1);
 const Geometric& Geometric::invalid() {
   return _invalid;
 }

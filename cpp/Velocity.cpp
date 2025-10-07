@@ -26,21 +26,6 @@ Velocity::Velocity(double x_ms, double y_ms, double z_ms)
   }
 }
 
-Velocity::Velocity(const double vel[3], double unit)
-: Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
-
-
-double Velocity::x_m_per_s() const {
-  return _component[0];
-}
-
-double Velocity::y_m_per_s() const {
-  return _component[1];
-}
-
-double Velocity::z_m_per_s() const {
-  return _component[2];
-}
 
 Speed Velocity::speed() const {
   return Speed(abs());
@@ -55,7 +40,7 @@ Position Velocity::travel(const Interval& t) const {
 }
 
 Position Velocity::travel(double seconds) const {
-  return Position(x_m_per_s() * seconds, y_m_per_s() * seconds, z_m_per_s() * seconds);
+  return Position(x() * seconds, y() * seconds, z() * seconds);
 }
 
 Velocity Velocity::inv() const {
@@ -74,15 +59,15 @@ static double v_add(double v1, double v2) {
 }
 
 std::string Velocity::str() const {
-  return "VEL ( " + Speed(x_m_per_s()).str() + ", " + Speed(y_m_per_s()).str() + ", " + Speed(z_m_per_s()).str() + ")";
+  return "VEL ( " + Speed(x()).str() + ", " + Speed(y()).str() + ", " + Speed(z()).str() + ")";
 }
 
 Velocity operator+(const Velocity& l, const Velocity& r) {
-  return Velocity(v_add(l.x_m_per_s(), r.x_m_per_s()), v_add(l.y_m_per_s(), r.y_m_per_s()), v_add(l.z_m_per_s(), r.z_m_per_s()));
+  return Velocity(v_add(l.x(), r.x()), v_add(l.y(), r.y()), v_add(l.z(), r.z()));
 }
 
 Velocity operator-(const Velocity& l, const Velocity& r) {
-  return Velocity(v_add(l.x_m_per_s(), -r.x_m_per_s()), v_add(l.y_m_per_s(), -r.y_m_per_s()), v_add(l.z_m_per_s(), -r.z_m_per_s()));
+  return Velocity(v_add(l.x(), -r.x()), v_add(l.y(), -r.y()), v_add(l.z(), -r.z()));
 }
 
 static const Velocity _nan = Velocity(NAN, NAN, NAN);

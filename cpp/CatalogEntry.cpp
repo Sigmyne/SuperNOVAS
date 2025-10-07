@@ -18,28 +18,18 @@ using namespace novas;
 namespace supernovas {
 
 
-CatalogEntry::CatalogEntry(const std::string &name, double RA, double Dec, const std::string& system)
-: _sys(system) {
+CatalogEntry::CatalogEntry(const std::string &name, const Equatorial& coords) : _sys(coords.system()) {
   static const char *fn = "CatalogEntry()";
 
-  if(novas_init_cat_entry(&_entry, name.c_str(), RA / Unit::hourAngle, Dec / Unit::deg) != 0)
+  if(novas_init_cat_entry(&_entry, name.c_str(), coords.ra().hours(), coords.dec().deg()) != 0)
     novas_trace_invalid(fn);
-  else if(isnan(RA))
-    novas_error(0, EINVAL, fn, "input RA is NAN");
-  else if(isnan(Dec))
-    novas_error(0, EINVAL, fn, "input Dec is NAN");
-  else if(fabs(Dec) > Constant::halfPi)
-    novas_error(0, EINVAL, fn, "input Dec is outside of [-pi:pi] range: %g", Dec);
-  else if(_sys.is_valid())
-    novas_error(0, EINVAL, fn, "input catalog system is invalid: %s", system);
+  else if(!coords.is_valid())
+    novas_error(0, EINVAL, fn, "input equatorial coordinates are invalid");
   else
     _valid = true;
 }
 
-CatalogEntry::CatalogEntry(const std::string &name, const Angle& RA, const Angle& Dec, const CatalogSystem& system)
-: CatalogEntry(name, RA.rad(), Dec.rad(), system.name()) {}
-
-CatalogEntry::CatalogEntry(cat_entry e, const std::string& system)
+CatalogEntry::CatalogEntry(cat_entry e, const CatalogSystem& system)
 : _entry(e), _sys(system) {
   static const char *fn = "CatalogEntry()";
 

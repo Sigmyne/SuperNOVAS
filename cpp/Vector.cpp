@@ -27,7 +27,22 @@ Vector::Vector(double x, double y, double z) {
     _valid = true;
 }
 
-Vector::Vector(const double v[3]) : Vector(v[0], v[1], v[2]) {}
+Vector::Vector(const double vel[3], double unit)
+: Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
+
+
+double Vector::x() const {
+  return _component[0];
+}
+
+double Vector::y() const {
+  return _component[1];
+}
+
+double Vector::z() const {
+  return _component[2];
+}
+
 
 bool Vector::is_equal(const Vector& v, double precision) const {
   double d2 = 0.0;

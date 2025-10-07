@@ -42,7 +42,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = SuperNOVAS
+PROJECT_NAME           = "SuperNOVAS C API"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -783,7 +783,7 @@ GENERATE_DEPRECATEDLIST= YES
 # sections, marked by \if <section_label> ... \endif and \cond <section_label>
 # ... \endcond blocks.
 
-ENABLED_SECTIONS       =
+ENABLED_SECTIONS       = C_API
 
 # The MAX_INITIALIZER_LINES tag determines the maximum number of lines that the
 # initial value of a variable or macro / define can have for it to appear in the
@@ -815,7 +815,7 @@ SHOW_FILES             = YES
 # Folder Tree View (if specified).
 # The default value is: YES.
 
-SHOW_NAMESPACES        = YES
+SHOW_NAMESPACES        = NO
 
 # The FILE_VERSION_FILTER tag can be used to specify a program or script that
 # Doxygen should invoke to get the current version for each file (typically from
@@ -1101,7 +1101,8 @@ EXCLUDE                = ../RELEASE-HOWTO.md \
                          ../README.md \
                          ../CODE_OF_CONDUCT.md \
                          NOVAS-legacy.md \
-                         README-undecorated.md
+                         README-undecorated.md \
+                         ../include/supernovas.h
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
@@ -2549,9 +2550,7 @@ INCLUDE_FILE_PATTERNS  =
 
 PREDEFINED             = BUILTIN_SOLSYS3=1 \
                          DEFAULT_SOLSYS=3 \
-                         BUILTIN_SOLSYS_EPHEM_READER=1 \
-                         NOVAS_NAMESPACE \
-                         __cplusplus=201703L
+                         BUILTIN_SOLSYS_EPHEM_READER=1
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The

@@ -40,7 +40,7 @@
  *
  * By default the CALCEPH plugin will use NAIF ID numbers for the lookup (for planets the
  * NOVAS IDs will be mapped to NAIF IDs automatically). You can enable name-based lookup by
- * setting the @ref object number to -1 (e.g. in `make_ephem_object()`), or else switch to
+ * setting the object's ID number to -1 (e.g. in `make_ephem_object()`), or else switch to
  * using CALCEPH IDs by calling `novas_calceph_use_ids(NOVAS_ID_CALCEPH)`.
  *
  * REFERENCES:
