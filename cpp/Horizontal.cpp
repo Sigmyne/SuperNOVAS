@@ -16,11 +16,10 @@ using namespace novas;
 
 namespace supernovas {
 
-int Horizontal::location_with_weather(const Frame& frame, const Weather& weather, on_surface *s) {
+static void use_weather(const Weather& weather, on_surface *s) {
   s->temperature = weather.temperature().celsius();
   s->pressure = weather.pressure().mbar();
   s->humidity = weather.humidity();
-  return 0;
 }
 
 
@@ -44,14 +43,14 @@ const Angle Horizontal::zenith_angle() const {
 
 Horizontal Horizontal::to_refracted(const Frame &frame, RefractionModel ref, const Weather& weather) {
   on_surface loc = {};
-  location_with_weather(frame, weather, &loc);
+  use_weather(weather, &loc);
   double del = ref ? ref(frame.time().jd(), &loc, NOVAS_REFRACT_ASTROMETRIC, elevation().deg()) : 0.0;
   return Horizontal(longitude().rad(), latitude().rad() + del * Unit::arcsec);
 }
 
 Horizontal Horizontal::to_unrefracted(const Frame &frame, RefractionModel ref, const Weather& weather) {
   on_surface loc = {};
-  location_with_weather(frame, weather, &loc);
+  use_weather(weather, &loc);
   double del = ref ? ref(frame.time().jd(), &loc, NOVAS_REFRACT_OBSERVED, elevation().deg()) : 0.0;
   return Horizontal(longitude().rad(), latitude().rad() - del * Unit::arcsec);
 }

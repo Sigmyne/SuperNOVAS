@@ -17,7 +17,7 @@ Galactic::Galactic(double longitude_rad, double latitude_rad, double distance_m)
 Galactic::Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance)
 : Spherical(longitude, latitude, distance) {}
 
-Galactic::Galactic(const Position& pos, const Distance& distance)
+Galactic::Galactic(const Position& pos)
 : Spherical(pos.as_spherical()) {}
 
 Equatorial Galactic::as_equatorial() const {

@@ -58,6 +58,15 @@ EquatorialSystem::EquatorialSystem(const std::string& name, double jd_tt)
 
 EquatorialSystem::EquatorialSystem(enum novas::novas_reference_system system, double jd_tt)
 : _name(""), _system(system), _jd(jd_tt) {
+  static const char *fn = "EquatorialSystem()";
+
+  if(system < 0 || system >= NOVAS_REFERENCE_SYSTEMS)
+    novas_error(0, EINVAL, fn, "invalid reference system: %d", system);
+  else if(isnan(jd_tt))
+    novas_error(0, EINVAL, fn, "input Julian date is NAN");
+  else
+    _valid = true;
+
   switch(system) {
     case NOVAS_GCRS:
     case NOVAS_ICRS:
@@ -153,7 +162,6 @@ std::string EquatorialSystem::str() const {
   return _name;
 }
 
-
 /**
  * Returns a new EquatorialSystem instance from a string, such as 'ICRS', 'J2000', 'FK5', B1950', or
  * 'HIP'; or else `{}`. It is generally preferable to use one of the other static
@@ -167,7 +175,15 @@ std::string EquatorialSystem::str() const {
  * @sa is_valid(), icrs(), j2000(), fk5(), fk4(), b1950(), b1900()
  */
 std::optional<EquatorialSystem> EquatorialSystem::from_string(const std::string& name) {
-  double jd = novas_epoch(name.c_str());
+  const char *s = name.c_str();
+
+  if(strncasecmp(s, "TOD ", 4))
+    return EquatorialSystem(NOVAS_TOD, novas_epoch(&s[4]));
+
+  if(strncasecmp(s, "CIRS ", 5))
+    return EquatorialSystem(NOVAS_CIRS, novas_epoch(&s[5]));
+
+  double jd = novas_epoch(s);
 
   if(isnan(jd)) {
     novas_error(0, EINVAL, "EquatorialSystem::from_string", "No catalog system matching: '%s'", name);

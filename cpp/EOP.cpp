@@ -78,8 +78,8 @@ EOP EOP::diurnal_corrected(const Time& time) const {
 std::string EOP::str() const {
   char sx[20] = {'\0'}, sy[20] = {'\0'}, st[20] = {'\0'};
   snprintf(st, sizeof(st), "dUT1 = %.6f s", _dut1);
-  snprintf(sx, sizeof(sx), "xp = %.3f mas", _xp);
-  snprintf(sy, sizeof(sy), "yp = %.3f mas", _yp);
+  snprintf(sx, sizeof(sx), "xp = %.3f mas", _xp.mas());
+  snprintf(sy, sizeof(sy), "yp = %.3f mas", _yp.mas());
   return "EOP ( leap = " + std::to_string(_leap) + ", "   + st + ", " + sx + ", " + sy + " )";
 }
 
