@@ -80,6 +80,9 @@ Geometric Geometric::in_system(enum novas_reference_system system) const {
 }
 
 std::optional<Geometric> Geometric::in_itrs(const EOP& eop) const {
+  if(_sys == NOVAS_ITRS)
+    return Geometric(*this);
+
   if(eop.is_valid()) {
     Time t = Time(_frame.time().jd(), eop);
     Geometric geom = Geometric(*this);

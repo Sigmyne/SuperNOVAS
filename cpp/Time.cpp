@@ -83,11 +83,8 @@ Time::Time(const std::string& timestamp, const EOP& eop, enum novas_timescale ti
 : Time(timestamp, eop.leap_seconds(), eop.dUT1(), timescale) {}
 
 Time::Time(const struct timespec t, int leap_seconds, double dUT1) {
-  static const char *fn = "Time()";
-
-  novas_set_unix_time(t.tv_sec, t.tv_nsec, leap_seconds, dUT1, &_ts);
-
   _valid = is_valid_parms(dUT1, NOVAS_UTC);
+  novas_set_unix_time(t.tv_sec, t.tv_nsec, leap_seconds, dUT1, &_ts);
 }
 
 Time::Time(const struct timespec t, const EOP& eop)

@@ -382,9 +382,7 @@ static bool is_valid_orbital_system(const novas_orbital_system *s) {
   return true;
 }
 
-static bool is_valid_orbit(const novas_orbital *o) {
-  static const char *fn = "OrbitalSource::from_orbit";
-
+static bool is_valid_orbit(const char *fn, const novas_orbital *o) {
   if(!(o->a > 0.0))
     return novas_error(0, EINVAL, fn, "orbital system semi-major axis is invalid: %g AU", o->a);
   if(!(o->e >= 0.0))
@@ -410,14 +408,23 @@ static bool is_valid_orbit(const novas_orbital *o) {
 
 
 OrbitalSource::OrbitalSource(const std::string& name, long number, const novas_orbital orbit) : SolarSystemSource() {
-  _valid = true;
+  static const char *fn = "OrbitalSource()";
+
+  if(make_orbital_object(name.c_str(), number, &orbit, &_object) != 0)
+    novas_trace_invalid(fn);
+  else if(!is_valid_orbit(fn, &orbit))
+    novas_trace_invalid(fn);
+  else
+    _valid = true;
 }
 
 std::optional<OrbitalSource> OrbitalSource::from_orbit(const std::string& name, long number, const novas_orbital orbit) {
-  if(!is_valid_orbit(&orbit))
+  OrbitalSource s = OrbitalSource(name, number, orbit);
+  if(!s.is_valid()) {
+    novas_trace_invalid("OrbitalSource::from_orbit");
     return std::nullopt;
-
-  return OrbitalSource(name, number, orbit);
+  }
+  return s;
 }
 
 Position OrbitalSource::orbital_position(const Time& time, enum novas_accuracy accuracy) const {

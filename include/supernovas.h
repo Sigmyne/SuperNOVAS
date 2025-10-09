@@ -769,7 +769,7 @@ public:
 
   Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
-  Galactic(const Position& pos, const Distance& distance = Distance::at_Gpc());
+  Galactic(const Position& pos);
 
   Equatorial as_equatorial() const;
 
@@ -1658,8 +1658,6 @@ public:
 class Horizontal : public Spherical {
 private:
   Horizontal();
-
-  int location_with_weather(const Frame& frame, const Weather& weather, novas::on_surface *s);
 
 public:
   Horizontal(double azimuth, double elevation, double distance = NOVAS_DEFAULT_DISTANCE);

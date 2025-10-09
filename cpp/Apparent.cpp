@@ -178,7 +178,8 @@ Apparent Apparent::in_system(enum novas_reference_system system) const {
 }
 
 std::optional<Apparent> Apparent::in_itrs(const EOP& eop) const {
-  novas_frame *f;
+  if(_sys == NOVAS_ITRS)
+    return Apparent(*this);
 
   Apparent app = Apparent(*this);
 
@@ -197,7 +198,12 @@ std::optional<Apparent> Apparent::in_itrs(const EOP& eop) const {
     return Apparent::invalid();
   }
 
-  novas_transform_sky_pos(&_pos, &T, &app._pos);
+  app._pos = _pos;
+  app._pos.ra = NAN;        // NO RA/Dec in Earth-fixed rotating systems...
+  app._pos.dec = NAN;
+
+  novas_transform_vector(_pos.r_hat, &T, app._pos.r_hat);
+
   return app;
 }
 
