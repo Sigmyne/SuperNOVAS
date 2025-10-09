@@ -25,39 +25,44 @@ void Equatorial::validate() {
 
   else if(!_sys.is_valid()) {
     _valid = false;
-    novas_error(0, EINVAL, fn, "Invalid catalog system: %s", _sys.str().c_str());
+    novas_error(0, EINVAL, fn, "Invalid equatorial system: %s", _sys.str().c_str());
   }
 }
 
 
-Equatorial::Equatorial(double ra_rad, double dec_rad, const CatalogSystem &system, double distance_m)
+Equatorial::Equatorial(double ra_rad, double dec_rad, const EquatorialSystem &system, double distance_m)
 : Spherical(ra_rad, dec_rad, distance_m), _sys(system) {
   validate();
 }
 
-Equatorial::Equatorial(const Angle& ra, const Angle& dec, const CatalogSystem &system, const Distance& distance)
+Equatorial::Equatorial(const Angle& ra, const Angle& dec, const EquatorialSystem &system, const Distance& distance)
 : Spherical(ra, dec, distance), _sys(system) {
   validate();
 }
 
-Equatorial::Equatorial(const Position& pos, const CatalogSystem& system)
+Equatorial::Equatorial(const Position& pos, const EquatorialSystem& system)
 : Spherical(pos.as_spherical()), _sys(system) {
   validate();
 }
 
-const CatalogSystem& Equatorial::system() const {
+
+const EquatorialSystem& Equatorial::system() const {
   return _sys;
 }
 
+enum novas::novas_reference_system Equatorial::reference_system() const {
+  return _sys.reference_system();
+}
+
 Equatorial Equatorial::at_jd(long jd_tt) const {
-  return to_system(CatalogSystem::at_julian_date(jd_tt));
+  return to_system(EquatorialSystem::at_julian_date(jd_tt));
 }
 
 Equatorial Equatorial::at_time(const Time& time) const {
   return at_jd(time.jd());
 }
 
-Equatorial Equatorial::to_system(const CatalogSystem& system) const {
+Equatorial Equatorial::to_system(const EquatorialSystem& system) const {
   if(_sys == system)
     return Equatorial(*this);
   if(_sys.is_icrs() && system.is_icrs())
@@ -66,14 +71,41 @@ Equatorial Equatorial::to_system(const CatalogSystem& system) const {
   double p[3] = {'\0'};
   radec2vector(ra().hours(), dec().deg(), 1.0, p);
 
-  if(_sys.is_icrs())
-    gcrs_to_j2000(p, p);
+  // Convert to ICRS...
+  switch(_sys.reference_system()) {
+    case NOVAS_GCRS:
+    case NOVAS_ICRS:
+      break;
+    case NOVAS_MOD:
+      mod_to_gcrs(_sys.jd(), p, p);
+      break;
+    case NOVAS_CIRS:
+      cirs_to_gcrs(_sys.jd(), NOVAS_FULL_ACCURACY, p, p);
+      break;
+    case NOVAS_TOD:
+      tod_to_gcrs(_sys.jd(), NOVAS_FULL_ACCURACY, p, p);
+      break;
+    default:
+      p[0] = p[1] = p[2] = NAN;
+  }
 
-  if(_sys.jd() != system.jd())
-    precession(_sys.jd(), p, system.jd(), p);
-
-  if(system.is_icrs())
-    j2000_to_gcrs(p, p);
+  // Convert from ICRS to output system...
+  switch(system.reference_system()) {
+    case NOVAS_GCRS:
+    case NOVAS_ICRS:
+      break;
+    case NOVAS_MOD:
+      gcrs_to_mod(_sys.jd(), p, p);
+      break;
+    case NOVAS_TOD:
+      gcrs_to_tod(_sys.jd(), NOVAS_FULL_ACCURACY, p, p);
+      break;
+    case NOVAS_CIRS:
+      gcrs_to_cirs(_sys.jd(), NOVAS_FULL_ACCURACY, p, p);
+      break;
+    default:
+      p[0] = p[1] = p[2] = NAN;
+  }
 
   double r = 0.0, d = 0.0;
   vector2radec(p, &r, &d);
@@ -81,7 +113,7 @@ Equatorial Equatorial::to_system(const CatalogSystem& system) const {
 }
 
 Equatorial Equatorial::to_icrs() const {
-  return to_system(CatalogSystem::icrs());
+  return to_system(EquatorialSystem::icrs());
 }
 
 TimeAngle Equatorial::ra() const {
