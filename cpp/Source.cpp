@@ -418,7 +418,10 @@ OrbitalSource::OrbitalSource(const std::string& name, long number, const novas_o
     _valid = true;
 }
 
-std::optional<OrbitalSource> OrbitalSource::from_orbit(const std::string& name, long number, const novas_orbital orbit) {
+OrbitalSource::OrbitalSource(const std::string& name, long number, const Orbital& orbit)
+: OrbitalSource(name, number, *orbit._novas_orbital()) {}
+
+std::optional<OrbitalSource> OrbitalSource::from_novas_orbit(const std::string& name, long number, const novas_orbital orbit) {
   OrbitalSource s = OrbitalSource(name, number, orbit);
   if(!s.is_valid()) {
     novas_trace_invalid("OrbitalSource::from_orbit");
