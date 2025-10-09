@@ -236,6 +236,8 @@ class EquatorialSystem : public Validating {
 private:
   EquatorialSystem(const std::string& name, double jd_tt);
 
+  EquatorialSystem(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
+
 protected:
   std::string _name;    ///< name of the catalog system, e.g. 'ICRS' or 'J2000'
   enum novas::novas_reference_system _system; ///< Coordinate reference system.
@@ -243,9 +245,6 @@ protected:
                         ///< matches the system
 
 public:
-  EquatorialSystem(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
-
-  EquatorialSystem(enum novas::novas_reference_system system, const Time& time);
 
   bool operator==(const EquatorialSystem& system) const;
 
@@ -267,9 +266,15 @@ public:
 
   static std::optional<EquatorialSystem> from_string(const std::string& name);
 
-  static EquatorialSystem at_julian_date(double jd_tt);
+  static std::optional<EquatorialSystem> for_reference_system(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
 
-  static EquatorialSystem at_besselian_epoch(double year);
+  static EquatorialSystem mod(double jd_tt);
+
+  static EquatorialSystem mod_at_besselian_epoch(double year);
+
+  static EquatorialSystem tod(double jd_tt);
+
+  static EquatorialSystem cirs(double jd_tt);
 
   static const EquatorialSystem& icrs();
 
@@ -699,13 +704,21 @@ public:
 
   enum novas::novas_reference_system reference_system() const;
 
-  Equatorial at_jd(long jd_tt) const;
-
-  Equatorial at_time(const Time& time) const;
-
   Equatorial to_system(const EquatorialSystem& system) const;
 
   Equatorial to_icrs() const;
+
+  Equatorial to_j2000() const;
+
+  Equatorial to_hip() const;
+
+  Equatorial to_mod(double jd_tt) const;
+
+  Equatorial to_mod_at_besselian_epoch(double year) const;
+
+  Equatorial to_tod(double jd_tt) const;
+
+  Equatorial to_cirs(double jd_tt) const;
 
   Ecliptic as_ecliptic() const;
 
@@ -725,34 +738,51 @@ public:
  */
 class Ecliptic : public Spherical {
 private:
-  EquatorialSystem _sys;     ///< stored catalog system
+  enum novas::novas_equator_type _equator;
+  double _jd;
 
   void validate();
 
+  Ecliptic(double longitude_rad, double latitude_rad, enum novas::novas_equator_type equator, double jd_tt = NOVAS_JD_J2000, double distance_m = NOVAS_DEFAULT_DISTANCE);
+
 public:
-  Ecliptic(double longitude_rad, double latitude_rad, const EquatorialSystem &system = EquatorialSystem::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
+  Ecliptic(const Position& pos, enum novas::novas_equator_type equator, double jd_tt = NOVAS_JD_J2000);
 
-  Ecliptic(const Angle& ra, const Angle& dec, const EquatorialSystem &system = EquatorialSystem::icrs(), const Distance& distance = Distance::at_Gpc());
+  enum novas::novas_equator_type equator() const;
 
-  Ecliptic(const Position& pos, const EquatorialSystem& system = EquatorialSystem::icrs());
-
-  const EquatorialSystem& system() const;
-
-  Ecliptic at_jd(long jd_tt) const;
-
-  Ecliptic at_time(const Time& time) const;
-
-  Ecliptic to_system(const EquatorialSystem& system) const;
-
-  enum novas::novas_reference_system reference_system() const;
+  double jd() const;
 
   Ecliptic to_icrs() const;
+
+  Ecliptic to_j2000() const;
+
+  Ecliptic to_hip() const;
+
+  Ecliptic to_mod(double jd_tt) const;
+
+  Ecliptic to_tod(double jd_tt) const;
 
   Equatorial as_equatorial() const;
 
   Galactic as_galactic() const;
 
   const std::string str(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
+
+  static Ecliptic icrs(double longitude_rad, double latitude_rad, double distance = NOVAS_DEFAULT_DISTANCE);
+
+  static Ecliptic icrs(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
+
+  static Ecliptic j2000(double longitude_rad, double latitude_rad, double distance = NOVAS_DEFAULT_DISTANCE);
+
+  static Ecliptic j2000(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
+
+  static Ecliptic mod(double jd_tt, double longitude_rad, double latitude_rad, double distance = NOVAS_DEFAULT_DISTANCE);
+
+  static Ecliptic mod(const Time& time, const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
+
+  static Ecliptic tod(double jd_tt, double longitude_rad, double latitude_rad, double distance = NOVAS_DEFAULT_DISTANCE);
+
+  static Ecliptic tod(const Time& time, const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
   static const Ecliptic& invalid();
 };
@@ -1542,11 +1572,10 @@ private:
 
   Apparent(novas::sky_pos p, const Frame& frame, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
-public:
   Apparent(double ra_rad, double dec_rad, const Frame& frame, double rv_ms = 0.0, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
-  Apparent(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
+public:
   const novas::sky_pos *_sky_pos() const;
 
   const Frame& frame() const;
@@ -1567,21 +1596,13 @@ public:
 
   std::optional<Horizontal> horizontal() const;
 
-  Apparent in_system(enum novas::novas_reference_system system) const;
+  static Apparent cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms = 0.0);
 
-  Apparent in_icrs() const { return in_system(novas::NOVAS_ICRS); }
+  static Apparent cirs(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv);
 
-  Apparent in_j2000() const { return in_system(novas::NOVAS_J2000); }
+  static Apparent tod(double ra_rad, double dec_rad, const Frame& frame, double rv_ms = 0.0);
 
-  Apparent in_mod() const { return in_system(novas::NOVAS_MOD); }
-
-  Apparent in_tod() const { return in_system(novas::NOVAS_TOD); }
-
-  Apparent in_cirs() const { return in_system(novas::NOVAS_CIRS); }
-
-  Apparent in_tirs() const { return in_system(novas::NOVAS_TIRS); }
-
-  std::optional<Apparent> in_itrs(const EOP& eop = EOP::invalid()) const;
+  static Apparent tod(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv);
 
   static std::optional<Apparent> from_sky_pos(novas::sky_pos p, const Frame& frame,
           enum novas::novas_reference_system system = novas::NOVAS_TOD);

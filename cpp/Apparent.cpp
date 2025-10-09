@@ -89,8 +89,21 @@ Apparent::Apparent(double ra_rad, double dec_rad, const Frame& frame, double rv_
   radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
 }
 
-Apparent::Apparent(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv, enum novas_reference_system system)
-: Apparent(ra.rad(), dec.rad(), frame, rv.m_per_s(), system) {}
+Apparent Apparent::cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
+  return Apparent(ra_rad, dec_rad, frame, rv_ms, NOVAS_CIRS);
+}
+
+Apparent Apparent::cirs(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv) {
+  return Apparent(ra.rad(), dec.rad(), frame, rv.m_per_s(), NOVAS_CIRS);
+}
+
+Apparent Apparent::tod(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
+  return Apparent(ra_rad, dec_rad, frame, rv_ms, NOVAS_TOD);
+}
+
+Apparent Apparent::tod(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv) {
+  return Apparent(ra.rad(), dec.rad(), frame, rv.m_per_s(), NOVAS_TOD);
+}
 
 const Frame& Apparent::frame() const {
   return _frame;
@@ -117,11 +130,8 @@ Distance Apparent::distance() const {
 }
 
 Equatorial Apparent::equatorial() const {
-  // For Earth-fixed reference systems, return the True-of-Date equatorial
-  if(_sys == NOVAS_TIRS || _sys == NOVAS_ITRS)
-    return in_system(NOVAS_TOD).equatorial();
-
-  return Equatorial(_pos.ra * Unit::hourAngle, _pos.dec * Unit::deg, EquatorialSystem::at_julian_date(_frame.time().jd()), _pos.dis * Unit::au);
+  return Equatorial(_pos.ra * Unit::hourAngle, _pos.dec * Unit::deg,
+          EquatorialSystem::for_reference_system(_sys, _frame.time().jd()).value(), _pos.dis * Unit::au);
 }
 
 Ecliptic Apparent::ecliptic() const {
@@ -153,60 +163,6 @@ std::optional<Horizontal> Apparent::horizontal() const {
   return Horizontal(az * Unit::deg, el * Unit::deg, _pos.dis * Unit::au);
 }
 
-Apparent Apparent::in_system(enum novas_reference_system system) const {
-  if(system == _sys)
-    return *this;
-
-  if(system == NOVAS_ITRS)
-    in_itrs().value_or(Apparent::invalid());
-
-  Apparent app = Apparent(_frame, system);
-  novas_transform T = {};
-
-  if(novas_make_transform(_frame._novas_frame(), _sys, system, &T) != 0) {
-    novas_trace_invalid("Apparent::in_system");
-    return Apparent::invalid();
-  }
-  novas_transform_sky_pos(&_pos, &T, &app._pos);
-
-  if(system == NOVAS_ITRS) {
-    app._pos.ra = NAN;        // NO RA/Dec in Earth-fixed rotating systems...
-    app._pos.dec = NAN;
-  }
-
-  return app;
-}
-
-std::optional<Apparent> Apparent::in_itrs(const EOP& eop) const {
-  if(_sys == NOVAS_ITRS)
-    return Apparent(*this);
-
-  Apparent app = Apparent(*this);
-
-  if(eop.is_valid()) {
-    Time t = Time(_frame.time().jd(), eop);
-    app._frame = Frame(_frame.observer(), t, _frame.accuracy());
-  }
-  else if(!_frame.observer().is_geodetic()) {
-    novas_error(0, EAGAIN, "Apparent::in_itrs", "Not a geodetic observer frame, you must provide EOP.");
-    return std::nullopt;
-  }
-
-  novas_transform T = {};
-  if(novas_make_transform(_frame._novas_frame(), _sys, NOVAS_ITRS, &T) != 0) {
-    novas_trace_invalid("Apparent::in_itrs");
-    return Apparent::invalid();
-  }
-
-  app._pos = _pos;
-  app._pos.ra = NAN;        // NO RA/Dec in Earth-fixed rotating systems...
-  app._pos.dec = NAN;
-
-  novas_transform_vector(_pos.r_hat, &T, app._pos.r_hat);
-
-  return app;
-}
-
 std::optional<Apparent> Apparent::from_sky_pos(sky_pos pos, const Frame& frame, enum novas_reference_system system) {
   if(!is_valid_sky_pos("Apparent::from_sky_pos", &pos))
     return std::nullopt;
@@ -214,7 +170,7 @@ std::optional<Apparent> Apparent::from_sky_pos(sky_pos pos, const Frame& frame, 
   return Apparent(pos, frame, system);
 }
 
-static const Apparent _invalid = Apparent(NAN, NAN, Frame::invalid(), NAN, (enum novas_reference_system) -1);
+static const Apparent _invalid = Apparent::tod(NAN, NAN, Frame::invalid(), NAN);
 const Apparent& Apparent::invalid() {
   return _invalid;
 }

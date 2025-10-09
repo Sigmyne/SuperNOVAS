@@ -54,14 +54,6 @@ enum novas::novas_reference_system Equatorial::reference_system() const {
   return _sys.reference_system();
 }
 
-Equatorial Equatorial::at_jd(long jd_tt) const {
-  return to_system(EquatorialSystem::at_julian_date(jd_tt));
-}
-
-Equatorial Equatorial::at_time(const Time& time) const {
-  return at_jd(time.jd());
-}
-
 Equatorial Equatorial::to_system(const EquatorialSystem& system) const {
   if(_sys == system)
     return Equatorial(*this);
@@ -116,6 +108,30 @@ Equatorial Equatorial::to_icrs() const {
   return to_system(EquatorialSystem::icrs());
 }
 
+Equatorial Equatorial::to_j2000() const {
+  return to_system(EquatorialSystem::j2000());
+}
+
+Equatorial Equatorial::to_hip() const {
+  return to_system(EquatorialSystem::mod(NOVAS_JD_HIP));
+}
+
+Equatorial Equatorial::to_mod(double jd_tt) const {
+  return to_system(EquatorialSystem::mod(jd_tt));
+}
+
+Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
+  return to_system(EquatorialSystem::mod_at_besselian_epoch(year));
+}
+
+Equatorial Equatorial::to_tod(double jd_tt) const {
+  return to_system(EquatorialSystem::tod(jd_tt));
+}
+
+Equatorial Equatorial::to_cirs(double jd_tt) const {
+  return to_system(EquatorialSystem::cirs(jd_tt));
+}
+
 TimeAngle Equatorial::ra() const {
   return TimeAngle(longitude().rad());
 }
@@ -126,8 +142,30 @@ const Angle& Equatorial::dec() const {
 
 Ecliptic Equatorial::as_ecliptic() const {
   double longitude, latitude;
+  enum novas_reference_system refsys = _sys.reference_system();
+
+  if(refsys == NOVAS_CIRS)
+    return to_tod(_jd).as_ecliptic();
+
   equ2ecl(_sys.jd(), NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, ra().hours(), dec().deg(), &longitude, &latitude);
-  return Ecliptic(longitude * Unit::deg, latitude * Unit::deg, _sys, _distance.m());
+
+  longitude *= Unit::deg;
+  latitude *= Unit::deg;
+
+  switch(refsys) {
+    case NOVAS_GCRS:
+    case NOVAS_ICRS:
+      return Ecliptic::icrs(longitude, latitude, _distance.m());
+    case NOVAS_J2000:
+      return Ecliptic::j2000(longitude, latitude, _distance.m());
+    case NOVAS_MOD:
+      return Ecliptic::mod(_sys.jd(), longitude, latitude, _distance.m());
+    case NOVAS_TOD:
+      return Ecliptic::tod(_sys.jd(), longitude, latitude, _distance.m());
+    default:
+      // TODO should not happen
+      return Ecliptic::invalid();
+  }
 }
 
 Galactic Equatorial::as_galactic() const {

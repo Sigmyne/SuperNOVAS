@@ -26,10 +26,10 @@ static double _epoch_for(double jd) {
 
 static std::string _name_for(const char *base, double year) {
   char s[20] = {'\0'};
-  snprintf(s, sizeof(s), "%s%.3f", base, year);
+  int n = snprintf(s, sizeof(s), "%s%.3f", base, year);
 
   // Remove trailing zeroes and decimal point.
-  for(int i = strlen(s); --i >= 0; ) {
+  for(int i = n; --i >= 0; ) {
     if(s[i] == '.') {
       s[i] = '\0';
       break;
@@ -49,6 +49,9 @@ EquatorialSystem::EquatorialSystem(const std::string& name, double jd_tt)
   else
     _valid = true;
 
+  if(jd_tt == NOVAS_JD_J2000)
+    _system = NOVAS_J2000;
+
   if(name.length() < 4) return;
   if(strcasecmp(&name.c_str()[1], "CRS") != 0) return;
   if(strcasecmp(name.c_str(), NOVAS_SYSTEM_FK6) != 0) return;
@@ -59,13 +62,6 @@ EquatorialSystem::EquatorialSystem(const std::string& name, double jd_tt)
 EquatorialSystem::EquatorialSystem(enum novas::novas_reference_system system, double jd_tt)
 : _name(""), _system(system), _jd(jd_tt) {
   static const char *fn = "EquatorialSystem()";
-
-  if(system < 0 || system >= NOVAS_REFERENCE_SYSTEMS)
-    novas_error(0, EINVAL, fn, "invalid reference system: %d", system);
-  else if(isnan(jd_tt))
-    novas_error(0, EINVAL, fn, "input Julian date is NAN");
-  else
-    _valid = true;
 
   switch(system) {
     case NOVAS_GCRS:
@@ -88,15 +84,15 @@ EquatorialSystem::EquatorialSystem(enum novas::novas_reference_system system, do
       _name =_name_for("CIRS J", epoch());
       break;
     default:
-      novas_error(0, EINVAL, "EquatorialSystem()", "Earth fixed reference system %d is not an RA/Dec equatorial system", system);
-      _name = "non-RA/Dec";
-      _valid = false;
+      novas_error(0, EINVAL, fn, "invalid reference system: %d", system);
+      return;
   }
+
+  if(isnan(jd_tt))
+    novas_error(0, EINVAL, fn, "input Julian date is NAN");
+  else
+    _valid = true;
 }
-
-EquatorialSystem::EquatorialSystem(enum novas::novas_reference_system system, const Time& time)
-: EquatorialSystem(system, time.jd()) {}
-
 
 bool EquatorialSystem::operator==(const EquatorialSystem& system) const {
   return _system == system._system && _name == system._name && _jd == system._jd;
@@ -193,6 +189,30 @@ std::optional<EquatorialSystem> EquatorialSystem::from_string(const std::string&
   return EquatorialSystem(name, jd);
 }
 
+std::optional<EquatorialSystem> EquatorialSystem::for_reference_system(enum novas::novas_reference_system system, double jd_tt) {
+  static const char *fn = "Equatorial::for_reference_system";
+
+  if(system == NOVAS_GCRS || system == NOVAS_ICRS || system == NOVAS_J2000) {
+    jd_tt = NOVAS_JD_J2000;
+  }
+  else if(isnan(jd_tt)) {
+    novas_error(0, EINVAL, fn, "input JD is NAN");
+    return std::nullopt;
+  }
+  else if(system < 0 || system >= NOVAS_REFERENCE_SYSTEMS) {
+    novas_error(0, EINVAL, fn, "invalid reference system: %d", system);
+    return std::nullopt;
+  }
+
+  switch(system) {
+    case NOVAS_TIRS:
+    case NOVAS_ITRS:
+      return std::nullopt;
+    default:
+      return EquatorialSystem(system, jd_tt);
+  }
+}
+
 /**
  * Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch. MOD coordinates
  * take into account Earth's slow precession but not nutation. Julian-date based MODs were
@@ -204,8 +224,8 @@ std::optional<EquatorialSystem> EquatorialSystem::from_string(const std::string&
  *
  * @sa at_besselial_epoch(), j2000(), hip()
  */
-EquatorialSystem EquatorialSystem::at_julian_date(double jd_tt) {
-  return EquatorialSystem(_name_for("J", 2000.0 + (jd_tt - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS), jd_tt);
+EquatorialSystem EquatorialSystem::mod(double jd_tt) {
+  return EquatorialSystem::for_reference_system(NOVAS_MOD, jd_tt).value();
 }
 
 /**
@@ -220,11 +240,20 @@ EquatorialSystem EquatorialSystem::at_julian_date(double jd_tt) {
  *
  * @sa at_julian_date(), b1900(), b1950()
  */
-EquatorialSystem EquatorialSystem::at_besselian_epoch(double year) {
+EquatorialSystem EquatorialSystem::mod_at_besselian_epoch(double year) {
   return EquatorialSystem(_name_for("B", year), NOVAS_JD_B1950 + (year - 1950.0) * NOVAS_TROPICAL_YEAR_DAYS);
 }
 
-static const EquatorialSystem _icrs = EquatorialSystem(NOVAS_ICRS);
+EquatorialSystem EquatorialSystem::tod(double jd_tt) {
+  return EquatorialSystem::for_reference_system(NOVAS_TOD, jd_tt).value();
+}
+
+EquatorialSystem EquatorialSystem::cirs(double jd_tt) {
+  return EquatorialSystem::for_reference_system(NOVAS_CIRS, jd_tt).value();
+}
+
+
+static const EquatorialSystem _icrs = EquatorialSystem::icrs();
 
 /**
  * International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.
@@ -245,7 +274,7 @@ const EquatorialSystem& EquatorialSystem::icrs() {
   return _icrs;
 }
 
-static const EquatorialSystem _j2000 = EquatorialSystem(NOVAS_MOD, NOVAS_JD_J2000);
+static const EquatorialSystem _j2000 = EquatorialSystem::j2000();
 
 /**
  * The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000). This was a
@@ -262,7 +291,7 @@ const EquatorialSystem& EquatorialSystem::j2000() {
 }
 
 
-static const EquatorialSystem _hip = EquatorialSystem::from_string("HIP").value();
+static const EquatorialSystem _hip = EquatorialSystem::mod(NOVAS_JD_HIP);
 
 /**
  * The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal
@@ -278,7 +307,7 @@ const EquatorialSystem& EquatorialSystem::hip() {
   return _hip;
 }
 
-static const EquatorialSystem _b1950 = EquatorialSystem::from_string("B1950").value();
+static const EquatorialSystem _b1950 = EquatorialSystem::b1950();
 
 /**
  * The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950). This was a
@@ -295,7 +324,7 @@ const EquatorialSystem& EquatorialSystem::b1950() {
   return _b1950;
 }
 
-static const EquatorialSystem _b1900 = EquatorialSystem::from_string("B1900").value();
+static const EquatorialSystem _b1900 = EquatorialSystem::b1900();
 
 /**
  * The system of the dynamical equator at the B1900 epoch (0 UTC, 1 January 1900). This was a
