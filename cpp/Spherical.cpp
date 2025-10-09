@@ -17,8 +17,6 @@ using namespace novas;
 
 namespace supernovas {
 
-Spherical::Spherical(): Spherical(0.0, 0.0) {}
-
 
 Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_m)
 : _lon(longitude_rad), _lat(latitude_rad), _distance(distance_m) {

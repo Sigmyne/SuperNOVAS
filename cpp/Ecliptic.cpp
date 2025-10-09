@@ -81,18 +81,18 @@ Ecliptic Ecliptic::to_tod(double jd_tt) const {
 Equatorial Ecliptic::as_equatorial() const {
   double ra = 0.0, dec = 0.0;
 
-  ecl2equ(_jd, _equator, NOVAS_FULL_ACCURACY, _lon.deg(), _lat.deg(), &ra, &dec);
+  ecl2equ(_jd, _equator, NOVAS_FULL_ACCURACY, longitude().deg(), latitude().deg(), &ra, &dec);
 
   switch(_equator) {
     case NOVAS_GCRS_EQUATOR:
-      return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, EquatorialSystem::icrs(), _distance.m());
+      return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, EquatorialSystem::icrs(), distance().m());
     case NOVAS_MEAN_EQUATOR:
       if(_jd == NOVAS_JD_J2000)
-        return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, EquatorialSystem::j2000(), _distance.m());
+        return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, EquatorialSystem::j2000(), distance().m());
       else
-        return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, EquatorialSystem::mod(_jd), _distance.m());
+        return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, EquatorialSystem::mod(_jd), distance().m());
     case NOVAS_TRUE_EQUATOR:
-      return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, EquatorialSystem::tod(_jd), _distance.m());
+      return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, EquatorialSystem::tod(_jd), distance().m());
   }
 
   return Equatorial::invalid();
