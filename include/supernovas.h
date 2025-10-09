@@ -35,7 +35,7 @@ class Validating;
 class Vector;
 class   Position;
 class   Velocity;
-class CatalogSystem;
+class EquatorialSystem;
 class Distance;
 class Interval;
 class Angle;
@@ -226,45 +226,60 @@ public:
 };
 
 /**
- * Celestial coordinate reference system. This class does not include Earth-rotating systems, such
- * as TIRS, PER, or ITRS.
+ * Equatorial (RA/Dec) coordinate system. This class does not include the Earth-rotating systems
+ * TIRS and ITRS.
  *
  * @sa CatalogEntry, Equatorial, Ecliptic, Apparent, Geometric
  * @ingroup source
  */
-class CatalogSystem : public Validating {
+class EquatorialSystem : public Validating {
 private:
-  CatalogSystem(const std::string& name, double jd_tt);
+  EquatorialSystem(const std::string& name, double jd_tt);
 
 protected:
   std::string _name;    ///< name of the catalog system, e.g. 'ICRS' or 'J2000'
+  enum novas::novas_reference_system _system; ///< Coordinate reference system.
   double _jd;           ///< [day] Julian date of the dynamical equator (or closest to it) that
                         ///< matches the system
 
 public:
+  EquatorialSystem(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
+
+  EquatorialSystem(enum novas::novas_reference_system system, const Time& time);
+
+  bool operator==(const EquatorialSystem& system) const;
+
   double jd() const;
 
   double epoch() const;
 
   const std::string& name() const;
 
+  enum novas::novas_reference_system reference_system() const;
+
+  bool is_icrs() const;
+
+  bool is_mod() const;
+
+  bool is_true() const;
+
   std::string str() const;
 
-  static std::optional<CatalogSystem> from_string(const std::string& name);
+  static std::optional<EquatorialSystem> from_string(const std::string& name);
 
-  static CatalogSystem at_julian_date(double jd_tt);
+  static EquatorialSystem at_julian_date(double jd_tt);
 
-  static CatalogSystem at_besselian_epoch(double year);
+  static EquatorialSystem at_besselian_epoch(double year);
 
-  static const CatalogSystem& icrs();
+  static const EquatorialSystem& icrs();
 
-  static const CatalogSystem& j2000();
+  static const EquatorialSystem& j2000();
 
-  static const CatalogSystem& hip();
+  static const EquatorialSystem& hip();
 
-  static const CatalogSystem& b1950();
+  static const EquatorialSystem& b1950();
 
-  static const CatalogSystem& b1900();
+  static const EquatorialSystem& b1900();
 };
 
 
@@ -664,22 +679,33 @@ public:
  */
 class Equatorial : public Spherical {
 private:
-  CatalogSystem _sys;     ///< stored catalog system
+  EquatorialSystem _sys;
+  double _jd;
 
   void validate();
 
 public:
-  Equatorial(double ra_rad, double dec_rad, const CatalogSystem &system = CatalogSystem::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
+  Equatorial(double ra_rad, double dec_rad, const EquatorialSystem &system = EquatorialSystem::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
 
-  Equatorial(const Angle& ra, const Angle& dec, const CatalogSystem& system = CatalogSystem::icrs(), const Distance& distance = Distance::at_Gpc());
+  Equatorial(const Angle& ra, const Angle& dec, const EquatorialSystem& system = EquatorialSystem::icrs(), const Distance& distance = Distance::at_Gpc());
 
-  Equatorial(const Position& pos, const CatalogSystem& system = CatalogSystem::icrs());
+  Equatorial(const Position& pos, const EquatorialSystem& system = EquatorialSystem::icrs());
 
   TimeAngle ra() const;
 
   const Angle& dec() const;
 
-  const CatalogSystem& system() const;
+  const EquatorialSystem& system() const;
+
+  enum novas::novas_reference_system reference_system() const;
+
+  Equatorial at_jd(long jd_tt) const;
+
+  Equatorial at_time(const Time& time) const;
+
+  Equatorial to_system(const EquatorialSystem& system) const;
+
+  Equatorial to_icrs() const;
 
   Ecliptic as_ecliptic() const;
 
@@ -693,24 +719,34 @@ public:
 /**
  * Ecliptic coordinates (_l_, _b_ or &lambda;, &beta;) and distance, representing the direction on
  * the sky, or location in space, for a particular type of equatorial coordinate reference system,
- * relatibe to the ecliptic and equinox of that system
+ * relative to the ecliptic and equinox of that system.
  *
  * @ingroup nonequatorial
  */
 class Ecliptic : public Spherical {
 private:
-  CatalogSystem _sys;     ///< stored catalog system
+  EquatorialSystem _sys;     ///< stored catalog system
 
   void validate();
 
 public:
-  Ecliptic(double longitude_rad, double latitude_rad, const CatalogSystem &system = CatalogSystem::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
+  Ecliptic(double longitude_rad, double latitude_rad, const EquatorialSystem &system = EquatorialSystem::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
 
-  Ecliptic(const Angle& ra, const Angle& dec, const CatalogSystem &system = CatalogSystem::icrs(), const Distance& distance = Distance::at_Gpc());
+  Ecliptic(const Angle& ra, const Angle& dec, const EquatorialSystem &system = EquatorialSystem::icrs(), const Distance& distance = Distance::at_Gpc());
 
-  Ecliptic(const Position& pos, const CatalogSystem& system = CatalogSystem::icrs());
+  Ecliptic(const Position& pos, const EquatorialSystem& system = EquatorialSystem::icrs());
 
-  const CatalogSystem& system() const;
+  const EquatorialSystem& system() const;
+
+  Ecliptic at_jd(long jd_tt) const;
+
+  Ecliptic at_time(const Time& time) const;
+
+  Ecliptic to_system(const EquatorialSystem& system) const;
+
+  enum novas::novas_reference_system reference_system() const;
+
+  Ecliptic to_icrs() const;
 
   Equatorial as_equatorial() const;
 
@@ -722,8 +758,8 @@ public:
 };
 
 /**
- * Galactic coordinates (_l_, _b_) and distance, representing the direction on the sky, or location
- * in space relative to the galactic plane and the nominal Galactic center location.
+ * Galactic coordinates (_l_, _b_) and distance, representing the direction on the sky, or
+ * location in space relative to the galactic plane and the nominal Galactic center location.
  *
  * @ingroup nonequatorial
  */
@@ -1265,18 +1301,22 @@ public:
 class CatalogEntry : public Validating {
 private:
   novas::cat_entry _entry = {};  ///< stored catalog entry
-  CatalogSystem _sys;            ///< stored catalog system
+  EquatorialSystem _sys;            ///< stored catalog system
 
   void set_epoch();
 
 public:
   CatalogEntry(const std::string &name, const Equatorial& coords);
 
-  CatalogEntry(novas::cat_entry e, const CatalogSystem& system = CatalogSystem::icrs());
+  CatalogEntry(const std::string &name, const Ecliptic& coords);
+
+  CatalogEntry(const std::string &name, const Galactic& coords);
+
+  CatalogEntry(novas::cat_entry e, const EquatorialSystem& system = EquatorialSystem::icrs());
 
   const novas::cat_entry* _cat_entry() const;
 
-  const CatalogSystem& system() const;
+  const EquatorialSystem& system() const;
 
   std::string name() const;
 
@@ -1326,7 +1366,7 @@ public:
  */
 class CatalogSource : public Source {
 private:
-  CatalogSystem _system;      ///< stored catalog system
+  EquatorialSystem _system;      ///< stored catalog system
 
 public:
   CatalogSource(const CatalogEntry& e);
@@ -1503,9 +1543,9 @@ private:
   Apparent(novas::sky_pos p, const Frame& frame, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
 public:
-  Apparent(const Equatorial& eq, const Frame& frame, double rv_ms = 0.0, enum novas::novas_reference_system system = novas::NOVAS_TOD);
+  Apparent(double ra_rad, double dec_rad, const Frame& frame, double rv_ms = 0.0, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
-  Apparent(const Equatorial& eq, const Frame& frame, const Speed& rv, enum novas::novas_reference_system system = novas::NOVAS_TOD);
+  Apparent(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
   const novas::sky_pos *_sky_pos() const;
 
@@ -1513,9 +1553,7 @@ public:
 
   enum novas::novas_reference_system system() const;
 
-  Angle ra() const;
-
-  Angle dec() const;
+  Position xyz() const;
 
   Speed radial_velocity() const;
 

@@ -7,6 +7,7 @@
 
 
 #include <string.h>
+#include <cstring>
 #include <ctype.h>
 
 /// \cond PRIVATE
@@ -40,33 +41,70 @@ static std::string _name_for(const char *base, double year) {
   return std::string(s);
 }
 
-CatalogSystem::CatalogSystem(const std::string& name, double jd_tt) : _name(name), _jd(jd_tt) {
+
+EquatorialSystem::EquatorialSystem(const std::string& name, double jd_tt)
+: _name(name), _system(NOVAS_MOD), _jd(jd_tt) {
   if(isnan(_jd))
-    novas_error(0, EINVAL, "CatalogSystem()", "input date is NAN");
+    novas_error(0, EINVAL, "EquatorialSystem()", "input date is NAN");
   else
     _valid = true;
+
+  if(name.length() < 4) return;
+  if(strcasecmp(&name.c_str()[1], "CRS") != 0) return;
+  if(strcasecmp(name.c_str(), NOVAS_SYSTEM_FK6) != 0) return;
+
+  _system = NOVAS_ICRS;
 }
 
-bool CatalogSystem::operator==(const CatalogSystem& system) const {
-  return name() == system.name() && jd() == system.jd();
+EquatorialSystem::EquatorialSystem(enum novas::novas_reference_system system, double jd_tt)
+: _name(""), _system(system), _jd(jd_tt) {
+  switch(system) {
+    case NOVAS_GCRS:
+    case NOVAS_ICRS:
+      _name = std::string(NOVAS_SYSTEM_ICRS);
+      _system = NOVAS_ICRS;
+      _jd = NOVAS_JD_J2000;
+      break;
+    case NOVAS_J2000:
+      _name = std::string(NOVAS_SYSTEM_J2000);
+      _jd = NOVAS_JD_J2000;
+      break;
+    case NOVAS_MOD:
+      _name =_name_for("J", epoch());
+      break;
+    case NOVAS_TOD:
+      _name =_name_for("TOD J", epoch());
+      break;
+    case NOVAS_CIRS:
+      _name =_name_for("CIRS J", epoch());
+      break;
+    default:
+      novas_error(0, EINVAL, "EquatorialSystem()", "Earth fixed reference system %d is not an RA/Dec equatorial system", system);
+      _name = "non-RA/Dec";
+      _valid = false;
+  }
 }
 
-bool CatalogSystem::is_icrs() const {
-  if(name().length() > 1)
-    return false;
+EquatorialSystem::EquatorialSystem(enum novas::novas_reference_system system, const Time& time)
+: EquatorialSystem(system, time.jd()) {}
 
-  if(strcasecmp(&name().c_str()[1], &NOVAS_SYSTEM_ICRS[1]) == 0)
-    return true;
 
-  if(strcasecmp(name().c_str(), NOVAS_SYSTEM_FK6) == 0)
-    return true;
-
-  return false;
+bool EquatorialSystem::operator==(const EquatorialSystem& system) const {
+  return _system == system._system && _name == system._name && _jd == system._jd;
 }
 
-bool CatalogSystem::is_mod() const {
-  return !is_icrs();
+bool EquatorialSystem::is_icrs() const {
+  return _system == NOVAS_ICRS;
 }
+
+bool EquatorialSystem::is_mod() const {
+  return _system == NOVAS_MOD || _system == NOVAS_J2000;
+}
+
+bool EquatorialSystem::is_true() const {
+  return _system == NOVAS_CIRS || _system == NOVAS_TOD;
+}
+
 
 /**
  * Returns the (TT-based) Julian date that corresponds to this system instance. That is it returns
@@ -78,8 +116,12 @@ bool CatalogSystem::is_mod() const {
  *
  * @sa Time
  */
-double CatalogSystem::jd() const {
+double EquatorialSystem::jd() const {
   return _jd;
+}
+
+enum novas_reference_system EquatorialSystem::reference_system() const {
+  return _system;
 }
 
 /**
@@ -88,7 +130,7 @@ double CatalogSystem::jd() const {
  *
  * @return      [yr] The Julian epoch year of this catalog system.
  */
-double CatalogSystem::epoch() const {
+double EquatorialSystem::epoch() const {
   return _epoch_for(_jd);
 }
 
@@ -97,7 +139,7 @@ double CatalogSystem::epoch() const {
  *
  * @return    A reference to the string that stores the system's name
  */
-const std::string& CatalogSystem::name() const {
+const std::string& EquatorialSystem::name() const {
   return _name;
 }
 
@@ -107,13 +149,13 @@ const std::string& CatalogSystem::name() const {
  *
  * @return    A string identification of this catalof system.
  */
-std::string CatalogSystem::str() const {
+std::string EquatorialSystem::str() const {
   return _name;
 }
 
 
 /**
- * Returns a new CatalogSystem instance from a string, such as 'ICRS', 'J2000', 'FK5', B1950', or
+ * Returns a new EquatorialSystem instance from a string, such as 'ICRS', 'J2000', 'FK5', B1950', or
  * 'HIP'; or else `{}`. It is generally preferable to use one of the other static
  * initializers, such as icrs(), or j2000(), which are guaranteed to return a valid instance.
  *
@@ -124,15 +166,15 @@ std::string CatalogSystem::str() const {
  *
  * @sa is_valid(), icrs(), j2000(), fk5(), fk4(), b1950(), b1900()
  */
-std::optional<CatalogSystem> CatalogSystem::from_string(const std::string& name) {
+std::optional<EquatorialSystem> EquatorialSystem::from_string(const std::string& name) {
   double jd = novas_epoch(name.c_str());
 
   if(isnan(jd)) {
-    novas_error(0, EINVAL, "CatalogSystem::from_string", "No catalog system matching: '%s'", name);
+    novas_error(0, EINVAL, "EquatorialSystem::from_string", "No catalog system matching: '%s'", name);
     return std::nullopt;
   }
 
-  return CatalogSystem(name, jd);
+  return EquatorialSystem(name, jd);
 }
 
 /**
@@ -146,8 +188,8 @@ std::optional<CatalogSystem> CatalogSystem::from_string(const std::string& name)
  *
  * @sa at_besselial_epoch(), j2000(), hip()
  */
-CatalogSystem CatalogSystem::at_julian_date(double jd_tt) {
-  return CatalogSystem(_name_for("J", 2000.0 + (jd_tt - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS), jd_tt);
+EquatorialSystem EquatorialSystem::at_julian_date(double jd_tt) {
+  return EquatorialSystem(_name_for("J", 2000.0 + (jd_tt - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS), jd_tt);
 }
 
 /**
@@ -162,11 +204,11 @@ CatalogSystem CatalogSystem::at_julian_date(double jd_tt) {
  *
  * @sa at_julian_date(), b1900(), b1950()
  */
-CatalogSystem CatalogSystem::at_besselian_epoch(double year) {
-  return CatalogSystem(_name_for("B", year), NOVAS_JD_B1950 + (year - 1950.0) * NOVAS_TROPICAL_YEAR_DAYS);
+EquatorialSystem EquatorialSystem::at_besselian_epoch(double year) {
+  return EquatorialSystem(_name_for("B", year), NOVAS_JD_B1950 + (year - 1950.0) * NOVAS_TROPICAL_YEAR_DAYS);
 }
 
-static const CatalogSystem _icrs = CatalogSystem::from_string("ICRS").value();
+static const EquatorialSystem _icrs = EquatorialSystem(NOVAS_ICRS);
 
 /**
  * International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.
@@ -183,11 +225,11 @@ static const CatalogSystem _icrs = CatalogSystem::from_string("ICRS").value();
  *
  * @sa NOVAS_ICRS, NOVAS_GCRS, NOVAS_SYSTEM_ICRS
  */
-const CatalogSystem& CatalogSystem::icrs() {
+const EquatorialSystem& EquatorialSystem::icrs() {
   return _icrs;
 }
 
-static const CatalogSystem _j2000 = CatalogSystem::from_string("J2000").value();
+static const EquatorialSystem _j2000 = EquatorialSystem(NOVAS_MOD, NOVAS_JD_J2000);
 
 /**
  * The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000). This was a
@@ -199,12 +241,12 @@ static const CatalogSystem _j2000 = CatalogSystem::from_string("J2000").value();
  *
  * @sa icrs(), mod(), Time::j2000(), NOVAS_JD_J2000, NOVAS_SYSTEM_J2000
  */
-const CatalogSystem& CatalogSystem::j2000() {
+const EquatorialSystem& EquatorialSystem::j2000() {
   return _j2000;
 }
 
 
-static const CatalogSystem _hip = CatalogSystem::from_string("HIP").value();
+static const EquatorialSystem _hip = EquatorialSystem::from_string("HIP").value();
 
 /**
  * The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal
@@ -216,11 +258,11 @@ static const CatalogSystem _hip = CatalogSystem::from_string("HIP").value();
  *
  * @sa icrs(), mod(), Time::hip() NOVAS_JD_HIP, NOVAS_SYSTEM_HIP
  */
-const CatalogSystem& CatalogSystem::hip() {
+const EquatorialSystem& EquatorialSystem::hip() {
   return _hip;
 }
 
-static const CatalogSystem _b1950 = CatalogSystem::from_string("B1950").value();
+static const EquatorialSystem _b1950 = EquatorialSystem::from_string("B1950").value();
 
 /**
  * The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950). This was a
@@ -233,11 +275,11 @@ static const CatalogSystem _b1950 = CatalogSystem::from_string("B1950").value();
  *
  * @sa icrs(), mod(), Time::b1950(), NOVAS_JD_B1950, NOVAS_SYSTEM_B1950
  */
-const CatalogSystem& CatalogSystem::b1950() {
+const EquatorialSystem& EquatorialSystem::b1950() {
   return _b1950;
 }
 
-static const CatalogSystem _b1900 = CatalogSystem::from_string("B1900").value();
+static const EquatorialSystem _b1900 = EquatorialSystem::from_string("B1900").value();
 
 /**
  * The system of the dynamical equator at the B1900 epoch (0 UTC, 1 January 1900). This was a
@@ -247,7 +289,7 @@ static const CatalogSystem _b1900 = CatalogSystem::from_string("B1900").value();
  *
  * @sa icrs(), mod(), Time::b1900(), NOVAS_JD_B1900, NOVAS_SYSTEM_B1900
  */
-const CatalogSystem& CatalogSystem::b1900() {
+const EquatorialSystem& EquatorialSystem::b1900() {
   return _b1900;
 }
 

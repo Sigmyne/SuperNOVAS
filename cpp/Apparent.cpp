@@ -104,12 +104,8 @@ const sky_pos *Apparent::_sky_pos() const {
   return &_pos;
 }
 
-Angle Apparent::ra() const {
-  return Angle(_pos.ra * Unit::hourAngle);
-}
-
-Angle Apparent::dec() const {
-  return Angle(_pos.dec * Unit::deg);
+Position Apparent::xyz() const {
+  return Position(_pos.r_hat, _pos.dis * Unit::au);
 }
 
 Speed Apparent::radial_velocity() const {
@@ -121,7 +117,11 @@ Distance Apparent::distance() const {
 }
 
 Equatorial Apparent::equatorial() const {
-  return Equatorial(_pos.ra * Unit::hourAngle, _pos.dec * Unit::deg, CatalogSystem::at_julian_date(_frame.time().jd()), _pos.dis * Unit::au);
+  // For Earth-fixed reference systems, return the True-of-Date equatorial
+  if(_sys == NOVAS_TIRS || _sys == NOVAS_ITRS)
+    return in_system(NOVAS_TOD).equatorial();
+
+  return Equatorial(_pos.ra * Unit::hourAngle, _pos.dec * Unit::deg, EquatorialSystem::at_julian_date(_frame.time().jd()), _pos.dis * Unit::au);
 }
 
 Ecliptic Apparent::ecliptic() const {
@@ -140,8 +140,12 @@ std::optional<Horizontal> Apparent::horizontal() const {
     return std::nullopt;
   }
 
-  double az = 0.0, el = 0.0;
-  if(novas_app_to_hor(_frame._novas_frame(), _sys, _pos.ra, _pos.dec, NULL, &az, &el) != 0) {
+  double ra = 0.0, dec = 0.0, az = 0.0, el = 0.0;
+
+  // pos.ra / pos.dec may be NAN for ITRS / TIRS...
+  vector2radec(_pos.r_hat, &ra, &dec);
+
+  if(novas_app_to_hor(_frame._novas_frame(), _sys, ra, dec, NULL, &az, &el) != 0) {
     novas_trace_invalid(fn);
     return std::nullopt;
   }
@@ -164,22 +168,37 @@ Apparent Apparent::in_system(enum novas_reference_system system) const {
     return Apparent::invalid();
   }
   novas_transform_sky_pos(&_pos, &T, &app._pos);
+
+  if(system == NOVAS_ITRS) {
+    app._pos.ra = NAN;        // NO RA/Dec in Earth-fixed rotating systems...
+    app._pos.dec = NAN;
+  }
+
   return app;
 }
 
 std::optional<Apparent> Apparent::in_itrs(const EOP& eop) const {
+  novas_frame *f;
+
+  Apparent app = Apparent(*this);
+
   if(eop.is_valid()) {
     Time t = Time(_frame.time().jd(), eop);
-    Apparent app = Apparent(*this);
     app._frame = Frame(_frame.observer(), t, _frame.accuracy());
-    return app.in_system(NOVAS_ITRS);
+  }
+  else if(!_frame.observer().is_geodetic()) {
+    novas_error(0, EAGAIN, "Apparent::in_itrs", "Not a geodetic observer frame, you must provide EOP.");
+    return std::nullopt;
   }
 
-  if(_frame.observer().is_geodetic())
-    return in_system(NOVAS_ITRS);
+  novas_transform T = {};
+  if(novas_make_transform(_frame._novas_frame(), _sys, NOVAS_ITRS, &T) != 0) {
+    novas_trace_invalid("Apparent::in_itrs");
+    return Apparent::invalid();
+  }
 
-  novas_error(0, EINVAL, "Apparent::in_itrs()", "Needs valid EOP for non geodetic observer frame");
-  return std::nullopt;
+  novas_transform_sky_pos(&_pos, &T, &app._pos);
+  return app;
 }
 
 std::optional<Apparent> Apparent::from_sky_pos(sky_pos pos, const Frame& frame, enum novas_reference_system system) {

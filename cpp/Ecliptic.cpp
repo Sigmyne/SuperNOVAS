@@ -27,23 +27,27 @@ void Ecliptic::validate() {
   }
 }
 
-Ecliptic::Ecliptic(double longitude_rad, double latitude_rad, const CatalogSystem &system, double distance_m)
+Ecliptic::Ecliptic(double longitude_rad, double latitude_rad, const EquatorialSystem &system, double distance_m)
 : Spherical(longitude_rad, latitude_rad, distance_m), _sys(system) {
   validate();
 }
 
-Ecliptic::Ecliptic(const Angle& ra, const Angle& dec, const CatalogSystem &system, const Distance& distance)
+Ecliptic::Ecliptic(const Angle& ra, const Angle& dec, const EquatorialSystem &system, const Distance& distance)
 : Spherical(ra, dec, distance), _sys(system) {
   validate();
 }
 
-Ecliptic::Ecliptic(const Position& pos, const CatalogSystem& system)
+Ecliptic::Ecliptic(const Position& pos, const EquatorialSystem& system)
 : Spherical(pos.as_spherical()), _sys(system) {
   validate();
 }
 
-const CatalogSystem& Ecliptic::system() const {
+const EquatorialSystem& Ecliptic::system() const {
   return _sys;
+}
+
+enum novas::novas_reference_system Ecliptic::reference_system() const {
+  return _sys.reference_system();
 }
 
 Ecliptic Ecliptic::at_jd(long jd_tt) const {
@@ -54,7 +58,7 @@ Ecliptic Ecliptic::at_time(const Time& time) const {
   return at_jd(time.jd());
 }
 
-Ecliptic Ecliptic::to_system(const CatalogSystem& system) const {
+Ecliptic Ecliptic::to_system(const EquatorialSystem& system) const {
   if(_sys == system)
     return Ecliptic(*this);
   if(_sys.is_icrs() && system.is_icrs())
@@ -64,7 +68,7 @@ Ecliptic Ecliptic::to_system(const CatalogSystem& system) const {
 }
 
 Ecliptic Ecliptic::to_icrs() const {
-  return to_system(CatalogSystem::icrs());
+  return to_system(EquatorialSystem::icrs());
 }
 
 Equatorial Ecliptic::as_equatorial() const {
