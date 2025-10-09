@@ -14,7 +14,6 @@
 
 using namespace novas;
 
-
 namespace supernovas {
 
 int Horizontal::location_with_weather(const Frame& frame, const Weather& weather, on_surface *s) {

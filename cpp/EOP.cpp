@@ -13,7 +13,6 @@
 
 using namespace novas;
 
-
 namespace supernovas {
 
 void EOP::validate() {

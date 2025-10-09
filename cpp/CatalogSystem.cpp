@@ -15,9 +15,7 @@
 
 #include "supernovas.h"
 
-
 using namespace novas;
-
 
 namespace supernovas {
 
@@ -47,6 +45,27 @@ CatalogSystem::CatalogSystem(const std::string& name, double jd_tt) : _name(name
     novas_error(0, EINVAL, "CatalogSystem()", "input date is NAN");
   else
     _valid = true;
+}
+
+bool CatalogSystem::operator==(const CatalogSystem& system) const {
+  return name() == system.name() && jd() == system.jd();
+}
+
+bool CatalogSystem::is_icrs() const {
+  if(name().length() > 1)
+    return false;
+
+  if(strcasecmp(&name().c_str()[1], &NOVAS_SYSTEM_ICRS[1]) == 0)
+    return true;
+
+  if(strcasecmp(name().c_str(), NOVAS_SYSTEM_FK6) == 0)
+    return true;
+
+  return false;
+}
+
+bool CatalogSystem::is_mod() const {
+  return !is_icrs();
 }
 
 /**

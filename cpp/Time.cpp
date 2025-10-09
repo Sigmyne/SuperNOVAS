@@ -23,9 +23,7 @@ static double novas_era(long ijd, double fjd) {
 
 #define E9      1000000000L
 
-
 using namespace novas;
-
 
 namespace supernovas {
 

@@ -5,6 +5,8 @@
  * @author Attila Kovacs
  */
 
+#include <cstring>
+
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
 /// \endcond
@@ -12,7 +14,6 @@
 #include "supernovas.h"
 
 using namespace novas;
-
 
 namespace supernovas {
 
@@ -48,6 +49,41 @@ const CatalogSystem& Equatorial::system() const {
   return _sys;
 }
 
+Equatorial Equatorial::at_jd(long jd_tt) const {
+  return to_system(CatalogSystem::at_julian_date(jd_tt));
+}
+
+Equatorial Equatorial::at_time(const Time& time) const {
+  return at_jd(time.jd());
+}
+
+Equatorial Equatorial::to_system(const CatalogSystem& system) const {
+  if(_sys == system)
+    return Equatorial(*this);
+  if(_sys.is_icrs() && system.is_icrs())
+    return Equatorial(ra(), dec(), system, distance());
+
+  double p[3] = {'\0'};
+  radec2vector(ra().hours(), dec().deg(), 1.0, p);
+
+  if(_sys.is_icrs())
+    gcrs_to_j2000(p, p);
+
+  if(_sys.jd() != system.jd())
+    precession(_sys.jd(), p, system.jd(), p);
+
+  if(system.is_icrs())
+    j2000_to_gcrs(p, p);
+
+  double r = 0.0, d = 0.0;
+  vector2radec(p, &r, &d);
+  return Equatorial(r * Unit::hourAngle, d * Unit::deg, system, distance().m());
+}
+
+Equatorial Equatorial::to_icrs() const {
+  return to_system(CatalogSystem::icrs());
+}
+
 TimeAngle Equatorial::ra() const {
   return TimeAngle(longitude().rad());
 }
@@ -63,8 +99,9 @@ Ecliptic Equatorial::as_ecliptic() const {
 }
 
 Galactic Equatorial::as_galactic() const {
+  Equatorial icrs = to_icrs();
   double longitude, latitude;
-  equ2gal(ra().hours(), dec().deg(), &longitude, &latitude);
+  equ2gal(icrs.ra().hours(), icrs.dec().deg(), &longitude, &latitude);
   return Galactic(longitude * Unit::deg, latitude * Unit::deg, _distance.m());
 }
 

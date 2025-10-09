@@ -11,11 +11,17 @@
 
 #include "supernovas.h"
 
-
 using namespace novas;
 
-
 namespace supernovas {
+
+static bool is_valid_rv(const char *fn, double rv_ms) {
+  if(isnan(rv_ms))
+    return novas_error(0, EINVAL, fn, "input radial velocity is NAN");
+  else if(fabs(rv_ms) > Constant::c)
+    return novas_error(0, EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", rv_ms);
+  return true;
+}
 
 static bool is_valid_sky_pos(const char *fn, const sky_pos *p) {
   if(isnan(p->ra))
@@ -64,36 +70,27 @@ Apparent::Apparent(sky_pos p, const Frame& f, enum novas_reference_system system
   radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
 }
 
-
-
-Apparent::Apparent(const Equatorial& eq, const Frame& f, double rv_ms, enum novas_reference_system system)
-: Apparent(f, system) {
+Apparent::Apparent(double ra_rad, double dec_rad, const Frame& frame, double rv_ms, enum novas_reference_system system)
+: Apparent(frame, system) {
   static const char *fn = "Apparent(frame, eq, rv, system)";
 
-  if(!f.is_valid())
-      novas_error(0, EINVAL, fn, "input frame is invalid");
-  else if(!eq.is_valid())
-      novas_error(0, EINVAL, fn, "input equatorial coordinates are invalid");
-  else if(isnan(rv_ms))
-      novas_error(0, EINVAL, fn, "input radial velocity is NAN");
-  else if(fabs(rv_ms) > Constant::c)
-      novas_error(0, EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", rv_ms);
-  else if(system < 0 || system >= NOVAS_REFERENCE_SYSTEMS)
-      novas_error(0, EINVAL, fn, "input reference system %d is invalid", system);
-  else
-    _valid = true;
+  if(isnan(ra_rad))
+    novas_error(0, EINVAL, fn, "input RA is NAN");
+  else if(isnan(dec_rad))
+    novas_error(0, EINVAL, fn, "input RA is NAN");
 
-  _pos.ra = eq.ra().hours();
-  _pos.dec = eq.dec().deg();
-  _pos.rv = rv_ms / (Unit::au / Unit::day);
+  _valid = is_valid_rv(fn, rv_ms);
+
+  _pos.ra = ra_rad / Unit::hourAngle;
+  _pos.dec = dec_rad / Unit::deg;
+  _pos.rv = rv_ms / (Unit::km / Unit::sec);
   _pos.dis = NOVAS_DEFAULT_DISTANCE;
 
   radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
 }
 
-Apparent::Apparent(const Equatorial& eq, const Frame& f, const Speed& rv, enum novas_reference_system system)
-: Apparent(eq, f, rv.m_per_s(), system) {}
-
+Apparent::Apparent(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv, enum novas_reference_system system)
+: Apparent(ra.rad(), dec.rad(), frame, rv.m_per_s(), system) {}
 
 const Frame& Apparent::frame() const {
   return _frame;
@@ -192,7 +189,7 @@ std::optional<Apparent> Apparent::from_sky_pos(sky_pos pos, const Frame& frame, 
   return Apparent(pos, frame, system);
 }
 
-static const Apparent _invalid = Apparent(Equatorial::invalid(), Frame::invalid(), NAN, (enum novas_reference_system) -1);
+static const Apparent _invalid = Apparent(NAN, NAN, Frame::invalid(), NAN, (enum novas_reference_system) -1);
 const Apparent& Apparent::invalid() {
   return _invalid;
 }

@@ -15,7 +15,6 @@
 
 using namespace novas;
 
-
 namespace supernovas {
 
 

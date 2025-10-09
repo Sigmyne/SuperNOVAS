@@ -11,7 +11,6 @@
 
 #include "supernovas.h"
 
-
 using namespace novas;
 
 namespace supernovas {
@@ -45,6 +44,27 @@ Ecliptic::Ecliptic(const Position& pos, const CatalogSystem& system)
 
 const CatalogSystem& Ecliptic::system() const {
   return _sys;
+}
+
+Ecliptic Ecliptic::at_jd(long jd_tt) const {
+  return as_equatorial().at_jd(jd_tt).as_ecliptic();
+}
+
+Ecliptic Ecliptic::at_time(const Time& time) const {
+  return at_jd(time.jd());
+}
+
+Ecliptic Ecliptic::to_system(const CatalogSystem& system) const {
+  if(_sys == system)
+    return Ecliptic(*this);
+  if(_sys.is_icrs() && system.is_icrs())
+    return Ecliptic(longitude(), latitude(), system, distance());
+
+  return as_equatorial().to_system(system).as_ecliptic();
+}
+
+Ecliptic Ecliptic::to_icrs() const {
+  return to_system(CatalogSystem::icrs());
 }
 
 Equatorial Ecliptic::as_equatorial() const {

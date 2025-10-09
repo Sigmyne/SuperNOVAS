@@ -12,7 +12,6 @@
 
 #include "supernovas.h"
 
-
 using namespace novas;
 
 namespace supernovas {
@@ -28,6 +27,12 @@ CatalogEntry::CatalogEntry(const std::string &name, const Equatorial& coords) : 
   else
     _valid = true;
 }
+
+CatalogEntry::CatalogEntry(const std::string &name, const Ecliptic& coords)
+: CatalogEntry(name, coords.as_equatorial()) {}
+
+CatalogEntry::CatalogEntry(const std::string &name, const Galactic& coords)
+: CatalogEntry(name, coords.as_equatorial()) {}
 
 CatalogEntry::CatalogEntry(cat_entry e, const CatalogSystem& system)
 : _entry(e), _sys(system) {
