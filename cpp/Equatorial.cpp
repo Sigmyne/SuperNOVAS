@@ -155,13 +155,13 @@ Ecliptic Equatorial::as_ecliptic() const {
   switch(refsys) {
     case NOVAS_GCRS:
     case NOVAS_ICRS:
-      return Ecliptic::icrs(longitude, latitude, _distance.m());
+      return Ecliptic::icrs(longitude, latitude, distance().m());
     case NOVAS_J2000:
-      return Ecliptic::j2000(longitude, latitude, _distance.m());
+      return Ecliptic::j2000(longitude, latitude, distance().m());
     case NOVAS_MOD:
-      return Ecliptic::mod(_sys.jd(), longitude, latitude, _distance.m());
+      return Ecliptic::mod(_sys.jd(), longitude, latitude, distance().m());
     case NOVAS_TOD:
-      return Ecliptic::tod(_sys.jd(), longitude, latitude, _distance.m());
+      return Ecliptic::tod(_sys.jd(), longitude, latitude, distance().m());
     default:
       // TODO should not happen
       return Ecliptic::invalid();
@@ -172,11 +172,12 @@ Galactic Equatorial::as_galactic() const {
   Equatorial icrs = to_icrs();
   double longitude, latitude;
   equ2gal(icrs.ra().hours(), icrs.dec().deg(), &longitude, &latitude);
-  return Galactic(longitude * Unit::deg, latitude * Unit::deg, _distance.m());
+  return Galactic(longitude * Unit::deg, latitude * Unit::deg, distance().m());
 }
 
 const std::string Equatorial::str(enum novas_separator_type separator, int decimals) const {
-  return "EQU  " + ra().str(separator, (decimals > 1 ? decimals - 1 : decimals)) + "  " + _lat.str(separator, decimals) + "  " + _sys.str();
+  return "EQU  " + ra().str(separator, (decimals > 1 ? decimals - 1 : decimals)) + "  "
+          + dec().str(separator, decimals) + "  " + _sys.str();
 }
 
 static const Equatorial _invalid = Equatorial(NAN, NAN);

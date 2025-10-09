@@ -22,8 +22,8 @@ Galactic::Galactic(const Position& pos)
 
 Equatorial Galactic::as_equatorial() const {
   double ra = 0.0, dec = 0.0;
-  gal2equ(_lon.deg(), _lat.deg(), &ra, &dec);
-  return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, EquatorialSystem::icrs(), _distance.m());
+  gal2equ(longitude().deg(), latitude().deg(), &ra, &dec);
+  return Equatorial(ra * Unit::hourAngle, dec * Unit::deg, EquatorialSystem::icrs(), distance().m());
 }
 
 Ecliptic Galactic::as_ecliptic() const {

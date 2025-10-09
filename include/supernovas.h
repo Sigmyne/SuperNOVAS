@@ -234,15 +234,14 @@ public:
  */
 class EquatorialSystem : public Validating {
 private:
-  EquatorialSystem(const std::string& name, double jd_tt);
-
-  EquatorialSystem(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
-
-protected:
   std::string _name;    ///< name of the catalog system, e.g. 'ICRS' or 'J2000'
   enum novas::novas_reference_system _system; ///< Coordinate reference system.
   double _jd;           ///< [day] Julian date of the dynamical equator (or closest to it) that
                         ///< matches the system
+
+  EquatorialSystem(const std::string& name, double jd_tt);
+
+  EquatorialSystem(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
 
 public:
 
@@ -594,7 +593,7 @@ public:
  * @ingroup util, spectral
  */
 class Speed : public Validating {
-protected:
+private:
   double _ms;       ///< [m/s] stored speed
 
 public:
@@ -648,12 +647,10 @@ public:
  * @ingroup util
  */
 class Spherical : public Validating {
-protected:
+private:
   Angle _lon;           ///< [rad] stored longitude value
   Angle _lat;           ///< [rad] stored latitude value
   Distance _distance;   ///< [m] stored distance
-
-  Spherical();
 
 public:
   virtual ~Spherical() {}; // something virtual to make class polymorphic for dynamic casting.

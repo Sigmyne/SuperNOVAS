@@ -64,7 +64,7 @@ std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, double rv, d
   }
 
   sky_pos p = {};
-  if(novas_hor_to_app(frame._novas_frame(), _lon.deg(), _lat.deg(), NULL, NOVAS_TOD, &p.ra, &p.dec) != 0) {
+  if(novas_hor_to_app(frame._novas_frame(), longitude().deg(), latitude().deg(), NULL, NOVAS_TOD, &p.ra, &p.dec) != 0) {
     novas_trace_invalid(fn);
     return std::nullopt;
   }
