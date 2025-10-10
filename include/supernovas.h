@@ -57,6 +57,8 @@ class   GeodeticObserver;
 class   GeocentricObserver;
 class   SolarSystemObserver;
 class CatalogEntry;
+class OrbitalSystem;
+class OrbitalSource;
 class Source;
 class   CatalogSource;
 class   SolarSystemSource;
@@ -439,6 +441,7 @@ public:
   static constexpr int south = -1;    ///< South direction sign, e.g `90.0 * Unit::deg * Angle::south` for the South pole.
 
 };
+
 
 /**
  * A representation of a regularized angle, which can also be represented as a time value in the 0
@@ -1247,7 +1250,6 @@ private:
   Time _time;                     ///< stored time data
 
 public:
-  // TODO Should we use an optional here in case of high-accuracy failure?
   Frame(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
 
   const novas::novas_frame *_novas_frame() const;
@@ -1501,6 +1503,113 @@ public:
   long number() const;
 };
 
+// TODO
+/**
+ *
+ * @ingroup source
+ */
+class OrbitalSystem : public Validating {
+private:
+  novas::novas_orbital_system _system;
+
+  OrbitalSystem(enum novas::novas_reference_plane plane, const Planet& center);
+
+  OrbitalSystem(novas::novas_orbital_system system) : _system(system) {}
+
+public:
+  const novas::novas_orbital_system * _novas_orbital_system() const { return &_system; }
+
+  Planet center() const;
+
+  Angle obliquity() const;
+
+  Angle ascending_node() const;
+
+  OrbitalSystem& orientation(double obliquity_rad, double node_rad, enum novas::novas_reference_system system = novas::NOVAS_ICRS);
+
+  OrbitalSystem& orientation(const Angle& obliquity, const Angle& node, enum novas::novas_reference_system system = novas::NOVAS_ICRS);
+
+  static OrbitalSystem equatorial(const Planet& center = Planet::sun());
+
+  static OrbitalSystem ecliptic(const Planet& center = Planet::sun());
+
+  static OrbitalSystem from_novas_orbital_system(novas::novas_orbital_system system);
+
+};
+
+// TODO
+/**
+ *
+ * @ingroup source
+ */
+class Orbital : public Validating {
+private:
+  OrbitalSystem _system;
+  novas::novas_orbital _orbit;
+
+  Orbital(novas::novas_orbital orbit) : _system(OrbitalSystem::from_novas_orbital_system(orbit.system)), _orbit(orbit) {}
+
+public:
+  Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m, double mean_anom_rad, double period_s);
+
+  Orbital(const OrbitalSystem& system, const Time& ref_time, const Distance& semi_major, const Angle& mean_anom,
+          const Interval& periodT);
+
+  static Orbital with_mean_motion(const OrbitalSystem& system, double jd_tdb, double a, double M0, double rad_per_s);
+
+  static Orbital with_mean_motion(const OrbitalSystem& system, Time& time, const Angle& a, const Angle& M0, double rad_per_s);
+
+  const novas::novas_orbital * _novas_orbital() const { return &_orbit; }
+
+  double reference_jd_tdb() const;
+
+  Distance semi_major_axis() const;
+
+  Angle reference_mean_anomaly() const;
+
+  Interval period() const;
+
+  double mean_motion() const;
+
+  double eccentricity() const;
+
+  Angle periapsis() const;
+
+  Angle inclination() const;
+
+  Angle ascending_node() const;
+
+  Interval apsis_period() const;
+
+  Interval node_period() const;
+
+  double apsis_rate() const;
+
+  double node_rate() const;
+
+  Orbital& eccentricity(double e, double periapsis_rad);
+
+  Orbital& eccentricity(double e, const Angle& periapsis_angle);
+
+  Orbital& inclination(double angle_rad, double ascending_node_rad);
+
+  Orbital& inclination(const Angle& angle, const Angle& ascending_node_angle);
+
+  Orbital& apsis_period(double seconds);
+
+  Orbital& apsis_period(const Interval& periodT);
+
+  Orbital& apsis_rate(double rad_per_sec);
+
+  Orbital& node_period(double seconds);
+
+  Orbital& node_period(const Interval& periodT);
+
+  Orbital& node_rate(double rad_per_sec);
+
+  static Orbital from_novas_orbit(novas::novas_orbital orbit);
+};
+
 /**
  * A Solar-system source, whose position and velocity can be calculated using Keplerian orbital
  * elements. While Keplerian orbitals are not typically accurate for long-term predictions, they
@@ -1518,13 +1627,15 @@ private:
   OrbitalSource(const std::string& name, long number, const novas::novas_orbital orbit);
 
 public:
+  OrbitalSource(const std::string& name, long number, const Orbital& orbit);
+
   const novas::novas_orbital *_novas_orbital() const;
 
   Position orbital_position(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
 
   Velocity orbital_velocity(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
 
-  static std::optional<OrbitalSource> from_orbit(const std::string& name, long number, const novas::novas_orbital orbit);
+  static std::optional<OrbitalSource> from_novas_orbit(const std::string& name, long number, const novas::novas_orbital orbit);
 };
 
 

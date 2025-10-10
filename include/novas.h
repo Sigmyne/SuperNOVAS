@@ -464,7 +464,9 @@ enum novas_debug_mode {
  * The type of astronomical objects distinguied by the NOVAS library.
  *
  * @sa object, NOVAS_OBJECT_TYPES
+ * @cond C_API
  * @ingroup source
+ * @endcond
  */
 enum novas_object_type {
   /// A major planet, or else the Sun, the Moon, or the Solar-System Barycenter (SSB).
@@ -501,7 +503,9 @@ enum novas_object_type {
  * @sa make_planet(), NOVAS_PLANET, NOVAS_PLANETS, NOVAS_PLANET_NAMES_INIT,
  *     NOVAS_PLANET_RADII_INIT
  *
+ * @cond C_API
  * @ingroup source
+ * @endcond
  */
 enum novas_planet {
   NOVAS_SSB = 0,          ///< Solar-system barycenter position ID
@@ -696,7 +700,7 @@ extern int grav_bodies_full_accuracy;
  *
  * @author Attila Kovacs
  * @since 1.2
- * @ingroup source
+ * @ingroup solar-system
  */
 enum novas_id_type {
   NOVAS_ID_NAIF = 0,  ///< If the ephemeris provider should use NAIF IDs
@@ -711,7 +715,9 @@ enum novas_id_type {
   * @since 1.2
   *
   * @sa enum novas_id_type
-  * @ingroup source
+  * @cond C_API
+  * @ingroup solar-system
+  * @endcond
   */
  #define NOVAS_ID_TYPES      (NOVAS_ID_CALCEPH + 1)
 
@@ -719,7 +725,9 @@ enum novas_id_type {
  * Types of places on and around Earth that may serve a a reference position for the observation.
  *
  * @sa observer, NOVAS_OBSERVER_PLACES
+ * @cond C_API
  * @ingroup observer
+ * @endcond
  */
 enum novas_observer_place {
   /// Calculate coordinates as if observing from the geocenter for location and Earth rotation
@@ -765,7 +773,9 @@ enum novas_observer_place {
  * @sa novas_sky_pos(), novas_geom_posvel(), novas_geom_to_app(), novas_app_to_geom(), novas_app_to_hor(),
  *     novas_hor_to_app(), novas_make_transform()
  *
+ * @cond C_API
  * @ingroup equatorial
+ * @endcond
  */
 enum novas_reference_system {
   /// Geocentric Celestial Reference system. Essentially the same as ICRS but includes
@@ -814,7 +824,6 @@ enum novas_reference_system {
  */
 #define NOVAS_REFERENCE_SYSTEMS   (NOVAS_ITRS + 1)
 
-/// \cond C_API
 
 /**
  * Constants that determine the type of equator to be used for the coordinate system.
@@ -822,7 +831,9 @@ enum novas_reference_system {
  * @sa NOVAS_EQUATOR_TYPES
  * @sa equ2ecl(), ecl2equ()
  *
- * @ingroup earth
+ * @cond C_API
+ * @ingroup nonequatorial
+ * @endcond
  */
 enum novas_equator_type {
   NOVAS_MEAN_EQUATOR = 0, ///< Mean celestial equator of date without nutation (pre IAU 2006 system).
@@ -835,8 +846,14 @@ enum novas_equator_type {
  *
  * @sa enum novas_equator_type
  * @since 1.2
+ *
+ * @cond C_API
+ * @ingroup nonequatorial
+ * @endcond
  */
 #define NOVAS_EQUATOR_TYPES (NOVAS_GCRS_EQUATOR + 1)
+
+/// \cond C_API
 
 /**
  * Constants that determine the type of dynamical system. I.e., the 'current' equatorial
@@ -849,17 +866,17 @@ enum novas_equator_type {
 enum novas_dynamical_type {
   /// Mean Of Date (TOD): dynamical system that include precession but not including nutation,
   /// such as commonly used for older catalogs like FK4, KF5, B1950, or HIP.
-  NOVAS_DYNAMICAL_MOD = 0,
+  NOVAS_DYNAMICAL_MOD = 0,///< NOVAS_DYNAMICAL_MOD
 
   /// True Of Date (TOD): dynamical system of the 'true' equator of date, with its origin at the
   /// true equinox of date. In the IAU 2000 methodology, it includes precession and nutation, but
   /// not the sub-arcsecond level Earth Orientation Parameters (EOP). The latter are used only
   /// when converting to the Earth-fixed TIRS system.
-  NOVAS_DYNAMICAL_TOD,
+  NOVAS_DYNAMICAL_TOD,    ///< NOVAS_DYNAMICAL_TOD
 
   /// Celestial Intermediate Reference System (CIRS): dynamical system of the true equator,
   /// with its origin at the CIO (preferred since IAU 2006)
-  NOVAS_DYNAMICAL_CIRS
+  NOVAS_DYNAMICAL_CIRS    ///< NOVAS_DYNAMICAL_CIRS
 };
 
 /// \endcond
@@ -868,8 +885,9 @@ enum novas_dynamical_type {
  * Constants to control the precision of NOVAS nutation calculations.
  *
  * @sa novas_make_frame()
- *
+ * @cond C_API
  * @ingroup frame
+ * @endcond
  */
 enum novas_accuracy {
   /// Use full precision calculations to micro-arcsecond accuracy. It can be computationally
@@ -1131,7 +1149,9 @@ enum novas_nutation_direction {
  * @since 1.2
  * @sa novas_orbital_system
  *
+ * @cond C_API
  * @ingroup source
+ * @endcond
  */
 enum novas_reference_plane {
   NOVAS_ECLIPTIC_PLANE = 0,     ///< the plane of the ecliptic
@@ -1141,7 +1161,9 @@ enum novas_reference_plane {
 /**
  * @hideinitializer Number of entries in enum novas_reference_plane
  * @since 1.6
+ * @cond C_API
  * @ingroup source
+ * @endcond
  */
 #define NOVAS_REFERENCE_PLANES (NOVAS_EQUATORIAL_PLANE + 1)
 
@@ -1177,12 +1199,12 @@ typedef struct novas_delaunay_args {
 
 /// \endcond
 
-/// Maximum bytes in object names including string termination.
+/// Maximum number of bytes stored for object names including string termination.
 /// @sa cat_entry
 /// @ingroup source
 #define SIZE_OF_OBJ_NAME 50
 
-/// Maximum bytes in catalog IDs including string termination.
+/// Maximum maximum bytes stored for catalog IDs including string termination.
 /// @sa cat_entry
 /// @ingroup source
 #define SIZE_OF_CAT_NAME 6
@@ -1252,8 +1274,9 @@ typedef struct novas_cat_entry {
  * @since 1.2
  *
  * @sa novas_orbital, novas_set_orbsys_pole(), NOVAS_ORBITAL_SYSTEM_INIT
- *
+ * @cond C_API
  * @ingroup source
+ * @endcond
  */
 typedef struct novas_orbital_system {
   enum novas_planet center;          ///< major planet or barycenter at the center of the orbit.
@@ -1277,7 +1300,9 @@ typedef struct novas_orbital_system {
  * @since 1.2
  *
  * @sa novas_orbital_system
+ * @cond C_API
  * @ingroup source
+ * @endcond
  */
 #define NOVAS_ORBITAL_SYSTEM_INIT { NOVAS_SUN, NOVAS_ECLIPTIC_PLANE, NOVAS_GCRS, 0.0, 0.0 }
 
@@ -1308,8 +1333,9 @@ typedef struct novas_orbital_system {
  * @since 1.2
  *
  * @sa make_orbital_object(), NOVAS_ORBIT_INIT, enum NOVAS_ORBITAL_OBJECT
- *
+ * @cond C_API
  * @ingroup source
+ * @endcond
  */
 typedef struct novas_orbital {
   struct novas_orbital_system system; ///< orbital reference system assumed for the parametrization
@@ -1340,7 +1366,9 @@ typedef struct novas_orbital {
  *
  * @sa novas_orbital
  *
+ * @cond C_API
  * @ingroup source
+ * @endcond
  */
 #define NOVAS_ORBIT_INIT { NOVAS_ORBITAL_SYSTEM_INIT, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 }
 
@@ -1610,7 +1638,7 @@ typedef struct novas_in_space {
  * @sa in_space
  * @cond C_API
  * @ingroup observer
- * @endcond C_API
+ * @endcond
  */
 #define IN_SPACE_INIT   {{0.0}, {0.0}}
 
@@ -1623,7 +1651,7 @@ typedef struct novas_in_space {
  * @sa novas_make_frame()
  * @cond C_API
  * @ingroup observer
- * @endcond C_API
+ * @endcond
  */
 typedef struct novas_observer {
   enum novas_observer_place where;    ///< observer location type
@@ -1648,7 +1676,7 @@ typedef struct novas_observer {
  * @sa observer
  * @cond C_API
  * @ingroup observer
- * @endcond C_API
+ * @endcond
  */
 #define OBSERVER_INIT   { NOVAS_OBSERVER_AT_GEOCENTER, ON_SURFACE_INIT, IN_SPACE_INIT }
 
@@ -1658,7 +1686,7 @@ typedef struct novas_observer {
  * @sa novas_sky_pos(), novas_transform_sky_pos(), SKY_POS_INIT
  * @cond C_API
  * @ingroup apparent
- * @endcond C_API
+ * @endcond
  */
 typedef struct novas_sky_pos {
   double r_hat[3];  ///< unit vector toward object (dimensionless)
@@ -1681,7 +1709,7 @@ typedef struct novas_sky_pos {
  * @sa sky_pos
  * @cond C_API
  * @ingroup apparent
- * @endcond C_API
+ * @endcond
  */
 #define SKY_POS_INIT { {0.0}, 0.0, 0.0, 0.0, 0.0 }
 
@@ -1747,7 +1775,7 @@ enum novas_timescale {
  *
  * @cond C_API
  * @ingroup time
- * @endcond C_API
+ * @endcond
  */
 typedef struct novas_timespec {
   long ijd_tt;        ///< [day] Integer part of the Terrestrial Time (TT) based Julian Date
@@ -1767,7 +1795,7 @@ typedef struct novas_timespec {
  *
  * @cond C_API
  * @ingroup time
- * @endcond C_API
+ * @endcond
  */
 #define NOVAS_TIMESPEC_INIT { 0, 0.0, 0.0, 0.0, 0.0 }
 
@@ -2043,7 +2071,9 @@ enum novas_calendar_type {
  * @since 1.3
  *
  * @sa novas_print_hms(), novas_print_dms()
+ * @cond C_API
  * @ingroup util
+ * @endcond
  */
 enum novas_separator_type {
   NOVAS_SEP_COLONS = 0,       ///< Use colons between components, e.g. '12:34:56'
@@ -2059,7 +2089,9 @@ enum novas_separator_type {
  * @since 1.5
  *
  * @sa novas_cartesian_to_geodetic(), novas_geodetic_to_cartesian(), novas_geodetic_transform_site()
+ * @cond C_API
  * @ingroup observer
+ * @endcond
  */
 enum novas_reference_ellipsoid {
   NOVAS_GRS80_ELLIPSOID = 0,  ///< GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).
@@ -3127,10 +3159,10 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
 novas_nutation_provider get_nutation_lp_provider();
 
 // in orbital.c
+// \cond C_API
 /// @ingroup source
 int novas_set_orbsys_pole(enum novas_reference_system type, double ra, double dec, novas_orbital_system *restrict sys);
 
-/// \cond C_API
 /// @ingroup source
 int make_orbital_object(const char *name, long num, const novas_orbital *orbit, object *body);
 

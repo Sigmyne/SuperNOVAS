@@ -78,8 +78,8 @@ OrbitalSystem OrbitalSystem::from_novas_orbital_system(novas::novas_orbital_syst
 
 
 
-Orbital::Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_axis_m,
-        double mean_anomaly_rad, double period)
+Orbital::Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m,
+        double mean_anom_rad, double period_s)
 : _system(system) {
   static const char *fn = "Orbital()";
 
@@ -87,24 +87,24 @@ Orbital::Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_a
     novas_error(0, EINVAL, fn, "input orbital system is invalid");
   else if(isnan(jd_tdb))
     novas_error(0, EINVAL, fn, "input reference time is NAN");
-  else if(isnan(semi_major_axis_m))
-    novas_error(0, EINVAL, fn, "input semi majot axis is NAN");
-  else if(isnan(mean_anomaly_rad))
+  else if(isnan(semi_major_m))
+    novas_error(0, EINVAL, fn, "input semi major axis is NAN");
+  else if(isnan(mean_anom_rad))
     novas_error(0, EINVAL, fn, "input mean anomaly is NAN");
-  else if(isnan(period))
+  else if(isnan(period_s))
     novas_error(0, EINVAL, fn, "input period is NAN");
   else
     _valid = true;
 
   _orbit.jd_tdb = jd_tdb;
-  _orbit.a = semi_major_axis_m / Unit::au;
-  _orbit.M0 = mean_anomaly_rad / Unit::deg;
+  _orbit.a = semi_major_m / Unit::au;
+  _orbit.M0 = mean_anom_rad / Unit::deg;
   _orbit.n = 360.0 / (period / Unit::day);
 }
 
-Orbital::Orbital(const OrbitalSystem& system, const Time& time, const Distance& semi_major_axis,
-        const Angle& mean_anomaly, const Interval& period)
-: Orbital(system, time.jd(NOVAS_TDB), semi_major_axis.m(), mean_anomaly.rad(), period.seconds()) {}
+Orbital::Orbital(const OrbitalSystem& system, const Time& ref_time, const Distance& semi_major,
+        const Angle& mean_anom, const Interval& periodT)
+: Orbital(system, ref_time.jd(NOVAS_TDB), semi_major.m(), mean_anom.rad(), periodT.seconds()) {}
 
 
 double Orbital::reference_jd_tdb() const {
@@ -177,8 +177,8 @@ Orbital& Orbital::eccentricity(double e, double periapsis_rad) {
   return *this;
 }
 
-Orbital& Orbital::eccentricity(double e, const Angle& periapsis) {
-  return eccentricity(e, periapsis.rad());
+Orbital& Orbital::eccentricity(double e, const Angle& periapsis_angle) {
+  return eccentricity(e, periapsis_angle.rad());
 }
 
 Orbital& Orbital::inclination(double angle_rad, double ascending_node_rad) {
@@ -199,8 +199,8 @@ Orbital& Orbital::inclination(double angle_rad, double ascending_node_rad) {
   return *this;
 }
 
-Orbital& Orbital::inclination(const Angle& angle, const Angle& ascending_node) {
-  return inclination(angle.rad(), ascending_node.rad());
+Orbital& Orbital::inclination(const Angle& angle, const Angle& ascending_node_angle) {
+  return inclination(angle.rad(), ascending_node_angle.rad());
 }
 
 Orbital& Orbital::apsis_period(double seconds) {
@@ -212,8 +212,8 @@ Orbital& Orbital::apsis_period(double seconds) {
   return *this;
 }
 
-Orbital& Orbital::apsis_period(const Interval& period) {
-  return apsis_period(period.seconds());
+Orbital& Orbital::apsis_period(const Interval& periodT) {
+  return apsis_period(periodT.seconds());
 }
 
 Orbital& Orbital::apsis_rate(double rad_per_sec) {
@@ -229,8 +229,8 @@ Orbital& Orbital::node_period(double seconds) {
   return *this;
 }
 
-Orbital& Orbital::node_period(const Interval& period) {
-  return node_period(period.seconds());
+Orbital& Orbital::node_period(const Interval& periodT) {
+  return node_period(periodT.seconds());
 }
 
 Orbital& Orbital::node_rate(double rad_per_sec) {
