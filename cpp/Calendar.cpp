@@ -201,6 +201,15 @@ std::string CalendarDate::to_string(int decimals) const {
   return to_string(NOVAS_YMD, decimals);
 }
 
+CalendarDate CalendarDate::operator+(const Interval& r) const {
+  return CalendarDate(calendar(), jd() + r.days());
+}
+
+CalendarDate CalendarDate::operator-(const Interval& r) const {
+  return CalendarDate(calendar(), jd() - r.days());
+}
+
+
 
 } // namespace supernovas
 

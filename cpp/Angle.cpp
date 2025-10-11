@@ -56,12 +56,12 @@ Angle::Angle(const std::string& str) {
 }
 
 
-Angle operator+(const Angle& l, const Angle& r) {
-  return Angle(l.rad() + r.rad());
+Angle Angle::operator+(const Angle& r) const {
+  return Angle(rad() + r.rad());
 }
 
-Angle operator-(const Angle& l, const Angle& r) {
-  return Angle(l.rad() - r.rad());
+Angle Angle::operator-(const Angle& r) const {
+  return Angle(rad() - r.rad());
 }
 
 /**

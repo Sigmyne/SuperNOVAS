@@ -361,10 +361,6 @@ public:
 
   Interval operator-(const Interval& r) const;
 
-  TimeAngle operator+(const TimeAngle& base) const;
-
-  Time operator+(const Time& base) const;
-
   Distance operator*(const Speed& v) const;
 
   Position operator*(const Velocity& v) const;
@@ -384,6 +380,8 @@ public:
   double hours() const;
 
   double days() const;
+
+  double weeks() const;
 
   double years() const;
 
@@ -414,9 +412,9 @@ public:
 
   Angle(const std::string& str);
 
-  Angle operator+(const Angle& r);
+  Angle operator+(const Angle& r) const;
 
-  Angle operator-(const Angle& r);
+  Angle operator-(const Angle& r) const;
 
   bool is_equal(const Angle& angle, double precision = Unit::uas) const;
 
@@ -465,9 +463,9 @@ public:
 
   TimeAngle(const Angle& angle);
 
-  TimeAngle operator+(const Interval& other);
+  TimeAngle operator+(const Interval& other) const;
 
-  TimeAngle operator-(const Interval& other);
+  TimeAngle operator-(const Interval& other) const;
 
   double hours() const;
 
@@ -1191,6 +1189,8 @@ public:
 
   CalendarDate(const Calendar& calendar, double jd);
 
+  const Calendar& calendar() const { return _calendar; }
+
   double jd() const;
 
   int year() const;
@@ -1202,6 +1202,10 @@ public:
   int day_of_year() const;
 
   int day_of_week() const;
+
+  CalendarDate operator+(const Interval& interval) const;
+
+  CalendarDate operator-(const Interval& interval) const;
 
   const TimeAngle& time_of_day() const;
 

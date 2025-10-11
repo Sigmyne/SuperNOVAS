@@ -76,16 +76,13 @@
 			<resource resourceType="PROJECT" workspacePath="/SuperNOVAS"/>
 		</configuration>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
+		<project-mappings/>
+	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.2126916097;cdt.managedbuild.toolchain.gnu.base.2126916097.1241896343;cdt.managedbuild.tool.gnu.c.compiler.base.1147525170;cdt.managedbuild.tool.gnu.c.compiler.input.1061272597">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.2126916097;cdt.managedbuild.toolchain.gnu.base.2126916097.1241896343;cdt.managedbuild.tool.gnu.cpp.compiler.base.1270233007;cdt.managedbuild.tool.gnu.cpp.compiler.input.436333097">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
-		<project-mappings/>
 	</storageModule>
 </cproject>

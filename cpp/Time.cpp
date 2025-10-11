@@ -92,6 +92,15 @@ Time::Time(const struct timespec t, const EOP& eop)
 
 Time::Time(const novas_timespec *t) : _ts(*t) {}
 
+Time Time::operator+(const Interval& r) const {
+  return shifted(r);
+}
+
+Time Time::operator-(const Interval& r) const {
+  return shifted(r.inv());
+}
+
+
 Interval Time::operator-(const Time& r) const {
   return Interval(novas_diff_time(&_ts, &r._ts));
 }
@@ -204,14 +213,6 @@ Time Time::shifted(double seconds) const {
 
 Time Time::shifted(Interval offset) const {
   return shifted(offset.seconds());
-}
-
-Time operator+(const Time& l, const Interval& r) {
-  return l.shifted(r);
-}
-
-Time operator-(const Time& l, const Interval& r) {
-  return l.shifted(r.inv());
 }
 
 static const EOP _eop_j2000 = EOP(32, 0.0, 0.0, 0.0);

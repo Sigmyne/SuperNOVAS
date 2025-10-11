@@ -41,12 +41,12 @@ std::string TimeAngle::to_string(enum novas_separator_type separator, int decima
   return std::string(s);
 }
 
-TimeAngle operator+(const TimeAngle& l, const Interval& offset) {
-  return TimeAngle(l.rad() + offset.hours() * Unit::hourAngle);
+TimeAngle TimeAngle::operator+(const Interval& offset) const {
+  return TimeAngle(rad() + offset.hours() * Unit::hourAngle);
 }
 
-TimeAngle operator-(const TimeAngle&l, const Interval& offset) {
-  return TimeAngle(l.rad() - offset.hours() * Unit::hourAngle);
+TimeAngle TimeAngle::operator-(const Interval& offset) const {
+  return TimeAngle(rad() - offset.hours() * Unit::hourAngle);
 }
 
 static const TimeAngle _zero = TimeAngle(0.0);

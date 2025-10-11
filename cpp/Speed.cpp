@@ -26,6 +26,14 @@ Speed::Speed(double m_per_s) : _ms(m_per_s) {
 
 Speed::Speed(const Distance& d, const Interval& time) : _ms(d.m() / time.seconds()) {}
 
+Speed Speed::operator+(const Speed& r) const {
+  return Speed((beta() + r.beta()) / (1 + beta() * r.beta()) * Constant::c);
+}
+
+Speed Speed::operator-(const Speed& r) const {
+  return Speed((beta() - r.beta()) / (1 + beta() * r.beta()) * Constant::c);
+}
+
 Speed Speed::abs() const {
   return Speed(fabs(_ms));
 }
@@ -74,14 +82,6 @@ Velocity Speed::in_direction(const Vector& direction) const {
 
 Speed Speed::from_redshift(double z) {
   return Speed(novas_z2v(z) * Unit::km / Unit::sec);
-}
-
-Speed operator+(const Speed& l, const Speed& r) {
-  return Speed((l.beta() + r.beta()) / (1 + l.beta() * r.beta()) * Constant::c);
-}
-
-Speed operator-(const Speed& l, const Speed& r) {
-  return Speed((l.beta() - r.beta()) / (1 + l.beta() * r.beta()) * Constant::c);
 }
 
 static const Speed _stationary = Speed(0.0);

@@ -44,16 +44,6 @@ Interval::Interval(double seconds, enum novas_timescale timescale)
     _valid = true;
 }
 
-
-TimeAngle Interval::operator+(const TimeAngle& base) const {
-  return TimeAngle(_seconds + base.seconds());
-}
-
-Time Interval::operator+(const Time& base) const {
-  EOP eop = EOP(base.leap_seconds(), base.dUT1().seconds(), 0.0, 0.0);
-  return Time(base.jd() + days(), eop);
-}
-
 Distance Interval::operator*(const Speed& v) const {
   return v.travel(*this);
 }
@@ -62,6 +52,13 @@ Position Interval::operator*(const Velocity& v) const {
   return v.travel(*this);
 }
 
+Interval Interval::operator+(const Interval& r) const {
+  return from_tt(tt_seconds(*this) + tt_seconds(r), timescale());
+}
+
+Interval Interval::operator-(const Interval& r) const {
+  return from_tt(tt_seconds(*this) - tt_seconds(r), timescale());
+}
 
 bool Interval::is_equal(const Interval& interval, double precision) const {
   return fabs(_seconds - interval._seconds) < fabs(precision);
@@ -95,6 +92,10 @@ double Interval::days() const {
   return _seconds / Unit::day;
 }
 
+double Interval::weeks() const {
+  return _seconds / Unit::week;
+}
+
 double Interval::years() const {
   return _seconds / Unit::yr;
 }
@@ -108,12 +109,5 @@ double Interval::julian_centuries() const {
 }
 
 
-Interval operator+(const Interval& l, const Interval& r) {
-  return from_tt(tt_seconds(l) + tt_seconds(r), l.timescale());
-}
-
-Interval operator-(const Interval& l, const Interval& r) {
-  return from_tt(tt_seconds(l) - tt_seconds(r), l.timescale());
-}
 
 } // namespace supernovas

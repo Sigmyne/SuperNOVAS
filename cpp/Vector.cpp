@@ -29,6 +29,9 @@ Vector::Vector(double x, double y, double z) {
 Vector::Vector(const double vel[3], double unit)
 : Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
 
+Vector Vector::operator*(double r) const {
+  return scaled(r);
+}
 
 double Vector::x() const {
   return _component[0];
@@ -84,13 +87,6 @@ std::string Vector::to_string() const {
   return "VEC ( " + std::string(sx) + ", " + std::string(sy) + ", " + std::string(sz) + " )";
 }
 
-Vector operator*(const Vector& l, double r) {
-  return l.scaled(r);
-}
-
-Vector operator*(double l, const Vector& r) {
-  return r.scaled(l);
-}
 
 
 } // namespace supernovas
