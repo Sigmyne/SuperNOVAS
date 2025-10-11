@@ -43,20 +43,20 @@ static bool is_valid_sky_pos(const char *fn, const sky_pos *p) {
 }
 
 
-Apparent::Apparent(const Frame& f, enum novas_reference_system system)
-: _frame(f), _sys(system) {
+Apparent::Apparent(const EquatorialSystem& system, const Frame& f)
+: _sys(system), _frame(f) {
   static const char *fn = "Apparent(frame, system)";
 
   if(!f.is_valid())
     novas_error(0, EINVAL, fn, "frame is invalid");
-  else if(system < 0 || system > NOVAS_REFERENCE_SYSTEMS)
-    novas_error(0, EINVAL, fn, "system %d is invalid", _sys);
+  else if(!system.is_valid())
+    novas_error(0, EINVAL, fn, "equatorial system is invalid", _sys);
   else
     _valid = true;
 }
 
-Apparent::Apparent(sky_pos p, const Frame& f, enum novas_reference_system system)
-: Apparent(f, system) {
+Apparent::Apparent(const EquatorialSystem& system, const Frame& f, sky_pos p)
+: Apparent(system, f) {
   static const char *fn = "Apparent(frame, sky_pos, system)";
 
   if(!f.is_valid())
@@ -70,8 +70,8 @@ Apparent::Apparent(sky_pos p, const Frame& f, enum novas_reference_system system
   radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
 }
 
-Apparent::Apparent(double ra_rad, double dec_rad, const Frame& frame, double rv_ms, enum novas_reference_system system)
-: Apparent(frame, system) {
+Apparent::Apparent(const EquatorialSystem& system, const Frame& frame, double ra_rad, double dec_rad, double rv_ms)
+: Apparent(system, frame) {
   static const char *fn = "Apparent(frame, eq, rv, system)";
 
   if(isnan(ra_rad))
@@ -90,26 +90,26 @@ Apparent::Apparent(double ra_rad, double dec_rad, const Frame& frame, double rv_
 }
 
 Apparent Apparent::cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
-  return Apparent(ra_rad, dec_rad, frame, rv_ms, NOVAS_CIRS);
+  return Apparent(EquatorialSystem::cirs(frame.time().jd()), frame, ra_rad, dec_rad, rv_ms);
 }
 
 Apparent Apparent::cirs(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv) {
-  return Apparent(ra.rad(), dec.rad(), frame, rv.m_per_s(), NOVAS_CIRS);
+  return cirs(ra.rad(), dec.rad(), frame, rv.m_per_s());
 }
 
 Apparent Apparent::tod(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
-  return Apparent(ra_rad, dec_rad, frame, rv_ms, NOVAS_TOD);
+  return Apparent(EquatorialSystem::tod(frame.time().jd()), frame, ra_rad, dec_rad, rv_ms);
 }
 
 Apparent Apparent::tod(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv) {
-  return Apparent(ra.rad(), dec.rad(), frame, rv.m_per_s(), NOVAS_TOD);
+  return tod(ra.rad(), dec.rad(), frame, rv.m_per_s());
 }
 
 const Frame& Apparent::frame() const {
   return _frame;
 }
 
-enum novas_reference_system Apparent::system() const {
+const EquatorialSystem& Apparent::system() const {
   return _sys;
 }
 
@@ -130,8 +130,7 @@ Distance Apparent::distance() const {
 }
 
 Equatorial Apparent::equatorial() const {
-  return Equatorial(_pos.ra * Unit::hourAngle, _pos.dec * Unit::deg,
-          EquatorialSystem::for_reference_system(_sys, _frame.time().jd()).value(), _pos.dis * Unit::au);
+  return Equatorial(_pos.ra * Unit::hourAngle, _pos.dec * Unit::deg, _sys, _pos.dis * Unit::au);
 }
 
 Ecliptic Apparent::ecliptic() const {
@@ -155,7 +154,7 @@ std::optional<Horizontal> Apparent::horizontal() const {
   // pos.ra / pos.dec may be NAN for ITRS / TIRS...
   vector2radec(_pos.r_hat, &ra, &dec);
 
-  if(novas_app_to_hor(_frame._novas_frame(), _sys, ra, dec, NULL, &az, &el) != 0) {
+  if(novas_app_to_hor(_frame._novas_frame(), _sys.reference_system(), ra, dec, NULL, &az, &el) != 0) {
     novas_trace_invalid(fn);
     return std::nullopt;
   }
@@ -163,11 +162,12 @@ std::optional<Horizontal> Apparent::horizontal() const {
   return Horizontal(az * Unit::deg, el * Unit::deg, _pos.dis * Unit::au);
 }
 
-std::optional<Apparent> Apparent::from_sky_pos(sky_pos pos, const Frame& frame, enum novas_reference_system system) {
-  if(!is_valid_sky_pos("Apparent::from_sky_pos", &pos))
-    return std::nullopt;
+Apparent Apparent::from_tod_sky_pos(sky_pos pos, const Frame& frame) {
+  return Apparent(EquatorialSystem::tod(frame.time().jd()), frame, pos);
+}
 
-  return Apparent(pos, frame, system);
+Apparent Apparent::from_cirs_sky_pos(sky_pos pos, const Frame& frame) {
+  return Apparent(EquatorialSystem::cirs(frame.time().jd()), frame, pos);
 }
 
 static const Apparent _invalid = Apparent::tod(NAN, NAN, Frame::invalid(), NAN);

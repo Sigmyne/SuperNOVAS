@@ -70,6 +70,10 @@ class     OrbitalSource;
 class Frame;
 class Apparent;
 class Geometric;
+class Motion;
+class Track;
+class   HorizontalTrack;
+class   EquatorialTrack;
 
 /**
  * Various physical units for converting quantities expressed in conventional units to SI, and
@@ -390,6 +394,8 @@ public:
   double julian_centuries() const;
 
   std::string to_string() const; // TODO
+
+  static const Interval& zero();
 };
 
 /**
@@ -589,12 +595,7 @@ public:
 };
 
 /**
- * A scalar rate of movement in space reflecting the magnitude of a (relative) velocity and
- * possibly signed to reflect its direction (+ away vs - towards) also. If the speed is signed,
- * it is such that that for a velocity __v__ it is:
- *
- *  Speed( - __v__ ) = - Speed( __v__ ).
- *
+ * A scalar velocity (if signed) or speed (unsigned).
  *
  * @sa Position
  * @ingroup util, spectral
@@ -1263,7 +1264,7 @@ public:
 
   Time(const struct timespec t, const EOP& eop);
 
-  Time(const novas::novas_timespec *t);
+  Time(const novas::novas_timespec t);
 
   Interval operator-(const Time &other) const;
 
@@ -1363,7 +1364,7 @@ public:
 
   enum novas::novas_accuracy accuracy() const;
 
-  Apparent approx_apparent(const Planet& planet, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
+  Apparent approx_apparent(const Planet& planet) const;
 
   bool has_planet_data(enum novas::novas_planet planet) const;
 
@@ -1406,7 +1407,7 @@ public:
 
   std::string name() const;
 
-  Apparent apparent(const Frame &frame, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
+  Apparent apparent(const Frame &frame) const;
 
   Geometric geometric(const Frame &frame, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
 
@@ -1421,6 +1422,10 @@ public:
   std::optional<Time> transits(const Frame &frame) const;
 
   std::optional<Time> sets_below(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
+
+  std::optional<EquatorialTrack> equatorial_track(const Frame &frame, double range_seconds = 1.0 * Unit::hour) const;
+
+  std::optional<HorizontalTrack> horizontal_track(const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
 
   virtual std::string to_string() const; // TODO
 
@@ -1639,9 +1644,9 @@ public:
 
   Angle ascending_node() const;
 
-  OrbitalSystem& orientation(double obliquity_rad, double node_rad, enum novas::novas_reference_system system = novas::NOVAS_ICRS);
+  OrbitalSystem& orientation(double obliquity_rad, double node_rad, const EquatorialSystem& system = EquatorialSystem::icrs());
 
-  OrbitalSystem& orientation(const Angle& obliquity, const Angle& node, enum novas::novas_reference_system system = novas::NOVAS_ICRS);
+  OrbitalSystem& orientation(const Angle& obliquity, const Angle& node, const EquatorialSystem& system = EquatorialSystem::icrs());
 
   static OrbitalSystem equatorial(const Planet& center = Planet::sun());
 
@@ -1790,16 +1795,16 @@ public:
  */
 class Apparent : public Validating {
 private:
+  EquatorialSystem _sys;                      ///< stored coordinate system type
   Frame _frame;                               ///< stored frame data
-  enum novas::novas_reference_system _sys;    ///< stored coordinate reference system type
 
   novas::sky_pos _pos;                        ///< stored apparent position data
 
-  Apparent(const Frame& frame, enum novas::novas_reference_system system);
+  Apparent(const EquatorialSystem& system, const Frame& frame);
 
-  Apparent(novas::sky_pos p, const Frame& frame, enum novas::novas_reference_system system = novas::NOVAS_TOD);
+  Apparent(const EquatorialSystem& system, const Frame& frame, novas::sky_pos p);
 
-  Apparent(double ra_rad, double dec_rad, const Frame& frame, double rv_ms = 0.0, enum novas::novas_reference_system system = novas::NOVAS_TOD);
+  Apparent(const EquatorialSystem& system, const Frame& frame, double ra_rad, double dec_rad, double rv_ms = 0.0);
 
 
 public:
@@ -1807,7 +1812,7 @@ public:
 
   const Frame& frame() const;
 
-  enum novas::novas_reference_system system() const;
+  const EquatorialSystem& system() const;
 
   Position xyz() const;
 
@@ -1833,8 +1838,9 @@ public:
 
   static Apparent tod(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv);
 
-  static std::optional<Apparent> from_sky_pos(novas::sky_pos p, const Frame& frame,
-          enum novas::novas_reference_system system = novas::NOVAS_TOD);
+  static Apparent from_tod_sky_pos(novas::sky_pos p, const Frame& frame);
+
+  static Apparent from_cirs_sky_pos(novas::sky_pos p, const Frame& frame);
 
   static const Apparent& invalid();
 };
@@ -1935,8 +1941,89 @@ public:
   static const Horizontal& invalid();
 };
 
+class Motion : public Validating {
+private:
+  double _value;
+  double _rate;
+  double _accel;
+
+public:
+  Motion(double pos, double vel, double accel = 0.0);
+
+  double value(const Interval& offset = Interval::zero()) const;
+
+  double rate(const Interval& offset = Interval::zero()) const;
+
+  double acceleration() const;
+
+  static const Motion& zero();
+
+  static const Motion stationary(double value);
+
+};
+
+class Track : public Validating {
+private:
+  Time _ref_time;
+  Interval _range;
+  Motion _lon;
+  Motion _lat;
+  Motion _r;
+
+protected:
+
+  Track(const Time& ref_time, const Interval& range, const Motion& lon, const Motion& lat, const Motion& r = Motion::stationary(NOVAS_DEFAULT_DISTANCE));
+
+  Track(novas::novas_track track, const Interval& range);
+
+public:
+  Time& reference_time() const;
+
+  bool is_valid(const Time& time) const;
+
+  const Interval& range() const;
+
+  Angle longitude(const Time& time) const;
+
+  Angle latitude(const Time& time) const;
+
+  Distance distance(const Time& time) const;
+
+  Speed radial_velocity(const Time& time) const;
+
+  double redshift(const Time& time) const;
+};
+
+class HorizontalTrack : public Track {
+
+public:
+  HorizontalTrack(const Time& ref_time, const Interval& range,
+          const Motion& lon, const Motion& lat, const Motion& r = Motion::stationary(NOVAS_DEFAULT_DISTANCE))
+  : Track(ref_time, range, lon, lat, r) {}
+
+  HorizontalTrack(novas::novas_track track, const Interval& range)
+  : Track(track, range) {}
+
+  Horizontal projected(const Time& time) const;
 
 
+
+};
+
+class EquatorialTrack : public Track {
+private:
+  EquatorialSystem _system;
+
+public:
+  EquatorialTrack(const EquatorialSystem& system, const Interval& range, const Time& ref_time,
+          const Motion& lon, const Motion& lat, const Motion& r = Motion::stationary(NOVAS_DEFAULT_DISTANCE))
+  : Track(ref_time, range, lon, lat, r), _system(system) {}
+
+  EquatorialTrack(const EquatorialSystem& system, novas::novas_track track, const Interval& range)
+  : Track(track, range), _system(system) {}
+
+  Equatorial projected(const Time& time) const;
+};
 
 } // namespace supernovas
 

@@ -40,7 +40,7 @@ Angle OrbitalSystem::ascending_node() const {
   return Angle(_system.Omega);
 }
 
-OrbitalSystem& OrbitalSystem::orientation(double obliquity_rad, double ascending_node_rad, enum novas::novas_reference_system system) {
+OrbitalSystem& OrbitalSystem::orientation(double obliquity_rad, double ascending_node_rad, const EquatorialSystem& system) {
   static const char *fn = "OrbitalSystem::orinetation";
 
   _valid = false;
@@ -52,14 +52,14 @@ OrbitalSystem& OrbitalSystem::orientation(double obliquity_rad, double ascending
   else
     _valid = true;
 
-  _system.type = system;
+  _system.type = system.reference_system();
   _system.obl = obliquity_rad;
   _system.Omega = ascending_node_rad;
 
   return *this;
 }
 
-OrbitalSystem& OrbitalSystem::orientation(const Angle& obliquity, const Angle& ascending_node, enum novas::novas_reference_system system) {
+OrbitalSystem& OrbitalSystem::orientation(const Angle& obliquity, const Angle& ascending_node, const EquatorialSystem& system) {
   return orientation(obliquity.rad(), ascending_node.rad(), system);
 }
 

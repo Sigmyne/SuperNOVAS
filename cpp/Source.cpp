@@ -57,21 +57,19 @@ std::string Source::name() const {
  *
  * @param frame     observer frame, which defines the observer location and the time of
  *                  observation, as well as the accuracy requirement.
- * @param system    (optional) The coordinate reference system in which the apparent coordinates
- *                  should be calculated (default is NOVAS_TOD for true-of-date coordinates).
  * @return the apparent position of the source, or else an invalid position (with NAN values).
  *
  * @sa geometric()
  */
-Apparent Source::apparent(const Frame& frame, enum novas_reference_system system) const {
+Apparent Source::apparent(const Frame& frame) const {
   sky_pos pos = {};
 
-  if(novas_sky_pos(&_object, frame._novas_frame(), system, &pos) != 0) {
+  if(novas_sky_pos(&_object, frame._novas_frame(), NOVAS_TOD, &pos) != 0) {
     novas_trace_invalid("Source::apparent");
     return Apparent::invalid();
   }
 
-  return Apparent::from_sky_pos(pos, frame, system).value();
+  return Apparent::from_tod_sky_pos(pos, frame);
 }
 
 /**
@@ -110,8 +108,7 @@ Apparent Source::apparent(const Frame& frame, enum novas_reference_system system
  *
  * @param frame     observer frame, which defines the observer location and the time of
  *                  observation, as well as the accuracy requirement.
- * @param system    (optional) The coordinate reference system in which the apparent coordinates
- *                  should be calculated (default is NOVAS_TOD for true-of-date coordinates).
+ * @param system    coordinate reference system in which to return positions and velocities.
  * @return the geometric (3D) position and velocity of the source, or else an invalid position
  *         (with NAN values).
  *
@@ -120,7 +117,7 @@ Apparent Source::apparent(const Frame& frame, enum novas_reference_system system
 Geometric Source::geometric(const Frame& frame, enum novas_reference_system system) const {
   double p[3] = {0.0}, v[3] = {0.0};
 
-  if(novas_geom_posvel(&_object, frame._novas_frame(), system, p, v) != 0) {
+  if(novas_geom_posvel(&_object, frame._novas_frame(), NOVAS_TOD, p, v) != 0) {
     novas_trace_invalid("Source::geometric");
     return Geometric::invalid();
   }
@@ -177,6 +174,45 @@ std::optional<Time> Source::sets_below(double el, const Frame &frame, Refraction
 
   novas_error(0, ENOSYS, fn, "Cannot calculate transit time for a non-geodetic observer.");
   return std::nullopt;
+}
+
+std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, double range_seconds) const {
+  static const char *fn = "Source::equatorial_track";
+
+  novas_track track = {};
+
+  if(novas_equ_track(_novas_object(), frame._novas_frame(), range_seconds, &track) != 0) {
+    novas_trace_invalid(fn);
+    return std::nullopt;
+  }
+
+  return EquatorialTrack(EquatorialSystem::tod(frame.time().jd()), track, range_seconds);
+}
+
+std::optional<HorizontalTrack> Source::horizontal_track(const Frame &frame, novas::RefractionModel ref, const Weather& weather) const {
+  static const char *fn = "Source::horizontal_track";
+
+  novas_track track = {};
+
+
+  if(!frame.observer().is_geodetic()) {
+    novas_error(0, EINVAL, fn, "input frame is not a geodetic observing frame");
+    return std::nullopt;
+  }
+
+  novas_frame f = *frame._novas_frame();
+  on_surface *s = &f.observer.on_surf;
+
+  s->temperature = weather.temperature().celsius();
+  s->pressure = weather.pressure().mbar();
+  s->humidity = weather.humidity();
+
+  if(novas_hor_track(_novas_object(), frame._novas_frame(), ref, &track) != 0) {
+    novas_trace_invalid(fn);
+    return std::nullopt;
+  }
+
+  return HorizontalTrack(track, 1.0 * Unit::min);
 }
 
 Angle Source::sun_angle(const Frame& frame) const {

@@ -1890,9 +1890,9 @@ double novas_unwrap_angles(double *a, double *b, double *c) {
 /// \endcond
 
 /**
- * Calculates equatorial tracking position and motion (first and second time derivatives) for the
- * specified source in the given observing frame. The position and its derivatives are calculated
- * via the more precise IAU2006 method, and CIRS.
+ * Calculates true-of-date equatorial tracking position and motion (first and second time
+ * derivatives) for the specified source in the given observing frame. The position and its
+ * derivatives are calculated via the more precise IAU2006 method, and CIRS.
  *
  * @param source        Observed source
  * @param frame         Observing frame, defining the observer location and astronomical time of

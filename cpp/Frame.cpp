@@ -119,10 +119,10 @@ double Frame::clock_skew(enum novas_timescale timescale) const {
   return novas_clock_skew(&_frame, timescale);
 }
 
-Apparent Frame::approx_apparent(const Planet& planet, enum novas_reference_system system) const {
+Apparent Frame::approx_apparent(const Planet& planet) const {
   sky_pos pos = {};
-  novas_approx_sky_pos(planet.novas_id(), _novas_frame(), system, &pos);
-  return Apparent::from_sky_pos(pos, *this, system).value();
+  novas_approx_sky_pos(planet.novas_id(), _novas_frame(), NOVAS_TOD, &pos);
+  return Apparent::from_tod_sky_pos(pos, *this);
 }
 
 std::optional<Frame> Frame::create(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy) {

@@ -108,6 +108,11 @@ double Interval::julian_centuries() const {
   return _seconds / Unit::julianCentury;
 }
 
+static const Interval _zero = Interval(0.0);
+
+const Interval& zero() {
+  return _zero;
+}
 
 
 } // namespace supernovas

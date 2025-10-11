@@ -90,7 +90,7 @@ Time::Time(const struct timespec t, int leap_seconds, double dUT1) {
 Time::Time(const struct timespec t, const EOP& eop)
 : Time(t, eop.leap_seconds(), eop.dUT1()) {}
 
-Time::Time(const novas_timespec *t) : _ts(*t) {}
+Time::Time(const novas_timespec t) : _ts(t) {}
 
 Time Time::operator+(const Interval& r) const {
   return shifted(r);
@@ -208,7 +208,7 @@ Time Time::shifted(double seconds) const {
     ts.ijd_tt++;
     ts.fjd_tt -= 1.0;
   }
-  return Time(&ts);
+  return Time(ts);
 }
 
 Time Time::shifted(Interval offset) const {

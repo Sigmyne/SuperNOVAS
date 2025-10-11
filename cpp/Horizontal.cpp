@@ -72,7 +72,7 @@ std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, double rv, d
   p.rv = rv / (Unit::au / Unit::day);
   p.dis = distance / Unit::au;
   radec2vector(p.ra, p.dec, 1.0, p.r_hat);
-  return Apparent::from_sky_pos(p, frame, NOVAS_TOD);
+  return Apparent::from_tod_sky_pos(p, frame);
 }
 
 std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, const Speed& rv, const Distance& distance) const {
