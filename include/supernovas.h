@@ -349,7 +349,7 @@ public:
  * A signed time interval between two instants of time, in the astronomical timescale of choice.
  *
  * @sa Time, TimeAngle
- * @ingroup time
+ * @ingroup util
  */
 class Interval : public Validating {
 private:
@@ -458,7 +458,7 @@ public:
  * from HH:MM:SS.SSS string representations of time in hours.
  *
  * @sa Time, Interval
- * @ingroup time util
+ * @ingroup util
  */
 class TimeAngle : public Angle {
 public:
@@ -725,8 +725,10 @@ public:
 
   Equatorial to_cirs(double jd_tt) const;
 
+  /// @ingroup nonequatorial
   Ecliptic as_ecliptic() const;
 
+  /// @ingroup nonequatorial
   Galactic as_galactic() const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
@@ -767,8 +769,10 @@ public:
 
   Ecliptic to_tod(double jd_tt) const;
 
+  /// @ingroup equatorial
   Equatorial as_equatorial() const;
 
+  /// @ingroup nonequatorial
   Galactic as_galactic() const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
@@ -806,8 +810,10 @@ public:
 
   Galactic(const Position& pos);
 
+  /// @ingroup equatorial
   Equatorial as_equatorial() const;
 
+  /// @ingroup nonequatorial
   Ecliptic as_ecliptic() const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
@@ -948,7 +954,7 @@ public:
  * (ITRS) on the true rotational equator.
  *
  * @sa Time, GeodeticObserver, Apparent::to_itrs(), Geometric::to_itrs(), Horizontal::to_apparent()
- * \ingroup earth nonequatorial
+ * \ingroup earth
  */
 class EOP : public Validating {
 private:
@@ -1306,6 +1312,10 @@ public:
 
   TimeAngle era() const;
 
+  double moon_phase() const;
+
+  Time next_moon_phase(double phase) const; // TODO
+
   std::string to_string(enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
 
   std::string to_iso_string() const;
@@ -1364,6 +1374,7 @@ public:
 
   enum novas::novas_accuracy accuracy() const;
 
+  /// @ingroup apparent
   Apparent approx_apparent(const Planet& planet) const;
 
   bool has_planet_data(enum novas::novas_planet planet) const;
@@ -1407,8 +1418,10 @@ public:
 
   std::string name() const;
 
+  /// @ingroup apparent
   Apparent apparent(const Frame &frame) const;
 
+  /// @ingroup geometric
   Geometric geometric(const Frame &frame, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
 
   Angle sun_angle(const Frame &frame) const;
@@ -1820,12 +1833,16 @@ public:
 
   Distance distance() const;
 
+  /// @ingroup equatorial
   Equatorial equatorial() const;
 
+  /// @ingroup nonequatorial
   Ecliptic ecliptic() const;
 
+  /// @ingroup nonequatorial
   Galactic galactic() const;
 
+  /// @ingroup nonequatorial
   std::optional<Horizontal> horizontal() const;
 
   std::string to_string() const; // TODO
@@ -1877,10 +1894,13 @@ public:
 
   const Velocity& velocity() const;
 
+  /// @ingroup equatorial
   Equatorial equatorial() const;
 
+  /// @ingroup nonequatorial
   Ecliptic ecliptic() const;
 
+  /// @ingroup nonequatorial
   Galactic galactic() const;
 
   Geometric in_system(enum novas::novas_reference_system system) const;
@@ -1932,14 +1952,17 @@ public:
 
   Horizontal to_unrefracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather);
 
+  /// @ingroup apparent
   std::optional<Apparent> to_apparent(const Frame& frame, double rv = 0.0, double distance = NOVAS_DEFAULT_DISTANCE) const;
 
+  /// @ingroup apparent
   std::optional<Apparent> to_apparent(const Frame& frame, const Speed& rv = Speed::stationary(), const Distance& distance = Distance::at_Gpc()) const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 
   static const Horizontal& invalid();
 };
+
 
 class Motion : public Validating {
 private:
@@ -1994,6 +2017,10 @@ public:
   double redshift(const Time& time) const;
 };
 
+/**
+ *
+ * @ingroup nonequatorial
+ */
 class HorizontalTrack : public Track {
 
 public:
@@ -2005,11 +2032,12 @@ public:
   : Track(track, range) {}
 
   Horizontal projected(const Time& time) const;
-
-
-
 };
 
+/**
+ *
+ * @ingroup apparent
+ */
 class EquatorialTrack : public Track {
 private:
   EquatorialSystem _system;

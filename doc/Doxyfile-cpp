@@ -290,7 +290,19 @@ TAB_SIZE               = 4
 # with the commands \{ and \} for these it is advised to use the version @{ and
 # @} or use a double escape (\\{ and \\})
 
-ALIASES                =
+ALIASES                = c_source= \
+                         c_observer= \
+                         c_time= \
+                         c_frame= \
+                         c_apparent= \
+                         c_geometric= \
+                         c_equatorial= \
+                         c_nonequatorial= \
+                         c_refract= \
+                         c_spectral= \
+                         c_solar-system= \
+                         c_earth= \
+                         c_util=
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
 # only. Doxygen will then generate output that is more tailored for C. For
@@ -2458,7 +2470,7 @@ ENABLE_PREPROCESSING   = YES
 # The default value is: NO.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
-MACRO_EXPANSION        = YES
+MACRO_EXPANSION        = NO
 
 # If the EXPAND_ONLY_PREDEF and MACRO_EXPANSION tags are both set to YES then
 # the macro expansion is limited to the macros specified with the PREDEFINED and
@@ -2503,7 +2515,8 @@ PREDEFINED             = BUILTIN_SOLSYS3=1 \
                          DEFAULT_SOLSYS=3 \
                          BUILTIN_SOLSYS_EPHEM_READER=1 \
                          NOVAS_NAMESPACE \
-                         __cplusplus=201703L
+                         __cplusplus=201703L \
+                         _EXCLUDE_DEPRECATED
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The
