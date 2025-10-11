@@ -99,7 +99,7 @@ Orbital::Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m
   _orbit.jd_tdb = jd_tdb;
   _orbit.a = semi_major_m / Unit::au;
   _orbit.M0 = mean_anom_rad / Unit::deg;
-  _orbit.n = 360.0 / (period / Unit::day);
+  _orbit.n = 360.0 / (period_s / Unit::day);
 }
 
 Orbital::Orbital(const OrbitalSystem& system, const Time& ref_time, const Distance& semi_major,

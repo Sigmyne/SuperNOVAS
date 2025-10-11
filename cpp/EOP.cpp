@@ -75,7 +75,7 @@ EOP EOP::diurnal_corrected(const Time& time) const {
   return eop;
 }
 
-std::string EOP::str() const {
+std::string EOP::to_string() const {
   char sx[20] = {'\0'}, sy[20] = {'\0'}, st[20] = {'\0'};
   snprintf(st, sizeof(st), "dUT1 = %.6f s", _dut1);
   snprintf(sx, sizeof(sx), "xp = %.3f mas", _xp.mas());

@@ -54,7 +54,7 @@ double Pressure::atm() const {
   return _pascal / Unit::atm;
 }
 
-std::string Pressure::str() const {
+std::string Pressure::to_string() const {
   char s[40] = {'\0'};
   snprintf(s, sizeof(s), "%.1f mbar", _pascal / Unit::mbar);
   return std::string(s);

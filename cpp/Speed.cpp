@@ -62,7 +62,7 @@ Distance Speed::travel(const Interval& time) const {
   return travel(time.seconds());
 }
 
-std::string Speed::str() const {
+std::string Speed::to_string() const {
   char s[40] = {'\0'};
   snprintf(s, sizeof(s), "%.3f km/s", km_per_s());
   return std::string(s);

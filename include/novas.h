@@ -2055,7 +2055,9 @@ enum novas_date_format {
  * @author Attila Kovacs
  *
  * @sa novas_jd_from_date(), novas_jd_to_date()
+ * @cond C_API
  * @ingroup time
+ * @endcond
  */
 enum novas_calendar_type {
   NOVAS_ROMAN_CALENDAR = -1,    ///< The Roman (a.k.a. Julian) calendar by Julius Caesar, introduced in -45 B.C.

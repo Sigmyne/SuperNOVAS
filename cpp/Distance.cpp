@@ -129,7 +129,7 @@ Angle Distance::parallax() const {
  *
  * @return    A human readable string representation of the distance and a unit specifier.
  */
-std::string Distance::str() const {
+std::string Distance::to_string() const {
   char s[40] = {'\0'};
 
   if(_meters < 1e4) snprintf(s, sizeof(s), "%.1f m", _meters);

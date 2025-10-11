@@ -91,9 +91,9 @@ Position Site::xyz() const {
   return Position(p, Unit::au);
 }
 
-std::string Site::str(enum novas_separator_type separator, int decimals) const {
-  return "Site: " + Angle(fabs(_site.longitude * Unit::deg)).str(separator, decimals) + (_site.longitude < 0 ? "W  " : "E  ") +
-          Angle(fabs(_site.latitude * Unit::deg)).str(separator, decimals) + (_site.latitude < 0 ? "S  " : "N  ") +
+std::string Site::to_string(enum novas_separator_type separator, int decimals) const {
+  return "Site: " + Angle(fabs(_site.longitude * Unit::deg)).to_string(separator, decimals) + (_site.longitude < 0 ? "W  " : "E  ") +
+          Angle(fabs(_site.latitude * Unit::deg)).to_string(separator, decimals) + (_site.latitude < 0 ? "S  " : "N  ") +
           std::to_string((long) round(_site.height)) + "m";
 }
 

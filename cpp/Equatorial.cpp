@@ -25,7 +25,7 @@ void Equatorial::validate() {
 
   else if(!_sys.is_valid()) {
     _valid = false;
-    novas_error(0, EINVAL, fn, "Invalid equatorial system: %s", _sys.str().c_str());
+    novas_error(0, EINVAL, fn, "Invalid equatorial system: %s", _sys.to_string().c_str());
   }
 }
 
@@ -175,9 +175,9 @@ Galactic Equatorial::as_galactic() const {
   return Galactic(longitude * Unit::deg, latitude * Unit::deg, distance().m());
 }
 
-const std::string Equatorial::str(enum novas_separator_type separator, int decimals) const {
-  return "EQU  " + ra().str(separator, (decimals > 1 ? decimals - 1 : decimals)) + "  "
-          + dec().str(separator, decimals) + "  " + _sys.str();
+std::string Equatorial::to_string(enum novas_separator_type separator, int decimals) const {
+  return "EQU  " + ra().to_string(separator, (decimals > 1 ? decimals - 1 : decimals)) + "  "
+          + dec().to_string(separator, decimals) + "  " + _sys.to_string();
 }
 
 static const Equatorial _invalid = Equatorial(NAN, NAN);

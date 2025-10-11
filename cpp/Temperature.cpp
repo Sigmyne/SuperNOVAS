@@ -37,7 +37,7 @@ double Temperature::farenheit() const {
   return 32.0 + 1.8 * _deg_C;
 }
 
-std::string Temperature::str() const {
+std::string Temperature::to_string() const {
   char s[40] = {'\0'};
   snprintf(s, sizeof(s), "%.1f C", _deg_C);
   return std::string(s);

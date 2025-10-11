@@ -47,8 +47,8 @@ const Position& Position::origin() {
   return _origin;
 }
 
-std::string Position::str() const {
-  return "POS ( " + Distance(x()).str() + ", " + Distance(y()).str() + ", " + Distance(z()).str() + ")";
+std::string Position::to_string() const {
+  return "POS ( " + Distance(x()).to_string() + ", " + Distance(y()).to_string() + ", " + Distance(z()).to_string() + ")";
 }
 
 Position operator+(const Position& l, const Position& r) {

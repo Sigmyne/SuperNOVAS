@@ -35,7 +35,7 @@ double TimeAngle::seconds() const {
   return hours() * 3600.0;
 }
 
-std::string TimeAngle::str(enum novas_separator_type separator, int decimals) const {
+std::string TimeAngle::to_string(enum novas_separator_type separator, int decimals) const {
   char s[100] = {'\0'};
   novas_print_hms(hours(), separator, decimals, s, sizeof(s));
   return std::string(s);
@@ -47,6 +47,12 @@ TimeAngle operator+(const TimeAngle& l, const Interval& offset) {
 
 TimeAngle operator-(const TimeAngle&l, const Interval& offset) {
   return TimeAngle(l.rad() - offset.hours() * Unit::hourAngle);
+}
+
+static const TimeAngle _zero = TimeAngle(0.0);
+
+const TimeAngle& TimeAngle::zero() {
+  return _zero;
 }
 
 } // namespace supernovas

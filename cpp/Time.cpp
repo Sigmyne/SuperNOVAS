@@ -165,19 +165,19 @@ int Time::day_of_week(enum novas_timescale timescale) const {
   return novas_day_of_week(jd(timescale));
 }
 
-std::string Time::str(enum novas_timescale timescale) const {
+std::string Time::to_string(enum novas_timescale timescale) const {
   char str[40] = {'\0'};
   novas_timestamp(&_ts, timescale, str, sizeof(str));
   return std::string(str);
 }
 
-std::string Time::iso_str() const {
+std::string Time::to_iso_string() const {
   char str[40] = {'\0'};
   novas_iso_timestamp(&_ts, str, sizeof(str));
   return std::string(str);
 }
 
-std::string Time::epoch_str() const {
+std::string Time::to_epoch_string() const {
   char s[40] = {'\0'};
   snprintf(s, sizeof(s), "J%.2f", epoch());
   return std::string(s);

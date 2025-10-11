@@ -21,7 +21,7 @@ Velocity::Velocity(double x_ms, double y_ms, double z_ms)
   if(!_valid)
     novas::novas_trace_invalid(fn);
   else if(abs() > Constant::c) {
-    novas::novas_error(0, ERANGE, fn, "input velocity exceeds the speed of light: %s", str().c_str());
+    novas::novas_error(0, ERANGE, fn, "input velocity exceeds the speed of light: %s", to_string().c_str());
     _valid = false;
   }
 }
@@ -58,8 +58,8 @@ static double v_add(double v1, double v2) {
   return (v1 + v2) / (1.0 + v1 * v2) * Constant::c;
 }
 
-std::string Velocity::str() const {
-  return "VEL ( " + Speed(x()).str() + ", " + Speed(y()).str() + ", " + Speed(z()).str() + ")";
+std::string Velocity::to_string() const {
+  return "VEL ( " + Speed(x()).to_string() + ", " + Speed(y()).to_string() + ", " + Speed(z()).to_string() + ")";
 }
 
 Velocity operator+(const Velocity& l, const Velocity& r) {

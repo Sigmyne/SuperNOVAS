@@ -132,8 +132,8 @@ static std::string _sys_type(enum novas_equator_type equator, double jd_tt) {
   return std::string(s);
 }
 
-const std::string Ecliptic::str(enum novas_separator_type separator, int decimals) const {
-  return "ECL  " + Spherical::str(separator, decimals) + "  " + _sys_type(_equator, _jd);
+std::string Ecliptic::to_string(enum novas_separator_type separator, int decimals) const {
+  return "ECL  " + Spherical::to_string(separator, decimals) + "  " + _sys_type(_equator, _jd);
 }
 
 

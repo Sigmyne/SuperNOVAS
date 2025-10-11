@@ -30,8 +30,8 @@ Ecliptic Galactic::as_ecliptic() const {
   return as_equatorial().as_ecliptic();
 }
 
-const std::string Galactic::str(enum novas_separator_type separator, int decimals) const {
-  return "GAL  " + Spherical::str(separator, decimals);
+std::string Galactic::to_string(enum novas_separator_type separator, int decimals) const {
+  return "GAL  " + Spherical::to_string(separator, decimals);
 }
 
 static const Galactic _invalid = Galactic(NAN, NAN, NAN);

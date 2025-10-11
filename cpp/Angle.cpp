@@ -157,7 +157,7 @@ double Angle::fraction() const {
  *                    component.
  * @return
  */
-std::string Angle::str(enum novas_separator_type separator, int decimals) const {
+std::string Angle::to_string(enum novas_separator_type separator, int decimals) const {
   char s[100] = {'\0'};
   if(novas_print_dms(deg(), separator, decimals, s, sizeof(s)) != 0)
     novas_trace_invalid("Angle::str");

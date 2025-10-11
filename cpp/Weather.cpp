@@ -55,7 +55,7 @@ double Weather::humidity_fraction() const {
   return 0.01 * _humidity;
 }
 
-std::string Weather::str() const {
+std::string Weather::to_string() const {
   char sT[20] = {'\0'}, sP[20] = {'\0'}, sH[20] = {'\0'};
   snprintf(sT, sizeof(sT), "T = %.2f C", temperature().celsius());
   snprintf(sP, sizeof(sT), "p = %.2f mbar", pressure().mbar());

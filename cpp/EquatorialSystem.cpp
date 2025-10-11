@@ -154,7 +154,7 @@ const std::string& EquatorialSystem::name() const {
  *
  * @return    A string identification of this catalof system.
  */
-std::string EquatorialSystem::str() const {
+std::string EquatorialSystem::to_string() const {
   return _name;
 }
 

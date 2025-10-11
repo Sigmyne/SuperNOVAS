@@ -41,7 +41,7 @@ namespace novas {
 #define IJD_J2000   2451545
 
 #define UNIX_SECONDS_0UTC_1JAN2000  946684800    ///< [s] UNIX time at J2000.0
-#define UNIX_J2000                  (UNIX_SECONDS_0UTC_1JAN2000 + (IDAY / 2))
+#define UNIX_UTC_J2000              (UNIX_SECONDS_0UTC_1JAN2000 + (IDAY / 2))
 
 // IAU 2006 Resolution B3
 #define TC_T0      2443144.5003725       ///< 1977 January 1, 0h 0m 0s TAI
@@ -868,7 +868,7 @@ int novas_set_unix_time(time_t unix_time, long nanos, int leap, double dut1, nov
   long jd, sojd;
 
   // UTC based integer JD
-  unix_time -= UNIX_J2000;
+  unix_time -= UNIX_UTC_J2000;
   jd = IJD_J2000 + unix_time / IDAY;
 
   // seconds of JD date
@@ -948,7 +948,7 @@ time_t novas_get_unix_time(const novas_timespec *restrict time, long *restrict n
   }
 
   isod = (long) floor(sod);
-  seconds = UNIX_J2000 + (ijd - IJD_J2000) * IDAY + isod;
+  seconds = UNIX_UTC_J2000 + (ijd - IJD_J2000) * IDAY + isod;
 
   if(nanos) {
     *nanos = (long) floor(1e9 * (sod - isod) + 0.5);

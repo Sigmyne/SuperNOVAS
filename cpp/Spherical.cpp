@@ -62,8 +62,8 @@ const Distance& Spherical::distance() const {
   return _distance;
 }
 
-const std::string Spherical::str(enum novas_separator_type separator, int decimals) const {
-  return _lon.str(separator, decimals) + "  " + _lat.str(separator, decimals);
+std::string Spherical::to_string(enum novas_separator_type separator, int decimals) const {
+  return _lon.to_string(separator, decimals) + "  " + _lat.to_string(separator, decimals);
 }
 
 } // namespace supernovas

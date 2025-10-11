@@ -76,7 +76,7 @@ Vector Vector::unit_vector() const {
   return scaled(1.0 / abs());
 }
 
-std::string Vector::str() const {
+std::string Vector::to_string() const {
   char sx[20] = {'\0'}, sy[20] = {'\0'}, sz[20] = {'\0'};
   snprintf(sx, sizeof(sx), "%.6g", _component[0]);
   snprintf(sy, sizeof(sy), "%.6g", _component[1]);
