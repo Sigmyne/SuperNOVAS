@@ -174,6 +174,14 @@ int Time::day_of_week(enum novas_timescale timescale) const {
   return novas_day_of_week(jd(timescale));
 }
 
+double Time::moon_phase() const {
+  return novas_moon_phase(jd(NOVAS_TDB));
+}
+
+Time Time::next_moon_phase(double phase) const {
+  return Time(novas_next_moon_phase(jd(NOVAS_TDB), phase), leap_seconds(), dUT1().seconds(), NOVAS_TDB);
+}
+
 std::string Time::to_string(enum novas_timescale timescale) const {
   char str[40] = {'\0'};
   novas_timestamp(&_ts, timescale, str, sizeof(str));
