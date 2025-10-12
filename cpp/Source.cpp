@@ -289,14 +289,14 @@ Planet::Planet(enum novas_planet number) : SolarSystemSource() {
 
 std::optional<Planet> Planet::for_naif_id(long naif) {
   enum novas_planet num = naif_to_novas_planet(naif);
-  if((int) num < 0)
+  if((unsigned) num >= NOVAS_PLANETS)
     return std::nullopt;
   return Planet(num);
 }
 
 std::optional<Planet> Planet::for_name(const std::string& name) {
   enum novas_planet num = novas_planet_for_name(name.c_str());
-  if((int) num < 0)
+  if((unsigned) num >= NOVAS_PLANETS)
     return std::nullopt;
   return Planet(num);
 }
@@ -420,11 +420,11 @@ std::string EphemerisSource::to_string() const {
 static bool is_valid_orbital_system(const novas_orbital_system *s) {
   static const char *fn = "OrbitalSource::from:orbit";
 
-  if(s->center < 0)
+  if((unsigned) s->center >= NOVAS_PLANETS)
     return novas_error(0, EINVAL, fn, "orbital system center planet is invalid: %d", s->center);
-  if(s->plane < 0)
+  if((unsigned) s->plane >= NOVAS_REFERENCE_PLANES)
     return novas_error(0, EINVAL, fn, "orbital system plane is invalid: %d", s->plane);
-  if(s->type < 0)
+  if((unsigned) s->type >= NOVAS_REFERENCE_SYSTEMS)
     return novas_error(0, EINVAL, fn, "orbital system type is invalid: %d", s->type);
   if(isnan(s->Omega))
     return novas_error(0, EINVAL, fn, "orbital system Omega is NAN");

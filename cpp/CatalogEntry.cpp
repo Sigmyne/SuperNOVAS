@@ -147,7 +147,7 @@ CatalogEntry& CatalogEntry::distance(double meters) {
     novas_error(0, EINVAL, fn, "input distance is NAN");
     _valid = false;
   }
-  else if(meters < 0) {
+  else if(meters < 0.0) {
     novas_error(0, EINVAL, fn, "input distance is negative: %g pc", (meters / Unit::pc));
     _valid = false;
   }
