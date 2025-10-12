@@ -34,7 +34,7 @@ bool Time::is_valid_parms(double dUT1,  enum novas_timescale timescale) const {
     return novas_error(0, EINVAL, fn, "input dUT1 is NAN");
   else if(fabs(dUT1) > 1.0)
     return novas_error(0, EINVAL, fn, "input dUT1 exceeds +/- 1s limit: %g", dUT1);
-  else if(timescale < 0)
+  else if((unsigned) timescale >= NOVAS_TIMESCALES)
     return novas_error(0, EINVAL, fn, "invalid timescale: %d", timescale);
   else
     return 1;

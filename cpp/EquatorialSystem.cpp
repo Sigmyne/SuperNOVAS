@@ -203,7 +203,7 @@ std::optional<EquatorialSystem> EquatorialSystem::for_reference_system(enum nova
     novas_error(0, EINVAL, fn, "input JD is NAN");
     return std::nullopt;
   }
-  else if(system < 0) {
+  else if((unsigned) system >= NOVAS_REFERENCE_SYSTEMS) {
     novas_error(0, EINVAL, fn, "invalid reference system: %d", system);
     return std::nullopt;
   }
