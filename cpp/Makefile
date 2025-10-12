@@ -8,6 +8,13 @@ CC := $(CXX)
 SRC ?= ../src
 LIB ?= ../lib
 OBJ := obj
+LANGUAGE := c++
+CHECK_DIR := .
+
+ifeq ($(CXX),clang++)
+  # Treat .c sources as C++
+  CXXFLAGS += -x c++
+endif
 
 # Use the definitions project definitions
 include ../config.mk
