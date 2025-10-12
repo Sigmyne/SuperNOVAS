@@ -9,12 +9,20 @@
 #include <string.h>
 #include <cstring>
 #include <ctype.h>
+#ifndef _MSC_VER
+#  include <strings.h>            // strcasecmp() / strncasecmp() -- POSIX.1-2001 / 4.4BSD
+#endif
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
 /// \endcond
 
 #include "supernovas.h"
+
+#if defined(_MSC_VER)
+#  define strcasecmp _stricmp                       /// MSVC equivalent
+#  define strncasecmp _strnicmp                     /// MSVC equivalent
+#endif
 
 using namespace novas;
 
@@ -41,7 +49,6 @@ static std::string _name_for(const char *base, double year) {
   return std::string(s);
 }
 
-
 EquatorialSystem::EquatorialSystem(const std::string& name, double jd_tt)
 : _name(name), _system(NOVAS_MOD), _jd(jd_tt) {
   if(isnan(_jd))
@@ -52,9 +59,9 @@ EquatorialSystem::EquatorialSystem(const std::string& name, double jd_tt)
   if(jd_tt == NOVAS_JD_J2000)
     _system = NOVAS_J2000;
 
-  if(name.length() < 4) return;
-  if(strcasecmp(&name.c_str()[1], "CRS") != 0) return;
-  if(strcasecmp(name.c_str(), NOVAS_SYSTEM_FK6) != 0) return;
+  if(name.length() < 3) return;
+  if(strncasecmp(&name.c_str()[1], "CRS", 3) == 0) return;
+  if(strcasecmp(name.c_str(), NOVAS_SYSTEM_FK6)) return;
 
   _system = NOVAS_ICRS;
 }

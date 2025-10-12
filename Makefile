@@ -85,6 +85,7 @@ coverage:
 .PHONY: clean
 clean:
 	@rm -f $(OBJECTS) Doxyfile.local gmon.out
+	@$(MAKE) -s -C cpp clean	
 	@$(MAKE) -s -C test clean
 	@$(MAKE) -s -C benchmark clean
 	@$(MAKE) -s -C examples clean
@@ -97,6 +98,7 @@ distclean: clean
       $(LIB)/libnovas.$(SOEXT)* $(LIB)/libsolsys*.$(SOEXT)*
 	@rm -f doc/Doxyfile.local doc/README.md
 	@rm -rf build */build 
+	@$(MAKE) -s -C cpp distclean
 	@$(MAKE) -s -C test distclean
 	@$(MAKE) -s -C benchmark distclean
 	@$(MAKE) -s -C examples distclean
