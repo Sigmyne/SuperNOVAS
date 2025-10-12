@@ -3319,19 +3319,19 @@ static int test_equ_track() {
 
   time.fjd_tt += 0.01;
   if(!is_ok("equ_track:make_frame:shifted", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &time, 0.0, 0.0, &frame))) n++;
-  if(!is_ok("equ_track:sky_pos", novas_sky_pos(&sun, &frame, NOVAS_TOD, &pos))) n++;
+  if(!is_ok("equ_track:shifted:sky_pos", novas_sky_pos(&sun, &frame, NOVAS_TOD, &pos))) n++;
 
-  if(!is_ok("equ_track:track_pos:lon", novas_track_pos(&track, &time, &x, NULL, NULL, NULL))) n++;
-  if(!is_equal("equ_track:track_pos:lon:check", x, remainder(15.0 * pos.ra, 360.0), 1e-5)) n++;
+  if(!is_ok("equ_track:shifted:track_pos:lon", novas_track_pos(&track, &time, &x, NULL, NULL, NULL))) n++;
+  if(!is_equal("equ_track:shifted:track_pos:lon:check", x, remainder(15.0 * pos.ra, 360.0), 1e-5)) n++;
 
-  if(!is_ok("equ_track:track_pos:lat", novas_track_pos(&track, &time, NULL, &x, NULL, NULL))) n++;
-  if(!is_equal("equ_track:track_pos:lat:check", x, pos.dec, 1e-5)) n++;
+  if(!is_ok("equ_track:shifted:track_pos:lat", novas_track_pos(&track, &time, NULL, &x, NULL, NULL))) n++;
+  if(!is_equal("equ_track:shifted:track_pos:lat:check", x, pos.dec, 1e-5)) n++;
 
-  if(!is_ok("equ_track:track_pos:dist", novas_track_pos(&track, &time, NULL, NULL, &x, NULL))) n++;
-  if(!is_equal("equ_track:track_pos:dist:check", x, pos.dis, 1e-9)) n++;
+  if(!is_ok("equ_track:shifted:track_pos:dist", novas_track_pos(&track, &time, NULL, NULL, &x, NULL))) n++;
+  if(!is_equal("equ_track:shifted:track_pos:dist:check", x, pos.dis, 1e-9)) n++;
 
-  if(!is_ok("equ_track:track_pos:z", novas_track_pos(&track, &time, NULL, NULL, NULL, &x))) n++;
-  if(!is_equal("equ_track:track_pos:dist:z", x, novas_v2z(pos.rv), 1e-9)) n++;
+  if(!is_ok("equ_track:shifted:track_pos:z", novas_track_pos(&track, &time, NULL, NULL, NULL, &x))) n++;
+  if(!is_equal("equ_track:shifted:track_pos:dist:z", x, novas_v2z(pos.rv), 1e-9)) n++;
 
   return n;
 }
