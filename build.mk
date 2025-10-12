@@ -48,11 +48,13 @@ clean: clean-local
 .PHONY: distclean
 distclean: distclean-local
 
+CHECK_DIR ?= $(SRC)
+
 # Static code analysis using 'cppcheck'
 .PHONY: analyze
 analyze:
 	@echo "   [analyze]"
-	@cppcheck $(CPPFLAGS) $(CHECKOPTS) $(SRC)
+	@cppcheck $(CPPFLAGS) $(CHECKOPTS) $(CHECK_DIR)
 
 # Static code analysis viacat Facebook's infer
 .PHONY: infer

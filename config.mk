@@ -67,7 +67,9 @@ CFLAGS ?= -g -Os -Wall
 
 # cppcheck options for 'check' target. You can add additional options by
 # setting the CHECKEXTRA variable (e.g. in shell) prior to invoking 'make'.
-CHECKOPTS ?= --enable=performance,warning,portability,style --language=c \
+LANGUAGE ?= c
+
+CHECKOPTS ?= --enable=performance,warning,portability,style --language=$(LANGUAGE) \
             --error-exitcode=1 --std=c99
 
 
