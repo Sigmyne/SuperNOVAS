@@ -1322,7 +1322,7 @@ public:
 
   double moon_phase() const;
 
-  Time next_moon_phase(double phase) const; // TODO
+  Time next_moon_phase(const Angle& phase) const;
 
   std::string to_string(enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
 
