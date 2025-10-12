@@ -3079,7 +3079,7 @@ enum novas_timescale novas_timescale_for_string(const char *restrict str);
 /// @ingroup util
 enum novas_timescale novas_parse_timescale(const char *restrict str, char **restrict tail);
 
-/// @ingroup time
+/// @c_time
 int novas_print_timescale(enum novas_timescale scale, char *restrict buf);
 
 /// @c_util

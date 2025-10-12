@@ -1440,16 +1440,22 @@ public:
   /// @ingroup geometric
   Geometric geometric(const Frame &frame, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
 
+  /// @ingroup apparent
   Angle sun_angle(const Frame &frame) const;
 
+  /// @ingroup apparent
   Angle moon_angle(const Frame &frame) const;
 
+  /// @ingroup apparent
   Angle angle_to(const Source& source, const Frame& frame) const;
 
+  /// @ingroup time
   std::optional<Time> rises_above(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
 
+  /// @ingroup time
   std::optional<Time> transits(const Frame &frame) const;
 
+  /// @ingroup time
   std::optional<Time> sets_below(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
 
   /// @ingroup tracking
