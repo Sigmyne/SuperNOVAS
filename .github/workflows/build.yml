@@ -36,6 +36,7 @@ jobs:
           - os: macos-latest
             cc: clang
     env:
+      CC: ${{ matrix.cc }}
       CFLAGS: -Os -Wall -Werror
       CSTANDARD: c99
       WEXTRA: 1
@@ -43,9 +44,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-
-      - name: Set compiler
-        run: echo "CC=${{ matrix.cc }}" >> $GITHUB_ENV
 
       - name: Build static library
         run: make static
@@ -61,6 +59,30 @@ jobs:
 
       - name: Build benchmarks
         run: make -C benchmark build
+
+  build-cpp:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        include:
+          - os: ubuntu-latest
+            cxx: g++
+    env:
+      CXX: ${{ matrix.cxx }}
+      CXXFLAGS: -Os -Wall -Werror
+      WEXTRA: 1
+      FORTIFY: 3
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Build static library
+        run: make -C cpp static
+
+      - name: Build shared library
+        run: make -C cpp shared
+
 
 # Reverse build not yet supported in ubuntu-latest
 #
@@ -83,7 +105,7 @@ jobs:
 #           sudo apt-get install -y libcalceph-dev
 #
 #      - name: Build
-#        env: 
+#        env:
 #          CALCEPH_SUPPORT: 1
 #        run: make solsys
 
