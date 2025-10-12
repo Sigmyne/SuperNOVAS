@@ -61,6 +61,9 @@ Apparent::Apparent(const EquatorialSystem& system, const Frame& f, sky_pos p)
 
   if(!f.is_valid())
     novas_error(0, EINVAL, fn, "input frame is invalid");
+  else if(!is_valid_sky_pos(fn, &p)) {
+    novas_error(0, EINVAL, fn, "input sky_pos is invalid");
+  }
   else
     _valid = true;
 

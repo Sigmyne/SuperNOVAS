@@ -21,7 +21,9 @@
 #include <time.h>
 #include <errno.h>
 
-#define NOVAS_NAMESPACE                       /// Make C API available under the 'novas' namespace
+#ifndef NOVAS_NAMESPACE
+#  define NOVAS_NAMESPACE                       /// Make C API available under the 'novas' namespace
+#endif
 #include <novas.h>
 
 
@@ -1220,6 +1222,10 @@ public:
 
   CalendarDate operator-(const Interval& interval) const;
 
+  Interval operator-(const CalendarDate& date) const; // TODO
+
+  Interval operator-(const Time& time) const; // TODO
+
   const TimeAngle& time_of_day() const;
 
   const std::string& month_name() const;
@@ -1280,6 +1286,8 @@ public:
 
   Interval operator-(const Time &other) const;
 
+  Interval operator-(const CalendarDate &other) const;
+
   Time operator+(const Interval &delta) const;
 
   Time operator-(const Interval &delta) const;
@@ -1333,6 +1341,8 @@ public:
   Time shifted(double seconds) const;
 
   Time shifted(Interval offset) const;
+
+  CalendarDate as_calendar_date() const; // TODO
 
   static Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
