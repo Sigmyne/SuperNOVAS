@@ -121,29 +121,100 @@ namespace novas {
 /**
  * \defgroup source           Astronomical object of interest
  *
+ *   Defining the astronomical source of interest, or accessing properties thereof. Source may be
+ *   sidereal catalog sources, such as as star, molecular cloud or a distant galaxy, or else they
+ *   may be Solar-system objects, such as planets, moons, asteroids, comets or near-Earth objects
+ *   (NEOs). Thet may have positions and velocities provided through ephemeris data (such as the
+ *   NASA JPL planetary on other ephemeris files), or else via orbital models (such as published
+ *   by the IAU Minor Planet Center [MPC]).
+ *
  * \defgroup observer         Observer location
+ *
+ *   Defining the observer location, or accessing properties thereof. Observers may be placed
+ *   anywhere on Earth, around Earth or anywhere in the Solar system. Earth-based observers have
+ *   a defining geodetic location, which may be a fixed site on the ground (such as an
+ *   observatory), or an instantaneous airborne location (such as an airplane or balloon
+ *   observatory) and ground velocity. Observers may also be placed at virtual locations, such
+ *   as the geocenter, or the Solar-system barycenter.
  *
  * \defgroup time             Time of observation and astronomical timescales
  *
+ *   Defining the precise time of observation, and support for all relevant astrobomical
+ *   timescales, such as UT1, UTC, TAI, GPS, TT, TDB, TCG, TCB.
+ *
  * \defgroup frame            Observing frames
+ *
+ *   Observing frames are a combination of an observer place, and an specific time of observation.
+ *   They provide a snapshot of the apparent place of sources on the sky, as well as their
+ *   geometric locations and velocoties in 3D space. As such, frames make it easy to convert
+ *   apparent places and geometric coordinates between different coordinate systems.
  *
  * \defgroup apparent         Apparent equatorial positions on sky
  *
+ *   Apparent places, defined on the local sky of an observer. They are mainly a direction on the
+ *   (e.g. R.A./Dec) on the sky, from the observer's point of view. Unlike geometric locations,
+ *   apparent positions are corrected for aberration for the observer's relative movement, and for
+ *   gravitational deflection around the major gravitating solar-system bodies as light transits
+ *   the Solar-system from the source to the observer.
+ *
  * \defgroup geometric        Geometric equatorial positions and velocities
+ *
+ *   Geometric locations are 3D positions and velocities relative on an observer location. They
+ *   are corrected for light travel time to the observer, so they reflect the position of sources
+ *   either for when light originated from the source (for Solar-system bodies), or for when light
+ *   reaches the Solar-system barycenter (for sidereal sources).
  *
  * \defgroup equatorial       Transforming between equatorial systems
  *
+ *   Expressing coordinates in the equatorial coordinate systems of choice, such as ICRS/GCRS,
+ *   J2000, B1950, Mean of Date(MOD), True-of-Date (TOD), or CIRS of date.
+ *
  * \defgroup nonequatorial    Non-equatorial coordinates
+ *
+ *   Expressing coordinates in non-equatorial systems, such as ecliptic, galactic, or local
+ *   horizontal (for geodetic observer) coordinate systems.
  *
  * \defgroup refract          Atmospheric refraction
  *
+ *   Accounting for atmopheric refraction for observers on or above Earth's surface. SuperNOVAS
+ *   provides various atmopsheric refraction models. Some use the specified weather parameters,
+ *   while others use a standard weather for the observer location. Some models are wavelength
+ *   dependent, so user's can (should) specify a observing wavelength when using them.
+ *
  * \defgroup spectral         Spectroscopic applications
+ *
+ *   Calculating precice spectroscopic radial velocity measures or redshifts.
  *
  * \defgroup solar-system     Solar-system ephemeris providers
  *
+ *   Defining how ephemeris positions for Solar-system objects are provided. SuperNOVAS does not
+ *   have a integral way for handling Solar-system ephemerides. By default it can calculate
+ *   approximate positions / velocities for the Sun and Earth only. Thus, to enable proper
+ *   calculations involving Solar-system bodies you must interface to libraries like CALCEPH or
+ *   CSPICE, or else to externally provided plugin functions.
+ *
  * \defgroup earth            Earth orientation
  *
+ *   Earth Orientation Parameters (EOP), for defining the unmodelled (via the IAU 2000 / 2006
+ *   precession-nutation models) polar motion and rotational variations of the physical Earth.
+ *   EOP are necessary to transform between pseudo Earth-fixed (e.g. the Terrestrial Intermediate
+ *   Reference System [TIRS]) and the Earth-fixed International Terrestrial Reference System
+ *   (ITRS). IERS publishes daily Earth orientation parameters, in various ITRF realizations.
+ *   For the utmost accuracy (below the mas-level), these must be further corrected for diurnal
+ *   variations caused by librarion and the oceans tides.
+ *
+ * \defgroup tracking         Telescope tracking
+ *
+ *   Tools for supporting telescope tracking, with readily available position, rate of movement,
+ *   and acceleration of the source's trajectory on sky. These parameters may be used directly
+ *   for controlling telescope drive systems. Tracking parameters can be obtained for both
+ *   Equatorial and horizontal mounts. Apart from direct control of telescope drives, tracking
+ *   information can also be used to calculate interpolated positions on sky on short timescales
+ *   much faster than through full-fledged positional calculations.
+ *
  * \defgroup util             Helpers and utilities
+ *
+ *   Various helpers tools and utilities of the SuperNOVAS library.
  */
 
 
@@ -1893,7 +1964,7 @@ enum novas_refraction_type {
  * @author Attila Kovacs
  *
  * @sa novas_track, NOVAS_OBSERVABLE_INIT
- * @c_apparent
+ * @c_tracking
  */
 typedef struct novas_observable {
   double lon;           ///< [deg] apparent longitude coordinate in coordinate system
@@ -1908,7 +1979,7 @@ typedef struct novas_observable {
  * @hideinitializer
  * @since 1.3
  * @sa novas_observable
- * @c_apparent
+ * @c_tracking
  */
 #define NOVAS_OBSERVABLE_INIT { 0.0, 0.0, 0.0, 0.0 }
 
@@ -1922,7 +1993,7 @@ typedef struct novas_observable {
  * @author Attila Kovacs
  *
  * @sa novas_hor_track(), novas_equ_track(), novas_track_pos(), NOVAS_TRACK_INIT
- * @c_apparent
+ * @c_tracking
  */
 typedef struct novas_track {
   struct novas_timespec time;     ///< The astronomical time for which the track is calculated.
@@ -1937,7 +2008,7 @@ typedef struct novas_track {
  * @hideinitializer
  * @since 1.3
  * @sa novas_track
- * @c_apparent
+ * @c_tracking
  */
 #define NOVAS_TRACK_INIT { NOVAS_TIMESPEC_INIT, NOVAS_OBSERVABLE_INIT, NOVAS_OBSERVABLE_INIT, NOVAS_OBSERVABLE_INIT }
 
@@ -2970,10 +3041,10 @@ double novas_sets_below(double el, const object *restrict source, const novas_fr
 /// @c_apparent
 double novas_object_sep(const object *source1, const object *source2, const novas_frame *restrict frame);
 
-/// @c_apparent
+/// @c_tracking
 int novas_equ_track(const object *restrict source, const novas_frame *restrict frame, double dt, novas_track *restrict track);
 
-/// @c_apparent
+/// @c_tracking
 int novas_hor_track(const object *restrict source, const novas_frame *restrict frame, RefractionModel ref_model,
         novas_track *restrict track);
 

@@ -302,7 +302,8 @@ ALIASES                = "c_source=@ingroup source" \
                          "c_spectral=@ingroup spectral" \
                          "c_solar-system=@ingroup solar-system" \
                          "c_earth=@ingroup earth" \
-                         "c_util=@ingroup util"
+                         "c_util=@ingroup util" \
+                         "c_tracking=@ingroup tracking"
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
 # only. Doxygen will then generate output that is more tailored for C. For

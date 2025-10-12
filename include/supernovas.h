@@ -1436,8 +1436,10 @@ public:
 
   std::optional<Time> sets_below(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
 
-  std::optional<EquatorialTrack> equatorial_track(const Frame &frame, double range_seconds = 1.0 * Unit::hour) const;
+  /// @ingroup tracking
+  std::optional<EquatorialTrack> equatorial_track(const Frame &frame, double range_seconds = Unit::hour) const;
 
+  /// @ingroup tracking
   std::optional<HorizontalTrack> horizontal_track(const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
 
   virtual std::string to_string() const; // TODO
@@ -1948,8 +1950,10 @@ public:
 
   const Angle zenith_angle() const;
 
+  /// @ingroup refract
   Horizontal to_refracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather);
 
+  /// @ingroup refract
   Horizontal to_unrefracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather);
 
   /// @ingroup apparent
@@ -2019,7 +2023,7 @@ public:
 
 /**
  *
- * @ingroup nonequatorial
+ * @ingroup tracking nonequatorial
  */
 class HorizontalTrack : public Track {
 
@@ -2036,7 +2040,7 @@ public:
 
 /**
  *
- * @ingroup apparent
+ * @ingroup tracking apparent
  */
 class EquatorialTrack : public Track {
 private:
