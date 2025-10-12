@@ -220,7 +220,7 @@ namespace novas {
 
 
 /// [day] Julian date at J2000
-/// @ingroup time
+/// @c_time
 #define NOVAS_JD_J2000            2451545.0
 
 /// [day] Julian date at which the Modified Julian Date (MJD) is zero
@@ -229,7 +229,7 @@ namespace novas {
 
 /// [day] Julian date at B1950 (NASA / NAIF SPICE definition)
 /// precession(), transform_cat()
-/// @ingroup time
+/// @c_time
 #define NOVAS_JD_B1950            2433282.42345905
 
 /// [day] Julian date at B1900 (NASA / NAIF SPICE definition)
@@ -239,7 +239,7 @@ namespace novas {
 
 /// [day] Julian date for J1991.25, which the Hipparcos catalog is referred to.
 /// @sa precession(), transform_cat()
-/// @ingroup time
+/// @c_time
 #define NOVAS_JD_HIP              2448349.0625
 
 
@@ -249,17 +249,17 @@ namespace novas {
 
 /// [s] The length of a synodic day, that is 24 hours exactly.
 /// @since 1.2
-/// @ingroup time
+/// @c_time
 #define NOVAS_DAY                 86400.0
 
 /// [day] The length of a tropical year (at J2000) in days.
 /// @since 1.5
-/// @ingroup time
+/// @c_time
 #define NOVAS_TROPICAL_YEAR_DAYS  365.2421897
 
 /// [day] The length of a Julian year (at J2000) in days.
 /// @since 1.5
-/// @ingroup time
+/// @c_time
 #define NOVAS_JULIAN_YEAR_DAYS    365.25
 
 /// [day] The length of a Besselian year in days.
@@ -269,43 +269,43 @@ namespace novas {
 
 /// [rad] A degree expressed in radians.
 /// @since 1.2
-/// @ingroup util
+/// @c_util
 #define NOVAS_DEGREE              (M_PI / 180.0)
 
 /// [rad] An arc minute expressed in radians.
 /// @since 1.2
-/// @ingroup util
+/// @c_util
 #define NOVAS_ARCMIN              (NOVAS_DEGREE / 60.0)
 
 /// [rad] An arc second expressed in radians.
 /// @since 1.2
-/// @ingroup util
+/// @c_util
 #define NOVAS_ARCSEC              (NOVAS_ARCMIN / 60.0)
 
 /// [rad] An hour of angle expressed in radians.
 /// @since 1.2
-/// @ingroup util
+/// @c_util
 #define NOVAS_HOURANGLE           (M_PI / 12.0)
 
 /// [m] A kilometer (km) in meters.
 /// @since 1.2
-/// @ingroup util
+/// @c_util
 #define NOVAS_KM                  1000.0
 
 /// [m] One km/s in m/s.
 /// @since 1.3
-/// @ingroup source
+/// @c_source
 #define NOVAS_KMS                 (NOVAS_KM)
 
 /// [m] Astronomical unit (AU). IAU definition.
 /// See <a href="https://www.iau.org/static/resolutions/IAU2012_English.pdf">IAU 2012 Resolution B2</a>.
 /// @sa DE405_AU
-/// @ingroup source
+/// @c_source
 #define NOVAS_AU                  1.495978707e+11
 
 /// [m] Astronomical unit (AU). based on DE-405. (old definition)
 /// @sa NOVAS_AU
-/// @ingroup solar-system
+/// @c_solar-system
 #define DE405_AU                  1.4959787069098932e+11
 
 /// [s] Light-time for one astronomical unit (AU) in seconds.
@@ -319,12 +319,12 @@ namespace novas {
 
 /// [m] A light-year in meters.
 /// @since 1.5
-/// @ingroup source
+/// @c_source
 #define NOVAS_LIGHT_YEAR          ( NOVAS_C * NOVAS_TROPICAL_YEAR_DAYS * NOVAS_DAY )
 
 /// [m] A parsec in meters.
 /// @since 1.5
-/// @ingroup source
+/// @c_source
 #define NOVAS_PARSEC              ( NOVAS_AU / NOVAS_ARCSEC )
 
 /// [m] Default distance at which sidereal sources are assumed when not specified otherwise
@@ -354,50 +354,49 @@ namespace novas {
 
 /// [m] Equatorial radius of Earth in meters from IERS Conventions (2003).
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
-/// @ingroup observer
+/// @c_observer
 #define NOVAS_IERS_EARTH_RADIUS        6378136.6
 
 /// [m] Earth ellipsoid flattening from IERS Conventions (2003). Value is 1 / 298.25642.
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
-/// @ingroup observer
+/// @c_observer
 #define NOVAS_IERS_EARTH_FLATTENING    (1.0 / 298.25642)
 
 /// [m] Equatorial radius of the WGS84 reference ellipsoid.
 /// @since 1.5
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
-/// @ingroup observer
+/// @c_observer
 #define NOVAS_WGS84_RADIUS        6378137.0
 
 /// [m] WGS84 Earth flattening
 /// @since 1.5
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
-/// @ingroup observer
+/// @c_observer
 #define NOVAS_WGS84_FLATTENING    (1.0 / 298.257223563)
 
 /// [m] Equatorial radius of the WGS84 reference ellipsoid.
 /// @since 1.5
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
-/// @ingroup observer
+/// @c_observer
 #define NOVAS_GRS80_RADIUS        6378137.0
 
 /// [m] WGS84 Earth flattening
 /// @since 1.5
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
-/// @ingroup observer
+/// @c_observer
 #define NOVAS_GRS80_FLATTENING    (1.0 / 298.257222101)
 
 /// [m] Equatorial radius of Earth (ITRF / GRS80 model)
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
-/// @ingroup observer
+/// @c_observer
 #define NOVAS_EARTH_RADIUS        NOVAS_GRS80_RADIUS
 
 /// [m] Earth ellipsoid flattening (ITRF / GRS80_MODEL)
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
-/// @ingroup observer
+/// @c_observer
 #define NOVAS_EARTH_FLATTENING    NOVAS_GRS80_FLATTENING
 
 /// [rad/s] Rotational angular velocity of Earth from IERS Conventions (2003).
-/// @ingroup earth
 #define NOVAS_EARTH_ANGVEL        7.2921150e-5
 
 /// [s] TAI - GPS time offset
@@ -603,7 +602,7 @@ enum novas_planet {
  * @author Attila Kovacs
  *
  * @sa enum novas_planet
- * @ingroup source
+ * @c_source
  */
 #define NOVAS_PLANET_NAMES_INIT { \
         "SSB", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", \
@@ -779,7 +778,6 @@ enum novas_id_type {
  * Types of places on and around Earth that may serve a a reference position for the observation.
  *
  * @sa observer, NOVAS_OBSERVER_PLACES
- * @c_observer
  */
 enum novas_observer_place {
   /// Calculate coordinates as if observing from the geocenter for location and Earth rotation
@@ -931,7 +929,7 @@ enum novas_dynamical_type {
  * Constants to control the precision of NOVAS nutation calculations.
  *
  * @sa novas_make_frame()
- * @c_frame
+ * @ingroup frame
  */
 enum novas_accuracy {
   /// Use full precision calculations to micro-arcsecond accuracy. It can be computationally
@@ -1038,7 +1036,7 @@ enum novas_pole_offset_type {
  * The type of equinox used in the pre IAU 2006 (old) methodology.
  *
  * @sa ira_equinox()
- * @ingroup earth
+ * @c_earth
  */
 enum novas_equinox_type {
   NOVAS_MEAN_EQUINOX = 0,         /// Mean equinox: includes precession but not nutation
@@ -1049,7 +1047,7 @@ enum novas_equinox_type {
  * The origin of the ICRS system for referencing positions and velocities for solar-system bodies.
  *
  * @sa ephemeris(), NOVAS_ORIGIN_TYPES
- * @ingroup solar-system
+ * @c_solar-system
  */
 enum novas_origin {
   NOVAS_BARYCENTER = 0,           ///< Origin at the Solar-system baricenter (i.e. BCRS)
@@ -1069,7 +1067,7 @@ enum novas_origin {
  * The types of coordinate transformations available for tranform_cat().
  *
  * @sa transform_cat(), make_cat_object_sys(), make_redshifted_object_sys(), NOVAS_TRANSFORM_TYPES
- * @ingroup source
+ * @c_source
  */
 enum novas_transform_type {
   /// Updates the star's data to account for the star's space motion between
@@ -1098,7 +1096,7 @@ enum novas_transform_type {
  * @hideinitializer
  * @sa enum novas_transform_type
  */
-#define NOVAS_TRANSFORM_TYPES     (ICRS_TO_J2000 + 1)
+#define NOVAS_TRANSFORM_TYPES     (ICRS_TO_J2000)
 
 #ifndef _EXCLUDE_DEPRECATED
 /**
@@ -1121,7 +1119,7 @@ enum novas_cio_location_type {
  *
  * @sa novas_app_to_hor(), novas_hor_to_app(), wobble(), NOVAS_WOBBLE_DIRECTIONS
  *
- * @ingroup nonequatorial
+ * @c_nonequatorial
  */
 enum novas_wobble_direction {
   /// use for wobble() to change from ITRS (Earth-fixed) to TIRS (pseudo Earth-fixed). It includes TIO
@@ -1158,7 +1156,7 @@ enum novas_wobble_direction {
  *
  * @sa frame_tie(), gsrs_to_j2000(), j2000_to_gcrs(), J2000_TO_ICRS
  *
- * @ingroup equatorial
+ * @c_equatorial
  */
 enum novas_frametie_direction {
   /// Change coordinates from ICRS to the J2000 (dynamical) frame. (You can also use any
@@ -1177,7 +1175,7 @@ enum novas_frametie_direction {
  *
  * @sa nutation()
  *
- * @ingroup nonequatorial
+ * @c_nonequatorial
  */
 enum novas_nutation_direction {
   /// Change from true equator to mean equator (i.e. undo wobble corrections). You may use
@@ -2019,7 +2017,7 @@ typedef struct novas_track {
  * @author Attila Kovacs
  *
  * @sa novas_parse_date_format()
- * @ingroup time
+ * @c_time
  */
 enum novas_date_format {
   NOVAS_YMD = 0,          ///< year, then month, then day.
@@ -2591,7 +2589,7 @@ void novas_case_sensitive(int value);
 /// @c_source
 int make_planet(enum novas_planet num, object *restrict planet);
 
-/// @ingroup source
+/// @c_source
 int make_ephem_object(const char *name, long num, object *body);
 
 // in cio.c

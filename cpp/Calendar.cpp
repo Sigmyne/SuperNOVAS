@@ -85,6 +85,10 @@ double CalendarDate::jd() const {
   return _jd;
 }
 
+double CalendarDate::mjd() const {
+  return _jd - NOVAS_JD_MJD0;
+}
+
 int CalendarDate::year() const {
   return _year;
 }

@@ -137,6 +137,10 @@ double Time::jd(enum novas_timescale timescale) const {
   return novas_get_time(&_ts, timescale);
 }
 
+double Time::mjd(enum novas_timescale timescale) const {
+  return (_ts.ijd_tt - (int) NOVAS_JD_MJD0) + _ts.fjd_tt - 0.5;
+}
+
 int Time::leap_seconds() const {
   return (int) round(_ts.ut1_to_tt - DTA);
 }
@@ -198,6 +202,14 @@ std::string Time::to_epoch_string() const {
   char s[40] = {'\0'};
   snprintf(s, sizeof(s), "J%.2f", epoch());
   return std::string(s);
+}
+
+Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale = novas::NOVAS_TT) {
+  return Time((int) NOVAS_JD_MJD0, mjd + 0.5, leap_seconds, dUT1, timescale);
+}
+
+Time from_mjd(double mjd, const EOP& eop, enum novas::novas_timescale timescale = novas::NOVAS_TT) {
+  return Time((int) NOVAS_JD_MJD0, mjd + 0.5, eop, timescale);
 }
 
 Time Time::now(const EOP& eop) {

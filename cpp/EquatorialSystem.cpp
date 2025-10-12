@@ -125,6 +125,10 @@ double EquatorialSystem::jd() const {
   return _jd;
 }
 
+double EquatorialSystem::mjd() const {
+  return _jd - NOVAS_JD_MJD0;
+}
+
 enum novas_reference_system EquatorialSystem::reference_system() const {
   return _system;
 }

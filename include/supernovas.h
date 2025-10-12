@@ -257,6 +257,8 @@ public:
 
   double jd() const;
 
+  double mjd() const;
+
   double epoch() const;
 
   const std::string& name() const;
@@ -759,6 +761,8 @@ public:
 
   double jd() const;
 
+  double mjd() const;
+
   Ecliptic to_icrs() const;
 
   Ecliptic to_j2000() const;
@@ -1200,6 +1204,8 @@ public:
 
   double jd() const;
 
+  double mjd() const;
+
   int year() const;
 
   int month() const;
@@ -1294,6 +1300,8 @@ public:
 
   double jd(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
+  double mjd(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
+
   int leap_seconds() const;
 
   Interval dUT1() const;
@@ -1325,6 +1333,10 @@ public:
   Time shifted(double seconds) const;
 
   Time shifted(Interval offset) const;
+
+  static Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale = novas::NOVAS_TT);
+
+  static Time from_mjd(double mjd, const EOP& eop, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
   static Time now(const EOP& eop);
 
@@ -1381,12 +1393,16 @@ public:
 
   bool has_planet_data(const Planet& planet) const;
 
+  /// @ingroup solar-system
   std::optional<Position> ephemeris_position(enum novas::novas_planet planet) const;
 
+  /// @ingroup solar-system
   std::optional<Position> ephemeris_position(const Planet& planet) const;
 
+  /// @ingroup solar-system
   std::optional<Velocity> ephemeris_velocity(enum novas::novas_planet planet) const;
 
+  /// @ingroup solar-system
   std::optional<Velocity> ephemeris_velocity(const Planet& planet) const;
 
   double clock_skew(enum novas::novas_timescale = novas::NOVAS_TT) const;
@@ -1832,6 +1848,8 @@ public:
   Position xyz() const;
 
   Speed radial_velocity() const;
+
+  double redshift() const;
 
   Distance distance() const;
 

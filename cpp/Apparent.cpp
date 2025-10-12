@@ -122,7 +122,11 @@ Position Apparent::xyz() const {
 }
 
 Speed Apparent::radial_velocity() const {
-  return Speed(_pos.rv * Unit::au / Unit::day);
+  return Speed(_pos.rv * Unit::km / Unit::sec);
+}
+
+double Apparent::redshift() const {
+  return novas_v2z(_pos.rv);
 }
 
 Distance Apparent::distance() const {
