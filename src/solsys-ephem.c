@@ -60,7 +60,7 @@ short planet_ephem_provider_hp(const double jd_tdb[restrict 2], enum novas_plane
   if(origin != NOVAS_BARYCENTER && origin != NOVAS_HELIOCENTER)
     return novas_error(1, EINVAL, fn, "invalid origin: %d", origin);
 
-  if(body < 0 || body >= NOVAS_PLANETS)
+  if((unsigned) body >= NOVAS_PLANETS)
     return novas_error(-1, EINVAL, fn, "planet number %d out of range [0:%d]", body, NOVAS_PLANETS - 1);
 
   prop_error(fn, ephem_call(names[body], body, jd_tdb[0], jd_tdb[1], &o, position, velocity), 0);

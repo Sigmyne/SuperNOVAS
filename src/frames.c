@@ -136,10 +136,10 @@ static int cmp_sys(enum novas_reference_system a, enum novas_reference_system b)
   // TOD->-3, MOD->-2, J2000->-1, GCRS/ICRS->0, CIRS->1, TIRS->2, ITRS->3
   static const int index[] = { 0, -3, 1, 0, -1, -2, 2, 3 };
 
-  if(a < 0 || a >= NOVAS_REFERENCE_SYSTEMS)
+  if((unsigned) a >= NOVAS_REFERENCE_SYSTEMS)
     return novas_error(-2, EINVAL, "cmp_sys", "Invalid reference system (#1): %d", a);
 
-  if(b < 0 || b >= NOVAS_REFERENCE_SYSTEMS)
+  if((unsigned) b >= NOVAS_REFERENCE_SYSTEMS)
     return novas_error(-2, EINVAL, "cmp_sys", "Invalid reference system (#2): %d", b);
 
   if(index[a] == index[b])
@@ -536,7 +536,7 @@ int novas_make_frame(enum novas_accuracy accuracy, const observer *obs, const no
   if(!frame)
     return novas_error(-1, EINVAL, fn, "NULL output frame");
 
-  if(obs->where < 0 || obs->where >= NOVAS_OBSERVER_PLACES)
+  if((unsigned) obs->where >= NOVAS_OBSERVER_PLACES)
     return novas_error(-1, EINVAL, fn, "invalid observer location: %d", obs->where);
 
   frame->accuracy = accuracy;
@@ -1192,7 +1192,7 @@ int novas_app_to_geom(const novas_frame *restrict frame, enum novas_reference_sy
   if(!novas_frame_is_initialized(frame))
     return novas_error(-1, EINVAL, fn, "frame at %p not initialized", frame);
 
-  if(sys < 0 || sys >= NOVAS_REFERENCE_SYSTEMS)
+  if((unsigned) sys >= NOVAS_REFERENCE_SYSTEMS)
     return novas_error(-1, EINVAL, fn, "invalid reference system: %d", sys);
 
   if(dist <= 0.0) dist = 1e15;
@@ -1265,7 +1265,7 @@ int novas_make_transform(const novas_frame *frame, enum novas_reference_system f
   if(!novas_frame_is_initialized(frame))
     return novas_error(-1, EINVAL, fn, "frame at %p not initialized", frame);
 
-  if(to_system < 0 || to_system >= NOVAS_REFERENCE_SYSTEMS)
+  if((unsigned) to_system >= NOVAS_REFERENCE_SYSTEMS)
     return novas_error(-1, EINVAL, fn, "invalid reference system (to): %d\n", to_system);
 
   transform->frame = *frame;

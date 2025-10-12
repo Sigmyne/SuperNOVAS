@@ -50,7 +50,7 @@ Apparent::Apparent(const EquatorialSystem& system, const Frame& f)
   if(!f.is_valid())
     novas_error(0, EINVAL, fn, "frame is invalid");
   else if(!system.is_valid())
-    novas_error(0, EINVAL, fn, "equatorial system is invalid", _sys);
+    novas_error(0, EINVAL, fn, "equatorial system is invalid");
   else
     _valid = true;
 }

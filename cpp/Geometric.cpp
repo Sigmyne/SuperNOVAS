@@ -21,7 +21,7 @@ Geometric::Geometric(const Position& p, const Velocity& v, const Frame& frame, e
 
   if(! frame.is_valid())
     novas_error(0, EINVAL, fn, "input frame is invalid");
-  else if(system < 0 || system >= NOVAS_REFERENCE_SYSTEMS)
+  else if(system < 0)
     novas_error(0, EINVAL, fn, "input system is invalid: %d", system);
   else if(!p.is_valid())
     novas_error(0, EINVAL, fn, "input position contains NAN coponent(s)");

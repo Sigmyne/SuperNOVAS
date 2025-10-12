@@ -64,10 +64,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest]
         include:
           - os: ubuntu-latest
             cxx: g++
+          - os: macos-latest
+            cxx: clang++
     env:
       CXX: ${{ matrix.cxx }}
       CXXFLAGS: -Os -Wall -Werror

@@ -18,7 +18,7 @@ namespace supernovas {
 OrbitalSystem::OrbitalSystem(enum novas::novas_reference_plane plane, const Planet& center) : _system({}) {
   static const char *fn = "OrbitalSystem()";
 
-  if(plane < 0 || plane >= NOVAS_REFERENCE_PLANES)
+  if(plane < 0)
     novas_error(0, EINVAL, fn, "input reference plane is invalid: %d", plane);
   else if(!center.is_valid())
     novas_error(0, EINVAL, fn, "center planet is invalid: %d", center.novas_id());

@@ -186,7 +186,7 @@ std::optional<EquatorialSystem> EquatorialSystem::from_string(const std::string&
   double jd = novas_epoch(s);
 
   if(isnan(jd)) {
-    novas_error(0, EINVAL, "EquatorialSystem::from_string", "No catalog system matching: '%s'", name);
+    novas_error(0, EINVAL, "EquatorialSystem::from_string", "No catalog system matching: '%s'", name.c_str());
     return std::nullopt;
   }
 
@@ -203,7 +203,7 @@ std::optional<EquatorialSystem> EquatorialSystem::for_reference_system(enum nova
     novas_error(0, EINVAL, fn, "input JD is NAN");
     return std::nullopt;
   }
-  else if(system < 0 || system >= NOVAS_REFERENCE_SYSTEMS) {
+  else if(system < 0) {
     novas_error(0, EINVAL, fn, "invalid reference system: %d", system);
     return std::nullopt;
   }

@@ -669,10 +669,12 @@ int wobble(double jd_tt, enum novas_wobble_direction direction, double xp, doubl
 
   double s1 = 0.0;
 
-  if((short) direction < 0)
+#if !__cplusplus
+  if((int) direction < 0)
     direction = WOBBLE_TIRS_TO_ITRS;
   else if(direction >= NOVAS_WOBBLE_DIRECTIONS)
     return novas_error(-1, EINVAL, fn, "invalid direction: %d", direction);
+#endif
 
   if(!in || !out)
     return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: in=%p, out=%p", in, out);

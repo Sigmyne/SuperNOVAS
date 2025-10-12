@@ -420,7 +420,7 @@ int novas_orbit_posvel(double jd_tdb, const novas_orbital *restrict orbit, enum 
 int novas_set_orbsys_pole(enum novas_reference_system type, double ra, double dec, novas_orbital_system *restrict sys) {
   static const char *fn = "novas_set_orbsys_pole";
 
-  if(type < 0 || type >= NOVAS_TIRS)
+  if((unsigned) type >= NOVAS_TIRS)
     return novas_error(-1, EINVAL, fn, "invalid orbital system type: %d", type);
 
   if(!sys)

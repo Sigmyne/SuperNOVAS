@@ -412,14 +412,14 @@ short make_object(enum novas_object_type type, long number, const char *name, co
   memset(source, 0, offsetof(object, orbit));
 
   // Set the object type.
-  if(type < 0 || type >= NOVAS_OBJECT_TYPES)
+  if((unsigned) type >= NOVAS_OBJECT_TYPES)
     return novas_error(1, EINVAL, fn, "invalid input 'type': %d", type);
 
   source->type = type;
 
   // Set the object number.
   if(type == NOVAS_PLANET)
-    if(number < 0 || number >= NOVAS_PLANETS)
+    if((unsigned) number >= NOVAS_PLANETS)
       return novas_error(2, EINVAL, fn, "planet number %ld is out of bounds [0:%d]", number, NOVAS_PLANETS - 1);
 
   source->number = number;
@@ -464,7 +464,7 @@ int make_planet(enum novas_planet num, object *restrict planet) {
   static const char *fn = "make_planet";
   const char *names[] = NOVAS_PLANET_NAMES_INIT;
 
-  if(num < 0 || num >= NOVAS_PLANETS)
+  if((unsigned) num >= NOVAS_PLANETS)
     return novas_error(-1, EINVAL, fn, "planet number %d is out of bounds [%d:%d]", num, 0, NOVAS_PLANETS - 1);
 
   prop_error(fn, (make_object(NOVAS_PLANET, num, names[num], NULL, planet) ? -1 : 0), 0);

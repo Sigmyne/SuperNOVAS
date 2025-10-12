@@ -12,14 +12,14 @@ LANGUAGE := c++
 CHECK_DIR := .
 
 ifeq ($(CXX),clang++)
-  # Treat .c sources as C++
-  CXXFLAGS += -x c++
+  # Treat .c sources as C++, and use C++17
+  CXXFLAGS += -x c++ -std=c++17
 endif
 
 # Use the definitions project definitions
 include ../config.mk
 
-CPPFLAGS += -I../include
+CPPFLAGS += -I../include -DNOVAS_NAMESPACE
 LDFLAGS += -lm
 
 C_SOURCES := $(subst src,../src,$(SOURCES))
@@ -48,11 +48,10 @@ $(LIB)/libsupernovas++.$(SOEXT).$(SO_VERSION): $(C_SOURCES) $(CPP_SOURCES)
 $(LIB)/libsupernovas++.a: $(OBJECTS) $(CPP_OBJECTS)
 
 $(OBJ)/%.opp: %.cpp $(OBJ) Makefile
-	$(CC) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
 
-$(OBJ)/%.o: CPPFLAGS += -DNOVAS_NAMESPACE
 $(OBJ)/%.o: ../src/%.c $(OBJ) Makefile
-	$(CC) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
 
 .PHONY: clean
 clean:

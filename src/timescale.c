@@ -1058,7 +1058,7 @@ static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *b
   s = (int) (ms / 1000L);
   ms -= 1000L * s;
 
-  return sprintf(buf, "%04d-%02d-%02dT%02d:%02d:%02d.%03d", y, M, d, h, m, s, (int) ms);
+  return novas_snprintf(buf, NOVAS_TIMESTAMP_LEN, "%04d-%02d-%02dT%02d:%02d:%02d.%03d", y, M, d, h, m, s, (int) ms);
 }
 
 /**
@@ -1221,21 +1221,21 @@ int novas_print_timescale(enum novas_timescale scale, char *restrict buf) {
 
   switch(scale) {
     case NOVAS_UT1:
-      return sprintf(buf, "UT1");
+      return novas_snprintf(buf, 4, "UT1");
     case NOVAS_UTC:
-      return sprintf(buf, "UTC");
+      return novas_snprintf(buf, 4, "UTC");
     case NOVAS_GPS:
-      return sprintf(buf, "GPS");
+      return novas_snprintf(buf, 4, "GPS");
     case NOVAS_TAI:
-      return sprintf(buf, "TAI");
+      return novas_snprintf(buf, 4, "TAI");
     case NOVAS_TT:
-      return sprintf(buf, "TT");
+      return novas_snprintf(buf, 3, "TT");
     case NOVAS_TCG:
-      return sprintf(buf, "TCG");
+      return novas_snprintf(buf, 4, "TCG");
     case NOVAS_TCB:
-      return sprintf(buf, "TCB");
+      return novas_snprintf(buf, 4, "TCB");
     case NOVAS_TDB:
-      return sprintf(buf, "TDB");
+      return novas_snprintf(buf, 4, "TDB");
   }
 
   *buf = '\0';

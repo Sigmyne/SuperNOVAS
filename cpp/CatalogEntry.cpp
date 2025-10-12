@@ -55,11 +55,9 @@ CatalogEntry::CatalogEntry(cat_entry e, const EquatorialSystem& system)
   if(isnan(e.radialvelocity))
     novas_error(0, EINVAL, fn, "input cat_entry.radialvelocity is NAN");
   if(!_sys.is_valid())
-    novas_error(0, EINVAL, fn, "input catalog system is invalid: %s", system);
+    novas_error(0, EINVAL, fn, "input equatorial system is invalid");
   else
     _valid = true;
-
-  set_epoch();
 }
 
 const EquatorialSystem& CatalogEntry::system() const {

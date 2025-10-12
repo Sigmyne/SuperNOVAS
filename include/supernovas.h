@@ -1067,7 +1067,7 @@ public:
 
   virtual bool is_geocentric() const { return false; }
 
-  virtual std::string to_string() const; // TODO
+  virtual std::string to_string() const;
 
   static GeodeticObserver on_earth(const Site& site, const EOP& eop);
 
@@ -1107,7 +1107,7 @@ public:
 
   const EOP& eop() const;
 
-  std::string to_string() const; // TODO
+  std::string to_string() const override; // TODO
 };
 
 /**
@@ -1129,7 +1129,7 @@ public:
 
   Velocity geocentric_velocity() const;
 
-  std::string to_string() const; // TODO
+  std::string to_string() const override; // TODO
 };
 
 /**
@@ -1491,8 +1491,6 @@ private:
   novas::cat_entry _entry = {};  ///< stored catalog entry
   EquatorialSystem _sys;            ///< stored catalog system
 
-  void set_epoch();
-
 public:
   CatalogEntry(const std::string &name, const Equatorial& coords);
 
@@ -1565,7 +1563,7 @@ public:
 
   CatalogEntry catalog_entry() const;
 
-  std::string to_string() const; // TODO
+  std::string to_string() const override;
 };
 
 /**
@@ -1643,7 +1641,7 @@ public:
 
   static const Planet& pluto_system();
 
-  std::string to_string() const; // TODO
+  std::string to_string() const override;
 };
 
 /**
@@ -1666,7 +1664,7 @@ public:
 
   long number() const;
 
-  std::string to_string() const; // TODO
+  std::string to_string() const override;
 };
 
 // TODO
@@ -1804,7 +1802,7 @@ public:
 
   Velocity orbital_velocity(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
 
-  std::string to_string() const; // TODO
+  std::string to_string() const override;
 
   static std::optional<OrbitalSource> from_novas_orbit(const std::string& name, long number, const novas::novas_orbital orbit);
 };

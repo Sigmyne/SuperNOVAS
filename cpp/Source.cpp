@@ -194,7 +194,6 @@ std::optional<HorizontalTrack> Source::horizontal_track(const Frame &frame, nova
 
   novas_track track = {};
 
-
   if(!frame.observer().is_geodetic()) {
     novas_error(0, EINVAL, fn, "input frame is not a geodetic observing frame");
     return std::nullopt;
@@ -227,6 +226,9 @@ Angle Source::angle_to(const Source& source, const Frame& frame) const {
   return Angle(novas_check_nan("Source::angle_to", novas_object_sep(&_object, &source._object, frame._novas_frame()) * Unit::deg));
 }
 
+std::string Source::to_string() const {
+  return "Source type " + std::to_string(_object.type);
+}
 
 void Source::set_case_sensitive(bool value) {
   novas_case_sensitive(value);
@@ -257,6 +259,11 @@ CatalogEntry CatalogSource::catalog_entry() const {
   return CatalogEntry(_object.star, _system);
 }
 
+std::string CatalogSource::to_string() const {
+  const cat_entry *c = _cat_entry();
+  return "CatalogSource: " + std::string(c->starname) + " @ " + TimeAngle(c->ra * Unit::hourAngle).to_string() +
+          " " + Angle(c->dec * Unit::deg).to_string() + " " + _system.to_string();
+}
 
 
 
@@ -320,6 +327,10 @@ double Planet::mass() const {
     return NAN;
 
   return Constant::M_sun / r[_object.number];
+}
+
+std::string Planet::to_string() const {
+  return "Planet " + name();
 }
 
 
@@ -401,15 +412,19 @@ EphemerisSource::EphemerisSource(const std::string &name, long number) : SolarSy
     novas_trace("EphemerisSource(name, number)", 0, 0);
 }
 
+std::string EphemerisSource::to_string() const {
+  return "EphemerisSource " + name();
+}
+
 
 static bool is_valid_orbital_system(const novas_orbital_system *s) {
   static const char *fn = "OrbitalSource::from:orbit";
 
-  if(s->center < 0 || s->center >= NOVAS_PLANETS)
+  if(s->center < 0)
     return novas_error(0, EINVAL, fn, "orbital system center planet is invalid: %d", s->center);
-  if(s->plane < 0 || s->plane >= NOVAS_REFERENCE_PLANES)
+  if(s->plane < 0)
     return novas_error(0, EINVAL, fn, "orbital system plane is invalid: %d", s->plane);
-  if(s->type < 0 || s->type >= NOVAS_REFERENCE_SYSTEMS)
+  if(s->type < 0)
     return novas_error(0, EINVAL, fn, "orbital system type is invalid: %d", s->type);
   if(isnan(s->Omega))
     return novas_error(0, EINVAL, fn, "orbital system Omega is NAN");
@@ -490,6 +505,10 @@ Velocity OrbitalSource::orbital_velocity(const Time& time, enum novas_accuracy a
 
 const novas_orbital * OrbitalSource::_novas_orbital() const {
   return &_object.orbit;
+}
+
+std::string OrbitalSource::to_string() const {
+  return "OrbitalSource " + name();
 }
 
 } // namespace supernovas

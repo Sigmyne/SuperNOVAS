@@ -38,7 +38,7 @@ Interval::Interval(double seconds, enum novas_timescale timescale)
 
   if(isnan(seconds))
     novas_error(0, EINVAL, fn , "input seconds is NAN");
-  else if(timescale < 0 || timescale >= NOVAS_TIMESCALES)
+  else if(timescale < 0)
     novas_error(0, EINVAL, fn , "invalid timescale: %d", timescale);
   else
     _valid = true;

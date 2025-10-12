@@ -116,13 +116,13 @@ static std::string _sys_type(enum novas_equator_type equator, double jd_tt) {
 
   switch(equator) {
     case NOVAS_GCRS_EQUATOR:
-      n = sprintf(s, "ICRS");
+      n = snprintf(s, sizeof(s), "ICRS");
       break;
     case NOVAS_MEAN_EQUATOR:
-      n = sprintf(s, "J");
+      n = snprintf(s, sizeof(s), "J");
       break;
     case NOVAS_TRUE_EQUATOR:
-      n = sprintf(s, "TOD J");
+      n = snprintf(s, sizeof(s), "TOD J");
   }
 
   n += snprintf(&s[n], sizeof(s) - n, "%.3f", (jd_tt - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS);

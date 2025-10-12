@@ -44,6 +44,20 @@ int novas_inv_max_iter = 100;
 
 /// \cond PROTECTED
 
+#if !__cplusplus && !(__STDC_VERSION__ >= 200809L)
+int novas_snprintf(char *buf, size_t len, const char *fmt, ...) {
+  va_list varg;
+  int n;
+
+  (void) len; // unused
+
+  va_start(varg, fmt);
+  n = vsprintf(buf, fmt, varg);
+  va_end(varg);
+  return n;
+}
+#endif
+
 /**
  * (<i>for internal use</i>) Propagates an error (if any) with an offset. If the error is
  * non-zero, it returns with the offset error value. Otherwise it keeps going as if it weren't
@@ -751,7 +765,7 @@ int novas_print_hms(double hours, enum novas_separator_type sep, int decimals, c
     return novas_error(-1, EINVAL, fn, "invalid output buffer len: %d", len);
 
   if(hours != hours)
-    sprintf(tmp, "%f", hours);      // nan, inf
+    novas_snprintf(tmp, sizeof(tmp), "%f", hours);      // nan, inf
   else {
     int h, m, s;
     long long ss;
@@ -762,9 +776,9 @@ int novas_print_hms(double hours, enum novas_separator_type sep, int decimals, c
       decimals = MAX_SECONDS_DECIMALS;
 
     if(decimals > 0)
-      sprintf(fmt, "%%02d%%s%%02d%%s%%02d.%%0%dlld%%s", decimals);
+      novas_snprintf(fmt, sizeof(fmt), "%%02d%%s%%02d%%s%%02d.%%0%dlld%%s", decimals);
     else
-      sprintf(fmt, "%%02d%%s%%02d%%s%%02d%%s");
+      novas_snprintf(fmt, sizeof(fmt), "%%02d%%s%%02d%%s%%02d%%s");
 
     switch(sep) {
       case NOVAS_SEP_UNITS:
@@ -797,9 +811,9 @@ int novas_print_hms(double hours, enum novas_separator_type sep, int decimals, c
     breakdown(hours, decimals, &h, &m, &s, &ss);
 
     if(decimals > 0)
-      sprintf(tmp, fmt, h, seph, m, sepm, s, ss, seps);
+      novas_snprintf(tmp, sizeof(tmp), fmt, h, seph, m, sepm, s, ss, seps);
     else
-      sprintf(tmp, fmt, h, seph, m, sepm, s, seps);
+      novas_snprintf(tmp, sizeof(tmp), fmt, h, seph, m, sepm, s, seps);
   }
 
   strncpy(buf, tmp, len - 1);
@@ -848,7 +862,7 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
     return novas_error(-1, EINVAL, fn, "invalid output buffer len: %d", len);
 
   if(degrees != degrees)
-    sprintf(tmp, "%f", degrees);      // nan, inf
+    novas_snprintf(tmp, sizeof(tmp), "%f", degrees);      // nan, inf
   else {
     int d, m, s;
     long long ss;
@@ -859,9 +873,9 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
       decimals = MAX_SECONDS_DECIMALS;
 
     if(decimals > 0)
-      sprintf(fmt, "%%4d%%s%%02d%%s%%02d.%%0%dlld%%s", decimals);
+      novas_snprintf(fmt, len, "%%4d%%s%%02d%%s%%02d.%%0%dlld%%s", decimals);
     else
-      sprintf(fmt, "%%4d%%s%%02d%%s%%02d%%s");
+      novas_snprintf(fmt, len, "%%4d%%s%%02d%%s%%02d%%s");
 
     degrees = remainder(degrees, DEG360);
     if(degrees < 0.0) {
@@ -899,9 +913,9 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
     }
 
     if(decimals > 0)
-      sprintf(tmp, fmt, d, sepd, m, sepm, s, ss, seps);
+      novas_snprintf(tmp, sizeof(tmp), fmt, d, sepd, m, sepm, s, ss, seps);
     else
-      sprintf(tmp, fmt, d, sepd, m, sepm, s, seps);
+      novas_snprintf(tmp, sizeof(tmp), fmt, d, sepd, m, sepm, s, seps);
   }
 
   strncpy(buf, tmp, len - 1);

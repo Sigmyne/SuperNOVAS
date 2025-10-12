@@ -33,6 +33,9 @@ Velocity::Velocity(double x_ms, double y_ms, double z_ms)
   }
 }
 
+Velocity::Velocity(const double vel[3], double unit)
+: Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
+
 Velocity Velocity::operator+(const Velocity& r) const {
   return Velocity(v_add(x(), r.x()), v_add(y(), r.y()), v_add(z(), r.z()));
 }

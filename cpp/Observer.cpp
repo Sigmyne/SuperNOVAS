@@ -26,6 +26,10 @@ enum novas_observer_place Observer::type() const {
   return _observer.where;
 }
 
+std::string Observer::to_string() const {
+  return "Observer type=%d" + std::to_string(_observer.where);
+}
+
 GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
   return GeodeticObserver(site, eop);
 }
@@ -85,6 +89,10 @@ Velocity GeocentricObserver::geocentric_velocity() const {
   return Velocity(_observer.near_earth.sc_vel, Unit::km / Unit::sec);
 }
 
+std::string GeocentricObserver::to_string() const {
+  return "Geocentric Observer";
+}
+
 
 
 
@@ -115,8 +123,6 @@ Position SolarSystemObserver::ssb_position() const {
 Velocity SolarSystemObserver::ssb_velocity() const {
   return Velocity(_observer.near_earth.sc_vel, Unit::au / Unit::day);
 }
-
-
 
 
 GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
@@ -156,6 +162,10 @@ Site GeodeticObserver::site() const {
 
 const EOP& GeodeticObserver::eop() const {
   return _eop;
+}
+
+std::string GeodeticObserver::to_string() const {
+  return "Geodetic Observer " + site().to_string();
 }
 
 

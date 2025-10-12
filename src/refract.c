@@ -130,7 +130,7 @@ double refract(const on_surface *restrict location, enum novas_refraction_model 
 
   double p, t, h, r;
 
-  if(model < 0 || model >= NOVAS_REFRACTION_MODELS) {
+  if((unsigned) model >= NOVAS_REFRACTION_MODELS) {
     novas_set_errno(EINVAL, fn, "invalid refraction model option: %d", model);
     return 0.0;
   }
