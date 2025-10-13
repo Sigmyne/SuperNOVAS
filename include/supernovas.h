@@ -251,7 +251,7 @@ private:
 
   EquatorialSystem(const std::string& name, double jd_tt);
 
-  EquatorialSystem(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
+  explicit EquatorialSystem(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
 
 public:
 
@@ -315,7 +315,7 @@ private:
   double _meters;         ///< [m] stored distance
 
 public:
-  Distance(double meters);
+  explicit Distance(double meters);
 
   /**
    * Returns the magnitude of this distance, as a unsigned distance.
@@ -363,7 +363,7 @@ private:
 
 public:
 
-  Interval(double seconds, enum novas::novas_timescale timescale = novas::NOVAS_TT);
+  explicit Interval(double seconds, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
   Interval operator+(const Interval& r) const;
 
@@ -418,9 +418,9 @@ public:
 
   virtual ~Angle() {};
 
-  Angle(double radians);
+  explicit Angle(double radians);
 
-  Angle(const std::string& str);
+  explicit Angle(const std::string& str);
 
   Angle operator+(const Angle& r) const;
 
@@ -467,11 +467,11 @@ public:
 class TimeAngle : public Angle {
 public:
 
-  TimeAngle(double radians);
+  explicit TimeAngle(double radians);
 
-  TimeAngle(const std::string& str);
+  explicit TimeAngle(const std::string& str);
 
-  TimeAngle(const Angle& angle);
+  explicit TimeAngle(const Angle& angle);
 
   TimeAngle operator+(const Interval& other) const;
 
@@ -498,9 +498,9 @@ class Vector : public Validating {
 protected:
   double _component[3];       ///< [arb.u] Array containing the x, y, z components.
 
-  Vector(double x = 0.0, double y = 0.0, double z = 0.0);
+  explicit Vector(double x = 0.0, double y = 0.0, double z = 0.0);
 
-  Vector(const double v[3], double unit = 1.0);
+  explicit Vector(const double v[3], double unit = 1.0);
 
 public:
 
@@ -540,9 +540,9 @@ public:
 class Position : public Vector {
 public:
 
-  Position(double x_m = 0.0, double y_m = 0.0, double z_m = 0.0);
+  explicit Position(double x_m = 0.0, double y_m = 0.0, double z_m = 0.0);
 
-  Position(const double pos[3], double unit = Unit::m);
+  explicit Position(const double pos[3], double unit = Unit::m);
 
   Position operator+(const Position &r) const;
 
@@ -569,9 +569,9 @@ public:
  */
 class Velocity : public Vector {
 public:
-  Velocity(double x_ms = 0.0, double y_ms = 0.0, double z_ms = 0.0);
+  explicit Velocity(double x_ms = 0.0, double y_ms = 0.0, double z_ms = 0.0);
 
-  Velocity(const double vel[3], double unit = 1.0);
+  explicit Velocity(const double vel[3], double unit = 1.0);
 
   Velocity operator+(const Velocity& r) const;
 
@@ -609,7 +609,7 @@ private:
   double _ms;       ///< [m/s] stored speed
 
 public:
-  Speed(double m_per_s);
+  explicit Speed(double m_per_s);
 
   Speed(const Distance& d, const Interval& time);
 
@@ -671,7 +671,7 @@ public:
 
   Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
-  Spherical(const Position& pos);
+  explicit Spherical(const Position& pos);
 
   Position xyz() const;
 
@@ -694,7 +694,6 @@ public:
 class Equatorial : public Spherical {
 private:
   EquatorialSystem _sys;
-  double _jd;
 
   void validate();
 
@@ -703,7 +702,7 @@ public:
 
   Equatorial(const Angle& ra, const Angle& dec, const EquatorialSystem& system = EquatorialSystem::icrs(), const Distance& distance = Distance::at_Gpc());
 
-  Equatorial(const Position& pos, const EquatorialSystem& system = EquatorialSystem::icrs());
+  explicit Equatorial(const Position& pos, const EquatorialSystem& system = EquatorialSystem::icrs());
 
   TimeAngle ra() const;
 
@@ -814,7 +813,7 @@ public:
 
   Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
-  Galactic(const Position& pos);
+  explicit Galactic(const Position& pos);
 
   /// @ingroup equatorial
   Equatorial as_equatorial() const;
@@ -840,7 +839,7 @@ class Temperature : public Validating {
 private:
   double _deg_C;        ///< [C] stored temperature
 
-  Temperature(double deg_C);
+  explicit Temperature(double deg_C);
 
 public:
   double celsius() const;
@@ -871,7 +870,7 @@ class Pressure : public Validating {
 private:
   double _pascal;     ///< [Pa] stored pressure
 
-  Pressure(double value);
+  explicit Pressure(double value);
 
 public:
   double Pa() const;
@@ -975,7 +974,7 @@ private:
   void validate();
 
 public:
-  EOP(int leap_seconds, double dut1_sec = 0.0, double xp_rad = 0.0, double yp_rad = 0.0);
+  explicit EOP(int leap_seconds, double dut1_sec = 0.0, double xp_rad = 0.0, double yp_rad = 0.0);
 
   EOP(int leap_seconds, double dut1, const Angle& xp, const Angle& yp);
 
@@ -1019,7 +1018,7 @@ public:
 
   Site(double longitude_rad, double latitude_rad, double altitude_m = 0.0, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
 
-  Site(const Position& xyz);
+  explicit Site(const Position& xyz);
 
   const novas::on_surface *_on_surface() const;
 
@@ -1159,7 +1158,7 @@ class Calendar : public Validating {
 private:
   enum novas::novas_calendar_type _type;
 
-  Calendar(enum novas::novas_calendar_type type);
+  explicit Calendar(enum novas::novas_calendar_type type);
 public:
 
   enum novas::novas_calendar_type type() const; // TODO
@@ -1258,7 +1257,7 @@ public:
  */
 class Time : public Validating {
 private:
-  novas::novas_timespec _ts;    ///< stored astronomical time specification
+  novas::novas_timespec _ts = {};    ///< stored astronomical time specification
 
   Time() {};
 
@@ -1278,11 +1277,11 @@ public:
 
   Time(const std::string& timestamp, const EOP& eop, enum novas::novas_timescale timescale = novas::NOVAS_UTC);
 
-  Time(const struct timespec t, int leap_seconds, double dUT1);
+  Time(const struct timespec *t, int leap_seconds, double dUT1);
 
-  Time(const struct timespec t, const EOP& eop);
+  Time(const struct timespec *t, const EOP& eop);
 
-  Time(const novas::novas_timespec t);
+  explicit Time(const novas::novas_timespec *t);
 
   Interval operator-(const Time &other) const;
 
@@ -1340,7 +1339,7 @@ public:
 
   Time shifted(double seconds) const;
 
-  Time shifted(Interval offset) const;
+  Time shifted(const Interval& offset) const;
 
   CalendarDate as_calendar_date() const; // TODO
 
@@ -1498,7 +1497,7 @@ public:
 
   CatalogEntry(const std::string &name, const Galactic& coords);
 
-  CatalogEntry(novas::cat_entry e, const EquatorialSystem& system = EquatorialSystem::icrs());
+  explicit CatalogEntry(novas::cat_entry e, const EquatorialSystem& system = EquatorialSystem::icrs());
 
   const novas::cat_entry* _cat_entry() const;
 
@@ -1557,7 +1556,7 @@ private:
   EquatorialSystem _system;      ///< stored catalog system
 
 public:
-  CatalogSource(const CatalogEntry& e);
+  explicit CatalogSource(const CatalogEntry& e);
 
   const novas::cat_entry * _cat_entry() const;
 
@@ -1597,7 +1596,7 @@ public:
  */
 class Planet : public SolarSystemSource {
 public:
-  Planet(enum novas::novas_planet number);
+  explicit Planet(enum novas::novas_planet number);
 
   enum novas::novas_planet novas_id() const;
 
@@ -1674,11 +1673,11 @@ public:
  */
 class OrbitalSystem : public Validating {
 private:
-  novas::novas_orbital_system _system;
+  novas::novas_orbital_system _system = {};
 
   OrbitalSystem(enum novas::novas_reference_plane plane, const Planet& center);
 
-  OrbitalSystem(novas::novas_orbital_system system) : _system(system) {}
+  explicit OrbitalSystem(const novas::novas_orbital_system *system);
 
 public:
   const novas::novas_orbital_system * _novas_orbital_system() const { return &_system; }
@@ -1697,7 +1696,7 @@ public:
 
   static OrbitalSystem ecliptic(const Planet& center = Planet::sun());
 
-  static OrbitalSystem from_novas_orbital_system(novas::novas_orbital_system system);
+  static OrbitalSystem from_novas_orbital_system(const novas::novas_orbital_system *system);
 
   std::string to_string() const; // TODO
 };
@@ -1709,10 +1708,9 @@ public:
  */
 class Orbital : public Validating {
 private:
-  OrbitalSystem _system;
-  novas::novas_orbital _orbit;
+  novas::novas_orbital _orbit = {};
 
-  Orbital(novas::novas_orbital orbit) : _system(OrbitalSystem::from_novas_orbital_system(orbit.system)), _orbit(orbit) {}
+  explicit Orbital(const novas::novas_orbital *orbit);
 
 public:
   Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m, double mean_anom_rad, double period_s);
@@ -1722,9 +1720,11 @@ public:
 
   static Orbital with_mean_motion(const OrbitalSystem& system, double jd_tdb, double a, double M0, double rad_per_s);
 
-  static Orbital with_mean_motion(const OrbitalSystem& system, Time& time, const Angle& a, const Angle& M0, double rad_per_s);
+  static Orbital with_mean_motion(const OrbitalSystem& system, const Time& time, const Angle& a, const Angle& M0, double rad_per_s);
 
   const novas::novas_orbital * _novas_orbital() const { return &_orbit; }
+
+  OrbitalSystem system() const;
 
   double reference_jd_tdb() const;
 
@@ -1752,6 +1752,10 @@ public:
 
   double node_rate() const;
 
+  Position position(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
+
+  Velocity velocity(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
+
   Orbital& eccentricity(double e, double periapsis_rad);
 
   Orbital& eccentricity(double e, const Angle& periapsis_angle);
@@ -1774,7 +1778,7 @@ public:
 
   std::string to_string() const; // TODO
 
-  static Orbital from_novas_orbit(novas::novas_orbital orbit);
+  static Orbital from_novas_orbit(const novas::novas_orbital *orbit);
 };
 
 /**
@@ -1790,21 +1794,14 @@ public:
  * @ingroup source
  */
 class OrbitalSource : public SolarSystemSource {
-private:
-  OrbitalSource(const std::string& name, long number, const novas::novas_orbital orbit);
-
 public:
   OrbitalSource(const std::string& name, long number, const Orbital& orbit);
 
   const novas::novas_orbital *_novas_orbital() const;
 
-  Position orbital_position(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
-
-  Velocity orbital_velocity(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
+  Orbital orbital() const;
 
   std::string to_string() const override;
-
-  static std::optional<OrbitalSource> from_novas_orbit(const std::string& name, long number, const novas::novas_orbital orbit);
 };
 
 
@@ -2033,7 +2030,7 @@ protected:
 
   Track(const Time& ref_time, const Interval& range, const Motion& lon, const Motion& lat, const Motion& r = Motion::stationary(NOVAS_DEFAULT_DISTANCE));
 
-  Track(novas::novas_track track, const Interval& range);
+  Track(const novas::novas_track *track, const Interval& range);
 
 public:
   Time& reference_time() const;
@@ -2059,15 +2056,17 @@ public:
  */
 class HorizontalTrack : public Track {
 
+  HorizontalTrack(const novas::novas_track *track, const Interval& range)
+  : Track(track, range) {}
+
 public:
   HorizontalTrack(const Time& ref_time, const Interval& range,
           const Motion& lon, const Motion& lat, const Motion& r = Motion::stationary(NOVAS_DEFAULT_DISTANCE))
   : Track(ref_time, range, lon, lat, r) {}
 
-  HorizontalTrack(novas::novas_track track, const Interval& range)
-  : Track(track, range) {}
-
   Horizontal projected(const Time& time) const;
+
+  static HorizontalTrack from_novas_track(const novas::novas_track *track, const Interval& range);
 };
 
 /**
@@ -2078,15 +2077,17 @@ class EquatorialTrack : public Track {
 private:
   EquatorialSystem _system;
 
+  EquatorialTrack(const EquatorialSystem& system, const novas::novas_track *track, const Interval& range)
+  : Track(track, range), _system(system) {}
+
 public:
   EquatorialTrack(const EquatorialSystem& system, const Interval& range, const Time& ref_time,
           const Motion& lon, const Motion& lat, const Motion& r = Motion::stationary(NOVAS_DEFAULT_DISTANCE))
   : Track(ref_time, range, lon, lat, r), _system(system) {}
 
-  EquatorialTrack(const EquatorialSystem& system, novas::novas_track track, const Interval& range)
-  : Track(track, range), _system(system) {}
-
   Equatorial projected(const Time& time) const;
+
+  static EquatorialTrack from_novas_track(const EquatorialSystem& system, const novas::novas_track *track, const Interval& range);
 };
 
 } // namespace supernovas

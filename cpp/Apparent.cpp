@@ -44,7 +44,7 @@ static bool is_valid_sky_pos(const char *fn, const sky_pos *p) {
 
 
 Apparent::Apparent(const EquatorialSystem& system, const Frame& f)
-: _sys(system), _frame(f) {
+: _sys(system), _frame(f), _pos({}) {
   static const char *fn = "Apparent(frame, system)";
 
   if(!f.is_valid())

@@ -145,7 +145,7 @@ Ecliptic Equatorial::as_ecliptic() const {
   enum novas_reference_system refsys = _sys.reference_system();
 
   if(refsys == NOVAS_CIRS)
-    return to_tod(_jd).as_ecliptic();
+    return to_tod(_sys.jd()).as_ecliptic();
 
   equ2ecl(_sys.jd(), NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, ra().hours(), dec().deg(), &longitude, &latitude);
 

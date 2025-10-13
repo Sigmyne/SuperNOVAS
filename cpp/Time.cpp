@@ -41,12 +41,9 @@ bool Time::is_valid_parms(double dUT1,  enum novas_timescale timescale) const {
 }
 
 Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
-  static const char *fn = "Time()";
-
   novas_set_time(timescale, jd, leap_seconds, dUT1, &_ts);
-
   if(isnan(jd))
-    novas_error(0, EINVAL, fn, "input jd is NAN");
+    novas_error(0, EINVAL, "Time()", "input jd is NAN");
   else
     _valid = is_valid_parms(dUT1, timescale);
 
@@ -56,12 +53,10 @@ Time::Time(double jd, const EOP& eop, enum novas_timescale timescale)
 : Time(jd, eop.leap_seconds(), eop.dUT1(), timescale) {}
 
 Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
-  static const char *fn = "Time()";
-
   novas_set_split_time(timescale, ijd, fjd, leap_seconds, dUT1, &_ts);
 
   if(isnan(fjd))
-    novas_error(0, EINVAL, fn, "input jd is NAN");
+    novas_error(0, EINVAL, "Time()", "input jd is NAN");
   else
     _valid = is_valid_parms(dUT1, timescale);
 
@@ -71,10 +66,8 @@ Time::Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale)
 : Time(ijd, fjd, eop.leap_seconds(), eop.dUT1(), timescale) {}
 
 Time::Time(const std::string& timestamp, int leap_seconds, double dUT1, enum novas_timescale timescale) {
-  static const char *fn = "Time()";
-
   if(novas_set_str_time(timescale, timestamp.c_str(), leap_seconds, dUT1, &_ts) != 0)
-    novas_trace_invalid(fn);
+    novas_trace_invalid("Time()");
   else
     _valid = is_valid_parms(dUT1, timescale);
 }
@@ -82,15 +75,34 @@ Time::Time(const std::string& timestamp, int leap_seconds, double dUT1, enum nov
 Time::Time(const std::string& timestamp, const EOP& eop, enum novas_timescale timescale)
 : Time(timestamp, eop.leap_seconds(), eop.dUT1(), timescale) {}
 
-Time::Time(const struct timespec t, int leap_seconds, double dUT1) {
-  _valid = is_valid_parms(dUT1, NOVAS_UTC);
-  novas_set_unix_time(t.tv_sec, t.tv_nsec, leap_seconds, dUT1, &_ts);
+Time::Time(const struct timespec *t, int leap_seconds, double dUT1) {
+  if(!t)
+    novas_error(0, EINVAL, "Time()", "input timespec is NULL");
+  else {
+    novas_set_unix_time(t->tv_sec, t->tv_nsec, leap_seconds, dUT1, &_ts);
+    _valid = is_valid_parms(dUT1, NOVAS_UTC);
+  }
 }
 
-Time::Time(const struct timespec t, const EOP& eop)
+Time::Time(const struct timespec *t, const EOP& eop)
 : Time(t, eop.leap_seconds(), eop.dUT1()) {}
 
-Time::Time(const novas_timespec t) : _ts(t) {}
+Time::Time(const novas_timespec *t) {
+  static const char *fn = "Time()";
+
+  if(!t)
+    novas_error(0, EINVAL, fn, "input timespec is NULL");
+  else if(isnan(t->fjd_tt))
+    novas_error(0, EINVAL, fn, "input t->fjd_tt is NULL");
+  else if(isnan(t->ut1_to_tt))
+    novas_error(0, EINVAL, fn, "input t->ut1_to_tt is NULL");
+  else if(isnan(t->tt2tdb))
+    novas_error(0, EINVAL, fn, "input t->tt2tdb is NULL");
+  else
+    _valid = true;
+
+  if(t) _ts = *t;
+}
 
 Time Time::operator+(const Interval& r) const {
   return shifted(r);
@@ -228,10 +240,10 @@ Time Time::shifted(double seconds) const {
     ts.ijd_tt++;
     ts.fjd_tt -= 1.0;
   }
-  return Time(ts);
+  return Time(&ts);
 }
 
-Time Time::shifted(Interval offset) const {
+Time Time::shifted(const Interval& offset) const {
   return shifted(offset.seconds());
 }
 

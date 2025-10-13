@@ -76,7 +76,7 @@ Geometric Geometric::in_system(enum novas_reference_system system) const {
   novas_transform_vector(_pos._array(), &T, p);
   novas_transform_vector(_vel._array(), &T, v);
 
-  return Geometric(p, v, _frame, _sys);
+  return Geometric(Position(p), Velocity(v), _frame, _sys);
 }
 
 std::optional<Geometric> Geometric::in_itrs(const EOP& eop) const {

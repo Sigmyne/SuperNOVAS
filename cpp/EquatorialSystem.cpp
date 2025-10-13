@@ -166,7 +166,7 @@ const std::string& EquatorialSystem::name() const {
  * @return    A string identification of this catalof system.
  */
 std::string EquatorialSystem::to_string() const {
-  return _name;
+  return std::string(_name);
 }
 
 /**
@@ -190,14 +190,14 @@ std::optional<EquatorialSystem> EquatorialSystem::from_string(const std::string&
   if(strncasecmp(s, "CIRS ", 5))
     return EquatorialSystem(NOVAS_CIRS, novas_epoch(&s[5]));
 
-  double jd = novas_epoch(s);
+  double ejd = novas_epoch(s);
 
-  if(isnan(jd)) {
+  if(isnan(ejd)) {
     novas_error(0, EINVAL, "EquatorialSystem::from_string", "No catalog system matching: '%s'", name.c_str());
     return std::nullopt;
   }
 
-  return EquatorialSystem(name, jd);
+  return EquatorialSystem(name, ejd);
 }
 
 std::optional<EquatorialSystem> EquatorialSystem::for_reference_system(enum novas::novas_reference_system system, double jd_tt) {

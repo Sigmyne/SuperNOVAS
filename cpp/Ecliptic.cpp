@@ -18,10 +18,8 @@ using namespace novas;
 namespace supernovas {
 
 void Ecliptic::validate() {
-  static const char *fn = "Equatorial()";
-
   if(!Spherical::is_valid())
-     novas_trace_invalid(fn);
+     novas_trace_invalid("Equatorial()");
 
   if(_equator == NOVAS_GCRS_EQUATOR)
     _jd = NOVAS_JD_J2000;

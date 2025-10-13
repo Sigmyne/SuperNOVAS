@@ -97,7 +97,7 @@ std::string GeocentricObserver::to_string() const {
 
 
 SolarSystemObserver::SolarSystemObserver() : Observer() {
-  double zero[3] = {};
+  const double zero[3] = {0.0};
   make_solar_system_observer(zero, zero, &_observer);
   _valid = true;
 }

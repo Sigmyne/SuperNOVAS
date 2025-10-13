@@ -58,7 +58,7 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
   double xp = 0.0, yp = 0.0;
 
   if(obs.is_geodetic()) {
-    GeodeticObserver& eobs = (GeodeticObserver&) obs;
+    const GeodeticObserver& eobs = static_cast<const GeodeticObserver&>(obs);
     xp = eobs.eop().xp().mas();
     yp = eobs.eop().yp().mas();
   }

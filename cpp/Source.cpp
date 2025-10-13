@@ -177,16 +177,14 @@ std::optional<Time> Source::sets_below(double el, const Frame &frame, Refraction
 }
 
 std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, double range_seconds) const {
-  static const char *fn = "Source::equatorial_track";
-
   novas_track track = {};
 
   if(novas_equ_track(_novas_object(), frame._novas_frame(), range_seconds, &track) != 0) {
-    novas_trace_invalid(fn);
+    novas_trace_invalid("Source::equatorial_track");
     return std::nullopt;
   }
 
-  return EquatorialTrack(EquatorialSystem::tod(frame.time().jd()), track, range_seconds);
+  return EquatorialTrack::from_novas_track(EquatorialSystem::tod(frame.time().jd()), &track, Interval(range_seconds));
 }
 
 std::optional<HorizontalTrack> Source::horizontal_track(const Frame &frame, novas::RefractionModel ref, const Weather& weather) const {
@@ -211,7 +209,7 @@ std::optional<HorizontalTrack> Source::horizontal_track(const Frame &frame, nova
     return std::nullopt;
   }
 
-  return HorizontalTrack(track, 1.0 * Unit::min);
+  return HorizontalTrack::from_novas_track(&track, Interval(1.0 * Unit::min));
 }
 
 Angle Source::sun_angle(const Frame& frame) const {
@@ -314,7 +312,7 @@ int Planet::de_number() const {
 }
 
 double Planet::mean_radius() const {
-  static double r[] = NOVAS_PLANET_RADII_INIT;
+  static const double r[] = NOVAS_PLANET_RADII_INIT;
   if(!is_valid())
     return NAN;
 
@@ -322,7 +320,7 @@ double Planet::mean_radius() const {
 }
 
 double Planet::mass() const {
-  static double r[] = NOVAS_RMASS_INIT;
+  static const double r[] = NOVAS_RMASS_INIT;
   if(!is_valid())
     return NAN;
 
@@ -416,95 +414,23 @@ std::string EphemerisSource::to_string() const {
   return "EphemerisSource " + name();
 }
 
-
-static bool is_valid_orbital_system(const novas_orbital_system *s) {
-  static const char *fn = "OrbitalSource::from:orbit";
-
-  if((unsigned) s->center >= NOVAS_PLANETS)
-    return novas_error(0, EINVAL, fn, "orbital system center planet is invalid: %d", s->center);
-  if((unsigned) s->plane >= NOVAS_REFERENCE_PLANES)
-    return novas_error(0, EINVAL, fn, "orbital system plane is invalid: %d", s->plane);
-  if((unsigned) s->type >= NOVAS_REFERENCE_SYSTEMS)
-    return novas_error(0, EINVAL, fn, "orbital system type is invalid: %d", s->type);
-  if(isnan(s->Omega))
-    return novas_error(0, EINVAL, fn, "orbital system Omega is NAN");
-  if(isnan(s->obl))
-    return novas_error(0, EINVAL, fn, "orbital system obliquity is NAN");
-  return true;
-}
-
-static bool is_valid_orbit(const char *fn, const novas_orbital *o) {
-  if(!(o->a > 0.0))
-    return novas_error(0, EINVAL, fn, "orbital system semi-major axis is invalid: %g AU", o->a);
-  if(!(o->e >= 0.0))
-    return novas_error(0, EINVAL, fn, "orbital system eccentricity is invalid: %g", o->e);
-  if(!(o->apsis_period > 0.0))
-    return novas_error(0, EINVAL, fn, "orbital system apsis_period is invalid: %g days", o->apsis_period);
-  if(!(o->node_period > 0.0))
-    return novas_error(0, EINVAL, fn, "orbital system node_period is invalid: %g days", o->node_period);
-  if(isnan(o->jd_tdb))
-    return novas_error(0, EINVAL, fn, "orbital system reference JD date is NAN");
-  if(isnan(o->M0))
-    return novas_error(0, EINVAL, fn, "orbital system M0 is NAN");
-  if(isnan(o->omega))
-    return novas_error(0, EINVAL, fn, "orbital system omega is NAN");
-  if(isnan(o->Omega))
-    return novas_error(0, EINVAL, fn, "orbital system Omega is NAN");
-  if(isnan(o->n))
-    return novas_error(0, EINVAL, fn, "orbital system mean daily motion is NAN");
-  if(isnan(o->i))
-    return novas_error(0, EINVAL, fn, "orbital system inclination is NAN");
-  return is_valid_orbital_system(&o->system);
-}
-
-
-OrbitalSource::OrbitalSource(const std::string& name, long number, const novas_orbital orbit) : SolarSystemSource() {
+OrbitalSource::OrbitalSource(const std::string& name, long number, const Orbital& orbit) : SolarSystemSource() {
   static const char *fn = "OrbitalSource()";
 
-  if(make_orbital_object(name.c_str(), number, &orbit, &_object) != 0)
+  if(make_orbital_object(name.c_str(), number, orbit._novas_orbital(), &_object) != 0)
     novas_trace_invalid(fn);
-  else if(!is_valid_orbit(fn, &orbit))
-    novas_trace_invalid(fn);
+  else if(!orbit.is_valid())
+    novas_error(0, EINVAL, fn, "input orbital is invalid");
   else
     _valid = true;
 }
 
-OrbitalSource::OrbitalSource(const std::string& name, long number, const Orbital& orbit)
-: OrbitalSource(name, number, *orbit._novas_orbital()) {}
-
-std::optional<OrbitalSource> OrbitalSource::from_novas_orbit(const std::string& name, long number, const novas_orbital orbit) {
-  OrbitalSource s = OrbitalSource(name, number, orbit);
-  if(!s.is_valid()) {
-    novas_trace_invalid("OrbitalSource::from_orbit");
-    return std::nullopt;
-  }
-  return s;
-}
-
-Position OrbitalSource::orbital_position(const Time& time, enum novas_accuracy accuracy) const {
-  double p[3] = {0.0};
-
-  if(novas_orbit_posvel(time.jd(), &_object.orbit, accuracy, p, NULL) != 0) {
-    novas_trace_invalid("OrbitalSource::orbital_position");
-    return Position::invalid();
-  }
-
-  return Position(p, Unit::au);
-}
-
-Velocity OrbitalSource::orbital_velocity(const Time& time, enum novas_accuracy accuracy) const {
-  double v[3] = {0.0};
-
-  if(novas_orbit_posvel(time.jd(), &_object.orbit, accuracy, NULL, v) != 0) {
-    novas_trace_invalid("OrbitalSource::orbital_velocity");
-    return Velocity::invalid();
-  }
-
-  return Velocity(v, Unit::au / Unit::day);
-}
-
 const novas_orbital * OrbitalSource::_novas_orbital() const {
   return &_object.orbit;
+}
+
+Orbital OrbitalSource::orbital() const {
+  return Orbital::from_novas_orbit(&_object.orbit);
 }
 
 std::string OrbitalSource::to_string() const {
