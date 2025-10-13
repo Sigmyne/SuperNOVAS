@@ -50,8 +50,8 @@ Spherical Position::as_spherical() const {
   return Spherical(isnan(longitude) ? 0.0 : longitude, isnan(latitude) ? 0.0 : latitude, abs());
 }
 
-static const Position _origin = Position(0.0, 0.0, 0.0);
 const Position& Position::origin() {
+  static const Position _origin = Position(0.0, 0.0, 0.0);
   return _origin;
 }
 
@@ -59,8 +59,8 @@ std::string Position::to_string() const {
   return "POS ( " + Distance(x()).to_string() + ", " + Distance(y()).to_string() + ", " + Distance(z()).to_string() + ")";
 }
 
-static const Position _nan = Position(NAN, NAN, NAN);
 const Position& Position::invalid() {
+  static const Position _nan = Position(NAN, NAN, NAN);
   return _nan;
 }
 

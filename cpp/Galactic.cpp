@@ -34,8 +34,9 @@ std::string Galactic::to_string(enum novas_separator_type separator, int decimal
   return "GAL  " + Spherical::to_string(separator, decimals);
 }
 
-static const Galactic _invalid = Galactic(NAN, NAN, NAN);
+
 const Galactic& Galactic::invalid() {
+  static const Galactic _invalid = Galactic(NAN, NAN, NAN);
   return _invalid;
 }
 

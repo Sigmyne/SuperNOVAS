@@ -177,8 +177,8 @@ Apparent Apparent::from_cirs_sky_pos(sky_pos pos, const Frame& frame) {
   return Apparent(EquatorialSystem::cirs(frame.time().jd()), frame, pos);
 }
 
-static const Apparent _invalid = Apparent::tod(NAN, NAN, Frame::invalid(), NAN);
 const Apparent& Apparent::invalid() {
+  static const Apparent _invalid = Apparent::tod(NAN, NAN, Frame::invalid(), NAN);
   return _invalid;
 }
 

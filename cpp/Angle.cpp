@@ -73,7 +73,7 @@ Angle Angle::operator-(const Angle& r) const {
  *                    then they are consideredc equal, otherwise not.
  * @return            true if the two angles match within the specified precision, or else false.
  */
-bool Angle::is_equal(const Angle& angle, double precision) const {
+bool Angle::equals(const Angle& angle, double precision) const {
   return fabs(remainder(_rad - angle._rad, Constant::twoPi)) < fabs(precision);
 }
 
@@ -104,7 +104,7 @@ double Angle::deg() const {
  *            subclasses may support different ranges for the returned value.
  */
 double Angle::arcmin() const {
-  return rad() / Unit::arcsec;
+  return rad() / Unit::arcmin;
 }
 
 /**

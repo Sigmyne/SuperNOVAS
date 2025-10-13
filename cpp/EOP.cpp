@@ -83,8 +83,9 @@ std::string EOP::to_string() const {
   return "EOP ( leap = " + std::to_string(_leap) + ", "   + st + ", " + sx + ", " + sy + " )";
 }
 
-static const EOP _invalid = EOP(0, NAN, NAN, NAN);
+
 const EOP& EOP::invalid() {
+  static const EOP _invalid = EOP(0, NAN, NAN, NAN);
   return _invalid;
 }
 

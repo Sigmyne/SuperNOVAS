@@ -64,8 +64,8 @@ Velocity Velocity::inv() const {
   return Velocity(-_component[0], -_component[1], -_component[2]);
 }
 
-static const Velocity _stationary = Velocity(0.0, 0.0, 0.0);
 const Velocity& Velocity::stationary() {
+  static const Velocity _stationary = Velocity(0.0, 0.0, 0.0);
   return _stationary;
 }
 
@@ -73,8 +73,8 @@ std::string Velocity::to_string() const {
   return "VEL ( " + Speed(x()).to_string() + ", " + Speed(y()).to_string() + ", " + Speed(z()).to_string() + ")";
 }
 
-static const Velocity _nan = Velocity(NAN, NAN, NAN);
 const Velocity& Velocity::invalid() {
+  static const Velocity _nan = Velocity(NAN, NAN, NAN);
   return _nan;
 }
 

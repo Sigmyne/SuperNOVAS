@@ -81,6 +81,38 @@ CalendarDate::CalendarDate(const Calendar& calendar, double jd)
   _time_of_day = TimeAngle(hours * Unit::hour);
 }
 
+CalendarDate CalendarDate::operator+(const Interval& r) const {
+  return CalendarDate(calendar(), jd() + r.days());
+}
+
+CalendarDate CalendarDate::operator-(const Interval& r) const {
+  return CalendarDate(calendar(), jd() - r.days());
+}
+
+Interval CalendarDate::operator-(const CalendarDate& r) const {
+  return Interval((jd() - r.jd()) * Unit::day);
+}
+
+bool CalendarDate::operator<(const CalendarDate& date) const {
+  return jd() < date.jd();
+}
+
+bool CalendarDate::operator>(const CalendarDate& date) const {
+  return jd() > date.jd();
+}
+
+bool CalendarDate::operator<=(const CalendarDate& date) const {
+  return (jd() - date.jd()) * Unit::day < Unit::ms;
+}
+
+bool CalendarDate::operator>=(const CalendarDate& date) const {
+  return (date.jd() - jd()) * Unit::day < Unit::ms;
+}
+
+bool CalendarDate::equals(const CalendarDate& date, double seconds) const {
+  return fabs(jd() - date.jd()) * Unit::day < fabs(seconds);
+}
+
 double CalendarDate::jd() const {
   return _jd;
 }
@@ -205,13 +237,8 @@ std::string CalendarDate::to_string(int decimals) const {
   return to_string(NOVAS_YMD, decimals);
 }
 
-CalendarDate CalendarDate::operator+(const Interval& r) const {
-  return CalendarDate(calendar(), jd() + r.days());
-}
 
-CalendarDate CalendarDate::operator-(const Interval& r) const {
-  return CalendarDate(calendar(), jd() - r.days());
-}
+
 
 
 

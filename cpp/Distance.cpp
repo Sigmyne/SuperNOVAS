@@ -154,8 +154,6 @@ Distance Distance::from_parallax(const Angle& parallax) {
   return Distance(Unit::pc / (parallax.arcsec()));
 }
 
-static const Distance _at_Gpc = Distance(Unit::Gpc);
-
 /**
  * Returns a standard distance of 1 Gpc. Historically NOVAS placed sidereal source at 1 Gpc
  * distance if the distance was not specified otherwise. SuperNOVAS follows that, and so this
@@ -164,6 +162,7 @@ static const Distance _at_Gpc = Distance(Unit::Gpc);
  * @return    A reference to a persistent standard 1 Gpc distance instance.
  */
 const Distance& Distance::at_Gpc() {
+  static const Distance _at_Gpc = Distance(Unit::Gpc);
   return _at_Gpc;
 }
 

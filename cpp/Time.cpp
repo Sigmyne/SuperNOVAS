@@ -137,9 +137,6 @@ bool Time::equals(const Time& time, double precision) const {
   return fabs(novas_diff_time(&_ts, &time._ts)) <= fabs(precision);
 }
 
-bool Time::equals(const Time& time, const Interval& interval) const {
-  return equals(time, interval.seconds());
-}
 
 const novas_timespec * Time::_novas_timespec() const {
   return &_ts;
@@ -247,32 +244,28 @@ Time Time::shifted(const Interval& offset) const {
   return shifted(offset.seconds());
 }
 
-static const EOP _eop_j2000 = EOP(32, 0.0, 0.0, 0.0);
-static const Time _j2000 = Time(NOVAS_JD_J2000, _eop_j2000, NOVAS_TT);
 const Time& Time::j2000() {
+  static const Time _j2000 = Time(NOVAS_JD_J2000, 32, 0.0, NOVAS_TT);
   return _j2000;
 }
 
-static const EOP _eop_hip = EOP(26, 0.0, 0.0, 0.0);
-static const Time _hip = Time(NOVAS_JD_HIP, _eop_hip, NOVAS_TT);
 const Time& Time::hip() {
+  static const Time _hip = Time(NOVAS_JD_HIP, 26, 0.0, NOVAS_TT);
   return _hip;
 }
 
-static const EOP _eop_0 = EOP(0, 0.0, 0.0, 0.0);
-static const Time _b1950 = Time(NOVAS_JD_B1950, _eop_0, NOVAS_TT);
 const Time& Time::b1950() {
+  static const Time _b1950 = Time(NOVAS_JD_B1950, 0, 0.0, NOVAS_TT);
   return _b1950;
 }
 
-static const Time _b1900 = Time(NOVAS_JD_B1900, _eop_0, NOVAS_TT);
 const Time& Time::b1900() {
+  static const Time _b1900 = Time(NOVAS_JD_B1900, 0, 0.0, NOVAS_TT);
   return _b1900;
 }
 
-
-static const Time _invalid = Time(NAN, EOP::invalid(), NOVAS_TT);
 const Time& Time::invalid() {
+  static const Time _invalid = Time(NAN, EOP::invalid(), NOVAS_TT);
   return _invalid;
 }
 

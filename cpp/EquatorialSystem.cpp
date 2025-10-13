@@ -59,6 +59,8 @@ EquatorialSystem::EquatorialSystem(const std::string& name, double jd_tt)
   if(jd_tt == NOVAS_JD_J2000)
     _system = NOVAS_J2000;
 
+  _name = name;
+
   if(name.length() < 3) return;
   if(strncasecmp(&name.c_str()[1], "CRS", 3) == 0) return;
   if(strcasecmp(name.c_str(), NOVAS_SYSTEM_FK6)) return;
@@ -67,7 +69,7 @@ EquatorialSystem::EquatorialSystem(const std::string& name, double jd_tt)
 }
 
 EquatorialSystem::EquatorialSystem(enum novas::novas_reference_system system, double jd_tt)
-: _name(""), _system(system), _jd(jd_tt) {
+: _name("invalid"), _system(system), _jd(jd_tt) {
   static const char *fn = "EquatorialSystem()";
 
   switch(system) {
@@ -263,9 +265,6 @@ EquatorialSystem EquatorialSystem::cirs(double jd_tt) {
   return EquatorialSystem::for_reference_system(NOVAS_CIRS, jd_tt).value();
 }
 
-
-static const EquatorialSystem _icrs = EquatorialSystem::icrs();
-
 /**
  * International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.
  * It is defined by distant quasars, and is aligned with the J2000 dynamical equator within 22 mas.
@@ -282,10 +281,9 @@ static const EquatorialSystem _icrs = EquatorialSystem::icrs();
  * @sa NOVAS_ICRS, NOVAS_GCRS, NOVAS_SYSTEM_ICRS
  */
 const EquatorialSystem& EquatorialSystem::icrs() {
+  static const EquatorialSystem _icrs = EquatorialSystem::for_reference_system(NOVAS_ICRS, NOVAS_JD_J2000).value();
   return _icrs;
 }
-
-static const EquatorialSystem _j2000 = EquatorialSystem::j2000();
 
 /**
  * The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000). This was a
@@ -298,11 +296,10 @@ static const EquatorialSystem _j2000 = EquatorialSystem::j2000();
  * @sa icrs(), mod(), Time::j2000(), NOVAS_JD_J2000, NOVAS_SYSTEM_J2000
  */
 const EquatorialSystem& EquatorialSystem::j2000() {
+  static const EquatorialSystem _j2000 = EquatorialSystem::mod(NOVAS_JD_J2000);
   return _j2000;
 }
 
-
-static const EquatorialSystem _hip = EquatorialSystem::mod(NOVAS_JD_HIP);
 
 /**
  * The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal
@@ -315,10 +312,11 @@ static const EquatorialSystem _hip = EquatorialSystem::mod(NOVAS_JD_HIP);
  * @sa icrs(), mod(), Time::hip() NOVAS_JD_HIP, NOVAS_SYSTEM_HIP
  */
 const EquatorialSystem& EquatorialSystem::hip() {
+  static const EquatorialSystem _hip = EquatorialSystem::mod(NOVAS_JD_HIP);
   return _hip;
 }
 
-static const EquatorialSystem _b1950 = EquatorialSystem::b1950();
+
 
 /**
  * The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950). This was a
@@ -332,10 +330,9 @@ static const EquatorialSystem _b1950 = EquatorialSystem::b1950();
  * @sa icrs(), mod(), Time::b1950(), NOVAS_JD_B1950, NOVAS_SYSTEM_B1950
  */
 const EquatorialSystem& EquatorialSystem::b1950() {
+  static const EquatorialSystem _b1950 = EquatorialSystem::mod_at_besselian_epoch(1950.0);
   return _b1950;
 }
-
-static const EquatorialSystem _b1900 = EquatorialSystem::b1900();
 
 /**
  * The system of the dynamical equator at the B1900 epoch (0 UTC, 1 January 1900). This was a
@@ -346,7 +343,10 @@ static const EquatorialSystem _b1900 = EquatorialSystem::b1900();
  * @sa icrs(), mod(), Time::b1900(), NOVAS_JD_B1900, NOVAS_SYSTEM_B1900
  */
 const EquatorialSystem& EquatorialSystem::b1900() {
+  static const EquatorialSystem _b1900 = EquatorialSystem::mod_at_besselian_epoch(1900.0);
   return _b1900;
 }
+
+
 
 } // namespace supernovas

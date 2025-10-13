@@ -83,10 +83,8 @@ std::string Horizontal::to_string(enum novas_separator_type separator, int decim
   return "HOR  " + Spherical::to_string(separator, decimals);
 }
 
-
-
-static const Horizontal _invalid = Horizontal(NAN, NAN, NAN);
 const Horizontal& Horizontal::invalid() {
+  static const Horizontal _invalid = Horizontal(NAN, NAN, NAN);
   return _invalid;
 }
 

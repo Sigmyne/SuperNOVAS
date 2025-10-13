@@ -176,9 +176,8 @@ Ecliptic Ecliptic::tod(const Time& time, const Angle& longitude, const Angle& la
   return Ecliptic::tod(time.jd(), longitude.rad(), latitude.rad(), distance.m());
 }
 
-
-static const Ecliptic _invalid = Ecliptic::icrs(NAN, NAN, NAN);
 const Ecliptic& Ecliptic::invalid() {
+  static const Ecliptic _invalid = Ecliptic::icrs(NAN, NAN, NAN);
   return _invalid;
 }
 

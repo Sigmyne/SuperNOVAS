@@ -6,6 +6,7 @@
  */
 
 #include <cstring>
+#include <iostream>
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
@@ -44,7 +45,6 @@ Equatorial::Equatorial(const Position& pos, const EquatorialSystem& system)
 : Spherical(pos.as_spherical()), _sys(system) {
   validate();
 }
-
 
 const EquatorialSystem& Equatorial::system() const {
   return _sys;
@@ -180,8 +180,8 @@ std::string Equatorial::to_string(enum novas_separator_type separator, int decim
           + dec().to_string(separator, decimals) + "  " + _sys.to_string();
 }
 
-static const Equatorial _invalid = Equatorial(NAN, NAN);
 const Equatorial& Equatorial::invalid() {
+  static const Equatorial _invalid = Equatorial(NAN, NAN, EquatorialSystem::icrs(), NAN);
   return _invalid;
 }
 

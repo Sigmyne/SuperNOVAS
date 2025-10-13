@@ -46,7 +46,7 @@ double Vector::z() const {
 }
 
 
-bool Vector::is_equal(const Vector& v, double precision) const {
+bool Vector::equals(const Vector& v, double precision) const {
   double d2 = 0.0;
   for(int i = 0; i < 3; i++) {
     double d = _component[i] - v._component[i];

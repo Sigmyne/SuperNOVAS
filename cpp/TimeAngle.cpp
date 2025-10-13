@@ -49,9 +49,8 @@ TimeAngle TimeAngle::operator-(const Interval& offset) const {
   return TimeAngle(rad() - offset.hours() * Unit::hourAngle);
 }
 
-static const TimeAngle _zero = TimeAngle(0.0);
-
 const TimeAngle& TimeAngle::zero() {
+  static const TimeAngle _zero = TimeAngle(0.0);
   return _zero;
 }
 

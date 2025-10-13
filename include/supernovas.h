@@ -373,7 +373,15 @@ public:
 
   Position operator*(const Velocity& v) const;
 
-  bool is_equal(const Interval& interval, double precision = Unit::us) const;
+  bool equals(const Interval& interval, double precision = Unit::us) const;
+
+  bool operator==(const Interval& interval) const {
+    return equals(interval);
+  }
+
+  bool operator!=(const Interval& interval) const {
+    return !equals(interval);
+  }
 
   enum novas::novas_timescale timescale() const;
 
@@ -426,7 +434,15 @@ public:
 
   Angle operator-(const Angle& r) const;
 
-  bool is_equal(const Angle& angle, double precision = Unit::uas) const;
+  bool equals(const Angle& angle, double precision = Unit::uas) const;
+
+  bool operator==(const Angle& angle) {
+    return equals(angle);
+  }
+
+  bool operator!=(const Angle& angle) {
+    return !equals(angle);
+  }
 
   double rad() const;
 
@@ -514,7 +530,7 @@ public:
 
   double z() const;
 
-  bool is_equal(const Vector& v, double precision) const;
+  bool equals(const Vector& v, double precision) const;
 
   Vector scaled(double factor) const;
 
@@ -577,7 +593,13 @@ public:
 
   Velocity operator-(const Velocity& r) const;
 
-  bool is_equal(const Interval& interval, double precision = Unit::us) const;
+  bool operator==(const Velocity& v) const {
+    return equals(v, Unit::mm / Unit::sec);
+  }
+
+  bool operator!=(const Velocity& v) const {
+    return !equals(v, Unit::mm / Unit::sec);
+  }
 
   Speed speed() const;
 
@@ -1221,9 +1243,29 @@ public:
 
   CalendarDate operator-(const Interval& interval) const;
 
-  Interval operator-(const CalendarDate& date) const; // TODO
+  Interval operator-(const CalendarDate& date) const;
 
-  Interval operator-(const Time& time) const; // TODO
+  bool operator<(const CalendarDate& date) const;
+
+  bool operator>(const CalendarDate& date) const;
+
+  bool operator<=(const CalendarDate& date) const;
+
+  bool operator>=(const CalendarDate& date) const;
+
+  bool equals(const CalendarDate& date, double seconds = Unit::ms) const;
+
+  bool equals(const CalendarDate& date, const Interval& precision) const {
+    return equals(date, precision.seconds());
+  }
+
+  bool operator==(const CalendarDate& date) const {
+    return equals(date);
+  }
+
+  bool operator!=(const CalendarDate& date) const {
+    return !equals(date);
+  }
 
   const TimeAngle& time_of_day() const;
 
@@ -1283,25 +1325,35 @@ public:
 
   explicit Time(const novas::novas_timespec *t);
 
-  Interval operator-(const Time &other) const;
+  Interval operator-(const Time& other) const;
 
-  Interval operator-(const CalendarDate &other) const;
+  Interval operator-(const CalendarDate& other) const;
 
-  Time operator+(const Interval &delta) const;
+  Time operator+(const Interval& delta) const;
 
-  Time operator-(const Interval &delta) const;
+  Time operator-(const Interval& delta) const;
 
-  bool operator<(const Time &other) const;
+  bool operator<(const Time& other) const;
 
-  bool operator>(const Time &other) const;
+  bool operator>(const Time& other) const;
 
-  bool operator<=(const Time &other) const;
+  bool operator<=(const Time& other) const;
 
-  bool operator>=(const Time &other) const;
+  bool operator>=(const Time& other) const;
 
-  bool equals(const Time& time, double precision = Unit::sec / Unit::day) const;
+  bool equals(const Time& time, double seconds = Unit::ms) const;
 
-  bool equals(const Time& time, const Interval& interval) const;
+  bool equals(const Time& time, const Interval& precision) const {
+    return equals(time, precision.seconds());
+  }
+
+  bool operator==(const Time& time) const {
+    return equals(time);
+  }
+
+  bool operator!=(const Time& time) const {
+    return !equals(time);
+  }
 
   const novas::novas_timespec * _novas_timespec() const;
 

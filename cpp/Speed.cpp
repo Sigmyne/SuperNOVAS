@@ -84,8 +84,8 @@ Speed Speed::from_redshift(double z) {
   return Speed(novas_z2v(z) * Unit::km / Unit::sec);
 }
 
-static const Speed _stationary = Speed(0.0);
 const Speed& Speed::stationary() {
+  static const Speed _stationary = Speed(0.0);
   return _stationary;
 }
 

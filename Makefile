@@ -253,6 +253,7 @@ summary:
 	@echo
 	@echo "    CALCEPH_SUPPORT      = $(CALCEPH_SUPPORT)"
 	@echo "    CSPICE_SUPPORT       = $(CSPICE_SUPPORT)"
+	@echo "    ENABLE_CPP_LIBS      = $(ENABLE_CPP_LIBS)"
 	@echo "    SOLSYS_SOURCES       = $(SOLSYS_SOURCES)"
 	@echo "    READEPH_SOURCES      = $(READEPH_SOURCES)"
 	@echo

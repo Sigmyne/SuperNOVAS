@@ -60,7 +60,7 @@ Interval Interval::operator-(const Interval& r) const {
   return from_tt(tt_seconds(*this) - tt_seconds(r), timescale());
 }
 
-bool Interval::is_equal(const Interval& interval, double precision) const {
+bool Interval::equals(const Interval& interval, double precision) const {
   return fabs(_seconds - interval._seconds) < fabs(precision);
 }
 
@@ -108,9 +108,8 @@ double Interval::julian_centuries() const {
   return _seconds / Unit::julianCentury;
 }
 
-static const Interval _zero = Interval(0.0);
-
 const Interval& zero() {
+  static const Interval _zero = Interval(0.0);
   return _zero;
 }
 

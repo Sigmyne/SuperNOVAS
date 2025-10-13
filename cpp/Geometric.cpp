@@ -97,8 +97,8 @@ std::optional<Geometric> Geometric::in_itrs(const EOP& eop) const {
   return std::nullopt;
 }
 
-static const Geometric _invalid = Geometric(Position::invalid(), Velocity::invalid(), Frame::invalid(), (enum novas_reference_system) -1);
 const Geometric& Geometric::invalid() {
+  static const Geometric _invalid = Geometric(Position::invalid(), Velocity::invalid(), Frame::invalid(), (enum novas_reference_system) -1);
   return _invalid;
 }
 

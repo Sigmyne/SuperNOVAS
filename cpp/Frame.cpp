@@ -133,8 +133,8 @@ std::optional<Frame> Frame::create(const Observer& obs, const Time& time, enum n
   return std::nullopt;
 }
 
-static const Frame &_invalid = Frame(Observer::invalid(), Time::invalid(), (enum novas_accuracy) -1);
 const Frame& Frame::invalid() {
+  static const Frame _invalid = Frame(Observer::invalid(), Time::invalid(), (enum novas_accuracy) -1);
   return _invalid;
 }
 

@@ -34,8 +34,8 @@ double Motion::acceleration() const {
   return _accel;
 }
 
-static const Motion _zero = Motion(0.0, 0.0);
 const Motion& Motion::zero() {
+  static const Motion _zero = Motion(0.0, 0.0);
   return _zero;
 }
 
