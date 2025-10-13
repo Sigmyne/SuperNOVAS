@@ -34,13 +34,13 @@ include(FeatureSummary)
 
 # Build options
 option(BUILD_SHARED_LIBS "Build as shared libraries instead of static" OFF)
-option(BUILD_CPP_LIBS "Enable C++ library build" OFF)
 option(BUILD_DOC "Build HTML documetation" OFF)
 option(BUILD_TESTING "Build regression test suite" ON)
 option(BUILD_EXAMPLES "Build example programs" OFF)
 option(BUILD_BENCHMARK "Build benchmark programs" OFF)
 option(ENABLE_CALCEPH "Enable CALCEPH support (solsys-calceph component)" OFF)
 option(ENABLE_CSPICE "Enable CSPICE support (solsys-cspice component)" OFF)
+option(ENABLE_CPP_LIBS "Enable C++ library build (cpp component)" OFF)
 
 # Set feature descriptions for summary
 add_feature_info(SharedLibs BUILD_SHARED_LIBS "Build as shared libraries")
@@ -51,6 +51,7 @@ add_feature_info(Benchmarks BUILD_BENCHMARK "Build benchmarking programs")
 
 add_feature_info(Calceph-Plugin ENABLE_CALCEPH "Optional ephemeris support via CALCEPH (solsys-calceph)")
 add_feature_info(CSPICE-Plugin ENABLE_CSPICE "Optional ephemeris support via CSPICE (solsys-cspice)")
+add_feature_info(SharedLibs ENABLE_CPP_LIBS "Build C++ libraries also (cpp)")
 
 # ----------------------------------------------------------------------------
 # pkg-config variables
@@ -230,7 +231,7 @@ endif()
 enable_testing()
 
 # C++ library
-if(BUILD_CPP_LIBS)
+if(ENABLE_CPP_LIBS)
     add_subdirectory(cpp)
 endif()
 

@@ -46,10 +46,16 @@ distro: $(SHARED_TARGETS) $(DOC_TARGETS)
 # Shared libraries (versioned and unversioned)
 .PHONY: shared
 shared: summary $(SHARED_TARGETS)
+ifeq ($(ENABLE_CPP_LIBS), 1)
+	make -C cpp shared
+endif
 
 # Static libraries
 .PHONY: static
 static: summary $(LIB)/libnovas.a solsys
+ifeq ($(ENABLE_CPP_LIBS), 1)
+	make -C cpp static
+endif
 
 # solarsystem() call handler objects
 .PHONY: solsys

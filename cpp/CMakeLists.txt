@@ -2,7 +2,7 @@
 # library
 #
 # To invoke simply configure the cmake build in the supernovas directory with
-# the -DBUILD_CPP_LIBS=ON option.
+# the -DENABLE_CPP_LIBS=ON option.
 #
 # Author: Attila Kovacs
 

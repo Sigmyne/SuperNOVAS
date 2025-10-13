@@ -16,10 +16,8 @@ CC ?= gcc
 # Default compiler options (if not defined externally)
 CFLAGS ?= -g -Os -Wall
 
-
 # Specific Doxygen to use if not the default one
 #DOXYGEN ?= /opt/bin/doxygen
-
 
 # To make SuperNOVAS thread-safe, we use thread-local storage modifier
 # keywords. These were not standardized prior to C11. So while we automatically
@@ -32,6 +30,8 @@ CFLAGS ?= -g -Os -Wall
 #or
 #THREAD_LOCAL ?= __declspec( thread )
 
+# To build the C++ library (libsupernovas++)...
+#ENABLE_CPP_LIBS=1
 
 # To compile library with an external or legacy `solarsystem()` / 
 # `solarsystem_hp()` implementation as the default planet provider, specify 
