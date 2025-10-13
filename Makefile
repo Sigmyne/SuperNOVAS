@@ -78,6 +78,11 @@ benchmark: shared
 examples: shared
 	$(MAKE) -C examples
 
+# C++ static analysis
+.PHONY: analyze-cpp
+analyze-cpp: 
+	$(MAKE) -C cpp analyze
+
 # Perform checks (test + analyze)
 .PHONY: check
 check: test analyze
