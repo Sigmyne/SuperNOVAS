@@ -405,6 +405,8 @@ public:
 
   double julian_centuries() const;
 
+  Interval to_timescale(enum novas::novas_timescale scale) const;
+
   std::string to_string() const; // TODO
 
   static const Interval& zero();
@@ -430,9 +432,9 @@ public:
 
   explicit Angle(const std::string& str);
 
-  Angle operator+(const Angle& r) const;
+  virtual Angle operator+(const Angle& r) const;
 
-  Angle operator-(const Angle& r) const;
+  virtual Angle operator-(const Angle& r) const;
 
   bool equals(const Angle& angle, double precision = Unit::uas) const;
 
@@ -488,6 +490,10 @@ public:
   explicit TimeAngle(const std::string& str);
 
   explicit TimeAngle(const Angle& angle);
+
+  Angle operator+(const Angle& r) const override;
+
+  Angle operator-(const Angle& r) const override;
 
   TimeAngle operator+(const Interval& other) const;
 
@@ -1128,7 +1134,7 @@ public:
 
   const EOP& eop() const;
 
-  std::string to_string() const override; // TODO
+  std::string to_string() const override;
 };
 
 /**
@@ -1150,7 +1156,7 @@ public:
 
   Velocity geocentric_velocity() const;
 
-  std::string to_string() const override; // TODO
+  std::string to_string() const override;
 };
 
 /**
@@ -1183,7 +1189,7 @@ private:
   explicit Calendar(enum novas::novas_calendar_type type);
 public:
 
-  enum novas::novas_calendar_type type() const; // TODO
+  enum novas::novas_calendar_type type() const;
 
   CalendarDate date(int year, int month, int day, const TimeAngle& time = TimeAngle::zero()) const;
 
@@ -1285,6 +1291,8 @@ public:
 
   std::string to_long_date_string() const;
 
+  CalendarDate in_calendar(const Calendar& calendar) const;
+
   std::string to_string(enum novas::novas_date_format fmt = novas::NOVAS_YMD, int decimals = 0) const; // TODO
 
   std::string to_string(int decimals) const; // TODO
@@ -1359,6 +1367,10 @@ public:
 
   double jd(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
+  long jd_day(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
+
+  TimeAngle jd_time_of_day(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
+
   double mjd(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
   int leap_seconds() const;
@@ -1393,7 +1405,7 @@ public:
 
   Time shifted(const Interval& offset) const;
 
-  CalendarDate as_calendar_date() const; // TODO
+  CalendarDate as_calendar_date(enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
 
   static Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
@@ -1718,7 +1730,6 @@ public:
   std::string to_string() const override;
 };
 
-// TODO
 /**
  *
  * @ingroup source
@@ -1753,7 +1764,6 @@ public:
   std::string to_string() const; // TODO
 };
 
-// TODO
 /**
  *
  * @ingroup source

@@ -108,7 +108,11 @@ double Interval::julian_centuries() const {
   return _seconds / Unit::julianCentury;
 }
 
-const Interval& zero() {
+Interval Interval::to_timescale(enum novas_timescale scale) const {
+  return from_tt(tt_seconds(*this), scale);
+}
+
+const Interval& Interval::zero() {
   static const Interval _zero = Interval(0.0);
   return _zero;
 }
