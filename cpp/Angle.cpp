@@ -53,6 +53,8 @@ Angle::Angle(const std::string& str) {
   _rad = novas_str_degrees(str.c_str()) * Unit::deg;
   if(isnan(_rad))
     novas_error(0, EINVAL, "Angle(std::string)", "invalid input angle: %s", str.c_str());
+  else
+    _valid = true;
 }
 
 

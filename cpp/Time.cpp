@@ -146,6 +146,16 @@ double Time::jd(enum novas_timescale timescale) const {
   return novas_get_time(&_ts, timescale);
 }
 
+long Time::jd_day(enum novas_timescale timescale) const {
+  long ijd = 0;
+  novas_get_split_time(&_ts, timescale, &ijd);
+  return ijd;
+}
+
+TimeAngle Time::jd_time_of_day(enum novas_timescale timescale) const {
+  return TimeAngle(novas_get_split_time(&_ts, timescale, NULL) * Constant::twoPi);
+}
+
 double Time::mjd(enum novas_timescale timescale) const {
   return (_ts.ijd_tt - (int) NOVAS_JD_MJD0) + _ts.fjd_tt - 0.5;
 }
@@ -241,7 +251,11 @@ Time Time::shifted(double seconds) const {
 }
 
 Time Time::shifted(const Interval& offset) const {
-  return shifted(offset.seconds());
+  return shifted(offset.to_timescale(NOVAS_TT).seconds());
+}
+
+CalendarDate Time::as_calendar_date(enum novas::novas_timescale timescale) const {
+  return Calendar::astronomical().date(jd(timescale));
 }
 
 const Time& Time::j2000() {

@@ -41,6 +41,14 @@ std::string TimeAngle::to_string(enum novas_separator_type separator, int decima
   return std::string(s);
 }
 
+Angle TimeAngle::operator+(const Angle& angle) const {
+  return Angle::operator+(angle);
+}
+
+Angle TimeAngle::operator-(const Angle& angle) const {
+  return Angle::operator-(angle);
+}
+
 TimeAngle TimeAngle::operator+(const Interval& offset) const {
   return TimeAngle(rad() + offset.hours() * Unit::hourAngle);
 }

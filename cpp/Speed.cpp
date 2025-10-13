@@ -63,7 +63,7 @@ double Speed::redshift() const {
 }
 
 Distance Speed::travel(double seconds) const {
-  return Distance(_ms / seconds);
+  return Distance(_ms * seconds);
 }
 
 Distance Speed::travel(const Interval& time) const {

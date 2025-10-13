@@ -60,7 +60,6 @@ cov.info:
 	geninfo . -b . -o $@
 
 .PHONY: coverage
-
 coverage: $(COVFILES)
 	$(MAKE) clean-test
 	$(MAKE) cov

@@ -194,6 +194,10 @@ const std::string& CalendarDate::short_day_name() const {
   return names[0];
 }
 
+CalendarDate CalendarDate::in_calendar(const Calendar& calendar) const {
+  return calendar.date(_jd);
+}
+
 Time CalendarDate::to_time(int leap_seconds, double dut1, novas::novas_timescale timescale) const {
   return Time(jd(), leap_seconds, dut1, timescale);
 }
