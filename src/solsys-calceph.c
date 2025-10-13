@@ -517,10 +517,3 @@ int novas_use_calceph_planets(t_calcephbin *eph) {
 
   return 0;
 }
-
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif
