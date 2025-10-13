@@ -111,12 +111,6 @@ typedef int                   lock_type;
 #include "cspice/SpiceUsr.h"
 #include "cspice/SpiceZpr.h"        // for reset_c
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /// \cond PRIVATE
 /// Multiplicative normalization for the positions returned by km to AU
 #define NORM_POS                    (NOVAS_KM / NOVAS_AU)
@@ -644,11 +638,4 @@ int novas_use_cspice() {
   novas_use_cspice_ephem();
   return 0;
 }
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif
-
 
