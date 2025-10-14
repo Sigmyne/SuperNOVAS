@@ -18,7 +18,7 @@ namespace supernovas {
 Speed::Speed(double m_per_s) : _ms(m_per_s) {
   if(isnan(m_per_s))
     novas_error(0, EINVAL, "Speed(double)", "input value is NAN");
-  if(fabs(m_per_s) > Constant::c)
+  else if(fabs(m_per_s) > Constant::c)
     novas_error(0, ERANGE, "Speed(double)", "input speed exceeds the speed of light: %g m/s", m_per_s);
   else
     _valid = true;
@@ -32,6 +32,22 @@ Speed Speed::operator+(const Speed& r) const {
 
 Speed Speed::operator-(const Speed& r) const {
   return Speed((beta() - r.beta()) / (1 + beta() * r.beta()) * Constant::c);
+}
+
+bool Speed::equals(const Speed& speed, double mpers) const {
+  return fabs(_ms - speed._ms) < fabs(mpers);
+}
+
+bool Speed::equals(const Speed& speed, const Speed& tolerance) const {
+  return equals(speed, tolerance.m_per_s());
+}
+
+bool Speed::operator==(const Speed& speed) const {
+  return equals(speed);
+}
+
+bool Speed::operator!=(const Speed& speed) const {
+  return !equals(speed);
 }
 
 Speed Speed::abs() const {
@@ -59,7 +75,7 @@ double Speed::Gamma() const {
 }
 
 double Speed::redshift() const {
-  return sqrt((1.0 + beta()) / (1.0 - beta()));
+  return novas_v2z(km_per_s());
 }
 
 Distance Speed::travel(double seconds) const {

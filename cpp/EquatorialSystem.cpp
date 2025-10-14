@@ -254,7 +254,7 @@ EquatorialSystem EquatorialSystem::mod(double jd_tt) {
  * @sa at_julian_date(), b1900(), b1950()
  */
 EquatorialSystem EquatorialSystem::mod_at_besselian_epoch(double year) {
-  return EquatorialSystem(_name_for("B", year), NOVAS_JD_B1950 + (year - 1950.0) * NOVAS_TROPICAL_YEAR_DAYS);
+  return EquatorialSystem(_name_for("B", year), NOVAS_JD_B1950 + (year - 1950.0) * Unit::besselianYear / Unit::day);
 }
 
 EquatorialSystem EquatorialSystem::tod(double jd_tt) {

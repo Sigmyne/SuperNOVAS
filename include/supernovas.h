@@ -21,8 +21,12 @@
 #include <time.h>
 #include <errno.h>
 
+#ifndef _CONSTS_
+#  define _CONSTS_                              ///< Don't use the old NOVAS constants with names like C, AU
+#endif
+
 #ifndef NOVAS_NAMESPACE
-#  define NOVAS_NAMESPACE                       /// Make C API available under the 'novas' namespace
+#  define NOVAS_NAMESPACE                       ///< Make C API available under the 'novas' namespace
 #endif
 #include <novas.h>
 
@@ -105,7 +109,8 @@ public:
   //Unit(Unit const&)     = delete;
   /// \endcond
 
-  static constexpr double au = NOVAS_AU;                  /// [m] 1 Astronomical Unit in meters.
+  static constexpr double AU = NOVAS_AU;                  /// [m] 1 Astronomical Unit in meters.
+  static constexpr double au = AU;                        /// [m] 1 AU (lowe-case)
   static constexpr double m = 1.0;                        /// [m] 1 meter (standard unit of distance)
   static constexpr double cm = 0.01;                      /// [m] 1 centimeter in meters
   static constexpr double mm = 1e-3;                      /// [m] 1 millimeter in meters
@@ -129,14 +134,17 @@ public:
   static constexpr double hour = 3600.0;                  /// [s] 1 hour in seconds
   static constexpr double day = NOVAS_DAY;                /// [s] 1 day in seconds
   static constexpr double week = 7 * day;                 /// [s] 1 week in seconds
+
   /// [s] 1 tropical calendar year in seconds (at J2000)
-  static constexpr double yr = NOVAS_TROPICAL_YEAR_DAYS * NOVAS_DAY;
-  /// [s] 1 tropycal calendar century in seconds (at J2000)
+  static constexpr double yr = NOVAS_TROPICAL_YEAR_DAYS * day;
+  /// [s] 1 tropical calendar century in seconds (at J2000)
   static constexpr double cy = 100.0 * yr;
+  /// [s] 1 Besselian year in seconds
+  static constexpr double besselianYear = NOVAS_BESSELIAN_YEAR_DAYS * day;
   /// [s] 1 Julian year in seconds
-  static constexpr double julianYear = NOVAS_JULIAN_YEAR_DAYS * NOVAS_DAY;
+  static constexpr double julianYear = NOVAS_JULIAN_YEAR_DAYS * day;
   /// [s] 1 Julian century in seconds
-  static constexpr double julianCentury = NOVAS_JULIAN_YEAR_DAYS * NOVAS_DAY;
+  static constexpr double julianCentury = 100.0 * julianYear;
 
   static constexpr double rad = 1.0;                      /// [rad] 1 radian (standard unit of angle)
   static constexpr double hourAngle = NOVAS_HOURANGLE;    /// [rad] 1 hour of angle in radians
@@ -645,6 +653,14 @@ public:
 
   Speed operator-(const Speed& r) const;
 
+  bool equals(const Speed& speed, double m_per_s = Unit::mm / Unit::sec) const;
+
+  bool equals(const Speed& speed, const Speed& tolerance) const;
+
+  bool operator==(const Speed& speed) const;
+
+  bool operator!=(const Speed& speed) const;
+
   /**
    * Returns the magnitude of this speed, as a unsigned speed.
    *
@@ -872,17 +888,41 @@ private:
 public:
   double celsius() const;
 
+  double C() const {
+    return celsius();
+  }
+
   double kelvin() const;
 
+  double K() const {
+    return kelvin();
+  }
+
   double farenheit() const;
+
+  double F() const {
+    return farenheit();
+  }
 
   std::string to_string() const;
 
   static Temperature celsius(double value);
 
+  static Temperature C(double value) {
+    return celsius(value);
+  }
+
   static Temperature kelvin(double value);
 
+  static Temperature K(double value) {
+    return kelvin(value);
+  }
+
   static Temperature farenheit(double value);
+
+  static Temperature F(double value) {
+    return farenheit(value);
+  }
 };
 
 /**

@@ -10,7 +10,7 @@ include ../../config.mk
 CPP_SOURCES = $(wildcard ../*.cpp)
 CPP_OBJECTS = $(subst .cpp,.o, $(subst ../,, $(CPP_SOURCES)))
 
-TESTS = AngleTest TimeAngleTest IntervalTest
+TESTS = AngleTest TimeAngleTest IntervalTest SpeedTest TemperatureTest PressureTest
 
 .PHONY: build
 build: $(TESTS)
@@ -30,6 +30,7 @@ coverage: $(COVFILES)
 %Test: %Test.o libnovas++.a $(CPP_OBJECTS)
 	$(CXX) -o $@ $(CPPFLAGS) $(CXXFLAGS) $^ $(LDFLAGS) -L. -lnovas++
 
+.PRECIOUS: libnovas++.a
 libnovas++.a: $(OBJECTS)
 	ar -rc $@ $^
 	ranlib $@
@@ -37,6 +38,7 @@ libnovas++.a: $(OBJECTS)
 obj:
 	mkdir $@
 
+.PRECIOUS: obj/%.o
 obj/%.o: ../../src/%.c obj Makefile
 	$(CXX) -c -o $@ -DNOVAS_NAMESPACE $(CPPFLAGS) $< 
 
