@@ -18,9 +18,10 @@
 
 #define ERAD                NOVAS_GRS80_RADIUS
 #define EF                  NOVAS_GRS80_FLATTENING
-#define ANGVEL              NOVAS_EARTH_ANGVEL
 #define ERAD_AU             ( ERAD / NOVAS_AU )
+#define ANGVEL              NOVAS_EARTH_ANGVEL
 /// \endcond
+
 
 #if __cplusplus
 #  ifdef NOVAS_NAMESPACE
