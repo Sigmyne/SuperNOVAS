@@ -52,6 +52,9 @@ endif
 ifeq ($(CSPICE_SUPPORT), 1)
 	./test-cspice ephem
 endif
+ifeq ($(ENABLE_CPP_LIBS), 1)
+	$(MAKE) -C cpp run
+endif
 
 cov: cov.info
 	genhtml $< -o $@
@@ -63,6 +66,9 @@ cov.info:
 coverage: $(COVFILES)
 	$(MAKE) clean-test
 	$(MAKE) cov
+ifeq ($(ENABLE_CPP_LIBS), 1)
+	$(MAKE) -C cpp coverage
+endif
 
 .PRECIOUS: %.c.gcov
 %.c.gcov: %.gcno %.gcda
@@ -95,10 +101,12 @@ analyze:
 .PHONY: clean-test
 clean-test:
 	rm -f test-*
+	$(MAKE) -s -C cpp clean-test
 
 .PHONY: clean-cov
 clean-cov:
 	rm -rf gmon.out *.gcov *.gcda *.gcno cov cov.info
+	$(MAKE) -s -C cpp clean-cov
 
 .PHONY: clean-data
 clean-data:
@@ -107,9 +115,12 @@ clean-data:
 .PHONY: clean
 clean: clean-test clean-cov
 	rm -f *.o
+	$(MAKE) -s -C cpp clean
 
 .PHONY: distclean
 distclean: clean clean-data
+	$(MAKE) -s -C cpp distclean
+
 
 .PHONY: help
 help:

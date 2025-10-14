@@ -7,8 +7,9 @@ LDFLAGS += -fprofile-arcs -ftest-coverage -lm
 
 include ../../config.mk
 
-CPP_SOURCES = $(wildcard ../*.cpp)
-CPP_OBJECTS = $(subst .cpp,.o, $(subst ../,, $(CPP_SOURCES)))
+CPP_PATH := ../../cpp
+CPP_SOURCES = $(wildcard $(CPP_PATH)/*.cpp)
+CPP_OBJECTS = $(subst .cpp,.o, $(subst $(CPP_PATH)/,, $(CPP_SOURCES)))
 
 TESTS = AngleTest TimeAngleTest IntervalTest SpeedTest TemperatureTest PressureTest
 
@@ -73,5 +74,5 @@ clean: clean-test clean-cov
 distclean: clean
 	rm -f libnovas++.a
 
-vpath %.cpp ..
+vpath %.cpp $(CPP_PATH)
 vpath %.c ../../src

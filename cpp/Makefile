@@ -56,12 +56,10 @@ $(OBJ)/%.o: ../src/%.c $(OBJ) Makefile
 .PHONY: clean
 clean:
 	@rm -f *.o $(OBJ)/*.o*
-	@$(MAKE) -s -C test clean
 
 .PHONY: distclean
 distclean: clean
 	@rm -rf $(LIB)/libsupernovas++.*
-	@$(MAKE) -s -C test distclean
 
 # Built-in help screen for `make help`
 .PHONY: help
