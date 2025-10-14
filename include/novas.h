@@ -312,7 +312,7 @@ namespace novas {
 #define NOVAS_AU_SEC              ( NOVAS_AU / NOVAS_C )
 
 /// [AU/day] Speed of light in units of AU/day.
-#define NOVAS_C_AU_PER_DAY        ( NOVAS_DAY / NOVAS_AU_SEC )
+#define NOVAS_C_AU_PER_DAY        ( NOVAS_C * NOVAS_DAY / NOVAS_AU )
 
 /// [km] Astronomical Unit (AU) in kilometers.
 #define NOVAS_AU_KM               ( 1e-3 * NOVAS_AU )
@@ -3316,9 +3316,9 @@ int novas_enu_to_itrs(const double *enu, double lon, double lat, double *itrf);
 #ifndef _CONSTS_
 #  define _CONSTS_
 
-#  define HALF_PI             (0.5 * M_PI)
-#  define NOVAS_C2            (NOVAS_C * NOVAS_C)   ///< [m<sup>2</sup>/s<sup>2</sup>] Speed of light square
-#  define XYZ_VECTOR_SIZE     (3 * sizeof(double))
+#  define HALF_PI             ( 0.5 * M_PI )
+#  define NOVAS_C2            ( NOVAS_C * NOVAS_C )   ///< [m<sup>2</sup>/s<sup>2</sup>] Speed of light square
+#  define XYZ_VECTOR_SIZE     ( 3 * sizeof(double) )
 
 // Use shorthand definitions for our constants
 #  define JD_J2000            NOVAS_JD_J2000
@@ -3326,7 +3326,6 @@ int novas_enu_to_itrs(const double *enu, double lon, double lat, double *itrf);
 #  define AU_KM               NOVAS_AU_KM
 #  define GS                  NOVAS_G_SUN
 #  define GE                  NOVAS_G_EARTH
-
 
 // Various locally used physical units
 #  define DAY                 NOVAS_DAY
@@ -3337,7 +3336,7 @@ int novas_enu_to_itrs(const double *enu, double lon, double lat, double *itrf);
 #  define ARCSEC              NOVAS_ARCSEC
 #  define DEGREE              NOVAS_DEGREE
 #  define HOURANGLE           NOVAS_HOURANGLE
-#  define MAS                 (1e-3 * ASEC2RAD)
+#  define MAS                 ( 1e-3 * ASEC2RAD )
 #  define KMS                 NOVAS_KMS
 
 #endif /* _CONSTS_ */
