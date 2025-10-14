@@ -191,7 +191,7 @@ namespace novas {
 
 /// [day] The length of a Besselian year in days.
 /// @since 1.5
-/// @ingroup time
+/// @c_time
 #define NOVAS_BESSELIAN_YEAR_DAYS 365.242198781
 
 /// [rad] A degree expressed in radians.
