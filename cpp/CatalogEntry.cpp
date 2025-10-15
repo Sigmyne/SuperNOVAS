@@ -77,7 +77,7 @@ long CatalogEntry::number() const {
 }
 
 Angle CatalogEntry::ra() const {
-  return Angle(_entry.ra * Unit::hourAngle);
+  return Angle(_entry.ra * Unit::hour_angle);
 }
 
 Angle CatalogEntry::dec() const {

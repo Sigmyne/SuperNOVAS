@@ -27,6 +27,14 @@ using namespace novas;
 
 namespace supernovas {
 
+void Time::diurnal_correct() {
+  double d = 0.0;
+
+  novas_diurnal_eop_at_time(&_ts, NULL, NULL, &d);
+  _ts.ut1_to_tt -= d;
+  _ts.dut1 += d;
+}
+
 bool Time::is_valid_parms(double dUT1,  enum novas_timescale timescale) const {
   static const char *fn = "Time()";
 
@@ -47,10 +55,12 @@ Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timesc
   else
     _valid = is_valid_parms(dUT1, timescale);
 
+  if(_valid)
+    diurnal_correct();
 }
 
 Time::Time(double jd, const EOP& eop, enum novas_timescale timescale)
-: Time(jd, eop.leap_seconds(), eop.dUT1(), timescale) {}
+: Time(jd, eop.leap_seconds(), eop.dUT1().seconds(), timescale) {}
 
 Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
   novas_set_split_time(timescale, ijd, fjd, leap_seconds, dUT1, &_ts);
@@ -60,20 +70,26 @@ Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_times
   else
     _valid = is_valid_parms(dUT1, timescale);
 
+  if(_valid)
+    diurnal_correct();
+
 }
 
 Time::Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale)
-: Time(ijd, fjd, eop.leap_seconds(), eop.dUT1(), timescale) {}
+: Time(ijd, fjd, eop.leap_seconds(), eop.dUT1().seconds(), timescale) {}
 
 Time::Time(const std::string& timestamp, int leap_seconds, double dUT1, enum novas_timescale timescale) {
   if(novas_set_str_time(timescale, timestamp.c_str(), leap_seconds, dUT1, &_ts) != 0)
     novas_trace_invalid("Time()");
   else
     _valid = is_valid_parms(dUT1, timescale);
+
+  if(_valid)
+    diurnal_correct();
 }
 
 Time::Time(const std::string& timestamp, const EOP& eop, enum novas_timescale timescale)
-: Time(timestamp, eop.leap_seconds(), eop.dUT1(), timescale) {}
+: Time(timestamp, eop.leap_seconds(), eop.dUT1().seconds(), timescale) {}
 
 Time::Time(const struct timespec *t, int leap_seconds, double dUT1) {
   if(!t)
@@ -82,10 +98,13 @@ Time::Time(const struct timespec *t, int leap_seconds, double dUT1) {
     novas_set_unix_time(t->tv_sec, t->tv_nsec, leap_seconds, dUT1, &_ts);
     _valid = is_valid_parms(dUT1, NOVAS_UTC);
   }
+
+  if(_valid)
+    diurnal_correct();
 }
 
 Time::Time(const struct timespec *t, const EOP& eop)
-: Time(t, eop.leap_seconds(), eop.dUT1()) {}
+: Time(t, eop.leap_seconds(), eop.dUT1().seconds()) {}
 
 Time::Time(const novas_timespec *t) {
   static const char *fn = "Time()";
@@ -101,7 +120,7 @@ Time::Time(const novas_timespec *t) {
   else
     _valid = true;
 
-  if(t) _ts = *t;
+  if(_valid) _ts = *t;
 }
 
 Time Time::operator+(const Interval& r) const {
@@ -161,11 +180,11 @@ double Time::mjd(enum novas_timescale timescale) const {
 }
 
 int Time::leap_seconds() const {
-  return (int) round(_ts.ut1_to_tt - DTA);
+  return (_ts.ut1_to_tt - _ts.dut1 - DTA);
 }
 
 Interval Time::dUT1() const {
-  return Interval(remainder(_ts.ut1_to_tt - DTA, 1.0));
+  return Interval(_ts.dut1);
 }
 
 double Time::epoch() const {
@@ -173,16 +192,16 @@ double Time::epoch() const {
 }
 
 TimeAngle Time::gst(enum novas_accuracy accuracy) const {
-  return TimeAngle(novas_time_gst(&_ts, accuracy) * Unit::hourAngle);
+  return TimeAngle(novas_time_gst(&_ts, accuracy) * Unit::hour_angle);
 }
 
 TimeAngle Time::gmst() const {
   double jd_ut1 = novas_get_time(&_ts, NOVAS_UT1);
-  return TimeAngle(novas_gmst(jd_ut1, _ts.ut1_to_tt) * Unit::hourAngle);
+  return TimeAngle(novas_gmst(jd_ut1, _ts.ut1_to_tt) * Unit::hour_angle);
 }
 
 TimeAngle Time::lst(const Site& site, enum novas_accuracy accuracy) const {
-  return TimeAngle(novas_time_lst(&_ts, site.longitude().deg(), accuracy) * Unit::hourAngle);
+  return TimeAngle(novas_time_lst(&_ts, site.longitude().deg(), accuracy) * Unit::hour_angle);
 }
 
 TimeAngle Time::era() const {
@@ -233,7 +252,7 @@ Time from_mjd(double mjd, const EOP& eop, enum novas::novas_timescale timescale 
 
 Time Time::now(const EOP& eop) {
   Time time = Time();
-  novas_set_current_time(eop.leap_seconds(), eop.dUT1(), &time._ts);
+  novas_set_current_time(eop.leap_seconds(), eop.dUT1().seconds(), &time._ts);
   return time;
 }
 

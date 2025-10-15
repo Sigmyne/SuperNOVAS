@@ -76,7 +76,7 @@ class     OrbitalSource;
 class Frame;
 class Apparent;
 class Geometric;
-class Motion;
+class Evolution;
 class Track;
 class   HorizontalTrack;
 class   EquatorialTrack;
@@ -84,8 +84,11 @@ class   EquatorialTrack;
 /**
  * Various physical units for converting quantities expressed in conventional units to SI, and
  * vice versa. The SuperNOVAS C++ API uses SI quantities consistently for inputs, so these units
- * can be useful for converting quantities in other units to SI. For example, if you have distance
- * in AU, then you can use Unit::au to convert it to SI (i.e. meters), e.g.:
+ * can be useful for converting quantities in other units to SI, or to convert return values from
+ * SI to conventional units.
+ *
+ * For example, if you have distance in AU, then you can use Unit::au to convert it to an SI
+ * distance (i.e. meters) as:
  *
  * ```c
  *   double d = 2.4103 * Unit::au;
@@ -140,14 +143,14 @@ public:
   /// [s] 1 tropical calendar century in seconds (at J2000)
   static constexpr double cy = 100.0 * yr;
   /// [s] 1 Besselian year in seconds
-  static constexpr double besselianYear = NOVAS_BESSELIAN_YEAR_DAYS * day;
+  static constexpr double besselian_year = NOVAS_BESSELIAN_YEAR_DAYS * day;
   /// [s] 1 Julian year in seconds
-  static constexpr double julianYear = NOVAS_JULIAN_YEAR_DAYS * day;
+  static constexpr double julian_year = NOVAS_JULIAN_YEAR_DAYS * day;
   /// [s] 1 Julian century in seconds
-  static constexpr double julianCentury = 100.0 * julianYear;
+  static constexpr double julian_century = 100.0 * julian_year;
 
   static constexpr double rad = 1.0;                      /// [rad] 1 radian (standard unit of angle)
-  static constexpr double hourAngle = NOVAS_HOURANGLE;    /// [rad] 1 hour of angle in radians
+  static constexpr double hour_angle = NOVAS_HOURANGLE;   /// [rad] 1 hour of angle in radians on the 24h circle.
   static constexpr double deg = NOVAS_DEGREE;             /// [rad] 1 degree in radians
   static constexpr double arcmin = deg / 60.0;            /// [rad] 1 minute of arc in radians
   static constexpr double arcsec = NOVAS_ARCSEC;          /// [rad] 1 second or arc in radians
@@ -162,8 +165,6 @@ public:
   static constexpr double MPa = 1e6;                      /// [Pa] 1 megapascal in pascals
   static constexpr double torr = 133.3223684211;          /// [Pa] 1 torr (mm of Hg) in pascals
   static constexpr double atm = 101325.0;                 /// [Pa] 1 atmosphere in pascals
-
-  static constexpr double R_earth = NOVAS_GRS80_RADIUS;   /// [m] 1 Earth quatorial radius (GRS80) in meters
 };
 
 /**
@@ -209,6 +210,8 @@ public:
   static constexpr double GM_earth = NOVAS_G_EARTH;     ///< [m<sup>3</sup> s<sup>-2</sup>] Earth graviational constant
   static constexpr double M_sun = GM_sun / G;           ///< [kg] Mass of the Sun
   static constexpr double M_earth = GM_sun / G;         ///< [kg] Earth mass
+
+  static constexpr double R_earth = NOVAS_GRS80_RADIUS;   /// [m] 1 Earth quatorial radius (GRS80) in meters
 };
 
 
@@ -244,7 +247,7 @@ public:
 };
 
 /**
- * Equatorial (RA/Dec) coordinate system. This class does not include the Earth-rotating systems
+ * %Equatorial (RA/Dec) coordinate system. This class does not include the Earth-rotating systems
  * TIRS and ITRS.
  *
  * @sa CatalogEntry, Equatorial, Ecliptic, Apparent, Geometric
@@ -696,7 +699,7 @@ public:
 };
 
 /**
- * Spherical coordinates (longitude, latitude, and distance), representing a direction on sky /
+ * %Spherical coordinates (longitude, latitude, and distance), representing a direction on sky /
  * location in space.
  *
  * @sa Position, Equatorial, Ecliptic, Galactic, Horizontal
@@ -729,7 +732,7 @@ public:
 };
 
 /**
- * Equatorial coordinates (RA, Dec = &alpha;, &delta;) and distance, representing the direction on
+ * %Equatorial coordinates (RA, Dec = &alpha;, &delta;) and distance, representing the direction on
  * the sky, or location in space, for a particular type of equatorial coordinate reference system,
  * relative to the equator and equinox on that system.
  *
@@ -784,7 +787,7 @@ public:
 };
 
 /**
- * Ecliptic coordinates (_l_, _b_ or &lambda;, &beta;) and distance, representing the direction on
+ * %Ecliptic coordinates (_l_, _b_ or &lambda;, &beta;) and distance, representing the direction on
  * the sky, or location in space, for a particular type of equatorial coordinate reference system,
  * relative to the ecliptic and equinox of that system.
  *
@@ -973,7 +976,7 @@ public:
 };
 
 /**
- * Weather data, mainly for atmopsheric refraction correction for Earth-based (geodetic)
+ * %Weather data, mainly for atmopsheric refraction correction for Earth-based (geodetic)
  * observers.
  *
  * @sa Horizontal::to_refracted(), Horizontal::to_unrefracted(), Site
@@ -1006,25 +1009,28 @@ public:
 };
 
 /**
- * IERS Earth Orientation Parameters (EOP). IERS publishes daily values, short-term and medium
- * term forecasts, and historical data for the measured, unmodelled (by the IAU 2006
- * precession-nutation model), _x_<sub>p</sub>, _y_<sub>p</sub> pole offsets, leap-seconds (UTC -
- * TAI difference), and the current UT1 - UTC time difference.
+ * Mean (inerpolated) IERS Earth Orientation Parameters (%EOP), without diurnal variations. IERS
+ * publishes daily values, short-term and medium term forecasts, and historical data for the
+ * measured, unmodelled (by the IAU 2006 precession-nutation model), _x_<sub>p</sub>,
+ * _y_<sub>p</sub> pole offsets, leap-seconds (UTC - TAI difference), and the current UT1 - UTC
+ * time difference.
  *
- * The _x_<sub>p</sub>, _y_<sub>p</sub> pole offsets define the true rotationa pole of Earth vs
+ * The _x_<sub>p</sub>, _y_<sub>p</sub> pole offsets define the true rotational pole of Earth vs
  * the dynamical equator of date, while the leap_seconds and UT1 - UTC time difference trace the
  * variations in Earth's rotation.
  *
- * Beyond the published values, one may further apply corrections for diurnal effects of
- * libration and the ocean tides, if precision below the milliarcsecond (mas) level is desired.
- * And, the EOP values can be converted to different ITRF realizations to match the ITRF Site
- * specification, if &mu;as precision is required (e.g for VLBI interferometry).
- *
- * EOP are necessary both for defining or accessing astronomical times of the UT1 timescale (e.g.
+ * %EOP are necessary both for defining or accessing astronomical times of the UT1 timescale (e.g.
  * for sidereal time or Earth-rotation angle (ERA) calculations), or for converting coordinates
  * between the preudo Earth-fixed Terrestrial Intermediate Reference System (TIRS) on the
  * dynamical equator of date, and the Earth-fixed International Terrestrial Reference System
  * (ITRS) on the true rotational equator.
+ *
+ * NOTES:
+ * <ol>
+ * <li>Corrections for diurnal variations are automatically applied in the constructors of
+ * Time (for dUT1) and Frame (for _x_<sub>p</sub> and _y_<sub>p</sub> for geodetic observers),
+ * and in Geometric::to_itrs(), as appropriate.</li>
+ * </ol>
  *
  * @sa Time, GeodeticObserver, Apparent::to_itrs(), Geometric::to_itrs(), Horizontal::to_apparent()
  * \ingroup earth
@@ -1035,16 +1041,12 @@ private:
   Angle _xp;          ///< stored x pole offset (at midhight UTC).
   Angle _yp;          ///< stored y pole offset (at midnight UTC).
   double _dut1;       ///< [s] stored UT1 - UTC time difference.
-  double _dxp = 0.0;  ///< [arcsec] applied x pole correction, in NOVAS units.
-  double _dyp = 0.0;  ///< [arcsec] applied y pole correction, in NOVAS units.
-  double _dt = 0.0;   ///< [s] applied dUT1 corrections, in NOVAS units.
-
   void validate();
 
 public:
   explicit EOP(int leap_seconds, double dut1_sec = 0.0, double xp_rad = 0.0, double yp_rad = 0.0);
 
-  EOP(int leap_seconds, double dut1, const Angle& xp, const Angle& yp);
+  EOP(int leap_seconds, const Interval& dut1, const Angle& xp, const Angle& yp);
 
   int leap_seconds() const;
 
@@ -1052,11 +1054,9 @@ public:
 
   const Angle& yp() const;
 
-  double dUT1() const;
+  Interval dUT1() const;
 
   EOP itrf_transformed(int from_year, int to_year) const;
-
-  EOP diurnal_corrected(const Time& time) const;
 
   std::string to_string() const;
 
@@ -1069,22 +1069,25 @@ public:
  * _xyz_ positions in the International Terrestrial Reference Frame (ITRF).
  *
  * The class provides the means to convert between ITRF realizations, e.g. to match the ITRF
- * realization used for the Eath Orientation Parameters (EOP) obtained from IERS, for &mu;as
+ * realization used for the Eath Orientation Parameters (%EOP) obtained from IERS, for &mu;as
  * precision. (This is really only necessary for VLBI interferometry). Alternatively, one may also
- * transform the EOP values to match the ITRF realization of the site.
+ * transform the %EOP values to match the ITRF realization of the site.
  *
  * @sa GeodeticObserver, EOP
  * @ingroup observer
  */
 class Site : public Validating {
 private:
-  novas::on_surface _site;    ///< stored site information
+  novas::on_surface _site = {};    ///< stored site information
 
   Site();
 
 public:
 
   Site(double longitude_rad, double latitude_rad, double altitude_m = 0.0, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
+
+  Site(const Angle& longitude, const Angle& latitude, const Distance& altitude, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID)
+  : Site(longitude.rad(), latitude.rad(), altitude.m(), ellipsoid) {}
 
   explicit Site(const Position& xyz);
 
@@ -1163,6 +1166,8 @@ class GeodeticObserver : public Observer {
 private:
   EOP _eop;     ///< stored Earth orientation parameters
 
+  void diurnal_correct();
+
 public:
   GeodeticObserver(const Site& site, const EOP& eop);
 
@@ -1219,6 +1224,7 @@ public:
 
 
 /**
+ * Type of calendar used for representing dates, such as Gregorian, Roman, or astronomical.
  *
  * @ingroup time
  */
@@ -1252,7 +1258,13 @@ public:
 
 
 /**
+ * A time specified in a specific type of calendar (Gregorian, Roman, or astronomical). Unike the
+ * Time class, calendar dates allow for broken-down (year, month, day-of-month, day-of-week,
+ * day-of-year, and time-of-day) representation, It has a precision at the 100 &mu;s level,
+ * limited by the double-precision representation of Julian dates. However, that level of
+ * precision is sufficient for most applications.
  *
+ * @sa Time
  * @ingroup time
  */
 class CalendarDate : public Validating {
@@ -1352,6 +1364,8 @@ private:
   Time() {};
 
   bool is_valid_parms(double dUT1, enum novas::novas_timescale timescale) const;
+
+  void diurnal_correct();
 
 public:
 
@@ -1487,6 +1501,8 @@ private:
   novas::novas_frame _frame = {}; ///< Stored frame data
   Observer _observer;             ///< stored observer data
   Time _time;                     ///< stored time data
+
+  void diurnal_correct();
 
 public:
   Frame(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
@@ -1771,7 +1787,11 @@ public:
 };
 
 /**
+ * Orbital system for Keplerian orbitals, defining the orbital plane and orientation, and the
+ * central body (such as the Sun or a planet), around which the Keplerian orbital is to be
+ * defined.
  *
+ * @sa Orbital
  * @ingroup source
  */
 class OrbitalSystem : public Validating {
@@ -1805,7 +1825,14 @@ public:
 };
 
 /**
+ * Keplerian orbital elements, for example, for a comet using parameters published by the IAU
+ * Minor Planet Center. While Keplerian orbitals cannot provide accurate positions or velocities
+ * for Solar-system bodies over the long term (for that you need ephemeris data), they can be
+ * sufficiently accurate on the short term. And, in case of recently discovered objects, such
+ * as Near-Earth Objects (NEOs), orbital elements may be the only source of up-to-date
+ * positional data.
  *
+ * @sa EphemerisSource, Planet
  * @ingroup source
  */
 class Orbital : public Validating {
@@ -1908,7 +1935,7 @@ public:
 
 
 /**
- * Apparent position on sky as seen by an observer at a specific time of observation. Apparent
+ * %Apparent position on sky as seen by an observer at a specific time of observation. Apparent
  * positions are corrected for aberration for a movig observer, and gravitational deflection
  * around the major Solar-system bodies along the path of visibility.
  *
@@ -1931,7 +1958,7 @@ public:
  * the viewing angle difference when light is gravitationally deflected around major Solar-system
  * bodies.
  *
- * Apparent positions can also come directly from observations, such as from unrefracted
+ * %Apparent positions can also come directly from observations, such as from unrefracted
  * horizontal coordinates.
  *
  * @sa Source::apparent(), Horizontal::to_apparent()
@@ -2016,6 +2043,8 @@ private:
   Velocity _vel;                            ///< stored geometric velocity w.r.t. observer
   enum novas::novas_reference_system _sys;  ///< stored coordinate reference system type
 
+  Geometric in_system(const novas::novas_frame *f, enum novas::novas_reference_system system) const;
+
 public:
   Geometric(const Position& p, const Velocity& v, const Frame& frame, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
@@ -2058,7 +2087,7 @@ public:
 };
 
 /**
- * Horizontal (azimuth, elevation = Az/El) sky coordinates at a geodetic observing location, such
+ * %Horizontal (azimuth, elevation = Az/El) sky coordinates at a geodetic observing location, such
  * as an observatory site, an aircraft, or a balloon. These represent positions relative to the
  * local horizon and meridian, and can be used for both unrefracted (astrometric) or refracted
  * (observed) values or for conbverting between those two.
@@ -2098,15 +2127,19 @@ public:
   static const Horizontal& invalid();
 };
 
-
-class Motion : public Validating {
+/**
+ * Evolution of position vs. time in one dimension, based on a local quadratic approximation.
+ *
+ * @sa Track
+ */
+class Evolution : public Validating {
 private:
   double _value;
   double _rate;
   double _accel;
 
 public:
-  Motion(double pos, double vel, double accel = 0.0);
+  Evolution(double pos, double vel, double accel = 0.0);
 
   double value(const Interval& offset = Interval::zero()) const;
 
@@ -2114,23 +2147,29 @@ public:
 
   double acceleration() const;
 
-  static const Motion& zero();
+  static const Evolution& zero();
 
-  static const Motion stationary(double value);
+  static const Evolution stationary(double value);
 
 };
 
+/**
+ * Approximate trajectory of a source in spherical coordinates, using a local quadratic
+ * approximation around a time instant, in some (unspecified) coordinate system.
+ *
+ * @sa HorizontalTrack, EquatorialTrack
+ */
 class Track : public Validating {
 private:
   Time _ref_time;
   Interval _range;
-  Motion _lon;
-  Motion _lat;
-  Motion _r;
+  Evolution _lon;
+  Evolution _lat;
+  Evolution _r;
 
 protected:
 
-  Track(const Time& ref_time, const Interval& range, const Motion& lon, const Motion& lat, const Motion& r = Motion::stationary(NOVAS_DEFAULT_DISTANCE));
+  Track(const Time& ref_time, const Interval& range, const Evolution& lon, const Evolution& lat, const Evolution& r = Evolution::stationary(NOVAS_DEFAULT_DISTANCE));
 
   Track(const novas::novas_track *track, const Interval& range);
 
@@ -2153,7 +2192,13 @@ public:
 };
 
 /**
+ * Approximate trajectory of a source in horizontal coordinates, using a local quadratic
+ * approximation around a time instant. This may be used e.g., to control telescope drive systems
+ * in horizontal mounts, by providing instantaneous porisitons, rate and acceletation along the
+ * azimuth and elevation axes. Or, one may use the trajectory to obtain interpolated instantaneous
+ * Az/El positions, within the interval of validity, at very low computational cost.
  *
+ * @sa Apparent::horizontal(), EquatorialTrack
  * @ingroup tracking nonequatorial
  */
 class HorizontalTrack : public Track {
@@ -2163,7 +2208,7 @@ class HorizontalTrack : public Track {
 
 public:
   HorizontalTrack(const Time& ref_time, const Interval& range,
-          const Motion& lon, const Motion& lat, const Motion& r = Motion::stationary(NOVAS_DEFAULT_DISTANCE))
+          const Evolution& lon, const Evolution& lat, const Evolution& r = Evolution::stationary(NOVAS_DEFAULT_DISTANCE))
   : Track(ref_time, range, lon, lat, r) {}
 
   Horizontal projected(const Time& time) const;
@@ -2172,7 +2217,13 @@ public:
 };
 
 /**
+ * Approximate trajectory of a source in equatorial coordinates, using a local quadratic
+ * approximation around a time instant. This may be used e.g., to control telescope drive systems
+ * in equatorial mounts, by providing instantaneous porisitons, rate and acceletation along the
+ * R.A. and declination axes. Or, one may use the trajectory to obtain interpolated instantaneous
+ * R.A./Dec positions, within the interval of validity, at very low computational cost.
  *
+ * @sa Apparent::equatorial(), HorizontalTrack
  * @ingroup tracking apparent
  */
 class EquatorialTrack : public Track {
@@ -2184,7 +2235,7 @@ private:
 
 public:
   EquatorialTrack(const EquatorialSystem& system, const Interval& range, const Time& ref_time,
-          const Motion& lon, const Motion& lat, const Motion& r = Motion::stationary(NOVAS_DEFAULT_DISTANCE))
+          const Evolution& lon, const Evolution& lat, const Evolution& r = Evolution::stationary(NOVAS_DEFAULT_DISTANCE))
   : Track(ref_time, range, lon, lat, r), _system(system) {}
 
   Equatorial projected(const Time& time) const;

@@ -34,8 +34,8 @@ int main() {
   if(!test.equals("arcsec()", a.days(), Unit::min / Unit::day, 1e-18)) n++;
   if(!test.equals("weeks()", a.weeks(), Unit::min / Unit::week, 1e-19)) n++;
   if(!test.equals("years()", a.years(), Unit::min / Unit::yr, 1e-10)) n++;
-  if(!test.equals("julian_years()", a.julian_years(), Unit::min / Unit::julianYear, 1e-22)) n++;
-  if(!test.equals("julian_centuries()", a.julian_centuries(), Unit::min / Unit::julianCentury, 1e-23)) n++;
+  if(!test.equals("julian_years()", a.julian_years(), Unit::min / Unit::julian_year, 1e-22)) n++;
+  if(!test.equals("julian_centuries()", a.julian_centuries(), Unit::min / Unit::julian_century, 1e-23)) n++;
   if(!test.equals("timescale()", (long) a.timescale(), (long) NOVAS_TT)) n++;
   if(!test.equals("operator - (tt)", (a - a).seconds(), 0.0, 1e-16)) n++;
 

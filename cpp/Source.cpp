@@ -259,7 +259,7 @@ CatalogEntry CatalogSource::catalog_entry() const {
 
 std::string CatalogSource::to_string() const {
   const cat_entry *c = _cat_entry();
-  return "CatalogSource: " + std::string(c->starname) + " @ " + TimeAngle(c->ra * Unit::hourAngle).to_string() +
+  return "CatalogSource: " + std::string(c->starname) + " @ " + TimeAngle(c->ra * Unit::hour_angle).to_string() +
           " " + Angle(c->dec * Unit::deg).to_string() + " " + _system.to_string();
 }
 

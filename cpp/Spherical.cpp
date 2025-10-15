@@ -41,11 +41,11 @@ Spherical::Spherical(const Angle& longitude, const Angle& latitude, const Distan
 
 Position Spherical::xyz() const {
   double pos[3];
-  double xy = cos(_lat.rad());
+  double xy = _distance.m() * cos(_lat.rad());
 
   pos[0] = xy * cos(_lon.rad());
   pos[1] = xy * sin(_lon.rad());
-  pos[2] = sin(_lat.rad());
+  pos[2] = _distance.m() * sin(_lat.rad());
 
   return Position(pos);
 }

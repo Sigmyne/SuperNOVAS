@@ -151,7 +151,7 @@ namespace novas {
  *
  * \defgroup apparent         Apparent equatorial positions on sky
  *
- *   Apparent places, defined on the local sky of an observer. They are mainly a direction on the
+ *   %Apparent places, defined on the local sky of an observer. They are mainly a direction on the
  *   (e.g. R.A./Dec) on the sky, from the observer's point of view. Unlike geometric locations,
  *   apparent positions are corrected for aberration for the observer's relative movement, and for
  *   gravitational deflection around the major gravitating solar-system bodies as light transits
@@ -195,9 +195,9 @@ namespace novas {
  *
  * \defgroup earth            Earth orientation
  *
- *   Earth Orientation Parameters (EOP), for defining the unmodelled (via the IAU 2000 / 2006
+ *   Earth Orientation Parameters (%EOP), for defining the unmodelled (via the IAU 2000 / 2006
  *   precession-nutation models) polar motion and rotational variations of the physical Earth.
- *   EOP are necessary to transform between pseudo Earth-fixed (e.g. the Terrestrial Intermediate
+ *   %EOP are necessary to transform between pseudo Earth-fixed (e.g. the Terrestrial Intermediate
  *   Reference System [TIRS]) and the Earth-fixed International Terrestrial Reference System
  *   (ITRS). IERS publishes daily Earth orientation parameters, in various ITRF realizations.
  *   For the utmost accuracy (below the mas-level), these must be further corrected for diurnal
@@ -208,7 +208,7 @@ namespace novas {
  *   Tools for supporting telescope tracking, with readily available position, rate of movement,
  *   and acceleration of the source's trajectory on sky. These parameters may be used directly
  *   for controlling telescope drive systems. Tracking parameters can be obtained for both
- *   Equatorial and horizontal mounts. Apart from direct control of telescope drives, tracking
+ *   %Equatorial and horizontal mounts. Apart from direct control of telescope drives, tracking
  *   information can also be used to calculate interpolated positions on sky on short timescales
  *   much faster than through full-fledged positional calculations.
  *
@@ -352,7 +352,7 @@ namespace novas {
 /// @sa novas_solar_power()
 #define NOVAS_SOLAR_CONSTANT      1367.0
 
-/// [m] Equatorial radius of Earth in meters from IERS Conventions (2003).
+/// [m] %Equatorial radius of Earth in meters from IERS Conventions (2003).
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
 /// @c_observer
 #define NOVAS_IERS_EARTH_RADIUS        6378136.6
@@ -362,7 +362,7 @@ namespace novas {
 /// @c_observer
 #define NOVAS_IERS_EARTH_FLATTENING    (1.0 / 298.25642)
 
-/// [m] Equatorial radius of the WGS84 reference ellipsoid.
+/// [m] %Equatorial radius of the WGS84 reference ellipsoid.
 /// @since 1.5
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
 /// @c_observer
@@ -374,7 +374,7 @@ namespace novas {
 /// @c_observer
 #define NOVAS_WGS84_FLATTENING    (1.0 / 298.257223563)
 
-/// [m] Equatorial radius of the WGS84 reference ellipsoid.
+/// [m] %Equatorial radius of the WGS84 reference ellipsoid.
 /// @since 1.5
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
 /// @c_observer
@@ -386,7 +386,7 @@ namespace novas {
 /// @c_observer
 #define NOVAS_GRS80_FLATTENING    (1.0 / 298.257222101)
 
-/// [m] Equatorial radius of Earth (ITRF / GRS80 model)
+/// [m] %Equatorial radius of Earth (ITRF / GRS80 model)
 /// @sa novas_geodetic_to_cartesian(), novas_cartesian_to_geodetic()
 /// @c_observer
 #define NOVAS_EARTH_RADIUS        NOVAS_GRS80_RADIUS
@@ -920,7 +920,7 @@ enum novas_dynamical_type {
 
   /// True Of Date (TOD): dynamical system of the 'true' equator of date, with its origin at the
   /// true equinox of date. In the IAU 2000 methodology, it includes precession and nutation, but
-  /// not the sub-arcsecond level Earth Orientation Parameters (EOP). The latter are used only
+  /// not the sub-arcsecond level Earth Orientation Parameters (%EOP). The latter are used only
   /// when converting to the Earth-fixed TIRS system.
   NOVAS_DYNAMICAL_TOD,    ///< NOVAS_DYNAMICAL_TOD
 
@@ -1824,7 +1824,7 @@ typedef struct novas_matrix {
 #define NOVAS_MATRIX_IDENTITY {{{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0}, {0.0, 0.0, 1.0}}}
 
 /**
- * Position and velocity data for a set of major planets (which may include the Sun and the Moon also).
+ * %Position and velocity data for a set of major planets (which may include the Sun and the Moon also).
  *
  * @since 1.1
  *
@@ -1832,8 +1832,8 @@ typedef struct novas_matrix {
  */
 typedef struct novas_planet_bundle {
   int mask;                      ///< Bitwise mask (1 << planet-number) specifying wich planets have pos/vel data
-  double pos[NOVAS_PLANETS][3];  ///< [AU] Apparent positions of planets w.r.t. observer antedated for light-time
-  double vel[NOVAS_PLANETS][3];  ///< [AU/day] Apparent velocity of planets w.r.t. barycenter antedated for light-time
+  double pos[NOVAS_PLANETS][3];  ///< [AU] %Apparent positions of planets w.r.t. observer antedated for light-time
+  double vel[NOVAS_PLANETS][3];  ///< [AU/day] %Apparent velocity of planets w.r.t. barycenter antedated for light-time
 } novas_planet_bundle;
 
 /**
@@ -1882,7 +1882,7 @@ typedef struct novas_frame {
   double dx;                          ///< [mas] Polar wobble parameter dx.
   double dy;                          ///< [mas] Polar wobble parameter dy.
   double era;                         ///< [deg] Earth Rotation Angle (ERA);
-  double gst;                         ///< [h] Greenwich (Apparent) Sidereal Time (GST / GAST)
+  double gst;                         ///< [h] Greenwich (%Apparent) Sidereal Time (GST / GAST)
   double obs_pos[3];                  ///< [AU] Observer position rel. to barycenter (ICRS)
   double obs_vel[3];                  ///< [AU/day] Observer movement rel. to barycenter (ICRS)
   double v_obs;                       ///< [AU/day] Magnitude of observer motion rel. to barycenter
@@ -1999,9 +1999,9 @@ typedef struct novas_observable {
  */
 typedef struct novas_track {
   struct novas_timespec time;     ///< The astronomical time for which the track is calculated.
-  struct novas_observable pos;    ///< [deg,AU,1] Apparent source position
-  struct novas_observable rate;   ///< [deg/s,AU/s,1/s] Apparent position rate of change
-  struct novas_observable accel;  ///< [deg/s<sup>2</sup>,AU/s<sup>2</sup>,1/s<sup>2</sup>] Apparent position acceleration.
+  struct novas_observable pos;    ///< [deg,AU,1] %Apparent source position
+  struct novas_observable rate;   ///< [deg/s,AU/s,1/s] %Apparent position rate of change
+  struct novas_observable accel;  ///< [deg/s<sup>2</sup>,AU/s<sup>2</sup>,1/s<sup>2</sup>] %Apparent position acceleration.
 } novas_track;
 
 /**
@@ -2120,7 +2120,7 @@ typedef int (*novas_nutation_provider)(double jd_tt_high, double jd_tt_low, doub
  *                      return positions and velocities. (For compatibility with existing NOVAS
  *                      C compatible user implementations, we keep the original NOVAS C argument
  *                      type here).
- * @param[out] position [AU] Position vector of 'body' at 'tjd'; equatorial rectangular
+ * @param[out] position [AU] %Position vector of 'body' at 'tjd'; equatorial rectangular
  *                      coordinates in AU referred to the mean equator and equinox of J2000.0.
  * @param[out] velocity [AU/day] Velocity vector of 'body' at 'tjd'; equatorial rectangular
  *                      system referred to the mean equator and equinox of J2000.0, in AU/Day.
@@ -2159,7 +2159,7 @@ typedef short (*novas_planet_provider)(double jd_tdb, enum novas_planet body, en
  *                      return positions and velocities. (For compatibility with existing NOVAS
  *                      C compatible user implementations, we keep the original NOVAS C argument
  *                      type here).
- * @param[out] position [AU] Position vector of 'body' at 'tjd'; equatorial rectangular
+ * @param[out] position [AU] %Position vector of 'body' at 'tjd'; equatorial rectangular
  *                      coordinates in AU referred to the mean equator and equinox of J2000.0.
  * @param[out] velocity [AU/day] Velocity vector of 'body' at 'tjd'; equatorial rectangular
  *                      system referred to the mean equator and equinox of J2000.0, in AU/Day.

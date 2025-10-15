@@ -84,7 +84,7 @@ Apparent::Apparent(const EquatorialSystem& system, const Frame& frame, double ra
 
   _valid = is_valid_rv(fn, rv_ms);
 
-  _pos.ra = ra_rad / Unit::hourAngle;
+  _pos.ra = ra_rad / Unit::hour_angle;
   _pos.dec = dec_rad / Unit::deg;
   _pos.rv = rv_ms / (Unit::km / Unit::sec);
   _pos.dis = NOVAS_DEFAULT_DISTANCE;
@@ -137,7 +137,7 @@ Distance Apparent::distance() const {
 }
 
 Equatorial Apparent::equatorial() const {
-  return Equatorial(_pos.ra * Unit::hourAngle, _pos.dec * Unit::deg, _sys, _pos.dis * Unit::au);
+  return Equatorial(_pos.ra * Unit::hour_angle, _pos.dec * Unit::deg, _sys, _pos.dis * Unit::au);
 }
 
 Ecliptic Apparent::ecliptic() const {

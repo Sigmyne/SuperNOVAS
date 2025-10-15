@@ -101,11 +101,11 @@ double Interval::years() const {
 }
 
 double Interval::julian_years() const {
-  return _seconds / Unit::julianYear;
+  return _seconds / Unit::julian_year;
 }
 
 double Interval::julian_centuries() const {
-  return _seconds / Unit::julianCentury;
+  return _seconds / Unit::julian_century;
 }
 
 Interval Interval::to_timescale(enum novas_timescale scale) const {
