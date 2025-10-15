@@ -59,17 +59,11 @@ Galactic Geometric::galactic() const {
   return equatorial().as_galactic();
 }
 
-Geometric Geometric::in_system(enum novas_reference_system system) const {
-  if(system == _sys)
-    return *this;
-
-  if(system == NOVAS_ITRS)
-    return in_itrs().value_or(Geometric::invalid());
-
+Geometric Geometric::in_system(const novas::novas_frame *f, enum novas::novas_reference_system system) const {
   novas_transform T = {};
   double p[3] = {0.0}, v[3] = {0.0};
 
-  if(novas_make_transform(_frame._novas_frame(), _sys, system, &T) != 0) {
+  if(novas_make_transform(f, _sys, system, &T) != 0) {
     novas_trace_invalid("Geometric::in_system");
     return Geometric::invalid();
   }
@@ -79,20 +73,41 @@ Geometric Geometric::in_system(enum novas_reference_system system) const {
   return Geometric(Position(p), Velocity(v), _frame, _sys);
 }
 
+
+Geometric Geometric::in_system(enum novas_reference_system system) const {
+  if(system == _sys)
+    return *this;
+
+  if(system == NOVAS_ITRS)
+    return in_itrs().value_or(Geometric::invalid());
+
+  return in_system(_frame._novas_frame(), system);
+}
+
 std::optional<Geometric> Geometric::in_itrs(const EOP& eop) const {
   if(_sys == NOVAS_ITRS)
     return Geometric(*this);
 
+  // Apply specified EOP to frame
   if(eop.is_valid()) {
-    Time t = Time(_frame.time().jd(), eop);
-    Geometric geom = Geometric(*this);
-    geom._frame = Frame(_frame.observer(), t, _frame.accuracy());
-    return geom.in_system(NOVAS_ITRS);
+    // Add diurnal corrections
+    double xp = 0.0, yp = 0.0;
+    novas_diurnal_eop_at_time(_frame.time()._novas_timespec(), &xp, &yp, NULL);
+    xp += eop.xp().arcsec();
+    yp += eop.yp().arcsec();
+
+    novas_frame f = * _frame._novas_frame();
+    f.dx = 1000.0 * xp;
+    f.dy = 1000.0 * yp;
+
+    return in_system(&f, NOVAS_ITRS);
   }
 
+  // Or, use observer's EOP
   if(_frame.observer().is_geodetic())
     return in_system(NOVAS_ITRS);
 
+  // Or, we can't really convert to ITRS
   novas_error(0, EINVAL, "Geometric::in_itrs()", "Needs valid EOP for non geodetic observer frame");
   return std::nullopt;
 }

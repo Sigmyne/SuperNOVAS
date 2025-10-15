@@ -55,15 +55,7 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
 : _observer(obs), _time(time) {
   static const char *fn = "Frame()";
 
-  double xp = 0.0, yp = 0.0;
-
-  if(obs.is_geodetic()) {
-    const GeodeticObserver& eobs = static_cast<const GeodeticObserver&>(obs);
-    xp = eobs.eop().xp().mas();
-    yp = eobs.eop().yp().mas();
-  }
-
-  if(novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), xp, yp, &_frame) != 0)
+  if(novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), 0.0, 0.0, &_frame) != 0)
     novas_trace_invalid(fn);
   else if(!obs.is_valid())
     novas_error(0, EINVAL, fn, "input observer is invalid");
@@ -71,6 +63,25 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
     novas_error(0, EINVAL, fn, "input time is invalid");
   else
     _valid = true;
+
+  if(obs.is_geodetic()) {
+    double xp = 0.0, yp = 0.0;
+
+    novas_diurnal_eop_at_time(time._novas_timespec(), &xp, &yp, NULL);
+
+    const GeodeticObserver& eobs = static_cast<const GeodeticObserver&>(obs);
+    xp += eobs.eop().xp().arcsec();
+    yp += eobs.eop().yp().arcsec();
+
+    _frame.dx = 1000.0 * xp;
+    _frame.dy = 1000.0 * yp;
+  }
+  else {
+    // Force NANs if one tries to used EOP for a non-geodetic observer.
+    _frame.dx = NAN;
+    _frame.dy = NAN;
+  }
+
 }
 
 const novas_frame * Frame::_novas_frame() const {

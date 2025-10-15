@@ -15,27 +15,27 @@ using namespace novas;
 
 namespace supernovas {
 
-Motion::Motion(double pos, double vel, double accel)
+Evolution::Evolution(double pos, double vel, double accel)
 : _value(pos), _rate(vel), _accel(accel) {
   // TODO validation
 
   _valid = true;
 }
 
-double Motion::value(const Interval& offset) const {
+double Evolution::value(const Interval& offset) const {
   return _value + offset.seconds() * (_rate + offset.seconds() * _accel);
 }
 
-double Motion::rate(const Interval& offset) const {
+double Evolution::rate(const Interval& offset) const {
   return _rate + _accel * offset.seconds();
 }
 
-double Motion::acceleration() const {
+double Evolution::acceleration() const {
   return _accel;
 }
 
-const Motion& Motion::zero() {
-  static const Motion _zero = Motion(0.0, 0.0);
+const Evolution& Evolution::zero() {
+  static const Evolution _zero = Evolution(0.0, 0.0);
   return _zero;
 }
 
@@ -43,7 +43,7 @@ const Motion& Motion::zero() {
 static const novas_track _default_track = {};
 
 
-Track::Track(const Time& ref_time, const Interval& range, const Motion& lon, const Motion& lat, const Motion& r)
+Track::Track(const Time& ref_time, const Interval& range, const Evolution& lon, const Evolution& lat, const Evolution& r)
 : _ref_time(ref_time), _range(range), _lon(lon), _lat(lat), _r(r) {
 
   // TODO validation
@@ -52,9 +52,9 @@ Track::Track(const Time& ref_time, const Interval& range, const Motion& lon, con
 
 Track::Track(const novas_track *track, const Interval& range)
 : _ref_time(&track->time), _range(range),
-  _lon(Motion(track->pos.lon * Unit::deg, track->rate.lon * Unit::deg / Unit::sec, track->accel.lon * Unit::deg / (Unit::sec * Unit::sec))),
-  _lat(Motion(track->pos.lat * Unit::deg, track->rate.lat * Unit::deg / Unit::sec, track->accel.lat * Unit::deg / (Unit::sec * Unit::sec))),
-  _r(Motion(track->pos.dist * Unit::au, track->rate.dist * Unit::au / Unit::sec, track->accel.dist * Unit::au / (Unit::sec * Unit::sec))) {
+  _lon(Evolution(track->pos.lon * Unit::deg, track->rate.lon * Unit::deg / Unit::sec, track->accel.lon * Unit::deg / (Unit::sec * Unit::sec))),
+  _lat(Evolution(track->pos.lat * Unit::deg, track->rate.lat * Unit::deg / Unit::sec, track->accel.lat * Unit::deg / (Unit::sec * Unit::sec))),
+  _r(Evolution(track->pos.dist * Unit::au, track->rate.dist * Unit::au / Unit::sec, track->accel.dist * Unit::au / (Unit::sec * Unit::sec))) {
 
   // TODO validation
   _valid = (track != &_default_track);

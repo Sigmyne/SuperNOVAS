@@ -18,13 +18,13 @@ TimeAngle::TimeAngle(double radians)
 }
 
 TimeAngle::TimeAngle(const std::string& str)
-: Angle(novas_str_hours(str.c_str()) * Unit::hourAngle) {}
+: Angle(novas_str_hours(str.c_str()) * Unit::hour_angle) {}
 
 TimeAngle::TimeAngle(const Angle& angle)
 : Angle(angle) {}
 
 double TimeAngle::hours() const {
-  return _rad / Unit::hourAngle;
+  return _rad / Unit::hour_angle;
 }
 
 double TimeAngle::minutes() const {
@@ -50,11 +50,11 @@ Angle TimeAngle::operator-(const Angle& angle) const {
 }
 
 TimeAngle TimeAngle::operator+(const Interval& offset) const {
-  return TimeAngle(rad() + offset.hours() * Unit::hourAngle);
+  return TimeAngle(rad() + offset.hours() * Unit::hour_angle);
 }
 
 TimeAngle TimeAngle::operator-(const Interval& offset) const {
-  return TimeAngle(rad() - offset.hours() * Unit::hourAngle);
+  return TimeAngle(rad() - offset.hours() * Unit::hour_angle);
 }
 
 const TimeAngle& TimeAngle::zero() {

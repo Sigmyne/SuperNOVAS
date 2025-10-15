@@ -101,7 +101,7 @@ Equatorial Equatorial::to_system(const EquatorialSystem& system) const {
 
   double r = 0.0, d = 0.0;
   vector2radec(p, &r, &d);
-  return Equatorial(r * Unit::hourAngle, d * Unit::deg, system, distance().m());
+  return Equatorial(r * Unit::hour_angle, d * Unit::deg, system, distance().m());
 }
 
 Equatorial Equatorial::to_icrs() const {

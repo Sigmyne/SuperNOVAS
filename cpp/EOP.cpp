@@ -34,8 +34,8 @@ EOP::EOP(int leap_seconds, double dut1_sec, double xp_rad, double yp_rad)
   validate();
 }
 
-EOP::EOP(int leap_seconds, double dut1, const Angle& xp, const Angle& yp)
-: EOP(leap_seconds, dut1, xp.rad(), yp.rad()) {
+EOP::EOP(int leap_seconds, const Interval& dut1, const Angle& xp, const Angle& yp)
+: EOP(leap_seconds, dut1.seconds(), xp.rad(), yp.rad()) {
   validate();
 }
 
@@ -51,28 +51,14 @@ const Angle& EOP::yp() const {
   return _yp;
 }
 
-double EOP::dUT1() const {
-  return _dut1;
+Interval EOP::dUT1() const {
+  return Interval(_dut1);
 }
 
 EOP EOP::itrf_transformed(int from_year, int to_year) const {
   double xp1, yp1, t1;
   novas_itrf_transform_eop(from_year, _xp.arcsec(), _yp.arcsec(), _dut1, to_year, &xp1, &yp1, &t1);
   return EOP(_leap, t1, xp1 * Unit::arcsec, yp1 * Unit::arcsec);
-}
-
-EOP EOP::diurnal_corrected(const Time& time) const {
-  double dxp, dyp, dt;
-  novas_diurnal_eop_at_time(time._novas_timespec(), &dxp, &dyp, &dt);
-
-  // Apply correction rel. to prior correction.
-  EOP eop = EOP(_leap, _dut1 + dt - _dt, _xp.rad() + (dxp - _dxp) * Unit::arcsec, _yp.rad() + (dyp - _dyp) * Unit::arcsec);
-
-  eop._dxp = dxp;
-  eop._dyp = dyp;
-  eop._dt = dt;
-
-  return eop;
 }
 
 std::string EOP::to_string() const {
