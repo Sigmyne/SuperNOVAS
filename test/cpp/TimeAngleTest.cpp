@@ -57,6 +57,11 @@ int main() {
   if(!test.equals("cop(Angle)", e.deg(), 45.0)) n++;
 
   if(!test.equals("zero()", TimeAngle::zero().deg(), 0.0)) n++;
+  if(!test.equals("noon()", TimeAngle::noon().deg(), 180.0)) n++;
+
+  if(!test.equals("hours(x)", TimeAngle::hours(1.0).deg(), 15.0, 1e-14)) n++;
+  if(!test.equals("minutes(x)", TimeAngle::minutes(1.0).arcmin(), 15.0, 1e-14)) n++;
+  if(!test.equals("seconds(x)", TimeAngle::seconds(1.0).arcsec(), 15.0, 1e-14)) n++;
 
   c.to_string();
 

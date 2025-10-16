@@ -30,19 +30,18 @@ namespace supernovas {
  *
  * The returned new frame may be invalid for multiple reasons, such as:
  *
- *  - the input orbserver or time is invalid.
+ *  - the input observer or time is invalid.
  *  - the accuracy parameter is outside of the enum range.
  *  - SuperNOVAS had no suitable planet provider function for the given accuracy. (By default
- *    SuperNOVAS has only a reduced accuracy Earth-Sun calculator configured).
+ *    SuperNOVAS has only a reduced accuracy Earth-Sun calculator configured.)
  *  - The currently configured planet provider function, for the given accuracy, cannot provide
  *    positions and velocities for the Earth, Sun, observer location, or one of the major planets
- *    configured for gravitational deflection calculations. (By default SuperNOVAS has only a
- *    reduced accuracy calculator configured for the Earth and Sun).
+ *    configured for gravitational deflection calculations.
  *
  * Alternatively, you might use the equivalent Frame::create() instead to return the Frame
  * as an optional.
  *
- * In either case, you can obtain more information of why things went awry, when they do, by
+ * In either case, you can obtain more information on why things went awry, when they do, by
  * enabling debug mode is enabled via `novas_debug()` prior to constructing a Frame.
  *
  * @param obs         observer location
@@ -64,24 +63,11 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
   else
     _valid = true;
 
-  if(obs.is_geodetic()) {
-    double xp = 0.0, yp = 0.0;
-
-    novas_diurnal_eop_at_time(time._novas_timespec(), &xp, &yp, NULL);
-
-    const GeodeticObserver& eobs = static_cast<const GeodeticObserver&>(obs);
-    xp += eobs.eop().xp().arcsec();
-    yp += eobs.eop().yp().arcsec();
-
-    _frame.dx = 1000.0 * xp;
-    _frame.dy = 1000.0 * yp;
-  }
-  else {
+  if(!obs.is_geodetic()) {
     // Force NANs if one tries to used EOP for a non-geodetic observer.
     _frame.dx = NAN;
     _frame.dy = NAN;
   }
-
 }
 
 const novas_frame * Frame::_novas_frame() const {

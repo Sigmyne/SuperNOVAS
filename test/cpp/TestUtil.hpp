@@ -35,9 +35,26 @@ public:
     return true;
   }
 
+  bool equals(const std::string& funcname, int a, int b) {
+    if(a != b) {
+      std::cerr << "ERROR! " << _classname << "::" << funcname << ": " << std::to_string(a) << " != " << std::to_string(b) << "\n";
+      return false;
+    }
+    return true;
+  }
+
   bool equals(const std::string& funcname, long a, long b) {
     if(a != b) {
       std::cerr << "ERROR! " << _classname << "::" << funcname << ": " << std::to_string(a) << " != " << std::to_string(b) << "\n";
+      return false;
+    }
+    return true;
+  }
+
+
+  bool equals(const std::string& funcname, const std::string& a, const std::string& b) {
+    if(a != b) {
+      std::cerr << "ERROR! " << _classname << "::" << funcname << ": " << a << " != " << b << "\n";
       return false;
     }
     return true;

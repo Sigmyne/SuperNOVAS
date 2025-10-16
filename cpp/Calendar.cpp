@@ -13,17 +13,14 @@
 
 #include "supernovas.h"
 
-#define UNIX_UTC_J2000    946728000     ///< 12:00, 1 Jan 2000 (UTC timescale)
+#define UNIX_UTC_J2000    946728000L    ///< 12:00, 1 Jan 2000 (UTC timescale)
 
 using namespace novas;
 
 namespace supernovas {
 
 Calendar::Calendar(enum novas::novas_calendar_type type) : _type(type) {
-  if(type < NOVAS_ROMAN_CALENDAR || type > NOVAS_GREGORIAN_CALENDAR)
-    novas_error(0, EINVAL, "Calendar()", "invalid type: %d", type);
-  else
-    _valid = true;
+  _valid = true;
 }
 
 enum novas_calendar_type Calendar::type() const {
@@ -54,10 +51,33 @@ CalendarDate Calendar::date(time_t t, long nanos) const {
   return CalendarDate(*this, NOVAS_JD_J2000 + ((t - UNIX_UTC_J2000) + nanos * Unit::ns) / Unit::day);
 }
 
-CalendarDate Calendar::date(struct timespec ts) const {
-  return date(ts.tv_sec, ts.tv_nsec);
+CalendarDate Calendar::date(const struct timespec *ts) const {
+  if(!ts) {
+    novas_error(0, EINVAL, "Calendar::date", "input Julian Date is NAN");
+    return date(NAN);
+  }
+  return date(ts->tv_sec, ts->tv_nsec);
 }
 
+std::optional<CalendarDate> Calendar::parse_date(const std::string& str, enum novas_date_format fmt) const {
+  double jd = novas_parse_date_format(_type, fmt, str.c_str(), NULL);
+  if(isnan(jd)) {
+    novas_trace_invalid("Calendar::parse_date");
+    return std::nullopt;
+  }
+  return date(jd);
+}
+
+std::string Calendar::to_string() const {
+  switch(_type) {
+    case NOVAS_GREGORIAN_CALENDAR:
+      return "Gregorian calendar";
+    case NOVAS_ROMAN_CALENDAR:
+      return "Roman calendar";
+    default:
+      return "astronomical calendar";
+  }
+}
 
 
 CalendarDate::CalendarDate(const Calendar& calendar, int year, int month, int day, const TimeAngle& time)
@@ -71,14 +91,16 @@ CalendarDate::CalendarDate(const Calendar& calendar, int year, int month, int da
 
 CalendarDate::CalendarDate(const Calendar& calendar, double jd)
 : _calendar(calendar), _year(-1), _month(-1), _mday(-1), _time_of_day(NAN), _jd(jd) {
-  double hours = 0.0;
-
-  if(novas_jd_to_date(jd, calendar.type(), &_year, &_month, &_mday, &hours) != 0)
-    novas_trace_invalid("CalendarDate()");
+  if(isnan(jd))
+    novas_error(0, EINVAL, "CalendarDate()", "input Julian Date is NAN");
   else
     _valid = true;
 
-  _time_of_day = TimeAngle(hours * Unit::hour);
+  if(_valid) {
+    double hours = NAN;
+    novas_jd_to_date(jd, calendar.type(), &_year, &_month, &_mday, &hours);
+    _time_of_day = TimeAngle(hours * Unit::hour);
+  }
 }
 
 CalendarDate CalendarDate::operator+(const Interval& r) const {
@@ -130,9 +152,7 @@ int CalendarDate::month() const {
 }
 
 int CalendarDate::day_of_year() const {
-  int doy = -1;
-  novas_day_of_year(_jd, _calendar.type(), &doy);
-  return doy;
+  return novas_day_of_year(_jd, _calendar.type(), NULL);
 }
 
 int CalendarDate::day_of_month() const {
@@ -154,7 +174,7 @@ const std::string& CalendarDate::month_name() const {
           "September", "October", "November", "December"
   };
 
-  if(is_valid())
+  if(_month > 0 && _month <= 12)
     return names[_month];
 
   return names[0];
@@ -165,7 +185,7 @@ const std::string& CalendarDate::short_month_name() const {
           "inv", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
   };
 
-  if(is_valid())
+  if(_month > 0 && _month <= 12)
     return names[_month];
 
   return names[0];
@@ -174,24 +194,36 @@ const std::string& CalendarDate::short_month_name() const {
 
 const std::string& CalendarDate::day_name() const {
   static const std::string names[] = { "invalid", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-
-  int dow = day_of_week();
-
-  if(dow > 0)
-    return names[dow];
-
-  return names[0];
+  return names[day_of_week()];
 }
 
 const std::string& CalendarDate::short_day_name() const {
   static const std::string names[] = { "inv", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+  return names[day_of_week()];
+}
 
-  int dow = day_of_week();
+int CalendarDate::break_down(struct tm *tm) const {
+  if(!tm)
+    return novas_error(-1, EINVAL, "Calendar::break_down", "output tm structure is NULL");
 
-  if(dow > 0)
-    return names[dow];
+  // Start from a clear slate
+  memset(tm, 0, sizeof(*tm));
 
-  return names[0];
+  tm->tm_year = (_year - 1900);
+  tm->tm_mon = (_month - 1);
+  tm->tm_mday = _mday;
+  tm->tm_hour = (int) _time_of_day.hours();
+  tm->tm_min = (int) _time_of_day.minutes() - 60 * tm->tm_hour;
+  tm->tm_sec = (int) _time_of_day.seconds() - 3600 * tm->tm_hour - 60 * tm->tm_min;
+  tm->tm_yday = day_of_year() - 1;
+  tm->tm_wday = day_of_week() % 7;
+  tm->tm_isdst = 0;
+
+  return _valid ? 0 : -1;
+}
+
+time_t CalendarDate::unix_time() const {
+  return  UNIX_UTC_J2000 + (time_t) round((_jd - NOVAS_JD_J2000) * Unit::day);
 }
 
 CalendarDate CalendarDate::in_calendar(const Calendar& calendar) const {
@@ -240,10 +272,6 @@ std::string CalendarDate::to_string(enum novas_date_format fmt, int decimals) co
 std::string CalendarDate::to_string(int decimals) const {
   return to_string(NOVAS_YMD, decimals);
 }
-
-
-
-
 
 
 } // namespace supernovas

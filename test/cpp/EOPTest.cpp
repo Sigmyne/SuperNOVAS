@@ -28,14 +28,14 @@ int main() {
 
   EOP a(32, 0.1, 200.0 * Unit::mas, 300.0 * Unit::mas);
   if(!test.check("is_valid()", a.is_valid())) n++;
-  if(!test.equals("leap_seconds()", a.leap_seconds(), 32L)) n++;
+  if(!test.equals("leap_seconds()", a.leap_seconds(), 32)) n++;
   if(!test.equals("dUT1()", a.dUT1().seconds(), 0.1)) n++;
   if(!test.equals("xp()", a.xp().mas(), 200.0)) n++;
   if(!test.equals("yp()", a.yp().mas(), 300.0)) n++;
 
   EOP b(32, Interval(0.1 * Unit::sec), Angle(200.0 * Unit::mas), Angle(300.0 * Unit::mas));
   if(!test.check("is_valid()", b.is_valid())) n++;
-  if(!test.equals("leap_seconds()", b.leap_seconds(), 32L)) n++;
+  if(!test.equals("leap_seconds()", b.leap_seconds(), 32)) n++;
   if(!test.equals("dUT1()", b.dUT1().seconds(), 0.1)) n++;
   if(!test.equals("xp()", b.xp().mas(), 200.0)) n++;
   if(!test.equals("yp()", b.yp().mas(), 300.0)) n++;

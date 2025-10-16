@@ -14,7 +14,8 @@
 #include "supernovas.h"
 
 /// \cond PROTECTED
-#define DTA         32.184        ///< [s] TT - TAI time difference
+#define DTA               32.184        ///< [s] TT - TAI time difference
+#define UNIX_UTC_J2000    946728000L    ///< 12:00, 1 Jan 2000 (UTC timescale)
 /// \endcond
 
 static double novas_era(long ijd, double fjd) {
@@ -27,13 +28,6 @@ using namespace novas;
 
 namespace supernovas {
 
-void Time::diurnal_correct() {
-  double d = 0.0;
-
-  novas_diurnal_eop_at_time(&_ts, NULL, NULL, &d);
-  _ts.ut1_to_tt -= d;
-  _ts.dut1 += d;
-}
 
 bool Time::is_valid_parms(double dUT1,  enum novas_timescale timescale) const {
   static const char *fn = "Time()";
@@ -54,9 +48,6 @@ Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timesc
     novas_error(0, EINVAL, "Time()", "input jd is NAN");
   else
     _valid = is_valid_parms(dUT1, timescale);
-
-  if(_valid)
-    diurnal_correct();
 }
 
 Time::Time(double jd, const EOP& eop, enum novas_timescale timescale)
@@ -69,10 +60,6 @@ Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_times
     novas_error(0, EINVAL, "Time()", "input jd is NAN");
   else
     _valid = is_valid_parms(dUT1, timescale);
-
-  if(_valid)
-    diurnal_correct();
-
 }
 
 Time::Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale)
@@ -83,9 +70,6 @@ Time::Time(const std::string& timestamp, int leap_seconds, double dUT1, enum nov
     novas_trace_invalid("Time()");
   else
     _valid = is_valid_parms(dUT1, timescale);
-
-  if(_valid)
-    diurnal_correct();
 }
 
 Time::Time(const std::string& timestamp, const EOP& eop, enum novas_timescale timescale)
@@ -98,9 +82,6 @@ Time::Time(const struct timespec *t, int leap_seconds, double dUT1) {
     novas_set_unix_time(t->tv_sec, t->tv_nsec, leap_seconds, dUT1, &_ts);
     _valid = is_valid_parms(dUT1, NOVAS_UTC);
   }
-
-  if(_valid)
-    diurnal_correct();
 }
 
 Time::Time(const struct timespec *t, const EOP& eop)
@@ -177,6 +158,10 @@ TimeAngle Time::jd_time_of_day(enum novas_timescale timescale) const {
 
 double Time::mjd(enum novas_timescale timescale) const {
   return (_ts.ijd_tt - (int) NOVAS_JD_MJD0) + _ts.fjd_tt - 0.5;
+}
+
+time_t Time::unix_time(long *nanos) const {
+  return novas_get_unix_time(&_ts, nanos);
 }
 
 int Time::leap_seconds() const {

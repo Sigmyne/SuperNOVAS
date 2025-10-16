@@ -285,8 +285,8 @@ int cal_date(double tjd, short *restrict year, short *restrict month, short *res
  *
  * @param tjd   [day] Julian Date in the timescale of choice. (e.g. UTC-based if you want a
  *              UTC-based return value).
- * @return      [1:7] The day-of-week index in the same timescale as the input date. 1:Monday ...
- *              7:Sunday.
+ * @return      The day-of-week index [1:7] in the same timescale as the input date. 1:Monday ...
+ *              7:Sunday, or else 0 if the input Julian Date is NAN.
  *
  * @since 1.4
  * @author Attila Kovacs
@@ -294,6 +294,9 @@ int cal_date(double tjd, short *restrict year, short *restrict month, short *res
  * @sa novas_day_of_year(), novas_jd_to_date()
  */
 int novas_day_of_week(double tjd) {
+  if(isnan(tjd))
+    return 0;
+
   int rem = (int) ((long) floor(tjd - NOVAS_JD_J2000 - 1.5) % 7L);
   if(rem < 0)
     rem += 7;

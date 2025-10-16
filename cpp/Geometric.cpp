@@ -90,15 +90,19 @@ std::optional<Geometric> Geometric::in_itrs(const EOP& eop) const {
 
   // Apply specified EOP to frame
   if(eop.is_valid()) {
-    // Add diurnal corrections
-    double xp = 0.0, yp = 0.0;
-    novas_diurnal_eop_at_time(_frame.time()._novas_timespec(), &xp, &yp, NULL);
-    xp += eop.xp().arcsec();
-    yp += eop.yp().arcsec();
-
     novas_frame f = * _frame._novas_frame();
-    f.dx = 1000.0 * xp;
-    f.dy = 1000.0 * yp;
+
+    f.dx = eop.xp().mas();
+    f.dy = eop.yp().mas();
+
+    if(_frame.accuracy() == NOVAS_FULL_ACCURACY) {
+      // Add diurnal corrections
+      double xp = 0.0, yp = 0.0;
+      novas_diurnal_eop_at_time(_frame.time()._novas_timespec(), &xp, &yp, NULL);
+
+      f.dx += 1000.0 * xp;
+      f.dy += 1000.0 * yp;
+    }
 
     return in_system(&f, NOVAS_ITRS);
   }

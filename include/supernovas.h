@@ -502,6 +502,10 @@ public:
 
   explicit TimeAngle(const Angle& angle);
 
+  TimeAngle operator+(const TimeAngle& r) const;
+
+  TimeAngle operator-(const TimeAngle& r) const;
+
   Angle operator+(const Angle& r) const override;
 
   Angle operator-(const Angle& r) const override;
@@ -518,7 +522,15 @@ public:
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 
+  static TimeAngle hours(double value);
+
+  static TimeAngle minutes(double value);
+
+  static TimeAngle seconds(double value);
+
   static const TimeAngle& zero();
+
+  static const TimeAngle& noon();
 };
 
 /**
@@ -1243,7 +1255,7 @@ public:
 
   CalendarDate date(time_t t, long nanos = 0) const;
 
-  CalendarDate date(struct timespec ts) const;
+  CalendarDate date(const struct timespec *ts) const;
 
   static Calendar gregorian();
 
@@ -1258,11 +1270,13 @@ public:
 
 
 /**
- * A time specified in a specific type of calendar (Gregorian, Roman, or astronomical). Unike the
- * Time class, calendar dates allow for broken-down (year, month, day-of-month, day-of-week,
- * day-of-year, and time-of-day) representation, It has a precision at the 100 &mu;s level,
+ * A time specified in a specific type of calendar (Gregorian, Roman, or astronomical). Calendar
+ * dates allow for broken-down (year, month, day-of-month, day-of-week, day-of-year, and
+ * time-of-day) representation. Unlike the related Time class, calendar dates are not timescale
+ * aware. They may be used typically to refer to UTC dates, or else whatevertimescale the user
+ * had in mind when constructing it. It has a lesser precision than Time, at the 100 &mu;s level,
  * limited by the double-precision representation of Julian dates. However, that level of
- * precision is sufficient for most applications.
+ * precision is still sufficient for most applications.
  *
  * @sa Time
  * @ingroup time
@@ -1296,6 +1310,10 @@ public:
   int day_of_year() const;
 
   int day_of_week() const;
+
+  time_t unix_time() const;
+
+  int break_down(struct tm *tm) const;
 
   CalendarDate operator+(const Interval& interval) const;
 
@@ -1426,6 +1444,8 @@ public:
   TimeAngle jd_time_of_day(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
   double mjd(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
+
+  time_t unix_time(long *nanos = NULL) const;
 
   int leap_seconds() const;
 
