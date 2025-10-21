@@ -12,7 +12,7 @@ CPP_SOURCES = $(wildcard $(CPP_PATH)/*.cpp)
 CPP_OBJECTS = $(subst .cpp,.o, $(subst $(CPP_PATH)/,, $(CPP_SOURCES)))
 
 TESTS = AngleTest TimeAngleTest IntervalTest DistanceTest SpeedTest TemperatureTest PressureTest \
-	EOPTest SphericalTest CalendarTest
+	EOPTest SphericalTest CalendarTest PositionTest GalacticTest EclipticTest
 
 .PHONY: build
 build: $(TESTS)

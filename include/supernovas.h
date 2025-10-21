@@ -576,6 +576,8 @@ public:
   virtual std::string to_string() const;
 };
 
+Vector operator*(double factor, const Vector& v);
+
 /**
  * A 3D physical location vector in space.
  *
@@ -723,6 +725,9 @@ private:
   Angle _lat;           ///< [rad] stored latitude value
   Distance _distance;   ///< [m] stored distance
 
+protected:
+  Angle distance_to(const Spherical& other) const;
+
 public:
   virtual ~Spherical() {}; // something virtual to make class polymorphic for dynamic casting.
 
@@ -771,6 +776,10 @@ public:
 
   enum novas::novas_reference_system reference_system() const;
 
+  Angle distance_to(const Equatorial& other) const {
+    return Spherical::distance_to(other);
+  }
+
   Equatorial to_system(const EquatorialSystem& system) const;
 
   Equatorial to_icrs() const;
@@ -779,13 +788,19 @@ public:
 
   Equatorial to_hip() const;
 
-  Equatorial to_mod(double jd_tt) const;
+  Equatorial to_mod(double jd_tdb) const;
+
+  Equatorial to_mod(const Time& time) const;
 
   Equatorial to_mod_at_besselian_epoch(double year) const;
 
-  Equatorial to_tod(double jd_tt) const;
+  Equatorial to_tod(double jd_tdb) const;
 
-  Equatorial to_cirs(double jd_tt) const;
+  Equatorial to_tod(const Time& time) const;
+
+  Equatorial to_cirs(double jd_tdb) const;
+
+  Equatorial to_cirs(const Time& time) const;
 
   /// @ingroup nonequatorial
   Ecliptic as_ecliptic() const;
@@ -823,15 +838,21 @@ public:
 
   double mjd() const;
 
+  Angle distance_to(const Ecliptic& other) const {
+    return Spherical::distance_to(other);
+  }
+
   Ecliptic to_icrs() const;
 
   Ecliptic to_j2000() const;
 
-  Ecliptic to_hip() const;
+  Ecliptic to_mod(double jd_tdb) const;
 
-  Ecliptic to_mod(double jd_tt) const;
+  Ecliptic to_mod(const Time& time) const;
 
-  Ecliptic to_tod(double jd_tt) const;
+  Ecliptic to_tod(double jd_tdb) const;
+
+  Ecliptic to_tod(const Time& time) const;
 
   /// @ingroup equatorial
   Equatorial as_equatorial() const;
@@ -873,6 +894,10 @@ public:
   Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
   explicit Galactic(const Position& pos);
+
+  Angle distance_to(const Galactic& other) const {
+    return Spherical::distance_to(other);
+  }
 
   /// @ingroup equatorial
   Equatorial as_equatorial() const;

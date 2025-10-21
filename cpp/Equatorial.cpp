@@ -87,13 +87,13 @@ Equatorial Equatorial::to_system(const EquatorialSystem& system) const {
     case NOVAS_ICRS:
       break;
     case NOVAS_MOD:
-      gcrs_to_mod(_sys.jd(), p, p);
+      gcrs_to_mod(system.jd(), p, p);
       break;
     case NOVAS_TOD:
-      gcrs_to_tod(_sys.jd(), NOVAS_FULL_ACCURACY, p, p);
+      gcrs_to_tod(system.jd(), NOVAS_FULL_ACCURACY, p, p);
       break;
     case NOVAS_CIRS:
-      gcrs_to_cirs(_sys.jd(), NOVAS_FULL_ACCURACY, p, p);
+      gcrs_to_cirs(system.jd(), NOVAS_FULL_ACCURACY, p, p);
       break;
     default:
       p[0] = p[1] = p[2] = NAN;
@@ -116,20 +116,32 @@ Equatorial Equatorial::to_hip() const {
   return to_system(EquatorialSystem::mod(NOVAS_JD_HIP));
 }
 
-Equatorial Equatorial::to_mod(double jd_tt) const {
-  return to_system(EquatorialSystem::mod(jd_tt));
+Equatorial Equatorial::to_mod(double jd_tdb) const {
+  return to_system(EquatorialSystem::mod(jd_tdb));
+}
+
+Equatorial Equatorial::to_mod(const Time& time) const {
+  return to_mod(time.jd(novas::NOVAS_TDB));
 }
 
 Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
   return to_system(EquatorialSystem::mod_at_besselian_epoch(year));
 }
 
-Equatorial Equatorial::to_tod(double jd_tt) const {
-  return to_system(EquatorialSystem::tod(jd_tt));
+Equatorial Equatorial::to_tod(double jd_tdb) const {
+  return to_system(EquatorialSystem::tod(jd_tdb));
 }
 
-Equatorial Equatorial::to_cirs(double jd_tt) const {
-  return to_system(EquatorialSystem::cirs(jd_tt));
+Equatorial Equatorial::to_tod(const Time& time) const {
+  return to_tod(time.jd(novas::NOVAS_TDB));
+}
+
+Equatorial Equatorial::to_cirs(double jd_tdb) const {
+  return to_system(EquatorialSystem::cirs(jd_tdb));
+}
+
+Equatorial Equatorial::to_cirs(const Time& time) const {
+  return to_cirs(time.jd(novas::NOVAS_TDB));
 }
 
 TimeAngle Equatorial::ra() const {
@@ -141,30 +153,28 @@ const Angle& Equatorial::dec() const {
 }
 
 Ecliptic Equatorial::as_ecliptic() const {
-  double longitude, latitude;
-  enum novas_reference_system refsys = _sys.reference_system();
+  double lon, lat;
 
-  if(refsys == NOVAS_CIRS)
-    return to_tod(_sys.jd()).as_ecliptic();
+  double r = ra().hours();
+  double d = dec().deg();
 
-  equ2ecl(_sys.jd(), NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, ra().hours(), dec().deg(), &longitude, &latitude);
-
-  longitude *= Unit::deg;
-  latitude *= Unit::deg;
-
-  switch(refsys) {
+  switch(_sys.reference_system()) {
     case NOVAS_GCRS:
     case NOVAS_ICRS:
-      return Ecliptic::icrs(longitude, latitude, distance().m());
+      equ2ecl(NOVAS_JD_J2000, NOVAS_GCRS_EQUATOR, NOVAS_FULL_ACCURACY, r, d, &lon, &lat);
+      return Ecliptic::icrs(lon * Unit::deg, lat * Unit::deg, distance().m());
     case NOVAS_J2000:
-      return Ecliptic::j2000(longitude, latitude, distance().m());
+      equ2ecl(NOVAS_JD_J2000, NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, r, d, &lon, &lat);
+      return Ecliptic::j2000(lon * Unit::deg, lat * Unit::deg, distance().m());
     case NOVAS_MOD:
-      return Ecliptic::mod(_sys.jd(), longitude, latitude, distance().m());
-    case NOVAS_TOD:
-      return Ecliptic::tod(_sys.jd(), longitude, latitude, distance().m());
-    default:
-      // TODO should not happen
-      return Ecliptic::invalid();
+      equ2ecl(_sys.jd(), NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, r, d, &lon, &lat);
+      return Ecliptic::mod(_sys.jd(), lon * Unit::deg, lat * Unit::deg, distance().m());
+    case NOVAS_CIRS:
+      r -= ira_equinox(_sys.jd(), NOVAS_MEAN_EQUINOX, NOVAS_FULL_ACCURACY); // @suppress("No break at end of case")
+      /* fallthrough */
+    default: // TOD
+      equ2ecl(_sys.jd(), NOVAS_TRUE_EQUATOR, NOVAS_FULL_ACCURACY, r, d, &lon, &lat);
+      return Ecliptic::tod(_sys.jd(), lon * Unit::deg, lat * Unit::deg, distance().m());
   }
 }
 

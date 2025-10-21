@@ -39,6 +39,10 @@ Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_
 Spherical::Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance)
 : Spherical(longitude.rad(), latitude.rad(), distance.m()) {}
 
+Angle Spherical::distance_to(const Spherical& other) const {
+  return Angle(novas_sep(_lon.deg(), _lat.deg(), other._lon.deg(), other._lat.deg()) * Unit::deg);
+}
+
 Position Spherical::xyz() const {
   double pos[3];
   double xy = _distance.m() * cos(_lat.rad());

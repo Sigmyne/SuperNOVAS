@@ -87,6 +87,9 @@ std::string Vector::to_string() const {
   return "VEC ( " + std::string(sx) + ", " + std::string(sy) + ", " + std::string(sz) + " )";
 }
 
+Vector operator*(double factor, const Vector& v) {
+  return v * factor;
+}
 
 
 } // namespace supernovas

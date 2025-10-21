@@ -60,29 +60,31 @@ Ecliptic Ecliptic::to_j2000() const {
   return as_equatorial().to_j2000().as_ecliptic();
 }
 
-Ecliptic Ecliptic::to_hip() const {
-  if(_equator == NOVAS_MEAN_EQUATOR && _jd == NOVAS_JD_HIP)
-    return (*this);
-
-  return as_equatorial().to_hip().as_ecliptic();
-}
-
-Ecliptic Ecliptic::to_mod(double jd_tt) const {
-  if(jd_tt == NOVAS_JD_J2000)
+Ecliptic Ecliptic::to_mod(double jd_tdb) const {
+  if(jd_tdb == NOVAS_JD_J2000)
     return to_j2000();
 
-  if(_equator == NOVAS_MEAN_EQUATOR && _jd == jd_tt)
+  if(_equator == NOVAS_MEAN_EQUATOR && _jd == jd_tdb)
     return (*this);
 
-  return as_equatorial().to_mod(jd_tt).as_ecliptic();
+  return as_equatorial().to_mod(jd_tdb).as_ecliptic();
 }
 
-Ecliptic Ecliptic::to_tod(double jd_tt) const {
-  if(_equator == NOVAS_TRUE_EQUATOR && _jd == jd_tt)
+Ecliptic Ecliptic::to_mod(const Time& time) const {
+  return to_mod(time.jd(novas::NOVAS_TDB));
+}
+
+Ecliptic Ecliptic::to_tod(double jd_tdb) const {
+  if(_equator == NOVAS_TRUE_EQUATOR && _jd == jd_tdb)
     return (*this);
 
-  return as_equatorial().to_mod(jd_tt).as_ecliptic();
+  return as_equatorial().to_tod(jd_tdb).as_ecliptic();
 }
+
+Ecliptic Ecliptic::to_tod(const Time& time) const {
+  return to_tod(time.jd(novas::NOVAS_TDB));
+}
+
 
 Equatorial Ecliptic::as_equatorial() const {
   double ra = 0.0, dec = 0.0;
@@ -159,17 +161,16 @@ Ecliptic Ecliptic::j2000(const Angle& longitude, const Angle& latitude, const Di
   return Ecliptic::j2000(longitude.rad(), latitude.rad(), distance.m());
 }
 
-
-Ecliptic Ecliptic::mod(double jd_tt, double longitude_rad, double latitude_rad, double distance) {
-  return Ecliptic(longitude_rad, latitude_rad, NOVAS_MEAN_EQUATOR, jd_tt, distance);
+Ecliptic Ecliptic::mod(double jd_tdb, double longitude_rad, double latitude_rad, double distance) {
+  return Ecliptic(longitude_rad, latitude_rad, NOVAS_MEAN_EQUATOR, jd_tdb, distance);
 }
 
 Ecliptic Ecliptic::mod(const Time& time, const Angle& longitude, const Angle& latitude, const Distance& distance) {
   return Ecliptic::mod(time.jd(), longitude.rad(), latitude.rad(), distance.m());
 }
 
-Ecliptic Ecliptic::tod(double jd_tt, double longitude_rad, double latitude_rad, double distance) {
-  return Ecliptic(longitude_rad, latitude_rad, NOVAS_TRUE_EQUATOR, jd_tt, distance);
+Ecliptic Ecliptic::tod(double jd_tdb, double longitude_rad, double latitude_rad, double distance) {
+  return Ecliptic(longitude_rad, latitude_rad, NOVAS_TRUE_EQUATOR, jd_tdb, distance);
 }
 
 Ecliptic Ecliptic::tod(const Time& time, const Angle& longitude, const Angle& latitude, const Distance& distance) {
