@@ -21,10 +21,10 @@ cmake_minimum_required(VERSION 3.24...4.2)
 
 # Project definition
 project(supernovas
-    VERSION 1.5.0
+    VERSION 1.6.0
     DESCRIPTION "SuperNOVAS C/C++ astrometry library"
     HOMEPAGE_URL "https://sigmyne.github.io/SuperNOVAS/"
-    LANGUAGES C
+    LANGUAGES C CXX
 )
 
 # Include required modules
@@ -34,6 +34,7 @@ include(FeatureSummary)
 
 # Build options
 option(BUILD_SHARED_LIBS "Build as shared libraries instead of static" OFF)
+option(BUILD_CPP_LIBS "Enable C++ library build" OFF)
 option(BUILD_DOC "Build HTML documetation" OFF)
 option(BUILD_TESTING "Build regression test suite" ON)
 option(BUILD_EXAMPLES "Build example programs" OFF)
@@ -227,6 +228,11 @@ endif()
 
 # Run tests for the enabled options below...
 enable_testing()
+
+# C++ library
+if(BUILD_CPP_LIBS)
+    add_subdirectory(cpp)
+endif()
 
 # Examples
 if(BUILD_EXAMPLES)
