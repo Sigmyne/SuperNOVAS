@@ -117,5 +117,48 @@ const Interval& Interval::zero() {
   return _zero;
 }
 
+/**
+ * Returns a string representation of this interval using the specified number of significant
+ * figures and a best matched time unit.
+ *
+ * @return    A human readable string representation of the distance and a unit specifier.
+ */
+std::string Interval::to_string(int decimals) const {
+  char fmt[20] = {'\0'};
+  char s[40] = {'\0'};
+
+  double value;
+  const char *unit;
+
+  if(decimals < 0)
+    decimals = 0;
+  else if(decimals > 16)
+    decimals = 16;
+
+  double d = fabs(_seconds);
+
+  if(d < Unit::s) {
+    value = milliseconds();
+    unit = "ms";
+  }
+  else if(d < Unit::hour) {
+    value = _seconds;
+    unit = "s";
+  }
+  else if(d < Unit::day) {
+    value = hours();
+    unit = "h";
+  }
+  else {
+    value = years();
+    unit = "yr";
+  }
+
+  snprintf(fmt, sizeof(fmt), "%%.%df", decimals);
+  snprintf(s, sizeof(s), fmt, value);
+
+  return std::string(s) + " " + std::string(unit);
+}
+
 
 } // namespace supernovas

@@ -34,7 +34,9 @@ static double _epoch_for(double jd) {
 
 static std::string _name_for(const char *base, double year) {
   char s[20] = {'\0'};
-  int n = snprintf(s, sizeof(s), "%s%.3f", base, year);
+  int n;
+
+  n = snprintf(s, sizeof(s), "%s%.3f", base, year);
 
   // Remove trailing zeroes and decimal point.
   for(int i = n; --i >= 0; ) {

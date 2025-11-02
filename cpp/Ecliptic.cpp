@@ -91,16 +91,18 @@ Equatorial Ecliptic::as_equatorial() const {
 
   ecl2equ(_jd, _equator, NOVAS_FULL_ACCURACY, longitude().deg(), latitude().deg(), &ra, &dec);
 
-  switch(_equator) {
-    case NOVAS_GCRS_EQUATOR:
-      return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, EquatorialSystem::icrs(), distance().m());
-    case NOVAS_MEAN_EQUATOR:
-      if(_jd == NOVAS_JD_J2000)
-        return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, EquatorialSystem::j2000(), distance().m());
-      else
-        return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, EquatorialSystem::mod(_jd), distance().m());
-    case NOVAS_TRUE_EQUATOR:
-      return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, EquatorialSystem::tod(_jd), distance().m());
+  if(is_valid()) {
+    switch(_equator) {
+      case NOVAS_GCRS_EQUATOR:
+        return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, EquatorialSystem::icrs(), distance().m());
+      case NOVAS_MEAN_EQUATOR:
+        if(_jd == NOVAS_JD_J2000)
+          return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, EquatorialSystem::j2000(), distance().m());
+        else
+          return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, EquatorialSystem::mod(_jd), distance().m());
+      case NOVAS_TRUE_EQUATOR:
+        return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, EquatorialSystem::tod(_jd), distance().m());
+    }
   }
 
   return Equatorial::invalid();
@@ -116,25 +118,29 @@ static std::string _sys_type(enum novas_equator_type equator, double jd_tt) {
 
   switch(equator) {
     case NOVAS_GCRS_EQUATOR:
-      n = snprintf(s, sizeof(s), "ICRS");
-      break;
+      return "ICRS";
     case NOVAS_MEAN_EQUATOR:
-      n = snprintf(s, sizeof(s), "J");
       break;
     case NOVAS_TRUE_EQUATOR:
-      n = snprintf(s, sizeof(s), "TOD J");
+      n = snprintf(s, sizeof(s), "TOD ");
   }
 
-  n += snprintf(&s[n], sizeof(s) - n, "%.3f", (jd_tt - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS);
+  if(novas_time_equals(jd_tt, NOVAS_JD_B1900))
+    snprintf(&s[n], sizeof(s) - n, "B1900");
+  else if(novas_time_equals(jd_tt, NOVAS_JD_B1950))
+    snprintf(&s[n], sizeof(s) - n, "B1950");
+  else {
+    n += snprintf(&s[n], sizeof(s) - n, "J%.3f", 2000.0 + (jd_tt - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS);
 
-  // Remove trailing zeroes and decimal point.
-  for(int i = n; --i >= 0; ) {
-    if(s[i] == '.') {
+    // Remove trailing zeroes and decimal point.
+    for(int i = n; --i >= 0; ) {
+      if(s[i] == '.') {
+        s[i] = '\0';
+        break;
+      }
+      if(s[i] != '0') break;
       s[i] = '\0';
-      break;
     }
-    if(s[i] != '0') break;
-    s[i] = '\0';
   }
 
   return std::string(s);

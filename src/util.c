@@ -380,6 +380,47 @@ int novas_Rz(double angle, double *v) {
   return novas_rot(angle, &v[0], &v[1]);
 }
 
+/**
+ * Returns a string representation of a decimal value with the specified precision. It is
+ * effectively the same as `%.<n>g` where `<n>` is the number of decimal places to print.
+ *
+ * @param value       The value to print
+ * @param decimals    Number of decimal places to show
+ * @param[out] str    output string, with sufficient allocation to contain
+ * @return            the number of characters printed into the output string, or -1 if there was
+ *                    an error (errno will indicate the type of error).
+ *
+ * @since 1.6
+ */
+int novas_print_decimal(double value, int decimals, char *str, int len) {
+  static const char *fn = "novas_decimal_string";
+
+  char fmt[20] = {'\0'}, s[40] = {'\0'};
+  int n;
+
+  if(!str)
+    return novas_error(-1, EINVAL, fn, "output string is NULL");
+
+  if(len < 1)
+    return novas_error(-1, EINVAL, fn, "invalid output string length: %d", len);
+
+  if(decimals < 0)
+    decimals = 0;
+  else if(decimals > 16)
+    decimals = 16;
+
+  snprintf(fmt, sizeof(fmt), "%%.%dg", decimals);
+  n = snprintf(s, sizeof(s), fmt, value);
+
+  if(n >= len) {
+    n = len;
+    s[n-1] = '\0';
+  }
+
+  strncpy(str, s, len);
+
+  return n;
+}
 
 /// \endcond PROTECTED
 
@@ -923,6 +964,7 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
 
   return strlen(buf);
 }
+
 
 
 #if __cplusplus

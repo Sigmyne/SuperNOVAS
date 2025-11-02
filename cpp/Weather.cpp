@@ -56,11 +56,9 @@ double Weather::humidity_fraction() const {
 }
 
 std::string Weather::to_string() const {
-  char sT[20] = {'\0'}, sP[20] = {'\0'}, sH[20] = {'\0'};
-  snprintf(sT, sizeof(sT), "T = %.2f C", temperature().celsius());
-  snprintf(sP, sizeof(sT), "p = %.2f mbar", pressure().mbar());
-  snprintf(sH, sizeof(sT), "h = %.1f %%", humidity());
-  return "Weather ( " + std::string(sT) + ", " + std::string(sP) + ", " + std::string(sH) + " )";
+  char sH[20] = {'\0'};
+  snprintf(sH, sizeof(sH), "%.1f %%", humidity());
+  return "Weather (T = " + _temperature.to_string() + ", p = " + _pressure.to_string() + ", h = " + std::string(sH) + ")";
 }
 
 Weather Weather::guess(const Site& site) {

@@ -22,12 +22,24 @@ int main() {
   if(!test.check("y() invalid", isnan(x.y()))) n++;
   if(!test.check("z() invalid", isnan(x.z()))) n++;
 
+  Position z = Position::origin();
+  if(!test.check("is_valid() origin", z.is_valid())) n++;
+  if(!test.equals("x() origin", z.x(), 0.0)) n++;
+  if(!test.equals("y() origin", z.y(), 0.0)) n++;
+  if(!test.equals("z() origin", z.z(), 0.0)) n++;
+
   Position a(-1.0 * Unit::au, 2.0 * Unit::au, -3.0 * Unit::au);
   if(!test.check("is_valid(-1 AU, 2 AU, -3 AU)", a.is_valid())) n++;
   if(!test.equals("x()", a.x(), -1.0 * Unit::au)) n++;
   if(!test.equals("y()", a.y(), 2.0 * Unit::au)) n++;
   if(!test.equals("z()", a.z(), -3.0 * Unit::au)) n++;
-  if(!test.equals("length()", a.distance().au(), sqrt(14.0), 1e-14)) n++;
+  if(!test.equals("distance()", a.distance().au(), sqrt(14.0), 1e-14)) n++;
+  if(!test.equals("to_string()", a.to_string(), "POS (-1.000 AU, 2.000 AU, -3.000 AU)")) n++;
+
+  Position ai = a.inv();
+  if(!test.equals("x() inv", ai.x(), -a.x())) n++;
+  if(!test.equals("y() inv", ai.y(), -a.y())) n++;
+  if(!test.equals("z() inv", ai.z(), -a.z())) n++;
 
   const double *pa = a._array();
   if(!test.equals("_array()[0]", pa[0], -1.0 * Unit::au)) n++;
@@ -36,6 +48,19 @@ int main() {
 
   double p[3] = {-1.0, 2.0, -3.0};
   Position b(p, Unit::au);
+
+  if(!test.check("equals()", a.equals(b, 1e-15 * Unit::au))) n++;
+  if(!test.check("!equals()", !a.equals(ai, 1e-15 * Unit::au))) n++;
+
+  if(!test.equals("projection_on(x)", a.projection_on(Position(5.0, 0.0, 0.0)), a.x(), 1e-15 * Unit::au)) n++;
+  if(!test.equals("projection_on(y)", a.projection_on(Position(0.0, 5.0, 0.0)), a.y(), 1e-15 * Unit::au)) n++;
+  if(!test.equals("projection_on(z)", a.projection_on(Position(0.0, 0.0, 5.0)), a.z(), 1e-15 * Unit::au)) n++;
+
+  double l = a.abs();
+  if(!test.equals("unit_vector().x()", a.unit_vector().x(), a.x() / l, 1e-15)) n++;
+  if(!test.equals("unit_vector().y()", a.unit_vector().y(), a.y() / l, 1e-15)) n++;
+  if(!test.equals("unit_vector().z()", a.unit_vector().z(), a.z() / l, 1e-15)) n++;
+
   if(!test.equals("x(a - b)", (a - b).x(), 0.0)) n++;
   if(!test.equals("y(a - b)", (a - b).y(), 0.0)) n++;
   if(!test.equals("z(a - b)", (a - b).z(), 0.0)) n++;
@@ -49,8 +74,6 @@ int main() {
   if(!test.equals("z(2 * a)", (2 * a).z(), -6.0 * Unit::au, 1e-14 * Unit::au)) n++;
 
   if(!test.equals("dot(b)", a.dot(b), a.abs() * b.abs())) n++;
-
-  a.to_string();
 
   std::cout << "Position.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

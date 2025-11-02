@@ -38,7 +38,7 @@ int main() {
   if(!test.equals("atm(x)", Pressure::atm(99.0).atm(), 99.0, 1e-13)) n++;
   if(!test.equals("torr(x)", Pressure::torr(99.0).torr(), 99.0, 1e-13)) n++;
 
-  a.to_string();
+  if(!test.equals("to_string()", Pressure::mbar(999.9).to_string(), "999.9 mbar")) n++;
 
   std::cout << "Pressure.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

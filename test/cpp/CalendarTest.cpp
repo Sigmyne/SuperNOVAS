@@ -27,9 +27,9 @@ int main() {
   Calendar c = Calendar::astronomical();
   if(!test.equals("astronomical()", c.type(), NOVAS_ASTRONOMICAL_CALENDAR)) n++;
 
-  a.to_string();
-  b.to_string();
-  c.to_string();
+  if(!test.equals("to_stirng(Gregorian)", a.to_string(), "Gregorian calendar")) n++;
+  if(!test.equals("to_string(Roman)", b.to_string(), "Roman calendar")) n++;
+  if(!test.equals("to_string(astronomical)", c.to_string(), "astronomical calendar")) n++;
 
   if(!test.check("parse_date(blah)", !a.parse_date("blah").has_value())) n++;
   if(!test.check("date(time=NAN)", !a.date(2000, 1, 1, TimeAngle(NAN)).is_valid())) n++;
@@ -44,7 +44,6 @@ int main() {
   if(!test.equals("short_month_name() invalid", dx.short_month_name(), "inv")) n++;
   if(!test.equals("day_name() invalid", dx.day_name(), "invalid")) n++;
   if(!test.equals("short_day_name() invalid", dx.short_day_name(), "inv")) n++;
-
   if(!test.check("parse_date(J2000)", a.parse_date("2000-01-01 12:00:00").has_value())) n++;
 
   CalendarDate da = a.date(2000, 1, 1, TimeAngle::noon());
@@ -60,7 +59,8 @@ int main() {
   if(!test.equals("short_month_name()", da.short_month_name(), "Jan")) n++;
   if(!test.equals("day_name()", da.day_name(), "Saturday")) n++;
   if(!test.equals("short_day_name()", da.short_day_name(), "Sat")) n++;
-  if(!test.equals("to_time()", da.to_time(EOP(32, 0.0, 0.0, 0.0), NOVAS_TT).jd(), da.jd(), 1e-8)) n++;
+  if(!test.equals("to_time(EOP)", da.to_time(EOP(32, 0.0, 0.0, 0.0), NOVAS_TT).jd(), da.jd(), 1e-8)) n++;
+  if(!test.equals("to_time()", da.to_time(32, 0.0, NOVAS_TT).jd(), da.jd(), 1e-8)) n++;
 
   if(!test.equals("break_down(NULL)", da.break_down(NULL), -1)) n++;
 
@@ -83,6 +83,9 @@ int main() {
   CalendarDate dc = c.date(NOVAS_JD_J2000);
   if(!test.equals("J2000 (gregorian vs astronomical)", da.jd(), dc.jd())) n++;
 
+  CalendarDate db1 = (db - Interval(13 * Unit::day)).in_calendar(a);
+  if(!test.equals("J2000 (gregorian vs roman)", da.jd(), db1.jd())) n++;
+
   if(!test.check("operator ==", da == dc)) n++;
   if(!test.check("operator !=", da != db)) n++;
 
@@ -95,14 +98,29 @@ int main() {
   if(!test.check("operator >", db > da)) n++;
   if(!test.check("operator <", da < db)) n++;
 
+  CalendarDate dd = a.date(2000, 1, 1, TimeAngle::hours(13.0));
+  if(!test.check("operator +(Interval)", dd == da + Interval(1.0 * Unit::hour))) n++;
+  if(!test.check("operator -(Interval)", da == dd - Interval(1.0 * Unit::hour))) n++;
+  if(!test.check("operator -(CalendarDate)", (dd - da).equals(Interval(1.0 * Unit::hour), Unit::ms))) n++;
+
   struct timespec ts;
   ts.tv_sec = UNIX_J2000;
   ts.tv_nsec = 0L;
-  CalendarDate dd = c.date(&ts);
-  if(!test.equals("date(struct timespec)", da.jd(), dd.jd(), 1e-8)) n++;
+
+  CalendarDate de = c.date(&ts);
+  if(!test.equals("date(struct timespec)", da.jd(), de.jd(), 1e-8)) n++;
   if(!test.check("date(NULL)", !c.date((struct timespec *) NULL).is_valid())) n++;
 
-  da.to_string();
+  if(!test.equals("to_string()", da.to_string(), "2000-01-01 12:00:00")) n++;
+  if(!test.equals("to_string(3)", da.to_string(3), "2000-01-01 12:00:00.000")) n++;
+
+  if(!test.equals("to_date_string(YMD)", da.to_date_string(novas::NOVAS_YMD), "2000-01-01")) n++;
+  if(!test.equals("to_date_string(DMY)", da.to_date_string(novas::NOVAS_DMY), "01.01.2000")) n++;
+  if(!test.equals("to_date_string(MDY)", da.to_date_string(novas::NOVAS_MDY), "1/1/2000")) n++;
+  if(!test.equals("to_date_string(-1)", da.to_date_string((enum novas_date_format) -1), "<invalid date format>")) n++;
+
+  if(!test.equals("to_long_date_string()", da.to_long_date_string(), "Sat 1 Jan 2000")) n++;
+
 
   std::cout << "Calendar.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

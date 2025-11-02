@@ -32,6 +32,7 @@ int main() {
   if(!test.equals("dUT1()", a.dUT1().seconds(), 0.1)) n++;
   if(!test.equals("xp()", a.xp().mas(), 200.0)) n++;
   if(!test.equals("yp()", a.yp().mas(), 300.0)) n++;
+  if(!test.equals("to_string()", a.to_string(), "EOP (leap = 32, dUT1 = 0.100000 s, xp = 200.000 mas, yp = 300.000 mas)")) n++;
 
   EOP b(32, Interval(0.1 * Unit::sec), Angle(200.0 * Unit::mas), Angle(300.0 * Unit::mas));
   if(!test.check("is_valid()", b.is_valid())) n++;
@@ -47,8 +48,6 @@ int main() {
   if(!test.equals("itrf_transformed().dUT1()", c.dUT1().seconds(), dt, 1e-14)) n++;
   if(!test.equals("itrf_transformed().xp()", c.xp().arcsec(), xp, 1e-14)) n++;
   if(!test.equals("itrf_transformed().yp()", c.yp().arcsec(), yp, 1e-14)) n++;
-
-  c.to_string();
 
   std::cout << "EOP.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

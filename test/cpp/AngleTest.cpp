@@ -45,7 +45,7 @@ int main() {
   if(!test.check("is_valid(blah)", !d.is_valid())) n++;
   if(!test.check("isnan(blah)", isnan(d.rad()))) n++;
 
-  c.to_string();
+  if(!test.equals("to_string()", c.to_string(), "-179d 59m 59.999s")) n++;
 
   std::cout << "Angle.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

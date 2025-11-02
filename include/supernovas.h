@@ -353,7 +353,7 @@ public:
 
   Angle parallax() const;
 
-  std::string to_string() const;
+  std::string to_string(int decimals = 3) const;
 
   static Distance from_parallax(const Angle& parallax);
 
@@ -418,7 +418,7 @@ public:
 
   Interval to_timescale(enum novas::novas_timescale scale) const;
 
-  std::string to_string() const; // TODO
+  std::string to_string(int decimals = 3) const; // TODO
 
   static const Interval& zero();
 };
@@ -545,7 +545,7 @@ protected:
 
   explicit Vector(double x = 0.0, double y = 0.0, double z = 0.0);
 
-  explicit Vector(const double v[3], double unit = 1.0);
+  bool equals(const Vector& v, double precision) const;
 
 public:
 
@@ -559,8 +559,6 @@ public:
 
   double z() const;
 
-  bool equals(const Vector& v, double precision) const;
-
   Vector scaled(double factor) const;
 
   const double *_array() const;
@@ -573,7 +571,7 @@ public:
 
   Vector unit_vector() const;
 
-  virtual std::string to_string() const;
+  virtual std::string to_string(int decimals = 3) const;
 };
 
 Vector operator*(double factor, const Vector& v);
@@ -591,6 +589,10 @@ public:
 
   explicit Position(const double pos[3], double unit = Unit::m);
 
+  bool equals(const Position& p, double precision) const {
+    return Vector::equals(p, precision);
+  }
+
   Position operator+(const Position &r) const;
 
   Position operator-(const Position &r) const;
@@ -601,7 +603,7 @@ public:
 
   Spherical as_spherical() const;
 
-  std::string to_string() const override;
+  std::string to_string(int decimals = 3) const override;
 
   static const Position& origin();
 
@@ -624,6 +626,10 @@ public:
 
   Velocity operator-(const Velocity& r) const;
 
+  bool equals(const Velocity& v, double precision) const {
+    return Vector::equals(v, precision);
+  }
+
   bool operator==(const Velocity& v) const {
     return equals(v, Unit::mm / Unit::sec);
   }
@@ -636,15 +642,13 @@ public:
 
   Velocity inv() const;
 
-  Speed along(const Vector& direction) const;
-
   Position travel(double seconds) const;
 
   Position travel(const Interval& t) const;
 
   Position operator*(const Interval& t) const { return travel(t); }
 
-  std::string to_string() const override;
+  std::string to_string(int decimals = 3) const override;
 
   static const Velocity& stationary();
 
@@ -705,7 +709,7 @@ public:
 
   Velocity in_direction(const Vector& direction) const;
 
-  std::string to_string() const;
+  std::string to_string(int decimals = 3) const;
 
   static Speed from_redshift(double z);
 
@@ -727,6 +731,10 @@ private:
 
 protected:
   Angle distance_to(const Spherical& other) const;
+
+  bool equals(const Spherical& other, double precision) const {
+    return distance_to(other).rad() <= fabs(precision);
+  }
 
 public:
   virtual ~Spherical() {}; // something virtual to make class polymorphic for dynamic casting.
@@ -767,6 +775,22 @@ public:
   Equatorial(const Angle& ra, const Angle& dec, const EquatorialSystem& system = EquatorialSystem::icrs(), const Distance& distance = Distance::at_Gpc());
 
   explicit Equatorial(const Position& pos, const EquatorialSystem& system = EquatorialSystem::icrs());
+
+  bool equals(const Equatorial& other, double precision_rad = 0.1 * Unit::uas) const {
+    return (_sys == other._sys) && Spherical::equals(other, precision_rad);
+  }
+
+  bool equals(const Equatorial& other, const Angle& precision) const {
+    return equals(other, precision.rad());
+  }
+
+  bool operator==(const Equatorial& other) const {
+    return equals(other);
+  }
+
+  bool operator!=(const Equatorial& other) const {
+    return !equals(other);
+  }
 
   TimeAngle ra() const;
 
@@ -832,6 +856,22 @@ private:
 public:
   Ecliptic(const Position& pos, enum novas::novas_equator_type equator, double jd_tt = NOVAS_JD_J2000);
 
+  bool equals(const Ecliptic& other, double precision_rad = 0.1 * Unit::uas) const {
+    return (_equator == other._equator) && (_jd == other._jd) && Spherical::equals(other, precision_rad);
+  }
+
+  bool equals(const Ecliptic& other, const Angle& precision) const {
+    return equals(other, precision.rad());
+  }
+
+  bool operator==(const Ecliptic& other) const {
+    return equals(other);
+  }
+
+  bool operator!=(const Ecliptic& other) const {
+    return !equals(other);
+  }
+
   enum novas::novas_equator_type equator() const;
 
   double jd() const;
@@ -894,6 +934,22 @@ public:
   Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
 
   explicit Galactic(const Position& pos);
+
+  bool equals(const Galactic& other, double precision_rad = 0.1 * Unit::uas) const {
+    return Spherical::equals(other, precision_rad);
+  }
+
+  bool equals(const Galactic& other, const Angle& precision) const {
+    return equals(other, precision.rad());
+  }
+
+  bool operator==(const Galactic& other) const {
+    return equals(other);
+  }
+
+  bool operator!=(const Galactic& other) const {
+    return !equals(other);
+  }
 
   Angle distance_to(const Galactic& other) const {
     return Spherical::distance_to(other);
@@ -2148,6 +2204,22 @@ public:
   Horizontal(double azimuth, double elevation, double distance = NOVAS_DEFAULT_DISTANCE);
 
   Horizontal(const Angle& azimuth, const Angle& elevation, const Distance& distance = Distance::at_Gpc());
+
+  bool equals(const Horizontal& other, double precision_rad = 0.1 * Unit::uas) const {
+    return Spherical::equals(other, precision_rad);
+  }
+
+  bool equals(const Horizontal& other, const Angle& precision) const {
+    return equals(other, precision.rad());
+  }
+
+  bool operator==(const Horizontal& other) const {
+    return equals(other);
+  }
+
+  bool operator!=(const Horizontal& other) const {
+    return !equals(other);
+  }
 
   const Angle& azimuth() const;
 

@@ -57,7 +57,7 @@ int main() {
   Speed d = Speed(Distance(90.0 * Unit::km), Interval(2.0 * Unit::sec));
   if(!test.equals("from_redshift()", d.km_per_s(), 45.0, 1e-14)) n++;
 
-  a.to_string();
+  if(!test.equals("to_string()", a.to_string(), "45.000 km/s")) n++;
 
   std::cout << "Speed.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;
