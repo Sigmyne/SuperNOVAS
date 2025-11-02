@@ -66,7 +66,7 @@ std::string EOP::to_string() const {
   snprintf(st, sizeof(st), "dUT1 = %.6f s", _dut1);
   snprintf(sx, sizeof(sx), "xp = %.3f mas", _xp.mas());
   snprintf(sy, sizeof(sy), "yp = %.3f mas", _yp.mas());
-  return "EOP ( leap = " + std::to_string(_leap) + ", "   + st + ", " + sx + ", " + sy + " )";
+  return "EOP (leap = " + std::to_string(_leap) + ", "   + st + ", " + sx + ", " + sy + ")";
 }
 
 

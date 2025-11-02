@@ -48,10 +48,6 @@ Speed Velocity::speed() const {
   return Speed(abs());
 }
 
-Speed Velocity::along(const Vector& v) const {
-  return Speed(projection_on(v));
-}
-
 Position Velocity::travel(const Interval& t) const {
   return travel(t.seconds());
 }
@@ -69,8 +65,8 @@ const Velocity& Velocity::stationary() {
   return _stationary;
 }
 
-std::string Velocity::to_string() const {
-  return "VEL ( " + Speed(x()).to_string() + ", " + Speed(y()).to_string() + ", " + Speed(z()).to_string() + ")";
+std::string Velocity::to_string(int decimals) const {
+  return "VEL (" + Speed(x()).to_string(decimals) + ", " + Speed(y()).to_string(decimals) + ", " + Speed(z()).to_string(decimals) + ")";
 }
 
 const Velocity& Velocity::invalid() {

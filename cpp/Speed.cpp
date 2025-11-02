@@ -86,10 +86,13 @@ Distance Speed::travel(const Interval& time) const {
   return travel(time.seconds());
 }
 
-std::string Speed::to_string() const {
-  char s[40] = {'\0'};
-  snprintf(s, sizeof(s), "%.3f km/s", km_per_s());
-  return std::string(s);
+std::string Speed::to_string(int decimals) const {
+  char fmt[20] = {'\0'}, s[40] = {'\0'};
+
+  snprintf(fmt, sizeof(fmt), "%%.%df", decimals);
+  snprintf(s, sizeof(s), fmt, km_per_s());
+
+  return std::string(s) + " km/s";
 }
 
 Velocity Speed::in_direction(const Vector& direction) const {

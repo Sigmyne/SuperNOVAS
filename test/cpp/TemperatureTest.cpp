@@ -33,7 +33,7 @@ int main() {
   Temperature c = Temperature::K(300.0);
   if(!test.equals("K(value)", c.K(), 300.0)) n++;
 
-  c.to_string();
+  if(!test.equals("to_string()", a.to_string(), "45.0 C")) n++;
 
   std::cout << "Temperature.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

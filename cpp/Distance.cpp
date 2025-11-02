@@ -124,22 +124,58 @@ Angle Distance::parallax() const {
 }
 
 /**
- * Returns a string representation of this distance using a modest numberof significant figures
- * and a best matched distance unit, e.g. "10.96 km", or 305.6 pc" etc.
+ * Returns a string representation of this distance using the specified number of significant
+ * figures and a best matched distance unit, e.g. "10.96 km", or 305.6 pc" etc.
  *
  * @return    A human readable string representation of the distance and a unit specifier.
  */
-std::string Distance::to_string() const {
+std::string Distance::to_string(int decimals) const {
+  char fmt[20] = {'\0'};
   char s[40] = {'\0'};
 
-  if(_meters < 1e4) snprintf(s, sizeof(s), "%.1f m", _meters);
-  else if(_meters < 1e9) snprintf(s, sizeof(s), "%.3f km", km());
-  else if(_meters < 1000.0 * Unit::au) snprintf(s, sizeof(s), "%.3f AU", au());
-  else if(_meters < 1000.0 * Unit::pc) snprintf(s, sizeof(s), "%.3f pc", pc());
-  else if(_meters < 1e6 * Unit::pc) snprintf(s, sizeof(s), "%.3f kpc", kpc());
-  else snprintf(s, sizeof(s), "%.3f Mpc", Mpc());
+  double value;
+  const char *unit;
 
-  return std::string(s);
+  if(decimals < 0)
+    decimals = 0;
+  else if(decimals > 16)
+    decimals = 16;
+
+  double d = fabs(_meters);
+
+  if(d < 1e4) {
+    value = _meters;
+    unit = "m";
+  }
+  else if(d < 1e9) {
+    value = km();
+    unit = "km";
+  }
+  else if(d < 1000.0 * Unit::au) {
+    value = au();
+    unit = "AU";
+  }
+  else if(d < 1000.0 * Unit::pc) {
+    value = pc();
+    unit = "pc";
+  }
+  else if(d < 1e6 * Unit::pc) {
+    value = kpc();
+    unit = "kpc";
+  }
+  else if(d < 1e9 * Unit::pc) {
+    value = Mpc();
+    unit = "Mpc";
+  }
+  else {
+    value = Gpc();
+    unit = "Gpc";
+  }
+
+  snprintf(fmt, sizeof(fmt), "%%.%df", decimals);
+  snprintf(s, sizeof(s), fmt, value);
+
+  return std::string(s) + " " + std::string(unit);
 }
 
 /**

@@ -54,7 +54,7 @@ public:
 
   bool equals(const std::string& funcname, const std::string& a, const std::string& b) {
     if(a != b) {
-      std::cerr << "ERROR! " << _classname << "::" << funcname << ": " << a << " != " << b << "\n";
+      std::cerr << "ERROR! " << _classname << "::" << funcname << ":\n '" << a << "' != \n '" << b << "'\n";
       return false;
     }
     return true;

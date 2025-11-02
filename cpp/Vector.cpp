@@ -26,9 +26,6 @@ Vector::Vector(double x, double y, double z) {
     _valid = true;
 }
 
-Vector::Vector(const double vel[3], double unit)
-: Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
-
 Vector Vector::operator*(double r) const {
   return scaled(r);
 }
@@ -75,16 +72,19 @@ double Vector::projection_on(const Vector& v) const {
   return dot(v) / v.abs();
 }
 
-Vector Vector::unit_vector() const {
-  return scaled(1.0 / abs());
+std::string Vector::to_string(int decimals) const {
+  char sx[40] = {'\0'}, sy[40] = {'\0'}, sz[40] = {'\0'};
+
+  novas_print_decimal(_component[0], decimals, sx, sizeof(sx));
+  novas_print_decimal(_component[1], decimals, sy, sizeof(sy));
+  novas_print_decimal(_component[2], decimals, sz, sizeof(sz));
+
+  return "VEC (" + std::string(sx) + ", " + std::string(sy) + ", " + std::string(sz) + ")";
 }
 
-std::string Vector::to_string() const {
-  char sx[20] = {'\0'}, sy[20] = {'\0'}, sz[20] = {'\0'};
-  snprintf(sx, sizeof(sx), "%.6g", _component[0]);
-  snprintf(sy, sizeof(sy), "%.6g", _component[1]);
-  snprintf(sz, sizeof(sz), "%.6g", _component[2]);
-  return "VEC ( " + std::string(sx) + ", " + std::string(sy) + ", " + std::string(sz) + " )";
+
+Vector Vector::unit_vector() const {
+  return scaled(1.0 / abs());
 }
 
 Vector operator*(double factor, const Vector& v) {

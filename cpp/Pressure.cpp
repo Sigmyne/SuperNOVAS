@@ -88,5 +88,4 @@ Pressure Pressure::atm(double value) {
   return Pressure(value * Unit::atm);
 }
 
-
-}
+} // namespace supernovas

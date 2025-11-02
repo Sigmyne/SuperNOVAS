@@ -55,8 +55,8 @@ const Position& Position::origin() {
   return _origin;
 }
 
-std::string Position::to_string() const {
-  return "POS ( " + Distance(x()).to_string() + ", " + Distance(y()).to_string() + ", " + Distance(z()).to_string() + ")";
+std::string Position::to_string(int decimals) const {
+  return "POS (" + Distance(x()).to_string(decimals) + ", " + Distance(y()).to_string(decimals) + ", " + Distance(z()).to_string(decimals) + ")";
 }
 
 const Position& Position::invalid() {

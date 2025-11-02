@@ -46,14 +46,14 @@ int main() {
   if(!test.equals("kpc(-1 kpc)", d.kpc(), -1.0, 1e-15)) n++;
   if(!test.equals("abs(-1 kpc)", d.abs().kpc(), 1.0, 1e-15)) n++;
 
-  Distance(10.0 * Unit::m).to_string();
-  Distance(10.0 * Unit::km).to_string();
-  Distance(1e4 * Unit::km).to_string();
-  Distance(10.0 * Unit::au).to_string();
-  Distance(10.0 * Unit::pc).to_string();
-  Distance(10.0 * Unit::kpc).to_string();
-  Distance(10.0 * Unit::Mpc).to_string();
-  Distance(10.0 * Unit::Gpc).to_string();
+  if(!test.equals("to_string(10 m)", Distance(10.0 * Unit::m).to_string(), "10.000 m")) n++;
+  if(!test.equals("to_string(10 km)", Distance(10.0 * Unit::km).to_string(), "10.000 km")) n++;
+  if(!test.equals("to_string(10000 km)", Distance(1e4 * Unit::km).to_string(), "10000.000 km")) n++;
+  if(!test.equals("to_string(10 AU)", Distance(10.0 * Unit::au).to_string(), "10.000 AU")) n++;
+  if(!test.equals("to_string(10 pc)", Distance(10.0 * Unit::pc).to_string(), "10.000 pc")) n++;
+  if(!test.equals("to_string(10 kpc)", Distance(10.0 * Unit::kpc).to_string(), "10.000 kpc")) n++;
+  if(!test.equals("to_string(10 Mpc)", Distance(10.0 * Unit::Mpc).to_string(), "10.000 Mpc")) n++;
+  if(!test.equals("to_string(10 Gpc)", Distance(10.0 * Unit::Gpc).to_string(), "10.000 Gpc")) n++;
 
   std::cout << "Distance.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

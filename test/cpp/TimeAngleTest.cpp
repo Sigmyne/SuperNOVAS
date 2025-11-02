@@ -63,7 +63,7 @@ int main() {
   if(!test.equals("minutes(x)", TimeAngle::minutes(1.0).arcmin(), 15.0, 1e-14)) n++;
   if(!test.equals("seconds(x)", TimeAngle::seconds(1.0).arcsec(), 15.0, 1e-14)) n++;
 
-  c.to_string();
+  if(!test.equals("to_string()", a.to_string(), "03h 00m 00.000s")) n++;
 
   std::cout << "TimeAngle.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;
