@@ -136,6 +136,55 @@ if(ENABLE_CPP)
     string(APPEND PC_LIBS "-lsupernovas++ ")
 endif()
 
+
+# Sources
+set(SUPERNOVAS_CORE_SOURCES
+    src/target.c
+    src/observer.c
+    src/earth.c
+    src/equator.c
+    src/system.c
+    src/transform.c
+    src/cio.c
+    src/orbital.c
+    src/spectral.c
+    src/grav.c
+    src/nutation.c
+    src/timescale.c
+    src/frames.c
+    src/place.c
+    src/calendar.c
+    src/refract.c
+    src/naif.c
+    src/parse.c
+    src/util.c
+    src/planets.c
+    src/itrf.c
+    src/ephemeris.c
+    src/solsys3.c
+    src/solsys-ephem.c
+    src/moon.c
+)
+
+add_library(core ${SUPERNOVAS_CORE_SOURCES})
+add_library(supernovas::core ALIAS core)
+
+set_target_properties(core PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+    OUTPUT_NAME supernovas
+)
+
+target_include_directories(core PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+
+# Link with math libs as necessary
+if(MATH_LIB)
+    target_link_libraries(core ${MATH})
+endif()
+
 # ----------------------------------------------------------------------------
 # Build libraries from source
 

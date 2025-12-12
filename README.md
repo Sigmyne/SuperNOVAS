@@ -414,7 +414,7 @@ The latter will also install the `calceph` library dependency, as needed.
 <a name="linux-packages"></a>
 ### Linux packages
 
-__SuperNOVAS__ is packaged for both Debian and Fedora / EPEL Linux distributions, and derivatives based on these 
+__SuperNOVAS__ is packaged for Debian, Fedora / EPEL, and NixOS Linux distributions, and derivatives based on these 
 (Ubuntu, Mint, RHEL, CentOS Stream, Alma Linux, Rocky Linux, Oracle Linux etc.).
 
 <details>

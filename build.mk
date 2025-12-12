@@ -54,7 +54,7 @@ CHECK_DIR ?= .
 .PHONY: analyze
 analyze:
 	@echo "   [analyze]"
-	@cppcheck $(CPPFLAGS) $(CHECKOPTS) $(CHECK_DIR)
+	@cppcheck $(CPPFLAGS) -DCPPCHECK=1 $(CHECKOPTS) $(CHECK_DIR)
 
 # Static code analysis viacat Facebook's infer
 .PHONY: infer
