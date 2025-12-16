@@ -5,19 +5,19 @@
  * @author Attila Kovacs
  *
  *  This module implements self-contained calculations for the Moon's position, such as via
- *  Keplerian orbital approzetamation, and through a semi-analytical model by Chapront-Touze &amp;
- *  Chapront 1988.
+ *  Keplerian orbital approximation, and through a semi-analytical model by Chapront-Touze &amp;
+ *  Chapront 1988 / Chapront &amp; Francou 2002, 2003.
  *
  *  In principle, the latter can predict the Moon's position to the 10-m level precision, but is quite
  *  expensive to calculate with around 35,000 sinusoidal terms. In SuperNOVAS we offer only a truncated
- *  version, with 100-m level precision, using up to 3408 terms. And, one may opt to truncate further
- *  to obtain less precises results faster if needed.
+ *  version, with 100-m level precision (typically), using up to 3408 terms. And, one may opt to truncate
+ *  further to obtain less precises results faster if needed.
  *
  *  REFERENCES:
  *  <ol>
  *   <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- *   <li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
- *   <li>Chapront-Touze, M., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *   <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+ *   <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
  *       https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
  *  </ol>
  *
@@ -75,7 +75,7 @@ typedef struct {
 
 // @formatter:off
 /**
- * Table 1, from Chapront-Touze & Francou (2002)
+ * Table 1, from Chapront &amp; Francou (2002)
  * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/elpmpp02.pdf
  *
  * with corrections for DE406 (long term).
@@ -133,7 +133,7 @@ static double elp_prime(int k, double t) {
 }
 
 /**
- * Calculates the P,Q parameters for transforming position in the ELP of date to the
+ * Calculates the P,Q parameters for transforming position in the ELP of date to the mean inertial
  * ecliptic and equinox of J2000.
  *
  * @param t       [cy] Julian centuries since J2000
@@ -149,14 +149,14 @@ static void get_PQ(double t, double *P, double *Q) {
 
 /**
  * Calculates ELP2000 corrected secular parameters (W<sub>1</sub>, W<sub>2</sub>, W<sub>3</sub>, T, and
- * &omega;&prime;) from Chapront-Touze &amp; Francou 2002.
+ * &omega;&prime;) from Chapront &amp; Francou 2002.
  *
  * @param t         [cy] Julian centuries from J2000.
  * @param elp       ELP2000 secular parameters, corected for DE405 fitted values.
  * @param delaunay  Delaunay arguments, corrected for ELP2000 / DE405 fitted values.
  */
 static void elp_args(double t, elp_mean_args *restrict elp, novas_delaunay_args *restrict delaunay) {
-  // From Chapront-Touze, M., & Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+  // From Chapront, J., & Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
   // https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
   elp->W1      = elp_arg(0, t);
   elp->W2      = elp_arg(1, t);
@@ -164,7 +164,7 @@ static void elp_args(double t, elp_mean_args *restrict elp, novas_delaunay_args 
   elp->T       = elp_arg(3, t);
   elp->omega1  = elp_arg(4, t);
 
-  // Chapront-Touze & Francou (2002), Eq. 3.
+  // Chapront & Francou (2002), Eq. 3.
   delaunay->D = elp->W1 - elp->T + M_PI;
   delaunay->F = elp->W1 - elp->W3;
   delaunay->l = elp->W1 - elp->W2;
@@ -235,7 +235,7 @@ static double elp_cos(const novas_delaunay_args *restrict args, const elp_main_t
  * @param t         [cy] Julian centuries from J2000.
  * @param args      Delaunay arguments, corrected for ELP2000 / DE405 values.
  * @param planets   [rad] Planet longitudes from Venus [2] through Saturn [6].
- * @param zeta      [rad] &zeta;, see Chapront-Touze &amp; Francou 2002.
+ * @param zeta      [rad] &zeta;, see Chapront &amp; Francou 2002.
  * @param coeffs    Perturbation series (multiples and sine coefficient and phase).
  * @param n         Number of terms in perturbation series.
  * @param limit     [arcsec|km] limiting term amplitude for truncated series, or 0.0 for all
@@ -278,9 +278,9 @@ static double elp_pert(double t, const novas_delaunay_args *restrict args, const
 
 #if !CPPCHECK
 /**
- * Calculates the Moon's geocentric position using the ELP/MPP02 model by Chapront-Touze &amp;
- * Francou (2003), in the ELP2000 reference plane (i.e. the inertial ecliptic and equinox of
- * J2000), down to the specified limiting term amplitude.
+ * Calculates the Moon's geocentric position using the ELP/MPP02 model by Chapront &amp; Francou
+ * (2003), in the ELP2000 reference plane (i.e. the inertial ecliptic and equinox of J2000), down
+ * to the specified limiting term amplitude.
  *
  * NOTES:
  * <ol>
@@ -292,8 +292,8 @@ static double elp_pert(double t, const novas_delaunay_args *restrict args, const
  * REFERENCES:
  * <ol>
  * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront-Touze, M., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+ * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
  * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
  * </ol>
  *
@@ -449,9 +449,9 @@ static int check_earth_bound(const novas_frame *frame) {
 }
 
 /**
- * Returns the Moon's geometric position and velocity, relative to an Earth-based observer
- * (or the geocenter), using the ELP/MPP02 model by Chapront-Touze &amp; Francou (2003). Only terms
- * larger than the specified limit are used to provide a result with the desired precision.
+ * Returns the Moon's geometric position and velocity, relative to an Earth-based observer (or the
+ * geocenter), using the ELP/MPP02 model by Chapront &amp; Francou (2003). Only terms larger than
+ * the specified limit are used to provide a result with the desired precision.
  *
  * NOTES:
  * <ol>
@@ -463,8 +463,8 @@ static int check_earth_bound(const novas_frame *frame) {
  * REFERENCES:
  * <ol>
  * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront-Touze, M., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+ * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
  * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
  * </ol>
  *
@@ -555,7 +555,7 @@ int novas_moon_elp_posvel_fp(const novas_timespec *restrict time, const on_surfa
 
 /**
  * Returns the Moon's geometric position and velocity, relative to an Earth-based observer
- * (or the geocenter), using the ELP/MPP02 model by Chapront-Touze &amp; Francou (2003).
+ * (or the geocenter), using the ELP/MPP02 model by Chapront &amp; Francou (2003).
  *
  * NOTES:
  * <ol>
@@ -567,8 +567,8 @@ int novas_moon_elp_posvel_fp(const novas_timespec *restrict time, const on_surfa
  * REFERENCES:
  * <ol>
  * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront-Touze, M., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+ * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
  * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
  * </ol>
  *
@@ -607,7 +607,19 @@ int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_referenc
   return 0;
 }
 
-static int moon_aberration(const novas_timespec *restrict time, const on_surface *restrict obs, double *restrict pos) {
+/**
+ * Corrects the Moon's position for aberration for an Earth-based observer.
+ *
+ * @param time          Astrometric time
+ * @param obs           Geodetic observer location
+ * @param v_ground      [km/s] Observer's velocity over the ground, or NULL if fixed site location. It is
+ *                      unused if `obs` is NULL.
+ * @param sys           Celestial coordinate reference system in which position is given
+ * @param[in,out] pos   [AU] Moon's position (in: geometric, out: aberration corrected).
+ * @return              0
+ */
+static int moon_aberration(const novas_timespec *restrict time, const on_surface *restrict obs, const double *restrict v_ground,
+        enum novas_reference_system sys, double *restrict pos) {
   const double pos0[3] = { pos[0], pos[1], pos[2] };
   double ovel[3] = {0.0};
   double d, vobs, beta, gamma, p, q, r;
@@ -616,6 +628,18 @@ static int moon_aberration(const novas_timespec *restrict time, const on_surface
     return 0;
 
   terra(obs, novas_time_gst(time, NOVAS_REDUCED_ACCURACY), NULL, ovel);
+
+  if(v_ground) {
+    int i;
+    for(i = 3; --i >= 0; )
+      ovel[i] += v_ground[i] * NOVAS_KMS / (NOVAS_AU / NOVAS_DAY);
+  }
+
+  if(sys != NOVAS_TOD) {
+    // observer velocity in the desired coordinate system
+    tod_to_gcrs(novas_get_time(time, NOVAS_TDB), NOVAS_REDUCED_ACCURACY, ovel, ovel);
+    icrs_to_sys(novas_get_time(time, NOVAS_TDB), ovel, sys);
+  }
 
   d = novas_vlen(pos);
 
@@ -637,7 +661,7 @@ static int moon_aberration(const novas_timespec *restrict time, const on_surface
 
 /**
  * Returns the Moon's apparent place, relative to an Earth-based observer (or the geocenter),
- * using the ELP/MPP02 model by Chapront-Touze &amp; Francou (2003). Only terms larger than the
+ * using the ELP/MPP02 model by Chapront &amp; Francou (2003). Only terms larger than the
  * specified limit are used to provide a result with the desired precision.
  *
  * NOTES:
@@ -650,13 +674,15 @@ static int moon_aberration(const novas_timespec *restrict time, const on_surface
  * REFERENCES:
  * <ol>
  * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront-Touze, M., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+ * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
  * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
  * </ol>
  *
  * @param time      Astrometric time of observation.
  * @param obs       Earth-based observer location, or NULL for geocentric.
+ * @param v_ground  [km/s] Observer's velocity over the ground, or NULL if fixed site location.
+ *                  It is unused if `obs` in NULL.
  * @param limit     [arcsec|km] Sum only terms with amplitudes larger than this limit. The
  *                  resulting accuracy is typically an order-of-magnitude above the set limiting
  *                  amplitude.
@@ -674,8 +700,8 @@ static int moon_aberration(const novas_timespec *restrict time, const on_surface
  * @sa novas_make_moon_orbit()
  * @sa novas_sky_pos()
  */
-int novas_moon_elp_sky_pos_fp(const novas_timespec *restrict time, const on_surface *restrict obs, double limit,
-        enum novas_reference_system sys, sky_pos *restrict pos) {
+int novas_moon_elp_sky_pos_fp(const novas_timespec *restrict time, const on_surface *restrict obs, const double *restrict v_ground,
+        double limit, enum novas_reference_system sys, sky_pos *restrict pos) {
   static const char *fn = "novas_moon_elp_skypos_fp";
 
   double p[3] = {0.0}, v[3] = {0.0};
@@ -687,7 +713,7 @@ int novas_moon_elp_sky_pos_fp(const novas_timespec *restrict time, const on_surf
   prop_error(fn, novas_moon_elp_posvel_fp(time, obs, limit, sys, p, v), 0);
 
   // Aberration correction
-  moon_aberration(time, obs, p);
+  moon_aberration(time, obs, v_ground, sys, p);
 
   vector2radec(p, &pos->ra, &pos->dec);
   pos->dis = novas_vlen(p);
@@ -702,20 +728,20 @@ int novas_moon_elp_sky_pos_fp(const novas_timespec *restrict time, const on_surf
 
 /**
  * Returns the Moon's apparent place, relative to an Earth-based observer (or the geocenter),
- * using the ELP/MPP02 model by Chapront-Touze &amp; Francou (2003).
+ * using the ELP/MPP02 model by Chapront &amp; Francou (2003).
  *
  * NOTES:
  * <ol>
  * <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with
  * amplitudes larger than 1 mas, resulting in a limiting accuracy below the 1 arcsec level.
- * </li>
+ * </li>&frame->observer.
  * </ol>
  *
  * REFERENCES:
  * <ol>
  * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront-Touze, M., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+ * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
  * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
  * </ol>
  *
@@ -739,13 +765,17 @@ int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_referen
 
   double limit = (frame->accuracy == NOVAS_REDUCED_ACCURACY) ? 1e-2 : 0.0;
   const on_surface *loc = NULL;
+  const double *vg = NULL;
 
   prop_error(fn, check_earth_bound(frame), 0);
 
-  if(frame->observer.where !=  NOVAS_OBSERVER_AT_GEOCENTER)
+  if(frame->observer.where !=  NOVAS_OBSERVER_AT_GEOCENTER) {
     loc = &frame->observer.on_surf;
+    if(frame->observer.where == NOVAS_AIRBORNE_OBSERVER)
+      vg = frame->observer.near_earth.sc_vel;
+  }
 
-  prop_error("novas_moon_elp_skypos", novas_moon_elp_sky_pos_fp(&frame->time, loc, limit, sys, pos), 0);
+  prop_error("novas_moon_elp_skypos", novas_moon_elp_sky_pos_fp(&frame->time, loc, vg, limit, sys, pos), 0);
   return 0;
 }
 
@@ -763,7 +793,7 @@ int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_referen
  *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
  *  <li>Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics,
  *      vol. 190, p. 342-352.</li>
- *  <li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
+ *  <li>Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735</li>
  *  <li>Laskar J., 1986, A&amp;A, 157, 59</li>
  * </ol>
  *
@@ -887,7 +917,6 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
     int8_t iF;      // multiple of F
     float A;        // [arcsec,km] amplitude
   } elp_coeffs;
-
 
   // From ELP01: https://cyrano-se.obspm.fr/pub/2_lunar_solutions/1_elp82b/elp_series/ELP01
   static const elp_coeffs clon[8] = {
@@ -1098,8 +1127,8 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
 
 /**
  * Calculates the Moon's phase at a given time. It uses orbital models for Earth (E.M. Standish
- * and J.G. Williams 1992), and for the Moon (Chapront, J. et al., 2002), and takes into account
- * the slightly eccentric nature of both orbits.
+ * and J.G. Williams 1992), and the ELP2000/MPP02 semi-analytical model for the Moon (Chapront
+ * &amp; Francou, 2002, 2003), and takes into account the slightly eccentric nature of both orbits.
  *
  * NOTES:
  * <ol>
@@ -1109,7 +1138,7 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
  * different answers, but regardless of the details most phase calculations should match to within
  * a few degrees.</li>
  * <li>As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the
- * Moon by Chapront-Touze &amp; Francou (2003).</li>
+ * Moon by Chapront &amp; Francou (2003).</li>
  * </ol>
  *
  * NOTES:
@@ -1126,6 +1155,7 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
  *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
  *  <li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
  *      vol. 124, no. 1, July 1983, p. 50-62.</li>
+ *  <li>Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735</li>
  * </ol>
  *
  * @param jd_tdb      [day] Barycentric Dynamical Time (TDB) based Julian Date.
@@ -1173,8 +1203,8 @@ double novas_moon_phase(double jd_tdb) {
 /**
  * Calculates the date / time at which the Moon will reach the specified phase next, _after_ the
  * specified time. It uses orbital models for Earth (E.M. Standish and J.G. Williams 1992), and
- * for the Moon (Chapront, J. et al., 2002), and takes into account the slightly eccentric nature
- * of both orbits.
+ * the ELP2000/MPP02 semi-analytical model for the Moon (Chapront &amp; Francou, 2002, 2003), and
+ * takes into account the slightly eccentric nature of both orbits.
  *
  * NOTES:
  * <ol>
@@ -1184,7 +1214,7 @@ double novas_moon_phase(double jd_tdb) {
  * different answers, but regardless of the details most phase calculations should match give or
  * take a few hours.</li>
  * <li>As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the
- * Moon by Chapront-Touze &amp; Francou (2003).</li>
+ * Moon by Chapront &amp; Francou (2003).</li>
  * </ol>
  *
  * REFERENCES:
@@ -1193,7 +1223,7 @@ double novas_moon_phase(double jd_tdb) {
  *      p. 507</li>
  *  <li>E.M. Standish and J.G. Williams 1992.</li>
  *  <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+ *  <li>Chapront, J., &amp; Francou, G., 2002, A&amp;A 387, 700–709</li>
  *  <li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
  *      vol. 124, no. 1, July 1983, p. 50-62.</li>
  * </ol>

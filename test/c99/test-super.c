@@ -4326,7 +4326,9 @@ static int test_moon_elp_posvel() {
 
     novas_moon_elp_ecl_pos(tdb, 0.0, pos);
     for(i = 3; --i >= 0; ) pos[i] *= NOVAS_AU / NOVAS_KM;
-    sprintf(label, "moon_elp_posvel:%f", tdb);
+    sprintf(label, "moon_elp_posvel:%.1f", tdb);
+
+    printf("  ... %s: d = %.3f km\n", label, novas_vdist(pos, p0));
 
     if(!is_ok(label, check_equal_pos(pos, p0, 1.0))) n++;
   }
