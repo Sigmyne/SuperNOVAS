@@ -62,11 +62,11 @@ typedef struct {
 } elp_pert_term;
 
 typedef struct {
-  double W1;            /// [rad]
-  double W2;            /// [rad]
-  double W3;            /// [rad]
-  double T;             /// [rad]
-  double omega1;        /// [rad]
+  double W1;            /// [rad] Moon mean ecliptic longitude (ELP2000)
+  double W2;            /// [rad] Mean ecliptic longitude of Moon's periapsis (ELP2000)
+  double W3;            /// [rad] Mean longitude of Moon's ascending node (ELP2000)
+  double T;             /// [rad] Mean ecliptic longitude of Earth
+  double omega1;        /// [rad] Mean ecliptic longitude of Earth perihelion (ELP2000)
 } elp_mean_args;
 
 
@@ -147,7 +147,14 @@ static void get_PQ(double t, double *P, double *Q) {
   // @formatter:on
 }
 
-
+/**
+ * Calculates ELP2000 corrected secular parameters (W<sub>1</sub>, W<sub>2</sub>, W<sub>3</sub>, T, and
+ * &omega;&prime;) from Chapront-Touze &amp; Francou 2002.
+ *
+ * @param t         [cy] Julian centuries from J2000.
+ * @param elp       ELP2000 secular parameters, corected for DE405 fitted values.
+ * @param delaunay  Delaunay arguments, corrected for ELP2000 / DE405 fitted values.
+ */
 static void elp_args(double t, elp_mean_args *restrict elp, novas_delaunay_args *restrict delaunay) {
   // From Chapront-Touze, M., & Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
   // https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
@@ -166,6 +173,16 @@ static void elp_args(double t, elp_mean_args *restrict elp, novas_delaunay_args 
   delaunay->Omega = elp->W3;
 }
 
+/**
+ * Calculates the ELP main problem sine series for a coordinate.
+ *
+ * @param args      Delaunay args, corrected for ELP2000 / DE405 fitted values.
+ * @param coeffs    ELP2000 Fourier series (multiples and sine coefficient).
+ * @param n         Number of terms in Fourier series.
+ * @param limit     [arcsec|km] limiting term amplitude for truncated series, or 0.0 for all
+ *                  available terms.
+ * @return          [arcsec|km] The calculated coordinate dU, V, or r.
+ */
 static double elp_sin(const novas_delaunay_args *restrict args, const elp_main_term *restrict coeffs, int n, double limit) {
   int i;
   double sum = 0.0;
@@ -184,6 +201,16 @@ static double elp_sin(const novas_delaunay_args *restrict args, const elp_main_t
   return sum;
 }
 
+/**
+ * Calculates the ELP main problem cosine series for a coordinate.
+ *
+ * @param args      Delaunay args, corrected for ELP2000 / DE405 fitted values.
+ * @param coeffs    ELP2000 Fourier series (multiples and cosine coefficient).
+ * @param n         Number of terms in Fourier series.
+ * @param limit     [arcsec|km] limiting term amplitude for truncated series, or 0.0 for all
+ *                  available terms.
+ * @return          [arcsec|km] The calculated coordinate dU, V, or r.
+ */
 static double elp_cos(const novas_delaunay_args *restrict args, const elp_main_term *restrict coeffs, int n, double limit) {
   int i;
   double sum = 0.0;
@@ -202,6 +229,19 @@ static double elp_cos(const novas_delaunay_args *restrict args, const elp_main_t
   return sum;
 }
 
+/**
+ * Calculates the ELP2000 Poisson perturbation series for a coordinate.
+ *
+ * @param t         [cy] Julian centuries from J2000.
+ * @param args      Delaunay arguments, corrected for ELP2000 / DE405 values.
+ * @param planets   [rad] Planet longitudes from Venus [2] through Saturn [6].
+ * @param zeta      [rad] &zeta;, see Chapront-Touze &amp; Francou 2002.
+ * @param coeffs    Perturbation series (multiples and sine coefficient and phase).
+ * @param n         Number of terms in perturbation series.
+ * @param limit     [arcsec|km] limiting term amplitude for truncated series, or 0.0 for all
+ *                  available terms.
+ * @return          [arcsec|km] The calculate perturbation correction.
+ */
 static double elp_pert(double t, const novas_delaunay_args *restrict args, const double *restrict planets, double zeta,
         const elp_pert_term **restrict coeffs, const int *restrict n, double limit) {
   double sum = 0.0;
@@ -239,8 +279,8 @@ static double elp_pert(double t, const novas_delaunay_args *restrict args, const
 #if !CPPCHECK
 /**
  * Calculates the Moon's geocentric position using the ELP/MPP02 model by Chapront-Touze &amp;
- * Francou (2003), in the ELP2000 reference plane (i.e. the ecliptic of J2000), down to the
- * specified limiting term amplitude.
+ * Francou (2003), in the ELP2000 reference plane (i.e. the inertial ecliptic and equinox of
+ * J2000), down to the specified limiting term amplitude.
  *
  * NOTES:
  * <ol>
@@ -260,7 +300,8 @@ static double elp_pert(double t, const novas_delaunay_args *restrict args, const
  * @param jd_tdb    [day] Barycentric Dynamical Time (TDB) based Julian date.
  * @param limit     [arcsec|km] Sum only the harmonic terms with amplitudes larger than this
  *                  limit.
- * @param[out] pos  [AU] Output geocentric position vector in the Ecliptic of J2000.
+ * @param[out] pos  [AU] Output geocentric position vector w.r.t. the intertial ecliptic and equinox
+ *                  of J2000.
  * @return          0 if successful, or else -1 if there was an error (errno will indicate the
  *                  type of error.
  *
@@ -344,7 +385,18 @@ int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
 }
 #endif // CPPCHECK
 
-static int icrs_to_sys(double tdb, double *pos, enum novas_reference_system sys) {
+/**
+ * Convers an ICRS equatorial position vector to a vector in the specified celestial coordinate
+ * reference system, at the specified time of observation
+ *
+ * @param tdb           [day] Barycentric Dynamical Time (TDB) based Julian date.
+ * @param[in, out] v    [arb.u.] Vector to transform
+ * @param sys           The desired output reference system. It may not be Earth-bound TIRS or
+ *                      ITRS.
+ * @return              0 if successful, or else -1 if the coordinate system is invalid (errno
+ *                      is set to EINVAL).
+ */
+static int icrs_to_sys(double tdb, double *v, enum novas_reference_system sys) {
   static const char *fn = "icrs_to_sys";
 
   switch(sys) {
@@ -352,16 +404,16 @@ static int icrs_to_sys(double tdb, double *pos, enum novas_reference_system sys)
     case NOVAS_ICRS:
       break;
     case NOVAS_J2000:
-      gcrs_to_j2000(pos, pos);
+      gcrs_to_j2000(v, v);
       break;
     case NOVAS_MOD:
-      gcrs_to_mod(tdb, pos, pos);
+      gcrs_to_mod(tdb, v, v);
       break;
     case NOVAS_TOD:
-      gcrs_to_tod(tdb, NOVAS_REDUCED_ACCURACY, pos, pos);
+      gcrs_to_tod(tdb, NOVAS_REDUCED_ACCURACY, v, v);
       break;
     case NOVAS_CIRS: {
-      gcrs_to_cirs(tdb, NOVAS_REDUCED_ACCURACY, pos, pos);
+      gcrs_to_cirs(tdb, NOVAS_REDUCED_ACCURACY, v, v);
       break;
     }
     default:
@@ -370,6 +422,14 @@ static int icrs_to_sys(double tdb, double *pos, enum novas_reference_system sys)
   return 0;
 }
 
+/**
+ * Checks that a frame is valid and is for an earth-bound observer (geocentric, on-Earth, or
+ * airborne observer).
+ *
+ * @param frame     The frame to check
+ * @return          0 if the frame is valid and is for an Earth-bound observer, or else -1
+ *                  (errno set to EINVAL).
+ */
 static int check_earth_bound(const novas_frame *frame) {
   static const char *fn = "check_earth_bound";
   enum novas_observer_place where;
@@ -720,6 +780,7 @@ int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_referen
 int novas_make_moon_mean_orbit(double jd_tdb, novas_orbital *restrict orbit) {
   novas_orbital def = NOVAS_ORBIT_INIT;
   double W1, t;
+  double P, Q, pole[3] = {0.0}, dOmega;
 
   if(!orbit)
     return novas_error(-1, EINVAL, "novas_make_moon_orbit", "output orbital is NULL");
@@ -775,22 +836,18 @@ int novas_make_moon_mean_orbit(double jd_tdb, novas_orbital *restrict orbit) {
 
   // Transform from the mean ecliptic of date to the mean ecliptic of J2000
   // Laskar 1986, A&A, 157, 59
-  if(fabs(t) > 1e-4) {
-    double P, Q, pole[3] = {0.0}, dOmega;
+  pole[1] = -sin(orbit->i * DEGREE);
+  pole[2] =  cos(orbit->i * DEGREE);
 
-    pole[1] = -sin(orbit->i * DEGREE);
-    pole[2] =  cos(orbit->i * DEGREE);
+  get_PQ(t, &P, &Q);
+  novas_Rx(-P, pole);
+  novas_Ry(Q, pole);
 
-    get_PQ(t, &P, &Q);
-    novas_Rx(-P, pole);
-    novas_Ry(Q, pole);
+  orbit->i = atan2(sqrt(pole[0] * pole[0] + pole[1] * pole[1]), pole[2]) / DEGREE;
+  dOmega = atan2(pole[0], -pole[1]) / DEGREE;
 
-    orbit->i = atan2(sqrt(pole[0] * pole[0] + pole[1] * pole[1]), pole[2]) / DEGREE;
-    dOmega = atan2(pole[0], -pole[1]) / DEGREE;
-
-    orbit->Omega += dOmega;
-    orbit->omega -= dOmega;
-  }
+  orbit->Omega += dOmega;
+  orbit->omega -= dOmega;
 
   return 0;
 }
