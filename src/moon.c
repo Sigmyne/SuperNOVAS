@@ -69,10 +69,6 @@ typedef struct {
   double omega1;        /// [rad] Mean ecliptic longitude of Earth perihelion (ELP2000)
 } elp_mean_args;
 
-
-#include "elp2000/elp-lat.tab.c"
-#include "elp2000/elp-dis.tab.c"
-
 // @formatter:off
 /**
  * Table 1, from Chapront &amp; Francou (2002)
@@ -312,7 +308,11 @@ static double elp_pert(double t, const novas_delaunay_args *restrict args, const
  * @sa novas_make_moon_orbit()
  */
 int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
+  static THREAD_LOCAL double last_tdb = NAN, last_limit = NAN, last_pos[3];
+
   /// \cond PRIVATE
+#  include "elp2000/elp-lat.tab.c"
+#  include "elp2000/elp-dis.tab.c"
 #  include "elp2000/elp-lon.tab.c"
 #  include "elp2000/elp-pert-lon.tab.c"
 #  include "elp2000/elp-pert-lat.tab.c"
@@ -331,6 +331,11 @@ int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
 
   if(!pos)
     return novas_error(-1, EINVAL, "novas_moon_elp_ecl_pos", "output position vector is NULL");
+
+  if(novas_time_equals(jd_tdb, last_tdb) && limit == last_limit) {
+    memcpy(pos, last_pos, sizeof(last_pos));
+    return 0;
+  }
 
   // Delaunay args of ELP2000 (Chapront & Francou 2003).
   elp_args(t, &elp, &args);
@@ -381,9 +386,76 @@ int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
   pos[2] += (-P * S) * p[0] + (Q * S) * p[1] - (P * P + Q * Q) * p[2];
   // @formatter:on
 
+  memcpy(last_pos, pos, sizeof(last_pos));
+  last_tdb = jd_tdb;
+  last_limit = limit;
+
   return 0;
 }
 #endif // CPPCHECK
+
+
+/**
+ * Calculates the Moon's geocentric velocity using the ELP/MPP02 model by Chapront &amp; Francou
+ * (2003), in the ELP2000 reference plane (i.e. the inertial ecliptic and equinox of J2000), down
+ * to the specified limiting term amplitude.
+ *
+ * NOTES:
+ * <ol>
+ * <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ * amplitudes larger than 1 mas, resulting in a limiting accuracy below 1 km level.
+ * </li>
+ * </ol>
+ *
+ * REFERENCES:
+ * <ol>
+ * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
+ * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+ * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
+ * </ol>
+ *
+ * @param jd_tdb    [day] Barycentric Dynamical Time (TDB) based Julian date.
+ * @param limit     [arcsec|km] Sum only the harmonic terms with amplitudes larger than this
+ *                  limit.
+ * @param[out] vel  [AU/day] Output geocentric velocity vector w.r.t. the intertial ecliptic and
+ *                  equinox of J2000.
+ * @return          0 if successful, or else -1 if there was an error (errno will indicate the
+ *                  type of error.
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_moon_elp_posvel(), novas_moon_elp_sky_pos()
+ * @sa novas_make_moon_orbit()
+ */
+int novas_moon_elp_ecl_vel(double jd_tdb, double limit, double *vel) {
+  static THREAD_LOCAL double last_tdb = NAN, last_limit = NAN, last_vel[3];
+
+  double p1[3] = {0.0}, p2[3] = {0.0};
+  int k;
+
+  if(!vel)
+    return novas_error(-1, EINVAL, "novas_moon_elp_ecl_vel", "output velocity vector is NULL");
+
+  novas_moon_elp_ecl_pos(jd_tdb - ELP_DELTA, limit, p1);
+  novas_moon_elp_ecl_pos(jd_tdb + ELP_DELTA, limit, p2);
+
+  // calculate velocity on cord
+  for(k = 3; --k >= 0; )
+    vel[k] = (p2[k] - p1[k]) / (2.0 * ELP_DELTA);
+
+  if(novas_time_equals(jd_tdb, last_tdb) && limit == last_limit) {
+    memcpy(vel, last_vel, sizeof(last_vel));
+    return 0;
+  }
+
+  memcpy(last_vel, vel, sizeof(last_vel));
+  last_tdb = jd_tdb;
+  last_limit = limit;
+
+  return 0;
+}
 
 /**
  * Convers an ICRS equatorial position vector to a vector in the specified celestial coordinate
@@ -495,13 +567,17 @@ int novas_moon_elp_posvel_fp(const novas_timespec *restrict time, const on_surfa
         enum novas_reference_system sys, double *restrict pos, double *restrict vel) {
   static const char *fn = "novas_moon_elp_posvel_fp";
 
-  double tdb = novas_get_time(time, NOVAS_TDB);
+  double tdb;
   double opos[3] = {0.0}, ovel[3] = {0.0};
   enum novas_accuracy acc = limit < 1e-3 ? NOVAS_FULL_ACCURACY : NOVAS_REDUCED_ACCURACY;
+
+  if(!time)
+    return novas_error(-1, EINVAL, fn, "input time specification is NULL");
 
   if(!pos && !vel)
     return novas_error(-1, EINVAL, fn, "both output pos and vel are NULL");
 
+  tdb = novas_get_time(time, NOVAS_TDB);
   if(isnan(tdb))
     novas_trace(fn, -1, 0);
 
@@ -511,36 +587,10 @@ int novas_moon_elp_posvel_fp(const novas_timespec *restrict time, const on_surfa
     tod_to_gcrs(tdb, NOVAS_REDUCED_ACCURACY, ovel, ovel);
   }
 
-  if(vel) {
-    double p1[3] = {0.0}, p2[3] = {0.0};
-    int k;
-
-    novas_moon_elp_ecl_pos(tdb - ELP_DELTA, limit, p1);
-    novas_moon_elp_ecl_pos(tdb + ELP_DELTA, limit, p2);
-
-    // calculate velocity on cord
-    for(k = 3; --k >= 0; ) {
-      vel[k] = (p2[k] - p1[k]) / (2.0 * ELP_DELTA);
-      if(pos)
-        pos[k] = 0.5 * (p1[k] + p2[k]); // mean position...
-    }
-
-    ecl2equ_vec(NOVAS_JD_J2000, NOVAS_GCRS_EQUATOR, acc, vel, vel);
-
-    // w.r.t. observer
-    for(k = 3; --k >= 0; )
-      vel[k] -= ovel[k];
-
-    prop_error(fn, icrs_to_sys(tdb, vel, sys), 0);
-  }
-  else {
-    // position only.
-    novas_moon_elp_ecl_pos(tdb, limit, pos);
-  }
-
   if(pos) {
     int k;
 
+    novas_moon_elp_ecl_pos(tdb, limit, pos);
     ecl2equ_vec(NOVAS_JD_J2000, NOVAS_GCRS_EQUATOR, acc, pos, pos);
 
     // w.r.t. observer
@@ -548,6 +598,19 @@ int novas_moon_elp_posvel_fp(const novas_timespec *restrict time, const on_surfa
       pos[k] -= opos[k];
 
     prop_error(fn, icrs_to_sys(tdb, pos, sys), 0);
+  }
+
+  if(vel) {
+    int k;
+
+    novas_moon_elp_ecl_vel(tdb, limit, vel);
+    ecl2equ_vec(NOVAS_JD_J2000, NOVAS_GCRS_EQUATOR, acc, vel, vel);
+
+    // w.r.t. observer
+    for(k = 3; --k >= 0; )
+      vel[k] -= ovel[k];
+
+    prop_error(fn, icrs_to_sys(tdb, vel, sys), 0);
   }
 
   return 0;
@@ -604,41 +667,58 @@ int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_referenc
 
   limit = (frame->accuracy == NOVAS_REDUCED_ACCURACY) ? 1e-2 : 0.0;
   prop_error("novas_moon_elp_posvel", novas_moon_elp_posvel_fp(&frame->time, loc, limit, sys, pos, vel), 0);
+
+  // For airborne observers subtract the ground velocity....
+  if(frame->observer.where ==  NOVAS_AIRBORNE_OBSERVER) {
+    int k;
+    for(k = 3; --k >= 0; )
+      vel[k] -= frame->observer.near_earth.sc_vel[k] * NOVAS_KMS / (NOVAS_AU / NOVAS_DAY);
+  }
+
   return 0;
 }
 
 /**
  * Corrects the Moon's position for aberration for an Earth-based observer.
  *
- * @param time          Astrometric time
- * @param obs           Geodetic observer location
- * @param v_ground      [km/s] Observer's velocity over the ground, or NULL if fixed site location. It is
- *                      unused if `obs` is NULL.
- * @param sys           Celestial coordinate reference system in which position is given
+ * @param time          Astrometric time (not NULL)
+ * @param obs           Geodetic observer location (may be NULL).
+ * @param v_ground      [km/s] Observer's velocity over the ground in the ITRS, or NULL if fixed
+ *                      site location. It is unused if `obs` is NULL.
+ * @param sys           Celestial coordinate reference system in which position is given.
  * @param[in,out] pos   [AU] Moon's position (in: geometric, out: aberration corrected).
  * @return              0
  */
 static int moon_aberration(const novas_timespec *restrict time, const on_surface *restrict obs, const double *restrict v_ground,
         enum novas_reference_system sys, double *restrict pos) {
+
   const double pos0[3] = { pos[0], pos[1], pos[2] };
-  double ovel[3] = {0.0};
+  const double kms_to_auday = NOVAS_KMS / (NOVAS_AU / NOVAS_DAY);
+
+  double tdb = novas_get_time(time, NOVAS_TDB);
+  double ovel[3] = {0.0}; // observer movement w.r.t. geocenter
   double d, vobs, beta, gamma, p, q, r;
+  int k;
 
   if(!obs)
     return 0;
 
+  // Earth rotation at observer location
   terra(obs, novas_time_gst(time, NOVAS_REDUCED_ACCURACY), NULL, ovel);
 
+  // Add observer ground motion (in TOD).
   if(v_ground) {
-    int i;
-    for(i = 3; --i >= 0; )
-      ovel[i] += v_ground[i] * NOVAS_KMS / (NOVAS_AU / NOVAS_DAY);
+    double vg[3] = {0.0};
+
+    itrs_to_tod(tdb, 0.0, time->ut1_to_tt, NOVAS_REDUCED_ACCURACY, 0.0, 0.0, v_ground, vg);
+    for(k = 3; --k >= 0; )
+      ovel[k] += vg[k] * kms_to_auday;
   }
 
   if(sys != NOVAS_TOD) {
     // observer velocity in the desired coordinate system
-    tod_to_gcrs(novas_get_time(time, NOVAS_TDB), NOVAS_REDUCED_ACCURACY, ovel, ovel);
-    icrs_to_sys(novas_get_time(time, NOVAS_TDB), ovel, sys);
+    tod_to_gcrs(tdb, NOVAS_REDUCED_ACCURACY, ovel, ovel);
+    icrs_to_sys(tdb, ovel, sys);
   }
 
   d = novas_vlen(pos);
@@ -652,9 +732,8 @@ static int moon_aberration(const novas_timespec *restrict time, const on_surface
   r = 1.0 + p;
 
   // Geometric to apparent
-  pos[0] = (gamma * pos0[0] + q * ovel[0]) / r;
-  pos[1] = (gamma * pos0[1] + q * ovel[1]) / r;
-  pos[2] = (gamma * pos0[2] + q * ovel[2]) / r;
+  for(k = 3; --k >= 0; )
+    pos[k] = (gamma * pos0[k] + q * ovel[k]) / r;
 
   return 0;
 }
@@ -681,8 +760,8 @@ static int moon_aberration(const novas_timespec *restrict time, const on_surface
  *
  * @param time      Astrometric time of observation.
  * @param obs       Earth-based observer location, or NULL for geocentric.
- * @param v_ground  [km/s] Observer's velocity over the ground, or NULL if fixed site location.
- *                  It is unused if `obs` in NULL.
+ * @param v_ground  [km/s] Observer's velocity over the ground in the ITRS, or NULL if fixed site
+ *                  location. It is unused if `obs` in NULL.
  * @param limit     [arcsec|km] Sum only terms with amplitudes larger than this limit. The
  *                  resulting accuracy is typically an order-of-magnitude above the set limiting
  *                  amplitude.
@@ -704,6 +783,7 @@ int novas_moon_elp_sky_pos_fp(const novas_timespec *restrict time, const on_surf
         double limit, enum novas_reference_system sys, sky_pos *restrict pos) {
   static const char *fn = "novas_moon_elp_skypos_fp";
 
+  const double kms_to_auday = NOVAS_KMS / (NOVAS_AU / NOVAS_DAY);
   double p[3] = {0.0}, v[3] = {0.0};
   int k;
 
@@ -721,7 +801,7 @@ int novas_moon_elp_sky_pos_fp(const novas_timespec *restrict time, const on_surf
   for(k = 3; --k >= 0; )
     pos->r_hat[k] = p[k] / pos->dis;
 
-  pos->rv = novas_vdot(pos->r_hat, v) * (NOVAS_AU / NOVAS_DAY) / NOVAS_KMS;
+  pos->rv = novas_vdot(pos->r_hat, v) / kms_to_auday;
 
   return 0;
 }
@@ -828,10 +908,10 @@ int novas_make_moon_mean_orbit(double jd_tdb, novas_orbital *restrict orbit) {
   t = (jd_tdb - NOVAS_JD_J2000) / JULIAN_CENTURY_DAYS;
 
   // Mean inclination (leading latitude term of ELP02 series)
-  orbit->i = elp_lat[0].A / 3600.0; // @suppress("Field cannot be resolved")
+  orbit->i = 18461.24038 / 3600.0;
 
   // eccentricity (from the leading term of the ELP03 series)
-  orbit->e = -elp_dis[1].A / elp_dis[0].A; // @suppress("Field cannot be resolved")
+  orbit->e = 20905.35494 / 385000.52906;
 
   // Chapront & Francou 2003
   // ELP/MPP02
