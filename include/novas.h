@@ -3291,8 +3291,6 @@ int novas_set_default_weather(on_surface *site);
 /// @ingroup source
 int novas_make_moon_mean_orbit(double jd_tdb, novas_orbital *restrict orbit);
 
-/// \endcond
-
 
 // ---------------------- Added in 1.6.0 -------------------------
 
