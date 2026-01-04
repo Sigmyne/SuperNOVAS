@@ -34,7 +34,7 @@ CatalogEntry::CatalogEntry(const std::string &name, const Ecliptic& coords)
 CatalogEntry::CatalogEntry(const std::string &name, const Galactic& coords)
 : CatalogEntry(name, coords.as_equatorial()) {}
 
-CatalogEntry::CatalogEntry(cat_entry e, const EquatorialSystem& system)
+CatalogEntry::CatalogEntry(cat_entry e, const Equinox& system)
 : _entry(e), _sys(system) {
   static const char *fn = "CatalogEntry()";
 
@@ -60,7 +60,7 @@ CatalogEntry::CatalogEntry(cat_entry e, const EquatorialSystem& system)
     _valid = true;
 }
 
-const EquatorialSystem& CatalogEntry::system() const {
+const Equinox& CatalogEntry::system() const {
   return _sys;
 }
 

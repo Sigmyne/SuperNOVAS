@@ -43,7 +43,6 @@ Angle::Angle(double radians) : _rad(remainder(radians, TWOPI)) {
  * separated by the symbols d, m, or white spaces of cobination of the above. To learn more about
  * what exact representations are supported see novas:novas_str_degrees().
  *
- *
  * @param str   a string specifying an angle either as decimal degrees or as DDD:MM:SS.SSS and
  *              variants thereof.
  *
@@ -57,11 +56,26 @@ Angle::Angle(const std::string& str) {
     _valid = true;
 }
 
-
+/**
+ * Returns a new angle that is the sum of this angle and the specified other angle.
+ *
+ * @param r   the other angle on the right-hand-side.
+ * @return    the sum of this angle and the argument, as a new angle.
+ *
+ * @sa operator-(Angle&)
+ */
 Angle Angle::operator+(const Angle& r) const {
   return Angle(rad() + r.rad());
 }
 
+/**
+ * Returns a new angle that is the difference of this angle and the specified other angle.
+ *
+ * @param r   the other angle on the right-hand-side.
+ * @return    the difference of this angle and the argument, as a new angle.
+ *
+ * @sa operator+(Angle&)
+ */
 Angle Angle::operator-(const Angle& r) const {
   return Angle(rad() - r.rad());
 }
@@ -84,6 +98,8 @@ bool Angle::equals(const Angle& angle, double precision) const {
  *
  * @return    [rad] the angle in radians, usually in the [-&pi;:&pi;) range, although subclasses
  *            may support different ranges for the returned value.
+ *
+ * @sa deg(), arcmin(), arcsec(), mas(), uas()
  */
 double Angle::rad() const {
   return _rad;
@@ -94,6 +110,8 @@ double Angle::rad() const {
  *
  * @return    [degrees] the angle in degrees, usually in the [-180:180) range, although subclasses
  *            may support different ranges for the returned value.
+ *
+ * @sa rad(), arcmin(), arcsec(), mas(), uas()
  */
 double Angle::deg() const {
   return rad() / Unit::deg;
@@ -104,6 +122,8 @@ double Angle::deg() const {
  *
  * @return    [arcmin] the angle in arc minutes, usually in the [-10800:10800) range, although
  *            subclasses may support different ranges for the returned value.
+ *
+ * @sa rad(), deg(), arcsec(), mas(), uas()
  */
 double Angle::arcmin() const {
   return rad() / Unit::arcmin;
@@ -114,6 +134,8 @@ double Angle::arcmin() const {
  *
  * @return    [arcsec] the angle in arc seconds, usually in the [-648000:648000) range, although
  *            subclasses may support different ranges for the returned value.
+ *
+ * @sa rad(), deg(), arcmin(), mas(), uas()
  */
 double Angle::arcsec() const {
   return rad() / Unit::arcsec;
@@ -124,6 +146,8 @@ double Angle::arcsec() const {
  *
  * @return    [mas] the angle in milliarcseconds, usually in the [-6.48e8:6.48e8) range, although
  *            subclasses may support different ranges for the returned value.
+ *
+ * @sa rad(), deg(), arcmin(), arcsec(), uas()
  */
 double Angle::mas() const {
   return rad() / Unit::mas;
@@ -134,6 +158,8 @@ double Angle::mas() const {
  *
  * @return    [&mu;as] the angle in microarcseconds, usually in the [-6.48e11:6.48e11) range,
  *            although subclasses may support different ranges for the returned value.
+ *
+ * @sa rad(), deg(), arcmin(), arcsec(), mas()
  */
 double Angle::uas() const {
   return rad() / Unit::uas;
@@ -157,7 +183,9 @@ double Angle::fraction() const {
  *                    minute, and second components.
  * @param decimals    [0:9] the number of decimal places to print for the arc seconds
  *                    component.
- * @return
+ * @return            the strung representation of this angle in degrees.
+ *
+ * @sa TimeAngle::to_string(enum novas_separator_type, int)
  */
 std::string Angle::to_string(enum novas_separator_type separator, int decimals) const {
   char s[100] = {'\0'};

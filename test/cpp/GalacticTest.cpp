@@ -47,7 +47,7 @@ int main() {
 
   double elon = 0.0, elat = 0.0;
   novas::equ2ecl(NOVAS_JD_J2000, novas::NOVAS_GCRS_EQUATOR, novas::NOVAS_FULL_ACCURACY, ra, dec, &elon, &elat);
-  Ecliptic ec0 = Ecliptic::icrs(elon * Unit::deg, elat * Unit::deg);
+  Ecliptic ec0 = Ecliptic(elon * Unit::deg, elat * Unit::deg);
   if(!test.check("as_ecliptic()", a.as_ecliptic() == ec0)) {
     std::cout << "  " << a.as_ecliptic().to_string(novas::NOVAS_SEP_COLONS, 8) << " != "
             <<  ec0.to_string(novas::NOVAS_SEP_COLONS, 8) << "\n";

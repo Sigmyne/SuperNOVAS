@@ -14,9 +14,9 @@
 namespace supernovas {
 
 /**
- * Instantiates a distance (scalar separation along some direction) with the specified value in
- * meters. You may use Unit to convert other distance measures to meters. For example to set a
- * distance of 12.4 parsecs, you might simply write:
+ * Instantiates a distance (signed scalar separation along some direction) with the specified
+ * value in meters. You may use Unit to convert other distance measures to meters. For example, to
+ * set a distance of 12.4 parsecs, you might simply write:
  *
  * ```c
  *   Distance d(12.4 * Unit::pc);
@@ -44,6 +44,8 @@ Distance Distance::abs() const {
  * Returns the distance in meters.
  *
  * @return    [m] the distance in meters.
+ *
+ * @sa km(), au(), lyr(), pc(), kpc(), Mpc(), Gpc()
  */
 double Distance::m() const {
   return _meters;
@@ -53,6 +55,8 @@ double Distance::m() const {
  * Returns the distance in kilometers.
  *
  * @return    [km] the distance in kilometers.
+ *
+ * @sa m(), au(), lyr(), pc(), kpc(), Mpc(), Gpc()
  */
 double Distance::km() const {
   return 1e-3 * _meters;
@@ -62,6 +66,8 @@ double Distance::km() const {
  * Returns the distance in astronomical units.
  *
  * @return    [AU] the distance in astronomical units.
+ *
+ * @sa m(), km(), lyr(), pc(), kpc(), Mpc(), Gpc()
  */
 double Distance::au() const {
   return _meters / Unit::au;
@@ -71,6 +77,8 @@ double Distance::au() const {
  * Returns the distance in lightyears.
  *
  * @return    [lyr] the distance in lightyears.
+ *
+ * @sa m(), km(), au(), pc(), kpc(), Mpc(), Gpc()
  */
 double Distance::lyr() const {
   return _meters / Unit::lyr;
@@ -80,6 +88,8 @@ double Distance::lyr() const {
  * Returns the distance in parsecs.
  *
  * @return    [pc] the distance in parsecs.
+ *
+ * @sa m(), km(), au(), lyr(), kpc(), Mpc(), Gpc()
  */
 double Distance::pc() const {
   return _meters / Unit::pc;
@@ -89,6 +99,8 @@ double Distance::pc() const {
  * Returns the distance in kiloparsecs.
  *
  * @return    [kpc] the distance in kiloparsecs.
+ *
+ * @sa m(), km(), au(), lyr(), pc(), Mpc(), Gpc()
  */
 double Distance::kpc() const {
   return _meters / Unit::kpc;
@@ -98,6 +110,8 @@ double Distance::kpc() const {
  * Returns the distance in megaparsecs.
  *
  * @return    [Mpc] the distance in megaparsecs.
+ *
+ * @sa m(), km(), au(), lyr(), pc(), kpc(), Gpc()
  */
 double Distance::Mpc() const {
   return _meters / Unit::Mpc;
@@ -107,6 +121,8 @@ double Distance::Mpc() const {
  * Returns the distance in gigaparsecs.
  *
  * @return    [Gpc] the distance in gigaparsecs.
+ *
+ * @sa m(), km(), au(), lyr(), pc(), kpc(), Mpc()
  */
 double Distance::Gpc() const {
   return _meters / Unit::Gpc;

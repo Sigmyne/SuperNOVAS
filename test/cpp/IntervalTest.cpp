@@ -63,7 +63,16 @@ int main() {
 
   if(!test.differs("operator - (tcb / tcg)", (d - c).seconds(), 0.0, 1e-15)) n++;
 
-  //b.to_string(); TODO
+  if(!test.equals("to_string(10 ms)", Interval(10.0 * Unit::ms).to_string(), "10.000 ms")) n++;
+  if(!test.equals("to_string(10 s)", Interval(10.0 * Unit::s).to_string(), "10.000 s")) n++;
+  if(!test.equals("to_string(10 min)", Interval(10.0 * Unit::min).to_string(), "600.000 s")) n++;
+  if(!test.equals("to_string(10 h)", Interval(10.0 * Unit::hour).to_string(), "10.000 h")) n++;
+  if(!test.equals("to_string(10 d)", Interval(10.0 * Unit::day).to_string(), "10.000 d")) n++;
+  if(!test.equals("to_string(10 yr)", Interval(10.0 * Unit::yr).to_string(), "10.000 yr")) n++;
+
+  Interval dt(-Constant::pi * Unit::s);
+  if(!test.equals("to_string(decimals=0)", dt.to_string(-1), dt.to_string(0))) n++;
+  if(!test.equals("to_string(decimals=17)", dt.to_string(17), dt.to_string(16))) n++;
 
   std::cout << "Interval.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

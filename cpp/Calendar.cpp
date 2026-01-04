@@ -53,8 +53,7 @@ enum novas_calendar_type Calendar::type() const {
  *
  * @return    A new Gregorian calendar instance
  *
- * @sa Calendar::roman()
- * @sa Calendar::astronomical()
+ * @sa roman(), astronomical()
  */
 Calendar Calendar::gregorian() {
   return Calendar(NOVAS_GREGORIAN_CALENDAR);
@@ -65,8 +64,7 @@ Calendar Calendar::gregorian() {
  *
  * @return    A new Roman / Julian calendar instance
  *
- * @sa Calendar::gregorian()
- * @sa Calendar::astronomical()
+ * @sa gregorian(), astronomical()
  */
 Calendar Calendar::roman() {
   return Calendar(NOVAS_ROMAN_CALENDAR);
@@ -95,11 +93,8 @@ Calendar Calendar::astronomical() {
  * @param time    time of day
  * @return        a new date instance for the specified date in this calendar.
  *
- * @sa CalendarDate::CalendarDate(Calendar&, int, int, int, TimeAngle&)
- * @sa Calendar::date(double)
- * @sa Calendar::date(time_t)
- * @sa Calendar::date(struct timespec *)
- * @sa Calendar::parse_date()
+ * @sa CalendarDate::CalendarDate(Calendar&, int, int, int, TimeAngle&), date(double), date(time_t),
+ *     date(struct timespec *), parse_date()
  */
 CalendarDate Calendar::date(int year, int month, int day, const TimeAngle& time) const {
   return CalendarDate(*this, year, month, day, time);
@@ -111,11 +106,8 @@ CalendarDate Calendar::date(int year, int month, int day, const TimeAngle& time)
  * @param jd    [day] Julian Day
  * @return      a new calendar date, in this calendar, corresponding to the specified Julian date.
  *
- * @sa CalendarDate::CalendarDate(Calendar&, double)
- * @sa Calendar::date(int, int, int, TimeAngle&)
- * @sa Calendar::date(time_t)
- * @sa Calendar::date(struct timespec *)
- * @sa Calendar::parse_date()
+ * @sa CalendarDate::CalendarDate(Calendar&, double), date(int, int, int, TimeAngle&), date(time_t),
+ *     date(struct timespec *), parse_date()
  */
 CalendarDate Calendar::date(double jd) const {
   return CalendarDate(*this, jd);
@@ -128,10 +120,7 @@ CalendarDate Calendar::date(double jd) const {
  * @param nanos   [ns] sub-second time component
  * @return        a new calendar date, in this calendar, corresponding to the specified UNIX time.
  *
- * @sa Calendar::date(int, int, int, TimeAngle&)
- * @sa Calendar::date(double)
- * @sa Calendar::date(struct timespec *)
- * @sa Calendar::parse_date()
+ * @sa date(int, int, int, TimeAngle&), date(double), date(struct timespec *), parse_date()
  */
 CalendarDate Calendar::date(time_t t, long nanos) const {
   return CalendarDate(*this, NOVAS_JD_J2000 + ((t - UNIX_UTC_J2000) + nanos * Unit::ns) / Unit::day);
@@ -144,10 +133,7 @@ CalendarDate Calendar::date(time_t t, long nanos) const {
  * @return      a new calendar date, in this calendar, corresponding to the specified astronomical
  *              time.
  *
- * @sa Calendar::date(int, int, int, TimeAngle&)
- * @sa Calendar::date(double)
- * @sa Calendar::date(time_t)
- * @sa Calendar::parse_date()
+ * @sa date(int, int, int, TimeAngle&), date(double), date(time_t), parse_date()
  */
 CalendarDate Calendar::date(const struct timespec *ts) const {
   if(!ts) {
@@ -169,8 +155,7 @@ CalendarDate Calendar::date(const struct timespec *ts) const {
  * @return      A new calendar date, in this calendar, or else std::nullopt if the string date
  *              could not be parsed.
  *
- * @sa CalendarDate::to_string()
- * @sa Calendar::date(int, int, int, TimeAngle&)
+ * @sa CalendarDate::to_string(), date(int, int, int, TimeAngle&)
  */
 std::optional<CalendarDate> Calendar::parse_date(const std::string& str, enum novas_date_format fmt) const {
   double jd = novas_parse_date_format(_type, fmt, str.c_str(), NULL);
@@ -206,8 +191,7 @@ std::string Calendar::to_string() const {
  * @param day         [day] calendar day-of-month [1:31]
  * @param time        time of day component.
  *
- * @sa Calendat::date(int, int, int, TimeAngle&)
- * @sa CalendarDate::CalendarDate(Calendar&, double)
+ * @sa Calendar::date(int, int, int, TimeAngle&), CalendarDate(Calendar&, double)
  *
  */
 CalendarDate::CalendarDate(const Calendar& calendar, int year, int month, int day, const TimeAngle& time)
@@ -225,8 +209,7 @@ CalendarDate::CalendarDate(const Calendar& calendar, int year, int month, int da
  * @param calendar    Calendar, in which the date is specified.
  * @param jd          [day] Julian Day
  *
- * @sa Calendar::date(double)
- * @sa CalendarDate::CalendarDate(Calendar&, int, int, int, TimeAngle&)
+ * @sa Calendar::date(double), CalendarDate(Calendar&, int, int, int, TimeAngle&)
  */
 CalendarDate::CalendarDate(const Calendar& calendar, double jd)
 : _calendar(calendar), _year(-1), _month(-1), _mday(-1), _time_of_day(NAN), _jd(jd) {
@@ -334,7 +317,7 @@ bool CalendarDate::equals(const CalendarDate& date, double seconds) const {
  * @return    [day] the Julian Date corresponding to this calendar date. Note, that Julian dates
  *            start at noon, not midnight.
  *
- * @sa CalendarDate::mjd()
+ * @sa mjd()
  */
 double CalendarDate::jd() const {
   return _jd;
@@ -346,7 +329,7 @@ double CalendarDate::jd() const {
  * @return    [day] the Modified Julian Day (MJD) corresponding to this calendar date. Modified
  *            Julian days start at midnight.
  *
- * @sa CalendarDate::mjd()
+ * @sa mjd()
  */
 double CalendarDate::mjd() const {
   return _jd - NOVAS_JD_MJD0;
@@ -359,8 +342,7 @@ double CalendarDate::mjd() const {
  * @return    [yr] the calendar year component. For X BCE, it returns 1 - X. I.e., 45 BCE is
  *            returned as -44.
  *
- * @sa CalendarDate::month()
- * @sa CalendarDate::day_of_year()
+ * @sa month(), day_of_year()
  */
 int CalendarDate::year() const {
   return _year;
@@ -371,10 +353,7 @@ int CalendarDate::year() const {
  *
  * @return      [month] calendar month [1:12]
  *
- * @sa CalendarDate::month_name()
- * @sa CalendarDate::short_month_name()
- * @sa CalendarDate::year()
- * @sa CalendarDate::day_of_month()
+ * @sa month_name(), short_month_name(), year(), day_of_month()
  */
 int CalendarDate::month() const {
   return _month;
@@ -385,9 +364,7 @@ int CalendarDate::month() const {
  *
  * @return    the day of year number, starting from 1.
  *
- * @sa CalendarDate::year()
- * @sa CalendarDate::day_of_month()
- * @sa CalendarDate::day_of_week()
+ * @sa year(), day_of_month(), day_of_week()
  */
 int CalendarDate::day_of_year() const {
   return novas_day_of_year(_jd, _calendar.type(), NULL);
@@ -398,9 +375,7 @@ int CalendarDate::day_of_year() const {
  *
  * @return    [day] day of month component, starting from 1
  *
- * @sa CalendarDate::month()
- * @sa CalendarDate::day_of_year()
- * @sa CalendarDate::day_of_week()
+ * @sa month(), day_of_year(), day_of_week()
  */
 int CalendarDate::day_of_month() const {
   return _mday;
@@ -411,10 +386,7 @@ int CalendarDate::day_of_month() const {
  *
  * @return    [day] the day of the week stating from 1 (Monday) to 7 (Sunday)
  *
- * @sa CalendarDate::day_name()
- * @sa CalendarDate::short_day_name()
- * @sa CalendarDate::day_of_month()
- * @sa CalendarDate::day_of_year()
+ * @sa day_name(), short_day_name(), day_of_month(), day_of_year()
  */
 int CalendarDate::day_of_week() const {
   return novas_day_of_week(_jd);
@@ -434,8 +406,7 @@ const TimeAngle& CalendarDate::time_of_day() const {
  *
  * @return    the full name of the month, e.g. "January".
  *
- * @sa CalendarDate::short_month_name()
- * @sa CalendarDate::month()
+ * @sa short_month_name(), month()
  */
 const std::string& CalendarDate::month_name() const {
   static const std::string names[] = {
@@ -455,8 +426,7 @@ const std::string& CalendarDate::month_name() const {
  *
  * @return    the full name of the month, e.g. "Jan".
  *
- * @sa CalendarDate::month_name()
- * @sa CalendarDate::month()
+ * @sa month_name(), month()
  */
 const std::string& CalendarDate::short_month_name() const {
   static const std::string names[] = {
@@ -474,8 +444,7 @@ const std::string& CalendarDate::short_month_name() const {
  *
  * @return    the full name of the day of the week, e.g. "Wednesday".
  *
- * @sa CalendarDate::short_day_name()
- * @sa CalendarDate::day_of_week()
+ * @sa short_day_name(), day_of_week()
  */
 const std::string& CalendarDate::day_name() const {
   static const std::string names[] = { "invalid", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
@@ -487,8 +456,7 @@ const std::string& CalendarDate::day_name() const {
  *
  * @return    the full name of the day of the week, e.g. "Wed".
  *
- * @sa CalendarDate::day_name()
- * @sa CalendarDate::day_of_week()
+ * @sa day_name(), day_of_week()
  */
 const std::string& CalendarDate::short_day_name() const {
   static const std::string names[] = { "inv", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
@@ -502,12 +470,7 @@ const std::string& CalendarDate::short_day_name() const {
  * @return            0 if successful, or else -1 if the argument is NULL (errno will be
  *                    set to EINVAL).
  *
- * @sa CalendarDate::year()
- * @sa CalendarDate::month()
- * @sa CalendarDate::day_of_year()
- * @sa CalendarDate::day_of_month()
- * @sa CalendarDate::day_of_week()
- * @sa CalendarDate::time_of_day()
+ * @sa year(), month(), day_of_year(), day_of_month(), day_of_week(), time_of_day()
  */
 int CalendarDate::break_down(struct tm *tm) const {
   if(!tm)
@@ -559,7 +522,7 @@ CalendarDate CalendarDate::in_calendar(const Calendar& calendar) const {
  * @param timescale       the astronomical timescale in which this calendar date is defined.
  * @return                a new astronomical time instance for this date and input parameters.
  *
- * @sa CalendarDate::to_time(EOP&, novas::novas_timescale)
+ * @sa to_time(EOP&, novas::novas_timescale)
  */
 Time CalendarDate::to_time(int leap_seconds, double dut1, novas::novas_timescale timescale) const {
   return Time(jd(), leap_seconds, dut1, timescale);
@@ -575,7 +538,7 @@ Time CalendarDate::to_time(int leap_seconds, double dut1, novas::novas_timescale
  * @param timescale       the astronomical timescale in which this calendar date is defined.
  * @return                a new astronomical time instance for this date and input parameters.
  *
- * @sa CalendarDate::to_time(int, double, novas::novas_timescale)
+ * @sa to_time(int, double, novas::novas_timescale)
  */
 Time CalendarDate::to_time(const EOP& eop, novas::novas_timescale timescale) const {
   return Time(jd(), eop, timescale);
@@ -587,7 +550,7 @@ Time CalendarDate::to_time(const EOP& eop, novas::novas_timescale timescale) con
  *
  * @return      the string representation of the date (only) in long form.
  *
- * @sa CalendarDate::to_date_string()
+ * @sa to_date_string(), to_string(enum novas_date_format, int)
  */
 std::string CalendarDate::to_long_date_string() const {
   return short_day_name() + " " + std::to_string(_mday) + " " + short_month_name() + " " +
@@ -603,8 +566,7 @@ std::string CalendarDate::to_long_date_string() const {
  *
  * @return      the string representation of the date (only) in the specified format.
  *
- * @sa CalendarDate::to_long_date_string()
- * @sa CalendarDate::to_string()
+ * @sa to_long_date_string(), to_string(enum novas_date_format, int)
  */
 std::string CalendarDate::to_date_string(enum novas_date_format fmt) const {
   char m[20] = {'\0'}, d[20] = {'\0'};
@@ -627,16 +589,28 @@ std::string CalendarDate::to_date_string(enum novas_date_format fmt) const {
 }
 
 /**
+ * Returns a string representation of this calendar date, given the requested date format and
+ * decimal places to print for the seconds component.
  *
+ * @param fmt       (optional) The order of the date components (default: `NOVAS_YMD`)
+ * @param decimals  (optional) Number of decimal places to print for the seconds (default: 3)
+ * @return          The string representation of the date.
  *
- * @param fmt
- * @param decimals
- * @return
+ * @sa to_string(int), to_date_string(), to_long_date_string()
  */
 std::string CalendarDate::to_string(enum novas_date_format fmt, int decimals) const {
   return to_date_string(fmt) + " " + _time_of_day.to_string(NOVAS_SEP_COLONS, decimals);
 }
 
+/**
+ * Returns a string representation of this calendar date, using the YMD format and the specified
+ * decimal places to print for the seconds component.
+ *
+ * @param decimals  Number of decimal places to print for the seconds.
+ * @return          The string representation of the date.
+ *
+ * @sa to_string(enum novas_date_format, int), to_date_string(), to_long_date_string()
+ */
 std::string CalendarDate::to_string(int decimals) const {
   return to_string(NOVAS_YMD, decimals);
 }

@@ -17,7 +17,15 @@ using namespace novas;
 
 namespace supernovas {
 
-
+/**
+ * Instantiates new spherical coordinates with the specified components.
+ *
+ * @param longitude_rad   [rad] longitude coordinate
+ * @param latitude_rad    [rad] latitude coordinate
+ * @param distance_m      [m] distance, if needed / known (default: 1 Gpc)
+ *
+ * @sa Spherical(Angle&, Angle&, Distance&)
+ */
 Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_m)
 : _lon(longitude_rad), _lat(latitude_rad), _distance(distance_m) {
   static const char *fn = "Spherical";
@@ -36,13 +44,36 @@ Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_
     _valid = true;
 }
 
+/**
+ * Instantiates new spherical coordinates with the specified components.
+ *
+ * @param longitude   longitude coordinate
+ * @param latitude    latitude coordinate
+ * @param distance    distance, if needed / known (default: 1 Gpc)
+ *
+ * @sa Spherical(double, double, double)
+ */
 Spherical::Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance)
 : Spherical(longitude.rad(), latitude.rad(), distance.m()) {}
 
+/**
+ * Returns the angular distance of these spherical coordiantes to/from the specified other
+ * spherical coordinates.
+ *
+ * @param other   the reference spherical coordinates
+ * @return        the angular distance of these coordinates to/from the argument.
+ */
 Angle Spherical::distance_to(const Spherical& other) const {
   return Angle(novas_sep(_lon.deg(), _lat.deg(), other._lon.deg(), other._lat.deg()) * Unit::deg);
 }
 
+/**
+ * Returns the cartesian position vector corresponding to these spherical coordinates.
+ *
+ * @return    the equivalent rectanguar position vector.
+ *
+ * @sa Position::as_spherical()
+ */
 Position Spherical::xyz() const {
   double pos[3];
   double xy = _distance.m() * cos(_lat.rad());
@@ -54,18 +85,49 @@ Position Spherical::xyz() const {
   return Position(pos);
 }
 
+/**
+ * Returns the longitude coordinate as an angle.
+ *
+ * @return    the reference to the longitude coordinate stored internally.
+ *
+ * @sa latitude(), distance()
+ */
 const Angle& Spherical::longitude() const {
   return _lon;
 }
 
+/**
+ * Returns the latitude coordinate as an angle.
+ *
+ * @return    the reference to the latitude coordinate stored internally.
+ *
+ * @sa longitude(), distance()
+ */
 const Angle& Spherical::latitude() const {
   return _lat;
 }
 
+/**
+ * Returns the radial distance component.
+ *
+ * @return    the reference to the radial distance coordinate stored internally.
+ *
+ * @sa longitude(), latitude()
+ */
 const Distance& Spherical::distance() const {
   return _distance;
 }
 
+/**
+ * Returns a string representation of these spherical coordinates in DMS format, optionally
+ * specifying the type of separator to use and the precision to print.
+ *
+ * @param separator   (optional) the type of separators to use for the DMS representations
+ *                    of the components (default: units and spaces).
+ * @param decimals    (optional) the number of decimal places to print for the seconds
+ *                    (default: 3)
+ * @return    a new string with the human-readable representation of these spherical coordinates.
+ */
 std::string Spherical::to_string(enum novas_separator_type separator, int decimals) const {
   return _lon.to_string(separator, decimals) + "  " + _lat.to_string(separator, decimals);
 }

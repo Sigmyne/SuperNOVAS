@@ -31,7 +31,15 @@ static double tt_seconds(const Interval& interval) {
   }
 }
 
-
+/**
+ * Instantiates a new time interval with the specified time in seconds and
+ * a timescale (TT by default).
+ *
+ * @param seconds     [s] time span in seconds.
+ * @param timescale   (optional) timescale in which the interval was defined (default: `novas:NOVAS_TT`)
+ *
+ * @sa zero()
+ */
 Interval::Interval(double seconds, enum novas_timescale timescale)
 : _seconds(seconds), _scale(timescale) {
   static const char *fn = "Interval(seconds, timescale)";
@@ -44,74 +52,209 @@ Interval::Interval(double seconds, enum novas_timescale timescale)
     _valid = true;
 }
 
+/**
+ * Returns the distance travelled in this time interval at the specified speed.
+ *
+ * @param v   speed value
+ * @return    the distance travelled under this time interval at the specified speed.
+ *
+ * @sa operator*(Velocity&)
+ */
 Distance Interval::operator*(const Speed& v) const {
   return v.travel(*this);
 }
 
+/**
+ * Returns the spatial vector travelled in this time interval at the specified velocity.
+ *
+ * @param v   speed value
+ * @return    the statial vector travelled under this interval at the specified velocity.
+ *
+ * @sa operator*(Speed&)
+ */
 Position Interval::operator*(const Velocity& v) const {
   return v.travel(*this);
 }
 
+/**
+ * Returns a new time interval that is the sum of this time interval and the specified other
+ * time interval.
+ *
+ * @param r   the other time interval
+ * @return    the sum of this time interval and the argument time interval.
+ *
+ * @sa operator-(Interval&)
+ */
 Interval Interval::operator+(const Interval& r) const {
   return from_tt(tt_seconds(*this) + tt_seconds(r), timescale());
 }
 
+/**
+ * Returns a new time interval that is the signed difference of this time interval and the
+ * specified other time interval.
+ *
+ * @param r   the other time interval
+ * @return    the signed difference of this time interval and the argument time interval.
+ *
+ * @sa operator+(Interval&)
+ */
 Interval Interval::operator-(const Interval& r) const {
   return from_tt(tt_seconds(*this) - tt_seconds(r), timescale());
 }
 
+/**
+ * Checks if this time interval is equal to the specified other time interval within the
+ * specified precision. The comparison is performed in Terrestrial Time (TT).
+ *
+ * @param interval    the reference time interval.
+ * @param precision   [s] the precision used for checking equality.
+ * @return            `true` if this time interval is equal to the reference time interval within
+ *                    the specified precision, or else `false`.
+ */
 bool Interval::equals(const Interval& interval, double precision) const {
-  return fabs(_seconds - interval._seconds) < fabs(precision);
+  return fabs(tt_seconds(*this) - tt_seconds(interval)) < fabs(precision);
 }
 
+/**
+ * Returns the time scale in which this time interval was defined.
+ *
+ * @return      the time scale for this interval.
+ */
 enum novas_timescale Interval::timescale() const {
   return _scale;
 }
 
+/**
+ * Returns the inverse of this time interval ie, its negated value.
+ *
+ * @return    a new time interval with the same absolute value, but negated.
+ */
 Interval Interval::inv() const {
   return Interval(-_seconds);
 }
 
+/**
+ * Returns this time interval in milliseconds
+ *
+ * @return  [ms] the time interval
+ *
+ * @sa seconds(), minutes(), hours(), days(), weeks(), years(), julian_years(), julian_centuries()
+ */
 double Interval::milliseconds() const {
   return _seconds / Unit::ms;
 }
 
+/**
+ * Returns this time interval in seconds
+ *
+ * @return  [s] the time interval
+ *
+ *  @sa Interval::milliseconds(), Interval::minutes(), Interval::hours(), Interval::days(),
+ *      Interval::weeks(), Interval::years(), Interval::julian_years(),
+ *      Interval::julian_centuries()
+ */
 double Interval::seconds() const {
   return _seconds;
-};
+}
 
+/**
+ * Returns this time interval in minutes
+ *
+ * @return  [min] the time interval
+ *
+ *  @sa milliseconds(), seconds(), hours(), days(), weeks(), years(), julian_years(),
+ *      julian_centuries()
+ */
 double Interval::minutes() const {
   return _seconds / Unit::min;
 }
 
+/**
+ * Returns this time interval in hours
+ *
+ * @return  [h] the time interval
+ *
+ *  @sa milliseconds(), seconds(), minutes(), days(), weeks(), years(), julian_years(),
+ *      julian_centuries()
+ */
 double Interval::hours() const {
   return _seconds / Unit::hour;
 }
 
+/**
+ * Returns this time interval in days
+ *
+ * @return  [day] the time interval
+ *
+ *  @sa milliseconds(), seconds(), minutes(), hours(), weeks(), years(), julian_years(),
+ *      julian_centuries()
+ */
 double Interval::days() const {
   return _seconds / Unit::day;
 }
 
+/**
+ * Returns this time interval in weeks
+ *
+ * @return  [wk] the time interval
+ *
+ *  @sa milliseconds(), seconds(), minutes(), hours(), days(), years(), julian_years(),
+ *      julian_centuries()
+ */
 double Interval::weeks() const {
   return _seconds / Unit::week;
 }
 
+/**
+ * Returns this time interval in calendar years
+ *
+ * @return  [yr] the time interval
+ *
+ *  @sa milliseconds(), seconds(), minutes(), hours(), days(), weeks(), julian_years(),
+ *      julian_centuries()
+ */
 double Interval::years() const {
   return _seconds / Unit::yr;
 }
 
+/**
+ * Returns this time interval in Julian years
+ *
+ * @return  [yr] the time interval
+ *
+ *  @sa milliseconds(), seconds(), minutes(), hours(), days(), weeks(), years(),
+ *      julian_centuries()
+ */
 double Interval::julian_years() const {
   return _seconds / Unit::julian_year;
 }
 
+/**
+ * Returns this time interval in Julian centuries.
+ *
+ * @return  [cy] the time interval
+ *
+ *  @sa milliseconds(), seconds(), minutes(), hours(), days(), weeks(), years(), julian_years()
+ */
 double Interval::julian_centuries() const {
   return _seconds / Unit::julian_century;
 }
 
+/**
+ * Returns a new time interval, which matches this time interval in the specified other timescale.
+ *
+ * @param scale   the timescale of the returned equivalent interval.
+ * @return        the equivalent time interval in the specified timescale
+ */
 Interval Interval::to_timescale(enum novas_timescale scale) const {
   return from_tt(tt_seconds(*this), scale);
 }
 
+/**
+ * Returns a reference to the zero time interval.
+ *
+ * @return  a reference to a statically defined zero time interval.
+ */
 const Interval& Interval::zero() {
   static const Interval _zero = Interval(0.0);
   return _zero;
@@ -148,6 +291,10 @@ std::string Interval::to_string(int decimals) const {
   else if(d < Unit::day) {
     value = hours();
     unit = "h";
+  }
+  else if(d < Unit::yr) {
+    value = days();
+    unit = "d";
   }
   else {
     value = years();

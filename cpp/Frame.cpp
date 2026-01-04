@@ -16,7 +16,7 @@ using namespace novas;
 namespace supernovas {
 
 /**
- * Constructs a new observer frame, given the observer location and time of observation, and
+ * Instantiates a new observer frame, given the observer location and time of observation, and
  * optionally the required accuracy. After the new frame is returned you should check that it's
  * valid:
  *
@@ -48,7 +48,7 @@ namespace supernovas {
  * @param time        time of observation
  * @param accuracy    (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  *
- * @sa Frame::create()
+ * @sa create()
  */
 Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy)
 : _observer(obs), _time(time) {

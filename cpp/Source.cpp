@@ -184,7 +184,7 @@ std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, doub
     return std::nullopt;
   }
 
-  return EquatorialTrack::from_novas_track(EquatorialSystem::tod(frame.time().jd()), &track, Interval(range_seconds));
+  return EquatorialTrack::from_novas_track(Equinox::tod(frame.time().jd()), &track, Interval(range_seconds));
 }
 
 std::optional<HorizontalTrack> Source::horizontal_track(const Frame &frame, novas::RefractionModel ref, const Weather& weather) const {

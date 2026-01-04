@@ -43,7 +43,7 @@ static bool is_valid_sky_pos(const char *fn, const sky_pos *p) {
 }
 
 
-Apparent::Apparent(const EquatorialSystem& system, const Frame& f)
+Apparent::Apparent(const Equinox& system, const Frame& f)
 : _sys(system), _frame(f), _pos({}) {
   static const char *fn = "Apparent(frame, system)";
 
@@ -55,7 +55,7 @@ Apparent::Apparent(const EquatorialSystem& system, const Frame& f)
     _valid = true;
 }
 
-Apparent::Apparent(const EquatorialSystem& system, const Frame& f, sky_pos p)
+Apparent::Apparent(const Equinox& system, const Frame& f, sky_pos p)
 : Apparent(system, f) {
   static const char *fn = "Apparent(frame, sky_pos, system)";
 
@@ -73,7 +73,7 @@ Apparent::Apparent(const EquatorialSystem& system, const Frame& f, sky_pos p)
   radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
 }
 
-Apparent::Apparent(const EquatorialSystem& system, const Frame& frame, double ra_rad, double dec_rad, double rv_ms)
+Apparent::Apparent(const Equinox& system, const Frame& frame, double ra_rad, double dec_rad, double rv_ms)
 : Apparent(system, frame) {
   static const char *fn = "Apparent(frame, eq, rv, system)";
 
@@ -93,7 +93,7 @@ Apparent::Apparent(const EquatorialSystem& system, const Frame& frame, double ra
 }
 
 Apparent Apparent::cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
-  return Apparent(EquatorialSystem::cirs(frame.time().jd()), frame, ra_rad, dec_rad, rv_ms);
+  return Apparent(Equinox::cirs(frame.time().jd()), frame, ra_rad, dec_rad, rv_ms);
 }
 
 Apparent Apparent::cirs(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv) {
@@ -101,7 +101,7 @@ Apparent Apparent::cirs(const Angle& ra, const Angle& dec, const Frame& frame, c
 }
 
 Apparent Apparent::tod(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
-  return Apparent(EquatorialSystem::tod(frame.time().jd()), frame, ra_rad, dec_rad, rv_ms);
+  return Apparent(Equinox::tod(frame.time().jd()), frame, ra_rad, dec_rad, rv_ms);
 }
 
 Apparent Apparent::tod(const Angle& ra, const Angle& dec, const Frame& frame, const Speed& rv) {
@@ -112,7 +112,7 @@ const Frame& Apparent::frame() const {
   return _frame;
 }
 
-const EquatorialSystem& Apparent::system() const {
+const Equinox& Apparent::system() const {
   return _sys;
 }
 
@@ -170,11 +170,11 @@ std::optional<Horizontal> Apparent::horizontal() const {
 }
 
 Apparent Apparent::from_tod_sky_pos(sky_pos pos, const Frame& frame) {
-  return Apparent(EquatorialSystem::tod(frame.time().jd()), frame, pos);
+  return Apparent(Equinox::tod(frame.time().jd()), frame, pos);
 }
 
 Apparent Apparent::from_cirs_sky_pos(sky_pos pos, const Frame& frame) {
-  return Apparent(EquatorialSystem::cirs(frame.time().jd()), frame, pos);
+  return Apparent(Equinox::cirs(frame.time().jd()), frame, pos);
 }
 
 const Apparent& Apparent::invalid() {

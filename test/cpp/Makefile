@@ -13,7 +13,7 @@ CPP_OBJECTS = $(subst .cpp,.o, $(subst $(CPP_PATH)/,, $(CPP_SOURCES)))
 
 TESTS = AngleTest TimeAngleTest IntervalTest DistanceTest SpeedTest TemperatureTest PressureTest \
 	EOPTest SphericalTest CalendarTest PositionTest GalacticTest EclipticTest WeatherTest \
-	VelocityTest
+	VelocityTest EquinoxTest
 
 .PHONY: build
 build: $(TESTS)

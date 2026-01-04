@@ -167,7 +167,7 @@ namespace novas {
  * \defgroup equatorial       Transforming between equatorial systems
  *
  *   Expressing coordinates in the equatorial coordinate systems of choice, such as ICRS/GCRS,
- *   J2000, B1950, Mean of Date(MOD), True-of-Date (TOD), or CIRS of date.
+ *   J2000, B1950, Mean of Date (MOD), True-of-Date (TOD), or CIRS of date.
  *
  * \defgroup nonequatorial    Non-equatorial coordinates
  *

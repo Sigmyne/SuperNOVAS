@@ -17,6 +17,18 @@ namespace supernovas {
 
 Site::Site() {}
 
+/**
+ * Instantiates a new observing site with the specified geodetic location on the reference ellipsoid of
+ * choice.
+ *
+ * @param longitude_rad   [rad] Observer's geodetic longitude
+ * @param latitude_rad    [rad] Observer's geodetic latitude
+ * @param altitude_m      [m] Observers's altitude above sea level
+ * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
+ *
+ * @sa Site(Angle&, Angle&, Distance&, enum novas_reference_ellipsoid), Site::Site(Position&),
+ *     from_xyz(Position &), Site::from_GPS(double, double, double)
+ */
 Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum novas_reference_ellipsoid ellipsoid) {
   static const char *fn = "Site()";
 
@@ -41,6 +53,14 @@ Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum no
     novas_geodetic_transform_site(ellipsoid, &_site, NOVAS_GRS80_ELLIPSOID, &_site);
 }
 
+/**
+ * Instantiates a new observing site with the specified geocentric position vector.
+ *
+ * @param xyz   Observers geocentric position vector in rectangular coordinates.
+ *
+ * @sa Site(Angle&, Angle&, Distance&, enum novas_reference_ellipsoid),
+ *     Site(double, double, double, enum novas_reference_ellipsoid)
+ */
 Site::Site(const Position& xyz) {
   static const char *fn = "Site()";
 
@@ -54,55 +74,129 @@ Site::Site(const Position& xyz) {
     novas_error(0, EINVAL, fn, "altitude is more than 100 km above surface: %g m", _site.height);
   else
     _valid = true;
-
 }
 
+/**
+ * Returns a pointer to the the NOVAS C `on_surface` data structure stored in this site data.
+ *
+ * @return    The pointer to the NOVAS C `on_surface` data structure.
+ *
+ * @sa xyz()
+ */
 const on_surface *Site::_on_surface() const {
   return &_site;
 }
 
+/**
+ * Returns a new angle containing the geodetic longitude of this site on the GRS80 reference
+ * ellipsoid.
+ *
+ * @return    The geodetic longitude on the GRS80 reference ellipsoid.
+ *
+ * @sa latitude()
+ * @sa altitude()
+ */
 const Angle Site::longitude() const {
   return Angle(_site.longitude * Unit::deg);
 }
 
+/**
+ * Returns a new angle containing the geodetic latitude of this site on the GRS80 reference
+ * ellipsoid.
+ *
+ * @return    The geodetic longitude on the GRS80 reference ellipsoid.
+ *
+ * @sa longitude()
+ * @sa altitude()
+ */
 const Angle Site::latitude() const {
   return Angle(_site.latitude * Unit::deg);
 }
 
+/**
+ * Returns a new distance containing the altitude of this site above the GRS80 reference
+ * ellipsoid (ie, above sea level).
+ *
+ * @return    The altitude above sea level (GRS80 reference ellipsoid).
+ *
+ * @sa longitude()
+ * @sa latitude()
+ */
 const Distance Site::altitude() const {
   return Distance(_site.height * Unit::m);
 }
 
-const Position Site::xyz(enum novas_reference_ellipsoid ellipsoid) const {
-  double p[3] = {0.0};
-  novas_geodetic_to_cartesian(_site.longitude, _site.latitude, _site.height, ellipsoid, p);
-  return Position(p);
-}
-
+/**
+ * Returns a new site transformed into a different ITRF realization. The ITRF realizations are
+ * defined by a year. While it is best practice to use years with actual ITRF realizations, any
+ * year will be interpreted as to pick the last ITRF realization preceding it (or in case of
+ * years before thefirst ITRF realization, the initial ITR realizatio will be used).
+ *
+ * @param from_year   [yr] The original ITRF realization year of this site, e.g. 2008.
+ * @param to_year     [yr] The ITRF realization year of the returned new Site, e.g. 2014.
+ * @return    a new observing site after transforming between ITRF realizations.
+ *
+ * @sa EOP::itrf_transformed()
+ */
 Site Site::itrf_transformed(int from_year, int to_year) const {
   Site site = Site();
   novas_itrf_transform_site(from_year, &_site, to_year, &site._site);
   return site;
 }
 
+/**
+ * Returns the geocentric position of this site in rectangular coordinates.
+ *
+ * @return  a new position with the geocentric rectangular coordinates of the site.
+ */
 Position Site::xyz() const {
   double p[3] = {0.0};
   novas_geodetic_to_cartesian(_site.longitude, _site.latitude, _site.height, NOVAS_GRS80_ELLIPSOID, p);
   return Position(p, Unit::au);
 }
 
+/**
+ * Returns a string representation of this observing site.
+ *
+ * @param separator  (optional) the separator to use for the representation of angles (default:
+ *                   `novas::NOVAS_SEP_UNITS_AND_SPACES`).
+ * @param decimals   (optional) the number of decimal places to print (default: 3).
+ * @return   a new string representation of this observing site.
+ */
 std::string Site::to_string(enum novas_separator_type separator, int decimals) const {
   return "Site: " + Angle(fabs(_site.longitude * Unit::deg)).to_string(separator, decimals) + (_site.longitude < 0 ? "W  " : "E  ") +
           Angle(fabs(_site.latitude * Unit::deg)).to_string(separator, decimals) + (_site.latitude < 0 ? "S  " : "N  ") +
           std::to_string((long) round(_site.height)) + "m";
 }
 
+/**
+ * Returns an observing site for its geocentric position vector.
+ *
+ * @param v   Geocentric position of the obsrving site, in rectangular coordinates.
+ * @return    a new observing site at the specified geocentric position.
+ *
+ * @sa Site(Angle&, Angle&, Distance&, enum novas_reference_ellipsoid),
+ *     Site(double, double, double, enum novas_reference_ellipsoid),
+ *     from_xyz(Position &), Site::from_GPS(double, double, double)
+ */
 Site Site::from_xyz(const Position& v) {
   Site site = Site();
   make_xyz_site(v._array(), &site._site);
   return site;
 }
 
+/**
+ * Returns an observing site for its geodetic GPS location.
+ *
+ * @param longitude   [rad] GPS longitude
+ * @param latitude    [rad] GPS latitude
+ * @param altitude    [m] GPS altitude
+ * @return    a new observing site at the specified GSP location.
+ *
+ * @sa Site(Angle&, Angle&, Distance&, enum novas_reference_ellipsoid),
+ *     Site(double, double, double, enum novas_reference_ellipsoid),
+ *     Site(Position&),
+ */
 Site Site::from_GPS(double longitude, double latitude, double altitude) {
   return Site(longitude, latitude, altitude, NOVAS_WGS84_ELLIPSOID);
 }

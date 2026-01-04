@@ -108,7 +108,7 @@ Equatorial EquatorialTrack::projected(const Time& time) const {
   return Equatorial(longitude(time), latitude(time), _system);
 }
 
-EquatorialTrack EquatorialTrack::from_novas_track(const EquatorialSystem& system, const novas_track *track, const Interval& range) {
+EquatorialTrack EquatorialTrack::from_novas_track(const Equinox& system, const novas_track *track, const Interval& range) {
   if(!track) {
     novas_error(0, EINVAL, "EquatorialTrack::from_novas_track", "input track is NULL");
     return EquatorialTrack(system, &_default_track, range);

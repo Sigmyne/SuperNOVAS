@@ -63,7 +63,7 @@ Angle OrbitalSystem::ascending_node() const {
   return Angle(_system.Omega);
 }
 
-OrbitalSystem& OrbitalSystem::orientation(double obliquity_rad, double ascending_node_rad, const EquatorialSystem& system) {
+OrbitalSystem& OrbitalSystem::orientation(double obliquity_rad, double ascending_node_rad, const Equinox& system) {
   static const char *fn = "OrbitalSystem::orinetation";
 
   _valid = false;
@@ -84,7 +84,7 @@ OrbitalSystem& OrbitalSystem::orientation(double obliquity_rad, double ascending
   return *this;
 }
 
-OrbitalSystem& OrbitalSystem::orientation(const Angle& obliquity, const Angle& ascending_node, const EquatorialSystem& system) {
+OrbitalSystem& OrbitalSystem::orientation(const Angle& obliquity, const Angle& ascending_node, const Equinox& system) {
   return orientation(obliquity.rad(), ascending_node.rad(), system);
 }
 

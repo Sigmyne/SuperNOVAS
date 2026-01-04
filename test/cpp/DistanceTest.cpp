@@ -55,6 +55,10 @@ int main() {
   if(!test.equals("to_string(10 Mpc)", Distance(10.0 * Unit::Mpc).to_string(), "10.000 Mpc")) n++;
   if(!test.equals("to_string(10 Gpc)", Distance(10.0 * Unit::Gpc).to_string(), "10.000 Gpc")) n++;
 
+  Distance e(-Constant::pi * Unit::kpc);
+  if(!test.equals("to_string(decimals=0)", e.to_string(-1), e.to_string(0))) n++;
+  if(!test.equals("to_string(decimals=17)", e.to_string(17), e.to_string(16))) n++;
+
   std::cout << "Distance.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;
 }

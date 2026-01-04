@@ -41,7 +41,7 @@ class Validating;
 class Vector;
 class   Position;
 class   Velocity;
-class EquatorialSystem;
+class Equinox;
 class Distance;
 class Interval;
 class Angle;
@@ -247,26 +247,40 @@ public:
 };
 
 /**
- * %Equatorial (RA/Dec) coordinate system. This class does not include the Earth-rotating systems
- * TIRS and ITRS.
+ * %Equatorial coordinate system, defining the orientation of the equator and the location of the
+ * equinox, relative to which the right ascention and declination (RA/Dec) coordinates are defined.
+ * We'll simply refer to it as %Equinox in this API. This class does not include the Earth
+ * co-rotating systems (TIRS and ITRS).
  *
  * @sa CatalogEntry, Equatorial, Ecliptic, Apparent, Geometric
  * @ingroup source
  */
-class EquatorialSystem : public Validating {
+class Equinox : public Validating {
 private:
   std::string _name;    ///< name of the catalog system, e.g. 'ICRS' or 'J2000'
   enum novas::novas_reference_system _system; ///< Coordinate reference system.
   double _jd;           ///< [day] Julian date of the dynamical equator (or closest to it) that
   ///< matches the system
 
-  EquatorialSystem(const std::string& name, double jd_tt);
+  Equinox(const std::string& name, double jd_tt);
 
-  explicit EquatorialSystem(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
+  explicit Equinox(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
 
 public:
 
-  bool operator==(const EquatorialSystem& system) const;
+  bool operator==(const Equinox& system) const;
+
+  /**
+   * Checks if this equatorial system differs from the equatorial system as the right-hand side.
+   *
+   * @param system  The equatorial system on the right-hand side.
+   * @return        `true` if the two equatorial systems are differ, or else `false`.
+   *
+   * @sa operator==()
+   */
+  bool operator!=(const Equinox& system) const {
+    return !(*this == system);
+  }
 
   double jd() const;
 
@@ -278,6 +292,8 @@ public:
 
   enum novas::novas_reference_system reference_system() const;
 
+  enum novas::novas_equator_type equator_type() const;
+
   bool is_icrs() const;
 
   bool is_mod() const;
@@ -286,27 +302,36 @@ public:
 
   std::string to_string() const;
 
-  static std::optional<EquatorialSystem> from_string(const std::string& name);
+  static std::optional<Equinox> from_string(const std::string& name);
 
-  static std::optional<EquatorialSystem> for_reference_system(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
+  static std::optional<Equinox> for_reference_system(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
 
-  static EquatorialSystem mod(double jd_tt);
+  static Equinox mod(double jd_tt);
 
-  static EquatorialSystem mod_at_besselian_epoch(double year);
+  static Equinox mod(const Time& time);
 
-  static EquatorialSystem tod(double jd_tt);
+  static Equinox mod_at_besselian_epoch(double year);
 
-  static EquatorialSystem cirs(double jd_tt);
+  static Equinox tod(double jd_tt);
 
-  static const EquatorialSystem& icrs();
+  static Equinox tod(const Time& time);
 
-  static const EquatorialSystem& j2000();
+  static Equinox cirs(double jd_tt);
 
-  static const EquatorialSystem& hip();
+  static Equinox cirs(const Time& time);
 
-  static const EquatorialSystem& b1950();
+  static const Equinox& icrs();
 
-  static const EquatorialSystem& b1900();
+  static const Equinox& j2000();
+
+  static const Equinox& hip();
+
+  static const Equinox& b1950();
+
+  static const Equinox& b1900();
+
+  static const Equinox& invalid();
+
 };
 
 
@@ -386,10 +411,30 @@ public:
 
   bool equals(const Interval& interval, double precision = Unit::us) const;
 
+  /**
+   * Checks if this time interval is equal to the specified other time interval at the full
+   * double-precision. The comparison is performed in Terrestrial Time (TT).
+   *
+   * @param interval    the reference time interval.
+   * @return            `true` if this time interval is equal to the reference time interval, or
+   *                    else `false`.
+   *
+   * @sa operator!=(Interval&)
+   */
   bool operator==(const Interval& interval) const {
     return equals(interval);
   }
 
+  /**
+   * Checks if this time interval differs from the specified other time interval at the full
+   * double-precision. The comparison is performed in Terrestrial Time (TT).
+   *
+   * @param interval    the reference time interval.
+   * @return            `true` if this time interval differs from the reference time interval, or
+   *                    else `false`.
+   *
+   * @sa operator==(Interval&)
+   */
   bool operator!=(const Interval& interval) const {
     return !equals(interval);
   }
@@ -418,7 +463,7 @@ public:
 
   Interval to_timescale(enum novas::novas_timescale scale) const;
 
-  std::string to_string(int decimals = 3) const; // TODO
+  std::string to_string(int decimals = 3) const;
 
   static const Interval& zero();
 };
@@ -483,7 +528,6 @@ public:
 
 };
 
-
 /**
  * A representation of a regularized angle, which can also be represented as a time value in the 0
  * to 24h range. It can be expressed both in terms various commonly used angular units, or in terms
@@ -502,13 +546,17 @@ public:
 
   explicit TimeAngle(const Angle& angle);
 
+  Angle operator+(const Angle& r) const override {
+    return Angle::operator+(r);
+  }
+
+  Angle operator-(const Angle& r) const override {
+    return Angle::operator-(r);
+  }
+
   TimeAngle operator+(const TimeAngle& r) const;
 
   TimeAngle operator-(const TimeAngle& r) const;
-
-  Angle operator+(const Angle& r) const override;
-
-  Angle operator-(const Angle& r) const override;
 
   TimeAngle operator+(const Interval& other) const;
 
@@ -589,6 +637,16 @@ public:
 
   explicit Position(const double pos[3], double unit = Unit::m);
 
+  /**
+   * Checks if this position is the same as another, within the specified precision.
+   *
+   * @param p           the reference position
+   * @param precision   the precision for testing equality.
+   * @return            `true` if this velocity equals the argument within the specified
+   *                    precision, or else `false`.
+   *
+   * @sa operator!=(Velocity&), equals(Velocity&, double)
+   */
   bool equals(const Position& p, double precision) const {
     return Vector::equals(p, precision);
   }
@@ -626,14 +684,40 @@ public:
 
   Velocity operator-(const Velocity& r) const;
 
-  bool equals(const Velocity& v, double precision) const {
+  /**
+   * Checks if this velocity is the same as another, within the specified precision.
+   *
+   * @param v           the reference velocity
+   * @param precision   the precision for testing equality (default: 1 mm/s).
+   * @return            `true` if this velocity equals the argument within the specified
+   *                    precision, or else `false`.
+   *
+   * @sa operator!=(Velocity&), equals(Velocity&, double)
+   */
+  bool equals(const Velocity& v, double precision = Unit::mm / Unit::s) const {
     return Vector::equals(v, precision);
   }
 
+  /**
+   * Checks if this velocity is the same as another, within 1 mm/s.
+   *
+   * @param v   the reference velocity
+   * @return    `true` if this velocity equals the argument within 1 mm/s, or else `false`.
+   *
+   * @sa operator!=(Velocity&), equals(Velocity&, double)
+   */
   bool operator==(const Velocity& v) const {
     return equals(v, Unit::mm / Unit::sec);
   }
 
+  /**
+   * Checks if this velocity is the same as another, within 1 mm/s.
+   *
+   * @param v   the reference velocity
+   * @return    `true` if this velocity equals the argument within 1 mm/s, or else `false`.
+   *
+   * @sa operator!=(Velocity&)
+   */
   bool operator!=(const Velocity& v) const {
     return !equals(v, Unit::mm / Unit::sec);
   }
@@ -646,7 +730,18 @@ public:
 
   Position travel(const Interval& t) const;
 
-  Position operator*(const Interval& t) const { return travel(t); }
+  /**
+   * Returns the vector travelled in the given time interval at this velocity.
+   *
+   * @param t   time interval
+   * @return    the change in position of an object travelling at this velocity in the
+   *            specified time interval.
+   *
+   * @sa travel(double), operator*(Interval&), Speed:travel(Interval&)
+   */
+  Position operator*(const Interval& t) const {
+    return travel(t);
+  }
 
   std::string to_string(int decimals = 3) const override;
 
@@ -674,7 +769,7 @@ public:
 
   Speed operator-(const Speed& r) const;
 
-  bool equals(const Speed& speed, double m_per_s = Unit::mm / Unit::sec) const;
+  bool equals(const Speed& speed, double tolerance = Unit::mm / Unit::sec) const;
 
   bool equals(const Speed& speed, const Speed& tolerance) const;
 
@@ -705,7 +800,17 @@ public:
 
   Distance travel(const Interval& time) const;
 
-  Distance operator*(const Interval& time) const { return travel(time); }
+  /**
+   * Returns the distance travelled at this speed under the specified time interval.
+   *
+   * @param time      the time interval
+   * @return          the distance travelled
+   *
+   * @sa travel(Interval&)
+   */
+  Distance operator*(const Interval& time) const {
+    return travel(time);
+  }
 
   Velocity in_direction(const Vector& direction) const;
 
@@ -765,29 +870,69 @@ public:
  */
 class Equatorial : public Spherical {
 private:
-  EquatorialSystem _sys;
+  Equinox _sys;
 
   void validate();
 
 public:
-  Equatorial(double ra_rad, double dec_rad, const EquatorialSystem &system = EquatorialSystem::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
+  Equatorial(double ra_rad, double dec_rad, const Equinox &system = Equinox::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
 
-  Equatorial(const Angle& ra, const Angle& dec, const EquatorialSystem& system = EquatorialSystem::icrs(), const Distance& distance = Distance::at_Gpc());
+  Equatorial(const Angle& ra, const Angle& dec, const Equinox& system = Equinox::icrs(), const Distance& distance = Distance::at_Gpc());
 
-  explicit Equatorial(const Position& pos, const EquatorialSystem& system = EquatorialSystem::icrs());
+  explicit Equatorial(const Position& pos, const Equinox& system = Equinox::icrs());
 
+  /**
+   * Checks if these equatorial coordinates are the same as another, within the specified
+   * precision.
+   *
+   * @param other           the reference equatorial coordinates
+   * @param precision_rad   [rad] (optional) precision for equality test (default: 1 uas).
+   * @return                `true` if these coordinates are the same as the reference within the
+   *                        precision, or else `false`.
+   *
+   * @sa equals(Equatorial&, Angle&), operator==(Equatorial&)
+   */
   bool equals(const Equatorial& other, double precision_rad = 0.1 * Unit::uas) const {
     return (_sys == other._sys) && Spherical::equals(other, precision_rad);
   }
 
+  /**
+   * Checks if these equatorial coordinates are the same as another, within the specified
+   * precision.
+   *
+   * @param other           the reference equatorial coordinates
+   * @param precision       (optional) precision for equality test (default: 1 uas).
+   * @return                `true` if these coordinates are the same as the reference within the
+   *                        precision, or else `false`.
+   *
+   * @sa equals(Equatorial&, double), operator==(Equatorial&)
+   */
   bool equals(const Equatorial& other, const Angle& precision) const {
     return equals(other, precision.rad());
   }
 
+  /**
+   * Checks if these equatorial coordinates are the same as another, within 1 uas.
+   *
+   * @param other           the reference equatorial coordinates
+   * @return                `true` if these coordinates are the same as the reference within 1 uas,
+   *                        or else `false`.
+   *
+   * @sa operator!=(Equatorial&)
+   */
   bool operator==(const Equatorial& other) const {
     return equals(other);
   }
 
+  /**
+   * Checks if these equatorial coordinates differ from another, by more than 1 uas.
+   *
+   * @param other           the reference equatorial coordinates
+   * @return                `true` if these coordinates differ from the reference, by more than
+   *                        1 uas, or else `false`.
+   *
+   * @sa operator==(Equatorial&)
+   */
   bool operator!=(const Equatorial& other) const {
     return !equals(other);
   }
@@ -796,15 +941,22 @@ public:
 
   const Angle& dec() const;
 
-  const EquatorialSystem& system() const;
+  const Equinox& system() const;
 
   enum novas::novas_reference_system reference_system() const;
 
+  /**
+   * Returns the angular distance of these equatorial coordiantes to/from the specified other
+   * equatorial coordinates.
+   *
+   * @param other   the reference equatorial coordinates
+   * @return        the angular distance of thereturn Angle::operator+(r);se coordinates to/from the argument.
+   */
   Angle distance_to(const Equatorial& other) const {
     return Spherical::distance_to(other);
   }
 
-  Equatorial to_system(const EquatorialSystem& system) const;
+  Equatorial to_system(const Equinox& system) const;
 
   Equatorial to_icrs() const;
 
@@ -851,33 +1003,96 @@ private:
 
   void validate();
 
-  Ecliptic(double longitude_rad, double latitude_rad, enum novas::novas_equator_type equator, double jd_tt = NOVAS_JD_J2000, double distance_m = NOVAS_DEFAULT_DISTANCE);
-
 public:
-  Ecliptic(const Position& pos, enum novas::novas_equator_type equator, double jd_tt = NOVAS_JD_J2000);
 
+  Ecliptic(double longitude_rad, double latitude_rad, const Equinox& system = Equinox::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
+
+  /**
+   * Instantiates new ecliptic coordinates with the specified parameters.
+   *
+   * @param longitude   ecliptic longitude coordinate
+   * @param latitude    ecliptic latitude coordinate
+   * @param system      (optional) The equatorial coordinate reference system that defines the
+   *                    origin of ecliptic longitude, that is the equinox of date (default:
+   *                    ICRS).
+   * @param distance    (optional) the distance, in needed / known (default: 1 Gpc).
+   *
+   * @sa Ecliptic(double, double, Equinox&, double), Ecliptic(Position&, Equinox&)
+   */
+  Ecliptic(const Angle& longitude, const Angle& latitude, const Equinox &system = Equinox::icrs(), const Distance& distance = Distance::at_Gpc())
+  : Ecliptic(longitude.rad(), latitude.rad(), system, distance.m()) {}
+
+  explicit Ecliptic(const Position& pos, const Equinox &system = Equinox::icrs());
+
+  /**
+   * Checks if these ecliptic coordinates are the same as another, within the specified
+   * precision.
+   *
+   * @param other           the reference ecliptic coordinates
+   * @param precision_rad   [rad] (optional) precision for equality test (default: 1 uas).
+   * @return                `true` if these coordinates are the same as the reference within the
+   *                        precision, or else `false`.
+   *
+   * @sa equals(Ecliptic&, Angle&), operator==(Ecliptic&)
+   */
   bool equals(const Ecliptic& other, double precision_rad = 0.1 * Unit::uas) const {
     return (_equator == other._equator) && (_jd == other._jd) && Spherical::equals(other, precision_rad);
   }
 
+  /**
+   * Checks if these ecliptic coordinates are the same as another, within the specified
+   * precision.
+   *
+   * @param other           the reference ecliptic coordinates
+   * @param precision       (optional) precision for equality test (default: 1 uas).
+   * @return                `true` if these coordinates are the same as the reference within the
+   *                        precision, or else `false`.
+   *
+   * @sa equals(Ecliptic&, double), operator==(Ecliptic&)
+   */
   bool equals(const Ecliptic& other, const Angle& precision) const {
     return equals(other, precision.rad());
   }
 
+  /**
+   * Checks if these ecliptic coordinates are the same as another, within 1 uas.
+   *
+   * @param other           the reference ecliptic coordinates
+   * @return                `true` if these coordinates are the same as the reference within 1 uas,
+   *                        or else `false`.
+   *
+   * @sa operator!=(Ecliptic&)
+   */
   bool operator==(const Ecliptic& other) const {
     return equals(other);
   }
 
+  /**
+   * Checks if these ecliptic coordinates differ from another, by more than 1 uas.
+   *
+   * @param other           the reference ecliptic coordinates
+   * @return                `true` if these coordinates differ from the reference, by more than
+   *                        1 uas, or else `false`.
+   *
+   * @sa operator==(Ecliptic&)
+   */
   bool operator!=(const Ecliptic& other) const {
     return !equals(other);
   }
 
-  enum novas::novas_equator_type equator() const;
+  enum novas::novas_equator_type equator_type() const;
 
   double jd() const;
 
   double mjd() const;
 
+  /**
+   * Returns the angular distance of these ecliptic coordiantes to/from the specified other
+   * ecliptic coordinates.
+   *
+   * @param other   the reference ecliptic coordinates
+   * @return        the angular distance of these coordinates to/from the argument.
+   */
   Angle distance_to(const Ecliptic& other) const {
     return Spherical::distance_to(other);
   }
@@ -902,28 +1117,12 @@ public:
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 
-  static Ecliptic icrs(double longitude_rad, double latitude_rad, double distance = NOVAS_DEFAULT_DISTANCE);
-
-  static Ecliptic icrs(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
-
-  static Ecliptic j2000(double longitude_rad, double latitude_rad, double distance = NOVAS_DEFAULT_DISTANCE);
-
-  static Ecliptic j2000(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
-
-  static Ecliptic mod(double jd_tt, double longitude_rad, double latitude_rad, double distance = NOVAS_DEFAULT_DISTANCE);
-
-  static Ecliptic mod(const Time& time, const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
-
-  static Ecliptic tod(double jd_tt, double longitude_rad, double latitude_rad, double distance = NOVAS_DEFAULT_DISTANCE);
-
-  static Ecliptic tod(const Time& time, const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
-
   static const Ecliptic& invalid();
 };
 
 /**
- * Galactic coordinates (_l_, _b_) and distance, representing the direction on the sky, or
- * location in space relative to the galactic plane and the nominal Galactic center location.
+ * %Galactic coordinates (_l_, _b_) and distance, representing the direction on the sky, or
+ * location in space relative to the galactic plane and the nominal %Galactic center location.
  *
  * @ingroup nonequatorial
  */
@@ -935,22 +1134,69 @@ public:
 
   explicit Galactic(const Position& pos);
 
+  /**
+   * Checks if these galactic coordinates are the same as another, within the specified
+   * precision.
+   *
+   * @param other           the reference galactic coordinates
+   * @param precision_rad   [rad] (optional) precision for equality test (default: 1 uas).
+   * @return                `true` if these coordinates are the same as the reference within the
+   *                        precision, or else `false`.
+   *
+   * @sa equals(Galactic&, Angle&), operator==(Galactic&)
+   */
   bool equals(const Galactic& other, double precision_rad = 0.1 * Unit::uas) const {
     return Spherical::equals(other, precision_rad);
   }
 
+  /**
+   * Checks if these galactic coordinates are the same as another, within the specified
+   * precision.
+   *
+   * @param other           the reference galactic coordinates
+   * @param precision       (optional) precision for equality test (default: 1 uas).
+   * @return                `true` if these coordinates are the same as the reference within the
+   *                        precision, or else `false`.
+   *
+   * @sa equals(Galactic&, double), operator==(Galactic&)
+   */
   bool equals(const Galactic& other, const Angle& precision) const {
     return equals(other, precision.rad());
   }
 
+  /**
+   * Checks if these galactic coordinates are the same as another, within 1 uas.
+   *
+   * @param other           the reference galactic coordinates
+   * @return                `true` if these coordinates are the same as the reference within 1 uas,
+   *                        or else `false`.
+   *
+   * @sa operator!=(Galactic&)
+   */
   bool operator==(const Galactic& other) const {
     return equals(other);
   }
 
+  /**
+   * Checks if these galactic coordinates differ from another, by more than 1 uas.
+   *
+   * @param other           the reference galactic coordinates
+   * @return                `true` if these coordinates differ from the reference, by more than
+   *                        1 uas, or else `false`.
+   *
+   * @sa operator==(Galactic&)
+   */
   bool operator!=(const Galactic& other) const {
     return !equals(other);
   }
 
+  /**
+   * Returns the angular distance of these galactic coordiantes to/from the specified other
+   * galactic coordinates.
+   *
+   * @param other   the reference galactic coordinates
+   * @return        the angular distance of these coordinates to/from the argument.
+   */
   Angle distance_to(const Galactic& other) const {
     return Spherical::distance_to(other);
   }
@@ -1179,6 +1425,18 @@ public:
 
   Site(double longitude_rad, double latitude_rad, double altitude_m = 0.0, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
 
+  /**
+   * Constructs a new observing site with the specified geodetic location on the reference ellipsoid of
+   * choice.
+   *
+   * @param longitude       Observer's geodetic longitude
+   * @param latitude        Observer's geodetic latitude
+   * @param altitude        Observers's altitude above sea level
+   * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
+   *
+   * @sa Site(double, double, double, enum novas_reference_ellipsoid), Site::Site(Position&),
+   *     from_xyz(Position &), Site::from_GPS(double, double, double)
+   */
   Site(const Angle& longitude, const Angle& latitude, const Distance& altitude, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID)
   : Site(longitude.rad(), latitude.rad(), altitude.m(), ellipsoid) {}
 
@@ -1192,11 +1450,9 @@ public:
 
   const Distance altitude() const;
 
-  const Position xyz(enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID) const;
+  Position xyz() const;
 
   Site itrf_transformed(int from_year, int to_year) const;
-
-  Position xyz() const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 
@@ -1709,7 +1965,7 @@ public:
 class CatalogEntry : public Validating {
 private:
   novas::cat_entry _entry = {};  ///< stored catalog entry
-  EquatorialSystem _sys;            ///< stored catalog system
+  Equinox _sys;            ///< stored catalog system
 
 public:
   CatalogEntry(const std::string &name, const Equatorial& coords);
@@ -1718,11 +1974,11 @@ public:
 
   CatalogEntry(const std::string &name, const Galactic& coords);
 
-  explicit CatalogEntry(novas::cat_entry e, const EquatorialSystem& system = EquatorialSystem::icrs());
+  explicit CatalogEntry(novas::cat_entry e, const Equinox& system = Equinox::icrs());
 
   const novas::cat_entry* _cat_entry() const;
 
-  const EquatorialSystem& system() const;
+  const Equinox& system() const;
 
   std::string name() const;
 
@@ -1774,7 +2030,7 @@ public:
  */
 class CatalogSource : public Source {
 private:
-  EquatorialSystem _system;      ///< stored catalog system
+  Equinox _system;      ///< stored catalog system
 
 public:
   explicit CatalogSource(const CatalogEntry& e);
@@ -1912,9 +2168,9 @@ public:
 
   Angle ascending_node() const;
 
-  OrbitalSystem& orientation(double obliquity_rad, double node_rad, const EquatorialSystem& system = EquatorialSystem::icrs());
+  OrbitalSystem& orientation(double obliquity_rad, double node_rad, const Equinox& system = Equinox::icrs());
 
-  OrbitalSystem& orientation(const Angle& obliquity, const Angle& node, const EquatorialSystem& system = EquatorialSystem::icrs());
+  OrbitalSystem& orientation(const Angle& obliquity, const Angle& node, const Equinox& system = Equinox::icrs());
 
   static OrbitalSystem equatorial(const Planet& center = Planet::sun());
 
@@ -2067,16 +2323,16 @@ public:
  */
 class Apparent : public Validating {
 private:
-  EquatorialSystem _sys;                      ///< stored coordinate system type
+  Equinox _sys;                      ///< stored coordinate system type
   Frame _frame;                               ///< stored frame data
 
   novas::sky_pos _pos;                        ///< stored apparent position data
 
-  Apparent(const EquatorialSystem& system, const Frame& frame);
+  Apparent(const Equinox& system, const Frame& frame);
 
-  Apparent(const EquatorialSystem& system, const Frame& frame, novas::sky_pos p);
+  Apparent(const Equinox& system, const Frame& frame, novas::sky_pos p);
 
-  Apparent(const EquatorialSystem& system, const Frame& frame, double ra_rad, double dec_rad, double rv_ms = 0.0);
+  Apparent(const Equinox& system, const Frame& frame, double ra_rad, double dec_rad, double rv_ms = 0.0);
 
 
 public:
@@ -2084,7 +2340,7 @@ public:
 
   const Frame& frame() const;
 
-  const EquatorialSystem& system() const;
+  const Equinox& system() const;
 
   Position xyz() const;
 
@@ -2205,20 +2461,71 @@ public:
 
   Horizontal(const Angle& azimuth, const Angle& elevation, const Distance& distance = Distance::at_Gpc());
 
+  /**
+   * Checks if these horizontal coordinates are the same as another, within the specified
+   * precision.
+   *
+   * @param other           the reference horizontal coordinates
+   * @param precision_rad   [rad] (optional) precision for equality test (default: 1 uas).
+   * @return                `true` if these coordinates are the same as the reference within the
+   *                        precision, or else `false`.
+   *
+   * @sa equals(Horizontal&, Angle&), operator==(Horizontal&)
+   */
   bool equals(const Horizontal& other, double precision_rad = 0.1 * Unit::uas) const {
     return Spherical::equals(other, precision_rad);
   }
 
+  /**
+   * Checks if these horizontal coordinates are the same as another, within the specified
+   * precision.
+   *
+   * @param other           the reference horizontal coordinates
+   * @param precision       (optional) precision for equality test (default: 1 uas).
+   * @return                `true` if these coordinates are the same as the reference within the
+   *                        precision, or else `false`.
+   *
+   * @sa equals(Horizontal&, double), operator==(Horizontal&)
+   */
   bool equals(const Horizontal& other, const Angle& precision) const {
     return equals(other, precision.rad());
   }
 
+  /**
+   * Checks if these horizontal coordinates are the same as another, within 1 uas.
+   *
+   * @param other           the reference horizontal coordinates
+   * @return                `true` if these coordinates are the same as the reference within 1 uas,
+   *                        or else `false`.
+   *
+   * @sa operator!=(Horizontal&)
+   */
   bool operator==(const Horizontal& other) const {
     return equals(other);
   }
 
+  /**
+   * Checks if these horizontal coordinates differ from another, by more than 1 uas.
+   *
+   * @param other           the reference horizontal coordinates
+   * @return                `true` if these coordinates differ from the reference, by more than
+   *                        1 uas, or else `false`.
+   *
+   * @sa operator==(Galactic&)
+   */
   bool operator!=(const Horizontal& other) const {
     return !equals(other);
+  }
+
+  /**
+   * Returns the angular distance of these horizontal coordiantes to/from the specified other
+   * horizontal coordinates.
+   *
+   * @param other   the reference horizontal coordinates
+   * @return        the angular distance of these coordinates to/from the argument.
+   */
+  Angle distance_to(const Horizontal& other) const {
+    return Spherical::distance_to(other);
   }
 
   const Angle& azimuth() const;
@@ -2234,10 +2541,10 @@ public:
   Horizontal to_unrefracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather);
 
   /// @ingroup apparent
-  std::optional<Apparent> to_apparent(const Frame& frame, double rv = 0.0, double distance = NOVAS_DEFAULT_DISTANCE) const;
+  std::optional<Apparent> to_apparent(const Frame& frame, double rv = 0.0) const;
 
   /// @ingroup apparent
-  std::optional<Apparent> to_apparent(const Frame& frame, const Speed& rv = Speed::stationary(), const Distance& distance = Distance::at_Gpc()) const;
+  std::optional<Apparent> to_apparent(const Frame& frame, const Speed& rv = Speed::stationary()) const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 
@@ -2345,19 +2652,19 @@ public:
  */
 class EquatorialTrack : public Track {
 private:
-  EquatorialSystem _system;
+  Equinox _system;
 
-  EquatorialTrack(const EquatorialSystem& system, const novas::novas_track *track, const Interval& range)
+  EquatorialTrack(const Equinox& system, const novas::novas_track *track, const Interval& range)
   : Track(track, range), _system(system) {}
 
 public:
-  EquatorialTrack(const EquatorialSystem& system, const Interval& range, const Time& ref_time,
+  EquatorialTrack(const Equinox& system, const Interval& range, const Time& ref_time,
           const Evolution& lon, const Evolution& lat, const Evolution& r = Evolution::stationary(NOVAS_DEFAULT_DISTANCE))
   : Track(ref_time, range, lon, lat, r), _system(system) {}
 
   Equatorial projected(const Time& time) const;
 
-  static EquatorialTrack from_novas_track(const EquatorialSystem& system, const novas::novas_track *track, const Interval& range);
+  static EquatorialTrack from_novas_track(const Equinox& system, const novas::novas_track *track, const Interval& range);
 };
 
 } // namespace supernovas
