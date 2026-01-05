@@ -18,6 +18,14 @@ using namespace novas;
 namespace supernovas {
 
 
+bool Observer::is_geodetic() const {
+  return false;
+}
+
+bool Observer::is_geocentric() const {
+  return false;
+}
+
 const observer * Observer::_novas_observer() const {
   return &_observer;
 }
@@ -80,6 +88,8 @@ GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
   else
     _valid = true;
 }
+
+bool GeocentricObserver::is_geocentric() const { return true; }
 
 Position GeocentricObserver::geocentric_position() const {
   return Position(_observer.near_earth.sc_pos, Unit::km);
@@ -154,6 +164,8 @@ GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const 
   else
     _valid = true;
 }
+
+bool GeodeticObserver::is_geodetic() const { return true; }
 
 Site GeodeticObserver::site() const {
   const on_surface *s = &_observer.on_surf;

@@ -26,8 +26,7 @@ Site::Site() {}
  * @param altitude_m      [m] Observers's altitude above sea level
  * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
  *
- * @sa Site(Angle&, Angle&, Distance&, enum novas_reference_ellipsoid), Site::Site(Position&),
- *     from_xyz(Position &), Site::from_GPS(double, double, double)
+ * @sa from_xyz(), from_GPS()
  */
 Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum novas_reference_ellipsoid ellipsoid) {
   static const char *fn = "Site()";
@@ -54,12 +53,23 @@ Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum no
 }
 
 /**
+ * Constructs a new observing site with the specified geodetic location on the reference ellipsoid of
+ * choice.
+ *
+ * @param longitude       Observer's geodetic longitude
+ * @param latitude        Observer's geodetic latitude
+ * @param altitude        Observers's altitude above sea level
+ * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
+ *
+ * @sa from_xyz(), Site::from_GPS()
+ */
+Site::Site(const Angle& longitude, const Angle& latitude, const Distance& altitude, enum novas::novas_reference_ellipsoid ellipsoid)
+: Site(longitude.rad(), latitude.rad(), altitude.m(), ellipsoid) {}
+
+/**
  * Instantiates a new observing site with the specified geocentric position vector.
  *
  * @param xyz   Observers geocentric position vector in rectangular coordinates.
- *
- * @sa Site(Angle&, Angle&, Distance&, enum novas_reference_ellipsoid),
- *     Site(double, double, double, enum novas_reference_ellipsoid)
  */
 Site::Site(const Position& xyz) {
   static const char *fn = "Site()";
@@ -175,9 +185,7 @@ std::string Site::to_string(enum novas_separator_type separator, int decimals) c
  * @param v   Geocentric position of the obsrving site, in rectangular coordinates.
  * @return    a new observing site at the specified geocentric position.
  *
- * @sa Site(Angle&, Angle&, Distance&, enum novas_reference_ellipsoid),
- *     Site(double, double, double, enum novas_reference_ellipsoid),
- *     from_xyz(Position &), Site::from_GPS(double, double, double)
+ * @sa Site(), from_GPS()
  */
 Site Site::from_xyz(const Position& v) {
   Site site = Site();
@@ -193,9 +201,7 @@ Site Site::from_xyz(const Position& v) {
  * @param altitude    [m] GPS altitude
  * @return    a new observing site at the specified GSP location.
  *
- * @sa Site(Angle&, Angle&, Distance&, enum novas_reference_ellipsoid),
- *     Site(double, double, double, enum novas_reference_ellipsoid),
- *     Site(Position&),
+ * @sa Site(), from_xyz()
  */
 Site Site::from_GPS(double longitude, double latitude, double altitude) {
   return Site(longitude, latitude, altitude, NOVAS_WGS84_ELLIPSOID);

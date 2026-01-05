@@ -23,8 +23,6 @@ namespace supernovas {
  * @param longitude_rad   [rad] longitude coordinate
  * @param latitude_rad    [rad] latitude coordinate
  * @param distance_m      [m] distance, if needed / known (default: 1 Gpc)
- *
- * @sa Spherical(Angle&, Angle&, Distance&)
  */
 Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_m)
 : _lon(longitude_rad), _lat(latitude_rad), _distance(distance_m) {
@@ -50,11 +48,35 @@ Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_
  * @param longitude   longitude coordinate
  * @param latitude    latitude coordinate
  * @param distance    distance, if needed / known (default: 1 Gpc)
- *
- * @sa Spherical(double, double, double)
  */
 Spherical::Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance)
 : Spherical(longitude.rad(), latitude.rad(), distance.m()) {}
+
+
+/**
+ * Instantiates spherical coordinates with the specified string representations of the longitude
+ * and latitude coordinates, optionally specifying a system and a distance if needed. After
+ * instantiation, you should check that the resulting coordinates are valid, e.g. as:
+ *
+ * ```c++
+ *   Spherical coords = Spherical(..., ...);
+ *   if(!coords.is_valid()) {
+ *     // oops, looks like the angles could not be parsed...
+ *     return;
+ *   }
+ * ```
+ *
+ * @param lon         string representation of the longitude coordinate in DMS or a decimnal
+ *                    degrees.
+ * @param lat         string representation of the declination coordinate as DMS or decimal
+ *                    degrees.
+ * @param distance    (optional) the distance, if needed / known (default: 1 Gpc)
+ *
+ * @sa novas_str_degrees() for details on string representation that can be parsed.
+ */
+Spherical::Spherical(const std::string& lon, const std::string& lat, const Distance& distance)
+: Spherical(Angle(lon), Angle(lat), distance) {}
+
 
 /**
  * Returns the angular distance of these spherical coordiantes to/from the specified other

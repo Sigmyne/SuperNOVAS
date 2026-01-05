@@ -38,8 +38,6 @@ Vector::Vector(double x, double y, double z) {
  *
  * @param r   scaling factor on the right-hand side
  * @return    a new vector that is the rescaled version of this vector.
- *
- * @sa operator*(double, Vector&)
  */
 Vector Vector::operator*(double r) const {
   return scaled(r);
@@ -156,7 +154,7 @@ std::string Vector::to_string(int decimals) const {
   char sx[40] = {'\0'}, sy[40] = {'\0'}, sz[40] = {'\0'};
 
   novas_print_decimal(_component[0], decimals, sx, sizeof(sx));
-  novas_print_decimal(_component[1], decimals, sy, sizeof(sy));
+  novas_print_decimal(_component[1], decimals, sy, sizeof(sy));/**/
   novas_print_decimal(_component[2], decimals, sz, sizeof(sz));
 
   return "VEC (" + std::string(sx) + ", " + std::string(sy) + ", " + std::string(sz) + ")";
@@ -179,8 +177,6 @@ Vector Vector::unit_vector() const {
  * @param v         the vector on the right-hand side
  * @return          a new vector that is the scaled version of the input vector by the specified
  *                  factor.
- *
- * @sa Vector::operator*(double)
  */
 Vector operator*(double factor, const Vector& v) {
   return v * factor;

@@ -35,8 +35,6 @@ void EOP::validate() {
  * @param dut1_sec        [s] (optional) UT1 - UTC time difference (default: 0.0)
  * @param xp_rad          [rad] (optional) IERS _x_<sub>p</sub> pole offset (default: 0.0)
  * @param yp_rad          [rad] (optional) IERS _y_<sub>p</sub> pole offset (default: 0.0)
- *
- * @sa EOP(int, Interval&, Angle&, Angle&)
  */
 EOP::EOP(int leap_seconds, double dut1_sec, double xp_rad, double yp_rad)
 : _leap(leap_seconds), _xp(xp_rad), _yp(yp_rad), _dut1(dut1_sec) {
@@ -50,8 +48,6 @@ EOP::EOP(int leap_seconds, double dut1_sec, double xp_rad, double yp_rad)
  * @param dut1            (optional) UT1 - UTC time difference (default: 0.0)
  * @param xp              (optional) IERS _x_<sub>p</sub> pole offset (default: 0.0)
  * @param yp              (optional) IERS _y_<sub>p</sub> pole offset (default: 0.0)
- *
- * @sa EOP(int, double, double, double)
  */
 EOP::EOP(int leap_seconds, const Interval& dut1, const Angle& xp, const Angle& yp)
 : EOP(leap_seconds, dut1.seconds(), xp.rad(), yp.rad()) {

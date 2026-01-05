@@ -16,11 +16,11 @@ using namespace novas;
 namespace supernovas {
 
 /**
- * Instantiates a (signed) scalar speed with the specified S.I. value in m/s.
+ * Instantiates a (signed) scalar velocity (speed) with the specified S.I. value in m/s.
  *
  * @param m_per_s   [m/s] the speed
  *
- * @sa Speed(Distance&, Interval&), from_redshift()
+ * @sa from_redshift()
  */
 Speed::Speed(double m_per_s) : _ms(m_per_s) {
   if(isnan(m_per_s))
@@ -32,12 +32,13 @@ Speed::Speed(double m_per_s) : _ms(m_per_s) {
 }
 
 /**
- * Instantiates a (signed) scalar speed given the distance travelled in the specified time interval.
+ * Instantiates a (signed) scalar velocity (speed) given the distance travelled in the specified
+ * time interval.
  *
  * @param d     distance travelled
  * @param time  time interval
  *
- * @sa Speed(double), from_redshift()
+ * @sa from_redshift()
  */
 Speed::Speed(const Distance& d, const Interval& time) : _ms(d.m() / time.seconds()) {}
 
@@ -48,7 +49,7 @@ Speed::Speed(const Distance& d, const Interval& time) : _ms(d.m() / time.seconds
  * @param r     the speed on the right-hand side
  * @return      the relativistic sum of this speed and the argument.
  *
- * @sa operator-(Speed &)
+ * @sa operator-()
  */
 Speed Speed::operator+(const Speed& r) const {
   return Speed((beta() + r.beta()) / (1 + beta() * r.beta()) * Constant::c);
@@ -61,7 +62,7 @@ Speed Speed::operator+(const Speed& r) const {
  * @param r     the speed on the right-hand side
  * @return      the relativistic difference of this speed and the argument.
  *
- * @sa operator+(Speed &)
+ * @sa operator+()
  */
 Speed Speed::operator-(const Speed& r) const {
   return Speed((beta() - r.beta()) / (1 + beta() * r.beta()) * Constant::c);
@@ -75,7 +76,7 @@ Speed Speed::operator-(const Speed& r) const {
  * @return            `true` if this speed equals the argument within the tolerance, or else
  *                    `false`
  *
- * @sa equals(Speed&, Speed&), operator==(Speed&)
+ * @sa operator==(), operator!=()
  */
 bool Speed::equals(const Speed& speed, double tolerance) const {
   return fabs(_ms - speed._ms) < fabs(tolerance);
@@ -89,7 +90,7 @@ bool Speed::equals(const Speed& speed, double tolerance) const {
  * @return            `true` if this speed equals the argument within the tolerance, or else
  *                    `false`
  *
- * @sa equals(Speed&, Speed&), operator==(Speed&)
+ * @sa operator==(), operator!=()
  */
 bool Speed::equals(const Speed& speed, const Speed& tolerance) const {
   return equals(speed, tolerance.m_per_s());
@@ -101,7 +102,7 @@ bool Speed::equals(const Speed& speed, const Speed& tolerance) const {
  * @param speed     the reference speed
  * @return          `true` if this speed equals the argument within 1 mm/s, or else `false`
  *
- * @sa equals(Speed&, double), equals(Speed&, Speed&), operator!=(Speed&)
+ * @sa equals(), operator!=()
  */
 bool Speed::operator==(const Speed& speed) const {
   return equals(speed);
@@ -114,7 +115,7 @@ bool Speed::operator==(const Speed& speed) const {
  * @return          `true` if this speed differs from the argument by more than 1 mm/s, or else
  *                  `false`
  *
- * @sa operator==(Speed&)
+ * @sa operator==()
  */
 bool Speed::operator!=(const Speed& speed) const {
   return !equals(speed);
@@ -201,7 +202,7 @@ double Speed::redshift() const {
  * @param seconds   [s] the time interval
  * @return          the distance travelled
  *
- * @sa travel(Interval&), Velocity::travel(double)
+ * @sa operator*(), Velocity::travel()
  */
 Distance Speed::travel(double seconds) const {
   return Distance(_ms * seconds);
@@ -213,10 +214,22 @@ Distance Speed::travel(double seconds) const {
  * @param time      the time interval
  * @return          the distance travelled
  *
- * @sa travel(double), operator*(Interval&), Velocity::travel(Interval&)
+ * @sa operator*(), Velocity::travel()
  */
 Distance Speed::travel(const Interval& time) const {
   return travel(time.seconds());
+}
+
+/**
+ * Returns the distance travelled at this speed under the specified time interval.
+ *
+ * @param time      the time interval
+ * @return          the distance travelled
+ *
+ * @sa travel()
+ */
+Distance Speed::operator*(const Interval& time) const {
+  return travel(time);
 }
 
 /**
@@ -250,7 +263,7 @@ Velocity Speed::in_direction(const Vector& direction) const {
  * Instantiates a new speed instance from a given redshift value.
  *
  * @param z   the redshift value.
- * @return    a new speed instance corresponding to the specified redshift value.
+ * @return    a scalar velocity instance corresponding to the specified redshift value.
  */
 Speed Speed::from_redshift(double z) {
   return Speed(novas_z2v(z) * Unit::km / Unit::sec);

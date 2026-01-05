@@ -118,6 +118,19 @@ bool Equinox::operator==(const Equinox& system) const {
 }
 
 /**
+ * Checks if this equatorial system differs from the equatorial system as the right-hand side.
+ *
+ * @param system  The equatorial system on the right-hand side.
+ * @return        `true` if the two equatorial systems are differ, or else `false`.
+ *
+ * @sa operator==()
+ */
+bool Equinox::operator!=(const Equinox& system) const {
+  return !(*this == system);
+}
+
+
+/**
  * Checks if this equatorial system is the International Celestial Reference System (ICRS).
  * ICRS is the standard catalog system in the IAU 2000 convention.
  *
@@ -322,7 +335,7 @@ std::optional<Equinox> Equinox::for_reference_system(enum novas::novas_reference
  * @return          A reference system with the mean dynamical equator of date, with origin at
  *                  the mean equinox of date.
  *
- * @sa mod(Time&), mod_at_besselial_epoch(), j2000(), hip()
+ * @sa mod_at_besselial_epoch(), j2000(), hip()
  */
 Equinox Equinox::mod(double jd_tt) {
   return Equinox::for_reference_system(NOVAS_MOD, jd_tt).value();
@@ -337,7 +350,7 @@ Equinox Equinox::mod(double jd_tt) {
  * @return          A reference system with the mean dynamical equator of date, with origin at
  *                  the mean equinox of date.
  *
- * @sa mod(double), mod_at_besselial_epoch(), j2000(), hip()
+ * @sa mod_at_besselial_epoch(), j2000(), hip()
  */
 Equinox Equinox::mod(const Time& time) {
   return Equinox::mod(time.jd());
@@ -369,7 +382,7 @@ Equinox Equinox::mod_at_besselian_epoch(double year) {
  * @return          the equatorial coordinate system based on the true dynamical equator and
  *                  equinox of date.
  *
- * @sa tod(Time&), cirs(double)
+ * @sa cirs()
  */
 Equinox Equinox::tod(double jd_tt) {
   return Equinox::for_reference_system(NOVAS_TOD, jd_tt).value();
@@ -384,7 +397,7 @@ Equinox Equinox::tod(double jd_tt) {
  * @return          the equatorial coordinate system based on the true dynamical equator and
  *                  equinox of date.
  *
- * @sa tod(double), cirs(Time&)
+ * @sa cirs()
  */
 Equinox Equinox::tod(const Time& time) {
   return Equinox::tod(time.jd());
@@ -400,7 +413,7 @@ Equinox Equinox::tod(const Time& time) {
  * @return          the equatorial coordinate system based on the true dynamical equator, with
  *                  its origin at the CIO
  *
- * @sa cirs(Time&), tod(double)
+ * @sa tod()
  */
 Equinox Equinox::cirs(double jd_tt) {
   return Equinox::for_reference_system(NOVAS_CIRS, jd_tt).value();
@@ -415,7 +428,7 @@ Equinox Equinox::cirs(double jd_tt) {
  * @return          the equatorial coordinate system based on the true dynamical equator, with
  *                  its origin at the CIO
  *
- * @sa cirs(double), tod(Time&)
+ * @sa tod()
  */
 Equinox Equinox::cirs(const Time& time) {
   return Equinox::cirs(time.jd());

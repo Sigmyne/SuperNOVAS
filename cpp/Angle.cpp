@@ -62,7 +62,7 @@ Angle::Angle(const std::string& str) {
  * @param r   the other angle on the right-hand-side.
  * @return    the sum of this angle and the argument, as a new angle.
  *
- * @sa operator-(Angle&)
+ * @sa operator-()
  */
 Angle Angle::operator+(const Angle& r) const {
   return Angle(rad() + r.rad());
@@ -74,7 +74,7 @@ Angle Angle::operator+(const Angle& r) const {
  * @param r   the other angle on the right-hand-side.
  * @return    the difference of this angle and the argument, as a new angle.
  *
- * @sa operator+(Angle&)
+ * @sa operator+()
  */
 Angle Angle::operator-(const Angle& r) const {
   return Angle(rad() - r.rad());
@@ -87,10 +87,37 @@ Angle Angle::operator-(const Angle& r) const {
  * @param precision   [rad] the abolute precision to use when testing for equality. If the two
  *                    angles are closer on the 2&pi; circle to each other than this precision,
  *                    then they are consideredc equal, otherwise not.
- * @return            true if the two angles match within the specified precision, or else false.
+ * @return            `true` if the two angles match within the specified precision, or else
+ *                    `false`.
+ *
+ * @sa operator==(), operator!=()
  */
 bool Angle::equals(const Angle& angle, double precision) const {
   return fabs(remainder(_rad - angle._rad, Constant::twoPi)) < fabs(precision);
+}
+
+/**
+ * Checks if this angle instance equals another within the 1 &mu;as.
+ *
+ * @param angle       another angle
+ * @return            `true` if the two angles match within 1 &mu;as, or else `false`.
+ *
+ * @sa equals(), operator!=()
+ */
+bool Angle::operator==(const Angle& angle) const {
+  return equals(angle);
+}
+
+/**
+ * Checks if this angle instance differs from another by more than 1 &mu;as.
+ *
+ * @param angle       another angle
+ * @return            `true` if the two angles differ by more than 1 &mu;as, or else `false`.
+ *
+ * @sa equals(), operator==()
+ */
+bool Angle::operator!=(const Angle& angle) const {
+  return !equals(angle);
 }
 
 /**
@@ -185,7 +212,7 @@ double Angle::fraction() const {
  *                    component.
  * @return            the strung representation of this angle in degrees.
  *
- * @sa TimeAngle::to_string(enum novas_separator_type, int)
+ * @sa TimeAngle::to_string()
  */
 std::string Angle::to_string(enum novas_separator_type separator, int decimals) const {
   char s[100] = {'\0'};

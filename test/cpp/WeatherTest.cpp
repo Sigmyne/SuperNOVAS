@@ -22,15 +22,15 @@ int main() {
 
   Weather a = Weather(45.0, 1.0 * Unit::atm, 30.0);
   if(!test.check("is_valid()", a.is_valid())) n++;
-  if(!test.equals("temperature()", a.temperature().C(), 45.0, 1e-15)) n++;
+  if(!test.equals("temperature()", a.temperature().celsius(), 45.0, 1e-15)) n++;
   if(!test.equals("pressure()", a.pressure().atm(), 1.0, 1e-15)) n++;
   if(!test.equals("humidity()", a.humidity(), 30.0, 1e-15)) n++;
   if(!test.equals("humidity()", a.humidity_fraction(), 0.3, 1e-15)) n++;
   if(!test.equals("to_string()", a.to_string(), "Weather (T = " + a.temperature().to_string() +
           ", p = " + a.pressure().to_string() + ", h = 30.0 %)")) n++;
 
-  Weather b = Weather(Temperature::C(45.0), Pressure::atm(1.0), 30.0);
-  if(!test.equals("temperature() ==", b.temperature().C(), a.temperature().C(), 1e-15)) n++;
+  Weather b = Weather(Temperature::celsius(45.0), Pressure::atm(1.0), 30.0);
+  if(!test.equals("temperature() ==", b.temperature().celsius(), a.temperature().celsius(), 1e-15)) n++;
   if(!test.equals("pressure() ==", b.pressure().atm(), a.pressure().atm(), 1e-15)) n++;
   if(!test.equals("humidity() ==", b.humidity(), a.humidity(), 1e-15)) n++;
   if(!test.equals("humidity_fraction() ==", b.humidity_fraction(), a.humidity_fraction(), 1e-15)) n++;
@@ -42,7 +42,7 @@ int main() {
   novas::make_itrf_site(30.0, 45.0, 1500.0, &s);
   novas::novas_set_default_weather(&s);
 
-  if(!test.equals("temperature(site)", c.temperature().C(), s.temperature, 1e-15)) n++;
+  if(!test.equals("temperature(site)", c.temperature().celsius(), s.temperature, 1e-15)) n++;
   if(!test.equals("pressure(site)", c.pressure().mbar(), s.pressure, 1e-15)) n++;
   if(!test.equals("humidity(site)", c.humidity(), s.humidity, 1e-15)) n++;
 

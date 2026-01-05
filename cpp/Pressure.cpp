@@ -19,7 +19,7 @@ namespace supernovas {
  *
  * @param value [Pa] the atmospheric pressure
  *
- * @sa Pa(double), hPa(double), kPa(double), mbar(double), bar(double), torr(double), atm(double)
+ * @sa Pa(), hPa(), kPa(), mbar(), bar(), torr(), atm()
  */
 Pressure::Pressure(double value) : _pascal(value) {
   static const char *fn = "Pressure()";
@@ -128,7 +128,7 @@ std::string Pressure::to_string() const {
  * @param value   [Pa] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
- * @sa hPa(double), kPa(double), mbar(double), bar(double), torr(double), atm(double)
+ * @sa hPa(), kPa(), mbar(), bar(), torr(), atm()
  */
 Pressure Pressure::Pa(double value) {
   return Pressure(value);
@@ -140,7 +140,7 @@ Pressure Pressure::Pa(double value) {
  * @param value   [hPa] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
- * @sa Pa(double), kPa(double), mbar(double), bar(double), torr(double), atm(double)
+ * @sa Pa(), kPa(), mbar(), bar(), torr(), atm()
  */
 Pressure Pressure::hPa(double value) {
   return Pressure(100.0 * value);
@@ -152,7 +152,7 @@ Pressure Pressure::hPa(double value) {
  * @param value   [kPa] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
- * @sa Pa(double), hPa(double), mbar(double), bar(double), torr(double), atm(double)
+ * @sa Pa(), hPa(), mbar(), bar(), torr(), atm()
  */
 Pressure Pressure::kPa(double value) {
   return Pressure(1000.0 * value);
@@ -164,7 +164,7 @@ Pressure Pressure::kPa(double value) {
  * @param value   [mbar] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
- * @sa Pa(double), hPa(double), kPa(double), bar(double), torr(double), atm(double)
+ * @sa Pa(), hPa(), kPa(), bar(), torr(), atm()
  */
 Pressure Pressure::mbar(double value) {
   return Pressure(value * Unit::mbar);
@@ -176,7 +176,7 @@ Pressure Pressure::mbar(double value) {
  * @param value   [bar] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
- * @sa Pa(double), hPa(double), kPa(double), mbar(double), torr(double), atm(double)
+ * @sa Pa(), hPa(), kPa(), mbar(), torr(), atm()
  */
 Pressure Pressure::bar(double value) {
   return Pressure(value * Unit::bar);
@@ -188,7 +188,7 @@ Pressure Pressure::bar(double value) {
  * @param value   [torr] atmospheric pressure value in millimeters of Hg.
  * @return        A new pressure object with the specified value.
  *
- * @sa Pa(double), hPa(double), kPa(double), mbar(double), bar(double), atm(double)
+ * @sa Pa(), hPa(), kPa(), mbar(), bar(), atm()
  */
 Pressure Pressure::torr(double value) {
   return Pressure(value * Unit::torr);
@@ -200,7 +200,7 @@ Pressure Pressure::torr(double value) {
  * @param value   [atm] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
- * @sa Pa(double), hPa(double), kPa(double), mbar(double), bar(double), torr(double)
+ * @sa Pa(), hPa(), kPa(), mbar(), bar(), torr()
  */
 Pressure Pressure::atm(double value) {
   return Pressure(value * Unit::atm);

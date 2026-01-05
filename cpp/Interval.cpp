@@ -57,8 +57,6 @@ Interval::Interval(double seconds, enum novas_timescale timescale)
  *
  * @param v   speed value
  * @return    the distance travelled under this time interval at the specified speed.
- *
- * @sa operator*(Velocity&)
  */
 Distance Interval::operator*(const Speed& v) const {
   return v.travel(*this);
@@ -69,8 +67,6 @@ Distance Interval::operator*(const Speed& v) const {
  *
  * @param v   speed value
  * @return    the statial vector travelled under this interval at the specified velocity.
- *
- * @sa operator*(Speed&)
  */
 Position Interval::operator*(const Velocity& v) const {
   return v.travel(*this);
@@ -83,7 +79,7 @@ Position Interval::operator*(const Velocity& v) const {
  * @param r   the other time interval
  * @return    the sum of this time interval and the argument time interval.
  *
- * @sa operator-(Interval&)
+ * @sa operator-()
  */
 Interval Interval::operator+(const Interval& r) const {
   return from_tt(tt_seconds(*this) + tt_seconds(r), timescale());
@@ -96,7 +92,7 @@ Interval Interval::operator+(const Interval& r) const {
  * @param r   the other time interval
  * @return    the signed difference of this time interval and the argument time interval.
  *
- * @sa operator+(Interval&)
+ * @sa operator+()
  */
 Interval Interval::operator-(const Interval& r) const {
   return from_tt(tt_seconds(*this) - tt_seconds(r), timescale());
@@ -110,9 +106,39 @@ Interval Interval::operator-(const Interval& r) const {
  * @param precision   [s] the precision used for checking equality.
  * @return            `true` if this time interval is equal to the reference time interval within
  *                    the specified precision, or else `false`.
+ *
+ * @sa operator==(), operator!=()
  */
 bool Interval::equals(const Interval& interval, double precision) const {
   return fabs(tt_seconds(*this) - tt_seconds(interval)) < fabs(precision);
+}
+
+/**
+ * Checks if this time interval is equal to the specified other time interval at the full
+ * double-precision. The comparison is performed in Terrestrial Time (TT).
+ *
+ * @param interval    the reference time interval.
+ * @return            `true` if this time interval is equal to the reference time interval, or
+ *                    else `false`.
+ *
+ * @sa equals(), operator!=()
+ */
+bool Interval::operator==(const Interval& interval) const {
+  return equals(interval);
+}
+
+/**
+ * Checks if this time interval differs from the specified other time interval at the full
+ * double-precision. The comparison is performed in Terrestrial Time (TT).
+ *
+ * @param interval    the reference time interval.
+ * @return            `true` if this time interval differs from the reference time interval, or
+ *                    else `false`.
+ *
+ * @sa equals(), operator==()
+ */
+bool Interval::operator!=(const Interval& interval) const {
+  return !equals(interval);
 }
 
 /**

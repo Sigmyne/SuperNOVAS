@@ -35,7 +35,7 @@ void Weather::validate() {
  * @param p                 [Pa] atmospheric pressure
  * @param humidity_percent  [%] relative humidity
  *
- * @sa Weather(double, double, double)
+ * @sa guess()
  */
 Weather::Weather(const Temperature& T, const Pressure& p, double humidity_percent)
 : _temperature(T), _pressure(p), _humidity(humidity_percent) {
@@ -49,7 +49,7 @@ Weather::Weather(const Temperature& T, const Pressure& p, double humidity_percen
  * @param pascal            [Pa] atmospheric pressure
  * @param humidity_percent  [%] relative humidity
  *
- * @sa Weather(Temperature&, Pressure&, double)
+ * @sa guess()
  */
 Weather::Weather(double celsius, double pascal, double humidity_percent)
 : _temperature(Temperature::celsius(celsius)), _pressure(Pressure::Pa(pascal)), _humidity(humidity_percent) {
@@ -121,7 +121,7 @@ std::string Weather::to_string() const {
  * @return        The typical annual average weather at the site, based on a simple global weather
  *                model.
  *
- * @sa Weather(Temperature&, Pressure&, double), Weather(double, double, double)
+ * @sa Weather()
  */
 Weather Weather::guess(const Site& site) {
   on_surface s = *site._on_surface();

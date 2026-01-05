@@ -84,6 +84,31 @@ Geometric Geometric::in_system(enum novas_reference_system system) const {
   return in_system(_frame._novas_frame(), system);
 }
 
+Geometric Geometric::in_icrs() const {
+  return in_system(novas::NOVAS_ICRS);
+}
+
+Geometric Geometric::in_j2000() const {
+  return in_system(novas::NOVAS_J2000);
+}
+
+Geometric Geometric::in_mod() const {
+  return in_system(novas::NOVAS_MOD);
+}
+
+Geometric Geometric::in_tod() const {
+  return in_system(novas::NOVAS_TOD);
+}
+
+Geometric Geometric::in_cirs() const {
+  return in_system(novas::NOVAS_CIRS);
+}
+
+Geometric Geometric::in_tirs() const {
+  return in_system(novas::NOVAS_TIRS);
+}
+
+
 std::optional<Geometric> Geometric::in_itrs(const EOP& eop) const {
   if(_sys == NOVAS_ITRS)
     return Geometric(*this);

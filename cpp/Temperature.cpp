@@ -19,7 +19,7 @@ namespace supernovas {
  *
  * @param deg_C   [C] temperature value.
  *
- * @sa celsius(double), kelvin(double), farenheit(double)
+ * @sa celsius(), kelvin(), farenheit()
  */
 Temperature::Temperature(double deg_C) : _deg_C(deg_C) {
   static const char *fn = "Temperature()";
@@ -83,7 +83,7 @@ std::string Temperature::to_string() const {
  * @param value   [C] temperature value
  * @return        A new temperature object with the specified value.
  *
- * @sa kelvin(double), farenheit(double)
+ * @sa kelvin(), farenheit()
  */
 Temperature Temperature::celsius(double value) {
   return Temperature(value);
@@ -96,7 +96,7 @@ Temperature Temperature::celsius(double value) {
  * @param value   [K] temperature value
  * @return        A new temperature object with the specified value.
  *
- * @sa celsius(double), farenheit(double)
+ * @sa celsius(), farenheit()
  */
 Temperature Temperature::kelvin(double value) {
   return Temperature(value - 273.15);
@@ -109,7 +109,7 @@ Temperature Temperature::kelvin(double value) {
  * @param value   [F] temperature value
  * @return        A new temperature object with the specified value.
  *
- * @sa celisus(double), kelvin(double)
+ * @sa celisus(), kelvin()
  */
 Temperature Temperature::farenheit(double value) {
   return Temperature((value - 32.0) / 1.8);

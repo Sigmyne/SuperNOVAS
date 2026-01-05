@@ -17,8 +17,6 @@ namespace supernovas {
  * in radians.
  *
  * @param radians   [rad] the angle in radians
- *
- * @sa TimeAngle(Angle&), TimeAngle(std::string&)
  */
 TimeAngle::TimeAngle(double radians)
 : Angle(radians) {
@@ -31,8 +29,6 @@ TimeAngle::TimeAngle(double radians)
  *
  * @param str   A decimal or HMS representation of time, using spaces, colons, and/or the letters
  *              `h`, `m` (and optionally `s`) as separators.
- *
- * @sa TimeAngle(double), TimeAngle(Angle&)
  */
 TimeAngle::TimeAngle(const std::string& str)
 : Angle(novas_str_hours(str.c_str()) * Unit::hour_angle) {}
@@ -87,13 +83,19 @@ double TimeAngle::seconds() const {
  * @param decimals    [0:9] the number of decimal places to print for the arc seconds
  *                    component.
  * @return            the strung representation of this angle in degrees.
- *
- * @sa Angle::to_string(enum novas_separator_type, int)
  */
 std::string TimeAngle::to_string(enum novas_separator_type separator, int decimals) const {
   char s[100] = {'\0'};
   novas_print_hms(hours(), separator, decimals, s, sizeof(s));
   return std::string(s);
+}
+
+Angle TimeAngle::operator+(const Angle& r) const {
+  return Angle::operator+(r);
+}
+
+Angle TimeAngle::operator-(const Angle& r) const {
+  return Angle::operator-(r);
 }
 
 /**
@@ -102,7 +104,7 @@ std::string TimeAngle::to_string(enum novas_separator_type separator, int decima
  * @param r   the other time-angle on the right-hand-side.
  * @return    the sum of this time-angle and the argument, as a new time-angle.
  *
- * @sa operator-(Angle&), operator+(Interval&)
+ * @sa operator-()
  */
 TimeAngle TimeAngle::operator+(const TimeAngle& r) const {
   return TimeAngle(rad() + r.rad());
@@ -115,7 +117,7 @@ TimeAngle TimeAngle::operator+(const TimeAngle& r) const {
  * @param r   the other time-angle on the right-hand-side.
  * @return    the difference of this time-angle and the argument, as a new time-angle.
  *
- * @sa operator+(Angle&), operator-(Interval&)
+ * @sa operator+()
  */
 TimeAngle TimeAngle::operator-(const TimeAngle& r) const {
   return TimeAngle(rad() - r.rad());
@@ -127,7 +129,7 @@ TimeAngle TimeAngle::operator-(const TimeAngle& r) const {
  * @param offset   the time interval on the right-hand-side.
  * @return         the sum of this time-angle and the time interval, as a new time-angle.
  *
- * @sa operator-(Interval&), operator+(Angle&)
+ * @sa operator-()
  */
 TimeAngle TimeAngle::operator+(const Interval& offset) const {
   return TimeAngle(rad() + offset.hours() * Unit::hour_angle);
@@ -140,7 +142,7 @@ TimeAngle TimeAngle::operator+(const Interval& offset) const {
  * @param offset   the time interval on the right-hand-side.
  * @return         the difference of this time-angle and the time interval, as a new time-angle.
  *
- * @sa operator+(Interval&), operator-(Angle&)
+ * @sa operator+()
  */
 TimeAngle TimeAngle::operator-(const Interval& offset) const {
   return TimeAngle(rad() - offset.hours() * Unit::hour_angle);
@@ -153,7 +155,7 @@ TimeAngle TimeAngle::operator-(const Interval& offset) const {
  * @param value   [h] the angle defined as hours of time.
  * @return        a new time-angle with the specified time defining the angle.
  *
- * @sa minutes(double), seconds(double)
+ * @sa minutes(), seconds()
  */
 TimeAngle TimeAngle::hours(double value) {
   return TimeAngle(value * Unit::hour_angle);
@@ -166,7 +168,7 @@ TimeAngle TimeAngle::hours(double value) {
  * @param value   [m] the angle defined as minutes of time.
  * @return        a new time-angle with the specified time defining the angle.
  *
- * @sa hours(double), seconds(double)
+ * @sa hours(), seconds()
  */
 TimeAngle TimeAngle::minutes(double value) {
   return TimeAngle(value / 60.0 * Unit::hour_angle);
@@ -179,7 +181,7 @@ TimeAngle TimeAngle::minutes(double value) {
  * @param value   [s] the angle defined as seconds of time.
  * @return        a new time-angle with the specified time defining the angle.
  *
- * @sa hours(double), minutes(double)
+ * @sa hours(), minutes()
  */
 TimeAngle TimeAngle::seconds(double value) {
   return TimeAngle(value / 3600.0 * Unit::hour_angle);

@@ -22,7 +22,7 @@ static double novas_era(long ijd, double fjd) {
   return novas::era((double) ijd, fjd);
 }
 
-#define E9      1000000000L
+#define E9                1000000000L   ///< 10<sup>9</sup> as an integer
 
 using namespace novas;
 
@@ -42,6 +42,14 @@ bool Time::is_valid_parms(double dUT1,  enum novas_timescale timescale) const {
     return 1;
 }
 
+/**
+ * Instantiates an astrometric time instance with the specified time parameters.
+ *
+ * @param jd            [day] Julian date (in the selected timescale)
+ * @param leap_seconds  [s] leap seconds, that is UTC - TAI (default: 0)
+ * @param dUT1          [s] UT1 - UTC time difference, e.g. from the IERS Bulletins or service (default: 0.0).
+ * @param timescale     (optional) Astronomical timescale (default: TT).
+ */
 Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
   novas_set_time(timescale, jd, leap_seconds, dUT1, &_ts);
   if(isnan(jd))
@@ -50,6 +58,13 @@ Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timesc
     _valid = is_valid_parms(dUT1, timescale);
 }
 
+/**
+ * Instantiates an astrometric time instance with the specified time parameters.
+ *
+ * @param jd            [day] Julian date (in the selected timescale)
+ * @param eop           Earth Orientation Parameters (EOP) values, e.g. obtained from IERS.
+ * @param timescale     (optional) Astronomical timescale (default: TT).
+ */
 Time::Time(double jd, const EOP& eop, enum novas_timescale timescale)
 : Time(jd, eop.leap_seconds(), eop.dUT1().seconds(), timescale) {}
 
@@ -137,6 +152,17 @@ bool Time::equals(const Time& time, double precision) const {
   return fabs(novas_diff_time(&_ts, &time._ts)) <= fabs(precision);
 }
 
+bool Time::equals(const Time& time, const Interval& precision) const {
+  return equals(time, precision.seconds());
+}
+
+bool Time::operator==(const Time& time) const {
+  return equals(time);
+}
+
+bool Time::operator!=(const Time& time) const {
+  return !equals(time);
+}
 
 const novas_timespec * Time::_novas_timespec() const {
   return &_ts;

@@ -40,10 +40,10 @@ std::string Source::name() const {
  *
  *  - the frame itself may be invalid.
  *  - the system parameter may be outside of the enum range
- *  - For Solar system sources:
+ *  - for Solar system sources:
  *     * SuperNOVAS may not have a planet or ephemeris provider function configured for the given
  *       accuracy.
- *     * The planet or ephemeris provider function does not have data for the source, or planet at
+ *     * the planet or ephemeris provider function does not have data for the source, or planet at
  *       the orbital center (for orbital sources), for the requested time of observation.
  *
  * The apparent position of a source is where it appears to the observer on the celestial sphere.
@@ -88,10 +88,10 @@ Apparent Source::apparent(const Frame& frame) const {
  *
  *  - the frame itself may be invalid.
  *  - the system parameter may be outside of the enum range
- *  - For Solar system sources:
+ *  - for Solar system sources:
  *     * SuperNOVAS may not have a planet or ephemeris provider function configured for the given
  *       accuracy.
- *     * The planet or ephemeris provider function does not have data for the source, or planet at
+ *     * the planet or ephemeris provider function does not have data for the source, or planet at
  *       the orbital center (for orbital sources), for the requested time of observation.
  *
  * A geometric position is the 3D location, relative to the observer location, where the light
@@ -112,7 +112,7 @@ Apparent Source::apparent(const Frame& frame) const {
  * @return the geometric (3D) position and velocity of the source, or else an invalid position
  *         (with NAN values).
  *
- * @sa apparent(), Frame::ephemeris_position(), Frame::ephemeris_velocity()
+ * @sa apparent(), Frame::planet_position(), Frame::planet_velocity()
  */
 Geometric Source::geometric(const Frame& frame, enum novas_reference_system system) const {
   double p[3] = {0.0}, v[3] = {0.0};

@@ -50,6 +50,9 @@ OrbitalSystem::OrbitalSystem(const novas::novas_orbital_system *system) {
     _system = *system;
 }
 
+const novas::novas_orbital_system * OrbitalSystem::_novas_orbital_system() const {
+  return &_system;
+}
 
 Planet OrbitalSystem::center() const {
   return Planet(_system.center);
@@ -171,6 +174,9 @@ Orbital::Orbital(const OrbitalSystem& system, const Time& ref_time, const Distan
         const Angle& mean_anom, const Interval& periodT)
 : Orbital(system, ref_time.jd(NOVAS_TDB), semi_major.m(), mean_anom.rad(), periodT.seconds()) {}
 
+const novas::novas_orbital * Orbital::_novas_orbital() const {
+  return &_orbit;
+}
 
 OrbitalSystem Orbital::system() const {
   return OrbitalSystem::from_novas_orbital_system(&_orbit.system);

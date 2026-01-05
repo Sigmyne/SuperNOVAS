@@ -198,7 +198,7 @@ std::string Distance::to_string(int decimals) const {
  * Returns a new distance instance corresponding to a parallax angle.
  *
  * @param parallax      The parallax angle, which defines the distance
- * @return              A new distance instance corresponding to the specified parallax angle
+ * @return              a distance instance corresponding to the specified parallax angle
  *
  * @sa parallax()
  */

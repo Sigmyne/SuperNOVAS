@@ -28,8 +28,6 @@ static void use_weather(const Weather& weather, on_surface *s) {
  * @param azimuth     [rad] azimuth angle
  * @param elevation   [rad] elevation angle
  * @param distance    [m] (optional) distance if needed / known (default: 1 Gpc)
- *
- * @sa Horizontal(Angle&, Angle&, Distance&)
  */
 Horizontal::Horizontal(double azimuth, double elevation, double distance)
 : Spherical(azimuth, elevation, distance) {}
@@ -40,11 +38,33 @@ Horizontal::Horizontal(double azimuth, double elevation, double distance)
  * @param azimuth     azimuth angle
  * @param elevation   elevation angle
  * @param distance    (optional) distance if needed / known (default: 1 Gpc)
- *
- * @sa Horizontal(double, double, double)
  */
 Horizontal::Horizontal(const Angle& azimuth, const Angle& elevation, const Distance& distance)
 : Spherical(azimuth, elevation, distance) {}
+
+/**
+ * Instantiates horizontal coordinates with the specified string representations of the azimuth
+ * and elevation coordinates, optionally specifying a system and a distance if needed. After
+ * instantiation, you should check that the resulting coordinates are valid, e.g. as:
+ *
+ * ```c++
+ *   Horizontal coords = Horizontal(..., ...);
+ *   if(!coords.is_valid()) {
+ *     // oops, looks like the angles could not be parsed...
+ *     return;
+ *   }
+ * ```
+ *
+ * @param azimuth     string representation of the azimuth coordinate in DMS or a decimnal
+ *                    degrees.
+ * @param elevation   string representation of the elevation coordinate as DMS or decimal
+ *                    degrees.
+ * @param distance    (optional) the distance, if needed / known (default: 1 Gpc)
+ *
+ * @sa novas_str_degrees() for details on string representation that can be parsed.
+ */
+Horizontal::Horizontal(const std::string& azimuth, const std::string& elevation, const Distance& distance)
+: Horizontal(Angle(azimuth), Angle(elevation), distance) {}
 
 /**
  * Returns the azimuth angle. Same as Spherical::longitude().
@@ -77,6 +97,73 @@ const Angle& Horizontal::elevation() const {
  */
 const Angle Horizontal::zenith_angle() const {
   return Angle(Constant::halfPi - latitude().rad());
+}
+
+/**
+ * Checks if these horizontal coordinates are the same as another, within the specified
+ * precision.
+ *
+ * @param other           the reference horizontal coordinates
+ * @param precision_rad   [rad] (optional) precision for equality test (default: 1 uas).
+ * @return                `true` if these coordinates are the same as the reference within the
+ *                        precision, or else `false`.
+ *
+ * @sa operator==()
+ */
+bool Horizontal::equals(const Horizontal& other, double precision_rad) const {
+  return Spherical::equals(other, precision_rad);
+}
+
+/**
+ * Checks if these horizontal coordinates are the same as another, within the specified
+ * precision.
+ *
+ * @param other           the reference horizontal coordinates
+ * @param precision       (optional) precision for equality test (default: 1 uas).
+ * @return                `true` if these coordinates are the same as the reference within the
+ *                        precision, or else `false`.
+ *
+ * @sa operator==()
+ */
+bool Horizontal::equals(const Horizontal& other, const Angle& precision) const {
+  return equals(other, precision.rad());
+}
+
+/**
+ * Checks if these horizontal coordinates are the same as another, within 1 uas.
+ *
+ * @param other           the reference horizontal coordinates
+ * @return                `true` if these coordinates are the same as the reference within 1 uas,
+ *                        or else `false`.
+ *
+ * @sa operator!=()
+ */
+bool Horizontal::operator==(const Horizontal& other) const {
+  return equals(other);
+}
+
+/**
+ * Checks if these horizontal coordinates differ from another, by more than 1 uas.
+ *
+ * @param other           the reference horizontal coordinates
+ * @return                `true` if these coordinates differ from the reference, by more than
+ *                        1 uas, or else `false`.
+ *
+ * @sa operator==()
+ */
+bool Horizontal::operator!=(const Horizontal& other) const {
+  return !equals(other);
+}
+
+/**
+ * Returns the angular distance of these horizontal coordiantes to/from the specified other
+ * horizontal coordinates.
+ *
+ * @param other   the reference horizontal coordinates
+ * @return        the angular distance of these coordinates to/from the argument.
+ */
+Angle Horizontal::distance_to(const Horizontal& other) const {
+  return Spherical::distance_to(other);
 }
 
 /**
@@ -126,7 +213,7 @@ Horizontal Horizontal::to_unrefracted(const Frame &frame, RefractionModel ref, c
  * @return        the apparent equatorial place corresponding to these astrometric horizontal coordinates
  *                on the sky.
  *
- * @sa to_apparent(Frame&, Speed&), to_unrefracted()
+ * @sa to_unrefracted(), Apparent::horizontal()
  */
 std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, double rv) const {
   static const char *fn = "Horizontal::to_apparent";
@@ -159,7 +246,7 @@ std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, double rv) c
  * @return        the apparent equatorial place corresponding to these astrometric horizontal coordinates
  *                on the sky.
  *
- * @sa to_apparent(Frame&, double), to_unrefracted()
+ * @sa to_unrefracted(), Apparent::to_horizontal()
  */
 std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, const Speed& rv) const {
   return to_apparent(frame, rv.m_per_s());
