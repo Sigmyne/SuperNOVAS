@@ -556,7 +556,7 @@ CalendarDate CalendarDate::in_calendar(const Calendar& calendar) const {
  * accuracy at the 0.1 ms level only, hence the resulting astronomical time will be limited
  * to the same level of precision also.
  *
- * @param leap_seconds    [s] the leap seconds of date, that is the UTC - TAI time difference.
+ * @param leap_seconds    [s] the leap seconds of date, that is the TAI - UTC time difference.
  * @param dut1            [s] the UT1 - UTC time difference for the date
  * @param timescale       the astronomical timescale in which this calendar date is defined.
  * @return                an astronomical time instance for this date and input parameters.

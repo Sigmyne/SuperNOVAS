@@ -15,10 +15,23 @@ using namespace novas;
 
 namespace supernovas {
 
+/**
+ * Returns a pointer to the NOVAS C `novas_object` data structure that stores data internally.
+ *
+ * @return    a pointer to the underlying NOVAS C `novas_object` data structure.
+ */
 const struct novas_object *Source::_novas_object() const {
   return &_object;
 }
 
+/**
+ * Returns the name given to this source at instantiation. It may be lower-case unless the
+ * `set_case_sensitive(true)` was called before instantiating the source.
+ *
+ * @return    the given source name.
+ *
+ * @sa set_case_sensitive()
+ */
 std::string Source::name() const {
   return std::string(_object.name);
 }
@@ -134,6 +147,24 @@ static const EOP& extract_eop(const Frame &frame) {
   return eobs.eop();
 }
 
+/**
+ * Returns the time when the source rises above the specified elevation next for an observer
+ * located on or near Earth's surface, or else `std::nullopt` if the observer is not near Earth's
+ * surface. The returned value may also be NAN if the source does not cross the specified
+ * elevation theshold within a day of the specified time of observation.
+ *
+ * @param el        [rad] elevation threshold angle
+ * @param frame     observing frame (observer location and the lower bound for the returned time).
+ * @param ref       atmospheric refraction model to assume
+ * @param weather   local weather parameters for the refraction calculation
+ * @return          the next time the source rises above the specified elevation after the frame's
+ *                  observing time. It may be NAN if the source does not cross (rises above or
+ *                  sets below) the elevation threshold within a day of the specified time of
+ *                  observation. For observers non near Earth's surface, `std::nullopt` will be
+ *                  returned.
+ *
+ * @sa sets_below(), transits()
+ */
 std::optional<Time> Source::rises_above(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
   static const char *fn = "Source::rises_above";
 
@@ -149,6 +180,16 @@ std::optional<Time> Source::rises_above(double el, const Frame &frame, Refractio
   return std::nullopt;
 }
 
+/**
+ * Returns the time when the source transits for an observer located on or near Earth's surface,
+ * or else `std::nullopt` if the observer is not near Earth's surface.
+ *
+ * @param frame     observing frame (observer location and the lower bound for the returned time).
+ * @return          the next time the source transits after the frame's observing time, or else
+ *                  `std::nullopt` if the observer is not near Earth's surface .
+ *
+ * @sa sets_below(), transits()
+ */
 std::optional<Time> Source::transits(const Frame &frame) const {
   static const char *fn = "Source::transits";
 
@@ -161,6 +202,24 @@ std::optional<Time> Source::transits(const Frame &frame) const {
   return std::nullopt;
 }
 
+/**
+ * Returns the time when the source sets below the specified elevation next for an observer
+ * located on or near Earth's surface, or else `std::nullopt` if the observer is not near Earth's
+ * surface. The returned value may also be NAN if the source does not cross the specified
+ * elevation theshold within a day of the specified time of observation.
+ *
+ * @param el        [rad] elevation threshold angle
+ * @param frame     observing frame (observer location and the lower bound for the returned time).
+ * @param ref       atmospheric refraction model to assume
+ * @param weather   local weather parameters for the refraction calculation
+ * @return          the next time the source sets the specified elevation after the frame's
+ *                  observing time. It may be NAN if the source does not cross (rises above or
+ *                  sets below) the elevation threshold within a day of the specified time of
+ *                  observation. For observers not near Earth's surface, `std::nullopt` will be
+ *                  returned.
+ *
+ * @sa rises_above(), transits()
+ */
 std::optional<Time> Source::sets_below(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
   static const char *fn = "Source::sets_below";
 
@@ -176,6 +235,24 @@ std::optional<Time> Source::sets_below(double el, const Frame &frame, Refraction
   return std::nullopt;
 }
 
+/**
+ * Returns the short-term equatorial trajectory of this source on the observer's sky, which can be used for
+ * extrapolating its apparent position in the near-term to avoid the repeated full-fledged position
+ * calculation, which may be expensive. The equatorial trajectory may also be used to provide telescope
+ * motor control parameters (position, tracking velocity, and acceleration) for equatorial telescope drive
+ * systems.
+ *
+ * In case positions cannot be calculated for this source (e.g. because you do not have an ephemeris provider
+ * configured, or there is no ephemeris data available), then `std::nullopt` is returned instead.
+ *
+ * @param frame           observing frame (observer location and time of observation)
+ * @param range_seconds   [s] time range for which to fit a quadratic time evolution to the R.A., Dec,
+ *                        distance, and radial velocity coordinates.
+ * @return                a new near-term eqautorial trajectory for this source, for the observing
+ *                        location, around the time of observation, if possible, or else `std::nullopt`.
+ *
+ * @sa horizontal_track()
+ */
 std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, double range_seconds) const {
   novas_track track = {};
 
@@ -187,6 +264,26 @@ std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, doub
   return EquatorialTrack::from_novas_track(Equinox::tod(frame.time().jd()), &track, Interval(range_seconds));
 }
 
+/**
+ * Returns the short-term horizontal trajectory of this source on the observer's sky, which can be used for
+ * extrapolating its apparent position in the near-term to avoid the repeated full-fledged position
+ * calculation, which may be expensive. The horizontal trajectory may also be used to provide telescope
+ * motor control parameters (position, tracking velocity, and acceleration) for horizontal telescope drive
+ * systems.
+ *
+ * If the observer is not located on or near Earth's surface, horizontal coordinates are not defined, and
+ * so `std::nullopt` will be retuirned instead. Also, in case positions cannot be calculated for this source
+ * (e.g. because you do not have an ephemeris provider configured, or there is no ephemeris data available),
+ * then `std::nullopt` will be returned also.
+ *
+ * @param frame           observing frame (observer location and time of observation)
+ * @param ref             atmospheric refraction model to use for refraction correction.
+ * @param weather         local weather parameters for the refraction calculation.
+ * @return                a new near-term horizontal trajectory for this source, for the observing
+ *                        location, around the time of observation, if possible, or else `std::nullopt`.
+ *
+ * @sa equatorial_track()
+ */
 std::optional<HorizontalTrack> Source::horizontal_track(const Frame &frame, novas::RefractionModel ref, const Weather& weather) const {
   static const char *fn = "Source::horizontal_track";
 
@@ -212,22 +309,59 @@ std::optional<HorizontalTrack> Source::horizontal_track(const Frame &frame, nova
   return HorizontalTrack::from_novas_track(&track, Interval(1.0 * Unit::min));
 }
 
+/**
+ * Returns the angular separation of this source from the Sun, for the given observer location and
+ * time of observation.
+ *
+ * @param frame     observing frame (observer location and time of observation)
+ * @return          the Sun's distance from the source.
+ *
+ * @sa moon_angle(), angle_to()
+ */
 Angle Source::sun_angle(const Frame& frame) const {
   return Angle(novas_check_nan("Source::sun_angle", novas_sun_angle(&_object, frame._novas_frame()) * Unit::deg));
 }
 
+/**
+ * Returns the angular separation of this source from the Moon, for the given observer location and
+ * time of observation.
+ *
+ * @param frame     observing frame (observer location and time of observation)
+ * @return          the Moon's distance from the source.
+ *
+ * @sa sun_angle(), angle_to()
+ */
 Angle Source::moon_angle(const Frame& frame) const {
   return Angle(novas_check_nan("Source::moon_angle", novas_moon_angle(&_object, frame._novas_frame()) * Unit::deg));
 }
 
+/**
+ * Returns the angular separation of this source from another source, for the given observer
+ * location and  time of observation.
+ *
+ * @param source    the other source.
+ * @param frame     observing frame (observer location and time of observation)
+ * @return          the distance between this source and the specified other source.
+ *
+ * @sa sun_angle(), moon_angle()
+ */
 Angle Source::angle_to(const Source& source, const Frame& frame) const {
   return Angle(novas_check_nan("Source::angle_to", novas_object_sep(&_object, &source._object, frame._novas_frame()) * Unit::deg));
 }
+
 
 std::string Source::to_string() const {
   return "Source type " + std::to_string(_object.type);
 }
 
+/**
+ * Enables or disabled case-sensitive treatment of source names. It only affect sources that are
+ * instantiated after the change has been made.
+ *
+ * @param value     `true` to enable case sensitive processing of name for newly defined sources
+ *                  or else `false` to convert all future source names to lower-case for
+ *                  case-insensitive processing.
+ */
 void Source::set_case_sensitive(bool value) {
   novas_case_sensitive(value);
 }
@@ -236,9 +370,17 @@ void Source::set_case_sensitive(bool value) {
 
 
 
-
+/**
+ * Instantiates a new catalog source, from its catalog definition. ICRS coordinates are calculated
+ * for all catalog entries, regardless of what catalog system they were defined it. As such, it
+ * is important that for catalog entries that are not defined in ICRS or the J2000 catalog system,
+ * you set proper motion as appropriate, such that they may be 'moved' into the J2000 epoch for
+ * proper ICRS coordinates.
+ *
+ * @param e     the catalog entry
+ */
 CatalogSource::CatalogSource(const CatalogEntry& e)
-: Source(), _system(e.system()) {
+: Source(), _cat(e) {
   static const char *fn = "CatalogSource()";
 
   if(make_cat_object_sys(e._cat_entry(), e.system().name().c_str(), &_object) != 0)
@@ -249,35 +391,94 @@ CatalogSource::CatalogSource(const CatalogEntry& e)
     _valid = true;
 }
 
-const cat_entry * CatalogSource::_cat_entry() const {
-  return &_object.star;
+/**
+ * Returns the catalog entry stored internally.
+ *
+ * @return    a reference to the internal catalog entry.
+ */
+const CatalogEntry& CatalogSource::catalog_entry() const {
+  return _cat;
 }
 
-CatalogEntry CatalogSource::catalog_entry() const {
-  return CatalogEntry(_object.star, _system);
-}
-
+/**
+ * Returns a string representation of this catalog source.
+ *
+ * @return    a string representation of this catalog source
+ */
 std::string CatalogSource::to_string() const {
-  const cat_entry *c = _cat_entry();
+  const cat_entry *c = _cat._cat_entry();
   return "CatalogSource: " + std::string(c->starname) + " @ " + TimeAngle(c->ra * Unit::hour_angle).to_string() +
-          " " + Angle(c->dec * Unit::deg).to_string() + " " + _system.to_string();
+          " " + Angle(c->dec * Unit::deg).to_string() + " " + _cat.system().to_string();
 }
 
 
 
+/**
+ * Returns the fraction [0.0:1.0] of the Solar-system source that appears illuminated by the Sun
+ * when viewed from a given observing frame, assuming that the source has a spheroidal shape.
+ *
+ * @param frame   observing frame (observer location and time of observation)
+ * @return        the fraction [0.0:1.0] that appears illuminated by the Sun from the observer's
+ *                point of view.
+ *
+ * @sa solar_power()
+ */
 double SolarSystemSource::solar_illumination(const Frame& frame) const {
   return novas_check_nan("SolarSystemSource::solar_illumination", novas_solar_illum(&_object, frame._novas_frame()));
 }
 
-double SolarSystemSource::helio_distance(const Time& time, double *rate) const {
-  return novas_check_nan("SolarSystemSource::helio_distance", novas_helio_dist(time.jd(NOVAS_TDB), &_object, rate));
+/**
+ * Returns the heliocentric distance of a Solar-system source at the specified time of
+ * observation.
+ *
+ * @param time        astrometric time of observation
+ * @return            heliocentric distance of source at the specified time
+ *
+ * @sa helio_rate(), solar_power()
+ */
+Distance SolarSystemSource::helio_distance(const Time& time) const {
+  double d = novas_helio_dist(time.jd(NOVAS_TDB), &_object, NULL);
+  novas_check_nan("SolarSystemSource::helio_distance", d);
+  return Distance(d * Unit::au);
 }
 
+/**
+ * Returns the heliocentric rate of recession of a Solar-system source at the specified time of
+ * observation.
+ *
+ * @param time        astrometric time of observation
+ * @return            rate of recession from the Sun at the specified time
+ *
+ * @sa helio_distance()
+ */
+Speed SolarSystemSource::helio_rate(const Time& time) const {
+  double r = NAN;
+  novas_helio_dist(time.jd(NOVAS_TDB), &_object, &r);
+  novas_check_nan("SolarSystemSource::helio_distance", r);
+  return Speed(r * Unit::au / Unit::day);
+}
+
+/**
+ * Returns the typical incident Solar power on the illuminated side of this Solar-system object.
+ * The actual Solar power may vary due to fluctuations of the Solar output.
+ *
+ *
+ * @param time    astrometric time of observation.
+ * @return        [W/m<sup>2</sup>] Typical incident Solar power.
+ *
+ * @sa helio_distance(), solar_illumination()
+ */
 double SolarSystemSource::solar_power(const Time& time) const {
   return novas_check_nan("SolarSystemSource::solar_power", novas_solar_power(time.jd(NOVAS_TDB), &_object));
 }
 
 
+
+/**
+ * Instantiates a planet from its NOVAS ID number.
+ *
+ * @param number    the NOVAS ID number
+ */
 Planet::Planet(enum novas_planet number) : SolarSystemSource() {
   if(make_planet(number, &_object) != 0)
     novas_error(0, EINVAL, "Planet::for_novas_id", "no planet for NOVAS id number: %d", number);
@@ -285,6 +486,17 @@ Planet::Planet(enum novas_planet number) : SolarSystemSource() {
     _valid = true;
 }
 
+/**
+ * Returns a new planet corresponding to the specified NAIF ID, if possible, or else `std::nullopt`
+ * if the NAIF id does not belong to a major planet in the SuperNOVAS definition (which includes
+ * the Sun, Moon, SSB, EMB, and Pluto system barycenter also).
+ *
+ * @param naif    the NAIF ID number of the planet
+ * @return        the corresponding planet, or `std::nullopt` if the ID does not specify a planet
+ *                type body.
+ *
+ * @sa for_name(), naif_id()
+ */
 std::optional<Planet> Planet::for_naif_id(long naif) {
   enum novas_planet num = naif_to_novas_planet(naif);
   if((unsigned) num >= NOVAS_PLANETS)
@@ -292,6 +504,18 @@ std::optional<Planet> Planet::for_naif_id(long naif) {
   return Planet(num);
 }
 
+/**
+ * Returns a new planet corresponding to the specified name (case insensitive), if possible, or
+ * else `std::nullopt` if the name does not correspond to a major planet in the SuperNOVAS
+ * definition (which includes the Sun, Moon, SSB, EMB, and Pluto system barycenter also).
+ *
+ * @param name    the planet's name (includes Sun, Moon, SSB, EMB, and Pluto-Barycenter also).
+ *                Case insensitive.
+ * @return        the corresponding planet, or `std::nullopt` if the ID does not specify a planet
+ *                type body.
+ *
+ * @sa for_naif_id()
+ */
 std::optional<Planet> Planet::for_name(const std::string& name) {
   enum novas_planet num = novas_planet_for_name(name.c_str());
   if((unsigned) num >= NOVAS_PLANETS)
@@ -299,26 +523,63 @@ std::optional<Planet> Planet::for_name(const std::string& name) {
   return Planet(num);
 }
 
+/**
+ * Returns the (Super)NOVAS ID of this planet (or planet type body in the SuperNOVAS sense).
+ *
+ * @return      the (Super)NOVAS ID of this planet .
+ */
 enum novas_planet Planet::novas_id() const {
   return (enum novas_planet) _object.number;
 }
 
+/**
+ * Returns the NAIF ID number for this planet (or planet type body in the SuperNOVAS sense).
+ *
+ * @return    the NAIF id number of this planet.
+ */
 int Planet::naif_id() const {
   return novas_to_naif_planet(novas_id());
 }
 
+/**
+ * Returns the ID number of for this planet (or planet type body in the SuperNOVAS sense) in
+ * the JPL DExxx (e.g. DE441)  planetary ephemeris data files. For some planets, the DExxx
+ * files contain data for the planet's center, while for others it is for the barycenter
+ * of the planetary system.
+ *
+ * @return    The ID number of this planet in the JPL DExxx planetary ephemeris files.
+ */
 int Planet::de_number() const {
   return novas_to_dexxx_planet(novas_id());
 }
 
-double Planet::mean_radius() const {
+/**
+ * Returns the mean radius (average of the equatorial and polar radii) of this planet (or planet
+ * type body in the SuperNOVAS sense)
+ *
+ * @return      the mean radius of this planet, or 0.0 this 'planet' does not denote a physical
+ *              body (such as barycenters), or else a NAN distance if this planet is itself
+ *              invalid.
+ *
+ * @sa mass()
+ */
+Distance Planet::mean_radius() const {
   static const double r[] = NOVAS_PLANET_RADII_INIT;
   if(!is_valid())
-    return NAN;
+    return Distance(NAN);
 
-  return r[_object.number];
+  return Distance(r[_object.number]);
 }
 
+/**
+ * Returns the mean radius (average of the equatorial and polar radii) of this planet (or planet
+ * type body in the SuperNOVAS sense)
+ *
+ * @return      [kg] the mass of this planet, or 0.0 this 'planet' does not denote a physical
+ *              body (such as barycenters), or else NAN if this planet is itself invalid.
+ *
+ * @sa mean_radius()
+ */
 double Planet::mass() const {
   static const double r[] = NOVAS_RMASS_INIT;
   if(!is_valid())
@@ -333,78 +594,179 @@ std::string Planet::to_string() const {
 
 
 static Planet _ssb = Planet(NOVAS_SSB);
+
+/**
+ * Returns the static reference to the Solar-System Barycenter (SSB).
+ *
+ * @return    the reference to the static instance of the SSB.
+ *
+ * @sa sun()
+ */
 const Planet& Planet::ssb() {
   return _ssb;
 }
 
 static Planet _mercury = Planet(NOVAS_MERCURY);
+
+/**
+ * Returns the static reference to the planet Mercury.
+ *
+ * @return    the reference to the static instance of Mercury.
+ */
 const Planet& Planet::mercury() {
   return _mercury;
 }
 
 static Planet _venus = Planet(NOVAS_VENUS);
+
+/**
+ * Returns the static reference to the planet Venus.
+ *
+ * @return    the reference to the static instance of Venus.
+ */
 const Planet& Planet::venus() {
   return _venus;
 }
 
 static Planet _earth = Planet(NOVAS_EARTH);
+
+/**
+ * Returns the static reference to the planet Earth.
+ *
+ * @return    the reference to the static instance of Earth.
+ *
+ * @sa emb()
+ */
 const Planet& Planet::earth() {
   return _earth;
 }
 
 static Planet _mars = Planet(NOVAS_MARS);
+
+/**
+ * Returns the static reference to the planet Mars.
+ *
+ * @return    the reference to the static instance of Mars.
+ */
 const Planet& Planet::mars() {
   return _mars;
 }
 
 static Planet _jupiter = Planet(NOVAS_JUPITER);
+
+/**
+ * Returns the static reference to the planet Jupiter.
+ *
+ * @return    the reference to the static instance of Jupiter.
+ */
 const Planet& Planet::jupiter() {
   return _jupiter;
 }
 
 static Planet _saturn = Planet(NOVAS_SATURN);
+
+/**
+ * Returns the static reference to the planet Saturn.
+ *
+ * @return    the reference to the static instance of Saturn.
+ */
 const Planet& Planet::saturn() {
   return _saturn;
 }
 
 static Planet _uranus = Planet(NOVAS_URANUS);
+
+/**
+ * Returns the static reference to the planet Uranus.
+ *
+ * @return    the reference to the static instance of Uranus.
+ */
 const Planet& Planet::uranus() {
   return _uranus;
 }
 
 static Planet _neptune = Planet(NOVAS_NEPTUNE);
+
+/**
+ * Returns the static reference to the planet Neptune.
+ *
+ * @return    the reference to the static instance of Neptune.
+ */
 const Planet& Planet::neptune() {
   return _neptune;
 }
 
 static Planet _pluto = Planet(NOVAS_PLUTO);
+
+/**
+ * Returns the static reference to the planet Pluto.
+ *
+ * @return    the reference to the static instance of Pluto.
+ *
+ * @sa pluto_system()
+ */
 const Planet& Planet::pluto() {
   return _pluto;
 }
 
 static Planet _sun = Planet(NOVAS_SUN);
+
+/**
+ * Returns the static reference to the Sun.
+ *
+ * @return    the reference to the static instance of the Sun.
+ *
+ * @sa ssb()
+ */
 const Planet& Planet::sun() {
   return _sun;
 }
 
 static Planet _moon = Planet(NOVAS_MOON);
+
+/**
+ * Returns the static reference to the Moon.
+ *
+ * @return    the reference to the static instance of the Moon.
+ *
+ * @sa emb()
+ */
 const Planet& Planet::moon() {
   return _moon;
 }
 
 static Planet _emb = Planet(NOVAS_EMB);
+
+/**
+ * Returns the static reference to the Earth-Moon Barycenter (EMB) position.
+ *
+ * @return    the reference to the static instance of the EMB.
+ *
+ * @sa earth(), moon()
+ */
 const Planet& Planet::emb() {
   return _emb;
 }
 
 static Planet _pluto_system = Planet(NOVAS_PLUTO_BARYCENTER);
+
+/**
+ * Returns the static reference to the Pluto system barycenter position.
+ *
+ * @return    the reference to the static instance of the Pluto system.
+ *
+ * @sa pluto()
+ */
 const Planet& Planet::pluto_system() {
   return _pluto_system;
 }
 
-
-
-
+/**
+ * Instantiates a new Solar-system body whose positions are provided by ephemeris lookup.
+ *
+ * @param name      source name as defined in the ephemeris data (for name-based lookup).
+ * @param number    source ID number in the ephemeris data (for id-based lookup).
+ */
 EphemerisSource::EphemerisSource(const std::string &name, long number) : SolarSystemSource() {
   if(make_ephem_object(name.c_str(), number, &_object) != 0)
     novas_trace("EphemerisSource(name, number)", 0, 0);
@@ -414,6 +776,14 @@ std::string EphemerisSource::to_string() const {
   return "EphemerisSource " + name();
 }
 
+
+/**
+ * Instantiates a new Solar-system source defined by Keplerian orbital elements.
+ *
+ * @param name    source name as desired by the user.
+ * @param number  ID number (or 0 if not needed by / known to the user).
+ * @param orbit   Keplerian orbital elements.
+ */
 OrbitalSource::OrbitalSource(const std::string& name, long number, const Orbital& orbit) : SolarSystemSource() {
   static const char *fn = "OrbitalSource()";
 
@@ -425,10 +795,20 @@ OrbitalSource::OrbitalSource(const std::string& name, long number, const Orbital
     _valid = true;
 }
 
+/**
+ * Returns the underlying C orbital elements data structure for this source.
+ *
+ * @return    the underlying C orbital elements data structure.
+ */
 const novas_orbital * OrbitalSource::_novas_orbital() const {
   return &_object.orbit;
 }
 
+/**
+ * Returns the Keplerian orbital parameters of this source.
+ *
+ * @return    the Keplerian orbital parameters.
+ */
 Orbital OrbitalSource::orbital() const {
   return Orbital::from_novas_orbit(&_object.orbit);
 }

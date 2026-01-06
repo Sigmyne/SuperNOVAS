@@ -320,7 +320,7 @@ Equatorial Equatorial::to_mod(const Time& time) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed in the catalog system of the specified Besselian epoch.
  *
- * @sa to_mod(), to_system(), to_j2000(), to_tod(Time&)
+ * @sa to_mod(), to_system(), to_j2000(), to_tod()
  */
 Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
   return to_system(Equinox::mod_at_besselian_epoch(year));
@@ -335,7 +335,7 @@ Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed with respect to the true equator and equinox of date.
  *
- * @sa to_system()
+ * @sa to_system(), to_cirs(), to_j2000(), to_mod()
  */
 Equatorial Equatorial::to_tod(double jd_tdb) const {
   return to_system(Equinox::tod(jd_tdb));
@@ -350,7 +350,7 @@ Equatorial Equatorial::to_tod(double jd_tdb) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed with respect to the true equator and equinox of date.
  *
- * @sa to_system()
+ * @sa to_system(), to_cirs(), to_j2000(), to_mod()
  */
 Equatorial Equatorial::to_tod(const Time& time) const {
   return to_tod(time.jd(novas::NOVAS_TDB));
@@ -365,7 +365,7 @@ Equatorial Equatorial::to_tod(const Time& time) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as this,
  *                  but with respect to the true equator and CIO of date.
  *
- * @sa to_system()
+ * @sa to_system(), to_tod(), to_icrs()
  */
 Equatorial Equatorial::to_cirs(double jd_tdb) const {
   return to_system(Equinox::cirs(jd_tdb));
@@ -380,7 +380,7 @@ Equatorial Equatorial::to_cirs(double jd_tdb) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as this,
  *                  but with respect to the true equator and CIO of date.
  *
- * @sa to_system()
+ * @sa to_system(), to_tod(), to_icrs()
  */
 Equatorial Equatorial::to_cirs(const Time& time) const {
   return to_cirs(time.jd(novas::NOVAS_TDB));

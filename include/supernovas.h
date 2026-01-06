@@ -1432,7 +1432,7 @@ public:
 
   bool operator>=(const Time& other) const;
 
-  bool equals(const Time& time, double seconds = Unit::ms) const;
+  bool equals(const Time& time, double seconds = Unit::us) const;
 
   bool equals(const Time& time, const Interval& precision) const;
 
@@ -1444,11 +1444,11 @@ public:
 
   double jd(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
+  double mjd(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
+
   long jd_day(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
-  TimeAngle jd_time_of_day(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
-
-  double mjd(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
+  long mjd_day(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
   time_t unix_time(long *nanos = NULL) const;
 
@@ -1470,7 +1470,7 @@ public:
 
   TimeAngle era() const;
 
-  double moon_phase() const;
+  Angle moon_phase() const;
 
   Time next_moon_phase(const Angle& phase) const;
 
@@ -1478,13 +1478,16 @@ public:
 
   std::string to_iso_string() const;
 
-  std::string to_epoch_string() const;
+  std::string to_epoch_string(int decimals = 2) const;
 
   Time shifted(double seconds) const;
 
   Time shifted(const Interval& offset) const;
 
-  CalendarDate as_calendar_date(enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
+  CalendarDate as_calendar_date(const Calendar& calendar = Calendar::astronomical(), enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
+
+  CalendarDate as_calendar_date(enum novas::novas_timescale timescale) const;
+
 
   static Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
@@ -1700,14 +1703,12 @@ public:
  */
 class CatalogSource : public Source {
 private:
-  Equinox _system;      ///< stored catalog system
+  CatalogEntry _cat;  ///< stored catalog entry
 
 public:
   explicit CatalogSource(const CatalogEntry& e);
 
-  const novas::cat_entry * _cat_entry() const;
-
-  CatalogEntry catalog_entry() const;
+  const CatalogEntry& catalog_entry() const;
 
   std::string to_string() const override;
 };
@@ -1723,9 +1724,11 @@ protected:
   SolarSystemSource() {}
 
 public:
-  double solar_illumination(const Frame& frame) const;
+  Distance helio_distance(const Time& time) const;
 
-  double helio_distance(const Time& time, double *rate = NULL) const;
+  Speed helio_rate(const Time& time) const;
+
+  double solar_illumination(const Frame& frame) const;
 
   double solar_power(const Time& time) const;
 };
@@ -1751,7 +1754,7 @@ public:
 
   int de_number() const;
 
-  double mean_radius() const;
+  Distance mean_radius() const;
 
   double mass() const;
 
@@ -2066,7 +2069,7 @@ private:
   Frame _frame;                             ///< stored frame data
   Position _pos;                            ///< stored geometric position w.r.t. observer
   Velocity _vel;                            ///< stored geometric velocity w.r.t. observer
-  enum novas::novas_reference_system _sys;  ///< stored coordinate reference system type
+  Equinox _system;                          ///< stored coordinate reference system type
 
   Geometric in_system(const novas::novas_frame *f, enum novas::novas_reference_system system) const;
 
@@ -2075,7 +2078,7 @@ public:
 
   const Frame& frame() const;
 
-  enum novas::novas_reference_system system() const;
+  const Equinox& system() const;
 
   const Position& position() const;
 

@@ -31,7 +31,7 @@ void EOP::validate() {
 /**
  * Instantiates new Earth Orientation Parameters (EOP) with the specified values.
  *
- * @param leap_seconds    [s] Leap seconds (UTC - TAI).
+ * @param leap_seconds    [s] Leap seconds (TAI - UTC).
  * @param dut1_sec        [s] (optional) UT1 - UTC time difference (default: 0.0)
  * @param xp_rad          [rad] (optional) IERS _x_<sub>p</sub> pole offset (default: 0.0)
  * @param yp_rad          [rad] (optional) IERS _y_<sub>p</sub> pole offset (default: 0.0)
@@ -44,7 +44,7 @@ EOP::EOP(int leap_seconds, double dut1_sec, double xp_rad, double yp_rad)
 /**
  * Instantiates new Earth Orientation Parameters (EOP) with the specified values.
  *
- * @param leap_seconds    [s] Leap seconds (UTC - TAI).
+ * @param leap_seconds    [s] Leap seconds (TAI - UTC).
  * @param dut1            (optional) UT1 - UTC time difference (default: 0.0)
  * @param xp              (optional) IERS _x_<sub>p</sub> pole offset (default: 0.0)
  * @param yp              (optional) IERS _y_<sub>p</sub> pole offset (default: 0.0)
@@ -55,9 +55,9 @@ EOP::EOP(int leap_seconds, const Interval& dut1, const Angle& xp, const Angle& y
 }
 
 /**
- * Returns the leap seconds (UTC - TAI time difference) in seconds.
+ * Returns the leap seconds (TAI - UTC time difference) in seconds.
  *
- * @return    [s] the leap seconds (UTC - TAI).
+ * @return    [s] the leap seconds (TAI - UTC).
  *
  * @sa dUT1()
  */
