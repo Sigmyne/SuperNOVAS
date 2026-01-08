@@ -386,7 +386,8 @@ int novas_Rz(double angle, double *v) {
  *
  * @param value       The value to print
  * @param decimals    Number of decimal places to show
- * @param[out] str    output string, with sufficient allocation to contain
+ * @param[out] str    output string, with at least `len` bytes of space allocated.
+ * @param len         maximum number of bytes to print into output buffer, including termination.
  * @return            the number of characters printed into the output string, or -1 if there was
  *                    an error (errno will indicate the type of error).
  *

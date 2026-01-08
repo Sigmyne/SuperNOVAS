@@ -4923,6 +4923,38 @@ static int test_enu_itrs() {
   return n;
 }
 
+static int test_print_decimal() {
+  int n = 0;
+
+  char str[40] = {'\0'};
+
+  novas_print_decimal(M_PI, 5, str, sizeof(str));
+  if(!is_ok("print_decimal:5", strcmp(str, "3.1416"))) {
+    printf(" ! expected 3.1415, got %s\n", str);
+    n++;
+  }
+
+  novas_print_decimal(M_PI, -1, str, sizeof(str));
+  if(!is_ok("print_decimal:decimals:-1", strcmp(str, "3"))) {
+    printf(" ! expected 3, got %s\n", str);
+    n++;
+  }
+
+  novas_print_decimal(1.0/3.0, 17, str, sizeof(str));
+  if(!is_ok("print_decimal:decimals:17", strlen(str) != 18)) {
+    printf(" ! expected 16 decimals, got %s\n", str);
+    n++;
+  }
+
+  novas_print_decimal(M_PI, 16, str, 7);
+  if(!is_ok("print_decimal:truncate", strcmp(str, "3.1415"))) {
+    printf(" ! expected 3.1415, got %s\n", str);
+    n++;
+  }
+
+  return n;
+}
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -5079,8 +5111,9 @@ int main(int argc, char *argv[]) {
   if(test_Rx()) n++;
   if(test_Ry()) n++;
   if(test_Rz()) n++;
-
   if(test_enu_itrs()) n++;
+
+  if(test_print_decimal()) n++;
 
   n += test_dates();
 
