@@ -32,17 +32,17 @@ Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum no
   static const char *fn = "Site()";
 
   if(isnan(longitude_rad))
-    novas_error(0, EINVAL, fn, "input longitude is NAN");
+    novas_set_errno(EINVAL, fn, "input longitude is NAN");
   else if(isnan(latitude_rad))
-    novas_error(0, EINVAL, fn, "input latitude is NAN");
+    novas_set_errno(EINVAL, fn, "input latitude is NAN");
   else if(fabs(latitude_rad) < Constant::halfPi)
-    novas_error(0, EINVAL, fn, "input latitude is outside of [-pi:pi] range: %g", latitude_rad);
+    novas_set_errno(EINVAL, fn, "input latitude is outside of [-pi:pi] range: %g", latitude_rad);
   else if(isnan(altitude_m))
-    novas_error(0, EINVAL, fn, "input altitude is NAN");
+    novas_set_errno(EINVAL, fn, "input altitude is NAN");
   else if(altitude_m < -10000.0)
-    novas_error(0, EINVAL, fn, "altitude is more than 10 km below surface: %g m", altitude_m);
+    novas_set_errno(EINVAL, fn, "altitude is more than 10 km below surface: %g m", altitude_m);
   else if(altitude_m > 100000.0)
-    novas_error(0, EINVAL, fn, "altitude is more than 100 km above surface: %g m", altitude_m);
+    novas_set_errno(EINVAL, fn, "altitude is more than 100 km above surface: %g m", altitude_m);
   else
     _valid = true;
 
@@ -77,11 +77,11 @@ Site::Site(const Position& xyz) {
   novas_cartesian_to_geodetic(xyz._array(), NOVAS_GRS80_ELLIPSOID, &_site.longitude, &_site.latitude, &_site.height);
 
   if(!xyz.is_valid())
-    novas_error(0, EINVAL, fn, "input xyz coordinates have NAN component(s)");
+    novas_set_errno(EINVAL, fn, "input xyz coordinates have NAN component(s)");
   else if(_site.height < -10000.0)
-    novas_error(0, EINVAL, fn, "altitude is more than 10 km below surface: %g m", _site.height);
+    novas_set_errno(EINVAL, fn, "altitude is more than 10 km below surface: %g m", _site.height);
   else if(_site.height > 100000.0)
-    novas_error(0, EINVAL, fn, "altitude is more than 100 km above surface: %g m", _site.height);
+    novas_set_errno(EINVAL, fn, "altitude is more than 100 km above surface: %g m", _site.height);
   else
     _valid = true;
 }
@@ -205,6 +205,21 @@ Site Site::from_xyz(const Position& v) {
  */
 Site Site::from_GPS(double longitude, double latitude, double altitude) {
   return Site(longitude, latitude, altitude, NOVAS_WGS84_ELLIPSOID);
+}
+
+/**
+ * Returns an observing site for its geodetic GPS location, with the longitude and latitude
+ * provided in decimal or DMS string representations.
+ *
+ * @param longitude   string representation of GPS longitude as DSM or decimal degrees.
+ * @param latitude    string representation of GPS latitude as DSM or decimal degrees.
+ * @param altitude    [m] GPS altitude
+ * @return    a new observing site at the specified GSP location.
+ *
+ * @sa Site(), from_xyz()
+ */
+Site Site::from_GPS(const std::string& longitude, const std::string& latitude, double altitude) {
+  return from_GPS(Angle(longitude).rad(), Angle(latitude).rad(), altitude);
 }
 
 } // namespace supernovas

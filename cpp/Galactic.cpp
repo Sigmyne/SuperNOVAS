@@ -89,6 +89,7 @@ bool Galactic::equals(const Galactic& other, double precision_rad) const {
  *
  * @sa operator==()
  */
+// cppcheck-suppress functionStatic
 bool Galactic::equals(const Galactic& other, const Angle& precision) const {
   return equals(other, precision.rad());
 }

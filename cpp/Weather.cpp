@@ -19,11 +19,11 @@ void Weather::validate() {
   static const char *fn = "Weather()";
 
   if(!_temperature.is_valid())
-    novas_error(0, EINVAL, fn, "invalid temperature: %.6g C", _temperature.celsius());
+    novas_set_errno(EINVAL, fn, "invalid temperature: %.6g C", _temperature.celsius());
   else if(!_pressure.is_valid())
-    novas_error(0, EINVAL, fn, "invalid pressure: %.6g Pa", _pressure.Pa());
+    novas_set_errno(EINVAL, fn, "invalid pressure: %.6g Pa", _pressure.Pa());
   else if(isnan(_humidity) || _humidity < 0.0 || _humidity > 100.0)
-    novas_error(0, EINVAL, fn, "invalid humidity: %.6g %%", _humidity);
+    novas_set_errno(EINVAL, fn, "invalid humidity: %.6g %%", _humidity);
   else
     _valid = true;
 }
@@ -127,6 +127,18 @@ Weather Weather::guess(const Site& site) {
   on_surface s = *site._on_surface();
   novas_set_default_weather(&s);
   return Weather(s.temperature, s.pressure * Unit::mbar, s.humidity);
+}
+
+/**
+ * Returns a reference to a fixed standard weather instance (T = 10%deg;C, p = 1 atm, humidity =
+ * 50%).
+ *
+ * @return    a static reference to a site-independent standard default weather.
+ */
+const Weather& Weather::standard() {
+  static const Weather _standard(10.0, Unit::atm, 50.0);
+
+  return _standard;
 }
 
 } // namespace supernovas

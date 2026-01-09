@@ -135,7 +135,7 @@ CalendarDate Calendar::date(time_t t, long nanos) const {
  */
 CalendarDate Calendar::date(const struct timespec *ts) const {
   if(!ts) {
-    novas_error(0, EINVAL, "Calendar::date", "input Julian Date is NAN");
+    novas_set_errno(EINVAL, "Calendar::date", "input Julian Date is NAN");
     return date(NAN);
   }
   return date(ts->tv_sec, ts->tv_nsec);
@@ -211,7 +211,7 @@ CalendarDate::CalendarDate(const Calendar& calendar, int year, int month, int da
 CalendarDate::CalendarDate(const Calendar& calendar, double jd)
 : _calendar(calendar), _year(-1), _month(-1), _mday(-1), _time_of_day(NAN), _jd(jd) {
   if(isnan(jd))
-    novas_error(0, EINVAL, "CalendarDate()", "input Julian Date is NAN");
+    novas_set_errno(EINVAL, "CalendarDate()", "input Julian Date is NAN");
   else
     _valid = true;
 
@@ -487,7 +487,9 @@ const std::string& CalendarDate::short_month_name() const {
  */
 const std::string& CalendarDate::day_name() const {
   static const std::string names[] = { "invalid", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-  return names[day_of_week()];
+  int i = day_of_week();
+  if(i < 0) i = 0;
+  return names[i];
 }
 
 /**
@@ -499,7 +501,9 @@ const std::string& CalendarDate::day_name() const {
  */
 const std::string& CalendarDate::short_day_name() const {
   static const std::string names[] = { "inv", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
-  return names[day_of_week()];
+  int i = day_of_week();
+  if(i < 0) i = 0;
+  return names[i];
 }
 
 /**
@@ -618,7 +622,7 @@ std::string CalendarDate::to_date_string(enum novas_date_format fmt) const {
     case NOVAS_MDY:
       return std::to_string(_month) + "/" + std::to_string(_mday) + "/" + y;
     default:
-      novas_error(0, EINVAL, "CalendarDate::date_string", "invalid format: %d", fmt);
+      novas_set_errno(EINVAL, "CalendarDate::date_string", "invalid format: %d", fmt);
       return "<invalid date format>";
   }
 }

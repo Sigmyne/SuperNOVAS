@@ -26,7 +26,7 @@ void Equatorial::validate() {
 
   else if(!_sys.is_valid()) {
     _valid = false;
-    novas_error(0, EINVAL, fn, "Invalid equatorial system: %s", _sys.to_string().c_str());
+    novas_set_errno(EINVAL, fn, "Invalid equatorial system: %s", _sys.to_string().c_str());
   }
 }
 
@@ -126,6 +126,7 @@ bool Equatorial::equals(const Equatorial& other, double precision_rad) const {
  *
  * @sa operator==()
  */
+// cppcheck-suppress functionStatic
 bool Equatorial::equals(const Equatorial& other, const Angle& precision) const {
   return equals(other, precision.rad());
 }

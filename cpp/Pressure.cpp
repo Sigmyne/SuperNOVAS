@@ -25,9 +25,9 @@ Pressure::Pressure(double value) : _pascal(value) {
   static const char *fn = "Pressure()";
 
   if(isnan(value))
-    novas::novas_error(0, EINVAL, fn, "input value is NAN");
+    novas::novas_set_errno(EINVAL, fn, "input value is NAN");
   else if(value < 0.0)
-    novas::novas_error(0, EINVAL, fn, "input value is negative");
+    novas::novas_set_errno(EINVAL, fn, "input value is negative");
   else
     _valid = true;
 }

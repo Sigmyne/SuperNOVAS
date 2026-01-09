@@ -45,9 +45,9 @@ Interval::Interval(double seconds, enum novas_timescale timescale)
   static const char *fn = "Interval(seconds, timescale)";
 
   if(isnan(seconds))
-    novas_error(0, EINVAL, fn , "input seconds is NAN");
+    novas_set_errno(EINVAL, fn , "input seconds is NAN");
   else if((unsigned) timescale >= NOVAS_TIMESCALES)
-    novas_error(0, EINVAL, fn , "invalid timescale: %d", timescale);
+    novas_set_errno(EINVAL, fn , "invalid timescale: %d", timescale);
   else
     _valid = true;
 }

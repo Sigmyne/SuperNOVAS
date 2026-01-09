@@ -31,7 +31,7 @@ CFLAGS ?= -g -Os -Wall
 #THREAD_LOCAL ?= __declspec( thread )
 
 # To build the C++ library (libsupernovas++)...
-#ENABLE_CPP_LIBS=1
+#ENABLE_CPP=1
 
 # To compile library with an external or legacy `solarsystem()` / 
 # `solarsystem_hp()` implementation as the default planet provider, specify 
@@ -94,8 +94,8 @@ export SUPERNOVAS_BUILD
 SO_VERSION := 1
 
 # Folders in which sources and headers are located, respectively
-SRC := src
-INC := include
+SRC ?= src
+INC ?= include
 
 # Add include directory
 CPPFLAGS += -I$(INC)

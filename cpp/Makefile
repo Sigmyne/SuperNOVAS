@@ -5,8 +5,6 @@
 # Author: Attila Kovacs
 
 CC := $(CXX)
-SRC ?= ../src
-LIB ?= ../lib
 OBJ := obj
 LANGUAGE := c++
 CHECK_DIR := .
@@ -19,18 +17,23 @@ endif
 # Use the definitions project definitions
 include ../config.mk
 
-CPPFLAGS += -I../include -DNOVAS_NAMESPACE
-LDFLAGS += -lm
-
 C_SOURCES := $(subst src,../src,$(SOURCES))
+
+SRC := ../src
+LIB := ../lib
+
 CPP_SOURCES := $(wildcard *.cpp)
 CPP_OBJECTS := $(addprefix $(OBJ)/, $(subst .cpp,.opp,$(CPP_SOURCES)))
+
+CPPFLAGS += -I../include -DNOVAS_NAMESPACE
 
 ifdef CXXFLAGS
   CFLAGS := $(CXXFLAGS)
 else
   CXXFLAGS := $(CFLAGS)
 endif
+
+LDFLAGS += -lm
 
 .PHONY: shared
 shared: $(LIB)/libsupernovas++.$(SOEXT)
@@ -70,7 +73,7 @@ help:
 	@echo "The following targets are available:"
 	@echo
 	@echo "  shared        (default) builds libsupernovas++ shared library."
-	@echo "  static        builds libsupernovas++.a."
+	@echo "  static        builds libsupernovas++.a static libary."
 	@echo "  all           all of the above."
 	@echo "  clean         Removes intermediate products."
 	@echo "  distclean     Deletes all generated files."

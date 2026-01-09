@@ -19,9 +19,9 @@ OrbitalSystem::OrbitalSystem(enum novas::novas_reference_plane plane, const Plan
   static const char *fn = "OrbitalSystem()";
 
   if((unsigned) plane >= NOVAS_REFERENCE_PLANES)
-    novas_error(0, EINVAL, fn, "input reference plane is invalid: %d", plane);
+    novas_set_errno(EINVAL, fn, "input reference plane is invalid: %d", plane);
   else if(!center.is_valid())
-    novas_error(0, EINVAL, fn, "center planet is invalid: %d", center.novas_id());
+    novas_set_errno(EINVAL, fn, "center planet is invalid: %d", center.novas_id());
   else _valid = true;
 
   _system.plane = plane;
@@ -32,17 +32,17 @@ OrbitalSystem::OrbitalSystem(const novas::novas_orbital_system *system) {
   static const char *fn = "OrbitalSystem()";
 
   if(!system)
-    novas_error(0, EINVAL, fn, "input system is NULL");
+    novas_set_errno(EINVAL, fn, "input system is NULL");
   else if(!center().is_valid())
-    novas_error(0, EINVAL, fn, "input system center is invalid: %d", (int) system->center);
+    novas_set_errno(EINVAL, fn, "input system center is invalid: %d", (int) system->center);
   else if((unsigned) system->plane >= NOVAS_REFERENCE_PLANES)
-    novas_error(0, EINVAL, fn, "input reference plane is invalid: %d", (int) system->plane);
+    novas_set_errno(EINVAL, fn, "input reference plane is invalid: %d", (int) system->plane);
   else if((unsigned) system->type >= NOVAS_REFERENCE_SYSTEMS)
-    novas_error(0, EINVAL, fn, "input system coordinate type is invalid: %d", (int) system->type);
+    novas_set_errno(EINVAL, fn, "input system coordinate type is invalid: %d", (int) system->type);
   else if(isnan(system->obl))
-    novas_error(0, EINVAL, fn, "input system obliquity is NAN");
+    novas_set_errno(EINVAL, fn, "input system obliquity is NAN");
   else if(isnan(system->Omega))
-    novas_error(0, EINVAL, fn, "input system Omega is NAN");
+    novas_set_errno(EINVAL, fn, "input system Omega is NAN");
   else
     _valid = true;
 
@@ -72,11 +72,11 @@ OrbitalSystem& OrbitalSystem::orientation(double obliquity_rad, double ascending
   _valid = false;
 
   if(isnan(obliquity_rad))
-    novas_error(0, EINVAL, fn, "input obliquity is NAN");
+    novas_set_errno(EINVAL, fn, "input obliquity is NAN");
   else if(isnan(ascending_node_rad))
-    novas_error(0, EINVAL, fn, "input ascending node is NAN");
+    novas_set_errno(EINVAL, fn, "input ascending node is NAN");
   else if(!system.is_valid())
-    novas_error(0, EINVAL, fn, "input equatorial system is invalid");
+    novas_set_errno(EINVAL, fn, "input equatorial system is invalid");
   else
     _valid = true;
 
@@ -110,31 +110,31 @@ Orbital::Orbital(const novas_orbital *orbit) {
   static const char *fn = "Orbital()";
 
   if(!orbit)
-    novas_error(0, EINVAL, fn, "input orbit is NULL");
+    novas_set_errno(EINVAL, fn, "input orbit is NULL");
   else if(!system().is_valid())
-    novas_error(0, EINVAL, fn, "input orbital system is invalid");
+    novas_set_errno(EINVAL, fn, "input orbital system is invalid");
   else if(isnan(orbit->jd_tdb))
-    novas_error(0, EINVAL, fn, "input orbit->jd_tdb is NAN");
+    novas_set_errno(EINVAL, fn, "input orbit->jd_tdb is NAN");
   else if(isnan(orbit->a))
-    novas_error(0, EINVAL, fn, "input orbit->a is NAN");
+    novas_set_errno(EINVAL, fn, "input orbit->a is NAN");
   else if(isnan(orbit->M0))
-    novas_error(0, EINVAL, fn, "input orbit->M0 is NAN");
+    novas_set_errno(EINVAL, fn, "input orbit->M0 is NAN");
   else if(isnan(orbit->n))
-    novas_error(0, EINVAL, fn, "input orbit->n is NAN");
+    novas_set_errno(EINVAL, fn, "input orbit->n is NAN");
   else if(orbit->n == 0.0)
-    novas_error(0, EINVAL, fn, "input orbit->n is 0");
+    novas_set_errno(EINVAL, fn, "input orbit->n is 0");
   else if(orbit->n < 0.0)
-    novas_error(0, EINVAL, fn, "input orbit->n is negative");
+    novas_set_errno(EINVAL, fn, "input orbit->n is negative");
   else if(isnan(orbit->e))
-    novas_error(0, EINVAL, fn, "input orbit->e is NAN");
+    novas_set_errno(EINVAL, fn, "input orbit->e is NAN");
   else if(orbit->e < 0.0)
-    novas_error(0, EINVAL, fn, "input orbit->e is negative");
+    novas_set_errno(EINVAL, fn, "input orbit->e is negative");
   else if(isnan(orbit->omega))
-    novas_error(0, EINVAL, fn, "input orbit->omega is NAN");
+    novas_set_errno(EINVAL, fn, "input orbit->omega is NAN");
   else if(isnan(orbit->i))
-    novas_error(0, EINVAL, fn, "input orbit->i is NAN");
+    novas_set_errno(EINVAL, fn, "input orbit->i is NAN");
   else if(isnan(orbit->Omega))
-    novas_error(0, EINVAL, fn, "input orbit->Omega is NAN");
+    novas_set_errno(EINVAL, fn, "input orbit->Omega is NAN");
   else
     _valid = true;
 
@@ -147,19 +147,19 @@ Orbital::Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m
   static const char *fn = "Orbital()";
 
   if(!system.is_valid())
-    novas_error(0, EINVAL, fn, "input orbital system is invalid");
+    novas_set_errno(EINVAL, fn, "input orbital system is invalid");
   else if(isnan(jd_tdb))
-    novas_error(0, EINVAL, fn, "input reference time is NAN");
+    novas_set_errno(EINVAL, fn, "input reference time is NAN");
   else if(isnan(semi_major_m))
-    novas_error(0, EINVAL, fn, "input semi major axis is NAN");
+    novas_set_errno(EINVAL, fn, "input semi major axis is NAN");
   else if(isnan(mean_anom_rad))
-    novas_error(0, EINVAL, fn, "input mean anomaly is NAN");
+    novas_set_errno(EINVAL, fn, "input mean anomaly is NAN");
   else if(isnan(period_s))
-    novas_error(0, EINVAL, fn, "input period is NAN");
+    novas_set_errno(EINVAL, fn, "input period is NAN");
   else if(period_s == 0.0)
-    novas_error(0, EINVAL, fn, "input period is zero");
+    novas_set_errno(EINVAL, fn, "input period is zero");
   else if(period_s < 0.0)
-    novas_error(0, EINVAL, fn, "input period is negative");
+    novas_set_errno(EINVAL, fn, "input period is negative");
   else
     _valid = true;
 
@@ -263,11 +263,11 @@ Orbital& Orbital::eccentricity(double e, double periapsis_rad) {
   _valid = false;
 
   if(isnan(e))
-    novas_error(0, EINVAL, fn, "input eccentricity is NAN");
+    novas_set_errno(EINVAL, fn, "input eccentricity is NAN");
   if(e < 0.0)
-    novas_error(0, EINVAL, fn, "input eccentricity is negative");
+    novas_set_errno(EINVAL, fn, "input eccentricity is negative");
   else if(isnan(periapsis_rad))
-    novas_error(0, EINVAL, fn, "input periapsis is NAN");
+    novas_set_errno(EINVAL, fn, "input periapsis is NAN");
   else
     _valid = true;
 
@@ -287,9 +287,9 @@ Orbital& Orbital::inclination(double angle_rad, double ascending_node_rad) {
   _valid = false;
 
   if(isnan(angle_rad))
-    novas_error(0, EINVAL, fn, "input inclination angle is NAN");
+    novas_set_errno(EINVAL, fn, "input inclination angle is NAN");
   else if(isnan(ascending_node_rad))
-    novas_error(0, EINVAL, fn, "input ascending node is NAN");
+    novas_set_errno(EINVAL, fn, "input ascending node is NAN");
   else
     _valid = true;
 
@@ -305,7 +305,7 @@ Orbital& Orbital::inclination(const Angle& angle, const Angle& ascending_node_an
 
 Orbital& Orbital::apsis_period(double seconds) {
   if(seconds < 0.0) {
-    novas_error(0, EINVAL, "Orbital::apsis_period", "input period is negative");
+    novas_set_errno(EINVAL, "Orbital::apsis_period", "input period is negative");
     _valid = false;
   }
   _orbit.apsis_period = seconds / Unit::day;
@@ -322,7 +322,7 @@ Orbital& Orbital::apsis_rate(double rad_per_sec) {
 
 Orbital& Orbital::node_period(double seconds) {
   if(seconds < 0.0) {
-    novas_error(0, EINVAL, "Orbital::node_period", "input inclination angle is negative");
+    novas_set_errno(EINVAL, "Orbital::node_period", "input inclination angle is negative");
     _valid = false;
   }
   _orbit.node_period = seconds / Unit::day;

@@ -15,26 +15,16 @@ using namespace novas;
 
 namespace supernovas {
 
-static bool is_valid_rv(const char *fn, double rv_ms) {
-  if(isnan(rv_ms))
-    return novas_error(0, EINVAL, fn, "input radial velocity is NAN");
-  else if(fabs(rv_ms) > Constant::c)
-    return novas_error(0, EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", rv_ms);
-  return true;
-}
 
 static bool is_valid_sky_pos(const char *fn, const sky_pos *p) {
   if(isnan(p->ra))
-    return novas_error(0, EINVAL, fn, "input pos->ra is NAN");
+    return novas_error(0, EINVAL, fn, "input RA is NAN");
 
   else if(isnan(p->dec))
-    return novas_error(0, EINVAL, fn, "input pos->dec is NAN");
-
-  else if(!(p->dis > 0))
-    return novas_error(0, EINVAL, fn, "input pos->dis is invalid: %g AU", p->dis / Unit::au);
+    return novas_error(0, EINVAL, fn, "input Dec is NAN");
 
   else if(isnan(p->rv))
-    return novas_error(0, EINVAL, fn, "input pos->rv is NAN");
+    return novas_error(0, EINVAL, fn, "input radial veocity is NAN");
 
   else if(p->rv * Unit::au / Unit::day > Constant::c)
     return novas_error(0, EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", p->rv * Unit::au / Unit::day);
@@ -42,53 +32,43 @@ static bool is_valid_sky_pos(const char *fn, const sky_pos *p) {
   return true;
 }
 
-Apparent::Apparent(const Equinox& system, const Frame& f)
-: _sys(system), _frame(f), _pos({}) {
-  static const char *fn = "Apparent(frame, system)";
-
+Apparent::Apparent(const Frame& f)
+: cirs2tod_ra(0.0), _frame(f), _pos({}) {
   if(!f.is_valid())
-    novas_error(0, EINVAL, fn, "frame is invalid");
-  else if(!system.is_valid())
-    novas_error(0, EINVAL, fn, "equatorial system is invalid");
-  else
-    _valid = true;
-}
-
-Apparent::Apparent(const Equinox& system, const Frame& f, sky_pos p)
-: Apparent(system, f) {
-  static const char *fn = "Apparent(frame, sky_pos, system)";
-
-  if(!f.is_valid())
-    novas_error(0, EINVAL, fn, "input frame is invalid");
-  else if(!is_valid_sky_pos(fn, &p)) {
-    novas_error(0, EINVAL, fn, "input sky_pos is invalid");
-  }
+    novas_set_errno(EINVAL, "Apparent()", "frame is invalid");
   else
     _valid = true;
 
-  _pos = p;
-
-  // Always recalculate r_hat to ensure it's consistent with ra/dec
-  radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
+  cirs2tod_ra = -ira_equinox(f.time().jd(), NOVAS_TRUE_EQUINOX, f.accuracy());
 }
 
-Apparent::Apparent(const Equinox& system, const Frame& frame, double ra_rad, double dec_rad, double rv_ms)
-: Apparent(system, frame) {
-  static const char *fn = "Apparent(frame, eq, rv, system)";
-
-  if(isnan(ra_rad))
-    novas_error(0, EINVAL, fn, "input RA is NAN");
-  else if(isnan(dec_rad))
-    novas_error(0, EINVAL, fn, "input RA is NAN");
-
-  _valid = is_valid_rv(fn, rv_ms);
+Apparent::Apparent(const Frame& frame, enum novas_reference_system sys, double ra_rad, double dec_rad, double rv_ms)
+: Apparent(frame) {
+  static const char *fn = "Apparent()";
 
   _pos.ra = ra_rad / Unit::hour_angle;
+
+  // CIRS -> TOD as necessary...
+  if(sys == NOVAS_CIRS)
+    _pos.ra += cirs2tod_ra;
+
   _pos.dec = dec_rad / Unit::deg;
   _pos.rv = rv_ms / (Unit::km / Unit::sec);
   _pos.dis = NOVAS_DEFAULT_DISTANCE;
 
   radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
+
+  _valid = is_valid_sky_pos(fn, &_pos);
+}
+
+Apparent::Apparent(const Frame& frame, enum novas_reference_system sys, sky_pos p)
+: Apparent(frame, sys, p.ra * Unit::hour_angle, p.dec * Unit::deg, p.rv * Unit::km / Unit::s) {
+  if(!(p.dis > 0)) {
+    novas_set_errno(EINVAL, "Apparent()", "input pos.dis is invalid: %g AU", p.dis / Unit::au);
+    _valid = false;
+  }
+
+  _pos.dis = p.dis;
 }
 
 /**
@@ -103,7 +83,7 @@ Apparent::Apparent(const Equinox& system, const Frame& frame, double ra_rad, dou
  * @sa tod()
  */
 Apparent Apparent::cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
-  return Apparent(Equinox::cirs(frame.time().jd()), frame, ra_rad, dec_rad, rv_ms);
+  return Apparent(frame, NOVAS_CIRS, ra_rad, dec_rad, rv_ms);
 }
 
 /**
@@ -134,7 +114,7 @@ Apparent Apparent::cirs(const Angle& ra, const Angle& dec, const Frame& frame, c
  * @sa cirs()
  */
 Apparent Apparent::tod(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
-  return Apparent(Equinox::tod(frame.time().jd()), frame, ra_rad, dec_rad, rv_ms);
+  return Apparent(frame, NOVAS_TOD, ra_rad, dec_rad, rv_ms);
 }
 
 /**
@@ -161,16 +141,6 @@ Apparent Apparent::tod(const Angle& ra, const Angle& dec, const Frame& frame, co
  */
 const Frame& Apparent::frame() const {
   return _frame;
-}
-
-/**
- * Returns the equatorial coordinate system (equator type and equinox of date) for this
- * apparent position.
- *
- * @return equatorial()
- */
-const Equinox& Apparent::system() const {
-  return _sys;
 }
 
 /**
@@ -237,15 +207,27 @@ Distance Apparent::distance() const {
 }
 
 /**
- * Returns the apparent equatorial coordinates on the sky, in the coordinate system in which this
- * apparent position was defined (CIRS or TOD).
+ * Returns the apparent equatorial coordinates on the sky, with respect to the true equator and
+ * equinox of date (True-of-Date; TOD).
  *
  * @return    the apparent equatorial coordinates in the system in which they were defined.
  *
- * @sa system(), ecliptic(), galactic(), horizontal()
+ * @sa cirs(), ecliptic(), galactic(), horizontal()
  */
 Equatorial Apparent::equatorial() const {
-  return Equatorial(_pos.ra * Unit::hour_angle, _pos.dec * Unit::deg, _sys, _pos.dis * Unit::au);
+  return Equatorial(_pos.ra * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::tod(_frame.time()), _pos.dis * Unit::au);
+}
+
+/**
+ * Returns the apparent equatorial coordinates on the sky, in the coordinate system in the Celestial
+ * Intermediate Reference System (CIRS).
+ *
+ * @return    the apparent equatorial coordinates in the system in which they were defined.
+ *
+ * @sa equatorial(), ecliptic(), galactic(), horizontal()
+ */
+Equatorial Apparent::cirs() const {
+  return Equatorial((_pos.ra - cirs2tod_ra) * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::cirs(_frame.time()), _pos.dis * Unit::au);
 }
 
 /**
@@ -287,7 +269,7 @@ std::optional<Horizontal> Apparent::horizontal() const {
   static const char *fn = "Apparent::horizontal";
 
   if(!_frame.observer().is_geodetic()) {
-    novas_error(0, EINVAL, fn, "cannot convert for non-geodetic observer frame");
+    novas_set_errno(EINVAL, fn, "cannot convert for non-geodetic observer frame");
     return std::nullopt;
   }
 
@@ -296,7 +278,7 @@ std::optional<Horizontal> Apparent::horizontal() const {
   // pos.ra / pos.dec may be NAN for ITRS / TIRS...
   vector2radec(_pos.r_hat, &ra, &dec);
 
-  if(novas_app_to_hor(_frame._novas_frame(), _sys.reference_system(), ra, dec, NULL, &az, &el) != 0) {
+  if(novas_app_to_hor(_frame._novas_frame(), NOVAS_TOD, ra, dec, NULL, &az, &el) != 0) {
     novas_trace_invalid(fn);
     return std::nullopt;
   }
@@ -316,7 +298,7 @@ std::optional<Horizontal> Apparent::horizontal() const {
  * @sa from_cirs_sky_pos()
  */
 Apparent Apparent::from_tod_sky_pos(sky_pos pos, const Frame& frame) {
-  return Apparent(Equinox::tod(frame.time().jd()), frame, pos);
+  return Apparent(frame, NOVAS_TOD, pos);
 }
 
 /**
@@ -331,7 +313,7 @@ Apparent Apparent::from_tod_sky_pos(sky_pos pos, const Frame& frame) {
  * @sa from_tod_sky_pos()
  */
 Apparent Apparent::from_cirs_sky_pos(sky_pos pos, const Frame& frame) {
-  return Apparent(Equinox::cirs(frame.time().jd()), frame, pos);
+  return Apparent(frame, NOVAS_CIRS, pos);
 }
 
 /**

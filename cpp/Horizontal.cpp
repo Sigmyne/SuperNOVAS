@@ -125,6 +125,7 @@ bool Horizontal::equals(const Horizontal& other, double precision_rad) const {
  *
  * @sa operator==()
  */
+// cppcheck-suppress functionStatic
 bool Horizontal::equals(const Horizontal& other, const Angle& precision) const {
   return equals(other, precision.rad());
 }
@@ -219,7 +220,7 @@ std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, double rv) c
   static const char *fn = "Horizontal::to_apparent";
 
   if(!frame.observer().is_geodetic()) {
-    novas_error(0, EINVAL, fn, "cannot convert for non-geodetic observer frame");
+    novas_set_errno(EINVAL, fn, "cannot convert for non-geodetic observer frame");
     return std::nullopt;
   }
 

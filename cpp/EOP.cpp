@@ -19,11 +19,11 @@ void EOP::validate() {
   static const char *fn = "EOP()";
 
   if(isnan(_dut1))
-    novas_error(0, EINVAL, fn, "input dUT1 is NAN");
+    novas_set_errno(EINVAL, fn, "input dUT1 is NAN");
   else if(!_xp.is_valid())
-    novas_error(0, EINVAL, fn, "input xp is NAN");
+    novas_set_errno(EINVAL, fn, "input xp is NAN");
   else if(!_yp.is_valid())
-    novas_error(0, EINVAL, fn, "input yp is NAN");
+    novas_set_errno(EINVAL, fn, "input yp is NAN");
   else
     _valid = true;
 }

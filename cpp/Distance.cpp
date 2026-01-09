@@ -26,7 +26,7 @@ namespace supernovas {
  */
 Distance::Distance(double meters) : _meters(meters) {
   if(isnan(meters))
-    novas::novas_error(0, EINVAL, "Distance(double)", "input value is NAN");
+    novas::novas_set_errno(EINVAL, "Distance(double)", "input value is NAN");
   else
     _valid = true;
 }

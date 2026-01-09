@@ -54,7 +54,7 @@ static std::string _name_for(const char *base, double year) {
 Equinox::Equinox(const std::string& name, double jd_tt)
 : _name(name), _system(NOVAS_MOD), _jd(jd_tt) {
   if(isnan(_jd))
-    novas_error(0, EINVAL, "Equinox()", "input date is NAN");
+    novas_set_errno(EINVAL, "Equinox()", "input date is NAN");
   else
     _valid = true;
 
@@ -95,12 +95,12 @@ Equinox::Equinox(enum novas::novas_reference_system system, double jd_tt)
       _name =_name_for("CIRS J", epoch());
       break;
     default:
-      novas_error(0, EINVAL, fn, "invalid reference system: %d", system);
+      novas_set_errno(EINVAL, fn, "invalid reference system: %d", system);
       return;
   }
 
   if(isnan(jd_tt))
-    novas_error(0, EINVAL, fn, "input Julian date is NAN");
+    novas_set_errno(EINVAL, fn, "input Julian date is NAN");
   else
     _valid = true;
 }
@@ -287,7 +287,7 @@ std::optional<Equinox> Equinox::from_string(const std::string& name) {
   double ejd = novas_epoch(s);
 
   if(isnan(ejd)) {
-    novas_error(0, EINVAL, "Equinox::from_string", "No catalog system matching: '%s'", name.c_str());
+    novas_set_errno(EINVAL, "Equinox::from_string", "No catalog system matching: '%s'", name.c_str());
     return std::nullopt;
   }
 
@@ -309,11 +309,11 @@ std::optional<Equinox> Equinox::for_reference_system(enum novas::novas_reference
     jd_tt = NOVAS_JD_J2000;
   }
   else if(isnan(jd_tt)) {
-    novas_error(0, EINVAL, fn, "input JD is NAN");
+    novas_set_errno(EINVAL, fn, "input JD is NAN");
     return std::nullopt;
   }
   else if((unsigned) system >= NOVAS_REFERENCE_SYSTEMS) {
-    novas_error(0, EINVAL, fn, "invalid reference system: %d", system);
+    novas_set_errno(EINVAL, fn, "invalid reference system: %d", system);
     return std::nullopt;
   }
 

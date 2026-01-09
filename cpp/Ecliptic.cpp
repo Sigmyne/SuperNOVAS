@@ -120,6 +120,7 @@ bool Ecliptic::equals(const Ecliptic& other, double precision_rad) const {
  *
  * @sa operator==()
  */
+// cppcheck-suppress functionStatic
 bool Ecliptic::equals(const Ecliptic& other, const Angle& precision) const {
   return equals(other, precision.rad());
 }

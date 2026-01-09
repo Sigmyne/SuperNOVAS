@@ -184,9 +184,9 @@ GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
   make_observer_in_space(pos.scaled(1.0 / Unit::km)._array(), vel.scaled(Unit::sec / Unit::km)._array(), &_observer);
 
   if(!pos.is_valid())
-    novas_error(0, EINVAL, fn, "input position contains NAN component(s).");
+    novas_set_errno(EINVAL, fn, "input position contains NAN component(s).");
   else if(!vel.is_valid())
-    novas_error(0, EINVAL, fn, "input velocity contains NAN component(s).");
+    novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s).");
   else
     _valid = true;
 }
@@ -252,9 +252,9 @@ SolarSystemObserver::SolarSystemObserver(const Position& pos, const Velocity& ve
   make_solar_system_observer(pos.scaled(1.0 / Unit::au)._array(), vel.scaled(Unit::day / Unit::au)._array(), &_observer);
 
   if(!pos.is_valid())
-    novas_error(0, EINVAL, fn, "input position contains NAN component(s).");
+    novas_set_errno(EINVAL, fn, "input position contains NAN component(s).");
   else if(!vel.is_valid())
-    novas_error(0, EINVAL, fn, "input velocity contains NAN component(s).");
+    novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s).");
   else
     _valid = true;
 }
@@ -298,9 +298,9 @@ GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
   make_observer_at_site(site._on_surface(), &_observer);
 
   if(!site.is_valid())
-    novas_error(0, EINVAL, fn, "input site is invalid");
+    novas_set_errno(EINVAL, fn, "input site is invalid");
   else if(!eop.is_valid())
-    novas_error(0, EINVAL, fn, "input EOP is invalid");
+    novas_set_errno(EINVAL, fn, "input EOP is invalid");
   else
     _valid = true;
 }
@@ -321,11 +321,11 @@ GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const 
   make_airborne_observer(site._on_surface(), vel._array(), &_observer);
 
   if(!site.is_valid())
-    novas_error(0, EINVAL, fn, "input site is invalid.");
+    novas_set_errno(EINVAL, fn, "input site is invalid.");
   else if(!eop.is_valid())
-    novas_error(0, EINVAL, fn, "input EOP is invalid");
+    novas_set_errno(EINVAL, fn, "input EOP is invalid");
   else if(!vel.is_valid())
-    novas_error(0, EINVAL, fn, "input velocity contains NAN component(s).");
+    novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s).");
   else
     _valid = true;
 }

@@ -34,7 +34,7 @@ namespace supernovas {
  *       .catalog("HIP", 80763)
  *       .proper_motion( -12.11 * Unit::mas / Unit::year, -23.30 * Unit::mas / Unit::year)
  *       .parallax(5.89 * Unit::arcsec)
- *       .radial_velocity(-3.4 Unit::kms);
+ *       .radial_velocity(-3.4 * Unit::km / Unit::s);
  *  ```
  *
  * @param name      source name. It is treated case insensitively, unless the user calls
@@ -50,7 +50,7 @@ CatalogEntry::CatalogEntry(const std::string &name, const Equatorial& coords) : 
   if(novas_init_cat_entry(&_entry, name.c_str(), coords.ra().hours(), coords.dec().deg()) != 0)
     novas_trace_invalid(fn);
   else if(!coords.is_valid())
-    novas_error(0, EINVAL, fn, "input equatorial coordinates are invalid");
+    novas_set_errno(EINVAL, fn, "input equatorial coordinates are invalid");
   else
     _valid = true;
 }
@@ -116,23 +116,23 @@ CatalogEntry::CatalogEntry(cat_entry e, const Equinox& system)
   static const char *fn = "CatalogEntry()";
 
   if(isnan(e.ra))
-    novas_error(0, EINVAL, fn, "input cat_entry.ra is NAN");
+    novas_set_errno(EINVAL, fn, "input cat_entry.ra is NAN");
   if(isnan(e.dec))
-    novas_error(0, EINVAL, fn, "input cat_entry.dec is NAN");
+    novas_set_errno(EINVAL, fn, "input cat_entry.dec is NAN");
   else if(fabs(e.dec) > 90.0)
-    novas_error(0, EINVAL, fn, "input cat_entry.dec is outside of [-90:90] range: %g", e.dec);
+    novas_set_errno(EINVAL, fn, "input cat_entry.dec is outside of [-90:90] range: %g", e.dec);
   if(isnan(e.parallax))
-    novas_error(0, EINVAL, fn, "input cat_entry.parallax is NAN");
+    novas_set_errno(EINVAL, fn, "input cat_entry.parallax is NAN");
   if(e.parallax < 0.0)
-    novas_error(0, EINVAL, fn, "input cat_entry.parallax is negative: %g mas", e.parallax);
+    novas_set_errno(EINVAL, fn, "input cat_entry.parallax is negative: %g mas", e.parallax);
   if(isnan(e.promora))
-    novas_error(0, EINVAL, fn, "input cat_entry.promora is NAN");
+    novas_set_errno(EINVAL, fn, "input cat_entry.promora is NAN");
   if(isnan(e.promodec))
-    novas_error(0, EINVAL, fn, "input cat_entry.promodec is NAN");
+    novas_set_errno(EINVAL, fn, "input cat_entry.promodec is NAN");
   if(isnan(e.radialvelocity))
-    novas_error(0, EINVAL, fn, "input cat_entry.radialvelocity is NAN");
+    novas_set_errno(EINVAL, fn, "input cat_entry.radialvelocity is NAN");
   if(!_sys.is_valid())
-    novas_error(0, EINVAL, fn, "input equatorial system is invalid");
+    novas_set_errno(EINVAL, fn, "input equatorial system is invalid");
   else
     _valid = true;
 }
@@ -296,11 +296,11 @@ CatalogEntry& CatalogEntry::proper_motion(double ra, double dec) {
   static const char *fn = "CatalogEntry::proper_motion()";
 
   if(isnan(ra)) {
-    novas_error(0, EINVAL, fn, "RA motion is NAN");
+    novas_set_errno(EINVAL, fn, "RA motion is NAN");
     _valid = false;
   }
   else if(isnan(dec)) {
-    novas_error(0, EINVAL, fn, "Dec motion is NAN");
+    novas_set_errno(EINVAL, fn, "Dec motion is NAN");
     _valid = false;
   }
 
@@ -322,11 +322,11 @@ CatalogEntry& CatalogEntry::parallax(double radians) {
   static const char *fn = "CatalogEntry::parallax()";
 
   if(isnan(radians)) {
-    novas_error(0, EINVAL, fn, "input parallax is NAN");
+    novas_set_errno(EINVAL, fn, "input parallax is NAN");
     _valid = false;
   }
   else if(radians < 0.0) {
-    novas_error(0, EINVAL, fn, "input parallax is negative: %g mas", (radians / Unit::mas));
+    novas_set_errno(EINVAL, fn, "input parallax is negative: %g mas", (radians / Unit::mas));
     _valid = false;
   }
 
@@ -362,11 +362,11 @@ CatalogEntry& CatalogEntry::distance(double meters) {
   static const char *fn = "CatalogEntry::distance()";
 
   if(isnan(meters)) {
-    novas_error(0, EINVAL, fn, "input distance is NAN");
+    novas_set_errno(EINVAL, fn, "input distance is NAN");
     _valid = false;
   }
   else if(meters < 0.0) {
-    novas_error(0, EINVAL, fn, "input distance is negative: %g pc", (meters / Unit::pc));
+    novas_set_errno(EINVAL, fn, "input distance is negative: %g pc", (meters / Unit::pc));
     _valid = false;
   }
 
@@ -402,11 +402,11 @@ CatalogEntry& CatalogEntry::v_lsr(double v_ms) {
   static const char *fn = "CatalogEntry::v_lsr()";
 
   if(isnan(v_ms)) {
-    novas_error(0, EINVAL, fn, "input LSR velocity is NAN");
+    novas_set_errno(EINVAL, fn, "input LSR velocity is NAN");
     _valid = false;
   }
   else if(fabs(v_ms) > Constant::c) {
-    novas_error(0, EINVAL, fn, "input LSR velocity exceeds the speed of light: %g m/s", v_ms);
+    novas_set_errno(EINVAL, fn, "input LSR velocity exceeds the speed of light: %g m/s", v_ms);
     _valid = false;
   }
 
@@ -443,11 +443,11 @@ CatalogEntry& CatalogEntry::radial_velocity(double v_ms) {
   static const char *fn = "CatalogEntry::radial_velocity()";
 
   if(isnan(v_ms)) {
-    novas_error(0, EINVAL, fn, "input value is NAN");
+    novas_set_errno(EINVAL, fn, "input value is NAN");
     _valid = false;
   }
   else if(fabs(v_ms) > Constant::c) {
-    novas_error(0, EINVAL, fn, "radial velocity exceeds the speed of light: %g m/s", v_ms);
+    novas_set_errno(EINVAL, fn, "radial velocity exceeds the speed of light: %g m/s", v_ms);
     _valid = false;
   }
 
@@ -488,7 +488,7 @@ CatalogEntry& CatalogEntry::redshift(double z) {
     _valid = false;
   }
   else if(isnan(z)) {
-    novas_error(0, EINVAL, fn, "input redshift is NAN");
+    novas_set_errno(EINVAL, fn, "input redshift is NAN");
     _valid = false;
   }
 

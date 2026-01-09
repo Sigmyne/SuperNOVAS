@@ -24,9 +24,9 @@ namespace supernovas {
  */
 Speed::Speed(double m_per_s) : _ms(m_per_s) {
   if(isnan(m_per_s))
-    novas_error(0, EINVAL, "Speed(double)", "input value is NAN");
+    novas_set_errno(EINVAL, "Speed(double)", "input value is NAN");
   else if(fabs(m_per_s) > Constant::c)
-    novas_error(0, ERANGE, "Speed(double)", "input speed exceeds the speed of light: %g m/s", m_per_s);
+    novas_set_errno(ERANGE, "Speed(double)", "input speed exceeds the speed of light: %g m/s", m_per_s);
   else
     _valid = true;
 }

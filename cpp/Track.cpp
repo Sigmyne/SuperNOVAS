@@ -325,7 +325,7 @@ std::optional<Horizontal> HorizontalTrack::projected(const Time& time) const {
  */
 HorizontalTrack HorizontalTrack::from_novas_track(const novas_track *track, const Interval& range) {
   if(!track) {
-    novas_error(0, EINVAL, "HorizontalTrack::from_novas_track", "input track is NULL");
+    novas_set_errno(EINVAL, "HorizontalTrack::from_novas_track", "input track is NULL");
     return HorizontalTrack(&_default_track, range);
   }
   return HorizontalTrack(track, range);
@@ -389,7 +389,7 @@ EquatorialTrack::EquatorialTrack(const Equinox& system, const Time& ref_time, co
  */
 EquatorialTrack EquatorialTrack::from_novas_track(const Equinox& system, const novas_track *track, const Interval& range) {
   if(!track) {
-    novas_error(0, EINVAL, "EquatorialTrack::from_novas_track", "input track is NULL");
+    novas_set_errno(EINVAL, "EquatorialTrack::from_novas_track", "input track is NULL");
     return EquatorialTrack(system, &_default_track, range);
   }
   return EquatorialTrack(system, track, range);

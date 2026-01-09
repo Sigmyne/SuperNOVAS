@@ -29,15 +29,15 @@ Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_
   static const char *fn = "Spherical";
 
   if(isnan(longitude_rad))
-    novas_error(0, EINVAL, fn, "input longitude is NAN");
+    novas_set_errno(EINVAL, fn, "input longitude is NAN");
   else if(isnan(latitude_rad))
-    novas_error(0, EINVAL, fn, "input latitude is NAN");
+    novas_set_errno(EINVAL, fn, "input latitude is NAN");
   else if(fabs(latitude_rad) > Constant::halfPi)
-    novas_error(0, EINVAL, fn, "input latitude is outside [-pi:pi] range: %g", latitude_rad);
+    novas_set_errno(EINVAL, fn, "input latitude is outside [-pi:pi] range: %g", latitude_rad);
   else if(isnan(distance_m))
-    novas_error(0, EINVAL, fn, "input distance is NAN");
+    novas_set_errno(EINVAL, fn, "input distance is NAN");
   else if(distance_m < 0.0)
-    novas_error(0, EINVAL, fn, "input distance is negative: %g", distance_m);
+    novas_set_errno(EINVAL, fn, "input distance is negative: %g", distance_m);
   else
     _valid = true;
 }

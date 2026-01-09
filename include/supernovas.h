@@ -1038,6 +1038,8 @@ public:
   std::string to_string() const;
 
   static Weather guess(const Site& site);
+
+  static const Weather& standard();
 };
 
 /**
@@ -1137,6 +1139,8 @@ public:
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 
   static Site from_GPS(double longitude, double latitude, double altitude = 0.0);
+
+  static Site from_GPS(const std::string& longitude, const std::string& latitude, double altitude = 0.0);
 
   static Site from_xyz(const Position& xyz);
 };
@@ -1392,8 +1396,6 @@ private:
 
   Time() {};
 
-  bool is_valid_parms(double dUT1, enum novas::novas_timescale timescale) const;
-
   void diurnal_correct();
 
 public:
@@ -1542,25 +1544,6 @@ public:
   const Time& time() const;
 
   enum novas::novas_accuracy accuracy() const;
-
-  /// @ingroup apparent
-  Apparent approx_apparent(const Planet& planet) const;
-
-  bool has_planet_data(enum novas::novas_planet planet) const;
-
-  bool has_planet_data(const Planet& planet) const;
-
-  /// @ingroup solar-system
-  std::optional<Position> planet_position(enum novas::novas_planet planet) const;
-
-  /// @ingroup solar-system
-  std::optional<Position> planet_position(const Planet& planet) const;
-
-  /// @ingroup solar-system
-  std::optional<Velocity> planet_velocity(enum novas::novas_planet planet) const;
-
-  /// @ingroup solar-system
-  std::optional<Velocity> planet_velocity(const Planet& planet) const;
 
   double clock_skew(enum novas::novas_timescale = novas::NOVAS_TT) const;
 
@@ -1757,6 +1740,9 @@ public:
   Distance mean_radius() const;
 
   double mass() const;
+
+  /// @ingroup apparent
+  Apparent approx_apparent(const Frame& frame) const;
 
   static std::optional<Planet> for_naif_id(long naif);
 
@@ -1984,34 +1970,32 @@ public:
  * As such it contains appropriate relativistic corrections for the observer's relative motion
  * as well as gravitational redshift corrections for the surface of major Solar-system bodies,
  * where light is assumed to originate, and at the observer location. It is also corrected for
- * the viewing angle difference when light is gravitationally deflected around major Solar-system
- * bodies.
+ * the slight viewing angle difference when light is gravitationally deflected around major
+ * Solar-system bodies.
  *
  * %Apparent positions can also come directly from observations, such as from unrefracted
  * horizontal coordinates.
  *
  * @sa Source::apparent(), Horizontal::to_apparent()
+ * @sa Geometric
  * \ingroup apparent spectral
  */
 class Apparent : public Validating {
 private:
-  Equinox _sys;                ///< stored coordinate system type
+  double cirs2tod_ra;          ///< [h] stored CIRS -> TOD R.A. offset
   Frame _frame;                ///< stored frame data
-
   novas::sky_pos _pos;         ///< stored apparent position data
 
-  Apparent(const Equinox& system, const Frame& frame);
+  explicit Apparent(const Frame& frame);
 
-  Apparent(const Equinox& system, const Frame& frame, novas::sky_pos p);
+  Apparent(const Frame& frame, enum novas::novas_reference_system sys, novas::sky_pos p);
 
-  Apparent(const Equinox& system, const Frame& frame, double ra_rad, double dec_rad, double rv_ms = 0.0);
+  Apparent(const Frame& frame, enum novas::novas_reference_system sys, double ra_rad, double dec_rad, double rv_ms = 0.0);
 
 public:
   const novas::sky_pos *_sky_pos() const;
 
   const Frame& frame() const;
-
-  const Equinox& system() const;
 
   Position xyz() const;
 
@@ -2023,6 +2007,9 @@ public:
 
   /// @ingroup equatorial
   Equatorial equatorial() const;
+
+  /// @ingroup equatorial
+  Equatorial cirs() const;
 
   /// @ingroup nonequatorial
   Ecliptic ecliptic() const;
@@ -2061,7 +2048,8 @@ public:
  * time for Solar-system bodies. Rather, geometric positions match the ephemeris positions for
  * an earlier time, when the observed light originated from the source.
  *
- * @sa apparent
+ * @sa Source::geometric(), Frame::geometric_planet()
+ * @sa Apparent
  * @ingroup geometric
  */
 class Geometric : public Validating {
@@ -2151,10 +2139,10 @@ public:
   const Angle zenith_angle() const;
 
   /// @ingroup refract
-  Horizontal to_refracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather);
+  Horizontal to_refracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather = Weather::standard());
 
   /// @ingroup refract
-  Horizontal to_unrefracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather);
+  Horizontal to_unrefracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather = Weather::standard());
 
   /// @ingroup apparent
   std::optional<Apparent> to_apparent(const Frame& frame, double rv = 0.0) const;

@@ -25,9 +25,9 @@ Temperature::Temperature(double deg_C) : _deg_C(deg_C) {
   static const char *fn = "Temperature()";
 
   if(isnan(deg_C))
-    novas::novas_error(0, EINVAL, fn, "input value is NAN");
+    novas::novas_set_errno(EINVAL, fn, "input value is NAN");
   else if(kelvin() < 0.0)
-    novas::novas_error(0, EINVAL, fn, "input value is below 0K");
+    novas::novas_set_errno(EINVAL, fn, "input value is below 0K");
   else
     _valid = true;
 }

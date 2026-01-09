@@ -29,13 +29,13 @@ Geometric::Geometric(const Position& p, const Velocity& v, const Frame& frame, e
   static const char *fn = "Geometric()";
 
   if(!frame.is_valid())
-    novas_error(0, EINVAL, fn, "input frame is invalid");
+    novas_set_errno(EINVAL, fn, "input frame is invalid");
   else if((unsigned) system >= NOVAS_REFERENCE_SYSTEMS)
-    novas_error(0, EINVAL, fn, "input reference_system is invalid: %d", system);
+    novas_set_errno(EINVAL, fn, "input reference_system is invalid: %d", system);
   else if(!p.is_valid())
-    novas_error(0, EINVAL, fn, "input position contains NAN coponent(s)");
+    novas_set_errno(EINVAL, fn, "input position contains NAN coponent(s)");
   else if(!v.is_valid())
-    novas_error(0, EINVAL, fn, "input velocity contains NAN coponent(s)");
+    novas_set_errno(EINVAL, fn, "input velocity contains NAN coponent(s)");
   else
     _valid = true;
 
@@ -298,7 +298,7 @@ std::optional<Geometric> Geometric::in_itrs(const EOP& eop) const {
     return in_system(NOVAS_ITRS);
 
   // Or, we can't really convert to ITRS
-  novas_error(0, EINVAL, "Geometric::in_itrs()", "Needs valid EOP for non geodetic observer frame");
+  novas_set_errno(EINVAL, "Geometric::in_itrs()", "Needs valid EOP for non geodetic observer frame");
   return std::nullopt;
 }
 

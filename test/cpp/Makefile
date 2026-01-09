@@ -1,4 +1,4 @@
-
+SRC = ../../src
 
 # Flags for measuring test coverage
 CPPFLAGS += -I. -I../../include
@@ -7,33 +7,28 @@ LDFLAGS += -fprofile-arcs -ftest-coverage -lm
 
 include ../../config.mk
 
-CPP_PATH := ../../cpp
-CPP_SOURCES = $(wildcard $(CPP_PATH)/*.cpp)
-CPP_OBJECTS = $(subst .cpp,.o, $(subst $(CPP_PATH)/,, $(CPP_SOURCES)))
+CPP_SRC := ../../cpp
+CPP_SOURCES = $(wildcard $(CPP_SRC)/*.cpp)
+CPP_OBJECTS = $(subst .cpp,.opp, $(subst $(CPP_SRC)/,obj/, $(CPP_SOURCES)))
 
 TESTS = AngleTest TimeAngleTest IntervalTest DistanceTest SpeedTest TemperatureTest PressureTest \
 	EOPTest SphericalTest CalendarTest PositionTest GalacticTest EclipticTest WeatherTest \
 	VelocityTest EquinoxTest
 
 .PHONY: build
-build: $(TESTS)
+build: libnovas++.a $(TESTS)
 
 .PHONY: run
 run: build
 	@for prog in $(TESTS) ; do ./$${prog} ; done
 
 .PHONY: coverage
-coverage: $(COVFILES)
-	$(MAKE) clean-test
+coverage: run
 	$(MAKE) cov
 
-%.o: %.cpp Makefile
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
+%Test: %Test.cpp $(CPP_OBJECTS)
+	$(CXX) -o $@ $(CPPFLAGS) $(CXXFLAGS) $^ $(LDFLAGS) libnovas++.a
 
-%Test: %Test.o libnovas++.a $(CPP_OBJECTS)
-	$(CXX) -o $@ $(CPPFLAGS) $(CXXFLAGS) $^ $(LDFLAGS) -L. -lnovas++
-
-.PRECIOUS: libnovas++.a
 libnovas++.a: $(OBJECTS)
 	ar -rc $@ $^
 	ranlib $@
@@ -41,15 +36,17 @@ libnovas++.a: $(OBJECTS)
 obj:
 	mkdir $@
 
-.PRECIOUS: obj/%.o
-obj/%.o: ../../src/%.c obj Makefile
+obj/%.o: $(SRC)/%.c obj
 	$(CXX) -c -o $@ -DNOVAS_NAMESPACE $(CPPFLAGS) $< 
+
+obj/%.opp: $(CPP_SRC)/%.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
 
 cov: cov.info
 	genhtml $< -o $@
 
 cov.info:
-	geninfo . -b . -o $@
+	geninfo obj -b obj -o $@
 
 .PRECIOUS: %.c.gcov
 %.c.gcov: %-%.gcno %-%.gcda
@@ -70,11 +67,8 @@ clean-cov:
 
 .PHONY: clean
 clean: clean-test clean-cov
-	rm -rf *.o obj
+	rm -rf *.o *.opp obj
 
 .PHONY: distclean
 distclean: clean
 	rm -f libnovas++.a
-
-vpath %.cpp $(CPP_PATH)
-vpath %.c ../../src

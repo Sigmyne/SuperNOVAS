@@ -29,7 +29,7 @@ using namespace novas;
 namespace supernovas {
 
 
-bool Time::is_valid_parms(double dUT1,  enum novas_timescale timescale) const {
+static bool is_valid_parms(double dUT1,  enum novas_timescale timescale) {
   static const char *fn = "Time()";
 
   if(isnan(dUT1))
@@ -55,7 +55,7 @@ bool Time::is_valid_parms(double dUT1,  enum novas_timescale timescale) const {
 Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
   novas_set_time(timescale, jd, leap_seconds, dUT1, &_ts);
   if(isnan(jd))
-    novas_error(0, EINVAL, "Time()", "input jd is NAN");
+    novas_set_errno(EINVAL, "Time()", "input jd is NAN");
   else
     _valid = is_valid_parms(dUT1, timescale);
 }
@@ -88,7 +88,7 @@ Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_times
   novas_set_split_time(timescale, ijd, fjd, leap_seconds, dUT1, &_ts);
 
   if(isnan(fjd))
-    novas_error(0, EINVAL, "Time()", "input jd is NAN");
+    novas_set_errno(EINVAL, "Time()", "input jd is NAN");
   else
     _valid = is_valid_parms(dUT1, timescale);
 }
@@ -146,7 +146,7 @@ Time::Time(const std::string& timestamp, const EOP& eop, enum novas_timescale ti
  */
 Time::Time(const struct timespec *t, int leap_seconds, double dUT1) {
   if(!t)
-    novas_error(0, EINVAL, "Time()", "input timespec is NULL");
+    novas_set_errno(EINVAL, "Time()", "input timespec is NULL");
   else {
     novas_set_unix_time(t->tv_sec, t->tv_nsec, leap_seconds, dUT1, &_ts);
     _valid = is_valid_parms(dUT1, NOVAS_UTC);
@@ -176,13 +176,13 @@ Time::Time(const novas_timespec *t) {
   static const char *fn = "Time()";
 
   if(!t)
-    novas_error(0, EINVAL, fn, "input timespec is NULL");
+    novas_set_errno(EINVAL, fn, "input timespec is NULL");
   else if(isnan(t->fjd_tt))
-    novas_error(0, EINVAL, fn, "input t->fjd_tt is NULL");
+    novas_set_errno(EINVAL, fn, "input t->fjd_tt is NULL");
   else if(isnan(t->ut1_to_tt))
-    novas_error(0, EINVAL, fn, "input t->ut1_to_tt is NULL");
+    novas_set_errno(EINVAL, fn, "input t->ut1_to_tt is NULL");
   else if(isnan(t->tt2tdb))
-    novas_error(0, EINVAL, fn, "input t->tt2tdb is NULL");
+    novas_set_errno(EINVAL, fn, "input t->tt2tdb is NULL");
   else
     _valid = true;
 

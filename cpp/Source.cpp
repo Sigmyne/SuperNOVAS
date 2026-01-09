@@ -72,7 +72,7 @@ std::string Source::name() const {
  *                  observation, as well as the accuracy requirement.
  * @return the apparent position of the source, or else an invalid position (with NAN values).
  *
- * @sa geometric()
+ * @sa Planet::approx_apparent(), geometric()
  */
 Apparent Source::apparent(const Frame& frame) const {
   sky_pos pos = {};
@@ -125,7 +125,7 @@ Apparent Source::apparent(const Frame& frame) const {
  * @return the geometric (3D) position and velocity of the source, or else an invalid position
  *         (with NAN values).
  *
- * @sa apparent(), Frame::planet_position(), Frame::planet_velocity()
+ * @sa apparent()
  */
 Geometric Source::geometric(const Frame& frame, enum novas_reference_system system) const {
   double p[3] = {0.0}, v[3] = {0.0};
@@ -176,7 +176,7 @@ std::optional<Time> Source::rises_above(double el, const Frame &frame, Refractio
     return t;
   }
 
-  novas_error(0, ENOSYS, fn, "Cannot calculate rises time for a non-geodetic observer.");
+  novas_set_errno(ENOSYS, fn, "Cannot calculate rises time for a non-geodetic observer.");
   return std::nullopt;
 }
 
@@ -198,7 +198,7 @@ std::optional<Time> Source::transits(const Frame &frame) const {
           novas_check_nan("Source::transits", novas_transit_time(&_object, frame._novas_frame())),
           extract_eop(frame));
 
-  novas_error(0, ENOSYS, fn, "Cannot calculate transit time for a non-geodetic observer.");
+  novas_set_errno(ENOSYS, fn, "Cannot calculate transit time for a non-geodetic observer.");
   return std::nullopt;
 }
 
@@ -231,7 +231,7 @@ std::optional<Time> Source::sets_below(double el, const Frame &frame, Refraction
           extract_eop(frame));
   }
 
-  novas_error(0, ENOSYS, fn, "Cannot calculate transit time for a non-geodetic observer.");
+  novas_set_errno(ENOSYS, fn, "Cannot calculate transit time for a non-geodetic observer.");
   return std::nullopt;
 }
 
@@ -290,7 +290,7 @@ std::optional<HorizontalTrack> Source::horizontal_track(const Frame &frame, nova
   novas_track track = {};
 
   if(!frame.observer().is_geodetic()) {
-    novas_error(0, EINVAL, fn, "input frame is not a geodetic observing frame");
+    novas_set_errno(EINVAL, fn, "input frame is not a geodetic observing frame");
     return std::nullopt;
   }
 
@@ -386,7 +386,7 @@ CatalogSource::CatalogSource(const CatalogEntry& e)
   if(make_cat_object_sys(e._cat_entry(), e.system().name().c_str(), &_object) != 0)
     novas_trace_invalid(fn);
   else if(!e.is_valid())
-    novas_error(0, EINVAL, fn, "input catalog entry is invalid");
+    novas_set_errno(EINVAL, fn, "input catalog entry is invalid");
   else
     _valid = true;
 }
@@ -481,7 +481,7 @@ double SolarSystemSource::solar_power(const Time& time) const {
  */
 Planet::Planet(enum novas_planet number) : SolarSystemSource() {
   if(make_planet(number, &_object) != 0)
-    novas_error(0, EINVAL, "Planet::for_novas_id", "no planet for NOVAS id number: %d", number);
+    novas_set_errno(EINVAL, "Planet::for_novas_id", "no planet for NOVAS id number: %d", number);
   else
     _valid = true;
 }
@@ -587,6 +587,60 @@ double Planet::mass() const {
 
   return Constant::M_sun / r[_object.number];
 }
+
+/**
+ * Calculates an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon
+ * Barycenter (EMB) -- typically to arcmin level accuracy -- using Keplerian orbital elements. The
+ * returned position is antedated for light-travel time (for Solar-System bodies). It also applies
+ * an appropriate aberration correction (but not gravitational deflection).
+ *
+ * The orbitals can provide planet positions to arcmin-level precision for the rocky inner
+ * planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The
+ * accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if
+ * used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical
+ * accuracies, see either of the top two references below.
+ *
+ * For accurate positions, you should use planetary ephemerides (such as the JPL ephemerides via
+ * the CALCEPH or CSPICE plugins) and `novas_sky_pos()` instead.
+ *
+ * While this function is generally similar to creating an orbital object with an orbit
+ * initialized with `novas_make_planet_orbit()` or `novas_make_moon_orbit()`, and then calling
+ * `novas_sky_pos()`, there are a few important differences to note:
+ *
+ * <ol>
+ *  <li>This function calculates Earth and Moon positions about the Keplerian orbital position
+ *  of the Earth-Moon Barycenter (EMB). In constrast, `novas_make_planet_orbit()` does not provide
+ *  orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's orbital to
+ *  the Earth position returned by the currently configured planet calculator function (see
+ *  `set_planet_provider()`).</li>
+ *  <li>This function ignores gravitational deflection. It makes little sense to bother about
+ *  corrections that are orders of magnitude below the accuracy of the orbital positions
+ *  obtained.</li>
+ * </ol>
+ *
+ * REFERENCES:
+ * <ol>
+ *  <li>E.M. Standish and J.G. Williams 1992.</li>
+ *  <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
+ *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+ *  <li>Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
+ *      vol. 124, no. 1, July 1983, p. 50-62.</li>
+ * </ol>
+ *
+ * @param planet    the planet.
+ * @return          approximate apparent position for the given planet. The returned position may
+ *                  be invalid if the planet argument is invalid, or is unsupported by the
+ *                  Keplerian orbital model (Earth). You should check validity with
+ *                  Apparent::is_valid() as appropriate.
+ *
+ * @sa novas_approx_sky_pos()
+ */
+Apparent Planet::approx_apparent(const Frame& frame) const {
+  sky_pos pos = {};
+  novas_approx_sky_pos(novas_id(), frame._novas_frame(), NOVAS_TOD, &pos);
+  return Apparent::from_tod_sky_pos(pos, frame);
+}
+
 
 std::string Planet::to_string() const {
   return "Planet " + name();
@@ -790,7 +844,7 @@ OrbitalSource::OrbitalSource(const std::string& name, long number, const Orbital
   if(make_orbital_object(name.c_str(), number, orbit._novas_orbital(), &_object) != 0)
     novas_trace_invalid(fn);
   else if(!orbit.is_valid())
-    novas_error(0, EINVAL, fn, "input orbital is invalid");
+    novas_set_errno(EINVAL, fn, "input orbital is invalid");
   else
     _valid = true;
 }

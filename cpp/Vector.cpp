@@ -28,7 +28,7 @@ Vector::Vector(double x, double y, double z) {
   _component[2] = z;
 
   if(isnan(abs()))
-    novas_error(0, EINVAL, "Vector()", "input has NAN component(s)");
+    novas_set_errno(EINVAL, "Vector()", "input has NAN component(s)");
   else
     _valid = true;
 }
