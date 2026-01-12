@@ -34,8 +34,8 @@ int main() {
   if(!test.equals("redshift()", a.redshift(), a.beta(), 1e-6)) n++;
   if(!test.equals("travel()", a.travel(Interval(10.0)).km(), 450.0, 1e-12)) n++;
   if(!test.equals("operator * Interval", (a * Interval(10.0)).km(), 450.0, 1e-12)) n++;
-  if(!test.equals("in_direction()", a.in_direction(Position(0.0, 5.0, 0.0)).y(), 45.0 * Unit::km / Unit::s, 1e-12)) n++;
-  if(!test.equals("in_direction(x)", a.in_direction(Position(0.0, 5.0, 0.0)).x(), 0.0, 1e-15)) n++;
+  if(!test.equals("in_direction()", a.to_direction(Position(0.0, 5.0, 0.0)).y(), 45.0 * Unit::km / Unit::s, 1e-12)) n++;
+  if(!test.equals("in_direction(x)", a.to_direction(Position(0.0, 5.0, 0.0)).x(), 0.0, 1e-15)) n++;
 
   Speed b(-30.0 * Unit::km / Unit::s);
   if(!test.equals("km_per_s(-30 km/s)", b.km_per_s(), -30.0)) n++;

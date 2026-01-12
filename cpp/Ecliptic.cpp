@@ -90,7 +90,7 @@ Ecliptic::Ecliptic(const std::string& longitude, const std::string& latitude, co
  *                        ICRS).
  */
 Ecliptic::Ecliptic(const Position& pos, const Equinox& system)
-: Spherical(pos.as_spherical()), _equator(system.equator_type()), _jd(system.jd()) {
+: Spherical(pos.to_spherical()), _equator(system.equator_type()), _jd(system.jd()) {
   validate();
 }
 
@@ -196,18 +196,31 @@ Angle Ecliptic::distance_to(const Ecliptic& other) const {
   return Spherical::distance_to(other);
 }
 
+/**
+ * Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the
+ * specified equinox of date.
+ *
+ * @param system    the requested equinox of date for returned coordinates.
+ * @return          new ecliptic coordinates, which represent the same position as
+ *                  this, but expressed relaive to the specified equinox.
+ *
+ * @sa to_icrs(), to_j2000(), to_mod(), to_tod()
+ */
+Ecliptic Ecliptic::to_system(const Equinox& system) const {
+  return to_equatorial().to_system(system).to_ecliptic();
+}
 
 /**
  * Converts these ecliptic coordinates to ICRS ecliptic coordinates.
  *
  * @return    the equivalent ICRS ecliptic coordinates.
  *
- * @sa to_j2000(), to_mod(), to_tod()
+ * @sa to_system(), to_j2000(), to_mod(), to_tod()
  */
 Ecliptic Ecliptic::to_icrs() const {
   if(_equator == NOVAS_GCRS_EQUATOR)
     return *this;
-  return as_equatorial().to_icrs().as_ecliptic();
+  return to_equatorial().to_icrs().to_ecliptic();
 }
 
 /**
@@ -215,13 +228,13 @@ Ecliptic Ecliptic::to_icrs() const {
  *
  * @return    the equivalent J2000 ecliptic coordinates.
  *
- * @sa to_icrs(), to_mod(), to_tod()
+ * @sa to_system(), to_icrs(), to_mod(), to_tod()
  */
 Ecliptic Ecliptic::to_j2000() const {
   if(_equator == NOVAS_MEAN_EQUATOR && _jd == NOVAS_JD_J2000)
     return (*this);
 
-  return as_equatorial().to_j2000().as_ecliptic();
+  return to_equatorial().to_j2000().to_ecliptic();
 }
 
 /**
@@ -231,7 +244,7 @@ Ecliptic Ecliptic::to_j2000() const {
  * @param jd_tdb  [day] the (TDB-based) Julian date specifying the coordinate epoch.
  * @return        the equivalent MOD ecliptic coordinates at the specified date.
  *
- * @sa to_mod(), to_tod(), to_icrs(), to_j2000()
+ * @sa to_system(), to_mod(), to_tod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_mod(double jd_tdb) const {
   if(jd_tdb == NOVAS_JD_J2000)
@@ -240,7 +253,7 @@ Ecliptic Ecliptic::to_mod(double jd_tdb) const {
   if(_equator == NOVAS_MEAN_EQUATOR && _jd == jd_tdb)
     return (*this);
 
-  return as_equatorial().to_mod(jd_tdb).as_ecliptic();
+  return to_equatorial().to_mod(jd_tdb).to_ecliptic();
 }
 
 /**
@@ -250,7 +263,7 @@ Ecliptic Ecliptic::to_mod(double jd_tdb) const {
  * @param time    the astronomical time specifying the coordinate epoch.
  * @return        the equivalent MOD ecliptic coordinates at the specified date.
  *
- * @sa to_mod(), to_tod(), to_icrs(), to_j2000()
+ * @sa to_system(), to_mod(), to_tod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_mod(const Time& time) const {
   return to_mod(time.jd(novas::NOVAS_TDB));
@@ -263,13 +276,13 @@ Ecliptic Ecliptic::to_mod(const Time& time) const {
  * @param jd_tdb  [day] the (TDB-based) Julian date specifying the coordinate epoch.
  * @return        the equivalent TOD ecliptic coordinates at the specified date.
  *
- * @sa to_tod(), to_mod(), to_icrs(), to_j2000()
+ * @sa to_system(), to_tod(), to_mod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_tod(double jd_tdb) const {
   if(_equator == NOVAS_TRUE_EQUATOR && _jd == jd_tdb)
     return (*this);
 
-  return as_equatorial().to_tod(jd_tdb).as_ecliptic();
+  return to_equatorial().to_tod(jd_tdb).to_ecliptic();
 }
 
 /**
@@ -279,7 +292,7 @@ Ecliptic Ecliptic::to_tod(double jd_tdb) const {
  * @param time    the astronomical time specifying the coordinate epoch.
  * @return        the equivalent TOD ecliptic coordinates at the specified date.
  *
- * @sa to_tod(), to_mod(), to_icrs(), to_j2000()
+ * @sa to_system(), to_tod(), to_mod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_tod(const Time& time) const {
   return to_tod(time.jd(novas::NOVAS_TDB));
@@ -295,9 +308,9 @@ Ecliptic Ecliptic::to_tod(const Time& time) const {
  *
  * @return    the equivalent equatorial coordinates for the same place on sky.
  *
- * @sa Equatorial::as_ecliptic(), as_galactic()
+ * @sa Equatorial::to_ecliptic(), to_galactic()
  */
-Equatorial Ecliptic::as_equatorial() const {
+Equatorial Ecliptic::to_equatorial() const {
   if(is_valid()) {
     double ra = 0.0, dec = 0.0;
 
@@ -324,10 +337,10 @@ Equatorial Ecliptic::as_equatorial() const {
  *
  * @return    the equivalent Galactic coordinates for the same place on sky.
  *
- * @sa Galactic::as_ecliptic(), as_equatorial()
+ * @sa Galactic::to_ecliptic(), to_equatorial()
  */
-Galactic Ecliptic::as_galactic() const {
-  return as_equatorial().as_galactic();
+Galactic Ecliptic::to_galactic() const {
+  return to_equatorial().to_galactic();
 }
 
 static std::string _sys_type(enum novas_equator_type equator, double jd_tt) {

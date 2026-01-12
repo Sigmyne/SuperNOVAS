@@ -18,12 +18,12 @@ namespace supernovas {
 Site::Site() {}
 
 /**
- * Instantiates a new observing site with the specified geodetic location on the reference ellipsoid of
- * choice.
+ * Instantiates a new observing site with the specified geodetic location on the reference ellipsoid
+ * of choice.
  *
  * @param longitude_rad   [rad] Observer's geodetic longitude
  * @param latitude_rad    [rad] Observer's geodetic latitude
- * @param altitude_m      [m] Observers's altitude above sea level
+ * @param altitude_m      [m] (optional) Observers's altitude above sea level (default: 0 m)
  * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
  *
  * @sa from_xyz(), from_GPS()
@@ -53,12 +53,12 @@ Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum no
 }
 
 /**
- * Constructs a new observing site with the specified geodetic location on the reference ellipsoid of
- * choice.
+ * Constructs a new observing site with the specified geodetic location on the reference ellipsoid
+ * of choice.
  *
  * @param longitude       Observer's geodetic longitude
  * @param latitude        Observer's geodetic latitude
- * @param altitude        Observers's altitude above sea level
+ * @param altitude        (optional) Observers's altitude above sea level (default: 0 m)
  * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
  *
  * @sa from_xyz(), Site::from_GPS()
@@ -84,6 +84,23 @@ Site::Site(const Position& xyz) {
     novas_set_errno(EINVAL, fn, "altitude is more than 100 km above surface: %g m", _site.height);
   else
     _valid = true;
+}
+
+/**
+ * Constructs a new observing site with the specified geodetic location on the reference ellipsoid
+ * of choice.
+ *
+ * @param longitude       String represenration of observer's geodetic longitude, as DMS or
+ *                        decimal degrees.
+ * @param latitude        String representation of observer's geodetic latitude, as DMS or decimal
+ *                        degrees.
+ * @param altitude        (optional) Observers's altitude above sea level (default: 0 m)
+ * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
+ *
+ * @sa from_xyz(), Site::from_GPS()
+ */
+Site::Site(const std::string& longitude, const std::string& latitude, const Distance& altitude, enum novas::novas_reference_ellipsoid ellipsoid)
+: Site(Angle(longitude), Angle(latitude), altitude, ellipsoid) {
 }
 
 /**
@@ -196,9 +213,9 @@ Site Site::from_xyz(const Position& v) {
 /**
  * Returns an observing site for its geodetic GPS location.
  *
- * @param longitude   [rad] GPS longitude
+ * @param longitude   [rad] GPS longitude (East positive)
  * @param latitude    [rad] GPS latitude
- * @param altitude    [m] GPS altitude
+ * @param altitude    [m] (optional) GPS altitude (default: 0 m)
  * @return    a new observing site at the specified GSP location.
  *
  * @sa Site(), from_xyz()
@@ -208,18 +225,32 @@ Site Site::from_GPS(double longitude, double latitude, double altitude) {
 }
 
 /**
+ * Returns an observing site for its geodetic GPS location.
+ *
+ * @param longitude   GPS longitude angle (East positive)
+ * @param latitude    GPS latitude angle
+ * @param altitude    (optional) GPS altitude (default: 0 m)
+ * @return    a new observing site at the specified GSP location.
+ *
+ * @sa Site(), from_xyz()
+ */
+Site Site::from_GPS(const Angle& longitude, const Angle& latitude, const Distance& altitude) {
+  return Site(longitude.rad(), latitude.rad(), altitude.m(), NOVAS_WGS84_ELLIPSOID);
+}
+
+/**
  * Returns an observing site for its geodetic GPS location, with the longitude and latitude
  * provided in decimal or DMS string representations.
  *
  * @param longitude   string representation of GPS longitude as DSM or decimal degrees.
  * @param latitude    string representation of GPS latitude as DSM or decimal degrees.
- * @param altitude    [m] GPS altitude
+ * @param altitude    (optional) GPS altitude (default: 0 m)
  * @return    a new observing site at the specified GSP location.
  *
- * @sa Site(), from_xyz()
+ * @sa Site(), from_xyz(), Angle()
  */
-Site Site::from_GPS(const std::string& longitude, const std::string& latitude, double altitude) {
-  return from_GPS(Angle(longitude).rad(), Angle(latitude).rad(), altitude);
+Site Site::from_GPS(const std::string& longitude, const std::string& latitude, const Distance& altitude) {
+  return from_GPS(Angle(longitude), Angle(latitude), altitude);
 }
 
 } // namespace supernovas

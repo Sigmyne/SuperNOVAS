@@ -19,7 +19,7 @@ using namespace novas;
 namespace supernovas {
 
 void Equatorial::validate() {
-  static const char *fn = "Equator(if available)ial()";
+  static const char *fn = "Equatorial()";
 
   if(!Spherical::is_valid())
      novas_trace_invalid(fn);
@@ -44,7 +44,6 @@ Equatorial::Equatorial(double ra_rad, double dec_rad, const Equinox &system, dou
 : Spherical(ra_rad, dec_rad, distance_m), _sys(system) {
   validate();
 }
-
 
 /**
  * Instantiates equatorial coordinates with the specified right-ascention (R.A.) and declination
@@ -96,7 +95,7 @@ Equatorial::Equatorial(const std::string& ra, const std::string& dec, const Equi
  *                    coordinates are specified (default: ICRS)
  */
 Equatorial::Equatorial(const Position& pos, const Equinox& system)
-: Spherical(pos.as_spherical()), _sys(system) {
+: Spherical(pos.to_spherical()), _sys(system) {
   validate();
 }
 
@@ -415,9 +414,9 @@ const Angle& Equatorial::dec() const {
  * @return    the ecliptic coordinates that represent the same position on sky as these equariorial
  *            coordinates.
  *
- * @sa Ecliptic::as_equatorial(), as_galactic()
+ * @sa Ecliptic::to_equatorial(), to_galactic()
  */
-Ecliptic Equatorial::as_ecliptic() const {
+Ecliptic Equatorial::to_ecliptic() const {
   double lon, lat;
 
   double r = ra().hours();
@@ -436,9 +435,9 @@ Ecliptic Equatorial::as_ecliptic() const {
  * @return    the galactic coordinates that represent the same position on sky as these equariorial
  *            coordinates.
  *
- * @sa Galactic::as_equatorial(), as_ecliptic()
+ * @sa Galactic::to_equatorial(), to_ecliptic()
  */
-Galactic Equatorial::as_galactic() const {
+Galactic Equatorial::to_galactic() const {
   Equatorial icrs = to_icrs();
   double longitude, latitude;
   equ2gal(icrs.ra().hours(), icrs.dec().deg(), &longitude, &latitude);

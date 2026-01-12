@@ -74,7 +74,7 @@ CatalogEntry::CatalogEntry(const std::string &name, const Equatorial& coords) : 
  * @sa proper_motion(), parallax(), distance(), radial_velocity(), v_lsr(), redshift(), catalog()
  */
 CatalogEntry::CatalogEntry(const std::string &name, const Ecliptic& coords)
-: CatalogEntry(name, coords.as_equatorial()) {}
+: CatalogEntry(name, coords.to_equatorial()) {}
 
 /**
  * Instantiates a new catalog entry with a given name and galactic catalog coordinates. After
@@ -95,7 +95,7 @@ CatalogEntry::CatalogEntry(const std::string &name, const Ecliptic& coords)
  * @sa proper_motion(), parallax(), distance(), radial_velocity(), v_lsr(), redshift(), catalog()
  */
 CatalogEntry::CatalogEntry(const std::string &name, const Galactic& coords)
-: CatalogEntry(name, coords.as_equatorial()) {}
+: CatalogEntry(name, coords.to_equatorial()) {}
 
 /**
  * Instantiates a new catalog entry with a NOVAS C `cat_entry` data structure and the equatorial

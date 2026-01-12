@@ -101,7 +101,7 @@ Position Position::inv() const {
  *
  * @return    a new instance of spherical coordinates corresponding to this position.
  */
-Spherical Position::as_spherical() const {
+Spherical Position::to_spherical() const {
   double longitude = atan2(_component[1], _component[0]);
   double xy = hypot(_component[0], _component[1]);
   double latitude = atan2(_component[2], xy);

@@ -641,26 +641,9 @@ Apparent Planet::approx_apparent(const Frame& frame) const {
   return Apparent::from_tod_sky_pos(pos, frame);
 }
 
-
 std::string Planet::to_string() const {
   return "Planet " + name();
 }
-
-
-static Planet _ssb = Planet(NOVAS_SSB);
-
-/**
- * Returns the static reference to the Solar-System Barycenter (SSB).
- *
- * @return    the reference to the static instance of the SSB.
- *
- * @sa sun()
- */
-const Planet& Planet::ssb() {
-  return _ssb;
-}
-
-static Planet _mercury = Planet(NOVAS_MERCURY);
 
 /**
  * Returns the static reference to the planet Mercury.
@@ -668,10 +651,9 @@ static Planet _mercury = Planet(NOVAS_MERCURY);
  * @return    the reference to the static instance of Mercury.
  */
 const Planet& Planet::mercury() {
+  static const Planet _mercury = Planet(NOVAS_MERCURY);
   return _mercury;
 }
-
-static Planet _venus = Planet(NOVAS_VENUS);
 
 /**
  * Returns the static reference to the planet Venus.
@@ -679,10 +661,9 @@ static Planet _venus = Planet(NOVAS_VENUS);
  * @return    the reference to the static instance of Venus.
  */
 const Planet& Planet::venus() {
+  static const Planet _venus = Planet(NOVAS_VENUS);
   return _venus;
 }
-
-static Planet _earth = Planet(NOVAS_EARTH);
 
 /**
  * Returns the static reference to the planet Earth.
@@ -692,10 +673,9 @@ static Planet _earth = Planet(NOVAS_EARTH);
  * @sa emb()
  */
 const Planet& Planet::earth() {
+  static const Planet _earth = Planet(NOVAS_EARTH);
   return _earth;
 }
-
-static Planet _mars = Planet(NOVAS_MARS);
 
 /**
  * Returns the static reference to the planet Mars.
@@ -703,10 +683,9 @@ static Planet _mars = Planet(NOVAS_MARS);
  * @return    the reference to the static instance of Mars.
  */
 const Planet& Planet::mars() {
+  static const Planet _mars = Planet(NOVAS_MARS);
   return _mars;
 }
-
-static Planet _jupiter = Planet(NOVAS_JUPITER);
 
 /**
  * Returns the static reference to the planet Jupiter.
@@ -714,10 +693,9 @@ static Planet _jupiter = Planet(NOVAS_JUPITER);
  * @return    the reference to the static instance of Jupiter.
  */
 const Planet& Planet::jupiter() {
+  static const Planet _jupiter = Planet(NOVAS_JUPITER);
   return _jupiter;
 }
-
-static Planet _saturn = Planet(NOVAS_SATURN);
 
 /**
  * Returns the static reference to the planet Saturn.
@@ -725,10 +703,9 @@ static Planet _saturn = Planet(NOVAS_SATURN);
  * @return    the reference to the static instance of Saturn.
  */
 const Planet& Planet::saturn() {
+  static const Planet _saturn = Planet(NOVAS_SATURN);
   return _saturn;
 }
-
-static Planet _uranus = Planet(NOVAS_URANUS);
 
 /**
  * Returns the static reference to the planet Uranus.
@@ -736,10 +713,9 @@ static Planet _uranus = Planet(NOVAS_URANUS);
  * @return    the reference to the static instance of Uranus.
  */
 const Planet& Planet::uranus() {
+  static const Planet _uranus = Planet(NOVAS_URANUS);
   return _uranus;
 }
-
-static Planet _neptune = Planet(NOVAS_NEPTUNE);
 
 /**
  * Returns the static reference to the planet Neptune.
@@ -747,23 +723,21 @@ static Planet _neptune = Planet(NOVAS_NEPTUNE);
  * @return    the reference to the static instance of Neptune.
  */
 const Planet& Planet::neptune() {
+  static const Planet _neptune = Planet(NOVAS_NEPTUNE);
   return _neptune;
 }
-
-static Planet _pluto = Planet(NOVAS_PLUTO);
 
 /**
  * Returns the static reference to the planet Pluto.
  *
  * @return    the reference to the static instance of Pluto.
  *
- * @sa pluto_system()
+ * @sa Barycenter::pluto_system()
  */
 const Planet& Planet::pluto() {
+  static const Planet _pluto = Planet(NOVAS_PLUTO);
   return _pluto;
 }
-
-static Planet _sun = Planet(NOVAS_SUN);
 
 /**
  * Returns the static reference to the Sun.
@@ -773,10 +747,9 @@ static Planet _sun = Planet(NOVAS_SUN);
  * @sa ssb()
  */
 const Planet& Planet::sun() {
+  static const Planet _sun = Planet(NOVAS_SUN);
   return _sun;
 }
-
-static Planet _moon = Planet(NOVAS_MOON);
 
 /**
  * Returns the static reference to the Moon.
@@ -786,10 +759,21 @@ static Planet _moon = Planet(NOVAS_MOON);
  * @sa emb()
  */
 const Planet& Planet::moon() {
+  static const Planet _moon = Planet(NOVAS_MOON);
   return _moon;
 }
 
-static Planet _emb = Planet(NOVAS_EMB);
+/**
+ * Returns the static reference to the Solar-System Barycenter (SSB).
+ *
+ * @return    the reference to the static instance of the SSB.
+ *
+ * @sa sun()
+ */
+const Planet& Planet::ssb() {
+  static const Planet _ssb = Planet(NOVAS_SSB);
+  return _ssb;
+}
 
 /**
  * Returns the static reference to the Earth-Moon Barycenter (EMB) position.
@@ -799,10 +783,9 @@ static Planet _emb = Planet(NOVAS_EMB);
  * @sa earth(), moon()
  */
 const Planet& Planet::emb() {
+  static const Planet _emb = Planet(NOVAS_EMB);
   return _emb;
 }
-
-static Planet _pluto_system = Planet(NOVAS_PLUTO_BARYCENTER);
 
 /**
  * Returns the static reference to the Pluto system barycenter position.
@@ -812,6 +795,7 @@ static Planet _pluto_system = Planet(NOVAS_PLUTO_BARYCENTER);
  * @sa pluto()
  */
 const Planet& Planet::pluto_system() {
+  static const Planet _pluto_system = Planet(NOVAS_PLUTO_BARYCENTER);
   return _pluto_system;
 }
 

@@ -686,7 +686,7 @@ Time Time::shifted(const Interval& offset) const {
  * @param timescale   (optional) timescale in which MJD was specified (default: TT)
  * @return            the calendar date in the desired calendar and timescale of choice.
  */
-CalendarDate Time::as_calendar_date(const Calendar& calendar, enum novas::novas_timescale timescale) const {
+CalendarDate Time::to_calendar_date(const Calendar& calendar, enum novas::novas_timescale timescale) const {
   return calendar.date(jd(timescale));
 }
 
@@ -698,8 +698,8 @@ CalendarDate Time::as_calendar_date(const Calendar& calendar, enum novas::novas_
  * @param timescale   timescale in which MJD was specified (default: TT)
  * @return            the astronomical calendar date in the timescale of choice.
  */
-CalendarDate Time::as_calendar_date(enum novas::novas_timescale timescale) const {
-  return as_calendar_date(Calendar::astronomical(), timescale);
+CalendarDate Time::to_calendar_date(enum novas::novas_timescale timescale) const {
+  return to_calendar_date(Calendar::astronomical(), timescale);
 }
 
 /**

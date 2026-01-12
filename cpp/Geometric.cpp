@@ -121,7 +121,7 @@ Equatorial Geometric::equatorial() const {
  * @sa Apparent::ecliptic(), equatorial(), galactic()
  */
 Ecliptic Geometric::ecliptic() const {
-  return equatorial().as_ecliptic();
+  return equatorial().to_ecliptic();
 }
 
 /**
@@ -140,15 +140,15 @@ Ecliptic Geometric::ecliptic() const {
  * @sa Apparent::galactic(), equatorial(), ecliptic()
  */
 Galactic Geometric::galactic() const {
-  return equatorial().as_galactic();
+  return equatorial().to_galactic();
 }
 
-Geometric Geometric::in_system(const novas::novas_frame *f, enum novas::novas_reference_system system) const {
+Geometric Geometric::to_system(const novas::novas_frame *f, enum novas::novas_reference_system system) const {
   novas_transform T = {};
   double p[3] = {0.0}, v[3] = {0.0};
 
   if(novas_make_transform(f, _system.reference_system(), system, &T) != 0) {
-    novas_trace_invalid("Geometric::in_system");
+    novas_trace_invalid("Geometric::to_system");
     return Geometric::invalid();
   }
   novas_transform_vector(_pos._array(), &T, p);
@@ -166,16 +166,16 @@ Geometric Geometric::in_system(const novas::novas_frame *f, enum novas::novas_re
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the other type of coordinate reference system.
  *
- * @sa in_icrs(), in_j2000(), in_mod(), in_tod(), in_cirs(), in_tirs(), in_itrs()
+ * @sa to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
-Geometric Geometric::in_system(enum novas_reference_system system) const {
+Geometric Geometric::to_system(enum novas_reference_system system) const {
   if(system == _system.reference_system())
     return *this;
 
   if(system == NOVAS_ITRS)
-    return in_itrs().value_or(Geometric::invalid());
+    return to_itrs().value_or(Geometric::invalid());
 
-  return in_system(_frame._novas_frame(), system);
+  return to_system(_frame._novas_frame(), system);
 }
 
 /**
@@ -185,10 +185,10 @@ Geometric Geometric::in_system(enum novas_reference_system system) const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the ICRS.
  *
- * @sa in_system(), in_j2000(), in_mod(), in_tod(), in_cirs(), in_tirs(), in_itrs()
+ * @sa to_system(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
-Geometric Geometric::in_icrs() const {
-  return in_system(novas::NOVAS_ICRS);
+Geometric Geometric::to_icrs() const {
+  return to_system(novas::NOVAS_ICRS);
 }
 
 /**
@@ -198,10 +198,10 @@ Geometric Geometric::in_icrs() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the J2000 catalog system.
  *
- * @sa in_system(), in_icrs(), in_mod(), in_tod(), in_cirs(), in_tirs(), in_itrs()
+ * @sa to_system(), to_icrs(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
-Geometric Geometric::in_j2000() const {
-  return in_system(novas::NOVAS_J2000);
+Geometric Geometric::to_j2000() const {
+  return to_system(novas::NOVAS_J2000);
 }
 
 /**
@@ -211,10 +211,10 @@ Geometric Geometric::in_j2000() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the MOD system of date.
  *
- * @sa in_system(), in_icrs(), in_j2000(), in_tod(), in_cirs(), in_tirs(), in_itrs()
+ * @sa to_system(), to_icrs(), to_j2000(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
-Geometric Geometric::in_mod() const {
-  return in_system(novas::NOVAS_MOD);
+Geometric Geometric::to_mod() const {
+  return to_system(novas::NOVAS_MOD);
 }
 
 /**
@@ -224,10 +224,10 @@ Geometric Geometric::in_mod() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the TOD system of date.
  *
- * @sa in_system(), in_icrs(), in_j2000(), in_mod(), in_cirs(), in_tirs(), in_itrs()
+ * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_cirs(), to_tirs(), to_itrs()
  */
-Geometric Geometric::in_tod() const {
-  return in_system(novas::NOVAS_TOD);
+Geometric Geometric::to_tod() const {
+  return to_system(novas::NOVAS_TOD);
 }
 
 /**
@@ -238,10 +238,10 @@ Geometric Geometric::in_tod() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the CIRS.
  *
- * @sa in_system(), in_icrs(), in_j2000(), in_mod(), in_tod(), in_tirs(), in_itrs()
+ * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_tirs(), to_itrs()
  */
-Geometric Geometric::in_cirs() const {
-  return in_system(novas::NOVAS_CIRS);
+Geometric Geometric::to_cirs() const {
+  return to_system(novas::NOVAS_CIRS);
 }
 
 /**
@@ -252,10 +252,10 @@ Geometric Geometric::in_cirs() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the TIRS.
  *
- * @sa in_system(), in_icrs(), in_j2000(), in_mod(), in_tod(), in_cirs(), in_itrs()
+ * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_itrs()
  */
-Geometric Geometric::in_tirs() const {
-  return in_system(novas::NOVAS_TIRS);
+Geometric Geometric::to_tirs() const {
+  return to_system(novas::NOVAS_TIRS);
 }
 
 /**
@@ -268,9 +268,9 @@ Geometric Geometric::in_tirs() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the ITRS.
  *
- * @sa in_system(), in_icrs(), in_j2000(), in_mod(), in_tod(), in_cirs(), in_tirs()
+ * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs()
  */
-std::optional<Geometric> Geometric::in_itrs(const EOP& eop) const {
+std::optional<Geometric> Geometric::to_itrs(const EOP& eop) const {
   if(_system.reference_system() == NOVAS_ITRS)
     return Geometric(*this);
 
@@ -290,15 +290,15 @@ std::optional<Geometric> Geometric::in_itrs(const EOP& eop) const {
       f.dy += 1000.0 * yp;
     }
 
-    return in_system(&f, NOVAS_ITRS);
+    return to_system(&f, NOVAS_ITRS);
   }
 
   // Or, use observer's EOP
   if(_frame.observer().is_geodetic())
-    return in_system(NOVAS_ITRS);
+    return to_system(NOVAS_ITRS);
 
   // Or, we can't really convert to ITRS
-  novas_set_errno(EINVAL, "Geometric::in_itrs()", "Needs valid EOP for non geodetic observer frame");
+  novas_set_errno(EINVAL, "Geometric::to_itrs()", "Needs valid EOP for non geodetic observer frame");
   return std::nullopt;
 }
 

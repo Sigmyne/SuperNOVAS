@@ -30,9 +30,7 @@
 #endif
 #include <novas.h>
 
-
 namespace supernovas {
-
 
 // Forward class declarations.
 class Unit;
@@ -214,7 +212,6 @@ public:
   static constexpr double R_earth = NOVAS_GRS80_RADIUS;   /// [m] 1 Earth quatorial radius (GRS80) in meters
 };
 
-
 /**
  * A simple interface class handling validation checking for classes that inherit it.
  *
@@ -324,7 +321,6 @@ public:
 
 };
 
-
 /**
  * A scalar separation between two points in space. It may be signed, such that that the distance
  * from __A__ to __B__ is the negative of the distance __B__ to __A__, i.e.:
@@ -371,6 +367,8 @@ public:
   std::string to_string(int decimals = 3) const;
 
   static Distance from_parallax(const Angle& parallax);
+
+  static const Distance& zero();
 
   static const Distance& at_Gpc();
 };
@@ -605,7 +603,7 @@ public:
 
   Position inv() const;
 
-  Spherical as_spherical() const;
+  Spherical to_spherical() const;
 
   std::string to_string(int decimals = 3) const override;
 
@@ -705,7 +703,7 @@ public:
 
   Distance operator*(const Interval& time) const;
 
-  Velocity in_direction(const Vector& direction) const;
+  Velocity to_direction(const Vector& direction) const;
 
   std::string to_string(int decimals = 3) const;
 
@@ -819,10 +817,10 @@ public:
   Equatorial to_cirs(const Time& time) const;
 
   /// @ingroup nonequatorial
-  Ecliptic as_ecliptic() const;
+  Ecliptic to_ecliptic() const;
 
   /// @ingroup nonequatorial
-  Galactic as_galactic() const;
+  Galactic to_galactic() const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 
@@ -869,6 +867,8 @@ public:
 
   Angle distance_to(const Ecliptic& other) const;
 
+  Ecliptic to_system(const Equinox& system) const;
+
   Ecliptic to_icrs() const;
 
   Ecliptic to_j2000() const;
@@ -882,10 +882,10 @@ public:
   Ecliptic to_tod(const Time& time) const;
 
   /// @ingroup equatorial
-  Equatorial as_equatorial() const;
+  Equatorial to_equatorial() const;
 
   /// @ingroup nonequatorial
-  Galactic as_galactic() const;
+  Galactic to_galactic() const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 
@@ -919,10 +919,10 @@ public:
   Angle distance_to(const Galactic& other) const;
 
   /// @ingroup equatorial
-  Equatorial as_equatorial() const;
+  Equatorial to_equatorial() const;
 
   /// @ingroup nonequatorial
-  Ecliptic as_ecliptic() const;
+  Ecliptic to_ecliptic() const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 
@@ -1120,7 +1120,9 @@ public:
 
   Site(double longitude_rad, double latitude_rad, double altitude_m = 0.0, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
 
-  Site(const Angle& longitude, const Angle& latitude, const Distance& altitude, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
+  Site(const Angle& longitude, const Angle& latitude, const Distance& altitude = Distance::zero(), enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
+
+  Site(const std::string& longitude, const std::string& latitude, const Distance& distance = Distance::zero(), enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
 
   explicit Site(const Position& xyz);
 
@@ -1140,7 +1142,9 @@ public:
 
   static Site from_GPS(double longitude, double latitude, double altitude = 0.0);
 
-  static Site from_GPS(const std::string& longitude, const std::string& latitude, double altitude = 0.0);
+  static Site from_GPS(const Angle& longitude, const Angle& latitude, const Distance& altitude = Distance::zero());
+
+  static Site from_GPS(const std::string& longitude, const std::string& latitude, const Distance& altitude = Distance::zero());
 
   static Site from_xyz(const Position& xyz);
 };
@@ -1176,11 +1180,11 @@ public:
 
   static GeodeticObserver on_earth(const Site& geodetic, const Velocity& vel, const EOP& eop);
 
-  static GeocentricObserver in_earth_orbit(const Position& pos, const Velocity& vel);
+  static GeocentricObserver to_earth_orbit(const Position& pos, const Velocity& vel);
 
   static GeocentricObserver at_geocenter();
 
-  static SolarSystemObserver in_solar_system(const Position& pos, const Velocity& vel);
+  static SolarSystemObserver to_solar_system(const Position& pos, const Velocity& vel);
 
   static SolarSystemObserver at_ssb();
 
@@ -1255,7 +1259,6 @@ public:
   Velocity ssb_velocity() const;
 };
 
-
 /**
  * Type of calendar used for representing dates, such as Gregorian, Roman, or astronomical.
  *
@@ -1288,7 +1291,6 @@ public:
 
   std::string to_string() const; // TODO
 };
-
 
 /**
  * A time specified in a specific type of calendar (Gregorian, Roman, or astronomical). Calendar
@@ -1376,7 +1378,7 @@ public:
 
   std::string to_long_date_string() const;
 
-  CalendarDate in_calendar(const Calendar& calendar) const;
+  CalendarDate to_calendar(const Calendar& calendar) const;
 
   std::string to_string(enum novas::novas_date_format fmt = novas::NOVAS_YMD, int decimals = 0) const; // TODO
 
@@ -1486,9 +1488,9 @@ public:
 
   Time shifted(const Interval& offset) const;
 
-  CalendarDate as_calendar_date(const Calendar& calendar = Calendar::astronomical(), enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
+  CalendarDate to_calendar_date(const Calendar& calendar = Calendar::astronomical(), enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
 
-  CalendarDate as_calendar_date(enum novas::novas_timescale timescale) const;
+  CalendarDate to_calendar_date(enum novas::novas_timescale timescale) const;
 
 
   static Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale = novas::NOVAS_TT);
@@ -1554,7 +1556,6 @@ public:
   static const Frame& invalid();
 };
 
-
 /**
  * An astronomical source, or target of observation.
  *
@@ -1618,8 +1619,8 @@ public:
  */
 class CatalogEntry : public Validating {
 private:
-  novas::cat_entry _entry = {};  ///< stored catalog entry
-  Equinox _sys;            ///< stored catalog system
+  novas::cat_entry _entry = {};   ///< stored catalog entry
+  Equinox _sys;                   ///< stored catalog system
 
 public:
   CatalogEntry(const std::string &name, const Equatorial& coords);
@@ -1717,14 +1718,14 @@ public:
 };
 
 /**
- * A major planet (including Pluto), or the Sun, Moon, Solar-system Barycenter (SSB), Earth-Moon
- * Barycenter (EMB), or the Pluto-system barycenter. Planet positions are usually provided
- * by the JPL DE ephemeris files, such as DE440 or DE440s. By default SuperNOVAS calculates
- * approximate position for the Earth and Sun only. Thus to provide ephemeris positions for
- * all planet-type osurces, you will have to configure a Solar-system ephemeris provider, e.g.
- * via `novas::novas_use_calceph()` or `novas::novas_use_cspice()`.
+ * A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),
+ * the Earth-Moon Barycenter (EMB), and the Pluto-system barycenter. Planet positions are usually
+ * provided by the JPL DE ephemeris files, such as DE440 or DE440s. By default SuperNOVAS
+ * calculates approximate position for the Earth and Sun only. Thus to provide ephemeris
+ * positions for all planet-type osurces, you will have to configure a Solar-system ephemeris
+ * provider, e.g. via `novas::novas_use_calceph()` or `novas::novas_use_cspice()`.
  *
- * @sa EphemerisSource, OrbitalSource, novas::novas_use_calceph(), novas::novas_use_cspice().
+ * @sa EphemerisSource, OrbitalSource, novas::novas_use_calceph(), novas::novas_use_cspice()
  * @ingroup source
  */
 class Planet : public SolarSystemSource {
@@ -1748,8 +1749,6 @@ public:
 
   static std::optional<Planet> for_name(const std::string& name);
 
-  static const Planet& ssb();
-
   static const Planet& mercury();
 
   static const Planet& venus();
@@ -1771,6 +1770,8 @@ public:
   static const Planet& sun();
 
   static const Planet& moon();
+
+  static const Planet& ssb();
 
   static const Planet& emb();
 
@@ -1948,7 +1949,6 @@ public:
   std::string to_string() const override;
 };
 
-
 /**
  * %Apparent position on sky as seen by an observer at a specific time of observation. Apparent
  * positions are corrected for aberration for a movig observer, and gravitational deflection
@@ -1978,7 +1978,8 @@ public:
  *
  * @sa Source::apparent(), Horizontal::to_apparent()
  * @sa Geometric
- * \ingroup apparent spectral
+ *
+ * @ingroup apparent spectral
  */
 class Apparent : public Validating {
 private:
@@ -2059,7 +2060,7 @@ private:
   Velocity _vel;                            ///< stored geometric velocity w.r.t. observer
   Equinox _system;                          ///< stored coordinate reference system type
 
-  Geometric in_system(const novas::novas_frame *f, enum novas::novas_reference_system system) const;
+  Geometric to_system(const novas::novas_frame *f, enum novas::novas_reference_system system) const;
 
 public:
   Geometric(const Position& p, const Velocity& v, const Frame& frame, enum novas::novas_reference_system system = novas::NOVAS_TOD);
@@ -2081,21 +2082,21 @@ public:
   /// @ingroup nonequatorial
   Galactic galactic() const;
 
-  Geometric in_system(enum novas::novas_reference_system system) const;
+  Geometric to_system(enum novas::novas_reference_system system) const;
 
-  Geometric in_icrs() const;
+  Geometric to_icrs() const;
 
-  Geometric in_j2000() const;
+  Geometric to_j2000() const;
 
-  Geometric in_mod() const;
+  Geometric to_mod() const;
 
-  Geometric in_tod() const;
+  Geometric to_tod() const;
 
-  Geometric in_cirs() const;
+  Geometric to_cirs() const;
 
-  Geometric in_tirs() const;
+  Geometric to_tirs() const;
 
-  std::optional<Geometric> in_itrs(const EOP& eop = EOP::invalid()) const;
+  std::optional<Geometric> to_itrs(const EOP& eop = EOP::invalid()) const;
 
   std::string to_string() const; // TODO
 
@@ -2213,21 +2214,27 @@ public:
 
   const Interval& range() const;
 
-  std::optional<Angle> longitude(const Time& time) const;
+  const Evolution& longitude_evolution() const;
 
-  std::optional<Angle> latitude(const Time& time) const;
+  const Evolution& latitude_evolution() const;
 
-  std::optional<Distance> distance(const Time& time) const;
+  const Evolution& distance_evolution() const;
 
-  std::optional<Speed> radial_velocity(const Time& time) const;
+  std::optional<Angle> longitude_at(const Time& time) const;
 
-  double redshift(const Time& time) const;
+  std::optional<Angle> latitude_at(const Time& time) const;
+
+  std::optional<Distance> distance_at(const Time& time) const;
+
+  std::optional<Speed> radial_velocity_at(const Time& time) const;
+
+  double redshift_at(const Time& time) const;
 };
 
 /**
  * Approximate trajectory of a source in horizontal coordinates, using a local quadratic
  * approximation around a time instant. This may be used e.g., to control telescope drive systems
- * in horizontal mounts, by providing instantaneous porisitons, rate and acceletation along the
+ * in horizontal mounts, by providing instantaneous positions, rate, and acceletation along the
  * azimuth and elevation axes. Or, one may use the trajectory to obtain interpolated instantaneous
  * Az/El positions, within the interval of validity, at very low computational cost.
  *
@@ -2242,7 +2249,7 @@ public:
   HorizontalTrack(const Time& ref_time, const Interval& range,
           const Evolution& azimuth, const Evolution& elevation, const Evolution& distance = Evolution::stationary(NOVAS_DEFAULT_DISTANCE));
 
-  std::optional<Horizontal> projected(const Time& time) const;
+  std::optional<Horizontal> projected_at(const Time& time) const;
 
   static HorizontalTrack from_novas_track(const novas::novas_track *track, const Interval& range);
 };
@@ -2250,7 +2257,7 @@ public:
 /**
  * Approximate trajectory of a source in equatorial coordinates, using a local quadratic
  * approximation around a time instant. This may be used e.g., to control telescope drive systems
- * in equatorial mounts, by providing instantaneous porisitons, rate and acceletation along the
+ * in equatorial mounts, by providing instantaneous positions, rate, and acceletation along the
  * R.A. and declination axes. Or, one may use the trajectory to obtain interpolated instantaneous
  * R.A./Dec positions, within the interval of validity, at very low computational cost.
  *
@@ -2259,7 +2266,7 @@ public:
  */
 class EquatorialTrack : public Track {
 private:
-  Equinox _system;
+  Equinox _system;    ///< equatorial coordinate reference system
 
   EquatorialTrack(const Equinox& system, const novas::novas_track *track, const Interval& range);
 
@@ -2267,10 +2274,11 @@ public:
   EquatorialTrack(const Equinox& system, const Time& ref_time, const Interval& range,
           const Evolution& ra, const Evolution& dec, const Evolution& distance = Evolution::stationary(NOVAS_DEFAULT_DISTANCE));
 
-  std::optional<Equatorial> projected(const Time& time) const;
+  std::optional<Equatorial> projected_at(const Time& time) const;
 
   static EquatorialTrack from_novas_track(const Equinox& system, const novas::novas_track *track, const Interval& range);
 };
+
 
 } // namespace supernovas
 

@@ -148,7 +148,8 @@ const Observer& Frame::observer() const {
  *                    uninitialized, or if the timescale is not supported (errno set to EINVAL),
  *                    or if the frame is configured for full accuracy but it does not have
  *                    sufficient planet position information to evaluate the local gravitational
- *                    potential with precision (errno set to EAGAIN).
+ *                    potential with p
+  Frame to_observer(const Observer& observer) const; // TODOrecision (errno set to EAGAIN).
  *
  * @sa novas_clock_skew()
  */

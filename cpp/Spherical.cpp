@@ -94,7 +94,7 @@ Angle Spherical::distance_to(const Spherical& other) const {
  *
  * @return    the equivalent rectanguar position vector.
  *
- * @sa Position::as_spherical()
+ * @sa Position::to_spherical()
  */
 Position Spherical::xyz() const {
   double pos[3];

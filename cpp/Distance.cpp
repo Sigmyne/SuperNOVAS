@@ -23,6 +23,8 @@ namespace supernovas {
  * ```
  *
  * @param meters    [m] The initializing value.
+ *
+ * @sa zero(), at_Gpc()
  */
 Distance::Distance(double meters) : _meters(meters) {
   if(isnan(meters))
@@ -204,6 +206,16 @@ std::string Distance::to_string(int decimals) const {
  */
 Distance Distance::from_parallax(const Angle& parallax) {
   return Distance(Unit::pc / (parallax.arcsec()));
+}
+
+/**
+ * Returns a standard zero distance.
+ *
+ * @return    A reference to a persistent standard zero distance instance.
+ */
+const Distance& Distance::zero() {
+  static const Distance _zero = Distance(0.0);
+  return _zero;
 }
 
 /**

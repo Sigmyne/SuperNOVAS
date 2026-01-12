@@ -120,6 +120,39 @@ Track::Track(const novas_track *track, const Interval& range)
 }
 
 /**
+ * Returns the longitudinal time evolution component of this trajectory.
+ *
+ * @return    the longitudinal time evolution component.
+ *
+ * @sa longitude_at(), latitude_evolution(), distance_evolution()
+ */
+const Evolution& Track::longitude_evolution() const {
+  return _lon;
+}
+
+/**
+ * Returns the latitudinal time evolution component of this trajectory.
+ *
+ * @return    the latitudinal time evolution component.
+ *
+ * @sa latitude_at(), longitude_evolution(), distance_evolution()
+ */
+const Evolution& Track::latitude_evolution() const {
+  return _lat;
+}
+
+/**
+ * Returns the time evolution of radial distance in this trajectory.
+ *
+ * @return    the time evolution of distance.
+ *
+ * @sa distance_at(), longitude_evolution(), latitude_evolution()
+ */
+const Evolution& Track::distance_evolution() const {
+  return _r;
+}
+
+/**
  * Checks if the trajectory provides valid extrapolated data at a given astrometric time.
  *
  * @param time    astrometric time
@@ -203,9 +236,9 @@ Distance Track::unchecked_distance(const Time& time) const {
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated longitude angle (if valid), or else `std::nullopt`.
  *
- * @sa latitude(), distance(), radial_velocity(), redshift()
+ * @sa latitude_at(), distance_at(), radial_velocity_at(), redshift_at()
  */
-std::optional<Angle> Track::longitude(const Time& time) const {
+std::optional<Angle> Track::longitude_at(const Time& time) const {
   if(is_valid_at(time))
     return unchecked_longitude(time);
   return std::nullopt;
@@ -218,9 +251,9 @@ std::optional<Angle> Track::longitude(const Time& time) const {
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated latitude angle (if valid), or else `std::nullopt`.
  *
- * @sa longitude(), distance(), radial_velocity(), redshift()
+ * @sa longitude_at(), distance_at(), radial_velocity_at(), redshift_at()
  */
-std::optional<Angle> Track::latitude(const Time& time) const {
+std::optional<Angle> Track::latitude_at(const Time& time) const {
   if(is_valid_at(time))
     return unchecked_latitude(time);
   return std::nullopt;
@@ -233,10 +266,10 @@ std::optional<Angle> Track::latitude(const Time& time) const {
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated redshift measure (if valid), or else NAN.
  *
- * @sa longitude(), latitude(), distance(), radial_velocity()
+ * @sa longitude_at(), latitude_at(), distance_at(), radial_velocity_at()
  */
-double Track::redshift(const Time& time) const {
-  return is_valid_at(time) ? novas_v2z(radial_velocity(time).value().km_per_s()) : NAN;
+double Track::redshift_at(const Time& time) const {
+  return is_valid_at(time) ? novas_v2z(radial_velocity_at(time).value().km_per_s()) : NAN;
 }
 
 /**
@@ -246,9 +279,9 @@ double Track::redshift(const Time& time) const {
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated distance (if valid), or else `std::nullopt`.
  *
- * @sa longitude(), latitude(), radial_velocity(), redshift()
+ * @sa longitude_at(), latitude_at(), radial_velocity_at(), redshift_at()
  */
-std::optional<Distance> Track::distance(const Time& time) const {
+std::optional<Distance> Track::distance_at(const Time& time) const {
   if(is_valid_at(time))
     return unchecked_distance(time);
   return std::nullopt;
@@ -261,9 +294,9 @@ std::optional<Distance> Track::distance(const Time& time) const {
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated radial velocity (if valid), or else `std::nullopt`.
  *
- * @sa longitude(), latitude(), distance(), redshift()
+ * @sa longitude(), latitude(), distance(), redshift_at()
  */
-std::optional<Speed> Track::radial_velocity(const Time& time) const {
+std::optional<Speed> Track::radial_velocity_at(const Time& time) const {
   if(is_valid_at(time))
     return Speed(_r.rate(time - _ref_time));
   return std::nullopt;
@@ -304,9 +337,9 @@ HorizontalTrack::HorizontalTrack(const Time& ref_time, const Interval& range,
  * @return          the momentary extrapolated horizontal coordinates (if valid), or else
  *                  `std::nullopt`.
  *
- * @sa EquatorialTrack::projected()
+ * @sa EquatorialTrack::projected_at()
  */
-std::optional<Horizontal> HorizontalTrack::projected(const Time& time) const {
+std::optional<Horizontal> HorizontalTrack::projected_at(const Time& time) const {
   if(is_valid_at(time))
     return Horizontal(unchecked_longitude(time), unchecked_latitude(time), unchecked_distance(time));
   return std::nullopt;
@@ -339,9 +372,9 @@ HorizontalTrack HorizontalTrack::from_novas_track(const novas_track *track, cons
  * @return          the momentary extrapolated equatorial coordinates (if valid), or else
  *                  `std::nullopt`.
  *
- * @sa HorizontalTrack::projected()
+ * @sa HorizontalTrack::projected_at()
  */
-std::optional<Equatorial> EquatorialTrack::projected(const Time& time) const {
+std::optional<Equatorial> EquatorialTrack::projected_at(const Time& time) const {
   if(is_valid_at(time))
     return Equatorial(unchecked_longitude(time), unchecked_latitude(time), _system, unchecked_distance(time));
   return std::nullopt;

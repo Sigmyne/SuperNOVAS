@@ -550,7 +550,7 @@ time_t CalendarDate::unix_time() const {
  * @param calendar    a calendar in which to express this date
  * @return            this date, expressed in the specified other calendar.
  */
-CalendarDate CalendarDate::in_calendar(const Calendar& calendar) const {
+CalendarDate CalendarDate::to_calendar(const Calendar& calendar) const {
   return calendar.date(_jd);
 }
 

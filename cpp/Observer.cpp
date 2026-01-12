@@ -75,7 +75,7 @@ std::string Observer::to_string() const {
  *                obtained from the IERS bulletins or data service.
  * @return        a new observer instance for the given observing site.
  *
- * @sa in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
+ * @sa to_earth_orbit(), to_solar_system(), at_geocenter(), at_ssb()
  */
 GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
   return GeodeticObserver(site, eop);
@@ -92,7 +92,7 @@ GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
  *                    observation, such as obtained from the IERS bulletins or data service.
  * @return            a new observer instance for the given moving observer.
  *
- * @sa in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
+ * @sa to_earth_orbit(), to_solar_system(), at_geocenter(), at_ssb()
  */
 GeodeticObserver Observer::on_earth(const Site& geodetic, const Velocity& vel, const EOP& eop) {
   return GeodeticObserver(geodetic, vel, eop);
@@ -105,9 +105,9 @@ GeodeticObserver Observer::on_earth(const Site& geodetic, const Velocity& vel, c
  * @param vel       momentary velocity of the observer relative to the geocenter.
  * @return          a new observer instance for the observer in Earth orbit.
  *
- * @sa on_earth(), in_solar_system(), at_geocenter(), at_ssb()
+ * @sa on_earth(), to_solar_system(), at_geocenter(), at_ssb()
  */
-GeocentricObserver Observer::in_earth_orbit(const Position& pos, const Velocity& vel) {
+GeocentricObserver Observer::to_earth_orbit(const Position& pos, const Velocity& vel) {
   return GeocentricObserver(pos, vel);
 }
 
@@ -116,7 +116,7 @@ GeocentricObserver Observer::in_earth_orbit(const Position& pos, const Velocity&
  *
  * @return         a new fictitious observer located at the geocenter.
  *
- * @sa on_earth(), in_earth_orbit(), in_solar_system(), at_ssb()
+ * @sa on_earth(), to_earth_orbit(), to_solar_system(), at_ssb()
  */
 GeocentricObserver Observer::at_geocenter() {
   return GeocentricObserver();
@@ -131,9 +131,9 @@ GeocentricObserver Observer::at_geocenter() {
  *                (SSB).
  * @return        a new observer instance for the given Solar-system location.
  *
- * @sa at_ssb(), at_geocenter(), on_earth(), in_earth_orbit()
+ * @sa at_ssb(), at_geocenter(), on_earth(), to_earth_orbit()
  */
-SolarSystemObserver Observer::in_solar_system(const Position& pos, const Velocity& vel) {
+SolarSystemObserver Observer::to_solar_system(const Position& pos, const Velocity& vel) {
   return SolarSystemObserver(pos, vel);
 }
 
@@ -142,7 +142,7 @@ SolarSystemObserver Observer::in_solar_system(const Position& pos, const Velocit
  *
  * @return        a new fictitious observer located at the Solar-System Barycenter (SSB).
  *
- * @sa in_solar_system(), at_geocenter(), on_earth(), in_earth_orbit()
+ * @sa to_solar_system(), at_geocenter(), on_earth(), to_earth_orbit()
  */
 SolarSystemObserver Observer::at_ssb() {
   return SolarSystemObserver();

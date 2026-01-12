@@ -236,10 +236,10 @@ Equatorial Apparent::cirs() const {
  * @return    the apparent ecliptic coordinates with respect to the true equinox of date.
  *
  * @sa equatorial(), galactic(), horizontal()
- * @sa Equatorial::as_ecliptic()
+ * @sa Equatorial::to_ecliptic()
  */
 Ecliptic Apparent::ecliptic() const {
-  return equatorial().as_ecliptic();
+  return equatorial().to_ecliptic();
 }
 
 /**
@@ -248,10 +248,10 @@ Ecliptic Apparent::ecliptic() const {
  * @return    the apparent galactic coordinates for this position.
  *
  * @sa equatorial(), ecliptic(), horizontal()
- * @sa Equatorial::as_galactic()
+ * @sa Equatorial::to_galactic()
  */
 Galactic Apparent::galactic() const {
-  return equatorial().as_galactic();
+  return equatorial().to_galactic();
 }
 
 /**

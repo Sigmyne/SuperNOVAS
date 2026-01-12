@@ -27,8 +27,8 @@ int main() {
   if(!test.check("longitude() invalid", isnan(x.longitude().rad()))) n++;
   if(!test.check("latitude() invalid", isnan(x.latitude().rad()))) n++;
   if(!test.check("distance() invalid", isnan(x.distance().m()))) n++;
-  if(!test.check("as_equatorial() invalid", !x.as_equatorial().is_valid())) n++;
-  if(!test.check("as_galactic() invalid", !x.as_galactic().is_valid())) n++;
+  if(!test.check("as_equatorial() invalid", !x.to_equatorial().is_valid())) n++;
+  if(!test.check("as_galactic() invalid", !x.to_galactic().is_valid())) n++;
 
   Ecliptic a = Ecliptic(Angle(45.0 * Unit::deg), Angle(30.0 * Unit::deg), Equinox::icrs(), Distance(10.0 * Unit::au));
   if(!test.check("is_valid()", a.is_valid())) n++;
@@ -76,8 +76,8 @@ int main() {
   double ra = 0.0, dec = 0.0;
   novas::ecl2equ(a.jd(), a.equator_type(), novas::NOVAS_FULL_ACCURACY, a.longitude().deg(), a.latitude().deg(), &ra, &dec);
   Equatorial eq0 = Equatorial(ra * Unit::hour_angle, dec * Unit::deg);
-  if(!test.check("as_equatorial()", a.as_equatorial() == eq0)) {
-    std::cout << "  " << a.as_equatorial().to_string(novas::NOVAS_SEP_COLONS, 6) << " != "
+  if(!test.check("as_equatorial()", a.to_equatorial() == eq0)) {
+    std::cout << "  " << a.to_equatorial().to_string(novas::NOVAS_SEP_COLONS, 6) << " != "
             <<  eq0.to_string(novas::NOVAS_SEP_COLONS, 6) << "\n";
     n++;
   }
@@ -85,8 +85,8 @@ int main() {
   double blon = 0.0, blat = 0.0;
   novas::equ2gal(ra, dec, &blon, &blat);
   Galactic ga0 = Galactic(blon * Unit::deg, blat * Unit::deg);
-  if(!test.check("as_ecliptic()", a.as_galactic() == ga0)) {
-    std::cout << "  " << a.as_galactic().to_string(novas::NOVAS_SEP_COLONS, 8) << " != "
+  if(!test.check("as_ecliptic()", a.to_galactic() == ga0)) {
+    std::cout << "  " << a.to_galactic().to_string(novas::NOVAS_SEP_COLONS, 8) << " != "
             <<  ga0.to_string(novas::NOVAS_SEP_COLONS, 8) << "\n";
     n++;
   }

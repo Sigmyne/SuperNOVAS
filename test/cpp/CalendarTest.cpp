@@ -83,7 +83,7 @@ int main() {
   CalendarDate dc = c.date(NOVAS_JD_J2000);
   if(!test.equals("J2000 (gregorian vs astronomical)", da.jd(), dc.jd())) n++;
 
-  CalendarDate db1 = (db - Interval(13 * Unit::day)).in_calendar(a);
+  CalendarDate db1 = (db - Interval(13 * Unit::day)).to_calendar(a);
   if(!test.equals("J2000 (gregorian vs roman)", da.jd(), db1.jd())) n++;
 
   if(!test.check("operator ==", da == dc)) n++;

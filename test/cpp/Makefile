@@ -1,11 +1,10 @@
-SRC = ../../src
-
 # Flags for measuring test coverage
 CPPFLAGS += -I. -I../../include
 CXXFLAGS += -pg -Wall -fprofile-arcs --coverage
 LDFLAGS += -fprofile-arcs -ftest-coverage -lm
 
 include ../../config.mk
+SRC := ../../src
 
 CPP_SRC := ../../cpp
 CPP_SOURCES = $(wildcard $(CPP_SRC)/*.cpp)
@@ -36,10 +35,10 @@ libnovas++.a: $(OBJECTS)
 obj:
 	mkdir $@
 
-obj/%.o: $(SRC)/%.c obj
+obj/%.o: $(SRC)/%.c | obj
 	$(CXX) -c -o $@ -DNOVAS_NAMESPACE $(CPPFLAGS) $< 
 
-obj/%.opp: $(CPP_SRC)/%.cpp
+obj/%.opp: $(CPP_SRC)/%.cpp | obj
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
 
 cov: cov.info

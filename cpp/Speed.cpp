@@ -255,7 +255,7 @@ std::string Speed::to_string(int decimals) const {
  * @return            a new velocity vector, in the specified direction and with the magnitude of
  *                    this speed.
  */
-Velocity Speed::in_direction(const Vector& direction) const {
+Velocity Speed::to_direction(const Vector& direction) const {
   return Velocity(direction._array(), _ms / direction.abs());
 }
 

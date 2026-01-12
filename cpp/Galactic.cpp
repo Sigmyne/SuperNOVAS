@@ -61,7 +61,7 @@ Galactic::Galactic(const std::string& longitude, const std::string& latitude, co
  * @param pos             _xyz_ position vector in the galactic coordinate system.
  */
 Galactic::Galactic(const Position& pos)
-: Spherical(pos.as_spherical()) {}
+: Spherical(pos.to_spherical()) {}
 
 /**
  * Checks if these galactic coordinates are the same as another, within the specified
@@ -136,9 +136,9 @@ Angle Galactic::distance_to(const Galactic& other) const {
  *
  * @return    the equivalent ICRS equatorial coordinates.
  *
- * @sa Equatorial::as_galactic(), as_ecliptic()
+ * @sa Equatorial::to_galactic(), to_ecliptic()
  */
-Equatorial Galactic::as_equatorial() const {
+Equatorial Galactic::to_equatorial() const {
   double ra = 0.0, dec = 0.0;
   gal2equ(longitude().deg(), latitude().deg(), &ra, &dec);
   return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::icrs(), distance().m());
@@ -149,10 +149,10 @@ Equatorial Galactic::as_equatorial() const {
  *
  * @return    the equivalent ICRS ecliptic coordinates.
  *
- * @sa Ecliptic::as_galactic(), as_equatorial()
+ * @sa Ecliptic::to_galactic(), to_equatorial()
  */
-Ecliptic Galactic::as_ecliptic() const {
-  return as_equatorial().as_ecliptic();
+Ecliptic Galactic::to_ecliptic() const {
+  return to_equatorial().to_ecliptic();
 }
 
 /**
