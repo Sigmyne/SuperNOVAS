@@ -780,7 +780,7 @@ double novas_get_split_time(const novas_timespec *restrict time, enum novas_time
  * @since 1.1
  * @author Attila Kovacs
  *
- * @sa novas_set_time(), novas_offset_time(), novas_diff_tcb(), novas_diff_tcg()
+ * @sa novas_diff_time_scale(), novas_diff_tcb(), novas_diff_tcg(), novas_set_time(), novas_offset_time()
  */
 double novas_diff_time(const novas_timespec *t1, const novas_timespec *t2) {
   if(!t1 || !t2) {
@@ -790,6 +790,42 @@ double novas_diff_time(const novas_timespec *t1, const novas_timespec *t2) {
 
   return ((t1->ijd_tt - t2->ijd_tt) + (t1->fjd_tt - t2->fjd_tt)) * DAY;
 }
+
+/**
+ * Returns the UT1 based time difference (t1 - t2) in days between two astronomical time
+ * specifications.
+ *
+ * @param t1          First time
+ * @param t2          Second time
+ * @param timescale   Astronomical timescale in which to return the difference.
+ * @return            [s] Precise UT1 time difference (t1-t2), or NAN if one of the inputs was
+ *                    NULL (errno will be set to EINVAL)
+ *
+ * @since 1.1
+ * @author Attila Kovacs
+ *
+ * @sa novas_diff_time(), novas_diff_tcg(), novas_diff_time()
+ */
+double novas_diff_time_scale(const novas_timespec *t1, const novas_timespec *t2, enum novas_timescale timescale) {
+  long ijd1, ijd2;
+  double fjd1, fjd2;
+
+  if(!t1 || !t2) {
+    novas_set_errno(EINVAL, "novas_diff_time_scale", "NULL parameter: t1=%p, t2=%p", t1, t2);
+    return NAN;
+  }
+
+  if((int) timescale < 0 || (int) timescale >= NOVAS_TIMESCALES) {
+    novas_set_errno(EINVAL, "novas_diff_time_scale", "invalid timescale: %d", (int) timescale);
+    return NAN;
+  }
+
+  fjd1 = novas_get_split_time(t1, timescale, &ijd1);
+  fjd2 = novas_get_split_time(t2, timescale, &ijd2);
+
+  return  ((ijd1 - ijd2) + (fjd1 - fjd2)) * DAY;
+}
+
 
 /**
  * Returns the Barycentric Coordinate Time (TCB) based time difference (t1 - t2) in days between
@@ -805,7 +841,7 @@ double novas_diff_time(const novas_timespec *t1, const novas_timespec *t2) {
  * @since 1.1
  * @author Attila Kovacs
  *
- * @sa novas_diff_tcg(), novas_diff_time()
+ * @sa novas_diff_time_scale(), novas_diff_tcg(), novas_diff_time()
  */
 double novas_diff_tcb(const novas_timespec *t1, const novas_timespec *t2) {
   double dt = novas_diff_time(t1, t2) * (1.0 + TC_LB);
@@ -813,6 +849,7 @@ double novas_diff_tcb(const novas_timespec *t1, const novas_timespec *t2) {
     return novas_trace_nan("novas_diff_tcb");
   return dt;
 }
+
 
 /**
  * Returns the Geocentric Coordinate Time (TCG) based time difference (t1 - t2) in days between
@@ -830,7 +867,7 @@ double novas_diff_tcb(const novas_timespec *t1, const novas_timespec *t2) {
  * @since 1.1
  * @author Attila Kovacs
  *
- * @sa novas_diff_tcb(), novas_diff_time()
+ * @sa novas_diff_time_scale(), novas_diff_tdb(), novas_diff_time()
  */
 double novas_diff_tcg(const novas_timespec *t1, const novas_timespec *t2) {
   double dt = novas_diff_time(t1, t2) * (1.0 + TC_LG);

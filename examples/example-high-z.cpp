@@ -1,11 +1,14 @@
 /**
  * @file
  *
- * @date Created  on Jan 9, 2026
+ * @date Created  on Jan 12, 2026
  * @author Attila Kovacs
  *
- *  Example file for using the SuperNOVAS C++ library for determining positions for
- *  nearby (non-high-z) sidereal sources, such as a star.
+ *  Example file for using the SuperNOVAS C/C++ library for determining positions for
+ *  distant galaxies and quasars, or other high-redshift objects.
+ *
+ *  It's the same recipe as `example-star.c`, except that we define the object of
+ *  interest a little differently.
  *
  *  Link with
  *
@@ -41,21 +44,12 @@ int main() {
   EOP eop(LEAP_SECONDS, DUT1, POLAR_DX * Unit::mas, POLAR_DY * Unit::mas);
 
 
-
   // -------------------------------------------------------------------------
-  // Define a sidereal source
+  // Define a high-z source.
 
-  // Let's assume we have B1950 (FK4) coordinates...
-  // 16h26m20.1918s, -26d19m23.138s (B1950), proper motion -12.11, -23.30 mas/year,
-  // parallax 5.89 mas, radial velocity -3.4 km/s.
-  //
-  // NOTE, here we set a barycentric radial velocity, but you can set LSR velocities or redshifts
-  // also, instead.
-  CatalogEntry e = CatalogEntry("Antares", Equatorial("16h26m20.1918s", "-26d19m23.138s", Equinox::b1950()))
-          .catalog("HIP", 80763)
-          .proper_motion(-12.11 * Unit::mas / Unit::yr, -23.30 * Unit::mas / Unit::yr)
-          .parallax(5.98 * Unit::mas)
-          .radial_velocity(-3.4 * Unit::km / Unit::s);
+  // 3c273: 12h29m6.6997s +2d3m8.598s (ICRS), z=0.158339
+  CatalogEntry e = CatalogEntry("3c273", Equatorial("12h29m6.6997s", "+2d3m8.598s"))
+          .redshift(0.158339);
 
   // Define a source from the catalog coordinates
   CatalogSource source(e);

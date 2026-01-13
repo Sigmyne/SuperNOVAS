@@ -2201,6 +2201,19 @@ static int test_diff_time() {
   if(!is_equal("diff_time:check", novas_diff_time(&t1, &t), 0.5, 1e-9)) return 1;
   if(!is_equal("diff_time:check:rev", novas_diff_time(&t, &t1), -0.5, 1e-9)) return 1;
 
+  dt = novas_diff_time_scale(&t, &t1, NOVAS_TDB);
+  {
+    long ijd1, ijd2;
+    double fjd1, fjd2;
+    fjd1 = novas_get_split_time(&t, NOVAS_TDB, &ijd1);
+    fjd2 = novas_get_split_time(&t1, NOVAS_TDB, &ijd2);
+    dt -= ((ijd1 - ijd2) + (fjd1 - fjd2)) * NOVAS_DAY;
+  }
+  if(!is_ok("diff_time:check:tcb", fabs(dt) >= 1e-9)) {
+    printf("!!! missed TDB by %.9f\n", dt);
+    return 1;
+  }
+
   dt = novas_diff_tcb(&t, &t1) - (1.0 + LB) * novas_diff_time(&t, &t1);
   if(!is_ok("diff_time:check:tcb", fabs(dt) >= 1e-9)) {
     printf("!!! missed TCB by %.9f\n", dt);

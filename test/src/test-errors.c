@@ -1235,10 +1235,6 @@ static int test_time() {
   if(check("time:offset:out", -1, novas_offset_time(&time, 0.1, NULL))) n++;
   if(check("time:offset:both", -1, novas_offset_time(NULL, 0.1, NULL))) n++;
 
-  if(check_nan("time:diff:t1", novas_diff_time(NULL, &time))) n++;
-  if(check_nan("time:diff:t2", novas_diff_time(&time, NULL))) n++;
-  if(check_nan("time:diff:both", novas_diff_time(NULL, NULL))) n++;
-
   if(check_nan("time:diff_tcg:t1", novas_diff_tcg(NULL, &time))) n++;
   if(check_nan("time:diff_tcg:t2", novas_diff_tcg(&time, NULL))) n++;
   if(check_nan("time:diff_tcg:both", novas_diff_tcg(NULL, NULL))) n++;
@@ -1246,6 +1242,12 @@ static int test_time() {
   if(check_nan("time:diff_tcb:t1", novas_diff_tcb(NULL, &time))) n++;
   if(check_nan("time:diff_tcb:t2", novas_diff_tcb(&time, NULL))) n++;
   if(check_nan("time:diff_tcb:both", novas_diff_tcb(NULL, NULL))) n++;
+
+  if(check_nan("time:diff:scale:t1", novas_diff_time_scale(NULL, &time, NOVAS_TT))) n++;
+  if(check_nan("time:diff:scale:t2", novas_diff_time_scale(&time, NULL, NOVAS_TT))) n++;
+  if(check_nan("time:diff:scale:both", novas_diff_time_scale(NULL, NULL, NOVAS_TT))) n++;
+  if(check_nan("time:diff:scale:-1", novas_diff_time_scale(&time, &time, (enum novas_timescale) -1))) n++;
+  if(check_nan("time:diff:scale:hi", novas_diff_time_scale(&time, &time, (enum novas_timescale) NOVAS_TIMESCALES))) n++;
 
   return n;
 }

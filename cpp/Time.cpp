@@ -194,13 +194,43 @@ Time::Time(const novas_timespec *t) {
  * time instance is also valid for the offset time, which should be true typically for reasonably
  * small time offsets.
  *
- * @param r     the offset interval
- * @return      a new time that is offset from this one by the specified interval.
+ * @param seconds     [s] the offset interval
+ * @return            a new time that is offset from this one by the specified interval in the
+ *                    reverse direction (backwards in time).
+ *
+ * @sa oerator+(), shifted()
+ */
+Time Time::operator+(double seconds) const {
+  return shifted(seconds);
+}
+
+/**
+ * Returns an offset time in the backward direction. It assumes that the leap seconds and
+ * UT1 - UTC time difference of this time instance is also valid for the offset time, which should
+ * be true typically for reasonably small time offsets.
+ *
+ * @param offset    the offset interval (in backwards direction).
+ * @return          a new time that is offset from this one by the specified interval.
  *
  * @sa oerator-(), shifted()
  */
-Time Time::operator+(const Interval& r) const {
-  return shifted(r);
+Time Time::operator+(const Interval& offset) const {
+  return shifted(offset);
+}
+
+/**
+ * Returns an offset time in the backwards direction. It assumes that the leap seconds and
+ * UT1 - UTC time difference of this time instance is also valid for the offset time, which should
+ * be true typically for reasonably small time offsets.
+ *
+ * @param seconds     [s] the offset interval (backwards direction).
+ * @return            a new time that is offset from this one by the specified interval in the
+ *                    reverse direction (backwards in time).
+ *
+ * @sa oerator+(), shifted()
+ */
+Time Time::operator-(double seconds) const {
+  return shifted(-seconds);
 }
 
 /**
@@ -208,21 +238,25 @@ Time Time::operator+(const Interval& r) const {
  * time instance is also valid for the offset time, which should be true typically for reasonably
  * small time offsets.
  *
- * @param r     the offset interval
- * @return      a new time that is offset from this one by the specified interval in the
- *              reverse direction (backwards in time).
+ * @param offset     the offset interval
+ * @return           a new time that is offset from this one by the specified interval in the
+ *                    reverse direction (backwards in time).
  *
- * @sa oerator+(), shifted()
+ * @sa operator+(), shifted()
  */
-Time Time::operator-(const Interval& r) const {
-  return shifted(r.inv());
+Time Time::operator-(const Interval& offset) const {
+  return shifted(offset.inv());
 }
 
 /**
- * Returns the difference of this time from the specified other time
+ * Returns the difference of this time from the specified other time, in regular Earth-based
+ * time measures (GPS, TAI, TT -- and also UTC assuming no change in leap seconds).
  *
  * @param r   the other time
- * @return    the difference between this time and the argument.
+ * @return    the difference between this time and the argument in regular Earth-based
+ *            timescales.
+ *
+ * offset_from()
  */
 Interval Time::operator-(const Time& r) const {
   return Interval(novas_diff_time(&_ts, &r._ts));
@@ -363,7 +397,7 @@ double Time::jd(enum novas_timescale timescale) const {
  * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            [day] the integer Julian day in the requested timescale.
  *
- * @sa mjd_day(), mjd(), jd()
+ * @sa jd_frac(), mjd_day(), mjd(), jd()
  */
 long Time::jd_day(enum novas_timescale timescale) const {
   long ijd = 0;
@@ -378,13 +412,40 @@ long Time::jd_day(enum novas_timescale timescale) const {
  * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            [day] the integer Modified Julian Day (MJD) in the requested timescale.
  *
- * @sa jd_day(), mjd(), jd()
+ * @sa jd_frac(), jd_day(), mjd(), jd()
  */
 long Time::mjd_day(enum novas_timescale timescale) const {
   long ijd = 0;
   double fjd = novas_get_split_time(&_ts, timescale, &ijd);
   ijd -= 2400000L;
   return fjd >= 0.5 ? ijd + 1 : ijd;
+}
+
+/**
+ * Returns the factional Julian Day (MJD) of this time instance, in the specific timescale
+ * of choice. 0h in Julian dates is at noon.
+ *
+ * @param timescale   (optional) the timescale in which to return the result (default: TT).
+ * @return            [day] the fractional part of the Julian Day in the requested timescale.
+ *
+ * @sa mjd_frac(), jd_day(), jd()
+ */
+double Time::jd_frac(enum novas_timescale timescale) const {
+  return novas_get_split_time(&_ts, timescale, NULL);
+}
+
+/**
+ * Returns the integer Modified Julian Day (MJD) of this time instance, in the specific timescale
+ * of choice. 0h in MJD is at midnight.
+ *
+ * @param timescale   (optional) the timescale in which to return the result (default: TT).
+ * @return            [day] the fractional part of the Julian Day in the requested timescale.
+ *
+ * @sa jd_frac(), mjd_day(), mjd()
+ */
+double Time::mjd_frac(enum novas_timescale timescale) const {
+  double f = jd_frac(timescale);
+  return f < 0.5 ? f + 0.5 : f - 0.5;
 }
 
 /**
@@ -641,26 +702,22 @@ Time Time::now(const EOP& eop) {
 }
 
 /**
- * Returns an offset time. It assumes that the leap seconds and UT1 - UTC time difference of this
- * time instance is also valid for the offset time, which should be true typically for reasonably
- * small time offsets.
+ * Returns the difference of this time from the specified other time, in the specified timescale.
+ * All timescales are supported.
  *
- * @param seconds    [s] the offset interval
- * @return           a new time that is offset from this one by the specified interval.
+ * @param time        the other time
+ * @param timescale   the timescale in which to return the result.
+ * @return            the difference between this time and the argument time in the specified
+ *                    timescale.
  *
- * @sa oerator+()
+ * operator-(), shifted()
  */
-Time Time::shifted(double seconds) const {
-  struct novas_timespec ts = _ts;
-  double djd = seconds / Unit::day;
-  long idjd = (long) floor(djd);
-  ts.ijd_tt += idjd;
-  ts.fjd_tt += (djd - idjd);
-  if(ts.fjd_tt > 1.0) {
-    ts.ijd_tt++;
-    ts.fjd_tt -= 1.0;
-  }
-  return Time(&ts);
+Interval Time::offset_from(const Time& time, enum novas_timescale timescale) {
+  double dt = novas_diff_time_scale(&_ts, &time._ts, timescale);
+  if(isnan(dt))
+    novas_trace_invalid("Time::offset_from()");
+
+  return Interval(dt);
 }
 
 /**
@@ -668,12 +725,39 @@ Time Time::shifted(double seconds) const {
  * time instance is also valid for the offset time, which should be true typically for reasonably
  * small time offsets.
  *
- * @param offset     the offset interval
- * @return           a new time that is offset from this one by the specified interval.
+ * @param seconds    [s] the offset interval in a regular Earth-based timescale (GPS, TAI, TT --
+ *                   or UTC assuming no change in leap seconds).
+ * @param timescale  (optional) timescale in which offset time is given (default: TT / TAI / GPS).
+ * @return           a new time that is offset from this one by the specified interval in the
+ *                   specified timescale.
  *
- * @sa oerator+()
+ * @sa oerator+(), offset_from()
  */
-Time Time::shifted(const Interval& offset) const {
+Time Time::shifted(double seconds, enum novas_timescale timescale) const {
+  long ijd;
+  double fjd = novas_get_split_time(&_ts, timescale, &ijd);
+  novas_timespec ts1 = {};
+
+  fjd += seconds / Unit::day;;
+
+  novas_set_split_time(timescale, ijd, fjd, leap_seconds(), dUT1().seconds(), &ts1);
+  return Time(&ts1);
+}
+
+/**
+ * Returns an offset time. It assumes that the leap seconds and UT1 - UTC time difference of this
+ * time instance is also valid for the offset time, which should be true typically for reasonably
+ * small time offsets.
+ *
+ * @param offset     the offset interval in a regular Earth-based timescale (GPS, TAI, TT --
+ *                   or UTC assuming no change in leap seconds).
+ * @param timescale  (optional) timescale in which offset time is given (default: TT / TAI / GPS).
+ * @return           a new time that is offset from this one by the specified interval in the
+ *                   specified timescale
+ *
+ * @sa oerator+(), offset_from()
+ */
+Time Time::shifted(const Interval& offset, enum novas_timescale timescale) const {
   return shifted(offset.to_timescale(NOVAS_TT).seconds());
 }
 

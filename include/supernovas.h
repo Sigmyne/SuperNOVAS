@@ -1424,6 +1424,10 @@ public:
 
   Interval operator-(const CalendarDate& other) const;
 
+  Time operator+(double seconds) const;
+
+  Time operator-(double seconds) const;
+
   Time operator+(const Interval& delta) const;
 
   Time operator-(const Interval& delta) const;
@@ -1453,6 +1457,10 @@ public:
   long jd_day(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
   long mjd_day(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
+
+  double jd_frac(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
+
+  double mjd_frac(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
   time_t unix_time(long *nanos = NULL) const;
 
@@ -1484,14 +1492,15 @@ public:
 
   std::string to_epoch_string(int decimals = 2) const;
 
-  Time shifted(double seconds) const;
+  Interval offset_from(const Time& time, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
-  Time shifted(const Interval& offset) const;
+  Time shifted(double seconds, enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
+
+  Time shifted(const Interval& offset, enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
   CalendarDate to_calendar_date(const Calendar& calendar = Calendar::astronomical(), enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
 
   CalendarDate to_calendar_date(enum novas::novas_timescale timescale) const;
-
 
   static Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
