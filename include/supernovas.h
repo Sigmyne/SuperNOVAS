@@ -784,6 +784,8 @@ public:
 
   bool operator!=(const Equatorial& other) const;
 
+  Equatorial operator>>(const Equinox& system) const;
+
   TimeAngle ra() const;
 
   const Angle& dec() const;
@@ -858,6 +860,8 @@ public:
   bool operator==(const Ecliptic& other) const;
 
   bool operator!=(const Ecliptic& other) const;
+
+  Ecliptic operator>>(const Equinox& system) const;
 
   enum novas::novas_equator_type equator_type() const;
 
@@ -2073,6 +2077,8 @@ private:
 
 public:
   Geometric(const Position& p, const Velocity& v, const Frame& frame, enum novas::novas_reference_system system = novas::NOVAS_TOD);
+
+  Geometric operator>>(enum novas::novas_reference_system system) const;
 
   const Frame& frame() const;
 

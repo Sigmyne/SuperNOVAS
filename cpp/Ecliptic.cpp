@@ -151,6 +151,19 @@ bool Ecliptic::operator!=(const Ecliptic& other) const {
   return !equals(other);
 }
 
+/**
+ * Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the
+ * specified equinox of date. Same as `to_system()`.
+ *
+ * @param system    the requested equinox of date for returned coordinates.
+ * @return          new ecliptic coordinates, which represent the same position as
+ *                  this, but expressed relaive to the specified equinox.
+ *
+ * @sa to_system()
+ */
+Ecliptic Ecliptic::operator>>(const Equinox& system) const {
+  return to_system(system);
+}
 
 /**
  * Returns the type of equator (ICRS, mean, or true) that is used for these ecliptic coordinates.
@@ -204,7 +217,7 @@ Angle Ecliptic::distance_to(const Ecliptic& other) const {
  * @return          new ecliptic coordinates, which represent the same position as
  *                  this, but expressed relaive to the specified equinox.
  *
- * @sa to_icrs(), to_j2000(), to_mod(), to_tod()
+ * @sa operator>>(), to_icrs(), to_j2000(), to_mod(), to_tod()
  */
 Ecliptic Ecliptic::to_system(const Equinox& system) const {
   return to_equatorial().to_system(system).to_ecliptic();

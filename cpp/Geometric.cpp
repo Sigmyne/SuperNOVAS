@@ -43,6 +43,21 @@ Geometric::Geometric(const Position& p, const Velocity& v, const Frame& frame, e
 }
 
 /**
+ * Returns new geometric coordinates that are transformed from these into a different coordinate
+ * reference system. Same as `to_system()`. For dynamical coordinate systems, the result is in the
+ * coordinate epoch of observation.
+ *
+ * @param system    the new coordinate reference system type
+ * @return          geometric coordinates for the same position and velocity as this, but
+ *                  expressed in the other type of coordinate reference system.
+ *
+ * @sa to_system()
+ */
+Geometric Geometric::operator>>(enum novas_reference_system system) const {
+  return to_system(system);
+}
+
+/**
  * Returns the observing frame for which these geometric coordinates were defined.
  *
  * @return    a reference to the observing frame (observer location and time of observation)
@@ -157,6 +172,7 @@ Geometric Geometric::to_system(const novas::novas_frame *f, enum novas::novas_re
   return Geometric(Position(p), Velocity(v), _frame, _system.reference_system());
 }
 
+
 /**
  * Returns new geometric coordinates that are transformed from these into a different coordinate
  * reference system. For dynamical coordinate systems, the result is in the coordinate epoch
@@ -166,7 +182,7 @@ Geometric Geometric::to_system(const novas::novas_frame *f, enum novas::novas_re
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the other type of coordinate reference system.
  *
- * @sa to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
+ * @sa operator>>(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_system(enum novas_reference_system system) const {
   if(system == _system.reference_system())
