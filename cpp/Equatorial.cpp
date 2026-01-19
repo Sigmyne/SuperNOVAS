@@ -157,6 +157,20 @@ bool Equatorial::operator!=(const Equatorial& other) const {
 }
 
 /**
+ * Converts these equatorial coordinates to another equatorial coordinate system. Same as
+ * `to_system()`.
+ *
+ * @param system    the equatorial coordinate system (type and epoch) to convert to.
+ * @return          new equatorial coordinates, which represent the same equatorial position as
+ *                  this, but expressed in the specified other coordinate reference system.
+ *
+ * @sa to_system()
+ */
+Equatorial Equatorial::operator>>(const Equinox& system) const {
+  return to_system(system);
+}
+
+/**
  * Returns the equatorial system (type and epoch) in which these equatorial coordinates are defined.
  *
  * @return    the coordinate reference system (type and epoch).
@@ -196,7 +210,8 @@ Angle Equatorial::distance_to(const Equatorial& other) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed in the specified other coordinate reference system.
  *
- * @sa to_icrs(), to_j2000(), to_hip(), to_mod(), to_mod_at_besselian_epoch(), to_tod(), to_cirs()
+ * @sa operator>>(), to_icrs(), to_j2000(), to_hip(), to_mod(), to_mod_at_besselian_epoch(),
+ *     to_tod(), to_cirs()
  */
 Equatorial Equatorial::to_system(const Equinox& system) const {
   if(_sys == system)
