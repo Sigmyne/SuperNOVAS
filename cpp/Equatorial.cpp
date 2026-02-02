@@ -38,10 +38,9 @@ void Equatorial::validate() {
  * @param dec_rad     [rad] declination coordinate
  * @param system      (optional) the equatorial coordinate reference system in which the
  *                    coordinates are specified (default: ICRS)
- * @param distance_m  [m] (optional) the distance, if needed / known (default: 1 Gpc)
  */
-Equatorial::Equatorial(double ra_rad, double dec_rad, const Equinox &system, double distance_m)
-: Spherical(ra_rad, dec_rad, distance_m), _sys(system) {
+Equatorial::Equatorial(double ra_rad, double dec_rad, const Equinox &system)
+: Spherical(ra_rad, dec_rad), _sys(system) {
   validate();
 }
 
@@ -53,10 +52,9 @@ Equatorial::Equatorial(double ra_rad, double dec_rad, const Equinox &system, dou
  * @param dec         declination coordinate
  * @param system      (optional) the equatorial coordinate reference system in which the
  *                    coordinates are specified (default: ICRS)
- * @param distance    (optional) the distance, if needed / known (default: 1 Gpc)
  */
-Equatorial::Equatorial(const Angle& ra, const Angle& dec, const Equinox &system, const Distance& distance)
-: Spherical(ra, dec, distance), _sys(system) {
+Equatorial::Equatorial(const Angle& ra, const Angle& dec, const Equinox &system)
+: Spherical(ra, dec), _sys(system) {
   validate();
 }
 
@@ -80,12 +78,11 @@ Equatorial::Equatorial(const Angle& ra, const Angle& dec, const Equinox &system,
  *                    degrees.
  * @param system      (optional) the equatorial coordinate reference system in which the
  *                    coordinates are specified (default: ICRS)
- * @param distance    (optional) the distance, if needed / known (default: 1 Gpc)
  *
  * @sa novas_str_hours(), novas_str_degrees() for details on string representation that can be parsed.
  */
-Equatorial::Equatorial(const std::string& ra, const std::string& dec, const Equinox &system, const Distance& distance)
-: Equatorial(TimeAngle(ra), Angle(dec), system, distance) {}
+Equatorial::Equatorial(const std::string& ra, const std::string& dec, const Equinox &system)
+: Equatorial(TimeAngle(ra), Angle(dec), system) {}
 
 /**
  * Instantiates equatorial coordinates with the specified rectangular components
@@ -104,7 +101,7 @@ Equatorial::Equatorial(const Position& pos, const Equinox& system)
  * precision.
  *
  * @param other           the reference equatorial coordinates
- * @param precision_rad   [rad] (optional) precision for equality test (default: 1 uas).
+ * @param precision_rad   [rad] (optional) precision for equality test (default: 1 &mu;as).
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
@@ -119,7 +116,7 @@ bool Equatorial::equals(const Equatorial& other, double precision_rad) const {
  * precision.
  *
  * @param other           the reference equatorial coordinates
- * @param precision       (optional) precision for equality test (default: 1 uas).
+ * @param precision       (optional) precision for equality test (default: 1 &mu;as).
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
@@ -131,10 +128,10 @@ bool Equatorial::equals(const Equatorial& other, const Angle& precision) const {
 }
 
 /**
- * Checks if these equatorial coordinates are the same as another, within 1 uas.
+ * Checks if these equatorial coordinates are the same as another, within 1 &mu;as.
  *
  * @param other           the reference equatorial coordinates
- * @return                `true` if these coordinates are the same as the reference within 1 uas,
+ * @return                `true` if these coordinates are the same as the reference within 1 &mu;as,
  *                        or else `false`.
  *
  * @sa operator!=()
@@ -144,11 +141,10 @@ bool Equatorial::operator==(const Equatorial& other) const {
 }
 
 /**
- * Checks if these equatorial coordinates differ from another, by more than 1 uas.
- *
+ * Checks if these equatorial coordinates differ from another, by more than 1 &mu;as.
  * @param other           the reference equatorial coordinates
  * @return                `true` if these coordinates differ from the reference, by more than
- *                        1 uas, or else `false`.
+ *                        1 &mu;as, or else `false`.
  *
  * @sa operator==()
  */
@@ -217,7 +213,7 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
   if(_sys == system)
     return Equatorial(*this);
   if(_sys.is_icrs() && system.is_icrs())
-    return Equatorial(ra(), dec(), system, distance());
+    return Equatorial(ra(), dec(), system);
 
   double p[3] = {'\0'};
   radec2vector(ra().hours(), dec().deg(), 1.0, p);
@@ -226,6 +222,9 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
   switch(_sys.reference_system()) {
     case NOVAS_GCRS:
     case NOVAS_ICRS:
+      break;
+    case NOVAS_J2000:
+      j2000_to_gcrs(p, p);
       break;
     case NOVAS_MOD:
       mod_to_gcrs(_sys.jd(), p, p);
@@ -245,6 +244,9 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
     case NOVAS_GCRS:
     case NOVAS_ICRS:
       break;
+    case NOVAS_J2000:
+      gcrs_to_j2000(p, p);
+      break;
     case NOVAS_MOD:
       gcrs_to_mod(system.jd(), p, p);
       break;
@@ -260,7 +262,7 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
 
   double r = 0.0, d = 0.0;
   vector2radec(p, &r, &d);
-  return Equatorial(r * Unit::hour_angle, d * Unit::deg, system, distance().m());
+  return Equatorial(r * Unit::hour_angle, d * Unit::deg, system);
 }
 
 /**
@@ -441,7 +443,7 @@ Ecliptic Equatorial::to_ecliptic() const {
     r -= ira_equinox(_sys.jd(), NOVAS_TRUE_EQUINOX, NOVAS_FULL_ACCURACY);
 
   equ2ecl(_sys.jd(), _sys.equator_type(), NOVAS_FULL_ACCURACY, r, d, &lon, &lat);
-  return Ecliptic(lon * Unit::deg, lat * Unit::deg, _sys, distance().m());
+  return Ecliptic(lon * Unit::deg, lat * Unit::deg, _sys);
 }
 
 /**
@@ -454,9 +456,9 @@ Ecliptic Equatorial::to_ecliptic() const {
  */
 Galactic Equatorial::to_galactic() const {
   Equatorial icrs = to_icrs();
-  double longitude, latitude;
+  double longitude = 0.0, latitude = 0.0;
   equ2gal(icrs.ra().hours(), icrs.dec().deg(), &longitude, &latitude);
-  return Galactic(longitude * Unit::deg, latitude * Unit::deg, distance().m());
+  return Galactic(longitude * Unit::deg, latitude * Unit::deg);
 }
 
 /**
@@ -481,7 +483,7 @@ std::string Equatorial::to_string(enum novas_separator_type separator, int decim
  * @return    a reference to a static standard invalid equatorial coordinates.
  */
 const Equatorial& Equatorial::invalid() {
-  static const Equatorial _invalid = Equatorial(NAN, NAN, Equinox::invalid(), NAN);
+  static const Equatorial _invalid = Equatorial(NAN, NAN, Equinox::invalid());
   return _invalid;
 }
 

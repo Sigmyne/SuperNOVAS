@@ -38,6 +38,12 @@ int main() {
   Site site = Site(45.0 * Unit::deg, 30.0 * Unit::deg, 1500.0 * Unit::m);
   Weather c = Weather::guess(site);
 
+  const Weather& d = Weather::standard();
+  if(!test.equals("standard temperature() ==", d.temperature().celsius(), 10.0, 1e-15)) n++;
+  if(!test.equals("standard pressure() ==", d.pressure().atm(), 1.0, 1e-15)) n++;
+  if(!test.equals("standard humidity() ==", d.humidity(), 50.0, 1e-15)) n++;
+  if(!test.equals("standard humidity_fraction() ==", d.humidity_fraction(), 0.5, 1e-15)) n++;
+
   novas::on_surface s = {};
   novas::make_itrf_site(30.0, 45.0, 1500.0, &s);
   novas::novas_set_default_weather(&s);

@@ -154,7 +154,7 @@ std::string Vector::to_string(int decimals) const {
   char sx[40] = {'\0'}, sy[40] = {'\0'}, sz[40] = {'\0'};
 
   novas_print_decimal(_component[0], decimals, sx, sizeof(sx));
-  novas_print_decimal(_component[1], decimals, sy, sizeof(sy));/**/
+  novas_print_decimal(_component[1], decimals, sy, sizeof(sy));
   novas_print_decimal(_component[2], decimals, sz, sizeof(sz));
 
   return "VEC (" + std::string(sx) + ", " + std::string(sy) + ", " + std::string(sz) + ")";

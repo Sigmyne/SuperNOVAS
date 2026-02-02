@@ -16,20 +16,18 @@ namespace supernovas {
  *
  * @param longitude_rad   [rad] galactic longitude coordinate
  * @param latitude_rad    [rad] galactic latitude coordinate
- * @param distance_m      [m] (optional) distance, if needed / known (default: 1 Gpc).
  */
-Galactic::Galactic(double longitude_rad, double latitude_rad, double distance_m)
-: Spherical(longitude_rad, latitude_rad, distance_m) {}
+Galactic::Galactic(double longitude_rad, double latitude_rad)
+: Spherical(longitude_rad, latitude_rad) {}
 
 /**
  * Instantiates new galactic coordinates with the specified components.
  *
  * @param longitude   galactic longitude coordinate
  * @param latitude    galactic latitude coordinate
- * @param distance    (optional) distance, if needed / known (default: 1 Gpc).
  */
-Galactic::Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance)
-: Spherical(longitude, latitude, distance) {}
+Galactic::Galactic(const Angle& longitude, const Angle& latitude)
+: Spherical(longitude, latitude) {}
 
 /**
  * Instantiates galactic coordinates with the specified string representations of the longitude
@@ -48,12 +46,11 @@ Galactic::Galactic(const Angle& longitude, const Angle& latitude, const Distance
  *                    degrees.
  * @param latitude    string representation of the declination coordinate as DMS or decimal
  *                    degrees.
- * @param distance    (optional) the distance, if needed / known (default: 1 Gpc)
  *
  * @sa novas_str_degrees() for details on string representation that can be parsed.
  */
-Galactic::Galactic(const std::string& longitude, const std::string& latitude, const Distance& distance)
-: Galactic(Angle(longitude), Angle(latitude), distance) {}
+Galactic::Galactic(const std::string& longitude, const std::string& latitude)
+: Galactic(Angle(longitude), Angle(latitude)) {}
 
 /**
  * Instantiates new galactic coordinates with the specified cartesian position vector.
@@ -83,7 +80,7 @@ bool Galactic::equals(const Galactic& other, double precision_rad) const {
  * precision.
  *
  * @param other           the reference galactic coordinates
- * @param precision       (optional) precision for equality test (default: 1 uas).
+ * @param precision       (optional) precision for equality test (default: 1 &mu;as).
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
@@ -95,10 +92,10 @@ bool Galactic::equals(const Galactic& other, const Angle& precision) const {
 }
 
 /**
- * Checks if these galactic coordinates are the same as another, within 1 uas.
+ * Checks if these galactic coordinates are the same as another, within 1 &mu;as.
  *
  * @param other           the reference galactic coordinates
- * @return                `true` if these coordinates are the same as the reference within 1 uas,
+ * @return                `true` if these coordinates are the same as the reference within 1 &mu;as,
  *                        or else `false`.
  *
  * @sa operator!=()
@@ -112,7 +109,7 @@ bool Galactic::operator==(const Galactic& other) const {
  *
  * @param other           the reference galactic coordinates
  * @return                `true` if these coordinates differ from the reference, by more than
- *                        1 uas, or else `false`.
+ *                        1 &mu;as, or else `false`.
  *
  * @sa operator==()
  */
@@ -141,7 +138,7 @@ Angle Galactic::distance_to(const Galactic& other) const {
 Equatorial Galactic::to_equatorial() const {
   double ra = 0.0, dec = 0.0;
   gal2equ(longitude().deg(), latitude().deg(), &ra, &dec);
-  return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::icrs(), distance().m());
+  return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::icrs());
 }
 
 /**
@@ -176,7 +173,7 @@ std::string Galactic::to_string(enum novas_separator_type separator, int decimal
  * @return    a reference to the static standard invalid coordinates.
  */
 const Galactic& Galactic::invalid() {
-  static const Galactic _invalid = Galactic(NAN, NAN, NAN);
+  static const Galactic _invalid = Galactic(NAN, NAN);
   return _invalid;
 }
 

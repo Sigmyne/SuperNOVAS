@@ -265,6 +265,10 @@ private:
 
 public:
 
+  bool equals(const Equinox& system, double dt = Unit::s) const;
+
+  bool equals(const Equinox& system, const Interval& dt) const;
+
   bool operator==(const Equinox& system) const;
 
   bool operator!=(const Equinox& system) const;
@@ -713,8 +717,7 @@ public:
 };
 
 /**
- * %Spherical coordinates (longitude, latitude, and distance), representing a direction on sky /
- * location in space.
+ * %Spherical coordinates (longitude, latitude), representing a direction on sky.
  *
  * @sa Position, Equatorial, Ecliptic, Galactic, Horizontal
  * @ingroup util
@@ -723,7 +726,6 @@ class Spherical : public Validating {
 private:
   Angle _lon;           ///< [rad] stored longitude value
   Angle _lat;           ///< [rad] stored latitude value
-  Distance _distance;   ///< [m] stored distance
 
 protected:
   Angle distance_to(const Spherical& other) const;
@@ -735,29 +737,27 @@ protected:
 public:
   virtual ~Spherical() {}; // something virtual to make class polymorphic for dynamic casting.
 
-  Spherical(double longitude_rad, double latitude_rad, double distance_m = NOVAS_DEFAULT_DISTANCE);
+  Spherical(double longitude_rad, double latitude_rad);
 
-  Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
+  Spherical(const Angle& longitude, const Angle& latitude);
 
-  Spherical(const std::string& longitude, const std::string& latitude, const Distance& distance = Distance::at_Gpc());
+  Spherical(const std::string& longitude, const std::string& latitude);
 
   explicit Spherical(const Position& pos);
 
-  Position xyz() const;
+  Position xyz(const Distance& distance) const;
 
   const Angle& longitude() const;
 
   const Angle& latitude() const;
 
-  const Distance& distance() const;
-
   virtual std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 };
 
 /**
- * %Equatorial coordinates (RA, Dec = &alpha;, &delta;) and distance, representing the direction on
- * the sky, or location in space, for a particular type of equatorial coordinate reference system,
- * relative to the equator and equinox on that system.
+ * %Equatorial coordinates (RA, Dec = &alpha;, &delta;), representing the direction ob the sky,
+ * for a particular type of equatorial coordinate reference system, relative to the equator and
+ * equinox on that system.
  *
  * @ingroup equatorial
  */
@@ -768,15 +768,15 @@ private:
   void validate();
 
 public:
-  Equatorial(double ra_rad, double dec_rad, const Equinox &system = Equinox::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
+  Equatorial(double ra_rad, double dec_rad, const Equinox &system = Equinox::icrs());
 
-  Equatorial(const Angle& ra, const Angle& dec, const Equinox& system = Equinox::icrs(), const Distance& distance = Distance::at_Gpc());
+  Equatorial(const Angle& ra, const Angle& dec, const Equinox& system = Equinox::icrs());
 
-  Equatorial(const std::string& ra, const std::string& dec, const Equinox &system = Equinox::icrs(), const Distance& distance = Distance::at_Gpc());
+  Equatorial(const std::string& ra, const std::string& dec, const Equinox &system = Equinox::icrs());
 
   explicit Equatorial(const Position& pos, const Equinox& system = Equinox::icrs());
 
-  bool equals(const Equatorial& other, double precision_rad = 0.1 * Unit::uas) const;
+  bool equals(const Equatorial& other, double precision_rad = 1.0 * Unit::uas) const;
 
   bool equals(const Equatorial& other, const Angle& precision) const;
 
@@ -830,9 +830,9 @@ public:
 };
 
 /**
- * %Ecliptic coordinates (_l_, _b_ or &lambda;, &beta;) and distance, representing the direction on
- * the sky, or location in space, for a particular type of equatorial coordinate reference system,
- * relative to the ecliptic and equinox of that system.
+ * %Ecliptic coordinates (_l_, _b_ or &lambda;, &beta;), representing the direction on the sky,
+ * for a particular type of equatorial coordinate reference system, relative to the ecliptic and
+ * equinox of that system.
  *
  * @ingroup nonequatorial
  */
@@ -845,15 +845,15 @@ private:
 
 public:
 
-  Ecliptic(double longitude_rad, double latitude_rad, const Equinox& system = Equinox::icrs(), double distance_m = NOVAS_DEFAULT_DISTANCE);
+  Ecliptic(double longitude_rad, double latitude_rad, const Equinox& system = Equinox::icrs());
 
-  Ecliptic(const Angle& longitude, const Angle& latitude, const Equinox &system = Equinox::icrs(), const Distance& distance = Distance::at_Gpc());
+  Ecliptic(const Angle& longitude, const Angle& latitude, const Equinox &system = Equinox::icrs());
 
-  Ecliptic(const std::string& longitude, const std::string& latitude, const Equinox &system = Equinox::icrs(), const Distance& distance = Distance::at_Gpc());
+  Ecliptic(const std::string& longitude, const std::string& latitude, const Equinox &system = Equinox::icrs());
 
   explicit Ecliptic(const Position& pos, const Equinox &system = Equinox::icrs());
 
-  bool equals(const Ecliptic& other, double precision_rad = 0.1 * Unit::uas) const;
+  bool equals(const Ecliptic& other, double precision_rad = 1.0 * Unit::uas) const;
 
   bool equals(const Ecliptic& other, const Angle& precision) const;
 
@@ -897,22 +897,22 @@ public:
 };
 
 /**
- * %Galactic coordinates (_l_, _b_) and distance, representing the direction on the sky, or
- * location in space relative to the galactic plane and the nominal %Galactic center location.
+ * %Galactic coordinates (_l_, _b_), representing the direction on the sky, relative to the
+ * %Galactic plane and the nominal %Galactic center location.
  *
  * @ingroup nonequatorial
  */
 class Galactic : public Spherical {
 public:
-  Galactic(double longitude_rad, double latitude_rad, double distance_m = NOVAS_DEFAULT_DISTANCE);
+  Galactic(double longitude_rad, double latitude_rad);
 
-  Galactic(const Angle& longitude, const Angle& latitude, const Distance& distance = Distance::at_Gpc());
+  Galactic(const Angle& longitude, const Angle& latitude);
 
-  Galactic(const std::string& longitude, const std::string& latitude, const Distance& distance = Distance::at_Gpc());
+  Galactic(const std::string& longitude, const std::string& latitude);
 
   explicit Galactic(const Position& pos);
 
-  bool equals(const Galactic& other, double precision_rad = 0.1 * Unit::uas) const;
+  bool equals(const Galactic& other, double precision_rad = 1.0 * Unit::uas) const;
 
   bool equals(const Galactic& other, const Angle& precision) const;
 
@@ -1364,6 +1364,8 @@ public:
 
   bool operator!=(const CalendarDate& date) const;
 
+  CalendarDate operator>>(const Calendar& calendar) const;
+
   const TimeAngle& time_of_day() const;
 
   const std::string& month_name() const;
@@ -1650,8 +1652,6 @@ public:
 
   std::string name() const;
 
-  long number() const;
-
   TimeAngle ra() const;
 
   Angle dec() const;
@@ -1687,8 +1687,6 @@ public:
   CatalogEntry& radial_velocity(const Speed& v);
 
   CatalogEntry& redshift(double z);
-
-  CatalogEntry& catalog(const std::string& name, long number);
 
   std::string to_string() const; // TODO
 };
@@ -2122,7 +2120,7 @@ public:
  * %Horizontal (azimuth, elevation = Az/El) sky coordinates at a geodetic observing location, such
  * as an observatory site, an aircraft, or a balloon. These represent positions relative to the
  * local horizon and meridian, and can be used for both unrefracted (astrometric) or refracted
- * (observed) values or for conbverting between those two.
+ * (observed) values or for converting between those two.
  *
  * @sa Apparent, Site, Weather
  * @ingroup nonequatorial refract
@@ -2132,13 +2130,13 @@ private:
   Horizontal();
 
 public:
-  Horizontal(double azimuth, double elevation, double distance = NOVAS_DEFAULT_DISTANCE);
+  Horizontal(double azimuth, double elevation);
 
-  Horizontal(const Angle& azimuth, const Angle& elevation, const Distance& distance = Distance::at_Gpc());
+  Horizontal(const Angle& azimuth, const Angle& elevation);
 
-  Horizontal(const std::string& az, const std::string& el, const Distance& distance = Distance::at_Gpc());
+  Horizontal(const std::string& az, const std::string& el);
 
-  bool equals(const Horizontal& other, double precision_rad = 0.1 * Unit::uas) const;
+  bool equals(const Horizontal& other, double precision_rad = 1.0 * Unit::uas) const;
 
   bool equals(const Horizontal& other, const Angle& precision) const;
 
@@ -2161,10 +2159,10 @@ public:
   Horizontal to_unrefracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather = Weather::standard());
 
   /// @ingroup apparent
-  std::optional<Apparent> to_apparent(const Frame& frame, double rv = 0.0) const;
+  std::optional<Apparent> to_apparent(const Frame& frame, double rv = 0.0, double distance = Unit::Gpc) const;
 
   /// @ingroup apparent
-  std::optional<Apparent> to_apparent(const Frame& frame, const Speed& rv = Speed::stationary()) const;
+  std::optional<Apparent> to_apparent(const Frame& frame, const Speed& rv = Speed::stationary(), const Distance& distance = Distance::at_Gpc()) const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const override;
 

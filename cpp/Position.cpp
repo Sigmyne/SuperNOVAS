@@ -105,7 +105,7 @@ Spherical Position::to_spherical() const {
   double longitude = atan2(_component[1], _component[0]);
   double xy = hypot(_component[0], _component[1]);
   double latitude = atan2(_component[2], xy);
-  return Spherical(isnan(longitude) ? 0.0 : longitude, isnan(latitude) ? 0.0 : latitude, abs());
+  return Spherical(isnan(longitude) ? 0.0 : longitude, isnan(latitude) ? 0.0 : latitude);
 }
 
 /**

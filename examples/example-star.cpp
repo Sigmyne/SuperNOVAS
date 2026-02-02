@@ -52,7 +52,6 @@ int main() {
   // NOTE, here we set a barycentric radial velocity, but you can set LSR velocities or redshifts
   // also, instead.
   CatalogEntry e = CatalogEntry("Antares", Equatorial("16h26m20.1918s", "-26d19m23.138s", Equinox::b1950()))
-          .catalog("HIP", 80763)
           .proper_motion(-12.11 * Unit::mas / Unit::yr, -23.30 * Unit::mas / Unit::yr)
           .parallax(5.98 * Unit::mas)
           .radial_velocity(-3.4 * Unit::km / Unit::s);

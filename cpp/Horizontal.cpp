@@ -27,20 +27,18 @@ static void use_weather(const Weather& weather, on_surface *s) {
  *
  * @param azimuth     [rad] azimuth angle
  * @param elevation   [rad] elevation angle
- * @param distance    [m] (optional) distance if needed / known (default: 1 Gpc)
  */
-Horizontal::Horizontal(double azimuth, double elevation, double distance)
-: Spherical(azimuth, elevation, distance) {}
+Horizontal::Horizontal(double azimuth, double elevation)
+: Spherical(azimuth, elevation) {}
 
 /**
  * Instantiates new horizontal (Az/El) coordinates with the specified components
  *
  * @param azimuth     azimuth angle
  * @param elevation   elevation angle
- * @param distance    (optional) distance if needed / known (default: 1 Gpc)
  */
-Horizontal::Horizontal(const Angle& azimuth, const Angle& elevation, const Distance& distance)
-: Spherical(azimuth, elevation, distance) {}
+Horizontal::Horizontal(const Angle& azimuth, const Angle& elevation)
+: Spherical(azimuth, elevation) {}
 
 /**
  * Instantiates horizontal coordinates with the specified string representations of the azimuth
@@ -59,12 +57,11 @@ Horizontal::Horizontal(const Angle& azimuth, const Angle& elevation, const Dista
  *                    degrees.
  * @param elevation   string representation of the elevation coordinate as DMS or decimal
  *                    degrees.
- * @param distance    (optional) the distance, if needed / known (default: 1 Gpc)
  *
  * @sa novas_str_degrees() for details on string representation that can be parsed.
  */
-Horizontal::Horizontal(const std::string& azimuth, const std::string& elevation, const Distance& distance)
-: Horizontal(Angle(azimuth), Angle(elevation), distance) {}
+Horizontal::Horizontal(const std::string& azimuth, const std::string& elevation)
+: Horizontal(Angle(azimuth), Angle(elevation)) {}
 
 /**
  * Returns the azimuth angle. Same as Spherical::longitude().
@@ -104,7 +101,7 @@ const Angle Horizontal::zenith_angle() const {
  * precision.
  *
  * @param other           the reference horizontal coordinates
- * @param precision_rad   [rad] (optional) precision for equality test (default: 1 uas).
+ * @param precision_rad   [rad] (optional) precision for equality test (default: 1 &mu;as).
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
@@ -119,7 +116,7 @@ bool Horizontal::equals(const Horizontal& other, double precision_rad) const {
  * precision.
  *
  * @param other           the reference horizontal coordinates
- * @param precision       (optional) precision for equality test (default: 1 uas).
+ * @param precision       (optional) precision for equality test (default: 1 &mu;as).
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
@@ -131,10 +128,10 @@ bool Horizontal::equals(const Horizontal& other, const Angle& precision) const {
 }
 
 /**
- * Checks if these horizontal coordinates are the same as another, within 1 uas.
+ * Checks if these horizontal coordinates are the same as another, within 1 &mu;as.
  *
  * @param other           the reference horizontal coordinates
- * @return                `true` if these coordinates are the same as the reference within 1 uas,
+ * @return                `true` if these coordinates are the same as the reference within 1 &mu;as,
  *                        or else `false`.
  *
  * @sa operator!=()
@@ -148,7 +145,7 @@ bool Horizontal::operator==(const Horizontal& other) const {
  *
  * @param other           the reference horizontal coordinates
  * @return                `true` if these coordinates differ from the reference, by more than
- *                        1 uas, or else `false`.
+ *                        1 &mu;as, or else `false`.
  *
  * @sa operator==()
  */
@@ -205,18 +202,19 @@ Horizontal Horizontal::to_unrefracted(const Frame &frame, RefractionModel ref, c
 
 /**
  * Converts these horizontal coordinates to an apparent place on the sky. Typically you should call this
- * on unrefracted (astrometric) horizontal coordinates. If starting with observed (refracted) coordinates
- * you should call to_unrefracted() first, before calling this function.
+ * on unrefracted (astrometric) horizontal coordinates. If starting with observed (refracted)
+ * coordinates you should call to_unrefracted() first, before calling this function.
  *
- * @param frame   an Earth-based observing frame, defining the time of observation and the
- *                observer location, above (or slightly below) Earth's surface.
- * @param rv      [m/s] (optional) observed radial velocity, if any (default: 0.0).
- * @return        the apparent equatorial place corresponding to these astrometric horizontal coordinates
- *                on the sky.
+ * @param frame     an Earth-based observing frame, defining the time of observation and the
+ *                  observer location, above (or slightly below) Earth's surface.
+ * @param rv        [m/s] (optional) observed radial velocity, if any (default: 0.0).
+ * @param distance  [m] (optional) apparent distance at which the observed light originated.
+ * @return          the apparent equatorial place corresponding to these astrometric horizontal
+ *                  coordinates on the sky.
  *
  * @sa to_unrefracted(), Apparent::horizontal()
  */
-std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, double rv) const {
+std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, double rv, double distance) const {
   static const char *fn = "Horizontal::to_apparent";
 
   if(!frame.observer().is_geodetic()) {
@@ -231,26 +229,27 @@ std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, double rv) c
   }
 
   p.rv = rv / (Unit::au / Unit::day);
-  p.dis = distance().au();
+  p.dis = distance / Unit::au;
   radec2vector(p.ra, p.dec, 1.0, p.r_hat);
   return Apparent::from_tod_sky_pos(p, frame);
 }
 
 /**
- * Converts these horizontal coordinates to an apparent place on the sky. Typically you should call this
- * on unrefracted (astrometric) horizontal coordinates. If starting with observed (refracted) coordinates
- * you should call to_unrefracted() first, before calling this function.
+ * Converts these horizontal coordinates to an apparent place on the sky. Typically you should
+ * call this on unrefracted (astrometric) horizontal coordinates. If starting with observed
+ * (refracted) coordinates you should call to_unrefracted() first, before calling this function.
  *
- * @param frame   an Earth-based observing frame, defining the time of observation and the
- *                observer location, above (or slightly below) Earth's surface.
- * @param rv      (optional) observed radial velocity, if any (default: 0.0).
- * @return        the apparent equatorial place corresponding to these astrometric horizontal coordinates
- *                on the sky.
+ * @param frame     an Earth-based observing frame, defining the time of observation and the
+ *                  observer location, above (or slightly below) Earth's surface.
+ * @param rv        (optional) observed radial velocity, if any (default: 0.0).
+ * @param distance  (optional) apparent distance at which the observed light originated.
+ * @return          the apparent equatorial place corresponding to these astrometric horizontal
+ *                  coordinates on the sky.
  *
  * @sa to_unrefracted(), Apparent::to_horizontal()
  */
-std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, const Speed& rv) const {
-  return to_apparent(frame, rv.m_per_s());
+std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, const Speed& rv, const Distance& distance) const {
+  return to_apparent(frame, rv.m_per_s(), distance.m());
 }
 
 /**
@@ -272,7 +271,7 @@ std::string Horizontal::to_string(enum novas_separator_type separator, int decim
  * @return    a reference to the static standard invalid coordinates.
  */
 const Horizontal& Horizontal::invalid() {
-  static const Horizontal _invalid = Horizontal(NAN, NAN, NAN);
+  static const Horizontal _invalid = Horizontal(NAN, NAN);
   return _invalid;
 }
 

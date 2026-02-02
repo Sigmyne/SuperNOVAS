@@ -37,6 +37,8 @@ int main() {
   if(!test.equals("y()", a.y(), 2.0 * Unit::km / Unit::s)) n++;
   if(!test.equals("z()", a.z(), -3.0 * Unit::km / Unit::s)) n++;
   if(!test.equals("speed()", a.speed().km_per_s(), sqrt(14.0), 1e-14)) n++;
+  if(!test.equals("travel()", a.travel(Interval(2.0)).distance().km(), 2.0 * sqrt(14.0), 1e-14)) n++;
+  if(!test.equals("operator*(Interval)", (a * Interval(3.0)).distance().km(), 3.0 * sqrt(14.0), 1e-14)) n++;
   if(!test.equals("to_string()", a.to_string(), "VEL (-1.000 km/s, 2.000 km/s, -3.000 km/s)")) n++;
 
   Velocity ai = a.inv();
@@ -54,6 +56,9 @@ int main() {
 
   if(!test.check("equals()", a.equals(b, 1e-15 * Unit::km / Unit::s))) n++;
   if(!test.check("!equals()", !a.equals(ai, 1e-15 * Unit::km / Unit::s))) n++;
+
+  if(!test.check("operator ==", a == b)) n++;
+  if(!test.check("operator !=", a != ai)) n++;
 
   if(!test.equals("projection_on(x)", a.projection_on(Position(5.0, 0.0, 0.0)), a.x(), 1e-15 * Unit::km / Unit::s)) n++;
   if(!test.equals("projection_on(y)", a.projection_on(Position(0.0, 5.0, 0.0)), a.y(), 1e-15 * Unit::km / Unit::s)) n++;

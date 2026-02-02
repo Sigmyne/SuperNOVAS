@@ -22,10 +22,9 @@ namespace supernovas {
  *
  * @param longitude_rad   [rad] longitude coordinate
  * @param latitude_rad    [rad] latitude coordinate
- * @param distance_m      [m] distance, if needed / known (default: 1 Gpc)
  */
-Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_m)
-: _lon(longitude_rad), _lat(latitude_rad), _distance(distance_m) {
+Spherical::Spherical(double longitude_rad, double latitude_rad)
+: _lon(longitude_rad), _lat(latitude_rad) {
   static const char *fn = "Spherical";
 
   if(isnan(longitude_rad))
@@ -34,10 +33,6 @@ Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_
     novas_set_errno(EINVAL, fn, "input latitude is NAN");
   else if(fabs(latitude_rad) > Constant::halfPi)
     novas_set_errno(EINVAL, fn, "input latitude is outside [-pi:pi] range: %g", latitude_rad);
-  else if(isnan(distance_m))
-    novas_set_errno(EINVAL, fn, "input distance is NAN");
-  else if(distance_m < 0.0)
-    novas_set_errno(EINVAL, fn, "input distance is negative: %g", distance_m);
   else
     _valid = true;
 }
@@ -47,10 +42,9 @@ Spherical::Spherical(double longitude_rad, double latitude_rad, double distance_
  *
  * @param longitude   longitude coordinate
  * @param latitude    latitude coordinate
- * @param distance    distance, if needed / known (default: 1 Gpc)
  */
-Spherical::Spherical(const Angle& longitude, const Angle& latitude, const Distance& distance)
-: Spherical(longitude.rad(), latitude.rad(), distance.m()) {}
+Spherical::Spherical(const Angle& longitude, const Angle& latitude)
+: Spherical(longitude.rad(), latitude.rad()) {}
 
 
 /**
@@ -70,12 +64,11 @@ Spherical::Spherical(const Angle& longitude, const Angle& latitude, const Distan
  *                    degrees.
  * @param lat         string representation of the declination coordinate as DMS or decimal
  *                    degrees.
- * @param distance    (optional) the distance, if needed / known (default: 1 Gpc)
  *
  * @sa novas_str_degrees() for details on string representation that can be parsed.
  */
-Spherical::Spherical(const std::string& lon, const std::string& lat, const Distance& distance)
-: Spherical(Angle(lon), Angle(lat), distance) {}
+Spherical::Spherical(const std::string& lon, const std::string& lat)
+: Spherical(Angle(lon), Angle(lat)) {}
 
 
 /**
@@ -96,13 +89,13 @@ Angle Spherical::distance_to(const Spherical& other) const {
  *
  * @sa Position::to_spherical()
  */
-Position Spherical::xyz() const {
+Position Spherical::xyz(const Distance& distance) const {
   double pos[3];
-  double xy = _distance.m() * cos(_lat.rad());
+  double xy = distance.m() * cos(_lat.rad());
 
   pos[0] = xy * cos(_lon.rad());
   pos[1] = xy * sin(_lon.rad());
-  pos[2] = _distance.m() * sin(_lat.rad());
+  pos[2] = distance.m() * sin(_lat.rad());
 
   return Position(pos);
 }
@@ -130,17 +123,6 @@ const Angle& Spherical::latitude() const {
 }
 
 /**
- * Returns the radial distance component.
- *
- * @return    the reference to the radial distance coordinate stored internally.
- *
- * @sa longitude(), latitude()
- */
-const Distance& Spherical::distance() const {
-  return _distance;
-}
-
-/**
  * Returns a string representation of these spherical coordinates in DMS format, optionally
  * specifying the type of separator to use and the precision to print.
  *
@@ -153,5 +135,6 @@ const Distance& Spherical::distance() const {
 std::string Spherical::to_string(enum novas_separator_type separator, int decimals) const {
   return _lon.to_string(separator, decimals) + "  " + _lat.to_string(separator, decimals);
 }
+
 
 } // namespace supernovas

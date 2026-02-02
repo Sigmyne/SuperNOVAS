@@ -51,23 +51,8 @@ static std::string _name_for(const char *base, double year) {
   return std::string(s);
 }
 
-Equinox::Equinox(const std::string& name, double jd_tt)
-: _name(name), _system(NOVAS_MOD), _jd(jd_tt) {
-  if(isnan(_jd))
-    novas_set_errno(EINVAL, "Equinox()", "input date is NAN");
-  else
-    _valid = true;
-
-  if(jd_tt == NOVAS_JD_J2000)
-    _system = NOVAS_J2000;
-
-  _name = name;
-
-  if(name.length() < 3) return;
-  if(strncasecmp(&name.c_str()[1], "CRS", 3) == 0) return;
-  if(strcasecmp(name.c_str(), NOVAS_SYSTEM_FK6)) return;
-
-  _system = NOVAS_ICRS;
+Equinox::Equinox(const std::string& name, double jd) : _name(name), _system(NOVAS_MOD), _jd(jd) {
+  _valid = isfinite(jd);
 }
 
 Equinox::Equinox(enum novas::novas_reference_system system, double jd_tt)
@@ -99,22 +84,52 @@ Equinox::Equinox(enum novas::novas_reference_system system, double jd_tt)
       return;
   }
 
-  if(isnan(jd_tt))
-    novas_set_errno(EINVAL, fn, "input Julian date is NAN");
-  else
-    _valid = true;
+  _valid = true;
 }
 
 /**
- * Checks if this equatorial system is the same exact equatorial system as the right-hand side.
+ * Checks if this equatorial system equals the equatorial system as the right-hand side, with the
+ * epochs also matching within the specified precision.
  *
  * @param system  The equatorial system on the right-hand side.
- * @return        `true` if the two equatorial systems are exactly the same, or else `false`.
+ * @param dt      [s] The tolerance to epoch differences in seconds.
+ * @return        `true` if the two equatorial systems are essentially the same, or else `false`.
  *
- * @sa operator!=()
+ * @sa operator==()
+ */
+bool Equinox::equals(const Equinox& system, double dt) const {
+  if(_system != system._system)
+    if(!(is_mod() && system.is_mod()))
+      return false;
+
+  return fabs(_jd - system._jd) * Unit::day < fabs(dt);
+}
+
+/**
+ * Checks if this equatorial system equals the equatorial system as the right-hand side, with the
+ * epochs also matching within the specified precision.
+ *
+ * @param system  The equatorial system on the right-hand side.
+ * @param dt      [s] The tolerance to epoch differences.
+ * @return        `true` if the two equatorial systems are essentially the same, or else `false`.
+ *
+ * @sa operator==()
+ */
+bool Equinox::equals(const Equinox& system, const Interval& dt) const {
+  return equals(system, dt.seconds());
+}
+
+/**
+ * Checks if this equatorial system equals the equatorial system as the right-hand side, with the
+ * epochs also matching to within 1 second.
+ *
+ * @param system  The equatorial system on the right-hand side.
+ * @return        `true` if the two equatorial systems are essentially the same, or else `false`.
+ *
+ * @sa equals(), operator!=()
  */
 bool Equinox::operator==(const Equinox& system) const {
-  return _system == system._system && _name == system._name && _jd == system._jd;
+  return equals(system);
 }
 
 /**
@@ -126,7 +141,7 @@ bool Equinox::operator==(const Equinox& system) const {
  * @sa operator==()
  */
 bool Equinox::operator!=(const Equinox& system) const {
-  return !(*this == system);
+  return !equals(system);
 }
 
 
@@ -273,25 +288,55 @@ std::string Equinox::to_string() const {
  * @return          an optional containing the corresponding valid equatorial system, or else
  *                  `std::nullopt`.
  *
- * @sa is_valid(), icrs(), j2000(), fk5(), fk4(), b1950(), b1900()
+ * @sa is_valid(), icrs(), j2000(), b1950(), b1900()
  */
 std::optional<Equinox> Equinox::from_string(const std::string& name) {
   const char *s = name.c_str();
+  enum novas_reference_system sys = NOVAS_MOD;
+  double ejd;
 
-  if(strncasecmp(s, "TOD ", 4))
-    return Equinox(NOVAS_TOD, novas_epoch(&s[4]));
+  if(name.length() < 3) {
+    novas_set_errno(EINVAL, "Equinox::from_string", "No catalog system matching: '%s'", name.c_str());
+    return std::nullopt;
+  }
 
-  if(strncasecmp(s, "CIRS ", 5))
-    return Equinox(NOVAS_CIRS, novas_epoch(&s[5]));
+  if(strcasecmp(&s[1], "CRS") == 0)
+    return Equinox(NOVAS_ICRS, NOVAS_JD_J2000);
 
-  double ejd = novas_epoch(s);
+  if(strcasecmp(s, "FK6") == 0)
+    return Equinox(NOVAS_ICRS, NOVAS_JD_J2000);
+
+  if(strcasecmp(s, "FK5") == 0)
+    return Equinox(NOVAS_J2000, NOVAS_JD_J2000);
+
+  if(strcasecmp(s, "FK4") == 0)
+    return Equinox(NOVAS_MOD, NOVAS_JD_B1950);
+
+  if(strncasecmp(s, "TOD ", 4) == 0) {
+    sys = NOVAS_TOD;
+    ejd = novas_epoch(&s[4]);
+  }
+  else if(strncasecmp(s, "MOD ", 4) == 0) {
+    s = &s[4];
+    ejd = novas_epoch(s);
+  }
+  else if(strncasecmp(s, "CIRS ", 5) == 0) {
+    sys = NOVAS_CIRS;
+    ejd = novas_epoch(&s[5]);
+  }
+  else {
+    ejd = novas_epoch(s);
+  }
 
   if(isnan(ejd)) {
     novas_set_errno(EINVAL, "Equinox::from_string", "No catalog system matching: '%s'", name.c_str());
     return std::nullopt;
   }
 
-  return Equinox(name, ejd);
+  if(sys == NOVAS_MOD && fabs(ejd - NOVAS_JD_J2000) * Unit::day < Unit::s)
+    sys = NOVAS_J2000;
+
+  return Equinox(sys, ejd);
 }
 
 /**
@@ -308,12 +353,12 @@ std::optional<Equinox> Equinox::for_reference_system(enum novas::novas_reference
   if(system == NOVAS_GCRS || system == NOVAS_ICRS || system == NOVAS_J2000) {
     jd_tt = NOVAS_JD_J2000;
   }
-  else if(isnan(jd_tt)) {
-    novas_set_errno(EINVAL, fn, "input JD is NAN");
-    return std::nullopt;
-  }
   else if((unsigned) system >= NOVAS_REFERENCE_SYSTEMS) {
     novas_set_errno(EINVAL, fn, "invalid reference system: %d", system);
+    return std::nullopt;
+  }
+  else if(isnan(jd_tt)) {
+    novas_set_errno(EINVAL, fn, "input JD is NAN");
     return std::nullopt;
   }
 
@@ -338,7 +383,7 @@ std::optional<Equinox> Equinox::for_reference_system(enum novas::novas_reference
  * @sa mod_at_besselial_epoch(), j2000(), hip()
  */
 Equinox Equinox::mod(double jd_tt) {
-  return Equinox::for_reference_system(NOVAS_MOD, jd_tt).value();
+  return Equinox(NOVAS_MOD, jd_tt);
 }
 
 /**
@@ -353,7 +398,7 @@ Equinox Equinox::mod(double jd_tt) {
  * @sa mod_at_besselial_epoch(), j2000(), hip()
  */
 Equinox Equinox::mod(const Time& time) {
-  return Equinox::mod(time.jd());
+  return Equinox(NOVAS_MOD, time.jd());
 }
 
 /**
@@ -385,7 +430,7 @@ Equinox Equinox::mod_at_besselian_epoch(double year) {
  * @sa cirs()
  */
 Equinox Equinox::tod(double jd_tt) {
-  return Equinox::for_reference_system(NOVAS_TOD, jd_tt).value();
+  return Equinox(NOVAS_TOD, jd_tt);
 }
 
 /**
@@ -400,7 +445,7 @@ Equinox Equinox::tod(double jd_tt) {
  * @sa cirs()
  */
 Equinox Equinox::tod(const Time& time) {
-  return Equinox::tod(time.jd());
+  return Equinox(NOVAS_TOD, time.jd());
 }
 
 /**
@@ -416,7 +461,7 @@ Equinox Equinox::tod(const Time& time) {
  * @sa tod()
  */
 Equinox Equinox::cirs(double jd_tt) {
-  return Equinox::for_reference_system(NOVAS_CIRS, jd_tt).value();
+  return Equinox(NOVAS_CIRS, jd_tt);
 }
 
 /**
@@ -431,7 +476,7 @@ Equinox Equinox::cirs(double jd_tt) {
  * @sa tod()
  */
 Equinox Equinox::cirs(const Time& time) {
-  return Equinox::cirs(time.jd());
+  return Equinox(NOVAS_CIRS, time.jd());
 }
 
 /**
@@ -450,7 +495,7 @@ Equinox Equinox::cirs(const Time& time) {
  * @sa NOVAS_ICRS, NOVAS_GCRS, NOVAS_SYSTEM_ICRS
  */
 const Equinox& Equinox::icrs() {
-  static const Equinox _icrs = Equinox::for_reference_system(NOVAS_ICRS, NOVAS_JD_J2000).value();
+  static const Equinox _icrs = Equinox(NOVAS_ICRS, NOVAS_JD_J2000);
   return _icrs;
 }
 
@@ -465,7 +510,7 @@ const Equinox& Equinox::icrs() {
  * @sa icrs(), mod(), Time::j2000(), NOVAS_JD_J2000, NOVAS_SYSTEM_J2000
  */
 const Equinox& Equinox::j2000() {
-  static const Equinox _j2000 = Equinox::mod(NOVAS_JD_J2000);
+  static const Equinox _j2000 = Equinox(NOVAS_J2000, NOVAS_JD_J2000);
   return _j2000;
 }
 
@@ -481,7 +526,7 @@ const Equinox& Equinox::j2000() {
  * @sa icrs(), mod(), Time::hip() NOVAS_JD_HIP, NOVAS_SYSTEM_HIP
  */
 const Equinox& Equinox::hip() {
-  static const Equinox _hip = Equinox::mod(NOVAS_JD_HIP);
+  static const Equinox _hip = Equinox(NOVAS_MOD, NOVAS_JD_HIP);
   return _hip;
 }
 

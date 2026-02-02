@@ -549,11 +549,24 @@ time_t CalendarDate::unix_time() const {
  *
  * @param calendar    a calendar in which to express this date
  * @return            this date, expressed in the specified other calendar.
+ *
+ * @sa operator>>(Calendar&)
  */
 CalendarDate CalendarDate::to_calendar(const Calendar& calendar) const {
   return calendar.date(_jd);
 }
 
+/**
+ * Returns this date in the specified other calendar. Same as `to_calendar()`.
+ *
+ * @param calendar    a calendar in which to express this date
+ * @return            this date, expressed in the specified other calendar.
+ *
+ * @sa to_calendar(Calendar&)
+ */
+CalendarDate CalendarDate::operator>>(const Calendar& calendar) const {
+  return to_calendar(calendar);
+}
 /**
  * Converts this calendar date to ans astronomical time representation, given the specified
  * Earth Orientation Parameters, and astronomical timescale. Not, that calendar dates have

@@ -215,7 +215,7 @@ Distance Apparent::distance() const {
  * @sa cirs(), ecliptic(), galactic(), horizontal()
  */
 Equatorial Apparent::equatorial() const {
-  return Equatorial(_pos.ra * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::tod(_frame.time()), _pos.dis * Unit::au);
+  return Equatorial(_pos.ra * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::tod(_frame.time()));
 }
 
 /**
@@ -227,7 +227,7 @@ Equatorial Apparent::equatorial() const {
  * @sa equatorial(), ecliptic(), galactic(), horizontal()
  */
 Equatorial Apparent::cirs() const {
-  return Equatorial((_pos.ra - cirs2tod_ra) * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::cirs(_frame.time()), _pos.dis * Unit::au);
+  return Equatorial((_pos.ra - cirs2tod_ra) * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::cirs(_frame.time()));
 }
 
 /**
@@ -283,7 +283,7 @@ std::optional<Horizontal> Apparent::horizontal() const {
     return std::nullopt;
   }
 
-  return Horizontal(az * Unit::deg, el * Unit::deg, _pos.dis * Unit::au);
+  return Horizontal(az * Unit::deg, el * Unit::deg);
 }
 
 /**

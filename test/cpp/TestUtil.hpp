@@ -17,7 +17,9 @@ class TestUtil {
 public:
   std::string _classname;
 
-  explicit TestUtil(const std::string& classname) : _classname(classname) {}
+  explicit TestUtil(const std::string& classname) : _classname(classname) {
+    //novas::novas_debug(novas::NOVAS_DEBUG_ON);
+  }
 
   bool equals(const std::string& funcname, double a, double b, double precision = 0.0) {
     if(fabs(a-b) > fabs(precision)) {

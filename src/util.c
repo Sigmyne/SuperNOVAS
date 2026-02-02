@@ -382,7 +382,7 @@ int novas_Rz(double angle, double *v) {
 
 /**
  * Returns a string representation of a decimal value with the specified precision. It is
- * effectively the same as `%.<n>g` where `<n>` is the number of decimal places to print.
+ * effectively the same as `%.<n+1>g` where `<n>` is the number of decimal places to print.
  *
  * @param value       The value to print
  * @param decimals    Number of decimal places to show
@@ -407,10 +407,10 @@ int novas_print_decimal(double value, int decimals, char *str, int len) {
 
   if(decimals < 0)
     decimals = 0;
-  else if(decimals > 16)
-    decimals = 16;
+  else if(decimals > 15)
+    decimals = 15;
 
-  snprintf(fmt, sizeof(fmt), "%%.%dg", decimals);
+  snprintf(fmt, sizeof(fmt), "%%.%dg", decimals + 1);
   n = snprintf(s, sizeof(s), fmt, value);
 
   if(n >= len) {

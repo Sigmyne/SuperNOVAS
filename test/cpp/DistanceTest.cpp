@@ -22,6 +22,7 @@ int main() {
 
   if(!test.check("is_valid(at_Gpc())", Distance::at_Gpc().is_valid())) n++;
   if(!test.equals("at_Gpc()", Distance::at_Gpc().m(), Unit::Gpc, 1e-15)) n++;
+  if(!test.equals("zero()", Distance::zero().m(), 0.0, 0.0)) n++;
 
   Distance a(1.0 * Unit::au);
   if(!test.check("is_valid(1 AU)", a.is_valid())) n++;

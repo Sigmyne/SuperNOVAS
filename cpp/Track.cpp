@@ -341,7 +341,7 @@ HorizontalTrack::HorizontalTrack(const Time& ref_time, const Interval& range,
  */
 std::optional<Horizontal> HorizontalTrack::projected_at(const Time& time) const {
   if(is_valid_at(time))
-    return Horizontal(unchecked_longitude(time), unchecked_latitude(time), unchecked_distance(time));
+    return Horizontal(unchecked_longitude(time), unchecked_latitude(time));
   return std::nullopt;
 }
 
@@ -376,7 +376,7 @@ HorizontalTrack HorizontalTrack::from_novas_track(const novas_track *track, cons
  */
 std::optional<Equatorial> EquatorialTrack::projected_at(const Time& time) const {
   if(is_valid_at(time))
-    return Equatorial(unchecked_longitude(time), unchecked_latitude(time), _system, unchecked_distance(time));
+    return Equatorial(unchecked_longitude(time), unchecked_latitude(time), _system);
   return std::nullopt;
 }
 

@@ -31,7 +31,6 @@ namespace supernovas {
  *  ```c++
  *    CatalogEntry star =
  *       CatalogEntry("Antares", Equatorial("16h26m20.1918s", "-26d19m23.138s", Equinox::b1950()))
- *       .catalog("HIP", 80763)
  *       .proper_motion( -12.11 * Unit::mas / Unit::year, -23.30 * Unit::mas / Unit::year)
  *       .parallax(5.89 * Unit::arcsec)
  *       .radial_velocity(-3.4 * Unit::km / Unit::s);
@@ -170,17 +169,6 @@ std::string CatalogEntry::name() const {
 }
 
 /**
- * Returns the catalog number that was set.
- *
- * @return   the catalong number that was specified, or 0 if it was not explicitly defined.
- *
- * @sa catalog(), name()
- */
-long CatalogEntry::number() const {
-  return _entry.starnumber;
-}
-
-/**
  * Returns the catalog right ascention (R.A.) coordinate as a time-angle.
  *
  * @return    the catalog right-ascention angle as defined in the catalog system.
@@ -278,7 +266,7 @@ Angle CatalogEntry::parallax() const {
  * @sa system(), ra(), dec(), distance()
  */
 Equatorial CatalogEntry::equatorial() const {
-  return Equatorial(ra(), dec(), system(), distance());
+  return Equatorial(ra(), dec(), system());
 }
 
 /**
@@ -492,23 +480,6 @@ CatalogEntry& CatalogEntry::redshift(double z) {
     _valid = false;
   }
 
-  return *this;
-}
-
-/**
- * Sets the catalog name and the objects catalog ID number, returning itself to enable builder pattern.
- *
- * @param name      catalog name (only SIZE_OF_CAT_NAME character, including termination will be stored).
- *                  For example: "NGC", "HIP", "FK5", "3C", "IRAS".
- * @param number    catalog number of source in above catalog.
- * @return          itself
- *
- * @sa system(), radial_velocity(), v_lsr(), distance(), parallax(), proper_motion(), catalog()
- * @sa system()
- */
-CatalogEntry& CatalogEntry::catalog(const std::string& name, long number) {
-  if(novas_set_catalog(&_entry, name.c_str(), number) != 0)
-    novas_trace_invalid("CatalogEntry::catalog(name, number)");
   return *this;
 }
 

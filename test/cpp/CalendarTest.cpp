@@ -86,8 +86,11 @@ int main() {
   CalendarDate db1 = (db - Interval(13 * Unit::day)).to_calendar(a);
   if(!test.equals("J2000 (gregorian vs roman)", da.jd(), db1.jd())) n++;
 
+  if(!test.check("eqauls(ms)", da.equals(dc, Interval(Unit::ms)))) n++;
+
   if(!test.check("operator ==", da == dc)) n++;
   if(!test.check("operator !=", da != db)) n++;
+  if(!test.check("operator != (!)", !(da != dc))) n++;
 
   if(!test.check("operator >=", da >= dc)) n++;
   if(!test.check("operator <=", da <= dc)) n++;
@@ -102,6 +105,12 @@ int main() {
   if(!test.check("operator +(Interval)", dd == da + Interval(1.0 * Unit::hour))) n++;
   if(!test.check("operator -(Interval)", da == dd - Interval(1.0 * Unit::hour))) n++;
   if(!test.check("operator -(CalendarDate)", (dd - da).equals(Interval(1.0 * Unit::hour), Unit::ms))) n++;
+
+  if(!test.check("operator >> 1582-10-04 (roman) >> (astronomical)",
+          (Calendar::roman().date(1582, 10, 4) >> Calendar::astronomical()) == Calendar::roman().date(1582, 10, 4))) n++;
+
+  if(!test.check("operator >> 1582-10-05 (roman) >> (astronomical)",
+          (Calendar::roman().date(1582, 10, 5) >> Calendar::astronomical()) == Calendar::gregorian().date(1582, 10, 15))) n++;
 
   struct timespec ts;
   ts.tv_sec = UNIX_J2000;

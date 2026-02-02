@@ -33,10 +33,9 @@ void Ecliptic::validate() {
  * @param system          (optional) the equatorial coordinate reference system that defines the
  *                        the origin of ecliptic longitude, that is the equinox of date (default:
  *                        ICRS).
- * @param distance_m      [m] (optional) the distance, in needed / known (default: 1 Gpc).
  */
-Ecliptic::Ecliptic(double longitude_rad, double latitude_rad, const Equinox& system, double distance_m)
-: Spherical(longitude_rad, latitude_rad, distance_m), _equator(system.equator_type()), _jd(system.jd()) {
+Ecliptic::Ecliptic(double longitude_rad, double latitude_rad, const Equinox& system)
+: Spherical(longitude_rad, latitude_rad), _equator(system.equator_type()), _jd(system.jd()) {
   validate();
 }
 
@@ -49,10 +48,9 @@ Ecliptic::Ecliptic(double longitude_rad, double latitude_rad, const Equinox& sys
  * @param system      (optional) The equatorial coordinate reference system that defines the
  *                    origin of ecliptic longitude, that is the equinox of date (default:
  *                    ICRS).
- * @param distance    (optional) the distance, in needed / known (default: 1 Gpc).
  */
-Ecliptic::Ecliptic(const Angle& longitude, const Angle& latitude, const Equinox &system, const Distance& distance)
-: Ecliptic(longitude.rad(), latitude.rad(), system, distance.m()) {}
+Ecliptic::Ecliptic(const Angle& longitude, const Angle& latitude, const Equinox &system)
+: Ecliptic(longitude.rad(), latitude.rad(), system) {}
 
 /**
  * Instantiates ecliptic coordinates with the specified string representations of the longitude
@@ -74,12 +72,11 @@ Ecliptic::Ecliptic(const Angle& longitude, const Angle& latitude, const Equinox 
  * @param system      (optional) the equatorial coordinate reference system that defines the
  *                    the origin of ecliptic longitude, that is the equinox of date (default:
  *                    ICRS).
- * @param distance    (optional) the distance, if needed / known (default: 1 Gpc)
  *
  * @sa novas_str_degrees() for details on string representation that can be parsed.
  */
-Ecliptic::Ecliptic(const std::string& longitude, const std::string& latitude, const Equinox& system, const Distance& distance)
-: Ecliptic(Angle(longitude), Angle(latitude), system, distance) {}
+Ecliptic::Ecliptic(const std::string& longitude, const std::string& latitude, const Equinox& system)
+: Ecliptic(Angle(longitude), Angle(latitude), system) {}
 
 /**
  * Instantiates new ecliptic coordinates with the specified ecliptic cartesian position vector.
@@ -99,7 +96,7 @@ Ecliptic::Ecliptic(const Position& pos, const Equinox& system)
  * precision.
  *
  * @param other           the reference ecliptic coordinates
- * @param precision_rad   [rad] (optional) precision for equality test (default: 1 uas).
+ * @param precision_rad   [rad] (optional) precision for equality test (default: 1 &mu;as).
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
@@ -114,7 +111,7 @@ bool Ecliptic::equals(const Ecliptic& other, double precision_rad) const {
  * precision.
  *
  * @param other           the reference ecliptic coordinates
- * @param precision       (optional) precision for equality test (default: 1 uas).
+ * @param precision       (optional) precision for equality test (default: 1 &mu;as).
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
@@ -126,10 +123,10 @@ bool Ecliptic::equals(const Ecliptic& other, const Angle& precision) const {
 }
 
 /**
- * Checks if these ecliptic coordinates are the same as another, within 1 uas.
+ * Checks if these ecliptic coordinates are the same as another, within 1 &mu;as.
  *
  * @param other           the reference ecliptic coordinates
- * @return                `true` if these coordinates are the same as the reference within 1 uas,
+ * @return                `true` if these coordinates are the same as the reference within 1 &mu;as,
  *                        or else `false`.
  *
  * @sa operator!=()
@@ -139,11 +136,11 @@ bool Ecliptic::operator==(const Ecliptic& other) const {
 }
 
 /**
- * Checks if these ecliptic coordinates differ from another, by more than 1 uas.
+ * Checks if these ecliptic coordinates differ from another, by more than 1 &mu; uas.
  *
  * @param other           the reference ecliptic coordinates
  * @return                `true` if these coordinates differ from the reference, by more than
- *                        1 uas, or else `false`.
+ *                        1 &mu;as, or else `false`.
  *
  * @sa operator==()
  */
@@ -331,14 +328,14 @@ Equatorial Ecliptic::to_equatorial() const {
 
     switch(_equator) {
       case NOVAS_GCRS_EQUATOR:
-        return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::icrs(), distance().m());
+        return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::icrs());
       case NOVAS_MEAN_EQUATOR:
         if(_jd == NOVAS_JD_J2000)
-          return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::j2000(), distance().m());
+          return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::j2000());
         else
-          return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::mod(_jd), distance().m());
+          return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::mod(_jd));
       case NOVAS_TRUE_EQUATOR:
-        return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::tod(_jd), distance().m());
+        return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::tod(_jd));
     }
   }
 
@@ -411,7 +408,7 @@ std::string Ecliptic::to_string(enum novas_separator_type separator, int decimal
  * @return    a reference to the static standard invalid coordinates.
  */
 const Ecliptic& Ecliptic::invalid() {
-  static const Ecliptic _invalid = Ecliptic(NAN, NAN, Equinox::invalid(), NAN);
+  static const Ecliptic _invalid = Ecliptic(NAN, NAN, Equinox::invalid());
   return _invalid;
 }
 

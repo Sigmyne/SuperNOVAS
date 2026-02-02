@@ -4941,8 +4941,8 @@ static int test_print_decimal() {
 
   char str[40] = {'\0'};
 
-  novas_print_decimal(M_PI, 5, str, sizeof(str));
-  if(!is_ok("print_decimal:5", strcmp(str, "3.1416"))) {
+  novas_print_decimal(M_PI, 4, str, sizeof(str));
+  if(!is_ok("print_decimal:4", strcmp(str, "3.1416"))) {
     printf(" ! expected 3.1415, got %s\n", str);
     n++;
   }
@@ -4953,8 +4953,8 @@ static int test_print_decimal() {
     n++;
   }
 
-  novas_print_decimal(1.0/3.0, 17, str, sizeof(str));
-  if(!is_ok("print_decimal:decimals:17", strlen(str) != 18)) {
+  novas_print_decimal(1.0/3.0, 16, str, sizeof(str));
+  if(!is_ok("print_decimal:decimals:16", strlen(str) != 18)) {
     printf(" ! expected 16 decimals, got %s\n", str);
     n++;
   }
