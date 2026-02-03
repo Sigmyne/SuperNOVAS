@@ -17,14 +17,14 @@ namespace supernovas {
 
 
 static bool is_valid_sky_pos(const char *fn, const sky_pos *p) {
-  if(isnan(p->ra))
-    return novas_error(0, EINVAL, fn, "input RA is NAN");
+  if(!isfinite(p->ra))
+    return novas_error(0, EINVAL, fn, "input RA is NAN or infinite");
 
-  else if(isnan(p->dec))
-    return novas_error(0, EINVAL, fn, "input Dec is NAN");
+  else if(!isfinite(p->dec))
+    return novas_error(0, EINVAL, fn, "input Dec is NAN or infinite");
 
-  else if(isnan(p->rv))
-    return novas_error(0, EINVAL, fn, "input radial veocity is NAN");
+  else if(!isfinite(p->rv))
+    return novas_error(0, EINVAL, fn, "input radial veocity is NAN or infinite");
 
   else if(p->rv * Unit::au / Unit::day > Constant::c)
     return novas_error(0, EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", p->rv * Unit::au / Unit::day);

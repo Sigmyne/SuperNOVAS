@@ -24,8 +24,8 @@ namespace supernovas {
 Temperature::Temperature(double deg_C) : _deg_C(deg_C) {
   static const char *fn = "Temperature()";
 
-  if(isnan(deg_C))
-    novas::novas_set_errno(EINVAL, fn, "input value is NAN");
+  if(!isfinite(deg_C))
+    novas::novas_set_errno(EINVAL, fn, "input value is NAN or infinite");
   else if(kelvin() < 0.0)
     novas::novas_set_errno(EINVAL, fn, "input value is below 0K");
   else

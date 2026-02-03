@@ -31,14 +31,14 @@ Site::Site() {}
 Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum novas_reference_ellipsoid ellipsoid) {
   static const char *fn = "Site()";
 
-  if(isnan(longitude_rad))
-    novas_set_errno(EINVAL, fn, "input longitude is NAN");
-  else if(isnan(latitude_rad))
-    novas_set_errno(EINVAL, fn, "input latitude is NAN");
-  else if(fabs(latitude_rad) < Constant::halfPi)
+  if(!isfinite(longitude_rad))
+    novas_set_errno(EINVAL, fn, "input longitude is NAN or infinite");
+  else if(!isfinite(latitude_rad))
+    novas_set_errno(EINVAL, fn, "input latitude is NAN or infinite");
+  else if(fabs(latitude_rad) < Constant::half_pi)
     novas_set_errno(EINVAL, fn, "input latitude is outside of [-pi:pi] range: %g", latitude_rad);
-  else if(isnan(altitude_m))
-    novas_set_errno(EINVAL, fn, "input altitude is NAN");
+  else if(!isfinite(altitude_m))
+    novas_set_errno(EINVAL, fn, "input altitude is NAN or infinite");
   else if(altitude_m < -10000.0)
     novas_set_errno(EINVAL, fn, "altitude is more than 10 km below surface: %g m", altitude_m);
   else if(altitude_m > 100000.0)

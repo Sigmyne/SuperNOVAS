@@ -383,6 +383,10 @@ CatalogSource::CatalogSource(const CatalogEntry& e)
 : Source(), _cat(e) {
   static const char *fn = "CatalogSource()";
 
+  // defaults...
+  _object.type = NOVAS_CATALOG_OBJECT;
+  _object.number = e._cat_entry()->starnumber;
+
   if(make_cat_object_sys(e._cat_entry(), e.system().name().c_str(), &_object) != 0)
     novas_trace_invalid(fn);
   else if(!e.is_valid())
@@ -480,6 +484,10 @@ double SolarSystemSource::solar_power(const Time& time) const {
  * @param number    the NOVAS ID number
  */
 Planet::Planet(enum novas_planet number) : SolarSystemSource() {
+  // defaults...
+  _object.type = NOVAS_PLANET;
+  _object.number = number;
+
   if(make_planet(number, &_object) != 0)
     novas_set_errno(EINVAL, "Planet::for_novas_id", "no planet for NOVAS id number: %d", number);
   else
@@ -806,8 +814,14 @@ const Planet& Planet::pluto_system() {
  * @param number    source ID number in the ephemeris data (for id-based lookup).
  */
 EphemerisSource::EphemerisSource(const std::string &name, long number) : SolarSystemSource() {
+  // defaults...
+  _object.type = NOVAS_EPHEM_OBJECT;
+  _object.number = number;
+
   if(make_ephem_object(name.c_str(), number, &_object) != 0)
     novas_trace("EphemerisSource(name, number)", 0, 0);
+  else
+    _valid = true;
 }
 
 std::string EphemerisSource::to_string() const {
@@ -824,6 +838,10 @@ std::string EphemerisSource::to_string() const {
  */
 OrbitalSource::OrbitalSource(const std::string& name, long number, const Orbital& orbit) : SolarSystemSource() {
   static const char *fn = "OrbitalSource()";
+
+  // defaults...
+  _object.type = NOVAS_ORBITAL_OBJECT;
+  _object.number = number;
 
   if(make_orbital_object(name.c_str(), number, orbit._novas_orbital(), &_object) != 0)
     novas_trace_invalid(fn);
@@ -848,7 +866,7 @@ const novas_orbital * OrbitalSource::_novas_orbital() const {
  * @return    the Keplerian orbital parameters.
  */
 Orbital OrbitalSource::orbital() const {
-  return Orbital::from_novas_orbit(&_object.orbit);
+  return Orbital::from_novas_orbit(&_object.orbit).value();
 }
 
 std::string OrbitalSource::to_string() const {

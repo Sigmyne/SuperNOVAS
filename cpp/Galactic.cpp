@@ -136,6 +136,9 @@ Angle Galactic::distance_to(const Galactic& other) const {
  * @sa Equatorial::to_galactic(), to_ecliptic()
  */
 Equatorial Galactic::to_equatorial() const {
+  if(!is_valid())
+    return Equatorial::invalid();
+
   double ra = 0.0, dec = 0.0;
   gal2equ(longitude().deg(), latitude().deg(), &ra, &dec);
   return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::icrs());

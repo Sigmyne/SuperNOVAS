@@ -210,7 +210,7 @@ CalendarDate::CalendarDate(const Calendar& calendar, int year, int month, int da
  */
 CalendarDate::CalendarDate(const Calendar& calendar, double jd)
 : _calendar(calendar), _year(-1), _month(-1), _mday(-1), _time_of_day(NAN), _jd(jd) {
-  if(isnan(jd))
+  if(!isfinite(jd))
     novas_set_errno(EINVAL, "CalendarDate()", "input Julian Date is NAN");
   else
     _valid = true;

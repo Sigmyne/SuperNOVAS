@@ -31,8 +31,8 @@ namespace supernovas {
  * @sa TimeAngle, Unit
  */
 Angle::Angle(double radians) : _rad(remainder(radians, TWOPI)) {
-  if(isnan(radians))
-    novas_set_errno(EINVAL, "Angle(double)", "input angle is NAN");
+  if(!isfinite(radians))
+    novas_set_errno(EINVAL, "Angle(double)", "input angle is NAN or infinite");
   else
     _valid = true;
 }
@@ -50,7 +50,7 @@ Angle::Angle(double radians) : _rad(remainder(radians, TWOPI)) {
  */
 Angle::Angle(const std::string& str) {
   _rad = novas_str_degrees(str.c_str()) * Unit::deg;
-  if(isnan(_rad))
+  if(!isfinite(_rad))
     novas_set_errno(EINVAL, "Angle(std::string)", "invalid input angle: %s", str.c_str());
   else
     _valid = true;
@@ -93,7 +93,7 @@ Angle Angle::operator-(const Angle& r) const {
  * @sa operator==(), operator!=()
  */
 bool Angle::equals(const Angle& angle, double precision) const {
-  return fabs(remainder(_rad - angle._rad, Constant::twoPi)) < fabs(precision);
+  return fabs(remainder(_rad - angle._rad, Constant::two_pi)) < fabs(precision);
 }
 
 /**

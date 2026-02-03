@@ -40,6 +40,8 @@ int main() {
   if(!test.equals("x() inv", ai.x(), -a.x())) n++;
   if(!test.equals("y() inv", ai.y(), -a.y())) n++;
   if(!test.equals("z() inv", ai.z(), -a.z())) n++;
+  if(!test.check("operator!=() inv", (a != ai))) n++;
+  if(!test.check("operator==() inv !", !(a == ai))) n++;
 
   const double *pa = a._array();
   if(!test.equals("_array()[0]", pa[0], -1.0 * Unit::au)) n++;
@@ -51,6 +53,14 @@ int main() {
 
   if(!test.check("equals()", a.equals(b, 1e-15 * Unit::au))) n++;
   if(!test.check("!equals()", !a.equals(ai, 1e-15 * Unit::au))) n++;
+  if(!test.check("operator==()", a == b)) n++;
+  if(!test.check("operator!=() !", !(a != b))) n++;
+
+  Position c(p, Unit::m);
+  Position c1(-1.00001, 2.0001, -3.0001);
+
+  if(!test.check("operator==() mm", c == c1)) n++;
+  if(!test.check("operator!=() mm !", !(c != c1))) n++;
 
   if(!test.equals("projection_on(x)", a.projection_on(Position(5.0, 0.0, 0.0)), a.x(), 1e-15 * Unit::au)) n++;
   if(!test.equals("projection_on(y)", a.projection_on(Position(0.0, 5.0, 0.0)), a.y(), 1e-15 * Unit::au)) n++;

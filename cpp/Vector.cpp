@@ -27,8 +27,8 @@ Vector::Vector(double x, double y, double z) {
   _component[1] = y;
   _component[2] = z;
 
-  if(isnan(abs()))
-    novas_set_errno(EINVAL, "Vector()", "input has NAN component(s)");
+  if(!isfinite(abs()))
+    novas_set_errno(EINVAL, "Vector()", "input has NAN or infinite component(s)");
   else
     _valid = true;
 }

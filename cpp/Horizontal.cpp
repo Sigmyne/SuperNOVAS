@@ -93,7 +93,7 @@ const Angle& Horizontal::elevation() const {
  * @sa elevation(), azimuth()
  */
 const Angle Horizontal::zenith_angle() const {
-  return Angle(Constant::halfPi - latitude().rad());
+  return Angle(Constant::half_pi - latitude().rad());
 }
 
 /**

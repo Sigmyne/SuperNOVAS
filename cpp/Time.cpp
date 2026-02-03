@@ -32,7 +32,7 @@ namespace supernovas {
 static bool is_valid_parms(double dUT1,  enum novas_timescale timescale) {
   static const char *fn = "Time()";
 
-  if(isnan(dUT1))
+  if(!isfinite(dUT1))
     return novas_error(0, EINVAL, fn, "input dUT1 is NAN");
   else if(fabs(dUT1) > 1.0)
     return novas_error(0, EINVAL, fn, "input dUT1 exceeds +/- 1s limit: %g", dUT1);
@@ -54,8 +54,8 @@ static bool is_valid_parms(double dUT1,  enum novas_timescale timescale) {
  */
 Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
   novas_set_time(timescale, jd, leap_seconds, dUT1, &_ts);
-  if(isnan(jd))
-    novas_set_errno(EINVAL, "Time()", "input jd is NAN");
+  if(!isfinite(jd))
+    novas_set_errno(EINVAL, "Time()", "input jd is NAN or infinite");
   else
     _valid = is_valid_parms(dUT1, timescale);
 }
@@ -87,8 +87,8 @@ Time::Time(double jd, const EOP& eop, enum novas_timescale timescale)
 Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
   novas_set_split_time(timescale, ijd, fjd, leap_seconds, dUT1, &_ts);
 
-  if(isnan(fjd))
-    novas_set_errno(EINVAL, "Time()", "input jd is NAN");
+  if(!isfinite(fjd))
+    novas_set_errno(EINVAL, "Time()", "input jd is NAN or infinite");
   else
     _valid = is_valid_parms(dUT1, timescale);
 }
@@ -177,12 +177,12 @@ Time::Time(const novas_timespec *t) {
 
   if(!t)
     novas_set_errno(EINVAL, fn, "input timespec is NULL");
-  else if(isnan(t->fjd_tt))
-    novas_set_errno(EINVAL, fn, "input t->fjd_tt is NULL");
-  else if(isnan(t->ut1_to_tt))
-    novas_set_errno(EINVAL, fn, "input t->ut1_to_tt is NULL");
-  else if(isnan(t->tt2tdb))
-    novas_set_errno(EINVAL, fn, "input t->tt2tdb is NULL");
+  else if(!isfinite(t->fjd_tt))
+    novas_set_errno(EINVAL, fn, "input t->fjd_tt is NAN or infinite");
+  else if(!isfinite(t->ut1_to_tt))
+    novas_set_errno(EINVAL, fn, "input t->ut1_to_tt is NAN or infinite");
+  else if(!isfinite(t->tt2tdb))
+    novas_set_errno(EINVAL, fn, "input t->tt2tdb is NANA or infinite");
   else
     _valid = true;
 

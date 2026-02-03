@@ -44,13 +44,44 @@ Position::Position(const double pos[3], double unit)
  *
  * @param p           the reference position
  * @param precision   the precision for testing equality.
- * @return            `true` if this velocity equals the argument within the specified
+ * @return            `true` if this position equals the argument within the specified
  *                    precision, or else `false`.
  *
  * @sa operator==(), operator!=()
  */
 bool Position::equals(const Position& p, double precision) const {
   return Vector::equals(p, precision);
+}
+
+/**
+ * Checks if this position is the same as the specified other position to 12 significant figures,
+ * or 1mm (whichever is larger).
+ *
+ * @param p   the reference position
+ * @return    `true` if this position equals the argument to 12 significant figures or 1mm, or
+ *            else `false`.
+ *
+ * @sa equals(), operator!=()
+ */
+bool Position::operator==(const Position& p) const {
+  double tol = 1e-12 * p.abs();
+  if(tol < Unit::mm)
+    tol = Unit::mm;
+  return equals(p, tol);
+}
+
+/**
+ * Checks if this position is differs fro the specified other position by more than the 12th
+ * significant figure, or 1mm (whichever is larger).
+ *
+ * @param p   the reference position
+ * @return    `true` if this position equals the argument to 12 significant figures or 1mm, or
+ *            else `false`.
+ *
+ * @sa equals(), operator==()
+ */
+bool Position::operator!=(const Position& p) const {
+  return !(*this == p);
 }
 
 /**
@@ -105,7 +136,7 @@ Spherical Position::to_spherical() const {
   double longitude = atan2(_component[1], _component[0]);
   double xy = hypot(_component[0], _component[1]);
   double latitude = atan2(_component[2], xy);
-  return Spherical(isnan(longitude) ? 0.0 : longitude, isnan(latitude) ? 0.0 : latitude);
+  return Spherical(isfinite(longitude) ? longitude : 0.0, isfinite(latitude) ? latitude : 0.0);
 }
 
 /**

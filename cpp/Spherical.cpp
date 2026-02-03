@@ -27,11 +27,11 @@ Spherical::Spherical(double longitude_rad, double latitude_rad)
 : _lon(longitude_rad), _lat(latitude_rad) {
   static const char *fn = "Spherical";
 
-  if(isnan(longitude_rad))
-    novas_set_errno(EINVAL, fn, "input longitude is NAN");
-  else if(isnan(latitude_rad))
-    novas_set_errno(EINVAL, fn, "input latitude is NAN");
-  else if(fabs(latitude_rad) > Constant::halfPi)
+  if(!isfinite(longitude_rad))
+    novas_set_errno(EINVAL, fn, "input longitude is NAN or infinite");
+  else if(!isfinite(latitude_rad))
+    novas_set_errno(EINVAL, fn, "input latitude is NAN or infinite");
+  else if(fabs(latitude_rad) > Constant::half_pi)
     novas_set_errno(EINVAL, fn, "input latitude is outside [-pi:pi] range: %g", latitude_rad);
   else
     _valid = true;

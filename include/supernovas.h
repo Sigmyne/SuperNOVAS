@@ -193,8 +193,8 @@ public:
   /// \endcond
 
   static constexpr double pi = M_PI;                    /// [rad] &pi;
-  static constexpr double twoPi = TWOPI;                /// [rad] 2&pi;
-  static constexpr double halfPi = 0.5 * pi;            /// [rad] &pi;/2
+  static constexpr double two_pi = TWOPI;                /// [rad] 2&pi;
+  static constexpr double half_pi = 0.5 * pi;            /// [rad] &pi;/2
 
   static constexpr double c = NOVAS_C;                  ///< [m/s] speed of light
   static constexpr double G = 6.67428e-1;               ///< [m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>]
@@ -598,6 +598,10 @@ public:
   explicit Position(const double pos[3], double unit = Unit::m);
 
   bool equals(const Position& p, double precision) const;
+
+  bool operator==(const Position& p) const;
+
+  bool operator!=(const Position& p) const;
 
   Position operator+(const Position &r) const;
 
@@ -1626,8 +1630,15 @@ public:
 };
 
 /**
- * Defines the cataloged parameters of a sidereal source, such as a star, a Galactic cloud, a distant
- * galaxy or a quasar.
+ * Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud, a
+ * distant galaxy, or a quasar.
+ *
+ * NOTES:
+ *
+ *  1. This class uses a builder pattern to populate the astrometric parameters, bit-by-bit, as
+ *     needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid
+ *     using the builder functions in a multi-threaded environment. The best practice is to build
+ *     the catalog entry first, before using in parallel threads unmodified.
  *
  * @sa CatalogSource
  * @ingroup source spectral
@@ -1636,6 +1647,8 @@ class CatalogEntry : public Validating {
 private:
   novas::cat_entry _entry = {};   ///< stored catalog entry
   Equinox _sys;                   ///< stored catalog system
+
+  void validate(const char *loc);
 
 public:
   CatalogEntry(const std::string &name, const Equatorial& coords);
@@ -1819,6 +1832,14 @@ public:
  * central body (such as the Sun or a planet), around which the Keplerian orbital is to be
  * defined.
  *
+ * NOTES:
+ *
+ *  1. This class uses a builder pattern to populate add the parameters that define the orbital
+ *     system, bit-by-bit, as needed. As such, this class is mutable, unlike most SuperNOVAS
+ *     classes. You should avoid using the builder functions in a multi-threaded environment. The
+ *     best practice is to fully define the orbital first, before using it to define orbitals,
+ *     or referencing it in parallel threads unmodified.
+ *
  * @sa Orbital
  * @ingroup source
  */
@@ -1826,7 +1847,7 @@ class OrbitalSystem : public Validating {
 private:
   novas::novas_orbital_system _system = {};
 
-  OrbitalSystem(enum novas::novas_reference_plane plane, const Planet& center);
+  OrbitalSystem(enum novas::novas_reference_plane plane, enum novas::novas_planet center);
 
   explicit OrbitalSystem(const novas::novas_orbital_system *system);
 
@@ -1839,15 +1860,25 @@ public:
 
   Angle ascending_node() const;
 
+  Spherical pole() const;
+
+  enum novas::novas_reference_system reference_system() const;
+
   OrbitalSystem& orientation(double obliquity_rad, double node_rad, const Equinox& system = Equinox::icrs());
 
   OrbitalSystem& orientation(const Angle& obliquity, const Angle& node, const Equinox& system = Equinox::icrs());
+
+  OrbitalSystem& pole(double longitude_rad, double latitude_rad, const Equinox& system = Equinox::icrs());
+
+  OrbitalSystem& pole(const Angle& longitude, const Angle& latitude, const Equinox& system = Equinox::icrs());
+
+  OrbitalSystem& pole(const Spherical& coords, const Equinox& system = Equinox::icrs());
 
   static OrbitalSystem equatorial(const Planet& center = Planet::sun());
 
   static OrbitalSystem ecliptic(const Planet& center = Planet::sun());
 
-  static OrbitalSystem from_novas_orbital_system(const novas::novas_orbital_system *system);
+  static std::optional<OrbitalSystem> from_novas_orbital_system(const novas::novas_orbital_system *system);
 
   std::string to_string() const; // TODO
 };
@@ -1860,6 +1891,13 @@ public:
  * as Near-Earth Objects (NEOs), orbital elements may be the only source of up-to-date
  * positional data.
  *
+ * NOTES:
+ *
+ *  1. This class uses a builder pattern to populate the orbital parameters, bit-by-bit, as
+ *     needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid
+ *     using the builder functions in a multi-threaded environment. The best practice is to build
+ *     the orbital first, before using in parallel threads unmodified.
+ *
  * @sa EphemerisSource, Planet
  * @ingroup source
  */
@@ -1869,14 +1907,16 @@ private:
 
   explicit Orbital(const novas::novas_orbital *orbit);
 
-public:
-  Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m, double mean_anom_rad, double period_s);
+  void validate(const char *loc);
 
-  Orbital(const OrbitalSystem& system, const Time& ref_time, const Distance& semi_major, const Angle& mean_anom, const Interval& periodT);
+public:
+  Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m, double mean_anomaly_rad, double period_s);
+
+  Orbital(const OrbitalSystem& system, const Time& ref_time, const Distance& semi_major, const Angle& mean_anomaly, const Interval& period);
 
   static Orbital with_mean_motion(const OrbitalSystem& system, double jd_tdb, double a, double M0, double rad_per_s);
 
-  static Orbital with_mean_motion(const OrbitalSystem& system, const Time& time, const Angle& a, const Angle& M0, double rad_per_s);
+  static Orbital with_mean_motion(const OrbitalSystem& system, const Time& time, const Distance& a, const Angle& M0, double rad_per_s);
 
   const novas::novas_orbital * _novas_orbital() const;
 
@@ -1900,6 +1940,8 @@ public:
 
   Angle ascending_node() const;
 
+  Spherical pole() const;
+
   Interval apsis_period() const;
 
   Interval node_period() const;
@@ -1920,21 +1962,27 @@ public:
 
   Orbital& inclination(const Angle& angle, const Angle& ascending_node_angle);
 
+  Orbital& pole(double longitude_rad, double latitude_rad);
+
+  Orbital& pole(const Angle& longitude, const Angle& latitude);
+
+  Orbital& pole(const Spherical& coords);
+
   Orbital& apsis_period(double seconds);
 
-  Orbital& apsis_period(const Interval& periodT);
+  Orbital& apsis_period(const Interval& period);
 
   Orbital& apsis_rate(double rad_per_sec);
 
   Orbital& node_period(double seconds);
 
-  Orbital& node_period(const Interval& periodT);
+  Orbital& node_period(const Interval& period);
 
   Orbital& node_rate(double rad_per_sec);
 
   std::string to_string() const; // TODO
 
-  static Orbital from_novas_orbit(const novas::novas_orbital *orbit);
+  static std::optional<Orbital> from_novas_orbit(const novas::novas_orbital *orbit);
 };
 
 /**

@@ -357,8 +357,8 @@ std::optional<Equinox> Equinox::for_reference_system(enum novas::novas_reference
     novas_set_errno(EINVAL, fn, "invalid reference system: %d", system);
     return std::nullopt;
   }
-  else if(isnan(jd_tt)) {
-    novas_set_errno(EINVAL, fn, "input JD is NAN");
+  else if(!isfinite(jd_tt)) {
+    novas_set_errno(EINVAL, fn, "input JD is NAN or infinite");
     return std::nullopt;
   }
 

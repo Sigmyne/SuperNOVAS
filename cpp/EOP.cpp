@@ -18,8 +18,10 @@ namespace supernovas {
 void EOP::validate() {
   static const char *fn = "EOP()";
 
-  if(isnan(_dut1))
-    novas_set_errno(EINVAL, fn, "input dUT1 is NAN");
+  if(!isfinite(_dut1))
+    novas_set_errno(EINVAL, fn, "input dUT1 is NAN or infinite");
+  else if(fabs(_dut1) >= 1.0)
+    novas_set_errno(EINVAL, fn, "input dUT1 is outside of legal (-1.0:1.0) range: %.3g", _dut1);
   else if(!_xp.is_valid())
     novas_set_errno(EINVAL, fn, "input xp is NAN");
   else if(!_yp.is_valid())

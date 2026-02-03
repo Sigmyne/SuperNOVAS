@@ -210,10 +210,9 @@ Angle Equatorial::distance_to(const Equatorial& other) const {
  *     to_tod(), to_cirs()
  */
 Equatorial Equatorial::to_system(const Equinox& system) const {
+
   if(_sys == system)
     return Equatorial(*this);
-  if(_sys.is_icrs() && system.is_icrs())
-    return Equatorial(ra(), dec(), system);
 
   double p[3] = {'\0'};
   radec2vector(ra().hours(), dec().deg(), 1.0, p);
@@ -236,7 +235,7 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
       tod_to_gcrs(_sys.jd(), NOVAS_FULL_ACCURACY, p, p);
       break;
     default:
-      p[0] = p[1] = p[2] = NAN;
+      return Equatorial::invalid();
   }
 
   // Convert from ICRS to output system...
@@ -257,7 +256,7 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
       gcrs_to_cirs(system.jd(), NOVAS_FULL_ACCURACY, p, p);
       break;
     default:
-      p[0] = p[1] = p[2] = NAN;
+      return Equatorial::invalid();
   }
 
   double r = 0.0, d = 0.0;
@@ -436,6 +435,9 @@ const Angle& Equatorial::dec() const {
 Ecliptic Equatorial::to_ecliptic() const {
   double lon, lat;
 
+  if(!is_valid())
+    return Ecliptic::invalid();
+
   double r = ra().hours();
   double d = dec().deg();
 
@@ -455,6 +457,9 @@ Ecliptic Equatorial::to_ecliptic() const {
  * @sa Galactic::to_equatorial(), to_ecliptic()
  */
 Galactic Equatorial::to_galactic() const {
+  if(!is_valid())
+    return Galactic::invalid();
+
   Equatorial icrs = to_icrs();
   double longitude = 0.0, latitude = 0.0;
   equ2gal(icrs.ra().hours(), icrs.dec().deg(), &longitude, &latitude);
@@ -472,7 +477,7 @@ Galactic Equatorial::to_galactic() const {
  * @return    a new string with the human-readable representation of these equatorial coordinates.
  */
 std::string Equatorial::to_string(enum novas_separator_type separator, int decimals) const {
-  return "EQU  " + ra().to_string(separator, (decimals > 1 ? decimals - 1 : decimals)) + "  "
+  return "EQU  " + ra().to_string(separator, decimals + 1) + "  "
           + dec().to_string(separator, decimals) + "  " + _sys.to_string();
 }
 

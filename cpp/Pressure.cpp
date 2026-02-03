@@ -24,8 +24,8 @@ namespace supernovas {
 Pressure::Pressure(double value) : _pascal(value) {
   static const char *fn = "Pressure()";
 
-  if(isnan(value))
-    novas::novas_set_errno(EINVAL, fn, "input value is NAN");
+  if(!isfinite(value))
+    novas::novas_set_errno(EINVAL, fn, "input value is NAN or infinite");
   else if(value < 0.0)
     novas::novas_set_errno(EINVAL, fn, "input value is negative");
   else

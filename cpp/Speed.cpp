@@ -23,8 +23,8 @@ namespace supernovas {
  * @sa from_redshift()
  */
 Speed::Speed(double m_per_s) : _ms(m_per_s) {
-  if(isnan(m_per_s))
-    novas_set_errno(EINVAL, "Speed(double)", "input value is NAN");
+  if(!isfinite(m_per_s))
+    novas_set_errno(EINVAL, "Speed(double)", "input value is NAN or infinite");
   else if(fabs(m_per_s) > Constant::c)
     novas_set_errno(ERANGE, "Speed(double)", "input speed exceeds the speed of light: %g m/s", m_per_s);
   else
