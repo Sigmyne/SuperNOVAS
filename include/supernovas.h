@@ -1122,8 +1122,6 @@ class Site : public Validating {
 private:
   novas::on_surface _site = {};    ///< stored site information
 
-  Site();
-
 public:
 
   Site(double longitude_rad, double latitude_rad, double altitude_m = 0.0, enum novas::novas_reference_ellipsoid ellipsoid = novas::NOVAS_GRS80_ELLIPSOID);
@@ -1144,6 +1142,14 @@ public:
 
   Position xyz() const;
 
+  bool equals(const Site& site, double tol_m = 1e-3) const;
+
+  bool equals(const Site& site, const Distance& tol) const;
+
+  bool operator==(const Site& site) const;
+
+  bool operator!=(const Site& site) const;
+
   Site itrf_transformed(int from_year, int to_year) const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
@@ -1153,8 +1159,6 @@ public:
   static Site from_GPS(const Angle& longitude, const Angle& latitude, const Distance& altitude = Distance::zero());
 
   static Site from_GPS(const std::string& longitude, const std::string& latitude, const Distance& altitude = Distance::zero());
-
-  static Site from_xyz(const Position& xyz);
 };
 
 /**

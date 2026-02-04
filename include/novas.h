@@ -2077,6 +2077,13 @@ enum novas_reference_ellipsoid {
   NOVAS_IERS_2003_ELLIPSOID   ///< IERS (2003) reference ellipsoid, used by the IERS conventions (but not for ITRS, which uses the GRS80 model).
 };
 
+/**
+ * The total number of reference ellipsoid types known to SuperNOVAS.
+ *
+ * @sa enum novas_reference_ellipsoid
+ */
+#define NOVAS_REFERENCE_ELLIPSOIDS (NOVAS_IERS_2003_ELLIPSOID + 1)
+
 /// \cond _PRIVATE
 #ifndef _NUTATION_
 #define _NUTATION_

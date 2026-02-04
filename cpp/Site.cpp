@@ -15,8 +15,6 @@ using namespace novas;
 
 namespace supernovas {
 
-Site::Site() {}
-
 /**
  * Instantiates a new observing site with the specified geodetic location on the reference ellipsoid
  * of choice.
@@ -35,7 +33,7 @@ Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum no
     novas_set_errno(EINVAL, fn, "input longitude is NAN or infinite");
   else if(!isfinite(latitude_rad))
     novas_set_errno(EINVAL, fn, "input latitude is NAN or infinite");
-  else if(fabs(latitude_rad) < Constant::half_pi)
+  else if(fabs(latitude_rad) > Constant::half_pi)
     novas_set_errno(EINVAL, fn, "input latitude is outside of [-pi:pi] range: %g", latitude_rad);
   else if(!isfinite(altitude_m))
     novas_set_errno(EINVAL, fn, "input altitude is NAN or infinite");
@@ -43,6 +41,8 @@ Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum no
     novas_set_errno(EINVAL, fn, "altitude is more than 10 km below surface: %g m", altitude_m);
   else if(altitude_m > 100000.0)
     novas_set_errno(EINVAL, fn, "altitude is more than 100 km above surface: %g m", altitude_m);
+  else if((unsigned) ellipsoid > NOVAS_REFERENCE_ELLIPSOIDS)
+    novas_set_errno(EINVAL, fn, "invalid reference ellipsoid: %d", ellipsoid);
   else
     _valid = true;
 
@@ -154,6 +154,56 @@ const Distance Site::altitude() const {
 }
 
 /**
+ * Checks if this site is the same as another site, within the specified precision.
+ *
+ * @param site    another site
+ * @param tol_m   [m] distance tolerance for equality (default: 1 mm).
+ * @return        `true` if the two sites are equal within the tolerance, or else `false`.
+ *
+ * @sa operator==()
+ */
+bool Site::equals(const Site& site, double tol_m) const {
+  return xyz().equals(site.xyz(), tol_m);
+}
+
+/**
+ * Checks if this site is the same as another site, within the specified precision.
+ *
+ * @param site    another site
+ * @param tol     distance tolerance for equality (default: 1 mm).
+ * @return        `true` if the two sites are equal within the tolerance, or else `false`.
+ *
+ * @sa operator==()
+ */
+bool Site::equals(const Site& site, const Distance& tol) const {
+  return equals(site, tol.m());
+}
+
+/**
+ * Checks if this site is the same as another site, within 1 mm.
+ *
+ * @param site    another site
+ * @return        `true` if the two sites are equal within 1 mm, or else `false`.
+ *
+ * @sa equals(), operator!=()
+ */
+bool Site::operator==(const Site& site) const {
+  return equals(site);
+}
+
+/**
+ * Checks if this site differs from another site, by more than 1 mm.
+ *
+ * @param site    another site
+ * @return        `true` if the two sites differ by more than 1 mm, or else `false`.
+ *
+ * @sa operator==()
+ */
+bool Site::operator!=(const Site& site) const {
+  return !(*this == site);
+}
+
+/**
  * Returns a new site transformed into a different ITRF realization. The ITRF realizations are
  * defined by a year. While it is best practice to use years with actual ITRF realizations, any
  * year will be interpreted as to pick the last ITRF realization preceding it (or in case of
@@ -166,9 +216,9 @@ const Distance Site::altitude() const {
  * @sa EOP::itrf_transformed()
  */
 Site Site::itrf_transformed(int from_year, int to_year) const {
-  Site site = Site();
-  novas_itrf_transform_site(from_year, &_site, to_year, &site._site);
-  return site;
+  on_surface s = {};
+  novas_itrf_transform_site(from_year, &_site, to_year, &s);
+  return Site(s.longitude * Unit::deg, s.latitude * Unit::deg, s.height * Unit::m);
 }
 
 /**
@@ -179,7 +229,7 @@ Site Site::itrf_transformed(int from_year, int to_year) const {
 Position Site::xyz() const {
   double p[3] = {0.0};
   novas_geodetic_to_cartesian(_site.longitude, _site.latitude, _site.height, NOVAS_GRS80_ELLIPSOID, p);
-  return Position(p, Unit::au);
+  return Position(p);
 }
 
 /**
@@ -194,20 +244,6 @@ std::string Site::to_string(enum novas_separator_type separator, int decimals) c
   return "Site: " + Angle(fabs(_site.longitude * Unit::deg)).to_string(separator, decimals) + (_site.longitude < 0 ? "W  " : "E  ") +
           Angle(fabs(_site.latitude * Unit::deg)).to_string(separator, decimals) + (_site.latitude < 0 ? "S  " : "N  ") +
           std::to_string((long) round(_site.height)) + "m";
-}
-
-/**
- * Returns an observing site for its geocentric position vector.
- *
- * @param v   Geocentric position of the obsrving site, in rectangular coordinates.
- * @return    a new observing site at the specified geocentric position.
- *
- * @sa Site(), from_GPS()
- */
-Site Site::from_xyz(const Position& v) {
-  Site site = Site();
-  make_xyz_site(v._array(), &site._site);
-  return site;
 }
 
 /**
@@ -235,7 +271,7 @@ Site Site::from_GPS(double longitude, double latitude, double altitude) {
  * @sa Site(), from_xyz()
  */
 Site Site::from_GPS(const Angle& longitude, const Angle& latitude, const Distance& altitude) {
-  return Site(longitude.rad(), latitude.rad(), altitude.m(), NOVAS_WGS84_ELLIPSOID);
+  return from_GPS(longitude.rad(), latitude.rad(), altitude.m());
 }
 
 /**

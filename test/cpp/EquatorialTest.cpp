@@ -19,6 +19,7 @@ int main() {
   if(!test.check("invalid lon", !Equatorial(NAN, 30.0 * Unit::deg, Equinox::icrs()).is_valid())) n++;
   if(!test.check("invalid lat", !Equatorial(45.0 * Unit::deg, NAN, Equinox::icrs()).is_valid())) n++;
   if(!test.check("invalid lat > 90", !Equatorial(45.0 * Unit::deg, 91.0 * Unit::deg, Equinox::icrs()).is_valid())) n++;
+  if(!test.check("invalid sys", !Equatorial(45.0 * Unit::deg, 30.0 * Unit::deg, Equinox::invalid()).is_valid())) n++;
 
   Equatorial x = Equatorial::invalid();
   if(!test.check("is_valid() invalid", !x.is_valid())) n++;

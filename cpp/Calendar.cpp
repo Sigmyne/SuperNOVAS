@@ -272,11 +272,11 @@ bool CalendarDate::operator<(const CalendarDate& date) const {
  * @return        true if this date is after the other calendar date, or else false.
  */
 bool CalendarDate::operator>(const CalendarDate& date) const {
-  return jd() > date.jd();
+  return date < *this;
 }
 
 /**
- * Checks if this calendar date is the same or before the specified other date.
+ * Checks if this calendar date is the same or before the specified other date at 1 ms resolution.
  *
  * @param date    the other date to compare to this one.
  * @return        true if this date is the same or before the other calendar date, or else false.
@@ -286,7 +286,7 @@ bool CalendarDate::operator<=(const CalendarDate& date) const {
 }
 
 /**
- * Checks if this calendar date is the same or after the specified other date.
+ * Checks if this calendar date is the same or after the specified other date at 1 ms resolution.
  *
  * @param date    the other date to compare to this one.
  * @return        true if this date is the same or after the other calendar date, or else false.
@@ -315,7 +315,7 @@ bool CalendarDate::equals(const CalendarDate& date, double seconds) const {
  * tolerance.
  *
  * @param date      the other date to compare to this one.
- * @param precision tolerance for equality check.
+ * @param precision tolerance for equality check (default: 1 ms).
  * @return          `true` if this date is the same as the other calendar date, within the
  *                  specified tolerance, or else `false`.
  *
@@ -326,10 +326,10 @@ bool CalendarDate::equals(const CalendarDate& date, const Interval& precision) c
 }
 
 /**
- * Checks if this calendar date is the same as the specified other date, within 1 &mu;s
+ * Checks if this calendar date is the same as the specified other date, within 1 ms
  *
  * @param date      the other date to compare to this one.
- * @return          `true` if this date is the same as the other calendar date, within 1 &mu;s, or
+ * @return          `true` if this date is the same as the other calendar date, within 1 ms, or
  *                  else `false`.
  *
  * @sa equals(), operator!=()
@@ -339,11 +339,11 @@ bool CalendarDate::operator==(const CalendarDate& date) const {
 }
 
 /**
- * Checks if this calendar date differs from the specified other date, by more than 1 &mu;s
+ * Checks if this calendar date differs from the specified other date, by more than 1 ms
  *
  * @param date      the other date to compare to this one.
  * @return          `true` if this date differs from the other calendar date, by more than 1
- *                  &mu;s, or else `false`.
+ *                  ms, or else `false`.
  *
  * @sa equals(), operator!=()
  */

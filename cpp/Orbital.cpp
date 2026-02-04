@@ -29,7 +29,7 @@ OrbitalSystem::OrbitalSystem(const novas::novas_orbital_system *system) {
 
   errno = 0;
 
-  if(!center().is_valid())
+  if((unsigned) system->center >= NOVAS_PLANETS)
     novas_set_errno(EINVAL, fn, "input system center is invalid: %d", (int) system->center);
   if((unsigned) system->plane >= NOVAS_REFERENCE_PLANES)
     novas_set_errno(EINVAL, fn, "input reference plane is invalid: %d", (int) system->plane);
@@ -42,7 +42,7 @@ OrbitalSystem::OrbitalSystem(const novas::novas_orbital_system *system) {
 
   _system = *system;
 
-  _valid = (errno = 0);
+  _valid = (errno == 0);
 }
 
 /**
@@ -252,14 +252,12 @@ OrbitalSystem OrbitalSystem::ecliptic(const Planet& center) {
  * @sa is_valid()
  */
 std::optional<OrbitalSystem> OrbitalSystem::from_novas_orbital_system(const novas::novas_orbital_system *system) {
-  OrbitalSystem s = OrbitalSystem(system);
-
-  if(!s.is_valid()) {
+  if(!system) {
     novas_trace_invalid("OrbitalSystem::from_novas_orbital_system");
     return std::nullopt;
   }
 
-  return s;
+  return OrbitalSystem(system);
 }
 
 void Orbital::validate(const char *loc) {
@@ -273,6 +271,10 @@ void Orbital::validate(const char *loc) {
     novas_set_errno(EINVAL, fn, "input orbit->jd_tdb is NAN or infinite");
   if(!isfinite(_orbit.a))
     novas_set_errno(EINVAL, fn, "input orbit->a is NAN or infinite");
+  if(_orbit.a == 0.0)
+    novas_set_errno(EINVAL, fn, "input orbit->a is zero");
+  if(_orbit.a < 0.0)
+    novas_set_errno(EINVAL, fn, "input orbit->a is negative");
   if(!isfinite(_orbit.M0))
     novas_set_errno(EINVAL, fn, "input orbit->M0 is NAN or infinite");
   if(!isfinite(_orbit.n))
@@ -291,22 +293,19 @@ void Orbital::validate(const char *loc) {
     novas_set_errno(EINVAL, fn, "input orbit->i is NAN or infinite");
   if(!isfinite(_orbit.Omega))
     novas_set_errno(EINVAL, fn, "input orbit->Omega is NAN or infinite");
+  if(!isfinite(_orbit.apsis_period))
+    novas_set_errno(EINVAL, fn, "input orbit->apsis_period is NAN or infinite");
+  if(!isfinite(_orbit.node_period))
+    novas_set_errno(EINVAL, fn, "input orbit->node_period is NAN or infinite");
 
-  _valid = (errno = 0);
+  if(errno)
+    novas_trace_invalid(loc);
+
+  _valid = (errno == 0);
 }
 
-
-Orbital::Orbital(const novas_orbital *orbit) {
-  static const char *fn = "Orbital()";
-
-  if(!orbit) {
-    novas_set_errno(EINVAL, fn, "input orbit is NULL");
-  }
-  else {
-    _orbit = *orbit;
-    validate(fn);
-  }
-
+Orbital::Orbital(const novas_orbital *orbit) : _orbit(*orbit) {
+  validate("Orbital()");
 }
 
 /**
@@ -325,32 +324,14 @@ Orbital::Orbital(const novas_orbital *orbit) {
  * @sa with_mean_motion(), eccentricity(), inclination(), pole(), node_period(), node_rate()
  *     apsis_period(), apsis_rate()
  */
-Orbital::Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m,
-        double mean_anomaly_rad, double period_s) {
-  static const char *fn = "Orbital()";
-
-  if(!system.is_valid())
-    novas_set_errno(EINVAL, fn, "input orbital system is invalid");
-  else if(!isfinite(jd_tdb))
-    novas_set_errno(EINVAL, fn, "input reference time is NAN or infinite");
-  else if(!isfinite(semi_major_m))
-    novas_set_errno(EINVAL, fn, "input semi major axis is NAN or infinite");
-  else if(!isfinite(mean_anomaly_rad))
-    novas_set_errno(EINVAL, fn, "input mean anomaly is NAN or infinite");
-  else if(!isfinite(period_s))
-    novas_set_errno(EINVAL, fn, "input period is NAN or infinite");
-  else if(period_s == 0.0)
-    novas_set_errno(EINVAL, fn, "input period is zero");
-  else if(period_s < 0.0)
-    novas_set_errno(EINVAL, fn, "input period is negative");
-  else
-    _valid = true;
-
-  _orbit.system = *system._novas_orbital_system();
+Orbital::Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m, double mean_anomaly_rad, double period_s) {
+  _orbit.system = *(system._novas_orbital_system());
   _orbit.jd_tdb = jd_tdb;
   _orbit.a = semi_major_m / Unit::au;
   _orbit.M0 = mean_anomaly_rad / Unit::deg;
   _orbit.n = 360.0 / (period_s / Unit::day);
+
+  validate("Orbital()");
 }
 
 /**
@@ -789,7 +770,6 @@ Orbital& Orbital::apsis_period(double seconds) {
   return *this;
 }
 
-
 /**
  * Sets the apsis rotation period (positive for counter-clockwise rotation when viewed from the
  * orbital system's pole).
@@ -934,12 +914,11 @@ Orbital Orbital::with_mean_motion(const OrbitalSystem& system, const Time& time,
  * @sa Orbital(), is_valid()
  */
 std::optional<Orbital> Orbital::from_novas_orbit(const novas_orbital *orbit) {
-  Orbital o = Orbital(orbit);
-  if(!o.is_valid()) {
+  if(!orbit) {
     novas_trace_invalid("Orbital::from_novas_orbit");
     return std::nullopt;
   }
-  return o;
+  return Orbital(orbit);
 }
 
 

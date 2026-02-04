@@ -287,12 +287,11 @@ bool Time::operator<(const Time& r) const {
  * @sa operator>=(), operator<(), operator<=()
  */
 bool Time::operator>(const Time& r) const {
-  return novas_diff_time(&_ts, &r._ts) > 0.0;
+  return r < *this;
 }
 
 /**
- * Checks if this time is the same as or before the specified other time, at the full precision of
- * the representation.
+ * Checks if this time is the same as or before the specified other time, at 1 &mu;s resolution.
  *
  * @param r   the other time
  * @return    `true` if this time instance is the same as or before the specified other time, or
@@ -301,12 +300,11 @@ bool Time::operator>(const Time& r) const {
  * @sa operator<(), operator>=(), operator>()
  */
 bool Time::operator<=(const Time& r) const {
-  return novas_diff_time(&_ts, &r._ts) <= 0.0;
+  return novas_diff_time(&r._ts, &_ts) <= Unit::us;
 }
 
 /**
- * Checks if this time is the same as or after the specified other time, at the full precision of
- * the representation.
+ * Checks if this time is the same as or after the specified other time, at 1 &mu;s resolution.
  *
  * @param r   the other time
  * @return    `true` if this time instance is the same as or after the specified other time, or
@@ -315,7 +313,7 @@ bool Time::operator<=(const Time& r) const {
  * @sa operator<(), operator>=(), operator>()
  */
 bool Time::operator>=(const Time& r) const {
-  return novas_diff_time(&_ts, &r._ts) >= 0.0;
+  return novas_diff_time(&r._ts, &_ts) >= Unit::us;
 }
 
 /**
@@ -352,7 +350,7 @@ bool Time::equals(const Time& time, const Interval& precision) const {
  * @param time        the other time
  * @return            `true` if the two times are equal within 1 &mu;s, otherwise `false`.
  *
- * @sa operator==(), operator!=()
+ * @sa equals(), operator!=()
  */
 bool Time::operator==(const Time& time) const {
   return equals(time);
