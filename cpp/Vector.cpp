@@ -144,6 +144,28 @@ double Vector::projection_on(const Vector& v) const {
 }
 
 /**
+ * Returns the azumithal angle of this vector.
+ *
+ * @return    the azimuthal angle &phi;.
+ *
+ * @sa theta()
+ */
+Angle Vector::phi() const {
+  return Angle(atan2(_component[1], _component[0]));
+}
+
+/**
+ * Returns the polar angleof this vector, that is the angle from the _z_ axis.
+ *
+ * @return    the polar angle &theta;.
+ *
+ * @sa phi()
+ */
+Angle Vector::theta() const {
+  return Angle(atan2(sqrt(_component[0] * _component[0] + _component[1] * _component[1]), _component[2]));
+}
+
+/**
  * Returns a string representation of this vector
  *
  * @param decimals    (optional) the numberof decimal places to print for the components

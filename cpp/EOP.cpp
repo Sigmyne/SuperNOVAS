@@ -57,6 +57,42 @@ EOP::EOP(int leap_seconds, const Interval& dut1, const Angle& xp, const Angle& y
 }
 
 /**
+ * Checks if these Earth Orientation Parameters are the same as another, within
+ * 1 &mu;s / 1 &mu;as accuracy.
+ *
+ * @param eop   another set of Earth Orientation Parameters
+ * @return      `true` if this EOP matches the argument to 1 &mu;s / 1 &mu;as accuracy,
+ *              otherwise `false`.
+ *
+ * @sa operator!=()
+ */
+bool EOP::operator==(const EOP& eop) const {
+  if(_leap != eop._leap)
+    return false;
+  if(!(fabs(_dut1 - eop._dut1) < Unit::us))
+    return false;
+  if(!_xp.equals(eop._xp, Unit::uas))
+    return false;
+  if(!_yp.equals(eop._yp, Unit::uas))
+    return false;
+  return true;
+}
+
+/**
+ * Checks if these Earth Orientation Parameters differ from another by more than
+ * 1 &mu;s / 1 &mu;as.
+ *
+ * @param eop   another set of Earth Orientation Parameters
+ * @return      `true` if this EOP differs from argument by more than 1 &mu;s / 1 &mu;as,
+ *              otherwise `false`.
+ *
+ * @sa operator!=()
+ */
+bool EOP::operator!=(const EOP& eop) const {
+  return !(*this == eop);
+}
+
+/**
  * Returns the leap seconds (TAI - UTC time difference) in seconds.
  *
  * @return    [s] the leap seconds (TAI - UTC).

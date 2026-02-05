@@ -30,7 +30,7 @@ namespace supernovas {
  *
  * @sa TimeAngle, Unit
  */
-Angle::Angle(double radians) : _rad(remainder(radians, TWOPI)) {
+Angle::Angle(double radians) : _rad(remainder(radians, Constant::two_pi)) {
   if(!isfinite(radians))
     novas_set_errno(EINVAL, "Angle(double)", "input angle is NAN or infinite");
   else
@@ -198,7 +198,7 @@ double Angle::uas() const {
  * @return    the angle as a fraction of the circle, usually in the [0:1) range.
  */
 double Angle::fraction() const {
-  double f = _rad / TWOPI;
+  double f = _rad / Constant::two_pi;
   return f >= 0 ? f : 1.0 + f;
 }
 
@@ -220,6 +220,17 @@ std::string Angle::to_string(enum novas_separator_type separator, int decimals) 
     novas_trace_invalid("Angle::str");
   // TODO what to return in case of error?
   return std::string(s);
+}
+
+/**
+ * Returns a reference to a statically defined standard invalid angle. Sunch invalid angles may be
+ * used inside any object that is invalid itself.
+ *
+ * @return    a reference to a static standard invalid angle.
+ */
+Angle& Angle::invalid() {
+  static Angle _invalid(NAN);
+  return _invalid;
 }
 
 } // namespace supernovas

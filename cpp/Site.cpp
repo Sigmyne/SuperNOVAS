@@ -221,6 +221,64 @@ Site Site::itrf_transformed(int from_year, int to_year) const {
   return Site(s.longitude * Unit::deg, s.latitude * Unit::deg, s.height * Unit::m);
 }
 
+
+
+/**
+ * Converts an ITRF position vector to a local East-Noth-Up (ENU) vector at the site.
+ *
+ * @param p   _xyz_ position vector in ITRF.
+ * @return    the same vector in East-North-Up (ENU) directions at the site.
+ *
+ * @sa enu_to_itrf()
+ */
+Position Site::itrs_to_enu(const Position& p) const {
+  double x[3] = {0.0};
+  novas_itrs_to_enu(p._array(), _site.longitude, _site.latitude, x);
+  return Position(x);
+}
+
+/**
+ * Converts an ITRF velocity vector to a local East-Noth-Up (ENU) vector at the site.
+ *
+ * @param p   _xyz_ velocity vector in ITRF.
+ * @return    the same vector in East-North-Up (ENU) directions at the site.
+ *
+ * @sa enu_to_itrf()
+ */
+Velocity Site::itrs_to_enu(const Velocity& p) const {
+  double x[3] = {0.0};
+  novas_itrs_to_enu(p._array(), _site.longitude, _site.latitude, x);
+  return Velocity(x);
+}
+
+/**
+ * Converts an East-Noth-Up (ENU) position vector at the site to an ITRF vector.
+ *
+ * @param p   position vector in East-North-Up (ENU) directions at the site.
+ * @return    the same position vector in ITRF.
+ *
+ * @sa itrf_to_enu()
+ */
+Position Site::enu_to_itrs(const Position& p) const {
+  double x[3] = {0.0};
+  novas_enu_to_itrs(p._array(), _site.longitude, _site.latitude, x);
+  return Position(x);
+}
+
+/**
+ * Converts an East-Noth-Up (ENU) velocity vector at the site to an ITRF vector.
+ *
+ * @param p   velocity vector in East-North-Up (ENU) directions at the site.
+ * @return    the same position vector in ITRF.
+ *
+ * @sa itrf_to_enu()
+ */
+Velocity Site::enu_to_itrs(const Velocity& p) const {
+  double x[3] = {0.0};
+  novas_enu_to_itrs(p._array(), _site.longitude, _site.latitude, x);
+  return Velocity(x);
+}
+
 /**
  * Returns the geocentric position of this site in rectangular coordinates.
  *

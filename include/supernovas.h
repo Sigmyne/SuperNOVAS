@@ -482,6 +482,8 @@ public:
 
   virtual std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 
+  static Angle& invalid();
+
   static constexpr int east = 1;      ///< East direction sign, e.g `19.5 * Unit::deg * Angle::east` for 19.5 deg East.
 
   static constexpr int west = -1;     ///< West direction sign, e.g `155.1 * Unit::deg * Angle::west` for 155.1 deg West.
@@ -576,6 +578,10 @@ public:
   double dot(const Vector& v) const;
 
   double projection_on(const Vector& v) const;
+
+  Angle phi() const;
+
+  Angle theta() const;
 
   Vector unit_vector() const;
 
@@ -746,8 +752,6 @@ public:
   Spherical(const Angle& longitude, const Angle& latitude);
 
   Spherical(const std::string& longitude, const std::string& latitude);
-
-  explicit Spherical(const Position& pos);
 
   Position xyz(const Distance& distance) const;
 
@@ -1096,6 +1100,10 @@ public:
 
   const Angle& yp() const;
 
+  bool operator==(const EOP& eop) const;
+
+  bool operator!=(const EOP& eop) const;
+
   Interval dUT1() const;
 
   EOP itrf_transformed(int from_year, int to_year) const;
@@ -1152,6 +1160,14 @@ public:
 
   Site itrf_transformed(int from_year, int to_year) const;
 
+  Position itrs_to_enu(const Position& p) const;
+
+  Velocity itrs_to_enu(const Velocity& p) const;
+
+  Position enu_to_itrs(const Position& p) const;
+
+  Velocity enu_to_itrs(const Velocity& p) const;
+
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 
   static Site from_GPS(double longitude, double latitude, double altitude = 0.0);
@@ -1190,13 +1206,16 @@ public:
 
   static GeodeticObserver on_earth(const Site& site, const EOP& eop);
 
-  static GeodeticObserver on_earth(const Site& geodetic, const Velocity& vel, const EOP& eop);
+  static GeodeticObserver on_earth(const Site& site, const Velocity& itrs_vel, const EOP &eop);
 
-  static GeocentricObserver to_earth_orbit(const Position& pos, const Velocity& vel);
+  static GeodeticObserver on_earth(const Site& site, const EOP& eop, const Speed& horizontal, const Angle& direction,
+          const Speed& vertical = Speed::stationary());
+
+  static GeocentricObserver in_earth_orbit(const Position& pos, const Velocity& vel);
 
   static GeocentricObserver at_geocenter();
 
-  static SolarSystemObserver to_solar_system(const Position& pos, const Velocity& vel);
+  static SolarSystemObserver in_solar_system(const Position& pos, const Velocity& vel);
 
   static SolarSystemObserver at_ssb();
 
@@ -1218,13 +1237,21 @@ private:
   void diurnal_correct();
 
 public:
+
   GeodeticObserver(const Site& site, const EOP& eop);
 
-  GeodeticObserver(const Site& site, const Velocity& vel, const EOP& eop);
+  GeodeticObserver(const Site& site, const Velocity& itrs_vel, const EOP& eop);
+
+  GeodeticObserver(const Site& site, const EOP& eop, const Speed& horizontal, const Angle& direction,
+          const Speed& vertical = Speed::stationary());
 
   bool is_geodetic() const override;
 
   Site site() const;
+
+  Velocity itrs_velocity() const;
+
+  Velocity enu_velocity() const;
 
   const EOP& eop() const;
 

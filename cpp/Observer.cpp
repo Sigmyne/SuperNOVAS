@@ -75,10 +75,13 @@ std::string Observer::to_string() const {
  *                obtained from the IERS bulletins or data service.
  * @return        a new observer instance for the given observing site.
  *
- * @sa to_earth_orbit(), to_solar_system(), at_geocenter(), at_ssb()
+ * @sa in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
  */
 GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
-  return GeodeticObserver(site, eop);
+  GeodeticObserver o = GeodeticObserver(site, eop);
+  if(!o.is_valid())
+    novas_trace_invalid("Observer::on_earth");
+  return o;
 }
 
 /**
@@ -86,16 +89,19 @@ GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
  * such as an airborne aircraft or balloon based observatory.
  *
  * @param geodetic    the momentary geodetic location of the observer.
- * @param vel         the momentary velocity of the observer with respect to the surface
- *                    (in the ITRS).
+ * @param itrs_vel    the momentary velocity of the observer with respect to the surface
+ *                    (in ITRS).
  * @param eop         Earth Orientation Parameters (EOP) appropriate around the time of
  *                    observation, such as obtained from the IERS bulletins or data service.
  * @return            a new observer instance for the given moving observer.
  *
- * @sa to_earth_orbit(), to_solar_system(), at_geocenter(), at_ssb()
+ * @sa in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
  */
-GeodeticObserver Observer::on_earth(const Site& geodetic, const Velocity& vel, const EOP& eop) {
-  return GeodeticObserver(geodetic, vel, eop);
+GeodeticObserver Observer::on_earth(const Site& geodetic, const Velocity& itrs_vel, const EOP& eop) {
+  GeodeticObserver o = GeodeticObserver(geodetic, itrs_vel, eop);
+  if(!o.is_valid())
+    novas_trace_invalid("Observer::on_earth");
+  return o;
 }
 
 /**
@@ -105,10 +111,13 @@ GeodeticObserver Observer::on_earth(const Site& geodetic, const Velocity& vel, c
  * @param vel       momentary velocity of the observer relative to the geocenter.
  * @return          a new observer instance for the observer in Earth orbit.
  *
- * @sa on_earth(), to_solar_system(), at_geocenter(), at_ssb()
+ * @sa on_earth(), in_solar_system(), at_geocenter(), at_ssb()
  */
-GeocentricObserver Observer::to_earth_orbit(const Position& pos, const Velocity& vel) {
-  return GeocentricObserver(pos, vel);
+GeocentricObserver Observer::in_earth_orbit(const Position& pos, const Velocity& vel) {
+  GeocentricObserver o = GeocentricObserver(pos, vel);
+  if(!o.is_valid())
+    novas_trace_invalid("Observer::in_earth_orbit");
+  return o;
 }
 
 /**
@@ -116,7 +125,7 @@ GeocentricObserver Observer::to_earth_orbit(const Position& pos, const Velocity&
  *
  * @return         a new fictitious observer located at the geocenter.
  *
- * @sa on_earth(), to_earth_orbit(), to_solar_system(), at_ssb()
+ * @sa on_earth(), in_earth_orbit(), in_solar_system(), at_ssb()
  */
 GeocentricObserver Observer::at_geocenter() {
   return GeocentricObserver();
@@ -131,10 +140,13 @@ GeocentricObserver Observer::at_geocenter() {
  *                (SSB).
  * @return        a new observer instance for the given Solar-system location.
  *
- * @sa at_ssb(), at_geocenter(), on_earth(), to_earth_orbit()
+ * @sa at_ssb(), at_geocenter(), on_earth(), in_earth_orbit()
  */
-SolarSystemObserver Observer::to_solar_system(const Position& pos, const Velocity& vel) {
-  return SolarSystemObserver(pos, vel);
+SolarSystemObserver Observer::in_solar_system(const Position& pos, const Velocity& vel) {
+  SolarSystemObserver o = SolarSystemObserver(pos, vel);
+  if(!o.is_valid())
+    novas_trace_invalid("Observer::in_solar_system");
+  return o;
 }
 
 /**
@@ -142,7 +154,7 @@ SolarSystemObserver Observer::to_solar_system(const Position& pos, const Velocit
  *
  * @return        a new fictitious observer located at the Solar-System Barycenter (SSB).
  *
- * @sa to_solar_system(), at_geocenter(), on_earth(), to_earth_orbit()
+ * @sa in_solar_system(), at_geocenter(), on_earth(), in_earth_orbit()
  */
 SolarSystemObserver Observer::at_ssb() {
   return SolarSystemObserver();
@@ -292,17 +304,7 @@ Velocity SolarSystemObserver::ssb_velocity() const {
  *                such as obtained from the IERS bulletins or data service.
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
-: Observer(), _eop(eop) {
-  static const char *fn = "GeodeticObserver()";
-
-  make_observer_at_site(site._on_surface(), &_observer);
-
-  if(!site.is_valid())
-    novas_set_errno(EINVAL, fn, "input site is invalid");
-  else if(!eop.is_valid())
-    novas_set_errno(EINVAL, fn, "input EOP is invalid");
-  else
-    _valid = true;
+: GeodeticObserver(site, Velocity::stationary(), eop) {
 }
 
 /**
@@ -310,15 +312,16 @@ GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
  * observer.
  *
  * @param site    the momentary geodetic location of the observer
- * @param vel     the momentaty velocity of the observer relative to Earth's surface (in the '
- *                ITRS),
+ * @param vel     the momentaty velocity of the observer relative to Earth's surface (in ITRS),
  * @param eop     Earth Orientation Parameters (EOP) appropriate around the time of observation.
+ *
+ * @sa Site::enu_to_itrf()
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const EOP& eop)
 : Observer(), _eop(eop) {
   static const char *fn = "GeodeticObserver()";
 
-  make_airborne_observer(site._on_surface(), vel._array(), &_observer);
+  make_airborne_observer(site._on_surface(), vel.scaled(Unit::s / Unit::km)._array(), &_observer);
 
   if(!site.is_valid())
     novas_set_errno(EINVAL, fn, "input site is invalid.");
@@ -330,17 +333,85 @@ GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const 
     _valid = true;
 }
 
+/**
+ * Instantiates a new observer that is moving relative to Earth's surface, such as an airborne
+ * observer.
+ *
+ * @param site          the momentary geodetic location of the observer.
+ * @param eop           Earth Orientation Parameters (EOP) appropriate around the time of
+ *                      observation.
+ * @param horizontal    momentary horizontal speed of moving observer.
+ * @param direction     azimuthal direction of motion (from North, measured to the East).
+ * @param vertical      (optional) momentary vertical speed of observer (default: 0).
+ *
+ * @sa Site::enu_to_itrf()
+ */
+GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop, const Speed& horizontal, const Angle& direction, const Speed& vertical)
+: GeodeticObserver(site, eop) {
+  static const char *fn = "GeodeticObserver()";
+
+  if(_valid)
+    errno = 0;
+
+  if(!horizontal.is_valid())
+    novas_set_errno(EINVAL, fn, "input horizontal speed is invalid");
+  if(!direction.is_valid())
+    novas_set_errno(EINVAL, fn, "input azimuthal direction of motion is invalid");
+  if(!vertical.is_valid())
+    novas_set_errno(EINVAL, fn, "input vertical speed is invalid");
+
+  _valid &= (errno == 0);
+
+  double v[3] = {0.0};
+  v[0] = horizontal.km_per_s() * sin(direction.rad());
+  v[1] = horizontal.km_per_s() * cos(direction.rad());
+  v[2] = vertical.km_per_s();
+
+  novas_enu_to_itrs(v, site.longitude().rad(), site.latitude().rad(), _observer.near_earth.sc_vel);
+}
+
 bool GeodeticObserver::is_geodetic() const { return true; }
 
 /**
  * Returns the fixed or momentary observing site for this observer.
  *
- * @return    the observing site (fixed or momnetary).
+ * @return    the observing site (fixed or momentary).
+ *
+ * @sa velocity()
  */
 Site GeodeticObserver::site() const {
   const on_surface *s = &_observer.on_surf;
   return Site(s->longitude * Unit::deg, s->latitude * Unit::deg, s->height);
 }
+
+/**
+ * Returns the surface velocity of a moving observer, such as an airborne or balloon borne
+ * observatory.
+ *
+ * @return    the momentary ITRS surface velocity vector of the moving observer.
+ *
+ * @sa Site::itrs_to_enu()
+ */
+Velocity GeodeticObserver::itrs_velocity() const {
+  return Velocity(_observer.near_earth.sc_vel, Unit::km / Unit::s);
+}
+
+
+/**
+ * Returns the surface velocity of a moving observer, such as an airborne or balloon borne
+ * observatory.
+ *
+ * @return    the momentary surface velocity vector of the moving observer in the East-North-Up
+ *            (ENU) directions at the current location.
+ *
+ * @sa Site::itrs_to_enu()
+ */
+Velocity GeodeticObserver::enu_velocity() const {
+  double v[3] = {0.0};
+  novas_enu_to_itrs(_observer.near_earth.sc_vel, _observer.on_surf.longitude, _observer.on_surf.latitude, v);
+  return Velocity(v, Unit::km / Unit::s);
+}
+
 
 /**
  * Earth Orientation Parameters (EOP) appropriate around the time of observation.
