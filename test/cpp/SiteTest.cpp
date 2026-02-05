@@ -56,15 +56,23 @@ int main() {
   if(!test.check("itrf_transformed", a.itrf_transformed(2015, 1988) == Site(Position(xyz)))) n++;
   if(!test.check("ITRF88 != ITRF2015", a.itrf_transformed(2015, 1988) != a)) n++;
 
+  double itrs[3] = { 1.0, -2.0, 3.0 };
+  double enu[3] = {0.0};
+
+  novas_itrs_to_enu(itrs, a.longitude().deg(), a.latitude().deg(), enu);
+  if(!test.check("itrs_to_enu(Position)", a.itrs_to_enu(Position(itrs)) == Position(enu))) n++;
+  if(!test.check("itrs_to_enu(Velocity)", a.itrs_to_enu(Velocity(itrs)) == Velocity(enu))) n++;
+  if(!test.check("enu_to_itrs(Position)", a.enu_to_itrs(Position(enu)) == Position(itrs))) n++;
+  if(!test.check("enu_to_itrs(Velocity)", a.enu_to_itrs(Velocity(enu)) == Velocity(itrs))) n++;
+
+  if(!test.equals("to_string()", a.to_string(), "Site:  120d 30m 00.000sW    75d 15m 00.000sS  60m")) n++;
+
   Site b(Angle(-120.5 * Unit::deg), Angle(-75.25 * Unit::deg), Distance(60.0), NOVAS_WGS84_ELLIPSOID);
   if(!test.check("from_GPS()", Site::from_GPS(Angle(-120.5 * Unit::deg), Angle(-75.25 * Unit::deg), Distance(60.0)) == b)) n++;
   if(!test.check("GPS != ITRF", !b.equals(a, 0.1 * Unit::mm))) n++;
 
   Site b1 = Site::from_GPS("120 30 00 W", "75 15 00 S", Distance(60.0));
   if(!test.check("operator==(GPS string)", b1 == b)) n++;
-
-
-
 
   std::cout << "Site.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

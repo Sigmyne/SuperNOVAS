@@ -23,6 +23,8 @@ int main() {
   if(!test.check("invalid().yp()", !x.yp().is_valid())) n++;
 
   if(!test.check("invalid(dut1 = NAN)", !EOP(0, NAN, 0.0, 0.0).is_valid())) n++;
+  if(!test.check("invalid(dut1 < -1s)", !EOP(0, -1.1, 0.0, 0.0).is_valid())) n++;
+  if(!test.check("invalid(dut1 > 1s)", !EOP(0, 1.1, 0.0, 0.0).is_valid())) n++;
   if(!test.check("invalid(xp = NAN)", !EOP(0, 0.0, NAN, 0.0).is_valid())) n++;
   if(!test.check("invalid(yp = NAN)", !EOP(0, 0.0, 0.0, NAN).is_valid())) n++;
 
@@ -40,6 +42,13 @@ int main() {
   if(!test.equals("dUT1()", b.dUT1().seconds(), 0.1)) n++;
   if(!test.equals("xp()", b.xp().mas(), 200.0)) n++;
   if(!test.equals("yp()", b.yp().mas(), 300.0)) n++;
+
+  if(!test.check("operator==()", a == b)) n++;
+  if(!test.check("operator!=(leap)", a != EOP(33, 0.1, 200.0 * Unit::mas, 300.0 * Unit::mas))) n++;
+  if(!test.check("operator!=(dut1)", a != EOP(32, 0.2, 200.0 * Unit::mas, 300.0 * Unit::mas))) n++;
+  if(!test.check("operator!=(xp)", a != EOP(32, 0.1, 200.1 * Unit::mas, 300.0 * Unit::mas))) n++;
+  if(!test.check("operator!=(yp)", a != EOP(32, 0.1, 200.0 * Unit::mas, 300.1 * Unit::mas))) n++;
+
 
   double xp = 0.0, yp = 0.0, dt = 0.0;
   novas::novas_itrf_transform_eop(2000.0, 0.2, 0.3, 0.1, 2014, &xp, &yp, &dt);

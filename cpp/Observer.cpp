@@ -6,6 +6,7 @@
  */
 
 #include <cstring>
+#include <iostream>
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
@@ -196,9 +197,9 @@ GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
   make_observer_in_space(pos.scaled(1.0 / Unit::km)._array(), vel.scaled(Unit::sec / Unit::km)._array(), &_observer);
 
   if(!pos.is_valid())
-    novas_set_errno(EINVAL, fn, "input position contains NAN component(s).");
+    novas_set_errno(EINVAL, fn, "input position contains NAN component(s)");
   else if(!vel.is_valid())
-    novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s).");
+    novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s)");
   else
     _valid = true;
 }
@@ -264,9 +265,9 @@ SolarSystemObserver::SolarSystemObserver(const Position& pos, const Velocity& ve
   make_solar_system_observer(pos.scaled(1.0 / Unit::au)._array(), vel.scaled(Unit::day / Unit::au)._array(), &_observer);
 
   if(!pos.is_valid())
-    novas_set_errno(EINVAL, fn, "input position contains NAN component(s).");
+    novas_set_errno(EINVAL, fn, "input position contains NAN component(s)");
   else if(!vel.is_valid())
-    novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s).");
+    novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s)");
   else
     _valid = true;
 }
@@ -305,6 +306,7 @@ Velocity SolarSystemObserver::ssb_velocity() const {
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
 : GeodeticObserver(site, Velocity::stationary(), eop) {
+  _observer.where = NOVAS_OBSERVER_ON_EARTH;
 }
 
 /**
@@ -324,11 +326,11 @@ GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const 
   make_airborne_observer(site._on_surface(), vel.scaled(Unit::s / Unit::km)._array(), &_observer);
 
   if(!site.is_valid())
-    novas_set_errno(EINVAL, fn, "input site is invalid.");
+    novas_set_errno(EINVAL, fn, "input site is invalid");
   else if(!eop.is_valid())
     novas_set_errno(EINVAL, fn, "input EOP is invalid");
   else if(!vel.is_valid())
-    novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s).");
+    novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s)");
   else
     _valid = true;
 }
@@ -367,7 +369,7 @@ GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop, const Speed
   v[1] = horizontal.km_per_s() * cos(direction.rad());
   v[2] = vertical.km_per_s();
 
-  novas_enu_to_itrs(v, site.longitude().rad(), site.latitude().rad(), _observer.near_earth.sc_vel);
+  novas_enu_to_itrs(v, site.longitude().deg(), site.latitude().deg(), _observer.near_earth.sc_vel);
 }
 
 bool GeodeticObserver::is_geodetic() const { return true; }
@@ -408,7 +410,7 @@ Velocity GeodeticObserver::itrs_velocity() const {
  */
 Velocity GeodeticObserver::enu_velocity() const {
   double v[3] = {0.0};
-  novas_enu_to_itrs(_observer.near_earth.sc_vel, _observer.on_surf.longitude, _observer.on_surf.latitude, v);
+  novas_itrs_to_enu(_observer.near_earth.sc_vel, _observer.on_surf.longitude, _observer.on_surf.latitude, v);
   return Velocity(v, Unit::km / Unit::s);
 }
 

@@ -9,6 +9,8 @@
 
 #include "TestUtil.hpp"
 
+using namespace novas;
+
 int main() {
   TestUtil test = TestUtil("Observer");
 
@@ -30,6 +32,7 @@ int main() {
 
   GeodeticObserver g1 = Observer::on_earth(site, eop);
   if(!test.check("is_valid(on_earth)", g1.is_valid())) n++;
+  if(!test.equals("type(on_earth)", g1.type(), NOVAS_OBSERVER_ON_EARTH)) n++;
   if(!test.check("is_geodetic(on_earth)", g1.is_geodetic())) n++;
   if(!test.check("is_geocentric(on_earth)", !g1.is_geocentric())) n++;
   if(!test.check("site()", g1.site() == site)) n++;
@@ -38,10 +41,12 @@ int main() {
 
   Velocity v1 = Velocity(1.0, -2.0, 3.0);
   GeodeticObserver g2 = Observer::on_earth(site, v1, eop);
-  if(!test.check("itrs_velocity(moving)", g1.itrs_velocity() == v1)) n++;
+  if(!test.equals("type(moving)", g2.type(), NOVAS_AIRBORNE_OBSERVER)) n++;
+  if(!test.check("itrs_velocity(moving)", g2.itrs_velocity() == v1)) n++;
   
   GeocentricObserver gc = Observer::at_geocenter();
   if(!test.check("is_valid(gc)", gc.is_valid())) n++;
+  if(!test.equals("type(gc)", gc.type(), NOVAS_OBSERVER_AT_GEOCENTER)) n++;
   if(!test.check("is_geocentric(gc)", gc.is_geocentric())) n++;
   if(!test.check("is_geodetic(gc)", !gc.is_geodetic())) n++;
   if(!test.check("geocentric_position(gc)", gc.geocentric_position() == Position::origin())) n++;
@@ -49,14 +54,16 @@ int main() {
 
   Position p1(10000.0 * Unit::km, 0.0, 0.0);
   GeocentricObserver o1 = Observer::in_earth_orbit(p1, v1);
-  if(!test.check("is_valid(orbit)", gc.is_valid())) n++;
-  if(!test.check("is_geocentric(orbit)", gc.is_geocentric())) n++;
-  if(!test.check("is_geodetic(orbit)", !gc.is_geodetic())) n++;
-  if(!test.check("geocentric_position(orbit)", gc.geocentric_position() == p1)) n++;
-  if(!test.check("geocentric_velocity(orbit)", gc.geocentric_velocity() == v1)) n++;
+  if(!test.check("is_valid(orbit)", o1.is_valid())) n++;
+  if(!test.equals("type(orbit)", o1.type(), NOVAS_OBSERVER_IN_EARTH_ORBIT)) n++;
+  if(!test.check("is_geocentric(orbit)", o1.is_geocentric())) n++;
+  if(!test.check("is_geodetic(orbit)", !o1.is_geodetic())) n++;
+  if(!test.check("geocentric_position(orbit)", o1.geocentric_position() == p1)) n++;
+  if(!test.check("geocentric_velocity(orbit)", o1.geocentric_velocity() == v1)) n++;
 
   SolarSystemObserver ssb = Observer::at_ssb();
   if(!test.check("is_valid(ssb)", ssb.is_valid())) n++;
+  if(!test.equals("type(ssb)", ssb.type(), NOVAS_SOLAR_SYSTEM_OBSERVER)) n++;
   if(!test.check("is_geocentric(ssb)", !ssb.is_geocentric())) n++;
   if(!test.check("is_geodetic(ssb)", !ssb.is_geodetic())) n++;
 
@@ -65,6 +72,7 @@ int main() {
 
   SolarSystemObserver s1 = Observer::in_solar_system(p2, v2);
   if(!test.check("is_valid(ss)", s1.is_valid())) n++;
+  if(!test.equals("type(ss)", s1.type(), NOVAS_SOLAR_SYSTEM_OBSERVER)) n++;
   if(!test.check("is_geocentric(ss)", !s1.is_geocentric())) n++;
   if(!test.check("is_geodetic(ss)", !s1.is_geodetic())) n++;
   if(!test.check("ssb_position(ss)", s1.ssb_position() == p2)) n++;
