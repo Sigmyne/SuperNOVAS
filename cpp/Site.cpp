@@ -299,9 +299,9 @@ Position Site::xyz() const {
  * @return   a new string representation of this observing site.
  */
 std::string Site::to_string(enum novas_separator_type separator, int decimals) const {
-  return "Site: " + Angle(fabs(_site.longitude * Unit::deg)).to_string(separator, decimals) + (_site.longitude < 0 ? "W  " : "E  ") +
-          Angle(fabs(_site.latitude * Unit::deg)).to_string(separator, decimals) + (_site.latitude < 0 ? "S  " : "N  ") +
-          std::to_string((long) round(_site.height)) + "m";
+  return std::string("Site (") + (_site.longitude < 0 ? "W" : "E") + Angle(fabs(_site.longitude * Unit::deg)).to_string(separator, decimals) +
+          + (_site.latitude < 0 ? ", S" : ", N") + Angle(fabs(_site.latitude * Unit::deg)).to_string(separator, decimals) +
+          ", altitude " + std::to_string((long) round(_site.height)) + " m)";
 }
 
 /**
@@ -345,6 +345,12 @@ Site Site::from_GPS(const Angle& longitude, const Angle& latitude, const Distanc
  */
 Site Site::from_GPS(const std::string& longitude, const std::string& latitude, const Distance& altitude) {
   return from_GPS(Angle(longitude), Angle(latitude), altitude);
+}
+
+
+const Site& Site::invalid() {
+  static const Site _invalid = Site(NAN, NAN, NAN, (enum novas_reference_ellipsoid) -1);
+  return _invalid;
 }
 
 } // namespace supernovas

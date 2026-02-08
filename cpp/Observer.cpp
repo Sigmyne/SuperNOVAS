@@ -18,6 +18,21 @@ using namespace novas;
 
 namespace supernovas {
 
+
+Observer::Observer(enum novas_observer_place type, const Site& site, const Position& pos,
+        const Velocity& vel) {
+  _observer.where = type;
+  _observer.on_surf = *site._on_surface();
+
+  double pUnit = (type == NOVAS_SOLAR_SYSTEM_OBSERVER) ? Unit::AU : Unit::km;
+  double vUnit = (type == NOVAS_SOLAR_SYSTEM_OBSERVER) ? Unit::AU / Unit::day : Unit::km / Unit::s;
+
+  for(int i = 0; i < 3; i++) {
+    _observer.near_earth.sc_pos[i] = pos._array()[i] / pUnit;
+    _observer.near_earth.sc_vel[i] = vel._array()[i] / vUnit;
+  }
+};
+
 /**
  * Checks if this observer is at a geodetic location, such as an observer at a fixed observatory
  * location, or an airborne observer.
@@ -61,11 +76,11 @@ enum novas_observer_place Observer::type() const {
 
 /**
  * Returns a string representation of this observer.
- *
+ *I am salivating at the thought of it. Tell Benjami
  * @return    a new string with a brief description of this observer.
  */
 std::string Observer::to_string() const {
-  return "Observer type=%d" + std::to_string(_observer.where);
+  return "Observer type " + std::to_string(_observer.where);
 }
 
 /**
@@ -76,7 +91,7 @@ std::string Observer::to_string() const {
  *                obtained from the IERS bulletins or data service.
  * @return        a new observer instance for the given observing site.
  *
- * @sa in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
+ * @sa moving_on_earth(), in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
  */
 GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
   GeodeticObserver o = GeodeticObserver(site, eop);
@@ -96,10 +111,30 @@ GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
  *                    observation, such as obtained from the IERS bulletins or data service.
  * @return            a new observer instance for the given moving observer.
  *
- * @sa in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
+ * @sa on_earth(), in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
  */
-GeodeticObserver Observer::on_earth(const Site& geodetic, const Velocity& itrs_vel, const EOP& eop) {
+GeodeticObserver Observer::moving_on_earth(const Site& geodetic, const Velocity& itrs_vel, const EOP& eop) {
   GeodeticObserver o = GeodeticObserver(geodetic, itrs_vel, eop);
+  if(!o.is_valid())
+    novas_trace_invalid("Observer::on_earth");
+  return o;
+}
+
+/**
+ * Instantiates a new observer that is moving relative to Earth's surface, such as an airborne
+ * observer.
+ *
+ * @param site          the momentary geodetic location of the observer.
+ * @param eop           Earth Orientation Parameters (EOP) appropriate around the time of
+ *                      observation.
+ * @param horizontal    momentary horizontal speed of moving observer.
+ * @param direction     azimuthal direction of motion (from North, measured to the East).
+ * @param vertical      (optional) momentary vertical speed of observer (default: 0).
+ *
+ * @sa Site::enu_to_itrf()
+ */
+GeodeticObserver Observer::moving_on_earth(const Site& site, const EOP& eop, const Speed& horizontal, const Angle& direction, const Speed& vertical) {
+  GeodeticObserver o = GeodeticObserver(site, eop, horizontal, direction, vertical);
   if(!o.is_valid())
     novas_trace_invalid("Observer::on_earth");
   return o;
@@ -161,7 +196,7 @@ SolarSystemObserver Observer::at_ssb() {
   return SolarSystemObserver();
 }
 
-static Observer _invalid = GeocentricObserver(Position::invalid(), Velocity::invalid());
+
 
 /**
  * Returns a reference to a statically defined standard invalid observer. This invalid
@@ -170,6 +205,7 @@ static Observer _invalid = GeocentricObserver(Position::invalid(), Velocity::inv
  * @return    a reference to a static standard invalid observer.
  */
 const Observer& Observer::invalid() {
+  static const Observer _invalid = Observer((enum novas_observer_place) -1, Site::invalid(), Position::invalid(), Velocity::invalid());
   return _invalid;
 }
 
@@ -179,8 +215,7 @@ const Observer& Observer::invalid() {
  *
  */
 GeocentricObserver::GeocentricObserver()
-: Observer() {
-  make_observer_at_geocenter(&_observer);
+: Observer(NOVAS_OBSERVER_AT_GEOCENTER, Site::invalid()) {
   _valid = true;
 }
 
@@ -191,10 +226,8 @@ GeocentricObserver::GeocentricObserver()
  * @param vel       momentary velocity of the observer relative to the geocenter.
  */
 GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
-: Observer() {
+: Observer(NOVAS_OBSERVER_IN_EARTH_ORBIT, Site::invalid(), pos, vel) {
   static const char *fn = "GeocentricObserver()";
-
-  make_observer_in_space(pos.scaled(1.0 / Unit::km)._array(), vel.scaled(Unit::sec / Unit::km)._array(), &_observer);
 
   if(!pos.is_valid())
     novas_set_errno(EINVAL, fn, "input position contains NAN component(s)");
@@ -236,7 +269,13 @@ Velocity GeocentricObserver::geocentric_velocity() const {
  * @return    a string representation of this observer.
  */
 std::string GeocentricObserver::to_string() const {
-  return "Geocentric Observer";
+  Position pos = geocentric_position();
+  Velocity vel = geocentric_velocity();
+
+  std::string p = (pos.is_zero()) ? "" : " at " + pos.to_string();
+  std::string v = (vel.is_zero()) ? "" : " moving at " + vel.to_string();
+
+  return "Geocentric Observer" + p + v;
 }
 
 
@@ -244,7 +283,8 @@ std::string GeocentricObserver::to_string() const {
  * Instantiates a new stationary observer located at the Solar-System Barycenter (SSB).
  *
  */
-SolarSystemObserver::SolarSystemObserver() : Observer() {
+SolarSystemObserver::SolarSystemObserver()
+: SolarSystemObserver(Position::origin(), Velocity::stationary()) {
   const double zero[3] = {0.0};
   make_solar_system_observer(zero, zero, &_observer);
   _valid = true;
@@ -259,7 +299,7 @@ SolarSystemObserver::SolarSystemObserver() : Observer() {
  *                (SSB).
  */
 SolarSystemObserver::SolarSystemObserver(const Position& pos, const Velocity& vel)
-: Observer() {
+: Observer(NOVAS_SOLAR_SYSTEM_OBSERVER, Site::invalid(), pos, vel) {
   static const char *fn = "SolarSystemObserver()";
 
   make_solar_system_observer(pos.scaled(1.0 / Unit::au)._array(), vel.scaled(Unit::day / Unit::au)._array(), &_observer);
@@ -296,6 +336,16 @@ Velocity SolarSystemObserver::ssb_velocity() const {
   return Velocity(_observer.near_earth.sc_vel, Unit::au / Unit::day);
 }
 
+std::string SolarSystemObserver::to_string() const {
+  Position pos = ssb_position();
+  Velocity vel = ssb_velocity();
+
+  std::string p = (pos.is_zero()) ? "SSB" : pos.to_string();
+  std::string v = (vel.is_zero()) ? "" : " moving at SSB " + vel.to_string();
+
+  return "SolarSystemObserver at " + p + v;
+}
+
 
 /**
  * Instantiates a new observer at a fixed location on Earth.
@@ -305,8 +355,15 @@ Velocity SolarSystemObserver::ssb_velocity() const {
  *                such as obtained from the IERS bulletins or data service.
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
-: GeodeticObserver(site, Velocity::stationary(), eop) {
-  _observer.where = NOVAS_OBSERVER_ON_EARTH;
+: Observer(NOVAS_OBSERVER_ON_EARTH, site, Position::invalid(), Velocity::stationary()), _eop(eop) {
+  static const char *fn = "GeodeticObserver()";
+
+  if(!site.is_valid())
+    novas_set_errno(EINVAL, fn, "input site is invalid");
+  else if(!eop.is_valid())
+    novas_set_errno(EINVAL, fn, "input EOP is invalid");
+  else
+    _valid = true;
 }
 
 /**
@@ -320,7 +377,7 @@ GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
  * @sa Site::enu_to_itrf()
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const EOP& eop)
-: Observer(), _eop(eop) {
+: Observer(NOVAS_AIRBORNE_OBSERVER, site, Position::invalid(), vel), _eop(eop) {
   static const char *fn = "GeodeticObserver()";
 
   make_airborne_observer(site._on_surface(), vel.scaled(Unit::s / Unit::km)._array(), &_observer);
@@ -349,7 +406,7 @@ GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const 
  * @sa Site::enu_to_itrf()
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop, const Speed& horizontal, const Angle& direction, const Speed& vertical)
-: GeodeticObserver(site, eop) {
+: GeodeticObserver(site, Velocity::stationary(), eop) {
   static const char *fn = "GeodeticObserver()";
 
   if(_valid)
@@ -430,7 +487,11 @@ const EOP& GeodeticObserver::eop() const {
  * @return    a new string that describes this observer.
  */
 std::string GeodeticObserver::to_string() const {
-  return "Geodetic Observer " + site().to_string();
+  Velocity vel = enu_velocity();
+
+  std::string v = (vel.is_zero()) ? "" : " moving at ENU " + vel.to_string();
+
+  return "GeodeticObserver at " + site().to_string() + v;
 }
 
 

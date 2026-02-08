@@ -30,16 +30,18 @@ int main() {
   if(!test.equals("x() stationary", z.x(), 0.0)) n++;
   if(!test.equals("y() stationary", z.y(), 0.0)) n++;
   if(!test.equals("z() statiunary", z.z(), 0.0)) n++;
+  if(!test.check("is_zero(stationary)", z.is_zero())) n++;
 
   Velocity a(-1.0 * Unit::km / Unit::s, 2.0 * Unit::km / Unit::s, -3.0 * Unit::km / Unit::s);
   if(!test.check("is_valid(-1 km/s, 2 km/s, -3 km/s)", a.is_valid())) n++;
   if(!test.equals("x()", a.x(), -1.0 * Unit::km / Unit::s)) n++;
   if(!test.equals("y()", a.y(), 2.0 * Unit::km / Unit::s)) n++;
   if(!test.equals("z()", a.z(), -3.0 * Unit::km / Unit::s)) n++;
+  if(!test.check("is_zero()", !a.is_zero())) n++;
   if(!test.equals("speed()", a.speed().km_per_s(), sqrt(14.0), 1e-14)) n++;
   if(!test.equals("travel()", a.travel(Interval(2.0)).distance().km(), 2.0 * sqrt(14.0), 1e-14)) n++;
   if(!test.equals("operator*(Interval)", (a * Interval(3.0)).distance().km(), 3.0 * sqrt(14.0), 1e-14)) n++;
-  if(!test.equals("to_string()", a.to_string(), "VEL (-1.000 km/s, 2.000 km/s, -3.000 km/s)")) n++;
+  if(!test.equals("to_string()", a.to_string(), "Velocity (-1.000 km/s, 2.000 km/s, -3.000 km/s)")) n++;
 
   Velocity ai = a.inv();
   if(!test.equals("x() inv", ai.x(), -a.x())) n++;

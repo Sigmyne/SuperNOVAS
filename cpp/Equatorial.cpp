@@ -477,7 +477,7 @@ Galactic Equatorial::to_galactic() const {
  * @return    a new string with the human-readable representation of these equatorial coordinates.
  */
 std::string Equatorial::to_string(enum novas_separator_type separator, int decimals) const {
-  return "EQU  " + ra().to_string(separator, decimals + 1) + "  "
+  return "EQU " + ra().to_string(separator, decimals + 1) + "  "
           + dec().to_string(separator, decimals) + "  " + _sys.to_string();
 }
 

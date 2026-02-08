@@ -158,7 +158,7 @@ const Position& Position::origin() {
  * @return            a string representation of this position vector.
  */
 std::string Position::to_string(int decimals) const {
-  return "POS (" + Distance(x()).to_string(decimals) + ", " + Distance(y()).to_string(decimals) + ", " + Distance(z()).to_string(decimals) + ")";
+  return "Position (" + Distance(x()).to_string(decimals) + ", " + Distance(y()).to_string(decimals) + ", " + Distance(z()).to_string(decimals) + ")";
 }
 
 /**

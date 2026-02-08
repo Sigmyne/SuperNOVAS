@@ -65,7 +65,7 @@ int main() {
   if(!test.check("enu_to_itrs(Position)", a.enu_to_itrs(Position(enu)) == Position(itrs))) n++;
   if(!test.check("enu_to_itrs(Velocity)", a.enu_to_itrs(Velocity(enu)) == Velocity(itrs))) n++;
 
-  if(!test.equals("to_string()", a.to_string(), "Site:  120d 30m 00.000sW    75d 15m 00.000sS  60m")) n++;
+  if(!test.equals("to_string()", a.to_string(), "Site (W 120d 30m 00.000s, S  75d 15m 00.000s, altitude 60 m)")) n++;
 
   Site b(Angle(-120.5 * Unit::deg), Angle(-75.25 * Unit::deg), Distance(60.0), NOVAS_WGS84_ELLIPSOID);
   if(!test.check("from_GPS()", Site::from_GPS(Angle(-120.5 * Unit::deg), Angle(-75.25 * Unit::deg), Distance(60.0)) == b)) n++;

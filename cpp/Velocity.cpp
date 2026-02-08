@@ -191,7 +191,7 @@ const Velocity& Velocity::stationary() {
  * @return            a new string with a representation of this velocity.
  */
 std::string Velocity::to_string(int decimals) const {
-  return "VEL (" + Speed(x()).to_string(decimals) + ", " + Speed(y()).to_string(decimals) + ", " + Speed(z()).to_string(decimals) + ")";
+  return "Velocity (" + Speed(x()).to_string(decimals) + ", " + Speed(y()).to_string(decimals) + ", " + Speed(z()).to_string(decimals) + ")";
 }
 
 /**
