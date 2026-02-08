@@ -177,6 +177,10 @@ std::optional<Frame> Frame::create(const Observer& obs, const Time& time, enum n
   return std::nullopt;
 }
 
+std::string Frame::to_string() const {
+  return "Frame for " + _observer.to_string() + " at " + _time.to_string();
+}
+
 /**
  * Returns a reference to a statically defined standard invalid observing frame. This invalid
  * frame may be used inside any object that is invalid itself.

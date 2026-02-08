@@ -27,14 +27,17 @@ int main() {
   if(!test.equals("x() origin", z.x(), 0.0)) n++;
   if(!test.equals("y() origin", z.y(), 0.0)) n++;
   if(!test.equals("z() origin", z.z(), 0.0)) n++;
+  if(!test.check("is_zero(origin)", z.is_zero())) n++;
 
   Position a(-1.0 * Unit::au, 2.0 * Unit::au, -3.0 * Unit::au);
   if(!test.check("is_valid(-1 AU, 2 AU, -3 AU)", a.is_valid())) n++;
   if(!test.equals("x()", a.x(), -1.0 * Unit::au)) n++;
   if(!test.equals("y()", a.y(), 2.0 * Unit::au)) n++;
   if(!test.equals("z()", a.z(), -3.0 * Unit::au)) n++;
+  if(!test.check("is_zero()", !a.is_zero())) n++;
   if(!test.equals("distance()", a.distance().au(), sqrt(14.0), 1e-14)) n++;
-  if(!test.equals("to_string()", a.to_string(), "POS (-1.000 AU, 2.000 AU, -3.000 AU)")) n++;
+  if(!test.equals("to_string()", a.to_string(), "Position (-1.000 AU, 2.000 AU, -3.000 AU)")) n++;
+
 
   Position ai = a.inv();
   if(!test.equals("x() inv", ai.x(), -a.x())) n++;

@@ -77,6 +77,15 @@ double Vector::z() const {
 }
 
 /**
+ * Checks if this verctor is a null vector, that is all of its components are zero.
+ *
+ * @return    `true` if this is a null vector, with all components being zero; or else `false`.
+ */
+bool Vector::is_zero() const {
+  return _component[0] == 0.0 && _component[1] == 0.0 && _component[2] == 0.0;
+}
+
+/**
  * Checks if this vector is the same as another vector, within the specified precision.
  *
  * @param v           the reference vector

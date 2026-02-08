@@ -569,6 +569,8 @@ public:
 
   double z() const;
 
+  bool is_zero() const;
+
   Vector scaled(double factor) const;
 
   const double *_array() const;
@@ -1175,6 +1177,8 @@ public:
   static Site from_GPS(const Angle& longitude, const Angle& latitude, const Distance& altitude = Distance::zero());
 
   static Site from_GPS(const std::string& longitude, const std::string& latitude, const Distance& altitude = Distance::zero());
+
+  static const Site& invalid();
 };
 
 /**
@@ -1188,7 +1192,8 @@ class Observer : public Validating {
 protected:
   novas::observer _observer = {};   ///< stored observer data
 
-  Observer() {};
+  explicit Observer(enum novas::novas_observer_place type, const Site& site = Site::invalid(), const Position& pos = Position::origin(),
+          const Velocity& vel = Velocity::stationary());
 
 public:
 
@@ -1206,9 +1211,9 @@ public:
 
   static GeodeticObserver on_earth(const Site& site, const EOP& eop);
 
-  static GeodeticObserver on_earth(const Site& site, const Velocity& itrs_vel, const EOP &eop);
+  static GeodeticObserver moving_on_earth(const Site& site, const Velocity& itrs_vel, const EOP &eop);
 
-  static GeodeticObserver on_earth(const Site& site, const EOP& eop, const Speed& horizontal, const Angle& direction,
+  static GeodeticObserver moving_on_earth(const Site& site, const EOP& eop, const Speed& horizontal, const Angle& direction,
           const Speed& vertical = Speed::stationary());
 
   static GeocentricObserver in_earth_orbit(const Position& pos, const Velocity& vel);
@@ -1296,6 +1301,8 @@ public:
   Position ssb_position() const;
 
   Velocity ssb_velocity() const;
+
+  std::string to_string() const override;
 };
 
 /**

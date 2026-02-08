@@ -261,7 +261,7 @@ std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, const Speed&
  * @return            a new string with the human-readable representation of these horizontal coordinates.
  */
 std::string Horizontal::to_string(enum novas_separator_type separator, int decimals) const {
-  return "HOR  " + Spherical::to_string(separator, decimals);
+  return "HOR " + Spherical::to_string(separator, decimals);
 }
 
 /**
