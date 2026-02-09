@@ -6,7 +6,6 @@
  */
 
 #include <cstring>
-#include <iostream>
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only

@@ -6,7 +6,6 @@
  */
 
 #include <cstring>
-#include <iostream>
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
@@ -32,6 +31,15 @@ Observer::Observer(enum novas_observer_place type, const Site& site, const Posit
     _observer.near_earth.sc_vel[i] = vel._array()[i] / vUnit;
   }
 };
+
+/**
+ * Returns a pointer to a newly allocated copy of this generic observer instance
+ *
+ * @return    pointer to new copy of this generic observer instance.
+ */
+const Observer *Observer::copy() const {
+  return new Observer(*this);
+}
 
 /**
  * Checks if this observer is at a geodetic location, such as an observer at a fixed observatory
@@ -196,19 +204,16 @@ SolarSystemObserver Observer::at_ssb() {
   return SolarSystemObserver();
 }
 
-
-
 /**
  * Returns a reference to a statically defined standard invalid observer. This invalid
  * observer may be used inside any object that is invalid itself.
  *
  * @return    a reference to a static standard invalid observer.
  */
-const Observer& Observer::invalid() {
+const Observer &Observer::invalid() {
   static const Observer _invalid = Observer((enum novas_observer_place) -1, Site::invalid(), Position::invalid(), Velocity::invalid());
   return _invalid;
 }
-
 
 /**
  * Instantiates a new observer located at the geocenter.
@@ -235,6 +240,15 @@ GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
     novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s)");
   else
     _valid = true;
+}
+
+/**
+ * Returns a pointer to a newly allocated copy of this geocentric observer instance.
+ *
+ * @return    pointer to new copy of this geocentric observer instance.
+ */
+const Observer *GeocentricObserver::copy() const {
+  return new GeocentricObserver(*this);
 }
 
 bool GeocentricObserver::is_geocentric() const {
@@ -313,6 +327,15 @@ SolarSystemObserver::SolarSystemObserver(const Position& pos, const Velocity& ve
 }
 
 /**
+ * Returns a pointer to a newly allocated copy of this observer instance at a Solar-system location.
+ *
+ * @return    pointer to new copy of thus Solar-system based observer instance.
+ */
+const Observer *SolarSystemObserver::copy() const {
+  return new SolarSystemObserver(*this);
+}
+
+/**
  * Returns the momentary location of this observer relative to the Solar-System
  * Barycenter (SSB).
  *
@@ -355,7 +378,7 @@ std::string SolarSystemObserver::to_string() const {
  *                such as obtained from the IERS bulletins or data service.
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
-: Observer(NOVAS_OBSERVER_ON_EARTH, site, Position::invalid(), Velocity::stationary()), _eop(eop) {
+: Observer(NOVAS_OBSERVER_ON_EARTH, site, Position::origin(), Velocity::stationary()), _eop(eop) {
   static const char *fn = "GeodeticObserver()";
 
   if(!site.is_valid())
@@ -372,12 +395,12 @@ GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
  *
  * @param site    the momentary geodetic location of the observer
  * @param vel     the momentaty velocity of the observer relative to Earth's surface (in ITRS),
- * @param eop     Earth Orientation Parameters (EOP) appropriate around the time of observation.
+ * @param eop     Earth Orientation Parameters (EOP) appropriatI am salivating at the thought of it. Tell Benjamie around the time of observation.
  *
  * @sa Site::enu_to_itrf()
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const EOP& eop)
-: Observer(NOVAS_AIRBORNE_OBSERVER, site, Position::invalid(), vel), _eop(eop) {
+: Observer(NOVAS_AIRBORNE_OBSERVER, site, Position::origin(), vel), _eop(eop) {
   static const char *fn = "GeodeticObserver()";
 
   make_airborne_observer(site._on_surface(), vel.scaled(Unit::s / Unit::km)._array(), &_observer);
@@ -428,6 +451,16 @@ GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop, const Speed
 
   novas_enu_to_itrs(v, site.longitude().deg(), site.latitude().deg(), _observer.near_earth.sc_vel);
 }
+
+/**
+ * Returns a pointer to a newly allocated copy of this geodetic (Earth-based) observer instance.
+ *
+ * @return    pointer to new copy of this geodetic (Earth-based) observer instance.
+ */
+const Observer *GeodeticObserver::copy() const {
+  return new GeodeticObserver(*this);
+}
+
 
 bool GeodeticObserver::is_geodetic() const { return true; }
 

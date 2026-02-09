@@ -44,24 +44,26 @@ namespace supernovas {
  * In either case, you can obtain more information on why things went awry, when they do, by
  * enabling debug mode is enabled via `novas_debug()` prior to constructing a Frame.
  *
- * @param obs         observer location
+ * @param obs         observer location (referenced)
  * @param time        time of observation
  * @param accuracy    (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  *
  * @sa create()
  */
 Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy)
-: _observer(obs), _time(time) {
+: _observer(obs.copy()), _time(time) {
   static const char *fn = "Frame()";
+
+  errno = 0;
 
   if(novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), 0.0, 0.0, &_frame) != 0)
     novas_trace_invalid(fn);
-  else if(!obs.is_valid())
+  if(!obs.is_valid())
     novas_set_errno(EINVAL, fn, "input observer is invalid");
-  else if(!time.is_valid())
+  if(!time.is_valid())
     novas_set_errno(EINVAL, fn, "input time is invalid");
-  else
-    _valid = true;
+
+  _valid = (errno == 0);
 
   if(!obs.is_geodetic()) {
     // Force NANs if one tries to used EOP for a non-geodetic observer.
@@ -108,7 +110,7 @@ const Time& Frame::time() const {
  * @sa time()
  */
 const Observer& Frame::observer() const {
-  return _observer;
+  return *_observer;
 }
 
 /**
@@ -177,8 +179,13 @@ std::optional<Frame> Frame::create(const Observer& obs, const Time& time, enum n
   return std::nullopt;
 }
 
+/**
+ * Returns a human-readable string representation of this observing frame.
+ *
+ * @return    a strin representation of this observing frame.
+ */
 std::string Frame::to_string() const {
-  return "Frame for " + _observer.to_string() + " at " + _time.to_string();
+  return "Frame for " + _observer->to_string() + " at " + _time.to_string();
 }
 
 /**

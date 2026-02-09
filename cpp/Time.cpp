@@ -175,16 +175,20 @@ Time::Time(const struct timespec *t, const EOP& eop)
 Time::Time(const novas_timespec *t) {
   static const char *fn = "Time()";
 
+  errno = 0;
+
   if(!t)
     novas_set_errno(EINVAL, fn, "input timespec is NULL");
-  else if(!isfinite(t->fjd_tt))
-    novas_set_errno(EINVAL, fn, "input t->fjd_tt is NAN or infinite");
-  else if(!isfinite(t->ut1_to_tt))
-    novas_set_errno(EINVAL, fn, "input t->ut1_to_tt is NAN or infinite");
-  else if(!isfinite(t->tt2tdb))
-    novas_set_errno(EINVAL, fn, "input t->tt2tdb is NANA or infinite");
-  else
-    _valid = true;
+  else {
+    if(!isfinite(t->fjd_tt))
+      novas_set_errno(EINVAL, fn, "input t->fjd_tt is NAN or infinite");
+    if(!isfinite(t->ut1_to_tt))
+      novas_set_errno(EINVAL, fn, "input t->ut1_to_tt is NAN or infinite");
+    if(!isfinite(t->tt2tdb))
+      novas_set_errno(EINVAL, fn, "input t->tt2tdb is NANA or infinite");
+  }
+
+  _valid = (errno == 0);
 
   if(_valid) _ts = *t;
 }
@@ -215,7 +219,7 @@ Time Time::operator+(double seconds) const {
  * @sa oerator-(), shifted()
  */
 Time Time::operator+(const Interval& offset) const {
-  return shifted(offset);
+  return *this + offset.seconds();
 }
 
 /**
@@ -245,7 +249,7 @@ Time Time::operator-(double seconds) const {
  * @sa operator+(), shifted()
  */
 Time Time::operator-(const Interval& offset) const {
-  return shifted(offset.inv());
+  return *this - offset.seconds();
 }
 
 /**
@@ -259,7 +263,7 @@ Time Time::operator-(const Interval& offset) const {
  * offset_from()
  */
 Interval Time::operator-(const Time& r) const {
-  return Interval(novas_diff_time(&_ts, &r._ts));
+  return offset_from(r);
 }
 
 /**
@@ -300,7 +304,7 @@ bool Time::operator>(const Time& r) const {
  * @sa operator<(), operator>=(), operator>()
  */
 bool Time::operator<=(const Time& r) const {
-  return novas_diff_time(&r._ts, &_ts) <= Unit::us;
+  return novas_diff_time(&_ts, &r._ts) <= Unit::us;
 }
 
 /**
@@ -313,7 +317,7 @@ bool Time::operator<=(const Time& r) const {
  * @sa operator<(), operator>=(), operator>()
  */
 bool Time::operator>=(const Time& r) const {
-  return novas_diff_time(&r._ts, &_ts) >= Unit::us;
+  return r <= *this;
 }
 
 /**
@@ -416,7 +420,7 @@ long Time::mjd_day(enum novas_timescale timescale) const {
   long ijd = 0;
   double fjd = novas_get_split_time(&_ts, timescale, &ijd);
   ijd -= 2400000L;
-  return fjd >= 0.5 ? ijd + 1 : ijd;
+  return fjd >= 0.5 ? ijd : ijd - 1;
 }
 
 /**
@@ -456,7 +460,10 @@ double Time::mjd_frac(enum novas_timescale timescale) const {
  * @sa mjd_day(), jd()
  */
 double Time::mjd(enum novas_timescale timescale) const {
-  return (_ts.ijd_tt - (int) NOVAS_JD_MJD0) + _ts.fjd_tt - 0.5;
+  long ijd = 0;
+  double fjd = novas_get_split_time(&_ts, timescale, &ijd);
+
+  return (ijd - (int) NOVAS_JD_MJD0) + fjd - 0.5;
 }
 
 /**
@@ -478,7 +485,21 @@ time_t Time::unix_time(long *nanos) const {
  * @sa dUT1()
  */
 int Time::leap_seconds() const {
-  return (_ts.ut1_to_tt - _ts.dut1 - DTA);
+  return leap_seconds(&_ts);
+}
+
+/**
+ * Returns the leap seconds associated with the specified timestamp.
+ *
+ * @param ts    Pointer to timestamp
+ * @return      [s] the leap seconds (TAI - UTC), or else NAN if the input timestamp is NULL
+ *              (errno set to EINVAL).
+ */
+int Time::leap_seconds(const novas_timespec *ts) {
+  if(!ts)
+    return novas_error(-1, EINVAL, "Time::leap_seconds", "input timespec is NULL");
+
+  return (int) round(ts->ut1_to_tt - ts->dut1 - DTA);
 }
 
 /**
@@ -531,7 +552,7 @@ TimeAngle Time::gmst() const {
  * Returns the Local (Apparent) Sidereal Time for this time instance.
  *
  * @param site        observing site
- * @param accuracy    NOVAS_FULL_ACCURACY (0) for &mu;s-level precision or
+ * @param accuracy    (optional) NOVAS_FULL_ACCURACY (0; default) for &mu;s-level precision or
  *                    NOVAS_REDUCED_ACCURACY (1) for &ms-level precison.
  * @return            the LST / LaST time-angle.
  *
@@ -549,7 +570,7 @@ TimeAngle Time::lst(const Site& site, enum novas_accuracy accuracy) const {
  * @return            The Earth Rotation Angle (ERA) as a time-angle.
  */
 TimeAngle Time::era() const {
-  return TimeAngle(novas_era(_ts.ijd_tt, _ts.fjd_tt) * Unit::deg);
+  return TimeAngle(novas_era(_ts.ijd_tt, _ts.fjd_tt - _ts.ut1_to_tt) * Unit::deg);
 }
 
 /**
@@ -561,13 +582,13 @@ TimeAngle Time::era() const {
  * @sa jd_time_of_day()
  */
 TimeAngle Time::time_of_day(enum novas_timescale timescale) const {
-  return TimeAngle(TWOPI * remainder(novas_get_split_time(&_ts, timescale, NULL) - 0.5, 1.0));
+  return TimeAngle(TWOPI * mjd_frac(timescale));
 }
 
 /**
  * Returns the day of week index (1..7) for this time instance.
  *
- * @param timescale   (optional) the timescale in which to return the result (default: TT).
+ * @param timescale   (optional) the timescale in which to return the result (default: UTC).
  * @return            The day-of-week index [1:7] in the same timescale as the input date. 1:Monday
  *                    ... 7:Sunday, or else 0 if the input Julian Date is NAN.
  */
@@ -663,7 +684,7 @@ std::string Time::to_epoch_string(int decimals) const {
  *
  * @sa Time(), now(), j2000(), b1950(), b1900(), hip()
  */
-Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale) {
+Time Time::from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale) {
   return Time((int) NOVAS_JD_MJD0, mjd + 0.5, leap_seconds, dUT1, timescale);
 }
 
@@ -678,8 +699,8 @@ Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_times
  *
  * @sa Time(), now(), j2000(), b1950(), b1900(), hip()
  */
-Time from_mjd(double mjd, const EOP& eop, enum novas::novas_timescale timescale) {
-  return Time((int) NOVAS_JD_MJD0, mjd + 0.5, eop, timescale);
+Time Time::from_mjd(double mjd, const EOP& eop, enum novas::novas_timescale timescale) {
+  return from_mjd(mjd, eop.leap_seconds(), eop.dUT1().seconds(), timescale);
 }
 
 /**
@@ -704,13 +725,13 @@ Time Time::now(const EOP& eop) {
  * All timescales are supported.
  *
  * @param time        the other time
- * @param timescale   the timescale in which to return the result.
+ * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            the difference between this time and the argument time in the specified
  *                    timescale.
  *
  * operator-(), shifted()
  */
-Interval Time::offset_from(const Time& time, enum novas_timescale timescale) {
+Interval Time::offset_from(const Time& time, enum novas_timescale timescale) const {
   double dt = novas_diff_time_scale(&_ts, &time._ts, timescale);
   if(isnan(dt))
     novas_trace_invalid("Time::offset_from()");
@@ -756,7 +777,7 @@ Time Time::shifted(double seconds, enum novas_timescale timescale) const {
  * @sa oerator+(), offset_from()
  */
 Time Time::shifted(const Interval& offset, enum novas_timescale timescale) const {
-  return shifted(offset.to_timescale(NOVAS_TT).seconds());
+  return shifted(offset.seconds(), timescale);
 }
 
 /**

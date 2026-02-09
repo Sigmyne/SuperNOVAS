@@ -153,7 +153,7 @@ static const EOP& extract_eop(const Frame &frame) {
  * surface. The returned value may also be NAN if the source does not cross the specified
  * elevation theshold within a day of the specified time of observation.
  *
- * @param el        [rad] elevation threshold angle
+ * @param el        elevation threshold angle
  * @param frame     observing frame (observer location and the lower bound for the returned time).
  * @param ref       atmospheric refraction model to assume
  * @param weather   local weather parameters for the refraction calculation
@@ -165,14 +165,15 @@ static const EOP& extract_eop(const Frame &frame) {
  *
  * @sa sets_below(), transits()
  */
-std::optional<Time> Source::rises_above(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
+std::optional<Time> Source::rises_above(const Angle& el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
   static const char *fn = "Source::rises_above";
 
+  double eld = el.deg();
   if(frame.observer().is_geodetic()) {
     if(ref)
-      el = Horizontal(0.0, el * Unit::deg).to_unrefracted(frame, ref, weather).elevation().deg();
+      eld = Horizontal(0.0, el.rad()).to_unrefracted(frame, ref, weather).elevation().deg();
 
-    Time t = Time(novas_check_nan(fn, novas_rises_above(el / Unit::deg, &_object, frame._novas_frame(), NULL)), extract_eop(frame));
+    Time t = Time(novas_check_nan(fn, novas_rises_above(eld, &_object, frame._novas_frame(), NULL)), extract_eop(frame));
     return t;
   }
 
@@ -208,7 +209,7 @@ std::optional<Time> Source::transits(const Frame &frame) const {
  * surface. The returned value may also be NAN if the source does not cross the specified
  * elevation theshold within a day of the specified time of observation.
  *
- * @param el        [rad] elevation threshold angle
+ * @param el        elevation threshold angle
  * @param frame     observing frame (observer location and the lower bound for the returned time).
  * @param ref       atmospheric refraction model to assume
  * @param weather   local weather parameters for the refraction calculation
@@ -220,14 +221,15 @@ std::optional<Time> Source::transits(const Frame &frame) const {
  *
  * @sa rises_above(), transits()
  */
-std::optional<Time> Source::sets_below(double el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
+std::optional<Time> Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
   static const char *fn = "Source::sets_below";
 
+  double eld = el.deg();
   if(frame.observer().is_geodetic()) {
     if(ref)
-      el = Horizontal(0.0, el * Unit::deg).to_unrefracted(frame, ref, weather).elevation().deg();
+      eld = Horizontal(0.0, el.rad()).to_unrefracted(frame, ref, weather).elevation().deg();
     return Time(
-          novas_check_nan("Source::sets_below", novas_sets_below(el / Unit::deg, &_object, frame._novas_frame(), NULL)),
+          novas_check_nan("Source::sets_below", novas_sets_below(eld, &_object, frame._novas_frame(), NULL)),
           extract_eop(frame));
   }
 
@@ -263,6 +265,30 @@ std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, doub
 
   return EquatorialTrack::from_novas_track(Equinox::tod(frame.time().jd()), &track, Interval(range_seconds));
 }
+
+
+/**
+ * Returns the short-term equatorial trajectory of this source on the observer's sky, which can be used for
+ * extrapolating its apparent position in the near-term to avoid the repeated full-fledged position
+ * calculation, which may be expensive. The equatorial trajectory may also be used to provide telescope
+ * motor control parameters (position, tracking velocity, and acceleration) for equatorial telescope drive
+ * systems.
+ *
+ * In case positions cannot be calculated for this source (e.g. because you do not have an ephemeris provider
+ * configured, or there is no ephemeris data available), then `std::nullopt` is returned instead.
+ *
+ * @param frame           observing frame (observer location and time of observation)
+ * @param range           time range for which to fit a quadratic time evolution to the R.A., Dec,
+ *                        distance, and radial velocity coordinates.
+ * @return                a new near-term eqautorial trajectory for this source, for the observing
+ *                        location, around the time of observation, if possible, or else `std::nullopt`.
+ *
+ * @sa horizontal_track()
+ */
+std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, const Interval& range) const {
+  return equatorial_track(frame, range.seconds());
+}
+
 
 /**
  * Returns the short-term horizontal trajectory of this source on the observer's sky, which can be used for
@@ -387,12 +413,21 @@ CatalogSource::CatalogSource(const CatalogEntry& e)
   _object.type = NOVAS_CATALOG_OBJECT;
   _object.number = e._cat_entry()->starnumber;
 
-  if(make_cat_object_sys(e._cat_entry(), e.system().name().c_str(), &_object) != 0)
+  if(!e.is_valid())
+      novas_set_errno(EINVAL, fn, "input catalog entry is invalid");
+  else if(make_cat_object_sys(e._cat_entry(), e.system().name().c_str(), &_object) != 0)
     novas_trace_invalid(fn);
-  else if(!e.is_valid())
-    novas_set_errno(EINVAL, fn, "input catalog entry is invalid");
   else
     _valid = true;
+}
+
+/**
+ * Returns a pointer to a newly allocated copy of this catalog source instance
+ *
+ * @return    pointer to new copy of this catalog source instance.
+ */
+const Source* CatalogSource::copy() const {
+  return new CatalogSource(*this);
 }
 
 /**
@@ -411,11 +446,9 @@ const CatalogEntry& CatalogSource::catalog_entry() const {
  */
 std::string CatalogSource::to_string() const {
   const cat_entry *c = _cat._cat_entry();
-  return "CatalogSource: " + std::string(c->starname) + " @ " + TimeAngle(c->ra * Unit::hour_angle).to_string() +
+  return "CatalogSource " + std::string(c->starname) + " @ " + TimeAngle(c->ra * Unit::hour_angle).to_string() +
           " " + Angle(c->dec * Unit::deg).to_string() + " " + _cat.system().to_string();
 }
-
-
 
 /**
  * Returns the fraction [0.0:1.0] of the Solar-system source that appears illuminated by the Sun
@@ -492,6 +525,15 @@ Planet::Planet(enum novas_planet number) : SolarSystemSource() {
     novas_set_errno(EINVAL, "Planet::for_novas_id", "no planet for NOVAS id number: %d", number);
   else
     _valid = true;
+}
+
+/**
+ * Returns a pointer to a newly allocated copy of this planet instance
+ *
+ * @return    pointer to new copy of this planet instance.
+ */
+const Source *Planet::copy() const {
+  return new Planet(*this);
 }
 
 /**
@@ -824,6 +866,16 @@ EphemerisSource::EphemerisSource(const std::string &name, long number) : SolarSy
     _valid = true;
 }
 
+/**
+ * Returns a pointer to a newly allocated copy of this Solar-system ephemeris source instance
+ *
+ * @return    pointer to new copy of this Solar-system ephemeris source instance.
+ */
+const Source *EphemerisSource::copy() const {
+  return new EphemerisSource(*this);
+}
+
+
 std::string EphemerisSource::to_string() const {
   return "EphemerisSource " + name();
 }
@@ -849,6 +901,15 @@ OrbitalSource::OrbitalSource(const std::string& name, long number, const Orbital
     novas_set_errno(EINVAL, fn, "input orbital is invalid");
   else
     _valid = true;
+}
+
+/**
+ * Returns a pointer to a newly allocated copy of this Solar-system orbital source instance
+ *
+ * @return    pointer to new copy of this Solar-system orbital source instance.
+ */
+const Source *OrbitalSource::copy() const {
+  return new OrbitalSource(*this);
 }
 
 /**

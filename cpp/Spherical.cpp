@@ -133,7 +133,7 @@ const Angle& Spherical::latitude() const {
  * @return    a new string with the human-readable representation of these spherical coordinates.
  */
 std::string Spherical::to_string(enum novas_separator_type separator, int decimals) const {
-  return _lon.to_string(separator, decimals) + ", " + _lat.to_string(separator, decimals);
+  return _lon.to_string(separator, decimals) + " " + _lat.to_string(separator, decimals);
 }
 
 

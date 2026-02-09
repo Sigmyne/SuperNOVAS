@@ -6,16 +6,12 @@
  */
 
 #include <iostream>
+#include <string.h>
 
 #include "TestUtil.hpp"
 
 using namespace novas;
 
-
-class TestObserver : public Observer {
-public:
-  TestObserver() : Observer(NOVAS_OBSERVER_AT_GEOCENTER) {}
-};
 
 int main() {
   TestUtil test = TestUtil("Observer");
@@ -27,8 +23,14 @@ int main() {
   Site site(Angle(-2.0), Angle(1.0), Distance(75.0));
 
   Observer x = Observer::invalid();
+  const Observer *copy;
+
   if(!test.check("invalid()", !x.is_valid())) n++;
   if(!test.equals("invalid().type", (int) x.type(), -1)) n++;
+
+  copy = x.copy();
+  if(!test.check("invalid().copy()", !copy->is_valid())) n++;
+  delete copy;
 
   if(!test.check("invalid Site", !Observer::on_earth(Site::invalid(), eop).is_valid())) n++;
   if(!test.check("invalid Site (moving)", !Observer::moving_on_earth(Site::invalid(), Velocity::stationary(), eop).is_valid())) n++;
@@ -46,8 +48,8 @@ int main() {
   if(!test.check("invalid ssb Position", !Observer::in_solar_system(Position::invalid(), Velocity::stationary()).is_valid())) n++;
   if(!test.check("invalid ssb Velocity", !Observer::in_solar_system(Position::origin(), Velocity::invalid()).is_valid())) n++;
 
-  if(!test.equals("to_string(base)", TestObserver().to_string(),
-          "Observer type 0")) n++;
+  if(!test.equals("to_string(base)", Observer::invalid().to_string(),
+          "Observer type -1")) n++;
 
   GeodeticObserver g1 = Observer::on_earth(site, eop);
   if(!test.check("is_valid(on_earth)", g1.is_valid())) n++;
@@ -60,6 +62,10 @@ int main() {
   if(!test.equals("to_string(on_earth)", g1.to_string(),
           "GeodeticObserver at Site (W 114d 35m 29.612s, N  57d 17m 44.806s, altitude 75 m)")) n++;
 
+  copy = g1.copy();
+  if(!test.check("copy(on_earth)", memcmp(copy->_novas_observer(), g1._novas_observer(), sizeof(observer)) == 0)) n++;
+  delete copy;
+
   const observer *o = g1._novas_observer();
   if(!test.check("_novas_observer(on_earth)", o != NULL && o->where == NOVAS_OBSERVER_ON_EARTH)) n++;
 
@@ -69,6 +75,10 @@ int main() {
   if(!test.check("itrs_velocity(moving)", g2.itrs_velocity() == v1)) n++;
   if(!test.equals("to_string(moving)", g2.to_string(),
           "GeodeticObserver at Site (W 114d 35m 29.612s, N  57d 17m 44.806s, altitude 75 m) moving at ENU Velocity (0.002 km/s, 0.000 km/s, 0.003 km/s)")) n++;
+
+  copy = g2.copy();
+  if(!test.check("copy(moving)", memcmp(copy->_novas_observer(), g2._novas_observer(), sizeof(observer)) == 0)) n++;
+  delete copy;
 
   double v_enu[3] = {1.0, -2.0, 3.0}, v_itrs[3] = {0.0};
   novas_enu_to_itrs(v_enu, site.longitude().deg(), site.latitude().deg(), v_itrs);
@@ -88,6 +98,11 @@ int main() {
   if(!test.check("geocentric_velocity(gc)", gc.geocentric_velocity() == Velocity::stationary())) n++;
   if(!test.equals("to_string(gc)", gc.to_string(), "Geocentric Observer")) n++;
 
+
+  copy = gc.copy();
+  if(!test.check("copy(gc)", memcmp(copy->_novas_observer(), gc._novas_observer(), sizeof(observer)) == 0)) n++;
+  delete copy;
+
   o = gc._novas_observer();
   if(!test.check("_novas_observer(gc)", o != NULL && o->where == NOVAS_OBSERVER_AT_GEOCENTER)) n++;
 
@@ -103,6 +118,10 @@ int main() {
 
   o = o1._novas_observer();
   if(!test.check("_novas_observer(orbit)", o != NULL && o->where == NOVAS_OBSERVER_IN_EARTH_ORBIT)) n++;
+
+  copy = o1.copy();
+  if(!test.check("copy(orbit)", memcmp(copy->_novas_observer(), o1._novas_observer(), sizeof(observer)) == 0)) n++;
+  delete copy;
 
   SolarSystemObserver ssb = Observer::at_ssb();
   if(!test.check("is_valid(ssb)", ssb.is_valid())) n++;
@@ -129,6 +148,10 @@ int main() {
 
   o = s1._novas_observer();
   if(!test.check("_novas_observer(ss)", o != NULL && o->where == NOVAS_SOLAR_SYSTEM_OBSERVER)) n++;
+
+  copy = s1.copy();
+  if(!test.check("copy(ss)", memcmp(copy->_novas_observer(), s1._novas_observer(), sizeof(observer)) == 0)) n++;
+  delete copy;
 
   std::cout << "Observer.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

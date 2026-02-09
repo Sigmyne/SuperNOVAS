@@ -36,7 +36,7 @@ int main() {
   if(!test.equals("reference_system(ICRS)", a.reference_system(), novas::NOVAS_ICRS)) n++;
   if(!test.equals("jd(ICRS)", a.system().jd(), NOVAS_JD_J2000)) n++;
   if(!test.check("to_icrs(ICRS)", a.to_icrs() == a)) n++;
-  if(!test.equals("to_string(ICRS)", a.to_string(NOVAS_SEP_COLONS), "EQU  03:00:00.0000    30:00:00.000  ICRS")) n++;
+  if(!test.equals("to_string(ICRS)", a.to_string(NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  ICRS")) n++;
   if(!test.check("to_system(invalid)", !a.to_system(Equinox::invalid()).is_valid())) n++;
 
   double p0[3] = {0.0}, z[3] = {0.0};
@@ -99,7 +99,7 @@ int main() {
   if(!test.check("to_j2000(J2000)", b.to_j2000() == b)) n++;
   if(!test.check("to_mod(J2000)", b.to_mod(NOVAS_JD_J2000) == b)) n++;
   if(!test.check("operator >> (B1950)", (b >> Equinox::b1950()) == b.to_mod(NOVAS_JD_B1950))) n++;
-  if(!test.equals("to_string(J2000)", b.to_string(novas::NOVAS_SEP_COLONS), "EQU  03:00:00.0000    30:00:00.000  J2000")) n++;
+  if(!test.equals("to_string(J2000)", b.to_string(novas::NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  J2000")) n++;
 
   Equatorial c = Equatorial(Angle(45.0 * Unit::deg), Angle(30.0 * Unit::deg), Equinox::b1950());
   Equatorial c1 =  c.to_icrs().to_mod(Time::b1950());
@@ -108,7 +108,7 @@ int main() {
   if(!test.equals("reference_system(B1950)", c.reference_system(), NOVAS_MOD)) n++;
   if(!test.equals("jd(B1950)", c.system().jd(), NOVAS_JD_B1950)) n++;
   if(!test.check("to_mod(B1950)", c.to_mod(NOVAS_JD_B1950) == c)) n++;
-  if(!test.equals("to_string(B1950)", c.to_string(novas::NOVAS_SEP_COLONS), "EQU  03:00:00.0000    30:00:00.000  B1950")) n++;
+  if(!test.equals("to_string(B1950)", c.to_string(novas::NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  B1950")) n++;
 
   Equatorial d = Equatorial(Angle(45.0 * Unit::deg), Angle(30.0 * Unit::deg), Equinox::tod(Time::b1900()));
   Equatorial d1 =  d.to_icrs().to_tod(Time::b1900());
@@ -117,7 +117,7 @@ int main() {
   if(!test.equals("reference_system(TOD)", d.reference_system(), NOVAS_TRUE_EQUATOR)) n++;
   if(!test.equals("jd(B1900)", d.system().jd(), NOVAS_JD_B1900)) n++;
   if(!test.check("to_tod(B1900)", d.to_tod(NOVAS_JD_B1900) == d)) n++;
-  if(!test.equals("to_string(TOD B1900)", d.to_string(NOVAS_SEP_COLONS), "EQU  03:00:00.0000    30:00:00.000  TOD J1900.001")) n++;
+  if(!test.equals("to_string(TOD B1900)", d.to_string(NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  TOD J1900.001")) n++;
 
   Equatorial e = Equatorial(Angle(20.0 * Unit::deg), Angle(15.0 * Unit::deg), Equinox::icrs());
   if(!test.equals("distance_to()", e.distance_to(a).deg(),

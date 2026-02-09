@@ -1197,9 +1197,11 @@ protected:
 
 public:
 
-  virtual ~Observer() {}; // something virtual to make class polymorphic for dynamic casting.
+  virtual ~Observer() {}
 
-  const novas::observer * _novas_observer() const;
+  virtual const Observer *copy() const;
+
+  const novas::observer *_novas_observer() const;
 
   enum novas::novas_observer_place type() const;
 
@@ -1250,6 +1252,8 @@ public:
   GeodeticObserver(const Site& site, const EOP& eop, const Speed& horizontal, const Angle& direction,
           const Speed& vertical = Speed::stationary());
 
+  const Observer *copy() const override;
+
   bool is_geodetic() const override;
 
   Site site() const;
@@ -1276,6 +1280,8 @@ public:
 
   GeocentricObserver(const Position& pos, const Velocity& vel);
 
+  const Observer *copy() const override;
+
   bool is_geocentric() const override;
 
   Position geocentric_position() const;
@@ -1297,6 +1303,8 @@ public:
   SolarSystemObserver();
 
   SolarSystemObserver(const Position& pos, const Velocity& vel);
+
+  const Observer *copy() const override;
 
   Position ssb_position() const;
 
@@ -1518,7 +1526,7 @@ public:
 
   TimeAngle time_of_day(enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
-  int day_of_week(enum novas::novas_timescale timescale) const;
+  int day_of_week(enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
 
   double epoch() const;
 
@@ -1526,7 +1534,7 @@ public:
 
   TimeAngle gmst() const;
 
-  TimeAngle lst(const Site& site, enum novas::novas_accuracy accuracy) const;
+  TimeAngle lst(const Site& site, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
 
   TimeAngle era() const;
 
@@ -1540,7 +1548,7 @@ public:
 
   std::string to_epoch_string(int decimals = 2) const;
 
-  Interval offset_from(const Time& time, enum novas::novas_timescale timescale = novas::NOVAS_TT);
+  Interval offset_from(const Time& time, enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
   Time shifted(double seconds, enum novas::novas_timescale timescale = novas::NOVAS_TT) const;
 
@@ -1549,6 +1557,8 @@ public:
   CalendarDate to_calendar_date(const Calendar& calendar = Calendar::astronomical(), enum novas::novas_timescale timescale = novas::NOVAS_UTC) const;
 
   CalendarDate to_calendar_date(enum novas::novas_timescale timescale) const;
+
+  static int leap_seconds(const novas::novas_timespec *ts);
 
   static Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
@@ -1587,16 +1597,16 @@ public:
  */
 class Frame : public Validating {
 private:
+  const Observer *_observer;
+  Time _time;
   novas::novas_frame _frame = {}; ///< Stored frame data
-  Observer _observer;             ///< stored observer data
-  Time _time;                     ///< stored time data
 
   void diurnal_correct();
 
 public:
   Frame(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
 
-  const novas::novas_frame *_novas_frame() const;
+  const novas::novas_frame* _novas_frame() const;
 
   const Observer& observer() const;
 
@@ -1628,6 +1638,13 @@ protected:
 public:
   virtual ~Source() {}; // something virtual to make class polymorphic for dynamic casting.
 
+  /**
+   * Returns a pointer to a newly allocated copy of this instance
+   *
+   * @return    pointer to a newly allocated copy.
+   */
+  virtual const Source* copy() const = 0; // pure virtual copy
+
   const struct novas::novas_object *_novas_object() const;
 
   std::string name() const;
@@ -1648,19 +1665,22 @@ public:
   Angle angle_to(const Source& source, const Frame& frame) const;
 
   /// @ingroup time
-  std::optional<Time> rises_above(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
+  std::optional<Time> rises_above(const Angle& el, const Frame &frame, novas::RefractionModel ref = NULL, const Weather& weather = Weather::standard()) const;
 
   /// @ingroup time
   std::optional<Time> transits(const Frame &frame) const;
 
   /// @ingroup time
-  std::optional<Time> sets_below(double el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
+  std::optional<Time> sets_below(const Angle& el, const Frame &frame, novas::RefractionModel ref = NULL, const Weather& weather = Weather::standard()) const;
 
   /// @ingroup tracking
   std::optional<EquatorialTrack> equatorial_track(const Frame &frame, double range_seconds = Unit::hour) const;
 
   /// @ingroup tracking
-  std::optional<HorizontalTrack> horizontal_track(const Frame &frame, novas::RefractionModel ref, const Weather& weather) const;
+  std::optional<EquatorialTrack> equatorial_track(const Frame &frame, const Interval& range) const;
+
+  /// @ingroup tracking
+  std::optional<HorizontalTrack> horizontal_track(const Frame &frame, novas::RefractionModel ref = NULL, const Weather& weather = Weather::standard()) const;
 
   virtual std::string to_string() const; // TODO
 
@@ -1754,6 +1774,8 @@ private:
 public:
   explicit CatalogSource(const CatalogEntry& e);
 
+  const Source* copy() const override;
+
   const CatalogEntry& catalog_entry() const;
 
   std::string to_string() const override;
@@ -1770,6 +1792,7 @@ protected:
   SolarSystemSource() {}
 
 public:
+
   Distance helio_distance(const Time& time) const;
 
   Speed helio_rate(const Time& time) const;
@@ -1793,6 +1816,8 @@ public:
 class Planet : public SolarSystemSource {
 public:
   explicit Planet(enum novas::novas_planet number);
+
+  const Source* copy() const override;
 
   enum novas::novas_planet novas_id() const;
 
@@ -1859,6 +1884,8 @@ public:
 class EphemerisSource : public SolarSystemSource {
 public:
   EphemerisSource(const std::string &name, long number);
+
+  const Source *copy() const override;
 
   long number() const;
 
@@ -2040,6 +2067,8 @@ public:
   OrbitalSource(const std::string& name, long number, const Orbital& orbit);
 
   const novas::novas_orbital *_novas_orbital() const;
+
+  const Source *copy() const override;
 
   Orbital orbital() const;
 

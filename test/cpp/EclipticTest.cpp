@@ -35,7 +35,7 @@ int main() {
   if(!test.equals("jd(ICRS)", a.jd(), NOVAS_JD_J2000)) n++;
   if(!test.equals("mjd(ICRS)", a.mjd(), NOVAS_JD_J2000 - NOVAS_JD_MJD0)) n++;
   if(!test.check("to_icrs(ICRS)", a.to_icrs() == a)) n++;
-  if(!test.equals("to_string(ICRS)", a.to_string(novas::NOVAS_SEP_COLONS), "ECL    45:00:00.000    30:00:00.000  ICRS")) n++;
+  if(!test.equals("to_string(ICRS)", a.to_string(novas::NOVAS_SEP_COLONS), "ECL   45:00:00.000   30:00:00.000  ICRS")) n++;
 
   Ecliptic a1 = Ecliptic("45:00 00.000", "30d 00m00s", Equinox::icrs());
   if(!test.check("is_valid() Ecliptic(string)", a1.is_valid())) n++;
@@ -53,7 +53,7 @@ int main() {
   if(!test.check("to_j2000(J2000)", b.to_j2000() == b)) n++;
   if(!test.check("to_mod(J2000)", b.to_mod(NOVAS_JD_J2000) == b)) n++;
   if(!test.check("operator >> (B1950)", (b >> Equinox::b1950()) == b.to_mod(NOVAS_JD_B1950))) n++;
-  if(!test.equals("to_string(J2000)", b.to_string(novas::NOVAS_SEP_COLONS), "ECL    45:00:00.000    30:00:00.000  J2000")) n++;
+  if(!test.equals("to_string(J2000)", b.to_string(novas::NOVAS_SEP_COLONS), "ECL   45:00:00.000   30:00:00.000  J2000")) n++;
 
   Ecliptic c = Ecliptic(Angle(45.0 * Unit::deg), Angle(30.0 * Unit::deg), Equinox::b1950());
   Ecliptic c1 =  c.to_icrs().to_mod(Time::b1950());
@@ -62,7 +62,7 @@ int main() {
   if(!test.equals("equator(B1950)", c.equator_type(), novas::NOVAS_MEAN_EQUATOR)) n++;
   if(!test.equals("jd(B1950)", c.jd(), NOVAS_JD_B1950)) n++;
   if(!test.check("to_mod(B1950)", c.to_mod(NOVAS_JD_B1950) == c)) n++;
-  if(!test.equals("to_string(B1950)", c.to_string(novas::NOVAS_SEP_COLONS), "ECL    45:00:00.000    30:00:00.000  B1950")) n++;
+  if(!test.equals("to_string(B1950)", c.to_string(novas::NOVAS_SEP_COLONS), "ECL   45:00:00.000   30:00:00.000  B1950")) n++;
 
   Ecliptic d = Ecliptic(Angle(45.0 * Unit::deg), Angle(30.0 * Unit::deg), Equinox::tod(Time::b1900()));
   Ecliptic d1 =  d.to_icrs().to_tod(Time::b1900());
@@ -71,7 +71,7 @@ int main() {
   if(!test.equals("equator(TOD)", d.equator_type(), novas::NOVAS_TRUE_EQUATOR)) n++;
   if(!test.equals("jd(B1900)", d.jd(), NOVAS_JD_B1900)) n++;
   if(!test.check("to_tod(B1900)", d.to_tod(NOVAS_JD_B1900) == d)) n++;
-  if(!test.equals("to_string(TOD B1900)", d.to_string(novas::NOVAS_SEP_COLONS), "ECL    45:00:00.000    30:00:00.000  TOD B1900")) n++;
+  if(!test.equals("to_string(TOD B1900)", d.to_string(novas::NOVAS_SEP_COLONS), "ECL   45:00:00.000   30:00:00.000  TOD B1900")) n++;
 
   Ecliptic e = Ecliptic(Angle(20.0 * Unit::deg), Angle(15.0 * Unit::deg), Equinox::icrs());
   if(!test.equals("distance_to()", e.distance_to(a).deg(),

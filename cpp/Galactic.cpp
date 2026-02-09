@@ -166,7 +166,7 @@ Ecliptic Galactic::to_ecliptic() const {
  * @return  the human-readable string representation of these Galactic coordinates.
  */
 std::string Galactic::to_string(enum novas_separator_type separator, int decimals) const {
-  return "GAL  " + Spherical::to_string(separator, decimals);
+  return "GAL " + Spherical::to_string(separator, decimals);
 }
 
 /**
