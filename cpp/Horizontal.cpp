@@ -167,36 +167,37 @@ Angle Horizontal::distance_to(const Horizontal& other) const {
 /**
  * Applies atmospheric refraction correction for these coordinates, returning the result.
  *
- * @param frame     an Earth-based observing frame, defining the time of observation and the
- *                  observer location, above (or slightly below) Earth's surface.
  * @param ref       refraction model to use, or NULL to skip refraction correction
- * @param weather   local weather parameters to use for the refraction correction.
+ * @param weather   (optional) local weather parameters to use for the refraction correction.
+ *                  (default: standard atmopshere).
+ * @param time      (optional) Time of observation, for time-dependent refraction models.
  * @return          refracted horizontal coordinates.
  *
  * @sa to_unrefracted()
  */
-Horizontal Horizontal::to_refracted(const Frame &frame, RefractionModel ref, const Weather& weather) {
+Horizontal Horizontal::to_refracted(RefractionModel ref, const Weather& weather, const Time& time) {
   on_surface loc = {};
   use_weather(weather, &loc);
-  double del = ref ? ref(frame.time().jd(), &loc, NOVAS_REFRACT_ASTROMETRIC, elevation().deg()) : 0.0;
+  double del = ref ? ref(time.jd(), &loc, NOVAS_REFRACT_ASTROMETRIC, elevation().deg()) : 0.0;
   return Horizontal(longitude().rad(), latitude().rad() + del * Unit::arcsec);
 }
 
 /**
  * Undoes atmospheric refraction correction for these coordinates, returning the result.
  *
- * @param frame     an Earth-based observing frame, defining the time of observation and the
- *                  observer location, above (or slightly below) Earth's surface.
  * @param ref       refraction model to use, or NULL to skip refraction correction
- * @param weather   local weather parameters to use for the refraction correction.
+ * @param weather   (optional) local weather parameters to use for the refraction correction.
+ *                  (default: standard atmopshere).
+ * @param time      (optional) Time of observation, for time-dependent refraction models.
+ * @return          refracted horizontal coordinates.
  * @return          unrefracted (astrometric) horizontal coordinates.
  *
  * @sa to_refracted()
  */
-Horizontal Horizontal::to_unrefracted(const Frame &frame, RefractionModel ref, const Weather& weather) {
+Horizontal Horizontal::to_unrefracted(RefractionModel ref, const Weather& weather, const Time& time) {
   on_surface loc = {};
   use_weather(weather, &loc);
-  double del = ref ? ref(frame.time().jd(), &loc, NOVAS_REFRACT_OBSERVED, elevation().deg()) : 0.0;
+  double del = ref ? ref(time.jd(), &loc, NOVAS_REFRACT_OBSERVED, elevation().deg()) : 0.0;
   return Horizontal(longitude().rad(), latitude().rad() - del * Unit::arcsec);
 }
 
@@ -212,19 +213,12 @@ Horizontal Horizontal::to_unrefracted(const Frame &frame, RefractionModel ref, c
  * @return          the apparent equatorial place corresponding to these astrometric horizontal
  *                  coordinates on the sky.
  *
- * @sa to_unrefracted(), Apparent::horizontal()
+ * @sa to_unrefracted(), Apparent::to_horizontal()
  */
 std::optional<Apparent> Horizontal::to_apparent(const Frame& frame, double rv, double distance) const {
-  static const char *fn = "Horizontal::to_apparent";
-
-  if(!frame.observer().is_geodetic()) {
-    novas_set_errno(EINVAL, fn, "cannot convert for non-geodetic observer frame");
-    return std::nullopt;
-  }
-
   sky_pos p = {};
   if(novas_hor_to_app(frame._novas_frame(), longitude().deg(), latitude().deg(), NULL, NOVAS_TOD, &p.ra, &p.dec) != 0) {
-    novas_trace_invalid(fn);
+    novas_trace_invalid("Horizontal::to_apparent");
     return std::nullopt;
   }
 

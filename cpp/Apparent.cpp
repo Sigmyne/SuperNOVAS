@@ -17,19 +17,21 @@ namespace supernovas {
 
 
 static bool is_valid_sky_pos(const char *fn, const sky_pos *p) {
+  errno = 0;
+
   if(!isfinite(p->ra))
-    return novas_error(0, EINVAL, fn, "input RA is NAN or infinite");
+    novas_set_errno(EINVAL, fn, "input RA is NAN or infinite");
 
-  else if(!isfinite(p->dec))
-    return novas_error(0, EINVAL, fn, "input Dec is NAN or infinite");
+  if(!isfinite(p->dec))
+    novas_set_errno(EINVAL, fn, "input Dec is NAN or infinite");
 
-  else if(!isfinite(p->rv))
-    return novas_error(0, EINVAL, fn, "input radial velocity is NAN or infinite");
+  if(!isfinite(p->rv))
+    novas_set_errno(EINVAL, fn, "input radial velocity is NAN or infinite");
 
-  else if(p->rv * Unit::au / Unit::day > Constant::c)
-    return novas_error(0, EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", p->rv * Unit::au / Unit::day);
+  if(p->rv * Unit::au / Unit::day > Constant::c)
+    novas_set_errno(EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", p->rv * Unit::au / Unit::day);
 
-  return true;
+  return (errno == 0);
 }
 
 Apparent::Apparent(const Frame& f)
@@ -212,7 +214,7 @@ Distance Apparent::distance() const {
  *
  * @return    the apparent equatorial coordinates in the system in which they were defined.
  *
- * @sa cirs(), ecliptic(), galactic(), horizontal()
+ * @sa cirs(), ecliptic(), galactic(), to_horizontal()
  */
 Equatorial Apparent::equatorial() const {
   return Equatorial(_pos.ra * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::tod(_frame.time()));
@@ -224,7 +226,7 @@ Equatorial Apparent::equatorial() const {
  *
  * @return    the apparent equatorial coordinates in the system in which they were defined.
  *
- * @sa equatorial(), ecliptic(), galactic(), horizontal()
+ * @sa equatorial(), ecliptic(), galactic(), to_horizontal()
  */
 Equatorial Apparent::cirs() const {
   return Equatorial((_pos.ra - cirs2tod_ra) * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::cirs(_frame.time()));
@@ -235,7 +237,7 @@ Equatorial Apparent::cirs() const {
  *
  * @return    the apparent ecliptic coordinates with respect to the true equinox of date.
  *
- * @sa equatorial(), galactic(), horizontal()
+ * @sa equatorial(), galactic(), to_horizontal()
  * @sa Equatorial::to_ecliptic()
  */
 Ecliptic Apparent::ecliptic() const {
@@ -247,7 +249,7 @@ Ecliptic Apparent::ecliptic() const {
  *
  * @return    the apparent galactic coordinates for this position.
  *
- * @sa equatorial(), ecliptic(), horizontal()
+ * @sa equatorial(), ecliptic(), to_horizontal()
  * @sa Equatorial::to_galactic()
  */
 Galactic Apparent::galactic() const {
@@ -265,11 +267,10 @@ Galactic Apparent::galactic() const {
  * @sa equatorial(), ecliptic(), galactic()
  * @sa Horizontal::to_apparent(), GeodeticObserver
  */
-std::optional<Horizontal> Apparent::horizontal() const {
-  static const char *fn = "Apparent::horizontal";
+std::optional<Horizontal> Apparent::to_horizontal() const {
 
   if(!_frame.observer().is_geodetic()) {
-    novas_set_errno(EINVAL, fn, "cannot convert for non-geodetic observer frame");
+    novas_set_errno(EINVAL, "Apparent::horizontal", "cannot convert for non-geodetic observer frame");
     return std::nullopt;
   }
 
@@ -278,10 +279,7 @@ std::optional<Horizontal> Apparent::horizontal() const {
   // pos.ra / pos.dec may be NAN for ITRS / TIRS...
   vector2radec(_pos.r_hat, &ra, &dec);
 
-  if(novas_app_to_hor(_frame._novas_frame(), NOVAS_TOD, ra, dec, NULL, &az, &el) != 0) {
-    novas_trace_invalid(fn);
-    return std::nullopt;
-  }
+  novas_app_to_hor(_frame._novas_frame(), NOVAS_TOD, ra, dec, NULL, &az, &el);
 
   return Horizontal(az * Unit::deg, el * Unit::deg);
 }

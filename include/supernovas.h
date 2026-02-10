@@ -2145,7 +2145,7 @@ public:
   Galactic galactic() const;
 
   /// @ingroup nonequatorial
-  std::optional<Horizontal> horizontal() const;
+  std::optional<Horizontal> to_horizontal() const;
 
   std::string to_string() const; // TODO
 
@@ -2268,10 +2268,10 @@ public:
   const Angle zenith_angle() const;
 
   /// @ingroup refract
-  Horizontal to_refracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather = Weather::standard());
+  Horizontal to_refracted(novas::RefractionModel ref, const Weather& weather = Weather::standard(), const Time &time = Time::invalid());
 
   /// @ingroup refract
-  Horizontal to_unrefracted(const Frame &frame, novas::RefractionModel ref, const Weather& weather = Weather::standard());
+  Horizontal to_unrefracted(novas::RefractionModel ref, const Weather& weather = Weather::standard(), const Time& time = Time::invalid());
 
   /// @ingroup apparent
   std::optional<Apparent> to_apparent(const Frame& frame, double rv = 0.0, double distance = Unit::Gpc) const;

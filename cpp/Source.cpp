@@ -171,7 +171,7 @@ std::optional<Time> Source::rises_above(const Angle& el, const Frame &frame, Ref
   double eld = el.deg();
   if(frame.observer().is_geodetic()) {
     if(ref)
-      eld = Horizontal(0.0, el.rad()).to_unrefracted(frame, ref, weather).elevation().deg();
+      eld = Horizontal(0.0, el.rad()).to_unrefracted(ref, weather, frame.time()).elevation().deg();
 
     Time t = Time(novas_check_nan(fn, novas_rises_above(eld, &_object, frame._novas_frame(), NULL)), extract_eop(frame));
     return t;
@@ -227,7 +227,7 @@ std::optional<Time> Source::sets_below(const Angle& el, const Frame &frame, Refr
   double eld = el.deg();
   if(frame.observer().is_geodetic()) {
     if(ref)
-      eld = Horizontal(0.0, el.rad()).to_unrefracted(frame, ref, weather).elevation().deg();
+      eld = Horizontal(0.0, el.rad()).to_unrefracted(ref, weather, frame.time()).elevation().deg();
     return Time(
           novas_check_nan("Source::sets_below", novas_sets_below(eld, &_object, frame._novas_frame(), NULL)),
           extract_eop(frame));
