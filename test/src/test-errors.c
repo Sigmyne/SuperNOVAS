@@ -2542,6 +2542,11 @@ static int test_print_decimal() {
   return n;
 }
 
+static int test_time_leap() {
+  if(check("time_leap", -1, (int) novas_time_leap(NULL))) return 1;
+  return 0;
+}
+
 static int test_trace_invalid() {
   int n = 0;
 
@@ -2792,6 +2797,7 @@ int main(int argc, const char *argv[]) {
   if(test_itrs_to_enu()) n++;
   if(test_day_of_week()) n++;
   if(test_print_decimal()) n++;
+  if(test_time_leap()) n++;
 
   if(test_trace_invalid()) n++;
   if(test_check_nan()) n++;
