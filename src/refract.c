@@ -253,7 +253,7 @@ double novas_inv_refract(RefractionModel model, double jd_tt, const on_surface *
  *                  weather
  * @param type      Whether the input elevation is observed or astrometric: NOVAS_REFRACT_OBSERVED
  *                  (-1) or NOVAS_REFRACT_ASTROMETRIC (0).
- * @param el        [deg] Astrometric (unrefracted) source elevation
+ * @param el        [deg] Source elevation angle of the specified type.
  * @return          [deg] Estimated refraction, or NAN if there was an error (it should also
  *                  set errno to indicate the type of error).
  *
@@ -281,7 +281,7 @@ double novas_standard_refraction(double jd_tt, const on_surface *loc, enum novas
  *                  weather values (temperature and pressure are used by this call).
  * @param type      Whether the input elevation is observed or astrometric: NOVAS_REFRACT_OBSERVED
  *                  (-1) or NOVAS_REFRACT_ASTROMETRIC (0).
- * @param el        [deg] Astrometric (unrefracted) source elevation
+ * @param el        [deg] Source elevation angle of the specified type.
  * @return          [arcsec] Estimated refraction, or NAN if there was an error (it should also
  *                  set errno to indicate the type of error).
  *
@@ -320,7 +320,7 @@ double novas_optical_refraction(double jd_tt, const on_surface *loc, enum novas_
  *                  fully populated.
  * @param type      Whether the input elevation is observed or astrometric: NOVAS_REFRACT_OBSERVED
  *                  (-1) or NOVAS_REFRACT_ASTROMETRIC (0).
- * @param el        [deg] source elevation of the specified type.
+ * @param el        [deg] source elevation angle of the specified type.
  * @return          [deg] Estimated refraction, or NAN if there was an error (it should also
  *                  set errno to indicate the type of error). An error is returned if the location
  *                  is NULL, or if the weather parameters are way outside of their resonable

@@ -3311,6 +3311,8 @@ int novas_enu_to_itrs(const double *enu, double lon, double lat, double *itrf);
 /// @ingroup time
 double novas_diff_time_scale(const novas_timespec *t1, const novas_timespec *t2, enum novas_timescale scale);
 
+/// @ingroup time
+int novas_time_leap(const novas_timespec *time);
 
 // <================= END of SuperNOVAS API =====================>
 

@@ -343,6 +343,11 @@ static int novas_rot(double angle, double *x, double *y) {
  * @param[in,out] v   Vector to rotate
  * @return            0 if successful, or else -1 if the vector argument is NULL
  *                    (errno set to EINVAL).
+ *
+ *  @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_Ry(), novas_Rz()
  */
 int novas_Rx(double angle, double *v) {
   if(!v)
@@ -358,6 +363,11 @@ int novas_Rx(double angle, double *v) {
  * @param[in,out] v   Vector to rotate
  * @return            0 if successful, or else -1 if the vector argument is NULL
  *                    (errno set to EINVAL).
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_Rx(), novas_Rz()
  */
 int novas_Ry(double angle, double *v) {
   if(!v)
@@ -373,6 +383,11 @@ int novas_Ry(double angle, double *v) {
  * @param[in,out] v   Vector to rotate
  * @return            0 if successful, or else -1 if the vector argument is NULL
  *                    (errno set to EINVAL).
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_Rx(), novas_Ry()
  */
 int novas_Rz(double angle, double *v) {
   if(!v)
@@ -392,6 +407,7 @@ int novas_Rz(double angle, double *v) {
  *                    an error (errno will indicate the type of error).
  *
  * @since 1.6
+ * @author Attila Kovacs
  */
 int novas_print_decimal(double value, int decimals, char *str, int len) {
   static const char *fn = "novas_decimal_string";

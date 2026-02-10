@@ -33,7 +33,8 @@ namespace novas {
 #endif
 
 /// \cond PRIVATE
-#define DTA         (32.184 / DAY)        ///< [day] TT - TAI time difference
+#define DTA_SECONDS 32.184                ///< [s] TT - TAI time difference
+#define DTA         (DTA_SECONDS / DAY)        ///< [day] TT - TAI time difference
 #define GPS2TAI     (19.0 / DAY)          ///< [day] TAI - GPS time difference
 
 #define IDAY        86400                 ///< [s] 1 day
@@ -566,7 +567,7 @@ int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, i
 
   time->tt2tdb = NAN;
   time->dut1 = dut1;
-  time->ut1_to_tt = leap - dut1 + DTA * DAY;
+  time->ut1_to_tt = leap - dut1 + DTA_SECONDS;
 
   switch(timescale) {
     case NOVAS_TT:
@@ -801,7 +802,7 @@ double novas_diff_time(const novas_timespec *t1, const novas_timespec *t2) {
  * @return            [s] Precise UT1 time difference (t1-t2), or NAN if one of the inputs was
  *                    NULL (errno will be set to EINVAL)
  *
- * @since 1.1
+ * @since 1.6
  * @author Attila Kovacs
  *
  * @sa novas_diff_time(), novas_diff_tcg(), novas_diff_time()
@@ -1326,6 +1327,23 @@ double novas_time_lst(const novas_timespec *restrict time, double lon, enum nova
   st = remainder(st + lon / 15.0, DAY_HOURS);
   return st < 0.0 ? st + DAY_HOURS : st;
 }
+
+/**
+ * Returns the leap seconds component of an astronomical time specification.
+ *
+ * @param time    The astronomoical time specification.
+ * @return        [s] The leap seconds that was used to initialize the time specification, or -1
+ *                if the input pointer is NULL (errno is set to EINVAL).
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ */
+int novas_time_leap(const novas_timespec *time) {
+  if(!time)
+    return novas_error(-1, EINVAL, "novas_time_leap", "input time specification is NULL");
+  return (int) round(time->ut1_to_tt + time->dut1 - DTA_SECONDS);
+}
+
 
 /**
  * Returns the Newtonian Solar-system gravitational potential due to the major planets, the Sun,

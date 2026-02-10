@@ -4968,6 +4968,29 @@ static int test_print_decimal() {
   return n;
 }
 
+static int test_time_leap() {
+  int n = 0;
+
+  novas_timespec ts = {};
+
+  if(!is_ok("time_leap:set_time:1", novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.0, &ts))) n++;
+  if(!is_equal("time_leap:1", novas_time_leap(&ts), 32, 1e-12)) n++;
+
+  if(!is_ok("time_leap:set_time:2", novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.1, &ts))) n++;
+  if(!is_equal("time_leap:2", novas_time_leap(&ts), 32, 1e-12)) n++;
+
+  if(!is_ok("time_leap:set_time:3", novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.5, &ts))) n++;
+  if(!is_equal("time_leap:3", novas_time_leap(&ts), 32, 1e-12)) n++;
+
+  if(!is_ok("time_leap:set_time:4", novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.99, &ts))) n++;
+  if(!is_equal("time_leap:4", novas_time_leap(&ts), 32, 1e-12)) n++;
+
+  if(!is_ok("time_leap:set_time:5", novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, -0.5, &ts))) n++;
+  if(!is_equal("time_leap:5", novas_time_leap(&ts), 32, 1e-12)) n++;
+
+  return n;
+}
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -5125,6 +5148,7 @@ int main(int argc, char *argv[]) {
   if(test_Ry()) n++;
   if(test_Rz()) n++;
   if(test_enu_itrs()) n++;
+  if(test_time_leap()) n++;
 
   if(test_print_decimal()) n++;
 
