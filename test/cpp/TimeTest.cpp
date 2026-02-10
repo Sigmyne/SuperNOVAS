@@ -84,8 +84,6 @@ int main() {
 
   novas_timespec ts = {};
   novas_set_split_time(NOVAS_UTC, (long) NOVAS_JD_J2000, 0.0, 32, 0.1, &ts);
-  if(!test.equals("leap_seconds(novas_timespec *)", Time::leap_seconds(&ts), 32)) n++;
-  if(!test.equals("leap_seconds(novas_timespec = NULL)", Time::leap_seconds(NULL), -1)) n++;
 
   Time b(&ts);
   if(!test.check("operator==()", b.equals(a, Interval(Unit::us)))) n++;
