@@ -1558,8 +1558,6 @@ public:
 
   CalendarDate to_calendar_date(enum novas::novas_timescale timescale) const;
 
-  static int leap_seconds(const novas::novas_timespec *ts);
-
   static Time from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale = novas::NOVAS_TT);
 
   static Time from_mjd(double mjd, const EOP& eop, enum novas::novas_timescale timescale = novas::NOVAS_TT);

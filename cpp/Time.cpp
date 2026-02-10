@@ -485,21 +485,7 @@ time_t Time::unix_time(long *nanos) const {
  * @sa dUT1()
  */
 int Time::leap_seconds() const {
-  return leap_seconds(&_ts);
-}
-
-/**
- * Returns the leap seconds associated with the specified timestamp.
- *
- * @param ts    Pointer to timestamp
- * @return      [s] the leap seconds (TAI - UTC), or else NAN if the input timestamp is NULL
- *              (errno set to EINVAL).
- */
-int Time::leap_seconds(const novas_timespec *ts) {
-  if(!ts)
-    return novas_error(-1, EINVAL, "Time::leap_seconds", "input timespec is NULL");
-
-  return (int) round(ts->ut1_to_tt - ts->dut1 - DTA);
+  return novas_time_leap(&_ts);
 }
 
 /**
