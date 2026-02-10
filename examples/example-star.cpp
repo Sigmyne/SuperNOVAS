@@ -129,7 +129,7 @@ int main() {
   // (6 C deg, 985 mbar, 74% humidity)
   Weather weather(Temperature::celsius(6.0), Pressure::mbar(985.0), 74.0);
 
-  Horizontal hor = apparent.horizontal().value()
+  Horizontal hor = apparent.to_horizontal().value()
           .to_refracted(frame, novas_optical_refraction, weather);
 
   // Let's print the calculated azimuth and elevation
