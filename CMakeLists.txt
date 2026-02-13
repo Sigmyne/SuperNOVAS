@@ -21,10 +21,10 @@ cmake_minimum_required(VERSION 3.24...4.2)
 
 # Project definition
 project(supernovas
-    VERSION 1.5.0
+    VERSION 1.6.0
     DESCRIPTION "SuperNOVAS C/C++ astrometry library"
     HOMEPAGE_URL "https://sigmyne.github.io/SuperNOVAS/"
-    LANGUAGES C
+    LANGUAGES C CXX
 )
 
 # Include required modules
@@ -38,8 +38,10 @@ option(BUILD_DOC "Build HTML documetation" OFF)
 option(BUILD_TESTING "Build regression test suite" ON)
 option(BUILD_EXAMPLES "Build example programs" OFF)
 option(BUILD_BENCHMARK "Build benchmark programs" OFF)
-option(ENABLE_CALCEPH "Enable CALCEPH support (solsys-calceph component)" OFF)
-option(ENABLE_CSPICE "Enable CSPICE support (solsys-cspice component)" OFF)
+option(ENABLE_CPP "Enable C++ library build (supernovas++ library)" OFF)
+option(ENABLE_CALCEPH "Enable CALCEPH support (solsys-calceph plugin)" OFF)
+option(ENABLE_CSPICE "Enable CSPICE support (solsys-cspice plugin)" OFF)
+
 
 # Set feature descriptions for summary
 add_feature_info(SharedLibs BUILD_SHARED_LIBS "Build as shared libraries")
@@ -48,8 +50,10 @@ add_feature_info(Examples BUILD_EXAMPLES "Build and test example programs")
 add_feature_info(Testing BUILD_TESTING "Run regression testing")
 add_feature_info(Benchmarks BUILD_BENCHMARK "Build benchmarking programs")
 
+add_feature_info(C++-Libs ENABLE_CPP "Build C++ library also (supernovas++)")
 add_feature_info(Calceph-Plugin ENABLE_CALCEPH "Optional ephemeris support via CALCEPH (solsys-calceph)")
 add_feature_info(CSPICE-Plugin ENABLE_CSPICE "Optional ephemeris support via CSPICE (solsys-cspice)")
+
 
 # ----------------------------------------------------------------------------
 # pkg-config variables
@@ -227,6 +231,11 @@ endif()
 
 # Run tests for the enabled options below...
 enable_testing()
+
+# C++ library
+if(ENABLE_CPP_LIBS)
+    add_subdirectory(cpp)
+endif()
 
 # Examples
 if(BUILD_EXAMPLES)

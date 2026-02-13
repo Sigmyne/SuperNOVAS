@@ -934,6 +934,9 @@ int novas_uvw_to_xyz(const double *uvw, double ha, double dec, double *xyz) {
  * @return            0 if successful, or else -1 if either pointer argument is NULL (errno will be
  *                    set to EINVAL).
  *
+ * @since 1.6
+ * @author Attila Kovacs
+ *
  * @sa novas_enu_to_itrf()
  */
 int novas_itrs_to_enu(const double *itrf, double lon, double lat, double *enu) {
@@ -972,6 +975,9 @@ int novas_itrs_to_enu(const double *itrf, double lon, double lat, double *enu) {
  * @param[out] itrf   output ITRF vector. It may be the same vector as the input.
  * @return            0 if successful, or else -1 if either pointer argument is NULL (errno will be
  *                    set to EINVAL).
+ *
+ * @since 1.6
+ * @author Attila Kovacs
  *
  * @sa novas_itrf_to_enu()
  */

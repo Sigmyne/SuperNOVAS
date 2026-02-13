@@ -25,9 +25,9 @@ analyzing astronomical datasets. It started as a fork of the Naval Observatory V
 ([NOVAS](https://aa.usno.navy.mil/software/novas_info)) C version 3.1, but since then it has grown into its own, 
 providing bug fixes, tons of new features, and a much improved API compared to the original NOVAS.
 
-__SuperNOVAS__ is easy to use and it is very fast, providing 3--5 orders of magnitude faster position calculations 
-than [astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its 
-performance will scale with the number of CPUs when calculations are performed in parallel threads.
+__SuperNOVAS__ is easy to use and it is very fast, with 3--5 orders of magnitude faster position calculations than 
+[astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
+will scale further with the number of CPUs when calculations are performed in parallel threads.
 
 __SuperNOVAS__ is entirely free to use without licensing restrictions. Its source code is compatible with the C99 
 standard, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library,

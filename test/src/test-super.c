@@ -6,7 +6,7 @@
 #if !defined(_MSC_VER) && __STDC_VERSION__ < 201112L
 #  define _POSIX_C_SOURCE 199309L   ///< struct timespec
 #endif
-#define _GNU_SOURCE                 ///< for strcasecmp()
+#define _DEFAULT_SOURCE             ///< for strcasecmp()
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,9 +15,6 @@
 #include <string.h>
 #include <time.h>
 
-#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
-#include "novas.h"
-
 #if __Lynx__ && __powerpc__
 // strcasecmp() / strncasecmp() are not defined on PowerPC / LynxOS 3.1
 extern int strcasecmp(const char *s1, const char *s2);
@@ -25,6 +22,15 @@ extern int strncasecmp(const char *s1, const char *s2, size_t n);
 #elif defined(_MSC_VER)
 #  define strcasecmp _stricmp                       /// MSVC equivalent
 #  define strncasecmp _strnicmp                     /// MSVC equivalent
+#endif
+
+#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+#include "novas.h"
+
+#if __cplusplus
+#  ifdef NOVAS_NAMESPACE
+using namespace novas;
+#  endif
 #endif
 
 #define J2000   NOVAS_JD_J2000
@@ -2195,6 +2201,19 @@ static int test_diff_time() {
   if(!is_equal("diff_time:check", novas_diff_time(&t1, &t), 0.5, 1e-9)) return 1;
   if(!is_equal("diff_time:check:rev", novas_diff_time(&t, &t1), -0.5, 1e-9)) return 1;
 
+  dt = novas_diff_time_scale(&t, &t1, NOVAS_TDB);
+  {
+    long ijd1, ijd2;
+    double fjd1, fjd2;
+    fjd1 = novas_get_split_time(&t, NOVAS_TDB, &ijd1);
+    fjd2 = novas_get_split_time(&t1, NOVAS_TDB, &ijd2);
+    dt -= ((ijd1 - ijd2) + (fjd1 - fjd2)) * NOVAS_DAY;
+  }
+  if(!is_ok("diff_time:check:tcb", fabs(dt) >= 1e-9)) {
+    printf("!!! missed TDB by %.9f\n", dt);
+    return 1;
+  }
+
   dt = novas_diff_tcb(&t, &t1) - (1.0 + LB) * novas_diff_time(&t, &t1);
   if(!is_ok("diff_time:check:tcb", fabs(dt) >= 1e-9)) {
     printf("!!! missed TCB by %.9f\n", dt);
@@ -3313,19 +3332,19 @@ static int test_equ_track() {
 
   time.fjd_tt += 0.01;
   if(!is_ok("equ_track:make_frame:shifted", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &time, 0.0, 0.0, &frame))) n++;
-  if(!is_ok("equ_track:sky_pos", novas_sky_pos(&sun, &frame, NOVAS_TOD, &pos))) n++;
+  if(!is_ok("equ_track:shifted:sky_pos", novas_sky_pos(&sun, &frame, NOVAS_TOD, &pos))) n++;
 
-  if(!is_ok("equ_track:track_pos:lon", novas_track_pos(&track, &time, &x, NULL, NULL, NULL))) n++;
-  if(!is_equal("equ_track:track_pos:lon:check", x, remainder(15.0 * pos.ra, 360.0), 1e-5)) n++;
+  if(!is_ok("equ_track:shifted:track_pos:lon", novas_track_pos(&track, &time, &x, NULL, NULL, NULL))) n++;
+  if(!is_equal("equ_track:shifted:track_pos:lon:check", x, remainder(15.0 * pos.ra, 360.0), 1e-5)) n++;
 
-  if(!is_ok("equ_track:track_pos:lat", novas_track_pos(&track, &time, NULL, &x, NULL, NULL))) n++;
-  if(!is_equal("equ_track:track_pos:lat:check", x, pos.dec, 1e-5)) n++;
+  if(!is_ok("equ_track:shifted:track_pos:lat", novas_track_pos(&track, &time, NULL, &x, NULL, NULL))) n++;
+  if(!is_equal("equ_track:shifted:track_pos:lat:check", x, pos.dec, 1e-5)) n++;
 
-  if(!is_ok("equ_track:track_pos:dist", novas_track_pos(&track, &time, NULL, NULL, &x, NULL))) n++;
-  if(!is_equal("equ_track:track_pos:dist:check", x, pos.dis, 1e-9)) n++;
+  if(!is_ok("equ_track:shifted:track_pos:dist", novas_track_pos(&track, &time, NULL, NULL, &x, NULL))) n++;
+  if(!is_equal("equ_track:shifted:track_pos:dist:check", x, pos.dis, 1e-9)) n++;
 
-  if(!is_ok("equ_track:track_pos:z", novas_track_pos(&track, &time, NULL, NULL, NULL, &x))) n++;
-  if(!is_equal("equ_track:track_pos:dist:z", x, novas_v2z(pos.rv), 1e-9)) n++;
+  if(!is_ok("equ_track:shifted:track_pos:z", novas_track_pos(&track, &time, NULL, NULL, NULL, &x))) n++;
+  if(!is_equal("equ_track:shifted:track_pos:dist:z", x, novas_v2z(pos.rv), 1e-9)) n++;
 
   return n;
 }
@@ -4917,6 +4936,61 @@ static int test_enu_itrs() {
   return n;
 }
 
+static int test_print_decimal() {
+  int n = 0;
+
+  char str[40] = {'\0'};
+
+  novas_print_decimal(M_PI, 4, str, sizeof(str));
+  if(!is_ok("print_decimal:4", strcmp(str, "3.1416"))) {
+    printf(" ! expected 3.1415, got %s\n", str);
+    n++;
+  }
+
+  novas_print_decimal(M_PI, -1, str, sizeof(str));
+  if(!is_ok("print_decimal:decimals:-1", strcmp(str, "3"))) {
+    printf(" ! expected 3, got %s\n", str);
+    n++;
+  }
+
+  novas_print_decimal(1.0/3.0, 16, str, sizeof(str));
+  if(!is_ok("print_decimal:decimals:16", strlen(str) != 18)) {
+    printf(" ! expected 16 decimals, got %s\n", str);
+    n++;
+  }
+
+  novas_print_decimal(M_PI, 16, str, 7);
+  if(!is_ok("print_decimal:truncate", strcmp(str, "3.1415"))) {
+    printf(" ! expected 3.1415, got %s\n", str);
+    n++;
+  }
+
+  return n;
+}
+
+static int test_time_leap() {
+  int n = 0;
+
+  novas_timespec ts = {};
+
+  if(!is_ok("time_leap:set_time:1", novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.0, &ts))) n++;
+  if(!is_equal("time_leap:1", novas_time_leap(&ts), 32, 1e-12)) n++;
+
+  if(!is_ok("time_leap:set_time:2", novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.1, &ts))) n++;
+  if(!is_equal("time_leap:2", novas_time_leap(&ts), 32, 1e-12)) n++;
+
+  if(!is_ok("time_leap:set_time:3", novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.5, &ts))) n++;
+  if(!is_equal("time_leap:3", novas_time_leap(&ts), 32, 1e-12)) n++;
+
+  if(!is_ok("time_leap:set_time:4", novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.99, &ts))) n++;
+  if(!is_equal("time_leap:4", novas_time_leap(&ts), 32, 1e-12)) n++;
+
+  if(!is_ok("time_leap:set_time:5", novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, -0.5, &ts))) n++;
+  if(!is_equal("time_leap:5", novas_time_leap(&ts), 32, 1e-12)) n++;
+
+  return n;
+}
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -5073,8 +5147,10 @@ int main(int argc, char *argv[]) {
   if(test_Rx()) n++;
   if(test_Ry()) n++;
   if(test_Rz()) n++;
-
   if(test_enu_itrs()) n++;
+  if(test_time_leap()) n++;
+
+  if(test_print_decimal()) n++;
 
   n += test_dates();
 

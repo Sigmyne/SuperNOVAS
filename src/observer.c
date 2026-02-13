@@ -97,7 +97,7 @@ short make_observer(enum novas_observer_place where, const on_surface *loc_surfa
       if(!loc_space)
         return novas_error(-1, EINVAL, fn, "NULL in space location (for velocity)");
 
-      memcpy(&obs->near_earth.sc_vel, loc_space->sc_vel, sizeof(loc_space->sc_vel)); // @suppress("No break at end of case")
+      memcpy(obs->near_earth.sc_vel, loc_space->sc_vel, sizeof(loc_space->sc_vel)); // @suppress("No break at end of case")
       /* fallthrough */
 
     case NOVAS_OBSERVER_ON_EARTH:
@@ -676,7 +676,7 @@ int obs_posvel(double jd_tdb, double ut1_to_tt, enum novas_accuracy accuracy, co
   if(!obs)
     return novas_error(-1, EINVAL, fn, "NULL observer parameter");
 
-  if(obs->where < 0 || obs->where >= NOVAS_OBSERVER_PLACES)
+  if((unsigned) obs->where >= NOVAS_OBSERVER_PLACES)
     return novas_error(-1, EINVAL, fn, "Invalid observer location: %d", obs->where);
 
   if(pos == vel)

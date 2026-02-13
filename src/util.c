@@ -44,6 +44,20 @@ int novas_inv_max_iter = 100;
 
 /// \cond PROTECTED
 
+#if !__cplusplus && !(__STDC_VERSION__ >= 200809L)
+int novas_snprintf(char *buf, size_t len, const char *fmt, ...) {
+  va_list varg;
+  int n;
+
+  (void) len; // unused
+
+  va_start(varg, fmt);
+  n = vsprintf(buf, fmt, varg);
+  va_end(varg);
+  return n;
+}
+#endif
+
 /**
  * (<i>for internal use</i>) Propagates an error (if any) with an offset. If the error is
  * non-zero, it returns with the offset error value. Otherwise it keeps going as if it weren't
@@ -70,7 +84,7 @@ int novas_trace(const char *restrict loc, int n, int offset) {
 /**
  * (<i>for internal use</i>) Traces an error before returning NAN.
  *
- * @param loc     Function [:location] where error was produced.
+ * @param loc    function [:location] where error was produced.
  * @return       NAN
  *
  * @since 1.1.1
@@ -81,6 +95,39 @@ double novas_trace_nan(const char *restrict loc) {
     fprintf(stderr, "       @ %s [=> NAN]\n", loc);
   }
   return NAN;
+}
+
+/**
+ * (<i>for internal use</i>) Traces invalid data.
+ *
+ * @param loc    function [:location] where error was produced.
+ *
+ * @since 1.1.1
+ * @author Attila Kovacs
+ */
+void novas_trace_invalid(const char *restrict loc) {
+  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF) {
+    fprintf(stderr, "       @ %s [=> invalid]\n", loc);
+  }
+}
+
+
+
+/**
+ * (<i>for internal use</i>) Checks a floating point value for NAN, before returning it.
+ * If it is NAN the error is traced.
+ *
+ * @param loc   function [:location] where error was produced.
+ * @param x     value to check
+ * @return      x
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ */
+double novas_check_nan(const char *loc, double x) {
+  if(isnan(x))
+    novas_trace_nan(loc);
+  return x;
 }
 
 /**
@@ -296,6 +343,11 @@ static int novas_rot(double angle, double *x, double *y) {
  * @param[in,out] v   Vector to rotate
  * @return            0 if successful, or else -1 if the vector argument is NULL
  *                    (errno set to EINVAL).
+ *
+ *  @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_Ry(), novas_Rz()
  */
 int novas_Rx(double angle, double *v) {
   if(!v)
@@ -311,6 +363,11 @@ int novas_Rx(double angle, double *v) {
  * @param[in,out] v   Vector to rotate
  * @return            0 if successful, or else -1 if the vector argument is NULL
  *                    (errno set to EINVAL).
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_Rx(), novas_Rz()
  */
 int novas_Ry(double angle, double *v) {
   if(!v)
@@ -326,6 +383,11 @@ int novas_Ry(double angle, double *v) {
  * @param[in,out] v   Vector to rotate
  * @return            0 if successful, or else -1 if the vector argument is NULL
  *                    (errno set to EINVAL).
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_Rx(), novas_Ry()
  */
 int novas_Rz(double angle, double *v) {
   if(!v)
@@ -333,6 +395,49 @@ int novas_Rz(double angle, double *v) {
   return novas_rot(angle, &v[0], &v[1]);
 }
 
+/**
+ * Returns a string representation of a decimal value with the specified precision. It is
+ * effectively the same as `%.<n+1>g` where `<n>` is the number of decimal places to print.
+ *
+ * @param value       The value to print
+ * @param decimals    Number of decimal places to show
+ * @param[out] str    output string, with at least `len` bytes of space allocated.
+ * @param len         maximum number of bytes to print into output buffer, including termination.
+ * @return            the number of characters printed into the output string, or -1 if there was
+ *                    an error (errno will indicate the type of error).
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ */
+int novas_print_decimal(double value, int decimals, char *str, int len) {
+  static const char *fn = "novas_decimal_string";
+
+  char fmt[20] = {'\0'}, s[40] = {'\0'};
+  int n;
+
+  if(!str)
+    return novas_error(-1, EINVAL, fn, "output string is NULL");
+
+  if(len < 1)
+    return novas_error(-1, EINVAL, fn, "invalid output string length: %d", len);
+
+  if(decimals < 0)
+    decimals = 0;
+  else if(decimals > 15)
+    decimals = 15;
+
+  snprintf(fmt, sizeof(fmt), "%%.%dg", decimals + 1);
+  n = snprintf(s, sizeof(s), fmt, value);
+
+  if(n >= len) {
+    n = len;
+    s[n-1] = '\0';
+  }
+
+  strncpy(str, s, len);
+
+  return n;
+}
 
 /// \endcond PROTECTED
 
@@ -718,7 +823,7 @@ int novas_print_hms(double hours, enum novas_separator_type sep, int decimals, c
     return novas_error(-1, EINVAL, fn, "invalid output buffer len: %d", len);
 
   if(hours != hours)
-    sprintf(tmp, "%f", hours);      // nan, inf
+    novas_snprintf(tmp, sizeof(tmp), "%f", hours);      // nan, inf
   else {
     int h, m, s;
     long long ss;
@@ -729,9 +834,9 @@ int novas_print_hms(double hours, enum novas_separator_type sep, int decimals, c
       decimals = MAX_SECONDS_DECIMALS;
 
     if(decimals > 0)
-      sprintf(fmt, "%%02d%%s%%02d%%s%%02d.%%0%dlld%%s", decimals);
+      novas_snprintf(fmt, sizeof(fmt), "%%02d%%s%%02d%%s%%02d.%%0%dlld%%s", decimals);
     else
-      sprintf(fmt, "%%02d%%s%%02d%%s%%02d%%s");
+      novas_snprintf(fmt, sizeof(fmt), "%%02d%%s%%02d%%s%%02d%%s");
 
     switch(sep) {
       case NOVAS_SEP_UNITS:
@@ -764,9 +869,9 @@ int novas_print_hms(double hours, enum novas_separator_type sep, int decimals, c
     breakdown(hours, decimals, &h, &m, &s, &ss);
 
     if(decimals > 0)
-      sprintf(tmp, fmt, h, seph, m, sepm, s, ss, seps);
+      novas_snprintf(tmp, sizeof(tmp), fmt, h, seph, m, sepm, s, ss, seps);
     else
-      sprintf(tmp, fmt, h, seph, m, sepm, s, seps);
+      novas_snprintf(tmp, sizeof(tmp), fmt, h, seph, m, sepm, s, seps);
   }
 
   strncpy(buf, tmp, len - 1);
@@ -815,7 +920,7 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
     return novas_error(-1, EINVAL, fn, "invalid output buffer len: %d", len);
 
   if(degrees != degrees)
-    sprintf(tmp, "%f", degrees);      // nan, inf
+    novas_snprintf(tmp, sizeof(tmp), "%f", degrees);      // nan, inf
   else {
     int d, m, s;
     long long ss;
@@ -826,9 +931,9 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
       decimals = MAX_SECONDS_DECIMALS;
 
     if(decimals > 0)
-      sprintf(fmt, "%%4d%%s%%02d%%s%%02d.%%0%dlld%%s", decimals);
+      novas_snprintf(fmt, len, "%%4d%%s%%02d%%s%%02d.%%0%dlld%%s", decimals);
     else
-      sprintf(fmt, "%%4d%%s%%02d%%s%%02d%%s");
+      novas_snprintf(fmt, len, "%%4d%%s%%02d%%s%%02d%%s");
 
     degrees = remainder(degrees, DEG360);
     if(degrees < 0.0) {
@@ -866,9 +971,9 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
     }
 
     if(decimals > 0)
-      sprintf(tmp, fmt, d, sepd, m, sepm, s, ss, seps);
+      novas_snprintf(tmp, sizeof(tmp), fmt, d, sepd, m, sepm, s, ss, seps);
     else
-      sprintf(tmp, fmt, d, sepd, m, sepm, s, seps);
+      novas_snprintf(tmp, sizeof(tmp), fmt, d, sepd, m, sepm, s, seps);
   }
 
   strncpy(buf, tmp, len - 1);
@@ -876,6 +981,7 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
 
   return strlen(buf);
 }
+
 
 
 #if __cplusplus

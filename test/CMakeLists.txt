@@ -21,6 +21,10 @@ if(ENABLE_CSPICE)
     list(APPEND TEST_PROGRAMS test-cspice)
 endif()
 
+if(ENABLE_CPP_LIBS)
+    add_subdirectory(cpp)
+endif()
+
 include_directories(${supernovas_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/legacy)
 
 # Link against binaries in the local supernovas lib/ directory

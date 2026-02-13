@@ -57,6 +57,7 @@
 /// \endcond
 
 
+
 #if __cplusplus
 #  ifdef NOVAS_NAMESPACE
 namespace novas {

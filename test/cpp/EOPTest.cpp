@@ -1,0 +1,63 @@
+/**
+ * @file
+ *
+ * @date Created  on Oct 13, 2025
+ * @author Attila Kovacs
+ */
+
+#include <iostream>
+
+#include "TestUtil.hpp"
+
+
+
+int main() {
+  TestUtil test = TestUtil("EOP");
+
+  int n = 0;
+
+  EOP x = EOP::invalid();
+  if(!test.check("invalid()", !x.is_valid())) n++;
+  if(!test.check("invalid().dUT1()", !x.dUT1().is_valid())) n++;
+  if(!test.check("invalid().xp()", !x.xp().is_valid())) n++;
+  if(!test.check("invalid().yp()", !x.yp().is_valid())) n++;
+
+  if(!test.check("invalid(dut1 = NAN)", !EOP(0, NAN, 0.0, 0.0).is_valid())) n++;
+  if(!test.check("invalid(dut1 < -1s)", !EOP(0, -1.1, 0.0, 0.0).is_valid())) n++;
+  if(!test.check("invalid(dut1 > 1s)", !EOP(0, 1.1, 0.0, 0.0).is_valid())) n++;
+  if(!test.check("invalid(xp = NAN)", !EOP(0, 0.0, NAN, 0.0).is_valid())) n++;
+  if(!test.check("invalid(yp = NAN)", !EOP(0, 0.0, 0.0, NAN).is_valid())) n++;
+
+  EOP a(32, 0.1, 200.0 * Unit::mas, 300.0 * Unit::mas);
+  if(!test.check("is_valid()", a.is_valid())) n++;
+  if(!test.equals("leap_seconds()", a.leap_seconds(), 32)) n++;
+  if(!test.equals("dUT1()", a.dUT1().seconds(), 0.1)) n++;
+  if(!test.equals("xp()", a.xp().mas(), 200.0)) n++;
+  if(!test.equals("yp()", a.yp().mas(), 300.0)) n++;
+  if(!test.equals("to_string()", a.to_string(), "EOP (leap = 32, dUT1 = 0.100000 s, xp = 200.000 mas, yp = 300.000 mas)")) n++;
+
+  EOP b(32, Interval(0.1 * Unit::sec), Angle(200.0 * Unit::mas), Angle(300.0 * Unit::mas));
+  if(!test.check("is_valid()", b.is_valid())) n++;
+  if(!test.equals("leap_seconds()", b.leap_seconds(), 32)) n++;
+  if(!test.equals("dUT1()", b.dUT1().seconds(), 0.1)) n++;
+  if(!test.equals("xp()", b.xp().mas(), 200.0)) n++;
+  if(!test.equals("yp()", b.yp().mas(), 300.0)) n++;
+
+  if(!test.check("operator==()", a == b)) n++;
+  if(!test.check("operator!=(leap)", a != EOP(33, 0.1, 200.0 * Unit::mas, 300.0 * Unit::mas))) n++;
+  if(!test.check("operator!=(dut1)", a != EOP(32, 0.2, 200.0 * Unit::mas, 300.0 * Unit::mas))) n++;
+  if(!test.check("operator!=(xp)", a != EOP(32, 0.1, 200.1 * Unit::mas, 300.0 * Unit::mas))) n++;
+  if(!test.check("operator!=(yp)", a != EOP(32, 0.1, 200.0 * Unit::mas, 300.1 * Unit::mas))) n++;
+
+
+  double xp = 0.0, yp = 0.0, dt = 0.0;
+  novas::novas_itrf_transform_eop(2000.0, 0.2, 0.3, 0.1, 2014, &xp, &yp, &dt);
+  EOP c = a.itrf_transformed(2000, 2014);
+
+  if(!test.equals("itrf_transformed().dUT1()", c.dUT1().seconds(), dt, 1e-14)) n++;
+  if(!test.equals("itrf_transformed().xp()", c.xp().arcsec(), xp, 1e-14)) n++;
+  if(!test.equals("itrf_transformed().yp()", c.yp().arcsec(), yp, 1e-14)) n++;
+
+  std::cout << "EOP.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
+  return n;
+}

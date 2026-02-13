@@ -81,7 +81,7 @@ double novas_epoch(const char *restrict system) {
     return NAN;
   }
 
-  if(strcasecmp(system, NOVAS_SYSTEM_ICRS) == 0)
+  if(strcasecmp(&system[1], "CRS") == 0)
     return NOVAS_JD_J2000;
 
   if(strcasecmp(system, NOVAS_SYSTEM_FK6) == 0)
