@@ -16,15 +16,16 @@ using namespace novas;
 namespace supernovas {
 
 /**
- * Instantiates new geometric coordinates, relative to an observer and for a given time of
- * observation, in the equatorial coordinate reference_system of choice.
+ * Instantiates new geometric coordinates, relative to an observer frame, in the equatorial
+ * coordinate reference system of choice.
  *
  * @param p       equatorial position vector, with respect to the observer
  * @param v       equatorial velocity vector, with respect to the observer
  * @param frame   observing frame (observer location and time of observation)
- * @param system  equatorial coordinate reference_system, in which position and velocity vectors are defined
+ * @param system  equatorial coordinate reference_system, in which position and velocity vectors
+ *                are defined
  */
-Geometric::Geometric(const Position& p, const Velocity& v, const Frame& frame, enum novas_reference_system system)
+Geometric::Geometric(const Frame& frame, const Position& p, const Velocity& v, enum novas_reference_system system)
           : _frame(frame), _pos(p), _vel(v), _system(system) {
   static const char *fn = "Geometric()";
 
@@ -145,8 +146,10 @@ const Velocity& Geometric::velocity() const {
  * @sa Apparent::equatorial(), ecliptic(), galactic(), position(), velocity()
  */
 Equatorial Geometric::equatorial() const {
-  std::optional<Equinox> opt = Equinox::from_system_type(_system, _frame.time().jd());
-  return opt.has_value() ? Equatorial(_pos, opt.value()) : Equatorial::invalid();
+  Equatorial e = Equatorial(_pos, Equinox::from_system_type(_system, _frame.time().jd()));
+  if(!e.is_valid())
+    novas_trace_invalid("Geometric::equatorial");
+  return e;
 }
 
 /**
@@ -199,7 +202,7 @@ Geometric Geometric::to_system(const novas::novas_frame *f, enum novas::novas_re
   novas_transform_vector(_pos._array(), &T, p);
   novas_transform_vector(_vel._array(), &T, v);
 
-  return Geometric(Position(p), Velocity(v), _frame, system);
+  return Geometric(_frame, Position(p), Velocity(v), system);
 }
 
 
@@ -219,7 +222,7 @@ Geometric Geometric::to_system(enum novas_reference_system system) const {
     return *this;
 
   if(system == NOVAS_ITRS)
-    return to_itrs().value_or(Geometric::invalid());
+    return to_itrs().value_or(Geometric::invalid()); // TODO error trace...
 
   return to_system(_frame._novas_frame(), system);
 }
@@ -355,7 +358,7 @@ std::optional<Geometric> Geometric::to_itrs(const EOP& eop) const {
  * @return    a reference to a static standard invalid geometric coordinates.
  */
 const Geometric& Geometric::invalid() {
-  static const Geometric _invalid = Geometric(Position::invalid(), Velocity::invalid(), Frame::invalid(), (enum novas_reference_system) -1);
+  static const Geometric _invalid = Geometric(Frame::invalid(), Position::invalid(), Velocity::invalid(), (enum novas_reference_system) -1);
   return _invalid;
 }
 

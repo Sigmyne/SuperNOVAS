@@ -13,7 +13,9 @@
 
 using namespace novas;
 
+
 namespace supernovas {
+
 
 /**
  * Instantiates a new observer frame, given the observer location and time of observation, and
@@ -41,7 +43,7 @@ namespace supernovas {
  * Alternatively, you might use the equivalent Frame::create() instead to return the Frame
  * as an optional.
  *
- * In either case, you can obtain more information on why things went awry, when they do, by
+ * In either case, you can obtain more information on why things went wrong, when they do, by
  * enabling debug mode is enabled via `novas_debug()` prior to constructing a Frame.
  *
  * @param obs         observer location (referenced)
@@ -150,8 +152,7 @@ const Observer& Frame::observer() const {
  *                    uninitialized, or if the timescale is not supported (errno set to EINVAL),
  *                    or if the frame is configured for full accuracy but it does not have
  *                    sufficient planet position information to evaluate the local gravitational
- *                    potential with p
-  Frame to_observer(const Observer& observer) const; // TODOrecision (errno set to EAGAIN).
+ *                    potential with precision (errno set to EAGAIN).
  *
  * @sa novas_clock_skew()
  */
@@ -160,23 +161,59 @@ double Frame::clock_skew(enum novas_timescale timescale) const {
 }
 
 /**
+ * Returns new geometric coordinates, relative to the observer in this frame, in the equatorial coordinate
+ * reference system of choice.
+ *
+ * @param p       equatorial position vector, with respect to the observer
+ * @param v       equatorial velocity vector, with respect to the observer
+ * @param frame   observing frame (observer location and time of observation)
+ * @param system  equatorial coordinate reference_system, in which position and velocity vectors
+ *                are defined
+ */
+Geometric Frame::geometric(const Position& p, const Velocity& v, enum novas::novas_reference_system system) const {
+  return Geometric(*this, p, v, system);
+}
+
+/**
  * Attempts to create a new observing frame instance for a given observer location, time of
  * observation, and accuracy, if possible, or else returns `std::nullopt` if the frame could not
  * be initialized completely. Note, that full accuracy frames require that you have configured an
- * ephemeris provider for SuperNOVAS already. Otherwise, the returned optional will be invalid.
+ * ephemeris provider for SuperNOVAS already. Otherwise, the returned optional will have no value.
  *
  * @param obs       observer location
  * @param time      astrometric time of observation
  * @param accuracy  NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1).
  * @return          an observing frame instance with the provided parameters, if possible,
  *                  or else `std::nullopt`.
+ *
+ * @sa reduced_accuracy(), Observer::frame_at()
+ * @sa set_planet_provider_hp(), novas_use_calceph(), novas_use_calceph_planets(), novas_use_cspice()
  */
 std::optional<Frame> Frame::create(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy) {
   Frame f = Frame(obs, time, accuracy);
   if(f.is_valid())
     return f;
 
+  novas_trace_invalid("Frame::create");
   return std::nullopt;
+}
+
+/**
+ * Returns a reduced accuracy observing frame for the specified observer at the specified time.
+ * Reduced accuracy frames provide 1 mas accuracy typically, and do not require a planet provider
+ * to be configured. As such, they offer a simplest way for obtaining astrometric positions for
+ * catalog and orbital sources at the 1 mas level.
+ *
+ * Note, that the returned frame may be invalid, if the this observer or the time argument
+ * themselves are invalid.
+ *
+ * @param time      Astrometric time of observation
+ * @return          A reduced accuracy observing frame for the specified time of observation.
+ *
+ * @sa create(), Observer::reduced_accuracy_frame_at()
+ */
+Frame Frame::reduced_accuracy(const Observer& obs, const Time& time) {
+  return Frame(obs, time, NOVAS_REDUCED_ACCURACY);
 }
 
 /**

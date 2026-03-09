@@ -49,21 +49,21 @@ int main() {
   if(!test.check("to_refracted(NULL)", a.to_refracted(NULL) == a)) n++;
   if(!test.check("to_unrefracted(NULL)", a.to_unrefracted(NULL) == a)) n++;
 
-  std::optional<Apparent> app = a.to_apparent(Frame(Observer::at_geocenter(), Time::j2000(), NOVAS_REDUCED_ACCURACY),
+  std::optional<Apparent> opt = a.to_apparent(Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000()),
           Speed(Unit::km / Unit::s), Distance(Unit::pc));
-  if(!test.check("to_apparent(geocentric)", !app.has_value())) n++;
+  if(!test.check("to_apparent(geocentric)", !opt.has_value())) n++;
 
-  app = a.to_apparent(Frame::invalid(), Speed(Unit::km / Unit::s), Distance(Unit::pc));
-  if(!test.check("to_apparent(Frame invalid).has_value()", !app.has_value())) n++;
+  opt = a.to_apparent(Frame::invalid(), Speed(Unit::km / Unit::s), Distance(Unit::pc));
+  if(!test.check("to_apparent(Frame invalid).has_value()", !opt.has_value())) n++;
 
   EOP eop(32, 0.1, 0.2 * Unit::arcsec, 0.3 * Unit::arcsec);
-  Frame frame(Observer::on_earth(site, eop), Time::j2000(), NOVAS_REDUCED_ACCURACY);
+  Frame frame = Observer::on_earth(site, eop).reduced_accuracy_frame_at(Time::j2000());
 
-  app = a.to_apparent(frame, Speed(Unit::km / Unit::s), Distance(Unit::pc));
-  if(!test.check("to_apparent().has_value()", app.has_value())) n++;
+  opt = a.to_apparent(frame, Speed(Unit::km / Unit::s), Distance(Unit::pc));
+  if(!test.check("to_apparent().has_value()", opt.has_value())) n++;
 
-  Apparent tod = app.value();
   sky_pos p = {};
+  Apparent tod = opt.value();
   novas_hor_to_app(frame._novas_frame(), a.azimuth().deg(), a.elevation().deg(), NULL, NOVAS_TOD, &p.ra, &p.dec);
   if(!test.equals("to_apparent() R.A.", tod.equatorial().ra().hours(), p.ra, 1e-10)) n++;
   if(!test.equals("to_apparent() Dec", tod.equatorial().dec().deg(), p.dec, 1e-9)) n++;

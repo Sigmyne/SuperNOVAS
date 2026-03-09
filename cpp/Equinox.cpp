@@ -347,7 +347,7 @@ std::optional<Equinox> Equinox::from_string(const std::string& name) {
  * @return          an optional containing the corresponding valid equatorial system, or else
  *                  `std::nullopt`.
  */
-std::optional<Equinox> Equinox::from_system_type(enum novas::novas_reference_system system, double jd_tt) {
+Equinox Equinox::from_system_type(enum novas::novas_reference_system system, double jd_tt) {
   static const char *fn = "Equatorial::for_reference_system";
 
   if(system == NOVAS_GCRS || system == NOVAS_ICRS || system == NOVAS_J2000) {
@@ -355,17 +355,18 @@ std::optional<Equinox> Equinox::from_system_type(enum novas::novas_reference_sys
   }
   else if((unsigned) system >= NOVAS_REFERENCE_SYSTEMS) {
     novas_set_errno(EINVAL, fn, "invalid reference system: %d", system);
-    return std::nullopt;
+    return Equinox::invalid();
   }
   else if(!isfinite(jd_tt)) {
     novas_set_errno(EINVAL, fn, "input JD is NAN or infinite");
-    return std::nullopt;
+    return Equinox::invalid();
   }
 
   switch(system) {
     case NOVAS_TIRS:
     case NOVAS_ITRS:
-      return std::nullopt;
+      novas_set_errno(EINVAL, fn, "No equinox for Earth-rotating reference systems");
+      return Equinox::invalid();
     default:
       return Equinox(system, jd_tt);
   }

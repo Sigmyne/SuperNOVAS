@@ -30,7 +30,7 @@ int main() {
   p.dis = Unit::pc / Unit::au;
 
   EOP eop(32, 0.1, 0.2 * Unit::arcsec, 0.3 * Unit::arcsec);
-  Frame frame(Observer::at_geocenter(), Time::j2000(), NOVAS_REDUCED_ACCURACY);
+  Frame frame = Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000());
 
   Apparent tod = Apparent::from_tod_sky_pos(p, frame);
   if(!test.check("equatorial()", tod.equatorial() == Equatorial(p.ra * Unit::hour_angle, p.dec * Unit::deg, Equinox::tod(Time::j2000())))) n++;
@@ -82,7 +82,7 @@ int main() {
   if(!test.check("invalid p.dis", !Apparent::from_tod_sky_pos(p1, frame).is_valid())) n++;
 
   Site site(-15.0 * Unit::deg, 42.0 * Unit::deg, 268.0 * Unit::m);
-  frame = Frame(Observer::on_earth(site, eop), Time::j2000(), NOVAS_REDUCED_ACCURACY);
+  frame = Observer::on_earth(site, eop).reduced_accuracy_frame_at(Time::j2000());
 
   double az = 0.0, el = 0.0;
   novas_app_to_hor(frame._novas_frame(), NOVAS_TOD, p.ra, p.dec, NULL, &az, &el);

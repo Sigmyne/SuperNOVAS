@@ -295,7 +295,7 @@ public:
 
   static std::optional<Equinox> from_string(const std::string& name);
 
-  static std::optional<Equinox> from_system_type(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
+  static Equinox from_system_type(enum novas::novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
 
   static Equinox mod(double jd_tt);
 
@@ -1211,6 +1211,12 @@ public:
 
   virtual std::string to_string() const;
 
+  /// @ingroup frame
+  std::optional<Frame> frame_at(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
+
+  /// @ingroup frame
+  Frame reduced_accuracy_frame_at(const Time& time) const;
+
   static GeodeticObserver on_earth(const Site& site, const EOP& eop);
 
   static GeodeticObserver moving_on_earth(const Site& site, const Velocity& itrs_vel, const EOP &eop);
@@ -1341,9 +1347,9 @@ public:
 
   static Calendar astronomical();
 
-  std::optional<CalendarDate> parse_date(const std::string& str, enum novas::novas_date_format fmt = novas::NOVAS_YMD) const; // TODO
+  std::optional<CalendarDate> parse_date(const std::string& str, enum novas::novas_date_format fmt = novas::NOVAS_YMD) const;
 
-  std::string to_string() const; // TODO
+  std::string to_string() const;
 };
 
 /**
@@ -1436,9 +1442,9 @@ public:
 
   CalendarDate to_calendar(const Calendar& calendar) const;
 
-  std::string to_string(enum novas::novas_date_format fmt = novas::NOVAS_YMD, int decimals = 0) const; // TODO
+  std::string to_string(enum novas::novas_date_format fmt = novas::NOVAS_YMD, int decimals = 0) const;
 
-  std::string to_string(int decimals) const; // TODO
+  std::string to_string(int decimals) const;
 };
 
 /**
@@ -1599,11 +1605,11 @@ private:
   Time _time;
   novas::novas_frame _frame = {}; ///< Stored frame data
 
+  Frame(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
+
   void diurnal_correct();
 
 public:
-  Frame(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
-
   const novas::novas_frame* _novas_frame() const;
 
   const Observer& observer() const;
@@ -1614,9 +1620,13 @@ public:
 
   double clock_skew(enum novas::novas_timescale = novas::NOVAS_TT) const;
 
-  std::string to_string() const; // TODO
+  Geometric geometric(const Position& p, const Velocity& v, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
+
+  std::string to_string() const;
 
   static std::optional<Frame> create(const Observer& obs, const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY);
+
+  static Frame reduced_accuracy(const Observer& obs, const Time& time);
 
   static const Frame& invalid();
 };
@@ -1648,10 +1658,10 @@ public:
   std::string name() const;
 
   /// @ingroup apparent
-  Apparent apparent(const Frame &frame) const;
+  Apparent apparent_in(const Frame &frame) const;
 
   /// @ingroup geometric
-  Geometric geometric(const Frame &frame, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
+  Geometric geometric_in(const Frame &frame, enum novas::novas_reference_system system = novas::NOVAS_TOD) const;
 
   /// @ingroup apparent
   Angle sun_angle(const Frame &frame) const;
@@ -1737,6 +1747,8 @@ public:
 
   Equatorial equatorial() const;
 
+  CatalogSource to_source() const;
+
   CatalogEntry& proper_motion(double ra, double dec);
 
   CatalogEntry& parallax(double radians);
@@ -1757,7 +1769,7 @@ public:
 
   CatalogEntry& redshift(double z);
 
-  std::string to_string() const; // TODO
+  std::string to_string(int decimals = 3) const;
 };
 
 /**
@@ -1828,7 +1840,10 @@ public:
   double mass() const;
 
   /// @ingroup apparent
-  Apparent approx_apparent(const Frame& frame) const;
+  Apparent approx_apparent_in(const Frame& frame) const;
+
+  /// @ingroup geometric
+  Geometric approx_geometric_in(const Frame& frame) const;
 
   static std::optional<Planet> for_naif_id(long naif);
 
@@ -1941,7 +1956,7 @@ public:
 
   static OrbitalSystem ecliptic(const Planet& center = Planet::sun());
 
-  static std::optional<OrbitalSystem> from_novas_orbital_system(const novas::novas_orbital_system *system);
+  static OrbitalSystem from_novas_orbital_system(const novas::novas_orbital_system *system);
 
   std::string to_string() const; // TODO
 };
@@ -2045,7 +2060,7 @@ public:
 
   std::string to_string() const; // TODO
 
-  static std::optional<Orbital> from_novas_orbit(const novas::novas_orbital *orbit);
+  static Orbital from_novas_orbit(const novas::novas_orbital *orbit);
 };
 
 /**
@@ -2100,7 +2115,7 @@ public:
  * %Apparent positions can also come directly from observations, such as from unrefracted
  * horizontal coordinates.
  *
- * @sa Source::apparent(), Horizontal::to_apparent()
+ * @sa Source::apparent_in(), Horizontal::to_apparent()
  * @sa Geometric
  *
  * @ingroup apparent spectral
@@ -2173,7 +2188,7 @@ public:
  * time for Solar-system bodies. Rather, geometric positions match the ephemeris positions for
  * an earlier time, when the observed light originated from the source.
  *
- * @sa Source::geometric(), Frame::geometric_planet()
+ * @sa Source::geometric_in(), Frame::geometric_planet()
  * @sa Apparent
  * @ingroup geometric
  */
@@ -2187,7 +2202,7 @@ private:
   Geometric to_system(const novas::novas_frame *f, enum novas::novas_reference_system system) const;
 
 public:
-  Geometric(const Position& p, const Velocity& v, const Frame& frame, enum novas::novas_reference_system system = novas::NOVAS_TOD);
+  Geometric(const Frame& frame, const Position& p, const Velocity& v, enum novas::novas_reference_system system = novas::NOVAS_TOD);
 
   Geometric operator>>(enum novas::novas_reference_system system) const;
 

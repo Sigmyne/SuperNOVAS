@@ -11,6 +11,8 @@
 
 #include "supernovas.h"
 
+using namespace novas;
+
 namespace supernovas {
 
 /**
@@ -205,6 +207,8 @@ std::string Distance::to_string(int decimals) const {
  * @sa parallax()
  */
 Distance Distance::from_parallax(const Angle& parallax) {
+  if(!parallax.is_valid())
+    novas_set_errno(EINVAL, "Distance::from_parallax", "input parallax is invalid");
   return Distance(Unit::pc / (parallax.arcsec()));
 }
 

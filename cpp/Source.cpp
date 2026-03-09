@@ -38,7 +38,7 @@ std::string Source::name() const {
 
 /**
  * Returns the apparent position of a source (if possible), or else an invalid position. After the
- * return, you should probably check for validity:
+ * return, you should probably check for validity, e.g.:
  *
  * ```c
  *   Apparent app = my_source.apparent(frame);
@@ -70,19 +70,22 @@ std::string Source::name() const {
  *
  * @param frame     observer frame, which defines the observer location and the time of
  *                  observation, as well as the accuracy requirement.
- * @return the apparent position of the source, or else an invalid position (with NAN values).
+ * @return          the apparent position of the source, which may be invalid if the position
+ *                  cannot be determined.
  *
- * @sa Planet::approx_apparent(), geometric()
+ * @sa Planet::approx_apparent_in(), geometric_in()
  */
-Apparent Source::apparent(const Frame& frame) const {
+Apparent Source::apparent_in(const Frame& frame) const {
   sky_pos pos = {};
 
-  if(novas_sky_pos(&_object, frame._novas_frame(), NOVAS_TOD, &pos) != 0) {
-    novas_trace_invalid("Source::apparent");
-    return Apparent::invalid();
+  if(novas_sky_pos(&_object, frame._novas_frame(), NOVAS_TOD, &pos) == 0) {
+    std::optional<Apparent> opt = Apparent::from_tod_sky_pos(pos, frame);
+    if(opt.has_value())
+      return opt.value();
   }
 
-  return Apparent::from_tod_sky_pos(pos, frame);
+  novas_trace_invalid("Source::apparent");
+  return Apparent::invalid();
 }
 
 /**
@@ -122,24 +125,26 @@ Apparent Source::apparent(const Frame& frame) const {
  * @param frame     observer frame, which defines the observer location and the time of
  *                  observation, as well as the accuracy requirement.
  * @param system    coordinate reference system in which to return positions and velocities.
- * @return the geometric (3D) position and velocity of the source, or else an invalid position
- *         (with NAN values).
+ * @return          the geometric (3D) position and velocity of the source, which may be invalid
+ *                  if the position cannot be determined.
  *
- * @sa apparent()
+ * @sa apparent_in()
  */
-Geometric Source::geometric(const Frame& frame, enum novas_reference_system system) const {
+Geometric Source::geometric_in(const Frame& frame, enum novas_reference_system system) const {
   double p[3] = {0.0}, v[3] = {0.0};
 
-  if(novas_geom_posvel(&_object, frame._novas_frame(), NOVAS_TOD, p, v) != 0) {
-    novas_trace_invalid("Source::geometric");
-    return Geometric::invalid();
+  if(novas_geom_posvel(&_object, frame._novas_frame(), NOVAS_TOD, p, v) == 0) {
+    return Geometric(frame,
+            Position(p[0] * Unit::au, p[1] * Unit::au, p[2] * Unit::au),
+            Velocity(v[0] * Unit::au / Unit::day, v[1] * Unit::au / Unit::day, v[2] * Unit::au / Unit::day),
+            system
+    );
   }
 
-  return Geometric(
-          Position(p[0] * Unit::au, p[1] * Unit::au, p[2] * Unit::au),
-          Velocity(v[0] * Unit::au / Unit::day, v[1] * Unit::au / Unit::day, v[2] * Unit::au / Unit::day),
-          frame, system
-  );
+  novas_trace_invalid("Source::geometric");
+  return Geometric::invalid();
+
+
 }
 
 static const EOP& extract_eop(const Frame &frame) {
@@ -257,7 +262,7 @@ std::optional<Time> Source::sets_below(const Angle& el, const Frame &frame, Refr
  * @param frame           observing frame (observer location and time of observation)
  * @param range_seconds   [s] time range for which to fit a quadratic time evolution to the R.A., Dec,
  *                        distance, and radial velocity coordinates.
- * @return                a new near-term eqautorial trajectory for this source, for the observing
+ * @return                a new near-term equatorial trajectory for this source, for the observing
  *                        location, around the time of observation, if possible, or else `std::nullopt`.
  *
  * @sa horizontal_track()
@@ -287,7 +292,7 @@ std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, doub
  * @param frame           observing frame (observer location and time of observation)
  * @param range           time range for which to fit a quadratic time evolution to the R.A., Dec,
  *                        distance, and radial velocity coordinates.
- * @return                a new near-term eqautorial trajectory for this source, for the observing
+ * @return                a new near-term equatorial trajectory for this source, for the observing
  *                        location, around the time of observation, if possible, or else `std::nullopt`.
  *
  * @sa horizontal_track()
@@ -552,8 +557,10 @@ const Source *Planet::copy() const {
  */
 std::optional<Planet> Planet::for_naif_id(long naif) {
   enum novas_planet num = naif_to_novas_planet(naif);
-  if((unsigned) num >= NOVAS_PLANETS)
+  if((unsigned) num >= NOVAS_PLANETS) {
+    novas_set_errno(EINVAL, "Planet::for_naif_id", "no planet with NAIF %d", naif);
     return std::nullopt;
+  }
   return Planet(num);
 }
 
@@ -571,8 +578,10 @@ std::optional<Planet> Planet::for_naif_id(long naif) {
  */
 std::optional<Planet> Planet::for_name(const std::string& name) {
   enum novas_planet num = novas_planet_for_name(name.c_str());
-  if((unsigned) num >= NOVAS_PLANETS)
+  if((unsigned) num >= NOVAS_PLANETS) {
+    novas_set_errno(EINVAL, "Planet::for_naif_id", "no planet with name '%s'", name.c_str());
     return std::nullopt;
+  }
   return Planet(num);
 }
 
@@ -642,7 +651,7 @@ double Planet::mass() const {
 }
 
 /**
- * Calculates an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon
+ * Return an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon
  * Barycenter (EMB) -- typically to arcmin level accuracy -- using Keplerian orbital elements. The
  * returned position is antedated for light-travel time (for Solar-System bodies). It also applies
  * an appropriate aberration correction (but not gravitational deflection).
@@ -662,7 +671,7 @@ double Planet::mass() const {
  *
  * <ol>
  *  <li>This function calculates Earth and Moon positions about the Keplerian orbital position
- *  of the Earth-Moon Barycenter (EMB). In constrast, `novas_make_planet_orbit()` does not provide
+ *  of the Earth-Moon Barycenter (EMB). In contrast, `novas_make_planet_orbit()` does not provide
  *  orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's orbital to
  *  the Earth position returned by the currently configured planet calculator function (see
  *  `set_planet_provider()`).</li>
@@ -680,19 +689,73 @@ double Planet::mass() const {
  *      vol. 124, no. 1, July 1983, p. 50-62.</li>
  * </ol>
  *
- * @param planet    the planet.
- * @return          approximate apparent position for the given planet. The returned position may
- *                  be invalid if the planet argument is invalid, or is unsupported by the
- *                  Keplerian orbital model (Earth). You should check validity with
- *                  Apparent::is_valid() as appropriate.
+ * @param frame     The observing frame for which to calculate the apparent positions.
+ * @return          approximate, orbital model based, apparent position for the given planet.
+ *                  It may be invalid either if this planet or the frame argument is invalid.
  *
- * @sa novas_approx_sky_pos()
+ * @sa approx_geometric_in()
  */
-Apparent Planet::approx_apparent(const Frame& frame) const {
+Apparent Planet::approx_apparent_in(const Frame& frame) const {
   sky_pos pos = {};
   novas_approx_sky_pos(novas_id(), frame._novas_frame(), NOVAS_TOD, &pos);
   return Apparent::from_tod_sky_pos(pos, frame);
 }
+
+/**
+ * Returns approximate eometric posiitions and velocities for a major planet, Sun, Moon, Earth-Moon
+ * Barycenter (EMB) -- typically to arcmin level accuracy -- using Keplerian orbital elements.
+ *
+ * The orbitals can provide planet positions to arcmin-level precision for the rocky inner
+ * planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The
+ * accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if
+ * used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical
+ * accuracies, see either of the top two references below.
+ *
+ * For accurate positions, you should use planetary ephemerides (such as the JPL ephemerides via
+ * the CALCEPH or CSPICE plugins) and `novas_sky_pos()` instead.
+ *
+ * While this function is generally similar to creating an orbital object with an orbit
+ * initialized with `novas_make_planet_orbit()` or `novas_make_moon_orbit()`, and then calling
+ * `novas_geom_posvel()`, with an important difference:
+ *
+ * <ol>
+ *  <li>This function calculates Earth and Moon positions about the Keplerian orbital position
+ *  of the Earth-Moon Barycenter (EMB). In contrast, `novas_make_planet_orbit()` does not provide
+ *  orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's orbital to
+ *  the Earth position returned by the currently configured planet calculator function (see
+ *  `set_planet_provider()`).</li>
+ * </ol>
+ *
+ * REFERENCES:
+ * <ol>
+ *  <li>E.M. Standish and J.G. Williams 1992.</li>
+ *  <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
+ *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+ *  <li>Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
+ *      vol. 124, no. 1, July 1983, p. 50-62.</li>
+ * </ol>
+ *
+ * @param frame   the observing frame for which to calculate geometric positions.
+ * @return        approximate, orbital model based, geometric positions and velocities of this
+ *                planet in the specified observing frame. It may be invalid either if this planet
+ *                or the frame argument is invalid.
+ *
+ * @sa approx_apparent_in()
+ */
+Geometric Planet::approx_geometric_in(const Frame& frame) const {
+  double p[3] = {0.0}, v[3] = {0.0};
+
+  novas_approx_heliocentric(novas_id(), frame.time().jd(NOVAS_TDB), p, v);
+
+  for(int i = 0; i < 3; i++) {
+    const novas_frame *f = frame._novas_frame();
+    p[i] += f->sun_pos[i];
+    v[i] += f->sun_vel[i];
+  }
+
+  return Geometric(frame, Position(p, Unit::AU), Velocity(v, Unit::AU / Unit::day));
+}
+
 
 std::string Planet::to_string() const {
   return "Planet " + name();
@@ -930,7 +993,7 @@ const novas_orbital * OrbitalSource::_novas_orbital() const {
  * @return    the Keplerian orbital parameters.
  */
 Orbital OrbitalSource::orbital() const {
-  return Orbital::from_novas_orbit(&_object.orbit).value();
+  return Orbital::from_novas_orbit(&_object.orbit);
 }
 
 std::string OrbitalSource::to_string() const {

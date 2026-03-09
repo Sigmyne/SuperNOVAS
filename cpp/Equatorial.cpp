@@ -209,6 +209,7 @@ Angle Equatorial::distance_to(const Equatorial& other) const {
  *     to_tod(), to_cirs()
  */
 Equatorial Equatorial::to_system(const Equinox& system) const {
+  static const char *fn = "Equatorial::to_system";
 
   if(_sys == system)
     return Equatorial(*this);
@@ -234,6 +235,7 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
       tod_to_gcrs(_sys.jd(), NOVAS_FULL_ACCURACY, p, p);
       break;
     default:
+      novas_set_errno(ERANGE, fn, "invalid equatorial with system type %d", _sys.system_type());
       return Equatorial::invalid();
   }
 
@@ -255,6 +257,7 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
       gcrs_to_cirs(system.jd(), NOVAS_FULL_ACCURACY, p, p);
       break;
     default:
+      novas_set_errno(ERANGE, fn, "invalid output system type %d", system.system_type());
       return Equatorial::invalid();
   }
 
@@ -434,8 +437,10 @@ const Angle& Equatorial::dec() const {
 Ecliptic Equatorial::to_ecliptic() const {
   double lon, lat;
 
-  if(!is_valid())
+  if(!is_valid()) {
+    novas_set_errno(ERANGE, "Equatorial::to_ecliptic", "invalid Equatorial instance");
     return Ecliptic::invalid();
+  }
 
   double r = ra().hours();
   double d = dec().deg();
@@ -456,8 +461,10 @@ Ecliptic Equatorial::to_ecliptic() const {
  * @sa Galactic::to_equatorial(), to_ecliptic()
  */
 Galactic Equatorial::to_galactic() const {
-  if(!is_valid())
+  if(!is_valid()) {
+    novas_set_errno(ERANGE, "Equatorial::to_galactic", "invalid Equatorial instance");
     return Galactic::invalid();
+  }
 
   Equatorial icrs = to_icrs();
   double longitude = 0.0, latitude = 0.0;

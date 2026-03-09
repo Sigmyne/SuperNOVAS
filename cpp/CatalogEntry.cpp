@@ -283,6 +283,15 @@ Equatorial CatalogEntry::equatorial() const {
 }
 
 /**
+ * Returns a new catalog source based created from this catalog entry.
+ *
+ * @return    a new catalog source for this entry.
+ */
+CatalogSource CatalogEntry::to_source() const {
+  return CatalogSource(*this);
+}
+
+/**
  * Sets the proper motion of this source, defined at the same epoch as the catalog
  * coordinates, returning itself to enable builder pattern.
  *
@@ -512,6 +521,11 @@ CatalogEntry& CatalogEntry::redshift(double z) {
     validate(fn);
 
   return *this;
+}
+
+std::string CatalogEntry::to_string(int decimals) const {
+  return "CatalogEntry '" + name() + "': " + equatorial().to_string(NOVAS_SEP_UNITS_AND_SPACES, decimals) + ", "
+          + radial_velocity().to_string(decimals) + " at " + distance().to_string(decimals);
 }
 
 } // namespace supernovas

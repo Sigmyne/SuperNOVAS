@@ -12,80 +12,82 @@
 using namespace novas;
 
 int main() {
-  TestUtil test = TestUtil("Orbital");
+  TestUtil test = TestUtil("OrbitalSystem");
 
   int n = 0;
 
-  if(!test.check("System::ecliptic(invalid planet)", !OrbitalSystem::ecliptic(Planet((enum novas_planet) -1)).is_valid())) n++;
-  if(!test.check("System::equatorial(invalid planet)", !OrbitalSystem::equatorial(Planet((enum novas_planet) -1)).is_valid())) n++;
+  if(!test.check("ecliptic(invalid planet)", !OrbitalSystem::ecliptic(Planet((enum novas_planet) -1)).is_valid())) n++;
+  if(!test.check("equatorial(invalid planet)", !OrbitalSystem::equatorial(Planet((enum novas_planet) -1)).is_valid())) n++;
 
   OrbitalSystem s = OrbitalSystem::ecliptic(Planet::sun());
-  if(!test.check("System::is_valid()", s.is_valid())) n++;
-  if(!test.equals("System::center()", s.center().novas_id(), NOVAS_SUN)) n++;
+  if(!test.check("is_valid()", s.is_valid())) n++;
+  if(!test.equals("center()", s.center().novas_id(), NOVAS_SUN)) n++;
   
   s.orientation(Angle(1.0 * Unit::deg), Angle(-2.0 * Unit::deg), Equinox::icrs());
-  if(!test.check("System::is_valid(orientation)", s.is_valid())) n++;
-  if(!test.equals("System::obliquity()", s.obliquity().deg(), 1.0, 1e-15)) n++;
-  if(!test.equals("System::ascending_node()", s.ascending_node().deg(), -2.0, 1e-15)) n++;
-  if(!test.equals("System::system_type()", s.system_type(), NOVAS_ICRS)) n++;
+  if(!test.check("is_valid(orientation)", s.is_valid())) n++;
+  if(!test.equals("obliquity()", s.obliquity().deg(), 1.0, 1e-15)) n++;
+  if(!test.equals("ascending_node()", s.ascending_node().deg(), -2.0, 1e-15)) n++;
+  if(!test.equals("system_type()", s.system_type(), NOVAS_ICRS)) n++;
 
   s.pole(Spherical(-92.0 * Unit::deg, 89.0 * Unit::deg), Equinox::j2000());
-  if(!test.check("System::is_valid(pole)", s.is_valid())) n++;
-  if(!test.equals("System::obliquity(pole)", s.obliquity().deg(), 1.0, 1e-12)) n++;
-  if(!test.equals("System::ascending_node(pole)", s.ascending_node().deg(), -2.0, 1e-12)) n++;
-  if(!test.equals("System::reference_system(pole)", s.system_type(), NOVAS_J2000)) n++;
-  if(!test.equals("System::pole().longitude()", s.pole().longitude().deg(), -92.0, 1e-12)) n++;
-  if(!test.equals("System::pole().latitude()", s.pole().latitude().deg(), 89.0, 1e-12)) n++;
+  if(!test.check("is_valid(pole)", s.is_valid())) n++;
+  if(!test.equals("obliquity(pole)", s.obliquity().deg(), 1.0, 1e-12)) n++;
+  if(!test.equals("ascending_node(pole)", s.ascending_node().deg(), -2.0, 1e-12)) n++;
+  if(!test.equals("reference_system(pole)", s.system_type(), NOVAS_J2000)) n++;
+  if(!test.equals("pole().longitude()", s.pole().longitude().deg(), -92.0, 1e-12)) n++;
+  if(!test.equals("pole().latitude()", s.pole().latitude().deg(), 89.0, 1e-12)) n++;
 
   s.orientation(NAN, -2.0 * Unit::deg, Equinox::icrs());
-  if(!test.check("System::invalid(obliquity = NAN)", !s.is_valid())) n++;
+  if(!test.check("invalid(obliquity = NAN)", !s.is_valid())) n++;
   s.orientation(1.0 * Unit::deg, -2.0 * Unit::deg, Equinox::icrs());
-  if(!test.check("System::invalid(obliquity OK)", s.is_valid())) n++;
+  if(!test.check("invalid(obliquity OK)", s.is_valid())) n++;
 
   s.orientation(1.0 * Unit::deg, NAN, Equinox::icrs());
-  if(!test.check("System::invalid(ascending_node = NAN)", !s.is_valid())) n++;
+  if(!test.check("invalid(ascending_node = NAN)", !s.is_valid())) n++;
   s.orientation(1.0 * Unit::deg, -2.0 * Unit::deg, Equinox::icrs());
-  if(!test.check("System::invalid(ascending_node OK)", s.is_valid())) n++;
+  if(!test.check("invalid(ascending_node OK)", s.is_valid())) n++;
 
   s.orientation(1.0 * Unit::deg, -2.0 * Unit::deg, Equinox::invalid());
-  if(!test.check("System::invalid(equinox)", !s.is_valid())) n++;
+  if(!test.check("invalid(equinox)", !s.is_valid())) n++;
   s.orientation(1.0 * Unit::deg, -2.0 * Unit::deg, Equinox::icrs());
-  if(!test.check("System::invalid(equinox OK)", s.is_valid())) n++;
+  if(!test.check("invalid(equinox OK)", s.is_valid())) n++;
 
   s.pole(Equatorial::invalid(), Equinox::invalid());
-  if(!test.check("System::invalid(pole)", !s.is_valid())) n++;
+  if(!test.check("invalid(pole)", !s.is_valid())) n++;
   s.pole(-92 * Unit::deg, 89.0 * Unit::deg, Equinox::icrs());
-  if(!test.check("System::invalid(pole OK)", s.is_valid())) n++;
+  if(!test.check("invalid(pole OK)", s.is_valid())) n++;
 
-  if(!test.check("System::from_orbital_system(NULL)", !OrbitalSystem::from_novas_orbital_system(NULL).has_value())) n++;
+  if(!test.check("from_novas_orbital_system(NULL)::is_valid()", OrbitalSystem::from_novas_orbital_system(NULL).is_valid())) n++;
 
   novas_orbital_system *ns = (novas_orbital_system *) s._novas_orbital_system();
-  if(!test.check("System(novas)::is_valid()", OrbitalSystem::from_novas_orbital_system(ns).value().is_valid())) n++;
+  if(!test.check("from_novas_orbital_system()::is_valid()", OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
   ns->center = (novas_planet) -1;
-  if(!test.check("System(novas) invalid(center)", !OrbitalSystem::from_novas_orbital_system(ns).value().is_valid())) n++;
+  if(!test.check("from_novas_orbital_system(invalid center)", !OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
   ns->center = NOVAS_JUPITER;
   ns->plane = (novas_reference_plane) -1;
-  if(!test.check("System(novas) invalid(plane)", !OrbitalSystem::from_novas_orbital_system(ns).value().is_valid())) n++;
+  if(!test.check("from_novas_orbital_system(invalid plane)", !OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
   ns->plane = NOVAS_EQUATORIAL_PLANE;
   ns->type = (novas_reference_system) -1;
-  if(!test.check("System(novas) invalid(type)", !OrbitalSystem::from_novas_orbital_system(ns).value().is_valid())) n++;
+  if(!test.check("from_novas_orbital_system(invalid type)", !OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
   ns->type = NOVAS_ICRS;
   ns->obl = NAN;
-  if(!test.check("System(novas) invalid(obl = NAN)", !OrbitalSystem::from_novas_orbital_system(ns).value().is_valid())) n++;
+  if(!test.check("from_novas_orbital_system(obl = NAN)", !OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
   ns->obl = 0.0;
   ns->Omega = NAN;
-  if(!test.check("System(novas) invalid(Omega = NAN)", !OrbitalSystem::from_novas_orbital_system(ns).value().is_valid())) n++;
+  if(!test.check("from_novas_orbital_system(Omega = NAN)", !OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
   ns->Omega = 0.0;
-  if(!test.check("System(novas) OK", OrbitalSystem::from_novas_orbital_system(ns).value().is_valid())) n++;
+  if(!test.check("from_novas_orbital_system(OK)", OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
 
   // ------------------------------------------------------------------------
+  test = TestUtil("Orbital");
+
   OrbitalSystem xs = (OrbitalSystem::equatorial(Planet((novas_planet) -1)));
   s = (OrbitalSystem::equatorial());
 
@@ -204,67 +206,67 @@ int main() {
 
   const novas_orbital *no0 = o._novas_orbital();
   novas_orbital no = *no0;
-  if(!test.check("from_novas_orbit()", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
-  if(!test.check("from_novas_orbit(NULL)", !Orbital::from_novas_orbit(NULL).has_value())) n++;
+  if(!test.check("from_novas_orbit()", Orbital::from_novas_orbit(&no).is_valid())) n++;
+  if(!test.check("from_novas_orbit(NULL)", !Orbital::from_novas_orbit(NULL).is_valid())) n++;
 
   no.jd_tdb = NAN;
-  if(!test.check("from_novas_orbit(jd_tdb = NAN)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(jd_tdb = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.jd_tdb = NOVAS_JD_J2000;
-  if(!test.check("from_novas_orbit(jd_tdb = OK)", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(jd_tdb = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
 
   no.a = NAN;
-  if(!test.check("from_novas_orbit(a = NAN)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(a = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.a = 0.0;
-  if(!test.check("from_novas_orbit(a = 0)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(a = 0)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.a = -Unit::au;
-  if(!test.check("from_novas_orbit(a < 0)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(a < 0)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.a = Unit::au;
-  if(!test.check("from_novas_orbit(a = OK)", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(a = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.M0 = NAN;
-  if(!test.check("from_novas_orbit(M0 = NAN)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(M0 = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.M0 = -1.0;
-  if(!test.check("from_novas_orbit(M0 = OK)", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(M0 = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
 
   no.n = NAN;
-  if(!test.check("from_novas_orbit(n = NAN)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(n = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.n = 0.0;
-  if(!test.check("from_novas_orbit(n = 0)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(n = 0)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.n = -Constant::pi / Unit::yr;
-  if(!test.check("from_novas_orbit(n < 0)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(n < 0)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.n = Constant::pi / Unit::yr;
-  if(!test.check("from_novas_orbit(n = OK)", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(n = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
 
   no.e = NAN;
-  if(!test.check("from_novas_orbit(e = NAN)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(e = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.e = -1e-6;
-  if(!test.check("from_novas_orbit(e < 0)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(e < 0)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.e = 1.0;
-  if(!test.check("from_novas_orbit(e = OK)", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(e = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
 
   no.omega = NAN;
-  if(!test.check("from_novas_orbit(omega = NAN)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(omega = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.omega = -1.0;
-  if(!test.check("from_novas_orbit(omega = OK)", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(omega = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
 
   no.i = NAN;
-  if(!test.check("from_novas_orbit(i = NAN)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(i = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.i = 1.0 * Unit::deg;
-  if(!test.check("from_novas_orbit(i = OK)", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(i = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
 
   no.Omega = NAN;
-  if(!test.check("from_novas_orbit(Omega = NAN)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(Omega = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.Omega = -0.3;
-  if(!test.check("from_novas_orbit(Omega = OK)", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(Omega = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
 
   no.apsis_period = NAN;
-  if(!test.check("from_novas_orbit(apsis period = NAN)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(apsis period = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.apsis_period = -1.0 / Unit::julian_century;
-  if(!test.check("from_novas_orbit(apsis period = OK)", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(apsis period = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
 
   no.node_period = NAN;
-  if(!test.check("from_novas_orbit(node period = NAN)", !Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(node period = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.node_period = -1.0 / Unit::julian_century;
-  if(!test.check("from_novas_orbit(node period = OK)", Orbital::from_novas_orbit(&no).value().is_valid())) n++;
+  if(!test.check("from_novas_orbit(node period = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
 
   std::cout << "Orbital.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

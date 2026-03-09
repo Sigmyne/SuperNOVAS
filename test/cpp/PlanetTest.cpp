@@ -70,8 +70,8 @@ int main() {
   if(!test.equals("pluto()", Planet::pluto().novas_id(), NOVAS_PLUTO)) n++;
   if(!test.equals("pluto_barycenter()", Planet::pluto_system().novas_id(), NOVAS_PLUTO_BARYCENTER)) n++;
 
-  Frame frame(Observer::at_geocenter(), Time::j2000(), NOVAS_REDUCED_ACCURACY);
-  Apparent app = Planet::mars().approx_apparent(frame);
+  Frame frame = Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000());
+  Apparent app = Planet::mars().approx_apparent_in(frame);
   sky_pos pos = {};
   novas_approx_sky_pos(NOVAS_MARS, frame._novas_frame(), NOVAS_TOD, &pos);
 

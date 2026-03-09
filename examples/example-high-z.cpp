@@ -55,7 +55,6 @@ int main() {
   CatalogSource source(e);
 
 
-
   // -------------------------------------------------------------------------
   // Define observer somewhere on Earth (we can also define observers in Earth
   // or Sun orbit, at the geocenter or at the Solary-system barycenter...)
@@ -109,11 +108,11 @@ int main() {
   //
   // Without a planet provider, we are stuck with reduced (mas) precisions
   // only...
-  Frame frame(obs, t, NOVAS_REDUCED_ACCURACY);
+  Frame frame = obs.reduced_accuracy_frame_at(t);
 
   // -------------------------------------------------------------------------
   // Calculate the precise apparent position.
-  Apparent apparent = source.apparent(frame);
+  Apparent apparent = source.apparent_in(frame);
 
   // Let's print the apparent position
   std::cout << apparent.to_string()) << "\n";
@@ -124,8 +123,13 @@ int main() {
   // (6 C deg, 985 mbar, 74% humidity)
   Weather weather(Temperature::celsius(6.0), Pressure::mbar(985.0), 74.0);
 
-  Horizontal hor = apparent.to_horizontal().value()
-          .to_refracted(frame, novas_optical_refraction, weather);
+  std::optional<Horizontal> opt = apparent.to_horizontal();
+  if(!opt.has_value()) {
+    std::cerr << "ERROR! observer has no Earth-based horizon.";
+    return 1;
+  }
+
+  Horizontal hor = opt.value().to_refracted(novas_optical_refraction, weather);
 
   // Let's print the calculated azimuth and elevation
   std::cout << hor.to_string()) << "\n";

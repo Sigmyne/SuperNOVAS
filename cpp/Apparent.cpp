@@ -291,12 +291,16 @@ std::optional<Horizontal> Apparent::to_horizontal() const {
  * @param pos     a NOVAS C `sky_pos` data structure with respect to the true equinox of date
  *                (not referenced!).
  * @param frame   observing frame (time of observation and observer location)
- * @return        new apparent positions constructed with the parameters.
+ * @return        new apparent positions constructed with the parameters. It may be invalid if
+ *                the input values themselves are invalid.
  *
  * @sa from_cirs_sky_pos()
  */
 Apparent Apparent::from_tod_sky_pos(sky_pos pos, const Frame& frame) {
-  return Apparent(frame, NOVAS_TOD, pos);
+  Apparent a = Apparent(frame, NOVAS_TOD, pos);
+  if(!a.is_valid())
+    novas_trace_invalid("Apparent::from_tod_sky_pos");
+  return a;
 }
 
 /**
@@ -306,12 +310,16 @@ Apparent Apparent::from_tod_sky_pos(sky_pos pos, const Frame& frame) {
  * @param pos     a NOVAS C `sky_pos` data structure with respect to the Celestial Intermediate
  *                Origin (CIO). The data passed is not referenced!
  * @param frame   observing frame (time of observation and observer location)
- * @return        new apparent positions constructed with the parameters.
+ * @return        new apparent positions constructed with the parameters. It may be invalid if
+ *                the input values themselves are invalid.
  *
  * @sa from_tod_sky_pos()
  */
 Apparent Apparent::from_cirs_sky_pos(sky_pos pos, const Frame& frame) {
-  return Apparent(frame, NOVAS_CIRS, pos);
+  Apparent a = Apparent(frame, NOVAS_CIRS, pos);
+  if(!a.is_valid())
+    novas_trace_invalid("Apparent::from_cirs_sky_pos");
+  return a;
 }
 
 /**

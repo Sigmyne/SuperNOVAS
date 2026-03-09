@@ -251,13 +251,21 @@ OrbitalSystem OrbitalSystem::ecliptic(const Planet& center) {
  *
  * @sa is_valid()
  */
-std::optional<OrbitalSystem> OrbitalSystem::from_novas_orbital_system(const novas::novas_orbital_system *system) {
+OrbitalSystem OrbitalSystem::from_novas_orbital_system(const novas::novas_orbital_system *system) {
+  static const char *fn = "OrbitalSystem::from_novas_orbital_system";
+
   if(!system) {
-    novas_trace_invalid("OrbitalSystem::from_novas_orbital_system");
-    return std::nullopt;
+    novas_orbital_system sys = {};
+    novas_trace_invalid(fn);
+    return OrbitalSystem(&sys);
   }
 
-  return OrbitalSystem(system);
+  OrbitalSystem o(system);
+
+  if(!o.is_valid())
+    novas_trace_invalid(fn);
+
+  return o;
 }
 
 void Orbital::validate(const char *loc) {
@@ -369,7 +377,7 @@ const novas::novas_orbital * Orbital::_novas_orbital() const {
  * @return    a new instance of the orbital system, in which the orbit is defined.
  */
 OrbitalSystem Orbital::system() const {
-  return OrbitalSystem::from_novas_orbital_system(&_orbit.system).value();
+  return OrbitalSystem::from_novas_orbital_system(&_orbit.system);
 }
 
 /**
@@ -913,12 +921,21 @@ Orbital Orbital::with_mean_motion(const OrbitalSystem& system, const Time& time,
  *
  * @sa Orbital(), is_valid()
  */
-std::optional<Orbital> Orbital::from_novas_orbit(const novas_orbital *orbit) {
+Orbital Orbital::from_novas_orbit(const novas_orbital *orbit) {
+  static const char *fn = "Orbital::from_novas_orbit";
+
   if(!orbit) {
-    novas_trace_invalid("Orbital::from_novas_orbit");
-    return std::nullopt;
+    novas_orbital orb = {};
+    novas_trace_invalid(fn);
+    return Orbital(&orb);
   }
-  return Orbital(orbit);
+
+  Orbital o(orbit);
+
+  if(!o.is_valid())
+    novas_trace_invalid(fn);
+
+  return o;
 }
 
 

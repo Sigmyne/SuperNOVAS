@@ -24,17 +24,17 @@ int main() {
   if(!test.equals("invalid system_type()", x.system_type(), -1)) n++;
   if(!test.check("invalid to_system()", !x.to_icrs().is_valid())) n++;
 
-  Frame frame(Observer::at_geocenter(), Time::j2000(), NOVAS_REDUCED_ACCURACY);
+  Frame frame = Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000());
 
-  if(!test.check("invalid (pos invalid)", !Geometric(Position::invalid(), Velocity::stationary(), frame).is_valid())) n++;
-  if(!test.check("invalid (vel invalid)", !Geometric(Position::origin(), Velocity::invalid(), frame).is_valid())) n++;
-  if(!test.check("invalid (frame invalid)", !Geometric(Position::origin(), Velocity::stationary(), Frame::invalid()).is_valid())) n++;
-  if(!test.check("invalid (system -1)", !Geometric(Position::origin(), Velocity::stationary(), frame, (enum novas_reference_system) -1).is_valid())) n++;
+  if(!test.check("invalid (pos invalid)", !Geometric(frame, Position::invalid(), Velocity::stationary()).is_valid())) n++;
+  if(!test.check("invalid (vel invalid)", !Geometric(frame, Position::origin(), Velocity::invalid()).is_valid())) n++;
+  if(!test.check("invalid (frame invalid)", !Geometric(Frame::invalid(), Position::origin(), Velocity::stationary()).is_valid())) n++;
+  if(!test.check("invalid (system -1)", !Geometric(frame, Position::origin(), Velocity::stationary(), (enum novas_reference_system) -1).is_valid())) n++;
 
   Position pos(1.0 * Unit::pc, 2.0 * Unit::pc, 3.0 * Unit::pc);
   Velocity vel(-1.1 * Unit::km / Unit::s, -2.2 * Unit::km / Unit::s, -3.3 * Unit::km / Unit::s);
 
-  Geometric a(pos, vel, frame);
+  Geometric a = frame.geometric(pos, vel);
   if(!test.check("is_valid()", a.is_valid())) n++;
   if(!test.check("position()", a.position() == pos)) n++;
   if(!test.check("velocity()", a.velocity() == vel)) n++;
@@ -89,7 +89,7 @@ int main() {
 
   EOP eop(32, 0.1, 0.2 * Unit::arcsec, 0.3 * Unit::arcsec);
   Site site(25.0 * Unit::deg, -40.0 * Unit::deg, 600.0 * Unit::m);
-  frame = Frame(Observer::on_earth(site, eop), Time::j2000(), NOVAS_REDUCED_ACCURACY);
+  frame = Observer::on_earth(site, eop).reduced_accuracy_frame_at(Time::j2000());
 
   novas_transform T = {};
 
@@ -97,7 +97,7 @@ int main() {
   novas_transform_vector(pos._array(), &T, pos1);
   novas_transform_vector(vel._array(), &T, vel1);
 
-  Geometric b(pos, vel, frame);
+  Geometric b = frame.geometric(pos, vel);
 
   Geometric b1 = b.to_tirs();
   if(!test.equals("to_tirs().system_type()", b1.system_type(), NOVAS_TIRS)) n++;

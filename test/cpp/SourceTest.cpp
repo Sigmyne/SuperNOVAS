@@ -29,7 +29,7 @@ int main() {
   if(!test.equals("to_string(catalog)", c.to_string(), "CatalogSource Test @ 12h 34m 56.789s   12d 34m 56.789s ICRS")) n++;
 
   Source::set_case_sensitive(true);
-  c = CatalogSource(ce);
+  c = ce.to_source();
   if(!test.equals("name(catalog) sensitive", c.name(), "Test")) n++;
 
   Planet sun = Planet(NOVAS_SUN);
@@ -41,8 +41,8 @@ int main() {
   Site site(10.0 * Unit::deg, 20.0 * Unit::deg, 30.0);
   EOP eop(37, 0.0, 0.0, 0.0);
 
-  Frame frame(Observer::on_earth(site, eop), Time::j2000(), NOVAS_REDUCED_ACCURACY);
-  Frame gc(Observer::at_geocenter(), Time::j2000(), NOVAS_REDUCED_ACCURACY);
+  Frame frame = Observer::on_earth(site, eop).reduced_accuracy_frame_at(Time::j2000());
+  Frame gc = Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000());
 
   if(!test.check("observer.is_geodetic()", Observer::on_earth(site, eop).is_geodetic())) n++;
   if(!test.check("frame.is_valid()", frame.is_valid())) n++;
@@ -84,22 +84,22 @@ int main() {
 
   sky_pos tod = {};
   novas_sky_pos(o, frame._novas_frame(), NOVAS_TOD, &tod);
-  Apparent app = c.apparent(frame);
+  Apparent app = c.apparent_in(frame);
   if(!test.check("apparent()", app.is_valid())) n++;
   if(!test.equals("apparent().ra()", app.equatorial().ra().hours(), tod.ra, 1e-13)) n++;
   if(!test.equals("apparent().dec()", app.equatorial().dec().deg(), tod.dec, 1e-12)) n++;
   if(!test.equals("apparent().radial_velocity()", app.radial_velocity().km_per_s(), tod.rv, 1e-13)) n++;
-  if(!test.check("apparent(invalid)", !Planet((enum novas_planet) -1).apparent(gc).is_valid())) n++;
+  if(!test.check("apparent(invalid)", !Planet((enum novas_planet) -1).apparent_in(gc).is_valid())) n++;
 
   double p[3] = {0.0}, v[3] = {0.0};
 
 
   novas_geom_posvel(sun._novas_object(), frame._novas_frame(), NOVAS_TOD, p, v);
-  Geometric geom = sun.geometric(frame, NOVAS_TOD);
+  Geometric geom = sun.geometric_in(frame, NOVAS_TOD);
   if(!test.check("geometric(TOD)", geom.is_valid())) n++;
   if(!test.check("geometric(TOD).position()", geom.position() == Position(p, Unit::AU))) n++;
   if(!test.check("geometric(TOD).velocity()", geom.velocity() == Velocity(v, Unit::AU / Unit::day))) n++;
-  if(!test.check("geometric(invalid)", !Planet((enum novas_planet) -1).geometric(frame).is_valid())) n++;
+  if(!test.check("geometric(invalid)", !Planet((enum novas_planet) -1).geometric_in(frame).is_valid())) n++;
 
 
   std::cout << "Source.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";

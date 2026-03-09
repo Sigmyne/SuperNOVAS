@@ -307,6 +307,7 @@ Ecliptic Ecliptic::to_tod(double jd_tdb) const {
 Ecliptic Ecliptic::to_tod(const Time& time) const {
   return to_tod(time.jd(novas::NOVAS_TDB));
 }
+
 /**
  * Returns a reference to a statically defined standard invalid Galactic coordinates. These invalid
  * coordinates may be used inside any object that is invalid itself.
@@ -339,6 +340,7 @@ Equatorial Ecliptic::to_equatorial() const {
     }
   }
 
+  novas_set_errno(ERANGE, "Ecliptic::to_equatorial", "Invalid Ecliptic instance");
   return Equatorial::invalid();
 }
 

@@ -26,22 +26,13 @@ int main() {
   if(!test.check("invalid().epoch() ? NAN", isnan(x.epoch()))) n++;
   if(!test.equals("invalid().system()", x.system_type(), -1)) n++;
 
-  std::optional<Equinox> o = Equinox::from_system_type(NOVAS_MOD, NAN);
-  if(!test.check("has_value(jd = NAN)", !o.has_value())) n++;
+  if(!test.check("has_value(jd = NAN)", !Equinox::from_system_type(NOVAS_MOD, NAN).is_valid())) n++;
+  if(!test.check("has_value(system = -1)", !Equinox::from_system_type((novas_reference_system) -1, NOVAS_JD_J2000).is_valid())) n++;
+  if(!test.check("has_value(system = hi)", !Equinox::from_system_type((novas_reference_system) NOVAS_REFERENCE_SYSTEMS, NOVAS_JD_J2000).is_valid())) n++;
+  if(!test.check("has_value(system = TIRS)", !Equinox::from_system_type(NOVAS_TIRS, NOVAS_JD_J2000).is_valid())) n++;
+  if(!test.check("has_value(system = ITRS)", !Equinox::from_system_type(NOVAS_ITRS, NOVAS_JD_J2000).is_valid())) n++;
 
-  o = Equinox::from_system_type((novas_reference_system) -1, NOVAS_JD_J2000);
-  if(!test.check("has_value(system = -1)", !o.has_value())) n++;
-
-  o = Equinox::from_system_type((novas_reference_system) NOVAS_REFERENCE_SYSTEMS, NOVAS_JD_J2000);
-  if(!test.check("has_value(system = hi)", !o.has_value())) n++;
-
-  o = Equinox::from_system_type(NOVAS_TIRS, NOVAS_JD_J2000);
-  if(!test.check("has_value(system = TIRS)", !o.has_value())) n++;
-
-  o = Equinox::from_system_type(NOVAS_ITRS, NOVAS_JD_J2000);
-  if(!test.check("has_value(system = ITRS)", !o.has_value())) n++;
-
-  o = Equinox::from_string("blah");
+  std::optional<Equinox> o = Equinox::from_string("blah");
   if(!test.check("invalid('blah')", !o.has_value())) n++;
 
   o = Equinox::from_string("Z");
@@ -60,8 +51,8 @@ int main() {
   if(!test.check("icrs() == 'GCRS'", (icrs == Equinox::from_string("GCRS").value()))) n++;
   if(!test.check("icrs() == 'HCRS'", (icrs == Equinox::from_string("HCRS").value()))) n++;
   if(!test.check("icrs() == 'FK6'", (icrs == Equinox::from_string("FK6").value()))) n++;
-  if(!test.check("icrs() == ICRS", (icrs == Equinox::from_system_type(NOVAS_ICRS).value(), NAN))) n++;
-  if(!test.check("icrs() == GCRS", (icrs == Equinox::from_system_type(NOVAS_GCRS).value(), NAN))) n++;
+  if(!test.check("icrs() == ICRS", (icrs == Equinox::from_system_type(NOVAS_ICRS), NAN))) n++;
+  if(!test.check("icrs() == GCRS", (icrs == Equinox::from_system_type(NOVAS_GCRS), NAN))) n++;
 
   Equinox j2000 = Equinox::j2000();
   if(!test.check("j2000().is_valid()", j2000.is_valid())) n++;
@@ -75,7 +66,7 @@ int main() {
   if(!test.check("j2000().equals('j2000.00')", j2000.equals(Equinox::from_string("j2000.00").value()))) n++;
   if(!test.check("j2000() == 'J2000'", (j2000 == Equinox::from_string("J2000").value()))) n++;
   if(!test.check("j2000() == 'FK5'", (j2000 == Equinox::from_string("FK5").value()))) n++;
-  if(!test.check("j2000() == J2000", (j2000 == Equinox::from_system_type(NOVAS_J2000).value(), NAN))) n++;
+  if(!test.check("j2000() == J2000", (j2000 == Equinox::from_system_type(NOVAS_J2000), NAN))) n++;
   if(!test.check("j2000() != icrs", (j2000 != icrs))) n++;
 
   Equinox b1950 = Equinox::b1950();

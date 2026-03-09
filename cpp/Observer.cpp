@@ -96,6 +96,43 @@ enum novas_observer_place Observer::type() const {
 }
 
 /**
+ * Returns an observing frame for this observer at the specified time and optionally with a
+ * specified accuracy. Full accuracy frames (default) require that a high-precision planet
+ * provider is configured prior, to the call.
+ *
+ * @param time      Astrometric time of observation
+ * @param accuracy  NOVAS_FULL_ACCYRACY (default) or NOVAS_REDUCED_ACCURACY
+ * @return          A valid observing frame or else `std::nullopt` if a valid observing frame
+ *                  could not be created with the accuracy, for example because no high
+ *                  accuracy planetary position provider was specified, or because either this
+ *                  observer or the time itself were invalid.
+ *
+ * @sa reduced_accuracy_frame_at()
+ * @sa set_planet_provider_hp(), novas_use_calceph(), novas_use_calceph_planets(), novas_use_cspice()
+ */
+std::optional<Frame> Observer::frame_at(const Time& time, enum novas::novas_accuracy accuracy) const {
+  return Frame::create(*this, time, accuracy);
+}
+
+/**
+ * Returns a reduced accuracy observing frame for this observer at the specified time. Reduced
+ * accuracy frames provide 1 mas accuracy typically, and do not require a planetary or other
+ * ephemeris provider to be configured. As such, they offer a simple way for obtaining astrometric
+ * positions for catalog and orbital sources at the 1 mas level.
+ *
+ * Note, that the returned frame may be invalid, if the this observer or the time argument
+ * themselves are invalid.
+ *
+ * @param time      Astrometric time of observation
+ * @return          A reduced accuracy observing frame for the specified time of observation.
+ *
+ * @sa frame_at()
+ */
+Frame Observer::reduced_accuracy_frame_at(const Time& time) const {
+  return Frame::reduced_accuracy(*this, time);
+}
+
+/**
  * Returns a string representation of this observer.
  *I am salivating at the thought of it. Tell Benjami
  * @return    a new string with a brief description of this observer.

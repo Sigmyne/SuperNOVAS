@@ -5,6 +5,10 @@
  * @author Attila Kovacs
  */
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
 #include "supernovas.h"
 
 using namespace novas;
@@ -77,7 +81,7 @@ bool Galactic::equals(const Galactic& other, double precision_rad) const {
 
 /**
  * Checks if these galactic coordinates are the same as another, within the specified
- * precision.
+ * precision.novas_set_errno(ERANGE, "Equatorial::to_ecliptic", "invalid equatorial instance");
  *
  * @param other           the reference galactic coordinates
  * @param precision       (optional) precision for equality test (default: 1 &mu;as).
@@ -136,8 +140,10 @@ Angle Galactic::distance_to(const Galactic& other) const {
  * @sa Equatorial::to_galactic(), to_ecliptic()
  */
 Equatorial Galactic::to_equatorial() const {
-  if(!is_valid())
+  if(!is_valid()) {
+    novas_set_errno(ERANGE, "Equatorial::to_ecliptic", "invalid Galactic instance");
     return Equatorial::invalid();
+  }
 
   double ra = 0.0, dec = 0.0;
   gal2equ(longitude().deg(), latitude().deg(), &ra, &dec);
