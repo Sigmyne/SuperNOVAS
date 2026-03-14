@@ -100,7 +100,7 @@ int main() {
   if(!test.check("invalid(T = NAN)", !Orbital(s, Time::j2000(), Coordinate(Unit::AU), Angle(0.0), Interval(NAN)).is_valid())) n++;
   if(!test.check("invalid(T = 0)", !Orbital(s, Time::j2000(), Coordinate(Unit::AU), Angle(0.0), Interval(0.0)).is_valid())) n++;
   if(!test.check("invalid(T < 0)", !Orbital(s, Time::j2000(), Coordinate(Unit::AU), Angle(0.0), Interval(-1.0)).is_valid())) n++;
-  if(!test.check("invalid(n = 0)", !Orbital::with_mean_motion(s, Time::j2000(), Coordinate(Unit::AU), Angle(0.0), 0.0).is_valid())) n++;
+  if(!test.check("invalid(n = 0)", !Orbital::from_mean_motion(s, Time::j2000(), Coordinate(Unit::AU), Angle(0.0), 0.0).is_valid())) n++;
 
   Orbital o(s, Time::j2000(), Coordinate(Unit::AU), Angle(-1.0), Interval(Unit::yr));
   if(!test.check("is_valid()", o.is_valid())) n++;

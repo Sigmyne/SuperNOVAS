@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <string.h>
 
 #include "TestUtil.hpp"
 
@@ -18,6 +19,7 @@ int main() {
 
   Planet x = Planet((enum novas_planet) -1);
   if(!test.check("(invalid)", !x.is_valid())) n++;
+  if(!test.equals("type(invalid)", x.type(), NOVAS_PLANET)) n++;
   if(!test.equals("novas_id(invalid)", x.novas_id(), -1)) n++;
   if(!test.equals("naif_id(invalid)", x.naif_id(), -1)) n++;
   if(!test.equals("de_number_id(invalid)", x.de_number(), -1)) n++;
@@ -28,16 +30,19 @@ int main() {
   if(!test.check("for_naif_id(invalid)", !Planet::for_naif_id(-1).has_value())) n++;
 
   for(int i = 0; i < NOVAS_PLANETS; i++) {
-    Planet p = Planet((enum novas_planet) i);
-    if(!test.check(std::to_string(i), p.is_valid())) n++;
-    if(!test.equals("novas_id(" + std::to_string(i) + ")", p.novas_id(), i)) n++;
-    if(!test.equals("naif_id(" + std::to_string(i) + ")", p.naif_id(), (int) novas_to_naif_planet(p.novas_id()))) n++;
-    if(!test.equals("de_number(" + std::to_string(i) + ")", p.de_number(), (int) novas_to_dexxx_planet(p.novas_id()))) n++;
+    Planet pl = Planet((enum novas_planet) i);
+    if(!test.check(std::to_string(i), pl.is_valid())) n++;
+    if(!test.equals("novas_id(" + std::to_string(i) + ")", pl.novas_id(), i)) n++;
+    if(!test.equals("naif_id(" + std::to_string(i) + ")", pl.naif_id(), (int) novas_to_naif_planet(pl.novas_id()))) n++;
+    if(!test.equals("de_number(" + std::to_string(i) + ")", pl.de_number(), (int) novas_to_dexxx_planet(pl.novas_id()))) n++;
 
     std::optional<Planet> opt = Planet::for_naif_id(novas_to_naif_planet((enum novas_planet) i));
     if(!test.check("for_naif_id(" + std::to_string(i) + ").has_value()", opt.has_value())) n++;
     if(!test.check("for_naif_id(" + std::to_string(i) + ")", opt.value().is_valid())) n++;
     if(!test.equals("for_naif_id(" + std::to_string(i) + ").novas_id()", opt.value().novas_id(), i)) n++;
+
+    const Source *p1 = pl.copy();
+    if(!test.check("to_string(catalog)", memcmp(p1->_novas_object(), pl._novas_object(), sizeof(object)) == 0)) n++;
   }
 
   std::string names[] = NOVAS_PLANET_NAMES_INIT;
@@ -48,11 +53,12 @@ int main() {
      std::optional<Planet> opt = Planet::for_name(names[i]);
      if(!test.check("for_name(" + names[i] + ")", opt.has_value())) n++;
 
-     Planet p = opt.value();
-     if(!test.equals("for_name(" + names[i] + ")", p.novas_id(), i)) n++;
-     if(!test.equals("mean_radius(" + std::to_string(i) + ")", p.mean_radius().m(), radius[i], 1e-3)) n++;
-     if(!test.equals("mean_radius(" + std::to_string(i) + ")", p.mass(), Constant::M_sun / rmass[i], 1e13)) n++;
-     if(!test.equals("to_string(" + names[i] + ")", p.to_string(), "Planet " + p.name())) n++;
+     Planet pl = opt.value();
+     if(!test.equals("for_name(" + names[i] + ")", pl.novas_id(), i)) n++;
+     if(!test.equals("type(" + names[i] + ")", pl.type(), NOVAS_PLANET)) n++;
+     if(!test.equals("mean_radius(" + std::to_string(i) + ")", pl.mean_radius().m(), radius[i], 1e-3)) n++;
+     if(!test.equals("mean_radius(" + std::to_string(i) + ")", pl.mass(), Constant::M_sun / rmass[i], 1e13)) n++;
+     if(!test.equals("to_string(" + names[i] + ")", pl.to_string(), "Planet " + pl.name())) n++;
   }
 
   if(!test.equals("ssb()", Planet::ssb().novas_id(), NOVAS_SSB)) n++;
@@ -80,6 +86,14 @@ int main() {
   if(!test.equals("approx_apparent(mars).dec", app.equatorial().dec().deg(), pos.dec, 1e-12)) n++;
   if(!test.equals("approx_apparent(mars).radial_velocity", app.radial_velocity().km_per_s(), pos.rv, 1e-10)) n++;
 
+  Geometric geom = Planet::jupiter().approx_geometric_in(frame);
+  double p[3] = {0.0}, v[3] = {0.0};
+  novas_approx_heliocentric(NOVAS_JUPITER, frame.time().jd(NOVAS_TDB), p, v);
+  const novas_frame *f = frame._novas_frame();
+
+  if(!test.check("approx_geometric(jupiter)", geom.is_valid())) n++;
+  if(!test.check("approx_geometric(jupiter).position()", geom.position() == (Position(p, Unit::AU) + Position(f->sun_pos, Unit::AU)))) n++;
+  if(!test.check("approx_geometric(jupiter).velocity()", geom.velocity() == (Velocity(v, Unit::AU / Unit::day) + Velocity(f->sun_vel, Unit::AU / Unit::day)))) n++;
 
   std::cout << "Planet.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

@@ -37,6 +37,15 @@ std::string Source::name() const {
 }
 
 /**
+ * Returns the type of this source
+ *
+ * @return    the source type constant
+ */
+enum novas::novas_object_type Source::type() const {
+  return _object.type;
+}
+
+/**
  * Returns the apparent position of a source (if possible), or else an invalid position. After the
  * return, you should probably check for validity, e.g.:
  *
@@ -333,12 +342,7 @@ Time Source::sets_below(const Angle& el, const GeodeticFrame &frame, RefractionM
  */
 std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, double range_seconds) const {
   novas_track track = {};
-
-  if(novas_equ_track(_novas_object(), frame._novas_frame(), range_seconds, &track) != 0) {
-    novas_trace_invalid("Source::equatorial_track");
-    return std::nullopt;
-  }
-
+  novas_equ_track(_novas_object(), frame._novas_frame(), range_seconds, &track);
   return EquatorialTrack::from_novas_track(Equinox::tod(frame.time().jd()), &track, Interval(range_seconds));
 }
 
@@ -387,12 +391,8 @@ std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, cons
  * @sa equatorial_track()
  */
 std::optional<HorizontalTrack> Source::horizontal_track(const Frame &frame, novas::RefractionModel ref, const Weather& weather) const {
-  static const char *fn = "Source::horizontal_track()";
-
-  novas_track track = {};
-
   if(!frame.observer().is_geodetic()) {
-    novas_set_errno(EINVAL, fn, "input frame is not a geodetic observing frame");
+    novas_set_errno(EINVAL, "Source::horizontal_track()", "input frame is not a geodetic observing frame");
     return std::nullopt;
   }
 
@@ -403,10 +403,8 @@ std::optional<HorizontalTrack> Source::horizontal_track(const Frame &frame, nova
   s->pressure = weather.pressure().mbar();
   s->humidity = weather.humidity();
 
-  if(novas_hor_track(_novas_object(), frame._novas_frame(), ref, &track) != 0) {
-    novas_trace_invalid(fn);
-    return std::nullopt;
-  }
+  novas_track track = {};
+  novas_hor_track(_novas_object(), frame._novas_frame(), ref, &track);
 
   return HorizontalTrack::from_novas_track(&track, Interval(1.0 * Unit::min));
 }
@@ -984,7 +982,8 @@ const Planet& Planet::pluto_system() {
  * Instantiates a new Solar-system body whose positions are provided by ephemeris lookup.
  *
  * @param name      source name as defined in the ephemeris data (for name-based lookup).
- * @param number    source ID number in the ephemeris data (for id-based lookup).
+ * @param number    (optional) source ID number in the ephemeris data (for id-based lookup;
+ *                  default: -1).
  */
 EphemerisSource::EphemerisSource(const std::string &name, long number) : SolarSystemSource() {
   // defaults...
@@ -992,7 +991,7 @@ EphemerisSource::EphemerisSource(const std::string &name, long number) : SolarSy
   _object.number = number;
 
   if(make_ephem_object(name.c_str(), number, &_object) != 0)
-    novas_trace("EphemerisSource(name, number)", 0, 0);
+    novas_trace_invalid("EphemerisSource()");
   else
     _valid = true;
 }
@@ -1006,9 +1005,25 @@ const Source *EphemerisSource::copy() const {
   return new EphemerisSource(*this);
 }
 
+/**
+ * Returns the number designation of this ephemeris
+ *
+ * @return    the source ID number (for number ID based lookup).
+ *
+ * @sa name()
+ */
+long EphemerisSource::number() const {
+  return _object.number;
+}
 
+/**
+ * Returns a simple string representation of this ephemeris source, with the name and
+ * number designations.
+ *
+ * @return      a string containing the name and number designations for this source.
+ */
 std::string EphemerisSource::to_string() const {
-  return "EphemerisSource " + name();
+  return "EphemerisSource " + name() + " (nr. " + std::to_string(number()) + ")";
 }
 
 
@@ -1016,17 +1031,16 @@ std::string EphemerisSource::to_string() const {
  * Instantiates a new Solar-system source defined by Keplerian orbital elements.
  *
  * @param name    source name as desired by the user.
- * @param number  ID number (or 0 if not needed by / known to the user).
  * @param orbit   Keplerian orbital elements.
  */
-OrbitalSource::OrbitalSource(const std::string& name, long number, const Orbital& orbit) : SolarSystemSource() {
+OrbitalSource::OrbitalSource(const std::string& name, const Orbital& orbit) : SolarSystemSource() {
   static const char *fn = "OrbitalSource()";
 
   // defaults...
   _object.type = NOVAS_ORBITAL_OBJECT;
-  _object.number = number;
+  _object.number = 0;
 
-  if(make_orbital_object(name.c_str(), number, orbit._novas_orbital(), &_object) != 0)
+  if(make_orbital_object(name.c_str(), 0, orbit._novas_orbital(), &_object) != 0)
     novas_trace_invalid(fn);
   else if(!orbit.is_valid())
     novas_set_errno(EINVAL, fn, "input orbital is invalid");

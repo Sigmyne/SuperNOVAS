@@ -18,13 +18,16 @@ int main() {
 
   if(!test.check("invalid", !Angle::undefined().is_valid())) n++;
   if(!test.check("invalid rad()", isnan(Angle::undefined().rad()))) n++;
+  if(!test.check("invalid bool()", !Angle::undefined())) n++;
 
   Angle x(NAN);
   if(!test.check("is_valid(NAN)", !x.is_valid())) n++;
+  if(!test.check("bool(NAN)", !x)) n++;
   if(!test.check("isnan(NAN)", isnan(x.rad()))) n++;
 
   Angle a(45.0 * Unit::deg);
   if(!test.check("is_valid(45 deg)", a.is_valid())) n++;
+  if(!test.check("operator bool()", (bool) a)) n++;
   if(!test.equals("deg()", a.deg(), 45.0)) n++;
   if(!test.equals("rad()", a.rad(), M_PI / 4.0, 1e-12)) n++;
   if(!test.equals("arcmin()", a.arcmin(), 45.0 * 60.0, 1e-10)) n++;

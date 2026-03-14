@@ -289,6 +289,20 @@ Position Site::xyz() const {
 }
 
 /**
+ * Returns an observer location for this observing site and the specified IERS Earth Orientation
+ * Parameters (EOP).
+ *
+ * @param eop     Earth Orientation Parameters (EOP) from IERS, for the same ITRF realization as
+ *                this site (if &mu;as precision is required).
+ * @return        A geodetic observer location for this site.
+ *
+ * @sa Observer::on_earth()
+ */
+GeodeticObserver Site::observer(const EOP& eop) const {
+  return Observer::on_earth(*this, eop);
+}
+
+/**
  * Returns a string representation of this observing site.
  *
  * @param separator  (optional) the separator to use for the representation of angles (default:

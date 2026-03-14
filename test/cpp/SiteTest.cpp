@@ -74,6 +74,12 @@ int main() {
   Site b1 = Site::from_GPS("120 30 00 W", "75 15 00 S", Coordinate(60.0));
   if(!test.check("operator==(GPS string)", b1 == b)) n++;
 
+  EOP eop(32, 0.1, -0.2, 0.3);
+  GeodeticObserver obs = b.observer(eop);
+  if(!test.check("observer()", obs.is_valid())) n++;
+  if(!test.check("observer().site()", obs.site() == b)) n++;
+
+
   std::cout << "Site.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;
 }

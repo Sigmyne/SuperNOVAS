@@ -1236,6 +1236,8 @@ public:
 
   Velocity enu_to_itrs(const Velocity& p) const;
 
+  GeodeticObserver observer(const EOP& eop) const;
+
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 
   static Site from_GPS(double longitude, double latitude, double altitude = 0.0);
@@ -1778,6 +1780,8 @@ public:
 
   std::string name() const;
 
+  enum novas::novas_object_type type() const;
+
   /// @ingroup apparent
   Apparent apparent_in(const Frame &frame) const;
 
@@ -2026,7 +2030,7 @@ public:
  */
 class EphemerisSource : public SolarSystemSource {
 public:
-  EphemerisSource(const std::string &name, long number);
+  explicit EphemerisSource(const std::string &name, long number = -1);
 
   const Source *copy() const override;
 
@@ -2126,9 +2130,9 @@ public:
 
   Orbital(const OrbitalSystem& system, const Time& ref_time, const Coordinate& semi_major, const Angle& mean_anomaly, const Interval& period);
 
-  static Orbital with_mean_motion(const OrbitalSystem& system, double jd_tdb, double a, double M0, double rad_per_s);
+  static Orbital from_mean_motion(const OrbitalSystem& system, double jd_tdb, double a, double mean_anomaly_rad, double rad_per_s);
 
-  static Orbital with_mean_motion(const OrbitalSystem& system, const Time& time, const Coordinate& a, const Angle& M0, double rad_per_s);
+  static Orbital from_mean_motion(const OrbitalSystem& system, const Time& time, const Coordinate& a, const Angle& mean_anomaly, double rad_per_s);
 
   const novas::novas_orbital * _novas_orbital() const;
 
@@ -2165,6 +2169,8 @@ public:
   Position position(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
 
   Velocity velocity(const Time& time, enum novas::novas_accuracy accuracy = novas::NOVAS_FULL_ACCURACY) const;
+
+  OrbitalSource to_source(const std::string& name) const;
 
   Orbital& eccentricity(double e, double periapsis_rad);
 
@@ -2211,7 +2217,7 @@ public:
  */
 class OrbitalSource : public SolarSystemSource {
 public:
-  OrbitalSource(const std::string& name, long number, const Orbital& orbit);
+  OrbitalSource(const std::string& name, const Orbital& orbit);
 
   const novas::novas_orbital *_novas_orbital() const;
 
