@@ -173,7 +173,7 @@ short place(double jd_tt, const object *restrict source, const observer *restric
     return novas_error(-1, EINVAL, fn, "NULL input 'source' pointer");
 
   // Check for invalid value of 'coord_sys' or 'accuracy'.
-  if(coord_sys < 0 || coord_sys >= NOVAS_ITRS)
+  if((unsigned) coord_sys >= NOVAS_ITRS)
     return novas_error(1, EINVAL, fn, "invalid reference system: %d", coord_sys);
 
   if(accuracy != NOVAS_FULL_ACCURACY && accuracy != NOVAS_REDUCED_ACCURACY)

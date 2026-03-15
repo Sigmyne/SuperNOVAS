@@ -26,6 +26,12 @@
 
 #include <novas.h>      ///< SuperNOVAS functions and definitions
 
+#if __cplusplus
+#  ifdef NOVAS_NAMESPACE
+using namespace novas;
+#  endif
+#endif
+
 // Below are some Earth orientation values. Here we define them as constants, but they may
 // of course be variables. They should be set to the appropriate values for the time
 // of observation based on the IERS Bulletins...

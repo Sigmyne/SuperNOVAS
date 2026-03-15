@@ -15,9 +15,16 @@ Upcoming feature release.
 
 ### Added
 
+ - #256: New C++17 API to wrap the C99 functions into a higher-level, easier to use, and object-oriented interface.
+
+ - #256: New `novas_time_leap()` to simplify back calculating the leap seconds from a `novas_timespec` structure.
+
  - Added `novas_enu_to_itrs()` and `novas_itrs_to_enu()` functions to help convert between local East-North-Up (ENU)
    coordinates and ITRS. ENU is a natural local cartesian coordinate system of an observer at or near the Earth's 
    surface.
+
+ - New `novas_diff_time_scale()` for obtaining time difference between two astrometric times in the specified timescale
+   of choice.
 
 ### Changed
 

@@ -46,10 +46,16 @@ distro: $(SHARED_TARGETS) $(DOC_TARGETS)
 # Shared libraries (versioned and unversioned)
 .PHONY: shared
 shared: summary $(SHARED_TARGETS)
+ifeq ($(ENABLE_CPP), 1)
+	make -C cpp shared
+endif
 
 # Static libraries
 .PHONY: static
 static: summary $(LIB)/libnovas.a solsys
+ifeq ($(ENABLE_CPP), 1)
+	make -C cpp static
+endif
 
 # solarsystem() call handler objects
 .PHONY: solsys
@@ -72,9 +78,18 @@ benchmark: shared
 examples: shared
 	$(MAKE) -C examples
 
+# C++ static analysis
+.PHONY: analyze-cpp
+analyze-cpp: 
+	$(MAKE) -C cpp analyze
+
 # Perform checks (test + analyze)
 .PHONY: check
 check: test analyze
+
+ifeq ($(ENABLE_CPP), 1)
+check: analyze-cpp
+endif
 
 # Measure test coverage (on test set of files only)
 .PHONY: coverage
@@ -85,6 +100,7 @@ coverage:
 .PHONY: clean
 clean:
 	@rm -f $(OBJECTS) Doxyfile.local gmon.out
+	@$(MAKE) -s -C cpp clean
 	@$(MAKE) -s -C test clean
 	@$(MAKE) -s -C benchmark clean
 	@$(MAKE) -s -C examples clean
@@ -97,6 +113,7 @@ distclean: clean
       $(LIB)/libnovas.$(SOEXT)* $(LIB)/libsolsys*.$(SOEXT)*
 	@rm -f doc/Doxyfile.local doc/README.md
 	@rm -rf build */build 
+	@$(MAKE) -s -C cpp distclean
 	@$(MAKE) -s -C test distclean
 	@$(MAKE) -s -C benchmark distclean
 	@$(MAKE) -s -C examples distclean
@@ -240,6 +257,7 @@ summary:
 	@echo
 	@echo "    CALCEPH_SUPPORT      = $(CALCEPH_SUPPORT)"
 	@echo "    CSPICE_SUPPORT       = $(CSPICE_SUPPORT)"
+	@echo "    ENABLE_CPP           = $(ENABLE_CPP)"
 	@echo "    SOLSYS_SOURCES       = $(SOLSYS_SOURCES)"
 	@echo "    READEPH_SOURCES      = $(READEPH_SOURCES)"
 	@echo

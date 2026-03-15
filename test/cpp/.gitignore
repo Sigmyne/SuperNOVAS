@@ -1,0 +1,6 @@
+*Test
+*.gcno
+*.gcda
+*.gcov
+cov.info
+cov

@@ -14,6 +14,12 @@
 #include "novas.h"
 #include "solarsystem.h"
 
+#if __cplusplus
+#  ifdef NOVAS_NAMESPACE
+using namespace novas;
+#  endif
+#endif
+
 #if defined _WIN32 || defined __CYGWIN__
 #  define PATH_SEP  "\\"
 #else
@@ -1229,10 +1235,6 @@ static int test_time() {
   if(check("time:offset:out", -1, novas_offset_time(&time, 0.1, NULL))) n++;
   if(check("time:offset:both", -1, novas_offset_time(NULL, 0.1, NULL))) n++;
 
-  if(check_nan("time:diff:t1", novas_diff_time(NULL, &time))) n++;
-  if(check_nan("time:diff:t2", novas_diff_time(&time, NULL))) n++;
-  if(check_nan("time:diff:both", novas_diff_time(NULL, NULL))) n++;
-
   if(check_nan("time:diff_tcg:t1", novas_diff_tcg(NULL, &time))) n++;
   if(check_nan("time:diff_tcg:t2", novas_diff_tcg(&time, NULL))) n++;
   if(check_nan("time:diff_tcg:both", novas_diff_tcg(NULL, NULL))) n++;
@@ -1240,6 +1242,12 @@ static int test_time() {
   if(check_nan("time:diff_tcb:t1", novas_diff_tcb(NULL, &time))) n++;
   if(check_nan("time:diff_tcb:t2", novas_diff_tcb(&time, NULL))) n++;
   if(check_nan("time:diff_tcb:both", novas_diff_tcb(NULL, NULL))) n++;
+
+  if(check_nan("time:diff:scale:t1", novas_diff_time_scale(NULL, &time, NOVAS_TT))) n++;
+  if(check_nan("time:diff:scale:t2", novas_diff_time_scale(&time, NULL, NOVAS_TT))) n++;
+  if(check_nan("time:diff:scale:both", novas_diff_time_scale(NULL, NULL, NOVAS_TT))) n++;
+  if(check_nan("time:diff:scale:-1", novas_diff_time_scale(&time, &time, (enum novas_timescale) -1))) n++;
+  if(check_nan("time:diff:scale:hi", novas_diff_time_scale(&time, &time, (enum novas_timescale) NOVAS_TIMESCALES))) n++;
 
   return n;
 }
@@ -2506,6 +2514,7 @@ static int test_enu_to_itrs() {
   return n;
 }
 
+
 static int test_itrs_to_enu() {
   int n = 0;
 
@@ -2513,6 +2522,60 @@ static int test_itrs_to_enu() {
 
   if(check("itrs_to_enu:itrs", -1, novas_itrs_to_enu(NULL, 0.0, 0.0, v))) n++;
   if(check("itrs_to_enu:enu", -1, novas_itrs_to_enu(v, 0.0, 0.0, NULL))) n++;
+
+  return n;
+}
+
+static int test_day_of_week() {
+  if(check("day_of_week:nan", -1, novas_day_of_week(NAN))) return 1;
+  return 0;
+}
+
+static int test_print_decimal() {
+  int n = 0;
+
+  char str[10] = {'\0'};
+
+  if(check("print_decimal:str:null", -1, novas_print_decimal(1.0, 1, NULL, sizeof(str)))) n++;
+  if(check("print_decimal:len:0", -1, novas_print_decimal(1.0, 1, str, 0))) n++;
+
+  return n;
+}
+
+static int test_time_leap() {
+  if(check("time_leap", -1, (int) novas_time_leap(NULL))) return 1;
+  return 0;
+}
+
+static int test_trace_invalid() {
+  int n = 0;
+
+  enum novas_debug_mode mode = novas_get_debug_mode();
+
+  novas_debug(NOVAS_DEBUG_OFF);
+  printf(">>> Expecting no trace...\n");
+  novas_trace_invalid("test_trace_invalid:debug:off");
+
+  novas_debug(NOVAS_DEBUG_ON);
+  printf(">>> Expecting trace...\n");
+  novas_trace_invalid("test_trace_invalid:debug:on");
+
+  novas_debug(NOVAS_DEBUG_EXTRA);
+  printf(">>> Expecting trace...\n");
+  novas_trace_invalid("test_trace_invalid:debug:extra");
+
+  novas_debug(mode);
+
+  return n;
+}
+
+static int test_check_nan() {
+  int n = 0;
+
+  if(check("check_nan:0", 0, (int) novas_check_nan("test_check_nan", 0.0))) n++;
+  if(check("check_nan:1", 1, (int) novas_check_nan("test_check_nan", 1.0))) n++;
+
+  if(check_nan("check_nan:nan", novas_check_nan("test_check_nan", NAN))) n++;
 
   return n;
 }
@@ -2730,9 +2793,14 @@ int main(int argc, const char *argv[]) {
   if(test_transform_geodetic()) n++;
 
   if(test_rot()) n++;
-
   if(test_enu_to_itrs()) n++;
   if(test_itrs_to_enu()) n++;
+  if(test_day_of_week()) n++;
+  if(test_print_decimal()) n++;
+  if(test_time_leap()) n++;
+
+  if(test_trace_invalid()) n++;
+  if(test_check_nan()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");
