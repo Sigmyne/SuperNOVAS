@@ -4,15 +4,10 @@
  * @date Created  on Sep 29, 2025
  * @author Attila Kovacs
  * @since 1.6
- * @version 0.9.0
- *
- *  !!! Under construction !!!
  */
 
 #ifndef SUPERNOVAS_H_
 #define SUPERNOVAS_H_
-
-#define SUPERNOVAS_CPP_API_VERSION    0.9.0   ///< C++ API version (different from library version)
 
 #if __cplusplus
 
@@ -852,8 +847,10 @@ public:
 
   Angle distance_to(const Equatorial& other) const;
 
+  /// @ingroup equatorial
   Equatorial to_system(const Equinox& system) const;
 
+  /// @ingroup equatorial
   Equatorial to_icrs() const;
 
   Equatorial to_j2000() const;
@@ -1236,7 +1233,7 @@ public:
 
   Velocity enu_to_itrs(const Velocity& p) const;
 
-  GeodeticObserver observer(const EOP& eop) const;
+  GeodeticObserver to_observer(const EOP& eop) const;
 
   std::string to_string(enum novas::novas_separator_type separator = novas::NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
 
@@ -2096,7 +2093,7 @@ public:
 
   static OrbitalSystem from_novas_orbital_system(const novas::novas_orbital_system *system);
 
-  std::string to_string() const; // TODO
+  std::string to_string() const;
 };
 
 /**
@@ -2130,9 +2127,9 @@ public:
 
   Orbital(const OrbitalSystem& system, const Time& ref_time, const Coordinate& semi_major, const Angle& mean_anomaly, const Interval& period);
 
-  static Orbital from_mean_motion(const OrbitalSystem& system, double jd_tdb, double a, double mean_anomaly_rad, double rad_per_s);
+  static Orbital from_mean_motion(const OrbitalSystem& system, double jd_tdb, double semi_majpr_m, double mean_anomaly_rad, double rad_per_s);
 
-  static Orbital from_mean_motion(const OrbitalSystem& system, const Time& time, const Coordinate& a, const Angle& mean_anomaly, double rad_per_s);
+  static Orbital from_mean_motion(const OrbitalSystem& system, const Time& ref_time, const Coordinate& semi_major, const Angle& mean_anomaly, double rad_per_s);
 
   const novas::novas_orbital * _novas_orbital() const;
 
@@ -2198,7 +2195,7 @@ public:
 
   Orbital& node_rate(double rad_per_sec);
 
-  std::string to_string() const; // TODO
+  std::string to_string() const;
 
   static Orbital from_novas_orbit(const novas::novas_orbital *orbit);
 };
@@ -2305,7 +2302,7 @@ public:
   /// @ingroup nonequatorial
   std::optional<Horizontal> to_horizontal() const;
 
-  std::string to_string() const; // TODO
+  std::string to_string(int decimals = 3) const;
 
   static Apparent cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms = 0.0);
 
@@ -2387,7 +2384,7 @@ public:
 
   std::optional<Geometric> to_itrs(const EOP& eop = EOP::undefined()) const;
 
-  std::string to_string() const; // TODO
+  std::string to_string(int decimals = 3) const;
 
   static const Geometric& undefined();
 };

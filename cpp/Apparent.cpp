@@ -285,6 +285,16 @@ std::optional<Horizontal> Apparent::to_horizontal() const {
 }
 
 /**
+ * Returns a human-readable basic string description of these apparent positions.
+ *
+ * @param decimals    (optional) Number of decimal places to print after the decimal point (default: 3).
+ * @return            a string description of these apparent positions.
+ */
+std::string Apparent::to_string(int decimals) const {
+  return "Apparent " + equatorial().to_string(NOVAS_SEP_UNITS_AND_SPACES, decimals) + " in " + _frame.to_string();
+}
+
+/**
  * Returns an apparent position for a NOVAS C `sky_pos` data structure defined with respect to the
  * true equator and equinox of date (that is in TOD), for the given observing frame.
  *

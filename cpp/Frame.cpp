@@ -166,7 +166,6 @@ double Frame::clock_skew(enum novas_timescale timescale) const {
  *
  * @param p       equatorial position vector, with respect to the observer
  * @param v       equatorial velocity vector, with respect to the observer
- * @param frame   observing frame (observer location and time of observation)
  * @param system  equatorial coordinate reference_system, in which position and velocity vectors
  *                are defined
  */

@@ -28,6 +28,7 @@ int main() {
   if(!test.equals("obliquity()", s.obliquity().deg(), 1.0, 1e-15)) n++;
   if(!test.equals("ascending_node()", s.ascending_node().deg(), -2.0, 1e-15)) n++;
   if(!test.equals("system_type()", s.system_type(), NOVAS_ICRS)) n++;
+  if(!test.equals("to_string()", s.to_string(), "Ecliptic OrbitalSystem around SUN inclined at 1.000000 deg with node at -2.000000 deg.")) n++;
 
   s.pole(Spherical(-92.0 * Unit::deg, 89.0 * Unit::deg), Equinox::j2000());
   if(!test.check("is_valid(pole)", s.is_valid())) n++;
@@ -85,10 +86,12 @@ int main() {
   if(!test.check("from_novas_orbital_system(OK)", OrbitalSystem::from_novas_orbital_system(ns).is_valid())) n++;
 
 
+  OrbitalSystem xs = (OrbitalSystem::equatorial(Planet((novas_planet) -1)));
+  if(!test.equals("to_string(equatorial)", xs.to_string(), "Equatorial OrbitalSystem around  inclined at 0.000000 deg with node at 0.000000 deg.")) n++;
+
   // ------------------------------------------------------------------------
   test = TestUtil("Orbital");
 
-  OrbitalSystem xs = (OrbitalSystem::equatorial(Planet((novas_planet) -1)));
   s = (OrbitalSystem::equatorial());
 
   if(!test.check("invalid(system)", !Orbital(xs, Time::j2000(), Coordinate(Unit::AU), Angle(0.0), Interval(Unit::yr)).is_valid())) n++;
@@ -109,6 +112,7 @@ int main() {
   if(!test.equals("mean_anomaly()", o.reference_mean_anomaly().rad(), -1.0, 1e-15)) n++;
   if(!test.equals("mean_motion()", o.mean_motion(), Constant::two_pi / Unit::yr, 1e-14 * o.mean_motion())) n++;
   if(!test.equals("period()", o.period().years(), 1.0, 1e-15)) n++;
+  if(!test.equals("to_string()", o.to_string(), "Orbital (a = 1.000 AU, T = 365.242 d, e = 0.000000) in Equatorial OrbitalSystem around SUN inclined at 0.000000 deg with node at 0.000000 deg.")) n++;
 
   o = s.orbit(Time::j2000(), Coordinate(Unit::AU), Angle(-1.0), Interval(Unit::yr));
   if(!test.check("is_valid()", o.is_valid())) n++;

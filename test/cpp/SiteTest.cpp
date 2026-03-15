@@ -75,7 +75,7 @@ int main() {
   if(!test.check("operator==(GPS string)", b1 == b)) n++;
 
   EOP eop(32, 0.1, -0.2, 0.3);
-  GeodeticObserver obs = b.observer(eop);
+  GeodeticObserver obs = b.to_observer(eop);
   if(!test.check("observer()", obs.is_valid())) n++;
   if(!test.check("observer().site()", obs.site() == b)) n++;
 

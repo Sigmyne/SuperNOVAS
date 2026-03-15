@@ -322,6 +322,16 @@ std::optional<Geometric> Geometric::to_itrs(const EOP& eop) const {
 }
 
 /**
+ * Returns a human-readable basic string description of these geometric positions and velocities.
+ *
+ * @param decimals    (optional) Number of decimal places to print after the decimal point (default: 3).
+ * @return            a string description of these geometric coordinates.
+ */
+std::string Geometric::to_string(int decimals) const {
+  return "Geometric " + position().to_string(decimals) + ", " + velocity().to_string(decimals) + " in " + _frame.to_string();
+}
+
+/**
  * Returns a reference to a statically defined standard invalid geometric coordinates. These invalid
  * coordinates may be used inside any object that is invalid itself.
  *

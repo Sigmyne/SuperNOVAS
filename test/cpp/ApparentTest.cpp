@@ -51,6 +51,7 @@ int main() {
   if(!test.check("ecliptic()", tod.ecliptic() == tod.equatorial().to_ecliptic())) n++;
   if(!test.check("galactic()", tod.galactic() == tod.equatorial().to_galactic())) n++;
   if(!test.check("horizontal(gc)", !tod.to_horizontal().has_value())) n++;
+  if(!test.equals("to_string()", tod.to_string(), "Apparent EQU 03h 00m 00.0000s   -15d 00m 00.000s  TOD J2000 in Frame for Geocentric Observer at 2000-01-01T11:58:55.816 UTC")) n++;
 
   double ra_cirs = app_to_cirs_ra(frame.time().jd(), NOVAS_REDUCED_ACCURACY, p.ra);
   if(!test.check("cirs()", tod.cirs() == Equatorial(ra_cirs * Unit::hour_angle, p.dec * Unit::deg, Equinox::cirs(Time::j2000())))) n++;

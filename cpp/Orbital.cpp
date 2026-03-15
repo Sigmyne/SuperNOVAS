@@ -236,11 +236,11 @@ Orbital OrbitalSystem::orbit(double jd_tdb, double semi_major_m, double mean_ano
  * parameters. You can further specify the parameters for elliptical orbits using a builder
  * pattern after instantiation.
  *
- * @param jd_tdb            reference time of the orbital parameters.
- * @param semi_major_m      semi-major axis (circular radius) of the orbit
- * @param mean_anomaly_rad  Mean anomaly (circular longitude) of the object at the reference time,
+ * @param ref_time          reference time of the orbital parameters.
+ * @param semi_major        semi-major axis (circular radius) of the orbit
+ * @param mean_anomaly      Mean anomaly (circular longitude) of the object at the reference time,
  *                          in the orbital system.
- * @param period_s          orbital period.
+ * @param period            orbital period.
  *
  * @sa from_mean_motion(), eccentricity(), inclination(), pole(), node_period(), node_rate()
  *     apsis_period(), apsis_rate()
@@ -304,6 +304,17 @@ OrbitalSystem OrbitalSystem::from_novas_orbital_system(const novas::novas_orbita
 
   return o;
 }
+
+/**
+ * Returns a human-readable description of this orbital system.
+ *
+ * @return    a string describing this orbital system.
+ */
+std::string OrbitalSystem::to_string() const {
+  return std::string(_system.plane == NOVAS_ECLIPTIC_PLANE ? "Ecliptic" : "Equatorial") + " OrbitalSystem around " + Planet(_system.center).name() +
+          " inclined at " + std::to_string(_system.obl / Unit::deg) + " deg with node at " + std::to_string(_system.Omega / Unit::deg) + " deg.";
+}
+
 
 void Orbital::validate(const char *loc) {
   static const char *fn = "Orbital::validate()";
@@ -386,11 +397,11 @@ Orbital::Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m
  * builder pattern after instantiation.
  *
  * @param system            the orbital system in which the orbit is defined.
- * @param jd_tdb            reference time of the orbital parameters.
- * @param semi_major_m      semi-major axis (circular radius) of the orbit
- * @param mean_anomaly_rad  Mean anomaly (circular longitude) of the object at the reference time,
+ * @param ref_time          reference time of the orbital parameters.
+ * @param semi_major        semi-major axis (circular radius) of the orbit
+ * @param mean_anomaly      Mean anomaly (circular longitude) of the object at the reference time,
  *                          in the orbital system.
- * @param period_s          orbital period.
+ * @param period            orbital period.
  *
  * @sa OrbotalSystem::orbit()
  * @sa from_mean_motion(), eccentricity(), inclination(), pole(), node_period(), node_rate()
@@ -663,7 +674,10 @@ Velocity Orbital::velocity(const Time& time, enum novas_accuracy accuracy) const
  * @return          a new source with this orbit and the specified designations.
  */
 OrbitalSource Orbital::to_source(const std::string& name) const {
-  return OrbitalSource(name, *this);
+  OrbitalSource s = OrbitalSource(name, *this);
+  if(!s.is_valid())
+    novas_trace_invalid("Orbital::to_source()");
+  return s;
 }
 
 /**
@@ -705,10 +719,11 @@ Orbital& Orbital::eccentricity(double e, double periapsis_rad) {
 /**
  * Sets parameters for an elliptical orbit.
  *
- * @param e          eccenticity value (dimensionless).
- * @param periapsis  longitude of the apsis (the point at which the elliptial orbit is closest to
- *                   the center), in the orbital system, in which the orbit is defined.
- * @return           itself.
+ * @param e                 eccenticity value (dimensionless).
+ * @param periapsis_angle   longitude of the apsis (the point at which the elliptial orbit is
+ *                          closest to the center), in the orbital system, in which the orbit is
+ *                          defined.
+ * @return                  itself.
  *
  * @sa apsis_period(), apsis_rate()
  */
@@ -749,10 +764,10 @@ Orbital& Orbital::inclination(double angle_rad, double ascending_node_rad) {
 /**
  * Sets parameters for an orbit that is inclined relative to the orbital system's native plane.
  *
- * @param angle_rad       inclination angle
- * @param ascending_node  longitude of the ascending node in the orbital system, in which the
- *                        orbit is defined.
- * @return                itself.
+ * @param angle                 inclination angle
+ * @param ascending_node_angle  longitude of the ascending node in the orbital system, in which
+ *                              the orbit is defined.
+ * @return                      itself.
  *
  * @sa pole(), node_period(), node_rate()
  */
@@ -833,7 +848,7 @@ Orbital& Orbital::apsis_period(double seconds) {
  * Sets the apsis rotation period (positive for counter-clockwise rotation when viewed from the
  * orbital system's pole).
  *
- * @param seconds     [s] time it takes for a full rotation of the apsis in the orbital system. It
+ * @param period      time it takes for a full rotation of the apsis in the orbital system. It
  *                    may be negative for clockwise (retrograde) rotation seen from the orbital
  *                    system's pole.
  * @return            itself
@@ -893,7 +908,7 @@ Orbital& Orbital::node_period(double seconds) {
  * Sets the node precession period (positive for counter-clockwise rotation when viewed from the
  * orbital system's pole).
  *
- * @param seconds     counter-clockwise precession period of the node. It may be negative for
+ * @param period      counter-clockwise precession period of the node. It may be negative for
  *                    clockwise (retrograde) rotation seen from the orbital system's pole.
  * @return            itself
  *
@@ -923,23 +938,12 @@ Orbital& Orbital::node_rate(double rad_per_sec) {
 }
 
 /**
- * Return a new instance of a new Keplerian orbital in the specified orbital system and the basic
- * circular orbital parameters, with mean motion used instead of a orbital period. You can further
- * specify the parameters for elliptical orbits using a builder pattern after instantiation.
+ * Returns a basic human-readable description of this orbital, with just the major parameters.
  *
- * @param system            the orbital system in which the orbit is defined.
- * @param jd_tdb            [day] reference date of the orbital parameters as a Barycentric
- *                          Dynamical Time (TDB) based Julian date
- * @param semi_major_m      [m] semi-major axis (circular radius) of the orbit
- * @param mean_anomaly_rad  [rad] Mean anomaly (circular longitude; M0) of the object at the
- *                          reference time, in the orbital system.
- * @param rad_per_sec       [rad/s] mean motion (circular angular velocity) on orbit.
- *
- * @sa Orbital(), eccentricity(), inclination(), pole(), node_period(), node_rate()
- *     apsis_period(), apsis_rate()
+ * @return  a basic string description of this orbital.
  */
-Orbital Orbital::from_mean_motion(const OrbitalSystem& system, double jd_tdb, double a, double mean_anomaly_rad, double rad_per_sec) {
-  return Orbital(system, jd_tdb, a, mean_anomaly_rad, Constant::two_pi / rad_per_sec);
+std::string Orbital::to_string() const {
+  return "Orbital (a = " + semi_major_axis().to_string() + ", T = " +  period().to_string() + ", e = " + std::to_string(eccentricity()) + ") in " + system().to_string();
 }
 
 /**
@@ -948,17 +952,37 @@ Orbital Orbital::from_mean_motion(const OrbitalSystem& system, double jd_tdb, do
  * specify the parameters for elliptical orbits using a builder pattern after instantiation.
  *
  * @param system            the orbital system in which the orbit is defined.
- * @param jd_tdb            reference time of the orbital parameters.
- * @param a                 semi-major axis (circular radius) of the orbit
- * @param mean_anomaly      Mean anomaly (circular longitude / M0) of the object at the reference
+ * @param jd_tdb            [day] reference date of the orbital parameters as a Barycentric
+ *                          Dynamical Time (TDB) based Julian date
+ * @param semi_major_m      [m] semi-major axis (circular radius; _a_) of the orbit
+ * @param mean_anomaly_rad  [rad] Mean anomaly (circular longitude; _M0_) of the object at the
+ *                          reference time, in the orbital system.
+ * @param rad_per_sec       [rad/s] mean motion (circular angular velocity) on orbit.
+ *
+ * @sa Orbital(), eccentricity(), inclination(), pole(), node_period(), node_rate()
+ *     apsis_period(), apsis_rate()
+ */
+Orbital Orbital::from_mean_motion(const OrbitalSystem& system, double jd_tdb, double semi_major_m, double mean_anomaly_rad, double rad_per_sec) {
+  return Orbital(system, jd_tdb, semi_major_m, mean_anomaly_rad, Constant::two_pi / rad_per_sec);
+}
+
+/**
+ * Return a new instance of a new Keplerian orbital in the specified orbital system and the basic
+ * circular orbital parameters, with mean motion used instead of a orbital period. You can further
+ * specify the parameters for elliptical orbits using a builder pattern after instantiation.
+ *
+ * @param system            the orbital system in which the orbit is defined.
+ * @param ref_time          reference time of the orbital parameters.
+ * @param semi_major        semi-major axis (circular radius; _a_) of the orbit
+ * @param mean_anomaly      Mean anomaly (circular longitude; _M0_) of the object at the reference
  *                          time, in the orbital system.
  * @param rad_per_sec       [rad/s] mean motion (circular angular velocity) on orbit.
  *
  * @sa Orbital(), eccentricity(), inclination(), pole(), node_period(), node_rate()
  *     apsis_period(), apsis_rate()
  */
-Orbital Orbital::from_mean_motion(const OrbitalSystem& system, const Time& time, const Coordinate& a, const Angle& mean_anomaly, double rad_per_sec) {
-  return Orbital::from_mean_motion(system, time.jd(NOVAS_TDB), a.m(), mean_anomaly.rad(), rad_per_sec);
+Orbital Orbital::from_mean_motion(const OrbitalSystem& system, const Time& ref_time, const Coordinate& semi_major, const Angle& mean_anomaly, double rad_per_sec) {
+  return Orbital::from_mean_motion(system, ref_time.jd(NOVAS_TDB), semi_major.m(), mean_anomaly.rad(), rad_per_sec);
 }
 
 /**

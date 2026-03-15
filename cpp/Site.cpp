@@ -298,7 +298,7 @@ Position Site::xyz() const {
  *
  * @sa Observer::on_earth()
  */
-GeodeticObserver Site::observer(const EOP& eop) const {
+GeodeticObserver Site::to_observer(const EOP& eop) const {
   return Observer::on_earth(*this, eop);
 }
 

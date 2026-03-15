@@ -152,8 +152,6 @@ Geometric Source::geometric_in(const Frame& frame, enum novas_reference_system s
 
   novas_trace_invalid("Source::geometric");
   return Geometric::undefined();
-
-
 }
 
 static const EOP& extract_eop(const Frame &frame) {
@@ -321,7 +319,6 @@ Time Source::sets_below(const Angle& el, const GeodeticFrame &frame, RefractionM
   return opt.value();
 }
 
-
 /**
  * Returns the short-term equatorial trajectory of this source on the observer's sky, which can be used for
  * extrapolating its apparent position in the near-term to avoid the repeated full-fledged position
@@ -346,7 +343,6 @@ std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, doub
   return EquatorialTrack::from_novas_track(Equinox::tod(frame.time().jd()), &track, Interval(range_seconds));
 }
 
-
 /**
  * Returns the short-term equatorial trajectory of this source on the observer's sky, which can be used for
  * extrapolating its apparent position in the near-term to avoid the repeated full-fledged position
@@ -368,7 +364,6 @@ std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, doub
 std::optional<EquatorialTrack> Source::equatorial_track(const Frame &frame, const Interval& range) const {
   return equatorial_track(frame, range.seconds());
 }
-
 
 /**
  * Returns the short-term horizontal trajectory of this source on the observer's sky, which can be used for
@@ -477,18 +472,16 @@ void Source::set_case_sensitive(bool value) {
  */
 CatalogSource::CatalogSource(const CatalogEntry& e)
 : Source(), _cat(e) {
-  static const char *fn = "CatalogSource()";
-
   // defaults...
   _object.type = NOVAS_CATALOG_OBJECT;
   _object.number = e._cat_entry()->starnumber;
 
   if(!e.is_valid())
-      novas_set_errno(EINVAL, fn, "input catalog entry is invalid");
-  else if(make_cat_object_sys(e._cat_entry(), e.system().name().c_str(), &_object) != 0)
-    novas_trace_invalid(fn);
-  else
+      novas_set_errno(EINVAL, "CatalogSource()", "input catalog entry is invalid");
+  else {
+    make_cat_object_sys(e._cat_entry(), e.system().name().c_str(), &_object);
     _valid = true;
+  }
 }
 
 /**

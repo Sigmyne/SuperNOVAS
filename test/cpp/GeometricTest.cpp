@@ -45,6 +45,7 @@ int main() {
   if(!test.check("equatorial()", a.equatorial().xyz(pos.distance()) == pos)) n++;
   if(!test.check("ecliptic()", a.ecliptic() == a.equatorial().to_ecliptic())) n++;
   if(!test.check("galactic()", a.galactic() == a.equatorial().to_galactic())) n++;
+  if(!test.equals("to_string()", a.to_string(), "Geometric Position (1.000 pc, 2.000 pc, 3.000 pc), Velocity (-1.100 km/s, -2.200 km/s, -3.300 km/s) in Frame for Geocentric Observer at 2000-01-01T11:58:55.816 UTC")) n++;
 
   Geometric a1 = (a >> NOVAS_ICRS);
   if(!test.equals("operator>>().system_type()", a1.system_type(), NOVAS_ICRS)) n++;
