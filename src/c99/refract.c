@@ -21,12 +21,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 #define NOVAS_DEFAULT_WAVELENGTH      0.55            ///< [&mu;m] Median wavelength of visible light.
 
 static double lambda = NOVAS_DEFAULT_WAVELENGTH;      ///< [&mu;m] Observing wavelength
@@ -590,8 +584,3 @@ double novas_wave_refraction(double jd_tt, const on_surface *loc, enum novas_ref
   return tanz * (a + b * tanz * tanz) / DEGREE;
 }
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

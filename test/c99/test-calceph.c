@@ -17,12 +17,6 @@
 #include "novas.h"
 #include "novas-calceph.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-using namespace novas;
-#  endif
-#endif
-
 #define PLANET_EPH                  "de440s-j2000.bsp"
 #define MARS_EPH                    "mar097-j2000.bsp"
 
@@ -288,7 +282,6 @@ int main(int argc, char *argv[]) {
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");
-
 
   return n;
 }

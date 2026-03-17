@@ -16,12 +16,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /**
  * Returns the Julian day for a given calendar date. Input time value can be based on any
  * astronomical time scale (UTC, UT1, TT, etc.) - output Julian date will have the same basis.
@@ -348,9 +342,3 @@ int novas_day_of_year(double tjd, enum novas_calendar_type calendar, int *restri
   return yday;
 }
 
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

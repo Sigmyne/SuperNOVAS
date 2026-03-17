@@ -19,12 +19,10 @@ endif
 # Use the definitions project definitions
 include ../../config.mk
 
-C_SOURCES := $(addprefix ../c99/,$(SOURCES))
-
 CPP_SOURCES := $(wildcard *.cpp)
 CPP_OBJECTS := $(addprefix $(OBJ)/, $(subst .cpp,.opp,$(CPP_SOURCES)))
 
-CPPFLAGS += -I../../include -DNOVAS_NAMESPACE
+CPPFLAGS += -I../../include
 
 ifdef CXXFLAGS
   CFLAGS := $(CXXFLAGS)
@@ -32,7 +30,7 @@ else
   CXXFLAGS := $(CFLAGS)
 endif
 
-LDFLAGS += -lm
+LDFLAGS += -lm -L$(LIB) -lsupernovas
 
 .PHONY: shared
 shared: $(LIB)/libsupernovas++.$(SOEXT)
@@ -45,15 +43,21 @@ all: shared static
 
 $(LIB)/libsupernovas++.$(SOEXT): $(LIB)/libsupernovas++.$(SOEXT).$(SO_VERSION)
 
-$(LIB)/libsupernovas++.$(SOEXT).$(SO_VERSION): $(C_SOURCES) $(CPP_SOURCES)
+$(LIB)/libsupernovas++.$(SOEXT).$(SO_VERSION): $(CPP_SOURCES) | $(LIB)/libsupernovas.$(SOEXT)
 
-$(LIB)/libsupernovas++.a: $(OBJECTS) $(CPP_OBJECTS)
+$(LIB)/libsupernovas++.a: $(CPP_OBJECTS) | $(LIB)/libsupernovas.a
 
 $(OBJ)/%.opp: %.cpp $(OBJ) Makefile
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
 
 $(OBJ)/%.o: ../src/%.c $(OBJ) Makefile
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
+
+$(LIB)/libsupernovas.a:
+	$(MAKE) -C ../c99 static
+
+$(LIB)/libsupernovas.$(SOEXT):
+	$(MAKE) -C ../c99 shared
 
 .PHONY: clean
 clean:

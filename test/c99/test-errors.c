@@ -14,12 +14,6 @@
 #include "novas.h"
 #include "solarsystem.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-using namespace novas;
-#  endif
-#endif
-
 #if defined _WIN32 || defined __CYGWIN__
 #  define PATH_SEP  "\\"
 #else

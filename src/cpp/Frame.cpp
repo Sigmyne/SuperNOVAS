@@ -11,7 +11,7 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 
 namespace supernovas {
@@ -169,7 +169,7 @@ double Frame::clock_skew(enum novas_timescale timescale) const {
  * @param system  equatorial coordinate reference_system, in which position and velocity vectors
  *                are defined
  */
-Geometric Frame::geometric(const Position& p, const Velocity& v, enum novas::novas_reference_system system) const {
+Geometric Frame::geometric(const Position& p, const Velocity& v, enum novas_reference_system system) const {
   return Geometric(*this, p, v, system);
 }
 

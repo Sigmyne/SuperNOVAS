@@ -17,7 +17,7 @@
 
 #include <supernovas.h>      ///< SuperNOVAS functions and definitions
 
-using namespace novas;
+
 using namespace supernovas;
 
 // Below are some Earth orientation values. Here we define them as constants, but they may

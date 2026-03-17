@@ -26,12 +26,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /// \cond PRIVATE
 #define DTA_SECONDS 32.184                ///< [s] TT - TAI time difference
 #define DTA         (DTA_SECONDS / DAY)        ///< [day] TT - TAI time difference
@@ -1678,9 +1672,3 @@ double novas_mean_clock_skew(const novas_frame *frame, enum novas_timescale time
   return D - (1.0 + D) * tidal_clock_skew(frame);
 }
 
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

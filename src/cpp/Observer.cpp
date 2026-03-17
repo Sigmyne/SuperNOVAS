@@ -13,7 +13,7 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 namespace supernovas {
 
@@ -101,7 +101,7 @@ enum novas_observer_place Observer::type() const {
  * @sa reduced_accuracy_frame_at()
  * @sa set_planet_provider_hp(), novas_use_calceph(), novas_use_calceph_planets(), novas_use_cspice()
  */
-Frame Observer::frame_at(const Time& time, enum novas::novas_accuracy accuracy) const {
+Frame Observer::frame_at(const Time& time, enum novas_accuracy accuracy) const {
   return Frame(*this, time, accuracy);
 }
 

@@ -11,7 +11,7 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 namespace supernovas {
 
@@ -63,7 +63,7 @@ Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum no
  *
  * @sa from_xyz(), Site::from_GPS()
  */
-Site::Site(const Angle& longitude, const Angle& latitude, const Coordinate& altitude, enum novas::novas_reference_ellipsoid ellipsoid)
+Site::Site(const Angle& longitude, const Angle& latitude, const Coordinate& altitude, enum novas_reference_ellipsoid ellipsoid)
 : Site(longitude.rad(), latitude.rad(), altitude.m(), ellipsoid) {}
 
 /**
@@ -99,7 +99,7 @@ Site::Site(const Position& xyz) {
  *
  * @sa from_xyz(), Site::from_GPS()
  */
-Site::Site(const std::string& longitude, const std::string& latitude, const Coordinate& altitude, enum novas::novas_reference_ellipsoid ellipsoid)
+Site::Site(const std::string& longitude, const std::string& latitude, const Coordinate& altitude, enum novas_reference_ellipsoid ellipsoid)
 : Site(Angle(longitude), Angle(latitude), altitude, ellipsoid) {
 }
 
@@ -306,7 +306,7 @@ GeodeticObserver Site::to_observer(const EOP& eop) const {
  * Returns a string representation of this observing site.
  *
  * @param separator  (optional) the separator to use for the representation of angles (default:
- *                   `novas::NOVAS_SEP_UNITS_AND_SPACES`).
+ *                   `NOVAS_SEP_UNITS_AND_SPACES`).
  * @param decimals   (optional) the number of decimal places to print (default: 3).
  * @return   a new string representation of this observing site.
  */

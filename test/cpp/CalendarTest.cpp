@@ -11,7 +11,7 @@
 
 #define UNIX_J2000    946728000L     ///< 12:00, 1 Jan 2000 (UTC timescale)
 
-using namespace novas;
+
 
 int main() {
   TestUtil test = TestUtil("Calendar");
@@ -123,9 +123,9 @@ int main() {
   if(!test.equals("to_string()", da.to_string(), "2000-01-01 12:00:00")) n++;
   if(!test.equals("to_string(3)", da.to_string(3), "2000-01-01 12:00:00.000")) n++;
 
-  if(!test.equals("to_date_string(YMD)", da.to_date_string(novas::NOVAS_YMD), "2000-01-01")) n++;
-  if(!test.equals("to_date_string(DMY)", da.to_date_string(novas::NOVAS_DMY), "01.01.2000")) n++;
-  if(!test.equals("to_date_string(MDY)", da.to_date_string(novas::NOVAS_MDY), "1/1/2000")) n++;
+  if(!test.equals("to_date_string(YMD)", da.to_date_string(NOVAS_YMD), "2000-01-01")) n++;
+  if(!test.equals("to_date_string(DMY)", da.to_date_string(NOVAS_DMY), "01.01.2000")) n++;
+  if(!test.equals("to_date_string(MDY)", da.to_date_string(NOVAS_MDY), "1/1/2000")) n++;
   if(!test.equals("to_date_string(-1)", da.to_date_string((enum novas_date_format) -1), "<invalid date format>")) n++;
 
   if(!test.equals("to_long_date_string()", da.to_long_date_string(), "Sat 1 Jan 2000")) n++;

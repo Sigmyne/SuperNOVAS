@@ -109,12 +109,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /// \cond PRIVATE
 #define XI0       (-0.0166170 * ARCSEC)         ///< Frame bias term &xi;<sub>0</sub>
 #define ETA0      (-0.0068192 * ARCSEC)         ///< Frame bias term &eta;<sub>0</sub>
@@ -2136,8 +2130,3 @@ int novas_track_pos(const novas_track *track, const novas_timespec *time, double
   return 0;
 }
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

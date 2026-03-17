@@ -85,12 +85,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /**
  * Computes the apparent direction of a celestial object at a specified time and in a specified
  * coordinate system and for a given observer location.
@@ -1277,9 +1271,3 @@ int place_j2000(double jd_tt, const object *restrict source, enum novas_accuracy
   return 0;
 }
 
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

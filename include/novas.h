@@ -110,11 +110,6 @@
 #undef str_1
 #undef str_2
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
 
 // Doxygen topical sections (ordered)
 
@@ -3480,11 +3475,5 @@ extern int novas_inv_max_iter;
 
 #endif /* __NOVAS_INTERNAL_API__ */
 /// \endcond
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif // __cplusplus
 
 #endif /* _NOVAS_ */

@@ -17,15 +17,15 @@
 
 #define UNIX_UTC_J2000    946728000L    ///< 12:00, 1 Jan 2000 (UTC timescale)
 
-using namespace novas;
+
 
 namespace supernovas {
 
 /**
  * Instantiates a new calendar of the specified type.
  *
- * @param type      The type of calendar, e.g. novas::NOVAS_GREGORIAN_CALENDAR,
- *                  novas::NOVAS_ROMAN_CALENDAR, or novas::NOVAS_ASTRONOMICAL calendar. The
+ * @param type      The type of calendar, e.g. NOVAS_GREGORIAN_CALENDAR,
+ *                  NOVAS_ROMAN_CALENDAR, or NOVAS_ASTRONOMICAL calendar. The
  *                  astronomical calendar is the same as the Gregorian calendar after the
  *                  Gregorian calendar reform of 1582, or else the same as the Roman / Julian
  *                  calendar before the reform. The Gregorian calendar can be used also for dates
@@ -33,7 +33,7 @@ namespace supernovas {
  *                  Accordingly, ISO 8601 timestamps are always expressed in the Gregorian
  *                  calendar, withour exception.
  */
-Calendar::Calendar(enum novas::novas_calendar_type type) : _type(type) {
+Calendar::Calendar(enum novas_calendar_type type) : _type(type) {
   _valid = true;
 }
 
@@ -41,8 +41,8 @@ Calendar::Calendar(enum novas::novas_calendar_type type) : _type(type) {
  * Returns the type of this calendar, that is whether it is a Gregorian, Roman / Julian,
  * or astronomical calendar. The astronomical calendat is the conventional calendar of date.
  *
- * @return          The type of calendar, e.g. novas::NOVAS_GREGORIAN_CALENDAR,
- *                  novas::NOVAS_ROMAN_CALENDAR, or novas::NOVAS_ASTRONOMICAL calendar.
+ * @return          The type of calendar, e.g. NOVAS_GREGORIAN_CALENDAR,
+ *                  NOVAS_ROMAN_CALENDAR, or NOVAS_ASTRONOMICAL calendar.
  */
 enum novas_calendar_type Calendar::type() const {
   return _type;
@@ -146,9 +146,9 @@ CalendarDate Calendar::date(const struct timespec *ts) const {
  * representation, if possible, or else std::nullopt.
  *
  * @param str   The string date / time specification. There is a lot of flexibility on what
- *              dates/times may be parsed. See novas::novas_parse_date_format() for details.
- * @param fmt   The date representation, such as novas::NOVAS_YMD, novas::NOVAS_DMY, or
- *              novas::NOVAS_MDY, specifying the order in which the year (Y), month (M), and day
+ *              dates/times may be parsed. See novas_parse_date_format() for details.
+ * @param fmt   The date representation, such as NOVAS_YMD, NOVAS_DMY, or
+ *              NOVAS_MDY, specifying the order in which the year (Y), month (M), and day
  *              (D) components are expected in the input string representation.
  * @return      A new calendar date, in this calendar, or else CalendarDate::undefined() if the
  *              string date could not be parsed.
@@ -578,7 +578,7 @@ CalendarDate CalendarDate::operator>>(const Calendar& calendar) const {
  * @param timescale       the astronomical timescale in which this calendar date is defined.
  * @return                an astronomical time instance for this date and input parameters.
  */
-Time CalendarDate::to_time(int leap_seconds, double dut1, novas::novas_timescale timescale) const {
+Time CalendarDate::to_time(int leap_seconds, double dut1, novas_timescale timescale) const {
   return Time(jd(), leap_seconds, dut1, timescale);
 }
 
@@ -592,7 +592,7 @@ Time CalendarDate::to_time(int leap_seconds, double dut1, novas::novas_timescale
  * @param timescale       the astronomical timescale in which this calendar date is defined.
  * @return                an astronomical time instance for this date and input parameters.
  */
-Time CalendarDate::to_time(const EOP& eop, novas::novas_timescale timescale) const {
+Time CalendarDate::to_time(const EOP& eop, novas_timescale timescale) const {
   return Time(jd(), eop, timescale);
 }
 
@@ -611,8 +611,8 @@ std::string CalendarDate::to_long_date_string() const {
 
 /**
  * Returns the numerical date only representation, in the specified component order, e.g.
- * as "2025-01-31" (for novas::NOVAS_YMD), "31.01.2025" (for novas::NOVAS_DMY), or as
- * "1/31/2025" for novas::NOVAS_MDY).
+ * as "2025-01-31" (for NOVAS_YMD), "31.01.2025" (for NOVAS_DMY), or as
+ * "1/31/2025" for NOVAS_MDY).
  *
  * @param fmt     The format / order of year (Y), month (M), and day (D) components.
  *

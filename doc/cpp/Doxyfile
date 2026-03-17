@@ -2565,7 +2565,6 @@ INCLUDE_FILE_PATTERNS  =
 PREDEFINED             = BUILTIN_SOLSYS3=1 \
                          DEFAULT_SOLSYS=3 \
                          BUILTIN_SOLSYS_EPHEM_READER=1 \
-                         NOVAS_NAMESPACE \
                          __cplusplus=201703L \
                          _EXCLUDE_DEPRECATED
 

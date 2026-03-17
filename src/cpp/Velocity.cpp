@@ -32,9 +32,9 @@ Velocity::Velocity(double x_ms, double y_ms, double z_ms)
   static const char *fn = "Velocity()";
 
   if(!_valid)
-    novas::novas_trace_invalid(fn);
+    novas_trace_invalid(fn);
   else if(abs() > Constant::c) {
-    novas::novas_set_errno(ERANGE, fn, "input velocity exceeds the speed of light");
+    novas_set_errno(ERANGE, fn, "input velocity exceeds the speed of light");
     _valid = false;
   }
 }

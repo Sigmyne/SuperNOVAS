@@ -14,7 +14,7 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 namespace supernovas {
 
@@ -364,10 +364,10 @@ template class Track<Equatorial>;
  * Instantiates a short-term horizontal source trajectory on sky for a given time range of
  * validity.
  *
- * @param track   pointer to a C `novas::novas_track` data structure.
+ * @param track   pointer to a C `novas_track` data structure.
  * @param range   time range of validity around the reference time of the trajectory.
  */
-HorizontalTrack::HorizontalTrack(const novas::novas_track *track, const Interval& range)
+HorizontalTrack::HorizontalTrack(const novas_track *track, const Interval& range)
 : Track(track, range) {
   if(!is_valid())
     novas_trace_invalid("HorizontalTrack()");
@@ -500,10 +500,10 @@ Equatorial EquatorialTrack::projected_at(const Time& time) const {
  * Instantiates a short-term equatorial source trajectory on sky for a given time range of
  * validity.
  *
- * @param track   pointer to a C `novas::novas_track` data structure.
+ * @param track   pointer to a C `novas_track` data structure.
  * @param range   time range of validity around the reference time of the trajectory.
  */
-EquatorialTrack::EquatorialTrack(const Equinox& system, const novas::novas_track *track, const Interval& range)
+EquatorialTrack::EquatorialTrack(const Equinox& system, const novas_track *track, const Interval& range)
 : Track(track, range), _system(system) {
   static const char *fn = "EquatorialTrack()";
 

@@ -15,7 +15,7 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 namespace supernovas {
 

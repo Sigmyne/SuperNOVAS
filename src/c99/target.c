@@ -55,13 +55,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
-
 #if __Lynx__ && __powerpc__
 // strcasecmp() / strncasecmp() are not defined on PowerPC / LynxOS 3.1
 extern int strcasecmp(const char *s1, const char *s2);
@@ -1139,9 +1132,3 @@ double novas_solar_power(double jd_tdb, const object *restrict source) {
   double d = novas_helio_dist(jd_tdb, source, NULL);
   return NOVAS_SOLAR_CONSTANT / (d * d);
 }
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

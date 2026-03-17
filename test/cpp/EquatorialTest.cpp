@@ -9,7 +9,7 @@
 
 #include "TestUtil.hpp"
 
-using namespace novas;
+
 
 int main() {
   TestUtil test = TestUtil("Equatorial");
@@ -33,7 +33,7 @@ int main() {
   if(!test.check("is_valid()", a.is_valid())) n++;
   if(!test.equals("longitude()", a.longitude().deg(), 45.0, 1e-14)) n++;
   if(!test.equals("latitude()", a.latitude().deg(), 30.0, 1e-14)) n++;
-  if(!test.equals("reference_system(ICRS)", a.system_type(), novas::NOVAS_ICRS)) n++;
+  if(!test.equals("reference_system(ICRS)", a.system_type(), NOVAS_ICRS)) n++;
   if(!test.equals("jd(ICRS)", a.system().jd(), NOVAS_JD_J2000)) n++;
   if(!test.check("to_icrs(ICRS)", a.to_icrs() == a)) n++;
   if(!test.equals("to_string(ICRS)", a.to_string(NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  ICRS")) n++;
@@ -99,7 +99,7 @@ int main() {
   if(!test.check("to_j2000(J2000)", b.to_j2000() == b)) n++;
   if(!test.check("to_mod(J2000)", b.to_mod(NOVAS_JD_J2000) == b)) n++;
   if(!test.check("operator >> (B1950)", (b >> Equinox::b1950()) == b.to_mod(NOVAS_JD_B1950))) n++;
-  if(!test.equals("to_string(J2000)", b.to_string(novas::NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  J2000")) n++;
+  if(!test.equals("to_string(J2000)", b.to_string(NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  J2000")) n++;
 
   Equatorial c = Equatorial(Angle(45.0 * Unit::deg), Angle(30.0 * Unit::deg), Equinox::b1950());
   Equatorial c1 =  c.to_icrs().to_mod(Time::b1950());
@@ -108,7 +108,7 @@ int main() {
   if(!test.equals("reference_system(B1950)", c.system_type(), NOVAS_MOD)) n++;
   if(!test.equals("jd(B1950)", c.system().jd(), NOVAS_JD_B1950)) n++;
   if(!test.check("to_mod(B1950)", c.to_mod(NOVAS_JD_B1950) == c)) n++;
-  if(!test.equals("to_string(B1950)", c.to_string(novas::NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  B1950")) n++;
+  if(!test.equals("to_string(B1950)", c.to_string(NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  B1950")) n++;
 
   Equatorial d = Equatorial(Angle(45.0 * Unit::deg), Angle(30.0 * Unit::deg), Equinox::tod(Time::b1900()));
   Equatorial d1 =  d.to_icrs().to_tod(Time::b1900());
@@ -121,10 +121,10 @@ int main() {
 
   Equatorial e = Equatorial(Angle(20.0 * Unit::deg), Angle(15.0 * Unit::deg), Equinox::icrs());
   if(!test.equals("distance_to()", e.distance_to(a).deg(),
-          novas::novas_sep(e.longitude().deg(), e.latitude().deg(), a.longitude().deg(), a.latitude().deg()), 0.1 * Unit::uas)) n++;
+          novas_sep(e.longitude().deg(), e.latitude().deg(), a.longitude().deg(), a.latitude().deg()), 0.1 * Unit::uas)) n++;
 
   double lon = 0.0, lat = 0.0;
-  novas::equ2ecl(a.system().jd(), a.system().equator_type(), NOVAS_FULL_ACCURACY, a.ra().hours(), a.dec().deg(), &lon, &lat);
+  equ2ecl(a.system().jd(), a.system().equator_type(), NOVAS_FULL_ACCURACY, a.ra().hours(), a.dec().deg(), &lon, &lat);
   Ecliptic ec0 = Ecliptic(lon * Unit::deg, lat * Unit::deg);
   if(!test.check("to_ecliptic()", a.to_ecliptic() == ec0)) {
     std::cout << "  " << a.to_ecliptic().to_string(NOVAS_SEP_COLONS, 6) << " != "
@@ -134,7 +134,7 @@ int main() {
 
   Equatorial a2 = a.to_cirs(Time::hip());
   double rah = a2.ra().hours() - ira_equinox(a2.system().jd(), NOVAS_TRUE_EQUINOX, NOVAS_FULL_ACCURACY);
-  novas::equ2ecl(a2.system().jd(), a2.system().equator_type(), NOVAS_FULL_ACCURACY, rah, a2.dec().deg(), &lon, &lat);
+  equ2ecl(a2.system().jd(), a2.system().equator_type(), NOVAS_FULL_ACCURACY, rah, a2.dec().deg(), &lon, &lat);
   ec0 = Ecliptic(lon * Unit::deg, lat * Unit::deg, a2.system());
   if(!test.check("to_ecliptic(CIRS)", a2.to_ecliptic() == ec0)) {
     std::cout << "  " << a2.to_ecliptic().to_string(NOVAS_SEP_COLONS, 6) << " != "
@@ -143,7 +143,7 @@ int main() {
   }
 
   double blon = 0.0, blat = 0.0;
-  novas::equ2gal(a.ra().hours(), a.dec().deg(), &blon, &blat);
+  equ2gal(a.ra().hours(), a.dec().deg(), &blon, &blat);
   Galactic ga0 = Galactic(blon * Unit::deg, blat * Unit::deg);
   if(!test.check("to_galactic()", a.to_galactic() == ga0)) {
     std::cout << "  " << a.to_galactic().to_string(NOVAS_SEP_COLONS, 8) << " != "

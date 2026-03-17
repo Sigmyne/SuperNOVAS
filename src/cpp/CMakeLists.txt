@@ -39,8 +39,6 @@ set_target_properties(cpp PROPERTIES
     CLEAN_DIRECT_OUTPUT ON
 )
 
-target_compile_definitions(cpp PRIVATE NOVAS_NAMESPACE)
-
 target_include_directories(cpp PRIVATE
     ${PROJECT_SOURCE_DIR}/include/eop
     ${PROJECT_SOURCE_DIR}/include/nutation
@@ -51,8 +49,6 @@ target_include_directories(cpp PUBLIC
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-target_compile_definitions(cpp PRIVATE NOVAS_NAMESPACE)
-    
 set_property(TARGET cpp PROPERTY CXX_STANDARD 17)
 
 if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
@@ -61,7 +57,7 @@ endif()
 
 # Link with math libs as necessary
 if(MATH_LIB)
-    target_link_libraries(cpp PRIVATE ${MATH})
+    target_link_libraries(cpp PRIVATE ${MATH} supernovas::core)
 endif()
 
 

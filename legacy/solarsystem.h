@@ -15,13 +15,6 @@
 #endif
 /// \endcond
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
-
 #ifndef _EXCLUDE_DEPRECATED
 /**
  * @deprecated (<i>legacy function</i>) Use `set_planet_provider()` instead to specify what
@@ -96,13 +89,6 @@ short solarsystem(double jd_tdb, short body, short origin, double *restrict posi
  * @sa novas_sky_pos(), novas_geom_posvel(), grav_planets(), grav_undo_planets()
  */
 short solarsystem_hp(const double jd_tdb[restrict 2], short body, short origin, double *restrict position, double *restrict velocity);
-#endif
-
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
 #endif
 
 #endif /* _SOLSYS_ */

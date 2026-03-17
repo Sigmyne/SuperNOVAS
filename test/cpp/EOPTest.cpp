@@ -51,7 +51,7 @@ int main() {
 
 
   double xp = 0.0, yp = 0.0, dt = 0.0;
-  novas::novas_itrf_transform_eop(2000.0, 0.2, 0.3, 0.1, 2014, &xp, &yp, &dt);
+  novas_itrf_transform_eop(2000.0, 0.2, 0.3, 0.1, 2014, &xp, &yp, &dt);
   EOP c = a.itrf_transformed(2000, 2014);
 
   if(!test.equals("itrf_transformed().dUT1()", c.dUT1().seconds(), dt, 1e-14)) n++;

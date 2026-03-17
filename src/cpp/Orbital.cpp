@@ -11,11 +11,11 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 namespace supernovas {
 
-OrbitalSystem::OrbitalSystem(enum novas::novas_reference_plane plane, enum novas_planet center) : _system({}) {
+OrbitalSystem::OrbitalSystem(enum novas_reference_plane plane, enum novas_planet center) : _system({}) {
   if((unsigned) center >= NOVAS_PLANETS)
     novas_set_errno(EINVAL, "OrbitalSystem()", "center planet is invalid: %d", center);
   else _valid = true;
@@ -24,7 +24,7 @@ OrbitalSystem::OrbitalSystem(enum novas::novas_reference_plane plane, enum novas
   _system.center = center;
 }
 
-OrbitalSystem::OrbitalSystem(const novas::novas_orbital_system *system) {
+OrbitalSystem::OrbitalSystem(const novas_orbital_system *system) {
   static const char *fn = "OrbitalSystem()";
 
   errno = 0;
@@ -51,7 +51,7 @@ OrbitalSystem::OrbitalSystem(const novas::novas_orbital_system *system) {
  *
  * @return  a pointer to the NOVAS C structure used internally to define the orbital system.
  */
-const novas::novas_orbital_system * OrbitalSystem::_novas_orbital_system() const {
+const novas_orbital_system * OrbitalSystem::_novas_orbital_system() const {
   return &_system;
 }
 
@@ -288,7 +288,7 @@ OrbitalSystem OrbitalSystem::ecliptic(const Planet& center) {
  *
  * @sa is_valid()
  */
-OrbitalSystem OrbitalSystem::from_novas_orbital_system(const novas::novas_orbital_system *system) {
+OrbitalSystem OrbitalSystem::from_novas_orbital_system(const novas_orbital_system *system) {
   static const char *fn = "OrbitalSystem::from_novas_orbital_system()";
 
   if(!system) {
@@ -418,7 +418,7 @@ Orbital::Orbital(const OrbitalSystem& system, const Time& ref_time, const Coordi
  *
  * @return  pointer to the NOVAS C data structure that stores the orbital parameters internally.
  */
-const novas::novas_orbital * Orbital::_novas_orbital() const {
+const novas_orbital * Orbital::_novas_orbital() const {
   return &_orbit;
 }
 

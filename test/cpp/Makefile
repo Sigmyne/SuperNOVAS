@@ -16,16 +16,16 @@ TESTS = AngleTest TimeAngleTest IntervalTest CoordinateTest ScalarVelocityTest T
 	ApparentTest GeometricTest TrackTest
 
 .PHONY: build
-build: libnovas++.a $(TESTS)
+build: libnovas.a $(TESTS)
 
 .PHONY: run
 run: build
 	@for prog in $(TESTS) ; do ./$${prog} ; done
 
 %Test: %Test.cpp $(CPP_OBJECTS)
-	$(CXX) -o $@ $(CPPFLAGS) -g $(CXXFLAGS) $^ $(LDFLAGS) libnovas++.a
+	$(CXX) -o $@ $(CPPFLAGS) -g $(CXXFLAGS) $^ $(LDFLAGS) libnovas.a
 
-libnovas++.a: $(OBJECTS)
+libnovas.a: $(OBJECTS)
 	ar -rc $@ $^
 	ranlib $@
 
@@ -34,7 +34,7 @@ obj:
 
 obj/%.o: %.c | obj
 	@echo $(CPPFLAGS)
-	$(CXX) -c -o $@ -DNOVAS_NAMESPACE $(CPPFLAGS) $< 
+	$(CC) -c -o $@ $(CPPFLAGS) $< 
 
 obj/%.opp: %.cpp | obj
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -pg -Wall -fno-elide-constructors -fno-default-inline --coverage $<
@@ -62,7 +62,7 @@ clean: clean-test clean-cov
 
 .PHONY: distclean
 distclean: clean
-	rm -f libnovas++.a
+	rm -f libnovas.a
 
 vpath %.c ../../src/c99
 vpath %.cpp ../../src/cpp

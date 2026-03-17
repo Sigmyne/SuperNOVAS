@@ -17,13 +17,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
-
 /**
  * Major planet ephemeris data via the same generic ephemeris provider that is configured by
  * set_ephem_provider() prior to calling this routine. This is the highest precision version.
@@ -111,8 +104,3 @@ short planet_ephem_provider(double jd_tdb, enum novas_planet body, enum novas_or
   return 0;
 }
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

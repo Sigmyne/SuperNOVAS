@@ -24,12 +24,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /// \cond PRIVATE
 #define DATE_SEP_CHARS  "-_./ \t\r\n\f"             ///< characters that may separate date components
 #define DATE_SEP        "%*[" DATE_SEP_CHARS "]"    ///< Parse pattern for ignored date separators
@@ -1213,9 +1207,3 @@ enum novas_timescale novas_timescale_for_string(const char *restrict str) {
   return (enum novas_timescale) novas_error(-1, EINVAL, fn, "unknown timescale: %s", str);
 }
 
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

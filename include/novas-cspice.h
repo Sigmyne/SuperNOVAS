@@ -11,11 +11,6 @@
 #define NOVAS_CSPICE_H_
 
 #if __cplusplus
-
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-
 extern "C" {
 #endif
 
@@ -39,10 +34,6 @@ int cspice_remove_kernel(const char *filename);
 
 #if __cplusplus
 } // extern "C"
-
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
 #endif
 
 #endif /* NOVAS_CSPICE_H_ */

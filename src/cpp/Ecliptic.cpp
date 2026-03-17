@@ -13,7 +13,7 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 namespace supernovas {
 
@@ -282,7 +282,7 @@ Ecliptic Ecliptic::to_mod(double jd_tdb) const {
  * @sa to_system(), to_mod(), to_tod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_mod(const Time& time) const {
-  return to_mod(time.jd(novas::NOVAS_TDB));
+  return to_mod(time.jd(NOVAS_TDB));
 }
 
 /**
@@ -311,7 +311,7 @@ Ecliptic Ecliptic::to_tod(double jd_tdb) const {
  * @sa to_system(), to_tod(), to_mod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_tod(const Time& time) const {
-  return to_tod(time.jd(novas::NOVAS_TDB));
+  return to_tod(time.jd(NOVAS_TDB));
 }
 
 /**

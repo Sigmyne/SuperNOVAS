@@ -25,13 +25,6 @@
 #include "novas.h"
 /// \endcond
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
-
 /// \cond PRIVATE
 double novas_add_beta(double beta1, double beta2) {
   return (beta1 + beta2) / (1 + beta1 * beta2);
@@ -621,9 +614,3 @@ double rad_vel2(const object *restrict source, const double *pos_emit, const dou
   return novas_z2v(rel - 1.0);
 }
 
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

@@ -23,12 +23,6 @@
 /// \endcond
 
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /// \cond PRIVATE
 /**
  * Structure to contain terms for librational and tidal corrections to earth orientation.
@@ -900,8 +894,3 @@ int limb_angle(const double *pos_src, const double *pos_obs, double *restrict li
   return 0;
 }
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

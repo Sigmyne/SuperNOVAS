@@ -11,7 +11,7 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 namespace supernovas {
 
@@ -30,7 +30,7 @@ namespace supernovas {
  */
 Coordinate::Coordinate(double meters) : _meters(meters) {
   if(isnan(meters))
-    novas::novas_set_errno(EINVAL, "Coordinate()", "input value is NAN");
+    novas_set_errno(EINVAL, "Coordinate()", "input value is NAN");
   else
     _valid = true;
 }

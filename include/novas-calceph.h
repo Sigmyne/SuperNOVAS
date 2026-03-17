@@ -14,10 +14,6 @@
 #  include "novas.h"
 
 #if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-
 extern "C" {
 #endif
 
@@ -35,10 +31,6 @@ int novas_calceph_use_ids(enum novas_id_type idtype);
 
 #if __cplusplus
 } // extern "C"
-
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
 #endif
 
 #endif /* NOVAS_CALCEPH_H_ */

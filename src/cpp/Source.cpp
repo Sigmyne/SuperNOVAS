@@ -11,7 +11,7 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 namespace supernovas {
 
@@ -41,7 +41,7 @@ std::string Source::name() const {
  *
  * @return    the source type constant
  */
-enum novas::novas_object_type Source::type() const {
+enum novas_object_type Source::type() const {
   return _object.type;
 }
 
@@ -177,7 +177,7 @@ static const EOP& extract_eop(const Frame &frame) {
  *
  * @sa sets_below(), transits()
  */
-Time Source::rises_above(const Angle& el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const {
+Time Source::rises_above(const Angle& el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
   static const char *fn = "Source::rises_above()";
 
   if(frame.observer().is_geodetic()) {
@@ -236,7 +236,7 @@ Time Source::transits(const Frame &frame) const {
  *
  * @sa rises_above(), transits()
  */
-Time Source::sets_below(const Angle& el, const Frame &frame, novas::RefractionModel ref, const Weather& weather) const {
+Time Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
   static const char *fn = "Source::sets_below()";
 
   if(frame.observer().is_geodetic()) {
@@ -329,7 +329,7 @@ EquatorialTrack Source::equatorial_track(const Frame &frame, const Interval& ran
  *
  * @sa equatorial_track()
  */
-HorizontalTrack Source::horizontal_track(const Frame &frame, novas::RefractionModel ref, const Weather& weather) const {
+HorizontalTrack Source::horizontal_track(const Frame &frame, RefractionModel ref, const Weather& weather) const {
   static const char *fn = "Source::horizontal_track()";
 
   if(!frame.observer().is_geodetic()) {

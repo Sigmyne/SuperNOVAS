@@ -54,13 +54,6 @@
 #include "novas.h"
 /// \endcond
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
-
 /**
  * Converts GCRS right ascension and declination to coordinates with respect to the equator of
  * date (mean or true). For coordinates with respect to the true equator of date, the origin of
@@ -992,9 +985,3 @@ int tod_to_cirs(double jd_tt, enum novas_accuracy accuracy, const double *in, do
 
   return 0;
 }
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

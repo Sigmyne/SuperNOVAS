@@ -27,14 +27,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
-
-
 /**
  * Convert ecliptic longitude and latitude to right ascension and declination.  To convert GCRS
  * ecliptic coordinates (mean ecliptic and equinox of J2000.0), set 'coord_sys' to
@@ -1152,8 +1144,3 @@ int novas_e2h_offset(double dra, double ddec, double pa, double *restrict daz, d
   return novas_h2e_offset(dra, ddec, pa, daz, del);
 }
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

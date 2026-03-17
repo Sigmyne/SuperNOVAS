@@ -44,9 +44,9 @@ int main() {
   if(!test.equals("standard humidity() ==", d.humidity(), 50.0, 1e-15)) n++;
   if(!test.equals("standard humidity_fraction() ==", d.humidity_fraction(), 0.5, 1e-15)) n++;
 
-  novas::on_surface s = {};
-  novas::make_itrf_site(30.0, 45.0, 1500.0, &s);
-  novas::novas_set_default_weather(&s);
+  on_surface s = {};
+  make_itrf_site(30.0, 45.0, 1500.0, &s);
+  novas_set_default_weather(&s);
 
   if(!test.equals("temperature(site)", c.temperature().celsius(), s.temperature, 1e-15)) n++;
   if(!test.equals("pressure(site)", c.pressure().mbar(), s.pressure, 1e-15)) n++;

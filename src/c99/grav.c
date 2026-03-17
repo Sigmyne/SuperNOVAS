@@ -19,12 +19,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 // Defined in novas.h
 int grav_bodies_reduced_accuracy = DEFAULT_GRAV_BODIES_REDUCED_ACCURACY;
 
@@ -436,9 +430,3 @@ double grav_redshift(double M_kg, double r_m) {
   return 1.0 / sqrt(1.0 - twoGoverC2 * M_kg / r_m) - 1.0;
 }
 
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

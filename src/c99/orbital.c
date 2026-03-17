@@ -67,12 +67,6 @@
 #  define EPREC               1e-12     ///< Required precision for eccentric anomaly in orbital calculation
 /// \endcond
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /**
  * Change _xyz_ vectors to the new polar orientation. &theta, &phi define the orientation of the
  * input pole in the output system. (The origin of the orbital system is at the rising node,
@@ -433,9 +427,3 @@ int novas_set_orbsys_pole(enum novas_reference_system type, double ra, double de
 
   return 0;
 }
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

@@ -26,7 +26,7 @@ namespace supernovas {
 Position::Position(double x_m, double y_m, double z_m)
 : Vector(x_m, y_m, z_m) {
   if(!_valid)
-    novas::novas_trace_invalid("Position()");
+    novas_trace_invalid("Position()");
 }
 
 /**

@@ -19,12 +19,12 @@
 /// \endcond
 
 static double novas_era(long ijd, double fjd) {
-  return novas::era((double) ijd, fjd);
+  return era((double) ijd, fjd);
 }
 
 #define E9                1000000000L   ///< 10<sup>9</sup> as an integer
 
-using namespace novas;
+
 
 namespace supernovas {
 
@@ -670,7 +670,7 @@ std::string Time::to_epoch_string(int decimals) const {
  *
  * @sa Time(), now(), j2000(), b1950(), b1900(), hip()
  */
-Time Time::from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas_timescale timescale) {
+Time Time::from_mjd(double mjd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
   return Time((int) NOVAS_JD_MJD0, mjd + 0.5, leap_seconds, dUT1, timescale);
 }
 
@@ -685,7 +685,7 @@ Time Time::from_mjd(double mjd, int leap_seconds, double dUT1, enum novas::novas
  *
  * @sa Time(), now(), j2000(), b1950(), b1900(), hip()
  */
-Time Time::from_mjd(double mjd, const EOP& eop, enum novas::novas_timescale timescale) {
+Time Time::from_mjd(double mjd, const EOP& eop, enum novas_timescale timescale) {
   return from_mjd(mjd, eop.leap_seconds(), eop.dUT1().seconds(), timescale);
 }
 
@@ -775,7 +775,7 @@ Time Time::shifted(const Interval& offset, enum novas_timescale timescale) const
  * @param timescale   (optional) timescale in which MJD was specified (default: TT)
  * @return            the calendar date in the desired calendar and timescale of choice.
  */
-CalendarDate Time::to_calendar_date(const Calendar& calendar, enum novas::novas_timescale timescale) const {
+CalendarDate Time::to_calendar_date(const Calendar& calendar, enum novas_timescale timescale) const {
   return calendar.date(jd(timescale));
 }
 
@@ -787,7 +787,7 @@ CalendarDate Time::to_calendar_date(const Calendar& calendar, enum novas::novas_
  * @param timescale   timescale in which MJD was specified (default: TT)
  * @return            the astronomical calendar date in the timescale of choice.
  */
-CalendarDate Time::to_calendar_date(enum novas::novas_timescale timescale) const {
+CalendarDate Time::to_calendar_date(enum novas_timescale timescale) const {
   return to_calendar_date(Calendar::astronomical(), timescale);
 }
 

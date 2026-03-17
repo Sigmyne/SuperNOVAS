@@ -13,7 +13,7 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 namespace supernovas {
 
@@ -184,7 +184,7 @@ const Equinox& Equatorial::system() const {
  *
  * @sa system()
  */
-enum novas::novas_reference_system Equatorial::system_type() const {
+enum novas_reference_system Equatorial::system_type() const {
   return _sys.system_type();
 }
 
@@ -328,7 +328,7 @@ Equatorial Equatorial::to_mod(double jd_tdb) const {
  * @sa to_mod_at_besselian_epoch(), to_system(), to_j2000(), to_tod()
  */
 Equatorial Equatorial::to_mod(const Time& time) const {
-  return to_mod(time.jd(novas::NOVAS_TDB));
+  return to_mod(time.jd(NOVAS_TDB));
 }
 
 /**
@@ -372,7 +372,7 @@ Equatorial Equatorial::to_tod(double jd_tdb) const {
  * @sa to_system(), to_cirs(), to_j2000(), to_mod()
  */
 Equatorial Equatorial::to_tod(const Time& time) const {
-  return to_tod(time.jd(novas::NOVAS_TDB));
+  return to_tod(time.jd(NOVAS_TDB));
 }
 
 /**
@@ -402,7 +402,7 @@ Equatorial Equatorial::to_cirs(double jd_tdb) const {
  * @sa to_system(), to_tod(), to_icrs()
  */
 Equatorial Equatorial::to_cirs(const Time& time) const {
-  return to_cirs(time.jd(novas::NOVAS_TDB));
+  return to_cirs(time.jd(NOVAS_TDB));
 }
 
 /**

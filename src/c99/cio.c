@@ -53,12 +53,6 @@
 #include "novas.h"
 /// \endcond
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /// \cond PRIVATE
 #define CIO_INTERP_POINTS   6     ///< Number of points to load from CIO interpolation table at once.
 
@@ -402,9 +396,3 @@ short cio_array(double jd_tdb, long n_pts, ra_of_cio *restrict cio) {
 
   return 0;
 }
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

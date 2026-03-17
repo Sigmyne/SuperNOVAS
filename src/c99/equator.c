@@ -18,12 +18,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /// \cond PRIVATE
 
 /**
@@ -821,9 +815,3 @@ int nutation(double jd_tdb, enum novas_nutation_direction direction, enum novas_
   return 0;
 }
 
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

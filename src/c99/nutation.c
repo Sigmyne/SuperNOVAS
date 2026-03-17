@@ -27,12 +27,6 @@
 #include "novas.h"
 /// \endcond
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /// \cond PRIVATE
 #define T0        NOVAS_JD_J2000
 
@@ -420,9 +414,3 @@ int nu2000k(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double *
   return 0;
 }
 
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

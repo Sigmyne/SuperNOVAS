@@ -13,7 +13,7 @@ LIB ?= ../../lib
 
 CPPFLAGS += -I../../include
 CXXFLAGS ?= $(CPPFLAGS)
-LDFLAGS += -L$(LIB) -lsupernovas++
+LDFLAGS += -L$(LIB) -lsupernovas -lsupernovas++
 
 .PHONY: all
 all: $(EXAMPLES)

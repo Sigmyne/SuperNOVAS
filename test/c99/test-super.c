@@ -27,12 +27,6 @@ extern int strncasecmp(const char *s1, const char *s2, size_t n);
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-using namespace novas;
-#  endif
-#endif
-
 #define J2000   NOVAS_JD_J2000
 
 #if defined _WIN32 || defined __CYGWIN__

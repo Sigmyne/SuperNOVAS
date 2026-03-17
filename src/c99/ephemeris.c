@@ -56,14 +56,6 @@
 #include "novas.h"
 /// \endcond
 
-
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 // <---------- GLOBAL VARIABLES -------------->
 
 /// \cond PRIVATE
@@ -378,9 +370,3 @@ short ephemeris(const double *restrict jd_tdb, const object *restrict body, enum
 
   return 0;
 }
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

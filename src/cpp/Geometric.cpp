@@ -11,7 +11,7 @@
 
 #include "supernovas.h"
 
-using namespace novas;
+
 
 namespace supernovas {
 
@@ -160,7 +160,7 @@ Galactic Geometric::galactic() const {
   return equatorial().to_galactic();
 }
 
-Geometric Geometric::to_system(const novas::novas_frame *f, enum novas::novas_reference_system system) const {
+Geometric Geometric::to_system(const novas_frame *f, enum novas_reference_system system) const {
   novas_transform T = {};
   double p[3] = {0.0}, v[3] = {0.0};
 

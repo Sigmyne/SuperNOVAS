@@ -47,6 +47,7 @@ foreach(EXAMPLE ${EXAMPLE_PROGRAMS})
 
     # Link against the supernovas library
     target_link_libraries(${EXAMPLE} PRIVATE
+       supernovas::core
        supernovas::cpp
        ${MATH}
     )

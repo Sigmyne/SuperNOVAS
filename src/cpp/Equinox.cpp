@@ -24,7 +24,7 @@
 #  define strncasecmp _strnicmp                     /// MSVC equivalent
 #endif
 
-using namespace novas;
+
 
 namespace supernovas {
 
@@ -55,7 +55,7 @@ Equinox::Equinox(const std::string& name, double jd) : _name(name), _system(NOVA
   _valid = isfinite(jd);
 }
 
-Equinox::Equinox(enum novas::novas_reference_system system, double jd_tt)
+Equinox::Equinox(enum novas_reference_system system, double jd_tt)
 : _name("invalid"), _system(system), _jd(jd_tt) {
   static const char *fn = "Equinox()";
 
@@ -352,7 +352,7 @@ Equinox Equinox::from_string(const std::string& name) {
  * @return          an optional containing the corresponding valid equatorial system, or else
  *                  `std::nullopt`.
  */
-Equinox Equinox::from_system_type(enum novas::novas_reference_system system, double jd_tt) {
+Equinox Equinox::from_system_type(enum novas_reference_system system, double jd_tt) {
   static const char *fn = "Equatorial::for_reference_system()";
 
   switch(system) {

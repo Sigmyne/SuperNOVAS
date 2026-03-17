@@ -12,7 +12,7 @@
 
 #include "TestUtil.hpp"
 
-using namespace novas;
+
 
 int main() {
   TestUtil test = TestUtil("Time");

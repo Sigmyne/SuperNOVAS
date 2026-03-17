@@ -48,12 +48,6 @@
 #define PRESSURE_SCALE_HEIGHT             9.1e3     ///< [m] Scale height of atmospheric pressure
 /// \endcond
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /**
  * @deprecated    It is recommended that you use one of the more specific ways of initializing
  *                the observer data structure, e.g. with `make_itrf_observer()`,
@@ -1050,10 +1044,3 @@ int novas_set_default_weather(on_surface *site) {
 
   return 0;
 }
-
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif

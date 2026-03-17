@@ -81,9 +81,9 @@ int main() {
 
   double auday = Unit::au / Unit::day;
 
-  if(!test.equals("x(a + b)", (a + b).x() / auday, novas::novas_add_vel(a.x() / auday, b.x() / auday), 1e-15)) n++;
-  if(!test.equals("y(a + b)", (a + b).y() / auday, novas::novas_add_vel(a.y() / auday, b.y() / auday), 1e-15)) n++;
-  if(!test.equals("z(a + b)", (a + b).z() / auday, novas::novas_add_vel(a.z() / auday, b.z() / auday), 1e-15)) n++;
+  if(!test.equals("x(a + b)", (a + b).x() / auday, novas_add_vel(a.x() / auday, b.x() / auday), 1e-15)) n++;
+  if(!test.equals("y(a + b)", (a + b).y() / auday, novas_add_vel(a.y() / auday, b.y() / auday), 1e-15)) n++;
+  if(!test.equals("z(a + b)", (a + b).z() / auday, novas_add_vel(a.z() / auday, b.z() / auday), 1e-15)) n++;
 
   if(!test.equals("x(2 * a)", (2 * a).x(), -2.0 * Unit::km / Unit::s, 1e-14 * Unit::km / Unit::s)) n++;
   if(!test.equals("y(2 * a)", (2 * a).y(), 4.0 * Unit::km / Unit::s, 1e-14 * Unit::km / Unit::s)) n++;

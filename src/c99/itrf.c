@@ -27,12 +27,6 @@
 
 #include "novas.h"
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 /// \cond PRIVATE
 typedef struct {
   double T[3];      ///< [mm]   Translation components
@@ -628,9 +622,3 @@ int novas_cartesian_to_geodetic(const double *restrict xyz, enum novas_reference
   return 0;
 }
 
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif
