@@ -49,14 +49,16 @@ jobs:
         sudo apt-get install -y lcov
 
     - name: Run regression tests
-      run: |
-        make test
-        make coverage
+      run: make test
+    
+    - name: Generate test coverage
+      run: make coverage
 
     - name: Upload coverage to Codecov.io
       uses: codecov/codecov-action@v5
       continue-on-error: true
       with:
+        files: ./test/cov.info
         fail_ci_if_error: false
         flags: unittests
         name: codecov

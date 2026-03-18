@@ -19,7 +19,7 @@ cov: cov.info
 	genhtml $< -o $@
 
 cov.info:
-	geninfo . -b . -o $@
+	geninfo . -b .. -o $@
 	lcov --remove $@ '*/usr/*' '*/include/*' '*/test/*' -o $@
 
 

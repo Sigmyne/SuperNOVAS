@@ -57,7 +57,7 @@ check-compat:
 
 .PRECIOUS: %.c.gcov
 %.c.gcov: %.gcno %.gcda
-	gcov -b $*
+	gcov -r -b $*
 
 .PRECIOUS: %.gcno %.gcda
 %.gcno %.gcda: ../src/%.c

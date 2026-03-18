@@ -56,6 +56,5 @@ jobs:
 
       - name: Install to local prefix
         run: |
-          mkdir $HOME/test
-          make DESTDIR=$HOME/test install
+          make DESTDIR=$HOME/test-install install
 

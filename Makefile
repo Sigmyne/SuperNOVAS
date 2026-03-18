@@ -108,6 +108,8 @@ local-dox:
 # Install targets and recipes
 # ----------------------------------------------------------------------------
 
+LIB ?= lib
+
 # Standard install commands
 INSTALL_PROGRAM ?= install
 INSTALL_DATA ?= install -m 644
@@ -187,11 +189,11 @@ endif
 install-examples:
 	@echo "installing C99 examples to $(DESTDIR)$(docdir)/examples/c99"
 	install -d $(DESTDIR)$(docdir)/examples/c99
-	$(INSTALL_DATA) examples/* $(DESTDIR)$(docdir)/examples/c99/
+	$(INSTALL_DATA) examples/c99/* $(DESTDIR)$(docdir)/examples/c99/
 ifeq ($(ENABLE_CPP),1)
 	@echo "installing C++ examples to $(DESTDIR)$(docdir)/examples/cpp"
 	install -d $(DESTDIR)$(docdir)/examples/cpp
-	$(INSTALL_DATA) doc/examples/cpp/* $(DESTDIR)$(docdir)/examples/cpp/
+	$(INSTALL_DATA) examples/cpp/* $(DESTDIR)$(docdir)/examples/cpp/
 endif
 
 .PHONY: install-legacy
