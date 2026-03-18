@@ -5,7 +5,7 @@
 <table>
 <tr>
 <th><b>C99</b></th>
-<th><b>C++17</b></th>
+<th><b>C++11</b></th>
 </tr>
 <tr>
 <td>

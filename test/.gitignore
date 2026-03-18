@@ -7,4 +7,5 @@ bad-cio-data/**
 test*
 !test*.c
 cov*
+*.info
 

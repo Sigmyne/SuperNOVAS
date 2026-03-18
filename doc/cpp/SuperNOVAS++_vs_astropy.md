@@ -29,6 +29,7 @@ source = SkyCoord(
 
 
 
+
 # Observer location
 loc = EarthLocation.from_geodetic(
   Longitude(50.7374), 
@@ -74,8 +75,8 @@ EOP eop = EOP(37, 0.06256,
 // Observer location
 auto obs = Site::from_GPS(50.7374, 7.0982, 60.0)
      .to_observer(eop);
-     
-     
+
+
   
 // Set time of observation
 Time t("2026-03-14T13:43:00.728+0200", eop, 

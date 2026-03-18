@@ -1,4 +1,4 @@
-# User's Guide to the SuperNOVAS C99 API
+# Guide to the C99 API
 
  - [Building your application with SuperNOVAS (C99)](#integration-c99)
  - [Example C99 usage](#examples-c99)
@@ -527,7 +527,7 @@ effectively tied to an observer frame.
  
  // UTC-based Julian day *after* observer frame, when source sets below 30 degrees of elevation 
  // next, not accounting for refraction.
- double jd_rise = novas_sets_below(30.0, &source, &frame, NULL);
+ double jd_set = novas_sets_below(30.0, &source, &frame, NULL);
 ```
 
 Note, that in the current implementation these calls are not well suited sources that are at or within the 
