@@ -314,6 +314,8 @@ Equatorial Equatorial::to_hip() const {
  * @sa to_mod_at_besselian_epoch(), to_system(), to_j2000(), to_tod()
  */
 Equatorial Equatorial::to_mod(double jd_tdb) const {
+  if(!isfinite(jd_tdb))
+      novas_set_errno(EINVAL, "Equatorial::to_mod()", "input Julian Date is NAN or infinite");
   return to_system(Equinox::mod(jd_tdb));
 }
 
@@ -342,6 +344,8 @@ Equatorial Equatorial::to_mod(const Time& time) const {
  * @sa to_mod(), to_system(), to_j2000(), to_tod()
  */
 Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
+  if(!isfinite(year))
+      novas_set_errno(EINVAL, "Equatorial::to_mod_at_besselian_epoch()", "input epoch is NAN or infinite");
   return to_system(Equinox::mod_at_besselian_epoch(year));
 }
 
@@ -357,6 +361,8 @@ Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
  * @sa to_system(), to_cirs(), to_j2000(), to_mod()
  */
 Equatorial Equatorial::to_tod(double jd_tdb) const {
+  if(!isfinite(jd_tdb))
+      novas_set_errno(EINVAL, "Equatorial::to_tod()", "input Julian Date is NAN or infinite");
   return to_system(Equinox::tod(jd_tdb));
 }
 
@@ -387,6 +393,8 @@ Equatorial Equatorial::to_tod(const Time& time) const {
  * @sa to_system(), to_tod(), to_icrs()
  */
 Equatorial Equatorial::to_cirs(double jd_tdb) const {
+  if(!isfinite(jd_tdb))
+      novas_set_errno(EINVAL, "Equatorial::to_cirs()", "input Julian Date is NAN or infinite");
   return to_system(Equinox::cirs(jd_tdb));
 }
 

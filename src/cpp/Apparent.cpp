@@ -82,10 +82,13 @@ Apparent::Apparent(const Frame& frame, enum novas_reference_system sys, const sk
  * @param rv_ms     [m/s] radial velocity
  * @return          new apparent location on sky with the specified parameters.
  *
- * @sa tod()
+ * @sa from_tod()
  */
-Apparent Apparent::cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
-  return Apparent(frame, NOVAS_CIRS, ra_rad, dec_rad, rv_ms);
+Apparent Apparent::from_cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
+  Apparent a(frame, NOVAS_CIRS, ra_rad, dec_rad, rv_ms);
+  if(!a.is_valid())
+    novas_trace_invalid("Apparent::cirs()");
+  return a;
 }
 
 /**
@@ -97,10 +100,10 @@ Apparent Apparent::cirs(double ra_rad, double dec_rad, const Frame& frame, doubl
  * @param rv        radial velocity
  * @return          new apparent location on sky with the specified parameters.
  *
- * @sa tod()
+ * @sa from_tod()
  */
-Apparent Apparent::cirs(const Angle& ra, const Angle& dec, const Frame& frame, const ScalarVelocity& rv) {
-  return cirs(ra.rad(), dec.rad(), frame, rv.m_per_s());
+Apparent Apparent::from_cirs(const Angle& ra, const Angle& dec, const Frame& frame, const ScalarVelocity& rv) {
+  return from_cirs(ra.rad(), dec.rad(), frame, rv.m_per_s());
 }
 
 /**
@@ -113,10 +116,13 @@ Apparent Apparent::cirs(const Angle& ra, const Angle& dec, const Frame& frame, c
  * @param rv_ms     [m/s] radial velocity
  * @return          new apparent location on sky with the specified parameters.
  *
- * @sa cirs()
+ * @sa from_cirs()
  */
-Apparent Apparent::tod(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
-  return Apparent(frame, NOVAS_TOD, ra_rad, dec_rad, rv_ms);
+Apparent Apparent::from_tod(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
+  Apparent a(frame, NOVAS_TOD, ra_rad, dec_rad, rv_ms);
+  if(!a.is_valid())
+    novas_trace_invalid("Apparent::tod()");
+  return a;
 }
 
 /**
@@ -129,10 +135,10 @@ Apparent Apparent::tod(double ra_rad, double dec_rad, const Frame& frame, double
  * @param rv        radial velocity
  * @return          new apparent location on sky with the specified parameters.
  *
- * @sa cirs()
+ * @sa from_cirs()
  */
-Apparent Apparent::tod(const Angle& ra, const Angle& dec, const Frame& frame, const ScalarVelocity& rv) {
-  return tod(ra.rad(), dec.rad(), frame, rv.m_per_s());
+Apparent Apparent::from_tod(const Angle& ra, const Angle& dec, const Frame& frame, const ScalarVelocity& rv) {
+  return from_tod(ra.rad(), dec.rad(), frame, rv.m_per_s());
 }
 
 /**
@@ -314,7 +320,7 @@ std::string Apparent::to_string(int decimals) const {
  * @return        new apparent positions constructed with the parameters. It may be invalid if
  *                the input values themselves are invalid.
  *
- * @sa from_cirs_sky_pos()
+ * @sa from_cirs_sky_pos(), from_tod()
  */
 Apparent Apparent::from_tod_sky_pos(const Frame& frame, const sky_pos *pos) {
   static const char *fn = "Apparent::from_cirs_sky_pos";
@@ -340,7 +346,7 @@ Apparent Apparent::from_tod_sky_pos(const Frame& frame, const sky_pos *pos) {
  * @return        new apparent positions constructed with the parameters. It may be invalid if
  *                the input values themselves are invalid.
  *
- * @sa from_tod_sky_pos()
+ * @sa from_tod_sky_pos(), from_cirs()
  */
 Apparent Apparent::from_cirs_sky_pos(const Frame& frame, const sky_pos *pos) {
   static const char *fn = "Apparent::from_cirs_sky_pos";

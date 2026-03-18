@@ -361,7 +361,10 @@ Equinox Equinox::from_system_type(enum novas_reference_system system, double jd_
       novas_set_errno(EINVAL, fn, "No equinox for Earth-rotating reference systems");
       return Equinox::undefined();
     default:
-      return Equinox(system, jd_tt);
+      Equinox e(system, jd_tt);
+      if(!e.is_valid())
+        novas_trace_invalid("Equinox::from_system_type()");
+      return e;
   }
 }
 
@@ -377,7 +380,10 @@ Equinox Equinox::from_system_type(enum novas_reference_system system, double jd_
  * @sa mod_at_besselial_epoch(), j2000(), hip()
  */
 Equinox Equinox::mod(double jd_tt) {
-  return Equinox(NOVAS_MOD, jd_tt);
+  Equinox e(NOVAS_MOD, jd_tt);
+  if(!e.is_valid())
+    novas_trace_invalid("Equinox::mod()");
+  return e;
 }
 
 /**
@@ -392,7 +398,7 @@ Equinox Equinox::mod(double jd_tt) {
  * @sa mod_at_besselial_epoch(), j2000(), hip()
  */
 Equinox Equinox::mod(const Time& time) {
-  return Equinox(NOVAS_MOD, time.jd());
+  return mod(time.jd());
 }
 
 /**
@@ -408,7 +414,10 @@ Equinox Equinox::mod(const Time& time) {
  * @sa at_julian_date(), b1900(), b1950()
  */
 Equinox Equinox::mod_at_besselian_epoch(double year) {
-  return Equinox(_name_for("B", year), NOVAS_JD_B1950 + (year - 1950.0) * Unit::besselian_year / Unit::day);
+  Equinox e(_name_for("B", year), NOVAS_JD_B1950 + (year - 1950.0) * Unit::besselian_year / Unit::day);
+  if(!e.is_valid())
+    novas_trace_invalid("Equinox::mod_at_besselian_epoch()");
+  return e;
 }
 
 /**
@@ -424,7 +433,10 @@ Equinox Equinox::mod_at_besselian_epoch(double year) {
  * @sa cirs()
  */
 Equinox Equinox::tod(double jd_tt) {
-  return Equinox(NOVAS_TOD, jd_tt);
+  Equinox e(NOVAS_TOD, jd_tt);
+  if(!e.is_valid())
+    novas_trace_invalid("Equinox::tod()");
+  return e;
 }
 
 /**
@@ -439,7 +451,7 @@ Equinox Equinox::tod(double jd_tt) {
  * @sa cirs()
  */
 Equinox Equinox::tod(const Time& time) {
-  return Equinox(NOVAS_TOD, time.jd());
+  return tod(time.jd());
 }
 
 /**
@@ -455,7 +467,10 @@ Equinox Equinox::tod(const Time& time) {
  * @sa tod()
  */
 Equinox Equinox::cirs(double jd_tt) {
-  return Equinox(NOVAS_CIRS, jd_tt);
+  Equinox e(NOVAS_CIRS, jd_tt);
+  if(!e.is_valid())
+    novas_trace_invalid("Equinox::cirs()");
+  return e;
 }
 
 /**
@@ -470,7 +485,7 @@ Equinox Equinox::cirs(double jd_tt) {
  * @sa tod()
  */
 Equinox Equinox::cirs(const Time& time) {
-  return Equinox(NOVAS_CIRS, time.jd());
+  return cirs(time.jd());
 }
 
 /**

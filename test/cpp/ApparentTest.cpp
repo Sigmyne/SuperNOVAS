@@ -60,18 +60,24 @@ int main() {
   double ra_cirs = app_to_cirs_ra(frame.time().jd(), NOVAS_REDUCED_ACCURACY, p.ra);
   if(!test.check("cirs()", tod.cirs() == Equatorial(ra_cirs * Unit::hour_angle, p.dec * Unit::deg, Equinox::cirs(Time::j2000())))) n++;
 
-  Apparent tod2 = Apparent::tod(Angle(p.ra * Unit::hour_angle), Angle(p.dec * Unit::deg), frame, ScalarVelocity(p.rv * Unit::km / Unit::s));
-  if(!test.check("tod(Angle...)", tod2.equatorial() == tod.equatorial())) n++;
+  Apparent tod2 = Apparent::from_tod(Angle::undefined(), Angle(p.dec * Unit::deg), frame, ScalarVelocity(p.rv * Unit::km / Unit::s));
+  if(!test.check("from_tod(invalid RA)", !tod2.is_valid())) n++;
+
+  tod2 = Apparent::from_tod(Angle(p.ra * Unit::hour_angle), Angle(p.dec * Unit::deg), frame, ScalarVelocity(p.rv * Unit::km / Unit::s));
+  if(!test.check("from_tod()", tod2.equatorial() == tod.equatorial())) n++;
 
   Apparent cirs = Apparent::from_cirs_sky_pos(frame, &p);
   double ra_tod = cirs_to_app_ra(frame.time().jd(), NOVAS_REDUCED_ACCURACY, p.ra);
   if(!test.check("cirs(CIRS)", cirs.cirs() == Equatorial(p.ra * Unit::hour_angle, p.dec * Unit::deg, Equinox::cirs(Time::j2000())))) n++;
   if(!test.check("equatorial(CIRS)", cirs.equatorial() == Equatorial(ra_tod * Unit::hour_angle, p.dec * Unit::deg, Equinox::tod(Time::j2000())))) n++;
 
-  Apparent cirs2 = Apparent::cirs(Angle(p.ra * Unit::hour_angle), Angle(p.dec * Unit::deg), frame, ScalarVelocity(p.rv * Unit::km / Unit::s));
-  if(!test.check("cirs(Angle...)", cirs2.cirs() == cirs.cirs())) n++;
+  Apparent cirs2 = Apparent::from_cirs(Angle::undefined(), Angle(p.dec * Unit::deg), frame, ScalarVelocity(p.rv * Unit::km / Unit::s));
+  if(!test.check("from_cirs(invalid RA)", !cirs2.is_valid())) n++;
 
-  if(!test.check("from_to_sky_pos()", Apparent::from_tod_sky_pos(frame, &p).is_valid())) n++;
+  cirs2 = Apparent::from_cirs(Angle(p.ra * Unit::hour_angle), Angle(p.dec * Unit::deg), frame, ScalarVelocity(p.rv * Unit::km / Unit::s));
+  if(!test.check("from_cirs()", cirs2.cirs() == cirs.cirs())) n++;
+
+  if(!test.check("from_tod_sky_pos()", Apparent::from_tod_sky_pos(frame, &p).is_valid())) n++;
 
   sky_pos p1 = p; p1.ra = NAN;
   if(!test.check("invalid p.ra", !Apparent::from_tod_sky_pos(frame, &p1).is_valid())) n++;

@@ -330,10 +330,8 @@ EquatorialTrack Source::equatorial_track(const Frame &frame, const Interval& ran
  * @sa equatorial_track()
  */
 HorizontalTrack Source::horizontal_track(const Frame &frame, RefractionModel ref, const Weather& weather) const {
-  static const char *fn = "Source::horizontal_track()";
-
   if(!frame.observer().is_geodetic()) {
-    novas_set_errno(EINVAL, fn, "input frame is not a geodetic observing frame");
+    novas_set_errno(EINVAL, "Source::horizontal_track()", "input frame is not a geodetic observing frame");
     return HorizontalTrack::undefined();
   }
 
@@ -347,10 +345,7 @@ HorizontalTrack Source::horizontal_track(const Frame &frame, RefractionModel ref
   novas_track track = {};
   novas_hor_track(_novas_object(), frame._novas_frame(), ref, &track);
 
-  HorizontalTrack ht = HorizontalTrack::from_novas_track(&track, Interval(1.0 * Unit::min));
-  if(!ht.is_valid())
-    novas_trace_invalid(fn);
-  return ht;
+  return HorizontalTrack::from_novas_track(&track, Interval(1.0 * Unit::min));
 }
 
 /**

@@ -545,8 +545,15 @@ EquatorialTrack::EquatorialTrack(const Equinox& system, const novas_track *track
 EquatorialTrack::EquatorialTrack(const Equinox& system, const Time& ref_time, const Interval& range,
         const ScalarEvolution& ra, const ScalarEvolution& dec, const ScalarEvolution& distance, const ScalarEvolution& z)
 : Track(ref_time, range, ra, dec, distance, z), _system(system) {
+  static const char *fn = "EquatorialTrack()";
+
   if(!is_valid())
-      novas_trace_invalid("EquatorialTrack()");
+      novas_trace_invalid(fn);
+
+  if(!system.is_valid()) {
+    novas_set_errno(EINVAL, fn, "input equatorial system is invalid");
+    _valid = false;
+  }
 }
 
 

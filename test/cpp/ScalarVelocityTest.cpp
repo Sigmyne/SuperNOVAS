@@ -34,8 +34,9 @@ int main() {
   if(!test.equals("redshift()", a.redshift(), a.beta(), 1e-6)) n++;
   if(!test.equals("travel()", a.travel(Interval(10.0)).km(), 450.0, 1e-12)) n++;
   if(!test.equals("operator * Interval", (a * Interval(10.0)).km(), 450.0, 1e-12)) n++;
-  if(!test.equals("in_direction()", a.to_direction(Position(0.0, 5.0, 0.0)).y(), 45.0 * Unit::km / Unit::s, 1e-12)) n++;
-  if(!test.equals("in_direction(x)", a.to_direction(Position(0.0, 5.0, 0.0)).x(), 0.0, 1e-15)) n++;
+  if(!test.equals("in_direction()", a.in_direction(Position(0.0, 5.0, 0.0)).y(), 45.0 * Unit::km / Unit::s, 1e-12)) n++;
+  if(!test.equals("in_direction(x)", a.in_direction(Position(0.0, 5.0, 0.0)).x(), 0.0, 1e-15)) n++;
+  if(!test.check("in_direction(invalid)", !a.in_direction(Position::undefined()).is_valid())) n++;
 
   ScalarVelocity b(-30.0 * Unit::km / Unit::s);
   if(!test.equals("km_per_s(-30 km/s)", b.km_per_s(), -30.0)) n++;
@@ -50,6 +51,8 @@ int main() {
 
   if(!test.equals("operator +", (a + b).km_per_s(), 15.0, 1e-5)) n++;
   if(!test.equals("operator -", (a - b).km_per_s(), 75.0, 1e-5)) n++;
+
+  if(!test.check("from_redshift(NAN)", !ScalarVelocity::from_redshift(NAN).is_valid())) n++;
 
   ScalarVelocity c = ScalarVelocity::from_redshift(0.1);
   if(!test.equals("from_redshift()", c.km_per_s(), novas_z2v(0.1) , 1e-11)) n++;

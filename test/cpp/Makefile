@@ -41,10 +41,10 @@ obj/%.opp: %.cpp | obj
 
 .PRECIOUS: %.c.gcov
 %.c.gcov: %-%.gcno %-%.gcda
-	gcov -r -b $*
+	gcov -b $*
 
 .PRECIOUS: %.gcno %.gcda
-%.gcno %.gcda: ../src/%.c
+%.gcno %.gcda: src/%.cpp
 	$(MAKE) clean
 	$(MAKE) run
 

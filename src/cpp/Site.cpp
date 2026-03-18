@@ -299,7 +299,10 @@ Position Site::xyz() const {
  * @sa Observer::on_earth()
  */
 GeodeticObserver Site::to_observer(const EOP& eop) const {
-  return Observer::on_earth(*this, eop);
+  GeodeticObserver go = Observer::on_earth(*this, eop);
+  if(!go.is_valid())
+    novas_trace_invalid("Site::to_observer()");
+  return go;
 }
 
 /**
@@ -327,7 +330,10 @@ std::string Site::to_string(enum novas_separator_type separator, int decimals) c
  * @sa Site(), from_xyz()
  */
 Site Site::from_GPS(double longitude, double latitude, double altitude) {
-  return Site(longitude, latitude, altitude, NOVAS_WGS84_ELLIPSOID);
+  Site s(longitude, latitude, altitude, NOVAS_WGS84_ELLIPSOID);
+  if(!s.is_valid())
+    novas_trace_invalid("Site::from_GPS()");
+  return s;
 }
 
 /**

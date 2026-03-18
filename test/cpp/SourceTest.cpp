@@ -117,6 +117,7 @@ int main() {
   if(!test.check("geometric(TOD).velocity()", geom.velocity() == Velocity(v, Unit::AU / Unit::day))) n++;
   if(!test.check("geometric(invalid)", !Planet((enum novas_planet) -1).geometric_in(frame).is_valid())) n++;
 
+  if(!test.check("equatorial_track(frame invalid)", !c.equatorial_track(Frame::undefined(), Interval(Unit::hour)).is_valid())) n++;
 
   EquatorialTrack et = c.equatorial_track(frame, Interval(Unit::hour));
   if(!test.check("equatorial_track()", et.is_valid())) n++;
@@ -137,6 +138,9 @@ int main() {
 
 
   if(!test.check("horizontal_track(gc)", !c.horizontal_track(gc).is_valid())) n++;
+
+  // FIXME
+  //if(!test.check("horizontal_track(time invalid)", !c.horizontal_track(gfx).is_valid())) n++;
 
   HorizontalTrack ht = c.horizontal_track(frame, NULL);
   if(!test.check("horizontal_track()", ht.is_valid())) n++;

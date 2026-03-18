@@ -4,6 +4,12 @@
 #
 # Author: Attila Kovacs
 
+EXCLUDE_COV = 'test-*'
+ifeq ($(ENABLE_CPP), 1)
+	EXCLUDE_COV += '*/include/*' '*Test'
+endif
+
+
 .PHONY: run
 run:
 	$(MAKE) -C c99 run
@@ -19,17 +25,14 @@ cov: cov.info
 	genhtml $< -o $@
 
 cov.info:
-	geninfo . -b .. -o $@
-	lcov --remove $@ '*/usr/*' '*/include/*' '*/test/*' -o $@
+	geninfo . -o $@
+	lcov --remove $@ $(EXCLUDE_COV) -o $@
 
 
 # Static code analysis using 'cppcheck'
 .PHONY: analyze
 analyze:
 	$(MAKE) -C c99 analyze
-ifeq ($(ENABLE_CPP), 1)
-	$(MAKE) -C cpp analyze
-endif
 
 .PHONY: clean-test
 clean-test:

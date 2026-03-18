@@ -762,7 +762,7 @@ public:
 
   Coordinate operator*(const Interval& time) const;
 
-  Velocity to_direction(const Vector& direction) const;
+  Velocity in_direction(const Vector& direction) const;
 
   std::string to_string(int decimals = 3) const;
 
@@ -2267,13 +2267,13 @@ public:
 
   std::string to_string(int decimals = 3) const;
 
-  static Apparent cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms = 0.0);
+  static Apparent from_cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms = 0.0);
 
-  static Apparent cirs(const Angle& ra, const Angle& dec, const Frame& frame, const ScalarVelocity& rv);
+  static Apparent from_cirs(const Angle& ra, const Angle& dec, const Frame& frame, const ScalarVelocity& rv);
 
-  static Apparent tod(double ra_rad, double dec_rad, const Frame& frame, double rv_ms = 0.0);
+  static Apparent from_tod(double ra_rad, double dec_rad, const Frame& frame, double rv_ms = 0.0);
 
-  static Apparent tod(const Angle& ra, const Angle& dec, const Frame& frame, const ScalarVelocity& rv);
+  static Apparent from_tod(const Angle& ra, const Angle& dec, const Frame& frame, const ScalarVelocity& rv);
 
   static Apparent from_tod_sky_pos(const Frame& frame, const sky_pos *pos);
 

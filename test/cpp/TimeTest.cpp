@@ -108,6 +108,8 @@ int main() {
   Site site(33.0 * Unit::deg, -21.0 * Unit::deg, 3000.0 * Unit::m);
   if(!test.equals("gst()", c.lst(site).hours(), novas_time_lst(c._novas_timespec(), site.longitude().deg(), NOVAS_FULL_ACCURACY), 1-14)) n++;
 
+  if(!test.check("from_mjd(NAN)", !Time::from_mjd(NAN, eop).is_valid())) n++;
+
   Time d = Time::from_mjd(51544.5, eop, NOVAS_UTC);
   if(!test.check("from_mjd()", d == a)) n++;
 
@@ -121,7 +123,7 @@ int main() {
   timespec_get(&tu, TIME_UTC);
   Time e = Time::now(eop);
   tu1.tv_sec = e.unix_time(&tu1.tv_nsec);
-  if(!test.equals("now()", (tu1.tv_sec + 1e-9 * tu1.tv_nsec), (tu.tv_sec + 1e-9 * tu.tv_nsec), 0.1));
+  if(!test.equals("now()", (tu1.tv_sec + 1e-9 * tu1.tv_nsec), (tu.tv_sec + 1e-9 * tu.tv_nsec), 0.1)) n++;
 
   std::cout << "Time.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

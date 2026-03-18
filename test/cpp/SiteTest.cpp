@@ -68,6 +68,7 @@ int main() {
   if(!test.equals("to_string()", a.to_string(), "Site (W 120d 30m 00.000s, S  75d 15m 00.000s, altitude 60 m)")) n++;
 
   Site b(Angle(-120.5 * Unit::deg), Angle(-75.25 * Unit::deg), Coordinate(60.0), NOVAS_WGS84_ELLIPSOID);
+  if(!test.check("from_GPS(lon invalid)", !Site::from_GPS(Angle::undefined(), Angle(-75.25 * Unit::deg), Coordinate(60.0)).is_valid())) n++;
   if(!test.check("from_GPS()", Site::from_GPS(Angle(-120.5 * Unit::deg), Angle(-75.25 * Unit::deg), Coordinate(60.0)) == b)) n++;
   if(!test.check("GPS != ITRF", !b.equals(a, 0.1 * Unit::mm))) n++;
 
@@ -76,6 +77,7 @@ int main() {
 
   EOP eop(32, 0.1, -0.2, 0.3);
   GeodeticObserver obs = b.to_observer(eop);
+  if(!test.check("observer(EOP invalid)", !b.to_observer(EOP::undefined()).is_valid())) n++;
   if(!test.check("observer()", obs.is_valid())) n++;
   if(!test.check("observer().site()", obs.site() == b)) n++;
 

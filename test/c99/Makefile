@@ -57,10 +57,10 @@ check-compat:
 
 .PRECIOUS: %.c.gcov
 %.c.gcov: %.gcno %.gcda
-	gcov -r -b $*
+	gcov -b $*
 
 .PRECIOUS: %.gcno %.gcda
-%.gcno %.gcda: ../src/%.c
+%.gcno %.gcda: src/%.c
 	$(MAKE) clean
 	$(MAKE) run
 

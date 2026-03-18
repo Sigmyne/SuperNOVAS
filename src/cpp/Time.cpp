@@ -390,7 +390,7 @@ const novas_timespec * Time::_novas_timespec() const {
  * @sa jd_day(), mjd()
  */
 double Time::jd(enum novas_timescale timescale) const {
-  return novas_get_time(&_ts, timescale);
+  return novas_check_nan("Time::jd", novas_get_time(&_ts, timescale));
 }
 
 /**
@@ -403,7 +403,7 @@ double Time::jd(enum novas_timescale timescale) const {
  */
 long Time::jd_day(enum novas_timescale timescale) const {
   long ijd = 0;
-  novas_get_split_time(&_ts, timescale, &ijd);
+  novas_get_split_time(&_ts, timescale, &ijd) ;
   return ijd;
 }
 
@@ -420,7 +420,8 @@ long Time::mjd_day(enum novas_timescale timescale) const {
   long ijd = 0;
   double fjd = novas_get_split_time(&_ts, timescale, &ijd);
   ijd -= 2400000L;
-  return fjd >= 0.5 ? ijd : ijd - 1;
+  if(fjd < 0.5) ijd--;
+  return ijd;
 }
 
 /**
@@ -433,7 +434,7 @@ long Time::mjd_day(enum novas_timescale timescale) const {
  * @sa mjd_frac(), jd_day(), jd()
  */
 double Time::jd_frac(enum novas_timescale timescale) const {
-  return novas_get_split_time(&_ts, timescale, NULL);
+  return novas_check_nan("Time::jd_frac()", novas_get_split_time(&_ts, timescale, NULL));
 }
 
 /**
@@ -446,7 +447,7 @@ double Time::jd_frac(enum novas_timescale timescale) const {
  * @sa jd_frac(), mjd_day(), mjd()
  */
 double Time::mjd_frac(enum novas_timescale timescale) const {
-  double f = jd_frac(timescale);
+  double f = novas_check_nan("Time::mjd_frac()", jd_frac(timescale));
   return f < 0.5 ? f + 0.5 : f - 0.5;
 }
 
@@ -463,7 +464,7 @@ double Time::mjd(enum novas_timescale timescale) const {
   long ijd = 0;
   double fjd = novas_get_split_time(&_ts, timescale, &ijd);
 
-  return (ijd - (int) NOVAS_JD_MJD0) + fjd - 0.5;
+  return novas_check_nan("Time::mjd()", (ijd - (int) NOVAS_JD_MJD0) + fjd - 0.5);
 }
 
 /**
@@ -671,7 +672,10 @@ std::string Time::to_epoch_string(int decimals) const {
  * @sa Time(), now(), j2000(), b1950(), b1900(), hip()
  */
 Time Time::from_mjd(double mjd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
-  return Time((int) NOVAS_JD_MJD0, mjd + 0.5, leap_seconds, dUT1, timescale);
+  Time t((int) NOVAS_JD_MJD0, mjd + 0.5, leap_seconds, dUT1, timescale);
+  if(!t.is_valid())
+    novas_trace_invalid("Time::from_mjd()");
+  return t;
 }
 
 /**

@@ -44,7 +44,10 @@ int main() {
   if(!test.equals("short_month_name() invalid", dx.short_month_name(), "inv")) n++;
   if(!test.equals("day_name() invalid", dx.day_name(), "invalid")) n++;
   if(!test.equals("short_day_name() invalid", dx.short_day_name(), "inv")) n++;
+  if(!test.check("to_time() invalid", !dx.to_time(32, 0.0, NOVAS_TT).is_valid())) n++;
+
   if(!test.check("parse_date(J2000)", a.parse_date("2000-01-01 12:00:00").is_valid())) n++;
+
 
   CalendarDate da = a.date(2000, 1, 1, TimeAngle::noon());
   if(!test.equals("J2000", da.jd(), NOVAS_JD_J2000)) n++;

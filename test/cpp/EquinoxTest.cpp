@@ -92,6 +92,11 @@ int main() {
   if(!test.equals("b1900().jd()", b1900.jd(), NOVAS_JD_B1900)) n++;
   if(!test.equals("1900().to_string()", b1900.to_string(), "B1900")) n++;
 
+  if(!test.check("mod(NAN)", !Equinox::mod(NAN).is_valid())) n++;
+  if(!test.check("mod_at_besselian_epoch(NAN)", !Equinox::mod_at_besselian_epoch(NAN).is_valid())) n++;
+  if(!test.check("tod(NAN)", !Equinox::tod(NAN).is_valid())) n++;
+
+
   Equinox tod_j2000 = Equinox::tod(NOVAS_JD_J2000);
   if(!test.check("tod(j2000).is_valid()", tod_j2000.is_valid())) n++;
   if(!test.equals("tod(j2000).system_type()", tod_j2000.system_type(), NOVAS_TOD)) n++;
@@ -103,6 +108,7 @@ int main() {
   if(!test.check("tod(j2000) != 'J2000'", (tod_j2000 != Equinox::from_string("J2000")))) n++;
   if(!test.check("tod(j2000) != J2000", (tod_j2000 != j2000))) n++;
 
+  if(!test.check("tod(NAN)", !Equinox::cirs(NAN).is_valid())) n++;
   Equinox cirs_j2000 = Equinox::cirs(NOVAS_JD_J2000);
   if(!test.check("cirs(j2000).is_valid()", cirs_j2000.is_valid())) n++;
   if(!test.equals("cirs(j2000).system_type()", cirs_j2000.system_type(), NOVAS_CIRS)) n++;

@@ -21,6 +21,7 @@ int main() {
   if(!test.check("invalid(vel)", !ScalarEvolution(1.0, NAN, 3.0).is_valid())) n++;
   if(!test.check("invalid(acc)", !ScalarEvolution(1.0, -2.0, NAN).is_valid())) n++;
 
+
   ScalarEvolution e(1.0, -2.0, 3.0);
   if(!test.check("is_valid()", e.is_valid())) n++;
   if(!test.equals("value(0.0)", e.value(), 1.0)) n++;
@@ -30,6 +31,8 @@ int main() {
   if(!test.equals("rate(1.0)", e.rate(Interval(1.0)), 1.0)) n++;
   if(!test.equals("value(-1.0)", e.value(Interval(-1.0)), 6.0)) n++;
   if(!test.equals("rate(-1.0)", e.rate(Interval(-1.0)), -5.0)) n++;
+
+  if(!test.check("stationary(NAN)", !ScalarEvolution::stationary(NAN).is_valid())) n++;
 
   e = ScalarEvolution::stationary(1.23);
   if(!test.check("stationary()", e.is_valid())) n++;
@@ -189,6 +192,12 @@ int main() {
   if(!test.check("projected_at()", oe.is_valid())) n++;
   if(!test.equals("projected_at().azimuth()", oe.ra().rad(), lon.value(ip), 1e-15)) n++;
   if(!test.equals("projected_at().elevation()", oe.dec().rad(), lat.value(ip), 1e-15)) n++;
+
+  et = EquatorialTrack(Equinox::undefined(), Time::j2000(), Interval(1.0), lon, lat, r, z);
+  if(!test.check("is_valid(equinox invalid)", !et.is_valid())) n++;
+
+  et = EquatorialTrack(Equinox::icrs(), Time::undefined(), Interval(1.0), lon, lat, r, z);
+  if(!test.check("is_valid(time invalid)", !et.is_valid())) n++;
 
   et = EquatorialTrack(Equinox::icrs(), Time::j2000(), Interval(1.0), lon, lat, r, z);
   if(!test.check("is_valid(z)", et.is_valid())) n++;

@@ -58,7 +58,7 @@ jobs:
       uses: codecov/codecov-action@v5
       continue-on-error: true
       with:
-        files: ./test/cov.info
+        directory: ./test
         fail_ci_if_error: false
         flags: unittests
         name: codecov

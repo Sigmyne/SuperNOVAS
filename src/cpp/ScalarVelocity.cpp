@@ -257,8 +257,11 @@ std::string ScalarVelocity::to_string(int decimals) const {
  * @return            a new velocity vector, in the specified direction and with the magnitude of
  *                    this speed.
  */
-Velocity ScalarVelocity::to_direction(const Vector& direction) const {
-  return Velocity(direction._array(), _ms / direction.abs());
+Velocity ScalarVelocity::in_direction(const Vector& direction) const {
+  Velocity v(direction._array(), _ms / direction.abs());
+  if(!v.is_valid())
+    novas_trace_invalid("ScalarVelocity::to_direction()");
+  return v;
 }
 
 /**
@@ -268,7 +271,10 @@ Velocity ScalarVelocity::to_direction(const Vector& direction) const {
  * @return    a scalar velocity instance corresponding to the specified redshift value.
  */
 ScalarVelocity ScalarVelocity::from_redshift(double z) {
-  return ScalarVelocity(novas_z2v(z) * Unit::km / Unit::sec);
+  ScalarVelocity v(novas_z2v(z) * Unit::km / Unit::sec);
+  if(!v.is_valid())
+    novas_trace_invalid("ScalarVelocity::from_redshift()");
+  return v;
 }
 
 /**

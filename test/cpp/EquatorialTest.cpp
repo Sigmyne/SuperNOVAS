@@ -60,14 +60,16 @@ int main() {
   if(!test.check("to_mod(B1950).to_icrs()", a1.to_icrs() == a)) n++;
 
   a1 = a.to_mod_at_besselian_epoch(1950.0);
-  if(!test.equals("to_mod(B1950) sys", a1.system_type(), NOVAS_MOD)) n++;
-  if(!test.check("to_mod(B1950) pos", pos == a1.xyz(Coordinate(Unit::AU)))) n++;
+  if(!test.equals("to_mod_at_besselian_epoch() sys", a1.system_type(), NOVAS_MOD)) n++;
+  if(!test.check("to_mod_at_besselian_epoch() pos", pos == a1.xyz(Coordinate(Unit::AU)))) n++;
+  if(!test.check("to_mod_at_besselian_epoch(NAN)", !a.to_mod_at_besselian_epoch(NAN).is_valid())) n++;
 
   a1 = a.to_cirs(Time::hip());
   gcrs_to_cirs(NOVAS_JD_HIP, NOVAS_FULL_ACCURACY, p0, p1);
   if(!test.equals("to_cirs(HIP) sys", a1.system_type(), NOVAS_CIRS)) n++;
   if(!test.check("to_cirs(HIP) pos", pos == a1.xyz(Coordinate(Unit::AU)))) n++;
   if(!test.check("to_cirs(HIP).to_icrs()", a1.to_icrs() == a)) n++;
+  if(!test.check("to_cirs(NAN)", !a.to_cirs(NAN).is_valid())) n++;
 
 
   a1 = a.to_tod(Time::b1950());
@@ -98,6 +100,7 @@ int main() {
   if(!test.equals("jd(J2000)", b.system().jd(), NOVAS_JD_J2000)) n++;
   if(!test.check("to_j2000(J2000)", b.to_j2000() == b)) n++;
   if(!test.check("to_mod(J2000)", b.to_mod(NOVAS_JD_J2000) == b)) n++;
+  if(!test.check("to_mod(NAN)", !b.to_mod(NAN).is_valid())) n++;
   if(!test.check("operator >> (B1950)", (b >> Equinox::b1950()) == b.to_mod(NOVAS_JD_B1950))) n++;
   if(!test.equals("to_string(J2000)", b.to_string(NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  J2000")) n++;
 
@@ -117,6 +120,7 @@ int main() {
   if(!test.equals("reference_system(TOD)", d.system_type(), NOVAS_TRUE_EQUATOR)) n++;
   if(!test.equals("jd(B1900)", d.system().jd(), NOVAS_JD_B1900)) n++;
   if(!test.check("to_tod(B1900)", d.to_tod(NOVAS_JD_B1900) == d)) n++;
+  if(!test.check("to_tod(NAN)", !d.to_tod(NAN).is_valid())) n++;
   if(!test.equals("to_string(TOD B1900)", d.to_string(NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  TOD J1900.001")) n++;
 
   Equatorial e = Equatorial(Angle(20.0 * Unit::deg), Angle(15.0 * Unit::deg), Equinox::icrs());

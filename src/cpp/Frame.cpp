@@ -40,9 +40,6 @@ namespace supernovas {
  *    positions and velocities for the Earth, Sun, observer location, or one of the major planets
  *    configured for gravitational deflection calculations.
  *
- * Alternatively, you might use the equivalent Frame::create() instead to return the Frame
- * as an optional.
- *
  * In either case, you can obtain more information on why things went wrong, when they do, by
  * enabling debug mode is enabled via `novas_debug()` prior to constructing a Frame.
  *
@@ -50,7 +47,7 @@ namespace supernovas {
  * @param time        time of observation
  * @param accuracy    (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  *
- * @sa create()
+ * @sa Observer::frame_at(), reduced_accuracy()
  */
 Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy)
 : _observer(obs.copy()), _time(time) {
@@ -157,7 +154,8 @@ const Observer& Frame::observer() const {
  * @sa novas_clock_skew()
  */
 double Frame::clock_skew(enum novas_timescale timescale) const {
-  return novas_clock_skew(&_frame, timescale);
+  return novas_check_nan("Frame::clock_skew", novas_clock_skew(&_frame, timescale));
+
 }
 
 /**
@@ -170,7 +168,10 @@ double Frame::clock_skew(enum novas_timescale timescale) const {
  *                are defined
  */
 Geometric Frame::geometric(const Position& p, const Velocity& v, enum novas_reference_system system) const {
-  return Geometric(*this, p, v, system);
+  Geometric g(*this, p, v, system);
+  if(!g.is_valid())
+    novas_trace_invalid("Frame::geometric()");
+  return g;
 }
 
 /**
@@ -186,10 +187,13 @@ Geometric Frame::geometric(const Position& p, const Velocity& v, enum novas_refe
  * @param time      Astrometric time of observation
  * @return          A reduced accuracy observing frame for the specified time of observation.
  *
- * @sa create(), SpaceBasedObserver::reduced_accuracy_frame_at()
+ * @sa Observer::reduced_accuracy_frame_at()
  */
 Frame Frame::reduced_accuracy(const Observer& obs, const Time& time) {
-  return Frame(obs, time, NOVAS_REDUCED_ACCURACY);
+  Frame f(obs, time, NOVAS_REDUCED_ACCURACY);
+  if(!f.is_valid())
+    novas_trace_invalid("Frame::reduced_accuracy()");
+  return f;
 }
 
 

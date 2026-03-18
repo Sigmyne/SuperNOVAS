@@ -96,7 +96,10 @@ Calendar Calendar::astronomical() {
  * @sa CalendarDate::CalendarDate(), date(), parse_date()
  */
 CalendarDate Calendar::date(int year, int month, int day, const TimeAngle& time) const {
-  return CalendarDate(*this, year, month, day, time);
+  CalendarDate d(*this, year, month, day, time);
+  if(!d.is_valid())
+    novas_trace_invalid("Calendar::date()");
+  return d;
 }
 
 /**
@@ -108,7 +111,10 @@ CalendarDate Calendar::date(int year, int month, int day, const TimeAngle& time)
  * @sa CalendarDate::CalendarDate(), date(), parse_date()
  */
 CalendarDate Calendar::date(double jd) const {
-  return CalendarDate(*this, jd);
+  CalendarDate d(*this, jd);
+  if(!d.is_valid())
+    novas_trace_invalid("Calendar::date()");
+  return d;
 }
 
 /**
@@ -135,7 +141,7 @@ CalendarDate Calendar::date(time_t t, long nanos) const {
  */
 CalendarDate Calendar::date(const struct timespec *ts) const {
   if(!ts) {
-    novas_set_errno(EINVAL, "Calendar::date()", "input Julian Date is NAN");
+    novas_set_errno(EINVAL, "Calendar::date()", "input timestamp is NULL");
     return date(NAN);
   }
   return date(ts->tv_sec, ts->tv_nsec);
@@ -579,7 +585,10 @@ CalendarDate CalendarDate::operator>>(const Calendar& calendar) const {
  * @return                an astronomical time instance for this date and input parameters.
  */
 Time CalendarDate::to_time(int leap_seconds, double dut1, novas_timescale timescale) const {
-  return Time(jd(), leap_seconds, dut1, timescale);
+  Time t(jd(), leap_seconds, dut1, timescale);
+  if(!t.is_valid())
+    novas_trace_invalid("CalendarDate::to_time()");
+  return t;
 }
 
 /**
@@ -593,7 +602,7 @@ Time CalendarDate::to_time(int leap_seconds, double dut1, novas_timescale timesc
  * @return                an astronomical time instance for this date and input parameters.
  */
 Time CalendarDate::to_time(const EOP& eop, novas_timescale timescale) const {
-  return Time(jd(), eop, timescale);
+  return to_time(eop.leap_seconds(), eop.dUT1().seconds(), timescale);
 }
 
 /**

@@ -87,7 +87,10 @@ double ScalarEvolution::acceleration() const {
  * @return        a non-evolving scalar evolution instance with the specified stationary value.
  */
 ScalarEvolution ScalarEvolution::stationary(double value) {
-  return ScalarEvolution(value);
+  ScalarEvolution e(value);
+  if(!e.is_valid())
+    novas_trace_invalid("ScalarEvolution::stationary()");
+  return e;
 }
 
 /**

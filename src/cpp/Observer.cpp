@@ -102,7 +102,10 @@ enum novas_observer_place Observer::type() const {
  * @sa set_planet_provider_hp(), novas_use_calceph(), novas_use_calceph_planets(), novas_use_cspice()
  */
 Frame Observer::frame_at(const Time& time, enum novas_accuracy accuracy) const {
-  return Frame(*this, time, accuracy);
+  Frame f(*this, time, accuracy);
+  if(!f.is_valid())
+    novas_trace_invalid("Observer::frame_at()");
+  return f;
 }
 
 /**
@@ -120,7 +123,10 @@ Frame Observer::frame_at(const Time& time, enum novas_accuracy accuracy) const {
  * @sa frame_at()
  */
 Frame Observer::reduced_accuracy_frame_at(const Time& time) const {
-  return Frame::reduced_accuracy(*this, time);
+  Frame f = Frame::reduced_accuracy(*this, time);
+  if(!f.is_valid())
+    novas_trace_invalid("Observer::reduced_accuracy_frame_at()");
+  return f;
 }
 
 /**

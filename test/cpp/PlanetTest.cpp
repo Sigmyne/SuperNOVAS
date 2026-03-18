@@ -73,24 +73,28 @@ int main() {
   if(!test.equals("pluto()", Planet::pluto().novas_id(), NOVAS_PLUTO)) n++;
   if(!test.equals("pluto_barycenter()", Planet::pluto_system().novas_id(), NOVAS_PLUTO_BARYCENTER)) n++;
 
+  if(!test.check("approx_apparent_in(invalid)", !Planet::mars().approx_apparent_in(Frame::undefined()).is_valid())) n++;
+
   Frame frame = Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000());
   Apparent app = Planet::mars().approx_apparent_in(frame);
   sky_pos pos = {};
   novas_approx_sky_pos(NOVAS_MARS, frame._novas_frame(), NOVAS_TOD, &pos);
 
-  if(!test.check("approx_apparent(mars)", app.is_valid())) n++;
-  if(!test.equals("approx_apparent(mars).ra", app.equatorial().ra().hours(), pos.ra, 1e-13)) n++;
-  if(!test.equals("approx_apparent(mars).dec", app.equatorial().dec().deg(), pos.dec, 1e-12)) n++;
-  if(!test.equals("approx_apparent(mars).radial_velocity", app.radial_velocity().km_per_s(), pos.rv, 1e-10)) n++;
+  if(!test.check("approx_apparent_in(mars)", app.is_valid())) n++;
+  if(!test.equals("approx_apparent_in(mars).ra", app.equatorial().ra().hours(), pos.ra, 1e-13)) n++;
+  if(!test.equals("approx_apparent_in(mars).dec", app.equatorial().dec().deg(), pos.dec, 1e-12)) n++;
+  if(!test.equals("approx_apparent_in(mars).radial_velocity", app.radial_velocity().km_per_s(), pos.rv, 1e-10)) n++;
 
   Geometric geom = Planet::jupiter().approx_geometric_in(frame);
   double p[3] = {0.0}, v[3] = {0.0};
   novas_approx_heliocentric(NOVAS_JUPITER, frame.time().jd(NOVAS_TDB), p, v);
   const novas_frame *f = frame._novas_frame();
 
-  if(!test.check("approx_geometric(jupiter)", geom.is_valid())) n++;
-  if(!test.check("approx_geometric(jupiter).position()", geom.position() == (Position(p, Unit::AU) + Position(f->sun_pos, Unit::AU)))) n++;
-  if(!test.check("approx_geometric(jupiter).velocity()", geom.velocity() == (Velocity(v, Unit::AU / Unit::day) + Velocity(f->sun_vel, Unit::AU / Unit::day)))) n++;
+  if(!test.check("approx_geometric_in(invalid)", !Planet::mars().approx_geometric_in(Frame::undefined()).is_valid())) n++;
+
+  if(!test.check("approx_geometric_in(jupiter)", geom.is_valid())) n++;
+  if(!test.check("approx_geometric_in(jupiter).position()", geom.position() == (Position(p, Unit::AU) + Position(f->sun_pos, Unit::AU)))) n++;
+  if(!test.check("approx_geometric_in(jupiter).velocity()", geom.velocity() == (Velocity(v, Unit::AU / Unit::day) + Velocity(f->sun_vel, Unit::AU / Unit::day)))) n++;
 
   std::cout << "Planet.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

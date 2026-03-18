@@ -263,6 +263,9 @@ Ecliptic Ecliptic::to_j2000() const {
  * @sa to_system(), to_mod(), to_tod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_mod(double jd_tdb) const {
+  if(!isfinite(jd_tdb))
+    novas_set_errno(EINVAL, "Ecliptic::to_mod()", "input Julian Date is NAN or infinite");
+
   if(jd_tdb == NOVAS_JD_J2000)
     return to_j2000();
 
@@ -295,6 +298,9 @@ Ecliptic Ecliptic::to_mod(const Time& time) const {
  * @sa to_system(), to_tod(), to_mod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_tod(double jd_tdb) const {
+  if(!isfinite(jd_tdb))
+      novas_set_errno(EINVAL, "Ecliptic::to_tod()", "input Julian Date is NAN or infinite");
+
   if(_equator == NOVAS_TRUE_EQUATOR && _jd == jd_tdb)
     return (*this);
 
