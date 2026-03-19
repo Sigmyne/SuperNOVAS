@@ -80,14 +80,110 @@ Add the appropriate bits from below to the `CMakeLists.txt` file of your applica
 <a name="fundamentals-cpp"></a>
 ### Fundamentals
 
+ - [Namespace](#namespace-cpp)
+ - [Validation](#validation-cpp)
+ - [Immutable instances](#immutable-cpp)
+ - [Classes don't reference external objects internally](#internal-copies-cpp)
+
 Before we dive into specific examples for using the __SuperNOVAS__ C++ API, you should know of the generic
 features and design principles that underly the C++ implementation.
  
+<a name="namespace-cpp"></a>
 #### Namespace
 
+To allow using simple class names, while being cognizant of potential namespace conflicts, the __SuperNOVAS__ classes
+all live under the `supernovas` namespace. Thus, the class `Angle`, for example, has a full name `supernovas::Angle`
+that can be used in any context. But, when convenient you can make one of more namespaces default in your source
+code, e.g.:
+
+```c++
+ #include <supernovas.h>
+ 
+ using namespace supernovas;
+ 
+ void my_func() {
+   Angle a(...);
+   ...
+ }
+```
+
+is equivalent to:
+
+```c++
+ #include <supernovas.h>
+ 
+ void my_func() {
+   supernovas::Angle a(...);
+   ...
+ }
+```
+
+<a name="validation-cpp"></a>
 #### Validation
 
+C++ does not have runtime exceptions the same way as say Python or Java, which can be caught. While C++17 introduced
+`std::optional` types that can be used to return with or without a valid data, __SuperNOVAS__ does not use these,
+because _(a)_ the optionals are not supported on Apple and Windows (in 2026), and _(b)_ they don't do anything for 
+constructors.
+
+Instead all __SuperNOVAS__ classes are based on a `Validating` base class, providing an `is_valid()` method. All 
+subclasses (that is all __SuperNOVAS__) classes sanity check their data as part of their constructor. And, mutable 
+classes sanity check every time they are modified as well. The checks typically include flagging NaNs and infinite 
+values (unless they are explicitly allowed), enum values outside of their normal range (yes the compiler checks for 
+these, but those checks can be easily bypassed), and whatever else is necessary to ensure that the objects contain 
+fully usable data.
+
+It is generally a good idea to check for validity whenever getting sane numerical data (e.g. not NaNs) is critical, or
+if you are not entirely sure. For example:
+
+```c++
+  Observer obs = ...  // Define an observer location
+  if(!obs.is_valid()) {
+    // Oops, something isn't right...
+    return;
+  }
+```
+
+or, equivalently the objects themselves can be evaluated as boolean types, the same as calling `is_valid()`, i.e.:
+
+```c++
+  Observer obs = ...  // Define an observer location
+  if(!obs) {
+    // Oops, something isn't right...
+    return;
+  }
+```
+
+And if in doubt as to why your object is invalid, you can always turn on debugging with `novas_debug(NOVAS_DEBUG_ON)`,
+at least in the relevant section of your code. __SuperNOVAS__ will provide error descriptions and call traces every
+time an invalid class instance is created, and when methods create invalid objects themselves. 
+
+
+<a name="immutable-cpp"></a>
 #### Immutable instances
+
+Almost all classes of the __SuperNOVAS__ library use immutable instances. This makes these __SuperNOVAS__ classes
+inherently thread safe. Given they are immutable, it is impossible for one thread to modify the class while another 
+accesses it concurrently. No mutexes are needed for these.
+
+The exceptions to immutabilty are `CatalogEntry`, `Orbital` and `OrbitalSystem`. These classes have too many 
+possible parameters, and also alternate parametrizations. It simply does not make sense to define everything in a 
+constuctor. Rather, these classes take a minimalist approach to the constructor, which define the most essential 
+parameters only. Then, you can define additional (optional) parameters using a builder pattern (see for example the 
+sections on defining a [catalog source](specify-object-cpp) or an [orbital source](orbital-sources-cpp)). This 
+approach also handles alternate parametrizations (e.g. radial velocity vs. LSR velocity vs. redshift, or distance vs. 
+parallax). The best practice for these mutable types is to define them once in a single-thread, and never attempt to 
+further modify them once they are passed into a multi-threaded environment.
+
+
+<a name="internal-copies-cpp"></a>
+#### Classes don't reference external objects internally
+
+The __SuperNOVAS__ classes never store references to external objects internally. Instead, they always store copies
+of the parameters that were supplied. While this may create a small amount of overhead, it adds to the thread safety. 
+Thus, even if a `CatalogEntry` object is mutable, once a `CatalogSource` is created from it, that source will store a 
+copy of the entry internally. So, even if the entry is modified afterwards, the source stays immutable with the 
+parameters that were used when it was instantiated.
 
 
 <a name="sidereal-example-cpp"></a>
@@ -325,6 +421,8 @@ Earth based observer (otherwise, you'll get an invalid result):
  // ... or apply atmospheric refraction with the model and weather of choice
  // Lets define the weather parameters explicitly as 12.0C, 895 mbar, and 47% humidity:
  Weather weather = Weather(Temperature::celsius(12.0), Pressure::mbar(895.0), 47.0);
+ 
+ // Obrtain refraction cofrrected horizontal coordinates
  hor = app.to_horizontal().to_refracted(novas_optical_refraction, weather);
 ```
 
@@ -344,6 +442,7 @@ If needed correct for atmospheric refraction.
 
 ```c++
  Weather weather(...); // define local weather parameters for the refraction (if needed)
+ 
  hor = hor.to_unrefracted(novas_optical_refraction, weather);
 ```
   
@@ -353,21 +452,25 @@ of observation).
 ```c++
  Apparent app = hor.to_apparent(frame);
 ```
-  
-Note, that you could also define a radial velocity and known distance if you wanted in the above `.to_apparent()` 
-call. Otherwise, the source will be assumed to be at 1 Gpc, and not moving. 
 
-Next, you can convert the apparent place to a geometric position, referenced to the time when the observed light 
-originated from the source (at the distance defined or assumed).
+or,
 
 ```c++
- ReferencedPosition pos = app.projected();
+ Apparent app = hor.to_apparent(frame, ScalarVelocity(-14.2 * Unit::km / Unit::s), Distance(43.6 * Unit::pc);
+```
+  
+Note, that when radial velocity and/or distance is not explicitly defined, they are assumed as 0 (km/s) and 1 Gpc, 
+respectively. Next, you can convert the apparent place to a geometric position, referenced to the time when the 
+observed light originated from the source (at the distance defined or assumed):
+
+```c++
+ ReferencedPosition pos = app.geometric_position();
 ```
 
 Or, calculate the geometric position relative to the SSB instead...
 
 ```c++
- ReferencedPosition pos_ssb = app.projected().referenced_to_ssb();
+ ReferencedPosition pos_ssb = app.geometric_position().referenced_to_ssb();
 ```
 
 And finally, you can calculate nominal SSB-based ICRS coordinates as:
@@ -396,6 +499,7 @@ given the NOVAS optical refraction model.
 
 ```c++
  Weather weather = ...;    // Define local weather parameters... 
+ 
  Time t_rise = source.rises_above(30.0 * Unit::deg, frame, novas_optical_refraction, weather);
 ```
 
@@ -444,6 +548,7 @@ by the ephemeris service you provided. For major planets you might want to use `
 generic ephemeris handling via a user-provided `novas_ephem_provider`. E.g.:
 
 ```c++
+ // Planet types are handled by the planet provider function.
  auto mars = Planet::mars();
   
  // Ceres will be handled by the generic ephemeris provider function, which let's say 
