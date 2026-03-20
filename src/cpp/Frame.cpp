@@ -175,6 +175,28 @@ Geometric Frame::geometric(const Position& p, const Velocity& v, enum novas_refe
 }
 
 /**
+ * Returns the observer's position w.r.t. the Solar System Barycenter (SSB).
+ *
+ * @return      The Solar system barycentric position of the observer at the time of observation.
+ *
+ * @sa observer_velocity(), observer()
+ */
+Position Frame::observer_position() const {
+  return Position(_novas_frame()->obs_pos, Unit::AU);
+}
+
+/**
+ * Returns the observer's velocity w.r.t. the Solar System Barycenter (SSB).
+ *
+ * @return      The Solar system barycentric velocity of the observer at the time of observation.
+ *
+ * @sa observer_position(), observer()
+ */
+Velocity Frame::observer_velocity() const {
+  return Velocity(_novas_frame()->obs_vel, Unit::AU / Unit::day);
+}
+
+/**
  * Returns a reduced accuracy observing frame for the specified observer at the specified time.
  * Reduced accuracy frames provide 1 mas accuracy typically, and do not require a planet provider
  * to be configured. As such, they offer a simplest way for obtaining astrometric positions for

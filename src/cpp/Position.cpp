@@ -151,19 +151,24 @@ const Position& Position::origin() {
 }
 
 /**
- * Returns a referenced position from this position, for the specified time and Solary-system barycentric
- * position (and optionally a barycentric velocity)
+ * Returns this __equatorial__ position vector as an astrometric position, referenced to the
+ * specified time and Solar-system barycentric observer location.
  *
- * @param time      Astrometric time at which this position is defined.
- * @param ssb_pos   (optional) Solar-system barycentric position vector of the place relative to
- *                  which this position is defined (default: SSB).
- *                  needed (default: stationary).
- * @return
+ * IMPORTANT! Use this method only if you are 100% certain that the position represented by this
+ * instance is an equatorial rectangular position vector in the specified observing frame.
+ *
+ * @param frame         Observing frame (observer location and time of observation)
+ * @param system        (optional) Equatorial coordinate reference system type used for the
+ *                      position and observer location (default: TOD).
+ *
+ * @return              the astrometric position for this observed equatorial position vector,
+ *                      referenced to the time when light was emitted, and the observer location
+ *                      w.r.t. the Solar-system barycenter (SSB).
  */
-ReferencedPosition Position::referenced_to(const Time& time, const Position& ssb_pos) const {
-  ReferencedPosition p = ReferencedPosition(*this, time, ssb_pos);
+AstrometricPosition Position::as_astrometric(const Frame& frame, enum novas_reference_system system) const {
+  AstrometricPosition p = AstrometricPosition(*this, frame, system);
   if(!p.is_valid())
-    novas_trace_invalid("Position::referenced_to()");
+    novas_trace_invalid("Position::as_astrometric()");
   return p;
 }
 
@@ -181,7 +186,7 @@ std::string Position::to_string(int decimals) const {
 /**
  * Returns a reference to a statically defined standard invalid position vector. This invalid
  * vector may be used inside any object that is invalid itself.
- *
+ *`
  * @return    a reference to the static standard invalid vector.
  */
 const Position& Position::undefined() {

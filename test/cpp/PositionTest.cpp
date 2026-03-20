@@ -42,12 +42,16 @@ int main() {
   if(!test.equals("distance()", a.distance().au(), sqrt(14.0), 1e-14)) n++;
   if(!test.equals("to_string()", a.to_string(), "Position (-1.000 AU, 2.000 AU, -3.000 AU)")) n++;
 
-  if(!test.check("referenced_to(invalid)", !x.referenced_to(Time::j2000()).is_valid())) n++;
-  if(!test.check("referenced_to(time invalid)", !a.referenced_to(Time::undefined()).is_valid())) n++;
-  if(!test.check("referenced_to(ref invalid)", !a.referenced_to(Time::j2000(), Position::undefined()).is_valid())) n++;
-  if(!test.check("referenced_to()", a.referenced_to(Time::j2000()).is_valid())) n++;
-  if(!test.check("referenced_to() ==", a.referenced_to(Time::j2000()) == a)) n++;
-  if(!test.check("referenced_to().time()", a.referenced_to(Time::j2000()).time() == Time::j2000())) n++;
+  Frame frame = Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000());
+
+  if(!test.check("as_astrometric(invalid)", !x.as_astrometric(frame).is_valid())) n++;
+  if(!test.check("as_astrometric(frame invalid)", !a.as_astrometric(Frame::undefined()).is_valid())) n++;
+
+  AstrometricPosition ap = a.as_astrometric(frame);
+  if(!test.check("as_astrometric()", ap.is_valid())) n++;
+  if(!test.check("as_astrometric() ==", ap == a)) n++;
+  if(!test.check("as_astrometric().obs_time()", ap.obs_time() == Time::j2000())) n++;
+  if(!test.check("as_astrometric().emit_time()", ap.emit_time() == (Time::j2000() - (a.distance().m() / Constant::c)))) n++;
 
   Position ai = a.inv();
   if(!test.equals("x() inv", ai.x(), -a.x())) n++;

@@ -59,10 +59,10 @@ int main() {
 
   double v[3] = {0.0};
   novas_app_to_geom(frame._novas_frame(), NOVAS_TOD, p.ra, p.dec, p.dis, v);
-  ReferencedPosition rp = tod.geometric_position();
-  if(!test.check("geometric_position()", rp.is_valid())) n++;
-  if(!test.check("geometric_position() ==", rp == Position(v, Unit::AU))) n++;
-  if(!test.check("geometric_position(frame invalid)", !x.geometric_position().is_valid())) n++;
+  AstrometricPosition rp = tod.astrometric_position();
+  if(!test.check("astrometric_position()", rp.is_valid())) n++;
+  if(!test.check("astrometric_position() ==", rp == Position(v, Unit::AU))) n++;
+  if(!test.check("astrometric_position(frame invalid)", !x.astrometric_position().is_valid())) n++;
 
   double ra_cirs = app_to_cirs_ra(frame.time().jd(), NOVAS_REDUCED_ACCURACY, p.ra);
   if(!test.check("to_cirs()", tod.to_cirs() == Equatorial(ra_cirs * Unit::hour_angle, p.dec * Unit::deg, Equinox::cirs(Time::j2000())))) n++;

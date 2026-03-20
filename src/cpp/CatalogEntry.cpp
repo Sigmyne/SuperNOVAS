@@ -248,7 +248,7 @@ double CatalogEntry::redshift() const {
 }
 
 /**
- * Returns the catalog distance of the source.
+ * Returns the catalog (light-time) distance of the source.
  *
  * @return    the distance of the source, or 1 Gpc if it was not explicitly defined.
  *
@@ -370,7 +370,7 @@ CatalogEntry& CatalogEntry::parallax(const Angle& angle) {
  * Sets the distance of this source, defined at the same epoch as the catalog coordinates,
  * returning itself to enable builder pattern.
  *
- * @param meters    [m] source distance
+ * @param meters    [m] source (light-time) distance
  * @return          itself
  *
  * @sa parallax()
@@ -400,7 +400,7 @@ CatalogEntry& CatalogEntry::distance(double meters) {
  * Sets the distance of this source, defined at the same epoch as the catalog coordinates,
  * returning itself to enable builder pattern.
  *
- * @param dist      source distance
+ * @param dist      source (light-time) distance
  * @return          itself
  *
  * @sa parallax()

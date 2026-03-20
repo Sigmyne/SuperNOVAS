@@ -83,7 +83,7 @@ enum novas_reference_system Geometric::system_type() const {
  *
  * @return    the equatorial position vector.
  *
- * @sa equatorial(), velocity(), system()
+ * @sa astrometric_position(), equatorial(), velocity(), system()
  */
 const Position& Geometric::position() const {
   return _pos;
@@ -344,7 +344,7 @@ Geometric Geometric::to_itrs(const EOP& eop) const {
  * @return            a string description of these geometric coordinates.
  */
 std::string Geometric::to_string(int decimals) const {
-  return "Geometric " + position().to_string(decimals) + ", " + velocity().to_string(decimals) + " in " + _frame.to_string();
+  return "Geometric " + Position(position()).to_string(decimals) + ", " + velocity().to_string(decimals) + " in " + _frame.to_string();
 }
 
 /**

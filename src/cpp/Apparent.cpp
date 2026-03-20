@@ -200,15 +200,15 @@ double Apparent::redshift() const {
 }
 
 /**
- * Returns the apparent distance of this source. Note that this is the distance at which the source
- * appears to the observer at the time of observation, which is different from the geometric
- * distance from the source at the same time instant, due to:
+ * Returns the apparent light-time distance of this source. Note that this is the distance at
+ * which the source appears to the observer at the time of observation, which is different from
+ * the geometric distance from the source at the same time instant, due to:
  *
  *  - the motion of a Solar-system source since light originated from it,
  *  - aberration due to the movement of the observer, and
  *  - gravitational bending around the massive Solar-system bodies.
  *
- * @return the apparent distance of the source from the observer
+ * @return the apparent (light-time) distance of the source from the observer
  */
 Coordinate Apparent::distance() const {
   return Coordinate(_pos.dis * Unit::au);
@@ -308,19 +308,14 @@ Horizontal Apparent::to_horizontal() const {
  * @return        The position referenced to the given Solar-system body or place, and antedated
  *                for light travel time for this apparent position.
  */
-ReferencedPosition Apparent::geometric_position() const {
-  const novas_frame *f = _frame._novas_frame();
-
-  Time t = _frame.time() - (_pos.dis * Unit::AU / Constant::c);
-  Position ref = Position(f->obs_pos, Unit::au);
-
+AstrometricPosition Apparent::astrometric_position() const {
   double p[3] = {0.0};
   if(novas_app_to_geom(_frame._novas_frame(), NOVAS_TOD, _pos.ra, _pos.dec, _pos.dis, p) != 0) {
-    novas_trace_invalid("Apparent::geometric_position()");
-    return ReferencedPosition(Position::undefined(), t, ref);
+    novas_trace_invalid("Apparent::astrometric_position()");
+    return AstrometricPosition(Position::undefined(), _frame, NOVAS_TOD);
   }
 
-  return ReferencedPosition(Position(p, Unit::au), t, ref);
+  return AstrometricPosition(Position(p, Unit::au), _frame, NOVAS_TOD);
 }
 
 /**

@@ -35,7 +35,7 @@ class Constant;
 class Validating;
 class Vector;
 class   Position;
-class     ReferencedPosition;
+class     AstrometricPosition;
 class   Velocity;
 class Equinox;
 class Coordinate;
@@ -704,7 +704,7 @@ public:
 
   Spherical to_spherical() const;
 
-  ReferencedPosition referenced_to(const Time& time, const Position& ssb_pos = Position::origin()) const;
+  AstrometricPosition as_astrometric(const Frame& frame, enum novas_reference_system system = NOVAS_TOD) const;
 
   virtual std::string to_string(int decimals = 3) const override;
 
@@ -1719,6 +1719,10 @@ public:
 
   Geometric geometric(const Position& p, const Velocity& v, enum novas_reference_system system = NOVAS_TOD) const;
 
+  Position observer_position() const;
+
+  Velocity observer_velocity() const;
+
   std::string to_string() const;
 
   static Frame reduced_accuracy(const Observer& obs, const Time& time);
@@ -2276,7 +2280,7 @@ public:
   Horizontal to_horizontal() const;
 
   /// @ingroup geometric
-  ReferencedPosition geometric_position() const;
+  AstrometricPosition astrometric_position() const;
 
   std::string to_string(int decimals = 3) const;
 
@@ -2421,35 +2425,43 @@ public:
 };
 
 /**
- * The geometric 3D position of an object, referenced to the Solar System Barycenter (SSB) or else
- * to a major planet (or Sun, Moon, EMB...) or place in the Solar-system at a specific astrometric
- * time.
+ * The astrometric 3D geometric equatorial position of an object, referenced to the Solar System
+ * Barycenter (SSB) or place in the Solar-system w.r.t. the SSB, at a specific astrometric time.
  *
- * @sa Geometric, Apparent::geometric_position(), Position::referenced_to()
+ * @sa Geometric, Apparent::astrometric_position(), Position::as_astrometric()
  *
  * @ingroup geometric
  */
-class ReferencedPosition : public Position {
+class AstrometricPosition : public Position {
   private:
-    Time _time;
-    Position _origin;
+    Time _emit_time;
+    Position _obs_pos;
+    enum novas_reference_system _ref_sys;
 
-    ReferencedPosition() : Position(), _time(Time::undefined()), _origin(Position::undefined()) {}
+    AstrometricPosition() : Position(), _emit_time(Time::undefined()), _obs_pos(Position::undefined()), _ref_sys((enum novas_reference_system) -1) {}
+
+    AstrometricPosition(const Position& equ_pos, const Time& time, const Position& ref_pos, enum novas_reference_system system);
 
   public:
 
-    ReferencedPosition(const Position& p, const Time& time, const Position& ref_pos = Position::origin());
+    AstrometricPosition(const Position& equ_pos, const Frame& frame, enum novas_reference_system system = NOVAS_TOD);
 
     const Position& reference() const;
 
-    const Time& time() const;
+    enum novas_reference_system system_type() const;
+
+    /// @ingroup time
+    const Time& emit_time() const;
+
+    /// @ingroup time
+    Time obs_time() const;
 
     /// @ingroup equatorial
-    Equatorial equatorial(enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
+    Equatorial as_equatorial() const;
 
-    ReferencedPosition referenced_to(const Position& ssb_pos) const;
+    AstrometricPosition referenced_to(const Position& ssb_pos) const;
 
-    ReferencedPosition referenced_to_ssb() const;
+    AstrometricPosition referenced_to_ssb() const;
 
     std::string to_string(int decimals = 3) const override;
 };

@@ -464,19 +464,19 @@ respectively. Next, you can convert the apparent place to a geometric position, 
 observed light originated from the source (at the distance defined or assumed):
 
 ```c++
- ReferencedPosition pos = app.geometric_position();
+ AstrometricPosition pos = app.astrometric_position();
 ```
 
 Or, calculate the geometric position relative to the SSB instead...
 
 ```c++
- ReferencedPosition pos_ssb = app.geometric_position().referenced_to_ssb();
+ AstrometricPosition pos_ssb = app.astrometric_position().referenced_to_ssb();
 ```
 
 And finally, you can calculate nominal SSB-based ICRS coordinates as:
 
 ```c++
- Equatorial icrs = pos_ssb.equatorial().to_icrs();
+ Equatorial icrs = pos_ssb.as_equatorial().to_icrs();
 ```
 
 
