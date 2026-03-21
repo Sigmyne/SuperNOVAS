@@ -54,7 +54,10 @@ ScalarVelocity::ScalarVelocity(const Coordinate& d, const Interval& time) : _ms(
  * @sa operator-()
  */
 ScalarVelocity ScalarVelocity::operator+(const ScalarVelocity& r) const {
-  return ScalarVelocity((beta() + r.beta()) / (1 + beta() * r.beta()) * Constant::c);
+  ScalarVelocity v((beta() + r.beta()) / (1 + beta() * r.beta()) * Constant::c);
+  if(!v.is_valid())
+    novas_trace_invalid("ScalarVelocity::operator+()");
+  return v;
 }
 
 /**
@@ -67,7 +70,10 @@ ScalarVelocity ScalarVelocity::operator+(const ScalarVelocity& r) const {
  * @sa operator+()
  */
 ScalarVelocity ScalarVelocity::operator-(const ScalarVelocity& r) const {
-  return ScalarVelocity((beta() - r.beta()) / (1 + beta() * r.beta()) * Constant::c);
+  ScalarVelocity v((beta() - r.beta()) / (1 + beta() * r.beta()) * Constant::c);
+  if(!v.is_valid())
+    novas_trace_invalid("ScalarVelocity::operator-()");
+  return v;
 }
 
 /**
@@ -129,7 +135,10 @@ bool ScalarVelocity::operator!=(const ScalarVelocity& speed) const {
  * @return    the absolute value of this (possibly signed) speed.
  */
 ScalarVelocity ScalarVelocity::abs() const {
-  return ScalarVelocity(fabs(_ms));
+  ScalarVelocity v(fabs(_ms));
+  if(!v.is_valid())
+    novas_trace_invalid("ScalarVelocity::abs()");
+  return v;
 }
 
 /**
@@ -195,7 +204,7 @@ double ScalarVelocity::Gamma() const {
  * @sa m_per_s(), km_per_s(), au_per_day(), Gamma()
  */
 double ScalarVelocity::redshift() const {
-  return novas_v2z(km_per_s());
+  return novas_check_nan("ScalarVelocity::redshift", novas_v2z(km_per_s()));
 }
 
 /**
@@ -207,7 +216,10 @@ double ScalarVelocity::redshift() const {
  * @sa operator*(), Velocity::travel()
  */
 Coordinate ScalarVelocity::travel(double seconds) const {
-  return Coordinate(_ms * seconds);
+  Coordinate x(_ms * seconds);
+  if(!x.is_valid())
+    novas_trace_invalid("ScalarVelocity::travel()");
+  return x;
 }
 
 /**
@@ -231,7 +243,10 @@ Coordinate ScalarVelocity::travel(const Interval& time) const {
  * @sa travel()
  */
 Coordinate ScalarVelocity::operator*(const Interval& time) const {
-  return travel(time);
+  Coordinate x = travel(time);
+  if(!x.is_valid())
+    novas_trace_invalid("ScalarVelocity::operator*()");
+  return x;
 }
 
 /**

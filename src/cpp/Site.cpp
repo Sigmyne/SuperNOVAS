@@ -124,7 +124,10 @@ const on_surface *Site::_on_surface() const {
  * @sa altitude()
  */
 const Angle Site::longitude() const {
-  return Angle(_site.longitude * Unit::deg);
+  Angle a(_site.longitude * Unit::deg);
+  if(!a.is_valid())
+    novas_trace_invalid("Site::longitude()");
+  return a;
 }
 
 /**
@@ -137,7 +140,10 @@ const Angle Site::longitude() const {
  * @sa altitude()
  */
 const Angle Site::latitude() const {
-  return Angle(_site.latitude * Unit::deg);
+  Angle a(_site.latitude * Unit::deg);
+  if(!a.is_valid())
+    novas_trace_invalid("Site::latitude()");
+  return a;
 }
 
 /**
@@ -150,7 +156,10 @@ const Angle Site::latitude() const {
  * @sa latitude()
  */
 const Coordinate Site::altitude() const {
-  return Coordinate(_site.height * Unit::m);
+  Coordinate h(_site.height * Unit::m);
+  if(!h.is_valid())
+    novas_trace_invalid("Site::altitude()");
+  return h;
 }
 
 /**
@@ -218,7 +227,10 @@ bool Site::operator!=(const Site& site) const {
 Site Site::itrf_transformed(int from_year, int to_year) const {
   on_surface s = {};
   novas_itrf_transform_site(from_year, &_site, to_year, &s);
-  return Site(s.longitude * Unit::deg, s.latitude * Unit::deg, s.height * Unit::m);
+  Site site(s.longitude * Unit::deg, s.latitude * Unit::deg, s.height * Unit::m);
+  if(!site.is_valid())
+    novas_trace_invalid("Site::itrf_transformed()");
+  return site;
 }
 
 /**
@@ -232,7 +244,10 @@ Site Site::itrf_transformed(int from_year, int to_year) const {
 Position Site::itrs_to_enu(const Position& p) const {
   double x[3] = {0.0};
   novas_itrs_to_enu(p._array(), _site.longitude, _site.latitude, x);
-  return Position(x);
+  Position p1(x);
+  if(!p1.is_valid())
+    novas_trace_invalid("Site::enu_to_itrs(Position&)");
+  return p1;
 }
 
 /**
@@ -243,10 +258,13 @@ Position Site::itrs_to_enu(const Position& p) const {
  *
  * @sa enu_to_itrf()
  */
-Velocity Site::itrs_to_enu(const Velocity& p) const {
+Velocity Site::itrs_to_enu(const Velocity& v) const {
   double x[3] = {0.0};
-  novas_itrs_to_enu(p._array(), _site.longitude, _site.latitude, x);
-  return Velocity(x);
+  novas_itrs_to_enu(v._array(), _site.longitude, _site.latitude, x);
+  Velocity v1(x);
+  if(!v1.is_valid())
+    novas_trace_invalid("Site::enu_to_itrs(Velocity&)");
+  return v1;
 }
 
 /**
@@ -260,7 +278,10 @@ Velocity Site::itrs_to_enu(const Velocity& p) const {
 Position Site::enu_to_itrs(const Position& p) const {
   double x[3] = {0.0};
   novas_enu_to_itrs(p._array(), _site.longitude, _site.latitude, x);
-  return Position(x);
+  Position p1(x);
+  if(!p1.is_valid())
+    novas_trace_invalid("Site::enu_to_itrs(Position&)");
+  return p1;
 }
 
 /**
@@ -271,10 +292,13 @@ Position Site::enu_to_itrs(const Position& p) const {
  *
  * @sa itrf_to_enu()
  */
-Velocity Site::enu_to_itrs(const Velocity& p) const {
+Velocity Site::enu_to_itrs(const Velocity& v) const {
   double x[3] = {0.0};
-  novas_enu_to_itrs(p._array(), _site.longitude, _site.latitude, x);
-  return Velocity(x);
+  novas_enu_to_itrs(v._array(), _site.longitude, _site.latitude, x);
+  Velocity v1(x);
+  if(!v1.is_valid())
+    novas_trace_invalid("Site::enu_to_itrs(Velocity&)");
+  return v1;
 }
 
 /**
@@ -283,9 +307,12 @@ Velocity Site::enu_to_itrs(const Velocity& p) const {
  * @return  a new position with the geocentric rectangular coordinates of the site.
  */
 Position Site::xyz() const {
-  double p[3] = {0.0};
-  novas_geodetic_to_cartesian(_site.longitude, _site.latitude, _site.height, NOVAS_GRS80_ELLIPSOID, p);
-  return Position(p);
+  double x[3] = {0.0};
+  novas_geodetic_to_cartesian(_site.longitude, _site.latitude, _site.height, NOVAS_GRS80_ELLIPSOID, x);
+  Position p(x);
+  if(!p.is_valid())
+    novas_trace_invalid("Site::xyz()");
+  return p;
 }
 
 /**

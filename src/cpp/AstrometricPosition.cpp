@@ -108,7 +108,10 @@ const Time& AstrometricPosition::emit_time() const {
  * @sa emit_time(), reference()
  */
 Time AstrometricPosition::obs_time() const {
-  return _emit_time + (distance().m() / Constant::c);
+  Time t = _emit_time + (distance().m() / Constant::c);
+  if(!t.is_valid())
+    novas_trace_invalid("AstrometricPosition::obs_time()");
+  return t;
 }
 
 /**
@@ -127,7 +130,11 @@ Time AstrometricPosition::obs_time() const {
 Equatorial AstrometricPosition::as_equatorial() const {
   double ra = NAN, dec = NAN;
   vector2radec(_array(), &ra, &dec);
-  return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::from_system_type(_ref_sys, obs_time().jd()));
+
+  Equatorial e(ra * Unit::hour_angle, dec * Unit::deg, Equinox::from_system_type(_ref_sys, obs_time().jd()));
+  if(!e.is_valid())
+    novas_trace_invalid("AstrometricPosition::as_equatorial()");
+  return e;
 }
 
 /**
@@ -142,7 +149,10 @@ Equatorial AstrometricPosition::as_equatorial() const {
  * @sa referenced_to_ssb()
  */
 AstrometricPosition AstrometricPosition::referenced_to(const Position& ref_pos) const {
-  return AstrometricPosition(*this + _obs_pos - ref_pos, obs_time(), ref_pos, _ref_sys);
+  AstrometricPosition p(*this + _obs_pos - ref_pos, obs_time(), ref_pos, _ref_sys);
+  if(!p.is_valid())
+    novas_trace_invalid("AstrometricPosition::referenced_to()");
+  return p;
 }
 
 /**
@@ -153,7 +163,10 @@ AstrometricPosition AstrometricPosition::referenced_to(const Position& ref_pos) 
  * @sa referenced_to()
  */
 AstrometricPosition AstrometricPosition::referenced_to_ssb() const {
-  return referenced_to(Position::origin());
+  AstrometricPosition p = referenced_to(Position::origin());
+  if(!p.is_valid())
+    novas_trace_invalid("AstrometricPosition::referenced_to_ssb()");
+  return p;
 }
 
 

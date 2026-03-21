@@ -131,7 +131,10 @@ std::string Pressure::to_string() const {
  * @sa hPa(), kPa(), mbar(), bar(), torr(), atm()
  */
 Pressure Pressure::Pa(double value) {
-  return Pressure(value);
+  Pressure p(value);
+  if(!p.is_valid())
+    novas_trace_invalid("Pressure::Pa(double)");
+  return p;
 }
 
 /**
@@ -143,7 +146,10 @@ Pressure Pressure::Pa(double value) {
  * @sa Pa(), kPa(), mbar(), bar(), torr(), atm()
  */
 Pressure Pressure::hPa(double value) {
-  return Pressure(100.0 * value);
+  Pressure p(100.0 * value);
+  if(!p.is_valid())
+    novas_trace_invalid("Pressure::hPa(double)");
+  return p;
 }
 
 /**
@@ -155,7 +161,10 @@ Pressure Pressure::hPa(double value) {
  * @sa Pa(), hPa(), mbar(), bar(), torr(), atm()
  */
 Pressure Pressure::kPa(double value) {
-  return Pressure(1000.0 * value);
+  Pressure p(1000.0 * value);
+  if(!p.is_valid())
+    novas_trace_invalid("Pressure::kPa(double)");
+  return p;
 }
 
 /**
@@ -167,7 +176,10 @@ Pressure Pressure::kPa(double value) {
  * @sa Pa(), hPa(), kPa(), bar(), torr(), atm()
  */
 Pressure Pressure::mbar(double value) {
-  return Pressure(value * Unit::mbar);
+  Pressure p(value * Unit::mbar);
+  if(!p.is_valid())
+    novas_trace_invalid("Pressure::mbar(double)");
+  return p;
 }
 
 /**
@@ -179,7 +191,10 @@ Pressure Pressure::mbar(double value) {
  * @sa Pa(), hPa(), kPa(), mbar(), torr(), atm()
  */
 Pressure Pressure::bar(double value) {
-  return Pressure(value * Unit::bar);
+  Pressure p(value * Unit::bar);
+  if(!p.is_valid())
+    novas_trace_invalid("Pressure::bar(double)");
+  return p;
 }
 
 /**
@@ -191,7 +206,10 @@ Pressure Pressure::bar(double value) {
  * @sa Pa(), hPa(), kPa(), mbar(), bar(), atm()
  */
 Pressure Pressure::torr(double value) {
-  return Pressure(value * Unit::torr);
+  Pressure p(value * Unit::torr);
+  if(!p.is_valid())
+    novas_trace_invalid("Pressure::torr(double)");
+  return p;
 }
 
 /**
@@ -203,7 +221,10 @@ Pressure Pressure::torr(double value) {
  * @sa Pa(), hPa(), kPa(), mbar(), bar(), torr()
  */
 Pressure Pressure::atm(double value) {
-  return Pressure(value * Unit::atm);
+  Pressure p(value * Unit::atm);
+  if(!p.is_valid())
+    novas_trace_invalid("Pressure::atm(double)");
+  return p;
 }
 
 } // namespace supernovas

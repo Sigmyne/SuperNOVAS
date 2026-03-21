@@ -163,7 +163,10 @@ bool Equatorial::operator!=(const Equatorial& other) const {
  * @sa to_system()
  */
 Equatorial Equatorial::operator>>(const Equinox& system) const {
-  return to_system(system);
+  Equatorial e = to_system(system);
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::operator>>()");
+  return e;
 }
 
 /**
@@ -196,7 +199,10 @@ enum novas_reference_system Equatorial::system_type() const {
  * @return        the angular distance of thereturn Angle::operator+(r);se coordinates to/from the argument.
  */
 Angle Equatorial::distance_to(const Equatorial& other) const {
-  return Spherical::distance_to(other);
+  Angle a = Spherical::distance_to(other);
+  if(!a.is_valid())
+    novas_trace_invalid("Equatorial::distance_to()");
+  return a;
 }
 
 /**
@@ -264,7 +270,11 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
 
   double r = 0.0, d = 0.0;
   vector2radec(p, &r, &d);
-  return Equatorial(r * Unit::hour_angle, d * Unit::deg, system);
+
+  Equatorial e(r * Unit::hour_angle, d * Unit::deg, system);
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::to_system()");
+  return e;
 }
 
 /**
@@ -276,7 +286,10 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
  * @sa to_system()
  */
 Equatorial Equatorial::to_icrs() const {
-  return to_system(Equinox::icrs());
+  Equatorial e = to_system(Equinox::icrs());
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::to_icrs()");
+  return e;
 }
 
 /**
@@ -288,7 +301,10 @@ Equatorial Equatorial::to_icrs() const {
  * @sa to_system(), to_icrs(), to_hip(), to_mod(), to_mod_at_besselian_epoch(), to_tod(), to_cirs()
  */
 Equatorial Equatorial::to_j2000() const {
-  return to_system(Equinox::j2000());
+  Equatorial e = to_system(Equinox::j2000());
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::to_j2000()");
+  return e;
 }
 
 /**
@@ -300,7 +316,10 @@ Equatorial Equatorial::to_j2000() const {
  * @sa to_system(), to_icrs(), to_j2000()
  */
 Equatorial Equatorial::to_hip() const {
-  return to_system(Equinox::mod(NOVAS_JD_HIP));
+  Equatorial e = to_system(Equinox::mod(NOVAS_JD_HIP));
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::to_hip()");
+  return e;
 }
 
 /**
@@ -316,7 +335,11 @@ Equatorial Equatorial::to_hip() const {
 Equatorial Equatorial::to_mod(double jd_tdb) const {
   if(!isfinite(jd_tdb))
       novas_set_errno(EINVAL, "Equatorial::to_mod()", "input Julian Date is NAN or infinite");
-  return to_system(Equinox::mod(jd_tdb));
+
+  Equatorial e = to_system(Equinox::mod(jd_tdb));
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::to_mod()");
+  return e;
 }
 
 /**
@@ -346,7 +369,11 @@ Equatorial Equatorial::to_mod(const Time& time) const {
 Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
   if(!isfinite(year))
       novas_set_errno(EINVAL, "Equatorial::to_mod_at_besselian_epoch()", "input epoch is NAN or infinite");
-  return to_system(Equinox::mod_at_besselian_epoch(year));
+
+  Equatorial e = to_system(Equinox::mod_at_besselian_epoch(year));
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::to_mod_at_besselian_epoch()");
+  return e;
 }
 
 /**
@@ -363,7 +390,11 @@ Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
 Equatorial Equatorial::to_tod(double jd_tdb) const {
   if(!isfinite(jd_tdb))
       novas_set_errno(EINVAL, "Equatorial::to_tod()", "input Julian Date is NAN or infinite");
-  return to_system(Equinox::tod(jd_tdb));
+
+  Equatorial e = to_system(Equinox::tod(jd_tdb));
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::to_tod()");
+  return e;
 }
 
 /**
@@ -395,7 +426,11 @@ Equatorial Equatorial::to_tod(const Time& time) const {
 Equatorial Equatorial::to_cirs(double jd_tdb) const {
   if(!isfinite(jd_tdb))
       novas_set_errno(EINVAL, "Equatorial::to_cirs()", "input Julian Date is NAN or infinite");
-  return to_system(Equinox::cirs(jd_tdb));
+
+  Equatorial e = to_system(Equinox::cirs(jd_tdb));
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::to_cirs()");
+  return e;
 }
 
 /**
@@ -421,7 +456,10 @@ Equatorial Equatorial::to_cirs(const Time& time) const {
  * @sa dec()
  */
 TimeAngle Equatorial::ra() const {
-  return TimeAngle(longitude().rad());
+  TimeAngle ta(longitude().rad());
+  if(!ta.is_valid())
+    novas_trace_invalid("Equatorial::ra()");
+  return ta;
 }
 
 /**
@@ -444,10 +482,12 @@ const Angle& Equatorial::dec() const {
  * @sa Ecliptic::to_equatorial(), to_galactic()
  */
 Ecliptic Equatorial::to_ecliptic() const {
+  static const char *fn = "Equatorial::to_ecliptic()";
+
   double lon, lat;
 
   if(!is_valid()) {
-    novas_set_errno(ERANGE, "Equatorial::to_ecliptic()", "invalid Equatorial instance");
+    novas_set_errno(ERANGE, fn, "invalid Equatorial instance");
     return Ecliptic::undefined();
   }
 
@@ -458,7 +498,11 @@ Ecliptic Equatorial::to_ecliptic() const {
     r -= ira_equinox(_sys.jd(), NOVAS_TRUE_EQUINOX, NOVAS_FULL_ACCURACY);
 
   equ2ecl(_sys.jd(), _sys.equator_type(), NOVAS_FULL_ACCURACY, r, d, &lon, &lat);
-  return Ecliptic(lon * Unit::deg, lat * Unit::deg, _sys);
+
+  Ecliptic e(lon * Unit::deg, lat * Unit::deg, _sys);
+  if(!e.is_valid())
+    novas_trace_invalid(fn);
+  return e;
 }
 
 /**
@@ -470,15 +514,21 @@ Ecliptic Equatorial::to_ecliptic() const {
  * @sa Galactic::to_equatorial(), to_ecliptic()
  */
 Galactic Equatorial::to_galactic() const {
+  static const char *fn = "Equatorial::to_ecliptic()";
+
   if(!is_valid()) {
-    novas_set_errno(ERANGE, "Equatorial::to_galactic()", "invalid Equatorial instance");
+    novas_set_errno(ERANGE, fn, "invalid Equatorial instance");
     return Galactic::undefined();
   }
 
   Equatorial icrs = to_icrs();
   double longitude = 0.0, latitude = 0.0;
   equ2gal(icrs.ra().hours(), icrs.dec().deg(), &longitude, &latitude);
-  return Galactic(longitude * Unit::deg, latitude * Unit::deg);
+
+  Galactic g(longitude * Unit::deg, latitude * Unit::deg);
+  if(!g.is_valid())
+    novas_trace_invalid(fn);
+  return g;
 }
 
 /**

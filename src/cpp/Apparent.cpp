@@ -174,7 +174,10 @@ const sky_pos *Apparent::_sky_pos() const {
  *            point of view.
  */
 Position Apparent::xyz() const {
-  return Position(_pos.r_hat, _pos.dis * Unit::au);
+  Position p(_pos.r_hat, _pos.dis * Unit::au);
+  if(!p.is_valid())
+    novas_trace_invalid("Apparent::xyz()");
+  return p;
 }
 
 /**
@@ -185,7 +188,10 @@ Position Apparent::xyz() const {
  * @sa redshift()
  */
 ScalarVelocity Apparent::radial_velocity() const {
-  return ScalarVelocity(_pos.rv * Unit::km / Unit::sec);
+  ScalarVelocity v(_pos.rv * Unit::km / Unit::sec);
+  if(!v.is_valid())
+    novas_trace_invalid("Apparent::radial_velocity()");
+  return v;
 }
 
 /**
@@ -196,7 +202,7 @@ ScalarVelocity Apparent::radial_velocity() const {
  * @sa radial_velocity()
  */
 double Apparent::redshift() const {
-  return novas_v2z(_pos.rv);
+  return novas_check_nan("Apparent::redshift()", novas_v2z(_pos.rv));
 }
 
 /**
@@ -211,7 +217,10 @@ double Apparent::redshift() const {
  * @return the apparent (light-time) distance of the source from the observer
  */
 Coordinate Apparent::distance() const {
-  return Coordinate(_pos.dis * Unit::au);
+  Coordinate d(_pos.dis * Unit::au);
+  if(!d.is_valid())
+    novas_trace_invalid("Apparent::distance()");
+  return d;
 }
 
 /**
@@ -223,7 +232,10 @@ Coordinate Apparent::distance() const {
  * @sa to_cirs(), ecliptic(), galactic(), to_horizontal()
  */
 Equatorial Apparent::equatorial() const {
-  return Equatorial(_pos.ra * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::tod(_frame.time()));
+  Equatorial e(_pos.ra * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::tod(_frame.time()));
+  if(!e.is_valid())
+    novas_trace_invalid("Apparent::equatorial()");
+  return e;
 }
 
 /**
@@ -235,7 +247,10 @@ Equatorial Apparent::equatorial() const {
  * @sa equatorial(), ecliptic(), galactic(), to_horizontal()
  */
 Equatorial Apparent::to_cirs() const {
-  return Equatorial((_pos.ra - cirs2tod_ra) * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::cirs(_frame.time()));
+  Equatorial e((_pos.ra - cirs2tod_ra) * Unit::hour_angle, _pos.dec * Unit::deg, Equinox::cirs(_frame.time()));
+  if(!e.is_valid())
+    novas_trace_invalid("Apparent::to_cirs()");
+  return e;
 }
 
 /**
@@ -247,7 +262,10 @@ Equatorial Apparent::to_cirs() const {
  * @sa Equatorial::to_ecliptic()
  */
 Ecliptic Apparent::ecliptic() const {
-  return equatorial().to_ecliptic();
+  Ecliptic e = equatorial().to_ecliptic();
+  if(!e.is_valid())
+    novas_trace_invalid("Apparent::ecliptic()");
+  return e;
 }
 
 /**
@@ -259,7 +277,10 @@ Ecliptic Apparent::ecliptic() const {
  * @sa Equatorial::to_galactic()
  */
 Galactic Apparent::galactic() const {
-  return equatorial().to_galactic();
+  Galactic g = equatorial().to_galactic();
+  if(!g.is_valid())
+    novas_trace_invalid("Apparent::to_galactic()");
+  return g;
 }
 
 /**
@@ -297,7 +318,10 @@ Horizontal Apparent::to_horizontal() const {
 
   novas_app_to_hor(_frame._novas_frame(), NOVAS_TOD, ra, dec, NULL, &az, &el);
 
-  return Horizontal(az * Unit::deg, el * Unit::deg);
+  Horizontal h(az * Unit::deg, el * Unit::deg);
+  if(!h.is_valid())
+    novas_trace_invalid("Apparent::to_horizontal()");
+  return h;
 }
 
 /**
@@ -315,7 +339,10 @@ AstrometricPosition Apparent::astrometric_position() const {
     return AstrometricPosition(Position::undefined(), _frame, NOVAS_TOD);
   }
 
-  return AstrometricPosition(Position(p, Unit::au), _frame, NOVAS_TOD);
+  AstrometricPosition a(Position(p, Unit::au), _frame, NOVAS_TOD);
+  if(!a.is_valid())
+    novas_trace_invalid("Apparent::astrometric_position()");
+  return a;
 }
 
 /**

@@ -116,7 +116,10 @@ bool Vector::equals(const Vector& v, double precision) const {
  *                  scaling factor.
  */
 Vector Vector::scaled(double factor) const {
-  return Vector(_component[0] * factor, _component[1] * factor, _component[2] * factor);
+  Vector v(_component[0] * factor, _component[1] * factor, _component[2] * factor);
+  if(!v.is_valid())
+    novas_trace_invalid("Vector::scaled()");
+  return v;
 }
 
 /**
@@ -166,7 +169,10 @@ double Vector::projection_on(const Vector& v) const {
  * @sa theta()
  */
 Angle Vector::phi() const {
-  return Angle(atan2(_component[1], _component[0]));
+  Angle a(atan2(_component[1], _component[0]));
+  if(!a.is_valid())
+    novas_trace_invalid("Vector::phi()");
+  return a;
 }
 
 /**
@@ -177,7 +183,22 @@ Angle Vector::phi() const {
  * @sa phi()
  */
 Angle Vector::theta() const {
-  return Angle(atan2(sqrt(_component[0] * _component[0] + _component[1] * _component[1]), _component[2]));
+  Angle a(atan2(sqrt(_component[0] * _component[0] + _component[1] * _component[1]), _component[2]));
+  if(!a.is_valid())
+    novas_trace_invalid("Vector::theta()");
+  return a;
+}
+
+/**
+ * Returns a unit vector in the direction of this vector.
+ *
+ * @return    a new unit vector in the same direction as this vector.
+ */
+Vector Vector::unit_vector() const {
+  Vector u = scaled(1.0 / abs());
+  if(!u.is_valid())
+    novas_trace_invalid("Vector::unit_vector()");
+  return u;
 }
 
 /**
@@ -198,15 +219,6 @@ std::string Vector::to_string(int decimals) const {
 }
 
 /**
- * Returns a unit vector in the direction of this vector.
- *
- * @return    a new unit vector in the same direction as this vector.
- */
-Vector Vector::unit_vector() const {
-  return scaled(1.0 / abs());
-}
-
-/**
  * Returns a scaled version of the vector in the right-hand side with the factor on the left-hand
  * side
  *
@@ -216,7 +228,10 @@ Vector Vector::unit_vector() const {
  *                  factor.
  */
 Vector operator*(double factor, const Vector& v) {
-  return v * factor;
+  Vector v1 = v * factor;
+  if(!v1.is_valid())
+    novas_trace_invalid("double * Vector");
+  return v1;
 }
 
 

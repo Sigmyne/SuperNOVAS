@@ -79,7 +79,10 @@ Spherical::Spherical(const std::string& lon, const std::string& lat)
  * @return        the angular distance of these coordinates to/from the argument.
  */
 Angle Spherical::distance_to(const Spherical& other) const {
-  return Angle(novas_sep(_lon.deg(), _lat.deg(), other._lon.deg(), other._lat.deg()) * Unit::deg);
+  Angle a(novas_sep(_lon.deg(), _lat.deg(), other._lon.deg(), other._lat.deg()) * Unit::deg);
+  if(!a.is_valid())
+    novas_trace_invalid("Spherical::distance_to()");
+  return a;
 }
 
 /**
@@ -97,7 +100,10 @@ Position Spherical::xyz(const Coordinate& distance) const {
   pos[1] = xy * sin(_lon.rad());
   pos[2] = distance.m() * sin(_lat.rad());
 
-  return Position(pos);
+  Position p(pos);
+  if(!p.is_valid())
+      novas_trace_invalid("Spherical::xyz()");
+  return p;
 }
 
 /**

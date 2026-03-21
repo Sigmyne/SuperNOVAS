@@ -53,7 +53,10 @@ Geometric::Geometric(const Frame& frame, const Position& p, const Velocity& v, e
  * @sa to_system()
  */
 Geometric Geometric::operator>>(enum novas_reference_system system) const {
-  return to_system(system);
+  Geometric g = to_system(system);
+  if(!g.is_valid())
+    novas_trace_invalid("Geometric::operator>>()");
+  return g;
 }
 
 /**
@@ -138,7 +141,10 @@ Equatorial Geometric::equatorial() const {
  * @sa Apparent::ecliptic(), equatorial(), galactic()
  */
 Ecliptic Geometric::ecliptic() const {
-  return equatorial().to_ecliptic();
+  Ecliptic e = equatorial().to_ecliptic();
+  if(!e.is_valid())
+    novas_trace_invalid("Geometric::ecliptic()");
+  return e;
 }
 
 /**
@@ -157,24 +163,31 @@ Ecliptic Geometric::ecliptic() const {
  * @sa Apparent::galactic(), equatorial(), ecliptic()
  */
 Galactic Geometric::galactic() const {
-  return equatorial().to_galactic();
+  Galactic g = equatorial().to_galactic();
+  if(!g.is_valid())
+    novas_trace_invalid("Geometric::galactic()");
+  return g;
 }
 
 Geometric Geometric::to_system(const novas_frame *f, enum novas_reference_system system) const {
+  static const char *fn = "Geometric::to_system()";
+
   novas_transform T = {};
   double p[3] = {0.0}, v[3] = {0.0};
 
   if(novas_make_transform(f, _system, system, &T) != 0) {
-    novas_trace_invalid("Geometric::to_system");
+    novas_trace_invalid(fn);
     return Geometric::undefined();
   }
 
   novas_transform_vector(_pos._array(), &T, p);
   novas_transform_vector(_vel._array(), &T, v);
 
-  return Geometric(_frame, Position(p), Velocity(v), system);
+  Geometric g(_frame, Position(p), Velocity(v), system);
+  if(!g.is_valid())
+    novas_trace_invalid(fn);
+  return g;
 }
-
 
 /**
  * Returns new geometric coordinates that are transformed from these into a different coordinate
@@ -211,7 +224,10 @@ Geometric Geometric::to_system(enum novas_reference_system system) const {
  * @sa to_system(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_icrs() const {
-  return to_system(NOVAS_ICRS);
+  Geometric g = to_system(NOVAS_ICRS);
+  if(!g.is_valid())
+    novas_trace_invalid("Geometric::to_system()");
+  return g;
 }
 
 /**
@@ -224,7 +240,10 @@ Geometric Geometric::to_icrs() const {
  * @sa to_system(), to_icrs(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_j2000() const {
-  return to_system(NOVAS_J2000);
+  Geometric g = to_system(NOVAS_J2000);
+  if(!g.is_valid())
+    novas_trace_invalid("Geometric::to_j2000()");
+  return g;
 }
 
 /**
@@ -237,7 +256,10 @@ Geometric Geometric::to_j2000() const {
  * @sa to_system(), to_icrs(), to_j2000(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_mod() const {
-  return to_system(NOVAS_MOD);
+  Geometric g = to_system(NOVAS_MOD);
+  if(!g.is_valid())
+    novas_trace_invalid("Geometric::to_mod()");
+  return g;
 }
 
 /**
@@ -250,7 +272,10 @@ Geometric Geometric::to_mod() const {
  * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_tod() const {
-  return to_system(NOVAS_TOD);
+  Geometric g = to_system(NOVAS_TOD);
+  if(!g.is_valid())
+    novas_trace_invalid("Geometric::to_tod()");
+  return g;
 }
 
 /**
@@ -264,7 +289,10 @@ Geometric Geometric::to_tod() const {
  * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_cirs() const {
-  return to_system(NOVAS_CIRS);
+  Geometric g = to_system(NOVAS_CIRS);
+  if(!g.is_valid())
+    novas_trace_invalid("Geometric::to_cirs()");
+  return g;
 }
 
 /**
@@ -278,7 +306,10 @@ Geometric Geometric::to_cirs() const {
  * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_itrs()
  */
 Geometric Geometric::to_tirs() const {
-  return to_system(NOVAS_TIRS);
+  Geometric g = to_system(NOVAS_TIRS);
+  if(!g.is_valid())
+    novas_trace_invalid("Geometric::to_tirs()");
+  return g;
 }
 
 /**
@@ -325,7 +356,10 @@ Geometric Geometric::to_itrs(const EOP& eop) const {
       f.dy += 1000.0 * yp;
     }
 
-    return to_system(&f, NOVAS_ITRS);
+    Geometric g = to_system(&f, NOVAS_ITRS);
+    if(!g.is_valid())
+      novas_trace_invalid("Geometric::to_itrs()");
+    return g;
   }
 
   // Or, use observer's EOP

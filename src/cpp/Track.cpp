@@ -5,12 +5,12 @@
  * @author Attila Kovacs
  */
 
+#include <cmath>
+#include <type_traits>
+
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
 /// \endcond
-
-#include <cmath>
-#include <type_traits>
 
 #include "supernovas.h"
 
@@ -188,7 +188,10 @@ template<class CoordType> const Interval& Track<CoordType>::range() const {
  * @sa unchecked_latitude(), unchecked_distance(), unchecked_redshift()
  */
 template<class CoordType> Angle Track<CoordType>::unchecked_longitude(const Time& time) const {
-  return Angle(_lon.value(time - _ref_time));
+  Angle a(_lon.value(time - _ref_time));
+  if(!a.is_valid())
+    novas_trace_invalid("Track::unchecked_longitude()");
+  return a;
 }
 
 /**
@@ -201,7 +204,10 @@ template<class CoordType> Angle Track<CoordType>::unchecked_longitude(const Time
  * @sa unchecked_longitude(), unchecked_distance(), unchecked_redshift()
  */
 template<class CoordType> Angle Track<CoordType>::unchecked_latitude(const Time& time) const {
-  return Angle(_lat.value(time - _ref_time));
+  Angle a(_lat.value(time - _ref_time));
+  if(!a.is_valid())
+    novas_trace_invalid("Track::unchecked_latitude()");
+  return a;
 }
 
 /**
@@ -214,7 +220,10 @@ template<class CoordType> Angle Track<CoordType>::unchecked_latitude(const Time&
  * @sa unchecked_redshift(), unchecked_longitude(), unchecked_latitude()
  */
 template<class CoordType> Coordinate Track<CoordType>::unchecked_distance(const Time& time) const {
-  return Coordinate(_r.value(time - _ref_time));
+  Coordinate c(_r.value(time - _ref_time));
+  if(!c.is_valid())
+    novas_trace_invalid("Track::unchecked_distance()");
+  return c;
 }
 
 /**
@@ -349,8 +358,12 @@ template<class CoordType> Coordinate Track<CoordType>::distance_at(const Time& t
  * @sa longitude(), latitude(), distance(), redshift_at()
  */
 template<class CoordType> ScalarVelocity Track<CoordType>::radial_velocity_at(const Time& time) const {
-  if(is_valid_at(time))
-    return ScalarVelocity(novas_z2v(unchecked_redshift(time)) * (Unit::km / Unit::s));
+  if(is_valid_at(time)) {
+    ScalarVelocity v(novas_z2v(unchecked_redshift(time)) * (Unit::km / Unit::s));
+    if(!v.is_valid())
+      novas_trace_invalid("Track::radial_velocity_at()");
+    return v;
+  }
   novas_set_errno(ERANGE, "Track::radial_velocity_at()", "requested time is outside the trajectory validity range");
   return ScalarVelocity::undefined();
 }
@@ -416,8 +429,12 @@ HorizontalTrack::HorizontalTrack(const Time& ref_time, const Interval& range,
  * @sa EquatorialTrack::projected_at()
  */
 Horizontal HorizontalTrack::projected_at(const Time& time) const {
-  if(is_valid_at(time))
-    return Horizontal(unchecked_longitude(time), unchecked_latitude(time));
+  if(is_valid_at(time)) {
+    Horizontal h(unchecked_longitude(time), unchecked_latitude(time));
+    if(!h.is_valid())
+      novas_trace_invalid("HorizontalTrack::projected_at()");
+    return h;
+  }
   novas_set_errno(ERANGE, "HorizontalTrack::projected_at()", "requested time is outside the trajectory validity range");
   return Horizontal::undefined();
 }
@@ -490,8 +507,12 @@ const HorizontalTrack& HorizontalTrack::undefined() {
  * @sa HorizontalTrack::projected_at()
  */
 Equatorial EquatorialTrack::projected_at(const Time& time) const {
-  if(is_valid_at(time))
-    return Equatorial(unchecked_longitude(time), unchecked_latitude(time), _system);
+  if(is_valid_at(time)) {
+    Equatorial e(unchecked_longitude(time), unchecked_latitude(time), _system);
+    if(!e.is_valid())
+      novas_trace_invalid("EuatorialTrack::projected_at()");
+    return e;
+  }
   novas_set_errno(ERANGE, "EquatorialTrack::projected_at()", "requested time is outside the trajectory validity range");
   return Equatorial::undefined();
 }

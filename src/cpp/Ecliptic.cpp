@@ -165,7 +165,10 @@ bool Ecliptic::operator!=(const Ecliptic& other) const {
  * @sa to_system()
  */
 Ecliptic Ecliptic::operator>>(const Equinox& system) const {
-  return to_system(system);
+  Ecliptic e = to_system(system);
+  if(!e.is_valid())
+    novas_trace_invalid("Ecliptic::operator>>()");
+  return e;
 }
 
 /**
@@ -209,7 +212,10 @@ double Ecliptic::mjd() const {
  * @return        the angular distance of these coordinates to/from the argument.
  */
 Angle Ecliptic::distance_to(const Ecliptic& other) const {
-  return Spherical::distance_to(other);
+  Angle a = Spherical::distance_to(other);
+  if(!a.is_valid())
+    novas_trace_invalid("Ecliptic::distance_to()");
+  return a;
 }
 
 /**
@@ -223,7 +229,9 @@ Angle Ecliptic::distance_to(const Ecliptic& other) const {
  * @sa operator>>(), to_icrs(), to_j2000(), to_mod(), to_tod()
  */
 Ecliptic Ecliptic::to_system(const Equinox& system) const {
-  return to_equatorial().to_system(system).to_ecliptic();
+  Ecliptic e = to_equatorial().to_system(system).to_ecliptic();if(!e.is_valid())
+    novas_trace_invalid("Ecliptic::to_system()");
+  return e;
 }
 
 /**
@@ -236,7 +244,11 @@ Ecliptic Ecliptic::to_system(const Equinox& system) const {
 Ecliptic Ecliptic::to_icrs() const {
   if(_equator == NOVAS_GCRS_EQUATOR)
     return *this;
-  return to_equatorial().to_icrs().to_ecliptic();
+
+  Ecliptic e = to_equatorial().to_icrs().to_ecliptic();
+  if(!e.is_valid())
+    novas_trace_invalid("Ecliptic::to_icrs()");
+  return e;
 }
 
 /**
@@ -250,7 +262,10 @@ Ecliptic Ecliptic::to_j2000() const {
   if(_equator == NOVAS_MEAN_EQUATOR && _jd == NOVAS_JD_J2000)
     return (*this);
 
-  return to_equatorial().to_j2000().to_ecliptic();
+  Ecliptic e = to_equatorial().to_j2000().to_ecliptic();
+  if(!e.is_valid())
+    novas_trace_invalid("Ecliptic::to_j2000()");
+  return e;
 }
 
 /**
@@ -272,7 +287,10 @@ Ecliptic Ecliptic::to_mod(double jd_tdb) const {
   if(_equator == NOVAS_MEAN_EQUATOR && _jd == jd_tdb)
     return (*this);
 
-  return to_equatorial().to_mod(jd_tdb).to_ecliptic();
+  Ecliptic e = to_equatorial().to_mod(jd_tdb).to_ecliptic();
+  if(!e.is_valid())
+    novas_trace_invalid("Ecliptic::to_mod()");
+  return e;
 }
 
 /**
@@ -304,7 +322,10 @@ Ecliptic Ecliptic::to_tod(double jd_tdb) const {
   if(_equator == NOVAS_TRUE_EQUATOR && _jd == jd_tdb)
     return (*this);
 
-  return to_equatorial().to_tod(jd_tdb).to_ecliptic();
+  Ecliptic e = to_equatorial().to_tod(jd_tdb).to_ecliptic();
+  if(!e.is_valid())
+    novas_trace_invalid("Ecliptic::to_tod()");
+  return e;
 }
 
 /**
@@ -339,16 +360,18 @@ Equatorial Ecliptic::to_equatorial() const {
 
     ecl2equ(_jd, _equator, NOVAS_FULL_ACCURACY, longitude().deg(), latitude().deg(), &ra, &dec);
 
-    switch(_equator) {
-      case NOVAS_GCRS_EQUATOR:
-        return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::icrs());
-      case NOVAS_MEAN_EQUATOR:
-        if(_jd == NOVAS_JD_J2000)
-          return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::j2000());
-        else
-          return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::mod(_jd));
-      case NOVAS_TRUE_EQUATOR:
-        return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::tod(_jd));
+    if(isfinite(ra) && isfinite(dec)) {
+      switch(_equator) {
+        case NOVAS_GCRS_EQUATOR:
+          return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::icrs());
+        case NOVAS_MEAN_EQUATOR:
+          if(_jd == NOVAS_JD_J2000)
+            return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::j2000());
+          else
+            return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::mod(_jd));
+        case NOVAS_TRUE_EQUATOR:
+          return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::tod(_jd));
+      }
     }
   }
 
@@ -364,7 +387,10 @@ Equatorial Ecliptic::to_equatorial() const {
  * @sa Galactic::to_ecliptic(), to_equatorial()
  */
 Galactic Ecliptic::to_galactic() const {
-  return to_equatorial().to_galactic();
+  Galactic g = to_equatorial().to_galactic();
+  if(!g.is_valid())
+    novas_trace_invalid("Ecliptic::to_galactic()");
+  return g;
 }
 
 static std::string _sys_type(enum novas_equator_type equator, double jd_tt) {

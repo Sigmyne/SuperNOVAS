@@ -133,7 +133,10 @@ const Angle& EOP::yp() const {
  * @sa leap_seconds()
  */
 Interval EOP::dUT1() const {
-  return Interval(_dut1);
+  Interval dt(_dut1);
+  if(!dt.is_valid())
+    novas_trace_invalid("EOP::dUT1()");
+  return dt;
 }
 
 /**
@@ -148,7 +151,11 @@ Interval EOP::dUT1() const {
 EOP EOP::itrf_transformed(int from_year, int to_year) const {
   double xp1, yp1, t1;
   novas_itrf_transform_eop(from_year, _xp.arcsec(), _yp.arcsec(), _dut1, to_year, &xp1, &yp1, &t1);
-  return EOP(_leap, t1, xp1 * Unit::arcsec, yp1 * Unit::arcsec);
+
+  EOP eop(_leap, t1, xp1 * Unit::arcsec, yp1 * Unit::arcsec);
+  if(!eop.is_valid())
+    novas_trace_invalid("EOP::itrf_transformed()");
+  return eop;
 }
 
 /**

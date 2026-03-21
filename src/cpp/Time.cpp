@@ -34,12 +34,12 @@ static bool is_valid_parms(double dUT1,  enum novas_timescale timescale) {
 
   if(!isfinite(dUT1))
     return novas_error(0, EINVAL, fn, "input dUT1 is NAN");
-  else if(fabs(dUT1) > 1.0)
+  if(fabs(dUT1) > 1.0)
     return novas_error(0, EINVAL, fn, "input dUT1 exceeds +/- 1s limit: %g", dUT1);
-  else if((unsigned) timescale >= NOVAS_TIMESCALES)
+  if((unsigned) timescale >= NOVAS_TIMESCALES)
     return novas_error(0, EINVAL, fn, "invalid timescale: %d", timescale);
-  else
-    return 1;
+
+  return 1;
 }
 
 /**
@@ -462,9 +462,8 @@ double Time::mjd_frac(enum novas_timescale timescale) const {
  */
 double Time::mjd(enum novas_timescale timescale) const {
   long ijd = 0;
-  double fjd = novas_get_split_time(&_ts, timescale, &ijd);
-
-  return novas_check_nan("Time::mjd()", (ijd - (int) NOVAS_JD_MJD0) + fjd - 0.5);
+  double fjd = novas_check_nan("Time::mjd()", novas_get_split_time(&_ts, timescale, &ijd));
+  return (ijd - (int) NOVAS_JD_MJD0) + fjd - 0.5;
 }
 
 /**
@@ -498,7 +497,10 @@ int Time::leap_seconds() const {
  * @sa leap_seconds()
  */
 Interval Time::dUT1() const {
-  return Interval(_ts.dut1);
+  Interval i(_ts.dut1);
+  if(!i.is_valid())
+    novas_trace_invalid("Time::dUT1()");
+  return i;
 }
 
 /**
@@ -520,7 +522,10 @@ double Time::epoch() const {
  * @sa gmst(), lst(), era()
  */
 TimeAngle Time::gst(enum novas_accuracy accuracy) const {
-  return TimeAngle(novas_time_gst(&_ts, accuracy) * Unit::hour_angle);
+  TimeAngle ta(novas_time_gst(&_ts, accuracy) * Unit::hour_angle);
+  if(!ta.is_valid())
+    novas_trace_invalid("Time::gst()");
+  return ta;
 }
 
 /**
@@ -532,7 +537,10 @@ TimeAngle Time::gst(enum novas_accuracy accuracy) const {
  */
 TimeAngle Time::gmst() const {
   double jd_ut1 = novas_get_time(&_ts, NOVAS_UT1);
-  return TimeAngle(novas_gmst(jd_ut1, _ts.ut1_to_tt) * Unit::hour_angle);
+  TimeAngle ta(novas_gmst(jd_ut1, _ts.ut1_to_tt) * Unit::hour_angle);
+  if(!ta.is_valid())
+    novas_trace_invalid("Time::gmst()");
+  return ta;
 }
 
 /**
@@ -546,7 +554,10 @@ TimeAngle Time::gmst() const {
  * @sa gst(), era()
  */
 TimeAngle Time::lst(const Site& site, enum novas_accuracy accuracy) const {
-  return TimeAngle(novas_time_lst(&_ts, site.longitude().deg(), accuracy) * Unit::hour_angle);
+  TimeAngle ta(novas_time_lst(&_ts, site.longitude().deg(), accuracy) * Unit::hour_angle);
+  if(!ta.is_valid())
+    novas_trace_invalid("Time::lst()");
+  return ta;
 }
 
 /**
@@ -557,7 +568,10 @@ TimeAngle Time::lst(const Site& site, enum novas_accuracy accuracy) const {
  * @return            The Earth Rotation Angle (ERA) as a time-angle.
  */
 TimeAngle Time::era() const {
-  return TimeAngle(novas_era(_ts.ijd_tt, _ts.fjd_tt - _ts.ut1_to_tt) * Unit::deg);
+  TimeAngle ta(novas_era(_ts.ijd_tt, _ts.fjd_tt - _ts.ut1_to_tt) * Unit::deg);
+  if(!ta.is_valid())
+    novas_trace_invalid("Time::era()");
+  return ta;
 }
 
 /**
@@ -569,7 +583,10 @@ TimeAngle Time::era() const {
  * @sa jd_time_of_day()
  */
 TimeAngle Time::time_of_day(enum novas_timescale timescale) const {
-  return TimeAngle(TWOPI * mjd_frac(timescale));
+  TimeAngle ta(TWOPI * mjd_frac(timescale));
+  if(!ta.is_valid())
+    novas_trace_invalid("Time::time_of_day()");
+  return ta;
 }
 
 /**
@@ -580,7 +597,10 @@ TimeAngle Time::time_of_day(enum novas_timescale timescale) const {
  *                    ... 7:Sunday, or else 0 if the input Julian Date is NAN.
  */
 int Time::day_of_week(enum novas_timescale timescale) const {
-  return novas_day_of_week(jd(timescale));
+  int n = novas_day_of_week(jd(timescale));
+  if(n <= 0)
+    novas_trace("Time::day_of_week()", n, 0);
+  return n;
 }
 
 /**
@@ -594,7 +614,10 @@ int Time::day_of_week(enum novas_timescale timescale) const {
  * @sa next_moon_phase()
  */
 Angle Time::moon_phase() const {
-  return Angle(novas_moon_phase(jd(NOVAS_TDB)) * Unit::deg);
+  Angle a(novas_moon_phase(jd(NOVAS_TDB)) * Unit::deg);
+  if(!a.is_valid())
+    novas_trace_invalid("Time::moon_phase()");
+  return a;
 }
 
 /**
@@ -607,7 +630,10 @@ Angle Time::moon_phase() const {
  * @sa moon_phase()
  */
 Time Time::next_moon_phase(const Angle& phase) const {
-  return Time(novas_next_moon_phase(jd(NOVAS_TDB), phase.deg()), leap_seconds(), dUT1().seconds(), NOVAS_TDB);
+  Time t(novas_next_moon_phase(jd(NOVAS_TDB), phase.deg()), leap_seconds(), dUT1().seconds(), NOVAS_TDB);
+  if(!t.is_valid())
+    novas_trace_invalid("Time::next_moon_phase()");
+  return t;
 }
 
 /**
@@ -705,6 +731,8 @@ Time Time::from_mjd(double mjd, const EOP& eop, enum novas_timescale timescale) 
  * @sa Time(), from_mjd(), j2000(), b1950(), b1900(), hip()
  */
 Time Time::now(const EOP& eop) {
+  if(!eop.is_valid())
+    novas_set_errno(EINVAL, "Time::now()", "input EOP is invalid");
   Time time = Time();
   novas_set_current_time(eop.leap_seconds(), eop.dUT1().seconds(), &time._ts);
   return time;
@@ -722,11 +750,10 @@ Time Time::now(const EOP& eop) {
  * operator-(), shifted()
  */
 Interval Time::offset_from(const Time& time, enum novas_timescale timescale) const {
-  double dt = novas_diff_time_scale(&_ts, &time._ts, timescale);
-  if(isnan(dt))
+  Interval dt(novas_diff_time_scale(&_ts, &time._ts, timescale));
+  if(!dt.is_valid())
     novas_trace_invalid("Time::offset_from()");
-
-  return Interval(dt);
+  return dt;
 }
 
 /**
@@ -750,7 +777,11 @@ Time Time::shifted(double seconds, enum novas_timescale timescale) const {
   fjd += seconds / Unit::day;;
 
   novas_set_split_time(timescale, ijd, fjd, leap_seconds(), dUT1().seconds(), &ts1);
-  return Time(&ts1);
+
+  Time t(&ts1);
+  if(!t.is_valid())
+    novas_trace_invalid("Time::shifted()");
+  return t;
 }
 
 /**
@@ -780,7 +811,10 @@ Time Time::shifted(const Interval& offset, enum novas_timescale timescale) const
  * @return            the calendar date in the desired calendar and timescale of choice.
  */
 CalendarDate Time::to_calendar_date(const Calendar& calendar, enum novas_timescale timescale) const {
-  return calendar.date(jd(timescale));
+ CalendarDate d = calendar.date(jd(timescale));
+ if(!d.is_valid())
+   novas_trace_invalid("Time::to_calendar_date()");
+ return d;
 }
 
 /**
@@ -792,7 +826,7 @@ CalendarDate Time::to_calendar_date(const Calendar& calendar, enum novas_timesca
  * @return            the astronomical calendar date in the timescale of choice.
  */
 CalendarDate Time::to_calendar_date(enum novas_timescale timescale) const {
-  return to_calendar_date(Calendar::astronomical(), timescale);
+   return to_calendar_date(Calendar::astronomical(), timescale);
 }
 
 /**

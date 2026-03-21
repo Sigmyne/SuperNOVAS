@@ -59,7 +59,10 @@ Interval::Interval(double seconds, enum novas_timescale timescale)
  * @return    the distance travelled under this time interval at the specified speed.
  */
 Coordinate Interval::operator*(const ScalarVelocity& v) const {
-  return v.travel(*this);
+  Coordinate x = v.travel(*this);
+  if(!x.is_valid())
+    novas_trace_invalid("Interval::operator*(ScalarVelocity&)");
+  return x;
 }
 
 /**
@@ -69,7 +72,10 @@ Coordinate Interval::operator*(const ScalarVelocity& v) const {
  * @return    the statial vector travelled under this interval at the specified velocity.
  */
 Position Interval::operator*(const Velocity& v) const {
-  return v.travel(*this);
+  Position p = v.travel(*this);
+  if(!p.is_valid())
+    novas_trace_invalid("Interval::operator*(Velocity&)");
+  return p;
 }
 
 /**
@@ -82,7 +88,10 @@ Position Interval::operator*(const Velocity& v) const {
  * @sa operator-()
  */
 Interval Interval::operator+(const Interval& r) const {
-  return from_tt(tt_seconds(*this) + tt_seconds(r), timescale());
+  Interval dt = from_tt(tt_seconds(*this) + tt_seconds(r), timescale());
+  if(!dt.is_valid())
+    novas_trace_invalid("Interval::operator+()");
+  return dt;
 }
 
 /**
@@ -95,7 +104,10 @@ Interval Interval::operator+(const Interval& r) const {
  * @sa operator+()
  */
 Interval Interval::operator-(const Interval& r) const {
-  return from_tt(tt_seconds(*this) - tt_seconds(r), timescale());
+  Interval dt = from_tt(tt_seconds(*this) - tt_seconds(r), timescale());
+  if(!dt.is_valid())
+    novas_trace_invalid("Interval::operator-()");
+  return dt;
 }
 
 /**
@@ -273,7 +285,10 @@ double Interval::julian_centuries() const {
  * @return        the equivalent time interval in the specified timescale
  */
 Interval Interval::to_timescale(enum novas_timescale scale) const {
-  return from_tt(tt_seconds(*this), scale);
+  Interval dt = from_tt(tt_seconds(*this), scale);
+  if(!dt.is_valid())
+    novas_trace_invalid("Interval::to_timescale()");
+  return dt;
 }
 
 /**

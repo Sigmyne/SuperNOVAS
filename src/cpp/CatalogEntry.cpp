@@ -190,7 +190,10 @@ std::string CatalogEntry::name() const {
  * @sa dec(), distance(), parallax(), radial_velocity(), v_lsr(), redshift()
  */
 TimeAngle CatalogEntry::ra() const {
-  return TimeAngle(_entry.ra * Unit::hour_angle);
+  TimeAngle ta(_entry.ra * Unit::hour_angle);
+  if(!ta.is_valid())
+    novas_trace_invalid("CatalogEntry::ra()");
+  return ta;
 }
 
 /**
@@ -202,7 +205,10 @@ TimeAngle CatalogEntry::ra() const {
  * @sa ra(), distance(), parallax(), radial_velocity(), v_lsr(), redshift()
  */
 Angle CatalogEntry::dec() const {
-  return Angle(_entry.dec * Unit::deg);
+  Angle a(_entry.dec * Unit::deg);
+  if(!a.is_valid())
+    novas_trace_invalid("CatalogEntry::dec()");
+  return a;
 }
 
 /**
@@ -215,7 +221,10 @@ Angle CatalogEntry::dec() const {
  * @sa ra(), dec(), distance(), parallax()
  */
 ScalarVelocity CatalogEntry::v_lsr() const {
-  return ScalarVelocity(novas_ssb_to_lsr_vel(_sys.epoch(), _entry.ra, _entry.dec, _entry.radialvelocity) * Unit::km / Unit::sec);
+  ScalarVelocity v(novas_ssb_to_lsr_vel(_sys.epoch(), _entry.ra, _entry.dec, _entry.radialvelocity) * Unit::km / Unit::sec);
+  if(!v.is_valid())
+    novas_trace_invalid("CatalogEntry::v_lsr()");
+  return v;
 }
 
 /**
@@ -230,7 +239,10 @@ ScalarVelocity CatalogEntry::v_lsr() const {
  *
  */
 ScalarVelocity CatalogEntry::radial_velocity() const {
-  return ScalarVelocity(_entry.radialvelocity * Unit::km / Unit::sec);
+  ScalarVelocity v(_entry.radialvelocity * Unit::km / Unit::sec);
+  if(!v.is_valid())
+    novas_trace_invalid("CatalogEntry::radial_velocity()");
+  return v;
 }
 
 /**
@@ -244,7 +256,7 @@ ScalarVelocity CatalogEntry::radial_velocity() const {
  * @sa ra(), dec(), distance(), parallax()
  */
 double CatalogEntry::redshift() const {
-  return novas_v2z(_entry.radialvelocity * Unit::km / Unit::sec);
+  return novas_check_nan("CatalogEntry::redshift", novas_v2z(_entry.radialvelocity * Unit::km / Unit::sec));
 }
 
 /**
@@ -256,7 +268,10 @@ double CatalogEntry::redshift() const {
  * @sa ra(), dec(), radial_velocity(), v_lsr(), redshift()
  */
 Coordinate CatalogEntry::distance() const {
-  return Coordinate(Unit::kpc / _entry.parallax);
+  Coordinate d(Unit::kpc / _entry.parallax);
+  if(!d.is_valid())
+    novas_trace_invalid("CatalogEntry::distance()");
+  return d;
 }
 
 /**
@@ -268,7 +283,10 @@ Coordinate CatalogEntry::distance() const {
  * @sa ra(), dec(), radial_velocity(), v_lsr(), redshift()
  */
 Angle CatalogEntry::parallax() const {
-  return Angle(_entry.parallax * Unit::mas);
+  Angle a(_entry.parallax * Unit::mas);
+  if(!a.is_valid())
+    novas_trace_invalid("CatalogEntry::parallax()");
+  return a;
 }
 
 /**
@@ -279,7 +297,10 @@ Angle CatalogEntry::parallax() const {
  * @sa system(), ra(), dec(), distance()
  */
 Equatorial CatalogEntry::equatorial() const {
-  return Equatorial(ra(), dec(), system());
+  Equatorial e(ra(), dec(), system());
+  if(!e.is_valid())
+    novas_trace_invalid("CatalogEntry::equatorial()");
+  return e;
 }
 
 /**
@@ -288,7 +309,10 @@ Equatorial CatalogEntry::equatorial() const {
  * @return    a new catalog source for this entry.
  */
 CatalogSource CatalogEntry::to_source() const {
-  return CatalogSource(*this);
+  CatalogSource s(*this);
+  if(!s.is_valid())
+    novas_trace_invalid("CatalogEntry::to_source()");
+  return s;
 }
 
 /**

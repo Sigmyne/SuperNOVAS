@@ -127,7 +127,10 @@ CalendarDate Calendar::date(double jd) const {
  * @sa date(), date(double)
  */
 CalendarDate Calendar::date(time_t t, long nanos) const {
-  return CalendarDate(*this, NOVAS_JD_J2000 + ((t - UNIX_UTC_J2000) + nanos * Unit::ns) / Unit::day);
+  CalendarDate d(*this, NOVAS_JD_J2000 + ((t - UNIX_UTC_J2000) + nanos * Unit::ns) / Unit::day);
+  if(!d.is_valid())
+    novas_trace_invalid("Calendar::date()");
+  return d;
 }
 
 /**
@@ -236,7 +239,10 @@ CalendarDate::CalendarDate(const Calendar& calendar, double jd)
  * @return    a new calendar date, at the specified time offset from this one.
  */
 CalendarDate CalendarDate::operator+(const Interval& r) const {
-  return CalendarDate(calendar(), jd() + r.days());
+  CalendarDate d = CalendarDate(calendar(), jd() + r.days());
+  if(!d.is_valid())
+    novas_trace_invalid("CalendarDate::operator+()");
+  return d;
 }
 
 /**
@@ -247,7 +253,10 @@ CalendarDate CalendarDate::operator+(const Interval& r) const {
  * @return    a new calendar date, at the specified time offset, backwards in time, from this one.
  */
 CalendarDate CalendarDate::operator-(const Interval& r) const {
-  return CalendarDate(calendar(), jd() - r.days());
+  CalendarDate d(calendar(), jd() - r.days());
+  if(!d.is_valid())
+    novas_trace_invalid("CalendarDate::operator-(Interval&)");
+  return d;
 }
 
 /**
@@ -258,7 +267,10 @@ CalendarDate CalendarDate::operator-(const Interval& r) const {
  * @return    the time difference (interval) between this calendar date and the argument.
  */
 Interval CalendarDate::operator-(const CalendarDate& r) const {
-  return Interval((jd() - r.jd()) * Unit::day);
+  Interval dt((jd() - r.jd()) * Unit::day);
+  if(!dt.is_valid())
+    novas_trace_invalid("CalendarDate::operator-(CalendarDate&)");
+  return dt;
 }
 
 /**
@@ -547,7 +559,7 @@ int CalendarDate::break_down(struct tm *tm) const {
  * @return    [s] UNIX time, that is seconds since 1 Jan 1970.
  */
 time_t CalendarDate::unix_time() const {
-  return  UNIX_UTC_J2000 + (time_t) round((_jd - NOVAS_JD_J2000) * Unit::day);
+  return UNIX_UTC_J2000 + (time_t) round((_jd - NOVAS_JD_J2000) * Unit::day);
 }
 
 /**
@@ -559,7 +571,10 @@ time_t CalendarDate::unix_time() const {
  * @sa operator>>(Calendar&)
  */
 CalendarDate CalendarDate::to_calendar(const Calendar& calendar) const {
-  return calendar.date(_jd);
+  CalendarDate d = calendar.date(_jd);
+  if(!d.is_valid())
+    novas_trace_invalid("CalendarDate::to_calendar()");
+  return d;
 }
 
 /**
@@ -571,7 +586,10 @@ CalendarDate CalendarDate::to_calendar(const Calendar& calendar) const {
  * @sa to_calendar(Calendar&)
  */
 CalendarDate CalendarDate::operator>>(const Calendar& calendar) const {
-  return to_calendar(calendar);
+  CalendarDate d = to_calendar(calendar);
+  if(!d.is_valid())
+     novas_trace_invalid("CalendarDate::operator>>()");
+   return d;
 }
 /**
  * Converts this calendar date to ans astronomical time representation, given the specified

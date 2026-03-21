@@ -155,7 +155,6 @@ const Observer& Frame::observer() const {
  */
 double Frame::clock_skew(enum novas_timescale timescale) const {
   return novas_check_nan("Frame::clock_skew", novas_clock_skew(&_frame, timescale));
-
 }
 
 /**
@@ -182,7 +181,10 @@ Geometric Frame::geometric(const Position& p, const Velocity& v, enum novas_refe
  * @sa observer_velocity(), observer()
  */
 Position Frame::observer_position() const {
-  return Position(_novas_frame()->obs_pos, Unit::AU);
+  Position p(_novas_frame()->obs_pos, Unit::AU);
+  if(!p.is_valid())
+    novas_trace_invalid("Frame::observer_position()");
+  return p;
 }
 
 /**
@@ -193,7 +195,10 @@ Position Frame::observer_position() const {
  * @sa observer_position(), observer()
  */
 Velocity Frame::observer_velocity() const {
-  return Velocity(_novas_frame()->obs_vel, Unit::AU / Unit::day);
+  Velocity v(_novas_frame()->obs_vel, Unit::AU / Unit::day);
+  if(!v.is_valid())
+    novas_trace_invalid("Frame::observer_velocity()");
+  return v;
 }
 
 /**

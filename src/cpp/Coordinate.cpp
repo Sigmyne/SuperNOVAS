@@ -41,7 +41,10 @@ Coordinate::Coordinate(double meters) : _meters(meters) {
  * @return    the absolute value (length or distance) for this coordinate, as a coordinate itself.
  */
 Coordinate Coordinate::abs() const {
-  return Coordinate(fabs(_meters));
+  Coordinate d(fabs(_meters));
+  if(!d.is_valid())
+    novas_trace_invalid("Coordinate::abs()");
+  return d;
 }
 
 /**
@@ -140,7 +143,10 @@ double Coordinate::Gpc() const {
  * @sa from_parallax()
  */
 Angle Coordinate::parallax() const {
-  return Angle(Unit::arcsec / pc());
+  Angle a(Unit::arcsec / pc());
+  if(!a.is_valid())
+    novas_trace_invalid("Coordinate::parallax()");
+  return a;
 }
 
 /**
@@ -209,7 +215,11 @@ std::string Coordinate::to_string(int decimals) const {
 Coordinate Coordinate::from_parallax(const Angle& parallax) {
   if(!parallax.is_valid())
     novas_set_errno(EINVAL, "Coordinate::from_parallax()", "input parallax is invalid");
-  return Coordinate(Unit::pc / (fabs(parallax.arcsec())));
+
+  Coordinate x(Unit::pc / (fabs(parallax.arcsec())));
+  if(!x.is_valid())
+    novas_trace_invalid("Coordinate::from_parallax()");
+  return x;
 }
 
 /**

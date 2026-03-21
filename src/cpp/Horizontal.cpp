@@ -95,7 +95,10 @@ const Angle& Horizontal::elevation() const {
  * @sa elevation(), azimuth()
  */
 const Angle Horizontal::zenith_angle() const {
-  return Angle(Constant::half_pi - latitude().rad());
+  Angle a(Constant::half_pi - latitude().rad());
+  if(!a.is_valid())
+    novas_trace_invalid("Horizontal::zenith_angle()");
+  return a;
 }
 
 /**
@@ -163,7 +166,10 @@ bool Horizontal::operator!=(const Horizontal& other) const {
  * @return        the angular distance of these coordinates to/from the argument.
  */
 Angle Horizontal::distance_to(const Horizontal& other) const {
-  return Spherical::distance_to(other);
+  Angle a = Spherical::distance_to(other);
+  if(!a.is_valid())
+    novas_trace_invalid("Horizontal::distance_to()");
+  return a;
 }
 
 /**
@@ -181,7 +187,11 @@ Horizontal Horizontal::to_refracted(RefractionModel ref, const Weather& weather,
   on_surface loc = {};
   use_weather(weather, &loc);
   double del = ref ? ref(time.jd(), &loc, NOVAS_REFRACT_ASTROMETRIC, elevation().deg()) : 0.0;
-  return Horizontal(longitude().rad(), latitude().rad() + del * Unit::deg);
+
+  Horizontal hor(longitude().rad(), latitude().rad() + del * Unit::deg);
+  if(!hor.is_valid())
+    novas_trace_invalid("Horizontal::to_refracted()");
+  return hor;
 }
 
 /**
@@ -200,7 +210,11 @@ Horizontal Horizontal::to_unrefracted(RefractionModel ref, const Weather& weathe
   on_surface loc = {};
   use_weather(weather, &loc);
   double del = ref ? ref(time.jd(), &loc, NOVAS_REFRACT_OBSERVED, elevation().deg()) : 0.0;
-  return Horizontal(longitude().rad(), latitude().rad() - del * Unit::deg);
+
+  Horizontal hor(longitude().rad(), latitude().rad() - del * Unit::deg);
+  if(!hor.is_valid())
+    novas_trace_invalid("Horizontal::to_unrefracted()");
+  return hor;
 }
 
 /**
@@ -242,6 +256,7 @@ Apparent Horizontal::to_apparent(const Frame& frame, double rv, double distance)
   p.rv = rv / (Unit::au / Unit::day);
   p.dis = distance / Unit::au;
   radec2vector(p.ra, p.dec, 1.0, p.r_hat);
+
   Apparent a  =Apparent::from_tod_sky_pos(frame, &p);
   if(!a.is_valid())
     novas_trace_invalid(fn);

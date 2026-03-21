@@ -18,14 +18,16 @@ namespace supernovas {
 void Weather::validate() {
   static const char *fn = "Weather()";
 
+  errno = 0;
+
   if(!_temperature.is_valid())
     novas_set_errno(EINVAL, fn, "invalid temperature: %.6g C", _temperature.celsius());
   else if(!_pressure.is_valid())
     novas_set_errno(EINVAL, fn, "invalid pressure: %.6g Pa", _pressure.Pa());
   else if(!isfinite(_humidity) || _humidity < 0.0 || _humidity > 100.0)
     novas_set_errno(EINVAL, fn, "invalid humidity: %.6g %%", _humidity);
-  else
-    _valid = true;
+
+  _valid = (errno == 0);
 }
 
 /**

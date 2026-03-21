@@ -65,7 +65,10 @@ Angle::Angle(const std::string& str) {
  * @sa operator-()
  */
 Angle Angle::operator+(const Angle& r) const {
-  return Angle(rad() + r.rad());
+  Angle a(rad() + r.rad());
+  if(!a.is_valid())
+    novas_trace_invalid("Angle::operator+()");
+  return a;
 }
 
 /**
@@ -77,7 +80,10 @@ Angle Angle::operator+(const Angle& r) const {
  * @sa operator+()
  */
 Angle Angle::operator-(const Angle& r) const {
-  return Angle(rad() - r.rad());
+  Angle a(rad() - r.rad());
+  if(!a.is_valid())
+    novas_trace_invalid("Angle::operator-()");
+  return a;
 }
 
 /**

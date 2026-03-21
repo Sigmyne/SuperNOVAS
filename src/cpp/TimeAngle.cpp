@@ -5,6 +5,9 @@
  * @author Attila Kovacs
  */
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
 
 #include "supernovas.h"
 
@@ -107,7 +110,10 @@ Angle TimeAngle::operator-(const Angle& r) const {
  * @sa operator-()
  */
 TimeAngle TimeAngle::operator+(const TimeAngle& r) const {
-  return TimeAngle(rad() + r.rad());
+  TimeAngle ta(rad() + r.rad());
+  if(!ta.is_valid())
+    novas_trace_invalid("TimeAngle::operator+(TimeAngle&)");
+  return ta;
 }
 
 /**
@@ -120,7 +126,10 @@ TimeAngle TimeAngle::operator+(const TimeAngle& r) const {
  * @sa operator+()
  */
 TimeAngle TimeAngle::operator-(const TimeAngle& r) const {
-  return TimeAngle(rad() - r.rad());
+  TimeAngle ta(rad() - r.rad());
+  if(!ta.is_valid())
+    novas_trace_invalid("TimeAngle::operator-(TimeAngle&)");
+  return ta;
 }
 
 /**
@@ -132,7 +141,10 @@ TimeAngle TimeAngle::operator-(const TimeAngle& r) const {
  * @sa operator-()
  */
 TimeAngle TimeAngle::operator+(const Interval& offset) const {
-  return TimeAngle(rad() + offset.hours() * Unit::hour_angle);
+  TimeAngle ta(rad() + offset.hours() * Unit::hour_angle);
+  if(!ta.is_valid())
+    novas_trace_invalid("TimeAngle::operator+(Interval&)");
+  return ta;
 }
 
 /**
@@ -145,7 +157,10 @@ TimeAngle TimeAngle::operator+(const Interval& offset) const {
  * @sa operator+()
  */
 TimeAngle TimeAngle::operator-(const Interval& offset) const {
-  return TimeAngle(rad() - offset.hours() * Unit::hour_angle);
+  TimeAngle ta(rad() - offset.hours() * Unit::hour_angle);
+  if(!ta.is_valid())
+    novas_trace_invalid("TimeAngle::operator-(Interval&)");
+  return ta;
 }
 
 /**
@@ -158,7 +173,10 @@ TimeAngle TimeAngle::operator-(const Interval& offset) const {
  * @sa minutes(), seconds()
  */
 TimeAngle TimeAngle::hours(double value) {
-  return TimeAngle(value * Unit::hour_angle);
+  TimeAngle ta(value * Unit::hour_angle);
+  if(!ta.is_valid())
+    novas_trace_invalid("TimeAngle::hours(double)");
+  return ta;
 }
 
 /**
@@ -171,7 +189,10 @@ TimeAngle TimeAngle::hours(double value) {
  * @sa hours(), seconds()
  */
 TimeAngle TimeAngle::minutes(double value) {
-  return TimeAngle(value / 60.0 * Unit::hour_angle);
+  TimeAngle ta(value / 60.0 * Unit::hour_angle);
+  if(!ta.is_valid())
+    novas_trace_invalid("TimeAngle::minutes(double)");
+  return ta;
 }
 
 /**
@@ -184,7 +205,10 @@ TimeAngle TimeAngle::minutes(double value) {
  * @sa hours(), minutes()
  */
 TimeAngle TimeAngle::seconds(double value) {
-  return TimeAngle(value / 3600.0 * Unit::hour_angle);
+  TimeAngle ta(value / 3600.0 * Unit::hour_angle);
+  if(!ta.is_valid())
+    novas_trace_invalid("TimeAngle::seconds(double)");
+  return ta;
 }
 
 /**

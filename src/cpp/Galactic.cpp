@@ -137,7 +137,10 @@ bool Galactic::operator!=(const Galactic& other) const {
  * @return        the angular distance of these coordinates to/from the argument.
  */
 Angle Galactic::distance_to(const Galactic& other) const {
-  return Spherical::distance_to(other);
+  Angle a = Spherical::distance_to(other);
+  if(!a.is_valid())
+    novas_trace_invalid("Galactic::distance_to()");
+  return a;
 }
 
 /**
@@ -155,7 +158,11 @@ Equatorial Galactic::to_equatorial() const {
 
   double ra = 0.0, dec = 0.0;
   gal2equ(longitude().deg(), latitude().deg(), &ra, &dec);
-  return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, Equinox::icrs());
+
+  Equatorial e(ra * Unit::hour_angle, dec * Unit::deg, Equinox::icrs());
+  if(!e.is_valid())
+    novas_trace_invalid("Galactic::to_equatorial()");
+  return e;
 }
 
 /**
@@ -166,7 +173,10 @@ Equatorial Galactic::to_equatorial() const {
  * @sa Ecliptic::to_galactic(), to_equatorial()
  */
 Ecliptic Galactic::to_ecliptic() const {
-  return to_equatorial().to_ecliptic();
+  Ecliptic e = to_equatorial().to_ecliptic();
+  if(!e.is_valid())
+    novas_trace_invalid("Galactic::to_ecliptic()");
+  return e;
 }
 
 /**

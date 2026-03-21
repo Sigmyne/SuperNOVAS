@@ -33,7 +33,8 @@ Velocity::Velocity(double x_ms, double y_ms, double z_ms)
 
   if(!_valid)
     novas_trace_invalid(fn);
-  else if(abs() > Constant::c) {
+
+  if(abs() > Constant::c) {
     novas_set_errno(ERANGE, fn, "input velocity exceeds the speed of light");
     _valid = false;
   }
@@ -99,7 +100,10 @@ bool Velocity::operator!=(const Velocity& v) const {
  * @sa operator-()
  */
 Velocity Velocity::operator+(const Velocity& r) const {
-  return Velocity(v_add(x(), r.x()), v_add(y(), r.y()), v_add(z(), r.z()));
+  Velocity v(v_add(x(), r.x()), v_add(y(), r.y()), v_add(z(), r.z()));
+  if(!v.is_valid())
+    novas_trace_invalid("Velocity::operator+()");
+  return v;
 }
 
 /**
@@ -112,7 +116,10 @@ Velocity Velocity::operator+(const Velocity& r) const {
  * @sa operator+()
  */
 Velocity Velocity::operator-(const Velocity& r) const {
-  return Velocity(v_add(x(), -r.x()), v_add(y(), -r.y()), v_add(z(), -r.z()));
+  Velocity v(v_add(x(), -r.x()), v_add(y(), -r.y()), v_add(z(), -r.z()));
+  if(!v.is_valid())
+    novas_trace_invalid("Velocity::operator-()");
+  return v;
 }
 
 /**
@@ -121,7 +128,10 @@ Velocity Velocity::operator-(const Velocity& r) const {
  * @return    the speed (absolute value) of this velocity.
  */
 ScalarVelocity Velocity::speed() const {
-  return ScalarVelocity(abs());
+  ScalarVelocity v(abs());
+  if(!v.is_valid())
+    novas_trace_invalid("Velocity::speed()");
+  return v;
 }
 
 /**
@@ -147,7 +157,10 @@ Position Velocity::travel(const Interval& t) const {
  * @sa operator*(), ScalarVelocity:travel()
  */
 Position Velocity::travel(double seconds) const {
-  return Position(x() * seconds, y() * seconds, z() * seconds);
+  Position p(x() * seconds, y() * seconds, z() * seconds);
+  if(!p.is_valid())
+    novas_trace_invalid("Velocity::travel()");
+  return p;
 }
 
 /**
@@ -160,7 +173,10 @@ Position Velocity::travel(double seconds) const {
  * @sa travel(),  ScalarVelocity:travel()
  */
 Position Velocity::operator*(const Interval& t) const {
-  return travel(t);
+  Position p = travel(t);
+  if(!p.is_valid())
+    novas_trace_invalid("Velocity::operator*()");
+  return p;
 }
 
 
@@ -171,7 +187,10 @@ Position Velocity::operator*(const Interval& t) const {
  * @return    the velocity in the opposite direction.
  */
 Velocity Velocity::inv() const {
-  return Velocity(-_component[0], -_component[1], -_component[2]);
+  Velocity v(-_component[0], -_component[1], -_component[2]);
+  if(!v.is_valid())
+    novas_trace_invalid("Velocity::inv()");
+  return v;
 }
 
 /**

@@ -93,7 +93,7 @@ Apparent Source::apparent_in(const Frame& frame) const {
       return app;
   }
 
-  novas_trace_invalid("Source::apparent_in");
+  novas_trace_invalid("Source::apparent_in()");
   return Apparent::undefined();
 }
 
@@ -150,7 +150,7 @@ Geometric Source::geometric_in(const Frame& frame, enum novas_reference_system s
     );
   }
 
-  novas_trace_invalid("Source::geometric_in");
+  novas_trace_invalid("Source::geometric_in()");
   return Geometric::undefined();
 }
 
@@ -188,7 +188,7 @@ Time Source::rises_above(const Angle& el, const Frame &frame, RefractionModel re
     s->pressure = weather.pressure().mbar();
     s->humidity = weather.humidity();
 
-    Time t = Time(novas_check_nan(fn, novas_rises_above(el.deg(), &_object, &f, ref)), extract_eop(frame));
+    Time t(novas_check_nan(fn, novas_rises_above(el.deg(), &_object, &f, ref)), extract_eop(frame));
     return t;
   }
 
@@ -499,10 +499,10 @@ Coordinate SolarSystemSource::helio_distance(const Time& time) const {
  * @sa helio_distance()
  */
 ScalarVelocity SolarSystemSource::helio_rate(const Time& time) const {
-  double r = NAN;
-  novas_helio_dist(time.jd(NOVAS_TDB), &_object, &r);
-  novas_check_nan("SolarSystemSource::helio_rate()", r);
-  return ScalarVelocity(r * Unit::au / Unit::day);
+  double v = NAN;
+  novas_helio_dist(time.jd(NOVAS_TDB), &_object, &v);
+  novas_check_nan("SolarSystemSource::helio_rate()", v);
+  return ScalarVelocity(v * Unit::au / Unit::day);
 }
 
 /**
@@ -725,6 +725,7 @@ double Planet::mass() const {
 Apparent Planet::approx_apparent_in(const Frame& frame) const {
   sky_pos pos = {};
   novas_approx_sky_pos(novas_id(), frame._novas_frame(), NOVAS_TOD, &pos);
+
   Apparent a = Apparent::from_tod_sky_pos(frame, &pos);
   if(!a.is_valid())
     novas_trace_invalid("Source::apparent_in()");
@@ -1056,7 +1057,10 @@ const novas_orbital * OrbitalSource::_novas_orbital() const {
  * @return    the Keplerian orbital parameters.
  */
 Orbital OrbitalSource::orbital() const {
-  return Orbital::from_novas_orbit(&_object.orbit);
+  Orbital orbit = Orbital::from_novas_orbit(&_object.orbit);
+  if(!orbit.is_valid())
+    novas_trace_invalid("OrbitalSource::orbit()");
+  return orbit;
 }
 
 std::string OrbitalSource::to_string() const {

@@ -151,7 +151,7 @@ std::string Observer::to_string() const {
 GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
   GeodeticObserver o = GeodeticObserver(site, eop);
   if(!o.is_valid())
-    novas_trace_invalid("Observer::on_earth");
+    novas_trace_invalid("Observer::on_earth()");
   return o;
 }
 
@@ -171,7 +171,7 @@ GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
 GeodeticObserver Observer::moving_on_earth(const Site& geodetic, const Velocity& itrs_vel, const EOP& eop) {
   GeodeticObserver o = GeodeticObserver(geodetic, itrs_vel, eop);
   if(!o.is_valid())
-    novas_trace_invalid("Observer::on_earth");
+    novas_trace_invalid("Observer::on_earth()");
   return o;
 }
 
@@ -191,7 +191,7 @@ GeodeticObserver Observer::moving_on_earth(const Site& geodetic, const Velocity&
 GeodeticObserver Observer::moving_on_earth(const Site& site, const EOP& eop, const ScalarVelocity& horizontal, const Angle& direction, const ScalarVelocity& vertical) {
   GeodeticObserver o = GeodeticObserver(site, eop, horizontal, direction, vertical);
   if(!o.is_valid())
-    novas_trace_invalid("Observer::on_earth");
+    novas_trace_invalid("Observer::on_earth()");
   return o;
 }
 
@@ -207,7 +207,7 @@ GeodeticObserver Observer::moving_on_earth(const Site& site, const EOP& eop, con
 GeocentricObserver Observer::in_earth_orbit(const Position& pos, const Velocity& vel) {
   GeocentricObserver o = GeocentricObserver(pos, vel);
   if(!o.is_valid())
-    novas_trace_invalid("Observer::in_earth_orbit");
+    novas_trace_invalid("Observer::in_earth_orbit()");
   return o;
 }
 
@@ -236,7 +236,7 @@ GeocentricObserver Observer::at_geocenter() {
 SolarSystemObserver Observer::in_solar_system(const Position& pos, const Velocity& vel) {
   SolarSystemObserver o = SolarSystemObserver(pos, vel);
   if(!o.is_valid())
-    novas_trace_invalid("Observer::in_solar_system");
+    novas_trace_invalid("Observer::in_solar_system()");
   return o;
 }
 
@@ -310,7 +310,10 @@ bool GeocentricObserver::is_geocentric() const {
  * @sa geocentric_velocity()
  */
 Position GeocentricObserver::geocentric_position() const {
-  return Position(_observer.near_earth.sc_pos, Unit::km);
+  Position pos(_observer.near_earth.sc_pos, Unit::km);
+  if(!pos.is_valid())
+    novas_trace_invalid("GeocentricObserver::geocentric_position()");
+  return pos;
 }
 
 /**
@@ -321,7 +324,10 @@ Position GeocentricObserver::geocentric_position() const {
  * @sa geocentric_position()
  */
 Velocity GeocentricObserver::geocentric_velocity() const {
-  return Velocity(_observer.near_earth.sc_vel, Unit::km / Unit::sec);
+  Velocity vel(_observer.near_earth.sc_vel, Unit::km / Unit::sec);
+  if(!vel.is_valid())
+    novas_trace_invalid("GeocentricObserver::geocentric_velocity()");
+  return vel;
 }
 
 /**
@@ -391,7 +397,10 @@ const Observer *SolarSystemObserver::copy() const {
  * @sa ssb_velocity()
  */
 Position SolarSystemObserver::ssb_position() const {
-  return Position(_observer.near_earth.sc_pos, Unit::au);
+  Position pos(_observer.near_earth.sc_pos, Unit::au);
+  if(!pos.is_valid())
+    novas_trace_invalid("SolarSystemObserver::ssb_position()");
+  return pos;
 }
 
 /**
@@ -403,7 +412,10 @@ Position SolarSystemObserver::ssb_position() const {
  * @sa ssb_position()
  */
 Velocity SolarSystemObserver::ssb_velocity() const {
-  return Velocity(_observer.near_earth.sc_vel, Unit::au / Unit::day);
+  Velocity vel(_observer.near_earth.sc_vel, Unit::au / Unit::day);
+  if(!vel.is_valid())
+    novas_trace_invalid("SolarSystemObserver::ssb_velocity()");
+  return vel;
 }
 
 std::string SolarSystemObserver::to_string() const {
@@ -520,7 +532,11 @@ bool GeodeticObserver::is_geodetic() const { return true; }
  */
 Site GeodeticObserver::site() const {
   const on_surface *s = &_observer.on_surf;
-  return Site(s->longitude * Unit::deg, s->latitude * Unit::deg, s->height);
+
+  Site site(s->longitude * Unit::deg, s->latitude * Unit::deg, s->height);
+  if(!site.is_valid())
+    novas_trace_invalid("GeodeticObserver::site()");
+  return site;
 }
 
 /**
@@ -532,7 +548,10 @@ Site GeodeticObserver::site() const {
  * @sa Site::itrs_to_enu()
  */
 Velocity GeodeticObserver::itrs_velocity() const {
-  return Velocity(_observer.near_earth.sc_vel, Unit::km / Unit::s);
+  Velocity vel(_observer.near_earth.sc_vel, Unit::km / Unit::s);
+  if(!vel.is_valid())
+    novas_trace_invalid("GeodeticObserver::itrs_velocity()");
+  return vel;
 }
 
 
@@ -548,7 +567,11 @@ Velocity GeodeticObserver::itrs_velocity() const {
 Velocity GeodeticObserver::enu_velocity() const {
   double v[3] = {0.0};
   novas_itrs_to_enu(_observer.near_earth.sc_vel, _observer.on_surf.longitude, _observer.on_surf.latitude, v);
-  return Velocity(v, Unit::km / Unit::s);
+
+  Velocity vel(v, Unit::km / Unit::s);
+  if(!vel.is_valid())
+    novas_trace_invalid("GeodeticObserver::enu_velocity()");
+  return vel;
 }
 
 

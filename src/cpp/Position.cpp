@@ -93,7 +93,10 @@ bool Position::operator!=(const Position& p) const {
  * @sa operator-()
  */
 Position Position::operator+(const Position& r) const {
-  return Position(x() + r.x(), y() + r.y(), z() + r.z());
+  Position p(x() + r.x(), y() + r.y(), z() + r.z());
+  if(!p.is_valid())
+    novas_trace_invalid("Position::operator-()");
+  return p;
 }
 
 /**
@@ -105,7 +108,10 @@ Position Position::operator+(const Position& r) const {
  * @sa operator+()
  */
 Position Position::operator-(const Position& r) const {
-  return Position(x() - r.x(), y() - r.y(), z() - r.z());
+  Position p(x() - r.x(), y() - r.y(), z() - r.z());
+  if(!p.is_valid())
+    novas_trace_invalid("Position::operator-()");
+  return p;
 }
 
 /**
@@ -115,7 +121,10 @@ Position Position::operator-(const Position& r) const {
  * @return    the distance to the indicated position.
  */
 Coordinate Position::distance() const {
-  return Coordinate(abs());
+  Coordinate l(abs());
+  if(!l.is_valid())
+    novas_trace_invalid("Position::distance()");
+  return l;
 }
 
 /**
@@ -124,7 +133,10 @@ Coordinate Position::distance() const {
  * @return    the spatial inverse position vector of this one.
  */
 Position Position::inv() const {
-  return Position(-_component[0], -_component[1], -_component[2]);
+  Position p(-_component[0], -_component[1], -_component[2]);
+  if(!p.is_valid())
+    novas_trace_invalid("Position::inv()");
+  return p;
 }
 
 /**
@@ -136,7 +148,11 @@ Spherical Position::to_spherical() const {
   double longitude = atan2(_component[1], _component[0]);
   double xy = hypot(_component[0], _component[1]);
   double latitude = atan2(_component[2], xy);
-  return Spherical((isfinite(longitude) || !isfinite(latitude)) ? longitude : 0.0, latitude);
+
+  Spherical s((isfinite(longitude) || !isfinite(latitude)) ? longitude : 0.0, latitude);
+  if(!s.is_valid())
+    novas_trace_invalid("Position::to_spherical()");
+  return s;
 }
 
 /**

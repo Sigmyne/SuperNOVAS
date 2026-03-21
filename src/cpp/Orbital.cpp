@@ -428,7 +428,10 @@ const novas_orbital * Orbital::_novas_orbital() const {
  * @return    a new instance of the orbital system, in which the orbit is defined.
  */
 OrbitalSystem Orbital::system() const {
-  return OrbitalSystem::from_novas_orbital_system(&_orbit.system);
+  OrbitalSystem s = OrbitalSystem::from_novas_orbital_system(&_orbit.system);
+  if(!s.is_valid())
+    novas_trace_invalid("Orbital::system()");
+  return s;
 }
 
 /**
@@ -446,7 +449,10 @@ double Orbital::reference_jd_tdb() const {
  * @return    the semi-major axis (circular) radius of this orbit.
  */
 Coordinate Orbital::semi_major_axis() const {
-  return Coordinate(_orbit.a * Unit::au);
+  Coordinate a(_orbit.a * Unit::au);
+  if(!a.is_valid())
+    novas_trace_invalid("Orbital::semi_major_axis()");
+  return a;
 }
 
 /**
@@ -459,7 +465,10 @@ Coordinate Orbital::semi_major_axis() const {
  * @sa reference_jd_tdb()
  */
 Angle Orbital::reference_mean_anomaly() const {
-  return Angle(_orbit.M0 * Unit::deg);
+  Angle a(_orbit.M0 * Unit::deg);
+  if(!a.is_valid())
+    novas_trace_invalid("Orbital::reference_mean_anomaly()");
+  return a;
 }
 
 /**
@@ -482,7 +491,10 @@ double Orbital::mean_motion() const {
  * @sa mean_motion()
  */
 Interval Orbital::period() const {
-  return Interval(Constant::two_pi / mean_motion());
+  Interval dt(Constant::two_pi / mean_motion());
+  if(!dt.is_valid())
+    novas_trace_invalid("Orbital::period()");
+  return dt;
 }
 
 /**
@@ -506,7 +518,10 @@ double Orbital::eccentricity() const {
  * @sa eccentricity()
  */
 Angle Orbital::periapsis() const {
-  return Angle(_orbit.omega * Unit::deg);
+  Angle a(_orbit.omega * Unit::deg);
+  if(!a.is_valid())
+    novas_trace_invalid("Orbital::periapsis()");
+  return a;
 }
 
 /**
@@ -517,7 +532,10 @@ Angle Orbital::periapsis() const {
  * @sa ascending_node(), pole()
  */
 Angle Orbital::inclination() const {
-  return Angle(_orbit.i * Unit::deg);
+  Angle a(_orbit.i * Unit::deg);
+  if(!a.is_valid())
+    novas_trace_invalid("Orbital::inclination()");
+  return a;
 }
 
 /**
@@ -529,7 +547,10 @@ Angle Orbital::inclination() const {
  * @sa inclination(), pole()
  */
 Angle Orbital::ascending_node() const {
-  return Angle(_orbit.Omega * Unit::deg);
+  Angle a(_orbit.Omega * Unit::deg);
+  if(!a.is_valid())
+    novas_trace_invalid("Orbital::ascending_node()");
+  return a;
 }
 
 /**
@@ -542,7 +563,10 @@ Angle Orbital::ascending_node() const {
  * @sa inclination(), ascending_node()
  */
 Spherical Orbital::pole() const {
-  return Spherical(_orbit.Omega * Unit::deg - Constant::half_pi, Constant::half_pi - _orbit.i * Unit::deg);
+  Spherical s(_orbit.Omega * Unit::deg - Constant::half_pi, Constant::half_pi - _orbit.i * Unit::deg);
+  if(!s.is_valid())
+    novas_trace_invalid("Orbital::pole()");
+  return s;
 }
 
 /**
@@ -557,7 +581,10 @@ Spherical Orbital::pole() const {
  * @sa apsis_rate(), eccentricity(), node_period()
  */
 Interval Orbital::apsis_period() const {
-  return Interval(_orbit.apsis_period * Unit::day);
+  Interval dt(_orbit.apsis_period * Unit::day);
+  if(!dt.is_valid())
+    novas_trace_invalid("Orbital::apsis_period()");
+  return dt;
 }
 
 /**
@@ -572,7 +599,10 @@ Interval Orbital::apsis_period() const {
  * @sa node_rate(), inclination(), apsis_period()
  */
 Interval Orbital::node_period() const {
-  return Interval(_orbit.node_period * Unit::day);
+  Interval dt(_orbit.node_period * Unit::day);
+  if(!dt.is_valid())
+    novas_trace_invalid("Orbital::node_period()");
+  return dt;
 }
 
 /**
@@ -586,7 +616,7 @@ Interval Orbital::node_period() const {
  * @sa apsis_period(), node_rate()
  */
 double Orbital::apsis_rate() const {
-  return Constant::two_pi / apsis_period().seconds();
+  return novas_check_nan("Orbital::apsis_rate()", Constant::two_pi / apsis_period().seconds());
 }
 
 /**
@@ -601,7 +631,7 @@ double Orbital::apsis_rate() const {
  * @sa node_period(), apsis_rate()
  */
 double Orbital::node_rate() const {
-  return Constant::two_pi / node_period().seconds();
+  return novas_check_nan("Orbital::node_rate", Constant::two_pi / node_period().seconds());
 }
 
 /**
@@ -625,14 +655,19 @@ double Orbital::node_rate() const {
  * @sa velocity()
  */
 Position Orbital::position(const Time& time, enum novas_accuracy accuracy) const {
-  double p[3] = {0.0};
+  static const char *fn = "Orbital::velocity()";
 
-  if(novas_orbit_posvel(time.jd(), &_orbit, accuracy, p, NULL) != 0) {
-    novas_trace_invalid("Orbital::position");
+  double x[3] = {0.0};
+
+  if(novas_orbit_posvel(time.jd(), &_orbit, accuracy, x, NULL) != 0) {
+    novas_trace_invalid(fn);
     return Position::undefined();
   }
 
-  return Position(p, Unit::au);
+  Position pos(x, Unit::au);
+  if(!pos.is_valid())
+    novas_trace_invalid(fn);
+  return pos;
 }
 
 /**
@@ -656,14 +691,19 @@ Position Orbital::position(const Time& time, enum novas_accuracy accuracy) const
  * @sa position()
  */
 Velocity Orbital::velocity(const Time& time, enum novas_accuracy accuracy) const {
+  static const char *fn = "Orbital::velocity()";
+
   double v[3] = {0.0};
 
   if(novas_orbit_posvel(time.jd(), &_orbit, accuracy, NULL, v) != 0) {
-    novas_trace_invalid("Orbital::velocity");
+    novas_trace_invalid(fn);
     return Velocity::undefined();
   }
 
-  return Velocity(v, Unit::au / Unit::day);
+  Velocity vel(v, Unit::au / Unit::day);
+  if(!vel.is_valid())
+    novas_trace_invalid(fn);
+  return vel;
 }
 
 /**
@@ -963,7 +1003,10 @@ std::string Orbital::to_string() const {
  *     apsis_period(), apsis_rate()
  */
 Orbital Orbital::from_mean_motion(const OrbitalSystem& system, double jd_tdb, double semi_major_m, double mean_anomaly_rad, double rad_per_sec) {
-  return Orbital(system, jd_tdb, semi_major_m, mean_anomaly_rad, Constant::two_pi / rad_per_sec);
+  Orbital o(system, jd_tdb, semi_major_m, mean_anomaly_rad, Constant::two_pi / rad_per_sec);
+  if(!o.is_valid())
+    novas_trace_invalid("Orbital::from_mean_motion()");
+  return o;
 }
 
 /**
@@ -982,7 +1025,7 @@ Orbital Orbital::from_mean_motion(const OrbitalSystem& system, double jd_tdb, do
  *     apsis_period(), apsis_rate()
  */
 Orbital Orbital::from_mean_motion(const OrbitalSystem& system, const Time& ref_time, const Coordinate& semi_major, const Angle& mean_anomaly, double rad_per_sec) {
-  return Orbital::from_mean_motion(system, ref_time.jd(NOVAS_TDB), semi_major.m(), mean_anomaly.rad(), rad_per_sec);
+  return from_mean_motion(system, ref_time.jd(NOVAS_TDB), semi_major.m(), mean_anomaly.rad(), rad_per_sec);
 }
 
 /**

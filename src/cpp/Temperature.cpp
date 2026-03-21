@@ -86,7 +86,10 @@ std::string Temperature::to_string() const {
  * @sa kelvin(), farenheit()
  */
 Temperature Temperature::celsius(double value) {
-  return Temperature(value);
+  Temperature T(value);
+  if(!T.is_valid())
+    novas_trace_invalid("Temperature::celsius(double)");
+  return T;
 }
 
 /**
@@ -99,7 +102,10 @@ Temperature Temperature::celsius(double value) {
  * @sa celsius(), farenheit()
  */
 Temperature Temperature::kelvin(double value) {
-  return Temperature(value - 273.15);
+  Temperature T(value - 273.15);
+  if(!T.is_valid())
+    novas_trace_invalid("Temperature::kelvin(double)");
+  return T;
 }
 
 /**
@@ -112,7 +118,10 @@ Temperature Temperature::kelvin(double value) {
  * @sa celisus(), kelvin()
  */
 Temperature Temperature::farenheit(double value) {
-  return Temperature((value - 32.0) / 1.8);
+  Temperature T((value - 32.0) / 1.8);
+  if(!T.is_valid())
+    novas_trace_invalid("Temperature::farenheit(double)");
+  return T;
 }
 
 } // namespace supernovas
