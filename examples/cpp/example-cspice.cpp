@@ -129,29 +129,15 @@ int main(int argc, const char *argv[]) {
   //Time t(&ts, eop);
 
 
-
-  // -------------------------------------------------------------------------
-  // You might want to set a provider for precise planet positions so we might
-  // calculate Earth, Sun and major planet positions accurately. If an planet
-  // provider is configured, we can unlock the ultimate (sub-uas) accuracy of
-  // SuperNOVAS.
-  //
-  // There are many ways to set a provider of planet positions. For example,
-  // you may use the CALCEPH library:
-  //
-  // t_calcephbin *planets = calceph_open("path/to/de440s.bsp");
-  // novas_use_calceph(planets);
-
-  // -------------------------------------------------------------------------
-  // Without a planet provider, we are stuck with reduced (mas) precisions
-  // only...
-  enum novas_accuracy accuracy = NOVAS_REDUCED_ACCURACY;      // mas-level precision, typically
-
   // -------------------------------------------------------------------------
   // Initialize the observing frame with the given observer location and
   // time of observation. Without a planet provider, we are stuck with reduced
   // (mas) precisions only...
-  auto frame = obs.frame_at(t, accuracy);
+  auto frame = obs.frame_at(t);
+
+  // Or, if you are using CSPICE without planetary ephemeris data (e.g.
+  // de440s.bsp), you will be stuck with reduced (mas) precisions only...
+  //auto frame = obs.reduced_accuracy_frame_at(t);
 
 
 

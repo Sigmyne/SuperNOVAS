@@ -13,12 +13,20 @@
 ```c
 #include <novas.h>
 
+
+
 cat_entry star;
 object source;
 observer loc;
 novas_timespec time;
 novas_frame frame;
 sky_pos app;
+
+// IERS Earth Orientation Parameters...
+int leap_seconds = 37;
+double dt1 = 0.06256; // [s]
+double dx = 103.4;    // [mas]
+double dy = 396.2;    // [mas]
 
 // Define ICRS coordinates
 make_cat_entry("Antares", "HIP", 80763, 
@@ -29,10 +37,6 @@ make_cat_entry("Antares", "HIP", 80763,
   
 make_cat_object(&star, &source);
 
-
-
-
-
 // Observer location
 make_gps_observer(50.7374, 7.0982, 60.0,
   &loc);
@@ -40,11 +44,11 @@ make_gps_observer(50.7374, 7.0982, 60.0,
 // Set time of observation
 novas_set_str_time(NOVAS_TAI,
   "2025-02-27T19:57:00.728+0200", 
-  LEAP_SECONDS, DUT1, &time);
+  leap_seconds, dut1, &time);
 
 // Observer frame
 novas_make_frame(NOVAS_FULL_ACCURACY, 
-  &loc, &time, DX, DY, &frame);
+  &loc, &time, dx, dy, &frame);
 
 // apparent coordinates in system
 novas_sky_pos(&source, &frame, NOVAS_CIRS, &app);
@@ -64,6 +68,14 @@ using namespace supernovas;
 
 
 
+
+
+// IERS Earth Orientation Parameters...
+EOP eop = EOP(37, 0.06256, 
+     103.4 * Unit::mas, 396.2 * Unit::mas);
+
+
+
 // Define ICRS coordinates
 auto source = CatalogEntry("Antares", 
     "16h 29m 24.45970s", "−26d 25m 55.2094s")
@@ -72,10 +84,6 @@ auto source = CatalogEntry("Antares",
     -23.30 * Unit::mas / Unit::yr)
   .radial_velocity(-3.4 * Unit::km / Unit::s)
   .to_source();
-
-// IERS Earth Orientation Parameters...
-EOP eop = EOP(37, 0.06256, 
-     103.4 * Unit::mas, 396.2 * Unit::mas);
 
 // Observer location
 auto obs = Site::from_GPS(50.7374, 7.0982, 60.0)

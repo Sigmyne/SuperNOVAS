@@ -157,7 +157,7 @@ int main() {
   // -------------------------------------------------------------------------
   // Without a planet provider, we are stuck with reduced (mas) precisions
   // only...
-  enum novas_accuracy accuracy = NOVAS_REDUCED_ACCURACY;      // mas-level precision, typically
+  enum novas_accuracy accuracy = NOVAS_REDUCED_ACCURACY;
 
   // -------------------------------------------------------------------------
   // Initialize the observing frame with the given observer location and

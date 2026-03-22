@@ -293,7 +293,7 @@ Galactic Apparent::galactic() const {
  *  Apparent app = ...;
  *  Horizontal h = app.to_horizontal();
  *  if(!h) {
- *    // Ooops, could not provide valid horizontal coordinates...
+ *    // Oops, could not provide valid horizontal coordinates...
  *    return;
  *  }
  * ```

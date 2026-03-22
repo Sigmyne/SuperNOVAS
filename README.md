@@ -69,7 +69,7 @@ The primary goal of __SuperNOVAS__ is to improve on the original NOVAS C library
  - [Faster calculations](#benchmarks).
  - [New features](#added-functionality).
  - [Refined C99 API](#api-changes) to promote best programming practices.
- - [Thread-safe calculations](USAGE-C99.md#multi-threading-c99).
+ - [Thread-safe calculations](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#multi-threading-c99).
  - [Debug mode](#debug-support) with informative error tracing.
  - [Regression testing](https://codecov.io/gh/Sigmyne/SuperNOVAS) and continuous integration on GitHub.
 
@@ -308,8 +308,9 @@ Or, to stage the installation (to `/usr`) under a 'build root':
 
 > [!NOTE]
 > if you want to build __SuperNOVAS__ for with your old NOVAS C applications you might want to further customize the 
-> build. See section on [legacy application](USAGE-C99.md#legacy-application-c99) in the 
-[C99 User's guide](USAGE-C99.md). 
+> build. See section on 
+> [legacy application](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99) in the 
+> [C99 User's guide](USAGE-C99.md). 
 
 
 <a name="cmake-build"></a>
@@ -489,7 +490,7 @@ Or include in your Nix build of other software with
 
 | ![SuperNOVAS coordinate systems and conversions](resources/SuperNOVAS-systems.png) |
 |:--:| 
-| __Figure 1.__ SuperNOVAS Coordinate Systems and Conversions. Functions indicated in bold face are available in NOVAS C also. All other functions are available in SuperNOVAS only. SuperNOVAS also adds efficient [matrix transformations](USAGE-C99.md#transforms-c99) between the equatorial systems. |
+| __Figure 1.__ SuperNOVAS Coordinate Systems and Conversions. Functions indicated in bold face are available in NOVAS C also. All other functions are available in SuperNOVAS only. SuperNOVAS also adds efficient [matrix transformations](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#transforms-c99) between the equatorial systems. |
 
 
 The IAU 2000 and 2006 resolutions have completely overhauled the system of astronomical coordinate transformations
@@ -547,8 +548,8 @@ them.
 As of v1.6 __SuperNOVAS__ comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which 
 one you intend to use, choose the appropriate link to an external document below:
 
- - [Using the C99 API](USAGE-C99.md#integration-c99)
- - [Using the C++11 API](cpp/USAGE-CPP.md#integration-c++)
+ - [Using the C99 API](USAGE-C99.md)
+ - [Using the C++11 API](USAGE-CPP.md)
 
 -----------------------------------------------------------------------------
 
@@ -558,8 +559,8 @@ one you intend to use, choose the appropriate link to an external document below
 As of v1.6 __SuperNOVAS__ comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which 
 one you intend to use, choose the appropriate link to an external document below:
 
- - [Using the C99 API)](USAGE-C99.md#examples-c99)
- - [Using the C++11 API](cpp/USAGE-CPP.md#examples-c++)
+ - [Using the C99 API](USAGE-C99.md)
+ - [Using the C++11 API](USAGE-CPP.md)
  
 
 -----------------------------------------------------------------------------
@@ -570,7 +571,8 @@ one you intend to use, choose the appropriate link to an external document below
 If you want to use __SuperNOVAS__ to calculate positions for a range of Solar-system objects, and/or to do it with 
 precision, you will have to interface it to a suitable provider of ephemeris data. The preferred ways to do that in
 __SuperNOVAS__ enumerated below. (The legacy NOVAS C ways are not covered here, since they require specialized builds of 
-__SuperNOVAS__, which are covered [separately](USAGE-C99.md#legacy-application).)
+__SuperNOVAS__, which are covered 
+[separately](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application).)
 
 NASA/JPL provides [generic ephemerides](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/) for the major 
 planets, satellites thereof, the 300 largest asteroids, the Lagrange points, and some Earth orbiting stations. For 
@@ -1137,11 +1139,11 @@ the principal ways __SuperNOVAS__ has improved on the original NOVAS C library i
 
 <details>
 
- - Changed to [support for calculations in parallel threads](USAGE-C99.md#multi-threading-c99) by making cached results thread-local.
-   This works using the C11 standard `_Thread_local`, or the C23 `thread_local`, or else the earlier GNU C &gt;= 3.3 
-   standard `__thread` modifier. You can also set the preferred thread-local keyword for your compiler by passing it 
-   via `-DTHREAD_LOCAL=...` in `config.mk` to ensure that your build is thread-safe. And, if your compiler has no 
-   support whatsoever for thread_local variables, then __SuperNOVAS__ will not be thread-safe, just as NOVAS C isn't.
+ - Changed to support for calculations in parallel threads by making cached results thread-local. This works using the 
+   C11 standard `_Thread_local`, or the C23 `thread_local`, or else the earlier GNU C &gt;= 3.3 standard `__thread` 
+   modifier. You can also set the preferred thread-local keyword for your compiler by passing it via 
+   `-DTHREAD_LOCAL=...` in `config.mk` to ensure that your build is thread-safe. And, if your compiler has no support 
+   whatsoever for thread_local variables, then __SuperNOVAS__ will not be thread-safe, just as NOVAS C isn't.
 
  - __SuperNOVAS__ functions take `enum`s as their option arguments instead of raw integers. The enums allow for some 
    compiler checking (e.g. using the wrong enum), and make for more readable code that is easier to debug. They also 

@@ -1115,8 +1115,6 @@ EXCLUDE                = ../../RELEASE-HOWTO.md \
                          ../../CODE_OF_CONDUCT.md \
                          ../README-undecorated.md \
                          ../../include/supernovas.h \
-                         ../../USAGE-C99.md \
-                         ../../USAGE-CPP.md \
                          NOVAS-legacy.md \
                          ../src/docedit.c
 

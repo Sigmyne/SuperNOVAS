@@ -16,6 +16,9 @@ from astropy.coordinates import SkyCoord,
    EarthLocation, Longitude, Latitude,
    CIRS
 
+
+
+
 # Define ICRS coordinates
 source = SkyCoord(
   '16h 29m 24.45970s', '−26d 25m 55.2094s',
@@ -23,10 +26,6 @@ source = SkyCoord(
   pmra = -12.11 * u.mas / u.yr,
   pmdec = -23.30 * u.mas / u.yr,
   rv = -3.4 * u.km / u.s)
-
-
-
-
 
 
 # Observer location
@@ -55,6 +54,9 @@ app = source.transform_to(frame);
 
 using namespace supernovas;
 
+// IERS Earth Orientation Parameters...
+EOP eop = EOP(37, 0.06256, 
+     103.4 * Unit::mas, 396.2 * Unit::mas);
 
 // Define ICRS coordinates
 auto source = CatalogEntry("Antares", 
@@ -64,10 +66,6 @@ auto source = CatalogEntry("Antares",
     -23.30 * Unit::mas / Unit::yr)
   .radial_velocity(-3.4 * Unit::km / Unit::s)
   .to_source();
-
-// IERS Earth Orientation Parameters...
-EOP eop = EOP(37, 0.06256, 
-     103.4 * Unit::mas, 396.2 * Unit::mas);
 
 // Observer location
 auto obs = Site::from_GPS(50.7374, 7.0982, 60.0)

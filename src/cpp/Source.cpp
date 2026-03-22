@@ -562,7 +562,7 @@ const Source *Planet::copy() const {
  * ```c++
  *   Planet p = Planet::for_naif_id(num);
  *   if(!p) {
- *     // Ooops there is no planet for that NAIF ID...
+ *     // Oops there is no planet for that NAIF ID...
  *     return;
  *   }
  * ```
@@ -591,7 +591,7 @@ Planet Planet::for_naif_id(long naif) {
  * ```c++
  *   Planet p = Planet::for_name(some_name);
  *   if(!p) {
- *     // Ooops there is no planet for that name...
+ *     // Oops there is no planet for that name...
  *     return;
  *   }
  * ```

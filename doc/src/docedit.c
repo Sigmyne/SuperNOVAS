@@ -81,7 +81,6 @@ static int make_headless_readme() {
 
     // Remove 'doc/' prefix from internal links
     replace(line, "\"doc/", "\"");
-    //replace(line, ".md", ".html");
 
     fwrite(line, strlen(line), 1, out);
   }
