@@ -96,7 +96,7 @@ all live under the `supernovas` namespace. Thus, the class `Angle`, for example,
 that can be used in any context. But, when convenient you can make one of more namespaces default in your source
 code, e.g.:
 
-```c++
+```cpp
  #include <supernovas.h>
  
  using namespace supernovas;
@@ -109,7 +109,7 @@ code, e.g.:
 
 is equivalent to:
 
-```c++
+```cpp
  #include <supernovas.h>
  
  void my_func() {
@@ -136,7 +136,7 @@ contain fully usable data.
 It is generally a good idea to check for validity whenever getting sane numerical data (i.e., not NaNs) is critical, or
 if you are not entirely sure. For example:
 
-```c++
+```cpp
   Observer obs = ...  // Define an observer location
   if(!obs.is_valid()) {
     // Oops, something isn't right...
@@ -146,7 +146,7 @@ if you are not entirely sure. For example:
 
 or, equivalently the objects themselves can be evaluated as boolean types, the same as calling `is_valid()`, i.e.:
 
-```c++
+```cpp
   Observer obs = ...  // Define an observer location
   if(!obs) {
     // Oops, something isn't right...
@@ -210,7 +210,7 @@ motion, and/or parallax or distance also). Let's assume we pick a star for which
 We begin with the assigned name and the R.A. / Dec coordinates, and then populate any other astrometric parameters we
 may have:
 
-```c++
+```cpp
  // Let's assume we have B1950 (FK4) coordinates
  CatalogEntry entry = CatalogEntry("Antares", "16h26m20.1918s", "-26d19m23.138s", Equinox::b1950())
    .proper_motion(-12.11 * Unit::mas / Unit::yr, -23.30 * Unit::mas / Unit:yr)
@@ -227,7 +227,7 @@ fits your needs best. Note the use of physical units along with the numerical da
 
 Next, we we create a `Source` type object from this catalog entry:
 
-```c++
+```cpp
   auto source = entry.to_source();
 ```
 
@@ -244,7 +244,7 @@ don't really need to know what subclass of `Source` is actually being created he
 Next, we define the location where we observe from. Let's assume we have a GPS location, such as 50.7374 deg N, 7.0982 
 deg E, 60m elevation:
 
-```c++
+```cpp
  // Specify the location we are observing from, e.g. a GPS / WGS84 location
  Site site = Site::from_GPS(50.7374 * Unit::deg, 7.0982 * Unit::deg, 60.0 * Unit::m);
 ```
@@ -255,7 +255,7 @@ deg E, 60m elevation:
 
 Again you could have specified the coordinates as DMS strings, or as `supernovas::Angle` objects also, e.g.:
 
-```c++
+```cpp
  Site site = Site::from_GPS("50.7374N", "7.0982 deg E", Coordinate(60.0 * Unit::m));
 ```
 
@@ -265,7 +265,7 @@ Orientation Parameters (EOP), such as obtained from the
 seconds, the UT1-UTC time difference capturing variations in Earth's rotation, and the _x<sub>p</sub>_, 
 _y<sub>p</sub>_ polar offsets, which measure small wanders of Earth's rotational pole w.r.t. the crust:
 
-```c++
+```cpp
  // Let's assume 37 leap seconds, 0.6447s UT1-UTC difference, and some polar offsets:
  EOP eop(37, 0.6447 * Unit::s, 103.2 * Unit::mas, 211.3 * Unit::mas);
  
@@ -282,7 +282,7 @@ returns).
 Alternatively, you can also specify airborne observers, or observers in Earth orbit, in heliocentric orbit, at the 
 geocenter, or at the Solar-system barycenter. See the static methods of the `supernovas::Observer` class. E.g.:
 
-```c++
+```cpp
   auto obs = Observer::at_geocenter();
 ```
 
@@ -292,7 +292,7 @@ geocenter, or at the Solar-system barycenter. See the static methods of the `sup
  
 Then we can set the time of observation, for example, using the current UNIX time:
 
-```c
+```cpp
  // Set the time of observation to the precise UTC-based UNIX time
  Time obs_time = Time::now(eop);
 ```
@@ -302,7 +302,7 @@ Once again, EOP is needed for the leap seconds and UT1-UTC time difference.
 Alternatively, you may set the time as a Julian date in the time measure of choice (UTC, UT1, TT, TDB, GPS, TAI, TCG, 
 or TCB):
 
-```c
+```cpp
  double jd_tai = ...     // TAI-based Julian Date 
 
  Time obs_time(jd_tai, eop, NOVAS_TAI)
@@ -310,7 +310,7 @@ or TCB):
 
 or, for the best precision we may do the same with an integer / fractional split:
 
-```c
+```cpp
  long ijd_tai = ...     // Integer part of the TAI-based Julian Date
  double fjd_tai = ...   // Fractional part of the TAI-based Julian Date 
   
@@ -319,7 +319,7 @@ or, for the best precision we may do the same with an integer / fractional split
 
 Or, you might use string dates, such as an ISO timestamp:
 
-```c
+```cpp
  Time obs_time = Time("2025-01-26T22:05:14.234+0200", eop);
 ```
 
@@ -329,7 +329,7 @@ Or, you might use string dates, such as an ISO timestamp:
 Next, we set up an observing frame, which is defined for a unique combination of the observer location and the time of
 observation:
 
-```c
+```cpp
  // Initialize the observing frame for the observer at the time of observation.
  Frame frame = obs.frame_at(obs_time);
  
@@ -361,7 +361,7 @@ sources) or light-time correction (for Solar-system bodies), and also aberration
 and gravitational deflection around the major Solar System bodies (in full accuracy mode). You can calculate an 
 apparent location in the:
 
-```c++
+```cpp
  // Precise apparent positions and spectroscopic velocities (in TOD).
  Apparent app = source.apparent_in(frame);
 ```
@@ -369,7 +369,7 @@ apparent location in the:
 You cat get true-of-date (TOD) equatorial coordinates (`.equatorial()`), or in CIRS (`.cirs()`). And you can convert
 these to any other coordinate system of choice (ICRS/GCRS, J2000, or MOD), e.g.:
 
-```c++
+```cpp
  // true-of-date apparent coordinates
  Equatorial tod = app.equatorial();
  
@@ -380,7 +380,7 @@ these to any other coordinate system of choice (ICRS/GCRS, J2000, or MOD), e.g.:
 You can also obtain ecliptic (TOD) and galactic coordinates the same way, and convert ecliptic coordinates to other 
 equinoxes just like we did for the equatorial:
 
-```c++
+```cpp
  // apparent ecliptic coordinates in J2000
  Ecliptic ecl = app.ecliptic() >> NOVAS_J2000;
  
@@ -392,7 +392,7 @@ Above the `>>` operator is used as a shorthand for the `.to_system()` method. It
 `to_system(NOVAS_ICRS)`. For spectroscopic applications, you can get a spectroscopic radial velocity or redshift 
 (including gravitational effects) as:
 
-```c++
+```cpp
  ScalarVelocity rv = app.radial_velocity();
  
  double z = app.redshift();
@@ -400,7 +400,7 @@ Above the `>>` operator is used as a shorthand for the `.to_system()` method. It
 
 And, you can also get a distance:
 
-```c++
+```cpp
  Distance d = app.distance();
 ```
 
@@ -416,7 +416,7 @@ If your ultimate goal is to calculate the azimuth and elevation angles of the so
 location, you can proceed from the `Apparent` positions you obtained above, provided they are calculated for an
 Earth based observer (otherwise, you'll get an invalid result):
 
-```c++
+```cpp
  // Convert the apparent position to unrefracted horizontal coordinates
  Horizontal hor = app.to_horizontal()
  
@@ -436,13 +436,13 @@ proper ICRS R.A./Dec coordinates, or a geometric place.
 
 E.g., let's assume you start with horizontal coorinates that measured at your observing location:
 
-```c++
+```cpp
  Horizontal hor = ...;      // observer azimuth and elevation angles
 ```
 
 If needed correct for atmospheric refraction.
 
-```c++
+```cpp
  Weather weather(...); // define local weather parameters for the refraction (if needed)
  
  hor = hor.to_unrefracted(novas_optical_refraction, weather);
@@ -451,13 +451,13 @@ If needed correct for atmospheric refraction.
 Noew you can calculate an apparent place on the celestial sphere given your observing frame (precise location and time
 of observation).
 
-```c++
+```cpp
  Apparent app = hor.to_apparent(frame);
 ```
 
 or,
 
-```c++
+```cpp
  Apparent app = hor.to_apparent(frame, ScalarVelocity(-14.2 * Unit::km / Unit::s), Distance(43.6 * Unit::pc);
 ```
   
@@ -465,19 +465,19 @@ Note, that when radial velocity and/or distance is not explicitly defined, they 
 respectively. Next, you can convert the apparent place to a geometric position, referenced to the time when the 
 observed light originated from the source (at the distance defined or assumed):
 
-```c++
+```cpp
  AstrometricPosition pos = app.astrometric_position();
 ```
 
 Or, calculate the geometric position relative to the SSB instead...
 
-```c++
+```cpp
  AstrometricPosition pos_ssb = app.astrometric_position().referenced_to_ssb();
 ```
 
 And finally, you can calculate nominal SSB-based ICRS coordinates as:
 
-```c++
+```cpp
  Equatorial icrs = pos_ssb.as_equatorial().to_icrs();
 ```
 
@@ -491,7 +491,7 @@ appear to transit at the observer location. __SuperNOVAS__ has routines to help 
 Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are 
 effectively tied to an observer frame. Let's assume you have defined a source and an observing frame:
 
-```c++
+```cpp
  Frame frame = ...;        // Earth-based observer location and lower-bound time of interest.
  Source source = ...;      // Source of interest
 ```
@@ -499,7 +499,7 @@ effectively tied to an observer frame. Let's assume you have defined a source an
 Let's calculate the time when source rises above 30 degrees of elevation next *after* the observing time of the frame, 
 given the NOVAS optical refraction model.
 
-```c++
+```cpp
  Weather weather = ...;    // Define local weather parameters... 
  
  Time t_rise = source.rises_above(30.0 * Unit::deg, frame, novas_optical_refraction, weather);
@@ -507,13 +507,13 @@ given the NOVAS optical refraction model.
 
 Or, calculate the time the source transits after the frame's time of observation:
 
-```c++
+```cpp
  Time t_transit = source.transits_in(frame);
 ```
  
 Or, calculate the next time when source sets below 30 degrees of elevation, not accounting for refraction.
 
-```c++
+```cpp
  Time t_set = source.sets_below(30.0 * Unit::deg, frame);
 ```
 
@@ -549,7 +549,7 @@ ID number that is used by the ephemeris service you provided. For major planets 
 they use a `novas_planet_provider` function to access ephemeris data with their NOVAS IDs, or else 
 `supernovas::EphemerisSource` for more generic ephemeris handling via a user-provided `novas_ephem_provider`. E.g.:
 
-```c++
+```cpp
  // Planet types are handled by the planet provider function.
  auto mars = Planet::mars();
   
@@ -566,14 +566,14 @@ they use a `novas_planet_provider` function to access ephemeris data with their 
 
 And then, it's the same spiel as before, e.g.:
 
-```c++
+```cpp
  Apparent app = mars.apparent_in(frame);
 ```
 
 or to get geometric (unaberrated, undeflected) positions and velocities of when the light left the Solar-system
 body:
 
-```c++
+```cpp
  // Obtain geometric positions / velocities for when light
  Geometric geom = ceres.geometric_in(frame);
  
@@ -590,7 +590,7 @@ body:
 You can also define solar system sources with Keplerian orbital elements (such as the most up-to-date ones provided by 
 the [Minor Planet Center](https://minorplanetcenter.net/data) for asteroids, comets, etc.):
 
-```c++
+```cpp
  // e.g. a Near-Earth Asteroid in 
  Time ref_time = ... // reference time for which orbital parameters are defined
  
@@ -616,13 +616,13 @@ a mean motion parameter to instantiate the orbit with `supernovas::Orbital::from
 
 And then, it's once again the same spiel as before, e.g.:
 
-```c++
+```cpp
  Apparent app = nea.apparent_in(frame);
 ```
 
 or
 
-```c++
+```cpp
  Geometric geom = nea.geometric_in(frame);
 ```
 
@@ -634,14 +634,14 @@ or
 Finally, you might generate approximate (arcmin-level) orbitals for the major planets (but not Earth!), the Moon, and 
 the Earth-Moon Barycenter (EMB) also. E.g.:
 
-```c++
+```cpp
  // The current Keplerian orbital of Venus...
  Orbital orb = Planet::venus().orbit(Time::now());
 ```
 
 Or, you can use such orbitals (implicitly) to calculate approximate positions and velocities for the planets, e.g.:
 
-```c++
+```cpp
  // Approximate, orbital model based, apparent positions for Mars...
  Apparent app = Planet::mars().approx_apparent_in(frame);
  
