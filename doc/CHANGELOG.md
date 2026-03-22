@@ -28,6 +28,8 @@ Upcoming feature release.
 
 ### Changed
 
+ - #256: Changes to repo layout to accommodate C++ API _in addition to_ the base C99 API.
+
  - Use more precise matrix from Liu et al. (2011) for equatorial / galactic conversions. 
 
 
