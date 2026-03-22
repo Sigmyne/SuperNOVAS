@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['your_20application_20with_20supernovas_0',['Building your application with SuperNOVAS',['../index.html#autotoc_md67',1,'']]],
-  ['your_20application_20with_20supernovas_20c_1',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md75',1,'']]],
-  ['your_20application_20with_20supernovas_20c99_2',['Building your application with SuperNOVAS (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md20',1,'']]]
+  ['your_20application_20with_20supernovas_0',['Building your application with SuperNOVAS',['../index.html#autotoc_md85',1,'']]],
+  ['your_20application_20with_20supernovas_20c_1',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md40',1,'']]],
+  ['your_20application_20with_20supernovas_20c99_2',['Building your application with SuperNOVAS (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md21',1,'']]]
 ];
