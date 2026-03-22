@@ -1,16 +1,16 @@
 var indexSectionsWithContent =
 {
-  0: "012345abcdefghijklmnoprstuvwyz",
-  1: "cinors",
+  0: "013abcdefghijklmnoprstuvwyz",
+  1: "n",
   2: "cefginoprstu",
   3: "abcdefghijlmnoprstuvw",
   4: "abcdefghijlmnoprstuvwz",
-  5: "nr",
+  5: "cinors",
   6: "n",
   7: "ceijnpw",
   8: "abdhmnrst",
   9: "abcefghilnoprstuv",
-  10: "acdglstuv"
+  10: "013abcdefghiklmnoprstuvwy"
 };
 
 var indexSectionNames =
@@ -31,7 +31,7 @@ var indexSectionNames =
 var indexSectionLabels =
 {
   0: "All",
-  1: "Data Structures",
+  1: "Classes",
   2: "Files",
   3: "Functions",
   4: "Variables",

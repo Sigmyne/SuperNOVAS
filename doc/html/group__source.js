@@ -1,49 +1,48 @@
 var group__source =
 [
-    [ "cat_entry", "structcat__entry.html", [
-      [ "catalog", "structcat__entry.html#a128c876f7e50045e1c469dbabb400c58", null ],
-      [ "dec", "structcat__entry.html#ac4ae7989694321b540abb75c30eec690", null ],
-      [ "parallax", "structcat__entry.html#a18f7f3626661dbf57ce9eaec51840eb8", null ],
-      [ "promodec", "structcat__entry.html#acf4bdbac6c1d059a4db3ed879f32f21c", null ],
-      [ "promora", "structcat__entry.html#ab9301cf1c67c13114b22950650b17789", null ],
-      [ "ra", "structcat__entry.html#a713a0c71a86d92fa6892fdb2cb7c9422", null ],
-      [ "radialvelocity", "structcat__entry.html#aa2b5e5ca3a5df1765b49a6c6b110a36a", null ],
-      [ "starname", "structcat__entry.html#ad26c9b08b1028d2a7f35c447841022b1", null ],
-      [ "starnumber", "structcat__entry.html#a2cc0369c1acae73cf6f3e06f1a8ddab8", null ]
+    [ "novas_cat_entry", "structnovas__cat__entry.html", [
+      [ "catalog", "structnovas__cat__entry.html#ada95bd9127ffe9e1204a233057869f5a", null ],
+      [ "dec", "structnovas__cat__entry.html#ab539dc076c350cf98ac047453fa18c9c", null ],
+      [ "parallax", "structnovas__cat__entry.html#ac2e6fe6d5aa8aece4e1d3f2ebc8e5c63", null ],
+      [ "promodec", "structnovas__cat__entry.html#a64faf35923c3c09bb24265a8ddb2b2f1", null ],
+      [ "promora", "structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560", null ],
+      [ "ra", "structnovas__cat__entry.html#a0bf9261730a8decbfd1d0c63c377dac2", null ],
+      [ "radialvelocity", "structnovas__cat__entry.html#aff726e9a11a48c6ccbd80672a1fa5cc8", null ],
+      [ "starname", "structnovas__cat__entry.html#ac06af140acde272f032a431f6cfeb85d", null ],
+      [ "starnumber", "structnovas__cat__entry.html#a456d93b89cbbc3c13cb0cb9d3b8a4cb0", null ]
+    ] ],
+    [ "novas_object", "structnovas__object.html", [
+      [ "name", "structnovas__object.html#a9a4a65802b8ff0edc09062867a51d145", null ],
+      [ "number", "structnovas__object.html#a5661908bdaa0ce7b53762fb9bc0f46bc", null ],
+      [ "orbit", "structnovas__object.html#aa8798e7393e309d8cab0dc4eab45e79d", null ],
+      [ "star", "structnovas__object.html#af6249fc903eaacb4869bdada2987c0cd", null ],
+      [ "type", "structnovas__object.html#aa411b2233890edefbd41c5fde2e268b2", null ]
     ] ],
     [ "novas_orbital", "structnovas__orbital.html", [
-      [ "a", "structnovas__orbital.html#a1031d0e0a97a340abfe0a6ab9e831045", null ],
-      [ "apsis_period", "structnovas__orbital.html#a18c1c30ab34602026b03269be48d36a1", null ],
-      [ "e", "structnovas__orbital.html#ab17e17fb32b792781b807505e7f60c9c", null ],
-      [ "i", "structnovas__orbital.html#a5659a38afd08966e6799fa0fb40a882a", null ],
-      [ "jd_tdb", "structnovas__orbital.html#a0aefc536698706b7f8a15f23168c3486", null ],
-      [ "M0", "structnovas__orbital.html#adc4cda6fcbff8922621b0a08f911957d", null ],
-      [ "n", "structnovas__orbital.html#abe63e991a7bf5d666068b15c9064428d", null ],
-      [ "node_period", "structnovas__orbital.html#abc96d50a65bae0b26750df2d93492fea", null ],
-      [ "Omega", "structnovas__orbital.html#a1b5bf6735b7465aec5c931281d240737", null ],
-      [ "omega", "structnovas__orbital.html#a98ecc32b7ac0cf654d9f883cbe5cab35", null ],
-      [ "system", "structnovas__orbital.html#a7ccd081fe6b1424bd644317068578775", null ]
+      [ "a", "structnovas__orbital.html#a70b91b91315e8c7adcf394cafbd11ecb", null ],
+      [ "apsis_period", "structnovas__orbital.html#a798b5b86f39824f432543f0138927e2b", null ],
+      [ "e", "structnovas__orbital.html#aaffd37bb48862ffd35dafaed88ff6fc1", null ],
+      [ "i", "structnovas__orbital.html#a72988aea093c3884a6b62094c6e0f606", null ],
+      [ "jd_tdb", "structnovas__orbital.html#acb8d31a6dea072a9329d89695060ec2a", null ],
+      [ "M0", "structnovas__orbital.html#a7d15d917c5ef6798f54ba0bfebcfbe56", null ],
+      [ "n", "structnovas__orbital.html#a32fff80f9d06ec882016f89f575547de", null ],
+      [ "node_period", "structnovas__orbital.html#a1f4e751c390ad629c7abeccd764edd69", null ],
+      [ "Omega", "structnovas__orbital.html#a8985163e8cadadf0f3394823f6cdf094", null ],
+      [ "omega", "structnovas__orbital.html#aaa2670b33c2146fc304f29748b1680f9", null ],
+      [ "system", "structnovas__orbital.html#a412b6f9a02d0e9d4597a8872d800a4c6", null ]
     ] ],
     [ "novas_orbital_system", "structnovas__orbital__system.html", [
-      [ "center", "structnovas__orbital__system.html#ac3165061a779934bfe04da14ad5555d0", null ],
-      [ "obl", "structnovas__orbital__system.html#ae5014f0e96e7c220c55eb82d11c4133a", null ],
-      [ "Omega", "structnovas__orbital__system.html#a1b5bf6735b7465aec5c931281d240737", null ],
-      [ "plane", "structnovas__orbital__system.html#a2c38f985781586b7df387b437720174d", null ],
-      [ "type", "structnovas__orbital__system.html#adaabf923501a3a0a47a8958b6a33c6b3", null ]
-    ] ],
-    [ "object", "structobject.html", [
-      [ "name", "structobject.html#ae73ef5f04701dc9d4e7cb1b1c3fa9c12", null ],
-      [ "number", "structobject.html#a7d578acc2a3e88ef2435fe0e88d01a74", null ],
-      [ "orbit", "structobject.html#a43225af0345622f8c049032d75a1a3da", null ],
-      [ "star", "structobject.html#a499924f8241c3fbb3bf34c5e16f1c7de", null ],
-      [ "type", "structobject.html#a2cc80aad5c0303449e2412b122504a10", null ]
+      [ "center", "structnovas__orbital__system.html#a1e0e4feed59904907eb9c0484ad95516", null ],
+      [ "obl", "structnovas__orbital__system.html#a806d05cf786f3f0de3388d0e319e27f0", null ],
+      [ "Omega", "structnovas__orbital__system.html#a1ac88e32247a155866b20e606f78eb2b", null ],
+      [ "plane", "structnovas__orbital__system.html#a032dfd918d2799238bdf6a25c0f198e7", null ],
+      [ "type", "structnovas__orbital__system.html#a168120619bdde8c6af9cf93d2ce96d0d", null ]
     ] ],
     [ "CAT_ENTRY_INIT", "group__source.html#ga0a185da3a347343e5dd21d41a598d0fa", null ],
     [ "NOVAS_AU", "group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a", null ],
     [ "NOVAS_DEFAULT_DISTANCE", "group__source.html#ga57c7c4597ca170d17e5c7cb64c93ec24", null ],
     [ "NOVAS_EARTH_INIT", "group__source.html#gabad802a863342aebe9a40587b4e47bab", null ],
     [ "NOVAS_EMB_INIT", "group__source.html#ga209cb6db7acbde105772520150f238de", null ],
-    [ "NOVAS_ID_TYPES", "group__source.html#ga9a736e59fc9bfdc92b7245aa37d529ee", null ],
     [ "NOVAS_JUPITER_INIT", "group__source.html#ga8f05bb45f646e41b78bbe79175114d57", null ],
     [ "NOVAS_KMS", "group__source.html#ga7822b81ad3f75b448f446ed4da774e75", null ],
     [ "NOVAS_LIGHT_YEAR", "group__source.html#ga263f4d362ee47983c825f276201c38e3", null ],
@@ -58,6 +57,7 @@ var group__source =
     [ "NOVAS_PLANET_NAMES_INIT", "group__source.html#gabbd19f57e31db2ac91cbe22f9a95f390", null ],
     [ "NOVAS_PLUTO_BARYCENTER_INIT", "group__source.html#gaead51c753fb72d7c603298c654795ea1", null ],
     [ "NOVAS_PLUTO_INIT", "group__source.html#ga451602e14e6a5512d0e969e4d9878c34", null ],
+    [ "NOVAS_REFERENCE_PLANES", "group__source.html#ga1ca3cf5aacd6e06b01244402f6441ce3", null ],
     [ "NOVAS_SATURN_INIT", "group__source.html#ga2cd97d849a1f16d6b85b8d2976f56472", null ],
     [ "NOVAS_SSB_INIT", "group__source.html#gaebdfbe27bf764b69018291054ad9130d", null ],
     [ "NOVAS_SUN_INIT", "group__source.html#ga6afeda74c9df859ae6504eebfee01092", null ],
@@ -72,10 +72,10 @@ var group__source =
     [ "NOVAS_VENUS_INIT", "group__source.html#gaf126344dc5cbee61df9e55bd92322839", null ],
     [ "SIZE_OF_CAT_NAME", "group__source.html#gaf32c72297e36b77bead56044d23082f7", null ],
     [ "SIZE_OF_OBJ_NAME", "group__source.html#ga977a43db51d544f728ea8a22b4a53783", null ],
-    [ "novas_id_type", "group__source.html#gac42df1db80fbcb6f7a72de80d9f9c531", [
-      [ "NOVAS_ID_NAIF", "group__source.html#ggac42df1db80fbcb6f7a72de80d9f9c531ab3e6efc1ad89e02f915df25265ec32db", null ],
-      [ "NOVAS_ID_CALCEPH", "group__source.html#ggac42df1db80fbcb6f7a72de80d9f9c531a074c723dfc1f03c82d52347c46ee0719", null ]
-    ] ],
+    [ "cat_entry", "group__source.html#ga8fa0251d2ffa4e750420bdc86a7d73b8", null ],
+    [ "novas_orbital", "group__source.html#ga219a97b154b3e6879f3c029565b7f7e1", null ],
+    [ "novas_orbital_system", "group__source.html#ga82e7d592c9d550d803c8bf5b63d59aae", null ],
+    [ "object", "group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a", null ],
     [ "novas_object_type", "group__source.html#ga1eecb357eeea0de4759e9c8d55af238f", [
       [ "NOVAS_PLANET", "group__source.html#gga1eecb357eeea0de4759e9c8d55af238fad1eeaddaa96b028742a8ba424e311aa8", null ],
       [ "NOVAS_EPHEM_OBJECT", "group__source.html#gga1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269", null ],
@@ -97,6 +97,10 @@ var group__source =
       [ "NOVAS_MOON", "group__source.html#gga219df36b21dc4476656e708d14d08045a9fcf58133828600a062725ced448cfcf", null ],
       [ "NOVAS_EMB", "group__source.html#gga219df36b21dc4476656e708d14d08045ad1785b619d72877c4eb78d61aedf9e1a", null ],
       [ "NOVAS_PLUTO_BARYCENTER", "group__source.html#gga219df36b21dc4476656e708d14d08045a3503bba5abad8c20c76a6ca87dccf677", null ]
+    ] ],
+    [ "novas_reference_plane", "group__source.html#ga9ee18ab5f8fdc009913c11f04026122f", [
+      [ "NOVAS_ECLIPTIC_PLANE", "group__source.html#gga9ee18ab5f8fdc009913c11f04026122fac0d0495aebd235ecd346b8932cc1943e", null ],
+      [ "NOVAS_EQUATORIAL_PLANE", "group__source.html#gga9ee18ab5f8fdc009913c11f04026122fa8ab742cbe451963ba66f7bfbdbafb05b", null ]
     ] ],
     [ "novas_transform_type", "group__source.html#gace5e59ce1564bf6c61946c290bb05367", [
       [ "PROPER_MOTION", "group__source.html#ggace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065", null ],

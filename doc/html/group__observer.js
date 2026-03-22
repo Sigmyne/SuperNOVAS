@@ -1,21 +1,21 @@
 var group__observer =
 [
-    [ "in_space", "structin__space.html", [
-      [ "sc_pos", "structin__space.html#abc3736b39d63bfabf73a25e3b03b91d8", null ],
-      [ "sc_vel", "structin__space.html#a9615dabeef0c31f47546c8083b768257", null ]
+    [ "novas_in_space", "structnovas__in__space.html", [
+      [ "sc_pos", "structnovas__in__space.html#a437105d9ff690d4d5b51fae9076c9d0a", null ],
+      [ "sc_vel", "structnovas__in__space.html#ab4a55b14aa16bcbc5ca3bdc1a6d078af", null ]
     ] ],
-    [ "observer", "structobserver.html", [
-      [ "near_earth", "structobserver.html#a1ab1241c3bb4d3afc4710e02e948c0cb", null ],
-      [ "on_surf", "structobserver.html#a45fe4eb871c346c1b8315c4c6a41e96d", null ],
-      [ "where", "structobserver.html#a11f2eb69df64b674d938b34bbb842ab1", null ]
+    [ "novas_observer", "structnovas__observer.html", [
+      [ "near_earth", "structnovas__observer.html#a1d62a0649b551e6ce86160c950d551dd", null ],
+      [ "on_surf", "structnovas__observer.html#a836c3e0f5d8c99e16e0d04d1519e9e27", null ],
+      [ "where", "structnovas__observer.html#afc58c314cdec95813c00a0e0ffa636d0", null ]
     ] ],
-    [ "on_surface", "structon__surface.html", [
-      [ "height", "structon__surface.html#a89f6abd564014faeff7cd20c340a9c7d", null ],
-      [ "humidity", "structon__surface.html#a987616dbcfdfc936af3e5874ef5a41e7", null ],
-      [ "latitude", "structon__surface.html#a76714bdbc5c536fa77dfb14533ff82a9", null ],
-      [ "longitude", "structon__surface.html#ac155e35fdeebafc89723a51520fb9fe6", null ],
-      [ "pressure", "structon__surface.html#aee1c5d07ac79c5c036195858afe33405", null ],
-      [ "temperature", "structon__surface.html#ab4b11c8d9c758430960896bc3fe82ead", null ]
+    [ "novas_on_surface", "structnovas__on__surface.html", [
+      [ "height", "structnovas__on__surface.html#ae88d1b0111ef62d14083ec38995d8ea9", null ],
+      [ "humidity", "structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2", null ],
+      [ "latitude", "structnovas__on__surface.html#a77f70abeb6c896623a85b1bdf8861151", null ],
+      [ "longitude", "structnovas__on__surface.html#af62107483c0a9ded0168993c1cfd933f", null ],
+      [ "pressure", "structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab", null ],
+      [ "temperature", "structnovas__on__surface.html#a1fd9464e53f03ebb2cb987aa1a2dc41b", null ]
     ] ],
     [ "IN_SPACE_INIT", "group__observer.html#ga406038a5cbe32b7e0e7233f6145e4cf5", null ],
     [ "NOVAS_EARTH_FLATTENING", "group__observer.html#ga1830a25e886366263653167369213d8b", null ],
@@ -29,13 +29,9 @@ var group__observer =
     [ "OBSERVER_INIT", "group__observer.html#ga8b1485a1563288c8d060d935c21e3a63", null ],
     [ "ON_SURFACE_INIT", "group__observer.html#gad8e67e1b12b3699a361f87e95d333334", null ],
     [ "ON_SURFACE_LOC", "group__observer.html#ga4fe5e792ca262b3f45fe992b4c49e9b4", null ],
-    [ "novas_observer_place", "group__observer.html#ga6140c39d1526b137f827e2091ecc36b3", [
-      [ "NOVAS_OBSERVER_AT_GEOCENTER", "group__observer.html#gga6140c39d1526b137f827e2091ecc36b3aca54b3a0c7d5b31d09090a1f55ff72b2", null ],
-      [ "NOVAS_OBSERVER_ON_EARTH", "group__observer.html#gga6140c39d1526b137f827e2091ecc36b3aadb64b75d1bf5344760b942f241e52e8", null ],
-      [ "NOVAS_OBSERVER_IN_EARTH_ORBIT", "group__observer.html#gga6140c39d1526b137f827e2091ecc36b3aca418efc57ac159cf541c324c008eb27", null ],
-      [ "NOVAS_AIRBORNE_OBSERVER", "group__observer.html#gga6140c39d1526b137f827e2091ecc36b3a1665bf146ca1a4d11380bf4d7d9d7058", null ],
-      [ "NOVAS_SOLAR_SYSTEM_OBSERVER", "group__observer.html#gga6140c39d1526b137f827e2091ecc36b3a82474207bac139bc2a8826b9d317a42c", null ]
-    ] ],
+    [ "in_space", "group__observer.html#gaf8e6be13c2cd09e2cc6d582717e352e6", null ],
+    [ "observer", "group__observer.html#gae7963c522d28ce6891b472e079307d03", null ],
+    [ "on_surface", "group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a", null ],
     [ "novas_reference_ellipsoid", "group__observer.html#ga5928ca4a09c2883b58e951a4582255b3", [
       [ "NOVAS_GRS80_ELLIPSOID", "group__observer.html#gga5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118", null ],
       [ "NOVAS_WGS84_ELLIPSOID", "group__observer.html#gga5928ca4a09c2883b58e951a4582255b3a3f73d5ac6ed2f2ed81b4e7b7fdbf1e85", null ],

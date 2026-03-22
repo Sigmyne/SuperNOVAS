@@ -1,16 +1,17 @@
 var group__solar_system =
 [
     [ "DE405_AU", "group__solar-system.html#gaf303bf91582509624aa40c6a87eb95ac", null ],
+    [ "NOVAS_ID_TYPES", "group__solar-system.html#ga9a736e59fc9bfdc92b7245aa37d529ee", null ],
     [ "novas_ephem_provider", "group__solar-system.html#gaebb3d71006e8d93de242df61510374ad", null ],
     [ "novas_planet_provider", "group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0", null ],
     [ "novas_planet_provider_hp", "group__solar-system.html#gae8d7c10a8b9e69b1f0654ef4038482fd", null ],
+    [ "novas_id_type", "group__solar-system.html#gac42df1db80fbcb6f7a72de80d9f9c531", [
+      [ "NOVAS_ID_NAIF", "group__solar-system.html#ggac42df1db80fbcb6f7a72de80d9f9c531ab3e6efc1ad89e02f915df25265ec32db", null ],
+      [ "NOVAS_ID_CALCEPH", "group__solar-system.html#ggac42df1db80fbcb6f7a72de80d9f9c531a074c723dfc1f03c82d52347c46ee0719", null ]
+    ] ],
     [ "novas_origin", "group__solar-system.html#ga208120c5fa3e12853eb37cb99d3e27be", [
       [ "NOVAS_BARYCENTER", "group__solar-system.html#gga208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c", null ],
       [ "NOVAS_HELIOCENTER", "group__solar-system.html#gga208120c5fa3e12853eb37cb99d3e27bea13c0711a025b9aebd4186ab9127cbd7b", null ]
-    ] ],
-    [ "novas_reference_plane", "group__solar-system.html#ga9ee18ab5f8fdc009913c11f04026122f", [
-      [ "NOVAS_ECLIPTIC_PLANE", "group__solar-system.html#gga9ee18ab5f8fdc009913c11f04026122fac0d0495aebd235ecd346b8932cc1943e", null ],
-      [ "NOVAS_EQUATORIAL_PLANE", "group__solar-system.html#gga9ee18ab5f8fdc009913c11f04026122fa8ab742cbe451963ba66f7bfbdbafb05b", null ]
     ] ],
     [ "cspice_add_kernel", "group__solar-system.html#gae02d26964099f56c375dc78172ad135b", null ],
     [ "cspice_remove_kernel", "group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1", null ],

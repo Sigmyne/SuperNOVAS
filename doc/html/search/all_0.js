@@ -1,26 +1,4 @@
 var searchData=
 [
-  ['0_0',['define THREAD_SAFE     0',['../solsys-cspice_8c.html#autotoc_md16',1,'']]],
-  ['0_200_202024_2003_2001_1',['[1.0.0] - 2024-03-01',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md65',1,'']]],
-  ['0_201_202024_2005_2013_2',['[1.0.1] - 2024-05-13',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md61',1,'']]],
-  ['0_202024_2003_2001_3',['[1.0.0] - 2024-03-01',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md65',1,'']]],
-  ['0_202024_2008_2004_4',['[1.1.0] - 2024-08-04',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md57',1,'']]],
-  ['0_202025_2001_2015_5',['[1.2.0] - 2025-01-15',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md50',1,'']]],
-  ['0_202025_2004_2015_6',['[1.3.0] - 2025-04-15',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md46',1,'']]],
-  ['0_202025_2006_2002_7',['[1.4.0] - 2025-06-02',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md37',1,'']]],
-  ['0_202025_2010_2029_8',['[1.5.0] - 2025-10-29',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md25',1,'']]],
-  ['01_9',['[1.0.0] - 2024-03-01',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md65',1,'']]],
-  ['01_2002_10',['[1.5.1] - 2026-01-02',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md22',1,'']]],
-  ['01_2015_11',['[1.2.0] - 2025-01-15',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md50',1,'']]],
-  ['02_12',['02',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md37',1,'[1.4.0] - 2025-06-02'],['../md__2github_2workspace_2CHANGELOG.html#autotoc_md22',1,'[1.5.1] - 2026-01-02']]],
-  ['03_2001_13',['[1.0.0] - 2024-03-01',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md65',1,'']]],
-  ['04_14',['[1.1.0] - 2024-08-04',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md57',1,'']]],
-  ['04_2015_15',['[1.3.0] - 2025-04-15',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md46',1,'']]],
-  ['05_2007_16',['[1.3.1] - 2025-05-07',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md42',1,'']]],
-  ['05_2013_17',['[1.0.1] - 2024-05-13',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md61',1,'']]],
-  ['06_2002_18',['[1.4.0] - 2025-06-02',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md37',1,'']]],
-  ['07_19',['[1.3.1] - 2025-05-07',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md42',1,'']]],
-  ['07_2021_20',['[1.4.1] - 2025-07-21',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md34',1,'']]],
-  ['08_2004_21',['[1.1.0] - 2024-08-04',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md57',1,'']]],
-  ['08_2025_22',['[1.4.2] - 2025-08-25',['../md__2github_2workspace_2CHANGELOG.html#autotoc_md31',1,'']]]
+  ['0_0',['define THREAD_SAFE 0',['../solsys-cspice_8c.html#autotoc_md16',1,'']]]
 ];

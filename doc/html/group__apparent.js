@@ -1,29 +1,16 @@
 var group__apparent =
 [
-    [ "novas_observable", "structnovas__observable.html", [
-      [ "dist", "structnovas__observable.html#accf93555161c9eedf006462a228af523", null ],
-      [ "lat", "structnovas__observable.html#a7972334534f68166121a6e51b0aac2d6", null ],
-      [ "lon", "structnovas__observable.html#aa96391e04b5977c50b96d77bea86a01d", null ],
-      [ "z", "structnovas__observable.html#ab3e6ed577a7c669c19de1f9c1b46c872", null ]
-    ] ],
-    [ "novas_track", "structnovas__track.html", [
-      [ "accel", "structnovas__track.html#a8e9a1a492f74f76fb441e62bdd0df852", null ],
-      [ "pos", "structnovas__track.html#ab572f04f2fbe8dd7174a07d4ae914706", null ],
-      [ "rate", "structnovas__track.html#a08de80b2751625d418f907fe7ce0c2e3", null ],
-      [ "time", "structnovas__track.html#a5a61c03607da83f2b44b05e68cc50e5b", null ]
-    ] ],
-    [ "sky_pos", "structsky__pos.html", [
-      [ "dec", "structsky__pos.html#ac4ae7989694321b540abb75c30eec690", null ],
-      [ "dis", "structsky__pos.html#aeedff25e8c80502a891e8af33d35b3c0", null ],
-      [ "r_hat", "structsky__pos.html#a5fd669be4d5224aa192afa368a6e3173", null ],
-      [ "ra", "structsky__pos.html#a713a0c71a86d92fa6892fdb2cb7c9422", null ],
-      [ "rv", "structsky__pos.html#ad9e8b5daff39072d109a6f4f1fa61f55", null ]
+    [ "novas_sky_pos", "structnovas__sky__pos.html", [
+      [ "dec", "structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f", null ],
+      [ "dis", "structnovas__sky__pos.html#a3c45d500db3a793b89d234d950886e4d", null ],
+      [ "r_hat", "structnovas__sky__pos.html#aa76dc5a1222e5696e88c986b6c6c3e55", null ],
+      [ "ra", "structnovas__sky__pos.html#a7d5aa9cc738e19f0891bff94ad148741", null ],
+      [ "rv", "structnovas__sky__pos.html#ae98432478d2c3a8e5eb1a1674394499f", null ]
     ] ],
     [ "DEFAULT_GRAV_BODIES_FULL_ACCURACY", "group__apparent.html#ga4cb74da554b236c835302480688cfaac", null ],
     [ "DEFAULT_GRAV_BODIES_REDUCED_ACCURACY", "group__apparent.html#gaec64bf67d5a03b2b4fb2583e5918f1de", null ],
-    [ "NOVAS_OBSERVABLE_INIT", "group__apparent.html#gaffe559df5bc0f5de1e091037fabfda92", null ],
-    [ "NOVAS_TRACK_INIT", "group__apparent.html#gabd9e6922d311d47ee2a7a4faf6b67971", null ],
     [ "SKY_POS_INIT", "group__apparent.html#ga462bdac0f370f0c5b421ae5b3f3e35f2", null ],
+    [ "sky_pos", "group__apparent.html#ga98a44d2a2c0e4f211b128a94c848ed51", null ],
     [ "app_planet", "group__apparent.html#gac28dd9a362982cfce150751001a96a8a", null ],
     [ "app_star", "group__apparent.html#ga906b17f06b42e31a29cafad4856f565f", null ],
     [ "limb_angle", "group__apparent.html#ga022957936bc7c5a3e9651776689c9380", null ],
@@ -31,8 +18,6 @@ var group__apparent =
     [ "novas_app_to_hor", "group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca", null ],
     [ "novas_approx_sky_pos", "group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62", null ],
     [ "novas_equ_sep", "group__apparent.html#ga4f7e06b2fa5b3145b37aec4f9c2d1602", null ],
-    [ "novas_equ_track", "group__apparent.html#ga57f4a449754c88cfc87df658a6bc4cb2", null ],
-    [ "novas_hor_track", "group__apparent.html#ga1f29810393108d15fd8312a2a95158dc", null ],
     [ "novas_moon_angle", "group__apparent.html#ga121940d7f0ef41297d28fab8e6df5998", null ],
     [ "novas_moon_phase", "group__apparent.html#ga2dbdafd6b07f079815ae52d00e142861", null ],
     [ "novas_object_sep", "group__apparent.html#gafa5f3a823a895bed01876df6b2a00370", null ],

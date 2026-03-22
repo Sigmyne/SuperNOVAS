@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['deprecated_20list_0',['Deprecated List',['../deprecated.html',1,'']]]
+  ['3_201_0',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md84',1,'']]],
+  ['3_201_20issues_1',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md82',1,'']]]
 ];

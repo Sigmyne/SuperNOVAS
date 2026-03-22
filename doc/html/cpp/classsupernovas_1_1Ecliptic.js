@@ -1,0 +1,27 @@
+var classsupernovas_1_1Ecliptic =
+[
+    [ "Ecliptic", "classsupernovas_1_1Ecliptic.html#a822af8b9e6bb24c7f0c83ca740dc439d", null ],
+    [ "Ecliptic", "classsupernovas_1_1Ecliptic.html#a976996bb54def45d58528dcea073c38e", null ],
+    [ "Ecliptic", "classsupernovas_1_1Ecliptic.html#a926aee5b59a630f097bda63ee925d5a8", null ],
+    [ "Ecliptic", "classsupernovas_1_1Ecliptic.html#ace0e8080c665a757e28fc8feb3526a8e", null ],
+    [ "distance_to", "classsupernovas_1_1Ecliptic.html#a2986f3e28124b274ba670005d126b0b9", null ],
+    [ "equals", "classsupernovas_1_1Ecliptic.html#a3cddea118d722c712a9139c8b44612d3", null ],
+    [ "equals", "classsupernovas_1_1Ecliptic.html#a8474f4b735d8e7d255098a04a31a90cf", null ],
+    [ "equator_type", "classsupernovas_1_1Ecliptic.html#a5b59a6e417879d8df6301b687d6b7602", null ],
+    [ "jd", "classsupernovas_1_1Ecliptic.html#a88e41e75dd72ae1afebe3edd9e623771", null ],
+    [ "mjd", "classsupernovas_1_1Ecliptic.html#a4fe1ee28ce9c07ee116cad3e765d1416", null ],
+    [ "operator!=", "classsupernovas_1_1Ecliptic.html#a0e7796dd54094d855565c3985e7d0637", null ],
+    [ "operator==", "classsupernovas_1_1Ecliptic.html#aa30d882659dad848f4c0be01f0f08a68", null ],
+    [ "operator>>", "classsupernovas_1_1Ecliptic.html#ab34beaf9d178f058ec6b813240cafd48", null ],
+    [ "system", "classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8", null ],
+    [ "to_equatorial", "group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3", null ],
+    [ "to_galactic", "group__nonequatorial.html#ga6be266741f04bb666e9b04deeaca5769", null ],
+    [ "to_icrs", "classsupernovas_1_1Ecliptic.html#a6a0cfeb643b055e65c48a57c2c624227", null ],
+    [ "to_j2000", "classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582", null ],
+    [ "to_mod", "classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47", null ],
+    [ "to_mod", "classsupernovas_1_1Ecliptic.html#acc22ddefa30d092615fee19e8b4b1677", null ],
+    [ "to_string", "classsupernovas_1_1Ecliptic.html#a6f3453f8bd380ee096834cc38985299d", null ],
+    [ "to_system", "classsupernovas_1_1Ecliptic.html#ab078048d3728c4cf4d164b77d57f9c5f", null ],
+    [ "to_tod", "classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d", null ],
+    [ "to_tod", "classsupernovas_1_1Ecliptic.html#ac5f98a9a651dd7cce9c8f5d197e9e70a", null ]
+];

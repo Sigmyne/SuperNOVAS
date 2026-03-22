@@ -1,5 +1,11 @@
 var group__nonequatorial =
 [
+    [ "NOVAS_EQUATOR_TYPES", "group__nonequatorial.html#gade30c5c72c918b2428e803e3f4430ceb", null ],
+    [ "novas_equator_type", "group__nonequatorial.html#ga2eff9980cb9db96ab41fb564c1b5c014", [
+      [ "NOVAS_MEAN_EQUATOR", "group__nonequatorial.html#gga2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040", null ],
+      [ "NOVAS_TRUE_EQUATOR", "group__nonequatorial.html#gga2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f", null ],
+      [ "NOVAS_GCRS_EQUATOR", "group__nonequatorial.html#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66", null ]
+    ] ],
     [ "novas_nutation_direction", "group__nonequatorial.html#gae2d3d508d68d268bec838bdc013d0ada", [
       [ "NUTATE_TRUE_TO_MEAN", "group__nonequatorial.html#ggae2d3d508d68d268bec838bdc013d0adaa20ce1e5229410b6286bcc98a7ce69573", null ],
       [ "NUTATE_MEAN_TO_TRUE", "group__nonequatorial.html#ggae2d3d508d68d268bec838bdc013d0adaacd57b0308467899ec6304aa26dcc8f4c", null ]

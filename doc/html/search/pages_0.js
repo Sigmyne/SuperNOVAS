@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['astropy_0',['SuperNOVAS vs. astropy',['../md_SuperNOVAS__vs__astropy.html',1,'']]]
+  ['0_0',['define THREAD_SAFE 0',['../solsys-cspice_8c.html#autotoc_md16',1,'']]]
 ];

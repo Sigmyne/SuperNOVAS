@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['d_0',['D',['../structnovas__delaunay__args.html#ad8657a5ec76e12f3066fb4b4eb75ace9',1,'novas_delaunay_args']]],
-  ['dec_1',['dec',['../structcat__entry.html#ac4ae7989694321b540abb75c30eec690',1,'cat_entry::dec'],['../structsky__pos.html#ac4ae7989694321b540abb75c30eec690',1,'sky_pos::dec']]],
-  ['deps0_2',['deps0',['../structnovas__frame.html#afb1bb47af5a00647759b897f72a68b58',1,'novas_frame']]],
-  ['dis_3',['dis',['../structsky__pos.html#aeedff25e8c80502a891e8af33d35b3c0',1,'sky_pos']]],
-  ['dist_4',['dist',['../structnovas__observable.html#accf93555161c9eedf006462a228af523',1,'novas_observable']]],
-  ['dpsi0_5',['dpsi0',['../structnovas__frame.html#a4445e3f8a201b14a5a7068c87507de72',1,'novas_frame']]],
-  ['dut1_6',['dut1',['../structnovas__timespec.html#a281e93817d681ec4a6cea2601a15c566',1,'novas_timespec']]],
-  ['dx_7',['dx',['../structnovas__frame.html#a229d11aff11a7482259d1296b9b70b8a',1,'novas_frame']]],
-  ['dy_8',['dy',['../structnovas__frame.html#a9deb6f886b19d50e714d890c3c268efc',1,'novas_frame']]]
+  ['d_0',['D',['../structnovas__delaunay__args.html#af49414d0a8f73222730f65384706f633',1,'novas_delaunay_args']]],
+  ['dec_1',['dec',['../structnovas__cat__entry.html#ab539dc076c350cf98ac047453fa18c9c',1,'novas_cat_entry::dec'],['../structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f',1,'novas_sky_pos::dec']]],
+  ['deps0_2',['deps0',['../structnovas__frame.html#a470905f8b78f4006dfeb50743e8d1720',1,'novas_frame']]],
+  ['dis_3',['dis',['../structnovas__sky__pos.html#a3c45d500db3a793b89d234d950886e4d',1,'novas_sky_pos']]],
+  ['dist_4',['dist',['../structnovas__observable.html#afa1300da8fe42184dc2fe22251578510',1,'novas_observable']]],
+  ['dpsi0_5',['dpsi0',['../structnovas__frame.html#a8ec2c449cbf1c713d382eb0338bafb0d',1,'novas_frame']]],
+  ['dut1_6',['dut1',['../structnovas__timespec.html#a1e5a8481119ea7e5d982a016f25ecca6',1,'novas_timespec']]],
+  ['dx_7',['dx',['../structnovas__frame.html#a5591ff41d6450a6e80be6496e4ba3809',1,'novas_frame']]],
+  ['dy_8',['dy',['../structnovas__frame.html#a0524a3109f686582f8693602b09320f7',1,'novas_frame']]]
 ];

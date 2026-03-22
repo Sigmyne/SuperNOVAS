@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['farenheit_0',['farenheit',['../classsupernovas_1_1Temperature.html#aa9a2354a7fb058c412270a95e1a964de',1,'supernovas::Temperature::farenheit() const'],['../classsupernovas_1_1Temperature.html#a68dfa1f595b67408eccd6fb695a404d4',1,'supernovas::Temperature::farenheit(double value)']]],
+  ['for_5fnaif_5fid_1',['for_naif_id',['../classsupernovas_1_1Planet.html#ac0d1c89e3b7f05582d6953155bb2a66d',1,'supernovas::Planet']]],
+  ['for_5fname_2',['for_name',['../classsupernovas_1_1Planet.html#adb0e145526bc874a87dc38b617d6e403',1,'supernovas::Planet']]],
+  ['fraction_3',['fraction',['../classsupernovas_1_1Angle.html#ae68fb837fb8c311196188dc37eee93d7',1,'supernovas::Angle']]],
+  ['frame_4',['Frame',['../classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6',1,'supernovas::Frame']]],
+  ['frame_5',['frame',['../classsupernovas_1_1Apparent.html#a8d0bac28eca1d45a86b567a090c12973',1,'supernovas::Apparent::frame()'],['../classsupernovas_1_1Geometric.html#ae50d0c332eca559038ac15bb76a1458d',1,'supernovas::Geometric::frame()']]],
+  ['frame_5fat_6',['frame_at',['../group__frame.html#gadd24c03a86837e10783af06be02a8b21',1,'supernovas::Observer']]],
+  ['frame_5ftie_7',['frame_tie',['../novas_8h.html#aa11d2253a44261370af8d0c32f0715e9',1,'novas.h']]],
+  ['from_5fcirs_8',['from_cirs',['../classsupernovas_1_1Apparent.html#ae1d5243333f3dade923b836a8fe00438',1,'supernovas::Apparent::from_cirs(double ra_rad, double dec_rad, const Frame &amp;frame, double rv_ms=0.0)'],['../classsupernovas_1_1Apparent.html#aeed2e822e6721fefcd8291cf68e51f1d',1,'supernovas::Apparent::from_cirs(const Angle &amp;ra, const Angle &amp;dec, const Frame &amp;frame, const ScalarVelocity &amp;rv)']]],
+  ['from_5fcirs_5fsky_5fpos_9',['from_cirs_sky_pos',['../classsupernovas_1_1Apparent.html#ac35dbbc49cd1758943cee6b23bb65f26',1,'supernovas::Apparent']]],
+  ['from_5fgps_10',['from_GPS',['../classsupernovas_1_1Site.html#aadff10a55ef01a3fcabf0a1080e8cb1b',1,'supernovas::Site::from_GPS(double longitude, double latitude, double altitude=0.0)'],['../classsupernovas_1_1Site.html#adb38b78c6430d6f80b82d0721ac08be4',1,'supernovas::Site::from_GPS(const Angle &amp;longitude, const Angle &amp;latitude, const Coordinate &amp;altitude=Coordinate::zero())'],['../classsupernovas_1_1Site.html#ad4647fe1498d48fe106eeaf5aaaaebb9',1,'supernovas::Site::from_GPS(const std::string &amp;longitude, const std::string &amp;latitude, const Coordinate &amp;altitude=Coordinate::zero())']]],
+  ['from_5fmean_5fmotion_11',['from_mean_motion',['../classsupernovas_1_1Orbital.html#aa3446c3bcba2f1b0767f3cbbfc1a0cb8',1,'supernovas::Orbital::from_mean_motion(const OrbitalSystem &amp;system, double jd_tdb, double semi_majpr_m, double mean_anomaly_rad, double rad_per_s)'],['../classsupernovas_1_1Orbital.html#a5a4b10f4cce6563580fcdf8f7cbf64a9',1,'supernovas::Orbital::from_mean_motion(const OrbitalSystem &amp;system, const Time &amp;ref_time, const Coordinate &amp;semi_major, const Angle &amp;mean_anomaly, double rad_per_s)']]],
+  ['from_5fmjd_12',['from_mjd',['../classsupernovas_1_1Time.html#a00692bb26e12051818a0c3f86c56f2b5',1,'supernovas::Time::from_mjd(double mjd, int leap_seconds, double dUT1, enum novas_timescale timescale=NOVAS_TT)'],['../classsupernovas_1_1Time.html#a52f124e08a8b902a9e1ba77e25e24241',1,'supernovas::Time::from_mjd(double mjd, const EOP &amp;eop, enum novas_timescale timescale=NOVAS_TT)']]],
+  ['from_5fnovas_5forbit_13',['from_novas_orbit',['../classsupernovas_1_1Orbital.html#a3139d18e1b210ad8859868aa2e6104aa',1,'supernovas::Orbital']]],
+  ['from_5fnovas_5forbital_5fsystem_14',['from_novas_orbital_system',['../classsupernovas_1_1OrbitalSystem.html#a99134b91491b2cc81adcf887e1b40950',1,'supernovas::OrbitalSystem']]],
+  ['from_5fnovas_5ftrack_15',['from_novas_track',['../classsupernovas_1_1HorizontalTrack.html#ab5dee98eb78cf7b3f50ea2c7b20f25f6',1,'supernovas::HorizontalTrack::from_novas_track()'],['../classsupernovas_1_1EquatorialTrack.html#a75d9702174bee5cd2b8d64ca7de966ec',1,'supernovas::EquatorialTrack::from_novas_track()']]],
+  ['from_5fparallax_16',['from_parallax',['../classsupernovas_1_1Coordinate.html#a502edc1b85c697ce24b4ca4b8881ff7e',1,'supernovas::Coordinate']]],
+  ['from_5fredshift_17',['from_redshift',['../classsupernovas_1_1ScalarVelocity.html#acd186e48b523ccc90757f990b8a05279',1,'supernovas::ScalarVelocity']]],
+  ['from_5fstring_18',['from_string',['../classsupernovas_1_1Equinox.html#a84d4ee33120c947ddb9945634c823748',1,'supernovas::Equinox']]],
+  ['from_5fsystem_5ftype_19',['from_system_type',['../classsupernovas_1_1Equinox.html#a03634a11852e11c2b446031da540c1b2',1,'supernovas::Equinox']]],
+  ['from_5ftod_20',['from_tod',['../classsupernovas_1_1Apparent.html#a372cecff4600650a69f0e4a36efc51fe',1,'supernovas::Apparent::from_tod(double ra_rad, double dec_rad, const Frame &amp;frame, double rv_ms=0.0)'],['../classsupernovas_1_1Apparent.html#a53dbb0b5c1fb4eda0905782472c3615d',1,'supernovas::Apparent::from_tod(const Angle &amp;ra, const Angle &amp;dec, const Frame &amp;frame, const ScalarVelocity &amp;rv)']]],
+  ['from_5ftod_5fsky_5fpos_21',['from_tod_sky_pos',['../classsupernovas_1_1Apparent.html#a45da01a47195b9319ed2e0d86bae95b1',1,'supernovas::Apparent']]],
+  ['fund_5fargs_22',['fund_args',['../novas_8h.html#a312b5ab1a004b179d80463a07ca7da8f',1,'novas.h']]]
+];

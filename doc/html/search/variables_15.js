@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['z_0',['z',['../structnovas__observable.html#ab3e6ed577a7c669c19de1f9c1b46c872',1,'novas_observable']]]
+  ['z_0',['z',['../structnovas__observable.html#a5ad32154eadc4cf7de31ec926f71e752',1,'novas_observable']]]
 ];

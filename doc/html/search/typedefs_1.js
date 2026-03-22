@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['refractionmodel_0',['RefractionModel',['../group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9',1,'novas.h']]]
+  ['in_5fspace_0',['in_space',['../group__observer.html#gaf8e6be13c2cd09e2cc6d582717e352e6',1,'novas.h']]]
 ];
