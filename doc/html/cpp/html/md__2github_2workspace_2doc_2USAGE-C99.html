@@ -95,7 +95,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-C99.html','',''); }
   <div class="headertitle"><div class="title">C99 Usage </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md33"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md35"></a></p>
 <ul>
 <li><a class="el" href="#integration-c99" title="integration-c99">Building your application with SuperNOVAS (C99)</a></li>
 <li><a class="el" href="#examples-c99" title="examples-c99">Example C99 usage</a></li>
@@ -453,7 +453,7 @@ Planets and/or ephemeris type objects</h3>
 <div class="ttc" id="anovas_8h_html_a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e"><div class="ttname"><a href="novas_8h.html#a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e">NOVAS_MARS</a></div><div class="ttdeci">@ NOVAS_MARS</div><div class="ttdoc">Major planet number for Mars in NOVAS.</div><div class="ttdef"><b>Definition</b> novas.h:572</div></div>
 <div class="ttc" id="anovas_8h_html_a4c7846be95299769f4d0377bf127bcf5"><div class="ttname"><a href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet</a></div><div class="ttdeci">int make_planet(enum novas_planet num, object *restrict planet)</div></div>
 <div class="ttc" id="anovas_8h_html_aa22303f98df2d63edf6d8452ff3a43b2"><div class="ttname"><a href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2">make_ephem_object</a></div><div class="ttdeci">int make_ephem_object(const char *name, long num, object *body)</div></div>
-</div><!-- fragment --><dl class="section important"><dt>Important</dt><dd>Before you can handle all major planets and other ephemeris objects this way, you will have to provide one or more functions to obtain the barycentric ICRS positions for your Solar-system source(s) of interest for the specific Barycentric Dynamical Time (TDB) of observation. See section on <a class="el" href="index.html#solarsystem" title="solarsystem">Incorporating Solar-system ephemeris data or services</a>.</dd></dl>
+</div><!-- fragment --><dl class="section important"><dt>Important</dt><dd>Before you can handle all major planets and other ephemeris objects this way, you will have to provide one or more functions to obtain the barycentric ICRS positions for your Solar-system source(s) of interest for the specific Barycentric Dynamical Time (TDB) of observation. See section on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/README.md#solarsystem">Incorporating Solar-system ephemeris data or services</a>.</dd></dl>
 <p>And then, it's the same spiel as before, e.g.:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> status = <a class="code hl_function" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos</a>(&amp;mars, &amp;obs_frame, <a class="code hl_enumvalue" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, &amp;apparent);</div>
 <div class="line"><span class="keywordflow">if</span>(status) {</div>

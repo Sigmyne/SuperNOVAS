@@ -562,7 +562,7 @@ they use a `novas_planet_provider` function to access ephemeris data with their 
 > Before you can handle all major planets and other ephemeris objects this way, you will have to provide one or more 
 > functions to obtain the barycentric ICRS positions for your Solar-system source(s) of interest for the specific 
 > Barycentric Dynamical Time (TDB) of observation. See section on 
-> [Incorporating Solar-system ephemeris data or services](#solarsystem). 
+> [Incorporating Solar-system ephemeris data or services](https://github.com/Sigmyne/SuperNOVAS/blob/main/README.md#solarsystem). 
 
 And then, it's the same spiel as before, e.g.:
 

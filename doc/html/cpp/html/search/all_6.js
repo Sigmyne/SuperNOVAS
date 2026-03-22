@@ -28,7 +28,7 @@ var searchData=
   ['distance_5fat_25',['distance_at',['../classsupernovas_1_1Track.html#a2cfc60cf5b9143e975d75483a1c093b0',1,'supernovas::Track']]],
   ['distance_5fevolution_26',['distance_evolution',['../classsupernovas_1_1Track.html#a390b32d9795db3bc6d4f19afd444085c',1,'supernovas::Track']]],
   ['distance_5fto_27',['distance_to',['../classsupernovas_1_1Spherical.html#a3f83a7b7c79a6f71e52fb8de35225a7c',1,'supernovas::Spherical::distance_to()'],['../classsupernovas_1_1Equatorial.html#ae01c0ae358aadee5e1649fb20b8c8729',1,'supernovas::Equatorial::distance_to()'],['../classsupernovas_1_1Ecliptic.html#a2986f3e28124b274ba670005d126b0b9',1,'supernovas::Ecliptic::distance_to()'],['../classsupernovas_1_1Galactic.html#a88e6b56ab310eb504ac5633dc7fa0cd4',1,'supernovas::Galactic::distance_to()'],['../classsupernovas_1_1Horizontal.html#adf4ef726dd929eb816a93152bfa5d563',1,'supernovas::Horizontal::distance_to()']]],
-  ['don_20t_20reference_20external_20objects_20internally_28',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88',1,'']]],
+  ['don_20t_20reference_20external_20objects_20internally_28',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'']]],
   ['dot_29',['dot',['../classsupernovas_1_1Vector.html#a17572fd5d9e2127b813c5f0186dde2ee',1,'supernovas::Vector']]],
   ['dpsi0_30',['dpsi0',['../structnovas__frame.html#a8ec2c449cbf1c713d382eb0338bafb0d',1,'novas_frame']]],
   ['dut1_31',['dUT1',['../classsupernovas_1_1EOP.html#a14015d01e9b377e3eebede8ae2588f81',1,'supernovas::EOP::dUT1()'],['../classsupernovas_1_1Time.html#acf5b4f03c103c649a2561cb7b6696e14',1,'supernovas::Time::dUT1()']]],

@@ -5,7 +5,7 @@ var searchData=
   ['naif_5fid_2',['naif_id',['../classsupernovas_1_1Planet.html#a134ad44ca935e90b63104a9c00602d6d',1,'supernovas::Planet']]],
   ['naif_5fto_5fnovas_5fplanet_3',['naif_to_novas_planet',['../novas_8h.html#a1c4b3f67a3b82808dd16ae43dfaf0f86',1,'novas.h']]],
   ['name_4',['name',['../structnovas__object.html#a9a4a65802b8ff0edc09062867a51d145',1,'novas_object::name'],['../classsupernovas_1_1Equinox.html#a577bc493cd571f08cb8d388371cd719d',1,'supernovas::Equinox::name()'],['../classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3',1,'supernovas::Source::name()'],['../classsupernovas_1_1CatalogEntry.html#a7328f5c19c2322279e2a3300f4ba2775',1,'supernovas::CatalogEntry::name()']]],
-  ['namespace_5',['Namespace',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85',1,'']]],
+  ['namespace_5',['Namespace',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81',1,'']]],
   ['near_5fearth_6',['near_earth',['../structnovas__observer.html#a1d62a0649b551e6ce86160c950d551dd',1,'novas_observer']]],
   ['neptune_7',['neptune',['../classsupernovas_1_1Planet.html#a95d6eddc4c6164abd06c26875fe7714a',1,'supernovas::Planet']]],
   ['new_8',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md20',1,'']]],

@@ -29,7 +29,7 @@ var searchData=
   ['make_5fredshifted_5fobject_5fsys_26',['make_redshifted_object_sys',['../novas_8h.html#a257abae9391aec835dc2b94d9788b9f9',1,'novas.h']]],
   ['make_5fsolar_5fsystem_5fobserver_27',['make_solar_system_observer',['../novas_8h.html#a9c3f1a1bc3fd9ac6d211806913d2d529',1,'novas.h']]],
   ['make_5fxyz_5fsite_28',['make_xyz_site',['../novas_8h.html#a9e3cbe310a40919ff94d2d530ffa74ee',1,'novas.h']]],
-  ['makefile_29',['Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
+  ['makefile_29',['Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md76',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
   ['mars_30',['mars',['../classsupernovas_1_1Planet.html#ab90560b0d556025abc246d78b3dc47d3',1,'supernovas::Planet']]],
   ['mas_31',['mas',['../classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c',1,'supernovas::Unit::mas'],['../classsupernovas_1_1Angle.html#a6f8542151ca185e23be12aaac101bd0b',1,'supernovas::Angle::mas()']]],
   ['mask_32',['mask',['../structnovas__planet__bundle.html#ac0b016705e6421505f3961ed6c70c845',1,'novas_planet_bundle']]],
