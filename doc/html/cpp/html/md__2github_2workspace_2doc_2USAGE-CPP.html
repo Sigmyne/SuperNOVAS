@@ -95,7 +95,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-CPP.html','',''); }
   <div class="headertitle"><div class="title">C++ Usage </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md77"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md73"></a></p>
 <ul>
 <li><a class="el" href="#integration-cpp" title="integration-cpp">Building your application with SuperNOVAS (C++)</a></li>
 <li><a class="el" href="#examples-cpp" title="examples-cpp">Example C++ usage</a></li>
@@ -346,7 +346,7 @@ Calculate an apparent place on sky</h3>
 <div class="ttc" id="agroup__nonequatorial_html_ga1555f0127468d5283a3f7afbdf5b7df2"><div class="ttname"><a href="group__nonequatorial.html#ga1555f0127468d5283a3f7afbdf5b7df2">supernovas::Apparent::galactic</a></div><div class="ttdeci">Galactic galactic() const</div></div>
 <div class="ttc" id="agroup__nonequatorial_html_gafa2abe3d408721348c0bbb9971507cfb"><div class="ttname"><a href="group__nonequatorial.html#gafa2abe3d408721348c0bbb9971507cfb">supernovas::Apparent::ecliptic</a></div><div class="ttdeci">Ecliptic ecliptic() const</div></div>
 <div class="ttc" id="anovas_8h_html_a7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9"><div class="ttname"><a href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a></div><div class="ttdeci">@ NOVAS_J2000</div><div class="ttdoc">The J2000 dynamical reference system.</div><div class="ttdef"><b>Definition</b> novas.h:847</div></div>
-</div><!-- fragment --><p>Above the <span class="tt">&gt;&gt;</span> operator is used as a shorthand for the <span class="tt">.to_system()</span> method. It's the same as writing <span class="tt">to_system(NOVAS_ICRS)</span>. For spectroscopic applications, you can get a spectroscopic radial velocity or redshift (including gravitational effects) as:</p>
+</div><!-- fragment --><p>Above the <span class="tt">&gt;&gt;</span> operator is used as a shorthand for the <span class="tt">.to_system()</span> method. It's the same as writing <span class="tt">.to_system(NOVAS_J2000)</span> or <span class="tt">.to_j2000()</span>. For spectroscopic applications, you can get a spectroscopic radial velocity or redshift (including gravitational effects) as:</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a> rv = app.<a class="code hl_function" href="classsupernovas_1_1Apparent.html#a5e8560e02a442f1d9443a76385dbdbfb">radial_velocity</a>();</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">double</span> z = app.<a class="code hl_function" href="classsupernovas_1_1Apparent.html#a75458c5dd49ff17aea7730bb2611d8eb">redshift</a>();</div>

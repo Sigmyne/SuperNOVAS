@@ -19,7 +19,7 @@ var searchData=
   ['and_20velocity_20transforms_20change_20of_20coordinate_20system_16',['Coordinate and velocity transforms (change of coordinate system)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'']]],
   ['angles_17',['String times and angles',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'']]],
   ['angles_20at_20the_20observing_20location_18',['angles at the observing location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97',1,'Calculate azimuth and elevation angles at the observing location']]],
-  ['api_19',['API',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47',1,'Deprecated API'],['../index.html#autotoc_md38',1,'Refinements to the NOVAS C API']]],
+  ['api_19',['API',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47',1,'Deprecated API'],['../index.html#autotoc_md39',1,'Refinements to the NOVAS C API']]],
   ['apparent_20place_20on_20sky_20',['apparent place on sky',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96',1,'Calculate an apparent place on sky']]],
   ['application_20with_20supernovas_21',['Building your application with SuperNOVAS',['../index.html#autotoc_md18',1,'']]],
   ['application_20with_20supernovas_20c_22',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79',1,'']]],

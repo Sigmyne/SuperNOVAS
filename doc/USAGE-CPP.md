@@ -389,8 +389,8 @@ equinoxes just like we did for the equatorial:
 ```
 
 Above the `>>` operator is used as a shorthand for the `.to_system()` method. It's the same as writing 
-`to_system(NOVAS_ICRS)`. For spectroscopic applications, you can get a spectroscopic radial velocity or redshift 
-(including gravitational effects) as:
+`.to_system(NOVAS_J2000)` or `.to_j2000()`. For spectroscopic applications, you can get a spectroscopic radial 
+velocity or redshift (including gravitational effects) as:
 
 ```cpp
  ScalarVelocity rv = app.radial_velocity();
