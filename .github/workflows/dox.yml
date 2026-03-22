@@ -83,9 +83,13 @@ jobs:
         mv doc/README-undecorated.md doc/README.md
         cp doc/*.md site/doc/
         cp doc/cpp/*.md site/doc/
+        cp doc/c99/*.md site/doc/
 
     - name: Copy CHANGELOG
       run: cp -a CHANGELOG.md site/doc/
+
+    - name: Copy Usage Guides
+      run: cp -a USAGE-*.md site/doc/
 
     - name: Copy API documentation
       run: |
