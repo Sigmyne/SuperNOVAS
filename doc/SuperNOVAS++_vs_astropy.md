@@ -82,7 +82,7 @@ Time t("2026-03-14T13:43:00.728+0200", eop,
 auto frame = obs.frame_at(t);
 
 // apparent coordinates in system
-auto app = source.apparent_in(frame).to_cirs();
+auto app = source.apparent_in(frame).cirs();
 ```
 
 </td>

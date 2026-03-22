@@ -9,7 +9,7 @@ var searchData=
   ['celsius_6',['celsius',['../classsupernovas_1_1Temperature.html#a61afe4ec08615a30efefcc5513827f65',1,'supernovas::Temperature::celsius() const'],['../classsupernovas_1_1Temperature.html#a36162d2d9476386a6c6ad817c68218d4',1,'supernovas::Temperature::celsius(double value)']]],
   ['center_7',['center',['../classsupernovas_1_1OrbitalSystem.html#ad298620379b01fe4de16aedaa4d1fdb5',1,'supernovas::OrbitalSystem']]],
   ['cio_5fra_8',['cio_ra',['../novas_8h.html#acc331c69187b3077b98280bfb57f6670',1,'novas.h']]],
-  ['cirs_9',['cirs',['../classsupernovas_1_1Equinox.html#a81b68f3f89bb19707d97d2637629cb6d',1,'supernovas::Equinox::cirs(double jd_tt)'],['../classsupernovas_1_1Equinox.html#aaa661a291da04b2409481236dcf09c00',1,'supernovas::Equinox::cirs(const Time &amp;time)']]],
+  ['cirs_9',['cirs',['../classsupernovas_1_1Equinox.html#a81b68f3f89bb19707d97d2637629cb6d',1,'supernovas::Equinox::cirs(double jd_tt)'],['../classsupernovas_1_1Equinox.html#aaa661a291da04b2409481236dcf09c00',1,'supernovas::Equinox::cirs(const Time &amp;time)'],['../group__equatorial.html#gac950452210e4912eac9cef2953f8faf1',1,'supernovas::Apparent::cirs()']]],
   ['cirs_5fto_5fapp_5fra_10',['cirs_to_app_ra',['../novas_8h.html#af90d52a6527d9b62b8ac35d8c1ac7c6b',1,'novas.h']]],
   ['cirs_5fto_5fgcrs_11',['cirs_to_gcrs',['../novas_8h.html#ac0ba048cd1732d0d0398397396d158bc',1,'novas.h']]],
   ['cirs_5fto_5fitrs_12',['cirs_to_itrs',['../novas_8h.html#aa2768d89d499a7155f90a6fd8c176d8d',1,'novas.h']]],

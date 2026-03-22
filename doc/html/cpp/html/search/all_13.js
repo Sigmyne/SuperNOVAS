@@ -31,7 +31,7 @@ var searchData=
   ['reference_5ftime_28',['reference_time',['../classsupernovas_1_1Track.html#a9e59d1ef17ace25b321ddb3dc9c2d88b',1,'supernovas::Track']]],
   ['referenced_5fto_29',['referenced_to',['../classsupernovas_1_1AstrometricPosition.html#ad22e40b2d1ce13900451bf303c737b56',1,'supernovas::AstrometricPosition']]],
   ['referenced_5fto_5fssb_30',['referenced_to_ssb',['../classsupernovas_1_1AstrometricPosition.html#a99e7e7d64227a3394723568a73334e9e',1,'supernovas::AstrometricPosition']]],
-  ['refinements_20to_20the_20novas_20c_20api_31',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
+  ['refinements_20to_20the_20novas_20c_20api_31',['Refinements to the NOVAS C API',['../index.html#autotoc_md38',1,'']]],
   ['refract_32',['refract',['../novas_8h.html#ac7ed2a1a5fb5aea3063d116d3d980eeb',1,'novas.h']]],
   ['refract_5fastro_33',['refract_astro',['../novas_8h.html#afe1d4e96dd66676f5567a279e83e88d9',1,'novas.h']]],
   ['refraction_34',['Atmospheric refraction',['../group__refract.html',1,'']]],

@@ -5,7 +5,7 @@ var searchData=
   ['helio_5fdistance_2',['helio_distance',['../classsupernovas_1_1SolarSystemSource.html#a63fda9415eea42ffa1e87e5d85e221df',1,'supernovas::SolarSystemSource']]],
   ['helio_5frate_3',['helio_rate',['../classsupernovas_1_1SolarSystemSource.html#acb725151c7561dcbb19d8e6e3b18a52f',1,'supernovas::SolarSystemSource']]],
   ['helpers_20and_20utilities_4',['Helpers and utilities',['../group__util.html',1,'']]],
-  ['highlights_5',['New functionality highlights',['../index.html#autotoc_md38',1,'']]],
+  ['highlights_5',['New functionality highlights',['../index.html#autotoc_md37',1,'']]],
   ['hip_6',['hip',['../classsupernovas_1_1Equinox.html#acc3fbee28f0218f99c9566801a330e57',1,'supernovas::Equinox::hip()'],['../classsupernovas_1_1Time.html#a88d93ffcac746ab139c217a4ac6e8c8b',1,'supernovas::Time::hip()']]],
   ['homebrew_20package_7',['Homebrew package',['../index.html#autotoc_md15',1,'']]],
   ['hor_5fto_5fitrs_8',['hor_to_itrs',['../novas_8h.html#a19f4f6c7d942dcba5ad2a4d2a60affad',1,'novas.h']]],

@@ -127,7 +127,7 @@ because _(a)_ the optionals are not supported on Apple and Windows (in 2026), an
 constructors.
 
 Instead all __SuperNOVAS__ classes are based on a `supernovas::Validating` base class, providing an `is_valid()` 
-method. All subclasses (that is all __SuperNOVAS__) classes sanity check their data as part of their constructor. And, 
+method. All subclasses (that is all __SuperNOVAS__ classes) sanity check their data as part of their constructor. And, 
 mutable classes sanity check every time they are modified as well. The checks typically include flagging NaNs and 
 infinite values (unless they are explicitly allowed), enum values outside of their normal range (yes the compiler 
 checks for these, but those checks can be easily bypassed), and whatever else is necessary to ensure that the objects 
