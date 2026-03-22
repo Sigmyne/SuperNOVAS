@@ -472,13 +472,13 @@ observed light originated from the source (at the distance defined or assumed):
 Or, calculate the geometric position relative to the SSB instead...
 
 ```cpp
- AstrometricPosition pos_ssb = app.astrometric_position().referenced_to_ssb();
+ AstrometricPosition ssb_pos = app.astrometric_position().referenced_to_ssb();
 ```
 
 And finally, you can calculate nominal SSB-based ICRS coordinates as:
 
 ```cpp
- Equatorial icrs = pos_ssb.as_equatorial().to_icrs();
+ Equatorial icrs = ssb_pos.as_equatorial().to_icrs();
 ```
 
 

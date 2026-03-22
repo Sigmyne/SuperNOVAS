@@ -13,7 +13,7 @@ var searchData=
   ['accum_5fprec_10',['accum_prec',['../novas_8h.html#ad1de5b481e41cf193c199bd0dc5084bd',1,'novas.h']]],
   ['accuracy_11',['accuracy',['../structnovas__frame.html#a3903377726bbadb61a3e181b5acb45c8',1,'novas_frame::accuracy'],['../classsupernovas_1_1Frame.html#a662b8d1698620c98076d66c08d5ce00f',1,'supernovas::Frame::accuracy()']]],
   ['accuracy_20shortcuts_12',['Reduced accuracy shortcuts',['../index.html#autotoc_md30',1,'']]],
-  ['added_20features_13',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
+  ['added_20features_13',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['altitude_14',['altitude',['../classsupernovas_1_1Site.html#a443da3a82bde66f22240b3d6e91fa577',1,'supernovas::Site']]],
   ['an_20apparent_20place_20on_20sky_15',['an apparent place on sky',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96',1,'Calculate an apparent place on sky']]],
   ['and_20angles_16',['String times and angles',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'']]],

@@ -22,14 +22,14 @@ var index =
       [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md102", null ],
       [ "Universal ephemeris data / service integration", "index.html#autotoc_md103", null ]
     ] ],
-    [ "Notes on precision", "index.html#autotoc_md105", [
-      [ "Prerequisites to precise results", "index.html#autotoc_md106", null ],
-      [ "Reduced accuracy shortcuts", "index.html#autotoc_md108", null ]
+    [ "Notes on precision", "index.html#autotoc_md104", [
+      [ "Prerequisites to precise results", "index.html#autotoc_md105", null ],
+      [ "Reduced accuracy shortcuts", "index.html#autotoc_md106", null ]
     ] ],
-    [ "Runtime debug support", "index.html#autotoc_md110", null ],
-    [ "Representative benchmarks", "index.html#autotoc_md112", null ],
-    [ "SuperNOVAS added features", "index.html#autotoc_md114", [
-      [ "New functionality highlights", "index.html#autotoc_md115", null ],
+    [ "Runtime debug support", "index.html#autotoc_md108", null ],
+    [ "Representative benchmarks", "index.html#autotoc_md110", null ],
+    [ "SuperNOVAS added features", "index.html#autotoc_md113", [
+      [ "New functionality highlights", "index.html#autotoc_md114", null ],
       [ "Refinements to the NOVAS C API", "index.html#autotoc_md116", null ]
     ] ],
     [ "Release schedule", "index.html#autotoc_md118", null ]
