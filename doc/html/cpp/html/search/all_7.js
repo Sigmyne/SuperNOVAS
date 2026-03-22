@@ -49,6 +49,6 @@ var searchData=
   ['era_46',['era',['../structnovas__frame.html#affab4fcc1c7378b396e5411f9c2eea71',1,'novas_frame::era'],['../classsupernovas_1_1Time.html#aef268b7bbb4f82eb0127b15ba5090a01',1,'supernovas::Time::era()'],['../novas_8h.html#aef1f8daaad470353648de90576aefc66',1,'era():&#160;novas.h']]],
   ['example_20c_20usage_47',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83',1,'']]],
   ['example_20c99_20usage_48',['Example C99 usage',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'']]],
-  ['example_20usage_49',['Example usage',['../index.html#autotoc_md22',1,'']]],
+  ['example_20use_20cases_49',['Example use cases',['../index.html#autotoc_md22',1,'']]],
   ['external_20objects_20internally_50',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88',1,'']]]
 ];

@@ -8,7 +8,7 @@ var searchData=
   ['where_5',['where',['../structnovas__observer.html#afc58c314cdec95813c00a0e0ffa636d0',1,'novas_observer']]],
   ['with_20keplerian_20orbital_20parameters_6',['with Keplerian orbital parameters',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102',1,'Solar-system objects with Keplerian orbital parameters']]],
   ['with_20novas_20c_203_201_7',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
-  ['with_20supernovas_8',['Building your application with SuperNOVAS',['../index.html#autotoc_md20',1,'']]],
+  ['with_20supernovas_8',['Building your application with SuperNOVAS',['../index.html#autotoc_md18',1,'']]],
   ['with_20supernovas_20c_9',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79',1,'']]],
   ['with_20supernovas_20c99_10',['Building your application with SuperNOVAS (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44',1,'']]],
   ['wobble_11',['wobble',['../novas_8h.html#aead87744eeb3029ce7d5ffb1801ee652',1,'novas.h']]],

@@ -20,8 +20,8 @@ var searchData=
   ['specify_20the_20time_20of_20observation_17',['Specify the time of observation',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55',1,'Specify the time of observation'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94',1,'Specify the time of observation']]],
   ['string_20dates_18',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md71',1,'']]],
   ['string_20times_20and_20angles_19',['String times and angles',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'']]],
-  ['supernovas_20',['Building your application with SuperNOVAS',['../index.html#autotoc_md20',1,'']]],
-  ['supernovas_20added_20features_21',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
+  ['supernovas_20',['Building your application with SuperNOVAS',['../index.html#autotoc_md18',1,'']]],
+  ['supernovas_20added_20features_21',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['supernovas_20c_22',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79',1,'']]],
   ['supernovas_20c_20vs_20astropy_23',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
   ['supernovas_20c_20vs_20c99_24',['SuperNOVAS C++ vs. C99',['../md_SuperNOVAS_09_09__vs__C99.html',1,'']]],
@@ -34,5 +34,5 @@ var searchData=
   ['system_20ephemeris_20data_20or_20services_31',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
   ['system_20objects_20with_20keplerian_20orbital_20parameters_32',['system objects with Keplerian orbital parameters',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102',1,'Solar-system objects with Keplerian orbital parameters']]],
   ['system_20source_33',['system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculating positions for a Solar-system source']]],
-  ['systems_20old_20vs_20new_34',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md18',1,'']]]
+  ['systems_20old_20vs_20new_34',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md20',1,'']]]
 ];

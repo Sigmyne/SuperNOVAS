@@ -117,7 +117,7 @@ Table of Contents</h1>
 <li><a class="el" href="#installation" title="installation">Building and installation</a></li>
 <li><a class="el" href="#integration" title="integration">Building your application with SuperNOVAS</a></li>
 <li><a class="el" href="#methodologies" title="methodologies">Celestial coordinate systems (old vs. new)</a></li>
-<li><a class="el" href="#examples" title="examples">Example usage</a></li>
+<li><a class="el" href="#examples" title="examples">Example use cases</a></li>
 <li><a class="el" href="#solarsystem" title="solarsystem">Incorporating Solar-system ephemeris data or services</a></li>
 <li><a class="el" href="#precision" title="precision">Notes on precision</a></li>
 <li><a class="el" href="#debug-support" title="debug-support">Runtime debug support</a></li>
@@ -339,8 +339,17 @@ Details</summary>
 </div><!-- fragment --><p></p>
 </details>
 <hr  />
-<p><a class="anchor" id="methodologies"></a> </p>
+<p><a class="anchor" id="integration"></a> </p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+Building your application with SuperNOVAS</h1>
+<p>As of v1.6 <b>SuperNOVAS</b> comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which one you intend to use, choose the appropriate link to an external document below:</p>
+<ul>
+<li><a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">Using the C99 API</a></li>
+<li><a class="el" href="md__2github_2workspace_2doc_2USAGE-CPP.html" title="C++ Usage">Using the C++11 API</a></li>
+</ul>
+<hr  />
+<p><a class="anchor" id="methodologies"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
 Celestial coordinate systems (old vs. new)</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -379,18 +388,9 @@ Celestial coordinate systems (old vs. new)</h1>
 <dl class="section attention"><dt>Attention</dt><dd>Applying residual polar offsets (&Delta;d&psi;, &Delta;d&epsilon; or <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub>) to the TOD equator (via <span class="tt">cel_pole()</span>) is discouraged. Instead, the sub-arcsecond level corrections to Earth orientation (<em>x</em><sub>p</sub>, <em>y</em><sub>p</sub>) should be used only for converting between the pseudo Earth-fixed (PEF or TIRS) and ITRS, and vice-versa (e.g. with <span class="tt"><a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a></span> or <span class="tt"><a class="el" href="novas_8h.html#aead87744eeb3029ce7d5ffb1801ee652">wobble()</a></span>).</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>WGS84 has been superseded by ITRS for higher accuracy definitions of Earth-based locations. WGS84 matches ITRS to the 10m level globally, but it does not account for continental drifts and crustal motion. In (Super)NOVAS all Earth-base locations are presumed ITRS. ITRS longitude, latitude, and altitude coordinates are referenced to the GRS80 ellipsoid, whereas GPS locations are referenced to the WGS84 ellipsoid. <b>SuperNOVAS</b> offers ways to convert between the two if needed.</dd></dl>
 <hr  />
-<p><a class="anchor" id="integration"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
-Building your application with SuperNOVAS</h1>
-<p>As of v1.6 <b>SuperNOVAS</b> comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which one you intend to use, choose the appropriate link to an external document below:</p>
-<ul>
-<li><a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">Using the C99 API</a></li>
-<li><a class="el" href="md__2github_2workspace_2doc_2USAGE-CPP.html" title="C++ Usage">Using the C++11 API</a></li>
-</ul>
-<hr  />
 <p><a class="anchor" id="examples"></a> </p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
-Example usage</h1>
+Example use cases</h1>
 <p>As of v1.6 <b>SuperNOVAS</b> comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which one you intend to use, choose the appropriate link to an external document below:</p>
 <ul>
 <li><a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">Using the C99 API</a></li>
@@ -665,14 +665,14 @@ Details</summary>
 <p>The above benchmarks are all for single-threaded performance. Since <b>SuperNOVAS</b> is generally thread-safe, you can expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single core performance, you could calculate up to 32 million precise positions per second, if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in under one minute.</p>
 <hr  />
 <p><a class="anchor" id="supernovas-features"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 SuperNOVAS added features</h1>
 <ul>
 <li><a class="el" href="#added-functionality" title="added-functionality">Newly functionality highlights</a></li>
 <li><a class="el" href="#api-changes" title="api-changes">Refinements to the NOVAS C API</a></li>
 </ul>
 <p><a class="anchor" id="added-functionality"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
 New functionality highlights</h2>
 <p>Below is a non-exhaustive overview new features added by <b>SuperNOVAS</b> on top of the existing NOVAS C API. See <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/CHANGELOG.md"><span class="tt">CHANGELOG.md</span></a> for more details.</p>
 <details >

@@ -15,7 +15,7 @@ var searchData=
   ['build_20supernovas_20using_20cmake_12',['Build SuperNOVAS using CMake',['../index.html#autotoc_md12',1,'']]],
   ['build_20supernovas_20using_20gnu_20make_13',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md11',1,'']]],
   ['building_20and_20installation_14',['Building and installation',['../index.html#autotoc_md10',1,'']]],
-  ['building_20your_20application_20with_20supernovas_15',['Building your application with SuperNOVAS',['../index.html#autotoc_md20',1,'']]],
+  ['building_20your_20application_20with_20supernovas_15',['Building your application with SuperNOVAS',['../index.html#autotoc_md18',1,'']]],
   ['building_20your_20application_20with_20supernovas_20c_16',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79',1,'']]],
   ['building_20your_20application_20with_20supernovas_20c99_17',['Building your application with SuperNOVAS (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44',1,'']]]
 ];

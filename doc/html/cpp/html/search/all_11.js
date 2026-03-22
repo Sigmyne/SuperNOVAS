@@ -31,7 +31,7 @@ var searchData=
   ['of_20observation_28',['of observation',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55',1,'Specify the time of observation'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94',1,'Specify the time of observation']]],
   ['of_20observation_20and_20astronomical_20timescales_29',['Time of observation and astronomical timescales',['../group__time.html',1,'']]],
   ['offset_5ffrom_30',['offset_from',['../classsupernovas_1_1Time.html#a7fa7de45e7d1db2ca14b86d43ac26c10',1,'supernovas::Time']]],
-  ['old_20vs_20new_31',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md18',1,'']]],
+  ['old_20vs_20new_31',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md20',1,'']]],
   ['omega_32',['Omega',['../structnovas__delaunay__args.html#af6987ccf8afceedd1cd2394a7bdf10b0',1,'novas_delaunay_args::Omega'],['../structnovas__orbital__system.html#a1ac88e32247a155866b20e606f78eb2b',1,'novas_orbital_system::Omega'],['../structnovas__orbital.html#a8985163e8cadadf0f3394823f6cdf094',1,'novas_orbital::Omega']]],
   ['omega_33',['omega',['../structnovas__orbital.html#aaa2670b33c2146fc304f29748b1680f9',1,'novas_orbital']]],
   ['on_20precision_34',['Notes on precision',['../index.html#autotoc_md28',1,'']]],

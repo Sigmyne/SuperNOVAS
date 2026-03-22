@@ -37,7 +37,7 @@ This document has been updated for the `v1.5` and later releases.
  - [Building and installation](#installation)
  - [Building your application with SuperNOVAS](#integration)
  - [Celestial coordinate systems (old vs. new)](#methodologies)
- - [Example usage](#examples)
+ - [Example use cases](#examples)
  - [Incorporating Solar-system ephemeris data or services](#solarsystem)
  - [Notes on precision](#precision)
  - [Runtime debug support](#debug-support)
@@ -463,6 +463,18 @@ Or include in your Nix build of other software with
 ```
 
 
+
+-----------------------------------------------------------------------------
+
+<a name="integration"></a>
+## Building your application with SuperNOVAS
+
+As of v1.6 __SuperNOVAS__ comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which 
+one you intend to use, choose the appropriate link to an external document below:
+
+ - [Using the C99 API](USAGE-C99.md)
+ - [Using the C++11 API](USAGE-CPP.md)
+
 -----------------------------------------------------------------------------
 
 
@@ -525,21 +537,11 @@ __NOTE__
 > GRS80 ellipsoid, whereas GPS locations are referenced to the WGS84 ellipsoid. __SuperNOVAS__ offers ways to convert 
 > between the two if needed.
 
------------------------------------------------------------------------------
-
-<a name="integration"></a>
-## Building your application with SuperNOVAS
-
-As of v1.6 __SuperNOVAS__ comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which 
-one you intend to use, choose the appropriate link to an external document below:
-
- - [Using the C99 API](USAGE-C99.md)
- - [Using the C++11 API](USAGE-CPP.md)
 
 -----------------------------------------------------------------------------
 
 <a name="examples"></a>
-## Example usage
+## Example use cases
 
 As of v1.6 __SuperNOVAS__ comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which 
 one you intend to use, choose the appropriate link to an external document below:

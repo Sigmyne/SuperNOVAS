@@ -14,9 +14,9 @@ var index =
       [ "Homebrew package", "index.html#autotoc_md15", null ],
       [ "Nix package", "index.html#autotoc_md16", null ]
     ] ],
-    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md18", null ],
-    [ "Building your application with SuperNOVAS", "index.html#autotoc_md20", null ],
-    [ "Example usage", "index.html#autotoc_md22", null ],
+    [ "Building your application with SuperNOVAS", "index.html#autotoc_md18", null ],
+    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md20", null ],
+    [ "Example use cases", "index.html#autotoc_md22", null ],
     [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md24", [
       [ "CALCEPH integration", "index.html#autotoc_md25", null ],
       [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md26", null ],
@@ -28,8 +28,8 @@ var index =
     ] ],
     [ "Runtime debug support", "index.html#autotoc_md32", null ],
     [ "Representative benchmarks", "index.html#autotoc_md34", null ],
-    [ "SuperNOVAS added features", "index.html#autotoc_md36", [
-      [ "New functionality highlights", "index.html#autotoc_md37", null ],
+    [ "SuperNOVAS added features", "index.html#autotoc_md37", [
+      [ "New functionality highlights", "index.html#autotoc_md38", null ],
       [ "Refinements to the NOVAS C API", "index.html#autotoc_md39", null ]
     ] ],
     [ "Release schedule", "index.html#autotoc_md41", null ]

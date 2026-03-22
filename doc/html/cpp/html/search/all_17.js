@@ -19,5 +19,5 @@ var searchData=
   ['virtual_5fstar_16',['virtual_star',['../novas_8h.html#aaf187624a93349391518f9d6bb3051e5',1,'novas.h']]],
   ['vs_20astropy_17',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
   ['vs_20c99_18',['SuperNOVAS C++ vs. C99',['../md_SuperNOVAS_09_09__vs__C99.html',1,'']]],
-  ['vs_20new_19',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md18',1,'']]]
+  ['vs_20new_19',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md20',1,'']]]
 ];

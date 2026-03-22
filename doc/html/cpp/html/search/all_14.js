@@ -70,9 +70,9 @@ var searchData=
   ['sun_5fangle_67',['sun_angle',['../group__apparent.html#ga837b7cc8012af33b66b577bfed9597d9',1,'supernovas::Source']]],
   ['sun_5fpos_68',['sun_pos',['../structnovas__frame.html#a97d688f1061399fb56a93f5684efbeec',1,'novas_frame']]],
   ['sun_5fvel_69',['sun_vel',['../structnovas__frame.html#a5babf593c14bcc79e16c16dc1e8f23b9',1,'novas_frame']]],
-  ['supernovas_70',['Building your application with SuperNOVAS',['../index.html#autotoc_md20',1,'']]],
+  ['supernovas_70',['Building your application with SuperNOVAS',['../index.html#autotoc_md18',1,'']]],
   ['supernovas_71',['supernovas',['../namespacesupernovas.html',1,'']]],
-  ['supernovas_20added_20features_72',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
+  ['supernovas_20added_20features_72',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['supernovas_20c_73',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79',1,'']]],
   ['supernovas_20c_20vs_20astropy_74',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
   ['supernovas_20c_20vs_20c99_75',['SuperNOVAS C++ vs. C99',['../md_SuperNOVAS_09_09__vs__C99.html',1,'']]],
@@ -96,5 +96,5 @@ var searchData=
   ['system_20source_93',['system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculating positions for a Solar-system source']]],
   ['system_5ftype_94',['system_type',['../classsupernovas_1_1Equinox.html#ae5f6d48cdd9a62598b5b8dc1138ffbdc',1,'supernovas::Equinox::system_type()'],['../classsupernovas_1_1Equatorial.html#a0ed912a979ffb625f8766694e6d0bdc1',1,'supernovas::Equatorial::system_type()'],['../classsupernovas_1_1OrbitalSystem.html#a955770e11c4742be3c129f0af934365e',1,'supernovas::OrbitalSystem::system_type()'],['../classsupernovas_1_1Geometric.html#a1ae884c6a1cc126e645fcfe8d2d6e935',1,'supernovas::Geometric::system_type()'],['../classsupernovas_1_1AstrometricPosition.html#afc7f5368a8fcdeea835db2c1617b2022',1,'supernovas::AstrometricPosition::system_type()']]],
   ['systems_95',['Transforming between equatorial systems',['../group__equatorial.html',1,'']]],
-  ['systems_20old_20vs_20new_96',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md18',1,'']]]
+  ['systems_20old_20vs_20new_96',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md20',1,'']]]
 ];

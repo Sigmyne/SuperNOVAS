@@ -535,7 +535,7 @@ Tips and tricks (C99)</h1>
 <li><a class="el" href="#string-dates-c99" title="string-dates-c99">String dates</a></li>
 </ul>
 <p><a class="anchor" id="multi-threading-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
 Multi-threaded calculations</h2>
 <p>Some of the calculations involved can be expensive from a computational perspective. For the most typical use case however, NOVAS (and <b>SuperNOVAS</b>) has a trick up its sleeve: it caches the last result of intensive calculations so they may be re-used if the call is made with the same environmental parameters again (such as JD time and accuracy).</p>
 <p>A direct consequence of the caching of results is that calculations are generally not thread-safe as implemented by the original NOVAS C 3.1 library. One thread may be in the process of returning cached values for one set of input parameters while, at the same time, another thread is saving cached values for a different set of parameters. Thus, when running calculations in more than one thread, the NOVAS C results returned may at times be incorrect, or more precisely they may not correspond to the requested input parameters.</p>
@@ -546,7 +546,7 @@ Multi-threaded calculations</h2>
 <li>or else, set the appropriate non-standard keyword to use for declaring thread-local variables for your compiler in <span class="tt">config.mk</span> or in your equivalent build setup.</li>
 </ul>
 <p><a class="anchor" id="physical-units-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
 Physical units</h2>
 <p>The NOVAS API has been using conventional units (e.g. AU, km, day, deg, h) typically for its parameters and return values alike. Hence, <b>SuperNOVAS</b> follows the same conventions for its added functions and data structures also. However, when interfacing <b>SuperNOVAS</b> with other programs, libraries, or data files, it is often necessary to use quantities that are expressed in different units, such as SI or CGS. To facilitate such conversions, <span class="tt"><a class="el" href="novas_8h.html" title="SuperNOVAS types, definitions, and function prototypes.">novas.h</a></span> provides a set of unit constants, which can be used for converting to/from SI units (and radians).</p>
 <p>For example, <span class="tt"><a class="el" href="novas_8h.html" title="SuperNOVAS types, definitions, and function prototypes.">novas.h</a></span> contains the following definitions:</p>
@@ -582,7 +582,7 @@ Physical units</h2>
 <div class="ttc" id="agroup__source_html_ga7822b81ad3f75b448f446ed4da774e75"><div class="ttname"><a href="group__source.html#ga7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a></div><div class="ttdeci">#define NOVAS_KMS</div><div class="ttdoc">[m] One km/s in m/s.</div><div class="ttdef"><b>Definition</b> novas.h:293</div></div>
 <div class="ttc" id="agroup__source_html_gabc8f275a2d431e59a1ec9e276abaca1a"><div class="ttname"><a href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a></div><div class="ttdeci">#define NOVAS_AU</div><div class="ttdoc">[m] Astronomical unit (AU).</div><div class="ttdef"><b>Definition</b> novas.h:299</div></div>
 </div><!-- fragment --><p><a class="anchor" id="string-times-and-angles-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md47"></a>
 String times and angles</h2>
 <p><b>SuperNOVAS</b> functions typically input and output times and angles as decimal values (hours and degrees, but also as days and hour-angles), but that is not how these are represented in many cases. Time and right-ascention are often given as string values indicating hours, minutes, and seconds (e.g. "11:32:31.595", or "11h 32m 31.595s"). Similarly angles, are commonly represented as degrees, arc-minutes, and arc-seconds (e.g. "+53 60 19.9"). For that reason, <b>SuperNOVAS</b> provides a set of functions to convert string values expressed in decimal or broken-down format to floating point representation. E.g.,</p>
 <div class="fragment"><div class="line"><span class="comment">// Right ascention from string</span></div>
