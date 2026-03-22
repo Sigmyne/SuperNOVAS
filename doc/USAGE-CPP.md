@@ -46,7 +46,7 @@ library on top of that. If your application uses optional planet or ephemeris ca
 specify the additional shared libraries also:
 
 ```make
-  myastroapp: myastroapp.c 
+  myastroapp: myastroapp.cpp
   	$(CC) -o $@ $(CFLAGS) $^ -lm -lsupernovas -lsupernovas++ -lsolsys-calceph -lcalceph
 ```
 
