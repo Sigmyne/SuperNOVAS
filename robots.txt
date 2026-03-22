@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sigmyne.github.io/SuperNOVAS/sitemap.xml
