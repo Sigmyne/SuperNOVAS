@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -112,9 +120,9 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Observer location. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#ad8b2d2e6ca9570f09a0ca1f82957ed48">make_itrf_observer()</a>, <a class="el" href="novas_8h.html#aa2f9fc986f99c1ec7092330dbf233fef">make_gps_observer()</a>, <a class="el" href="novas_8h.html#aa82db32ce7b115db4f0a077ca899589b">make_observer_at_site()</a>, <a class="el" href="novas_8h.html#aa423a88cd3f434642fc89d47390184f4">make_airborne_observer()</a>, <a class="el" href="novas_8h.html#aabb3ab0d99aa6e487cdcf6b454949b75">make_observer_at_geocenter()</a>, <a class="el" href="novas_8h.html#a6c146e4d10152d5e1ffb978f2fc962be">make_observer_in_space()</a>, <a class="el" href="novas_8h.html#a9c3f1a1bc3fd9ac6d211806913d2d529">make_solar_system_observer()</a>, <a class="el" href="novas_8h.html#a8b1485a1563288c8d060d935c21e3a63" title="Empty initializer for observer.">OBSERVER_INIT</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#ad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a>, <a class="el" href="novas_8h.html#aa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a>, <a class="el" href="novas_8h.html#aa82db32ce7b115db4f0a077ca899589b" title="Initializes an observer data structure for a ground-based observer at the specified observing site,...">make_observer_at_site()</a>, <a class="el" href="novas_8h.html#aa423a88cd3f434642fc89d47390184f4" title="Populates an &#39;observer&#39; data structure for an observer moving relative to the surface of Earth,...">make_airborne_observer()</a>, <a class="el" href="novas_8h.html#aabb3ab0d99aa6e487cdcf6b454949b75" title="Populates an &#39;observer&#39; data structure for a hypothetical observer located at Earth&#39;s geocenter.">make_observer_at_geocenter()</a>, <a class="el" href="novas_8h.html#a6c146e4d10152d5e1ffb978f2fc962be" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_observer_in_space()</a>, <a class="el" href="novas_8h.html#a9c3f1a1bc3fd9ac6d211806913d2d529" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_solar_system_observer()</a>, <a class="el" href="novas_8h.html#a8b1485a1563288c8d060d935c21e3a63" title="Empty initializer for observer.">OBSERVER_INIT</a> </dd>
 <dd>
-<a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a> </dd></dl>
+<a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a> </dd></dl>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a1d62a0649b551e6ce86160c950d551dd" name="a1d62a0649b551e6ce86160c950d551dd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1d62a0649b551e6ce86160c950d551dd">&#9670;&#160;</a></span>near_earth</h2>
@@ -129,6 +137,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>data for an observer's location in orbit (if where = NOVAS_OBSERVER_IN_EARTH_ORBIT) As of v1.1 the same structure may be used to store heliocentric location and motion for any Solar-system observer also (if where = NOVAS_SOLAR_SYSTEM_OBSERVER). </p>
+
+<p class="reference">Referenced by <a class="el" href="observer_8c.html#a0f2096c7954b583fe749553b956ff9d2">make_observer()</a>.</p>
 
 </div>
 </div>
@@ -146,6 +156,8 @@ Public Attributes</h2></td></tr>
 
 <p>structure containing data for an observer's location on the surface of the Earth (if where = NOVAS_OBSERVER_ON_EARTH) </p>
 
+<p class="reference">Referenced by <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>, <a class="el" href="observer_8c.html#a0f2096c7954b583fe749553b956ff9d2">make_observer()</a>, <a class="el" href="group__time.html#gaecda13098f9fcb4f0a5a864c68bbf697">supernovas::Source::rises_above()</a>, and <a class="el" href="group__time.html#ga29375c229dce898b751473f2f4f74b1d">supernovas::Source::sets_below()</a>.</p>
+
 </div>
 </div>
 <a id="afc58c314cdec95813c00a0e0ffa636d0" name="afc58c314cdec95813c00a0e0ffa636d0"></a>
@@ -161,6 +173,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>observer location type </p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, <a class="el" href="observer_8c.html#a0f2096c7954b583fe749553b956ff9d2">make_observer()</a>, and <a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>.</p>
 
 </div>
 </div>

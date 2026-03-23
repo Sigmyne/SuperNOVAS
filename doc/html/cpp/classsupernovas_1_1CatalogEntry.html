@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -96,7 +104,7 @@ $(function(){initNavTree('classsupernovas_1_1CatalogEntry.html','','classsuperno
 </div><!--header-->
 <div class="contents">
 
-<p>Defines the astrometric parameters of a sidereal source, such as a star, a <a class="el" href="classsupernovas_1_1Galactic.html" title="Galactic coordinates (l, b), representing the direction on the sky, relative to the Galactic plane an...">Galactic</a> cloud, a distant galaxy, or a quasar.  
+<p>Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud, a distant galaxy, or a quasar.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;supernovas.h&gt;</code></p>
@@ -113,33 +121,60 @@ $(function(){initNavTree('classsupernovas_1_1CatalogEntry.html','','classsuperno
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab4b85b7dd5b5c430670b1210c2fc9ff7" id="r_ab4b85b7dd5b5c430670b1210c2fc9ff7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab4b85b7dd5b5c430670b1210c2fc9ff7">CatalogEntry</a> (<a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> e, const <a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a> &amp;<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf">system</a>=<a class="el" href="classsupernovas_1_1Equinox.html#aa53f04012d4eae3402fb189bc7d320eb">Equinox::icrs</a>())</td></tr>
+<tr class="memitem:ab4b85b7dd5b5c430670b1210c2fc9ff7" id="r_ab4b85b7dd5b5c430670b1210c2fc9ff7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab4b85b7dd5b5c430670b1210c2fc9ff7">CatalogEntry</a> (<a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> e, const <a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a> &amp;<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf">system</a>=<a class="el" href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">Equinox::icrs</a>())</td></tr>
+<tr class="memdesc:ab4b85b7dd5b5c430670b1210c2fc9ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new catalog entry with a NOVAS C <span class="tt"><a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a></span> data structure and the equatorial coordinate system in which it is defined.  <br /></td></tr>
 <tr class="memitem:ada56785cc68a5a3b830cc5ef704f51cc" id="r_ada56785cc68a5a3b830cc5ef704f51cc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ada56785cc68a5a3b830cc5ef704f51cc">CatalogEntry</a> (const std::string &amp;<a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name</a>, const <a class="el" href="classsupernovas_1_1Ecliptic.html">Ecliptic</a> &amp;coords)</td></tr>
+<tr class="memdesc:ada56785cc68a5a3b830cc5ef704f51cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new catalog entry with a given name and ecliptic catalog coordinates.  <br /></td></tr>
 <tr class="memitem:a41899562721a238bb89ac5b5d59dc5c5" id="r_a41899562721a238bb89ac5b5d59dc5c5"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> (const std::string &amp;<a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name</a>, const <a class="el" href="classsupernovas_1_1Equatorial.html">Equatorial</a> &amp;coords)</td></tr>
+<tr class="memdesc:a41899562721a238bb89ac5b5d59dc5c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new catalog entry with a given name and catalog coordinates.  <br /></td></tr>
 <tr class="memitem:ae4368af65404acdfeaa1365e12ac2f2f" id="r_ae4368af65404acdfeaa1365e12ac2f2f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae4368af65404acdfeaa1365e12ac2f2f">CatalogEntry</a> (const std::string &amp;<a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name</a>, const <a class="el" href="classsupernovas_1_1Galactic.html">Galactic</a> &amp;coords)</td></tr>
+<tr class="memdesc:ae4368af65404acdfeaa1365e12ac2f2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new catalog entry with a given name and galactic catalog coordinates.  <br /></td></tr>
 <tr class="memitem:ab1ba4b71acf87ebd4bfe12fbeb88855c" id="r_ab1ba4b71acf87ebd4bfe12fbeb88855c"><td class="memItemLeft">const <a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ab1ba4b71acf87ebd4bfe12fbeb88855c">_cat_entry</a> () const</td></tr>
+<tr class="memdesc:ab1ba4b71acf87ebd4bfe12fbeb88855c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the underlying NOVAS C <span class="tt"><a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a></span> data structure, for use with the standard C API.  <br /></td></tr>
 <tr class="memitem:ad3fbfae4e65d4cb968bf356f8bad08a3" id="r_ad3fbfae4e65d4cb968bf356f8bad08a3"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3">dec</a> () const</td></tr>
+<tr class="memdesc:ad3fbfae4e65d4cb968bf356f8bad08a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the catalog declination coordinate as a angle.  <br /></td></tr>
 <tr class="memitem:ab5cd489f9c295a94d1e3eece72e7ea5c" id="r_ab5cd489f9c295a94d1e3eece72e7ea5c"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c">distance</a> () const</td></tr>
+<tr class="memdesc:ab5cd489f9c295a94d1e3eece72e7ea5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the catalog (light-time) distance of the source.  <br /></td></tr>
 <tr class="memitem:a82a4ce2d55312b948ac6e12e8987e711" id="r_a82a4ce2d55312b948ac6e12e8987e711"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a82a4ce2d55312b948ac6e12e8987e711">distance</a> (const <a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a> &amp;dist)</td></tr>
+<tr class="memdesc:a82a4ce2d55312b948ac6e12e8987e711"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the distance of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:ada8963b72d2eb9de0a8476b5ba6f3061" id="r_ada8963b72d2eb9de0a8476b5ba6f3061"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ada8963b72d2eb9de0a8476b5ba6f3061">distance</a> (double meters)</td></tr>
+<tr class="memdesc:ada8963b72d2eb9de0a8476b5ba6f3061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the distance of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:a7831a2379b0c26f06b17603c60181cb4" id="r_a7831a2379b0c26f06b17603c60181cb4"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Equatorial.html">Equatorial</a>&#160;</td><td class="memItemRight"><a class="el" href="#a7831a2379b0c26f06b17603c60181cb4">equatorial</a> () const</td></tr>
+<tr class="memdesc:a7831a2379b0c26f06b17603c60181cb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equatorial catalog coordinates of this source.  <br /></td></tr>
 <tr class="memitem:a7328f5c19c2322279e2a3300f4ba2775" id="r_a7328f5c19c2322279e2a3300f4ba2775"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name</a> () const</td></tr>
+<tr class="memdesc:a7328f5c19c2322279e2a3300f4ba2775"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the catalog name that was defined.  <br /></td></tr>
 <tr class="memitem:aa416d2c477d74c3eccd9ca0546289d6a" id="r_aa416d2c477d74c3eccd9ca0546289d6a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a">parallax</a> () const</td></tr>
+<tr class="memdesc:aa416d2c477d74c3eccd9ca0546289d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the parallax of the source.  <br /></td></tr>
 <tr class="memitem:a12c8a591d4f709fe890859a1477fa23f" id="r_a12c8a591d4f709fe890859a1477fa23f"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a12c8a591d4f709fe890859a1477fa23f">parallax</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;angle)</td></tr>
+<tr class="memdesc:a12c8a591d4f709fe890859a1477fa23f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parallax this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:a7ebe4ac151e5af4e68c55c87f18799ed" id="r_a7ebe4ac151e5af4e68c55c87f18799ed"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a7ebe4ac151e5af4e68c55c87f18799ed">parallax</a> (double radians)</td></tr>
+<tr class="memdesc:a7ebe4ac151e5af4e68c55c87f18799ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parallax of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:a9561e1d23eb50de3b85352ac06792055" id="r_a9561e1d23eb50de3b85352ac06792055"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9561e1d23eb50de3b85352ac06792055">proper_motion</a> (double <a class="el" href="#aa53d9659cd7c098bb1457678db73104b">ra</a>, double <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3">dec</a>)</td></tr>
+<tr class="memdesc:a9561e1d23eb50de3b85352ac06792055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the proper motion of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:aa53d9659cd7c098bb1457678db73104b" id="r_aa53d9659cd7c098bb1457678db73104b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1TimeAngle.html">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa53d9659cd7c098bb1457678db73104b">ra</a> () const</td></tr>
+<tr class="memdesc:aa53d9659cd7c098bb1457678db73104b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the catalog right ascention (R.A.) coordinate as a time-angle.  <br /></td></tr>
 <tr class="memitem:a3797f4e2394ceca4ed4e49e0d46f66e0" id="r_a3797f4e2394ceca4ed4e49e0d46f66e0"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0">radial_velocity</a> () const</td></tr>
+<tr class="memdesc:a3797f4e2394ceca4ed4e49e0d46f66e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the barycentric radial velocity of the source, that is the radial velocity with respect to the Solar System Barycenter (SSB).  <br /></td></tr>
 <tr class="memitem:ac7683860c2c02efa78a07beab752adbe" id="r_ac7683860c2c02efa78a07beab752adbe"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ac7683860c2c02efa78a07beab752adbe">radial_velocity</a> (const <a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a> &amp;v)</td></tr>
+<tr class="memdesc:ac7683860c2c02efa78a07beab752adbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the radial velocity of this source relative to the Solar System Barycenter (SSB), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:aecae9979ad82c997b2a4e674e7f20741" id="r_aecae9979ad82c997b2a4e674e7f20741"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aecae9979ad82c997b2a4e674e7f20741">radial_velocity</a> (double v_ms)</td></tr>
+<tr class="memdesc:aecae9979ad82c997b2a4e674e7f20741"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the radial velocity of this source relative to the Solar System Barycenter (SSB), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:af5d8c901e2be5be1131087ee2ae860f5" id="r_af5d8c901e2be5be1131087ee2ae860f5"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5">redshift</a> () const</td></tr>
+<tr class="memdesc:af5d8c901e2be5be1131087ee2ae860f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the barycentric redshift of the source, that is the redshift measure with respect to the Solar System Barycenter (SSB).  <br /></td></tr>
 <tr class="memitem:a9e0a05b1eed0c217932181f7b8a843d4" id="r_a9e0a05b1eed0c217932181f7b8a843d4"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9e0a05b1eed0c217932181f7b8a843d4">redshift</a> (double z)</td></tr>
+<tr class="memdesc:a9e0a05b1eed0c217932181f7b8a843d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the redshift of this source relative to the Solar System Barycenter (SSB), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:a9e7358ee7c3f4e90550839662cedd5bf" id="r_a9e7358ee7c3f4e90550839662cedd5bf"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf">system</a> () const</td></tr>
+<tr class="memdesc:a9e7358ee7c3f4e90550839662cedd5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equatorial coordinate system in which this catalog entry is defined.  <br /></td></tr>
 <tr class="memitem:a632dcb4b6edb3e341fae0710150aa49a" id="r_a632dcb4b6edb3e341fae0710150aa49a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CatalogSource.html">CatalogSource</a>&#160;</td><td class="memItemRight"><a class="el" href="#a632dcb4b6edb3e341fae0710150aa49a">to_source</a> () const</td></tr>
+<tr class="memdesc:a632dcb4b6edb3e341fae0710150aa49a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new catalog source based created from this catalog entry.  <br /></td></tr>
 <tr class="memitem:a809dd3e1a781361694cc1332d5e1f363" id="r_a809dd3e1a781361694cc1332d5e1f363"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a809dd3e1a781361694cc1332d5e1f363">to_string</a> (int decimals=3) const</td></tr>
+<tr class="memdesc:a809dd3e1a781361694cc1332d5e1f363"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a human-readable string representation of this catalog entry, showing only the most basic data.  <br /></td></tr>
 <tr class="memitem:a23c9875e4a6e480d214c9288f9debe7b" id="r_a23c9875e4a6e480d214c9288f9debe7b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b">v_lsr</a> () const</td></tr>
+<tr class="memdesc:a23c9875e4a6e480d214c9288f9debe7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).  <br /></td></tr>
 <tr class="memitem:a74120ab096b8a9db05ebb87e6dce8f84" id="r_a74120ab096b8a9db05ebb87e6dce8f84"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a74120ab096b8a9db05ebb87e6dce8f84">v_lsr</a> (const <a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a> &amp;v)</td></tr>
+<tr class="memdesc:a74120ab096b8a9db05ebb87e6dce8f84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the motion of this source relative to the Local Standard of Rest (LSR), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:a5abe557f04d1f2ed2dccdaac1e2c0b4b" id="r_a5abe557f04d1f2ed2dccdaac1e2c0b4b"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5abe557f04d1f2ed2dccdaac1e2c0b4b">v_lsr</a> (double v_ms)</td></tr>
+<tr class="memdesc:a5abe557f04d1f2ed2dccdaac1e2c0b4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the motion of this source relative to the Local Standard of Rest (LSR), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -156,7 +191,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a4aa2e66ea6acca6705d87457a08ac2d6 inherit pro_attribs_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">the state variable.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines the astrometric parameters of a sidereal source, such as a star, a <a class="el" href="classsupernovas_1_1Galactic.html" title="Galactic coordinates (l, b), representing the direction on the sky, relative to the Galactic plane an...">Galactic</a> cloud, a distant galaxy, or a quasar. </p>
+<div class="textblock"><p>Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud, a distant galaxy, or a quasar. </p>
 <p>NOTES:</p>
 <ol type="1">
 <li>This class uses a builder pattern to populate the astrometric parameters, bit-by-bit, as needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid using the builder functions in a multi-threaded environment. The best practice is to build the catalog entry first, before using in parallel threads unmodified.</li>
@@ -182,9 +217,39 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name()</a>.</p>
+<p>Instantiates a new catalog entry with a given name and catalog coordinates. </p>
+<p>After instantiation, one may populate additional data using the builder functions of this class, such as:</p>
+<ul>
+<li>radial or LSR velocity, or redshift</li>
+<li>proper motion (if any)</li>
+<li>parallax or distance, if known (by default 1 Gpc is assumed)</li>
+<li>catalog name, and catalog ID number</li>
+</ul>
+<p>For example:</p>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> star =</div>
+<div class="line">   <a class="code hl_function" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a>(<span class="stringliteral">&quot;Antares&quot;</span>, <a class="code hl_class" href="classsupernovas_1_1Equatorial.html">Equatorial</a>(<span class="stringliteral">&quot;16h26m20.1918s&quot;</span>, <span class="stringliteral">&quot;-26d19m23.138s&quot;</span>, <a class="code hl_function" href="classsupernovas_1_1Equinox.html#ac8a0a1ea6d912d4a81ddaa7afd34b030">Equinox::b1950</a>()))</div>
+<div class="line">   .proper_motion( -12.11 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">Unit::mas</a> / Unit::year, -23.30 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">Unit::mas</a> / Unit::year)</div>
+<div class="line">   .parallax(5.89 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">Unit::arcsec</a>)</div>
+<div class="line">   .radial_velocity(-3.4 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">Unit::km</a> / <a class="code hl_variable" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">Unit::s</a>);</div>
+<div class="ttc" id="aclasssupernovas_1_1CatalogEntry_html_a41899562721a238bb89ac5b5d59dc5c5"><div class="ttname"><a href="#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry</a></div><div class="ttdeci">CatalogEntry(const std::string &amp;name, const Equatorial &amp;coords)</div><div class="ttdoc">Instantiates a new catalog entry with a given name and catalog coordinates.</div><div class="ttdef"><b>Definition</b> CatalogEntry.cpp:76</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Equatorial_html"><div class="ttname"><a href="classsupernovas_1_1Equatorial.html">supernovas::Equatorial</a></div><div class="ttdoc">Equatorial coordinates (RA, Dec = α, δ), representing the direction ob the sky, for a particular type...</div><div class="ttdef"><b>Definition</b> supernovas.h:828</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Equinox_html_ac8a0a1ea6d912d4a81ddaa7afd34b030"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#ac8a0a1ea6d912d4a81ddaa7afd34b030">supernovas::Equinox::b1950</a></div><div class="ttdeci">static const Equinox &amp; b1950()</div><div class="ttdoc">The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950).</div><div class="ttdef"><b>Definition</b> Equinox.cpp:553</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a06a5719176ea23f07378bfb5f04a84a2"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a></div><div class="ttdeci">static constexpr double km</div><div class="ttdoc">[m] 1 Angstrom in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:120</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a7b59616535bdb57399eac0c8216a34f3"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">supernovas::Unit::arcsec</a></div><div class="ttdeci">static constexpr double arcsec</div><div class="ttdoc">[rad] 1 minute of arc in radians</div><div class="ttdef"><b>Definition</b> supernovas.h:152</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a9e80b032a29bd9c9e4baace09f2f859c"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">supernovas::Unit::mas</a></div><div class="ttdeci">static constexpr double mas</div><div class="ttdoc">[rad] 1 second or arc in radians</div><div class="ttdef"><b>Definition</b> supernovas.h:153</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_aa9d1ed769eb7bf5348b1d4a10e378472"><div class="ttname"><a href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">supernovas::Unit::s</a></div><div class="ttdeci">static constexpr double s</div><div class="ttdoc">[s] 1 millisecond in seconds</div><div class="ttdef"><b>Definition</b> supernovas.h:130</div></div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775" title="Returns the catalog name that was defined.">name</a></td><td>source name. It is treated case insensitively, unless the user calls <span class="tt">novas_case_sensitive(true)</span> prior to instantiation. The user may chose any name that is appropriate for their application. </td></tr>
+    <tr><td class="paramname">coords</td><td>Catalog coordinates (equatorial)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a>, catalog() </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#a82a4ce2d55312b948ac6e12e8987e711">distance()</a>, <a class="el" href="#ada8963b72d2eb9de0a8476b5ba6f3061">distance()</a>, <a class="el" href="#a12c8a591d4f709fe890859a1477fa23f">parallax()</a>, <a class="el" href="#a7ebe4ac151e5af4e68c55c87f18799ed">parallax()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055">proper_motion()</a>, <a class="el" href="#ac7683860c2c02efa78a07beab752adbe">radial_velocity()</a>, <a class="el" href="#aecae9979ad82c997b2a4e674e7f20741">radial_velocity()</a>, <a class="el" href="#a9e0a05b1eed0c217932181f7b8a843d4">redshift()</a>, <a class="el" href="#a74120ab096b8a9db05ebb87e6dce8f84">v_lsr()</a>, and <a class="el" href="#a5abe557f04d1f2ed2dccdaac1e2c0b4b">v_lsr()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#aa4101d906d7943a36a1b6b5363bfb731">supernovas::Equatorial::dec()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be">supernovas::Angle::deg()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#a6ed469439452805722b5954a1cfc7540">supernovas::TimeAngle::hours()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name()</a>, <a class="el" href="novas_8h.html#af0137aa791dd29278904e53498fb9515">novas_init_cat_entry()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ac1b78ee76a1f5232986ff8e863daf9fb">supernovas::Equatorial::ra()</a>, and <a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf">system()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ada56785cc68a5a3b830cc5ef704f51cc">CatalogEntry()</a>, <a class="el" href="#ae4368af65404acdfeaa1365e12ac2f2f">CatalogEntry()</a>, <a class="el" href="#a82a4ce2d55312b948ac6e12e8987e711">distance()</a>, <a class="el" href="#ada8963b72d2eb9de0a8476b5ba6f3061">distance()</a>, <a class="el" href="#a12c8a591d4f709fe890859a1477fa23f">parallax()</a>, <a class="el" href="#a7ebe4ac151e5af4e68c55c87f18799ed">parallax()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055">proper_motion()</a>, <a class="el" href="#ac7683860c2c02efa78a07beab752adbe">radial_velocity()</a>, <a class="el" href="#aecae9979ad82c997b2a4e674e7f20741">radial_velocity()</a>, <a class="el" href="#a9e0a05b1eed0c217932181f7b8a843d4">redshift()</a>, <a class="el" href="#a74120ab096b8a9db05ebb87e6dce8f84">v_lsr()</a>, and <a class="el" href="#a5abe557f04d1f2ed2dccdaac1e2c0b4b">v_lsr()</a>.</p>
 
 </div>
 </div>
@@ -207,7 +272,25 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name()</a>.</p>
+<p>Instantiates a new catalog entry with a given name and ecliptic catalog coordinates. </p>
+<p>After instantiation, one may populate additional data using the builder functions of this class, such as:</p>
+<ul>
+<li>radial or LSR velocity, or redshift</li>
+<li>proper motion (if any)</li>
+<li>parallax or distance, if known (by default 1 Gpc is assumed)</li>
+<li>catalog name, and catalog ID number</li>
+</ul>
+<p>See CatalogEntry(strd::string&amp;, Equatorial&amp;) for more information on using builder patterns.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775" title="Returns the catalog name that was defined.">name</a></td><td>Source name. It is treated case insensitively, unless the user calls <span class="tt">novas_case_sensitive(true)</span> prior to instantiation. The user may chose any name that is appropriate for their application. </td></tr>
+    <tr><td class="paramname">coords</td><td>Catalog coordinates (ecliptic)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, and <a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name()</a>.</p>
 
 </div>
 </div>
@@ -230,7 +313,28 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name()</a>.</p>
+<p>Instantiates a new catalog entry with a given name and galactic catalog coordinates. </p>
+<p>After instantiation, one may populate additional data using the builder functions of this class, such as:</p>
+<ul>
+<li>radial or LSR velocity, or redshift</li>
+<li>proper motion (if any)</li>
+<li>parallax or distance, if known (by default 1 Gpc is assumed)</li>
+<li>catalog name, and catalog ID number</li>
+</ul>
+<p>See CatalogEntry(strd::string&amp;, Equatorial&amp;) for more information on using builder patterns.</p>
+<p>NOTES:</p><ol type="1">
+<li>The Galactic coordinate system is somewhat ambigiously defined (see Liu+2011). As a result one should probably avoid using it when high precision is required.</li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775" title="Returns the catalog name that was defined.">name</a></td><td>Source name. It is treated case insensitively, unless the user calls <span class="tt">novas_case_sensitive(true)</span> prior to instantiation. The user may chose any name that is appropriate for their application. </td></tr>
+    <tr><td class="paramname">coords</td><td>Catalog coordinates (galactic)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, and <a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name()</a>.</p>
 
 </div>
 </div>
@@ -251,7 +355,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>system</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Equinox.html#aa53f04012d4eae3402fb189bc7d320eb">Equinox::icrs</a>()</span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>system</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">Equinox::icrs</a>()</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -261,7 +365,23 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Equinox.html#aa53f04012d4eae3402fb189bc7d320eb">supernovas::Equinox::icrs()</a>, and <a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf">system()</a>.</p>
+<p>Instantiates a new catalog entry with a NOVAS C <span class="tt"><a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a></span> data structure and the equatorial coordinate system in which it is defined. </p>
+<ul>
+<li>radial or LSR velocity, or redshift</li>
+<li>proper motion (if any)</li>
+<li>parallax or distance, if known (by default 1 Gpc is assumed)</li>
+<li>catalog name, and catalog ID number</li>
+</ul>
+<p>See CatalogEntry(strd::string&amp;, Equatorial&amp;) for more information on using builder patterns.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>NOVAS C <span class="tt"><a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a></span> data structure (it is not referenced) </td></tr>
+    <tr><td class="paramname"><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system</a></td><td>the equatorial coordinate system in which the <span class="tt"><a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a></span> data was defined. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf">system()</a>.</p>
 
 </div>
 </div>
@@ -281,6 +401,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a pointer to the underlying NOVAS C <span class="tt"><a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a></span> data structure, for use with the standard C API. </p>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the underlying NOVAS C <span class="tt"><a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a></span> data structure. </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogSource.html#ab309ce8e3bd4d09229aa6eff97248b5e">supernovas::CatalogSource::CatalogSource()</a>.</p>
+
 </div>
 </div>
 <a id="ad3fbfae4e65d4cb968bf356f8bad08a3" name="ad3fbfae4e65d4cb968bf356f8bad08a3"></a>
@@ -298,7 +423,15 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#a9561e1d23eb50de3b85352ac06792055">proper_motion()</a>.</p>
+<p>Returns the catalog declination coordinate as a angle. </p>
+<dl class="section return"><dt>Returns</dt><dd>the catalog declination angle as defined in the catalog system.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#a7831a2379b0c26f06b17603c60181cb4" title="Returns the equatorial catalog coordinates of this source.">equatorial()</a> </dd>
+<dd>
+<a class="el" href="#aa53d9659cd7c098bb1457678db73104b" title="Returns the catalog right ascention (R.A.) coordinate as a time-angle.">ra()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a7831a2379b0c26f06b17603c60181cb4">equatorial()</a>, and <a class="el" href="#a9561e1d23eb50de3b85352ac06792055">proper_motion()</a>.</p>
 
 </div>
 </div>
@@ -317,6 +450,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the catalog (light-time) distance of the source. </p>
+<dl class="section return"><dt>Returns</dt><dd>the distance of the source, or 1 Gpc if it was not explicitly defined.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a> </dd>
+<dd>
+<a class="el" href="#aa53d9659cd7c098bb1457678db73104b" title="Returns the catalog right ascention (R.A.) coordinate as a time-angle.">ra()</a>, <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3" title="Returns the catalog declination coordinate as a angle.">dec()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a7fe2317f88465c6d1cbba1c915798a9c">supernovas::Unit::kpc</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a82a4ce2d55312b948ac6e12e8987e711">distance()</a>, and <a class="el" href="#a809dd3e1a781361694cc1332d5e1f363">to_string()</a>.</p>
+
 </div>
 </div>
 <a id="a82a4ce2d55312b948ac6e12e8987e711" name="a82a4ce2d55312b948ac6e12e8987e711"></a>
@@ -334,7 +477,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>.</p>
+<p>Sets the distance of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dist</td><td>source (light-time) distance </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a> </dd>
+<dd>
+<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c">distance()</a>, and <a class="el" href="classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff">supernovas::Coordinate::m()</a>.</p>
 
 </div>
 </div>
@@ -353,7 +508,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>.</p>
+<p>Sets the distance of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">meters</td><td>[m] source (light-time) distance </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a> </dd>
+<dd>
+<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="novas_8h.html#aa076ebd4c967fb9afa24bd85feb84f63">novas_set_distance()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a5dafa1612f232d6a64461635cb0f211a">supernovas::Unit::pc</a>.</p>
 
 </div>
 </div>
@@ -372,6 +539,14 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the equatorial catalog coordinates of this source. </p>
+<dl class="section return"><dt>Returns</dt><dd>the equatorial coordinates of the source in the catalog system</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#aa53d9659cd7c098bb1457678db73104b" title="Returns the catalog right ascention (R.A.) coordinate as a time-angle.">ra()</a>, <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3" title="Returns the catalog declination coordinate as a angle.">dec()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3">dec()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#aa53d9659cd7c098bb1457678db73104b">ra()</a>, and <a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf">system()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a809dd3e1a781361694cc1332d5e1f363">to_string()</a>.</p>
+
 </div>
 </div>
 <a id="a7328f5c19c2322279e2a3300f4ba2775" name="a7328f5c19c2322279e2a3300f4ba2775"></a>
@@ -389,7 +564,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#ada56785cc68a5a3b830cc5ef704f51cc">CatalogEntry()</a>, <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, and <a class="el" href="#ae4368af65404acdfeaa1365e12ac2f2f">CatalogEntry()</a>.</p>
+<p>Returns the catalog name that was defined. </p>
+<dl class="section return"><dt>Returns</dt><dd>the given catalog name.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>number() </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#ada56785cc68a5a3b830cc5ef704f51cc">CatalogEntry()</a>, <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="#ae4368af65404acdfeaa1365e12ac2f2f">CatalogEntry()</a>, and <a class="el" href="#a809dd3e1a781361694cc1332d5e1f363">to_string()</a>.</p>
 
 </div>
 </div>
@@ -408,6 +587,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the parallax of the source. </p>
+<dl class="section return"><dt>Returns</dt><dd>the parallax of the source, or 1 &mu;as if not explicitly defined.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a> </dd>
+<dd>
+<a class="el" href="#aa53d9659cd7c098bb1457678db73104b" title="Returns the catalog right ascention (R.A.) coordinate as a time-angle.">ra()</a>, <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3" title="Returns the catalog declination coordinate as a angle.">dec()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">supernovas::Unit::mas</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a12c8a591d4f709fe890859a1477fa23f">parallax()</a>.</p>
+
 </div>
 </div>
 <a id="a12c8a591d4f709fe890859a1477fa23f" name="a12c8a591d4f709fe890859a1477fa23f"></a>
@@ -425,7 +614,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>.</p>
+<p>Sets the parallax this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>Parallax angle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a> </dd>
+<dd>
+<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a">parallax()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
 
 </div>
 </div>
@@ -444,7 +645,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>.</p>
+<p>Sets the parallax of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">radians</td><td>[rad] Parallax angle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a> </dd>
+<dd>
+<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">supernovas::Unit::mas</a>, and <a class="el" href="novas_8h.html#a69274f4ac2631335e1e901142d31f541">novas_set_parallax()</a>.</p>
 
 </div>
 </div>
@@ -467,7 +680,20 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3">dec()</a>, and <a class="el" href="#aa53d9659cd7c098bb1457678db73104b">ra()</a>.</p>
+<p>Sets the proper motion of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#aa53d9659cd7c098bb1457678db73104b" title="Returns the catalog right ascention (R.A.) coordinate as a time-angle.">ra</a></td><td>[rad/s] Proper motion in the R.A. direction </td></tr>
+    <tr><td class="paramname"><a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3" title="Returns the catalog declination coordinate as a angle.">dec</a></td><td>[rad/s] Proper motion in the declination direction </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a>, catalog() </dd>
+<dd>
+<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3">dec()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">supernovas::Unit::mas</a>, <a class="el" href="novas_8h.html#a8ac3513c266181baf92a6b3c22818c99">novas_set_proper_motion()</a>, <a class="el" href="#aa53d9659cd7c098bb1457678db73104b">ra()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#aaa277e4f817f823e433caf74e367fe52">supernovas::Unit::yr</a>.</p>
 
 </div>
 </div>
@@ -486,7 +712,15 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#a9561e1d23eb50de3b85352ac06792055">proper_motion()</a>.</p>
+<p>Returns the catalog right ascention (R.A.) coordinate as a time-angle. </p>
+<dl class="section return"><dt>Returns</dt><dd>the catalog right-ascention angle as defined in the catalog system.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#a7831a2379b0c26f06b17603c60181cb4" title="Returns the equatorial catalog coordinates of this source.">equatorial()</a> </dd>
+<dd>
+<a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3" title="Returns the catalog declination coordinate as a angle.">dec()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a7831a2379b0c26f06b17603c60181cb4">equatorial()</a>, and <a class="el" href="#a9561e1d23eb50de3b85352ac06792055">proper_motion()</a>.</p>
 
 </div>
 </div>
@@ -505,6 +739,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the barycentric radial velocity of the source, that is the radial velocity with respect to the Solar System Barycenter (SSB). </p>
+<dl class="section return"><dt>Returns</dt><dd>the barycentric radial velocity (relative the SSB), or 0.0 if the source motion was not explicitly defined.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd>
+<dd>
+<a class="el" href="#aa53d9659cd7c098bb1457678db73104b" title="Returns the catalog right ascention (R.A.) coordinate as a time-angle.">ra()</a>, <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3" title="Returns the catalog declination coordinate as a angle.">dec()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ac7683860c2c02efa78a07beab752adbe">radial_velocity()</a>, and <a class="el" href="#a809dd3e1a781361694cc1332d5e1f363">to_string()</a>.</p>
+
 </div>
 </div>
 <a id="ac7683860c2c02efa78a07beab752adbe" name="ac7683860c2c02efa78a07beab752adbe"></a>
@@ -522,7 +766,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>.</p>
+<p>Sets the radial velocity of this source relative to the Solar System Barycenter (SSB), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>radial velocity with respect to the Solar System Barycenter (SSB) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd>
+<dd>
+<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#a02b0343abd20757afcdf69acf2b11d00">supernovas::ScalarVelocity::m_per_s()</a>, and <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0">radial_velocity()</a>.</p>
 
 </div>
 </div>
@@ -541,7 +797,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>.</p>
+<p>Sets the radial velocity of this source relative to the Solar System Barycenter (SSB), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v_ms</td><td>[m/s] radial velocity with respect to the Solar System Barycenter (SSB) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd>
+<dd>
+<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>, <a class="el" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a>, <a class="el" href="novas_8h.html#a45f7fdc15580138517ce452a236674d7">novas_set_ssb_vel()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
 
 </div>
 </div>
@@ -560,6 +828,14 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the barycentric redshift of the source, that is the redshift measure with respect to the Solar System Barycenter (SSB). </p>
+<dl class="section return"><dt>Returns</dt><dd>the nominal redshift (rel. to the SSB) of the source, or 0.0 if the source motion was not explicitly defined.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a> </dd>
+<dd>
+<a class="el" href="#aa53d9659cd7c098bb1457678db73104b" title="Returns the catalog right ascention (R.A.) coordinate as a time-angle.">ra()</a>, <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3" title="Returns the catalog declination coordinate as a angle.">dec()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a>, <a class="el" href="novas_8h.html#aa54cd00024b294d38fa29433c017c65f">novas_v2z()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
+
 </div>
 </div>
 <a id="a9e0a05b1eed0c217932181f7b8a843d4" name="a9e0a05b1eed0c217932181f7b8a843d4"></a>
@@ -577,7 +853,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>.</p>
+<p>Sets the redshift of this source relative to the Solar System Barycenter (SSB), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">z</td><td>barycentric redshift measure. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a> </dd>
+<dd>
+<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="novas_8h.html#a4efac9e50efec20489d47726217e9c7e">novas_set_redshift()</a>.</p>
 
 </div>
 </div>
@@ -596,7 +884,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#ab4b85b7dd5b5c430670b1210c2fc9ff7">CatalogEntry()</a>.</p>
+<p>Returns the equatorial coordinate system in which this catalog entry is defined. </p>
+<dl class="section return"><dt>Returns</dt><dd>the equatorial coordinate system of this catalog entry</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa53d9659cd7c098bb1457678db73104b" title="Returns the catalog right ascention (R.A.) coordinate as a time-angle.">ra()</a>, <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3" title="Returns the catalog declination coordinate as a angle.">dec()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#ab4b85b7dd5b5c430670b1210c2fc9ff7">CatalogEntry()</a>, <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1CatalogSource.html#ab309ce8e3bd4d09229aa6eff97248b5e">supernovas::CatalogSource::CatalogSource()</a>, and <a class="el" href="#a7831a2379b0c26f06b17603c60181cb4">equatorial()</a>.</p>
 
 </div>
 </div>
@@ -615,6 +907,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a new catalog source based created from this catalog entry. </p>
+<dl class="section return"><dt>Returns</dt><dd>a new catalog source for this entry. </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
 </div>
 </div>
 <a id="a809dd3e1a781361694cc1332d5e1f363" name="a809dd3e1a781361694cc1332d5e1f363"></a>
@@ -631,6 +928,17 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns a human-readable string representation of this catalog entry, showing only the most basic data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">decimals</td><td>[0:16] number of decimal places to print for coordinates. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a string describing this catalog entry. </dd></dl>
+
+<p class="reference">References <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c">distance()</a>, <a class="el" href="#a7831a2379b0c26f06b17603c60181cb4">equatorial()</a>, <a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name()</a>, <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0">radial_velocity()</a>, <a class="el" href="classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd">supernovas::Coordinate::to_string()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#a32bfe60a4d887c5b659720756a3b6006">supernovas::Equatorial::to_string()</a>, and <a class="el" href="classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85">supernovas::ScalarVelocity::to_string()</a>.</p>
 
 </div>
 </div>
@@ -649,6 +957,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the scalar source velocity with respect to the Local Standard of Rest (LSR). </p>
+<dl class="section return"><dt>Returns</dt><dd>the LSR velocity of the source (or the LSR velocity of the SSB if the source motion was not explicitly defined).</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd>
+<dd>
+<a class="el" href="#aa53d9659cd7c098bb1457678db73104b" title="Returns the catalog right ascention (R.A.) coordinate as a time-angle.">ra()</a>, <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3" title="Returns the catalog declination coordinate as a angle.">dec()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a>, <a class="el" href="novas_8h.html#a99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a74120ab096b8a9db05ebb87e6dce8f84">v_lsr()</a>.</p>
+
 </div>
 </div>
 <a id="a74120ab096b8a9db05ebb87e6dce8f84" name="a74120ab096b8a9db05ebb87e6dce8f84"></a>
@@ -666,7 +984,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>.</p>
+<p>Sets the motion of this source relative to the Local Standard of Rest (LSR), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>LSR velocity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd>
+<dd>
+<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#a02b0343abd20757afcdf69acf2b11d00">supernovas::ScalarVelocity::m_per_s()</a>, and <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b">v_lsr()</a>.</p>
 
 </div>
 </div>
@@ -685,7 +1015,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>.</p>
+<p>Sets the motion of this source relative to the Local Standard of Rest (LSR), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v_ms</td><td>[m/s] LSR velocity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd>
+<dd>
+<a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, catalog() </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>, <a class="el" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a>, <a class="el" href="novas_8h.html#a4aa0c52a1d4838feb4255974486462a7">novas_set_lsr_vel()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
 
 </div>
 </div>

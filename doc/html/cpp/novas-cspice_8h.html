@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -102,11 +110,17 @@ $(function(){initNavTree('novas-cspice_8h.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gae02d26964099f56c375dc78172ad135b" id="r_gae02d26964099f56c375dc78172ad135b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__solar-system.html#gae02d26964099f56c375dc78172ad135b">cspice_add_kernel</a> (const char *filename)</td></tr>
+<tr class="memdesc:gae02d26964099f56c375dc78172ad135b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a SPICE kernel to the currently managed open kernels.  <br /></td></tr>
 <tr class="memitem:ga38e3b3155cad3b3822fbc3e553060ab1" id="r_ga38e3b3155cad3b3822fbc3e553060ab1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1">cspice_remove_kernel</a> (const char *filename)</td></tr>
+<tr class="memdesc:ga38e3b3155cad3b3822fbc3e553060ab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a SPICE kernel from the currently managed open kernels.  <br /></td></tr>
 <tr class="memitem:gadbb028231581d55f7f8c5fd428ba98c7" id="r_gadbb028231581d55f7f8c5fd428ba98c7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__solar-system.html#gadbb028231581d55f7f8c5fd428ba98c7">novas_cspice_is_thread_safe</a> ()</td></tr>
+<tr class="memdesc:gadbb028231581d55f7f8c5fd428ba98c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the CSPICE plugin is thread safe.  <br /></td></tr>
 <tr class="memitem:ga9b44218bca5fce1e9e5103494c15dde4" id="r_ga9b44218bca5fce1e9e5103494c15dde4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4">novas_use_cspice</a> ()</td></tr>
+<tr class="memdesc:ga9b44218bca5fce1e9e5103494c15dde4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANET and NOVAS_EPHEM_OBJECT types).  <br /></td></tr>
 <tr class="memitem:gafb078e1df9b5b08999d24e68d7b4ecdc" id="r_gafb078e1df9b5b08999d24e68d7b4ecdc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__solar-system.html#gafb078e1df9b5b08999d24e68d7b4ecdc">novas_use_cspice_ephem</a> ()</td></tr>
+<tr class="memdesc:gafb078e1df9b5b08999d24e68d7b4ecdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a ephemeris provider for NOVAS_EPHEM_OBJECT types using the NAIF CSPICE library.  <br /></td></tr>
 <tr class="memitem:ga943549e395b19f6a91064e3d6fa1c577" id="r_ga943549e395b19f6a91064e3d6fa1c577"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__solar-system.html#ga943549e395b19f6a91064e3d6fa1c577">novas_use_cspice_planets</a> ()</td></tr>
+<tr class="memdesc:ga943549e395b19f6a91064e3d6fa1c577"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets CSPICE as the ephemeris provider for the major planets (and Sun, Moon, SSB...) using the NAIF CSPICE library.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>SuperNOVAS functions interfacing with the NAIF CSPICE Toolkit. </p>

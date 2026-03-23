@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['z_0',['z',['../structnovas__observable.html#a5ad32154eadc4cf7de31ec926f71e752',1,'novas_observable::z'],['../classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08',1,'supernovas::Vector::z()']]],
-  ['zenith_5fangle_1',['zenith_angle',['../classsupernovas_1_1Horizontal.html#aface5655311d8017cb07d7eb383d8b32',1,'supernovas::Horizontal']]],
-  ['zero_2',['zero',['../classsupernovas_1_1Coordinate.html#abca88b8b28ebe5496c286c3647b380b3',1,'supernovas::Coordinate::zero()'],['../classsupernovas_1_1Interval.html#a4fb9c20d909209f91cc209264eb10b13',1,'supernovas::Interval::zero()'],['../classsupernovas_1_1TimeAngle.html#a40e4180476b4fa23332c2c69b22a395a',1,'supernovas::TimeAngle::zero()']]]
+  ['y_0',['y',['../classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f',1,'supernovas::Vector']]],
+  ['year_1',['year',['../classsupernovas_1_1CalendarDate.html#ae5e159bc329f7d8c9b22341090f51aec',1,'supernovas::CalendarDate']]],
+  ['years_2',['years',['../classsupernovas_1_1Interval.html#ade377a82ccf6542288c49956408d9315',1,'supernovas::Interval']]],
+  ['your_20application_20with_20supernovas_3',['Building your application with SuperNOVAS',['../index.html#autotoc_md18',1,'']]],
+  ['your_20application_20with_20supernovas_20c_4',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79',1,'']]],
+  ['your_20application_20with_20supernovas_20c99_5',['Building your application with SuperNOVAS (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44',1,'']]],
+  ['yp_6',['yp',['../classsupernovas_1_1EOP.html#a366bb7cd103b544c14e62db54950cad4',1,'supernovas::EOP']]],
+  ['yr_7',['yr',['../classsupernovas_1_1Unit.html#aaa277e4f817f823e433caf74e367fe52',1,'supernovas::Unit']]]
 ];

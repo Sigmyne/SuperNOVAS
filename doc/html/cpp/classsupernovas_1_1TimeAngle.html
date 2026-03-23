@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -115,32 +123,57 @@ $(function(){initNavTree('classsupernovas_1_1TimeAngle.html','','classsupernovas
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2b86110788369d2ceb6858aaa42c680e" id="r_a2b86110788369d2ceb6858aaa42c680e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2b86110788369d2ceb6858aaa42c680e">TimeAngle</a> (const Angle &amp;angle)</td></tr>
+<tr class="memdesc:a2b86110788369d2ceb6858aaa42c680e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates an angle, to be represented as time on a 24 hour interval, from an angle instance.  <br /></td></tr>
 <tr class="memitem:ae31f906cee26ecd3ef66e07b9a4393da" id="r_ae31f906cee26ecd3ef66e07b9a4393da"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae31f906cee26ecd3ef66e07b9a4393da">TimeAngle</a> (const std::string &amp;str)</td></tr>
+<tr class="memdesc:ae31f906cee26ecd3ef66e07b9a4393da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates an angle, to be represented as time on a 24 hour interval, from a HMS or decimal string representation of time.  <br /></td></tr>
 <tr class="memitem:aefc4d47845acc009e22b368255827448" id="r_aefc4d47845acc009e22b368255827448"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a> (double radians)</td></tr>
+<tr class="memdesc:aefc4d47845acc009e22b368255827448"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates an angle, to be represented as time on a 24 hour interval, from a canonical angle in radians.  <br /></td></tr>
 <tr class="memitem:a6ed469439452805722b5954a1cfc7540" id="r_a6ed469439452805722b5954a1cfc7540"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a6ed469439452805722b5954a1cfc7540">hours</a> () const</td></tr>
+<tr class="memdesc:a6ed469439452805722b5954a1cfc7540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this angle as hours on a 24h interval.  <br /></td></tr>
 <tr class="memitem:a87f7f4c5821595db2a3342e8f52699b4" id="r_a87f7f4c5821595db2a3342e8f52699b4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a87f7f4c5821595db2a3342e8f52699b4">minutes</a> () const</td></tr>
+<tr class="memdesc:a87f7f4c5821595db2a3342e8f52699b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this angle as minutes inside a 24h interval.  <br /></td></tr>
 <tr class="memitem:a9f4d90c69c95bd1af248e13441ae803f" id="r_a9f4d90c69c95bd1af248e13441ae803f"><td class="memItemLeft">Angle&#160;</td><td class="memItemRight"><a class="el" href="#a9f4d90c69c95bd1af248e13441ae803f">operator+</a> (const Angle &amp;r) const override</td></tr>
+<tr class="memdesc:a9f4d90c69c95bd1af248e13441ae803f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new angle that is the sum of this angle and the specified other angle.  <br /></td></tr>
 <tr class="memitem:ac60228eec1bca415e74b54befd51c611" id="r_ac60228eec1bca415e74b54befd51c611"><td class="memItemLeft"><a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac60228eec1bca415e74b54befd51c611">operator+</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;other) const</td></tr>
+<tr class="memdesc:ac60228eec1bca415e74b54befd51c611"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new time-angle that is the sum of this time-angle and the specified time interval.  <br /></td></tr>
 <tr class="memitem:ae6a062641d69ba791c1ab3bd8554a576" id="r_ae6a062641d69ba791c1ab3bd8554a576"><td class="memItemLeft"><a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#ae6a062641d69ba791c1ab3bd8554a576">operator+</a> (const <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a> &amp;r) const</td></tr>
+<tr class="memdesc:ae6a062641d69ba791c1ab3bd8554a576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new time-angle that is the sum of this rime-angle and the specified other time-angle.  <br /></td></tr>
 <tr class="memitem:aeb1860d3186a860bf4212c34d802502b" id="r_aeb1860d3186a860bf4212c34d802502b"><td class="memItemLeft">Angle&#160;</td><td class="memItemRight"><a class="el" href="#aeb1860d3186a860bf4212c34d802502b">operator-</a> (const Angle &amp;r) const override</td></tr>
+<tr class="memdesc:aeb1860d3186a860bf4212c34d802502b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new angle that is the difference of this angle and the specified other angle.  <br /></td></tr>
 <tr class="memitem:ad4a4dea2db2fe861a715233d5e0b9596" id="r_ad4a4dea2db2fe861a715233d5e0b9596"><td class="memItemLeft"><a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad4a4dea2db2fe861a715233d5e0b9596">operator-</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;other) const</td></tr>
+<tr class="memdesc:ad4a4dea2db2fe861a715233d5e0b9596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new time-angle that is the difference of this time-angle and the specified time interval.  <br /></td></tr>
 <tr class="memitem:aadeb1fd947cae7de774f0de9c77e7bab" id="r_aadeb1fd947cae7de774f0de9c77e7bab"><td class="memItemLeft"><a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#aadeb1fd947cae7de774f0de9c77e7bab">operator-</a> (const <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a> &amp;r) const</td></tr>
+<tr class="memdesc:aadeb1fd947cae7de774f0de9c77e7bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new time-angle that is the difference of this time-angle and the specified other time-angle.  <br /></td></tr>
 <tr class="memitem:ad3e673f9bf33b709f7d032a797900904" id="r_ad3e673f9bf33b709f7d032a797900904"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ad3e673f9bf33b709f7d032a797900904">seconds</a> () const</td></tr>
+<tr class="memdesc:ad3e673f9bf33b709f7d032a797900904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this angle as seconds on a 24h interval.  <br /></td></tr>
 <tr class="memitem:a5a550bcad0265652d8c543d2c50ee7e9" id="r_a5a550bcad0265652d8c543d2c50ee7e9"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a5a550bcad0265652d8c543d2c50ee7e9">to_string</a> (enum <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40e">novas_separator_type</a> separator=<a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a>, int decimals=3) const override</td></tr>
+<tr class="memdesc:a5a550bcad0265652d8c543d2c50ee7e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a DDD:MM:SS.SSS representation of the angle with the specified separators and decimal places for the arc seconds.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Angle"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Angle')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Angle.html">supernovas::Angle</a></td></tr>
 <tr class="memitem:a0af20b06639e0cee8a24cde361d80f88 inherit pub_methods_classsupernovas_1_1Angle" id="r_a0af20b06639e0cee8a24cde361d80f88"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a0af20b06639e0cee8a24cde361d80f88">Angle</a> (const std::string &amp;str)</td></tr>
+<tr class="memdesc:a0af20b06639e0cee8a24cde361d80f88 inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates an angle from its string representation, either as decimal degrees or as [-]DDD:MM:SS.SSS.  <br /></td></tr>
 <tr class="memitem:ada81acd45becf847f82fa353523b977c inherit pub_methods_classsupernovas_1_1Angle" id="r_ada81acd45becf847f82fa353523b977c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#ada81acd45becf847f82fa353523b977c">Angle</a> (double radians)</td></tr>
+<tr class="memdesc:ada81acd45becf847f82fa353523b977c inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new angle with the specified value in radians.  <br /></td></tr>
 <tr class="memitem:a36ce17ee438a8d128af4f60c1f4ce548 inherit pub_methods_classsupernovas_1_1Angle" id="r_a36ce17ee438a8d128af4f60c1f4ce548"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a36ce17ee438a8d128af4f60c1f4ce548">~Angle</a> ()</td></tr>
 <tr class="memitem:a4692cfb7e9911e34c3df48accd8289bf inherit pub_methods_classsupernovas_1_1Angle" id="r_a4692cfb7e9911e34c3df48accd8289bf"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf">arcmin</a> () const</td></tr>
+<tr class="memdesc:a4692cfb7e9911e34c3df48accd8289bf inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in arc minutes.  <br /></td></tr>
 <tr class="memitem:a62d566900a6fe0052db3d82ea416b6ae inherit pub_methods_classsupernovas_1_1Angle" id="r_a62d566900a6fe0052db3d82ea416b6ae"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a62d566900a6fe0052db3d82ea416b6ae">arcsec</a> () const</td></tr>
+<tr class="memdesc:a62d566900a6fe0052db3d82ea416b6ae inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in arc seconds.  <br /></td></tr>
 <tr class="memitem:a084ae07a20c426f4f79b5b367b8df1be inherit pub_methods_classsupernovas_1_1Angle" id="r_a084ae07a20c426f4f79b5b367b8df1be"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be">deg</a> () const</td></tr>
+<tr class="memdesc:a084ae07a20c426f4f79b5b367b8df1be inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in degrees.  <br /></td></tr>
 <tr class="memitem:a4645972967822541c9f964a8f0393e1b inherit pub_methods_classsupernovas_1_1Angle" id="r_a4645972967822541c9f964a8f0393e1b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a4645972967822541c9f964a8f0393e1b">equals</a> (const Angle &amp;angle, double precision=<a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">Unit::uas</a>) const</td></tr>
+<tr class="memdesc:a4645972967822541c9f964a8f0393e1b inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this angle instance equals another within the specified absolute precision.  <br /></td></tr>
 <tr class="memitem:ae68fb837fb8c311196188dc37eee93d7 inherit pub_methods_classsupernovas_1_1Angle" id="r_ae68fb837fb8c311196188dc37eee93d7"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#ae68fb837fb8c311196188dc37eee93d7">fraction</a> () const</td></tr>
+<tr class="memdesc:ae68fb837fb8c311196188dc37eee93d7 inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle as a fraction of the circle.  <br /></td></tr>
 <tr class="memitem:a6f8542151ca185e23be12aaac101bd0b inherit pub_methods_classsupernovas_1_1Angle" id="r_a6f8542151ca185e23be12aaac101bd0b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a6f8542151ca185e23be12aaac101bd0b">mas</a> () const</td></tr>
+<tr class="memdesc:a6f8542151ca185e23be12aaac101bd0b inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in milliarcseconds.  <br /></td></tr>
 <tr class="memitem:aaa4486c733e14ea4e9f4105e42285006 inherit pub_methods_classsupernovas_1_1Angle" id="r_aaa4486c733e14ea4e9f4105e42285006"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#aaa4486c733e14ea4e9f4105e42285006">operator!=</a> (const Angle &amp;angle) const</td></tr>
+<tr class="memdesc:aaa4486c733e14ea4e9f4105e42285006 inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this angle instance differs from another by more than 1 &mu;as.  <br /></td></tr>
 <tr class="memitem:a73d4cf5daf3c1fdaf81940b3a2ba4551 inherit pub_methods_classsupernovas_1_1Angle" id="r_a73d4cf5daf3c1fdaf81940b3a2ba4551"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a73d4cf5daf3c1fdaf81940b3a2ba4551">operator==</a> (const Angle &amp;angle) const</td></tr>
+<tr class="memdesc:a73d4cf5daf3c1fdaf81940b3a2ba4551 inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this angle instance equals another within the 1 &mu;as.  <br /></td></tr>
 <tr class="memitem:a296b29e7589c3c2e96f2316da0f20f04 inherit pub_methods_classsupernovas_1_1Angle" id="r_a296b29e7589c3c2e96f2316da0f20f04"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">rad</a> () const</td></tr>
+<tr class="memdesc:a296b29e7589c3c2e96f2316da0f20f04 inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in radians.  <br /></td></tr>
 <tr class="memitem:a39ee92c930646bae2fa5224132ac4804 inherit pub_methods_classsupernovas_1_1Angle" id="r_a39ee92c930646bae2fa5224132ac4804"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a39ee92c930646bae2fa5224132ac4804">uas</a> () const</td></tr>
+<tr class="memdesc:a39ee92c930646bae2fa5224132ac4804 inherit pub_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in microarcseconds.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -149,13 +182,19 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af93192ba24d0a601f16d63105ee7feb0" id="r_af93192ba24d0a601f16d63105ee7feb0"><td class="memItemLeft">static <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#af93192ba24d0a601f16d63105ee7feb0">hours</a> (double value)</td></tr>
-<tr class="memitem:aff59352c29a4a123983bbe70328c84a8" id="r_aff59352c29a4a123983bbe70328c84a8"><td class="memItemLeft">static <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#aff59352c29a4a123983bbe70328c84a8">minutes</a> (double value)</td></tr>
-<tr class="memitem:a0d5ed1c779cc5076881ad04df52aa6bf" id="r_a0d5ed1c779cc5076881ad04df52aa6bf"><td class="memItemLeft">static const <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a0d5ed1c779cc5076881ad04df52aa6bf">noon</a> ()</td></tr>
-<tr class="memitem:a9c2601124c41746eaa2045b109176b59" id="r_a9c2601124c41746eaa2045b109176b59"><td class="memItemLeft">static <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#a9c2601124c41746eaa2045b109176b59">seconds</a> (double value)</td></tr>
-<tr class="memitem:a40e4180476b4fa23332c2c69b22a395a" id="r_a40e4180476b4fa23332c2c69b22a395a"><td class="memItemLeft">static const <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a40e4180476b4fa23332c2c69b22a395a">zero</a> ()</td></tr>
+<tr class="memitem:ac74d73454dd7c7391f6e3fdb9e0d5968" id="r_ac74d73454dd7c7391f6e3fdb9e0d5968"><td class="memItemLeft">static <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac74d73454dd7c7391f6e3fdb9e0d5968">hours</a> (double value)</td></tr>
+<tr class="memdesc:ac74d73454dd7c7391f6e3fdb9e0d5968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new time-angle given the specified time value in hours.  <br /></td></tr>
+<tr class="memitem:ad508cfdd582e0b578e565f36a4cef473" id="r_ad508cfdd582e0b578e565f36a4cef473"><td class="memItemLeft">static <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad508cfdd582e0b578e565f36a4cef473">minutes</a> (double value)</td></tr>
+<tr class="memdesc:ad508cfdd582e0b578e565f36a4cef473"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new time-angle given the specified time value in minutes.  <br /></td></tr>
+<tr class="memitem:ae56344cb0ade09ed2c4d96919706ca86" id="r_ae56344cb0ade09ed2c4d96919706ca86"><td class="memItemLeft">static const <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ae56344cb0ade09ed2c4d96919706ca86">noon</a> ()</td></tr>
+<tr class="memdesc:ae56344cb0ade09ed2c4d96919706ca86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined time angle corresponding to noon (12h).  <br /></td></tr>
+<tr class="memitem:af2441cf4b199ba525dda1e09f659e4c7" id="r_af2441cf4b199ba525dda1e09f659e4c7"><td class="memItemLeft">static <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a>&#160;</td><td class="memItemRight"><a class="el" href="#af2441cf4b199ba525dda1e09f659e4c7">seconds</a> (double value)</td></tr>
+<tr class="memdesc:af2441cf4b199ba525dda1e09f659e4c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new time-angle given the specified time value in seconds.  <br /></td></tr>
+<tr class="memitem:a4947ba9bb1cd1176f7ca54a07f9f0e08" id="r_a4947ba9bb1cd1176f7ca54a07f9f0e08"><td class="memItemLeft">static const <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a4947ba9bb1cd1176f7ca54a07f9f0e08">zero</a> ()</td></tr>
+<tr class="memdesc:a4947ba9bb1cd1176f7ca54a07f9f0e08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined time-angle that represents a zero angle.  <br /></td></tr>
 <tr class="inherit_header pub_static_methods_classsupernovas_1_1Angle"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classsupernovas_1_1Angle')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Angle.html">supernovas::Angle</a></td></tr>
-<tr class="memitem:a19e6bcbe362f5a31daf7bc959342db1f inherit pub_static_methods_classsupernovas_1_1Angle" id="r_a19e6bcbe362f5a31daf7bc959342db1f"><td class="memItemLeft">static const Angle &amp;&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#a19e6bcbe362f5a31daf7bc959342db1f">undefined</a> ()</td></tr>
+<tr class="memitem:af3afba7d82529ef0d87c8c042c19763e inherit pub_static_methods_classsupernovas_1_1Angle" id="r_af3afba7d82529ef0d87c8c042c19763e"><td class="memItemLeft">static const Angle &amp;&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Angle.html#af3afba7d82529ef0d87c8c042c19763e">undefined</a> ()</td></tr>
+<tr class="memdesc:af3afba7d82529ef0d87c8c042c19763e inherit pub_static_methods_classsupernovas_1_1Angle"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined standard invalid angle.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -206,7 +245,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#af93192ba24d0a601f16d63105ee7feb0">hours()</a>, <a class="el" href="#aff59352c29a4a123983bbe70328c84a8">minutes()</a>, <a class="el" href="#a0d5ed1c779cc5076881ad04df52aa6bf">noon()</a>, <a class="el" href="#ac60228eec1bca415e74b54befd51c611">operator+()</a>, <a class="el" href="#ae6a062641d69ba791c1ab3bd8554a576">operator+()</a>, <a class="el" href="#ad4a4dea2db2fe861a715233d5e0b9596">operator-()</a>, <a class="el" href="#aadeb1fd947cae7de774f0de9c77e7bab">operator-()</a>, <a class="el" href="#a9c2601124c41746eaa2045b109176b59">seconds()</a>, and <a class="el" href="#a40e4180476b4fa23332c2c69b22a395a">zero()</a>.</p>
+<p>Instantiates an angle, to be represented as time on a 24 hour interval, from a canonical angle in radians. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">radians</td><td>[rad] the angle in radians </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Angle.html#af6e6db865035c41e06774db14657d444">supernovas::Angle::_rad</a>, and <a class="el" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ac74d73454dd7c7391f6e3fdb9e0d5968">hours()</a>, <a class="el" href="#ad508cfdd582e0b578e565f36a4cef473">minutes()</a>, <a class="el" href="#ae56344cb0ade09ed2c4d96919706ca86">noon()</a>, <a class="el" href="#ac60228eec1bca415e74b54befd51c611">operator+()</a>, <a class="el" href="#ae6a062641d69ba791c1ab3bd8554a576">operator+()</a>, <a class="el" href="#ad4a4dea2db2fe861a715233d5e0b9596">operator-()</a>, <a class="el" href="#aadeb1fd947cae7de774f0de9c77e7bab">operator-()</a>, <a class="el" href="#af2441cf4b199ba525dda1e09f659e4c7">seconds()</a>, and <a class="el" href="#a4947ba9bb1cd1176f7ca54a07f9f0e08">zero()</a>.</p>
 
 </div>
 </div>
@@ -233,6 +282,16 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Instantiates an angle, to be represented as time on a 24 hour interval, from a HMS or decimal string representation of time. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>A decimal or HMS representation of time, using spaces, colons, and/or the letters <span class="tt">h</span>, <span class="tt">m</span> (and optionally <span class="tt">s</span>) as separators. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#a3ed26b6af870f6dbc353f651563afd4a">novas_str_hours()</a>.</p>
+
 </div>
 </div>
 <a id="a2b86110788369d2ceb6858aaa42c680e" name="a2b86110788369d2ceb6858aaa42c680e"></a>
@@ -258,6 +317,14 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Instantiates an angle, to be represented as time on a 24 hour interval, from an angle instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>an angle to initialize with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -276,10 +343,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns this angle as hours on a 24h interval. </p>
+<dl class="section return"><dt>Returns</dt><dd>[h] the angle as hours of time on the [0.0:24.0) interval.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a87f7f4c5821595db2a3342e8f52699b4" title="Returns this angle as minutes inside a 24h interval.">minutes()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904" title="Returns this angle as seconds on a 24h interval.">seconds()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">Angle::rad()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">Angle::deg()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">Angle::arcmin()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">Angle::arcsec()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Angle.html#af6e6db865035c41e06774db14657d444">supernovas::Angle::_rad</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CalendarDate.html#aa3e14f7515a6d40fd5e71a33e11d19e0">supernovas::CalendarDate::CalendarDate()</a>, <a class="el" href="classsupernovas_1_1CatalogEntry.html#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry()</a>, <a class="el" href="#a87f7f4c5821595db2a3342e8f52699b4">minutes()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904">seconds()</a>, <a class="el" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">supernovas::Equatorial::to_galactic()</a>, and <a class="el" href="#a5a550bcad0265652d8c543d2c50ee7e9">to_string()</a>.</p>
+
 </div>
 </div>
-<a id="af93192ba24d0a601f16d63105ee7feb0" name="af93192ba24d0a601f16d63105ee7feb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af93192ba24d0a601f16d63105ee7feb0">&#9670;&#160;</a></span>hours() <span class="overload">[2/2]</span></h2>
+<a id="ac74d73454dd7c7391f6e3fdb9e0d5968" name="ac74d73454dd7c7391f6e3fdb9e0d5968"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac74d73454dd7c7391f6e3fdb9e0d5968">&#9670;&#160;</a></span>hours() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -301,7 +376,18 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
+<p>Returns a new time-angle given the specified time value in hours. </p>
+<p>The input time may be any real value, but the returned time angle will be restricted to a single 24 hour interval.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>[h] the angle defined as hours of time. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new time-angle with the specified time defining the angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a87f7f4c5821595db2a3342e8f52699b4" title="Returns this angle as minutes inside a 24h interval.">minutes()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904" title="Returns this angle as seconds on a 24h interval.">seconds()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>
@@ -320,10 +406,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns this angle as minutes inside a 24h interval. </p>
+<dl class="section return"><dt>Returns</dt><dd>[m] the angle as minutes of time on the [0.0:1440.0) interval.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6ed469439452805722b5954a1cfc7540" title="Returns this angle as hours on a 24h interval.">hours()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904" title="Returns this angle as seconds on a 24h interval.">seconds()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">Angle::rad()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">Angle::deg()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">Angle::arcmin()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">Angle::arcsec()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a6ed469439452805722b5954a1cfc7540">hours()</a>.</p>
+
 </div>
 </div>
-<a id="aff59352c29a4a123983bbe70328c84a8" name="aff59352c29a4a123983bbe70328c84a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff59352c29a4a123983bbe70328c84a8">&#9670;&#160;</a></span>minutes() <span class="overload">[2/2]</span></h2>
+<a id="ad508cfdd582e0b578e565f36a4cef473" name="ad508cfdd582e0b578e565f36a4cef473"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad508cfdd582e0b578e565f36a4cef473">&#9670;&#160;</a></span>minutes() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -345,12 +437,23 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
+<p>Returns a new time-angle given the specified time value in minutes. </p>
+<p>The input time may be any real value, but the returned time angle will be restricted to a single 24 hour interval.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>[m] the angle defined as minutes of time. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new time-angle with the specified time defining the angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6ed469439452805722b5954a1cfc7540" title="Returns this angle as hours on a 24h interval.">hours()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904" title="Returns this angle as seconds on a 24h interval.">seconds()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>
-<a id="a0d5ed1c779cc5076881ad04df52aa6bf" name="a0d5ed1c779cc5076881ad04df52aa6bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d5ed1c779cc5076881ad04df52aa6bf">&#9670;&#160;</a></span>noon()</h2>
+<a id="ae56344cb0ade09ed2c4d96919706ca86" name="ae56344cb0ade09ed2c4d96919706ca86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae56344cb0ade09ed2c4d96919706ca86">&#9670;&#160;</a></span>noon()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +475,10 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
+<p>Returns a reference to a statically defined time angle corresponding to noon (12h). </p>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the statically defined time-angle for noon (12h). </dd></dl>
+
+<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>.</p>
 
 </div>
 </div>
@@ -399,7 +505,19 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classsupernovas_1_1Angle.html#ab11a33b83b611915d55bbe77fbec2c79">supernovas::Angle</a>.</p>
+<p>Returns a new angle that is the sum of this angle and the specified other angle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the other angle on the right-hand-side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the sum of this angle and the argument, as a new angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aeb1860d3186a860bf4212c34d802502b" title="Returns a new angle that is the difference of this angle and the specified other angle.">operator-()</a> </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classsupernovas_1_1Angle.html#a82e5f7cc89c1fa80ec6331b91bccd938">supernovas::Angle</a>.</p>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Angle.html#a82e5f7cc89c1fa80ec6331b91bccd938">supernovas::Angle::operator+()</a>.</p>
 
 </div>
 </div>
@@ -412,13 +530,23 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a> supernovas::TimeAngle::operator+ </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>offset</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
+<p>Returns a new time-angle that is the sum of this time-angle and the specified time interval. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>the time interval on the right-hand-side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the sum of this time-angle and the time interval, as a new time-angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aeb1860d3186a860bf4212c34d802502b" title="Returns a new angle that is the difference of this angle and the specified other angle.">operator-()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, <a class="el" href="classsupernovas_1_1Interval.html#a600c2bc983afb9a335acca648d7b074c">supernovas::Interval::hours()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
 
 </div>
 </div>
@@ -437,7 +565,17 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
+<p>Returns a new time-angle that is the sum of this rime-angle and the specified other time-angle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the other time-angle on the right-hand-side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the sum of this time-angle and the argument, as a new time-angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aeb1860d3186a860bf4212c34d802502b" title="Returns a new angle that is the difference of this angle and the specified other angle.">operator-()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
 
 </div>
 </div>
@@ -464,7 +602,19 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classsupernovas_1_1Angle.html#aa3cb542110cc6a5652483a6cc8191798">supernovas::Angle</a>.</p>
+<p>Returns a new angle that is the difference of this angle and the specified other angle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the other angle on the right-hand-side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the difference of this angle and the argument, as a new angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9f4d90c69c95bd1af248e13441ae803f" title="Returns a new angle that is the sum of this angle and the specified other angle.">operator+()</a> </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classsupernovas_1_1Angle.html#a61870ec8a57c3d67c14a5ebf508794f3">supernovas::Angle</a>.</p>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Angle.html#a61870ec8a57c3d67c14a5ebf508794f3">supernovas::Angle::operator-()</a>.</p>
 
 </div>
 </div>
@@ -477,13 +627,23 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle</a> supernovas::TimeAngle::operator- </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>offset</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
+<p>Returns a new time-angle that is the difference of this time-angle and the specified time interval. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>the time interval on the right-hand-side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the difference of this time-angle and the time interval, as a new time-angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9f4d90c69c95bd1af248e13441ae803f" title="Returns a new angle that is the sum of this angle and the specified other angle.">operator+()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, <a class="el" href="classsupernovas_1_1Interval.html#a600c2bc983afb9a335acca648d7b074c">supernovas::Interval::hours()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
 
 </div>
 </div>
@@ -502,7 +662,17 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
+<p>Returns a new time-angle that is the difference of this time-angle and the specified other time-angle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the other time-angle on the right-hand-side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the difference of this time-angle and the argument, as a new time-angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9f4d90c69c95bd1af248e13441ae803f" title="Returns a new angle that is the sum of this angle and the specified other angle.">operator+()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
 
 </div>
 </div>
@@ -521,10 +691,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns this angle as seconds on a 24h interval. </p>
+<dl class="section return"><dt>Returns</dt><dd>[s] the angle as seconds of time on the [0.0:86400.0) interval.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6ed469439452805722b5954a1cfc7540" title="Returns this angle as hours on a 24h interval.">hours()</a>, <a class="el" href="#a87f7f4c5821595db2a3342e8f52699b4" title="Returns this angle as minutes inside a 24h interval.">minutes()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904" title="Returns this angle as seconds on a 24h interval.">seconds()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">Angle::rad()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">Angle::deg()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">Angle::arcmin()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">Angle::arcsec()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a6ed469439452805722b5954a1cfc7540">hours()</a>.</p>
+
 </div>
 </div>
-<a id="a9c2601124c41746eaa2045b109176b59" name="a9c2601124c41746eaa2045b109176b59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c2601124c41746eaa2045b109176b59">&#9670;&#160;</a></span>seconds() <span class="overload">[2/2]</span></h2>
+<a id="af2441cf4b199ba525dda1e09f659e4c7" name="af2441cf4b199ba525dda1e09f659e4c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2441cf4b199ba525dda1e09f659e4c7">&#9670;&#160;</a></span>seconds() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -546,7 +722,18 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
+<p>Returns a new time-angle given the specified time value in seconds. </p>
+<p>The input time may be any real value, but the returned time angle will be restricted to a single 24 hour interval.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>[s] the angle defined as seconds of time. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new time-angle with the specified time defining the angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6ed469439452805722b5954a1cfc7540" title="Returns this angle as hours on a 24h interval.">hours()</a>, <a class="el" href="#a87f7f4c5821595db2a3342e8f52699b4" title="Returns this angle as minutes inside a 24h interval.">minutes()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>
@@ -577,14 +764,26 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classsupernovas_1_1Angle.html#a271875756e228da2a2019cd0f4778e64">supernovas::Angle</a>.</p>
+<p>Provides a DDD:MM:SS.SSS representation of the angle with the specified separators and decimal places for the arc seconds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">separator</td><td>the type of separators / unit markers used to distinguish the degree, minute, and second components. </td></tr>
+    <tr><td class="paramname">decimals</td><td>[0:9] the number of decimal places to print for the arc seconds component. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the strung representation of this angle in degrees. </dd></dl>
 
-<p class="reference">References <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a>.</p>
+<p>Reimplemented from <a class="el" href="classsupernovas_1_1Angle.html#a37f5d6a238897cf0a3f016d6c42b9099">supernovas::Angle</a>.</p>
+
+<p class="reference">References <a class="el" href="#a6ed469439452805722b5954a1cfc7540">hours()</a>, and <a class="el" href="novas_8h.html#a713869893ad7e58c53e44b37a3bcf768">novas_print_hms()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogSource.html#a94ac207adcc4c9c2bbc000b0e4ef40ce">supernovas::CatalogSource::to_string()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#a32bfe60a4d887c5b659720756a3b6006">supernovas::Equatorial::to_string()</a>.</p>
 
 </div>
 </div>
-<a id="a40e4180476b4fa23332c2c69b22a395a" name="a40e4180476b4fa23332c2c69b22a395a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40e4180476b4fa23332c2c69b22a395a">&#9670;&#160;</a></span>zero()</h2>
+<a id="a4947ba9bb1cd1176f7ca54a07f9f0e08" name="a4947ba9bb1cd1176f7ca54a07f9f0e08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4947ba9bb1cd1176f7ca54a07f9f0e08">&#9670;&#160;</a></span>zero()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -606,9 +805,10 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
+<p>Returns a reference to a statically defined time-angle that represents a zero angle. </p>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the statically defined zero angle. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CalendarDate.html#aa3e14f7515a6d40fd5e71a33e11d19e0">supernovas::CalendarDate::CalendarDate()</a>, and <a class="el" href="classsupernovas_1_1Calendar.html#a56e9d8501f78df551e259262ad09c782">supernovas::Calendar::date()</a>.</p>
+<p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
 
 </div>
 </div>

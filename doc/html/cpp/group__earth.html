@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -112,7 +120,9 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga416a96426a0b3c52c1d5fc6452357366" id="r_ga416a96426a0b3c52c1d5fc6452357366"><td class="memItemLeft"><a class="el" href="#ga1f0e319630e7a47f17247bf51f7bf36c">novas_nutation_provider</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga416a96426a0b3c52c1d5fc6452357366">get_nutation_lp_provider</a> ()</td></tr>
+<tr class="memdesc:ga416a96426a0b3c52c1d5fc6452357366"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the function configured for low-precision IAU 2000 nutation calculations instead of the default <a class="el" href="novas_8h.html#abd066c2857d1b1cc06d8bd51b912d841" title="Computes the forced nutation of the non-rigid Earth: Model NU2000K.">nu2000k()</a>.  <br /></td></tr>
 <tr class="memitem:ga694288eb631d6a69ecf313b7b5b4a677" id="r_ga694288eb631d6a69ecf313b7b5b4a677"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga694288eb631d6a69ecf313b7b5b4a677">set_nutation_lp_provider</a> (<a class="el" href="#ga1f0e319630e7a47f17247bf51f7bf36c">novas_nutation_provider</a> func)</td></tr>
+<tr class="memdesc:ga694288eb631d6a69ecf313b7b5b4a677"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the function to use for low-precision IAU 2000 nutation calculations instead of the default <a class="el" href="novas_8h.html#abd066c2857d1b1cc06d8bd51b912d841" title="Computes the forced nutation of the non-rigid Earth: Model NU2000K.">nu2000k()</a>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Earth Orientation Parameters (EOP), for defining the unmodelled (via the IAU 2000 / 2006 precession-nutation models) polar motion and rotational variations of the physical Earth. </p>
@@ -141,7 +151,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 (errno should be set to indicate the type of error).</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a69df5671751c09a7575963b94ad1151e">nutation()</a>, <a class="el" href="novas_8h.html#a6e9ced7b0aec544ad7b057b58f777ec4">nutation_angles()</a>, <a class="el" href="novas_8h.html#a280cbf02b13ca57b3d77451be06e7dbc">iau2000a()</a>, <a class="el" href="novas_8h.html#a6f9cddeb8c3dd906b9b0b5941249ad0c">iau2000b()</a>, iau2000k()</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a69df5671751c09a7575963b94ad1151e" title="Nutates equatorial rectangular coordinates from mean equator and equinox of epoch to true equator and...">nutation()</a>, <a class="el" href="novas_8h.html#a6e9ced7b0aec544ad7b057b58f777ec4" title="Returns the IAU2000 / 2006 values for nutation in longitude and nutation in obliquity for a given TDB...">nutation_angles()</a>, <a class="el" href="novas_8h.html#a280cbf02b13ca57b3d77451be06e7dbc" title="Computes the IAU 2000A high-precision nutation series for the specified date, to 0....">iau2000a()</a>, <a class="el" href="novas_8h.html#a6f9cddeb8c3dd906b9b0b5941249ad0c" title="Computes the forced nutation of the non-rigid Earth based at reduced precision.">iau2000b()</a>, iau2000k()</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
 
@@ -163,6 +173,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the function configured for low-precision IAU 2000 nutation calculations instead of the default <a class="el" href="novas_8h.html#abd066c2857d1b1cc06d8bd51b912d841" title="Computes the forced nutation of the non-rigid Earth: Model NU2000K.">nu2000k()</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>the function to use for low-precision IAU 2000 nutation calculations</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga694288eb631d6a69ecf313b7b5b4a677" title="Set the function to use for low-precision IAU 2000 nutation calculations instead of the default nu200...">set_nutation_lp_provider()</a>, <a class="el" href="novas_8h.html#a6e9ced7b0aec544ad7b057b58f777ec4" title="Returns the IAU2000 / 2006 values for nutation in longitude and nutation in obliquity for a given TDB...">nutation_angles()</a>, <a class="el" href="novas_8h.html#a69df5671751c09a7575963b94ad1151e" title="Nutates equatorial rectangular coordinates from mean equator and equinox of epoch to true equator and...">nutation()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a6e9ced7b0aec544ad7b057b58f777ec4">nutation_angles()</a>.</p>
+
 </div>
 </div>
 <a id="ga694288eb631d6a69ecf313b7b5b4a677" name="ga694288eb631d6a69ecf313b7b5b4a677"></a>
@@ -179,6 +197,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set the function to use for low-precision IAU 2000 nutation calculations instead of the default <a class="el" href="novas_8h.html#abd066c2857d1b1cc06d8bd51b912d841" title="Computes the forced nutation of the non-rigid Earth: Model NU2000K.">nu2000k()</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>the new function to use for low-precision IAU 2000 nutation calculations </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if the input argument is NULL</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga416a96426a0b3c52c1d5fc6452357366" title="Returns the function configured for low-precision IAU 2000 nutation calculations instead of the defau...">get_nutation_lp_provider()</a>, <a class="el" href="novas_8h.html#a6e9ced7b0aec544ad7b057b58f777ec4" title="Returns the IAU2000 / 2006 values for nutation in longitude and nutation in obliquity for a given TDB...">nutation_angles()</a>, <a class="el" href="novas_8h.html#a69df5671751c09a7575963b94ad1151e" title="Nutates equatorial rectangular coordinates from mean equator and equinox of epoch to true equator and...">nutation()</a> </dd></dl>
 
 </div>
 </div>

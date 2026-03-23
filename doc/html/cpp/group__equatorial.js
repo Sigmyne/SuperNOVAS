@@ -31,9 +31,9 @@ var group__equatorial =
       [ "to_tod", "classsupernovas_1_1Equatorial.html#adfbdaf0e46e3a7d58305533b26cf217c", null ]
     ] ],
     [ "supernovas::AstrometricPosition::as_equatorial", "group__equatorial.html#ga90c00e6b66260a85bd49b8fdb1d61051", null ],
+    [ "supernovas::Apparent::cirs", "group__equatorial.html#gac950452210e4912eac9cef2953f8faf1", null ],
     [ "supernovas::Apparent::equatorial", "group__equatorial.html#gafc85c07b57504bce62e2f7b06947dfb8", null ],
     [ "supernovas::Geometric::equatorial", "group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257", null ],
-    [ "supernovas::Apparent::to_cirs", "group__equatorial.html#gaa537aa7bbcf1b9c45e4039a143575fc0", null ],
     [ "supernovas::Ecliptic::to_equatorial", "group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3", null ],
     [ "supernovas::Galactic::to_equatorial", "group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99", null ],
     [ "supernovas::Equatorial::to_icrs", "group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864", null ],

@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -130,20 +138,30 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65">NOVAS_DEBUG_ON</a>
 , <a class="el" href="#gga9d8d2a1f5c06b488e4c817bc9877e3baaa03b175422e9603e87ab87f93a45c07c">NOVAS_DEBUG_EXTRA</a>
  }</td></tr>
-<tr class="memdesc:ga9d8d2a1f5c06b488e4c817bc9877e3ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Settings for '<a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug()</a>'.  <a href="#ga9d8d2a1f5c06b488e4c817bc9877e3ba">More...</a><br /></td></tr>
+<tr class="memdesc:ga9d8d2a1f5c06b488e4c817bc9877e3ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Settings for '<a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug()</a>'.  <a href="#ga9d8d2a1f5c06b488e4c817bc9877e3ba">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga5f35633b872751df4dacd2fb2cbe4ac3" id="r_ga5f35633b872751df4dacd2fb2cbe4ac3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug</a> (enum <a class="el" href="#ga9d8d2a1f5c06b488e4c817bc9877e3ba">novas_debug_mode</a> mode)</td></tr>
+<tr class="memdesc:ga5f35633b872751df4dacd2fb2cbe4ac3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables reporting errors and traces to the standard error stream.  <br /></td></tr>
 <tr class="memitem:ga29cad12337acfce5f1e370320dcefb79" id="r_ga29cad12337acfce5f1e370320dcefb79"><td class="memItemLeft">enum <a class="el" href="#ga9d8d2a1f5c06b488e4c817bc9877e3ba">novas_debug_mode</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga29cad12337acfce5f1e370320dcefb79">novas_get_debug_mode</a> ()</td></tr>
+<tr class="memdesc:ga29cad12337acfce5f1e370320dcefb79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current, thread-local, mode for reporting errors encountered (and traces).  <br /></td></tr>
 <tr class="memitem:ga4934da85b9722ef43a5b238f3e1971e4" id="r_ga4934da85b9722ef43a5b238f3e1971e4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga4934da85b9722ef43a5b238f3e1971e4">novas_parse_date</a> (const char *restrict date, char **restrict tail)</td></tr>
+<tr class="memdesc:ga4934da85b9722ef43a5b238f3e1971e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an astronomical date/time string into a Julian date specification.  <br /></td></tr>
 <tr class="memitem:ga5ec9d054b7d363b3db1d065507a1ba41" id="r_ga5ec9d054b7d363b3db1d065507a1ba41"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga5ec9d054b7d363b3db1d065507a1ba41">novas_parse_date_format</a> (enum <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, enum <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4">novas_date_format</a> format, const char *restrict date, char **restrict tail)</td></tr>
+<tr class="memdesc:ga5ec9d054b7d363b3db1d065507a1ba41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a calendar date/time string, expressed in the specified type of calendar, into a Julian day (JD).  <br /></td></tr>
 <tr class="memitem:gad3d04d065e76a5921995e96f67c24c41" id="r_gad3d04d065e76a5921995e96f67c24c41"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gad3d04d065e76a5921995e96f67c24c41">novas_parse_degrees</a> (const char *restrict str, char **restrict tail)</td></tr>
+<tr class="memdesc:gad3d04d065e76a5921995e96f67c24c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an angle in degrees from a string that contains either a decimal degrees or else a broken-down DMS representation.  <br /></td></tr>
 <tr class="memitem:gaa8d11652c5deb9e2ad78fd70ccac3378" id="r_gaa8d11652c5deb9e2ad78fd70ccac3378"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gaa8d11652c5deb9e2ad78fd70ccac3378">novas_parse_dms</a> (const char *restrict str, char **restrict tail)</td></tr>
+<tr class="memdesc:gaa8d11652c5deb9e2ad78fd70ccac3378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the decimal degrees for a DMS string specification.  <br /></td></tr>
 <tr class="memitem:ga22e1bcf36379e0244b665c3e22d5fcba" id="r_ga22e1bcf36379e0244b665c3e22d5fcba"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga22e1bcf36379e0244b665c3e22d5fcba">novas_parse_hms</a> (const char *restrict str, char **restrict tail)</td></tr>
+<tr class="memdesc:ga22e1bcf36379e0244b665c3e22d5fcba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the decimal hours for a HMS string specification.  <br /></td></tr>
 <tr class="memitem:gaff8c2c3fae3be867d3fc73972a158514" id="r_gaff8c2c3fae3be867d3fc73972a158514"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gaff8c2c3fae3be867d3fc73972a158514">novas_parse_hours</a> (const char *restrict str, char **restrict tail)</td></tr>
+<tr class="memdesc:gaff8c2c3fae3be867d3fc73972a158514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a time or time-like angle from a string that contains either a decimal hours or else a broken-down HMS representation.  <br /></td></tr>
 <tr class="memitem:gad53b3be5b92ea244cfb0347feb3bec9f" id="r_gad53b3be5b92ea244cfb0347feb3bec9f"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gad53b3be5b92ea244cfb0347feb3bec9f">novas_parse_iso_date</a> (const char *restrict date, char **restrict tail)</td></tr>
+<tr class="memdesc:gad53b3be5b92ea244cfb0347feb3bec9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an ISO 8601 timestamp, converting it to a Julian day.  <br /></td></tr>
 <tr class="memitem:ga72245b3ea6099c573278f721a4bfd3d9" id="r_ga72245b3ea6099c573278f721a4bfd3d9"><td class="memItemLeft">enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga72245b3ea6099c573278f721a4bfd3d9">novas_parse_timescale</a> (const char *restrict str, char **restrict tail)</td></tr>
+<tr class="memdesc:ga72245b3ea6099c573278f721a4bfd3d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the timescale from a string containing a standard abbreviation (case insensitive), and returns the updated parse position after the timescale specification (if any).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Various helpers tools and utilities of the SuperNOVAS library. </p>
@@ -160,8 +178,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Settings for '<a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug()</a>'. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug()</a> </dd></dl>
+<p>Settings for '<a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug()</a>'. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug()</a> </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf" name="gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf"></a>NOVAS_DEBUG_OFF&#160;</td><td class="fielddoc"><p>Do not print errors and traces to the standard error (default). </p>
 </td></tr>
@@ -189,6 +207,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Enables or disables reporting errors and traces to the standard error stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>NOVAS_DEBUG_OFF (0; or &lt;0), NOVAS_DEBUG_ON (1), or NOVAS_DEBUG_EXTRA (2; or &gt;2).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga29cad12337acfce5f1e370320dcefb79" title="Returns the current, thread-local, mode for reporting errors encountered (and traces).">novas_get_debug_mode()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#gga9d8d2a1f5c06b488e4c817bc9877e3baaa03b175422e9603e87ab87f93a45c07c">NOVAS_DEBUG_EXTRA</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga5ec9d054b7d363b3db1d065507a1ba41">novas_parse_date_format()</a>, <a class="el" href="#gad3d04d065e76a5921995e96f67c24c41">novas_parse_degrees()</a>, <a class="el" href="#gaff8c2c3fae3be867d3fc73972a158514">novas_parse_hours()</a>, and <a class="el" href="novas_8h.html#a07490a134a685fe0842b2b4816559292">obs_planets()</a>.</p>
+
 </div>
 </div>
 <a id="ga29cad12337acfce5f1e370320dcefb79" name="ga29cad12337acfce5f1e370320dcefb79"></a>
@@ -205,6 +238,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the current, thread-local, mode for reporting errors encountered (and traces). </p>
+<dl class="section return"><dt>Returns</dt><dd>The current debug mode in the calling thread.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#ga5ec9d054b7d363b3db1d065507a1ba41">novas_parse_date_format()</a>, <a class="el" href="#gad3d04d065e76a5921995e96f67c24c41">novas_parse_degrees()</a>, <a class="el" href="#gaff8c2c3fae3be867d3fc73972a158514">novas_parse_hours()</a>, and <a class="el" href="novas_8h.html#a07490a134a685fe0842b2b4816559292">obs_planets()</a>.</p>
 
 </div>
 </div>
@@ -226,6 +267,44 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parses an astronomical date/time string into a Julian date specification. </p>
+<p>The date must be YMD-type with full year, followed the month (numerical or name or 3-letter abbreviation), and the day. The components may be separated by dash <span class="tt">-</span>, underscore <span class="tt">_</span>, dot <span class="tt">.</span>, slash '/', or spaces/tabs, or any combination thereof. The date may be followed by a time specification in HMS format, separated from the date by the letter <span class="tt">T</span> or <span class="tt">t</span>, or spaces, comma <span class="tt">,</span>, or semicolon <span class="tt">;</span>, or underscore <span class="tt">_</span> or a combination thereof. Finally, the time may be followed by the letter <span class="tt">Z</span>, or <span class="tt">z</span> (for UTC) or else {+/-}HH[:[MM]] time zone specification.</p>
+<p>For example:</p>
+<pre>
+ 2025-01-26
+ 2025 January 26
+ 2025_Jan_26
+ 2025-01-26T19:33:08Z
+ 2025.01.26T19:33:08
+ 2025 1 26 19h33m28.113
+ 2025/1/26 19:33:28+02
+ 2025-01-26T19:33:28-0600
+ 2025 Jan 26 19:33:28+05:30
+</pre><p>are all valid dates that can be parsed.</p>
+<p>NOTES: </p><ol>
+<li>
+<p class="startli">This function assumes Gregorian dates after their introduction on 1582 October 15, and Julian/Roman dates before that, as was the convention of the time. I.e., the day before of the introduction of the Gregorian calendar reform is 1582 October 4. I.e., you should not use this function with ISO 8601 timestamps containing dates prior to 1582 October 15 (for such date you may use <span class="tt"><a class="el" href="#gad53b3be5b92ea244cfb0347feb3bec9f" title="Parses an ISO 8601 timestamp, converting it to a Julian day.">novas_parse_iso_date()</a></span> instead).</p>
+<p class="endli"></p>
+</li>
+<li>
+B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">date</td><td>The astronomical date specification, possibly including time and timezone, in a standard format. The date is assumed to be in the astronomical calendar of date, which differs from ISO 8601 timestamps for dates prior to the Gregorian calendar reform of 1582 October 15 (otherwise, the two are identical). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tail</td><td>(optional) If not NULL it will be set to the next character in the string after the parsed time.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[day] The Julian Day corresponding to the string date/time specification or NAN if the string is NULL or if it does not specify a date/time in the expected format.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad53b3be5b92ea244cfb0347feb3bec9f" title="Parses an ISO 8601 timestamp, converting it to a Julian day.">novas_parse_iso_date()</a>, <a class="el" href="#ga5ec9d054b7d363b3db1d065507a1ba41" title="Parses a calendar date/time string, expressed in the specified type of calendar, into a Julian day (J...">novas_parse_date_format()</a>, <a class="el" href="novas_8h.html#abaac8a4ea28bc8b811277051e3168468" title="Returns a Julian date (in non-specific timescale) corresponding the specified input string date / tim...">novas_date()</a>, <a class="el" href="novas_8h.html#a66656c3f5a1256f4bfc3ed2e168c70c2" title="Returns a Julian date and the timescale corresponding the specified input string date/time and timesc...">novas_date_scale()</a>, <a class="el" href="group__time.html#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="novas_8h.html#a4d6da26d0a7d7d904f25d2be00030b25" title="Prints a UTC-based ISO timestamp to millisecond precision to the specified string buffer.">novas_iso_timestamp()</a>, <a class="el" href="novas_8h.html#ac8e83c48005d5aabb3e7bbf8d9f8ed81" title="Prints an astronomical timestamp to millisecond precision in the specified timescale to the specified...">novas_timestamp()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bbaa1b6339c57b7baba0957b935fd37cc8ed">NOVAS_ASTRONOMICAL_CALENDAR</a>, <a class="el" href="#ga5ec9d054b7d363b3db1d065507a1ba41">novas_parse_date_format()</a>, and <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab4320d2be90ff55e278e6171f6516bab">NOVAS_YMD</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#abaac8a4ea28bc8b811277051e3168468">novas_date()</a>, <a class="el" href="novas_8h.html#a66656c3f5a1256f4bfc3ed2e168c70c2">novas_date_scale()</a>, and <a class="el" href="novas_8h.html#a4b5b82161f8eb474aaa650815b7ca66f">novas_set_str_time()</a>.</p>
 
 </div>
 </div>
@@ -258,6 +337,44 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Parses a calendar date/time string, expressed in the specified type of calendar, into a Julian day (JD). </p>
+<p>The date must be composed of a full year (e.g. 2025), a month (numerical or name or 3-letter abbreviation, e.g. "01", "1", "January", or "Jan"), and a day (e.g. "08" or "8"). The components may be separated by dash <span class="tt">-</span>, underscore <span class="tt">_</span>, dot <span class="tt">.</span>, slash '/', or spaces/tabs, or any combination thereof. The components will be parsed in the specified order.</p>
+<p>The date may be followed by a time specification in HMS format, separated from the date by the letter <span class="tt">T</span> or <span class="tt">t</span>, or spaces, comma <span class="tt">,</span>, or semicolon <span class="tt">;</span> or underscore '_', or a combination thereof. Finally, the time may be followed by the letter <span class="tt">Z</span>, or <span class="tt">z</span> (for UTC) or else by a {+/-}HH[:[MM]] time zone specification.</p>
+<p>For example, for <span class="tt">format</span> NOVAS_YMD, all of the following strings may specify the date:</p>
+<pre>
+ 2025-01-26
+ 2025 January 26
+ 2025_Jan_26
+ 2025-01-26T19:33:08Z
+ 2025.01.26T19:33:08
+ 2025 1 26 19h33m28.113
+ 2025/1/26 19:33:28+02
+ 2025-01-26T19:33:28-0600
+ 2025 Jan 26 19:33:28+05:30
+</pre><p>are all valid dates that can be parsed.</p>
+<p>If your date format cannot be parsed with this function, you may parse it with your own function into year, month, day, and decimal hour-of-day components, and use <a class="el" href="novas_8h.html#a7cd85bc0a0248f84d399cbbce9fe9546" title="Returns the Julian day for a given astronomical calendar date.">julian_date()</a> with those.</p>
+<p>NOTES: </p><ol>
+<li>
+B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">calendar</td><td>The type of calendar to use: NOVAS_ASTRONOMICAL_CALENDAR, NOVAS_GREGORIAN_CALENDAR, or NOVAS_ROMAN_CALENDAR. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">format</td><td>Expected order of date components: NOVAS_YMD, NOVAS_DMY, or NOVAS_MDY. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">date</td><td>The date specification, possibly including time and timezone, in the specified standard format. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tail</td><td>(optional) If not NULL it will be set to the next character in the string after the parsed time.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[day] The Julian Day corresponding to the string date/time specification or NAN if the string is NULL or if it does not specify a date/time in the expected format.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a>, <a class="el" href="#gad53b3be5b92ea244cfb0347feb3bec9f" title="Parses an ISO 8601 timestamp, converting it to a Julian day.">novas_parse_iso_date()</a>, <a class="el" href="group__time.html#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="novas_8h.html#a4d6da26d0a7d7d904f25d2be00030b25" title="Prints a UTC-based ISO timestamp to millisecond precision to the specified string buffer.">novas_iso_timestamp()</a> <a class="el" href="novas_8h.html#a54eee84c46900c80ca9966857c217cc8" title="Returns the Julian day for a given calendar date.">novas_jd_from_date()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug()</a>, <a class="el" href="#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a>, <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4a3f31b27c8e879d17b89c34395e278203">NOVAS_DMY</a>, <a class="el" href="#ga29cad12337acfce5f1e370320dcefb79">novas_get_debug_mode()</a>, <a class="el" href="novas_8h.html#a54eee84c46900c80ca9966857c217cc8">novas_jd_from_date()</a>, <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab13cba930f91e5e907bfc72489ffbc61">NOVAS_MDY</a>, <a class="el" href="#ga22e1bcf36379e0244b665c3e22d5fcba">novas_parse_hms()</a>, and <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab4320d2be90ff55e278e6171f6516bab">NOVAS_YMD</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga4934da85b9722ef43a5b238f3e1971e4">novas_parse_date()</a>, <a class="el" href="#gad53b3be5b92ea244cfb0347feb3bec9f">novas_parse_iso_date()</a>, and <a class="el" href="classsupernovas_1_1Calendar.html#ad3128abe79227417392c24cbd666a61c">supernovas::Calendar::parse_date()</a>.</p>
+
 </div>
 </div>
 <a id="gad3d04d065e76a5921995e96f67c24c41" name="gad3d04d065e76a5921995e96f67c24c41"></a>
@@ -279,6 +396,40 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Parses an angle in degrees from a string that contains either a decimal degrees or else a broken-down DMS representation. </p>
+<p>The decimal representation may be followed by a unit designator: "d", "dg", "deg", "degree", or "degrees", which will be parsed case-insensitively also, if present.</p>
+<p>Both DMS and decimal values may start or end with a compass direction: such as an upper-case letter <span class="tt">N</span>, <span class="tt">E</span>, <span class="tt">S</span>, or <span class="tt">W</span>, or else the case-insensitive words 'North', 'East', 'South' or 'West'.</p>
+<p>There is no enforcement on the range of angles that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range, such as +- 90 degrees N/S.</p>
+<p>A few examples of angles that may be parsed:</p>
+<pre>
+ -179:59:59.999
+ -179d 59m 59.999s
+ 179 59' 59.999" S
+ 179 59 S
+ -179.99999d
+ -179.99999
+ 179.99999W
+ 179.99999 West
+ 179.99999 deg S
+ W 179.99999d
+ North 179d 59m
+ east 179.99 degrees
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">str</td><td>The input string that specified an angle either as decimal degrees or as a broken down DMS speficication. The decimal value may be followed by the letter <span class="tt">d</span> immediately. And both the decimal and DMS representation may be ended with a compass direction marker, <span class="tt">N</span>, <span class="tt">E</span>, <span class="tt">S</span>, or <span class="tt">W</span>. See more in <span class="tt"><a class="el" href="#gaa8d11652c5deb9e2ad78fd70ccac3378" title="Parses the decimal degrees for a DMS string specification.">novas_parse_dms()</a></span> on acceptable DMS specifications. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tail</td><td>(optional) If not NULL it will be set to the next character in the string after the parsed angle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[deg] The angle represented by the string, or else NAN if the string could not be parsed into an angle value (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="parse_8c.html#a10a24fc28fa74efa75abf566bb61af5b" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a>, <a class="el" href="#gaa8d11652c5deb9e2ad78fd70ccac3378" title="Parses the decimal degrees for a DMS string specification.">novas_parse_dms()</a>, <a class="el" href="#gaff8c2c3fae3be867d3fc73972a158514" title="Parses a time or time-like angle from a string that contains either a decimal hours or else a broken-...">novas_parse_hours()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug()</a>, <a class="el" href="#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a>, <a class="el" href="#ga29cad12337acfce5f1e370320dcefb79">novas_get_debug_mode()</a>, and <a class="el" href="#gaa8d11652c5deb9e2ad78fd70ccac3378">novas_parse_dms()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd">novas_str_degrees()</a>.</p>
+
 </div>
 </div>
 <a id="gaa8d11652c5deb9e2ad78fd70ccac3378" name="gaa8d11652c5deb9e2ad78fd70ccac3378"></a>
@@ -290,7 +441,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">double novas_parse_dms </td>
           <td>(</td>
-          <td class="paramtype">const char *restrict</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+          <td class="paramtype">const char *restrict</td>          <td class="paramname"><span class="paramname"><em>dms</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -299,6 +450,36 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parses the decimal degrees for a DMS string specification. </p>
+<p>The degree, (arc)minute, and (arc)second components may be separated by spaces, tabs, colons <span class="tt">:</span>, underscore <span class="tt">_</span>, or a combination thereof. Additionally, the degree and minutes may be separated by the letter <span class="tt">d</span>, and the minutes and seconds may be separated by <span class="tt">m</span> or a single quote <span class="tt">'</span>. The seconds may be followed by <span class="tt">s</span> or a double quote <span class="tt">"</span>. Finally, the leading or trailing component may additionally be a standalone upper-case letter 'N', 'E', 'S', or 'W' or the words 'North', 'East', 'South', or 'West' (case insensitive), signifying a compass direction.</p>
+<p>There is no enforcement on the range of angles that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range, such as +- 90 degrees N/S.</p>
+<p>For example, all of the lines below are valid specifications:</p>
+<pre>
+ -179:59:59.999
+ -179d 59m 59.999s
+ -179 59' 59.999
+ 179:59:59.999S
+ 179:59:59.999 W
+ 179:59:59.999 West
+ 179_59_59.999__S
+ 179 59 S
+ W 179 59 59
+ North 179d 59m
+</pre><p>At least the leading two components (degrees and arcminutes) are required. If the arcseconds are ommitted, they will be assumed zero, i.e. <span class="tt">179:59</span> is the same as <span class="tt">179:59:00.000</span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">dms</td><td>String specifying degrees, minutes, and seconds, which correspond to an angle. Angles in any range are permitted, but the minutes and seconds must be &gt;=0 and &lt;60. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tail</td><td>(optional) If not NULL it will be set to the next character in the string after the parsed time. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[deg] Corresponding decimal angle value, or else NAN if there was an error parsing the string (errno will be set to EINVAL).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="parse_8c.html#aca89d2a0f49afad45dbddffc09c3adae" title="Returns the decimal degrees for a DMS string specification.">novas_dms_degrees()</a>, <a class="el" href="#gad3d04d065e76a5921995e96f67c24c41" title="Parses an angle in degrees from a string that contains either a decimal degrees or else a broken-down...">novas_parse_degrees()</a>, <a class="el" href="novas_8h.html#ad778a440540ed687572b78b675bebd60" title="Prints an angle in degrees as [-]ddd:mm:ss[.S...] into the specified buffer, with up to nanosecond pr...">novas_print_dms()</a>, <a class="el" href="#ga22e1bcf36379e0244b665c3e22d5fcba" title="Parses the decimal hours for a HMS string specification.">novas_parse_hms()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#aca89d2a0f49afad45dbddffc09c3adae">novas_dms_degrees()</a>, and <a class="el" href="#gad3d04d065e76a5921995e96f67c24c41">novas_parse_degrees()</a>.</p>
 
 </div>
 </div>
@@ -311,7 +492,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">double novas_parse_hms </td>
           <td>(</td>
-          <td class="paramtype">const char *restrict</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+          <td class="paramtype">const char *restrict</td>          <td class="paramname"><span class="paramname"><em>hms</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -320,6 +501,31 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parses the decimal hours for a HMS string specification. </p>
+<p>The hour, minute, and second components may be separated by spaces, tabs, colons <span class="tt">:</span>, underscore <span class="tt">_</span>, or a combination thereof. Additionally, the hours and minutes may be separated by the letter <span class="tt">h</span>, and the minutes and seconds may be separated by <span class="tt">m</span> or a single quote <span class="tt">'</span>. The seconds may be followed by 's' or double quote <span class="tt">"</span>.</p>
+<p>There is no enforcement on the range of hours that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range of 0-24h.</p>
+<p>For example, all of the lines below are valid specifications:</p>
+<pre>
+ 23:59:59.999
+ 23h 59m 59.999
+ 23h59'59.999
+ 23 59 59.999
+ 23 59
+</pre><p>At least the leading two components (hours and minutes) are required. If the seconds are ommitted, they will be assumed zero, i.e. <span class="tt">23:59</span> is the same as <span class="tt">23:59:00.000</span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">hms</td><td>String specifying hours, minutes, and seconds, which correspond to a time between 0 and 24 h. Time in any range is permitted, but the minutes and seconds must be &gt;=0 and &lt;60. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tail</td><td>(optional) If not NULL it will be set to the next character in the string after the parsed time. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[hours] Corresponding decimal time value, or else NAN if there was an error parsing the string (errno will be set to EINVAL).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="parse_8c.html#a696e44a2d1c788f9f335611efd7ed958" title="Returns the decimal hours for a HMS string specification.">novas_hms_hours()</a>, <a class="el" href="#gaff8c2c3fae3be867d3fc73972a158514" title="Parses a time or time-like angle from a string that contains either a decimal hours or else a broken-...">novas_parse_hours()</a>, <a class="el" href="novas_8h.html#a713869893ad7e58c53e44b37a3bcf768" title="Prints a time in hours as hh:mm:ss[.S...] into the specified buffer, with up to nanosecond precision.">novas_print_hms()</a>, <a class="el" href="#gaa8d11652c5deb9e2ad78fd70ccac3378" title="Parses the decimal degrees for a DMS string specification.">novas_parse_dms()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a696e44a2d1c788f9f335611efd7ed958">novas_hms_hours()</a>, <a class="el" href="#ga5ec9d054b7d363b3db1d065507a1ba41">novas_parse_date_format()</a>, and <a class="el" href="#gaff8c2c3fae3be867d3fc73972a158514">novas_parse_hours()</a>.</p>
 
 </div>
 </div>
@@ -342,6 +548,34 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Parses a time or time-like angle from a string that contains either a decimal hours or else a broken-down HMS representation. </p>
+<p>The decimal representation may be followed by a unit designator: "h", "hr", "hrs", "hour", or "hours", which will be parsed case-insensitively also, if present.</p>
+<p>There is no enforcement on the range of hours that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range of 0-24h.</p>
+<p>A few examples of angles that may be parsed:</p>
+<pre>
+ 23:59:59.999
+ 23h 59m 59.999s
+ 23h59'59.999
+ 23 59 59.999
+ 23.999999h
+ 23.999999 hours
+ 23.999999
+</pre><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">str</td><td>The input string that specified an angle either as decimal hours or as a broken down HMS speficication. The decimal value may be immediately followed by a letter 'h'. See more in <span class="tt"><a class="el" href="#ga22e1bcf36379e0244b665c3e22d5fcba" title="Parses the decimal hours for a HMS string specification.">novas_parse_hms()</a></span> on acceptable HMS input specifications. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tail</td><td>(optional) If not NULL it will be set to the next character in the string after the parsed angle. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[h] The time-like value represented by the string, or else NAN if the string could not be parsed into a time-like value (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="parse_8c.html#ac69c17c646ddf3a5447557338a8490b4" title="Returns a time or time-like angleparsed from a string that contains either a decimal hours or else a ...">novas_str_hours()</a>, <a class="el" href="#ga22e1bcf36379e0244b665c3e22d5fcba" title="Parses the decimal hours for a HMS string specification.">novas_parse_hms()</a>, <a class="el" href="#gad3d04d065e76a5921995e96f67c24c41" title="Parses an angle in degrees from a string that contains either a decimal degrees or else a broken-down...">novas_parse_degrees()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug()</a>, <a class="el" href="#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a>, <a class="el" href="#ga29cad12337acfce5f1e370320dcefb79">novas_get_debug_mode()</a>, and <a class="el" href="#ga22e1bcf36379e0244b665c3e22d5fcba">novas_parse_hms()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a3ed26b6af870f6dbc353f651563afd4a">novas_str_hours()</a>.</p>
+
 </div>
 </div>
 <a id="gad53b3be5b92ea244cfb0347feb3bec9f" name="gad53b3be5b92ea244cfb0347feb3bec9f"></a>
@@ -363,6 +597,26 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Parses an ISO 8601 timestamp, converting it to a Julian day. </p>
+<p>It is equivalent to <span class="tt"><a class="el" href="#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a></span> for dates after the Gregorian calendar reform of 1582. For earlier dates, ISO timestamps continue to assume the Gregorian calendar (i.e. proleptic Gregorian dates), whereas <span class="tt">novas_parse_timestamp()</span> will assume Roman/Julian dates, which were conventionally used before the calendar reform.</p>
+<p>NOTES: </p><ol>
+<li>
+B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">date</td><td>The ISO 8601 date specification, possibly including time and timezone, in a standard format. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tail</td><td>(optional) If not NULL it will be set to the next character in the string after the parsed time.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[day] The Julian Day corresponding to the string date/time specification or NAN if the string is NULL or if it does not specify a date/time in the expected format.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a4d6da26d0a7d7d904f25d2be00030b25" title="Prints a UTC-based ISO timestamp to millisecond precision to the specified string buffer.">novas_iso_timestamp()</a>, <a class="el" href="#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bbaa90f19bf1771802f4ad20cf14660c8322">NOVAS_GREGORIAN_CALENDAR</a>, <a class="el" href="#ga5ec9d054b7d363b3db1d065507a1ba41">novas_parse_date_format()</a>, and <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab4320d2be90ff55e278e6171f6516bab">NOVAS_YMD</a>.</p>
+
 </div>
 </div>
 <a id="ga72245b3ea6099c573278f721a4bfd3d9" name="ga72245b3ea6099c573278f721a4bfd3d9"></a>
@@ -383,6 +637,24 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Parses the timescale from a string containing a standard abbreviation (case insensitive), and returns the updated parse position after the timescale specification (if any). </p>
+<p>The following timescale values are recognised: "UTC", "UT", "UT0", "UT1", "GMT", "TAI", "GPS", "TT", "ET", "TCG", "TCB", "TDB".</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">str</td><td>String specifying an astronomical timescale. Leading white spaces will be skipped over. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">tail</td><td>(optional) If not NULL it will be set to the next character in the string after the parsed timescale specification.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The SuperNOVAS timescale constant (&lt;=0), or else -1 if the string was NULL, empty, or could not be matched to a timescale value (errno will be set to EINVAL also).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__time.html#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="novas_8h.html#a4b5b82161f8eb474aaa650815b7ca66f" title="Sets astronomical time in a specific timescale using a string specification.">novas_set_str_time()</a>, <a class="el" href="novas_8h.html#a084e5a2dcd20860af7176754d3a32202" title="Prints the standard string representation of the timescale to the specified buffer.">novas_print_timescale()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__time.html#gab344242721ca00709d4dc482a7934e2a">novas_timescale_for_string()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a66656c3f5a1256f4bfc3ed2e168c70c2">novas_date_scale()</a>.</p>
 
 </div>
 </div>

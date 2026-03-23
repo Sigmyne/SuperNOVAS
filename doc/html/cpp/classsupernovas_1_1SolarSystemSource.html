@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -119,28 +127,46 @@ $(function(){initNavTree('classsupernovas_1_1SolarSystemSource.html','','classsu
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac587aa4a41bda5647ad020c82319d43a" id="r_ac587aa4a41bda5647ad020c82319d43a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Geometric.html">Geometric</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac587aa4a41bda5647ad020c82319d43a">geometric_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
 <tr class="memitem:a63fda9415eea42ffa1e87e5d85e221df" id="r_a63fda9415eea42ffa1e87e5d85e221df"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a63fda9415eea42ffa1e87e5d85e221df">helio_distance</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time) const</td></tr>
+<tr class="memdesc:a63fda9415eea42ffa1e87e5d85e221df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the heliocentric distance of a Solar-system source at the specified time of observation.  <br /></td></tr>
 <tr class="memitem:acb725151c7561dcbb19d8e6e3b18a52f" id="r_acb725151c7561dcbb19d8e6e3b18a52f"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#acb725151c7561dcbb19d8e6e3b18a52f">helio_rate</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time) const</td></tr>
+<tr class="memdesc:acb725151c7561dcbb19d8e6e3b18a52f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the heliocentric rate of recession of a Solar-system source at the specified time of observation.  <br /></td></tr>
 <tr class="memitem:a60c9efbfb902ea476b34734966b8c5ab" id="r_a60c9efbfb902ea476b34734966b8c5ab"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a60c9efbfb902ea476b34734966b8c5ab">solar_illumination</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame) const</td></tr>
+<tr class="memdesc:a60c9efbfb902ea476b34734966b8c5ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the fraction [0.0:1.0] of the Solar-system source that appears illuminated by the Sun when viewed from a given observing frame, assuming that the source has a spheroidal shape.  <br /></td></tr>
 <tr class="memitem:a882f4b33dc6ec7a17c5dbd5bc47e7a8b" id="r_a882f4b33dc6ec7a17c5dbd5bc47e7a8b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a882f4b33dc6ec7a17c5dbd5bc47e7a8b">solar_power</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time) const</td></tr>
+<tr class="memdesc:a882f4b33dc6ec7a17c5dbd5bc47e7a8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the typical incident Solar power on the illuminated side of this Solar-system object.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Source"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Source')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Source.html">supernovas::Source</a></td></tr>
 <tr class="memitem:a242d769b819853c2647a8dcb9a8d180d inherit pub_methods_classsupernovas_1_1Source" id="r_a242d769b819853c2647a8dcb9a8d180d"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Source.html#a242d769b819853c2647a8dcb9a8d180d">~Source</a> ()</td></tr>
 <tr class="memitem:a085d8cf394db6147cd785d8a86ef7856 inherit pub_methods_classsupernovas_1_1Source" id="r_a085d8cf394db6147cd785d8a86ef7856"><td class="memItemLeft">const struct <a class="el" href="structnovas__object.html">novas_object</a> *&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Source.html#a085d8cf394db6147cd785d8a86ef7856">_novas_object</a> () const</td></tr>
+<tr class="memdesc:a085d8cf394db6147cd785d8a86ef7856 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the NOVAS C <span class="tt"><a class="el" href="structnovas__object.html" title="Celestial object of interest.">novas_object</a></span> data structure that stores data internally.  <br /></td></tr>
 <tr class="memitem:ga600eddf89ef347be4838130f327da6df inherit pub_methods_classsupernovas_1_1Source" id="r_ga600eddf89ef347be4838130f327da6df"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#ga600eddf89ef347be4838130f327da6df">angle_to</a> (const <a class="el" href="classsupernovas_1_1Source.html#a7e0f947b9bb8eeb40c21cec3db3d89aa">Source</a> &amp;source, const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame) const</td></tr>
+<tr class="memdesc:ga600eddf89ef347be4838130f327da6df inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of this source from another source, for the given observer location and time of observation.  <br /></td></tr>
 <tr class="memitem:ga30cfb5d2c48b4464e015c8429174e771 inherit pub_methods_classsupernovas_1_1Source" id="r_ga30cfb5d2c48b4464e015c8429174e771"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Apparent.html">Apparent</a>&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#ga30cfb5d2c48b4464e015c8429174e771">apparent_in</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame) const</td></tr>
+<tr class="memdesc:ga30cfb5d2c48b4464e015c8429174e771 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the apparent position of a source (if possible), or else an invalid position.  <br /></td></tr>
 <tr class="memitem:af5a18693fc942953c44bf6a04d512060 inherit pub_methods_classsupernovas_1_1Source" id="r_af5a18693fc942953c44bf6a04d512060"><td class="memItemLeft">virtual const <a class="el" href="classsupernovas_1_1Source.html#a7e0f947b9bb8eeb40c21cec3db3d89aa">Source</a> *&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Source.html#af5a18693fc942953c44bf6a04d512060">copy</a> () const =0</td></tr>
 <tr class="memdesc:af5a18693fc942953c44bf6a04d512060 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to a newly allocated copy of this instance.  <br /></td></tr>
 <tr class="memitem:ga804912d7c773781e5a22cdcb377bae4b inherit pub_methods_classsupernovas_1_1Source" id="r_ga804912d7c773781e5a22cdcb377bae4b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1EquatorialTrack.html">EquatorialTrack</a>&#160;</td><td class="memItemRight"><a class="el" href="group__tracking.html#ga804912d7c773781e5a22cdcb377bae4b">equatorial_track</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;range) const</td></tr>
+<tr class="memdesc:ga804912d7c773781e5a22cdcb377bae4b inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the short-term equatorial trajectory of this source on the observer's sky, which can be used for extrapolating its apparent position in the near-term to avoid the repeated full-fledged position calculation, which may be expensive.  <br /></td></tr>
 <tr class="memitem:ga1da60cae52d719260947c000891cfa87 inherit pub_methods_classsupernovas_1_1Source" id="r_ga1da60cae52d719260947c000891cfa87"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1EquatorialTrack.html">EquatorialTrack</a>&#160;</td><td class="memItemRight"><a class="el" href="group__tracking.html#ga1da60cae52d719260947c000891cfa87">equatorial_track</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, double range_seconds=<a class="el" href="classsupernovas_1_1Unit.html#adce60398bc378c205599221c83ee160d">Unit::hour</a>) const</td></tr>
+<tr class="memdesc:ga1da60cae52d719260947c000891cfa87 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the short-term equatorial trajectory of this source on the observer's sky, which can be used for extrapolating its apparent position in the near-term to avoid the repeated full-fledged position calculation, which may be expensive.  <br /></td></tr>
 <tr class="memitem:ga5d45ffe8479b2b0945e66ef1a0c7cc0a inherit pub_methods_classsupernovas_1_1Source" id="r_ga5d45ffe8479b2b0945e66ef1a0c7cc0a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Geometric.html">Geometric</a>&#160;</td><td class="memItemRight"><a class="el" href="group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a">geometric_in</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> system=<a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>) const</td></tr>
-<tr class="memitem:gaacf8278daed3c4bd7054aa68f7022842 inherit pub_methods_classsupernovas_1_1Source" id="r_gaacf8278daed3c4bd7054aa68f7022842"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1HorizontalTrack.html">HorizontalTrack</a>&#160;</td><td class="memItemRight"><a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">horizontal_track</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref=NULL, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0e622e5cbf61c41b0b382b470534325a">Weather::standard</a>()) const</td></tr>
+<tr class="memdesc:ga5d45ffe8479b2b0945e66ef1a0c7cc0a inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the geometric position of a source (if possible), or else an invalid position.  <br /></td></tr>
+<tr class="memitem:gaacf8278daed3c4bd7054aa68f7022842 inherit pub_methods_classsupernovas_1_1Source" id="r_gaacf8278daed3c4bd7054aa68f7022842"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1HorizontalTrack.html">HorizontalTrack</a>&#160;</td><td class="memItemRight"><a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">horizontal_track</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref=NULL, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0395574b9c5b2bdb7b9f8e04e1342029">Weather::standard</a>()) const</td></tr>
+<tr class="memdesc:gaacf8278daed3c4bd7054aa68f7022842 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the short-term horizontal trajectory of this source on the observer's sky, which can be used for extrapolating its apparent position in the near-term to avoid the repeated full-fledged position calculation, which may be expensive.  <br /></td></tr>
 <tr class="memitem:ga4d8c425044b5594fa8251812db25f0d7 inherit pub_methods_classsupernovas_1_1Source" id="r_ga4d8c425044b5594fa8251812db25f0d7"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#ga4d8c425044b5594fa8251812db25f0d7">moon_angle</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame) const</td></tr>
+<tr class="memdesc:ga4d8c425044b5594fa8251812db25f0d7 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of this source from the Moon, for the given observer location and time of observation.  <br /></td></tr>
 <tr class="memitem:ae16d5d04d593b9b14d6b5390bb8a07e3 inherit pub_methods_classsupernovas_1_1Source" id="r_ae16d5d04d593b9b14d6b5390bb8a07e3"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3">name</a> () const</td></tr>
-<tr class="memitem:gaecda13098f9fcb4f0a5a864c68bbf697 inherit pub_methods_classsupernovas_1_1Source" id="r_gaecda13098f9fcb4f0a5a864c68bbf697"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gaecda13098f9fcb4f0a5a864c68bbf697">rises_above</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;el, const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref=NULL, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0e622e5cbf61c41b0b382b470534325a">Weather::standard</a>()) const</td></tr>
-<tr class="memitem:ga29375c229dce898b751473f2f4f74b1d inherit pub_methods_classsupernovas_1_1Source" id="r_ga29375c229dce898b751473f2f4f74b1d"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga29375c229dce898b751473f2f4f74b1d">sets_below</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;el, const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref=NULL, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0e622e5cbf61c41b0b382b470534325a">Weather::standard</a>()) const</td></tr>
+<tr class="memdesc:ae16d5d04d593b9b14d6b5390bb8a07e3 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name given to this source at instantiation.  <br /></td></tr>
+<tr class="memitem:gaecda13098f9fcb4f0a5a864c68bbf697 inherit pub_methods_classsupernovas_1_1Source" id="r_gaecda13098f9fcb4f0a5a864c68bbf697"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gaecda13098f9fcb4f0a5a864c68bbf697">rises_above</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;el, const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref=NULL, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0395574b9c5b2bdb7b9f8e04e1342029">Weather::standard</a>()) const</td></tr>
+<tr class="memdesc:gaecda13098f9fcb4f0a5a864c68bbf697 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time when the source rises above the specified elevation next for an observer located on or near Earth's surface, or else <span class="tt">std::nullopt</span> if the observer is not near Earth's surface.  <br /></td></tr>
+<tr class="memitem:ga29375c229dce898b751473f2f4f74b1d inherit pub_methods_classsupernovas_1_1Source" id="r_ga29375c229dce898b751473f2f4f74b1d"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga29375c229dce898b751473f2f4f74b1d">sets_below</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;el, const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref=NULL, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0395574b9c5b2bdb7b9f8e04e1342029">Weather::standard</a>()) const</td></tr>
+<tr class="memdesc:ga29375c229dce898b751473f2f4f74b1d inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time when the source sets below the specified elevation next for an observer located on or near Earth's surface, or else <span class="tt">std::nullopt</span> if the observer is not near Earth's surface.  <br /></td></tr>
 <tr class="memitem:ga837b7cc8012af33b66b577bfed9597d9 inherit pub_methods_classsupernovas_1_1Source" id="r_ga837b7cc8012af33b66b577bfed9597d9"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#ga837b7cc8012af33b66b577bfed9597d9">sun_angle</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame) const</td></tr>
+<tr class="memdesc:ga837b7cc8012af33b66b577bfed9597d9 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of this source from the Sun, for the given observer location and time of observation.  <br /></td></tr>
 <tr class="memitem:af7ae7c88a6375c790d2477d9fe99e396 inherit pub_methods_classsupernovas_1_1Source" id="r_af7ae7c88a6375c790d2477d9fe99e396"><td class="memItemLeft">virtual std::string&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Source.html#af7ae7c88a6375c790d2477d9fe99e396">to_string</a> () const =0</td></tr>
 <tr class="memitem:gac424e530ebbab130b1635ac0c5355101 inherit pub_methods_classsupernovas_1_1Source" id="r_gac424e530ebbab130b1635ac0c5355101"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gac424e530ebbab130b1635ac0c5355101">transits_in</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame) const</td></tr>
+<tr class="memdesc:gac424e530ebbab130b1635ac0c5355101 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time when the source transits for an observer located on or near Earth's surface, or else <span class="tt">std::nullopt</span> if the observer is not near Earth's surface.  <br /></td></tr>
 <tr class="memitem:a46cb1a64e8c19da4df03df59df625380 inherit pub_methods_classsupernovas_1_1Source" id="r_a46cb1a64e8c19da4df03df59df625380"><td class="memItemLeft">enum <a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238f">novas_object_type</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Source.html#a46cb1a64e8c19da4df03df59df625380">type</a> () const</td></tr>
+<tr class="memdesc:a46cb1a64e8c19da4df03df59df625380 inherit pub_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of this source.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -160,7 +186,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_classsupernovas_1_1Source"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_classsupernovas_1_1Source')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Static Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Source.html">supernovas::Source</a></td></tr>
-<tr class="memitem:acb4dce42183f9bbdb1a56ad0b50d79f6 inherit pub_static_methods_classsupernovas_1_1Source" id="r_acb4dce42183f9bbdb1a56ad0b50d79f6"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Source.html#acb4dce42183f9bbdb1a56ad0b50d79f6">set_case_sensitive</a> (bool value)</td></tr>
+<tr class="memitem:a87ca9a5476a432fbee8eb04811bdc3ad inherit pub_static_methods_classsupernovas_1_1Source" id="r_a87ca9a5476a432fbee8eb04811bdc3ad"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Source.html#a87ca9a5476a432fbee8eb04811bdc3ad">set_case_sensitive</a> (bool value)</td></tr>
+<tr class="memdesc:a87ca9a5476a432fbee8eb04811bdc3ad inherit pub_static_methods_classsupernovas_1_1Source"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disabled case-sensitive treatment of source names.  <br /></td></tr>
 <tr class="inherit_header pro_attribs_classsupernovas_1_1Source"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classsupernovas_1_1Source')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classsupernovas_1_1Source.html">supernovas::Source</a></td></tr>
 <tr class="memitem:a0a8fa35950bb58cc03ba520b1c337080 inherit pro_attribs_classsupernovas_1_1Source" id="r_a0a8fa35950bb58cc03ba520b1c337080"><td class="memItemLeft">struct <a class="el" href="structnovas__object.html">novas_object</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">_object</a> = {}</td></tr>
 <tr class="inherit_header pro_attribs_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
@@ -193,6 +220,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1EphemerisSource.html#af6eef3af2b52aaa44a8c7ef9e2bc3c2b">supernovas::EphemerisSource::EphemerisSource()</a>, <a class="el" href="classsupernovas_1_1OrbitalSource.html#afbc443cc9f0ab8ce57fff78040f929ff">supernovas::OrbitalSource::OrbitalSource()</a>, and <a class="el" href="classsupernovas_1_1Planet.html#a8df7ec419bd6eb16e7e67d86bc8f17f9">supernovas::Planet::Planet()</a>.</p>
 
 </div>
 </div>
@@ -235,6 +264,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the heliocentric distance of a Solar-system source at the specified time of observation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>astrometric time of observation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>heliocentric distance of source at the specified time</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#acb725151c7561dcbb19d8e6e3b18a52f" title="Returns the heliocentric rate of recession of a Solar-system source at the specified time of observat...">helio_rate()</a>, <a class="el" href="#a882f4b33dc6ec7a17c5dbd5bc47e7a8b" title="Returns the typical incident Solar power on the illuminated side of this Solar-system object.">solar_power()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#af4fa5359b8b0167a2780baff17b164a5">novas_helio_dist()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>.</p>
+
 </div>
 </div>
 <a id="acb725151c7561dcbb19d8e6e3b18a52f" name="acb725151c7561dcbb19d8e6e3b18a52f"></a>
@@ -251,6 +292,18 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the heliocentric rate of recession of a Solar-system source at the specified time of observation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>astrometric time of observation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>rate of recession from the Sun at the specified time</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a63fda9415eea42ffa1e87e5d85e221df" title="Returns the heliocentric distance of a Solar-system source at the specified time of observation.">helio_distance()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#af4fa5359b8b0167a2780baff17b164a5">novas_helio_dist()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>.</p>
 
 </div>
 </div>
@@ -269,6 +322,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the fraction [0.0:1.0] of the Solar-system source that appears illuminated by the Sun when viewed from a given observing frame, assuming that the source has a spheroidal shape. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>observing frame (observer location and time of observation) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the fraction [0.0:1.0] that appears illuminated by the Sun from the observer's point of view.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a882f4b33dc6ec7a17c5dbd5bc47e7a8b" title="Returns the typical incident Solar power on the illuminated side of this Solar-system object.">solar_power()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, and <a class="el" href="novas_8h.html#ac780bd907a12957995d36ad916dd4ec1">novas_solar_illum()</a>.</p>
+
 </div>
 </div>
 <a id="a882f4b33dc6ec7a17c5dbd5bc47e7a8b" name="a882f4b33dc6ec7a17c5dbd5bc47e7a8b"></a>
@@ -285,6 +350,19 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the typical incident Solar power on the illuminated side of this Solar-system object. </p>
+<p>The actual Solar power may vary due to fluctuations of the Solar output.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>astrometric time of observation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[W/m<sup>2</sup>] Typical incident Solar power.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a63fda9415eea42ffa1e87e5d85e221df" title="Returns the heliocentric distance of a Solar-system source at the specified time of observation.">helio_distance()</a>, <a class="el" href="#a60c9efbfb902ea476b34734966b8c5ab" title="Returns the fraction [0.0:1.0] of the Solar-system source that appears illuminated by the Sun when vi...">solar_illumination()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#a763f9a9dd2edb4645a5db05184ca7495">novas_solar_power()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>.</p>
 
 </div>
 </div>

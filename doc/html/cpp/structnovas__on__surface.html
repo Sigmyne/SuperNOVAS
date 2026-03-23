@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -118,9 +126,9 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Data for an observer's location on the surface of the Earth, and optional local weather data for refraction calculations only. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b">make_itrf_site()</a>, <a class="el" href="novas_8h.html#ab5fb62a9fb185632175ae622bce28dea">make_gps_site()</a>, <a class="el" href="novas_8h.html#a9e3cbe310a40919ff94d2d530ffa74ee">make_xyz_site()</a>, <a class="el" href="novas_8h.html#aa82db32ce7b115db4f0a077ca899589b">make_observer_at_site()</a>, <a class="el" href="novas_8h.html#ad8e67e1b12b3699a361f87e95d333334" title="Initializer for a NOVAS on_surface data structure.">ON_SURFACE_INIT</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="novas_8h.html#ab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a>, <a class="el" href="novas_8h.html#a9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a>, <a class="el" href="novas_8h.html#aa82db32ce7b115db4f0a077ca899589b" title="Initializes an observer data structure for a ground-based observer at the specified observing site,...">make_observer_at_site()</a>, <a class="el" href="novas_8h.html#ad8e67e1b12b3699a361f87e95d333334" title="Initializer for a NOVAS on_surface data structure.">ON_SURFACE_INIT</a> </dd>
 <dd>
-<a class="el" href="novas_8h.html#aa82db32ce7b115db4f0a077ca899589b">make_observer_at_site()</a>, <a class="el" href="novas_8h.html#aa423a88cd3f434642fc89d47390184f4">make_airborne_observer()</a> </dd></dl>
+<a class="el" href="novas_8h.html#aa82db32ce7b115db4f0a077ca899589b" title="Initializes an observer data structure for a ground-based observer at the specified observing site,...">make_observer_at_site()</a>, <a class="el" href="novas_8h.html#aa423a88cd3f434642fc89d47390184f4" title="Populates an &#39;observer&#39; data structure for an observer moving relative to the surface of Earth,...">make_airborne_observer()</a> </dd></dl>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="ae88d1b0111ef62d14083ec38995d8ea9" name="ae88d1b0111ef62d14083ec38995d8ea9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae88d1b0111ef62d14083ec38995d8ea9">&#9670;&#160;</a></span>height</h2>
@@ -135,6 +143,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[m] geodetic (ITRS / GRS80) altitude above sea level </p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Site.html#afd64e176ce0c75201d410015d803c648">supernovas::Site::itrf_transformed()</a>, <a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b">make_itrf_site()</a>, <a class="el" href="novas_8h.html#adcd71f60a1f042af1eb7103134fad8c4">novas_geodetic_transform_site()</a>, <a class="el" href="novas_8h.html#ad252294c7d4b3e62609c21f7550e2d09">novas_itrf_transform_site()</a>, <a class="el" href="novas_8h.html#a0fc8f315f8606e09571ab49efb13baca">novas_set_default_weather()</a>, and <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a31a5dac606725a7730fad04b5f0e8b5b">supernovas::GeodeticObserver::site()</a>.</p>
 
 </div>
 </div>
@@ -153,6 +163,8 @@ Public Attributes</h2></td></tr>
 <p>[%] Relative humidity. </p>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Weather.html#ae522250022ddc02a84eda4ecdc7cacb6">supernovas::Weather::guess()</a>, <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>, <a class="el" href="novas_8h.html#adcd71f60a1f042af1eb7103134fad8c4">novas_geodetic_transform_site()</a>, <a class="el" href="novas_8h.html#ad252294c7d4b3e62609c21f7550e2d09">novas_itrf_transform_site()</a>, <a class="el" href="group__refract.html#ga6b49f92f8f818f2272613e3432185a39">novas_radio_refraction()</a>, <a class="el" href="novas_8h.html#a0fc8f315f8606e09571ab49efb13baca">novas_set_default_weather()</a>, <a class="el" href="group__refract.html#ga7b9ad6dfbd86e4faa2d8068c7d64fac4">novas_wave_refraction()</a>, <a class="el" href="group__time.html#gaecda13098f9fcb4f0a5a864c68bbf697">supernovas::Source::rises_above()</a>, and <a class="el" href="group__time.html#ga29375c229dce898b751473f2f4f74b1d">supernovas::Source::sets_below()</a>.</p>
+
 </div>
 </div>
 <a id="a77f70abeb6c896623a85b1bdf8861151" name="a77f70abeb6c896623a85b1bdf8861151"></a>
@@ -168,6 +180,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[deg] geodetic (ITRS / GRS80) latitude; north positive </p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Site.html#afd64e176ce0c75201d410015d803c648">supernovas::Site::itrf_transformed()</a>, <a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b">make_itrf_site()</a>, <a class="el" href="novas_8h.html#adcd71f60a1f042af1eb7103134fad8c4">novas_geodetic_transform_site()</a>, <a class="el" href="novas_8h.html#ad252294c7d4b3e62609c21f7550e2d09">novas_itrf_transform_site()</a>, <a class="el" href="novas_8h.html#a0fc8f315f8606e09571ab49efb13baca">novas_set_default_weather()</a>, and <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a31a5dac606725a7730fad04b5f0e8b5b">supernovas::GeodeticObserver::site()</a>.</p>
 
 </div>
 </div>
@@ -185,6 +199,8 @@ Public Attributes</h2></td></tr>
 
 <p>[deg] geodetic (ITRS / GRS80) longitude; east positive </p>
 
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Site.html#afd64e176ce0c75201d410015d803c648">supernovas::Site::itrf_transformed()</a>, <a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b">make_itrf_site()</a>, <a class="el" href="novas_8h.html#adcd71f60a1f042af1eb7103134fad8c4">novas_geodetic_transform_site()</a>, <a class="el" href="novas_8h.html#ad252294c7d4b3e62609c21f7550e2d09">novas_itrf_transform_site()</a>, and <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a31a5dac606725a7730fad04b5f0e8b5b">supernovas::GeodeticObserver::site()</a>.</p>
+
 </div>
 </div>
 <a id="aea37f834be2f30756c1aa20da0e002ab" name="aea37f834be2f30756c1aa20da0e002ab"></a>
@@ -201,6 +217,8 @@ Public Attributes</h2></td></tr>
 
 <p>[mbar] atmospheric pressure for optical refraction </p>
 
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Weather.html#ae522250022ddc02a84eda4ecdc7cacb6">supernovas::Weather::guess()</a>, <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>, <a class="el" href="novas_8h.html#adcd71f60a1f042af1eb7103134fad8c4">novas_geodetic_transform_site()</a>, <a class="el" href="novas_8h.html#ad252294c7d4b3e62609c21f7550e2d09">novas_itrf_transform_site()</a>, <a class="el" href="group__refract.html#ga6b49f92f8f818f2272613e3432185a39">novas_radio_refraction()</a>, <a class="el" href="novas_8h.html#a0fc8f315f8606e09571ab49efb13baca">novas_set_default_weather()</a>, <a class="el" href="group__refract.html#ga7b9ad6dfbd86e4faa2d8068c7d64fac4">novas_wave_refraction()</a>, <a class="el" href="novas_8h.html#ac7ed2a1a5fb5aea3063d116d3d980eeb">refract()</a>, <a class="el" href="group__time.html#gaecda13098f9fcb4f0a5a864c68bbf697">supernovas::Source::rises_above()</a>, and <a class="el" href="group__time.html#ga29375c229dce898b751473f2f4f74b1d">supernovas::Source::sets_below()</a>.</p>
+
 </div>
 </div>
 <a id="a1fd9464e53f03ebb2cb987aa1a2dc41b" name="a1fd9464e53f03ebb2cb987aa1a2dc41b"></a>
@@ -216,6 +234,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[C] temperature (degrees Celsius); for optical refraction </p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Weather.html#ae522250022ddc02a84eda4ecdc7cacb6">supernovas::Weather::guess()</a>, <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>, <a class="el" href="novas_8h.html#adcd71f60a1f042af1eb7103134fad8c4">novas_geodetic_transform_site()</a>, <a class="el" href="novas_8h.html#ad252294c7d4b3e62609c21f7550e2d09">novas_itrf_transform_site()</a>, <a class="el" href="group__refract.html#ga6b49f92f8f818f2272613e3432185a39">novas_radio_refraction()</a>, <a class="el" href="novas_8h.html#a0fc8f315f8606e09571ab49efb13baca">novas_set_default_weather()</a>, <a class="el" href="group__refract.html#ga7b9ad6dfbd86e4faa2d8068c7d64fac4">novas_wave_refraction()</a>, <a class="el" href="novas_8h.html#ac7ed2a1a5fb5aea3063d116d3d980eeb">refract()</a>, <a class="el" href="group__time.html#gaecda13098f9fcb4f0a5a864c68bbf697">supernovas::Source::rises_above()</a>, and <a class="el" href="group__time.html#ga29375c229dce898b751473f2f4f74b1d">supernovas::Source::sets_below()</a>.</p>
 
 </div>
 </div>

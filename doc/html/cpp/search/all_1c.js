@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['_7eangle_0',['~Angle',['../classsupernovas_1_1Angle.html#a36ce17ee438a8d128af4f60c1f4ce548',1,'supernovas::Angle']]],
-  ['_7eobserver_1',['~Observer',['../classsupernovas_1_1Observer.html#a05aad2955d8cfcb712e71091276fb715',1,'supernovas::Observer']]],
-  ['_7esource_2',['~Source',['../classsupernovas_1_1Source.html#a242d769b819853c2647a8dcb9a8d180d',1,'supernovas::Source']]],
-  ['_7espherical_3',['~Spherical',['../classsupernovas_1_1Spherical.html#a265ae4eb65d111f2ee41ee929d980047',1,'supernovas::Spherical']]],
-  ['_7etrack_4',['~Track',['../classsupernovas_1_1Track.html#ad855778035b6f474a30d1536971839f2',1,'supernovas::Track']]],
-  ['_7evector_5',['~Vector',['../classsupernovas_1_1Vector.html#a6e0deaf0bff9961abfb6fe57160abe3b',1,'supernovas::Vector']]]
+  ['z_0',['z',['../structnovas__observable.html#a5ad32154eadc4cf7de31ec926f71e752',1,'novas_observable::z'],['../classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08',1,'supernovas::Vector::z()']]],
+  ['zenith_5fangle_1',['zenith_angle',['../classsupernovas_1_1Horizontal.html#aface5655311d8017cb07d7eb383d8b32',1,'supernovas::Horizontal']]],
+  ['zero_2',['zero',['../classsupernovas_1_1Coordinate.html#a9511f9f4073d0b2552e175d3f8d064a3',1,'supernovas::Coordinate::zero()'],['../classsupernovas_1_1Interval.html#a8523c7802c342170c93c1dec1d0440d8',1,'supernovas::Interval::zero()'],['../classsupernovas_1_1TimeAngle.html#a4947ba9bb1cd1176f7ca54a07f9f0e08',1,'supernovas::TimeAngle::zero()']]]
 ];

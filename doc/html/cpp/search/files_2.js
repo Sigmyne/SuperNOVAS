@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['supernovas_2b_2b_5fvs_5fastropy_2emd_0',['SuperNOVAS++_vs_astropy.md',['../SuperNOVAS_09_09__vs__astropy_8md.html',1,'']]],
-  ['supernovas_2b_2b_5fvs_5fc99_2emd_1',['SuperNOVAS++_vs_C99.md',['../SuperNOVAS_09_09__vs__C99_8md.html',1,'']]],
-  ['supernovas_2eh_2',['supernovas.h',['../supernovas_8h.html',1,'']]]
+  ['earth_2ec_0',['earth.c',['../earth_8c.html',1,'']]],
+  ['ecliptic_2ecpp_1',['Ecliptic.cpp',['../Ecliptic_8cpp.html',1,'']]],
+  ['eop_2ecpp_2',['EOP.cpp',['../EOP_8cpp.html',1,'']]],
+  ['ephemeris_2ec_3',['ephemeris.c',['../ephemeris_8c.html',1,'']]],
+  ['equator_2ec_4',['equator.c',['../equator_8c.html',1,'']]],
+  ['equatorial_2ecpp_5',['Equatorial.cpp',['../Equatorial_8cpp.html',1,'']]],
+  ['equinox_2ecpp_6',['Equinox.cpp',['../Equinox_8cpp.html',1,'']]]
 ];

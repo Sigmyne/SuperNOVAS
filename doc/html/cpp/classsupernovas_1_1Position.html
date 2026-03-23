@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -116,32 +124,57 @@ $(function(){initNavTree('classsupernovas_1_1Position.html','','classsupernovas_
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aad6baaf00a81c50b8e744f7ab21df205" id="r_aad6baaf00a81c50b8e744f7ab21df205"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aad6baaf00a81c50b8e744f7ab21df205">Position</a> (const double pos[3], double unit=<a class="el" href="classsupernovas_1_1Unit.html#af95881057f4dbd4b8a907b12e866c515">Unit::m</a>)</td></tr>
+<tr class="memdesc:aad6baaf00a81c50b8e744f7ab21df205"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new 3D cartesian position vector from its components in S.I.  <br /></td></tr>
 <tr class="memitem:afdd4d47f9e694ef44aa7b8719f7a6b45" id="r_afdd4d47f9e694ef44aa7b8719f7a6b45"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afdd4d47f9e694ef44aa7b8719f7a6b45">Position</a> (double x_m, double y_m, double z_m)</td></tr>
+<tr class="memdesc:afdd4d47f9e694ef44aa7b8719f7a6b45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new 3D cartesian position vector from its components in S.I.  <br /></td></tr>
 <tr class="memitem:ac1e9d20f0b57a1d86eb7ced02c787395" id="r_ac1e9d20f0b57a1d86eb7ced02c787395"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1AstrometricPosition.html">AstrometricPosition</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac1e9d20f0b57a1d86eb7ced02c787395">as_astrometric</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> system=<a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>) const</td></tr>
+<tr class="memdesc:ac1e9d20f0b57a1d86eb7ced02c787395"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this <b>equatorial</b> position vector as an astrometric position, referenced to the specified time and Solar-system barycentric observer location.  <br /></td></tr>
 <tr class="memitem:a578e1552f7e48d5f0029e451bfe9342c" id="r_a578e1552f7e48d5f0029e451bfe9342c"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a578e1552f7e48d5f0029e451bfe9342c">distance</a> () const</td></tr>
+<tr class="memdesc:a578e1552f7e48d5f0029e451bfe9342c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance to the location indicated by this position (that is the absolute value of this position vector).  <br /></td></tr>
 <tr class="memitem:af5a5f447de9406d87925400351a527a5" id="r_af5a5f447de9406d87925400351a527a5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af5a5f447de9406d87925400351a527a5">equals</a> (const <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a> &amp;p, double precision) const</td></tr>
+<tr class="memdesc:af5a5f447de9406d87925400351a527a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this position is the same as another, within the specified precision.  <br /></td></tr>
 <tr class="memitem:aa9f09750127bb0b33d34ef0a01156847" id="r_aa9f09750127bb0b33d34ef0a01156847"><td class="memItemLeft"><a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa9f09750127bb0b33d34ef0a01156847">inv</a> () const</td></tr>
+<tr class="memdesc:aa9f09750127bb0b33d34ef0a01156847"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a position vector with the same magnitude as this, but in the opposite direction.  <br /></td></tr>
 <tr class="memitem:aa64a15de66a603ca504951c454e18216" id="r_aa64a15de66a603ca504951c454e18216"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa64a15de66a603ca504951c454e18216">operator!=</a> (const <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a> &amp;p) const</td></tr>
+<tr class="memdesc:aa64a15de66a603ca504951c454e18216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this position is differs fro the specified other position by more than the 12th significant figure, or 1mm (whichever is larger).  <br /></td></tr>
 <tr class="memitem:aa3e3dc3dc3da0cc3641f9c50a73b7c95" id="r_aa3e3dc3dc3da0cc3641f9c50a73b7c95"><td class="memItemLeft"><a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa3e3dc3dc3da0cc3641f9c50a73b7c95">operator+</a> (const <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a> &amp;r) const</td></tr>
+<tr class="memdesc:aa3e3dc3dc3da0cc3641f9c50a73b7c95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the sum of this position and another (relative) position.  <br /></td></tr>
 <tr class="memitem:a97b9b8f521c1843f640842a4c6eb5c8c" id="r_a97b9b8f521c1843f640842a4c6eb5c8c"><td class="memItemLeft"><a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="#a97b9b8f521c1843f640842a4c6eb5c8c">operator-</a> (const <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a> &amp;r) const</td></tr>
+<tr class="memdesc:a97b9b8f521c1843f640842a4c6eb5c8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the difference of this position and another position.  <br /></td></tr>
 <tr class="memitem:ab28229ab97d018e87efddbb06cbf2bdb" id="r_ab28229ab97d018e87efddbb06cbf2bdb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab28229ab97d018e87efddbb06cbf2bdb">operator==</a> (const <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a> &amp;p) const</td></tr>
+<tr class="memdesc:ab28229ab97d018e87efddbb06cbf2bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this position is the same as the specified other position to 12 significant figures, or 1mm (whichever is larger).  <br /></td></tr>
 <tr class="memitem:a8158b16437d04f06a8f4e5213ca82a92" id="r_a8158b16437d04f06a8f4e5213ca82a92"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Spherical.html">Spherical</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8158b16437d04f06a8f4e5213ca82a92">to_spherical</a> () const</td></tr>
-<tr class="memitem:a8b1a86d655b320f1aba0f1805a279903" id="r_a8b1a86d655b320f1aba0f1805a279903"><td class="memItemLeft">virtual std::string&#160;</td><td class="memItemRight"><a class="el" href="#a8b1a86d655b320f1aba0f1805a279903">to_string</a> (int decimals=3) const override</td></tr>
+<tr class="memdesc:a8158b16437d04f06a8f4e5213ca82a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts this position vector to <a class="el" href="classsupernovas_1_1Spherical.html" title="Spherical coordinates (longitude, latitude), representing a direction on sky.">Spherical</a> coordinates.  <br /></td></tr>
+<tr class="memitem:a8506cf525711b3bdbac8adc9c153c984" id="r_a8506cf525711b3bdbac8adc9c153c984"><td class="memItemLeft">virtual std::string&#160;</td><td class="memItemRight"><a class="el" href="#a8506cf525711b3bdbac8adc9c153c984">to_string</a> (int decimals=3) const override</td></tr>
+<tr class="memdesc:a8506cf525711b3bdbac8adc9c153c984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string represetation of this position vector, optionally setting the number of decimal places to show for each component.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Vector"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Vector')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Vector.html">supernovas::Vector</a></td></tr>
 <tr class="memitem:a6e0deaf0bff9961abfb6fe57160abe3b inherit pub_methods_classsupernovas_1_1Vector" id="r_a6e0deaf0bff9961abfb6fe57160abe3b"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a6e0deaf0bff9961abfb6fe57160abe3b">~Vector</a> ()</td></tr>
 <tr class="memitem:a4be107244270ddfd8c803768b46dfdd4 inherit pub_methods_classsupernovas_1_1Vector" id="r_a4be107244270ddfd8c803768b46dfdd4"><td class="memItemLeft">const double *&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4">_array</a> () const</td></tr>
+<tr class="memdesc:a4be107244270ddfd8c803768b46dfdd4 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the underlying <span class="tt">double[3]</span> C array that stores the components of this vector internally.  <br /></td></tr>
 <tr class="memitem:aab5ce2de6a675909f520087958fe3610 inherit pub_methods_classsupernovas_1_1Vector" id="r_aab5ce2de6a675909f520087958fe3610"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">abs</a> () const</td></tr>
+<tr class="memdesc:aab5ce2de6a675909f520087958fe3610 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the absolute value (length / magnitude) of this vector.  <br /></td></tr>
 <tr class="memitem:a17572fd5d9e2127b813c5f0186dde2ee inherit pub_methods_classsupernovas_1_1Vector" id="r_a17572fd5d9e2127b813c5f0186dde2ee"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a17572fd5d9e2127b813c5f0186dde2ee">dot</a> (const <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a> &amp;v) const</td></tr>
+<tr class="memdesc:a17572fd5d9e2127b813c5f0186dde2ee inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the dot product of this vector and the specified other vector.  <br /></td></tr>
 <tr class="memitem:a731ab991e6b7426666dfeb9047da8dc8 inherit pub_methods_classsupernovas_1_1Vector" id="r_a731ab991e6b7426666dfeb9047da8dc8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a731ab991e6b7426666dfeb9047da8dc8">is_zero</a> () const</td></tr>
+<tr class="memdesc:a731ab991e6b7426666dfeb9047da8dc8 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this verctor is a null vector, that is all of its components are zero.  <br /></td></tr>
 <tr class="memitem:ad77e9e7cec72509ecc93ef42aadf1edd inherit pub_methods_classsupernovas_1_1Vector" id="r_ad77e9e7cec72509ecc93ef42aadf1edd"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#ad77e9e7cec72509ecc93ef42aadf1edd">operator*</a> (double factor) const</td></tr>
+<tr class="memdesc:ad77e9e7cec72509ecc93ef42aadf1edd inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales a vector by a factor, for example to cast it to/from a physical unit.  <br /></td></tr>
 <tr class="memitem:aa5981c5505f8f831a68a95f28c2c284f inherit pub_methods_classsupernovas_1_1Vector" id="r_aa5981c5505f8f831a68a95f28c2c284f"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f">phi</a> () const</td></tr>
+<tr class="memdesc:aa5981c5505f8f831a68a95f28c2c284f inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the azumithal angle of this vector.  <br /></td></tr>
 <tr class="memitem:a6a9ec63eb5edce53642a058fc8b5fc83 inherit pub_methods_classsupernovas_1_1Vector" id="r_a6a9ec63eb5edce53642a058fc8b5fc83"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a6a9ec63eb5edce53642a058fc8b5fc83">projection_on</a> (const <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a> &amp;v) const</td></tr>
+<tr class="memdesc:a6a9ec63eb5edce53642a058fc8b5fc83 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the projection of this vector along the direction of another vector.  <br /></td></tr>
 <tr class="memitem:a442ce772514302bdb431d74675e12c46 inherit pub_methods_classsupernovas_1_1Vector" id="r_a442ce772514302bdb431d74675e12c46"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46">scaled</a> (double factor) const</td></tr>
+<tr class="memdesc:a442ce772514302bdb431d74675e12c46 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a rescaled version of this vector, for example to cast it to/from a physical unit.  <br /></td></tr>
 <tr class="memitem:aa5cd444d1ad1aecfae916a9a73ffceb2 inherit pub_methods_classsupernovas_1_1Vector" id="r_aa5cd444d1ad1aecfae916a9a73ffceb2"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#aa5cd444d1ad1aecfae916a9a73ffceb2">theta</a> () const</td></tr>
+<tr class="memdesc:aa5cd444d1ad1aecfae916a9a73ffceb2 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the polar angleof this vector, that is the angle from the <em>z</em> axis.  <br /></td></tr>
 <tr class="memitem:ad761bfcd08771389fced7f7c908c9c52 inherit pub_methods_classsupernovas_1_1Vector" id="r_ad761bfcd08771389fced7f7c908c9c52"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52">unit_vector</a> () const</td></tr>
+<tr class="memdesc:ad761bfcd08771389fced7f7c908c9c52 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a unit vector in the direction of this vector.  <br /></td></tr>
 <tr class="memitem:af22c6e7f19a6f790218cc9605215ac7e inherit pub_methods_classsupernovas_1_1Vector" id="r_af22c6e7f19a6f790218cc9605215ac7e"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">x</a> () const</td></tr>
+<tr class="memdesc:af22c6e7f19a6f790218cc9605215ac7e inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <em>x</em> component of this vector.  <br /></td></tr>
 <tr class="memitem:a61f8871b8be5382f4e65a5c541fa742f inherit pub_methods_classsupernovas_1_1Vector" id="r_a61f8871b8be5382f4e65a5c541fa742f"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">y</a> () const</td></tr>
+<tr class="memdesc:a61f8871b8be5382f4e65a5c541fa742f inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <em>y</em> component of this vector.  <br /></td></tr>
 <tr class="memitem:ae8f15b39c7385ae66232e312020d7b08 inherit pub_methods_classsupernovas_1_1Vector" id="r_ae8f15b39c7385ae66232e312020d7b08"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">z</a> () const</td></tr>
+<tr class="memdesc:ae8f15b39c7385ae66232e312020d7b08 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <em>z</em> component of this vector.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -150,8 +183,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:abe9fcc7ebc32960b1910f4cae0c54ca2" id="r_abe9fcc7ebc32960b1910f4cae0c54ca2"><td class="memItemLeft">static const <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#abe9fcc7ebc32960b1910f4cae0c54ca2">origin</a> ()</td></tr>
-<tr class="memitem:a426caa145e9d7c45db81ea74f107e887" id="r_a426caa145e9d7c45db81ea74f107e887"><td class="memItemLeft">static const <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a426caa145e9d7c45db81ea74f107e887">undefined</a> ()</td></tr>
+<tr class="memitem:a19205d6b0c798f0266dbcec14c2651a1" id="r_a19205d6b0c798f0266dbcec14c2651a1"><td class="memItemLeft">static const <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a19205d6b0c798f0266dbcec14c2651a1">origin</a> ()</td></tr>
+<tr class="memdesc:a19205d6b0c798f0266dbcec14c2651a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the statically define position at the origin (that is a null posiution vector).  <br /></td></tr>
+<tr class="memitem:afb825ceba8d381d95c371802cd9a269c" id="r_afb825ceba8d381d95c371802cd9a269c"><td class="memItemLeft">static const <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#afb825ceba8d381d95c371802cd9a269c">undefined</a> ()</td></tr>
+<tr class="memdesc:afb825ceba8d381d95c371802cd9a269c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined standard invalid position vector.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -161,7 +196,9 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:afaf9b317641d3a3aaf1e5a57dc4f3dfc inherit pro_methods_classsupernovas_1_1Vector" id="r_afaf9b317641d3a3aaf1e5a57dc4f3dfc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a> ()</td></tr>
 <tr class="memdesc:afaf9b317641d3a3aaf1e5a57dc4f3dfc inherit pro_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates an undefined vector.  <br /></td></tr>
 <tr class="memitem:a67f0cc38bb4f768c9f52a2c8227b89eb inherit pro_methods_classsupernovas_1_1Vector" id="r_a67f0cc38bb4f768c9f52a2c8227b89eb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a67f0cc38bb4f768c9f52a2c8227b89eb">Vector</a> (double <a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">x</a>, double <a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">y</a>, double <a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">z</a>)</td></tr>
+<tr class="memdesc:a67f0cc38bb4f768c9f52a2c8227b89eb inherit pro_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a vector from its cartesian components.  <br /></td></tr>
 <tr class="memitem:a30393fbff5a33c0890031b7302c18791 inherit pro_methods_classsupernovas_1_1Vector" id="r_a30393fbff5a33c0890031b7302c18791"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791">equals</a> (const <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a> &amp;v, double precision) const</td></tr>
+<tr class="memdesc:a30393fbff5a33c0890031b7302c18791 inherit pro_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this vector is the same as another vector, within the specified precision.  <br /></td></tr>
 <tr class="inherit_header pro_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating" id="r_aeabd2d0135eafd2a6a55447054ff81f7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aeabd2d0135eafd2a6a55447054ff81f7">Validating</a> ()</td></tr>
 <tr class="memdesc:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">dummy constructor;  <br /></td></tr>
@@ -206,7 +243,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">supernovas::Vector::Vector()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1AstrometricPosition.html#ad3222f81abdac05fbf1a9d23d2de1895">supernovas::AstrometricPosition::AstrometricPosition()</a>, <a class="el" href="#af5a5f447de9406d87925400351a527a5">equals()</a>, <a class="el" href="#aa9f09750127bb0b33d34ef0a01156847">inv()</a>, <a class="el" href="#aa64a15de66a603ca504951c454e18216">operator!=()</a>, <a class="el" href="#aa3e3dc3dc3da0cc3641f9c50a73b7c95">operator+()</a>, <a class="el" href="#a97b9b8f521c1843f640842a4c6eb5c8c">operator-()</a>, <a class="el" href="#ab28229ab97d018e87efddbb06cbf2bdb">operator==()</a>, <a class="el" href="#abe9fcc7ebc32960b1910f4cae0c54ca2">origin()</a>, <a class="el" href="classsupernovas_1_1AstrometricPosition.html#a812f65f637969fa3049ce897690d4ddb">supernovas::AstrometricPosition::reference()</a>, <a class="el" href="classsupernovas_1_1AstrometricPosition.html#ad22e40b2d1ce13900451bf303c737b56">supernovas::AstrometricPosition::referenced_to()</a>, and <a class="el" href="#a426caa145e9d7c45db81ea74f107e887">undefined()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1AstrometricPosition.html#ad3222f81abdac05fbf1a9d23d2de1895">supernovas::AstrometricPosition::AstrometricPosition()</a>, <a class="el" href="#af5a5f447de9406d87925400351a527a5">equals()</a>, <a class="el" href="#aa9f09750127bb0b33d34ef0a01156847">inv()</a>, <a class="el" href="#aa64a15de66a603ca504951c454e18216">operator!=()</a>, <a class="el" href="#aa3e3dc3dc3da0cc3641f9c50a73b7c95">operator+()</a>, <a class="el" href="#a97b9b8f521c1843f640842a4c6eb5c8c">operator-()</a>, <a class="el" href="#ab28229ab97d018e87efddbb06cbf2bdb">operator==()</a>, <a class="el" href="#a19205d6b0c798f0266dbcec14c2651a1">origin()</a>, <a class="el" href="classsupernovas_1_1AstrometricPosition.html#a812f65f637969fa3049ce897690d4ddb">supernovas::AstrometricPosition::reference()</a>, <a class="el" href="classsupernovas_1_1AstrometricPosition.html#ad22e40b2d1ce13900451bf303c737b56">supernovas::AstrometricPosition::referenced_to()</a>, and <a class="el" href="#afb825ceba8d381d95c371802cd9a269c">undefined()</a>.</p>
 
 </div>
 </div>
@@ -242,6 +279,19 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Instantiates a new 3D cartesian position vector from its components in S.I. </p>
+<p>units.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_m</td><td>[m] <em>x</em> component </td></tr>
+    <tr><td class="paramname">y_m</td><td>[m] <em>y</em> component </td></tr>
+    <tr><td class="paramname">z_m</td><td>[m] <em>z</em> component </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">supernovas::Vector::Vector()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>.</p>
+
 </div>
 </div>
 <a id="aad6baaf00a81c50b8e744f7ab21df205" name="aad6baaf00a81c50b8e744f7ab21df205"></a>
@@ -271,7 +321,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#af95881057f4dbd4b8a907b12e866c515">supernovas::Unit::m</a>.</p>
+<p>Instantiates a new 3D cartesian position vector from its components in S.I. </p>
+<p>units.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>position 3-vector expressed in some physical unit </td></tr>
+    <tr><td class="paramname">unit</td><td>the physical unit, in which the components are given, such as <a class="el" href="classsupernovas_1_1Unit.html#af95881057f4dbd4b8a907b12e866c515" title="[m] 1 AU (lowe-case)">Unit::m</a> or <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de" title="[m] 1 Astronomical Unit in meters.">Unit::au</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">supernovas::Vector::Vector()</a>.</p>
 
 </div>
 </div>
@@ -295,7 +355,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>.</p>
+<p>Returns this <b>equatorial</b> position vector as an astrometric position, referenced to the specified time and Solar-system barycentric observer location. </p>
+<p>IMPORTANT! Use this method only if you are 100% certain that the position represented by this instance is an equatorial rectangular position vector in the specified observing frame.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observing frame (observer location and time of observation) </td></tr>
+    <tr><td class="paramname">system</td><td>(optional) Equatorial coordinate reference system type used for the position and observer location (default: TOD).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the astrometric position for this observed equatorial position vector, referenced to the time when light was emitted, and the observer location w.r.t. the Solar-system barycenter (SSB). </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>
@@ -313,6 +384,13 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the distance to the location indicated by this position (that is the absolute value of this position vector). </p>
+<dl class="section return"><dt>Returns</dt><dd>the distance to the indicated position. </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">supernovas::Vector::abs()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__time.html#ga3c5993440d5413726a8c16abcebd9397">supernovas::AstrometricPosition::obs_time()</a>.</p>
 
 </div>
 </div>
@@ -335,7 +413,20 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
+<p>Checks if this position is the same as another, within the specified precision. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>the reference position </td></tr>
+    <tr><td class="paramname">precision</td><td>the precision for testing equality. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this position equals the argument within the specified precision, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab28229ab97d018e87efddbb06cbf2bdb" title="Checks if this position is the same as the specified other position to 12 significant figures,...">operator==()</a>, <a class="el" href="#aa64a15de66a603ca504951c454e18216" title="Checks if this position is differs fro the specified other position by more than the 12th significant...">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>, and <a class="el" href="classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791">supernovas::Vector::equals()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Site.html#a6e08ef28664d6802688bbf8cbd04c46d">supernovas::Site::equals()</a>, and <a class="el" href="#ab28229ab97d018e87efddbb06cbf2bdb">operator==()</a>.</p>
 
 </div>
 </div>
@@ -354,7 +445,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
+<p>Returns a position vector with the same magnitude as this, but in the opposite direction. </p>
+<dl class="section return"><dt>Returns</dt><dd>the spatial inverse position vector of this one. </dd></dl>
+
+<p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>
@@ -372,6 +466,16 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if this position is differs fro the specified other position by more than the 12th significant figure, or 1mm (whichever is larger). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>the reference position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this position equals the argument to 12 significant figures or 1mm, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af5a5f447de9406d87925400351a527a5" title="Checks if this position is the same as another, within the specified precision.">equals()</a>, <a class="el" href="#ab28229ab97d018e87efddbb06cbf2bdb" title="Checks if this position is the same as the specified other position to 12 significant figures,...">operator==()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
 
@@ -392,7 +496,17 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
+<p>Returns the sum of this position and another (relative) position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the other position on the right-hand side </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new position vector with the sum of this position and the argument.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a97b9b8f521c1843f640842a4c6eb5c8c" title="Returns the difference of this position and another position.">operator-()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">supernovas::Vector::x()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">supernovas::Vector::y()</a>, and <a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">supernovas::Vector::z()</a>.</p>
 
 </div>
 </div>
@@ -411,7 +525,17 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
+<p>Returns the difference of this position and another position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the other position on the right-hand side </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new position vector with the difference of this position and the argument.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa3e3dc3dc3da0cc3641f9c50a73b7c95" title="Returns the sum of this position and another (relative) position.">operator+()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">supernovas::Vector::x()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">supernovas::Vector::y()</a>, and <a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">supernovas::Vector::z()</a>.</p>
 
 </div>
 </div>
@@ -430,12 +554,22 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
+<p>Checks if this position is the same as the specified other position to 12 significant figures, or 1mm (whichever is larger). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>the reference position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this position equals the argument to 12 significant figures or 1mm, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af5a5f447de9406d87925400351a527a5" title="Checks if this position is the same as another, within the specified precision.">equals()</a>, <a class="el" href="#aa64a15de66a603ca504951c454e18216" title="Checks if this position is differs fro the specified other position by more than the 12th significant...">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>, <a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">supernovas::Vector::abs()</a>, <a class="el" href="#af5a5f447de9406d87925400351a527a5">equals()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">supernovas::Unit::mm</a>.</p>
 
 </div>
 </div>
-<a id="abe9fcc7ebc32960b1910f4cae0c54ca2" name="abe9fcc7ebc32960b1910f4cae0c54ca2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe9fcc7ebc32960b1910f4cae0c54ca2">&#9670;&#160;</a></span>origin()</h2>
+<a id="a19205d6b0c798f0266dbcec14c2651a1" name="a19205d6b0c798f0266dbcec14c2651a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19205d6b0c798f0266dbcec14c2651a1">&#9670;&#160;</a></span>origin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -457,9 +591,12 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns a reference to the statically define position at the origin (that is a null posiution vector). </p>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a static null position vector. </dd></dl>
+
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Observer.html#a65ae0b0d36341717bf7b958ac3236f8c">supernovas::Observer::Observer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1AstrometricPosition.html#a99e7e7d64227a3394723568a73334e9e">supernovas::AstrometricPosition::referenced_to_ssb()</a>.</p>
 
 </div>
 </div>
@@ -478,10 +615,15 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Converts this position vector to <a class="el" href="classsupernovas_1_1Spherical.html" title="Spherical coordinates (longitude, latitude), representing a direction on sky.">Spherical</a> coordinates. </p>
+<dl class="section return"><dt>Returns</dt><dd>a new instance of spherical coordinates corresponding to this position. </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
 </div>
 </div>
-<a id="a8b1a86d655b320f1aba0f1805a279903" name="a8b1a86d655b320f1aba0f1805a279903"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b1a86d655b320f1aba0f1805a279903">&#9670;&#160;</a></span>to_string()</h2>
+<a id="a8506cf525711b3bdbac8adc9c153c984" name="a8506cf525711b3bdbac8adc9c153c984"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8506cf525711b3bdbac8adc9c153c984">&#9670;&#160;</a></span>to_string()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -490,7 +632,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::string supernovas::Position::to_string </td>
+          <td class="memname">std::string supernovas::Position::to_string </td>
           <td>(</td>
           <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>decimals</em></span><span class="paramdefsep"> = </span><span class="paramdefval">3</span></td><td>)</td>
           <td> const</td>
@@ -503,14 +645,27 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classsupernovas_1_1Vector.html#ae76ee15ac970531b3dd98671ddc929f1">supernovas::Vector</a>.</p>
+<p>Returns a string represetation of this position vector, optionally setting the number of decimal places to show for each component. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">decimals</td><td>(optional) decimal places to print for the components (default: 3). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a string representation of this position vector. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f">supernovas::Vector</a>.</p>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1AstrometricPosition.html#a95a3f74fbdfb734a19e520f71ae98d0a">supernovas::AstrometricPosition</a>.</p>
 
+<p class="reference">References <a class="el" href="classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd">supernovas::Coordinate::to_string()</a>, <a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">supernovas::Vector::x()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">supernovas::Vector::y()</a>, and <a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">supernovas::Vector::z()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1AstrometricPosition.html#a95a3f74fbdfb734a19e520f71ae98d0a">supernovas::AstrometricPosition::to_string()</a>, <a class="el" href="classsupernovas_1_1GeocentricObserver.html#af587b52511d647b46951511b2fa3f472">supernovas::GeocentricObserver::to_string()</a>, <a class="el" href="classsupernovas_1_1Geometric.html#a6240a71612a75193fe47c6a2dac106bf">supernovas::Geometric::to_string()</a>, and <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a000ae8621806fbf4637b2c112b50613f">supernovas::SolarSystemObserver::to_string()</a>.</p>
+
 </div>
 </div>
-<a id="a426caa145e9d7c45db81ea74f107e887" name="a426caa145e9d7c45db81ea74f107e887"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a426caa145e9d7c45db81ea74f107e887">&#9670;&#160;</a></span>undefined()</h2>
+<a id="afb825ceba8d381d95c371802cd9a269c" name="afb825ceba8d381d95c371802cd9a269c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb825ceba8d381d95c371802cd9a269c">&#9670;&#160;</a></span>undefined()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -532,7 +687,13 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns a reference to a statically defined standard invalid position vector. </p>
+<p>This invalid vector may be used inside any object that is invalid itself.</p>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the static standard invalid vector. </dd></dl>
+
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e">supernovas::Apparent::astrometric_position()</a>, <a class="el" href="classsupernovas_1_1Frame.html#a451583ed66f8337044c4aed6dcd2f3d5">supernovas::Frame::observer_position()</a>, and <a class="el" href="classsupernovas_1_1Orbital.html#ab9e6f5d8f38a363e8df0d3d6490692d1">supernovas::Orbital::position()</a>.</p>
 
 </div>
 </div>

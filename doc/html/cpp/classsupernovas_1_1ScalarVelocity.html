@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -114,26 +122,45 @@ $(function(){initNavTree('classsupernovas_1_1ScalarVelocity.html','','classsuper
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2e906f3a9e9f7a9ca731c62b11701f21" id="r_a2e906f3a9e9f7a9ca731c62b11701f21"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2e906f3a9e9f7a9ca731c62b11701f21">ScalarVelocity</a> (const <a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a> &amp;d, const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;time)</td></tr>
+<tr class="memdesc:a2e906f3a9e9f7a9ca731c62b11701f21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a (signed) scalar velocity (speed) given the distance travelled in the specified time interval.  <br /></td></tr>
 <tr class="memitem:a08b7a8a135acb5cd5da7886f6dbace17" id="r_a08b7a8a135acb5cd5da7886f6dbace17"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a08b7a8a135acb5cd5da7886f6dbace17">ScalarVelocity</a> (double <a class="el" href="#a02b0343abd20757afcdf69acf2b11d00">m_per_s</a>)</td></tr>
+<tr class="memdesc:a08b7a8a135acb5cd5da7886f6dbace17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a (signed) scalar velocity (speed) with the specified S.I.  <br /></td></tr>
 <tr class="memitem:ac26f24e75fd80a2d90541da306454350" id="r_ac26f24e75fd80a2d90541da306454350"><td class="memItemLeft">ScalarVelocity&#160;</td><td class="memItemRight"><a class="el" href="#ac26f24e75fd80a2d90541da306454350">abs</a> () const</td></tr>
 <tr class="memdesc:ac26f24e75fd80a2d90541da306454350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the magnitude of this speed, as a unsigned speed.  <br /></td></tr>
 <tr class="memitem:a58e4061fa373cfbeb80f1f0eb98cb156" id="r_a58e4061fa373cfbeb80f1f0eb98cb156"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156">au_per_day</a> () const</td></tr>
+<tr class="memdesc:a58e4061fa373cfbeb80f1f0eb98cb156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this speed in AU/day.  <br /></td></tr>
 <tr class="memitem:a412cc2aa831495a3372aaa09fa861cbe" id="r_a412cc2aa831495a3372aaa09fa861cbe"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe">beta</a> () const</td></tr>
+<tr class="memdesc:a412cc2aa831495a3372aaa09fa861cbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this speed (<em>v</em>) as &beta; = <em>v</em> / <em>c</em>.  <br /></td></tr>
 <tr class="memitem:a37b1aa61581a59a1afd0beade80c60bc" id="r_a37b1aa61581a59a1afd0beade80c60bc"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a37b1aa61581a59a1afd0beade80c60bc">equals</a> (const ScalarVelocity &amp;speed, const ScalarVelocity &amp;tolerance) const</td></tr>
+<tr class="memdesc:a37b1aa61581a59a1afd0beade80c60bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this speed equals the specified other speed within the tolerance.  <br /></td></tr>
 <tr class="memitem:a14253a267777107969d3d5e71b8aa86d" id="r_a14253a267777107969d3d5e71b8aa86d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a14253a267777107969d3d5e71b8aa86d">equals</a> (const ScalarVelocity &amp;speed, double tolerance=<a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">Unit::mm</a>/<a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">Unit::sec</a>) const</td></tr>
+<tr class="memdesc:a14253a267777107969d3d5e71b8aa86d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this speed equals the specified other speed within the tolerance.  <br /></td></tr>
 <tr class="memitem:a0db996fac1d3f37d88b4fce0a557735c" id="r_a0db996fac1d3f37d88b4fce0a557735c"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c">Gamma</a> () const</td></tr>
+<tr class="memdesc:a0db996fac1d3f37d88b4fce0a557735c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the relativistic boost parameter &Gamma; for this speed (<em>v</em>) as &Gamma; = &amp;radic (1 - <em>v</em><sup>2</sup> / <em>c</em><sup>2</sup>).  <br /></td></tr>
 <tr class="memitem:af6b416709b85d5b566a43ca3c6bb983b" id="r_af6b416709b85d5b566a43ca3c6bb983b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#af6b416709b85d5b566a43ca3c6bb983b">in_direction</a> (const <a class="el" href="classsupernovas_1_1Vector.html">Vector</a> &amp;direction) const</td></tr>
+<tr class="memdesc:af6b416709b85d5b566a43ca3c6bb983b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a 3-dimensional velocity vector corresponding to this speed along the specified direction.  <br /></td></tr>
 <tr class="memitem:a0c489d63be905ec16f4af30196889a2e" id="r_a0c489d63be905ec16f4af30196889a2e"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a0c489d63be905ec16f4af30196889a2e">km_per_s</a> () const</td></tr>
+<tr class="memdesc:a0c489d63be905ec16f4af30196889a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this speed in km/s.  <br /></td></tr>
 <tr class="memitem:a02b0343abd20757afcdf69acf2b11d00" id="r_a02b0343abd20757afcdf69acf2b11d00"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00">m_per_s</a> () const</td></tr>
+<tr class="memdesc:a02b0343abd20757afcdf69acf2b11d00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this speed in m/s.  <br /></td></tr>
 <tr class="memitem:a5ba17127abe84a0d9c675db0243d82b4" id="r_a5ba17127abe84a0d9c675db0243d82b4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a5ba17127abe84a0d9c675db0243d82b4">operator!=</a> (const ScalarVelocity &amp;speed) const</td></tr>
+<tr class="memdesc:a5ba17127abe84a0d9c675db0243d82b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this speed differs from the specified other speed, by more than 1 mm/s.  <br /></td></tr>
 <tr class="memitem:a8c8347fcd4440dd1b739b04457c6cd62" id="r_a8c8347fcd4440dd1b739b04457c6cd62"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8c8347fcd4440dd1b739b04457c6cd62">operator*</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;time) const</td></tr>
+<tr class="memdesc:a8c8347fcd4440dd1b739b04457c6cd62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance travelled at this speed under the specified time interval.  <br /></td></tr>
 <tr class="memitem:af5e2a24bde6d46d14fbff5aae4193410" id="r_af5e2a24bde6d46d14fbff5aae4193410"><td class="memItemLeft">ScalarVelocity&#160;</td><td class="memItemRight"><a class="el" href="#af5e2a24bde6d46d14fbff5aae4193410">operator+</a> (const ScalarVelocity &amp;r) const</td></tr>
+<tr class="memdesc:af5e2a24bde6d46d14fbff5aae4193410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the signed scalar sum of this speed and the specified other speed, using the relativistic formula for addition.  <br /></td></tr>
 <tr class="memitem:a0dc464dcc90e8e2f778cb3d3d57dbdc8" id="r_a0dc464dcc90e8e2f778cb3d3d57dbdc8"><td class="memItemLeft">ScalarVelocity&#160;</td><td class="memItemRight"><a class="el" href="#a0dc464dcc90e8e2f778cb3d3d57dbdc8">operator-</a> (const ScalarVelocity &amp;r) const</td></tr>
+<tr class="memdesc:a0dc464dcc90e8e2f778cb3d3d57dbdc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the signed scalar difference of this speed and the specified other speed, using the relativistic formula for addition.  <br /></td></tr>
 <tr class="memitem:a21cc9e0039e5679ac018506afb7988db" id="r_a21cc9e0039e5679ac018506afb7988db"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a21cc9e0039e5679ac018506afb7988db">operator==</a> (const ScalarVelocity &amp;speed) const</td></tr>
+<tr class="memdesc:a21cc9e0039e5679ac018506afb7988db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this speed equals the specified other speed within 1 mm/s.  <br /></td></tr>
 <tr class="memitem:a3e9f2e43aef64460fe591c4786cce141" id="r_a3e9f2e43aef64460fe591c4786cce141"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a3e9f2e43aef64460fe591c4786cce141">redshift</a> () const</td></tr>
+<tr class="memdesc:a3e9f2e43aef64460fe591c4786cce141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this speed as a redshift measure.  <br /></td></tr>
 <tr class="memitem:abe34df58d2438a0aebd140637ce96a85" id="r_abe34df58d2438a0aebd140637ce96a85"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#abe34df58d2438a0aebd140637ce96a85">to_string</a> (int decimals=3) const</td></tr>
+<tr class="memdesc:abe34df58d2438a0aebd140637ce96a85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of this speed in km/s with the specified decimal places shown.  <br /></td></tr>
 <tr class="memitem:aff4009979f33f3c12b6e585010dceafb" id="r_aff4009979f33f3c12b6e585010dceafb"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a>&#160;</td><td class="memItemRight"><a class="el" href="#aff4009979f33f3c12b6e585010dceafb">travel</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;time) const</td></tr>
+<tr class="memdesc:aff4009979f33f3c12b6e585010dceafb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance travelled at this speed under the specified time interval.  <br /></td></tr>
 <tr class="memitem:a110e032d258bec4e4341003a736d0b5b" id="r_a110e032d258bec4e4341003a736d0b5b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a110e032d258bec4e4341003a736d0b5b">travel</a> (double seconds) const</td></tr>
+<tr class="memdesc:a110e032d258bec4e4341003a736d0b5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance travelled at this speed under the specified time interval.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -142,9 +169,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:acd186e48b523ccc90757f990b8a05279" id="r_acd186e48b523ccc90757f990b8a05279"><td class="memItemLeft">static ScalarVelocity&#160;</td><td class="memItemRight"><a class="el" href="#acd186e48b523ccc90757f990b8a05279">from_redshift</a> (double z)</td></tr>
-<tr class="memitem:aa4f2fd1dba165e5f8bf92ef3e9284288" id="r_aa4f2fd1dba165e5f8bf92ef3e9284288"><td class="memItemLeft">static const ScalarVelocity &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aa4f2fd1dba165e5f8bf92ef3e9284288">stationary</a> ()</td></tr>
-<tr class="memitem:a5cea5c36cb19459e90e6d8cc795da57f" id="r_a5cea5c36cb19459e90e6d8cc795da57f"><td class="memItemLeft">static const ScalarVelocity &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5cea5c36cb19459e90e6d8cc795da57f">undefined</a> ()</td></tr>
+<tr class="memitem:a886ceaf260f92774c9a0c344accc98f2" id="r_a886ceaf260f92774c9a0c344accc98f2"><td class="memItemLeft">static ScalarVelocity&#160;</td><td class="memItemRight"><a class="el" href="#a886ceaf260f92774c9a0c344accc98f2">from_redshift</a> (double z)</td></tr>
+<tr class="memdesc:a886ceaf260f92774c9a0c344accc98f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new speed instance from a given redshift value.  <br /></td></tr>
+<tr class="memitem:ae106b32bca97a3d677522da36f4ff853" id="r_ae106b32bca97a3d677522da36f4ff853"><td class="memItemLeft">static const ScalarVelocity &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ae106b32bca97a3d677522da36f4ff853">stationary</a> ()</td></tr>
+<tr class="memdesc:ae106b32bca97a3d677522da36f4ff853"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined zero speed of a stationary object.  <br /></td></tr>
+<tr class="memitem:a78f495d95f6ee5e1979bfd7b37585b90" id="r_a78f495d95f6ee5e1979bfd7b37585b90"><td class="memItemLeft">static const ScalarVelocity &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a78f495d95f6ee5e1979bfd7b37585b90">undefined</a> ()</td></tr>
+<tr class="memdesc:a78f495d95f6ee5e1979bfd7b37585b90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a static instance of an undefined / invalid scalar velocity.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -182,7 +212,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#a02b0343abd20757afcdf69acf2b11d00">m_per_s()</a>.</p>
+<p>Instantiates a (signed) scalar velocity (speed) with the specified S.I. </p>
+<p>value in m/s.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s</a></td><td>[m/s] the speed</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a886ceaf260f92774c9a0c344accc98f2" title="Instantiates a new speed instance from a given redshift value.">from_redshift()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>, and <a class="el" href="#a02b0343abd20757afcdf69acf2b11d00">m_per_s()</a>.</p>
 
 </div>
 </div>
@@ -205,6 +245,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Instantiates a (signed) scalar velocity (speed) given the distance travelled in the specified time interval. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">d</td><td>distance travelled </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>time interval</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a886ceaf260f92774c9a0c344accc98f2" title="Instantiates a new speed instance from a given redshift value.">from_redshift()</a> </dd></dl>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -224,7 +274,12 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the magnitude of this speed, as a unsigned speed. </p>
-<dl class="section return"><dt>Returns</dt><dd>The absolute value of the (possibly signed) speed value represented by this instance. </dd></dl>
+<p>Returns the unsigned magnitude of this (possibly signed) speed.</p>
+<dl class="section return"><dt>Returns</dt><dd>The absolute value of the (possibly signed) speed value represented by this instance.</dd>
+<dd>
+the absolute value of this (possibly signed) speed. </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>
@@ -243,6 +298,12 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns this speed in AU/day. </p>
+<dl class="section return"><dt>Returns</dt><dd>[AU/day] the speed value.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s()</a>, <a class="el" href="#a0c489d63be905ec16f4af30196889a2e" title="Returns this speed in km/s.">km_per_s()</a>, <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe" title="Returns this speed (v) as β = v / c.">beta()</a>, <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c" title="Returns the relativistic boost parameter Γ for this speed (v) as Γ = &amp;radic (1 - v2 / c2).">Gamma()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141" title="Returns this speed as a redshift measure.">redshift()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>.</p>
+
 </div>
 </div>
 <a id="a412cc2aa831495a3372aaa09fa861cbe" name="a412cc2aa831495a3372aaa09fa861cbe"></a>
@@ -259,6 +320,14 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns this speed (<em>v</em>) as &beta; = <em>v</em> / <em>c</em>. </p>
+<dl class="section return"><dt>Returns</dt><dd>&beta; = <em>v</em> / <em>c</em></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s()</a>, <a class="el" href="#a0c489d63be905ec16f4af30196889a2e" title="Returns this speed in km/s.">km_per_s()</a>, <a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156" title="Returns this speed in AU/day.">au_per_day()</a>, <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c" title="Returns the relativistic boost parameter Γ for this speed (v) as Γ = &amp;radic (1 - v2 / c2).">Gamma()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141" title="Returns this speed as a redshift measure.">redshift()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c">Gamma()</a>, <a class="el" href="#af5e2a24bde6d46d14fbff5aae4193410">operator+()</a>, and <a class="el" href="#a0dc464dcc90e8e2f778cb3d3d57dbdc8">operator-()</a>.</p>
 
 </div>
 </div>
@@ -281,6 +350,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if this speed equals the specified other speed within the tolerance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">speed</td><td>the reference speed </td></tr>
+    <tr><td class="paramname">tolerance</td><td>(optional) tolerance for the comparison (default: 0.001 m/s). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this speed equals the argument within the tolerance, or else <span class="tt">false</span></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a21cc9e0039e5679ac018506afb7988db" title="Checks if this speed equals the specified other speed within 1 mm/s.">operator==()</a>, <a class="el" href="#a5ba17127abe84a0d9c675db0243d82b4" title="Checks if this speed differs from the specified other speed, by more than 1 mm/s.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a14253a267777107969d3d5e71b8aa86d">equals()</a>, and <a class="el" href="#a02b0343abd20757afcdf69acf2b11d00">m_per_s()</a>.</p>
+
 </div>
 </div>
 <a id="a14253a267777107969d3d5e71b8aa86d" name="a14253a267777107969d3d5e71b8aa86d"></a>
@@ -297,17 +379,28 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>tolerance</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">Unit::mm</a>/<a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">Unit::sec</a></span>&#160;) const</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>tolerance</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">Unit::mm</a>&#160;/&#160;<a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">Unit::sec</a></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">supernovas::Unit::mm</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
+<p>Checks if this speed equals the specified other speed within the tolerance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">speed</td><td>the reference speed </td></tr>
+    <tr><td class="paramname">tolerance</td><td>[m/s] (optional) tolerance for the comparison (default: 0.001 m/s). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this speed equals the argument within the tolerance, or else <span class="tt">false</span></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a21cc9e0039e5679ac018506afb7988db" title="Checks if this speed equals the specified other speed within 1 mm/s.">operator==()</a>, <a class="el" href="#a5ba17127abe84a0d9c675db0243d82b4" title="Checks if this speed differs from the specified other speed, by more than 1 mm/s.">operator!=()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#a37b1aa61581a59a1afd0beade80c60bc">equals()</a>, <a class="el" href="#a5ba17127abe84a0d9c675db0243d82b4">operator!=()</a>, and <a class="el" href="#a21cc9e0039e5679ac018506afb7988db">operator==()</a>.</p>
 
 </div>
 </div>
-<a id="acd186e48b523ccc90757f990b8a05279" name="acd186e48b523ccc90757f990b8a05279"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd186e48b523ccc90757f990b8a05279">&#9670;&#160;</a></span>from_redshift()</h2>
+<a id="a886ceaf260f92774c9a0c344accc98f2" name="a886ceaf260f92774c9a0c344accc98f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a886ceaf260f92774c9a0c344accc98f2">&#9670;&#160;</a></span>from_redshift()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -329,6 +422,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Instantiates a new speed instance from a given redshift value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">z</td><td>the redshift value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a scalar velocity instance corresponding to the specified redshift value. </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a>, <a class="el" href="novas_8h.html#a63621cea3b4985c1bfcc4514a7aa3fb1">novas_z2v()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
+
 </div>
 </div>
 <a id="a0db996fac1d3f37d88b4fce0a557735c" name="a0db996fac1d3f37d88b4fce0a557735c"></a>
@@ -345,6 +449,12 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the relativistic boost parameter &Gamma; for this speed (<em>v</em>) as &Gamma; = &amp;radic (1 - <em>v</em><sup>2</sup> / <em>c</em><sup>2</sup>). </p>
+<dl class="section return"><dt>Returns</dt><dd>the relativistic boost &Gamma; = &amp;radic (1 - <em>v</em><sup>2</sup> / <em>c</em><sup>2</sup>)</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s()</a>, <a class="el" href="#a0c489d63be905ec16f4af30196889a2e" title="Returns this speed in km/s.">km_per_s()</a>, <a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156" title="Returns this speed in AU/day.">au_per_day()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141" title="Returns this speed as a redshift measure.">redshift()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe">beta()</a>.</p>
 
 </div>
 </div>
@@ -363,6 +473,17 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a 3-dimensional velocity vector corresponding to this speed along the specified direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">direction</td><td>a vector specifying the direction. Its magnitude is irrelevant. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new velocity vector, in the specified direction and with the magnitude of this speed. </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4">supernovas::Vector::_array()</a>, <a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">supernovas::Vector::abs()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
 </div>
 </div>
 <a id="a0c489d63be905ec16f4af30196889a2e" name="a0c489d63be905ec16f4af30196889a2e"></a>
@@ -379,6 +500,12 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns this speed in km/s. </p>
+<dl class="section return"><dt>Returns</dt><dd>[km/s] the speed value.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s()</a>, <a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156" title="Returns this speed in AU/day.">au_per_day()</a>, <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe" title="Returns this speed (v) as β = v / c.">beta()</a>, <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c" title="Returns the relativistic boost parameter Γ for this speed (v) as Γ = &amp;radic (1 - v2 / c2).">Gamma()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141" title="Returns this speed as a redshift measure.">redshift()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141">redshift()</a>, and <a class="el" href="#abe34df58d2438a0aebd140637ce96a85">to_string()</a>.</p>
 
 </div>
 </div>
@@ -397,7 +524,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#a08b7a8a135acb5cd5da7886f6dbace17">ScalarVelocity()</a>.</p>
+<p>Returns this speed in m/s. </p>
+<dl class="section return"><dt>Returns</dt><dd>[m/s] the speed value.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0c489d63be905ec16f4af30196889a2e" title="Returns this speed in km/s.">km_per_s()</a>, <a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156" title="Returns this speed in AU/day.">au_per_day()</a>, <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe" title="Returns this speed (v) as β = v / c.">beta()</a>, <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c" title="Returns the relativistic boost parameter Γ for this speed (v) as Γ = &amp;radic (1 - v2 / c2).">Gamma()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141" title="Returns this speed as a redshift measure.">redshift()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#a08b7a8a135acb5cd5da7886f6dbace17">ScalarVelocity()</a>, <a class="el" href="#a37b1aa61581a59a1afd0beade80c60bc">equals()</a>, <a class="el" href="classsupernovas_1_1Apparent.html#a63a78460dda7da4e8402849e49596707">supernovas::Apparent::from_cirs()</a>, <a class="el" href="classsupernovas_1_1Apparent.html#a1dcedd8e837756d5ba7c3fd56400f70c">supernovas::Apparent::from_tod()</a>, <a class="el" href="classsupernovas_1_1CatalogEntry.html#ac7683860c2c02efa78a07beab752adbe">supernovas::CatalogEntry::radial_velocity()</a>, <a class="el" href="group__apparent.html#ga02abf3d9fe725653e8220619a000fc8d">supernovas::Horizontal::to_apparent()</a>, and <a class="el" href="classsupernovas_1_1CatalogEntry.html#a74120ab096b8a9db05ebb87e6dce8f84">supernovas::CatalogEntry::v_lsr()</a>.</p>
 
 </div>
 </div>
@@ -416,6 +547,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if this speed differs from the specified other speed, by more than 1 mm/s. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">speed</td><td>the reference speed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this speed differs from the argument by more than 1 mm/s, or else <span class="tt">false</span></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a21cc9e0039e5679ac018506afb7988db" title="Checks if this speed equals the specified other speed within 1 mm/s.">operator==()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a14253a267777107969d3d5e71b8aa86d">equals()</a>.</p>
+
 </div>
 </div>
 <a id="a8c8347fcd4440dd1b739b04457c6cd62" name="a8c8347fcd4440dd1b739b04457c6cd62"></a>
@@ -432,6 +575,18 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the distance travelled at this speed under the specified time interval. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>the time interval </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the distance travelled</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a110e032d258bec4e4341003a736d0b5b" title="Returns the distance travelled at this speed under the specified time interval.">travel()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a110e032d258bec4e4341003a736d0b5b">travel()</a>.</p>
 
 </div>
 </div>
@@ -450,6 +605,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the signed scalar sum of this speed and the specified other speed, using the relativistic formula for addition. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the speed on the right-hand side </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the relativistic sum of this speed and the argument.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0dc464dcc90e8e2f778cb3d3d57dbdc8" title="Returns the signed scalar difference of this speed and the specified other speed, using the relativis...">operator-()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe">beta()</a>, <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
 </div>
 </div>
 <a id="a0dc464dcc90e8e2f778cb3d3d57dbdc8" name="a0dc464dcc90e8e2f778cb3d3d57dbdc8"></a>
@@ -466,6 +633,18 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the signed scalar difference of this speed and the specified other speed, using the relativistic formula for addition. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the speed on the right-hand side </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the relativistic difference of this speed and the argument.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af5e2a24bde6d46d14fbff5aae4193410" title="Returns the signed scalar sum of this speed and the specified other speed, using the relativistic for...">operator+()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe">beta()</a>, <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>
@@ -484,6 +663,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if this speed equals the specified other speed within 1 mm/s. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">speed</td><td>the reference speed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this speed equals the argument within 1 mm/s, or else <span class="tt">false</span></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a14253a267777107969d3d5e71b8aa86d" title="Checks if this speed equals the specified other speed within the tolerance.">equals()</a>, <a class="el" href="#a5ba17127abe84a0d9c675db0243d82b4" title="Checks if this speed differs from the specified other speed, by more than 1 mm/s.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a14253a267777107969d3d5e71b8aa86d">equals()</a>.</p>
+
 </div>
 </div>
 <a id="a3e9f2e43aef64460fe591c4786cce141" name="a3e9f2e43aef64460fe591c4786cce141"></a>
@@ -501,10 +692,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns this speed as a redshift measure. </p>
+<dl class="section return"><dt>Returns</dt><dd>the equivalent redshift measure <em>z</em>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s()</a>, <a class="el" href="#a0c489d63be905ec16f4af30196889a2e" title="Returns this speed in km/s.">km_per_s()</a>, <a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156" title="Returns this speed in AU/day.">au_per_day()</a>, <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c" title="Returns the relativistic boost parameter Γ for this speed (v) as Γ = &amp;radic (1 - v2 / c2).">Gamma()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a0c489d63be905ec16f4af30196889a2e">km_per_s()</a>, and <a class="el" href="novas_8h.html#aa54cd00024b294d38fa29433c017c65f">novas_v2z()</a>.</p>
+
 </div>
 </div>
-<a id="aa4f2fd1dba165e5f8bf92ef3e9284288" name="aa4f2fd1dba165e5f8bf92ef3e9284288"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4f2fd1dba165e5f8bf92ef3e9284288">&#9670;&#160;</a></span>stationary()</h2>
+<a id="ae106b32bca97a3d677522da36f4ff853" name="ae106b32bca97a3d677522da36f4ff853"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae106b32bca97a3d677522da36f4ff853">&#9670;&#160;</a></span>stationary()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -526,7 +723,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="classsupernovas_1_1Observer.html#ae03f0e9121bb8a74cae67a1e43fb1ed3">supernovas::Observer::moving_on_earth()</a>, and <a class="el" href="group__apparent.html#ga02abf3d9fe725653e8220619a000fc8d">supernovas::Horizontal::to_apparent()</a>.</p>
+<p>Returns a reference to a statically defined zero speed of a stationary object. </p>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a static instance of zero speed. </dd></dl>
 
 </div>
 </div>
@@ -545,6 +743,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a string representation of this speed in km/s with the specified decimal places shown. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">decimals</td><td>(optional) the number of decimal places to print (default: 3) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new string containing a representation of this speed. </dd></dl>
+
+<p class="reference">References <a class="el" href="#a0c489d63be905ec16f4af30196889a2e">km_per_s()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogEntry.html#a809dd3e1a781361694cc1332d5e1f363">supernovas::CatalogEntry::to_string()</a>, and <a class="el" href="classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c">supernovas::Velocity::to_string()</a>.</p>
+
 </div>
 </div>
 <a id="aff4009979f33f3c12b6e585010dceafb" name="aff4009979f33f3c12b6e585010dceafb"></a>
@@ -561,6 +772,18 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the distance travelled at this speed under the specified time interval. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>the time interval </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the distance travelled</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a8c8347fcd4440dd1b739b04457c6cd62" title="Returns the distance travelled at this speed under the specified time interval.">operator*()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">Velocity::travel()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>, and <a class="el" href="#a110e032d258bec4e4341003a736d0b5b">travel()</a>.</p>
 
 </div>
 </div>
@@ -579,10 +802,24 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the distance travelled at this speed under the specified time interval. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>[s] the time interval </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the distance travelled</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a8c8347fcd4440dd1b739b04457c6cd62" title="Returns the distance travelled at this speed under the specified time interval.">operator*()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">Velocity::travel()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Interval.html#a65dfc1c3ad7b93976653de564839effe">supernovas::Interval::operator*()</a>, <a class="el" href="#a8c8347fcd4440dd1b739b04457c6cd62">operator*()</a>, and <a class="el" href="#aff4009979f33f3c12b6e585010dceafb">travel()</a>.</p>
+
 </div>
 </div>
-<a id="a5cea5c36cb19459e90e6d8cc795da57f" name="a5cea5c36cb19459e90e6d8cc795da57f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cea5c36cb19459e90e6d8cc795da57f">&#9670;&#160;</a></span>undefined()</h2>
+<a id="a78f495d95f6ee5e1979bfd7b37585b90" name="a78f495d95f6ee5e1979bfd7b37585b90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78f495d95f6ee5e1979bfd7b37585b90">&#9670;&#160;</a></span>undefined()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -603,6 +840,11 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns a reference to a static instance of an undefined / invalid scalar velocity. </p>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a standard undefined scalar velocity instance. </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Track.html#acea5816a0208a4776dc4a664155e58a3">supernovas::Track&lt; CoordType &gt;::radial_velocity_at()</a>.</p>
 
 </div>
 </div>

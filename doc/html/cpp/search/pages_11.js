@@ -1,14 +1,19 @@
 var searchData=
 [
-  ['readeph_20modules_0',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48',1,'']]],
-  ['reduced_20accuracy_20shortcuts_1',['Reduced accuracy shortcuts',['../index.html#autotoc_md31',1,'']]],
-  ['reference_20external_20objects_20internally_2',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88',1,'']]],
-  ['refinements_20to_20the_20novas_20c_20api_3',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
-  ['related_20links_4',['Related links',['../index.html#autotoc_md4',1,'']]],
-  ['release_20schedule_5',['Release schedule',['../index.html#autotoc_md41',1,'']]],
-  ['representative_20benchmarks_6',['Representative benchmarks',['../index.html#autotoc_md35',1,'']]],
-  ['results_7',['Prerequisites to precise results',['../index.html#autotoc_md30',1,'']]],
-  ['reverse_8',['reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98',1,'Going in reverse...']]],
-  ['rise_20set_20and_20transit_20times_9',['rise set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md60',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'Calculate rise, set, and transit times']]],
-  ['runtime_20debug_20support_10',['Runtime debug support',['../index.html#autotoc_md33',1,'']]]
+  ['package_0',['package',['../index.html#autotoc_md15',1,'Homebrew package'],['../index.html#autotoc_md16',1,'Nix package']]],
+  ['packages_1',['Linux packages',['../index.html#autotoc_md14',1,'']]],
+  ['parameters_2',['parameters',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102',1,'Solar-system objects with Keplerian orbital parameters']]],
+  ['physical_20units_3',['Physical units',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md69',1,'']]],
+  ['place_20on_20sky_4',['place on sky',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98',1,'Calculate an apparent place on sky']]],
+  ['planet_20and_20moon_20orbitals_5',['Approximate planet and Moon orbitals',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62',1,'']]],
+  ['planet_20orbitals_6',['Approximate planet orbitals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103',1,'']]],
+  ['planets_20and_20or_20ephemeris_20type_20objects_7',['Planets and or ephemeris type objects',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md60',1,'Planets and/or ephemeris type objects'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101',1,'Planets and/or ephemeris type objects']]],
+  ['positions_20for_20a_20sidereal_20source_8',['positions for a sidereal source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52',1,'Calculating positions for a sidereal source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91',1,'Calculating positions for a sidereal source']]],
+  ['positions_20for_20a_20solar_20system_20source_9',['positions for a Solar system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculating positions for a Solar-system source']]],
+  ['precise_20results_10',['Prerequisites to precise results',['../index.html#autotoc_md29',1,'']]],
+  ['precision_11',['Notes on precision',['../index.html#autotoc_md28',1,'']]],
+  ['prerequisites_20to_20precise_20results_12',['Prerequisites to precise results',['../index.html#autotoc_md29',1,'']]],
+  ['pthread_5fmutex_5finit_13',['define mutex_init pthread_mutex_init',['../solsys-cspice_8c.html#autotoc_md109',1,'']]],
+  ['pthread_5fmutex_5flock_14',['define mutex_lock pthread_mutex_lock',['../solsys-cspice_8c.html#autotoc_md110',1,'']]],
+  ['pthread_5fmutex_5funlock_15',['define mutex_unlock pthread_mutex_unlock',['../solsys-cspice_8c.html#autotoc_md111',1,'']]]
 ];
