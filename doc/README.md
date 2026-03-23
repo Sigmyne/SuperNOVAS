@@ -1083,7 +1083,6 @@ Below is a non-exhaustive overview new features added by __SuperNOVAS__ on top o
 
  - Introducing a new, high-level, C++11 API (`supernovas++`) on top of the standard C99 one.
  
- 
 
 <a name="api-changes"></a>
 ### Refinements to the NOVAS C API

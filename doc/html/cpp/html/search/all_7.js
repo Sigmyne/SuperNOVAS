@@ -3,7 +3,7 @@ var searchData=
   ['e_0',['e',['../structnovas__orbital.html#aaffd37bb48862ffd35dafaed88ff6fc1',1,'novas_orbital']]],
   ['e_5ftilt_1',['e_tilt',['../novas_8h.html#ab75165e2d69231da10c67de025ee05d8',1,'novas.h']]],
   ['earth_2',['earth',['../classsupernovas_1_1Planet.html#abd9ec40e76c8dc28120f07f140dd6499',1,'supernovas::Planet']]],
-  ['earth_20based_20observer_20location_3',['A. Earth-based observer location',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89',1,'']]],
+  ['earth_20based_20observer_20location_3',['A. Earth-based observer location',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92',1,'']]],
   ['earth_20orientation_4',['Earth orientation',['../group__earth.html',1,'']]],
   ['earth_5fpos_5',['earth_pos',['../structnovas__frame.html#ad1e4d02f682d0a5c17f76a4302d4a29c',1,'novas_frame']]],
   ['earth_5fsun_5fcalc_6',['earth_sun_calc',['../novas_8h.html#a580f5949c8a29cdd7bf4787aee891f2b',1,'novas.h']]],
@@ -17,7 +17,7 @@ var searchData=
   ['ecliptic_14',['ecliptic',['../classsupernovas_1_1OrbitalSystem.html#a265fe7210329208afb8ad1d171da6b4a',1,'supernovas::OrbitalSystem::ecliptic()'],['../group__nonequatorial.html#gafa2abe3d408721348c0bbb9971507cfb',1,'supernovas::Apparent::ecliptic()'],['../group__nonequatorial.html#ga93ec5fed0411781a11cd3c30f256462c',1,'supernovas::Geometric::ecliptic()']]],
   ['ee_15',['ee',['../structnovas__frame.html#a758c577d4c1d238fe2ffd9e73e79f151',1,'novas_frame']]],
   ['elevation_16',['elevation',['../classsupernovas_1_1Horizontal.html#a82ab515e78cdee62524825584e7299a4',1,'supernovas::Horizontal']]],
-  ['elevation_20angles_20at_20the_20observing_20location_17',['elevation angles at the observing location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95',1,'Calculate azimuth and elevation angles at the observing location']]],
+  ['elevation_20angles_20at_20the_20observing_20location_17',['elevation angles at the observing location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97',1,'Calculate azimuth and elevation angles at the observing location']]],
   ['emb_18',['emb',['../classsupernovas_1_1Planet.html#a046aaa16d06caf7f230225eb7d9d347c',1,'supernovas::Planet']]],
   ['emit_5ftime_19',['emit_time',['../group__time.html#ga0dc237a45a3138f480b47c12efd7514b',1,'supernovas::AstrometricPosition']]],
   ['enable_5fearth_5fsun_5fhp_20',['enable_earth_sun_hp',['../novas_8h.html#a279bca0519117cee9a3bd4382f38e7ad',1,'novas.h']]],
@@ -29,7 +29,7 @@ var searchData=
   ['ephemeris_20data_20or_20services_26',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
   ['ephemeris_20data_20service_20integration_27',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
   ['ephemeris_20providers_28',['Solar-system ephemeris providers',['../group__solar-system.html',1,'']]],
-  ['ephemeris_20type_20objects_29',['ephemeris type objects',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62',1,'Planets and/or ephemeris type objects'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'Planets and/or ephemeris type objects']]],
+  ['ephemeris_20type_20objects_29',['ephemeris type objects',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62',1,'Planets and/or ephemeris type objects'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101',1,'Planets and/or ephemeris type objects']]],
   ['ephemerissource_30',['EphemerisSource',['../classsupernovas_1_1EphemerisSource.html',1,'supernovas::EphemerisSource'],['../classsupernovas_1_1EphemerisSource.html#af6eef3af2b52aaa44a8c7ef9e2bc3c2b',1,'supernovas::EphemerisSource::EphemerisSource()']]],
   ['epoch_31',['epoch',['../classsupernovas_1_1Equinox.html#a656b256555c06a140bd8bf612778e3ff',1,'supernovas::Equinox::epoch()'],['../classsupernovas_1_1Time.html#aaff57314263437bb06e1d7adcd6febcf',1,'supernovas::Time::epoch()']]],
   ['equ2ecl_32',['equ2ecl',['../novas_8h.html#a035047336b16951b8b850066e74210a9',1,'novas.h']]],
@@ -47,8 +47,8 @@ var searchData=
   ['equatorialtrack_44',['EquatorialTrack',['../classsupernovas_1_1EquatorialTrack.html',1,'supernovas::EquatorialTrack'],['../classsupernovas_1_1EquatorialTrack.html#ace8d716b1283373fe6f5e8a3bf686fac',1,'supernovas::EquatorialTrack::EquatorialTrack()']]],
   ['equinox_45',['Equinox',['../classsupernovas_1_1Equinox.html',1,'supernovas']]],
   ['era_46',['era',['../structnovas__frame.html#affab4fcc1c7378b396e5411f9c2eea71',1,'novas_frame::era'],['../classsupernovas_1_1Time.html#aef268b7bbb4f82eb0127b15ba5090a01',1,'supernovas::Time::era()'],['../novas_8h.html#aef1f8daaad470353648de90576aefc66',1,'era():&#160;novas.h']]],
-  ['example_20c_20usage_47',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79',1,'']]],
+  ['example_20c_20usage_47',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83',1,'']]],
   ['example_20c99_20usage_48',['Example C99 usage',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'']]],
   ['example_20use_20cases_49',['Example use cases',['../index.html#autotoc_md22',1,'']]],
-  ['external_20objects_20internally_50',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'']]]
+  ['external_20objects_20internally_50',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88',1,'']]]
 ];
