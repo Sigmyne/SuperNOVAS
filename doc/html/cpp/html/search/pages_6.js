@@ -1,12 +1,23 @@
 var searchData=
 [
-  ['earth_20based_20observer_20location_0',['A. Earth-based observer location',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94',1,'']]],
-  ['elevation_20angles_20at_20the_20observing_20location_1',['elevation angles at the observing location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'Calculate azimuth and elevation angles at the observing location']]],
-  ['ephemeris_20data_20or_20services_2',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
-  ['ephemeris_20data_20service_20integration_3',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
-  ['ephemeris_20type_20objects_4',['ephemeris type objects',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md60',1,'Planets and/or ephemeris type objects'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101',1,'Planets and/or ephemeris type objects']]],
-  ['example_20c_20usage_5',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90',1,'']]],
-  ['example_20c99_20usage_6',['Example C99 usage',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'']]],
-  ['example_20use_20cases_7',['Example use cases',['../index.html#autotoc_md22',1,'']]],
-  ['external_20objects_20internally_8',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87',1,'']]]
+  ['data_20or_20services_0',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
+  ['data_20service_20integration_1',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
+  ['dates_2',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md71',1,'']]],
+  ['debug_20support_3',['Runtime debug support',['../index.html#autotoc_md32',1,'']]],
+  ['define_20mtx_5flock_20void_4',['define mtx_lock (void)',['../solsys-cspice_8c.html#autotoc_md122',1,'']]],
+  ['define_20mtx_5funlock_20void_5',['define mtx_unlock (void)',['../solsys-cspice_8c.html#autotoc_md123',1,'']]],
+  ['define_20mutex_5finit_20initializesrwlock_6',['define mutex_init InitializeSRWLock',['../solsys-cspice_8c.html#autotoc_md118',1,'']]],
+  ['define_20mutex_5finit_20mtx_5finit_7',['define mutex_init mtx_init',['../solsys-cspice_8c.html#autotoc_md114',1,'']]],
+  ['define_20mutex_5finit_20pthread_5fmutex_5finit_8',['define mutex_init pthread_mutex_init',['../solsys-cspice_8c.html#autotoc_md109',1,'']]],
+  ['define_20mutex_5flock_20acquiresrwlockexclusive_9',['define mutex_lock AcquireSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md119',1,'']]],
+  ['define_20mutex_5flock_20mtx_5flock_10',['define mutex_lock mtx_lock',['../solsys-cspice_8c.html#autotoc_md115',1,'']]],
+  ['define_20mutex_5flock_20pthread_5fmutex_5flock_11',['define mutex_lock pthread_mutex_lock',['../solsys-cspice_8c.html#autotoc_md110',1,'']]],
+  ['define_20mutex_5funlock_20mtx_5funlock_12',['define mutex_unlock mtx_unlock',['../solsys-cspice_8c.html#autotoc_md116',1,'']]],
+  ['define_20mutex_5funlock_20pthread_5fmutex_5funlock_13',['define mutex_unlock pthread_mutex_unlock',['../solsys-cspice_8c.html#autotoc_md111',1,'']]],
+  ['define_20mutex_5funlock_20releasesrwlockexclusive_14',['define mutex_unlock ReleaseSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md120',1,'']]],
+  ['define_20thread_5fsafe_200_15',['define THREAD_SAFE 0',['../solsys-cspice_8c.html#autotoc_md124',1,'']]],
+  ['define_20thread_5fsafe_201_16',['define THREAD_SAFE 1',['../solsys-cspice_8c.html#autotoc_md112',1,'define THREAD_SAFE 1'],['../solsys-cspice_8c.html#autotoc_md117',1,'define THREAD_SAFE 1'],['../solsys-cspice_8c.html#autotoc_md121',1,'define THREAD_SAFE 1']]],
+  ['deprecated_20api_17',['Deprecated API',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47',1,'']]],
+  ['deprecated_20list_18',['Deprecated List',['../deprecated.html',1,'']]],
+  ['don_20t_20reference_20external_20objects_20internally_19',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87',1,'']]]
 ];

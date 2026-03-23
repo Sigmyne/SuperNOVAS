@@ -115,21 +115,36 @@ $(function(){initNavTree('classsupernovas_1_1Angle.html','','classsupernovas_1_1
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0af20b06639e0cee8a24cde361d80f88" id="r_a0af20b06639e0cee8a24cde361d80f88"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a0af20b06639e0cee8a24cde361d80f88">Angle</a> (const std::string &amp;str)</td></tr>
+<tr class="memdesc:a0af20b06639e0cee8a24cde361d80f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates an angle from its string representation, either as decimal degrees or as [-]DDD:MM:SS.SSS.  <br /></td></tr>
 <tr class="memitem:ada81acd45becf847f82fa353523b977c" id="r_ada81acd45becf847f82fa353523b977c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ada81acd45becf847f82fa353523b977c">Angle</a> (double radians)</td></tr>
+<tr class="memdesc:ada81acd45becf847f82fa353523b977c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new angle with the specified value in radians.  <br /></td></tr>
 <tr class="memitem:a36ce17ee438a8d128af4f60c1f4ce548" id="r_a36ce17ee438a8d128af4f60c1f4ce548"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="#a36ce17ee438a8d128af4f60c1f4ce548">~Angle</a> ()</td></tr>
 <tr class="memitem:a4692cfb7e9911e34c3df48accd8289bf" id="r_a4692cfb7e9911e34c3df48accd8289bf"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf">arcmin</a> () const</td></tr>
+<tr class="memdesc:a4692cfb7e9911e34c3df48accd8289bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in arc minutes.  <br /></td></tr>
 <tr class="memitem:a62d566900a6fe0052db3d82ea416b6ae" id="r_a62d566900a6fe0052db3d82ea416b6ae"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae">arcsec</a> () const</td></tr>
+<tr class="memdesc:a62d566900a6fe0052db3d82ea416b6ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in arc seconds.  <br /></td></tr>
 <tr class="memitem:a084ae07a20c426f4f79b5b367b8df1be" id="r_a084ae07a20c426f4f79b5b367b8df1be"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be">deg</a> () const</td></tr>
+<tr class="memdesc:a084ae07a20c426f4f79b5b367b8df1be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in degrees.  <br /></td></tr>
 <tr class="memitem:a4645972967822541c9f964a8f0393e1b" id="r_a4645972967822541c9f964a8f0393e1b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4645972967822541c9f964a8f0393e1b">equals</a> (const Angle &amp;angle, double precision=<a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">Unit::uas</a>) const</td></tr>
+<tr class="memdesc:a4645972967822541c9f964a8f0393e1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this angle instance equals another within the specified absolute precision.  <br /></td></tr>
 <tr class="memitem:ae68fb837fb8c311196188dc37eee93d7" id="r_ae68fb837fb8c311196188dc37eee93d7"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ae68fb837fb8c311196188dc37eee93d7">fraction</a> () const</td></tr>
+<tr class="memdesc:ae68fb837fb8c311196188dc37eee93d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle as a fraction of the circle.  <br /></td></tr>
 <tr class="memitem:a6f8542151ca185e23be12aaac101bd0b" id="r_a6f8542151ca185e23be12aaac101bd0b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a6f8542151ca185e23be12aaac101bd0b">mas</a> () const</td></tr>
+<tr class="memdesc:a6f8542151ca185e23be12aaac101bd0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in milliarcseconds.  <br /></td></tr>
 <tr class="memitem:aaa4486c733e14ea4e9f4105e42285006" id="r_aaa4486c733e14ea4e9f4105e42285006"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aaa4486c733e14ea4e9f4105e42285006">operator!=</a> (const Angle &amp;angle) const</td></tr>
-<tr class="memitem:ab11a33b83b611915d55bbe77fbec2c79" id="r_ab11a33b83b611915d55bbe77fbec2c79"><td class="memItemLeft">virtual Angle&#160;</td><td class="memItemRight"><a class="el" href="#ab11a33b83b611915d55bbe77fbec2c79">operator+</a> (const Angle &amp;r) const</td></tr>
-<tr class="memitem:aa3cb542110cc6a5652483a6cc8191798" id="r_aa3cb542110cc6a5652483a6cc8191798"><td class="memItemLeft">virtual Angle&#160;</td><td class="memItemRight"><a class="el" href="#aa3cb542110cc6a5652483a6cc8191798">operator-</a> (const Angle &amp;r) const</td></tr>
+<tr class="memdesc:aaa4486c733e14ea4e9f4105e42285006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this angle instance differs from another by more than 1 &mu;as.  <br /></td></tr>
+<tr class="memitem:a82e5f7cc89c1fa80ec6331b91bccd938" id="r_a82e5f7cc89c1fa80ec6331b91bccd938"><td class="memItemLeft">virtual Angle&#160;</td><td class="memItemRight"><a class="el" href="#a82e5f7cc89c1fa80ec6331b91bccd938">operator+</a> (const Angle &amp;r) const</td></tr>
+<tr class="memdesc:a82e5f7cc89c1fa80ec6331b91bccd938"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new angle that is the sum of this angle and the specified other angle.  <br /></td></tr>
+<tr class="memitem:a61870ec8a57c3d67c14a5ebf508794f3" id="r_a61870ec8a57c3d67c14a5ebf508794f3"><td class="memItemLeft">virtual Angle&#160;</td><td class="memItemRight"><a class="el" href="#a61870ec8a57c3d67c14a5ebf508794f3">operator-</a> (const Angle &amp;r) const</td></tr>
+<tr class="memdesc:a61870ec8a57c3d67c14a5ebf508794f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new angle that is the difference of this angle and the specified other angle.  <br /></td></tr>
 <tr class="memitem:a73d4cf5daf3c1fdaf81940b3a2ba4551" id="r_a73d4cf5daf3c1fdaf81940b3a2ba4551"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a73d4cf5daf3c1fdaf81940b3a2ba4551">operator==</a> (const Angle &amp;angle) const</td></tr>
+<tr class="memdesc:a73d4cf5daf3c1fdaf81940b3a2ba4551"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this angle instance equals another within the 1 &mu;as.  <br /></td></tr>
 <tr class="memitem:a296b29e7589c3c2e96f2316da0f20f04" id="r_a296b29e7589c3c2e96f2316da0f20f04"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04">rad</a> () const</td></tr>
-<tr class="memitem:a271875756e228da2a2019cd0f4778e64" id="r_a271875756e228da2a2019cd0f4778e64"><td class="memItemLeft">virtual std::string&#160;</td><td class="memItemRight"><a class="el" href="#a271875756e228da2a2019cd0f4778e64">to_string</a> (enum <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40e">novas_separator_type</a> separator=<a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a>, int decimals=3) const</td></tr>
+<tr class="memdesc:a296b29e7589c3c2e96f2316da0f20f04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in radians.  <br /></td></tr>
+<tr class="memitem:a37f5d6a238897cf0a3f016d6c42b9099" id="r_a37f5d6a238897cf0a3f016d6c42b9099"><td class="memItemLeft">virtual std::string&#160;</td><td class="memItemRight"><a class="el" href="#a37f5d6a238897cf0a3f016d6c42b9099">to_string</a> (enum <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40e">novas_separator_type</a> separator=<a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a>, int decimals=3) const</td></tr>
+<tr class="memdesc:a37f5d6a238897cf0a3f016d6c42b9099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a DDD:MM:SS.SSS representation of the angle with the specified separators and decimal places for the arc seconds.  <br /></td></tr>
 <tr class="memitem:a39ee92c930646bae2fa5224132ac4804" id="r_a39ee92c930646bae2fa5224132ac4804"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a39ee92c930646bae2fa5224132ac4804">uas</a> () const</td></tr>
+<tr class="memdesc:a39ee92c930646bae2fa5224132ac4804"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in microarcseconds.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -138,7 +153,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a19e6bcbe362f5a31daf7bc959342db1f" id="r_a19e6bcbe362f5a31daf7bc959342db1f"><td class="memItemLeft">static const Angle &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a19e6bcbe362f5a31daf7bc959342db1f">undefined</a> ()</td></tr>
+<tr class="memitem:af3afba7d82529ef0d87c8c042c19763e" id="r_af3afba7d82529ef0d87c8c042c19763e"><td class="memItemLeft">static const Angle &amp;&#160;</td><td class="memItemRight"><a class="el" href="#af3afba7d82529ef0d87c8c042c19763e">undefined</a> ()</td></tr>
+<tr class="memdesc:af3afba7d82529ef0d87c8c042c19763e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined standard invalid angle.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -218,6 +234,20 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Instantiates a new angle with the specified value in radians. </p>
+<p>You can use the <a class="el" href="classsupernovas_1_1Unit.html" title="Various physical units for converting quantities expressed in conventional units to SI,...">Unit</a> class to convert angles expressed in other units to radians. For example, to set 15.0 degrees, you might write:</p>
+<div class="fragment"><div class="line">Angle a(15.0 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">Unit::deg</a>);</div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a8bfd777ba2cae7778c1ae72e8944b175"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a></div><div class="ttdeci">static constexpr double deg</div><div class="ttdoc">[rad] 1 hour of angle in radians on the 24h circle.</div><div class="ttdef"><b>Definition</b> supernovas.h:150</div></div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">radians</td><td>[rad] the initializing value.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1TimeAngle.html" title="A representation of a regularized angle, which can also be represented as a time value in the 0 to 24...">TimeAngle</a>, <a class="el" href="classsupernovas_1_1Unit.html" title="Various physical units for converting quantities expressed in conventional units to SI,...">Unit</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#af6e6db865035c41e06774db14657d444">_rad</a>, and <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>.</p>
+
 </div>
 </div>
 <a id="a0af20b06639e0cee8a24cde361d80f88" name="a0af20b06639e0cee8a24cde361d80f88"></a>
@@ -243,6 +273,18 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Instantiates an angle from its string representation, either as decimal degrees or as [-]DDD:MM:SS.SSS. </p>
+<p>Other than colons, the degrees, minutes, and seconds components may be separated by the symbols d, m, or white spaces of cobination of the above. To learn more about what exact representations are supported see novas:<a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>a string specifying an angle either as decimal degrees or as DDD:MM:SS.SSS and variants thereof.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>novas:<a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#af6e6db865035c41e06774db14657d444">_rad</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd">novas_str_degrees()</a>.</p>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -261,6 +303,12 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the angle in arc minutes. </p>
+<dl class="section return"><dt>Returns</dt><dd>[arcmin] the angle in arc minutes, usually in the [-10800:10800) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">rad()</a>, <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">deg()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">arcsec()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b" title="Returns the angle in milliarcseconds.">mas()</a>, <a class="el" href="#a39ee92c930646bae2fa5224132ac4804" title="Returns the angle in microarcseconds.">uas()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a895d1485471da2155855d93aee1b67f2">supernovas::Unit::arcmin</a>, and <a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04">rad()</a>.</p>
+
 </div>
 </div>
 <a id="a62d566900a6fe0052db3d82ea416b6ae" name="a62d566900a6fe0052db3d82ea416b6ae"></a>
@@ -278,6 +326,12 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the angle in arc seconds. </p>
+<dl class="section return"><dt>Returns</dt><dd>[arcsec] the angle in arc seconds, usually in the [-648000:648000) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">rad()</a>, <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">deg()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">arcmin()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b" title="Returns the angle in milliarcseconds.">mas()</a>, <a class="el" href="#a39ee92c930646bae2fa5224132ac4804" title="Returns the angle in microarcseconds.">uas()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">supernovas::Unit::arcsec</a>, and <a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04">rad()</a>.</p>
+
 </div>
 </div>
 <a id="a084ae07a20c426f4f79b5b367b8df1be" name="a084ae07a20c426f4f79b5b367b8df1be"></a>
@@ -294,6 +348,14 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the angle in degrees. </p>
+<dl class="section return"><dt>Returns</dt><dd>[degrees] the angle in degrees, usually in the [-180:180) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">rad()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">arcmin()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">arcsec()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b" title="Returns the angle in milliarcseconds.">mas()</a>, <a class="el" href="#a39ee92c930646bae2fa5224132ac4804" title="Returns the angle in microarcseconds.">uas()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04">rad()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogEntry.html#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a3f83a7b7c79a6f71e52fb8de35225a7c">supernovas::Spherical::distance_to()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1c8dda1456d15646d0f7da9ac39ed000">supernovas::Time::lst()</a>, <a class="el" href="classsupernovas_1_1Time.html#ac4c3aacc0f4b28984c9705eedc6c9caf">supernovas::Time::next_moon_phase()</a>, <a class="el" href="group__time.html#gaecda13098f9fcb4f0a5a864c68bbf697">supernovas::Source::rises_above()</a>, <a class="el" href="group__time.html#ga29375c229dce898b751473f2f4f74b1d">supernovas::Source::sets_below()</a>, <a class="el" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">supernovas::Equatorial::to_galactic()</a>, and <a class="el" href="#a37f5d6a238897cf0a3f016d6c42b9099">to_string()</a>.</p>
 
 </div>
 </div>
@@ -316,7 +378,20 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">supernovas::Unit::uas</a>.</p>
+<p>Checks if this angle instance equals another within the specified absolute precision. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>another angle </td></tr>
+    <tr><td class="paramname">precision</td><td>[rad] the abolute precision to use when testing for equality. If the two angles are closer on the 2&pi; circle to each other than this precision, then they are consideredc equal, otherwise not. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two angles match within the specified precision, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a73d4cf5daf3c1fdaf81940b3a2ba4551" title="Checks if this angle instance equals another within the 1 μas.">operator==()</a>, <a class="el" href="#aaa4486c733e14ea4e9f4105e42285006" title="Checks if this angle instance differs from another by more than 1 μas.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#af6e6db865035c41e06774db14657d444">_rad</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#aaa4486c733e14ea4e9f4105e42285006">operator!=()</a>, and <a class="el" href="#a73d4cf5daf3c1fdaf81940b3a2ba4551">operator==()</a>.</p>
 
 </div>
 </div>
@@ -335,6 +410,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the angle as a fraction of the circle. </p>
+<dl class="section return"><dt>Returns</dt><dd>the angle as a fraction of the circle, usually in the [0:1) range. </dd></dl>
+
+<p class="reference">References <a class="el" href="#af6e6db865035c41e06774db14657d444">_rad</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
+
 </div>
 </div>
 <a id="a6f8542151ca185e23be12aaac101bd0b" name="a6f8542151ca185e23be12aaac101bd0b"></a>
@@ -351,6 +431,14 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the angle in milliarcseconds. </p>
+<dl class="section return"><dt>Returns</dt><dd>[mas] the angle in milliarcseconds, usually in the [-6.48e8:6.48e8) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">rad()</a>, <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">deg()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">arcmin()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">arcsec()</a>, <a class="el" href="#a39ee92c930646bae2fa5224132ac4804" title="Returns the angle in microarcseconds.">uas()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">supernovas::Unit::mas</a>, and <a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04">rad()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Geometric.html#a25e2215f87bf9b52f54b2893791cf687">supernovas::Geometric::to_itrs()</a>.</p>
 
 </div>
 </div>
@@ -369,10 +457,22 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if this angle instance differs from another by more than 1 &mu;as. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>another angle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two angles differ by more than 1 &mu;as, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4645972967822541c9f964a8f0393e1b" title="Checks if this angle instance equals another within the specified absolute precision.">equals()</a>, <a class="el" href="#a73d4cf5daf3c1fdaf81940b3a2ba4551" title="Checks if this angle instance equals another within the 1 μas.">operator==()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a4645972967822541c9f964a8f0393e1b">equals()</a>.</p>
+
 </div>
 </div>
-<a id="ab11a33b83b611915d55bbe77fbec2c79" name="ab11a33b83b611915d55bbe77fbec2c79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab11a33b83b611915d55bbe77fbec2c79">&#9670;&#160;</a></span>operator+()</h2>
+<a id="a82e5f7cc89c1fa80ec6331b91bccd938" name="a82e5f7cc89c1fa80ec6331b91bccd938"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82e5f7cc89c1fa80ec6331b91bccd938">&#9670;&#160;</a></span>operator+()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -381,7 +481,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual Angle supernovas::Angle::operator+ </td>
+          <td class="memname">Angle supernovas::Angle::operator+ </td>
           <td>(</td>
           <td class="paramtype">const Angle &amp;</td>          <td class="paramname"><span class="paramname"><em>r</em></span></td><td>)</td>
           <td> const</td>
@@ -393,13 +493,27 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns a new angle that is the sum of this angle and the specified other angle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the other angle on the right-hand-side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the sum of this angle and the argument, as a new angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a61870ec8a57c3d67c14a5ebf508794f3" title="Returns a new angle that is the difference of this angle and the specified other angle.">operator-()</a> </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1TimeAngle.html#a9f4d90c69c95bd1af248e13441ae803f">supernovas::TimeAngle</a>.</p>
 
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04">rad()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1TimeAngle.html#a9f4d90c69c95bd1af248e13441ae803f">supernovas::TimeAngle::operator+()</a>.</p>
+
 </div>
 </div>
-<a id="aa3cb542110cc6a5652483a6cc8191798" name="aa3cb542110cc6a5652483a6cc8191798"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3cb542110cc6a5652483a6cc8191798">&#9670;&#160;</a></span>operator-()</h2>
+<a id="a61870ec8a57c3d67c14a5ebf508794f3" name="a61870ec8a57c3d67c14a5ebf508794f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61870ec8a57c3d67c14a5ebf508794f3">&#9670;&#160;</a></span>operator-()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -408,7 +522,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual Angle supernovas::Angle::operator- </td>
+          <td class="memname">Angle supernovas::Angle::operator- </td>
           <td>(</td>
           <td class="paramtype">const Angle &amp;</td>          <td class="paramname"><span class="paramname"><em>r</em></span></td><td>)</td>
           <td> const</td>
@@ -421,7 +535,21 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns a new angle that is the difference of this angle and the specified other angle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the other angle on the right-hand-side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the difference of this angle and the argument, as a new angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a82e5f7cc89c1fa80ec6331b91bccd938" title="Returns a new angle that is the sum of this angle and the specified other angle.">operator+()</a> </dd></dl>
+
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1TimeAngle.html#aeb1860d3186a860bf4212c34d802502b">supernovas::TimeAngle</a>.</p>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04">rad()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1TimeAngle.html#aeb1860d3186a860bf4212c34d802502b">supernovas::TimeAngle::operator-()</a>.</p>
 
 </div>
 </div>
@@ -440,6 +568,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if this angle instance equals another within the 1 &mu;as. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>another angle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two angles match within 1 &mu;as, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4645972967822541c9f964a8f0393e1b" title="Checks if this angle instance equals another within the specified absolute precision.">equals()</a>, <a class="el" href="#aaa4486c733e14ea4e9f4105e42285006" title="Checks if this angle instance differs from another by more than 1 μas.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a4645972967822541c9f964a8f0393e1b">equals()</a>.</p>
+
 </div>
 </div>
 <a id="a296b29e7589c3c2e96f2316da0f20f04" name="a296b29e7589c3c2e96f2316da0f20f04"></a>
@@ -457,12 +597,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5">supernovas::Spherical::equals()</a>.</p>
+<p>Returns the angle in radians. </p>
+<dl class="section return"><dt>Returns</dt><dd>[rad] the angle in radians, usually in the [-&pi;:&pi;) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">deg()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">arcmin()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">arcsec()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b" title="Returns the angle in milliarcseconds.">mas()</a>, <a class="el" href="#a39ee92c930646bae2fa5224132ac4804" title="Returns the angle in microarcseconds.">uas()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#af6e6db865035c41e06774db14657d444">_rad</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf">arcmin()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae">arcsec()</a>, <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be">deg()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a784fbc6a317a2385fd19f4cdb2f663c4">supernovas::Orbital::eccentricity()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a3cddea118d722c712a9139c8b44612d3">supernovas::Ecliptic::equals()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ad9635b846c25ed6ba2047bb0e58cf8de">supernovas::Equatorial::equals()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a6cc82f8c0d204efe9ca4a9f803ea6267">supernovas::Galactic::equals()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a8c4e0b5bf7d32529482c488475133a1b">supernovas::Horizontal::equals()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5">supernovas::Spherical::equals()</a>, <a class="el" href="classsupernovas_1_1Apparent.html#a63a78460dda7da4e8402849e49596707">supernovas::Apparent::from_cirs()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a7eaa3df88d837a1c1373e8be87324854">supernovas::Orbital::from_mean_motion()</a>, <a class="el" href="classsupernovas_1_1Apparent.html#a1dcedd8e837756d5ba7c3fd56400f70c">supernovas::Apparent::from_tod()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a592c05ee722500bd4287fe1d0a76cdb6">supernovas::Orbital::inclination()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b">mas()</a>, <a class="el" href="#a82e5f7cc89c1fa80ec6331b91bccd938">operator+()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#ac60228eec1bca415e74b54befd51c611">supernovas::TimeAngle::operator+()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#ae6a062641d69ba791c1ab3bd8554a576">supernovas::TimeAngle::operator+()</a>, <a class="el" href="#a61870ec8a57c3d67c14a5ebf508794f3">operator-()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#ad4a4dea2db2fe861a715233d5e0b9596">supernovas::TimeAngle::operator-()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#aadeb1fd947cae7de774f0de9c77e7bab">supernovas::TimeAngle::operator-()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#a6a21b9432e3362cf6cfa8082f383e3d3">supernovas::OrbitalSystem::orbit()</a>, <a class="el" href="classsupernovas_1_1CatalogEntry.html#a12c8a591d4f709fe890859a1477fa23f">supernovas::CatalogEntry::parallax()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a54bdb5ea3fa4c40f0e261d9eff830b01">supernovas::Orbital::pole()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#af91a1462850775b2d43298fae08a0016">supernovas::OrbitalSystem::pole()</a>, and <a class="el" href="#a39ee92c930646bae2fa5224132ac4804">uas()</a>.</p>
 
 </div>
 </div>
-<a id="a271875756e228da2a2019cd0f4778e64" name="a271875756e228da2a2019cd0f4778e64"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a271875756e228da2a2019cd0f4778e64">&#9670;&#160;</a></span>to_string()</h2>
+<a id="a37f5d6a238897cf0a3f016d6c42b9099" name="a37f5d6a238897cf0a3f016d6c42b9099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37f5d6a238897cf0a3f016d6c42b9099">&#9670;&#160;</a></span>to_string()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -471,7 +617,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::string supernovas::Angle::to_string </td>
+          <td class="memname">std::string supernovas::Angle::to_string </td>
           <td>(</td>
           <td class="paramtype">enum <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40e">novas_separator_type</a></td>          <td class="paramname"><span class="paramname"><em>separator</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a></span>, </td>
         </tr>
@@ -488,9 +634,22 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Provides a DDD:MM:SS.SSS representation of the angle with the specified separators and decimal places for the arc seconds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">separator</td><td>the type of separators / unit markers used to distinguish the degree, minute, and second components. </td></tr>
+    <tr><td class="paramname">decimals</td><td>[0:9] the number of decimal places to print for the arc seconds component. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the strung representation of this angle in degrees.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1TimeAngle.html#a5a550bcad0265652d8c543d2c50ee7e9" title="Provides a DDD:MM:SS.SSS representation of the angle with the specified separators and decimal places...">TimeAngle::to_string()</a> </dd></dl>
+
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1TimeAngle.html#a5a550bcad0265652d8c543d2c50ee7e9">supernovas::TimeAngle</a>.</p>
 
-<p class="reference">References <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a>.</p>
+<p class="reference">References <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be">deg()</a>, and <a class="el" href="novas_8h.html#ad778a440540ed687572b78b675bebd60">novas_print_dms()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogSource.html#a94ac207adcc4c9c2bbc000b0e4ef40ce">supernovas::CatalogSource::to_string()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#a32bfe60a4d887c5b659720756a3b6006">supernovas::Equatorial::to_string()</a>, <a class="el" href="classsupernovas_1_1Site.html#ac0025cac941a69c9c4797ecd3f106030">supernovas::Site::to_string()</a>, and <a class="el" href="classsupernovas_1_1Spherical.html#a50b5dc34240686d2eaf63c483e839277">supernovas::Spherical::to_string()</a>.</p>
 
 </div>
 </div>
@@ -509,10 +668,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the angle in microarcseconds. </p>
+<dl class="section return"><dt>Returns</dt><dd>[&mu;as] the angle in microarcseconds, usually in the [-6.48e11:6.48e11) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">rad()</a>, <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">deg()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">arcmin()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">arcsec()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b" title="Returns the angle in milliarcseconds.">mas()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04">rad()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">supernovas::Unit::uas</a>.</p>
+
 </div>
 </div>
-<a id="a19e6bcbe362f5a31daf7bc959342db1f" name="a19e6bcbe362f5a31daf7bc959342db1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a19e6bcbe362f5a31daf7bc959342db1f">&#9670;&#160;</a></span>undefined()</h2>
+<a id="af3afba7d82529ef0d87c8c042c19763e" name="af3afba7d82529ef0d87c8c042c19763e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3afba7d82529ef0d87c8c042c19763e">&#9670;&#160;</a></span>undefined()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -533,6 +698,12 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns a reference to a statically defined standard invalid angle. </p>
+<p>Sunch invalid angles may be used inside any object that is invalid itself.</p>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a static standard invalid angle. </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Track.html#acf7c5ba0db5ab484826f7e4e907ee5c9">supernovas::Track&lt; CoordType &gt;::latitude_at()</a>, and <a class="el" href="classsupernovas_1_1Track.html#aef365777f4bc7c5f5e8d167b506d2cb8">supernovas::Track&lt; CoordType &gt;::longitude_at()</a>.</p>
 
 </div>
 </div>
@@ -558,6 +729,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[rad] stored angle value, usually [-&pi;:&pi;), but can be different for subclasses. </p>
+
+<p class="reference">Referenced by <a class="el" href="#a0af20b06639e0cee8a24cde361d80f88">Angle()</a>, <a class="el" href="#ada81acd45becf847f82fa353523b977c">Angle()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#aefc4d47845acc009e22b368255827448">supernovas::TimeAngle::TimeAngle()</a>, <a class="el" href="#a4645972967822541c9f964a8f0393e1b">equals()</a>, <a class="el" href="#ae68fb837fb8c311196188dc37eee93d7">fraction()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#a6ed469439452805722b5954a1cfc7540">supernovas::TimeAngle::hours()</a>, and <a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04">rad()</a>.</p>
 
 </div>
 </div>

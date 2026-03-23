@@ -96,7 +96,7 @@ $(function(){initNavTree('structnovas__sky__pos.html','','structnovas__sky__pos-
 </div><!--header-->
 <div class="contents">
 
-<p>Celestial object's place on the sky; contains the output from <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.  
+<p>Celestial object's place on the sky; contains the output from <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a>.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;novas.h&gt;</code></p>
@@ -115,8 +115,8 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:ae98432478d2c3a8e5eb1a1674394499f"><td class="mdescLeft">&#160;</td><td class="mdescRight">[km/s] radial velocity (km/s).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Celestial object's place on the sky; contains the output from <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos()</a>, <a class="el" href="novas_8h.html#acfcfb90637cd1fdb25ef9afd1bda8e30">novas_transform_sky_pos()</a>, <a class="el" href="novas_8h.html#a462bdac0f370f0c5b421ae5b3f3e35f2" title="Initializer for a NOVAS sky_pos structure.">SKY_POS_INIT</a> </dd></dl>
+<div class="textblock"><p>Celestial object's place on the sky; contains the output from <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a>. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, <a class="el" href="novas_8h.html#acfcfb90637cd1fdb25ef9afd1bda8e30" title="Transforms a position or velocity 3-vector from one coordinate reference system to another.">novas_transform_sky_pos()</a>, <a class="el" href="novas_8h.html#a462bdac0f370f0c5b421ae5b3f3e35f2" title="Initializer for a NOVAS sky_pos structure.">SKY_POS_INIT</a> </dd></dl>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a3538259b8b9a27882db94502bed3548f" name="a3538259b8b9a27882db94502bed3548f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3538259b8b9a27882db94502bed3548f">&#9670;&#160;</a></span>dec</h2>
@@ -131,6 +131,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[deg] apparent, topocentric, or astrometric declination (degrees) </p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a57f4a449754c88cfc87df658a6bc4cb2">novas_equ_track()</a>, <a class="el" href="novas_8h.html#a1f29810393108d15fd8312a2a95158dc">novas_hor_track()</a>, <a class="el" href="novas_8h.html#afa5f3a823a895bed01876df6b2a00370">novas_object_sep()</a>, <a class="el" href="novas_8h.html#acfcfb90637cd1fdb25ef9afd1bda8e30">novas_transform_sky_pos()</a>, <a class="el" href="novas_8h.html#a918c8244e44c69f1589d9f4bf5355d16">radec_planet()</a>, <a class="el" href="novas_8h.html#a0f307c2a37d594a68e99c5c8af6d50c9">radec_star()</a>, and <a class="el" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent()</a>.</p>
 
 </div>
 </div>
@@ -148,6 +150,8 @@ Public Attributes</h2></td></tr>
 
 <p>[AU] true (geometric, Euclidian) distance to solar system body or 0.0 for star (AU) </p>
 
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a57f4a449754c88cfc87df658a6bc4cb2">novas_equ_track()</a>, <a class="el" href="novas_8h.html#a1f29810393108d15fd8312a2a95158dc">novas_hor_track()</a>, <a class="el" href="novas_8h.html#afa5f3a823a895bed01876df6b2a00370">novas_object_sep()</a>, <a class="el" href="novas_8h.html#a918c8244e44c69f1589d9f4bf5355d16">radec_planet()</a>, and <a class="el" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent()</a>.</p>
+
 </div>
 </div>
 <a id="aa76dc5a1222e5696e88c986b6c6c3e55" name="aa76dc5a1222e5696e88c986b6c6c3e55"></a>
@@ -163,6 +167,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>unit vector toward object (dimensionless) </p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#acfcfb90637cd1fdb25ef9afd1bda8e30">novas_transform_sky_pos()</a>, and <a class="el" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent()</a>.</p>
 
 </div>
 </div>
@@ -180,6 +186,8 @@ Public Attributes</h2></td></tr>
 
 <p>[h] apparent, topocentric, or astrometric right ascension (hours) </p>
 
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a57f4a449754c88cfc87df658a6bc4cb2">novas_equ_track()</a>, <a class="el" href="novas_8h.html#a1f29810393108d15fd8312a2a95158dc">novas_hor_track()</a>, <a class="el" href="novas_8h.html#afa5f3a823a895bed01876df6b2a00370">novas_object_sep()</a>, <a class="el" href="novas_8h.html#acfcfb90637cd1fdb25ef9afd1bda8e30">novas_transform_sky_pos()</a>, <a class="el" href="novas_8h.html#a918c8244e44c69f1589d9f4bf5355d16">radec_planet()</a>, <a class="el" href="novas_8h.html#a0f307c2a37d594a68e99c5c8af6d50c9">radec_star()</a>, and <a class="el" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent()</a>.</p>
+
 </div>
 </div>
 <a id="ae98432478d2c3a8e5eb1a1674394499f" name="ae98432478d2c3a8e5eb1a1674394499f"></a>
@@ -195,7 +203,9 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[km/s] radial velocity (km/s). </p>
-<p>As of SuperNOVAS v1.3, this is always a proper observer-based spectroscopic velocity measure, which relates the observed wavelength to the rest wavelength as &lambda;<sub>obs</sub> = (1 + rv / c) &lambda;<sub>rest</sub>. <a class="el" href="novas_8h.html#a99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel()</a>, <a class="el" href="novas_8h.html#aa54cd00024b294d38fa29433c017c65f">novas_v2z()</a> </p>
+<p>As of SuperNOVAS v1.3, this is always a proper observer-based spectroscopic velocity measure, which relates the observed wavelength to the rest wavelength as &lambda;<sub>obs</sub> = (1 + rv / c) &lambda;<sub>rest</sub>. <a class="el" href="novas_8h.html#a99ed25baa029f3980924da8c8af54d1a" title="Returns a radial-velocity referenced to the Local Standard of Rest (LSR) for a given Solar-System Bar...">novas_ssb_to_lsr_vel()</a>, <a class="el" href="novas_8h.html#aa54cd00024b294d38fa29433c017c65f" title="Converts a radial recession velocity to a redshift value (z = Δλ / λrest).">novas_v2z()</a> </p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a57f4a449754c88cfc87df658a6bc4cb2">novas_equ_track()</a>, <a class="el" href="novas_8h.html#a1f29810393108d15fd8312a2a95158dc">novas_hor_track()</a>, <a class="el" href="novas_8h.html#a918c8244e44c69f1589d9f4bf5355d16">radec_planet()</a>, <a class="el" href="novas_8h.html#a0f307c2a37d594a68e99c5c8af6d50c9">radec_star()</a>, and <a class="el" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent()</a>.</p>
 
 </div>
 </div>

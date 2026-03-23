@@ -9,6 +9,6 @@ var classsupernovas_1_1Spherical =
     [ "equals", "classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5", null ],
     [ "latitude", "classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2", null ],
     [ "longitude", "classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285", null ],
-    [ "to_string", "classsupernovas_1_1Spherical.html#a14429fab36e801361871b69782d4ada3", null ],
+    [ "to_string", "classsupernovas_1_1Spherical.html#a50b5dc34240686d2eaf63c483e839277", null ],
     [ "xyz", "classsupernovas_1_1Spherical.html#afa7cdecc61619598f88cdbbedcb257c7", null ]
 ];

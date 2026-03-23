@@ -89,11 +89,13 @@ var NAVTREE =
           [ "Approximate planet orbitals", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103", null ]
         ] ],
         [ "Going in reverse...", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104", null ],
-        [ "Calculate rise, set, and transit times", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105", null ]
+        [ "Calculate rise, set, and transit times", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105", null ],
+        [ "Coordinate and velocity transforms (change of coordinate system)", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106", null ]
       ] ]
     ] ],
     [ "SuperNOVAS C++ vs. astropy", "md_SuperNOVAS_09_09__vs__astropy.html", null ],
     [ "SuperNOVAS C++ vs. C99", "md_SuperNOVAS_09_09__vs__C99.html", null ],
+    [ "Deprecated List", "deprecated.html", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -129,13 +131,14 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98",
-"classsupernovas_1_1ScalarVelocity.html#a8c8347fcd4440dd1b739b04457c6cd62",
-"functions_func_e.html",
-"index.html#autotoc_md34",
-"novas_8h.html#a69274f4ac2631335e1e901142d31f541",
-"novas_8h.html#af4090e519d7ce7ab1fcdb24b10126eb4"
+"Angle_8cpp.html",
+"classsupernovas_1_1Equatorial.html#a084ea74c4e83b73ef43a43e273770270",
+"classsupernovas_1_1Pressure.html#ab799a59ae7b317d7908848bb90f42a3d",
+"classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f",
+"group__nonequatorial.html#gafa2abe3d408721348c0bbb9971507cfb",
+"novas_8h.html#a219df36b21dc4476656e708d14d08045a9fcf58133828600a062725ced448cfcf",
+"novas_8h.html#ab75165e2d69231da10c67de025ee05d8",
+"structnovas__frame.html#a2dd2191a88584012b9947cb4e998f598"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

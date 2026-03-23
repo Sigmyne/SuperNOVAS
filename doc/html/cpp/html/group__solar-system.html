@@ -118,21 +118,37 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gae02d26964099f56c375dc78172ad135b" id="r_gae02d26964099f56c375dc78172ad135b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gae02d26964099f56c375dc78172ad135b">cspice_add_kernel</a> (const char *filename)</td></tr>
+<tr class="memdesc:gae02d26964099f56c375dc78172ad135b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a SPICE kernel to the currently managed open kernels.  <br /></td></tr>
 <tr class="memitem:ga38e3b3155cad3b3822fbc3e553060ab1" id="r_ga38e3b3155cad3b3822fbc3e553060ab1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga38e3b3155cad3b3822fbc3e553060ab1">cspice_remove_kernel</a> (const char *filename)</td></tr>
+<tr class="memdesc:ga38e3b3155cad3b3822fbc3e553060ab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a SPICE kernel from the currently managed open kernels.  <br /></td></tr>
 <tr class="memitem:gaa6fad38297a49ba78a6bd49cedf889b1" id="r_gaa6fad38297a49ba78a6bd49cedf889b1"><td class="memItemLeft"><a class="el" href="#gaebb3d71006e8d93de242df61510374ad">novas_ephem_provider</a>&#160;</td><td class="memItemRight"><a class="el" href="#gaa6fad38297a49ba78a6bd49cedf889b1">get_ephem_provider</a> ()</td></tr>
+<tr class="memdesc:gaa6fad38297a49ba78a6bd49cedf889b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the user-defined ephemeris accessor function.  <br /></td></tr>
 <tr class="memitem:ga0f0a786b5614a788c02b37a462eae2d2" id="r_ga0f0a786b5614a788c02b37a462eae2d2"><td class="memItemLeft"><a class="el" href="#gaae2b06af367d7b0a70a8b89c258b00b0">novas_planet_provider</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga0f0a786b5614a788c02b37a462eae2d2">get_planet_provider</a> ()</td></tr>
+<tr class="memdesc:ga0f0a786b5614a788c02b37a462eae2d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the custom (low-precision) ephemeris provider function for major planets (and Sun, Moon, SSB...), if any.  <br /></td></tr>
 <tr class="memitem:gae45badb450c1ca73920d982e12346c5b" id="r_gae45badb450c1ca73920d982e12346c5b"><td class="memItemLeft"><a class="el" href="#gae8d7c10a8b9e69b1f0654ef4038482fd">novas_planet_provider_hp</a>&#160;</td><td class="memItemRight"><a class="el" href="#gae45badb450c1ca73920d982e12346c5b">get_planet_provider_hp</a> ()</td></tr>
+<tr class="memdesc:gae45badb450c1ca73920d982e12346c5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the custom high-precision ephemeris provider function for major planets (and Sun, Moon, SSB...), if any.  <br /></td></tr>
 <tr class="memitem:gab95452208a59bcca11ceb8870dfdb967" id="r_gab95452208a59bcca11ceb8870dfdb967"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gab95452208a59bcca11ceb8870dfdb967">novas_calceph_is_thread_safe</a> ()</td></tr>
+<tr class="memdesc:gab95452208a59bcca11ceb8870dfdb967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the CALCEPH plugin is thread safe.  <br /></td></tr>
 <tr class="memitem:ga5531b937a5bb5491cb475d2536346ad8" id="r_ga5531b937a5bb5491cb475d2536346ad8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga5531b937a5bb5491cb475d2536346ad8">novas_calceph_use_ids</a> (enum <a class="el" href="#gac42df1db80fbcb6f7a72de80d9f9c531">novas_id_type</a> idtype)</td></tr>
+<tr class="memdesc:ga5531b937a5bb5491cb475d2536346ad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the type of Solar-system body IDs to use as <a class="el" href="structnovas__object.html#a5661908bdaa0ce7b53762fb9bc0f46bc" title="enum novas_planet, or minor planet ID (e.g. NAIF), or star catalog ID.">object.number</a> with NOVAS_EPHEM_OBJECT types.  <br /></td></tr>
 <tr class="memitem:gadbb028231581d55f7f8c5fd428ba98c7" id="r_gadbb028231581d55f7f8c5fd428ba98c7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gadbb028231581d55f7f8c5fd428ba98c7">novas_cspice_is_thread_safe</a> ()</td></tr>
+<tr class="memdesc:gadbb028231581d55f7f8c5fd428ba98c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the CSPICE plugin is thread safe.  <br /></td></tr>
 <tr class="memitem:ga35fc86a939602ec910dbdfde180d7f31" id="r_ga35fc86a939602ec910dbdfde180d7f31"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga35fc86a939602ec910dbdfde180d7f31">novas_use_calceph</a> (t_calcephbin *eph)</td></tr>
+<tr class="memdesc:ga35fc86a939602ec910dbdfde180d7f31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set of ephemeris files.  <br /></td></tr>
 <tr class="memitem:gab86ec03898e658c86c671a8b6399e331" id="r_gab86ec03898e658c86c671a8b6399e331"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gab86ec03898e658c86c671a8b6399e331">novas_use_calceph_planets</a> (t_calcephbin *eph)</td></tr>
+<tr class="memdesc:gab86ec03898e658c86c671a8b6399e331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the CALCEPH C library and the specified ephemeris data as the ephemeris provider for the major planets (and Sun, Moon, SSB...).  <br /></td></tr>
 <tr class="memitem:ga9b44218bca5fce1e9e5103494c15dde4" id="r_ga9b44218bca5fce1e9e5103494c15dde4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4">novas_use_cspice</a> ()</td></tr>
+<tr class="memdesc:ga9b44218bca5fce1e9e5103494c15dde4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANET and NOVAS_EPHEM_OBJECT types).  <br /></td></tr>
 <tr class="memitem:gafb078e1df9b5b08999d24e68d7b4ecdc" id="r_gafb078e1df9b5b08999d24e68d7b4ecdc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gafb078e1df9b5b08999d24e68d7b4ecdc">novas_use_cspice_ephem</a> ()</td></tr>
+<tr class="memdesc:gafb078e1df9b5b08999d24e68d7b4ecdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a ephemeris provider for NOVAS_EPHEM_OBJECT types using the NAIF CSPICE library.  <br /></td></tr>
 <tr class="memitem:ga943549e395b19f6a91064e3d6fa1c577" id="r_ga943549e395b19f6a91064e3d6fa1c577"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga943549e395b19f6a91064e3d6fa1c577">novas_use_cspice_planets</a> ()</td></tr>
+<tr class="memdesc:ga943549e395b19f6a91064e3d6fa1c577"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets CSPICE as the ephemeris provider for the major planets (and Sun, Moon, SSB...) using the NAIF CSPICE library.  <br /></td></tr>
 <tr class="memitem:ga6097083c438a8d1872c2e00a66360030" id="r_ga6097083c438a8d1872c2e00a66360030"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga6097083c438a8d1872c2e00a66360030">set_ephem_provider</a> (<a class="el" href="#gaebb3d71006e8d93de242df61510374ad">novas_ephem_provider</a> func)</td></tr>
+<tr class="memdesc:ga6097083c438a8d1872c2e00a66360030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the function to use for obtaining position / velocity information for minor planets, or satellites.  <br /></td></tr>
 <tr class="memitem:ga9904c454bc7148b42d0f927b82ea3973" id="r_ga9904c454bc7148b42d0f927b82ea3973"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973">set_planet_provider</a> (<a class="el" href="#gaae2b06af367d7b0a70a8b89c258b00b0">novas_planet_provider</a> func)</td></tr>
+<tr class="memdesc:ga9904c454bc7148b42d0f927b82ea3973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculations instead of the default solarsystem() routine.  <br /></td></tr>
 <tr class="memitem:ga418f45a11ce7f92ba0ef817558415640" id="r_ga418f45a11ce7f92ba0ef817558415640"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga418f45a11ce7f92ba0ef817558415640">set_planet_provider_hp</a> (<a class="el" href="#gae8d7c10a8b9e69b1f0654ef4038482fd">novas_planet_provider_hp</a> func)</td></tr>
+<tr class="memdesc:ga418f45a11ce7f92ba0ef817558415640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations instead of the default solarsystem_hp() routine.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defining how ephemeris positions for Solar-system objects are provided. </p>
@@ -166,9 +182,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if any of the pointer arguments are NULL, or some non-zero value if the was an error s.t. the position and velocity vector should not be used.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga6097083c438a8d1872c2e00a66360030">set_ephem_provider()</a>, <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a>, <a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269" title="A Solar-system body that does not fit the major planet type, and requires specific user-provided nova...">NOVAS_EPHEM_OBJECT</a>, solsys-ephem.c </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga6097083c438a8d1872c2e00a66360030" title="Sets the function to use for obtaining position / velocity information for minor planets,...">set_ephem_provider()</a>, <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23" title="Retrieves the position and velocity of a solar system body using the currently configured plugins tha...">ephemeris()</a>, <a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269" title="A Solar-system body that does not fit the major planet type, and requires specific user-provided nova...">NOVAS_EPHEM_OBJECT</a>, <a class="el" href="solsys-ephem_8c.html" title="Major planet ephemeris lookup via the function, which was configured by set_ephem_provider().">solsys-ephem.c</a> </dd>
 <dd>
-<a class="el" href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2">make_ephem_object()</a>, <a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos()</a>, <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a></dd></dl>
+<a class="el" href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2" title="Sets a celestial object to be a Solar-system ephemeris body.">make_ephem_object()</a>, <a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 
@@ -200,9 +216,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if there is a required function is not provided (errno set to ENOSYS), 1 if the input Julian date ('tjd') is out of range, 2 if 'body' is invalid, or 3 if the ephemeris data cannot be produced for other reasons.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973">set_planet_provider()</a>, <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a>, novas_solarsystem_hp_func </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a>, <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23" title="Retrieves the position and velocity of a solar system body using the currently configured plugins tha...">ephemeris()</a>, novas_solarsystem_hp_func </dd>
 <dd>
-<a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos()</a>, <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a></dd></dl>
+<a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5" title="Sets a celestial object to be a major planet, or the Sun, Moon, Solar-system Barycenter,...">make_planet()</a>, <a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 
@@ -234,9 +250,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if there is a required function is not provided (errno set to ENOSYS), 1 if the input Julian date ('tjd') is out of range, 2 if 'body' is invalid, or 3 if the ephemeris data cannot be produced for other reasons.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga418f45a11ce7f92ba0ef817558415640">set_planet_provider_hp()</a>, novas_solarsystem_func, <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>, novas_solarsystem_func, <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23" title="Retrieves the position and velocity of a solar system body using the currently configured plugins tha...">ephemeris()</a> </dd>
 <dd>
-<a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos()</a>, <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="novas_8h.html#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="novas_8h.html#a1b107a24b9fadc79cc5df8c6f5505d16">grav_undo_planets()</a> </dd></dl>
+<a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5" title="Sets a celestial object to be a major planet, or the Sun, Moon, Solar-system Barycenter,...">make_planet()</a>, <a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a>, <a class="el" href="novas_8h.html#ae36bc31e1dad8a68f94f7a6414f0519f" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_planets()</a>, <a class="el" href="novas_8h.html#a1b107a24b9fadc79cc5df8c6f5505d16" title="(primarily for internal use) Computes the gravitationally undeflected position of an observed source ...">grav_undo_planets()</a> </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 
@@ -283,6 +299,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Adds a SPICE kernel to the currently managed open kernels. </p>
+<p>Subsequent ephemeris lookups through CSPICE will use the added kernel. It's simply a wrapper around the CSPICE <span class="tt">furnsh_c()</span> routine, with graceful error handling. You can of course add kernels using <span class="tt">furnsh_c()</span> directly to the same effect.</p>
+<p>REFERENCES: </p><ol>
+<li>
+<a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/furnsh_c.html">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/furnsh_c.html</a> </li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>The fully qualified path to the ephemeris kernel data (e.g. "/data/ephem/de440s.bsp") </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to EINVAL).</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga38e3b3155cad3b3822fbc3e553060ab1" title="Removes a SPICE kernel from the currently managed open kernels.">cspice_remove_kernel()</a>, <a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a> </dd></dl>
+
 </div>
 </div>
 <a id="ga38e3b3155cad3b3822fbc3e553060ab1" name="ga38e3b3155cad3b3822fbc3e553060ab1"></a>
@@ -299,6 +332,23 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Removes a SPICE kernel from the currently managed open kernels. </p>
+<p>Subsequent ephemeris lookups through CSPICE will not use the removed kernel data. It's simply a wrapper around the CSPICE <span class="tt">unload_c()</span> routine, with graceful error handling. You can of course remove kernels using <span class="tt">unload_c()</span> directly to the same effect.</p>
+<p>REFERENCES: </p><ol>
+<li>
+<a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/unload_c.html">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/unload_c.html</a> </li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>The fully qualified path to the ephemeris kernel data (e.g. "/data/ephem/de440s.bsp") </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to EINVAL).</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae02d26964099f56c375dc78172ad135b" title="Adds a SPICE kernel to the currently managed open kernels.">cspice_add_kernel()</a> </dd></dl>
 
 </div>
 </div>
@@ -317,6 +367,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the user-defined ephemeris accessor function. </p>
+<dl class="section return"><dt>Returns</dt><dd>the currently defined function for accessing ephemeris data for minor planets or satellites, ot NULL if no function was set via <a class="el" href="#ga6097083c438a8d1872c2e00a66360030" title="Sets the function to use for obtaining position / velocity information for minor planets,...">set_ephem_provider()</a> previously.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga6097083c438a8d1872c2e00a66360030" title="Sets the function to use for obtaining position / velocity information for minor planets,...">set_ephem_provider()</a>, <a class="el" href="#ga0f0a786b5614a788c02b37a462eae2d2" title="Returns the custom (low-precision) ephemeris provider function for major planets (and Sun,...">get_planet_provider()</a>, <a class="el" href="#gae45badb450c1ca73920d982e12346c5b" title="Returns the custom high-precision ephemeris provider function for major planets (and Sun,...">get_planet_provider_hp()</a>, <a class="el" href="ephemeris_8c.html#a713982e1f2bae0a72b39d03007f00d23" title="Retrieves the position and velocity of a solar system body using the currently configured plugins tha...">ephemeris()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a>, and <a class="el" href="novas_8h.html#a93d0f96d81f3c52e05163643bd23eb7d">planet_ephem_provider_hp()</a>.</p>
+
 </div>
 </div>
 <a id="ga0f0a786b5614a788c02b37a462eae2d2" name="ga0f0a786b5614a788c02b37a462eae2d2"></a>
@@ -333,6 +391,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the custom (low-precision) ephemeris provider function for major planets (and Sun, Moon, SSB...), if any. </p>
+<dl class="section return"><dt>Returns</dt><dd>the custom (low-precision) planet ephemeris provider function.</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a>, <a class="el" href="#gae45badb450c1ca73920d982e12346c5b" title="Returns the custom high-precision ephemeris provider function for major planets (and Sun,...">get_planet_provider_hp()</a>, <a class="el" href="#gaa6fad38297a49ba78a6bd49cedf889b1" title="Returns the user-defined ephemeris accessor function.">get_ephem_provider()</a> </dd></dl>
 
 </div>
 </div>
@@ -351,6 +415,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the custom high-precision ephemeris provider function for major planets (and Sun, Moon, SSB...), if any. </p>
+<dl class="section return"><dt>Returns</dt><dd>the custom high-precision planet ephemeris provider function.</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>, <a class="el" href="#ga0f0a786b5614a788c02b37a462eae2d2" title="Returns the custom (low-precision) ephemeris provider function for major planets (and Sun,...">get_planet_provider()</a>, <a class="el" href="#gaa6fad38297a49ba78a6bd49cedf889b1" title="Returns the user-defined ephemeris accessor function.">get_ephem_provider()</a> </dd></dl>
+
 </div>
 </div>
 <a id="gab95452208a59bcca11ceb8870dfdb967" name="gab95452208a59bcca11ceb8870dfdb967"></a>
@@ -367,6 +437,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if the CALCEPH plugin is thread safe. </p>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the lugin is thread safe, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 
 </div>
 </div>
@@ -385,6 +459,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sets the type of Solar-system body IDs to use as <a class="el" href="structnovas__object.html#a5661908bdaa0ce7b53762fb9bc0f46bc" title="enum novas_planet, or minor planet ID (e.g. NAIF), or star catalog ID.">object.number</a> with NOVAS_EPHEM_OBJECT types. </p>
+<p>CALCEPH supports the use of both NAIF and its own numbering system to identify Solar-system bodies. So, this function gives you the choice on which numbering system you want to use in object data structures. The choice does not affect major planets (which always use the NOVAS numbering scheme), or catalog objects.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">idtype</td><td>NOVAS_ID_NAIF to use NAIF IDs (default) or else NOVAS_ID_CALCEPH to use the CALCEPH body numbering convention for object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful or else -1 (errno set to EINVAL) if the input value is invalid.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5" title="Sets a celestial object to be a major planet, or the Sun, Moon, Solar-system Barycenter,...">make_planet()</a>, <a class="el" href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2" title="Sets a celestial object to be a Solar-system ephemeris body.">make_ephem_object()</a>, <a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269" title="A Solar-system body that does not fit the major planet type, and requires specific user-provided nova...">NOVAS_EPHEM_OBJECT</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ggac42df1db80fbcb6f7a72de80d9f9c531a074c723dfc1f03c82d52347c46ee0719">NOVAS_ID_CALCEPH</a>, and <a class="el" href="#ggac42df1db80fbcb6f7a72de80d9f9c531ab3e6efc1ad89e02f915df25265ec32db">NOVAS_ID_NAIF</a>.</p>
+
 </div>
 </div>
 <a id="gadbb028231581d55f7f8c5fd428ba98c7" name="gadbb028231581d55f7f8c5fd428ba98c7"></a>
@@ -401,6 +488,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if the CSPICE plugin is thread safe. </p>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the lugin is thread safe, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 
 </div>
 </div>
@@ -419,6 +510,22 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set of ephemeris files. </p>
+<p>If the supplied ephemeris files contain data for major planets also, they can be used by planet_calceph() / planet_calceph_hp() also, unless a separate CALCEPH ephemeris data is set via <a class="el" href="#gab86ec03898e658c86c671a8b6399e331" title="Sets the CALCEPH C library and the specified ephemeris data as the ephemeris provider for the major p...">novas_use_calceph_planets()</a>.</p>
+<p>The call also make CALCEPH the default ephemeris provider for all types of Solar-system objects. If you want to use another provider for major planets, you need to call <a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a> / <a class="el" href="#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a> afterwards to specify a different provider for the major planets (and Sun, Moon, SSB...).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eph</td><td>Pointer to the CALCEPH ephemeris data that have been opened. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 (errno will indicate the type of error).</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga5531b937a5bb5491cb475d2536346ad8" title="Sets the type of Solar-system body IDs to use as object.number with NOVAS_EPHEM_OBJECT types.">novas_calceph_use_ids()</a>, <a class="el" href="#gab86ec03898e658c86c671a8b6399e331" title="Sets the CALCEPH C library and the specified ephemeris data as the ephemeris provider for the major p...">novas_use_calceph_planets()</a>, <a class="el" href="#ga6097083c438a8d1872c2e00a66360030" title="Sets the function to use for obtaining position / velocity information for minor planets,...">set_ephem_provider()</a></dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
+
+<p class="reference">References <a class="el" href="#gab86ec03898e658c86c671a8b6399e331">novas_use_calceph_planets()</a>, and <a class="el" href="#ga6097083c438a8d1872c2e00a66360030">set_ephem_provider()</a>.</p>
+
 </div>
 </div>
 <a id="gab86ec03898e658c86c671a8b6399e331" name="gab86ec03898e658c86c671a8b6399e331"></a>
@@ -435,6 +542,22 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the CALCEPH C library and the specified ephemeris data as the ephemeris provider for the major planets (and Sun, Moon, SSB...). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eph</td><td>Pointer to the CALCEPH ephemeris data for the major planets (including Sun, Moon, SSB...) that have been opened. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 (errno will indicate the type of error).</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga35fc86a939602ec910dbdfde180d7f31" title="Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...">novas_use_calceph()</a>, <a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a>, <a class="el" href="#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973">set_planet_provider()</a>, and <a class="el" href="#ga418f45a11ce7f92ba0ef817558415640">set_planet_provider_hp()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga35fc86a939602ec910dbdfde180d7f31">novas_use_calceph()</a>.</p>
 
 </div>
 </div>
@@ -453,6 +576,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANET and NOVAS_EPHEM_OBJECT types). </p>
+<p>CSPICE is configured to suppress error messages and to not exit on errors, since we will check errors and handle them ourselves. You can adjust the behavior after this call with the CSPICE errprt_c() and erract_c() functions, respectively.</p>
+<dl class="section return"><dt>Returns</dt><dd>0</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga943549e395b19f6a91064e3d6fa1c577" title="Sets CSPICE as the ephemeris provider for the major planets (and Sun, Moon, SSB......">novas_use_cspice_planets()</a>, <a class="el" href="#gafb078e1df9b5b08999d24e68d7b4ecdc" title="Sets a ephemeris provider for NOVAS_EPHEM_OBJECT types using the NAIF CSPICE library.">novas_use_cspice_ephem()</a>, <a class="el" href="#gae02d26964099f56c375dc78172ad135b" title="Adds a SPICE kernel to the currently managed open kernels.">cspice_add_kernel()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#gafb078e1df9b5b08999d24e68d7b4ecdc">novas_use_cspice_ephem()</a>, and <a class="el" href="#ga943549e395b19f6a91064e3d6fa1c577">novas_use_cspice_planets()</a>.</p>
+
 </div>
 </div>
 <a id="gafb078e1df9b5b08999d24e68d7b4ecdc" name="gafb078e1df9b5b08999d24e68d7b4ecdc"></a>
@@ -469,6 +601,19 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets a ephemeris provider for NOVAS_EPHEM_OBJECT types using the NAIF CSPICE library. </p>
+<p>CSPICE is configured to suppress error messages and to not exit on errors, since we will check errors and handle them ourselves. You can adjust the behavior after this call with the CSPICE errprt_c() and erract_c() functions, respectively.</p>
+<dl class="section return"><dt>Returns</dt><dd>0</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga943549e395b19f6a91064e3d6fa1c577" title="Sets CSPICE as the ephemeris provider for the major planets (and Sun, Moon, SSB......">novas_use_cspice_planets()</a>, <a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a>, <a class="el" href="#gae02d26964099f56c375dc78172ad135b" title="Adds a SPICE kernel to the currently managed open kernels.">cspice_add_kernel()</a> </dd>
+<dd>
+<a class="el" href="#ga6097083c438a8d1872c2e00a66360030" title="Sets the function to use for obtaining position / velocity information for minor planets,...">set_ephem_provider()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ga6097083c438a8d1872c2e00a66360030">set_ephem_provider()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4">novas_use_cspice()</a>.</p>
 
 </div>
 </div>
@@ -487,6 +632,19 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sets CSPICE as the ephemeris provider for the major planets (and Sun, Moon, SSB...) using the NAIF CSPICE library. </p>
+<p>CSPICE is configured to suppress error messages and to not exit on errors, since we will check errors and handle them ourselves. You can adjust the behavior after this call with the CSPICE errprt_c() and erract_c() functions, respectively.</p>
+<dl class="section return"><dt>Returns</dt><dd>0</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gafb078e1df9b5b08999d24e68d7b4ecdc" title="Sets a ephemeris provider for NOVAS_EPHEM_OBJECT types using the NAIF CSPICE library.">novas_use_cspice_ephem()</a>, <a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a>, <a class="el" href="#gae02d26964099f56c375dc78172ad135b" title="Adds a SPICE kernel to the currently managed open kernels.">cspice_add_kernel()</a> </dd>
+<dd>
+<a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a>, <a class="el" href="#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973">set_planet_provider()</a>, and <a class="el" href="#ga418f45a11ce7f92ba0ef817558415640">set_planet_provider_hp()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4">novas_use_cspice()</a>.</p>
+
 </div>
 </div>
 <a id="ga6097083c438a8d1872c2e00a66360030" name="ga6097083c438a8d1872c2e00a66360030"></a>
@@ -503,6 +661,22 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the function to use for obtaining position / velocity information for minor planets, or satellites. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>new function to use for accessing ephemeris data for minor planets or satellites. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if the function argument is NULL.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaa6fad38297a49ba78a6bd49cedf889b1" title="Returns the user-defined ephemeris accessor function.">get_ephem_provider()</a>, <a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a>, <a class="el" href="#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a> </dd>
+<dd>
+<a class="el" href="#ga35fc86a939602ec910dbdfde180d7f31" title="Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...">novas_use_calceph()</a>, <a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#ga35fc86a939602ec910dbdfde180d7f31">novas_use_calceph()</a>, and <a class="el" href="#gafb078e1df9b5b08999d24e68d7b4ecdc">novas_use_cspice_ephem()</a>.</p>
 
 </div>
 </div>
@@ -521,6 +695,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculations instead of the default solarsystem() routine. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>The function to use for solar system position/velocity calculations. See solarsystem() for further details on what is required of this function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.0</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga0f0a786b5614a788c02b37a462eae2d2" title="Returns the custom (low-precision) ephemeris provider function for major planets (and Sun,...">get_planet_provider()</a>, <a class="el" href="#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846" title="Calculate with truncated terms.">NOVAS_REDUCED_ACCURACY</a> </dd>
+<dd>
+<a class="el" href="#ga35fc86a939602ec910dbdfde180d7f31" title="Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...">novas_use_calceph()</a>, <a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#gab86ec03898e658c86c671a8b6399e331">novas_use_calceph_planets()</a>, and <a class="el" href="#ga943549e395b19f6a91064e3d6fa1c577">novas_use_cspice_planets()</a>.</p>
+
 </div>
 </div>
 <a id="ga418f45a11ce7f92ba0ef817558415640" name="ga418f45a11ce7f92ba0ef817558415640"></a>
@@ -537,6 +726,21 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations instead of the default solarsystem_hp() routine. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>The function to use for solar system position/velocity calculations. See solarsystem_hp() for further details on what is required of this function.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.0</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae45badb450c1ca73920d982e12346c5b" title="Returns the custom high-precision ephemeris provider function for major planets (and Sun,...">get_planet_provider_hp()</a>, <a class="el" href="#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a>, solarsystem_hp(), <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660" title="Use full precision calculations to micro-arcsecond accuracy.">NOVAS_FULL_ACCURACY</a> </dd>
+<dd>
+<a class="el" href="#ga35fc86a939602ec910dbdfde180d7f31" title="Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...">novas_use_calceph()</a>, <a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#gab86ec03898e658c86c671a8b6399e331">novas_use_calceph_planets()</a>, and <a class="el" href="#ga943549e395b19f6a91064e3d6fa1c577">novas_use_cspice_planets()</a>.</p>
 
 </div>
 </div>

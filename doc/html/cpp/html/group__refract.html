@@ -119,12 +119,19 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gae4511a80a1defbb1e1fdc29c289e7de4" id="r_gae4511a80a1defbb1e1fdc29c289e7de4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a> (double jd_tt, const <a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *loc, enum <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468">novas_refraction_type</a> type, double el)</td></tr>
+<tr class="memdesc:gae4511a80a1defbb1e1fdc29c289e7de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an optical refraction correction using the weather parameters defined for the observer location.  <br /></td></tr>
 <tr class="memitem:ga6b49f92f8f818f2272613e3432185a39" id="r_ga6b49f92f8f818f2272613e3432185a39"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga6b49f92f8f818f2272613e3432185a39">novas_radio_refraction</a> (double jd_tt, const <a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *loc, enum <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468">novas_refraction_type</a> type, double el)</td></tr>
+<tr class="memdesc:ga6b49f92f8f818f2272613e3432185a39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Atmospheric refraction model for radio wavelengths (Berman &amp; Rockwell 1976).  <br /></td></tr>
 <tr class="memitem:gac673c4fef94847b796dc2aa2f4d0807d" id="r_gac673c4fef94847b796dc2aa2f4d0807d"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gac673c4fef94847b796dc2aa2f4d0807d">novas_refract_wavelength</a> (double microns)</td></tr>
+<tr class="memdesc:gac673c4fef94847b796dc2aa2f4d0807d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the observing wavelength for which refraction is to be calculated when using a wavelength-depenendent model, such as <a class="el" href="#ga7b9ad6dfbd86e4faa2d8068c7d64fac4" title="The wavelength-dependent IAU atmospheric refraction model, based on the SOFA iauRefco() function,...">novas_wave_refraction()</a>.  <br /></td></tr>
 <tr class="memitem:gab04bff3b97c132e358e11c3a5b7a3081" id="r_gab04bff3b97c132e358e11c3a5b7a3081"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gab04bff3b97c132e358e11c3a5b7a3081">novas_standard_refraction</a> (double jd_tt, const <a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *loc, enum <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468">novas_refraction_type</a> type, double el)</td></tr>
+<tr class="memdesc:gab04bff3b97c132e358e11c3a5b7a3081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an optical refraction correction for a standard atmosphere.  <br /></td></tr>
 <tr class="memitem:ga7b9ad6dfbd86e4faa2d8068c7d64fac4" id="r_ga7b9ad6dfbd86e4faa2d8068c7d64fac4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga7b9ad6dfbd86e4faa2d8068c7d64fac4">novas_wave_refraction</a> (double jd_tt, const <a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *loc, enum <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468">novas_refraction_type</a> type, double el)</td></tr>
-<tr class="memitem:ga7720f3cd6bddf9d69ff44ac8ccae8029" id="r_ga7720f3cd6bddf9d69ff44ac8ccae8029"><td class="memItemLeft">Horizontal&#160;</td><td class="memItemRight"><a class="el" href="#ga7720f3cd6bddf9d69ff44ac8ccae8029">supernovas::Horizontal::to_refracted</a> (<a class="el" href="#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0e622e5cbf61c41b0b382b470534325a">Weather::standard</a>(), const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time=<a class="el" href="classsupernovas_1_1Time.html#a1a719a054e5d52c733711fe3ed1da413">Time::undefined</a>())</td></tr>
-<tr class="memitem:gab44266c51e667838736e49e59008a9be" id="r_gab44266c51e667838736e49e59008a9be"><td class="memItemLeft">Horizontal&#160;</td><td class="memItemRight"><a class="el" href="#gab44266c51e667838736e49e59008a9be">supernovas::Horizontal::to_unrefracted</a> (<a class="el" href="#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0e622e5cbf61c41b0b382b470534325a">Weather::standard</a>(), const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time=<a class="el" href="classsupernovas_1_1Time.html#a1a719a054e5d52c733711fe3ed1da413">Time::undefined</a>())</td></tr>
+<tr class="memdesc:ga7b9ad6dfbd86e4faa2d8068c7d64fac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The wavelength-dependent IAU atmospheric refraction model, based on the SOFA <span class="tt">iauRefco()</span> function, in compliance to the 'SOFA Software License' terms of the original source.  <br /></td></tr>
+<tr class="memitem:ga7720f3cd6bddf9d69ff44ac8ccae8029" id="r_ga7720f3cd6bddf9d69ff44ac8ccae8029"><td class="memItemLeft">Horizontal&#160;</td><td class="memItemRight"><a class="el" href="#ga7720f3cd6bddf9d69ff44ac8ccae8029">supernovas::Horizontal::to_refracted</a> (<a class="el" href="#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0395574b9c5b2bdb7b9f8e04e1342029">Weather::standard</a>(), const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time=<a class="el" href="classsupernovas_1_1Time.html#a20657cd4e3e19ce0987ec1b765225161">Time::undefined</a>())</td></tr>
+<tr class="memdesc:ga7720f3cd6bddf9d69ff44ac8ccae8029"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies atmospheric refraction correction for these coordinates, returning the result.  <br /></td></tr>
+<tr class="memitem:gab44266c51e667838736e49e59008a9be" id="r_gab44266c51e667838736e49e59008a9be"><td class="memItemLeft">Horizontal&#160;</td><td class="memItemRight"><a class="el" href="#gab44266c51e667838736e49e59008a9be">supernovas::Horizontal::to_unrefracted</a> (<a class="el" href="#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0395574b9c5b2bdb7b9f8e04e1342029">Weather::standard</a>(), const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time=<a class="el" href="classsupernovas_1_1Time.html#a20657cd4e3e19ce0987ec1b765225161">Time::undefined</a>())</td></tr>
+<tr class="memdesc:gab44266c51e667838736e49e59008a9be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undoes atmospheric refraction correction for these coordinates, returning the result.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Accounting for atmopheric refraction for observers on or above Earth's surface. </p>
@@ -144,7 +151,7 @@ Functions</h2></td></tr>
 
 <p>[&mu;m] Default wavelength, e.g. </p>
 <p>for wavelength-dependent refraction models. It is set to the median wavelength of visible light. </p><dl class="section since"><dt>Since</dt><dd>1.4 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gac673c4fef94847b796dc2aa2f4d0807d">novas_refract_wavelength()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gac673c4fef94847b796dc2aa2f4d0807d" title="Sets the observing wavelength for which refraction is to be calculated when using a wavelength-depene...">novas_refract_wavelength()</a> </dd></dl>
 
 </div>
 </div>
@@ -173,7 +180,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>[deg] Estimated refraction, or NAN if there was an error (it should also set errno to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a3cd947f2e48d6c5cc88ad7a1bab9b8ca">novas_app_to_hor()</a>, <a class="el" href="novas_8h.html#aa57cbcae2001fece2ee4a2babfbc5f89">novas_hor_to_app()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a>, <a class="el" href="novas_8h.html#aa57cbcae2001fece2ee4a2babfbc5f89" title="Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...">novas_hor_to_app()</a> </dd></dl>
 
 </div>
 </div>
@@ -207,6 +214,24 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns an optical refraction correction using the weather parameters defined for the observer location. </p>
+<p>As such, make sure that temperature and pressure are defined, e.g. set after calling e.g. <span class="tt"><a class="el" href="novas_8h.html#ab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a></span>, or similar call that initializes the observing site.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jd_tt</td><td>[day] Terrestrial Time (TT) based Julian data of observation (unused in this implementation of <a class="el" href="#gad4899a6116cfbbe17400e7ef0c8426a9" title="A function that returns a refraction correction for a given date/time of observation at the given sit...">RefractionModel</a>) </td></tr>
+    <tr><td class="paramname">loc</td><td>Pointer to structure defining the observer's location on earth, and local weather values (temperature and pressure are used by this call). </td></tr>
+    <tr><td class="paramname">type</td><td>Whether the input elevation is observed or astrometric: NOVAS_REFRACT_OBSERVED (-1) or NOVAS_REFRACT_ASTROMETRIC (0). </td></tr>
+    <tr><td class="paramname">el</td><td>[deg] Astrometric (unrefracted) source elevation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[deg] Estimated refraction, or NAN if there was an error (it should also set errno to indicate the type of error).</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga7b9ad6dfbd86e4faa2d8068c7d64fac4" title="The wavelength-dependent IAU atmospheric refraction model, based on the SOFA iauRefco() function,...">novas_wave_refraction()</a>, <a class="el" href="#ga6b49f92f8f818f2272613e3432185a39" title="Atmospheric refraction model for radio wavelengths (Berman &amp; Rockwell 1976).">novas_radio_refraction()</a>, <a class="el" href="#gab04bff3b97c132e358e11c3a5b7a3081" title="Returns an optical refraction correction for a standard atmosphere.">novas_standard_refraction()</a> </dd>
+<dd>
+<a class="el" href="refract_8c.html#ac7ed2a1a5fb5aea3063d116d3d980eeb" title="Computes atmospheric optical refraction for an observed (already refracted!) zenith distance through ...">refract()</a>, <a class="el" href="refract_8c.html#afe1d4e96dd66676f5567a279e83e88d9" title="Computes atmospheric optical refraction for a source at an astrometric zenith distance (e....">refract_astro()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#abe97e2d459a30db9d0f67d8c60af3b81aaf3bef1a45c5d59df8e779da09cecb68">NOVAS_WEATHER_AT_LOCATION</a>.</p>
+
 </div>
 </div>
 <a id="ga6b49f92f8f818f2272613e3432185a39" name="ga6b49f92f8f818f2272613e3432185a39"></a>
@@ -238,6 +263,31 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Atmospheric refraction model for radio wavelengths (Berman &amp; Rockwell 1976). </p>
+<p>It uses the weather parameters defined for the location, including humidity. As such, make sure the weather data is fully defined, and that the humidity was explicitly set after calling e.g. <span class="tt"><a class="el" href="novas_8h.html#ab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a></span>, or similar call that initializes the observing site.</p>
+<p>Adapted from FORTAN code provided by Berman &amp; Rockwell 1976.</p>
+<p>REFERENCES: </p><ol>
+<li>
+Berman, Allan L., and Rockwell, Stephen T. (1976), NASA JPL Technical Report 32-1601 </li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jd_tt</td><td>[day] Terrestrial Time (TT) based Julian data of observation (unused in this implementation of <a class="el" href="#gad4899a6116cfbbe17400e7ef0c8426a9" title="A function that returns a refraction correction for a given date/time of observation at the given sit...">RefractionModel</a>) </td></tr>
+    <tr><td class="paramname">loc</td><td>Pointer to structure defining the observer's location on earth, and local weather. Make sure all weather values, including humidity (added in v1.1), are fully populated. </td></tr>
+    <tr><td class="paramname">type</td><td>Whether the input elevation is observed or astrometric: NOVAS_REFRACT_OBSERVED (-1) or NOVAS_REFRACT_ASTROMETRIC (0). </td></tr>
+    <tr><td class="paramname">el</td><td>[deg] source elevation angle of the specified type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[deg] Estimated refraction, or NAN if there was an error (it should also set errno to indicate the type of error). An error is returned if the location is NULL, or if the weather parameters are way outside of their resonable ranges, or if the elevation is outside the supported [-1:90] range.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae4511a80a1defbb1e1fdc29c289e7de4" title="Returns an optical refraction correction using the weather parameters defined for the observer locati...">novas_optical_refraction()</a>, <a class="el" href="#ga7b9ad6dfbd86e4faa2d8068c7d64fac4" title="The wavelength-dependent IAU atmospheric refraction model, based on the SOFA iauRefco() function,...">novas_wave_refraction()</a>, <a class="el" href="#gab04bff3b97c132e358e11c3a5b7a3081" title="Returns an optical refraction correction for a standard atmosphere.">novas_standard_refraction()</a> </dd>
+<dd>
+<a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="novas_8h.html#ab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a>, <a class="el" href="novas_8h.html#a9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a>, <a class="el" href="novas_8h.html#ad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a>, <a class="el" href="novas_8h.html#aa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2">novas_on_surface::humidity</a>, <a class="el" href="refract_8c.html#a81da80ae3ab1d0a444f39bde2af3a732">novas_inv_refract()</a>, <a class="el" href="#ga6b49f92f8f818f2272613e3432185a39">novas_radio_refraction()</a>, <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468a4255a64975ec93df2f228c63c38096a0">NOVAS_REFRACT_ASTROMETRIC</a>, <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468a29a320ab3459dafa0d18e7ebef3ae8fe">NOVAS_REFRACT_OBSERVED</a>, <a class="el" href="structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab">novas_on_surface::pressure</a>, and <a class="el" href="structnovas__on__surface.html#a1fd9464e53f03ebb2cb987aa1a2dc41b">novas_on_surface::temperature</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga6b49f92f8f818f2272613e3432185a39">novas_radio_refraction()</a>, <a class="el" href="novas_8h.html#ac7ed2a1a5fb5aea3063d116d3d980eeb">refract()</a>, and <a class="el" href="novas_8h.html#afe1d4e96dd66676f5567a279e83e88d9">refract_astro()</a>.</p>
+
 </div>
 </div>
 <a id="gac673c4fef94847b796dc2aa2f4d0807d" name="gac673c4fef94847b796dc2aa2f4d0807d"></a>
@@ -254,6 +304,18 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Sets the observing wavelength for which refraction is to be calculated when using a wavelength-depenendent model, such as <a class="el" href="#ga7b9ad6dfbd86e4faa2d8068c7d64fac4" title="The wavelength-dependent IAU atmospheric refraction model, based on the SOFA iauRefco() function,...">novas_wave_refraction()</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">microns</td><td>[&mu;m] Observed wavelength to assume in refraction calculations </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 (errno set to <span class="tt">EINVAL</span>) if the wavelength invalid (zero, negative, or NaN).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.4 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga7b9ad6dfbd86e4faa2d8068c7d64fac4" title="The wavelength-dependent IAU atmospheric refraction model, based on the SOFA iauRefco() function,...">novas_wave_refraction()</a>, <a class="el" href="refract_8c.html#a4f7dee9d4c9db4cf201af8383c72d4db" title="[μm] Median wavelength of visible light.">NOVAS_DEFAULT_WAVELENGTH</a> </dd></dl>
 
 </div>
 </div>
@@ -286,6 +348,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns an optical refraction correction for a standard atmosphere. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jd_tt</td><td>[day] Terrestrial Time (TT) based Julian data of observation (unused in this implementation of <a class="el" href="#gad4899a6116cfbbe17400e7ef0c8426a9" title="A function that returns a refraction correction for a given date/time of observation at the given sit...">RefractionModel</a>) </td></tr>
+    <tr><td class="paramname">loc</td><td>Pointer to structure defining the observer's location on earth, and local weather </td></tr>
+    <tr><td class="paramname">type</td><td>Whether the input elevation is observed or astrometric: NOVAS_REFRACT_OBSERVED (-1) or NOVAS_REFRACT_ASTROMETRIC (0). </td></tr>
+    <tr><td class="paramname">el</td><td>[deg] Source elevation angle of the specified type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[deg] Estimated refraction, or NAN if there was an error (it should also set errno to indicate the type of error).</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae4511a80a1defbb1e1fdc29c289e7de4" title="Returns an optical refraction correction using the weather parameters defined for the observer locati...">novas_optical_refraction()</a>, <a class="el" href="#ga6b49f92f8f818f2272613e3432185a39" title="Atmospheric refraction model for radio wavelengths (Berman &amp; Rockwell 1976).">novas_radio_refraction()</a>, <a class="el" href="#ga7b9ad6dfbd86e4faa2d8068c7d64fac4" title="The wavelength-dependent IAU atmospheric refraction model, based on the SOFA iauRefco() function,...">novas_wave_refraction()</a> </dd>
+<dd>
+<a class="el" href="refract_8c.html#ac7ed2a1a5fb5aea3063d116d3d980eeb" title="Computes atmospheric optical refraction for an observed (already refracted!) zenith distance through ...">refract()</a>, <a class="el" href="refract_8c.html#afe1d4e96dd66676f5567a279e83e88d9" title="Computes atmospheric optical refraction for a source at an astrometric zenith distance (e....">refract_astro()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#abe97e2d459a30db9d0f67d8c60af3b81a7ed64c314f06fdf9acfa72beb531e73d">NOVAS_STANDARD_ATMOSPHERE</a>.</p>
+
 </div>
 </div>
 <a id="ga7b9ad6dfbd86e4faa2d8068c7d64fac4" name="ga7b9ad6dfbd86e4faa2d8068c7d64fac4"></a>
@@ -317,6 +396,71 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The wavelength-dependent IAU atmospheric refraction model, based on the SOFA <span class="tt">iauRefco()</span> function, in compliance to the 'SOFA Software License' terms of the original source. </p>
+<p>Our implementation is not provided nor it is endorsed by SOFA. The original function has been modified slightly, such as:</p>
+<ol>
+<li>
+Out-of-range weather parameters will return with an error (<span class="tt">errno</span> set to <span class="tt">EINVAL</span>), unlike the SOFA implementation, which sets minimal or maximal allowed values for these. </li>
+<li>
+The algorithm has been simplified to use fewer variables and simpler logic. </li>
+<li>
+The SOFA function this implementation is based on returns A/B coefficients, whereas this implementation returns the refraction correction angle. </li>
+</ol>
+<p>The refraction is calculated for the observing wavelenth previously set via <span class="tt"><a class="el" href="#gac673c4fef94847b796dc2aa2f4d0807d" title="Sets the observing wavelength for which refraction is to be calculated when using a wavelength-depene...">novas_refract_wavelength()</a></span>, or for visible light at 550 nm by default.</p>
+<p>The function uses the weather parameters defined for the location, including humidity. As such, make sure the weather data is fully defined, and that the humidity was explicitly set after calling e.g. <span class="tt"><a class="el" href="novas_8h.html#ab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a></span>, or similar call that initializes the observing site.</p>
+<p>According to the documentation of SOFA's <span class="tt">iauRefco()</span> function, the model has the following accuracy for elevation angles between 15 and 75 degrees, under a range of typical surface conditions:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"></th><th class="markdownTableHeadCenter">worst  </th><th class="markdownTableHeadCenter">RMS  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">optical/IR  </td><td class="markdownTableBodyCenter">62 mas  </td><td class="markdownTableBodyCenter">8 mas  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">radio  </td><td class="markdownTableBodyCenter">319 mas  </td><td class="markdownTableBodyCenter">49 mas  </td></tr>
+</table>
+<p>NOTES: </p><ol>
+<li>
+From the SOFA documentation: "The model balances speed and accuracy to give good results in
+applications where performance at low altitudes is not paramount. Performance is maintained
+across a range of conditions, and applies to both optical/IR and radio."  </li>
+<li>
+The model is divergent in the observed direction of the horizon. As such, it should not be used for calculating refraction at or below the horizon itself. </li>
+</ol>
+<p>REFERENCES: </p><ol>
+<li>
+Crane, R.K., Meeks, M.L. (ed), "Refraction Effects in the Neutral
+    Atmosphere", Methods of Experimental Physics: Astrophysics 12B, Academic Press, 1976.  </li>
+<li>
+Gill, Adrian E., "Atmosphere-Ocean Dynamics", Academic Press, 1982.  </li>
+<li>
+Green, R.M., "Spherical Astronomy", Cambridge University Press, 1987.  </li>
+<li>
+Hohenkerk, C.Y., &amp; Sinclair, A.T., NAO Technical Note No. 63, 1985.  </li>
+<li>
+Rueger, J.M., "Refractive Index Formulae for Electronic Distance
+    Measurement with Radio and Millimetre Waves", in Unisurv Report S-68, School of Surveying and Spatial Information Systems, University of New South Wales, Sydney, Australia, 2002.  </li>
+<li>
+Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.  </li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jd_tt</td><td>[day] Terrestrial Time (TT) based Julian data of observation (unused in this implementation of <a class="el" href="#gad4899a6116cfbbe17400e7ef0c8426a9" title="A function that returns a refraction correction for a given date/time of observation at the given sit...">RefractionModel</a>) </td></tr>
+    <tr><td class="paramname">loc</td><td>Pointer to structure defining the observer's location on earth, and local weather. Make sure all weather values, including humidity (added in v1.1), are fully populated. </td></tr>
+    <tr><td class="paramname">type</td><td>Whether the input elevation is observed or astrometric: NOVAS_REFRACT_OBSERVED (-1) or NOVAS_REFRACT_ASTROMETRIC (0). </td></tr>
+    <tr><td class="paramname">el</td><td>[deg] observed source elevation of the specified type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[deg] Estimated refraction, or NAN if there was an error (it should also set errno to indicate the type of error), e.g. because the location is NULL, or because the weather parameters are outside of the supported (sensible) range, or because the elevation is outside of the supported (0:90] range, or because the wavelength set is below 100 nm (0.1 &mu;m);</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.4 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gac673c4fef94847b796dc2aa2f4d0807d" title="Sets the observing wavelength for which refraction is to be calculated when using a wavelength-depene...">novas_refract_wavelength()</a>, <a class="el" href="#gae4511a80a1defbb1e1fdc29c289e7de4" title="Returns an optical refraction correction using the weather parameters defined for the observer locati...">novas_optical_refraction()</a>, <a class="el" href="#ga6b49f92f8f818f2272613e3432185a39" title="Atmospheric refraction model for radio wavelengths (Berman &amp; Rockwell 1976).">novas_radio_refraction()</a> </dd>
+<dd>
+<a class="el" href="novas_8h.html#ab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a>, <a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="novas_8h.html#a9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a>, <a class="el" href="novas_8h.html#aa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a>, <a class="el" href="novas_8h.html#ad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2">novas_on_surface::humidity</a>, <a class="el" href="refract_8c.html#a81da80ae3ab1d0a444f39bde2af3a732">novas_inv_refract()</a>, <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468a4255a64975ec93df2f228c63c38096a0">NOVAS_REFRACT_ASTROMETRIC</a>, <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468a29a320ab3459dafa0d18e7ebef3ae8fe">NOVAS_REFRACT_OBSERVED</a>, <a class="el" href="#ga7b9ad6dfbd86e4faa2d8068c7d64fac4">novas_wave_refraction()</a>, <a class="el" href="structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab">novas_on_surface::pressure</a>, and <a class="el" href="structnovas__on__surface.html#a1fd9464e53f03ebb2cb987aa1a2dc41b">novas_on_surface::temperature</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga7b9ad6dfbd86e4faa2d8068c7d64fac4">novas_wave_refraction()</a>, and <a class="el" href="novas_8h.html#ac7ed2a1a5fb5aea3063d116d3d980eeb">refract()</a>.</p>
+
 </div>
 </div>
 <a id="ga7720f3cd6bddf9d69ff44ac8ccae8029" name="ga7720f3cd6bddf9d69ff44ac8ccae8029"></a>
@@ -333,17 +477,29 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>weather</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Weather.html#a0e622e5cbf61c41b0b382b470534325a">Weather::standard</a>()</span>, </td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>weather</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Weather.html#a0395574b9c5b2bdb7b9f8e04e1342029">Weather::standard</a>()</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Time.html#a1a719a054e5d52c733711fe3ed1da413">Time::undefined</a>()</span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Time.html#a20657cd4e3e19ce0987ec1b765225161">Time::undefined</a>()</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Weather.html#a0e622e5cbf61c41b0b382b470534325a">supernovas::Weather::standard()</a>, and <a class="el" href="classsupernovas_1_1Time.html#a1a719a054e5d52c733711fe3ed1da413">supernovas::Time::undefined()</a>.</p>
+<p>Applies atmospheric refraction correction for these coordinates, returning the result. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ref</td><td>refraction model to use, or NULL to skip refraction correction </td></tr>
+    <tr><td class="paramname">weather</td><td>(optional) local weather parameters to use for the refraction correction. (default: standard atmopshere). </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>(optional) <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> of observation, for time-dependent refraction models. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>refracted horizontal coordinates.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gab44266c51e667838736e49e59008a9be" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a82ab515e78cdee62524825584e7299a4">elevation()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, and <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468a4255a64975ec93df2f228c63c38096a0">NOVAS_REFRACT_ASTROMETRIC</a>.</p>
 
 </div>
 </div>
@@ -361,17 +517,31 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>weather</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Weather.html#a0e622e5cbf61c41b0b382b470534325a">Weather::standard</a>()</span>, </td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>weather</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Weather.html#a0395574b9c5b2bdb7b9f8e04e1342029">Weather::standard</a>()</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Time.html#a1a719a054e5d52c733711fe3ed1da413">Time::undefined</a>()</span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Time.html#a20657cd4e3e19ce0987ec1b765225161">Time::undefined</a>()</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Weather.html#a0e622e5cbf61c41b0b382b470534325a">supernovas::Weather::standard()</a>, and <a class="el" href="classsupernovas_1_1Time.html#a1a719a054e5d52c733711fe3ed1da413">supernovas::Time::undefined()</a>.</p>
+<p>Undoes atmospheric refraction correction for these coordinates, returning the result. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ref</td><td>refraction model to use, or NULL to skip refraction correction </td></tr>
+    <tr><td class="paramname">weather</td><td>(optional) local weather parameters to use for the refraction correction. (default: standard atmopshere). </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>(optional) <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> of observation, for time-dependent refraction models. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>refracted horizontal coordinates. </dd>
+<dd>
+unrefracted (astrometric) horizontal coordinates.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga7720f3cd6bddf9d69ff44ac8ccae8029" title="Applies atmospheric refraction correction for these coordinates, returning the result.">to_refracted()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a82ab515e78cdee62524825584e7299a4">elevation()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, and <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468a29a320ab3459dafa0d18e7ebef3ae8fe">NOVAS_REFRACT_OBSERVED</a>.</p>
 
 </div>
 </div>

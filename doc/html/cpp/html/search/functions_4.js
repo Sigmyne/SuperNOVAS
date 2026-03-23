@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['d_5flight_0',['d_light',['../novas_8h.html#ad799864f637c483fb49491bde5a93e25',1,'novas.h']]],
+  ['d_5flight_0',['d_light',['../novas_8h.html#ad799864f637c483fb49491bde5a93e25',1,'d_light(const double *pos_src, const double *pos_body):&#160;util.c'],['../util_8c.html#ad799864f637c483fb49491bde5a93e25',1,'d_light(const double *pos_src, const double *pos_body):&#160;util.c']]],
   ['date_1',['date',['../classsupernovas_1_1Calendar.html#a56e9d8501f78df551e259262ad09c782',1,'supernovas::Calendar::date(int year, int month, int day, const TimeAngle &amp;time=TimeAngle::zero()) const'],['../classsupernovas_1_1Calendar.html#a88971d72debee624be8bc10945140714',1,'supernovas::Calendar::date(double jd) const'],['../classsupernovas_1_1Calendar.html#a865a6d0e1029718a8330a3905fe2a587',1,'supernovas::Calendar::date(time_t t, long nanos=0) const'],['../classsupernovas_1_1Calendar.html#ad750d9ed55b36342d226a273004643cd',1,'supernovas::Calendar::date(const struct timespec *ts) const']]],
   ['day_5fname_2',['day_name',['../classsupernovas_1_1CalendarDate.html#aac4e83e5faaafde7196a68a9aefe977d',1,'supernovas::CalendarDate']]],
   ['day_5fof_5fmonth_3',['day_of_month',['../classsupernovas_1_1CalendarDate.html#a09996f4c0ed0df75b5838b8c7da69f8a',1,'supernovas::CalendarDate']]],

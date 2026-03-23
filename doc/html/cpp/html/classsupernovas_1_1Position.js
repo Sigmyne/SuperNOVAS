@@ -12,5 +12,5 @@ var classsupernovas_1_1Position =
     [ "operator-", "classsupernovas_1_1Position.html#a97b9b8f521c1843f640842a4c6eb5c8c", null ],
     [ "operator==", "classsupernovas_1_1Position.html#ab28229ab97d018e87efddbb06cbf2bdb", null ],
     [ "to_spherical", "classsupernovas_1_1Position.html#a8158b16437d04f06a8f4e5213ca82a92", null ],
-    [ "to_string", "classsupernovas_1_1Position.html#a8b1a86d655b320f1aba0f1805a279903", null ]
+    [ "to_string", "classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984", null ]
 ];

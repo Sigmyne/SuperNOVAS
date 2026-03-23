@@ -114,12 +114,19 @@ $(function(){initNavTree('classsupernovas_1_1Calendar.html','','classsupernovas_
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad750d9ed55b36342d226a273004643cd" id="r_ad750d9ed55b36342d226a273004643cd"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad750d9ed55b36342d226a273004643cd">date</a> (const struct timespec *ts) const</td></tr>
+<tr class="memdesc:ad750d9ed55b36342d226a273004643cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance, in this calendar, for the given astronomical time specification.  <br /></td></tr>
 <tr class="memitem:a88971d72debee624be8bc10945140714" id="r_a88971d72debee624be8bc10945140714"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a88971d72debee624be8bc10945140714">date</a> (double jd) const</td></tr>
-<tr class="memitem:a56e9d8501f78df551e259262ad09c782" id="r_a56e9d8501f78df551e259262ad09c782"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a56e9d8501f78df551e259262ad09c782">date</a> (int year, int month, int day, const <a class="el" href="classsupernovas_1_1TimeAngle.html">TimeAngle</a> &amp;time=<a class="el" href="classsupernovas_1_1TimeAngle.html#a40e4180476b4fa23332c2c69b22a395a">TimeAngle::zero</a>()) const</td></tr>
+<tr class="memdesc:a88971d72debee624be8bc10945140714"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance, in this calendar, for the specified Julian date.  <br /></td></tr>
+<tr class="memitem:a56e9d8501f78df551e259262ad09c782" id="r_a56e9d8501f78df551e259262ad09c782"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a56e9d8501f78df551e259262ad09c782">date</a> (int year, int month, int day, const <a class="el" href="classsupernovas_1_1TimeAngle.html">TimeAngle</a> &amp;time=<a class="el" href="classsupernovas_1_1TimeAngle.html#a4947ba9bb1cd1176f7ca54a07f9f0e08">TimeAngle::zero</a>()) const</td></tr>
+<tr class="memdesc:a56e9d8501f78df551e259262ad09c782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance for the date and time specified in this calendar.  <br /></td></tr>
 <tr class="memitem:a865a6d0e1029718a8330a3905fe2a587" id="r_a865a6d0e1029718a8330a3905fe2a587"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a865a6d0e1029718a8330a3905fe2a587">date</a> (time_t t, long nanos=0) const</td></tr>
+<tr class="memdesc:a865a6d0e1029718a8330a3905fe2a587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance, in this calendar, for the specified UNIX time.  <br /></td></tr>
 <tr class="memitem:ad3128abe79227417392c24cbd666a61c" id="r_ad3128abe79227417392c24cbd666a61c"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad3128abe79227417392c24cbd666a61c">parse_date</a> (const std::string &amp;str, enum <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4">novas_date_format</a> fmt=<a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab4320d2be90ff55e278e6171f6516bab">NOVAS_YMD</a>) const</td></tr>
+<tr class="memdesc:ad3128abe79227417392c24cbd666a61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance, in this calendar, for the specified string date / time representation, if possible, or else std::nullopt.  <br /></td></tr>
 <tr class="memitem:ac269d4a72c2ff1d8f50b7ee5cd9fa511" id="r_ac269d4a72c2ff1d8f50b7ee5cd9fa511"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ac269d4a72c2ff1d8f50b7ee5cd9fa511">to_string</a> () const</td></tr>
+<tr class="memdesc:ac269d4a72c2ff1d8f50b7ee5cd9fa511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of this type of calendar.  <br /></td></tr>
 <tr class="memitem:addaf24058f2aefb62c936b047f1a1a75" id="r_addaf24058f2aefb62c936b047f1a1a75"><td class="memItemLeft">enum <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a>&#160;</td><td class="memItemRight"><a class="el" href="#addaf24058f2aefb62c936b047f1a1a75">type</a> () const</td></tr>
+<tr class="memdesc:addaf24058f2aefb62c936b047f1a1a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of this calendar, that is whether it is a Gregorian, Roman / Julian, or astronomical calendar.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -128,9 +135,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a55af99cdad270f634f1f96d4a0c90c9d" id="r_a55af99cdad270f634f1f96d4a0c90c9d"><td class="memItemLeft">static Calendar&#160;</td><td class="memItemRight"><a class="el" href="#a55af99cdad270f634f1f96d4a0c90c9d">astronomical</a> ()</td></tr>
-<tr class="memitem:a374533ba25040ae8d59ba22353e41584" id="r_a374533ba25040ae8d59ba22353e41584"><td class="memItemLeft">static Calendar&#160;</td><td class="memItemRight"><a class="el" href="#a374533ba25040ae8d59ba22353e41584">gregorian</a> ()</td></tr>
-<tr class="memitem:a26351e5d8279e2c48fb863e01d34814a" id="r_a26351e5d8279e2c48fb863e01d34814a"><td class="memItemLeft">static Calendar&#160;</td><td class="memItemRight"><a class="el" href="#a26351e5d8279e2c48fb863e01d34814a">roman</a> ()</td></tr>
+<tr class="memitem:a93ea198e9344f4c6f4afdf4e9538a130" id="r_a93ea198e9344f4c6f4afdf4e9538a130"><td class="memItemLeft">static Calendar&#160;</td><td class="memItemRight"><a class="el" href="#a93ea198e9344f4c6f4afdf4e9538a130">astronomical</a> ()</td></tr>
+<tr class="memdesc:a93ea198e9344f4c6f4afdf4e9538a130"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new astronomical calendar instance.  <br /></td></tr>
+<tr class="memitem:a0d625010c543eed0c3db85a57777c15c" id="r_a0d625010c543eed0c3db85a57777c15c"><td class="memItemLeft">static Calendar&#160;</td><td class="memItemRight"><a class="el" href="#a0d625010c543eed0c3db85a57777c15c">gregorian</a> ()</td></tr>
+<tr class="memdesc:a0d625010c543eed0c3db85a57777c15c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new Gregorian calendar instance.  <br /></td></tr>
+<tr class="memitem:a927c915e21f2fce2c186b9e1f258fc34" id="r_a927c915e21f2fce2c186b9e1f258fc34"><td class="memItemLeft">static Calendar&#160;</td><td class="memItemRight"><a class="el" href="#a927c915e21f2fce2c186b9e1f258fc34">roman</a> ()</td></tr>
+<tr class="memdesc:a927c915e21f2fce2c186b9e1f258fc34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new Roman / Julian calendar instance.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -144,8 +154,8 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Type of calendar used for representing dates, such as Gregorian, Roman, or astronomical. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a55af99cdad270f634f1f96d4a0c90c9d" name="a55af99cdad270f634f1f96d4a0c90c9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55af99cdad270f634f1f96d4a0c90c9d">&#9670;&#160;</a></span>astronomical()</h2>
+<a id="a93ea198e9344f4c6f4afdf4e9538a130" name="a93ea198e9344f4c6f4afdf4e9538a130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93ea198e9344f4c6f4afdf4e9538a130">&#9670;&#160;</a></span>astronomical()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,7 +177,16 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#ab1f01976ad639b8f0716f902013fc9c1">supernovas::Time::to_calendar_date()</a>.</p>
+<p>Returns a new astronomical calendar instance. </p>
+<p>The astronomical calendat is the conventional calendar of date, that is the Roman / Julian calendar prior to the Gregorian calendar reform of 1582; and the Gregorian calendar after the date of the reform.</p>
+<dl class="section return"><dt>Returns</dt><dd>an astronomical calendar / conventional calendar of date instance.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a927c915e21f2fce2c186b9e1f258fc34" title="Returns a new Roman / Julian calendar instance.">Calendar::roman()</a> </dd>
+<dd>
+<a class="el" href="#a0d625010c543eed0c3db85a57777c15c" title="Returns a new Gregorian calendar instance.">Calendar::gregorian()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bbaa1b6339c57b7baba0957b935fd37cc8ed">NOVAS_ASTRONOMICAL_CALENDAR</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a1705c26da3530ffcd6d42a8f7caa4652">supernovas::Time::operator-()</a>, and <a class="el" href="classsupernovas_1_1Time.html#aeec9b895b84a210134b38583dd65b9bf">supernovas::Time::to_calendar_date()</a>.</p>
 
 </div>
 </div>
@@ -186,6 +205,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a new calendar date instance, in this calendar, for the given astronomical time specification. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ts</td><td>Pointer to the astronomical time specification </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new calendar date, in this calendar, corresponding to the specified astronomical time.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a56e9d8501f78df551e259262ad09c782" title="Returns a new calendar date instance for the date and time specified in this calendar.">date()</a>, <a class="el" href="#ad3128abe79227417392c24cbd666a61c" title="Returns a new calendar date instance, in this calendar, for the specified string date / time represen...">parse_date()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a56e9d8501f78df551e259262ad09c782">date()</a>.</p>
+
 </div>
 </div>
 <a id="a88971d72debee624be8bc10945140714" name="a88971d72debee624be8bc10945140714"></a>
@@ -202,6 +233,18 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns a new calendar date instance, in this calendar, for the specified Julian date. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jd</td><td>[day] Julian Day </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new calendar date, in this calendar, corresponding to the specified Julian date.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>CalendarDate::CalendarDate(), <a class="el" href="#a56e9d8501f78df551e259262ad09c782" title="Returns a new calendar date instance for the date and time specified in this calendar.">date()</a>, <a class="el" href="#ad3128abe79227417392c24cbd666a61c" title="Returns a new calendar date instance, in this calendar, for the specified string date / time represen...">parse_date()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>
@@ -229,12 +272,27 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1TimeAngle.html">TimeAngle</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1TimeAngle.html#a40e4180476b4fa23332c2c69b22a395a">TimeAngle::zero</a>()</span>&#160;) const</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1TimeAngle.html">TimeAngle</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1TimeAngle.html#a4947ba9bb1cd1176f7ca54a07f9f0e08">TimeAngle::zero</a>()</span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1TimeAngle.html#a40e4180476b4fa23332c2c69b22a395a">supernovas::TimeAngle::zero()</a>.</p>
+<p>Returns a new calendar date instance for the date and time specified in this calendar. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">year</td><td>[yr] calendar year </td></tr>
+    <tr><td class="paramname">month</td><td>[month] calendar month [1:12] </td></tr>
+    <tr><td class="paramname">day</td><td>[day] calendar day-of-month [1:31] </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>time of day </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a date instance for the specified date in this calendar.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>CalendarDate::CalendarDate(), <a class="el" href="#a56e9d8501f78df551e259262ad09c782" title="Returns a new calendar date instance for the date and time specified in this calendar.">date()</a>, <a class="el" href="#ad3128abe79227417392c24cbd666a61c" title="Returns a new calendar date instance, in this calendar, for the specified string date / time represen...">parse_date()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ad750d9ed55b36342d226a273004643cd">date()</a>, <a class="el" href="#ad3128abe79227417392c24cbd666a61c">parse_date()</a>, and <a class="el" href="classsupernovas_1_1Time.html#ab1f01976ad639b8f0716f902013fc9c1">supernovas::Time::to_calendar_date()</a>.</p>
 
 </div>
 </div>
@@ -257,10 +315,23 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a new calendar date instance, in this calendar, for the specified UNIX time. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>[s] UNIX time (seconds since the Gregorian date of January 1, 1970). </td></tr>
+    <tr><td class="paramname">nanos</td><td>[ns] sub-second time component </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new calendar date, in this calendar, corresponding to the specified UNIX time.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a56e9d8501f78df551e259262ad09c782" title="Returns a new calendar date instance for the date and time specified in this calendar.">date()</a>, date(double) </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="classsupernovas_1_1Unit.html#a30863eea36a16b616d9129d95bb9f486">supernovas::Unit::ns</a>, and <a class="el" href="Calendar_8cpp.html#a8ce9212620a8939c723ca25c579c8585">UNIX_UTC_J2000</a>.</p>
+
 </div>
 </div>
-<a id="a374533ba25040ae8d59ba22353e41584" name="a374533ba25040ae8d59ba22353e41584"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a374533ba25040ae8d59ba22353e41584">&#9670;&#160;</a></span>gregorian()</h2>
+<a id="a0d625010c543eed0c3db85a57777c15c" name="a0d625010c543eed0c3db85a57777c15c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d625010c543eed0c3db85a57777c15c">&#9670;&#160;</a></span>gregorian()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,6 +352,12 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns a new Gregorian calendar instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>a Gregorian calendar instance</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a927c915e21f2fce2c186b9e1f258fc34" title="Returns a new Roman / Julian calendar instance.">roman()</a>, <a class="el" href="#a93ea198e9344f4c6f4afdf4e9538a130" title="Returns a new astronomical calendar instance.">astronomical()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bbaa90f19bf1771802f4ad20cf14660c8322">NOVAS_GREGORIAN_CALENDAR</a>.</p>
 
 </div>
 </div>
@@ -303,12 +380,23 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab4320d2be90ff55e278e6171f6516bab">NOVAS_YMD</a>.</p>
+<p>Returns a new calendar date instance, in this calendar, for the specified string date / time representation, if possible, or else std::nullopt. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>The string date / time specification. There is a lot of flexibility on what dates/times may be parsed. See <a class="el" href="group__util.html#ga5ec9d054b7d363b3db1d065507a1ba41" title="Parses a calendar date/time string, expressed in the specified type of calendar, into a Julian day (J...">novas_parse_date_format()</a> for details. </td></tr>
+    <tr><td class="paramname">fmt</td><td>The date representation, such as NOVAS_YMD, NOVAS_DMY, or NOVAS_MDY, specifying the order in which the year (Y), month (M), and day (D) components are expected in the input string representation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new calendar date, in this calendar, or else <a class="el" href="classsupernovas_1_1CalendarDate.html#ae452c547f1048743c4f8c602cd8f7c5f" title="Returns a reference to a statically defined standard undefined / invalid calendar date instance.">CalendarDate::undefined()</a> if the string date could not be parsed.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1CalendarDate.html#a3102b8cadee180eec8a16bdfdfdc166b" title="Returns a string representation of this calendar date, given the requested date format and decimal pl...">CalendarDate::to_string()</a>, <a class="el" href="#a56e9d8501f78df551e259262ad09c782" title="Returns a new calendar date instance for the date and time specified in this calendar.">date()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a56e9d8501f78df551e259262ad09c782">date()</a>, <a class="el" href="group__util.html#ga5ec9d054b7d363b3db1d065507a1ba41">novas_parse_date_format()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#ae452c547f1048743c4f8c602cd8f7c5f">supernovas::CalendarDate::undefined()</a>.</p>
 
 </div>
 </div>
-<a id="a26351e5d8279e2c48fb863e01d34814a" name="a26351e5d8279e2c48fb863e01d34814a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a26351e5d8279e2c48fb863e01d34814a">&#9670;&#160;</a></span>roman()</h2>
+<a id="a927c915e21f2fce2c186b9e1f258fc34" name="a927c915e21f2fce2c186b9e1f258fc34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a927c915e21f2fce2c186b9e1f258fc34">&#9670;&#160;</a></span>roman()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -330,6 +418,12 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns a new Roman / Julian calendar instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>a Roman / Julian calendar instance</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0d625010c543eed0c3db85a57777c15c" title="Returns a new Gregorian calendar instance.">gregorian()</a>, <a class="el" href="#a93ea198e9344f4c6f4afdf4e9538a130" title="Returns a new astronomical calendar instance.">astronomical()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bbaa73cfd3e5c66bdfdf63a2d792251e0d13">NOVAS_ROMAN_CALENDAR</a>.</p>
+
 </div>
 </div>
 <a id="ac269d4a72c2ff1d8f50b7ee5cd9fa511" name="ac269d4a72c2ff1d8f50b7ee5cd9fa511"></a>
@@ -347,6 +441,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns a string representation of this type of calendar. </p>
+<dl class="section return"><dt>Returns</dt><dd>A string representation of the calendar, such as "Gregorian calendar". </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bbaa90f19bf1771802f4ad20cf14660c8322">NOVAS_GREGORIAN_CALENDAR</a>, and <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bbaa73cfd3e5c66bdfdf63a2d792251e0d13">NOVAS_ROMAN_CALENDAR</a>.</p>
+
 </div>
 </div>
 <a id="addaf24058f2aefb62c936b047f1a1a75" name="addaf24058f2aefb62c936b047f1a1a75"></a>
@@ -363,6 +462,10 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the type of this calendar, that is whether it is a Gregorian, Roman / Julian, or astronomical calendar. </p>
+<p>The astronomical calendat is the conventional calendar of date.</p>
+<dl class="section return"><dt>Returns</dt><dd>The type of calendar, e.g. NOVAS_GREGORIAN_CALENDAR, NOVAS_ROMAN_CALENDAR, or NOVAS_ASTRONOMICAL calendar. </dd></dl>
 
 </div>
 </div>

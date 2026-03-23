@@ -125,7 +125,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Basic astrometric data for any sidereal object located outside the solar system. </p>
 <p>Note, that despite the slightly expanded catalog name, this has the same memory footprint as the original NOVAS C version, allowing for cross-compatible binary exchange (I/O) of these structures.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#af0137aa791dd29278904e53498fb9515">novas_init_cat_entry()</a>, <a class="el" href="novas_8h.html#aa040bcfe8bee7d8e1307800f48efddd7">make_cat_entry()</a>, <a class="el" href="novas_8h.html#ab9b7a622486f2904615ceed1ba94cd8f">make_cat_object()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a>, <a class="el" href="novas_8h.html#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a>, <a class="el" href="novas_8h.html#ab9b7a622486f2904615ceed1ba94cd8f" title="Populates and object data structure with the data for a catalog source.">make_cat_object()</a> </dd>
 <dd>
 <a class="el" href="novas_8h.html#a0a185da3a347343e5dd21d41a598d0fa" title="Initializer for a NOVAS cat_entry structure.">CAT_ENTRY_INIT</a> </dd></dl>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
@@ -143,6 +143,8 @@ Public Attributes</h2></td></tr>
 
 <p>catalog designator (e.g., HIP) </p>
 
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>, and <a class="el" href="novas_8h.html#af2c03d540de7a8bfafaed27eb9a753c1">transform_hip()</a>.</p>
+
 </div>
 </div>
 <a id="ab539dc076c350cf98ac047453fa18c9c" name="ab539dc076c350cf98ac047453fa18c9c"></a>
@@ -158,6 +160,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[deg] ICRS declination </p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#aaf51bf000e993807101a34adf423d36b">mean_star()</a>, <a class="el" href="novas_8h.html#a4aa0c52a1d4838feb4255974486462a7">novas_set_lsr_vel()</a>, <a class="el" href="novas_8h.html#a37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>, <a class="el" href="classsupernovas_1_1CatalogSource.html#a94ac207adcc4c9c2bbc000b0e4ef40ce">supernovas::CatalogSource::to_string()</a>, and <a class="el" href="novas_8h.html#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 
 </div>
 </div>
@@ -175,6 +179,8 @@ Public Attributes</h2></td></tr>
 
 <p>[mas] parallax </p>
 
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a69274f4ac2631335e1e901142d31f541">novas_set_parallax()</a>, <a class="el" href="novas_8h.html#a37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>, and <a class="el" href="novas_8h.html#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+
 </div>
 </div>
 <a id="a64faf35923c3c09bb24265a8ddb2b2f1" name="a64faf35923c3c09bb24265a8ddb2b2f1"></a>
@@ -190,6 +196,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[mas/yr] ICRS proper motion in declination </p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a8ac3513c266181baf92a6b3c22818c99">novas_set_proper_motion()</a>, and <a class="el" href="novas_8h.html#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 
 </div>
 </div>
@@ -207,6 +215,8 @@ Public Attributes</h2></td></tr>
 
 <p>[mas/yr] ICRS proper motion in right ascension </p>
 
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a8ac3513c266181baf92a6b3c22818c99">novas_set_proper_motion()</a>, and <a class="el" href="novas_8h.html#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+
 </div>
 </div>
 <a id="a0bf9261730a8decbfd1d0c63c377dac2" name="a0bf9261730a8decbfd1d0c63c377dac2"></a>
@@ -223,6 +233,8 @@ Public Attributes</h2></td></tr>
 
 <p>[h] ICRS right ascension </p>
 
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#aaf51bf000e993807101a34adf423d36b">mean_star()</a>, <a class="el" href="novas_8h.html#a4aa0c52a1d4838feb4255974486462a7">novas_set_lsr_vel()</a>, <a class="el" href="novas_8h.html#a37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>, <a class="el" href="classsupernovas_1_1CatalogSource.html#a94ac207adcc4c9c2bbc000b0e4ef40ce">supernovas::CatalogSource::to_string()</a>, <a class="el" href="novas_8h.html#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>, and <a class="el" href="novas_8h.html#af2c03d540de7a8bfafaed27eb9a753c1">transform_hip()</a>.</p>
+
 </div>
 </div>
 <a id="aff726e9a11a48c6ccbd80672a1fa5cc8" name="aff726e9a11a48c6ccbd80672a1fa5cc8"></a>
@@ -238,7 +250,9 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[km/s] catalog radial velocity (w.r.t. </p>
-<p>SSB) To specify radial velocities defined in the Local Standard of Rest (LSR) you might use <a class="el" href="novas_8h.html#a4aa0c52a1d4838feb4255974486462a7">novas_set_lsr_vel()</a> </p>
+<p>SSB) To specify radial velocities defined in the Local Standard of Rest (LSR) you might use <a class="el" href="novas_8h.html#a4aa0c52a1d4838feb4255974486462a7" title="Sets a radial velocity for a catalog source, defined w.r.t.">novas_set_lsr_vel()</a> </p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a45f7fdc15580138517ce452a236674d7">novas_set_ssb_vel()</a>, <a class="el" href="novas_8h.html#a37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>, and <a class="el" href="novas_8h.html#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 
 </div>
 </div>
@@ -256,6 +270,8 @@ Public Attributes</h2></td></tr>
 
 <p>name of celestial object </p>
 
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#ab9b7a622486f2904615ceed1ba94cd8f">make_cat_object()</a>, <a class="el" href="classsupernovas_1_1CatalogSource.html#a94ac207adcc4c9c2bbc000b0e4ef40ce">supernovas::CatalogSource::to_string()</a>, and <a class="el" href="novas_8h.html#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+
 </div>
 </div>
 <a id="a456d93b89cbbc3c13cb0cb9d3b8a4cb0" name="a456d93b89cbbc3c13cb0cb9d3b8a4cb0"></a>
@@ -271,6 +287,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>integer identifier assigned to object </p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#ab9b7a622486f2904615ceed1ba94cd8f">make_cat_object()</a>, and <a class="el" href="novas_8h.html#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 
 </div>
 </div>

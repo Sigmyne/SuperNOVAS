@@ -114,15 +114,25 @@ $(function(){initNavTree('classsupernovas_1_1EOP.html','','classsupernovas_1_1EO
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad8149b4b5c537a550f62913c32ca7874" id="r_ad8149b4b5c537a550f62913c32ca7874"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP</a> (int <a class="el" href="#a9d345a31c875164637f5763c15add341">leap_seconds</a>, const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;dut1, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;<a class="el" href="#a0b8ca59fd650c1dbfe4f7fe313c2a5c1">xp</a>, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;<a class="el" href="#a366bb7cd103b544c14e62db54950cad4">yp</a>)</td></tr>
+<tr class="memdesc:ad8149b4b5c537a550f62913c32ca7874"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates new Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) with the specified values.  <br /></td></tr>
 <tr class="memitem:acf0f9c3a22be7884fb23cdf7e9c6f5bf" id="r_acf0f9c3a22be7884fb23cdf7e9c6f5bf"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#acf0f9c3a22be7884fb23cdf7e9c6f5bf">EOP</a> (int <a class="el" href="#a9d345a31c875164637f5763c15add341">leap_seconds</a>, double dut1_sec=0.0, double xp_rad=0.0, double yp_rad=0.0)</td></tr>
+<tr class="memdesc:acf0f9c3a22be7884fb23cdf7e9c6f5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates new Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) with the specified values.  <br /></td></tr>
 <tr class="memitem:a14015d01e9b377e3eebede8ae2588f81" id="r_a14015d01e9b377e3eebede8ae2588f81"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Interval.html">Interval</a>&#160;</td><td class="memItemRight"><a class="el" href="#a14015d01e9b377e3eebede8ae2588f81">dUT1</a> () const</td></tr>
+<tr class="memdesc:a14015d01e9b377e3eebede8ae2588f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the UT1 - UTC time difference as a time interval.  <br /></td></tr>
 <tr class="memitem:a723f90ae1a32ae318dc23c67c9c289e2" id="r_a723f90ae1a32ae318dc23c67c9c289e2"><td class="memItemLeft">EOP&#160;</td><td class="memItemRight"><a class="el" href="#a723f90ae1a32ae318dc23c67c9c289e2">itrf_transformed</a> (int from_year, int to_year) const</td></tr>
+<tr class="memdesc:a723f90ae1a32ae318dc23c67c9c289e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms these Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) to a different ITRF realization.  <br /></td></tr>
 <tr class="memitem:a9d345a31c875164637f5763c15add341" id="r_a9d345a31c875164637f5763c15add341"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a9d345a31c875164637f5763c15add341">leap_seconds</a> () const</td></tr>
+<tr class="memdesc:a9d345a31c875164637f5763c15add341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the leap seconds (TAI - UTC time difference) in seconds.  <br /></td></tr>
 <tr class="memitem:a313b01146ce7537d8ed851cf7f187d26" id="r_a313b01146ce7537d8ed851cf7f187d26"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a313b01146ce7537d8ed851cf7f187d26">operator!=</a> (const EOP &amp;eop) const</td></tr>
+<tr class="memdesc:a313b01146ce7537d8ed851cf7f187d26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these Earth Orientation Parameters differ from another by more than 1 &mu;s / 1 &mu;as.  <br /></td></tr>
 <tr class="memitem:af7f1f1be3dcd7ebc80701f67f9034325" id="r_af7f1f1be3dcd7ebc80701f67f9034325"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af7f1f1be3dcd7ebc80701f67f9034325">operator==</a> (const EOP &amp;eop) const</td></tr>
+<tr class="memdesc:af7f1f1be3dcd7ebc80701f67f9034325"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these Earth Orientation Parameters are the same as another, within 1 &mu;s / 1 &mu;as accuracy.  <br /></td></tr>
 <tr class="memitem:aa1fbbd2dbed64385d595d85059275ef2" id="r_aa1fbbd2dbed64385d595d85059275ef2"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#aa1fbbd2dbed64385d595d85059275ef2">to_string</a> () const</td></tr>
+<tr class="memdesc:aa1fbbd2dbed64385d595d85059275ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of these Earth Orientation Paramaters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>).  <br /></td></tr>
 <tr class="memitem:a0b8ca59fd650c1dbfe4f7fe313c2a5c1" id="r_a0b8ca59fd650c1dbfe4f7fe313c2a5c1"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a0b8ca59fd650c1dbfe4f7fe313c2a5c1">xp</a> () const</td></tr>
+<tr class="memdesc:a0b8ca59fd650c1dbfe4f7fe313c2a5c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the IERS <em>x</em> pole offset (<em>x</em><sub>p</sub>) as an angle.  <br /></td></tr>
 <tr class="memitem:a366bb7cd103b544c14e62db54950cad4" id="r_a366bb7cd103b544c14e62db54950cad4"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a366bb7cd103b544c14e62db54950cad4">yp</a> () const</td></tr>
+<tr class="memdesc:a366bb7cd103b544c14e62db54950cad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the IERS <em>y</em> pole offset (<em>y</em><sub>p</sub>) as an angle.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -131,7 +141,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ad687405f57b4de72254ac5f156191939" id="r_ad687405f57b4de72254ac5f156191939"><td class="memItemLeft">static const EOP &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad687405f57b4de72254ac5f156191939">undefined</a> ()</td></tr>
+<tr class="memitem:a7675a6f28f30468c22ac70211880cc6f" id="r_a7675a6f28f30468c22ac70211880cc6f"><td class="memItemLeft">static const EOP &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a7675a6f28f30468c22ac70211880cc6f">undefined</a> ()</td></tr>
+<tr class="memdesc:a7675a6f28f30468c22ac70211880cc6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined standard invalid <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -149,11 +160,11 @@ Additional Inherited Members</h2></td></tr>
 <p>EOP are necessary both for defining or accessing astronomical times of the UT1 timescale (e.g. for sidereal time or Earth-rotation angle (ERA) calculations), or for converting coordinates between the preudo Earth-fixed Terrestrial Intermediate Reference System (TIRS) on the dynamical equator of date, and the Earth-fixed International Terrestrial Reference System (ITRS) on the true rotational equator.</p>
 <p>NOTES: </p><ol>
 <li>
-Corrections for diurnal variations are automatically applied in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> (for dUT1) and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> (for <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> for geodetic observers), and in <a class="el" href="classsupernovas_1_1Geometric.html#a25e2215f87bf9b52f54b2893791cf687">Geometric::to_itrs()</a>, as appropriate. </li>
+Corrections for diurnal variations are automatically applied in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> (for dUT1) and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> (for <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> for geodetic observers), and in <a class="el" href="classsupernovas_1_1Geometric.html#a25e2215f87bf9b52f54b2893791cf687" title="Returns new geometric coordinates that are transformed from these into the rotating International Ter...">Geometric::to_itrs()</a>, as appropriate. </li>
 <li>
 For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> data should match the ITRF realization of the site coordinates. IERS provides <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> data in different ITRF realizations, and SuperNOVAS provides methods to convert both the <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> and/or the <a class="el" href="classsupernovas_1_1Site.html" title="An Earth-based (geodetic) observer site location, or airborne observer location.">Site</a> to another ITRF realization, if need be. </li>
 </ol>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>, Apparent::to_itrs(), <a class="el" href="classsupernovas_1_1Geometric.html#a25e2215f87bf9b52f54b2893791cf687">Geometric::to_itrs()</a>, <a class="el" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">Horizontal::to_apparent()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>, Apparent::to_itrs(), <a class="el" href="classsupernovas_1_1Geometric.html#a25e2215f87bf9b52f54b2893791cf687" title="Returns new geometric coordinates that are transformed from these into the rotating International Ter...">Geometric::to_itrs()</a>, <a class="el" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae" title="Converts these horizontal coordinates to an apparent place on the sky.">Horizontal::to_apparent()</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acf0f9c3a22be7884fb23cdf7e9c6f5bf" name="acf0f9c3a22be7884fb23cdf7e9c6f5bf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acf0f9c3a22be7884fb23cdf7e9c6f5bf">&#9670;&#160;</a></span>EOP() <span class="overload">[1/2]</span></h2>
@@ -192,6 +203,17 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
 </table>
 </div><div class="memdoc">
 
+<p>Instantiates new Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) with the specified values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#a9d345a31c875164637f5763c15add341" title="Returns the leap seconds (TAI - UTC time difference) in seconds.">leap_seconds</a></td><td>[s] Leap seconds (TAI - UTC). </td></tr>
+    <tr><td class="paramname">dut1_sec</td><td>[s] (optional) UT1 - UTC time difference (default: 0.0) </td></tr>
+    <tr><td class="paramname">xp_rad</td><td>[rad] (optional) IERS <em>x</em><sub>p</sub> pole offset (default: 0.0) </td></tr>
+    <tr><td class="paramname">yp_rad</td><td>[rad] (optional) IERS <em>y</em><sub>p</sub> pole offset (default: 0.0) </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="reference">References <a class="el" href="#a9d345a31c875164637f5763c15add341">leap_seconds()</a>.</p>
 
 </div>
@@ -225,6 +247,17 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
       </table>
 </div><div class="memdoc">
 
+<p>Instantiates new Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) with the specified values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#a9d345a31c875164637f5763c15add341" title="Returns the leap seconds (TAI - UTC time difference) in seconds.">leap_seconds</a></td><td>[s] Leap seconds (TAI - UTC). </td></tr>
+    <tr><td class="paramname">dut1</td><td>(optional) UT1 - UTC time difference (default: 0.0) </td></tr>
+    <tr><td class="paramname"><a class="el" href="#a0b8ca59fd650c1dbfe4f7fe313c2a5c1" title="Returns the IERS x pole offset (xp) as an angle.">xp</a></td><td>(optional) IERS <em>x</em><sub>p</sub> pole offset (default: 0.0) </td></tr>
+    <tr><td class="paramname"><a class="el" href="#a366bb7cd103b544c14e62db54950cad4" title="Returns the IERS y pole offset (yp) as an angle.">yp</a></td><td>(optional) IERS <em>y</em><sub>p</sub> pole offset (default: 0.0) </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p class="reference">References <a class="el" href="#a9d345a31c875164637f5763c15add341">leap_seconds()</a>, <a class="el" href="#a0b8ca59fd650c1dbfe4f7fe313c2a5c1">xp()</a>, and <a class="el" href="#a366bb7cd103b544c14e62db54950cad4">yp()</a>.</p>
 
 </div>
@@ -244,6 +277,14 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the UT1 - UTC time difference as a time interval. </p>
+<dl class="section return"><dt>Returns</dt><dd>a new time interval with the UT1 - UTC time difference.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9d345a31c875164637f5763c15add341" title="Returns the leap seconds (TAI - UTC time difference) in seconds.">leap_seconds()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#ae1488895a3d9418248de3b09d6df66d0">supernovas::Time::from_mjd()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1634e281fe67ec0c8d8b83ef9838831b">supernovas::Time::now()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#aaeff76161e28706bacc5d87421231d51">supernovas::CalendarDate::to_time()</a>.</p>
 
 </div>
 </div>
@@ -266,6 +307,19 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
       </table>
 </div><div class="memdoc">
 
+<p>Transforms these Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) to a different ITRF realization. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from_year</td><td>[yr] the ITRF realization of these <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> values. </td></tr>
+    <tr><td class="paramname">to_year</td><td>[yr] the ITRF realization in which to return <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> values in the specified new ITRF realization.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Site.html#afd64e176ce0c75201d410015d803c648" title="Returns a new site transformed into a different ITRF realization.">Site::itrf_transformed()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">supernovas::Unit::arcsec</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb">novas_itrf_transform_eop()</a>.</p>
+
 </div>
 </div>
 <a id="a9d345a31c875164637f5763c15add341" name="a9d345a31c875164637f5763c15add341"></a>
@@ -283,7 +337,11 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>, and <a class="el" href="#acf0f9c3a22be7884fb23cdf7e9c6f5bf">EOP()</a>.</p>
+<p>Returns the leap seconds (TAI - UTC time difference) in seconds. </p>
+<dl class="section return"><dt>Returns</dt><dd>[s] the leap seconds (TAI - UTC).</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a14015d01e9b377e3eebede8ae2588f81" title="Returns the UT1 - UTC time difference as a time interval.">dUT1()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>, <a class="el" href="#acf0f9c3a22be7884fb23cdf7e9c6f5bf">EOP()</a>, <a class="el" href="classsupernovas_1_1Time.html#ae1488895a3d9418248de3b09d6df66d0">supernovas::Time::from_mjd()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1634e281fe67ec0c8d8b83ef9838831b">supernovas::Time::now()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#aaeff76161e28706bacc5d87421231d51">supernovas::CalendarDate::to_time()</a>.</p>
 
 </div>
 </div>
@@ -302,6 +360,16 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
       </table>
 </div><div class="memdoc">
 
+<p>Checks if these Earth Orientation Parameters differ from another by more than 1 &mu;s / 1 &mu;as. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eop</td><td>another set of Earth Orientation Parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> differs from argument by more than 1 &mu;s / 1 &mu;as, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a313b01146ce7537d8ed851cf7f187d26" title="Checks if these Earth Orientation Parameters differ from another by more than 1 μs / 1 μas.">operator!=()</a> </dd></dl>
+
 </div>
 </div>
 <a id="af7f1f1be3dcd7ebc80701f67f9034325" name="af7f1f1be3dcd7ebc80701f67f9034325"></a>
@@ -318,6 +386,18 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if these Earth Orientation Parameters are the same as another, within 1 &mu;s / 1 &mu;as accuracy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eop</td><td>another set of Earth Orientation Parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> matches the argument to 1 &mu;s / 1 &mu;as accuracy, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a313b01146ce7537d8ed851cf7f187d26" title="Checks if these Earth Orientation Parameters differ from another by more than 1 μs / 1 μas.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">supernovas::Unit::uas</a>, and <a class="el" href="classsupernovas_1_1Unit.html#aa5ea0c0b88b7c118712bf98d48041e92">supernovas::Unit::us</a>.</p>
 
 </div>
 </div>
@@ -336,10 +416,13 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
       </table>
 </div><div class="memdoc">
 
+<p>Returns a string representation of these Earth Orientation Paramaters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>). </p>
+<dl class="section return"><dt>Returns</dt><dd>a new string with a representation of this <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>. </dd></dl>
+
 </div>
 </div>
-<a id="ad687405f57b4de72254ac5f156191939" name="ad687405f57b4de72254ac5f156191939"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad687405f57b4de72254ac5f156191939">&#9670;&#160;</a></span>undefined()</h2>
+<a id="a7675a6f28f30468c22ac70211880cc6f" name="a7675a6f28f30468c22ac70211880cc6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7675a6f28f30468c22ac70211880cc6f">&#9670;&#160;</a></span>undefined()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -361,7 +444,9 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Geometric.html#a25e2215f87bf9b52f54b2893791cf687">supernovas::Geometric::to_itrs()</a>.</p>
+<p>Returns a reference to a statically defined standard invalid <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>. </p>
+<p>This invalid <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> may be used inside any object that is invalid itself.</p>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a static standard <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>. </dd></dl>
 
 </div>
 </div>
@@ -380,7 +465,11 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>.</p>
+<p>Returns the IERS <em>x</em> pole offset (<em>x</em><sub>p</sub>) as an angle. </p>
+<dl class="section return"><dt>Returns</dt><dd>the reference to the <em>x</em> pole offset angle, as stored internally.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a366bb7cd103b544c14e62db54950cad4" title="Returns the IERS y pole offset (yp) as an angle.">yp()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>, and <a class="el" href="classsupernovas_1_1Geometric.html#a25e2215f87bf9b52f54b2893791cf687">supernovas::Geometric::to_itrs()</a>.</p>
 
 </div>
 </div>
@@ -399,7 +488,11 @@ For &mu;as-level precision, your <a class="el" href="classsupernovas_1_1EOP.html
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>.</p>
+<p>Returns the IERS <em>y</em> pole offset (<em>y</em><sub>p</sub>) as an angle. </p>
+<dl class="section return"><dt>Returns</dt><dd>the reference to the <em>y</em> pole offset angle, as stored internally.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0b8ca59fd650c1dbfe4f7fe313c2a5c1" title="Returns the IERS x pole offset (xp) as an angle.">xp()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>, and <a class="el" href="classsupernovas_1_1Geometric.html#a25e2215f87bf9b52f54b2893791cf687">supernovas::Geometric::to_itrs()</a>.</p>
 
 </div>
 </div>

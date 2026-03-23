@@ -114,7 +114,9 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gadd24c03a86837e10783af06be02a8b21" id="r_gadd24c03a86837e10783af06be02a8b21"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Frame.html">Frame</a>&#160;</td><td class="memItemRight"><a class="el" href="#gadd24c03a86837e10783af06be02a8b21">supernovas::Observer::frame_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
+<tr class="memdesc:gadd24c03a86837e10783af06be02a8b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an observing frame for this observer at the specified time and optionally with a specified accuracy.  <br /></td></tr>
 <tr class="memitem:gae636a2863ee350bd67d5d53c19a694ba" id="r_gae636a2863ee350bd67d5d53c19a694ba"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Frame.html">Frame</a>&#160;</td><td class="memItemRight"><a class="el" href="#gae636a2863ee350bd67d5d53c19a694ba">supernovas::Observer::reduced_accuracy_frame_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time) const</td></tr>
+<tr class="memdesc:gae636a2863ee350bd67d5d53c19a694ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reduced accuracy observing frame for this observer at the specified time.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Observing frames are a combination of an observer place, and an specific time of observation. </p>
@@ -133,7 +135,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constants to control the precision of NOVAS nutation calculations. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a> </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660" name="gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660"></a>NOVAS_FULL_ACCURACY&#160;</td><td class="fielddoc"><p>Use full precision calculations to micro-arcsecond accuracy. </p>
 <p>It can be computationally intensive when using the dynamical equator. </p>
@@ -165,7 +167,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>.</p>
+<p>Returns an observing frame for this observer at the specified time and optionally with a specified accuracy. </p>
+<p>Full accuracy frames (default) require that a high-precision planet provider is configured prior, to the call.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time of observation </td></tr>
+    <tr><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCYRACY (default) or NOVAS_REDUCED_ACCURACY </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A valid observing frame or else <span class="tt">std::nullopt</span> if a valid observing frame could not be created with the accuracy, for example because no high accuracy planetary position provider was specified, or because either this observer or the time itself were invalid.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae636a2863ee350bd67d5d53c19a694ba" title="Returns a reduced accuracy observing frame for this observer at the specified time.">reduced_accuracy_frame_at()</a> </dd>
+<dd>
+<a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>, <a class="el" href="group__solar-system.html#ga35fc86a939602ec910dbdfde180d7f31" title="Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...">novas_use_calceph()</a>, <a class="el" href="group__solar-system.html#gab86ec03898e658c86c671a8b6399e331" title="Sets the CALCEPH C library and the specified ephemeris data as the ephemeris provider for the major p...">novas_use_calceph_planets()</a>, <a class="el" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#gadd24c03a86837e10783af06be02a8b21">frame_at()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#gadd24c03a86837e10783af06be02a8b21">frame_at()</a>.</p>
 
 </div>
 </div>
@@ -183,6 +201,22 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns a reduced accuracy observing frame for this observer at the specified time. </p>
+<p>Reduced accuracy frames provide 1 mas accuracy typically, and do not require a planetary or other ephemeris provider to be configured. As such, they offer a simple way for obtaining astrometric positions for catalog and orbital sources at the 1 mas level.</p>
+<p>Note, that the returned frame may be invalid, if the this observer or the time argument themselves are invalid.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time of observation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reduced accuracy observing frame for the specified time of observation.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gadd24c03a86837e10783af06be02a8b21" title="Returns an observing frame for this observer at the specified time and optionally with a specified ac...">frame_at()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Frame.html#ac1c71cf92a4019d1a993a9868b105173">supernovas::Frame::reduced_accuracy()</a>, and <a class="el" href="#gae636a2863ee350bd67d5d53c19a694ba">reduced_accuracy_frame_at()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#gae636a2863ee350bd67d5d53c19a694ba">reduced_accuracy_frame_at()</a>.</p>
 
 </div>
 </div>

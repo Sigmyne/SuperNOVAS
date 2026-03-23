@@ -114,9 +114,13 @@ $(function(){initNavTree('classsupernovas_1_1ScalarEvolution.html','','classsupe
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0862991291dc7b1bf375806fdd1e369d" id="r_a0862991291dc7b1bf375806fdd1e369d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a0862991291dc7b1bf375806fdd1e369d">ScalarEvolution</a> (double <a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value</a>, double <a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1">rate</a>=0.0, double accel=0.0)</td></tr>
+<tr class="memdesc:a0862991291dc7b1bf375806fdd1e369d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiate an time evolution set for a scalar quantity.  <br /></td></tr>
 <tr class="memitem:af4a7ebb8e64e194ad08e0321a52425c4" id="r_af4a7ebb8e64e194ad08e0321a52425c4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af4a7ebb8e64e194ad08e0321a52425c4">acceleration</a> () const</td></tr>
-<tr class="memitem:af1136a7264eea6e0395bcf8e72fc5eb1" id="r_af1136a7264eea6e0395bcf8e72fc5eb1"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1">rate</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;offset=<a class="el" href="classsupernovas_1_1Interval.html#a4fb9c20d909209f91cc209264eb10b13">Interval::zero</a>()) const</td></tr>
-<tr class="memitem:af4f7a15acc9dd930335dce034175e1fa" id="r_af4f7a15acc9dd930335dce034175e1fa"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;offset=<a class="el" href="classsupernovas_1_1Interval.html#a4fb9c20d909209f91cc209264eb10b13">Interval::zero</a>()) const</td></tr>
+<tr class="memdesc:af4a7ebb8e64e194ad08e0321a52425c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the defined (constant) acceleration value.  <br /></td></tr>
+<tr class="memitem:af1136a7264eea6e0395bcf8e72fc5eb1" id="r_af1136a7264eea6e0395bcf8e72fc5eb1"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1">rate</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;offset=<a class="el" href="classsupernovas_1_1Interval.html#a8523c7802c342170c93c1dec1d0440d8">Interval::zero</a>()) const</td></tr>
+<tr class="memdesc:af1136a7264eea6e0395bcf8e72fc5eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an extrapolated momentary rate of change for the evolving quantity at an offset time, using the defined acceleration.  <br /></td></tr>
+<tr class="memitem:af4f7a15acc9dd930335dce034175e1fa" id="r_af4f7a15acc9dd930335dce034175e1fa"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;offset=<a class="el" href="classsupernovas_1_1Interval.html#a8523c7802c342170c93c1dec1d0440d8">Interval::zero</a>()) const</td></tr>
+<tr class="memdesc:af4f7a15acc9dd930335dce034175e1fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an extrapolated momentary value of the evolving quantity at an offset time, using the defined derivatives.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -125,8 +129,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a12369522c112f0088cc64790b5033e59" id="r_a12369522c112f0088cc64790b5033e59"><td class="memItemLeft">static ScalarEvolution&#160;</td><td class="memItemRight"><a class="el" href="#a12369522c112f0088cc64790b5033e59">stationary</a> (double <a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value</a>)</td></tr>
-<tr class="memitem:ab67fecc47095ff51204ae9c1e3dda2e9" id="r_ab67fecc47095ff51204ae9c1e3dda2e9"><td class="memItemLeft">static const ScalarEvolution &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ab67fecc47095ff51204ae9c1e3dda2e9">undefined</a> ()</td></tr>
+<tr class="memitem:a2b6ba3c2311950f4d837def7e5568438" id="r_a2b6ba3c2311950f4d837def7e5568438"><td class="memItemLeft">static ScalarEvolution&#160;</td><td class="memItemRight"><a class="el" href="#a2b6ba3c2311950f4d837def7e5568438">stationary</a> (double <a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value</a>)</td></tr>
+<tr class="memdesc:a2b6ba3c2311950f4d837def7e5568438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new scalar evolution instance for a stationary quantity.  <br /></td></tr>
+<tr class="memitem:a2db2f58fe51f4f82b2d563507e3fc913" id="r_a2db2f58fe51f4f82b2d563507e3fc913"><td class="memItemLeft">static const ScalarEvolution &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a2db2f58fe51f4f82b2d563507e3fc913">undefined</a> ()</td></tr>
+<tr class="memdesc:a2db2f58fe51f4f82b2d563507e3fc913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically allocated undefined scalar evolution instance.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -173,7 +179,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1">rate()</a>, and <a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value()</a>.</p>
+<p>Instantiate an time evolution set for a scalar quantity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#af4f7a15acc9dd930335dce034175e1fa" title="Returns an extrapolated momentary value of the evolving quantity at an offset time,...">value</a></td><td>[?] momentary value </td></tr>
+    <tr><td class="paramname"><a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1" title="Returns an extrapolated momentary rate of change for the evolving quantity at an offset time,...">rate</a></td><td>[?/s] (optional) momentary rate of change in value (default: 0). </td></tr>
+    <tr><td class="paramname">accel</td><td>[?/s<sup>2</sup>] (optional) momentary acceleration of value (default: 0). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1">rate()</a>, and <a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value()</a>.</p>
 
 </div>
 </div>
@@ -193,6 +209,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the defined (constant) acceleration value. </p>
+<dl class="section return"><dt>Returns</dt><dd>the acceleration that was defined.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af4f7a15acc9dd930335dce034175e1fa" title="Returns an extrapolated momentary value of the evolving quantity at an offset time,...">value()</a>, <a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1" title="Returns an extrapolated momentary rate of change for the evolving quantity at an offset time,...">rate()</a> </dd></dl>
+
 </div>
 </div>
 <a id="af1136a7264eea6e0395bcf8e72fc5eb1" name="af1136a7264eea6e0395bcf8e72fc5eb1"></a>
@@ -204,20 +224,30 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">double supernovas::ScalarEvolution::rate </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Interval.html#a4fb9c20d909209f91cc209264eb10b13">Interval::zero</a>()</span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Interval.html#a8523c7802c342170c93c1dec1d0440d8">Interval::zero</a>()</span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Interval.html#a4fb9c20d909209f91cc209264eb10b13">supernovas::Interval::zero()</a>.</p>
+<p>Returns an extrapolated momentary rate of change for the evolving quantity at an offset time, using the defined acceleration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>time offset from when reference value and derivatives were defined. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the extrapolated momentary rate of change at the offset time.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af4f7a15acc9dd930335dce034175e1fa" title="Returns an extrapolated momentary value of the evolving quantity at an offset time,...">value()</a>, <a class="el" href="#af4a7ebb8e64e194ad08e0321a52425c4" title="Returns the defined (constant) acceleration value.">acceleration()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a0862991291dc7b1bf375806fdd1e369d">ScalarEvolution()</a>.</p>
 
 </div>
 </div>
-<a id="a12369522c112f0088cc64790b5033e59" name="a12369522c112f0088cc64790b5033e59"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12369522c112f0088cc64790b5033e59">&#9670;&#160;</a></span>stationary()</h2>
+<a id="a2b6ba3c2311950f4d837def7e5568438" name="a2b6ba3c2311950f4d837def7e5568438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b6ba3c2311950f4d837def7e5568438">&#9670;&#160;</a></span>stationary()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,14 +269,21 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value()</a>.</p>
+<p>Returns a new scalar evolution instance for a stationary quantity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#af4f7a15acc9dd930335dce034175e1fa" title="Returns an extrapolated momentary value of the evolving quantity at an offset time,...">value</a></td><td>The stationary (unevolving) value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a non-evolving scalar evolution instance with the specified stationary value. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1EquatorialTrack.html#ace8d716b1283373fe6f5e8a3bf686fac">supernovas::EquatorialTrack::EquatorialTrack()</a>, and <a class="el" href="classsupernovas_1_1HorizontalTrack.html#a03a3318119a3f77db23cbd8fc0171632">supernovas::HorizontalTrack::HorizontalTrack()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value()</a>.</p>
 
 </div>
 </div>
-<a id="ab67fecc47095ff51204ae9c1e3dda2e9" name="ab67fecc47095ff51204ae9c1e3dda2e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab67fecc47095ff51204ae9c1e3dda2e9">&#9670;&#160;</a></span>undefined()</h2>
+<a id="a2db2f58fe51f4f82b2d563507e3fc913" name="a2db2f58fe51f4f82b2d563507e3fc913"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2db2f58fe51f4f82b2d563507e3fc913">&#9670;&#160;</a></span>undefined()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,7 +305,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1EquatorialTrack.html#ace8d716b1283373fe6f5e8a3bf686fac">supernovas::EquatorialTrack::EquatorialTrack()</a>, and <a class="el" href="classsupernovas_1_1HorizontalTrack.html#a03a3318119a3f77db23cbd8fc0171632">supernovas::HorizontalTrack::HorizontalTrack()</a>.</p>
+<p>Returns a reference to a statically allocated undefined scalar evolution instance. </p>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a static undefined scalar evolution instance. </dd></dl>
 
 </div>
 </div>
@@ -281,15 +319,25 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">double supernovas::ScalarEvolution::value </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Interval.html#a4fb9c20d909209f91cc209264eb10b13">Interval::zero</a>()</span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Interval.html#a8523c7802c342170c93c1dec1d0440d8">Interval::zero</a>()</span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Interval.html#a4fb9c20d909209f91cc209264eb10b13">supernovas::Interval::zero()</a>.</p>
+<p>Returns an extrapolated momentary value of the evolving quantity at an offset time, using the defined derivatives. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>time offset from when reference value and derivatives were defined. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the extrapolated momentary scalar value at the offset time.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1" title="Returns an extrapolated momentary rate of change for the evolving quantity at an offset time,...">rate()</a>, <a class="el" href="#af4a7ebb8e64e194ad08e0321a52425c4" title="Returns the defined (constant) acceleration value.">acceleration()</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#a0862991291dc7b1bf375806fdd1e369d">ScalarEvolution()</a>, and <a class="el" href="#a12369522c112f0088cc64790b5033e59">stationary()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a0862991291dc7b1bf375806fdd1e369d">ScalarEvolution()</a>, and <a class="el" href="#a2b6ba3c2311950f4d837def7e5568438">stationary()</a>.</p>
 
 </div>
 </div>

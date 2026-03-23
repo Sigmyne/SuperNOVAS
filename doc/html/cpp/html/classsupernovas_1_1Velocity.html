@@ -115,33 +115,59 @@ $(function(){initNavTree('classsupernovas_1_1Velocity.html','','classsupernovas_
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5bb1ea41d36509cddef281e0a6d16376" id="r_a5bb1ea41d36509cddef281e0a6d16376"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5bb1ea41d36509cddef281e0a6d16376">Velocity</a> (const double vel[3], double unit=1.0)</td></tr>
+<tr class="memdesc:a5bb1ea41d36509cddef281e0a6d16376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new velocity vector from its <em>xyz</em> components, specified in the given physical unit.  <br /></td></tr>
 <tr class="memitem:a2f26da36dd9c4dba704ec314585ebc2c" id="r_a2f26da36dd9c4dba704ec314585ebc2c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2f26da36dd9c4dba704ec314585ebc2c">Velocity</a> (double x_ms, double y_ms, double z_ms)</td></tr>
+<tr class="memdesc:a2f26da36dd9c4dba704ec314585ebc2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new velocity vector from its <em>xyz</em> components.  <br /></td></tr>
 <tr class="memitem:a45a6d8f9d412efcd6e9cb034802cba9a" id="r_a45a6d8f9d412efcd6e9cb034802cba9a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a45a6d8f9d412efcd6e9cb034802cba9a">equals</a> (const Velocity &amp;v, double precision=<a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">Unit::mm</a>/<a class="el" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">Unit::s</a>) const</td></tr>
+<tr class="memdesc:a45a6d8f9d412efcd6e9cb034802cba9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this velocity is the same as another, within the specified precision.  <br /></td></tr>
 <tr class="memitem:ad5c692ed0da403c536bea22c9737f12f" id="r_ad5c692ed0da403c536bea22c9737f12f"><td class="memItemLeft">Velocity&#160;</td><td class="memItemRight"><a class="el" href="#ad5c692ed0da403c536bea22c9737f12f">inv</a> () const</td></tr>
+<tr class="memdesc:ad5c692ed0da403c536bea22c9737f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the velocity with the same magnitude as this, but moving in the opposite direction.  <br /></td></tr>
 <tr class="memitem:a6c2174cd805b548a519664879cbb0486" id="r_a6c2174cd805b548a519664879cbb0486"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6c2174cd805b548a519664879cbb0486">operator!=</a> (const Velocity &amp;v) const</td></tr>
+<tr class="memdesc:a6c2174cd805b548a519664879cbb0486"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this velocity is the same as another, within 1 mm/s.  <br /></td></tr>
 <tr class="memitem:a3a628bca731814c5e98c77642ea2de29" id="r_a3a628bca731814c5e98c77642ea2de29"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Position.html">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3a628bca731814c5e98c77642ea2de29">operator*</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;t) const</td></tr>
+<tr class="memdesc:a3a628bca731814c5e98c77642ea2de29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the vector travelled in the given time interval at this velocity.  <br /></td></tr>
 <tr class="memitem:ae9a7ec857adc8cf0f9108f21f1d57657" id="r_ae9a7ec857adc8cf0f9108f21f1d57657"><td class="memItemLeft">Velocity&#160;</td><td class="memItemRight"><a class="el" href="#ae9a7ec857adc8cf0f9108f21f1d57657">operator+</a> (const Velocity &amp;r) const</td></tr>
+<tr class="memdesc:ae9a7ec857adc8cf0f9108f21f1d57657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the sum of this velocity and the specified other velocity.  <br /></td></tr>
 <tr class="memitem:aa1eed97f4c7f762d450ad80130454a6b" id="r_aa1eed97f4c7f762d450ad80130454a6b"><td class="memItemLeft">Velocity&#160;</td><td class="memItemRight"><a class="el" href="#aa1eed97f4c7f762d450ad80130454a6b">operator-</a> (const Velocity &amp;r) const</td></tr>
+<tr class="memdesc:aa1eed97f4c7f762d450ad80130454a6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the difference of this velocity and the specified other velocity.  <br /></td></tr>
 <tr class="memitem:ab51ed547b89f094b0bbff492eaa05a3a" id="r_ab51ed547b89f094b0bbff492eaa05a3a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab51ed547b89f094b0bbff492eaa05a3a">operator==</a> (const Velocity &amp;v) const</td></tr>
+<tr class="memdesc:ab51ed547b89f094b0bbff492eaa05a3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this velocity is the same as another, within 1 mm/s.  <br /></td></tr>
 <tr class="memitem:a3dbaf0927a89219ae14a2a759c103f09" id="r_a3dbaf0927a89219ae14a2a759c103f09"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3dbaf0927a89219ae14a2a759c103f09">speed</a> () const</td></tr>
+<tr class="memdesc:a3dbaf0927a89219ae14a2a759c103f09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the speed (absolute value) of this velocity vector.  <br /></td></tr>
 <tr class="memitem:a1484083f9c73aec4e40e9fe8f45c056c" id="r_a1484083f9c73aec4e40e9fe8f45c056c"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a1484083f9c73aec4e40e9fe8f45c056c">to_string</a> (int decimals=3) const override</td></tr>
+<tr class="memdesc:a1484083f9c73aec4e40e9fe8f45c056c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of this velocity with the requested decimal precision.  <br /></td></tr>
 <tr class="memitem:abe62c156f9ab61154ec48b894be1cc05" id="r_abe62c156f9ab61154ec48b894be1cc05"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Position.html">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="#abe62c156f9ab61154ec48b894be1cc05">travel</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;t) const</td></tr>
+<tr class="memdesc:abe62c156f9ab61154ec48b894be1cc05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the vector travelled in the given time interval at this velocity.  <br /></td></tr>
 <tr class="memitem:a1d295312687a1dc8bcecb35bc7625297" id="r_a1d295312687a1dc8bcecb35bc7625297"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Position.html">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="#a1d295312687a1dc8bcecb35bc7625297">travel</a> (double seconds) const</td></tr>
+<tr class="memdesc:a1d295312687a1dc8bcecb35bc7625297"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the vector travelled in the given time interval at this velocity.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Vector"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Vector')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Vector.html">supernovas::Vector</a></td></tr>
 <tr class="memitem:a6e0deaf0bff9961abfb6fe57160abe3b inherit pub_methods_classsupernovas_1_1Vector" id="r_a6e0deaf0bff9961abfb6fe57160abe3b"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a6e0deaf0bff9961abfb6fe57160abe3b">~Vector</a> ()</td></tr>
 <tr class="memitem:a4be107244270ddfd8c803768b46dfdd4 inherit pub_methods_classsupernovas_1_1Vector" id="r_a4be107244270ddfd8c803768b46dfdd4"><td class="memItemLeft">const double *&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4">_array</a> () const</td></tr>
+<tr class="memdesc:a4be107244270ddfd8c803768b46dfdd4 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the underlying <span class="tt">double[3]</span> C array that stores the components of this vector internally.  <br /></td></tr>
 <tr class="memitem:aab5ce2de6a675909f520087958fe3610 inherit pub_methods_classsupernovas_1_1Vector" id="r_aab5ce2de6a675909f520087958fe3610"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">abs</a> () const</td></tr>
+<tr class="memdesc:aab5ce2de6a675909f520087958fe3610 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the absolute value (length / magnitude) of this vector.  <br /></td></tr>
 <tr class="memitem:a17572fd5d9e2127b813c5f0186dde2ee inherit pub_methods_classsupernovas_1_1Vector" id="r_a17572fd5d9e2127b813c5f0186dde2ee"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a17572fd5d9e2127b813c5f0186dde2ee">dot</a> (const <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a> &amp;v) const</td></tr>
+<tr class="memdesc:a17572fd5d9e2127b813c5f0186dde2ee inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the dot product of this vector and the specified other vector.  <br /></td></tr>
 <tr class="memitem:a731ab991e6b7426666dfeb9047da8dc8 inherit pub_methods_classsupernovas_1_1Vector" id="r_a731ab991e6b7426666dfeb9047da8dc8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a731ab991e6b7426666dfeb9047da8dc8">is_zero</a> () const</td></tr>
+<tr class="memdesc:a731ab991e6b7426666dfeb9047da8dc8 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this verctor is a null vector, that is all of its components are zero.  <br /></td></tr>
 <tr class="memitem:ad77e9e7cec72509ecc93ef42aadf1edd inherit pub_methods_classsupernovas_1_1Vector" id="r_ad77e9e7cec72509ecc93ef42aadf1edd"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#ad77e9e7cec72509ecc93ef42aadf1edd">operator*</a> (double factor) const</td></tr>
+<tr class="memdesc:ad77e9e7cec72509ecc93ef42aadf1edd inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scales a vector by a factor, for example to cast it to/from a physical unit.  <br /></td></tr>
 <tr class="memitem:aa5981c5505f8f831a68a95f28c2c284f inherit pub_methods_classsupernovas_1_1Vector" id="r_aa5981c5505f8f831a68a95f28c2c284f"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f">phi</a> () const</td></tr>
+<tr class="memdesc:aa5981c5505f8f831a68a95f28c2c284f inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the azumithal angle of this vector.  <br /></td></tr>
 <tr class="memitem:a6a9ec63eb5edce53642a058fc8b5fc83 inherit pub_methods_classsupernovas_1_1Vector" id="r_a6a9ec63eb5edce53642a058fc8b5fc83"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a6a9ec63eb5edce53642a058fc8b5fc83">projection_on</a> (const <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a> &amp;v) const</td></tr>
+<tr class="memdesc:a6a9ec63eb5edce53642a058fc8b5fc83 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the projection of this vector along the direction of another vector.  <br /></td></tr>
 <tr class="memitem:a442ce772514302bdb431d74675e12c46 inherit pub_methods_classsupernovas_1_1Vector" id="r_a442ce772514302bdb431d74675e12c46"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46">scaled</a> (double factor) const</td></tr>
+<tr class="memdesc:a442ce772514302bdb431d74675e12c46 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a rescaled version of this vector, for example to cast it to/from a physical unit.  <br /></td></tr>
 <tr class="memitem:aa5cd444d1ad1aecfae916a9a73ffceb2 inherit pub_methods_classsupernovas_1_1Vector" id="r_aa5cd444d1ad1aecfae916a9a73ffceb2"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#aa5cd444d1ad1aecfae916a9a73ffceb2">theta</a> () const</td></tr>
+<tr class="memdesc:aa5cd444d1ad1aecfae916a9a73ffceb2 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the polar angleof this vector, that is the angle from the <em>z</em> axis.  <br /></td></tr>
 <tr class="memitem:ad761bfcd08771389fced7f7c908c9c52 inherit pub_methods_classsupernovas_1_1Vector" id="r_ad761bfcd08771389fced7f7c908c9c52"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52">unit_vector</a> () const</td></tr>
+<tr class="memdesc:ad761bfcd08771389fced7f7c908c9c52 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a unit vector in the direction of this vector.  <br /></td></tr>
 <tr class="memitem:af22c6e7f19a6f790218cc9605215ac7e inherit pub_methods_classsupernovas_1_1Vector" id="r_af22c6e7f19a6f790218cc9605215ac7e"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">x</a> () const</td></tr>
+<tr class="memdesc:af22c6e7f19a6f790218cc9605215ac7e inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <em>x</em> component of this vector.  <br /></td></tr>
 <tr class="memitem:a61f8871b8be5382f4e65a5c541fa742f inherit pub_methods_classsupernovas_1_1Vector" id="r_a61f8871b8be5382f4e65a5c541fa742f"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">y</a> () const</td></tr>
+<tr class="memdesc:a61f8871b8be5382f4e65a5c541fa742f inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <em>y</em> component of this vector.  <br /></td></tr>
 <tr class="memitem:ae8f15b39c7385ae66232e312020d7b08 inherit pub_methods_classsupernovas_1_1Vector" id="r_ae8f15b39c7385ae66232e312020d7b08"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">z</a> () const</td></tr>
+<tr class="memdesc:ae8f15b39c7385ae66232e312020d7b08 inherit pub_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <em>z</em> component of this vector.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -150,8 +176,10 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a2d0c89963437efea04b9d8d0f1eece86" id="r_a2d0c89963437efea04b9d8d0f1eece86"><td class="memItemLeft">static const Velocity &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a2d0c89963437efea04b9d8d0f1eece86">stationary</a> ()</td></tr>
-<tr class="memitem:a7ae172d49a754a38a8a82bebbaf828f6" id="r_a7ae172d49a754a38a8a82bebbaf828f6"><td class="memItemLeft">static const Velocity &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a7ae172d49a754a38a8a82bebbaf828f6">undefined</a> ()</td></tr>
+<tr class="memitem:a2944f9bdb4beabe0c0b91a46ffd8e3fb" id="r_a2944f9bdb4beabe0c0b91a46ffd8e3fb"><td class="memItemLeft">static const Velocity &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a2944f9bdb4beabe0c0b91a46ffd8e3fb">stationary</a> ()</td></tr>
+<tr class="memdesc:a2944f9bdb4beabe0c0b91a46ffd8e3fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the statically defined zero velocity of a stationary object.  <br /></td></tr>
+<tr class="memitem:a807883f5d42e5b1bef89249a0377c762" id="r_a807883f5d42e5b1bef89249a0377c762"><td class="memItemLeft">static const Velocity &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a807883f5d42e5b1bef89249a0377c762">undefined</a> ()</td></tr>
+<tr class="memdesc:a807883f5d42e5b1bef89249a0377c762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the statically defined standard invalid velocity.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -159,7 +187,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:afaf9b317641d3a3aaf1e5a57dc4f3dfc inherit pro_methods_classsupernovas_1_1Vector" id="r_afaf9b317641d3a3aaf1e5a57dc4f3dfc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a> ()</td></tr>
 <tr class="memdesc:afaf9b317641d3a3aaf1e5a57dc4f3dfc inherit pro_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates an undefined vector.  <br /></td></tr>
 <tr class="memitem:a67f0cc38bb4f768c9f52a2c8227b89eb inherit pro_methods_classsupernovas_1_1Vector" id="r_a67f0cc38bb4f768c9f52a2c8227b89eb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a67f0cc38bb4f768c9f52a2c8227b89eb">Vector</a> (double <a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">x</a>, double <a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">y</a>, double <a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">z</a>)</td></tr>
+<tr class="memdesc:a67f0cc38bb4f768c9f52a2c8227b89eb inherit pro_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a vector from its cartesian components.  <br /></td></tr>
 <tr class="memitem:a30393fbff5a33c0890031b7302c18791 inherit pro_methods_classsupernovas_1_1Vector" id="r_a30393fbff5a33c0890031b7302c18791"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791">equals</a> (const <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector</a> &amp;v, double precision) const</td></tr>
+<tr class="memdesc:a30393fbff5a33c0890031b7302c18791 inherit pro_methods_classsupernovas_1_1Vector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this vector is the same as another vector, within the specified precision.  <br /></td></tr>
 <tr class="inherit_header pro_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating" id="r_aeabd2d0135eafd2a6a55447054ff81f7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aeabd2d0135eafd2a6a55447054ff81f7">Validating</a> ()</td></tr>
 <tr class="memdesc:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">dummy constructor;  <br /></td></tr>
@@ -206,6 +236,18 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Instantiates a new velocity vector from its <em>xyz</em> components. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x_ms</td><td>[m/s] <em>x</em> component </td></tr>
+    <tr><td class="paramname">y_ms</td><td>[m/s] <em>y</em> component </td></tr>
+    <tr><td class="paramname">z_ms</td><td>[m/s] <em>z</em> component </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">supernovas::Vector::Vector()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">supernovas::Vector::abs()</a>, and <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>.</p>
+
 </div>
 </div>
 <a id="a5bb1ea41d36509cddef281e0a6d16376" name="a5bb1ea41d36509cddef281e0a6d16376"></a>
@@ -235,6 +277,17 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Instantiates a new velocity vector from its <em>xyz</em> components, specified in the given physical unit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vel</td><td>The <em>xyz</em> 3-vector defining the components </td></tr>
+    <tr><td class="paramname">unit</td><td>(optional) the physical unit (e.g. Unit::kms, or <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de" title="[m] 1 Astronomical Unit in meters.">Unit::au</a> / <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b" title="[s] 1 hour in seconds">Unit::day</a>) in which the components were specified (default: <a class="el" href="classsupernovas_1_1Unit.html" title="Various physical units for converting quantities expressed in conventional units to SI,...">Unit</a>:m / <a class="el" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472" title="[s] 1 millisecond in seconds">Unit::s</a> = 1.0). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">supernovas::Vector::Vector()</a>.</p>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -252,12 +305,25 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>precision</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">Unit::mm</a>/<a class="el" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">Unit::s</a></span>&#160;) const</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>precision</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">Unit::mm</a>&#160;/&#160;<a class="el" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">Unit::s</a></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">supernovas::Unit::mm</a>, and <a class="el" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">supernovas::Unit::s</a>.</p>
+<p>Checks if this velocity is the same as another, within the specified precision. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>the reference velocity </td></tr>
+    <tr><td class="paramname">precision</td><td>the precision for testing equality (default: 1 mm/s). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this velocity equals the argument within the specified precision, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab51ed547b89f094b0bbff492eaa05a3a" title="Checks if this velocity is the same as another, within 1 mm/s.">operator==()</a>, <a class="el" href="#a6c2174cd805b548a519664879cbb0486" title="Checks if this velocity is the same as another, within 1 mm/s.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791">supernovas::Vector::equals()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a6c2174cd805b548a519664879cbb0486">operator!=()</a>, and <a class="el" href="#ab51ed547b89f094b0bbff492eaa05a3a">operator==()</a>.</p>
 
 </div>
 </div>
@@ -276,6 +342,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the velocity with the same magnitude as this, but moving in the opposite direction. </p>
+<dl class="section return"><dt>Returns</dt><dd>the velocity in the opposite direction. </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
 </div>
 </div>
 <a id="a6c2174cd805b548a519664879cbb0486" name="a6c2174cd805b548a519664879cbb0486"></a>
@@ -292,6 +363,18 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if this velocity is the same as another, within 1 mm/s. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>the reference velocity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this velocity equals the argument within 1 mm/s, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab51ed547b89f094b0bbff492eaa05a3a" title="Checks if this velocity is the same as another, within 1 mm/s.">operator==()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a45a6d8f9d412efcd6e9cb034802cba9a">equals()</a>, <a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">supernovas::Unit::mm</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
 
 </div>
 </div>
@@ -310,6 +393,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the vector travelled in the given time interval at this velocity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>time interval </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the change in position of an object travelling at this velocity in the specified time interval.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">travel()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html" title="A scalar velocity (if signed) or speed (unsigned).">ScalarVelocity</a>:<a class="el" href="#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">travel()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a1d295312687a1dc8bcecb35bc7625297">travel()</a>.</p>
+
 </div>
 </div>
 <a id="ae9a7ec857adc8cf0f9108f21f1d57657" name="ae9a7ec857adc8cf0f9108f21f1d57657"></a>
@@ -326,6 +421,19 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the sum of this velocity and the specified other velocity. </p>
+<p>The sum is calculated using the relativistic formula.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the other velocity on the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the sum of this velocity and the argument.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1eed97f4c7f762d450ad80130454a6b" title="Returns the difference of this velocity and the specified other velocity.">operator-()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">supernovas::Vector::x()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">supernovas::Vector::y()</a>, and <a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">supernovas::Vector::z()</a>.</p>
 
 </div>
 </div>
@@ -344,6 +452,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the difference of this velocity and the specified other velocity. </p>
+<p>The difference is calculated using the relativistic formula.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>the other velocity on the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the sum of this velocity and the argument.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae9a7ec857adc8cf0f9108f21f1d57657" title="Returns the sum of this velocity and the specified other velocity.">operator+()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">supernovas::Vector::x()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">supernovas::Vector::y()</a>, and <a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">supernovas::Vector::z()</a>.</p>
+
 </div>
 </div>
 <a id="ab51ed547b89f094b0bbff492eaa05a3a" name="ab51ed547b89f094b0bbff492eaa05a3a"></a>
@@ -360,6 +481,18 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if this velocity is the same as another, within 1 mm/s. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>the reference velocity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this velocity equals the argument within 1 mm/s, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a45a6d8f9d412efcd6e9cb034802cba9a" title="Checks if this velocity is the same as another, within the specified precision.">equals()</a>, <a class="el" href="#a6c2174cd805b548a519664879cbb0486" title="Checks if this velocity is the same as another, within 1 mm/s.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a45a6d8f9d412efcd6e9cb034802cba9a">equals()</a>, <a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">supernovas::Unit::mm</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
 
 </div>
 </div>
@@ -378,10 +511,15 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the speed (absolute value) of this velocity vector. </p>
+<dl class="section return"><dt>Returns</dt><dd>the speed (absolute value) of this velocity. </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">supernovas::Vector::abs()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
 </div>
 </div>
-<a id="a2d0c89963437efea04b9d8d0f1eece86" name="a2d0c89963437efea04b9d8d0f1eece86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2d0c89963437efea04b9d8d0f1eece86">&#9670;&#160;</a></span>stationary()</h2>
+<a id="a2944f9bdb4beabe0c0b91a46ffd8e3fb" name="a2944f9bdb4beabe0c0b91a46ffd8e3fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2944f9bdb4beabe0c0b91a46ffd8e3fb">&#9670;&#160;</a></span>stationary()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -403,7 +541,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Observer.html#a65ae0b0d36341717bf7b958ac3236f8c">supernovas::Observer::Observer()</a>.</p>
+<p>Returns a reference to the statically defined zero velocity of a stationary object. </p>
+<dl class="section return"><dt>Returns</dt><dd>the static reference to a stationary object with zero velocity </dd></dl>
 
 </div>
 </div>
@@ -430,7 +569,20 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classsupernovas_1_1Vector.html#ae76ee15ac970531b3dd98671ddc929f1">supernovas::Vector</a>.</p>
+<p>Returns a string representation of this velocity with the requested decimal precision. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">decimals</td><td>(optional) the number of decimnal places to print for the components </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a new string with a representation of this velocity. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f">supernovas::Vector</a>.</p>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85">supernovas::ScalarVelocity::to_string()</a>, <a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">supernovas::Vector::x()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">supernovas::Vector::y()</a>, and <a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">supernovas::Vector::z()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeocentricObserver.html#af587b52511d647b46951511b2fa3f472">supernovas::GeocentricObserver::to_string()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a33aee6eb9517ac8c0961de8f9072a61d">supernovas::GeodeticObserver::to_string()</a>, <a class="el" href="classsupernovas_1_1Geometric.html#a6240a71612a75193fe47c6a2dac106bf">supernovas::Geometric::to_string()</a>, and <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a000ae8621806fbf4637b2c112b50613f">supernovas::SolarSystemObserver::to_string()</a>.</p>
 
 </div>
 </div>
@@ -449,6 +601,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the vector travelled in the given time interval at this velocity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>time interval </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the change in position of an object travelling at this velocity in the specified time interval.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3a628bca731814c5e98c77642ea2de29" title="Returns the vector travelled in the given time interval at this velocity.">operator*()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html" title="A scalar velocity (if signed) or speed (unsigned).">ScalarVelocity</a>:<a class="el" href="#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">travel()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>, and <a class="el" href="#a1d295312687a1dc8bcecb35bc7625297">travel()</a>.</p>
+
 </div>
 </div>
 <a id="a1d295312687a1dc8bcecb35bc7625297" name="a1d295312687a1dc8bcecb35bc7625297"></a>
@@ -466,10 +630,24 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Returns the vector travelled in the given time interval at this velocity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">seconds</td><td>[s] time interval </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the change in position of an object travelling at this velocity in the specified time interval.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3a628bca731814c5e98c77642ea2de29" title="Returns the vector travelled in the given time interval at this velocity.">operator*()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html" title="A scalar velocity (if signed) or speed (unsigned).">ScalarVelocity</a>:<a class="el" href="#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">travel()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e">supernovas::Vector::x()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f">supernovas::Vector::y()</a>, and <a class="el" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08">supernovas::Vector::z()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Interval.html#ae83586745b12cd0c1a6065d17c45513e">supernovas::Interval::operator*()</a>, <a class="el" href="#a3a628bca731814c5e98c77642ea2de29">operator*()</a>, and <a class="el" href="#abe62c156f9ab61154ec48b894be1cc05">travel()</a>.</p>
+
 </div>
 </div>
-<a id="a7ae172d49a754a38a8a82bebbaf828f6" name="a7ae172d49a754a38a8a82bebbaf828f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ae172d49a754a38a8a82bebbaf828f6">&#9670;&#160;</a></span>undefined()</h2>
+<a id="a807883f5d42e5b1bef89249a0377c762" name="a807883f5d42e5b1bef89249a0377c762"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a807883f5d42e5b1bef89249a0377c762">&#9670;&#160;</a></span>undefined()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -490,6 +668,12 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns a reference to the statically defined standard invalid velocity. </p>
+<p>This invalid velocity may be used inside any object that is invalid itself.</p>
+<dl class="section return"><dt>Returns</dt><dd>the static reference to a standard invalid velocity </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Frame.html#a819789b9fded24f49dbc895e599ef6cc">supernovas::Frame::observer_velocity()</a>, and <a class="el" href="classsupernovas_1_1Orbital.html#aba60772bc15f18614cf091ad606a3f42">supernovas::Orbital::velocity()</a>.</p>
 
 </div>
 </div>

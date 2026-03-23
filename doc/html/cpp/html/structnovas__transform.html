@@ -115,11 +115,11 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A transformation between two astronomical coordinate systems for the same observer location and time. </p>
 <p>This allows for more elegant, generic, and efficient coordinate transformations than the low-level NOVAS functions.</p>
-<p>The transformation can be (should be) initialized via <a class="el" href="novas_8h.html#a4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>, or via <a class="el" href="novas_8h.html#ad2081e123024609d3071b33b183502b7">novas_invert_transform()</a>.</p>
+<p>The transformation can be (should be) initialized via <a class="el" href="novas_8h.html#a4d179c8573319fc25c775ce56ba055dc" title="Calculates a transformation matrix that can be used to convert positions and velocities from one coor...">novas_make_transform()</a>, or via <a class="el" href="novas_8h.html#ad2081e123024609d3071b33b183502b7" title="Inverts a novas coordinate transformation matrix.">novas_invert_transform()</a>.</p>
 <dl class="section since"><dt>Since</dt><dd>1.1</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>, <a class="el" href="novas_8h.html#ad2081e123024609d3071b33b183502b7">novas_invert_transform()</a>, <a class="el" href="novas_8h.html#a6a255712d5e1dcc8c58e16d453501766" title="Empty initializer for NOVAS_TRANSFORM.">NOVAS_TRANSFORM_INIT</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a4d179c8573319fc25c775ce56ba055dc" title="Calculates a transformation matrix that can be used to convert positions and velocities from one coor...">novas_make_transform()</a>, <a class="el" href="novas_8h.html#ad2081e123024609d3071b33b183502b7" title="Inverts a novas coordinate transformation matrix.">novas_invert_transform()</a>, <a class="el" href="novas_8h.html#a6a255712d5e1dcc8c58e16d453501766" title="Empty initializer for NOVAS_TRANSFORM.">NOVAS_TRANSFORM_INIT</a> </dd>
 <dd>
-<a class="el" href="novas_8h.html#aa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector()</a>, <a class="el" href="novas_8h.html#acfcfb90637cd1fdb25ef9afd1bda8e30">novas_transform_sky_pos()</a> </dd></dl>
+<a class="el" href="novas_8h.html#aa77895c891e9eeb4b1541f03acfd154e" title="Transforms a position or velocity 3-vector from one coordinate reference system to another.">novas_transform_vector()</a>, <a class="el" href="novas_8h.html#acfcfb90637cd1fdb25ef9afd1bda8e30" title="Transforms a position or velocity 3-vector from one coordinate reference system to another.">novas_transform_sky_pos()</a> </dd></dl>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a292690830561c2c367027eec8a7942bb" name="a292690830561c2c367027eec8a7942bb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a292690830561c2c367027eec8a7942bb">&#9670;&#160;</a></span>frame</h2>
@@ -134,6 +134,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The observer place and time for which the transform is valid. </p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>.</p>
 
 </div>
 </div>
@@ -151,6 +153,8 @@ Public Attributes</h2></td></tr>
 
 <p>The original coordinate system. </p>
 
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>.</p>
+
 </div>
 </div>
 <a id="abce5e2fe6c3ef9f7507d7debe0c44897" name="abce5e2fe6c3ef9f7507d7debe0c44897"></a>
@@ -167,6 +171,8 @@ Public Attributes</h2></td></tr>
 
 <p>Transformation matrix elements. </p>
 
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#ad2081e123024609d3071b33b183502b7">novas_invert_transform()</a>, and <a class="el" href="novas_8h.html#a4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>.</p>
+
 </div>
 </div>
 <a id="a854e45563dcf436359f53e6a99b87788" name="a854e45563dcf436359f53e6a99b87788"></a>
@@ -182,6 +188,8 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The final coordinate system. </p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>.</p>
 
 </div>
 </div>

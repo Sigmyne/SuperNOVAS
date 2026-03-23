@@ -224,6 +224,23 @@ coordinates `eq` in some reference system, and want it to be converted to ICRS, 
 
 which is the same as `eq.to_system(Equinox::icrs())` or `eq.to_icrs()`.
 
+Many classes also define `==` and `!=` to check for equality. This is the same as calling their `.equals()` method 
+with the default precision, or it's negated form, respectively.
+
+`Time` and `CalendarDate` also have comparison operators defined: `<`, `>`, `<=`, and `>=`. The `<` and `>` always 
+evaluate at the full precision, whereas `<=` and `>=` follow the default precision of `==`. This makes `<=` fully
+consistent with `<` _or_ `==`, and `>=` with `>` _or_ `==`. So for two times instances `t1` and `t2`, you could
+check, e.g.:
+
+```cpp
+ if(t1 >= t2)
+   std::cout << "t1 is approximately the same or after t2.\n";
+ else if(t1 < t2)
+   std::cout << "t1 is before t2.\n";
+ else
+   std::cout << "either t1 or t2 is undefined / invalid.\n";
+```
+
 Last, but not least, all __SuperNOVAS__ classes can be evaluated as boolean types, to check validity (same as the
 `.is_valid()` method), as described a little further above.
 
@@ -242,6 +259,7 @@ works best for you.
  - [Calculating positions for a Solar-system source](#solsys-example-cpp)
  - [Going in reverse...](#reverse-place-cpp)
  - [Calculate rise, set, and transit times](#rise-set-transit-cpp)
+ - [Coordinate and velocity transforms (change of coordinate system)](#transforms-cpp)
 
 <a name="sidereal-example-cpp"></a>
 ### Calculating positions for a sidereal source
@@ -706,6 +724,90 @@ rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set m
 the above calls may still return a valid time, only without the guarantee that it is the time of the first such event 
 after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for 
 updates.
+
+
+<a name="transforms-cpp"></a>
+### Coordinate and velocity transforms (change of coordinate system)
+
+Equatorial coordinates are inherently linked to a choice of equator orientation (w.r.t. distant quasars), and the
+location of the equinox, the intersection of the equator of choice with the and ecliptic of date. The choice of equator
+is commonly referred as the _coordinate reference system_ (e.g. ICRS, CIRS, TOD, J200, B1950).  A such, equatorial
+coordinates (`supernovas::Equatorial` class) and ecliptic coordinates (`supernovas::Ecliptic` class) are always
+defined w.r.t. an equator and equinox, a.k.a. a reference system, of choice (`supernovas::Equinox` class).
+
+However, after such coordinates are instantiated for one choice of reference system, you can easily convert them to
+another, even if the other system is defined for a different date:
+
+```cpp
+ // Suppose you have ICRS equatorial coordinates
+ Equatorial eq = ...;
+
+ // convert them to say CIRS coordinates now...
+ Equatorial cirs_now = eq >> Equinox::cirs(Time::now(eop));
+ 
+ // or convert to B1950 coordinates
+ Equatorial b1950 = icrs.to_b1950();
+```
+
+The astrometric time definition for 'now' needs Earth Orientation Parameters (EOP), which are defined by the 
+`supernovas::EOP` class. The operator `>>` is a shorthand for `.to_system()`, and we could have used `.to_cirs(Time&)`
+as well. Similarly, the `.to_b1950()` is a shorthand for `.to_system(Equinox::b1950())`. These methods and
+operators can be used interchangeably.
+
+The same goes for ecliptic coordinates:
+
+```cpp
+ // define ecliptic coordinates in some reference system
+ Ecliptic ec = ...;
+ 
+ // convert to ICRS
+ Ecliptic ec_icrs = ec.to_icrs();
+ 
+ // convert to J2000
+ Ecliptic ec_j2000 = ec >> Equinox::j2000();
+```
+
+You can also easily convert between equatorial, ecliptic, and galactic coordinates (`supernovas::Galactic` class),
+e.g.:
+
+```cpp
+ // say you start with equatorial
+ Equatorial eq = ...;  
+ 
+ // convert to J2000 Ecliptic coordinates
+ Ecliptic ec2000 = eq.to_ecliptic().to_j2000();
+
+ // convert to Galactic coordinates
+ Galactic gal = eq.to_galactic();
+ 
+ // Let's convert back and check
+ if (eq != gal.equatorial())
+   std::cerr << "Oops, that was unexpected.\n";
+```
+ 
+ 
+Similarly, geometric (equatorial) positions and velocities (`supernovas::Geometric` class), defined for an observing 
+frame, are also defined w.r.t. an equator and equinox. They can be converted to another reference system type for the 
+same date, or else ICRS or J2000:
+
+```cpp
+ // Define some geometric positions and velocities in an observing frame
+ Geometric geom = ...;
+ 
+ // convert to ICRS positions / velocities
+ Geometric geom_icrs = geom.to_icrs();
+ 
+ // convert to J2000 position / velocities
+ Geometric geom_j2000 = geom.to_system(NOVAS_J2000);
+ 
+ // convert to pseudo Earth rotating TIRS positions / velocities
+ Geometric geom_tirs = geom >> NOVAS_TIRS;
+```
+
+Once again, the `>>` operator is just a shorthand for the `.to_system()` method, and there are system-specific 
+convenience methods (like `.to_icrs()`, or `to_mod()`) defined also. Note, that geometric coordinates can be defined
+not only for celestial equatorial systems, but also for the Earth-rotating reference systems TIRS and ITRS.
+
 
 
 -----------------------------------------------------------------------------

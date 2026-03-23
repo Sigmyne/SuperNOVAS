@@ -115,25 +115,43 @@ $(function(){initNavTree('classsupernovas_1_1Galactic.html','','classsupernovas_
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9904e23a518c9d50bfd1676578b9f0cb" id="r_a9904e23a518c9d50bfd1676578b9f0cb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9904e23a518c9d50bfd1676578b9f0cb">Galactic</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;<a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">longitude</a>, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;<a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">latitude</a>)</td></tr>
+<tr class="memdesc:a9904e23a518c9d50bfd1676578b9f0cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates new galactic coordinates with the specified components.  <br /></td></tr>
 <tr class="memitem:a1a2290d9f191ec86c905fa342f86b9e0" id="r_a1a2290d9f191ec86c905fa342f86b9e0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1a2290d9f191ec86c905fa342f86b9e0">Galactic</a> (const <a class="el" href="classsupernovas_1_1Position.html">Position</a> &amp;pos)</td></tr>
+<tr class="memdesc:a1a2290d9f191ec86c905fa342f86b9e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates new galactic coordinates with the specified cartesian position vector.  <br /></td></tr>
 <tr class="memitem:a3fe53146b3d4fe1c4a4faa555fa7575c" id="r_a3fe53146b3d4fe1c4a4faa555fa7575c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3fe53146b3d4fe1c4a4faa555fa7575c">Galactic</a> (const std::string &amp;<a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">longitude</a>, const std::string &amp;<a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">latitude</a>)</td></tr>
+<tr class="memdesc:a3fe53146b3d4fe1c4a4faa555fa7575c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates galactic coordinates with the specified string representations of the longitude and latitude coordinates, optionally specifying a system and a distance if needed.  <br /></td></tr>
 <tr class="memitem:a29c85315c630e50b29c218beec0c6195" id="r_a29c85315c630e50b29c218beec0c6195"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a29c85315c630e50b29c218beec0c6195">Galactic</a> (double longitude_rad, double latitude_rad)</td></tr>
+<tr class="memdesc:a29c85315c630e50b29c218beec0c6195"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates new galactic coordinates with the specified components.  <br /></td></tr>
 <tr class="memitem:a88e6b56ab310eb504ac5633dc7fa0cd4" id="r_a88e6b56ab310eb504ac5633dc7fa0cd4"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#a88e6b56ab310eb504ac5633dc7fa0cd4">distance_to</a> (const Galactic &amp;other) const</td></tr>
+<tr class="memdesc:a88e6b56ab310eb504ac5633dc7fa0cd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular distance of these galactic coordiantes to/from the specified other galactic coordinates.  <br /></td></tr>
 <tr class="memitem:a6cc82f8c0d204efe9ca4a9f803ea6267" id="r_a6cc82f8c0d204efe9ca4a9f803ea6267"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6cc82f8c0d204efe9ca4a9f803ea6267">equals</a> (const Galactic &amp;other, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;precision) const</td></tr>
+<tr class="memdesc:a6cc82f8c0d204efe9ca4a9f803ea6267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these galactic coordinates are the same as another, within the specified precision.  <br /></td></tr>
 <tr class="memitem:a9c84c27b2d4926fab89cfd13f8983ca4" id="r_a9c84c27b2d4926fab89cfd13f8983ca4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9c84c27b2d4926fab89cfd13f8983ca4">equals</a> (const Galactic &amp;other, double precision_rad=1.0 *<a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">Unit::uas</a>) const</td></tr>
+<tr class="memdesc:a9c84c27b2d4926fab89cfd13f8983ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these galactic coordinates are the same as another, within the specified precision.  <br /></td></tr>
 <tr class="memitem:afc45bc27fb00d28df964ad23cef41bcb" id="r_afc45bc27fb00d28df964ad23cef41bcb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afc45bc27fb00d28df964ad23cef41bcb">operator!=</a> (const Galactic &amp;other) const</td></tr>
+<tr class="memdesc:afc45bc27fb00d28df964ad23cef41bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these galactic coordinates differ from another, by more than 1 uas.  <br /></td></tr>
 <tr class="memitem:a0f9bf04fae88e2f67ec4ffc727a300a0" id="r_a0f9bf04fae88e2f67ec4ffc727a300a0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0">operator==</a> (const Galactic &amp;other) const</td></tr>
+<tr class="memdesc:a0f9bf04fae88e2f67ec4ffc727a300a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these galactic coordinates are the same as another, within 1 &mu;as.  <br /></td></tr>
 <tr class="memitem:ga3b6d652ed174bcf1be08cae63b061b21" id="r_ga3b6d652ed174bcf1be08cae63b061b21"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Ecliptic.html">Ecliptic</a>&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga3b6d652ed174bcf1be08cae63b061b21">to_ecliptic</a> () const</td></tr>
+<tr class="memdesc:ga3b6d652ed174bcf1be08cae63b061b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these galactic coordinates to equivalent ICRS ecliptic coordinates.  <br /></td></tr>
 <tr class="memitem:ga730750345a8ea40b0af9e5b9c60bfd99" id="r_ga730750345a8ea40b0af9e5b9c60bfd99"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Equatorial.html">Equatorial</a>&#160;</td><td class="memItemRight"><a class="el" href="group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99">to_equatorial</a> () const</td></tr>
+<tr class="memdesc:ga730750345a8ea40b0af9e5b9c60bfd99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these galactic coordinates to equivalent ICRS equatorial coordinates.  <br /></td></tr>
 <tr class="memitem:a2a1d58fe6cb7610c91d11517c3b6c021" id="r_a2a1d58fe6cb7610c91d11517c3b6c021"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a2a1d58fe6cb7610c91d11517c3b6c021">to_string</a> (enum <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40e">novas_separator_type</a> separator=<a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a>, int decimals=3) const override</td></tr>
+<tr class="memdesc:a2a1d58fe6cb7610c91d11517c3b6c021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of these galactic coordinates, optionally with the specified DMS sepatators for the angles, and the desired decimal places for the seconds.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Spherical"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Spherical')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Spherical.html">supernovas::Spherical</a></td></tr>
 <tr class="memitem:a50902496f54614a2ef3594191b6404a0 inherit pub_methods_classsupernovas_1_1Spherical" id="r_a50902496f54614a2ef3594191b6404a0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#a50902496f54614a2ef3594191b6404a0">Spherical</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;<a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">longitude</a>, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;<a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">latitude</a>)</td></tr>
+<tr class="memdesc:a50902496f54614a2ef3594191b6404a0 inherit pub_methods_classsupernovas_1_1Spherical"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates new spherical coordinates with the specified components.  <br /></td></tr>
 <tr class="memitem:ab09d97244a4c1a2bdc9bed69b373a972 inherit pub_methods_classsupernovas_1_1Spherical" id="r_ab09d97244a4c1a2bdc9bed69b373a972"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#ab09d97244a4c1a2bdc9bed69b373a972">Spherical</a> (const std::string &amp;<a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">longitude</a>, const std::string &amp;<a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">latitude</a>)</td></tr>
+<tr class="memdesc:ab09d97244a4c1a2bdc9bed69b373a972 inherit pub_methods_classsupernovas_1_1Spherical"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates spherical coordinates with the specified string representations of the longitude and latitude coordinates, optionally specifying a system and a distance if needed.  <br /></td></tr>
 <tr class="memitem:a56058332425eb69e7d4ae75146d20fe9 inherit pub_methods_classsupernovas_1_1Spherical" id="r_a56058332425eb69e7d4ae75146d20fe9"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#a56058332425eb69e7d4ae75146d20fe9">Spherical</a> (double longitude_rad, double latitude_rad)</td></tr>
+<tr class="memdesc:a56058332425eb69e7d4ae75146d20fe9 inherit pub_methods_classsupernovas_1_1Spherical"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates new spherical coordinates with the specified components.  <br /></td></tr>
 <tr class="memitem:a265ae4eb65d111f2ee41ee929d980047 inherit pub_methods_classsupernovas_1_1Spherical" id="r_a265ae4eb65d111f2ee41ee929d980047"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#a265ae4eb65d111f2ee41ee929d980047">~Spherical</a> ()</td></tr>
 <tr class="memitem:a377c70d3c9454c6a6b6eb05c023d2fc2 inherit pub_methods_classsupernovas_1_1Spherical" id="r_a377c70d3c9454c6a6b6eb05c023d2fc2"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">latitude</a> () const</td></tr>
+<tr class="memdesc:a377c70d3c9454c6a6b6eb05c023d2fc2 inherit pub_methods_classsupernovas_1_1Spherical"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the latitude coordinate as an angle.  <br /></td></tr>
 <tr class="memitem:a62d5a5d8264d0e94db83afcf55a1d285 inherit pub_methods_classsupernovas_1_1Spherical" id="r_a62d5a5d8264d0e94db83afcf55a1d285"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">longitude</a> () const</td></tr>
+<tr class="memdesc:a62d5a5d8264d0e94db83afcf55a1d285 inherit pub_methods_classsupernovas_1_1Spherical"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the longitude coordinate as an angle.  <br /></td></tr>
 <tr class="memitem:afa7cdecc61619598f88cdbbedcb257c7 inherit pub_methods_classsupernovas_1_1Spherical" id="r_afa7cdecc61619598f88cdbbedcb257c7"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Position.html">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#afa7cdecc61619598f88cdbbedcb257c7">xyz</a> (const <a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a> &amp;distance) const</td></tr>
+<tr class="memdesc:afa7cdecc61619598f88cdbbedcb257c7 inherit pub_methods_classsupernovas_1_1Spherical"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the cartesian position vector corresponding to these spherical coordinates.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -142,7 +160,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:afd06ca52a55413725e193ef9f1080e84" id="r_afd06ca52a55413725e193ef9f1080e84"><td class="memItemLeft">static const Galactic &amp;&#160;</td><td class="memItemRight"><a class="el" href="#afd06ca52a55413725e193ef9f1080e84">undefined</a> ()</td></tr>
+<tr class="memitem:a89c2957acd5e69edea704e8c7559d77d" id="r_a89c2957acd5e69edea704e8c7559d77d"><td class="memItemLeft">static const Galactic &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a89c2957acd5e69edea704e8c7559d77d">undefined</a> ()</td></tr>
+<tr class="memdesc:a89c2957acd5e69edea704e8c7559d77d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined standard invalid galactic coordinates.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -150,6 +169,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a80ca9d6552fcfc6564a519c7e289ce25 inherit pro_methods_classsupernovas_1_1Spherical" id="r_a80ca9d6552fcfc6564a519c7e289ce25"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#a80ca9d6552fcfc6564a519c7e289ce25">Spherical</a> ()</td></tr>
 <tr class="memdesc:a80ca9d6552fcfc6564a519c7e289ce25 inherit pro_methods_classsupernovas_1_1Spherical"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates invalid spherical coordinates.  <br /></td></tr>
 <tr class="memitem:a3f83a7b7c79a6f71e52fb8de35225a7c inherit pro_methods_classsupernovas_1_1Spherical" id="r_a3f83a7b7c79a6f71e52fb8de35225a7c"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#a3f83a7b7c79a6f71e52fb8de35225a7c">distance_to</a> (const <a class="el" href="classsupernovas_1_1Spherical.html#a80ca9d6552fcfc6564a519c7e289ce25">Spherical</a> &amp;other) const</td></tr>
+<tr class="memdesc:a3f83a7b7c79a6f71e52fb8de35225a7c inherit pro_methods_classsupernovas_1_1Spherical"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular distance of these spherical coordiantes to/from the specified other spherical coordinates.  <br /></td></tr>
 <tr class="memitem:ad62db6fc114b95c781dc63750d5708e5 inherit pro_methods_classsupernovas_1_1Spherical" id="r_ad62db6fc114b95c781dc63750d5708e5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5">equals</a> (const <a class="el" href="classsupernovas_1_1Spherical.html#a80ca9d6552fcfc6564a519c7e289ce25">Spherical</a> &amp;other, double precision) const</td></tr>
 <tr class="inherit_header pro_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating" id="r_aeabd2d0135eafd2a6a55447054ff81f7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aeabd2d0135eafd2a6a55447054ff81f7">Validating</a> ()</td></tr>
@@ -180,6 +200,17 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Instantiates new galactic coordinates with the specified components. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">longitude_rad</td><td>[rad] galactic longitude coordinate </td></tr>
+    <tr><td class="paramname">latitude_rad</td><td>[rad] galactic latitude coordinate </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a80ca9d6552fcfc6564a519c7e289ce25">supernovas::Spherical::Spherical()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
 </div>
 </div>
 <a id="a9904e23a518c9d50bfd1676578b9f0cb" name="a9904e23a518c9d50bfd1676578b9f0cb"></a>
@@ -201,7 +232,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, and <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>.</p>
+<p>Instantiates new galactic coordinates with the specified components. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285" title="Returns the longitude coordinate as an angle.">longitude</a></td><td>galactic longitude coordinate </td></tr>
+    <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2" title="Returns the latitude coordinate as an angle.">latitude</a></td><td>galactic latitude coordinate </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a80ca9d6552fcfc6564a519c7e289ce25">supernovas::Spherical::Spherical()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, and <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>.</p>
 
 </div>
 </div>
@@ -223,6 +263,23 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Instantiates galactic coordinates with the specified string representations of the longitude and latitude coordinates, optionally specifying a system and a distance if needed. </p>
+<p>After instantiation, you should check that the resulting coordinates are valid, e.g. as:</p>
+<div class="fragment"><div class="line">Galactic coords = Galactic(..., ...);</div>
+<div class="line"><span class="keywordflow">if</span>(!coords.<a class="code hl_function" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a>()) {</div>
+<div class="line">  <span class="comment">// oops, looks like the angles could not be parsed...</span></div>
+<div class="line">  <span class="keywordflow">return</span>;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:243</div></div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285" title="Returns the longitude coordinate as an angle.">longitude</a></td><td>string representation of the longitude coordinate in DMS or a decimnal degrees. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2" title="Returns the latitude coordinate as an angle.">latitude</a></td><td>string representation of the declination coordinate as DMS or decimal degrees.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> for details on string representation that can be parsed. </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, and <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>.</p>
 
@@ -251,6 +308,16 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Instantiates new galactic coordinates with the specified cartesian position vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td><em>xyz</em> position vector in the galactic coordinate system. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a80ca9d6552fcfc6564a519c7e289ce25">supernovas::Spherical::Spherical()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -268,6 +335,17 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns the angular distance of these galactic coordiantes to/from the specified other galactic coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the reference galactic coordinates </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the angular distance of these coordinates to/from the argument. </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a3f83a7b7c79a6f71e52fb8de35225a7c">supernovas::Spherical::distance_to()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>
@@ -290,6 +368,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if these galactic coordinates are the same as another, within the specified precision. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the reference galactic coordinates </td></tr>
+    <tr><td class="paramname">precision</td><td>(optional) precision for equality test (default: 1 &mu;as). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if these coordinates are the same as the reference within the precision, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0" title="Checks if these galactic coordinates are the same as another, within 1 μas.">operator==()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a9c84c27b2d4926fab89cfd13f8983ca4">equals()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
+
 </div>
 </div>
 <a id="a9c84c27b2d4926fab89cfd13f8983ca4" name="a9c84c27b2d4926fab89cfd13f8983ca4"></a>
@@ -306,12 +397,25 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>precision_rad</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1.0&#160;*<a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">Unit::uas</a></span>&#160;) const</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>precision_rad</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1.0&#160;*&#160;<a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">Unit::uas</a></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">supernovas::Unit::uas</a>.</p>
+<p>Checks if these galactic coordinates are the same as another, within the specified precision. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the reference galactic coordinates </td></tr>
+    <tr><td class="paramname">precision_rad</td><td>[rad] (optional) precision for equality test (default: 1 uas). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if these coordinates are the same as the reference within the precision, or else <span class="tt">false</span>.</dd></dl>
+<p><a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0" title="Checks if these galactic coordinates are the same as another, within 1 μas.">operator==()</a> </p>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5">supernovas::Spherical::equals()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a6cc82f8c0d204efe9ca4a9f803ea6267">equals()</a>, <a class="el" href="#afc45bc27fb00d28df964ad23cef41bcb">operator!=()</a>, and <a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0">operator==()</a>.</p>
 
 </div>
 </div>
@@ -330,6 +434,18 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if these galactic coordinates differ from another, by more than 1 uas. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the reference galactic coordinates </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if these coordinates differ from the reference, by more than 1 &mu;as, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0" title="Checks if these galactic coordinates are the same as another, within 1 μas.">operator==()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a9c84c27b2d4926fab89cfd13f8983ca4">equals()</a>.</p>
+
 </div>
 </div>
 <a id="a0f9bf04fae88e2f67ec4ffc727a300a0" name="a0f9bf04fae88e2f67ec4ffc727a300a0"></a>
@@ -346,6 +462,18 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if these galactic coordinates are the same as another, within 1 &mu;as. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the reference galactic coordinates </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if these coordinates are the same as the reference within 1 &mu;as, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#afc45bc27fb00d28df964ad23cef41bcb" title="Checks if these galactic coordinates differ from another, by more than 1 uas.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a9c84c27b2d4926fab89cfd13f8983ca4">equals()</a>.</p>
 
 </div>
 </div>
@@ -376,14 +504,24 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classsupernovas_1_1Spherical.html#a14429fab36e801361871b69782d4ada3">supernovas::Spherical</a>.</p>
+<p>Returns a string representation of these galactic coordinates, optionally with the specified DMS sepatators for the angles, and the desired decimal places for the seconds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">separator</td><td>(optional) the type of separator to use for the DMS representation of angles (default: units and spaces). </td></tr>
+    <tr><td class="paramname">decimals</td><td>(optional) the number of decimal places to print for the seconds (default: 3) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the human-readable string representation of these <a class="el" href="classsupernovas_1_1Galactic.html" title="Galactic coordinates (l, b), representing the direction on the sky, relative to the Galactic plane an...">Galactic</a> coordinates. </dd></dl>
 
-<p class="reference">References <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a>.</p>
+<p>Reimplemented from <a class="el" href="classsupernovas_1_1Spherical.html#a50b5dc34240686d2eaf63c483e839277">supernovas::Spherical</a>.</p>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a50b5dc34240686d2eaf63c483e839277">supernovas::Spherical::to_string()</a>.</p>
 
 </div>
 </div>
-<a id="afd06ca52a55413725e193ef9f1080e84" name="afd06ca52a55413725e193ef9f1080e84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd06ca52a55413725e193ef9f1080e84">&#9670;&#160;</a></span>undefined()</h2>
+<a id="a89c2957acd5e69edea704e8c7559d77d" name="a89c2957acd5e69edea704e8c7559d77d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89c2957acd5e69edea704e8c7559d77d">&#9670;&#160;</a></span>undefined()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -404,6 +542,12 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns a reference to a statically defined standard invalid galactic coordinates. </p>
+<p>These invalid coordinates may be used inside any object that is invalid itself.</p>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the static standard invalid coordinates. </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">supernovas::Equatorial::to_galactic()</a>.</p>
 
 </div>
 </div>
