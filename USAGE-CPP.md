@@ -4,6 +4,7 @@ This guide is specifically for using __SuperNOVAS__ primarily as a C++11 library
 [using the C99 API](USAGE-C99.md). The links below let you jump to the relevant sections:
 
  - [Building your application with SuperNOVAS (C++)](#integration-cpp)
+ - [C++ Fundametals](#fundamentals-cpp)
  - [Example C++ usage](#examples-cpp)
 
 __SuperNOVAS__ is a C99 library at its core. If you are looking for maximum speed, or want to use __SuperNOVAS__ on 
@@ -70,20 +71,14 @@ Add the appropriate bits from below to the `CMakeLists.txt` file of your applica
 
 -----------------------------------------------------------------------------
 
-<a name="examples-cpp"></a>
-## Example C++ usage
-
- - [Fundametals](#fundamentals-cpp)
- - [Calculating positions for a sidereal source](#sidereal-example-cpp)
- - [Calculating positions for a Solar-system source](#solsys-example-cpp)
-
 <a name="fundamentals-cpp"></a>
-### Fundamentals
+### C++ Fundamentals
 
  - [Namespace](#namespace-cpp)
  - [Validation](#validation-cpp)
  - [Immutable instances](#immutable-cpp)
  - [Classes don't reference external objects internally](#internal-copies-cpp)
+ - [Operator overloading](#operators-cpp)
 
 Before we dive into specific examples for using the __SuperNOVAS__ C++ API, you should know of the generic
 features and design principles that underly the C++ implementation.
@@ -176,7 +171,6 @@ vs. LSR velocity vs. redshift, or distance vs. parallax). The best practice for 
 once in a single-thread, and never attempt to further modify them once they are passed into a multi-threaded 
 environment.
 
-
 <a name="internal-copies-cpp"></a>
 #### Classes don't reference external objects internally
 
@@ -186,6 +180,68 @@ safety. Thus, even if a `supernovas::CatalogEntry` object is mutable, once a `su
 from it, that source will store a copy of the entry internally. So, even if the entry is modified afterwards, the 
 source stays immutable with the parameters that were used when it was instantiated.
 
+
+<a name="operators-cpp"></a>
+#### Operator overloading
+
+Several __SuperNOVAS__ classes override arithmetic operators (often `+` and `-`, and sometimes `*`), but only when 
+this is physically meaningful. For example, you can add and difference position or velocity vectors: for positions
+`a` and `b`, `a + b` is the two positions superimposed, `a - b` is the difference vector of the same type. For 
+velocities the addition and subtraction follows the relativistic formulae, e.g. for velocity vectors `v1` and `v2`: 
+
+```cpp
+ Velocity dv = v2 - v1;  // Relativistic difference of two velocity vectors.
+```
+
+You can also add or subtract intervals around `Time` instances, for `Time t`, you might define: 
+
+```cpp
+ Time t1 = t + 1.1 * Unit::min;  // offset time (in the same timescale)
+``` 
+
+This works for small intervals so long as the Earth Orientation Parameters (leap seconds and UT1 - UTC time 
+difference) remain the same, _and_ the timescales also match up (e.g. both `t` and the offset time are in say UTC). 
+The above is the same as `t + Interval(1.1 * Unit::min)` or `t.shifted(1.1 * Unit::min)` or 
+`t.shifted(Interval(1.1 * Unit::min))`.
+
+You can also multiply a `Velocity` or `ScalarVelocity` (`rv`) with a time interval on either side to get distance 
+travelled, e.g.: 
+
+```cpp
+ Coordinate dr = rv * Interval(5.0 * Unit::s);  // distance travelled
+```
+
+is the same as `Interval(5.0 * Unit::s) * v`, and is the same as `v.travel(5.0 * Unit::s)` or 
+`v.travel(Interval(5.0 * Unit::s))`.
+
+Celestial coordinates, which can be expressed in different reference systems, can be transformed to another system
+with the `>>` operator, which is just a shorthand for the `.to_system()` method. E.g., if you have `Equatorial`
+coordinates `eq` in some reference system, and want it to be converted to ICRS, you might write: 
+
+```cpp
+ Equatorial icrs = eq >> Equinox::icrs();  // ICRS coordinates
+```
+
+which is the same as `eq.to_system(Equinox::icrs())` or `eq.to_icrs()`.
+
+Last, but not least, all __SuperNOVAS__ classes can be evaluated as boolean types, to check validity (same as the
+`.is_valid()` method), as described a little further above.
+
+It is up to you whether your coding style prefers using the overloaded operators or the equivalent methods. Do what
+works best for you.
+
+
+
+
+-----------------------------------------------------------------------------
+
+<a name="examples-cpp"></a>
+## Example C++ usage
+
+ - [Calculating positions for a sidereal source](#sidereal-example-cpp)
+ - [Calculating positions for a Solar-system source](#solsys-example-cpp)
+ - [Going in reverse...](#reverse-place-cpp)
+ - [Calculate rise, set, and transit times](#rise-set-transit-cpp)
 
 <a name="sidereal-example-cpp"></a>
 ### Calculating positions for a sidereal source
@@ -199,8 +255,7 @@ galactic molecular cloud, or a distant quasar.
  - [Set up the observing frame](#observing-frame-cpp)
  - [Calculate an apparent place on sky](#apparent-place-cpp)
  - [Calculate azimuth and elevation angles at the observing location](#horizontal-place-cpp)
- - [Going in reverse...](#reverse-place-cpp)
- - [Calculate rise, set, and transit times](#rise-set-transit-cpp)
+
 
 <a name="specify-object-cpp"></a>
 #### Specify the object of interest
@@ -428,102 +483,6 @@ Earth based observer (otherwise, you'll get an invalid result):
  hor = app.to_horizontal().to_refracted(novas_optical_refraction, weather);
 ```
 
-<a name="reverse-place-cpp"></a>
-#### Going in reverse...
-
-Of course, __SuperNOVAS__ allows you to go in reverse, for example from an observed Az/El position all the way to
-proper ICRS R.A./Dec coordinates, or a geometric place.
-
-E.g., let's assume you start with horizontal coorinates that measured at your observing location:
-
-```cpp
- Horizontal hor = ...;      // observer azimuth and elevation angles
-```
-
-If needed correct for atmospheric refraction.
-
-```cpp
- Weather weather(...); // define local weather parameters for the refraction (if needed)
- 
- hor = hor.to_unrefracted(novas_optical_refraction, weather);
-```
-  
-Noew you can calculate an apparent place on the celestial sphere given your observing frame (precise location and time
-of observation).
-
-```cpp
- Apparent app = hor.to_apparent(frame);
-```
-
-or,
-
-```cpp
- Apparent app = hor.to_apparent(frame, ScalarVelocity(-14.2 * Unit::km / Unit::s), Distance(43.6 * Unit::pc);
-```
-  
-Note, that when radial velocity and/or distance is not explicitly defined, they are assumed as 0 (km/s) and 1 Gpc, 
-respectively. Next, you can convert the apparent place to a geometric position, referenced to the time when the 
-observed light originated from the source (at the distance defined or assumed):
-
-```cpp
- AstrometricPosition pos = app.astrometric_position();
-```
-
-Or, calculate the geometric position relative to the SSB instead...
-
-```cpp
- AstrometricPosition ssb_pos = app.astrometric_position().referenced_to_ssb();
-```
-
-And finally, you can calculate nominal SSB-based ICRS coordinates as:
-
-```cpp
- Equatorial icrs = ssb_pos.as_equatorial().to_icrs();
-```
-
-
-<a name="rise-set-transit-cpp"></a>
-#### Calculate rise, set, and transit times
-
-You may be interested to know when sources rise above or set below some specific elevation angle, or at what time they 
-appear to transit at the observer location. __SuperNOVAS__ has routines to help you with that too.
-
-Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are 
-effectively tied to an observer frame. Let's assume you have defined a source and an observing frame:
-
-```cpp
- Frame frame = ...;        // Earth-based observer location and lower-bound time of interest.
- Source source = ...;      // Source of interest
-```
-
-Let's calculate the time when source rises above 30 degrees of elevation next *after* the observing time of the frame, 
-given the NOVAS optical refraction model.
-
-```cpp
- Weather weather = ...;    // Define local weather parameters... 
- 
- Time t_rise = source.rises_above(30.0 * Unit::deg, frame, novas_optical_refraction, weather);
-```
-
-Or, calculate the time the source transits after the frame's time of observation:
-
-```cpp
- Time t_transit = source.transits_in(frame);
-```
- 
-Or, calculate the next time when source sets below 30 degrees of elevation, not accounting for refraction.
-
-```cpp
- Time t_set = source.sets_below(30.0 * Unit::deg, frame);
-```
-
-Note, that in the current implementation these calls are not well suited sources that are at or within the 
-geostationary orbit, such as such as Low Earth Orbit satellites (LEOs), geostationary satellites (which never really 
-rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set multiple times per day. For the latter, 
-the above calls may still return a valid time, only without the guarantee that it is the time of the first such event 
-after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for 
-updates.
-
 
 <a name="solsys-example-cpp"></a>
 ### Calculating positions for a Solar-system source
@@ -650,6 +609,103 @@ Or, you can use such orbitals (implicitly) to calculate approximate positions an
 ```
 
 Keep in mind that the planet and Moon orbitals are not suitable for precision applications.
+
+
+<a name="reverse-place-cpp"></a>
+### Going in reverse...
+
+Of course, __SuperNOVAS__ allows you to go in reverse, for example from an observed Az/El position all the way to
+proper ICRS R.A./Dec coordinates, or a geometric place.
+
+E.g., let's assume you start with horizontal coorinates that measured at your observing location:
+
+```cpp
+ Horizontal hor = ...;      // observer azimuth and elevation angles
+```
+
+If needed correct for atmospheric refraction.
+
+```cpp
+ Weather weather(...); // define local weather parameters for the refraction (if needed)
+ 
+ hor = hor.to_unrefracted(novas_optical_refraction, weather);
+```
+  
+Noew you can calculate an apparent place on the celestial sphere given your observing frame (precise location and time
+of observation).
+
+```cpp
+ Apparent app = hor.to_apparent(frame);
+```
+
+or,
+
+```cpp
+ Apparent app = hor.to_apparent(frame, ScalarVelocity(-14.2 * Unit::km / Unit::s), Distance(43.6 * Unit::pc);
+```
+  
+Note, that when radial velocity and/or distance is not explicitly defined, they are assumed as 0 (km/s) and 1 Gpc, 
+respectively. Next, you can convert the apparent place to a geometric position, referenced to the time when the 
+observed light originated from the source (at the distance defined or assumed):
+
+```cpp
+ AstrometricPosition pos = app.astrometric_position();
+```
+
+Or, calculate the geometric position relative to the SSB instead...
+
+```cpp
+ AstrometricPosition ssb_pos = app.astrometric_position().referenced_to_ssb();
+```
+
+And finally, you can calculate nominal SSB-based ICRS coordinates as:
+
+```cpp
+ Equatorial icrs = ssb_pos.as_equatorial().to_icrs();
+```
+
+
+<a name="rise-set-transit-cpp"></a>
+### Calculate rise, set, and transit times
+
+You may be interested to know when sources rise above or set below some specific elevation angle, or at what time they 
+appear to transit at the observer location. __SuperNOVAS__ has routines to help you with that too.
+
+Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are 
+effectively tied to an observer frame. Let's assume you have defined a source and an observing frame:
+
+```cpp
+ Frame frame = ...;        // Earth-based observer location and lower-bound time of interest.
+ Source source = ...;      // Source of interest
+```
+
+Let's calculate the time when source rises above 30 degrees of elevation next *after* the observing time of the frame, 
+given the NOVAS optical refraction model.
+
+```cpp
+ Weather weather = ...;    // Define local weather parameters... 
+ 
+ Time t_rise = source.rises_above(30.0 * Unit::deg, frame, novas_optical_refraction, weather);
+```
+
+Or, calculate the time the source transits after the frame's time of observation:
+
+```cpp
+ Time t_transit = source.transits_in(frame);
+```
+ 
+Or, calculate the next time when source sets below 30 degrees of elevation, not accounting for refraction.
+
+```cpp
+ Time t_set = source.sets_below(30.0 * Unit::deg, frame);
+```
+
+Note, that in the current implementation these calls are not well suited sources that are at or within the 
+geostationary orbit, such as such as Low Earth Orbit satellites (LEOs), geostationary satellites (which never really 
+rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set multiple times per day. For the latter, 
+the above calls may still return a valid time, only without the guarantee that it is the time of the first such event 
+after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for 
+updates.
 
 
 -----------------------------------------------------------------------------
