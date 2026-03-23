@@ -97,7 +97,7 @@ jobs:
     - name: Copy API documentation
       run: |
         cp -a doc/c99/html site/doc/
-        cp -a doc/cpp/html site/doc/html/cpp
+        cp -a doc/cpp/html/* site/doc/html/cpp/
         
     - name: Assert site/resources/
       run: mkdir -p site/resources
