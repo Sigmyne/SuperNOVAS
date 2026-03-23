@@ -112,7 +112,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-CPP.html','',''); }
   <div class="headertitle"><div class="title">C++ Usage </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md28"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md49"></a></p>
 <p>This guide is specifically for using <b>SuperNOVAS</b> primarily as a C++11 library. There is a separate guide for <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">using the C99 API</a>. The links below let you jump to the relevant sections:</p>
 <ul>
 <li><a class="el" href="#integration-cpp" title="integration-cpp">Building your application with SuperNOVAS (C++)</a></li>
@@ -135,7 +135,7 @@ Building your application with SuperNOVAS (C++)</h1>
 <li><a class="el" href="#cmake-application-cpp" title="cmake-application-cpp">Using CMake</a></li>
 </ul>
 <p><a class="anchor" id="makefile-application-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md77"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md78"></a>
 Using a GNU <span class="tt">Makefile</span></h2>
 <details >
 <summary >
@@ -150,7 +150,7 @@ Details</summary>
 </div><!-- fragment --><p></p>
 </details>
 <p><a class="anchor" id="cmake-application-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md78"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md79"></a>
 Using CMake</h2>
 <details >
 <summary >
@@ -164,7 +164,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="fundamentals-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
 C++ Fundamentals</h2>
 <ul>
 <li><a class="el" href="#namespace-cpp" title="namespace-cpp">Namespace</a></li>
@@ -194,7 +194,7 @@ Namespace</h3>
 <div class="line">  ...</div>
 <div class="line">}</div>
 </div><!-- fragment --><p><a class="anchor" id="validation-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
 Validation</h3>
 <p>C++ does not have runtime exceptions the same way as Python or Java, which can be caught. While C++17 introduced <span class="tt">std::optional</span> types that can be used to return with or without a valid data, <b>SuperNOVAS</b> does not use these, because <em>(a)</em> the optionals are not supported on Apple and Windows (in 2026), and <em>(b)</em> they don't do anything for constructors.</p>
 <p>Instead all <b>SuperNOVAS</b> classes are based on a <span class="tt">supernovas::Validating</span> base class, providing an <span class="tt">is_valid()</span> method. All subclasses (that is all <b>SuperNOVAS</b> classes) sanity check their data as part of their constructor. And, mutable classes sanity check every time they are modified as well. The checks typically include flagging NaNs and infinite values (unless they are explicitly allowed), enum values outside of their normal range (yes the compiler checks for these, but those checks can be easily bypassed), and whatever else is necessary to ensure that the objects contain fully usable data.</p>
@@ -212,16 +212,16 @@ Validation</h3>
 <div class="line">}</div>
 </div><!-- fragment --><p>And if in doubt as to why your object is invalid, you can always turn on debugging with <span class="tt">novas_debug(NOVAS_DEBUG_ON)</span>, at least in the relevant section of your code. <b>SuperNOVAS</b> will provide error descriptions and call traces every time an invalid class instance is created, and when methods create invalid objects themselves.</p>
 <p><a class="anchor" id="immutable-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
 Immutable instances</h3>
 <p>Almost all classes of the <b>SuperNOVAS</b> library use immutable instances. The immutability makes these <b>SuperNOVAS</b> classes inherently thread safe. Given they are immutable, it is impossible for one thread to modify the class while another accesses it concurrently. No mutexes are needed for these.</p>
 <p>The exceptions to immutabilty are <span class="tt">supernovas::CatalogEntry</span>, <span class="tt">supernovas::Orbital</span> and <span class="tt">supernovas::OrbitalSystem</span>. These classes have too many possible parameters, and also alternate parametrizations. It simply does not make sense to define everything in a constuctor. Rather, these classes take a minimalist approach to the constructor, which define the most essential parameters only. Then, you can define additional (optional) parameters using a builder pattern (see for example the sections on defining a <a class="el" href="#specify-object-cpp" title="specify-object-cpp">catalog source</a> or an <a class="el" href="#orbital-sources-cpp" title="orbital-sources-cpp">orbital source</a>). This approach also handles alternate parametrizations (e.g. radial velocity vs. LSR velocity vs. redshift, or distance vs. parallax). The best practice for these mutable types is to define them once in a single-thread, and never attempt to further modify them once they are passed into a multi-threaded environment.</p>
 <p><a class="anchor" id="internal-copies-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
 Classes don't reference external objects internally</h3>
 <p>The <b>SuperNOVAS</b> classes never store references to external objects internally. Instead, they always store copies of the parameters that were supplied. While this may result in a small computational overhead, it adds to the thread safety. Thus, even if a <span class="tt">supernovas::CatalogEntry</span> object is mutable, once a <span class="tt">supernovas::CatalogSource</span> is created from it, that source will store a copy of the entry internally. So, even if the entry is modified afterwards, the source stays immutable with the parameters that were used when it was instantiated.</p>
 <p><a class="anchor" id="operators-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md89"></a>
 Operator overloading</h3>
 <p>Several <b>SuperNOVAS</b> classes override arithmetic operators (often <span class="tt">+</span> and <span class="tt">-</span>, and sometimes <span class="tt">*</span>), but only when this is physically meaningful. For example, you can add and difference position or velocity vectors: for positions <span class="tt">a</span> and <span class="tt">b</span>, <span class="tt">a + b</span> is the two positions superimposed, <span class="tt">a - b</span> is the difference vector of the same type. For velocities the addition and subtraction follows the relativistic formulae, e.g. for velocity vectors <span class="tt">v1</span> and <span class="tt">v2</span>:</p>
 <div class="fragment"><div class="line">Velocity dv = v2 - v1;  <span class="comment">// Relativistic difference of two velocity vectors.</span></div>
@@ -282,9 +282,9 @@ Unit::hour_angle</span>, <span class="tt">-26.323094 * Unit::deg</span>), or <sp
 <div class="fragment"><div class="line"><span class="keyword">auto</span> source = entry.to_source();</div>
 </div><!-- fragment --><p>The <span class="tt">supernovas::Source</span> class can represent different astronomical objects, and accordingly has different subclasses. Specifically, <span class="tt">entry.to_source()</span> above returns a <span class="tt">supernovas::CatalogSource</span>, but thanks to the <span class="tt">auto</span> keyword, we don't really need to know what subclass of <span class="tt">Source</span> is actually being created here.</p>
 <p><a class="anchor" id="specify-observer-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md94"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md95"></a>
 Specify the observer location</h3>
-<h4 class="doxsection"><a class="anchor" id="autotoc_md95"></a>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md97"></a>
 A. Earth-based observer location</h4>
 <p>Next, we define the location where we observe from. Let's assume we have a GPS location, such as 50.7374 deg N, 7.0982 deg E, 60m elevation:</p>
 <div class="fragment"><div class="line"><span class="comment">// Specify the location we are observing from, e.g. a GPS / WGS84 location</span></div>
@@ -466,7 +466,7 @@ Going in reverse...</h2>
 </div><!-- fragment --><p>And finally, you can calculate nominal SSB-based ICRS coordinates as:</p>
 <div class="fragment"><div class="line">Equatorial icrs = ssb_pos.as_equatorial().to_icrs();</div>
 </div><!-- fragment --><p><a class="anchor" id="rise-set-transit-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md111"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md114"></a>
 Calculate rise, set, and transit times</h2>
 <p>You may be interested to know when sources rise above or set below some specific elevation angle, or at what time they appear to transit at the observer location. <b>SuperNOVAS</b> has routines to help you with that too.</p>
 <p>Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are effectively tied to an observer frame. Let's assume you have defined a source and an observing frame:</p>

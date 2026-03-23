@@ -22,7 +22,7 @@ var searchData=
   ['notes_20on_20precision_19',['Notes on precision',['../index.html#autotoc_md28',1,'']]],
   ['novas_20c_203_201_20',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['novas_20c_203_201_20issues_21',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
-  ['novas_20c_20api_22',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
+  ['novas_20c_20api_22',['Refinements to the NOVAS C API',['../index.html#autotoc_md38',1,'']]],
   ['novas_2dcalceph_2eh_23',['novas-calceph.h',['../novas-calceph_8h.html',1,'']]],
   ['novas_2dcspice_2eh_24',['novas-cspice.h',['../novas-cspice_8h.html',1,'']]],
   ['novas_2eh_25',['novas.h',['../novas_8h.html',1,'']]],
