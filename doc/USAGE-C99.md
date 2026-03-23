@@ -7,8 +7,8 @@ This guide is specifically for using __SuperNOVAS__ as a C99 library. There is a
  - [Example C99 usage](#examples-c99)
  - [Tips &amp; Tricks (C99)](#tips-c99)
 
-__SuperNOVAS__ is a C99 library at its core. If you are looking for maximum speed, or want to use SuperNOVAS on older 
-platforms, the C99 API is there for you. 
+__SuperNOVAS__ is a C99 library at its core. If you are looking for maximum speed, or want to use __SuperNOVAS__ on 
+older platforms, the C99 API is there for you. 
 
 The following links provide further useful documentation resources for you:
  

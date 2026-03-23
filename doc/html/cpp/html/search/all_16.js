@@ -10,7 +10,7 @@ var searchData=
   ['unit_7',['Unit',['../classsupernovas_1_1Unit.html',1,'supernovas']]],
   ['unit_5fvector_8',['unit_vector',['../classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52',1,'supernovas::Vector']]],
   ['units_9',['Physical units',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md69',1,'']]],
-  ['universal_20ephemeris_20data_20service_20integration_10',['Universal ephemeris data / service integration',['../index.html#autotoc_md28',1,'']]],
+  ['universal_20ephemeris_20data_20service_20integration_10',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
   ['unix_5ftime_11',['unix_time',['../classsupernovas_1_1CalendarDate.html#a776056f48ef548d8bb613932fe2647d8',1,'supernovas::CalendarDate::unix_time()'],['../classsupernovas_1_1Time.html#ace3fcc7e22d7880f53fd72237598183a',1,'supernovas::Time::unix_time()']]],
   ['unredshift_5fvrad_12',['unredshift_vrad',['../novas_8h.html#aea89203030ca831260dec18f83081d23',1,'novas.h']]],
   ['up_20the_20observing_20frame_13',['up the observing frame',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56',1,'Set up the observing frame'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95',1,'Set up the observing frame']]],

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['n_0',['n',['../structnovas__orbital.html#a32fff80f9d06ec882016f89f575547de',1,'novas_orbital']]],
-  ['naif_20cspice_20toolkit_20integration_1',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md27',1,'']]],
+  ['naif_20cspice_20toolkit_20integration_1',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md26',1,'']]],
   ['naif_5fid_2',['naif_id',['../classsupernovas_1_1Planet.html#a134ad44ca935e90b63104a9c00602d6d',1,'supernovas::Planet']]],
   ['naif_5fto_5fnovas_5fplanet_3',['naif_to_novas_planet',['../novas_8h.html#a1c4b3f67a3b82808dd16ae43dfaf0f86',1,'novas.h']]],
   ['name_4',['name',['../structnovas__object.html#a9a4a65802b8ff0edc09062867a51d145',1,'novas_object::name'],['../classsupernovas_1_1Equinox.html#a577bc493cd571f08cb8d388371cd719d',1,'supernovas::Equinox::name()'],['../classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3',1,'supernovas::Source::name()'],['../classsupernovas_1_1CatalogEntry.html#a7328f5c19c2322279e2a3300f4ba2775',1,'supernovas::CatalogEntry::name()']]],
@@ -9,7 +9,7 @@ var searchData=
   ['near_5fearth_6',['near_earth',['../structnovas__observer.html#a1d62a0649b551e6ce86160c950d551dd',1,'novas_observer']]],
   ['neptune_7',['neptune',['../classsupernovas_1_1Planet.html#a95d6eddc4c6164abd06c26875fe7714a',1,'supernovas::Planet']]],
   ['new_8',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md20',1,'']]],
-  ['new_20functionality_20highlights_9',['New functionality highlights',['../index.html#autotoc_md38',1,'']]],
+  ['new_20functionality_20highlights_9',['New functionality highlights',['../index.html#autotoc_md37',1,'']]],
   ['next_5fmoon_5fphase_10',['next_moon_phase',['../classsupernovas_1_1Time.html#ac4c3aacc0f4b28984c9705eedc6c9caf',1,'supernovas::Time']]],
   ['nix_20package_11',['Nix package',['../index.html#autotoc_md16',1,'']]],
   ['nm_12',['nm',['../classsupernovas_1_1Unit.html#ac02d2f231a4a868a4a02bdb127a50d78',1,'supernovas::Unit']]],
@@ -18,7 +18,7 @@ var searchData=
   ['non_20equatorial_20coordinates_15',['Non-equatorial coordinates',['../group__nonequatorial.html',1,'']]],
   ['noon_16',['noon',['../classsupernovas_1_1TimeAngle.html#a0d5ed1c779cc5076881ad04df52aa6bf',1,'supernovas::TimeAngle']]],
   ['north_17',['north',['../classsupernovas_1_1Angle.html#acc6a8b3997225d5ac247826ba4052daa',1,'supernovas::Angle']]],
-  ['notes_20on_20precision_18',['Notes on precision',['../index.html#autotoc_md29',1,'']]],
+  ['notes_20on_20precision_18',['Notes on precision',['../index.html#autotoc_md28',1,'']]],
   ['novas_20c_203_201_19',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['novas_20c_203_201_20issues_20',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
   ['novas_20c_20api_21',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
