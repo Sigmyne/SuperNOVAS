@@ -32,5 +32,5 @@ var index =
       [ "New functionality highlights", "index.html#autotoc_md37", null ],
       [ "Refinements to the NOVAS C API", "index.html#autotoc_md38", null ]
     ] ],
-    [ "Release schedule", "index.html#autotoc_md41", null ]
+    [ "Release schedule", "index.html#autotoc_md40", null ]
 ];
