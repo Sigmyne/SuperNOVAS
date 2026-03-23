@@ -3,7 +3,7 @@ var searchData=
   ['f_0',['F',['../structnovas__delaunay__args.html#ab2d0e2b9731d4a0b737e359e8d35ba73',1,'novas_delaunay_args']]],
   ['f_5fearth_1',['F_earth',['../classsupernovas_1_1Constant.html#a5c77f7cb7e9e31fac251554faf08e80e',1,'supernovas::Constant']]],
   ['farenheit_2',['farenheit',['../classsupernovas_1_1Temperature.html#aa9a2354a7fb058c412270a95e1a964de',1,'supernovas::Temperature::farenheit() const'],['../classsupernovas_1_1Temperature.html#a68dfa1f595b67408eccd6fb695a404d4',1,'supernovas::Temperature::farenheit(double value)']]],
-  ['features_3',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
+  ['features_3',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['fixed_20novas_20c_203_201_20issues_4',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
   ['fjd_5ftt_5',['fjd_tt',['../structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c',1,'novas_timespec']]],
   ['for_20a_20sidereal_20source_6',['for a sidereal source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52',1,'Calculating positions for a sidereal source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89',1,'Calculating positions for a sidereal source']]],
@@ -31,7 +31,7 @@ var searchData=
   ['from_5fsystem_5ftype_28',['from_system_type',['../classsupernovas_1_1Equinox.html#a03634a11852e11c2b446031da540c1b2',1,'supernovas::Equinox']]],
   ['from_5ftod_29',['from_tod',['../classsupernovas_1_1Apparent.html#a372cecff4600650a69f0e4a36efc51fe',1,'supernovas::Apparent::from_tod(double ra_rad, double dec_rad, const Frame &amp;frame, double rv_ms=0.0)'],['../classsupernovas_1_1Apparent.html#a53dbb0b5c1fb4eda0905782472c3615d',1,'supernovas::Apparent::from_tod(const Angle &amp;ra, const Angle &amp;dec, const Frame &amp;frame, const ScalarVelocity &amp;rv)']]],
   ['from_5ftod_5fsky_5fpos_30',['from_tod_sky_pos',['../classsupernovas_1_1Apparent.html#a45da01a47195b9319ed2e0d86bae95b1',1,'supernovas::Apparent']]],
-  ['functionality_20highlights_31',['New functionality highlights',['../index.html#autotoc_md37',1,'']]],
+  ['functionality_20highlights_31',['New functionality highlights',['../index.html#autotoc_md38',1,'']]],
   ['fund_5fargs_32',['fund_args',['../novas_8h.html#a312b5ab1a004b179d80463a07ca7da8f',1,'novas.h']]],
   ['fundamentals_33',['Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'']]]
 ];

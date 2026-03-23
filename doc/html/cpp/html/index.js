@@ -19,18 +19,18 @@ var index =
     [ "Example use cases", "index.html#autotoc_md22", null ],
     [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md24", [
       [ "CALCEPH integration", "index.html#autotoc_md25", null ],
-      [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md26", null ],
-      [ "Universal ephemeris data / service integration", "index.html#autotoc_md27", null ]
+      [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md27", null ],
+      [ "Universal ephemeris data / service integration", "index.html#autotoc_md28", null ]
     ] ],
-    [ "Notes on precision", "index.html#autotoc_md28", [
-      [ "Prerequisites to precise results", "index.html#autotoc_md29", null ],
-      [ "Reduced accuracy shortcuts", "index.html#autotoc_md30", null ]
+    [ "Notes on precision", "index.html#autotoc_md29", [
+      [ "Prerequisites to precise results", "index.html#autotoc_md30", null ],
+      [ "Reduced accuracy shortcuts", "index.html#autotoc_md31", null ]
     ] ],
-    [ "Runtime debug support", "index.html#autotoc_md32", null ],
-    [ "Representative benchmarks", "index.html#autotoc_md34", null ],
-    [ "SuperNOVAS added features", "index.html#autotoc_md36", [
-      [ "New functionality highlights", "index.html#autotoc_md37", null ],
-      [ "Refinements to the NOVAS C API", "index.html#autotoc_md38", null ]
+    [ "Runtime debug support", "index.html#autotoc_md33", null ],
+    [ "Representative benchmarks", "index.html#autotoc_md35", null ],
+    [ "SuperNOVAS added features", "index.html#autotoc_md37", [
+      [ "New functionality highlights", "index.html#autotoc_md38", null ],
+      [ "Refinements to the NOVAS C API", "index.html#autotoc_md39", null ]
     ] ],
-    [ "Release schedule", "index.html#autotoc_md40", null ]
+    [ "Release schedule", "index.html#autotoc_md41", null ]
 ];

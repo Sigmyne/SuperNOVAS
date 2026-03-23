@@ -4,7 +4,7 @@ var searchData=
   ['c_1',['c',['../classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531',1,'supernovas::Constant']]],
   ['c_203_201_2',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['c_203_201_20issues_3',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
-  ['c_20api_4',['Refinements to the NOVAS C API',['../index.html#autotoc_md38',1,'']]],
+  ['c_20api_4',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
   ['c_20usage_5',['C++ Usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html',1,'']]],
   ['c_20usage_6',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83',1,'']]],
   ['c_20vs_20astropy_7',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
@@ -56,7 +56,7 @@ var searchData=
   ['coordinate_20systems_20old_20vs_20new_53',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md20',1,'']]],
   ['coordinates_54',['Non-equatorial coordinates',['../group__nonequatorial.html',1,'']]],
   ['copy_55',['copy',['../classsupernovas_1_1Observer.html#af3dcd1c890ef68ddd4a921d55887e5a0',1,'supernovas::Observer::copy()'],['../classsupernovas_1_1GeodeticObserver.html#a2efc7112c0b475e84aa94219d77b960b',1,'supernovas::GeodeticObserver::copy()'],['../classsupernovas_1_1GeocentricObserver.html#ae578757821ffde79329e535e54e45b28',1,'supernovas::GeocentricObserver::copy()'],['../classsupernovas_1_1SolarSystemObserver.html#a3ba91583e539cc02241b82ced9675aab',1,'supernovas::SolarSystemObserver::copy()'],['../classsupernovas_1_1Source.html#af5a18693fc942953c44bf6a04d512060',1,'supernovas::Source::copy()'],['../classsupernovas_1_1CatalogSource.html#a98b76a5026ad51a77796f3e8d5a79ce9',1,'supernovas::CatalogSource::copy()'],['../classsupernovas_1_1Planet.html#aa312a35f47299d8dbb58f84fc15491b4',1,'supernovas::Planet::copy()'],['../classsupernovas_1_1EphemerisSource.html#a1db6c1e6e9709b75eb684b253c70c9fe',1,'supernovas::EphemerisSource::copy()'],['../classsupernovas_1_1OrbitalSource.html#ab7d23a68a9b0af5cec3778db13cafe8b',1,'supernovas::OrbitalSource::copy()']]],
-  ['cspice_20toolkit_20integration_56',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md26',1,'']]],
+  ['cspice_20toolkit_20integration_56',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md27',1,'']]],
   ['cspice_5fadd_5fkernel_57',['cspice_add_kernel',['../group__solar-system.html#gae02d26964099f56c375dc78172ad135b',1,'novas-cspice.h']]],
   ['cspice_5fremove_5fkernel_58',['cspice_remove_kernel',['../group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1',1,'novas-cspice.h']]],
   ['cy_59',['cy',['../classsupernovas_1_1Unit.html#a5c29e3270b2be1d220d6ec1e8cef6cd0',1,'supernovas::Unit']]]

@@ -132,7 +132,7 @@ var NAVTREEINDEX =
 "classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98",
 "classsupernovas_1_1ScalarVelocity.html#a8c8347fcd4440dd1b739b04457c6cd62",
 "functions_func_e.html",
-"index.html#autotoc_md34",
+"index.html#autotoc_md35",
 "novas_8h.html#a696e44a2d1c788f9f335611efd7ed958",
 "novas_8h.html#af4a1a5180905a7d8f76aeafe3f9a8ebb"
 ];

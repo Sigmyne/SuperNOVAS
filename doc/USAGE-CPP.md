@@ -1,16 +1,14 @@
 # C++ Usage
 
-A guide to using __SuperNOVAS__ primarily as a C++ library.
+This guide is specifically for using __SuperNOVAS__ primarily as a C++11 library. There is a separate guide for 
+[using the C99 API](USAGE-C99.md). The links below let you jump to the relevant sections:
 
  - [Building your application with SuperNOVAS (C++)](#integration-cpp)
  - [Example C++ usage](#examples-cpp)
 
-This guide is specifically for using __SuperNOVAS__ for your application via its C++11 API. There is a separate guide 
-for [using the C99 API](USAGE-C99.md).
-
 __SuperNOVAS__ is a C99 library at its core. If you are looking for maximum speed, or want to use SuperNOVAS on older 
-platforms, the C99 API is there for you. However, if you want a higher-level, more intuitive, and more elegant way of
-using __SuperNOVAS__ then the C++ API gives you that comfort.
+platforms, the C99 API is there for you. However, if you want a more modern, more intuitive, higher-level, and more 
+elegant way of using __SuperNOVAS__ then the C++ API gives you that comfort.
 
 The following links provide further useful documentation resources for you:
  

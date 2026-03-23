@@ -3,7 +3,7 @@ var searchData=
   ['c_0',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79',1,'']]],
   ['c_203_201_1',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['c_203_201_20issues_2',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
-  ['c_20api_3',['Refinements to the NOVAS C API',['../index.html#autotoc_md38',1,'']]],
+  ['c_20api_3',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
   ['c_20usage_4',['C++ Usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html',1,'']]],
   ['c_20usage_5',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83',1,'']]],
   ['c_20vs_20astropy_6',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
@@ -28,5 +28,5 @@ var searchData=
   ['coordinate_20and_20velocity_20transforms_20change_20of_20coordinate_20system_25',['Coordinate and velocity transforms (change of coordinate system)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'']]],
   ['coordinate_20system_26',['Coordinate and velocity transforms (change of coordinate system)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'']]],
   ['coordinate_20systems_20old_20vs_20new_27',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md20',1,'']]],
-  ['cspice_20toolkit_20integration_28',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md26',1,'']]]
+  ['cspice_20toolkit_20integration_28',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md27',1,'']]]
 ];

@@ -446,7 +446,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="cspice-integration"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
 NAIF CSPICE toolkit integration</h2>
 <p>The <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">NAIF CSPICE Toolkit</a> is the canonical standard library for JPL ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing <b>SuperNOVAS</b> with CSPICE for handling Solar-system objects.</p>
 <details >
@@ -483,7 +483,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="universal-ephemerides"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
 Universal ephemeris data / service integration</h2>
 <p>Possibly the most universal way to integrate ephemeris data with <b>SuperNOVAS</b> is to write your own <span class="tt"><a class="el" href="group__solar-system.html#gaebb3d71006e8d93de242df61510374ad" title="Function to obtain ephemeris data for minor planets, which are not handled by the solarsystem() type ...">novas_ephem_provider</a></span> function.</p>
 <details >
@@ -513,7 +513,7 @@ Details</summary>
 <div class="ttc" id="anovas_8h_html_a9d0f54c0ab00827768e61a353488b0ee"><div class="ttname"><a href="novas_8h.html#a9d0f54c0ab00827768e61a353488b0ee">planet_ephem_provider</a></div><div class="ttdeci">short planet_ephem_provider(double jd_tdb, enum novas_planet body, enum novas_origin origin, double *restrict position, double *restrict velocity)</div></div>
 </div><!-- fragment --><p>The above simply instructs <b>SuperNOVAS</b> to use the same ephemeris provider function for planets as what was set for <span class="tt"><a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269" title="A Solar-system body that does not fit the major planet type, and requires specific user-provided nova...">NOVAS_EPHEM_OBJECT</a></span> type objects, provided you compiled <b>SuperNOVAS</b> with <span class="tt">BUILTIN_SOLSYS_EPHEM = 1</span> (in <span class="tt">config.mk</span>), or else you link your code against <span class="tt">solsys-ephem.c</span> explicitly. Easy-peasy.</p>
 <p><a class="anchor" id="precision"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
 Notes on precision</h1>
 <ul>
 <li><a class="el" href="#accuracy-prerequisites" title="accuracy-prerequisites">Prerequisites to precise results</a></li>
@@ -530,7 +530,7 @@ Notes on precision</h1>
 </table>
 <p>Note, that some functions will not support full accuracy calculations, unless you have provided a high-precision ephemeris provider for the major planets (and any Solar-system bodies of interest), which does not come with <b>SuperNOVAS</b> out of the box. In the absence of a suitable high-precision ephemeris provider, some functions might return an error if called with <span class="tt"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660" title="Use full precision calculations to micro-arcsecond accuracy.">NOVAS_FULL_ACCURACY</a></span>. (Click on the wedges next to each component to expand the details...)</p>
 <p><a class="anchor" id="accuracy-prerequisites"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 Prerequisites to precise results</h2>
 <p>The <b>SuperNOVAS</b> library is in principle capable of calculating positions to microarcsecond, and velocities to mm/s, precision for all types of celestial sources. However, there are certain prerequisites and practical considerations before that level of accuracy is reached. (Click on the wedge next to each heading below to expand the details.)</p>
 <details >
@@ -570,7 +570,7 @@ Atmospheric refraction model</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="reduced-accuracy"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
 Reduced accuracy shortcuts</h2>
 <p>When one does not need positions at the microarcsecond level, some shortcuts can be made to the recipe above:</p>
 <ul>
@@ -582,7 +582,7 @@ Reduced accuracy shortcuts</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="debug-support"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
 Runtime debug support</h1>
 <p>You can enable or disable debugging output to <span class="tt">stderr</span> with <span class="tt"><a class="el" href="group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug(enum novas_debug_mode)</a></span>, where the argument is one of the defined constants from <span class="tt"><a class="el" href="novas_8h.html" title="SuperNOVAS types, definitions, and function prototypes.">novas.h</a></span>:</p>
 <table class="markdownTable">
@@ -605,7 +605,7 @@ Runtime debug support</h1>
 <div class="line">     @ grav_def [=&gt; 12]</div>
 </div><!-- fragment --><hr  />
 <p><a class="anchor" id="benchmarks"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
 Representative benchmarks</h1>
 <p>To get an idea of the speed of <b>SuperNOVAS</b>, you can use <span class="tt">make benchmark</span> on your machine. Figure 2 below summarizes the single-threaded results obtained on an AMD Ryzen 5 PRO 6650U laptop. While this is clearly not the state of the art for today's server class machines, it nevertheless gives you a ballpark idea for how a typical, not so new, run-of-the-mill PC might perform.</p>
 <table class="markdownTable">
@@ -665,14 +665,14 @@ Details</summary>
 <p>The above benchmarks are all for single-threaded performance. Since <b>SuperNOVAS</b> is generally thread-safe, you can expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single core performance, you could calculate up to 32 million precise positions per second, if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in under one minute.</p>
 <hr  />
 <p><a class="anchor" id="supernovas-features"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 SuperNOVAS added features</h1>
 <ul>
 <li><a class="el" href="#added-functionality" title="added-functionality">Newly functionality highlights</a></li>
 <li><a class="el" href="#api-changes" title="api-changes">Refinements to the NOVAS C API</a></li>
 </ul>
 <p><a class="anchor" id="added-functionality"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
 New functionality highlights</h2>
 <p>Below is a non-exhaustive overview new features added by <b>SuperNOVAS</b> on top of the existing NOVAS C API. See <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/CHANGELOG.md"><span class="tt">CHANGELOG.md</span></a> for more details.</p>
 <details >
@@ -770,7 +770,7 @@ New in v1.6</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="api-changes"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
 Refinements to the NOVAS C API</h2>
 <p>Many <b>SuperNOVAS</b> changes are focused on improving the usability and promote best coding practices so that both the library and your application will be safer, and less prone to nagging errors. Below is a detailed listing of the principal ways <b>SuperNOVAS</b> has improved on the original NOVAS C library in these respects.</p>
 <details >
@@ -809,7 +809,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="release-schedule"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md40"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
 Release schedule</h1>
 <p>A predictable release schedule and process can help manage expectations and reduce stress on adopters and developers alike.</p>
 <p><b>SuperNOVAS</b> will try to follow a quarterly release schedule. You may expect upcoming releases to be published around <b>February 1</b>, <b>May 1</b>, <b>August 1</b>, and/or <b>November 1</b> each year, on an as-needed basis. That means that if there are outstanding bugs, or new pull requests (PRs), you may expect a release that addresses these in the upcoming quarter. The dates are placeholders only, with no guarantee that a new release will actually be available every quarter. If nothing of note comes up, a potential release date may pass without a release being published.</p>

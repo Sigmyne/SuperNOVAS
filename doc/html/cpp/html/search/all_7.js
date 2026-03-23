@@ -27,7 +27,7 @@ var searchData=
   ['eop_24',['eop',['../classsupernovas_1_1GeodeticObserver.html#ac49ab6acc25e7dd026228655ceae5df4',1,'supernovas::GeodeticObserver']]],
   ['ephemeris_25',['ephemeris',['../novas_8h.html#a713982e1f2bae0a72b39d03007f00d23',1,'novas.h']]],
   ['ephemeris_20data_20or_20services_26',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
-  ['ephemeris_20data_20service_20integration_27',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
+  ['ephemeris_20data_20service_20integration_27',['Universal ephemeris data / service integration',['../index.html#autotoc_md28',1,'']]],
   ['ephemeris_20providers_28',['Solar-system ephemeris providers',['../group__solar-system.html',1,'']]],
   ['ephemeris_20type_20objects_29',['ephemeris type objects',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62',1,'Planets and/or ephemeris type objects'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101',1,'Planets and/or ephemeris type objects']]],
   ['ephemerissource_30',['EphemerisSource',['../classsupernovas_1_1EphemerisSource.html',1,'supernovas::EphemerisSource'],['../classsupernovas_1_1EphemerisSource.html#af6eef3af2b52aaa44a8c7ef9e2bc3c2b',1,'supernovas::EphemerisSource::EphemerisSource()']]],
