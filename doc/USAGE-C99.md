@@ -170,7 +170,10 @@ you do not need to re-build the library with `USER_SOLSYS` and/or `USER_READEPH`
 
  - [Calculating positions for a sidereal source](#sidereal-example-c99)
  - [Calculating positions for a Solar-system source](#solsys-example-c99)
+ - [Going in reverse...](#reverse-place-c99)
+ - [Calculate rise, set, and transit times](#rise-set-transit-c99)
  - [Coordinate and velocity transforms (change of coordinate system)](#transforms-c99)
+ 
 
 __SuperNOVAS v1.1__ has introduced a new, more intuitive, more elegant, and more efficient approach for calculating
 astrometric positions of celestial objects. The guide below is geared towards this new method. However, the original
@@ -192,8 +195,6 @@ galactic molecular cloud, or a distant quasar.
  - [Set up the observing frame](#observing-frame-c99)
  - [Calculate an apparent place on sky](#apparent-place-c99)
  - [Calculate azimuth and elevation angles at the observing location](#horizontal-place-c99)
- - [Going in reverse...](#reverse-place-c99)
- - [Calculate rise, set, and transit times](#rise-set-transit-c99)
 
 <a name="specify-object-c99"></a>
 #### Specify the object of interest
@@ -468,74 +469,6 @@ refraction correction. We could have used `novas_optical_refraction()` instead t
 frame's `observer` structure, or some user-defined refraction model, or else `NULL` to calculate unrefracted elevation 
 angles.
 
-<a name="reverse-place-c99"></a>
-#### Going in reverse...
-
-Of course, __SuperNOVAS__ allows you to go in reverse, for example from an observed Az/El position all the way to
-proper ICRS R.A./Dec coordinates.
-
-E.g.:
-
-```c
-  double az = ..., el = ...; // [deg] measured azimuth and elevation angles
-  double pos[3];             // [arb. u.] xyz position vector
-  double ra, dec;            // [h, deg] R.A. and declination to populate
-  
-  // Calculate the observer's apparent coordinates from the observed Az/El values,
-  // lets say in CIRS (but it could also be ICRS, for all that matters). 
-  novas_hor_to_app(&obs_frame, az, el, novas_standard_refraction, NOVAS_CIRS, &ra, &dec);
-  
-  // Convert apparent to ICRS geometric positions (no parallax)
-  novas_app_to_geom(&obs_frame, NOVAS_CIRS, ra, dec, 0.0, pos);
-  
-  // Convert ICRS rectangular equatorial to R.A. and Dec
-  vector2radec(pos, &ra, &dec);
-```
-
-Voila! And, of course you might want the coordinates in some other reference systems, such as B1950. For that you can 
-simply add a transformation before `vector2radec()` above, e.g. as:
-
-```c
-  ...
-  // Transform position from ICRS to B1950
-  gcrs_to_mod(NOVAS_JD_B1950, pos, pos);
-
-  // Convert B1950 xyz position to R.A. and Dec
-  vector2radec(pos, &ra, &dec);
-```
-
-
-<a name="rise-set-transit-c99"></a>
-#### Calculate rise, set, and transit times
-
-You may be interested to know when sources rise above or set below some specific elevation angle, or at what time they 
-appear to transit at the observer location. __SuperNOVAS__ has routines to help you with that too.
-
-Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are 
-effectively tied to an observer frame.
-
-```c
- novas_frame frame = ...;  // Earth-based observer location and lower-bound time of interest.
- object source = ...;      // Source of interest
-
- // UTC-based Julian day *after* observer frame, when source rises above 30 degrees of elevation 
- // next, given a standard optical refraction model.
- double jd_rise = novas_rises_above(30.0, &source, &frame, novas_standard_refraction);
-
- // UTC-based Julian day *after* observer frame, of next source transit
- double jd_transit = novas_transit_time(&source, &frame);
- 
- // UTC-based Julian day *after* observer frame, when source sets below 30 degrees of elevation 
- // next, not accounting for refraction.
- double jd_set = novas_sets_below(30.0, &source, &frame, NULL);
-```
-
-Note, that in the current implementation these calls are not well suited sources that are at or within the 
-geostationary orbit, such as such as Low Earth Orbit satellites (LEOs), geostationary satellites (which never really 
-rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set multiple times per day. For the latter, 
-the above calls may still return a valid time, only without the guarantee that it is the time of the first such event 
-after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for 
-updates.
 
 
 <a name="solsys-example-c99"></a>
@@ -637,6 +570,76 @@ approximate positions (e.g. via the `novas_approx_heliocentric()` and `novas_app
 rise/set time calculations.
 
 
+<a name="reverse-place-c99"></a>
+### Going in reverse...
+
+Of course, __SuperNOVAS__ allows you to go in reverse, for example from an observed Az/El position all the way to
+proper ICRS R.A./Dec coordinates.
+
+E.g.:
+
+```c
+  double az = ..., el = ...; // [deg] measured azimuth and elevation angles
+  double pos[3];             // [arb. u.] xyz position vector
+  double ra, dec;            // [h, deg] R.A. and declination to populate
+  
+  // Calculate the observer's apparent coordinates from the observed Az/El values,
+  // lets say in CIRS (but it could also be ICRS, for all that matters). 
+  novas_hor_to_app(&obs_frame, az, el, novas_standard_refraction, NOVAS_CIRS, &ra, &dec);
+  
+  // Convert apparent to ICRS geometric positions (no parallax)
+  novas_app_to_geom(&obs_frame, NOVAS_CIRS, ra, dec, 0.0, pos);
+  
+  // Convert ICRS rectangular equatorial to R.A. and Dec
+  vector2radec(pos, &ra, &dec);
+```
+
+Voila! And, of course you might want the coordinates in some other reference systems, such as B1950. For that you can 
+simply add a transformation before `vector2radec()` above, e.g. as:
+
+```c
+  ...
+  // Transform position from ICRS to B1950
+  gcrs_to_mod(NOVAS_JD_B1950, pos, pos);
+
+  // Convert B1950 xyz position to R.A. and Dec
+  vector2radec(pos, &ra, &dec);
+```
+
+
+<a name="rise-set-transit-c99"></a>
+### Calculate rise, set, and transit times
+
+You may be interested to know when sources rise above or set below some specific elevation angle, or at what time they 
+appear to transit at the observer location. __SuperNOVAS__ has routines to help you with that too.
+
+Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are 
+effectively tied to an observer frame.
+
+```c
+ novas_frame frame = ...;  // Earth-based observer location and lower-bound time of interest.
+ object source = ...;      // Source of interest
+
+ // UTC-based Julian day *after* observer frame, when source rises above 30 degrees of elevation 
+ // next, given a standard optical refraction model.
+ double jd_rise = novas_rises_above(30.0, &source, &frame, novas_standard_refraction);
+
+ // UTC-based Julian day *after* observer frame, of next source transit
+ double jd_transit = novas_transit_time(&source, &frame);
+ 
+ // UTC-based Julian day *after* observer frame, when source sets below 30 degrees of elevation 
+ // next, not accounting for refraction.
+ double jd_set = novas_sets_below(30.0, &source, &frame, NULL);
+```
+
+Note, that in the current implementation these calls are not well suited sources that are at or within the 
+geostationary orbit, such as such as Low Earth Orbit satellites (LEOs), geostationary satellites (which never really 
+rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set multiple times per day. For the latter, 
+the above calls may still return a valid time, only without the guarantee that it is the time of the first such event 
+after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for 
+updates.
+
+
 <a name="transforms-c99"></a>
 ### Coordinate and velocity transforms (change of coordinate system)
 
@@ -670,6 +673,7 @@ The same transform can also be used to convert apparent positions in a `sky_pos`
   // Transform the J2000 apparent positions to TIRS....
   novas_transform_sky_pos(&j2000_pos, &T, &tirs_pos);
 ```
+
 
 -----------------------------------------------------------------------------
 

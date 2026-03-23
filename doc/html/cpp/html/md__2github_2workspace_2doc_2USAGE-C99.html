@@ -95,7 +95,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-C99.html','',''); }
   <div class="headertitle"><div class="title">C99 Usage </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md38"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md39"></a></p>
 <p>This guide is specifically for using <b>SuperNOVAS</b> as a C99 library. There is a separate guide for <a class="el" href="md__2github_2workspace_2doc_2USAGE-CPP.html" title="C++ Usage">using the C++11 API</a>. The links below let you jump to the relevant sections:</p>
 <ul>
 <li><a class="el" href="#integration-c99" title="integration-c99">Building your application with SuperNOVAS (C99)</a></li>
@@ -204,6 +204,8 @@ Example C99 usage</h1>
 <ul>
 <li><a class="el" href="#sidereal-example-c99" title="sidereal-example-c99">Calculating positions for a sidereal source</a></li>
 <li><a class="el" href="#solsys-example-c99" title="solsys-example-c99">Calculating positions for a Solar-system source</a></li>
+<li><a class="el" href="#reverse-place-c99" title="reverse-place-c99">Going in reverse...</a></li>
+<li><a class="el" href="#rise-set-transit-c99" title="rise-set-transit-c99">Calculate rise, set, and transit times</a></li>
 <li><a class="el" href="#transforms-c99" title="transforms-c99">Coordinate and velocity transforms (change of coordinate system)</a></li>
 </ul>
 <p><b>SuperNOVAS v1.1</b> has introduced a new, more intuitive, more elegant, and more efficient approach for calculating astrometric positions of celestial objects. The guide below is geared towards this new method. However, the original NOVAS C approach remains viable also (albeit often less efficient).</p>
@@ -219,8 +221,6 @@ Calculating positions for a sidereal source</h2>
 <li><a class="el" href="#observing-frame-c99" title="observing-frame-c99">Set up the observing frame</a></li>
 <li><a class="el" href="#apparent-place-c99" title="apparent-place-c99">Calculate an apparent place on sky</a></li>
 <li><a class="el" href="#horizontal-place-c99" title="horizontal-place-c99">Calculate azimuth and elevation angles at the observing location</a></li>
-<li><a class="el" href="#reverse-place-c99" title="reverse-place-c99">Going in reverse...</a></li>
-<li><a class="el" href="#rise-set-transit-c99" title="rise-set-transit-c99">Calculate rise, set, and transit times</a></li>
 </ul>
 <p><a class="anchor" id="specify-object-c99"></a> </p>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md53"></a>
@@ -377,9 +377,76 @@ Calculate azimuth and elevation angles at the observing location</h3>
 <div class="ttc" id="astructnovas__sky__pos_html_a3538259b8b9a27882db94502bed3548f"><div class="ttname"><a href="structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f">novas_sky_pos::dec</a></div><div class="ttdeci">double dec</div><div class="ttdoc">[deg] apparent, topocentric, or astrometric declination (degrees)</div><div class="ttdef"><b>Definition</b> novas.h:1694</div></div>
 <div class="ttc" id="astructnovas__sky__pos_html_a7d5aa9cc738e19f0891bff94ad148741"><div class="ttname"><a href="structnovas__sky__pos.html#a7d5aa9cc738e19f0891bff94ad148741">novas_sky_pos::ra</a></div><div class="ttdeci">double ra</div><div class="ttdoc">[h] apparent, topocentric, or astrometric right ascension (hours)</div><div class="ttdef"><b>Definition</b> novas.h:1693</div></div>
 </div><!-- fragment --><p>Above we converted the apparent coordinates, that were calculated in CIRS, to refracted azimuth and elevation coordinates at the observing location, using the <span class="tt"><a class="el" href="group__refract.html#gab04bff3b97c132e358e11c3a5b7a3081">novas_standard_refraction()</a></span> function to provide a suitable refraction correction. We could have used <span class="tt"><a class="el" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction()</a></span> instead to use the weather data embedded in the frame's <span class="tt"><a class="el" href="novas_8h.html#ae7963c522d28ce6891b472e079307d03" title="Observer location.">observer</a></span> structure, or some user-defined refraction model, or else <span class="tt">NULL</span> to calculate unrefracted elevation angles.</p>
+<p><a class="anchor" id="solsys-example-c99"></a> </p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
+Calculating positions for a Solar-system source</h2>
+<ul>
+<li><a class="el" href="#ephemeris-sources-c99" title="ephemeris-sources-c99">Planets and/or ephemeris type objects</a></li>
+<li><a class="el" href="#orbital-sources-c99" title="orbital-sources-c99">Solar-system objects with Keplerian orbital parameters</a></li>
+<li><a class="el" href="#planet-orbitals-c99" title="planet-orbitals-c99">Approximate planet and Moon orbitals</a></li>
+</ul>
+<p>Solar-system sources work similarly to the above with a few important differences at the start.</p>
+<p><a class="anchor" id="ephemeris-sources-c99"></a> </p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md60"></a>
+Planets and/or ephemeris type objects</h3>
+<p>Historically, NOVAS divided Solar-system objects into two categories: (1) major planets (including also the Sun, the Moon, and the Solar-system Barycenter); and (2) 'ephemeris' type objects, which are all other Solar-system objects. The main difference is the numbering convention. NOVAS major planets have definitive ID numbers (see <span class="tt">enum <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a></span>), whereas 'ephemeris' objects have user-defined IDs. They are also handled by two separate adapter functions (although <b>SuperNOVAS</b> has the option of using the same ephemeris provider for both types of objects also).</p>
+<p>Thus, instead of <span class="tt"><a class="el" href="novas_8h.html#ab9b7a622486f2904615ceed1ba94cd8f">make_cat_object()</a></span> you define your source as a planet or ephemeris type <span class="tt"><a class="el" href="novas_8h.html#a8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> with a name or ID number that is used by the ephemeris service you provided. For major planets you might want to use <span class="tt"><a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a></span>, if they use a <span class="tt"><a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a></span> function to access ephemeris data with their NOVAS IDs, or else <span class="tt"><a class="el" href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2">make_ephem_object()</a></span> for more generic ephemeris handling via a user-provided <span class="tt"><a class="el" href="group__solar-system.html#gaebb3d71006e8d93de242df61510374ad" title="Function to obtain ephemeris data for minor planets, which are not handled by the solarsystem() type ...">novas_ephem_provider</a></span>. E.g.:</p>
+<div class="fragment"><div class="line"><span class="keywordtype">object</span> mars, ceres; <span class="comment">// Hold data on solar-system bodies.</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Mars will be handled by the planet provider function</span></div>
+<div class="line"><a class="code hl_function" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet</a>(<a class="code hl_enumvalue" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e">NOVAS_MARS</a>, &amp;mars);</div>
+<div class="line">  without background checks</div>
+<div class="line"><span class="comment">// Ceres will be handled by the generic ephemeris provider function, which let&#39;s say </span></div>
+<div class="line"><span class="comment">// uses the NAIF ID of 2000001 _or_ the name &#39;Ceres&#39; (depending on the implementation)</span></div>
+<div class="line"><a class="code hl_function" href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2">make_ephem_object</a>(<span class="stringliteral">&quot;Ceres&quot;</span>, 2000001, &amp;ceres);</div>
+<div class="ttc" id="anovas_8h_html_a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e"><div class="ttname"><a href="novas_8h.html#a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e">NOVAS_MARS</a></div><div class="ttdeci">@ NOVAS_MARS</div><div class="ttdoc">Major planet number for Mars in NOVAS.</div><div class="ttdef"><b>Definition</b> novas.h:572</div></div>
+<div class="ttc" id="anovas_8h_html_a4c7846be95299769f4d0377bf127bcf5"><div class="ttname"><a href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet</a></div><div class="ttdeci">int make_planet(enum novas_planet num, object *restrict planet)</div></div>
+<div class="ttc" id="anovas_8h_html_aa22303f98df2d63edf6d8452ff3a43b2"><div class="ttname"><a href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2">make_ephem_object</a></div><div class="ttdeci">int make_ephem_object(const char *name, long num, object *body)</div></div>
+</div><!-- fragment --><dl class="section important"><dt>Important</dt><dd>Before you can handle all major planets and other ephemeris objects this way, you will have to provide one or more functions to obtain the barycentric ICRS positions for your Solar-system source(s) of interest for the specific Barycentric Dynamical Time (TDB) of observation. See section on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/README.md#solarsystem">Incorporating Solar-system ephemeris data or services</a>.</dd></dl>
+<p>And then, it's the same spiel as before, e.g.:</p>
+<div class="fragment"><div class="line"><span class="keywordtype">int</span> status = <a class="code hl_function" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos</a>(&amp;mars, &amp;obs_frame, <a class="code hl_enumvalue" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, &amp;apparent);</div>
+<div class="line"><span class="keywordflow">if</span>(status) {</div>
+<div class="line">  <span class="comment">// Oops, something went wrong...</span></div>
+<div class="line">  ...</div>
+<div class="line">}</div>
+<div class="ttc" id="anovas_8h_html_a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3"><div class="ttname"><a href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a></div><div class="ttdeci">@ NOVAS_TOD</div><div class="ttdoc">True equinox Of Date: dynamical system of the &#39;true&#39; equator, with its origin at the &#39;true&#39; equinox (...</div><div class="ttdef"><b>Definition</b> novas.h:835</div></div>
+</div><!-- fragment --><p><a class="anchor" id="orbital-sources-c99"></a> </p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md61"></a>
+Solar-system objects with Keplerian orbital parameters</h3>
+<p>As of version <b>1.2</b> you can also define solar system sources with Keplerian orbital elements (such as the most up-to-date ones provided by the <a href="https://minorplanetcenter.net/data">Minor Planet Center</a> for asteroids, comets, etc.):</p>
+<div class="fragment"><div class="line"><span class="keywordtype">object</span> NEA;        <span class="comment">// e.g. a Near-Earth Asteroid</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Fill in the orbital parameters (pay attention to units!)</span></div>
+<div class="line"><a class="code hl_struct" href="structnovas__orbital.html">novas_orbital</a> orbit = <a class="code hl_define" href="novas_8h.html#a85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>;</div>
+<div class="line">orbit.<a class="code hl_variable" href="structnovas__orbital.html#a70b91b91315e8c7adcf394cafbd11ecb">a</a> = ...;         <span class="comment">// Major axis in AU...</span></div>
+<div class="line">...                    <span class="comment">// ... and the rest of the orbital elements</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Create an object for that orbit</span></div>
+<div class="line"><a class="code hl_function" href="novas_8h.html#a3c5e215babeeba078ca7b3e9be42e555">make_orbital_object</a>(<span class="stringliteral">&quot;NEAxxx&quot;</span>, -1, &amp;orbit, &amp;NEA);</div>
+<div class="ttc" id="anovas_8h_html_a3c5e215babeeba078ca7b3e9be42e555"><div class="ttname"><a href="novas_8h.html#a3c5e215babeeba078ca7b3e9be42e555">make_orbital_object</a></div><div class="ttdeci">int make_orbital_object(const char *name, long num, const novas_orbital *orbit, object *body)</div></div>
+<div class="ttc" id="anovas_8h_html_a85243a6b9eee259d3fb84ee1a587e065"><div class="ttname"><a href="novas_8h.html#a85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a></div><div class="ttdeci">#define NOVAS_ORBIT_INIT</div><div class="ttdoc">Initializer for novas_orbital for heliocentric orbits using GCRS ecliptic parametrization.</div><div class="ttdef"><b>Definition</b> novas.h:1398</div></div>
+<div class="ttc" id="astructnovas__orbital_html"><div class="ttname"><a href="structnovas__orbital.html">novas_orbital</a></div><div class="ttdoc">Keplerian orbital elements for NOVAS_ORBITAL_OBJECT type.</div><div class="ttdef"><b>Definition</b> novas.h:1367</div></div>
+<div class="ttc" id="astructnovas__orbital_html_a70b91b91315e8c7adcf394cafbd11ecb"><div class="ttname"><a href="structnovas__orbital.html#a70b91b91315e8c7adcf394cafbd11ecb">novas_orbital::a</a></div><div class="ttdeci">double a</div><div class="ttdoc">[AU] semi-major axis</div><div class="ttdef"><b>Definition</b> novas.h:1370</div></div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Even with orbital elements, you will, in general, still require an ephemeris provider also, to obtain precise positions for the Sun, an Earth-based observer, or the planet, around which the orbit is defined.</dd></dl>
+<p><a class="anchor" id="planet-orbitals-c99"></a> </p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md62"></a>
+Approximate planet and Moon orbitals</h3>
+<p>Finally, as of version <b>1.4</b>, you might generate approximate (arcmin-level) orbitals for the major planets (but not Earth!), the Moon, and the Earth-Moon Barycenter (EMB) also. E.g.:</p>
+<div class="fragment"><div class="line"><span class="keywordtype">double</span> jd_tdb = ... <span class="comment">// Time (epoch) for which to calculate orbital parameters  </span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Planet orbitals, e.g. for Mars</span></div>
+<div class="line"><a class="code hl_struct" href="structnovas__orbital.html">novas_orbital</a> mars_orbit = <a class="code hl_define" href="novas_8h.html#a85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>;</div>
+<div class="line"><a class="code hl_function" href="novas_8h.html#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit</a>(<a class="code hl_enumvalue" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e">NOVAS_MARS</a>, jd_tdb, &amp;mars_orbit);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Moon&#39;s orbital around Earth</span></div>
+<div class="line"><a class="code hl_struct" href="structnovas__orbital.html">novas_orbital</a> moon_orbit = <a class="code hl_define" href="novas_8h.html#a85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>;</div>
+<div class="line"><a class="code hl_function" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a>(jd_tdb, &amp;moon_orbit);</div>
+<div class="ttc" id="agroup__source_html_gad6e6c7f6dc2745030e3fd4d407e982bd"><div class="ttname"><a href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a></div><div class="ttdeci">int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit)</div></div>
+<div class="ttc" id="anovas_8h_html_a63b094e813d8b752a6f3344419e80031"><div class="ttname"><a href="novas_8h.html#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit</a></div><div class="ttdeci">int novas_make_planet_orbit(enum novas_planet id, double jd_tdb, novas_orbital *restrict orbit)</div></div>
+</div><!-- fragment --><p>While the planet and Moon orbitals are not suitable for precision applications, they can be useful for determining approximate positions (e.g. via the <span class="tt"><a class="el" href="novas_8h.html#a9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#a4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a></span> functions), and for rise/set time calculations.</p>
 <p><a class="anchor" id="reverse-place-c99"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
-Going in reverse...</h3>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md63"></a>
+Going in reverse...</h2>
 <p>Of course, <b>SuperNOVAS</b> allows you to go in reverse, for example from an observed Az/El position all the way to proper ICRS R.A./Dec coordinates.</p>
 <p>E.g.:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> az = ..., el = ...; <span class="comment">// [deg] measured azimuth and elevation angles</span></div>
@@ -407,8 +474,8 @@ Going in reverse...</h3>
 <div class="line"><a class="code hl_function" href="novas_8h.html#a84f672dc1c37e3af374198f29cbcfba9">vector2radec</a>(pos, &amp;ra, &amp;dec);</div>
 <div class="ttc" id="anovas_8h_html_a3785083ae52bbbc1e749dbedd7e5d85e"><div class="ttname"><a href="novas_8h.html#a3785083ae52bbbc1e749dbedd7e5d85e">NOVAS_JD_B1950</a></div><div class="ttdeci">#define NOVAS_JD_B1950</div><div class="ttdoc">[day] Julian date at B1950 (NASA / NAIF SPICE definition) precession(), transform_cat()</div><div class="ttdef"><b>Definition</b> novas.h:228</div></div>
 </div><!-- fragment --><p><a class="anchor" id="rise-set-transit-c99"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md60"></a>
-Calculate rise, set, and transit times</h3>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md64"></a>
+Calculate rise, set, and transit times</h2>
 <p>You may be interested to know when sources rise above or set below some specific elevation angle, or at what time they appear to transit at the observer location. <b>SuperNOVAS</b> has routines to help you with that too.</p>
 <p>Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are effectively tied to an observer frame.</p>
 <div class="fragment"><div class="line"><a class="code hl_struct" href="structnovas__frame.html">novas_frame</a> frame = ...;  <span class="comment">// Earth-based observer location and lower-bound time of interest.</span></div>
@@ -428,73 +495,6 @@ Calculate rise, set, and transit times</h3>
 <div class="ttc" id="anovas_8h_html_aaf38f64304fa0b00c9c56cead62043f3"><div class="ttname"><a href="novas_8h.html#aaf38f64304fa0b00c9c56cead62043f3">novas_rises_above</a></div><div class="ttdeci">double novas_rises_above(double el, const object *restrict source, const novas_frame *restrict frame, RefractionModel ref_model)</div></div>
 <div class="ttc" id="anovas_8h_html_ad04f1ebd7b2d39e5258b152fec231001"><div class="ttname"><a href="novas_8h.html#ad04f1ebd7b2d39e5258b152fec231001">novas_transit_time</a></div><div class="ttdeci">double novas_transit_time(const object *restrict source, const novas_frame *restrict frame)</div></div>
 </div><!-- fragment --><p>Note, that in the current implementation these calls are not well suited sources that are at or within the geostationary orbit, such as such as Low Earth Orbit satellites (LEOs), geostationary satellites (which never really rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set multiple times per day. For the latter, the above calls may still return a valid time, only without the guarantee that it is the time of the first such event after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for updates.</p>
-<p><a class="anchor" id="solsys-example-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md61"></a>
-Calculating positions for a Solar-system source</h2>
-<ul>
-<li><a class="el" href="#ephemeris-sources-c99" title="ephemeris-sources-c99">Planets and/or ephemeris type objects</a></li>
-<li><a class="el" href="#orbital-sources-c99" title="orbital-sources-c99">Solar-system objects with Keplerian orbital parameters</a></li>
-<li><a class="el" href="#planet-orbitals-c99" title="planet-orbitals-c99">Approximate planet and Moon orbitals</a></li>
-</ul>
-<p>Solar-system sources work similarly to the above with a few important differences at the start.</p>
-<p><a class="anchor" id="ephemeris-sources-c99"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md62"></a>
-Planets and/or ephemeris type objects</h3>
-<p>Historically, NOVAS divided Solar-system objects into two categories: (1) major planets (including also the Sun, the Moon, and the Solar-system Barycenter); and (2) 'ephemeris' type objects, which are all other Solar-system objects. The main difference is the numbering convention. NOVAS major planets have definitive ID numbers (see <span class="tt">enum <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a></span>), whereas 'ephemeris' objects have user-defined IDs. They are also handled by two separate adapter functions (although <b>SuperNOVAS</b> has the option of using the same ephemeris provider for both types of objects also).</p>
-<p>Thus, instead of <span class="tt"><a class="el" href="novas_8h.html#ab9b7a622486f2904615ceed1ba94cd8f">make_cat_object()</a></span> you define your source as a planet or ephemeris type <span class="tt"><a class="el" href="novas_8h.html#a8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> with a name or ID number that is used by the ephemeris service you provided. For major planets you might want to use <span class="tt"><a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a></span>, if they use a <span class="tt"><a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a></span> function to access ephemeris data with their NOVAS IDs, or else <span class="tt"><a class="el" href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2">make_ephem_object()</a></span> for more generic ephemeris handling via a user-provided <span class="tt"><a class="el" href="group__solar-system.html#gaebb3d71006e8d93de242df61510374ad" title="Function to obtain ephemeris data for minor planets, which are not handled by the solarsystem() type ...">novas_ephem_provider</a></span>. E.g.:</p>
-<div class="fragment"><div class="line"><span class="keywordtype">object</span> mars, ceres; <span class="comment">// Hold data on solar-system bodies.</span></div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Mars will be handled by the planet provider function</span></div>
-<div class="line"><a class="code hl_function" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet</a>(<a class="code hl_enumvalue" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e">NOVAS_MARS</a>, &amp;mars);</div>
-<div class="line">  without background checks</div>
-<div class="line"><span class="comment">// Ceres will be handled by the generic ephemeris provider function, which let&#39;s say </span></div>
-<div class="line"><span class="comment">// uses the NAIF ID of 2000001 _or_ the name &#39;Ceres&#39; (depending on the implementation)</span></div>
-<div class="line"><a class="code hl_function" href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2">make_ephem_object</a>(<span class="stringliteral">&quot;Ceres&quot;</span>, 2000001, &amp;ceres);</div>
-<div class="ttc" id="anovas_8h_html_a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e"><div class="ttname"><a href="novas_8h.html#a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e">NOVAS_MARS</a></div><div class="ttdeci">@ NOVAS_MARS</div><div class="ttdoc">Major planet number for Mars in NOVAS.</div><div class="ttdef"><b>Definition</b> novas.h:572</div></div>
-<div class="ttc" id="anovas_8h_html_a4c7846be95299769f4d0377bf127bcf5"><div class="ttname"><a href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet</a></div><div class="ttdeci">int make_planet(enum novas_planet num, object *restrict planet)</div></div>
-<div class="ttc" id="anovas_8h_html_aa22303f98df2d63edf6d8452ff3a43b2"><div class="ttname"><a href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2">make_ephem_object</a></div><div class="ttdeci">int make_ephem_object(const char *name, long num, object *body)</div></div>
-</div><!-- fragment --><dl class="section important"><dt>Important</dt><dd>Before you can handle all major planets and other ephemeris objects this way, you will have to provide one or more functions to obtain the barycentric ICRS positions for your Solar-system source(s) of interest for the specific Barycentric Dynamical Time (TDB) of observation. See section on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/README.md#solarsystem">Incorporating Solar-system ephemeris data or services</a>.</dd></dl>
-<p>And then, it's the same spiel as before, e.g.:</p>
-<div class="fragment"><div class="line"><span class="keywordtype">int</span> status = <a class="code hl_function" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos</a>(&amp;mars, &amp;obs_frame, <a class="code hl_enumvalue" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, &amp;apparent);</div>
-<div class="line"><span class="keywordflow">if</span>(status) {</div>
-<div class="line">  <span class="comment">// Oops, something went wrong...</span></div>
-<div class="line">  ...</div>
-<div class="line">}</div>
-<div class="ttc" id="anovas_8h_html_a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3"><div class="ttname"><a href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a></div><div class="ttdeci">@ NOVAS_TOD</div><div class="ttdoc">True equinox Of Date: dynamical system of the &#39;true&#39; equator, with its origin at the &#39;true&#39; equinox (...</div><div class="ttdef"><b>Definition</b> novas.h:835</div></div>
-</div><!-- fragment --><p><a class="anchor" id="orbital-sources-c99"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md63"></a>
-Solar-system objects with Keplerian orbital parameters</h3>
-<p>As of version <b>1.2</b> you can also define solar system sources with Keplerian orbital elements (such as the most up-to-date ones provided by the <a href="https://minorplanetcenter.net/data">Minor Planet Center</a> for asteroids, comets, etc.):</p>
-<div class="fragment"><div class="line"><span class="keywordtype">object</span> NEA;        <span class="comment">// e.g. a Near-Earth Asteroid</span></div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Fill in the orbital parameters (pay attention to units!)</span></div>
-<div class="line"><a class="code hl_struct" href="structnovas__orbital.html">novas_orbital</a> orbit = <a class="code hl_define" href="novas_8h.html#a85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>;</div>
-<div class="line">orbit.<a class="code hl_variable" href="structnovas__orbital.html#a70b91b91315e8c7adcf394cafbd11ecb">a</a> = ...;         <span class="comment">// Major axis in AU...</span></div>
-<div class="line">...                    <span class="comment">// ... and the rest of the orbital elements</span></div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Create an object for that orbit</span></div>
-<div class="line"><a class="code hl_function" href="novas_8h.html#a3c5e215babeeba078ca7b3e9be42e555">make_orbital_object</a>(<span class="stringliteral">&quot;NEAxxx&quot;</span>, -1, &amp;orbit, &amp;NEA);</div>
-<div class="ttc" id="anovas_8h_html_a3c5e215babeeba078ca7b3e9be42e555"><div class="ttname"><a href="novas_8h.html#a3c5e215babeeba078ca7b3e9be42e555">make_orbital_object</a></div><div class="ttdeci">int make_orbital_object(const char *name, long num, const novas_orbital *orbit, object *body)</div></div>
-<div class="ttc" id="anovas_8h_html_a85243a6b9eee259d3fb84ee1a587e065"><div class="ttname"><a href="novas_8h.html#a85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a></div><div class="ttdeci">#define NOVAS_ORBIT_INIT</div><div class="ttdoc">Initializer for novas_orbital for heliocentric orbits using GCRS ecliptic parametrization.</div><div class="ttdef"><b>Definition</b> novas.h:1398</div></div>
-<div class="ttc" id="astructnovas__orbital_html"><div class="ttname"><a href="structnovas__orbital.html">novas_orbital</a></div><div class="ttdoc">Keplerian orbital elements for NOVAS_ORBITAL_OBJECT type.</div><div class="ttdef"><b>Definition</b> novas.h:1367</div></div>
-<div class="ttc" id="astructnovas__orbital_html_a70b91b91315e8c7adcf394cafbd11ecb"><div class="ttname"><a href="structnovas__orbital.html#a70b91b91315e8c7adcf394cafbd11ecb">novas_orbital::a</a></div><div class="ttdeci">double a</div><div class="ttdoc">[AU] semi-major axis</div><div class="ttdef"><b>Definition</b> novas.h:1370</div></div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Even with orbital elements, you will, in general, still require an ephemeris provider also, to obtain precise positions for the Sun, an Earth-based observer, or the planet, around which the orbit is defined.</dd></dl>
-<p><a class="anchor" id="planet-orbitals-c99"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md64"></a>
-Approximate planet and Moon orbitals</h3>
-<p>Finally, as of version <b>1.4</b>, you might generate approximate (arcmin-level) orbitals for the major planets (but not Earth!), the Moon, and the Earth-Moon Barycenter (EMB) also. E.g.:</p>
-<div class="fragment"><div class="line"><span class="keywordtype">double</span> jd_tdb = ... <span class="comment">// Time (epoch) for which to calculate orbital parameters  </span></div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Planet orbitals, e.g. for Mars</span></div>
-<div class="line"><a class="code hl_struct" href="structnovas__orbital.html">novas_orbital</a> mars_orbit = <a class="code hl_define" href="novas_8h.html#a85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>;</div>
-<div class="line"><a class="code hl_function" href="novas_8h.html#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit</a>(<a class="code hl_enumvalue" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e">NOVAS_MARS</a>, jd_tdb, &amp;mars_orbit);</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Moon&#39;s orbital around Earth</span></div>
-<div class="line"><a class="code hl_struct" href="structnovas__orbital.html">novas_orbital</a> moon_orbit = <a class="code hl_define" href="novas_8h.html#a85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>;</div>
-<div class="line"><a class="code hl_function" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a>(jd_tdb, &amp;moon_orbit);</div>
-<div class="ttc" id="agroup__source_html_gad6e6c7f6dc2745030e3fd4d407e982bd"><div class="ttname"><a href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a></div><div class="ttdeci">int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit)</div></div>
-<div class="ttc" id="anovas_8h_html_a63b094e813d8b752a6f3344419e80031"><div class="ttname"><a href="novas_8h.html#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit</a></div><div class="ttdeci">int novas_make_planet_orbit(enum novas_planet id, double jd_tdb, novas_orbital *restrict orbit)</div></div>
-</div><!-- fragment --><p>While the planet and Moon orbitals are not suitable for precision applications, they can be useful for determining approximate positions (e.g. via the <span class="tt"><a class="el" href="novas_8h.html#a9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#a4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a></span> functions), and for rise/set time calculations.</p>
 <p><a class="anchor" id="transforms-c99"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md65"></a>
 Coordinate and velocity transforms (change of coordinate system)</h2>

@@ -99,6 +99,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-CPP.html','',''); }
 <p>This guide is specifically for using <b>SuperNOVAS</b> primarily as a C++11 library. There is a separate guide for <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">using the C99 API</a>. The links below let you jump to the relevant sections:</p>
 <ul>
 <li><a class="el" href="#integration-cpp" title="integration-cpp">Building your application with SuperNOVAS (C++)</a></li>
+<li><a class="el" href="#fundamentals-cpp" title="fundamentals-cpp">C++ Fundametals</a></li>
 <li><a class="el" href="#examples-cpp" title="examples-cpp">Example C++ usage</a></li>
 </ul>
 <p><b>SuperNOVAS</b> is a C99 library at its core. If you are looking for maximum speed, or want to use <b>SuperNOVAS</b> on older platforms, the C99 API is there for you. However, if you want a more modern, more intuitive, higher-level, and more elegant way of using <b>SuperNOVAS</b> then the C++ API gives you that comfort.</p>
@@ -145,26 +146,19 @@ Details</summary>
 </div><!-- fragment --><p></p>
 </details>
 <hr  />
-<p><a class="anchor" id="examples-cpp"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
-Example C++ usage</h1>
-<ul>
-<li><a class="el" href="#fundamentals-cpp" title="fundamentals-cpp">Fundametals</a></li>
-<li><a class="el" href="#sidereal-example-cpp" title="sidereal-example-cpp">Calculating positions for a sidereal source</a></li>
-<li><a class="el" href="#solsys-example-cpp" title="solsys-example-cpp">Calculating positions for a Solar-system source</a></li>
-</ul>
 <p><a class="anchor" id="fundamentals-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
-Fundamentals</h2>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
+C++ Fundamentals</h2>
 <ul>
 <li><a class="el" href="#namespace-cpp" title="namespace-cpp">Namespace</a></li>
 <li><a class="el" href="#validation-cpp" title="validation-cpp">Validation</a></li>
 <li><a class="el" href="#immutable-cpp" title="immutable-cpp">Immutable instances</a></li>
 <li><a class="el" href="#internal-copies-cpp" title="internal-copies-cpp">Classes don't reference external objects internally</a></li>
+<li><a class="el" href="#operators-cpp" title="operators-cpp">Operator overloading</a></li>
 </ul>
 <p>Before we dive into specific examples for using the <b>SuperNOVAS</b> C++ API, you should know of the generic features and design principles that underly the C++ implementation.</p>
 <p><a class="anchor" id="namespace-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
 Namespace</h3>
 <p>To allow using simple class names, while being cognizant of potential namespace conflicts, the <b>SuperNOVAS</b> classes all live under the <span class="tt"><a class="el" href="namespacesupernovas.html">supernovas</a></span> namespace. Thus, the class <span class="tt">Angle</span>, for example, has a full name <span class="tt"><a class="el" href="classsupernovas_1_1Angle.html" title="A representation of a regularized angle, which can be expressed in various commonly used angular unit...">supernovas::Angle</a></span> that can be used in any context. But, when convenient you can make one of more namespaces default in your source code, e.g.:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="supernovas_8h.html">supernovas.h</a>&gt;</span></div>
@@ -186,7 +180,7 @@ Namespace</h3>
 <div class="line">  ...</div>
 <div class="line">}</div>
 </div><!-- fragment --><p><a class="anchor" id="validation-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
 Validation</h3>
 <p>C++ does not have runtime exceptions the same way as Python or Java, which can be caught. While C++17 introduced <span class="tt">std::optional</span> types that can be used to return with or without a valid data, <b>SuperNOVAS</b> does not use these, because <em>(a)</em> the optionals are not supported on Apple and Windows (in 2026), and <em>(b)</em> they don't do anything for constructors.</p>
 <p>Instead all <b>SuperNOVAS</b> classes are based on a <span class="tt"><a class="el" href="classsupernovas_1_1Validating.html" title="A simple interface class handling validation checking for classes that inherit it.">supernovas::Validating</a></span> base class, providing an <span class="tt">is_valid()</span> method. All subclasses (that is all <b>SuperNOVAS</b> classes) sanity check their data as part of their constructor. And, mutable classes sanity check every time they are modified as well. The checks typically include flagging NaNs and infinite values (unless they are explicitly allowed), enum values outside of their normal range (yes the compiler checks for these, but those checks can be easily bypassed), and whatever else is necessary to ensure that the objects contain fully usable data.</p>
@@ -206,16 +200,50 @@ Validation</h3>
 <div class="line">}</div>
 </div><!-- fragment --><p>And if in doubt as to why your object is invalid, you can always turn on debugging with <span class="tt">novas_debug(NOVAS_DEBUG_ON)</span>, at least in the relevant section of your code. <b>SuperNOVAS</b> will provide error descriptions and call traces every time an invalid class instance is created, and when methods create invalid objects themselves.</p>
 <p><a class="anchor" id="immutable-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
 Immutable instances</h3>
 <p>Almost all classes of the <b>SuperNOVAS</b> library use immutable instances. The immutability makes these <b>SuperNOVAS</b> classes inherently thread safe. Given they are immutable, it is impossible for one thread to modify the class while another accesses it concurrently. No mutexes are needed for these.</p>
 <p>The exceptions to immutabilty are <span class="tt"><a class="el" href="classsupernovas_1_1CatalogEntry.html" title="Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud,...">supernovas::CatalogEntry</a></span>, <span class="tt"><a class="el" href="classsupernovas_1_1Orbital.html" title="Keplerian orbital elements, for example, for a comet using parameters published by the IAU Minor Plan...">supernovas::Orbital</a></span> and <span class="tt"><a class="el" href="classsupernovas_1_1OrbitalSystem.html" title="Orbital system for Keplerian orbitals, defining the orbital plane and orientation,...">supernovas::OrbitalSystem</a></span>. These classes have too many possible parameters, and also alternate parametrizations. It simply does not make sense to define everything in a constuctor. Rather, these classes take a minimalist approach to the constructor, which define the most essential parameters only. Then, you can define additional (optional) parameters using a builder pattern (see for example the sections on defining a <a class="el" href="#specify-object-cpp" title="specify-object-cpp">catalog source</a> or an <a class="el" href="#orbital-sources-cpp" title="orbital-sources-cpp">orbital source</a>). This approach also handles alternate parametrizations (e.g. radial velocity vs. LSR velocity vs. redshift, or distance vs. parallax). The best practice for these mutable types is to define them once in a single-thread, and never attempt to further modify them once they are passed into a multi-threaded environment.</p>
 <p><a class="anchor" id="internal-copies-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
 Classes don't reference external objects internally</h3>
 <p>The <b>SuperNOVAS</b> classes never store references to external objects internally. Instead, they always store copies of the parameters that were supplied. While this may result in a small computational overhead, it adds to the thread safety. Thus, even if a <span class="tt"><a class="el" href="classsupernovas_1_1CatalogEntry.html" title="Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud,...">supernovas::CatalogEntry</a></span> object is mutable, once a <span class="tt"><a class="el" href="classsupernovas_1_1CatalogSource.html" title="A sidereal source, defined by its catalog coordinates and other catalog parameters.">supernovas::CatalogSource</a></span> is created from it, that source will store a copy of the entry internally. So, even if the entry is modified afterwards, the source stays immutable with the parameters that were used when it was instantiated.</p>
+<p><a class="anchor" id="operators-cpp"></a> </p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
+Operator overloading</h3>
+<p>Several <b>SuperNOVAS</b> classes override arithmetic operators (often <span class="tt">+</span> and <span class="tt">-</span>, and sometimes <span class="tt">*</span>), but only when this is physically meaningful. For example, you can add and difference position or velocity vectors: for positions <span class="tt">a</span> and <span class="tt">b</span>, <span class="tt">a + b</span> is the two positions superimposed, <span class="tt">a - b</span> is the difference vector of the same type. For velocities the addition and subtraction follows the relativistic formulae, e.g. for velocity vectors <span class="tt">v1</span> and <span class="tt">v2</span>:</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Velocity.html">Velocity</a> dv = v2 - v1;  <span class="comment">// Relativistic difference of two velocity vectors.</span></div>
+<div class="ttc" id="aclasssupernovas_1_1Velocity_html"><div class="ttname"><a href="classsupernovas_1_1Velocity.html">supernovas::Velocity</a></div><div class="ttdoc">A 3D physical velocity vector in space.</div><div class="ttdef"><b>Definition</b> supernovas.h:635</div></div>
+</div><!-- fragment --><p>You can also add or subtract intervals around <span class="tt">Time</span> instances, for <span class="tt">Time t</span>, you might define:</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a> t1 = t + 1.1 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#ad3c2664b35bc6383d6f1cac2347331ec">Unit::min</a>;  <span class="comment">// offset time (in the same timescale)</span></div>
+<div class="ttc" id="aclasssupernovas_1_1Time_html"><div class="ttname"><a href="classsupernovas_1_1Time.html">supernovas::Time</a></div><div class="ttdoc">Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...</div><div class="ttdef"><b>Definition</b> supernovas.h:1550</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_ad3c2664b35bc6383d6f1cac2347331ec"><div class="ttname"><a href="classsupernovas_1_1Unit.html#ad3c2664b35bc6383d6f1cac2347331ec">supernovas::Unit::min</a></div><div class="ttdeci">static constexpr double min</div><div class="ttdoc">[s] 1 second by another name</div><div class="ttdef"><b>Definition</b> supernovas.h:132</div></div>
+</div><!-- fragment --><p>This works for small intervals so long as the Earth Orientation Parameters (leap seconds and UT1 - UTC time difference) remain the same, <em>and</em> the timescales also match up (e.g. both <span class="tt">t</span> and the offset time are in say UTC). The above is the same as <span class="tt">t + Interval(1.1 * Unit::min)</span> or <span class="tt">t.shifted(1.1 * Unit::min)</span> or <span class="tt">t.shifted(Interval(1.1 * Unit::min))</span>.</p>
+<p>You can also multiply a <span class="tt">Velocity</span> or <span class="tt">ScalarVelocity</span> (<span class="tt">rv</span>) with a time interval on either side to get distance travelled, e.g.:</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Coordinate.html">Coordinate</a> dr = rv * <a class="code hl_class" href="classsupernovas_1_1Interval.html">Interval</a>(5.0 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">Unit::s</a>);  <span class="comment">// distance travelled</span></div>
+<div class="ttc" id="aclasssupernovas_1_1Coordinate_html"><div class="ttname"><a href="classsupernovas_1_1Coordinate.html">supernovas::Coordinate</a></div><div class="ttdoc">A scalar coordinate or distance between two points in space.</div><div class="ttdef"><b>Definition</b> supernovas.h:365</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Interval_html"><div class="ttname"><a href="classsupernovas_1_1Interval.html">supernovas::Interval</a></div><div class="ttdoc">A signed time interval between two instants of time, in the astronomical timescale of choice.</div><div class="ttdef"><b>Definition</b> supernovas.h:412</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_aa9d1ed769eb7bf5348b1d4a10e378472"><div class="ttname"><a href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">supernovas::Unit::s</a></div><div class="ttdeci">static constexpr double s</div><div class="ttdoc">[s] 1 millisecond in seconds</div><div class="ttdef"><b>Definition</b> supernovas.h:130</div></div>
+</div><!-- fragment --><p>is the same as <span class="tt">Interval(5.0 * Unit::s) * v</span>, and is the same as <span class="tt">v.travel(5.0 * Unit::s)</span> or <span class="tt">v.travel(Interval(5.0 * Unit::s))</span>.</p>
+<p>Celestial coordinates, which can be expressed in different reference systems, can be transformed to another system with the <span class="tt">&gt;&gt;</span> operator, which is just a shorthand for the <span class="tt">.to_system()</span> method. E.g., if you have <span class="tt">Equatorial</span> coordinates <span class="tt">eq</span> in some reference system, and want it to be converted to ICRS, you might write:</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Equatorial.html">Equatorial</a> icrs = eq &gt;&gt; <a class="code hl_function" href="classsupernovas_1_1Equinox.html#aa53f04012d4eae3402fb189bc7d320eb">Equinox::icrs</a>();  <span class="comment">// ICRS coordinates</span></div>
+<div class="ttc" id="aclasssupernovas_1_1Equatorial_html"><div class="ttname"><a href="classsupernovas_1_1Equatorial.html">supernovas::Equatorial</a></div><div class="ttdoc">Equatorial coordinates (RA, Dec = α, δ), representing the direction ob the sky, for a particular type...</div><div class="ttdef"><b>Definition</b> supernovas.h:828</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Equinox_html_aa53f04012d4eae3402fb189bc7d320eb"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#aa53f04012d4eae3402fb189bc7d320eb">supernovas::Equinox::icrs</a></div><div class="ttdeci">static const Equinox &amp; icrs()</div></div>
+</div><!-- fragment --><p>which is the same as <span class="tt">eq.to_system(Equinox::icrs())</span> or <span class="tt">eq.to_icrs()</span>.</p>
+<p>Last, but not least, all <b>SuperNOVAS</b> classes can be evaluated as boolean types, to check validity (same as the <span class="tt">.is_valid()</span> method), as described a little further above.</p>
+<p>It is up to you whether your coding style prefers using the overloaded operators or the equivalent methods. Do what works best for you.</p>
+<hr  />
+<p><a class="anchor" id="examples-cpp"></a> </p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md90"></a>
+Example C++ usage</h1>
+<ul>
+<li><a class="el" href="#sidereal-example-cpp" title="sidereal-example-cpp">Calculating positions for a sidereal source</a></li>
+<li><a class="el" href="#solsys-example-cpp" title="solsys-example-cpp">Calculating positions for a Solar-system source</a></li>
+<li><a class="el" href="#reverse-place-cpp" title="reverse-place-cpp">Going in reverse...</a></li>
+<li><a class="el" href="#rise-set-transit-cpp" title="rise-set-transit-cpp">Calculate rise, set, and transit times</a></li>
+</ul>
 <p><a class="anchor" id="sidereal-example-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md89"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
 Calculating positions for a sidereal source</h2>
 <p>A sidereal source may be anything beyond the Solar system with 'fixed' catalog coordinates. It may be a star, or a galactic molecular cloud, or a distant quasar.</p>
 <ul>
@@ -225,11 +253,9 @@ Calculating positions for a sidereal source</h2>
 <li><a class="el" href="#observing-frame-cpp" title="observing-frame-cpp">Set up the observing frame</a></li>
 <li><a class="el" href="#apparent-place-cpp" title="apparent-place-cpp">Calculate an apparent place on sky</a></li>
 <li><a class="el" href="#horizontal-place-cpp" title="horizontal-place-cpp">Calculate azimuth and elevation angles at the observing location</a></li>
-<li><a class="el" href="#reverse-place-cpp" title="reverse-place-cpp">Going in reverse...</a></li>
-<li><a class="el" href="#rise-set-transit-cpp" title="rise-set-transit-cpp">Calculate rise, set, and transit times</a></li>
 </ul>
 <p><a class="anchor" id="specify-object-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md90"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md92"></a>
 Specify the object of interest</h3>
 <p>First, you must provide the astrometric parameters (coordinates, and optionally radial velocity or redshift, proper motion, and/or parallax or distance also). Let's assume we pick a star for which we have B1950 (i.e. FK4) coordinates. We begin with the assigned name and the R.A. / Dec coordinates, and then populate any other astrometric parameters we may have:</p>
 <div class="fragment"><div class="line"><span class="comment">// Let&#39;s assume we have B1950 (FK4) coordinates</span></div>
@@ -244,7 +270,6 @@ Specify the object of interest</h3>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html"><div class="ttname"><a href="classsupernovas_1_1Unit.html">supernovas::Unit</a></div><div class="ttdoc">Various physical units for converting quantities expressed in conventional units to SI,...</div><div class="ttdef"><b>Definition</b> supernovas.h:96</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_a06a5719176ea23f07378bfb5f04a84a2"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a></div><div class="ttdeci">static constexpr double km</div><div class="ttdoc">[m] 1 Angstrom in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:120</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_a9e80b032a29bd9c9e4baace09f2f859c"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">supernovas::Unit::mas</a></div><div class="ttdeci">static constexpr double mas</div><div class="ttdoc">[rad] 1 second or arc in radians</div><div class="ttdef"><b>Definition</b> supernovas.h:153</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Unit_html_aa9d1ed769eb7bf5348b1d4a10e378472"><div class="ttname"><a href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">supernovas::Unit::s</a></div><div class="ttdeci">static constexpr double s</div><div class="ttdoc">[s] 1 millisecond in seconds</div><div class="ttdef"><b>Definition</b> supernovas.h:130</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_aaa277e4f817f823e433caf74e367fe52"><div class="ttname"><a href="classsupernovas_1_1Unit.html#aaa277e4f817f823e433caf74e367fe52">supernovas::Unit::yr</a></div><div class="ttdeci">static constexpr double yr</div><div class="ttdoc">[s] 1 week in seconds</div><div class="ttdef"><b>Definition</b> supernovas.h:138</div></div>
 </div><!-- fragment --><p>Above, the coordinates were specified as strings. but they could have been floating-point values (e.g. <span class="tt">16.43894213 *
 Unit::hour_angle</span>, <span class="tt">-26.323094 * Unit::deg</span>), or <span class="tt"><a class="el" href="classsupernovas_1_1Angle.html" title="A representation of a regularized angle, which can be expressed in various commonly used angular unit...">supernovas::Angle</a></span> / <span class="tt"><a class="el" href="classsupernovas_1_1TimeAngle.html" title="A representation of a regularized angle, which can also be represented as a time value in the 0 to 24...">supernovas::TimeAngle</a></span> objects instead. We also specified an equinox (B1950), but you can skip that if you use ICRS coordinates. After that, we used a builder pattern to add additional detail, such as proper motion, parallax, and an (SSB-based) radial velocity. We could have also set <span class="tt">distance()</span> instead of <span class="tt">parallax()</span>, or <span class="tt">v_lsr()</span> or <span class="tt">redshift()</span> instead of <span class="tt">radial_velocity()</span>. Use what fits your needs best. Note the use of physical units along with the numerical data.</p>
@@ -253,9 +278,9 @@ Unit::hour_angle</span>, <span class="tt">-26.323094 * Unit::deg</span>), or <sp
 <div class="ttc" id="aclasssupernovas_1_1CatalogEntry_html_a632dcb4b6edb3e341fae0710150aa49a"><div class="ttname"><a href="classsupernovas_1_1CatalogEntry.html#a632dcb4b6edb3e341fae0710150aa49a">supernovas::CatalogEntry::to_source</a></div><div class="ttdeci">CatalogSource to_source() const</div></div>
 </div><!-- fragment --><p>The <span class="tt"><a class="el" href="classsupernovas_1_1Source.html" title="An abstract astronomical source, or target of observation.">supernovas::Source</a></span> class can represent different astronomical objects, and accordingly has different subclasses. Specifically, <span class="tt">entry.to_source()</span> above returns a <span class="tt"><a class="el" href="classsupernovas_1_1CatalogSource.html" title="A sidereal source, defined by its catalog coordinates and other catalog parameters.">supernovas::CatalogSource</a></span>, but thanks to the <span class="tt">auto</span> keyword, we don't really need to know what subclass of <span class="tt">Source</span> is actually being created here.</p>
 <p><a class="anchor" id="specify-observer-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
 Specify the observer location</h3>
-<h4 class="doxsection"><a class="anchor" id="autotoc_md92"></a>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md94"></a>
 A. Earth-based observer location</h4>
 <p>Next, we define the location where we observe from. Let's assume we have a GPS location, such as 50.7374 deg N, 7.0982 deg E, 60m elevation:</p>
 <div class="fragment"><div class="line"><span class="comment">// Specify the location we are observing from, e.g. a GPS / WGS84 location</span></div>
@@ -267,7 +292,6 @@ A. Earth-based observer location</h4>
 </div><!-- fragment --><dl class="section remark"><dt>Remarks</dt><dd>You might use one of the <span class="tt"><a class="el" href="classsupernovas_1_1Site.html" title="An Earth-based (geodetic) observer site location, or airborne observer location.">supernovas::Site()</a></span> constructors directly if the location is defined on the GRS80 reference ellipsoid, or if you have geocentric Cartesian coordinates.</dd></dl>
 <p>Again you could have specified the coordinates as DMS strings, or as <span class="tt"><a class="el" href="classsupernovas_1_1Angle.html" title="A representation of a regularized angle, which can be expressed in various commonly used angular unit...">supernovas::Angle</a></span> objects also, e.g.:</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Site.html">Site</a> site = <a class="code hl_function" href="classsupernovas_1_1Site.html#aadff10a55ef01a3fcabf0a1080e8cb1b">Site::from_GPS</a>(<span class="stringliteral">&quot;50.7374N&quot;</span>, <span class="stringliteral">&quot;7.0982 deg E&quot;</span>, <a class="code hl_class" href="classsupernovas_1_1Coordinate.html">Coordinate</a>(60.0 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#af95881057f4dbd4b8a907b12e866c515">Unit::m</a>));</div>
-<div class="ttc" id="aclasssupernovas_1_1Coordinate_html"><div class="ttname"><a href="classsupernovas_1_1Coordinate.html">supernovas::Coordinate</a></div><div class="ttdoc">A scalar coordinate or distance between two points in space.</div><div class="ttdef"><b>Definition</b> supernovas.h:365</div></div>
 </div><!-- fragment --><p>Next, you will want to create an <span class="tt"><a class="el" href="classsupernovas_1_1Observer.html" title="An abstract observer location.">supernovas::Observer</a></span> instance for that location with the appropriate Earth Orientation Parameters (EOP), such as obtained from the <a href="https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html">IERS Bulletins</a> or data service. These are leap seconds, the UT1-UTC time difference capturing variations in Earth's rotation, and the _x<sub>p</sub>_, _y<sub>p</sub>_ polar offsets, which measure small wanders of Earth's rotational pole w.r.t. the crust:</p>
 <div class="fragment"><div class="line"><span class="comment">// Let&#39;s assume 37 leap seconds, 0.6447s UT1-UTC difference, and some polar offsets:</span></div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1EOP.html">EOP</a> eop(37, 0.6447 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">Unit::s</a>, 103.2 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">Unit::mas</a>, 211.3 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">Unit::mas</a>);</div>
@@ -276,18 +300,17 @@ A. Earth-based observer location</h4>
 <div class="line"><span class="keyword">auto</span> obs = site::to_observer(eop);</div>
 <div class="ttc" id="aclasssupernovas_1_1EOP_html"><div class="ttname"><a href="classsupernovas_1_1EOP.html">supernovas::EOP</a></div><div class="ttdoc">Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.</div><div class="ttdef"><b>Definition</b> supernovas.h:1158</div></div>
 </div><!-- fragment --><p>Again, <span class="tt"><a class="el" href="classsupernovas_1_1Observer.html" title="An abstract observer location.">supernovas::Observer</a></span> has many subclasses of specific flavors, so here we use the <span class="tt">auto</span> keyword again if we are lazy (otherwise we could have specified <span class="tt"><a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">supernovas::GeodeticObserver</a></span>, which is what <span class="tt">site.to_observer()</span> returns).</p>
-<h4 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md95"></a>
 B. other observer locations</h4>
 <p>Alternatively, you can also specify airborne observers, or observers in Earth orbit, in heliocentric orbit, at the geocenter, or at the Solar-system barycenter. See the static methods of the <span class="tt"><a class="el" href="classsupernovas_1_1Observer.html" title="An abstract observer location.">supernovas::Observer</a></span> class. E.g.:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> obs = <a class="code hl_function" href="classsupernovas_1_1Observer.html#a062259fef53b70bea43894e7dc5f4cca">Observer::at_geocenter</a>();</div>
 <div class="ttc" id="aclasssupernovas_1_1Observer_html_a062259fef53b70bea43894e7dc5f4cca"><div class="ttname"><a href="classsupernovas_1_1Observer.html#a062259fef53b70bea43894e7dc5f4cca">supernovas::Observer::at_geocenter</a></div><div class="ttdeci">static GeocentricObserver at_geocenter()</div></div>
 </div><!-- fragment --><p><a class="anchor" id="specify-time-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md94"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md96"></a>
 Specify the time of observation</h3>
 <p>Then we can set the time of observation, for example, using the current UNIX time:</p>
 <div class="fragment"><div class="line"><span class="comment">// Set the time of observation to the precise UTC-based UNIX time</span></div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a> obs_time = <a class="code hl_function" href="classsupernovas_1_1Time.html#a876eb4ce016cf42aaa167ba1b247b3c8">Time::now</a>(eop);</div>
-<div class="ttc" id="aclasssupernovas_1_1Time_html"><div class="ttname"><a href="classsupernovas_1_1Time.html">supernovas::Time</a></div><div class="ttdoc">Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...</div><div class="ttdef"><b>Definition</b> supernovas.h:1550</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Time_html_a876eb4ce016cf42aaa167ba1b247b3c8"><div class="ttname"><a href="classsupernovas_1_1Time.html#a876eb4ce016cf42aaa167ba1b247b3c8">supernovas::Time::now</a></div><div class="ttdeci">static Time now(const EOP &amp;eop)</div></div>
 </div><!-- fragment --><p>Once again, EOP is needed for the leap seconds and UT1-UTC time difference.</p>
 <p>Alternatively, you may set the time as a Julian date in the time measure of choice (UTC, UT1, TT, TDB, GPS, TAI, TCG, or TCB):</p>
@@ -303,7 +326,7 @@ Specify the time of observation</h3>
 </div><!-- fragment --><p>Or, you might use string dates, such as an ISO timestamp:</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a> obs_time = <a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a>(<span class="stringliteral">&quot;2025-01-26T22:05:14.234+0200&quot;</span>, eop);</div>
 </div><!-- fragment --><p><a class="anchor" id="observing-frame-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md95"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md97"></a>
 Set up the observing frame</h3>
 <p>Next, we set up an observing frame, which is defined for a unique combination of the observer location and the time of observation:</p>
 <div class="fragment"><div class="line"><span class="comment">// Initialize the observing frame for the observer at the time of observation.</span></div>
@@ -320,7 +343,7 @@ Set up the observing frame</h3>
 <dl class="section important"><dt>Important</dt><dd>Without a proper ephemeris provider for the major planets, you are invariably restricted to working with reduced accuracy frames, providing milliarcsecond precision at most. Attempting to construct high-accuracy frames without an appropriate high-precision ephemeris provider will result in an error from the requisite <span class="tt"><a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a></span> calls.</dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd>Full accuracy (&mu;as-level) frames require a high-precision ephemeris provider for the major planets, e.g. to account for the gravitational deflections. Without it, &mu;as accuracy cannot be ensured, in general. See section on <a class="el" href="index.html#solarsystem" title="solarsystem">Incorporating Solar-system ephemeris data or services</a> further below.</dd></dl>
 <p><a class="anchor" id="apparent-place-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md96"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md98"></a>
 Calculate an apparent place on sky</h3>
 <p>Now we can calculate the apparent R.A. and declination for our source, which includes proper motion (for sidereal sources) or light-time correction (for Solar-system bodies), and also aberration corrections for the moving observer and gravitational deflection around the major Solar System bodies (in full accuracy mode). You can calculate an apparent location in the:</p>
 <div class="fragment"><div class="line"><span class="comment">// Precise apparent positions and spectroscopic velocities (in TOD).</span></div>
@@ -332,7 +355,6 @@ Calculate an apparent place on sky</h3>
 <div class="line"> </div>
 <div class="line"><span class="comment">// the same converted to ICRS</span></div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Equatorial.html">Equatorial</a> icrs = tod.<a class="code hl_function" href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864">to_icrs</a>();</div>
-<div class="ttc" id="aclasssupernovas_1_1Equatorial_html"><div class="ttname"><a href="classsupernovas_1_1Equatorial.html">supernovas::Equatorial</a></div><div class="ttdoc">Equatorial coordinates (RA, Dec = α, δ), representing the direction ob the sky, for a particular type...</div><div class="ttdef"><b>Definition</b> supernovas.h:828</div></div>
 <div class="ttc" id="agroup__equatorial_html_ga6229ff3b612cd28c44e866f946d37864"><div class="ttname"><a href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864">supernovas::Equatorial::to_icrs</a></div><div class="ttdeci">Equatorial to_icrs() const</div></div>
 <div class="ttc" id="agroup__equatorial_html_gafc85c07b57504bce62e2f7b06947dfb8"><div class="ttname"><a href="group__equatorial.html#gafc85c07b57504bce62e2f7b06947dfb8">supernovas::Apparent::equatorial</a></div><div class="ttdeci">Equatorial equatorial() const</div></div>
 </div><!-- fragment --><p>You can also obtain ecliptic (TOD) and galactic coordinates the same way, and convert ecliptic coordinates to other equinoxes just like we did for the equatorial:</p>
@@ -358,7 +380,7 @@ Calculate an apparent place on sky</h3>
 <div class="ttc" id="aclasssupernovas_1_1Apparent_html_a2eb5b98814a1ce397341007b89d097e5"><div class="ttname"><a href="classsupernovas_1_1Apparent.html#a2eb5b98814a1ce397341007b89d097e5">supernovas::Apparent::distance</a></div><div class="ttdeci">Coordinate distance() const</div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>If you want geometric positions and/or velocities instead, without aberration and gravitational deflection, you might use <span class="tt"><a class="el" href="group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a">supernovas::Source::geometric_in</a>(Frame&amp;)</span> instead of <span class="tt"><a class="el" href="group__apparent.html#ga30cfb5d2c48b4464e015c8429174e771">supernovas::Source::apparent_in</a>(Frame&amp;)</span>.</dd></dl>
 <p><a class="anchor" id="horizontal-place-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md97"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md99"></a>
 Calculate azimuth and elevation angles at the observing location</h3>
 <p>If your ultimate goal is to calculate the azimuth and elevation angles of the source at the specified observing location, you can proceed from the <span class="tt">Apparent</span> positions you obtained above, provided they are calculated for an Earth based observer (otherwise, you'll get an invalid result):</p>
 <div class="fragment"><div class="line"><span class="comment">// Convert the apparent position to unrefracted horizontal coordinates</span></div>
@@ -377,51 +399,7 @@ Calculate azimuth and elevation angles at the observing location</h3>
 <div class="ttc" id="agroup__nonequatorial_html_ga39a5c71512aa41496371b99fd2a892d4"><div class="ttname"><a href="group__nonequatorial.html#ga39a5c71512aa41496371b99fd2a892d4">supernovas::Apparent::to_horizontal</a></div><div class="ttdeci">Horizontal to_horizontal() const</div></div>
 <div class="ttc" id="agroup__refract_html_ga7720f3cd6bddf9d69ff44ac8ccae8029"><div class="ttname"><a href="group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029">supernovas::Horizontal::to_refracted</a></div><div class="ttdeci">Horizontal to_refracted(RefractionModel ref, const Weather &amp;weather=Weather::standard(), const Time &amp;time=Time::undefined())</div></div>
 <div class="ttc" id="agroup__refract_html_gae4511a80a1defbb1e1fdc29c289e7de4"><div class="ttname"><a href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a></div><div class="ttdeci">double novas_optical_refraction(double jd_tt, const on_surface *loc, enum novas_refraction_type type, double el)</div></div>
-</div><!-- fragment --><p><a class="anchor" id="reverse-place-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md98"></a>
-Going in reverse...</h3>
-<p>Of course, <b>SuperNOVAS</b> allows you to go in reverse, for example from an observed Az/El position all the way to proper ICRS R.A./Dec coordinates, or a geometric place.</p>
-<p>E.g., let's assume you start with horizontal coorinates that measured at your observing location:</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Horizontal.html">Horizontal</a> hor = ...;      <span class="comment">// observer azimuth and elevation angles</span></div>
-</div><!-- fragment --><p>If needed correct for atmospheric refraction.</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Weather.html">Weather</a> weather(...); <span class="comment">// define local weather parameters for the refraction (if needed)</span></div>
-<div class="line"> </div>
-<div class="line">hor = hor.<a class="code hl_function" href="group__refract.html#gab44266c51e667838736e49e59008a9be">to_unrefracted</a>(<a class="code hl_function" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a>, weather);</div>
-<div class="ttc" id="agroup__refract_html_gab44266c51e667838736e49e59008a9be"><div class="ttname"><a href="group__refract.html#gab44266c51e667838736e49e59008a9be">supernovas::Horizontal::to_unrefracted</a></div><div class="ttdeci">Horizontal to_unrefracted(RefractionModel ref, const Weather &amp;weather=Weather::standard(), const Time &amp;time=Time::undefined())</div></div>
-</div><!-- fragment --><p>Noew you can calculate an apparent place on the celestial sphere given your observing frame (precise location and time of observation).</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Apparent.html">Apparent</a> app = hor.<a class="code hl_function" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">to_apparent</a>(frame);</div>
-<div class="ttc" id="agroup__apparent_html_gac3fce1b4c732817ba50a19edecc544ae"><div class="ttname"><a href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent</a></div><div class="ttdeci">Apparent to_apparent(const Frame &amp;frame, double rv=0.0, double distance=Unit::Gpc) const</div></div>
-</div><!-- fragment --><p>or,</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Apparent.html">Apparent</a> app = hor.<a class="code hl_function" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">to_apparent</a>(frame, <a class="code hl_class" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a>(-14.2 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">Unit::km</a> / <a class="code hl_variable" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">Unit::s</a>), Distance(43.6 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a5dafa1612f232d6a64461635cb0f211a">Unit::pc</a>);</div>
-<div class="ttc" id="aclasssupernovas_1_1Unit_html_a5dafa1612f232d6a64461635cb0f211a"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a5dafa1612f232d6a64461635cb0f211a">supernovas::Unit::pc</a></div><div class="ttdeci">static constexpr double pc</div><div class="ttdoc">[m] 1 kilometer in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:121</div></div>
-</div><!-- fragment --><p>Note, that when radial velocity and/or distance is not explicitly defined, they are assumed as 0 (km/s) and 1 Gpc, respectively. Next, you can convert the apparent place to a geometric position, referenced to the time when the observed light originated from the source (at the distance defined or assumed):</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1AstrometricPosition.html">AstrometricPosition</a> pos = app.<a class="code hl_function" href="group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e">astrometric_position</a>();</div>
-<div class="ttc" id="aclasssupernovas_1_1AstrometricPosition_html"><div class="ttname"><a href="classsupernovas_1_1AstrometricPosition.html">supernovas::AstrometricPosition</a></div><div class="ttdoc">The astrometric 3D geometric equatorial position of an object, referenced to the Solar System Barycen...</div><div class="ttdef"><b>Definition</b> supernovas.h:2437</div></div>
-<div class="ttc" id="agroup__geometric_html_ga9955f022efa8e92d2c6a5e037794451e"><div class="ttname"><a href="group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e">supernovas::Apparent::astrometric_position</a></div><div class="ttdeci">AstrometricPosition astrometric_position() const</div></div>
-</div><!-- fragment --><p>Or, calculate the geometric position relative to the SSB instead...</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1AstrometricPosition.html">AstrometricPosition</a> ssb_pos = app.<a class="code hl_function" href="group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e">astrometric_position</a>().<a class="code hl_function" href="classsupernovas_1_1AstrometricPosition.html#a99e7e7d64227a3394723568a73334e9e">referenced_to_ssb</a>();</div>
-<div class="ttc" id="aclasssupernovas_1_1AstrometricPosition_html_a99e7e7d64227a3394723568a73334e9e"><div class="ttname"><a href="classsupernovas_1_1AstrometricPosition.html#a99e7e7d64227a3394723568a73334e9e">supernovas::AstrometricPosition::referenced_to_ssb</a></div><div class="ttdeci">AstrometricPosition referenced_to_ssb() const</div></div>
-</div><!-- fragment --><p>And finally, you can calculate nominal SSB-based ICRS coordinates as:</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Equatorial.html">Equatorial</a> icrs = ssb_pos.<a class="code hl_function" href="group__equatorial.html#ga90c00e6b66260a85bd49b8fdb1d61051">as_equatorial</a>().<a class="code hl_function" href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864">to_icrs</a>();</div>
-<div class="ttc" id="agroup__equatorial_html_ga90c00e6b66260a85bd49b8fdb1d61051"><div class="ttname"><a href="group__equatorial.html#ga90c00e6b66260a85bd49b8fdb1d61051">supernovas::AstrometricPosition::as_equatorial</a></div><div class="ttdeci">Equatorial as_equatorial() const</div></div>
-</div><!-- fragment --><p><a class="anchor" id="rise-set-transit-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md99"></a>
-Calculate rise, set, and transit times</h3>
-<p>You may be interested to know when sources rise above or set below some specific elevation angle, or at what time they appear to transit at the observer location. <b>SuperNOVAS</b> has routines to help you with that too.</p>
-<p>Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are effectively tied to an observer frame. Let's assume you have defined a source and an observing frame:</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Frame.html">Frame</a> frame = ...;        <span class="comment">// Earth-based observer location and lower-bound time of interest.</span></div>
-<div class="line"><a class="code hl_class" href="classsupernovas_1_1Source.html">Source</a> source = ...;      <span class="comment">// Source of interest</span></div>
-<div class="ttc" id="aclasssupernovas_1_1Source_html"><div class="ttname"><a href="classsupernovas_1_1Source.html">supernovas::Source</a></div><div class="ttdoc">An abstract astronomical source, or target of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:1741</div></div>
-</div><!-- fragment --><p>Let's calculate the time when source rises above 30 degrees of elevation next <em>after</em> the observing time of the frame, given the NOVAS optical refraction model.</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Weather.html">Weather</a> weather = ...;    <span class="comment">// Define local weather parameters... </span></div>
-<div class="line"> </div>
-<div class="line"><a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a> t_rise = source.rises_above(30.0 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">Unit::deg</a>, frame, <a class="code hl_function" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a>, weather);</div>
-</div><!-- fragment --><p>Or, calculate the time the source transits after the frame's time of observation:</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a> t_transit = source.transits_in(frame);</div>
-</div><!-- fragment --><p>Or, calculate the next time when source sets below 30 degrees of elevation, not accounting for refraction.</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a> t_set = source.sets_below(30.0 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">Unit::deg</a>, frame);</div>
-</div><!-- fragment --><p>Note, that in the current implementation these calls are not well suited sources that are at or within the geostationary orbit, such as such as Low Earth Orbit satellites (LEOs), geostationary satellites (which never really rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set multiple times per day. For the latter, the above calls may still return a valid time, only without the guarantee that it is the time of the first such event after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for updates.</p>
-<p><a class="anchor" id="solsys-example-cpp"></a> </p>
+</div><!-- fragment --><p><a class="anchor" id="solsys-example-cpp"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md100"></a>
 Calculating positions for a Solar-system source</h2>
 <ul>
@@ -459,7 +437,6 @@ Planets and/or ephemeris type objects</h3>
 <div class="ttc" id="aclasssupernovas_1_1Geometric_html_a9dd8ae82e7bd6de2dc470c37e5cfd533"><div class="ttname"><a href="classsupernovas_1_1Geometric.html#a9dd8ae82e7bd6de2dc470c37e5cfd533">supernovas::Geometric::position</a></div><div class="ttdeci">const Position &amp; position() const</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Geometric_html_ab84cc3daa11fcb1433ce8b0e292021d5"><div class="ttname"><a href="classsupernovas_1_1Geometric.html#ab84cc3daa11fcb1433ce8b0e292021d5">supernovas::Geometric::velocity</a></div><div class="ttdeci">const Velocity &amp; velocity() const</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Position_html"><div class="ttname"><a href="classsupernovas_1_1Position.html">supernovas::Position</a></div><div class="ttdoc">A 3D physical position vector in space.</div><div class="ttdef"><b>Definition</b> supernovas.h:680</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Velocity_html"><div class="ttname"><a href="classsupernovas_1_1Velocity.html">supernovas::Velocity</a></div><div class="ttdoc">A 3D physical velocity vector in space.</div><div class="ttdef"><b>Definition</b> supernovas.h:635</div></div>
 </div><!-- fragment --><p><a class="anchor" id="orbital-sources-cpp"></a> </p>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md102"></a>
 Solar-system objects with Keplerian orbital parameters</h3>
@@ -502,6 +479,50 @@ Approximate planet orbitals</h3>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Geometric.html">Geometric</a> geom = <a class="code hl_function" href="classsupernovas_1_1Planet.html#a95d6eddc4c6164abd06c26875fe7714a">Planet::neptune</a>().approx_geometric_in(frame);</div>
 <div class="ttc" id="aclasssupernovas_1_1Planet_html_a95d6eddc4c6164abd06c26875fe7714a"><div class="ttname"><a href="classsupernovas_1_1Planet.html#a95d6eddc4c6164abd06c26875fe7714a">supernovas::Planet::neptune</a></div><div class="ttdeci">static const Planet &amp; neptune()</div></div>
 </div><!-- fragment --><p>Keep in mind that the planet and Moon orbitals are not suitable for precision applications.</p>
+<p><a class="anchor" id="reverse-place-cpp"></a> </p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md104"></a>
+Going in reverse...</h2>
+<p>Of course, <b>SuperNOVAS</b> allows you to go in reverse, for example from an observed Az/El position all the way to proper ICRS R.A./Dec coordinates, or a geometric place.</p>
+<p>E.g., let's assume you start with horizontal coorinates that measured at your observing location:</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Horizontal.html">Horizontal</a> hor = ...;      <span class="comment">// observer azimuth and elevation angles</span></div>
+</div><!-- fragment --><p>If needed correct for atmospheric refraction.</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Weather.html">Weather</a> weather(...); <span class="comment">// define local weather parameters for the refraction (if needed)</span></div>
+<div class="line"> </div>
+<div class="line">hor = hor.<a class="code hl_function" href="group__refract.html#gab44266c51e667838736e49e59008a9be">to_unrefracted</a>(<a class="code hl_function" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a>, weather);</div>
+<div class="ttc" id="agroup__refract_html_gab44266c51e667838736e49e59008a9be"><div class="ttname"><a href="group__refract.html#gab44266c51e667838736e49e59008a9be">supernovas::Horizontal::to_unrefracted</a></div><div class="ttdeci">Horizontal to_unrefracted(RefractionModel ref, const Weather &amp;weather=Weather::standard(), const Time &amp;time=Time::undefined())</div></div>
+</div><!-- fragment --><p>Noew you can calculate an apparent place on the celestial sphere given your observing frame (precise location and time of observation).</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Apparent.html">Apparent</a> app = hor.<a class="code hl_function" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">to_apparent</a>(frame);</div>
+<div class="ttc" id="agroup__apparent_html_gac3fce1b4c732817ba50a19edecc544ae"><div class="ttname"><a href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent</a></div><div class="ttdeci">Apparent to_apparent(const Frame &amp;frame, double rv=0.0, double distance=Unit::Gpc) const</div></div>
+</div><!-- fragment --><p>or,</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Apparent.html">Apparent</a> app = hor.<a class="code hl_function" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">to_apparent</a>(frame, <a class="code hl_class" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a>(-14.2 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">Unit::km</a> / <a class="code hl_variable" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">Unit::s</a>), Distance(43.6 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a5dafa1612f232d6a64461635cb0f211a">Unit::pc</a>);</div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a5dafa1612f232d6a64461635cb0f211a"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a5dafa1612f232d6a64461635cb0f211a">supernovas::Unit::pc</a></div><div class="ttdeci">static constexpr double pc</div><div class="ttdoc">[m] 1 kilometer in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:121</div></div>
+</div><!-- fragment --><p>Note, that when radial velocity and/or distance is not explicitly defined, they are assumed as 0 (km/s) and 1 Gpc, respectively. Next, you can convert the apparent place to a geometric position, referenced to the time when the observed light originated from the source (at the distance defined or assumed):</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1AstrometricPosition.html">AstrometricPosition</a> pos = app.<a class="code hl_function" href="group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e">astrometric_position</a>();</div>
+<div class="ttc" id="aclasssupernovas_1_1AstrometricPosition_html"><div class="ttname"><a href="classsupernovas_1_1AstrometricPosition.html">supernovas::AstrometricPosition</a></div><div class="ttdoc">The astrometric 3D geometric equatorial position of an object, referenced to the Solar System Barycen...</div><div class="ttdef"><b>Definition</b> supernovas.h:2437</div></div>
+<div class="ttc" id="agroup__geometric_html_ga9955f022efa8e92d2c6a5e037794451e"><div class="ttname"><a href="group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e">supernovas::Apparent::astrometric_position</a></div><div class="ttdeci">AstrometricPosition astrometric_position() const</div></div>
+</div><!-- fragment --><p>Or, calculate the geometric position relative to the SSB instead...</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1AstrometricPosition.html">AstrometricPosition</a> ssb_pos = app.<a class="code hl_function" href="group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e">astrometric_position</a>().<a class="code hl_function" href="classsupernovas_1_1AstrometricPosition.html#a99e7e7d64227a3394723568a73334e9e">referenced_to_ssb</a>();</div>
+<div class="ttc" id="aclasssupernovas_1_1AstrometricPosition_html_a99e7e7d64227a3394723568a73334e9e"><div class="ttname"><a href="classsupernovas_1_1AstrometricPosition.html#a99e7e7d64227a3394723568a73334e9e">supernovas::AstrometricPosition::referenced_to_ssb</a></div><div class="ttdeci">AstrometricPosition referenced_to_ssb() const</div></div>
+</div><!-- fragment --><p>And finally, you can calculate nominal SSB-based ICRS coordinates as:</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Equatorial.html">Equatorial</a> icrs = ssb_pos.<a class="code hl_function" href="group__equatorial.html#ga90c00e6b66260a85bd49b8fdb1d61051">as_equatorial</a>().<a class="code hl_function" href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864">to_icrs</a>();</div>
+<div class="ttc" id="agroup__equatorial_html_ga90c00e6b66260a85bd49b8fdb1d61051"><div class="ttname"><a href="group__equatorial.html#ga90c00e6b66260a85bd49b8fdb1d61051">supernovas::AstrometricPosition::as_equatorial</a></div><div class="ttdeci">Equatorial as_equatorial() const</div></div>
+</div><!-- fragment --><p><a class="anchor" id="rise-set-transit-cpp"></a> </p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md105"></a>
+Calculate rise, set, and transit times</h2>
+<p>You may be interested to know when sources rise above or set below some specific elevation angle, or at what time they appear to transit at the observer location. <b>SuperNOVAS</b> has routines to help you with that too.</p>
+<p>Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are effectively tied to an observer frame. Let's assume you have defined a source and an observing frame:</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Frame.html">Frame</a> frame = ...;        <span class="comment">// Earth-based observer location and lower-bound time of interest.</span></div>
+<div class="line"><a class="code hl_class" href="classsupernovas_1_1Source.html">Source</a> source = ...;      <span class="comment">// Source of interest</span></div>
+<div class="ttc" id="aclasssupernovas_1_1Source_html"><div class="ttname"><a href="classsupernovas_1_1Source.html">supernovas::Source</a></div><div class="ttdoc">An abstract astronomical source, or target of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:1741</div></div>
+</div><!-- fragment --><p>Let's calculate the time when source rises above 30 degrees of elevation next <em>after</em> the observing time of the frame, given the NOVAS optical refraction model.</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Weather.html">Weather</a> weather = ...;    <span class="comment">// Define local weather parameters... </span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a> t_rise = source.rises_above(30.0 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">Unit::deg</a>, frame, <a class="code hl_function" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a>, weather);</div>
+</div><!-- fragment --><p>Or, calculate the time the source transits after the frame's time of observation:</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a> t_transit = source.transits_in(frame);</div>
+</div><!-- fragment --><p>Or, calculate the next time when source sets below 30 degrees of elevation, not accounting for refraction.</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a> t_set = source.sets_below(30.0 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">Unit::deg</a>, frame);</div>
+</div><!-- fragment --><p>Note, that in the current implementation these calls are not well suited sources that are at or within the geostationary orbit, such as such as Low Earth Orbit satellites (LEOs), geostationary satellites (which never really rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set multiple times per day. For the latter, the above calls may still return a valid time, only without the guarantee that it is the time of the first such event after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for updates.</p>
 <hr  />
 <p> Copyright (C) 2026 Attila Kovács </p>
 </div></div><!-- contents -->

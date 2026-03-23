@@ -32,7 +32,7 @@ var searchData=
   ['gmst_29',['gmst',['../classsupernovas_1_1Time.html#a03cb4f1df78716f6780e90c02bcd2600',1,'supernovas::Time']]],
   ['gnu_20make_30',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md11',1,'']]],
   ['gnu_20makefile_31',['GNU Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
-  ['going_20in_20reverse_32',['Going in reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98',1,'Going in reverse...']]],
+  ['going_20in_20reverse_32',['Going in reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104',1,'Going in reverse...']]],
   ['gpc_33',['Gpc',['../classsupernovas_1_1Unit.html#a3c85a1a9786a6d60fe6959c817bf25bb',1,'supernovas::Unit::Gpc'],['../classsupernovas_1_1Coordinate.html#a9a7803523870607942abbea098c9347a',1,'supernovas::Coordinate::Gpc()']]],
   ['grav_5fbodies_5ffull_5faccuracy_34',['grav_bodies_full_accuracy',['../group__apparent.html#ga18647d39520d1a15a137661f698cb12a',1,'novas.h']]],
   ['grav_5fbodies_5freduced_5faccuracy_35',['grav_bodies_reduced_accuracy',['../group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24',1,'novas.h']]],

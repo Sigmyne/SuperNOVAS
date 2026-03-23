@@ -58,7 +58,7 @@ var searchData=
   ['month_55',['month',['../classsupernovas_1_1CalendarDate.html#a2f74beecedf39fcb12f82a1c82a4ba6f',1,'supernovas::CalendarDate']]],
   ['month_5fname_56',['month_name',['../classsupernovas_1_1CalendarDate.html#ac2f0d28681561bf807669721683e6efe',1,'supernovas::CalendarDate']]],
   ['moon_57',['moon',['../classsupernovas_1_1Planet.html#a723db62191edfbec7b525d8e0645d60f',1,'supernovas::Planet']]],
-  ['moon_20orbitals_58',['Approximate planet and Moon orbitals',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64',1,'']]],
+  ['moon_20orbitals_58',['Approximate planet and Moon orbitals',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62',1,'']]],
   ['moon_5fangle_59',['moon_angle',['../group__apparent.html#ga4d8c425044b5594fa8251812db25f0d7',1,'supernovas::Source']]],
   ['moon_5fphase_60',['moon_phase',['../classsupernovas_1_1Time.html#a7d4ae0fa41ccc3fab1ff30222656b858',1,'supernovas::Time']]],
   ['moving_5fon_5fearth_61',['moving_on_earth',['../classsupernovas_1_1Observer.html#aa23a22095279e63c434b120530b9876a',1,'supernovas::Observer::moving_on_earth(const Site &amp;site, const Velocity &amp;itrs_vel, const EOP &amp;eop)'],['../classsupernovas_1_1Observer.html#ae03f0e9121bb8a74cae67a1e43fb1ed3',1,'supernovas::Observer::moving_on_earth(const Site &amp;site, const EOP &amp;eop, const ScalarVelocity &amp;horizontal, const Angle &amp;direction, const ScalarVelocity &amp;vertical=ScalarVelocity::stationary())']]],
