@@ -1,7 +1,7 @@
 var searchData=
 [
   ['s_20guide_0',['User&apos;s guide',['../index.html',1,'']]],
-  ['schedule_1',['Release schedule',['../index.html#autotoc_md40',1,'']]],
+  ['schedule_1',['Release schedule',['../index.html#autotoc_md41',1,'']]],
   ['service_20integration_2',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
   ['services_3',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
   ['set_20and_20transit_20times_4',['set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105',1,'Calculate rise, set, and transit times']]],

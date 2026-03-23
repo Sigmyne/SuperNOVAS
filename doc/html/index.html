@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -108,7 +116,7 @@ $(function(){initNavTree('index.html','',''); });
 <p><b>SuperNOVAS</b> is easy to use and it is very fast, with 3&ndash;5 orders of magnitude faster position calculations than <a href="https://www.astropy.org/">astropy</a> 7.0.0 in a single thread (see the <a class="el" href="#benchmarks" title="benchmarks">benchmarks</a>), and its performance will scale further with the number of CPUs when calculations are performed in parallel threads.</p>
 <p><b>SuperNOVAS</b> is entirely free to use without licensing restrictions. Its source code is compatible with the C99 standard, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports the IAU 2000/2006 standards for microarcsecond-level position calculations.</p>
 <p>This document has been updated for the <span class="tt">v1.5</span> and later releases.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md79"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
 Table of Contents</h1>
 <ul>
 <li><a class="el" href="#introduction" title="introduction">Introduction</a></li>
@@ -127,7 +135,7 @@ Table of Contents</h1>
 </ul>
 <hr  />
 <p><a class="anchor" id="introduction"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md49"></a>
 Introduction</h1>
 <p><b>SuperNOVAS</b> is a fork of the The Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>). (It is not related to the separate NOVA / libnova library.)</p>
 <p>The primary goal of <b>SuperNOVAS</b> is to improve on the original NOVAS C library via:</p>
@@ -147,7 +155,7 @@ Introduction</h1>
 <p><b>SuperNOVAS</b> is currently based on NOVAS C version 3.1. We plan to rebase <b>SuperNOVAS</b> to the latest upstream release of the NOVAS C library, if possible when new releases become available.</p>
 <p><b>SuperNOVAS</b> is maintained by <a href="https://github.com/attipaci">Attila Kovács</a> (Sigmyne, LLC), and it is available through the <a href="https://github.com/Sigmyne/SuperNOVAS">Sigmyne/SuperNOVAS</a> repository on GitHub.</p>
 <p>Outside contributions are very welcome. See <a href="https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html">how you can contribute</a> on how you can make <b>SuperNOVAS</b> even better.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md54"></a>
 Related links</h2>
 <ul>
 <li><a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a> home page at the US Naval Observatory.</li>
@@ -159,7 +167,7 @@ Related links</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="fixed-issues"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
 Fixed NOVAS C 3.1 issues</h1>
 <p><b>SuperNOVAS</b> fixes a number of outstanding issues with NOVAS C 3.1:</p>
 <details >
@@ -187,7 +195,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="compatibility"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md69"></a>
 Compatibility with NOVAS C 3.1</h1>
 <p><b>SuperNOVAS</b> strives to maintain API compatibility with the upstream NOVAS C 3.1 library, but not binary (ABI) compatibility.</p>
 <p>If you have code that was written for NOVAS C 3.1, it should work with <b>SuperNOVAS</b> as is, without modifications. Simply (re)build your application against <b>SuperNOVAS</b>, and you are good to go.</p>
@@ -195,7 +203,7 @@ Compatibility with NOVAS C 3.1</h1>
 <p>This is because some function signatures have changed, e.g. to use an <span class="tt">enum</span> argument instead of the nondescript <span class="tt">short int</span> option arguments used in NOVAS C 3.1, or because we added a return value to a function that was declared <span class="tt">void</span> in NOVAS C 3.1. We also changed the <span class="tt"><a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> structure to contain a <span class="tt">long</span> ID number instead of <span class="tt">short</span> to accommodate JPL NAIF codes, for which 16-bit storage is insufficient.</p>
 <hr  />
 <p><a class="anchor" id="installation"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md89"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md73"></a>
 Building and installation</h1>
 <ul>
 <li><a class="el" href="#gnu-build" title="gnu-build">Build SuperNOVAS using GNU make</a></li>
@@ -206,7 +214,7 @@ Building and installation</h1>
 <li><a class="el" href="#nix" title="nix">Nix package</a></li>
 </ul>
 <p><a class="anchor" id="gnu-build"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md90"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md76"></a>
 Build SuperNOVAS using GNU make</h2>
 <p>The <b>SuperNOVAS</b> distribution contains a GNU <span class="tt">Makefile</span>, which is suitable for compiling the library (as well as local documentation, and tests, etc.) on POSIX systems such as Linux, Mac OS X, BSD, Cygwin or WSL &ndash; using <a href="https://www.gnu.org/software/make/">GNU <span class="tt">make</span></a>.</p>
 <details >
@@ -247,7 +255,7 @@ Details</summary>
 <dl class="section remark"><dt>Remarks</dt><dd>On BSD, you will need to use <span class="tt">gmake</span> instead of <span class="tt">make</span>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>if you want to build <b>SuperNOVAS</b> for with your old NOVAS C applications you might want to further customize the build. See section on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99">legacy application</a> in the <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">C99 User's guide</a>.</dd></dl>
 <p><a class="anchor" id="cmake-build"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
 Build SuperNOVAS using CMake</h2>
 <p>As of v1.5, <b>SuperNOVAS</b> can be built using <a href="https://cmake.org/">CMake</a> (many thanks to Kiran Shila). CMake allows for greater portability than the regular GNU <span class="tt">Makefile</span>. Note, however, that the CMake configuration does not support all of the build options of the GNU <span class="tt">Makefile</span>, such as automatic CALCEPH and CSPICE integration on Linux, supporting legacy NOVAS C style builds, and code coverage tracking.</p>
 <details >
@@ -282,7 +290,7 @@ Details</summary>
 <div class="fragment"><div class="line">$ cmake --install build --component Runtime --prefix /usr/local</div>
 </div><!-- fragment --> </details>
 <p><a class="anchor" id="vcpkg-port"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md92"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
 Install SuperNOVAS via <span class="tt">vcpkg</span></h2>
 <p>As of version 1.5, <b>SuperNOVAS</b> is available through the <a href="https://vcpkg.io/en/">vcpkg</a> registry. The <span class="tt">vcpkg</span> port supports a wide range of platforms, including Linux, Windows, MacOS, and Android &ndash; for both <span class="tt">arm64</span> and <span class="tt">x64</span> architectures (and in case of Windows also <span class="tt">x86</span>). It is effectively the same as the CMake build (above), only with more simplicity, convenience, and dependency resolution.</p>
 <details >
@@ -297,7 +305,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="linux-packages"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
 Linux packages</h2>
 <p><b>SuperNOVAS</b> is packaged for both Debian and Fedora / EPEL Linux distributions, and derivatives based on these (Ubuntu, Mint, RHEL, CentOS Stream, Alma Linux, Rocky Linux, Oracle Linux etc.).</p>
 <details >
@@ -313,7 +321,7 @@ Details</summary>
 </details>
 <dl class="section note"><dt>Note</dt><dd>The turnaround time for Debian packages is quite slow, and typically follows the 6-month Debian release cycle, whereas the Fedora / EPEL packages are usually fully up-to-date (i.e. in <span class="tt">stable</span>) within a week of a new SuperNOVAS release. Somewhat newer Debian versions may be found in <span class="tt">testing</span>, but even that tends to lag behind the <span class="tt">stable</span> Fedora / EPEL updates.</dd></dl>
 <p><a class="anchor" id="homebrew"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md94"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
 Homebrew package</h2>
 <p>As of version 1.5, there is also a <a href="https://brew.sh/">Homebrew</a> package through the maintainer's own Tap, which includes the <span class="tt">solsys-calceph</span> plugin by default. And, as of the 1.6 release it includes the C++11 API library also.</p>
 <details >
@@ -325,7 +333,7 @@ Details</summary>
 </div><!-- fragment --><p></p>
 </details>
 <p><a class="anchor" id="nix"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md95"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md92"></a>
 Nix package</h2>
 <p>As of version 1.5, there is also a <a href="https://nixos.org/">Nix</a> <a href="https://search.nixos.org/packages?channel=unstable&amp;show=supernovas&amp;query=supernovas">package</a>. This declarative and determinstic package manager can be used on every linux distribution as well as MacOS. The default package includes the <span class="tt">solsys-calceph</span> plugin, but can be overriden by changing <span class="tt">withCalceph</span>.</p>
 <details >
@@ -340,7 +348,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="integration"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md97"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md95"></a>
 Building your application with SuperNOVAS</h1>
 <p>As of v1.6 <b>SuperNOVAS</b> comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which one you intend to use, choose the appropriate link to an external document below:</p>
 <ul>
@@ -349,7 +357,7 @@ Building your application with SuperNOVAS</h1>
 </ul>
 <hr  />
 <p><a class="anchor" id="methodologies"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md99"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md97"></a>
 Celestial coordinate systems (old vs. new)</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">

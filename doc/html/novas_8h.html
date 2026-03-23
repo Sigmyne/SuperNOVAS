@@ -20,6 +20,14 @@
 <script type="text/javascript" src="darkmode_toggle.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen_extra.css" rel="stylesheet" type="text/css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HLFWKSM8V9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-HLFWKSM8V9');
+  </script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -2451,7 +2459,7 @@ Kaplan, G. (2003), USNO/AA Technical Note 2003-03. </li>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated</a></b></dt><dd>This function is no longer used within SuperNOVAS. It is still provided, however, in order to retain 100% API compatibility with NOVAS C.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated</a></b></dt><dd>This function is no longer used within SuperNOVAS. It is still provided, however, in order to retain 100% API compatibility with NOVAS C.</dd></dl>
 <p>Given an input TDB Julian date and the number of data points desired, this function returns a set of Julian dates and corresponding values of the GCRS right ascension of the celestial intermediate origin (CIO). The range of dates is centered on the requested date.</p>
 <p>NOTES: </p><ol>
 <li>
@@ -3273,7 +3281,7 @@ Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000016">Deprecated</a></b></dt><dd>More functionality and more readable, code results from using one of the specific alternatives: <span class="tt"><a class="el" href="group__source.html#gab9b7a622486f2904615ceed1ba94cd8f" title="Populates and object data structure with the data for a catalog source.">make_cat_object()</a></span>, <span class="tt"><a class="el" href="group__source.html#gae579a49d84696a913fd0d9f348bb5b11" title="Populates a celestial object data structure with the ICRS astrometric parameters for a redhifted cata...">make_redshifted_object()</a></span>, <span class="tt"><a class="el" href="group__source.html#ga4c7846be95299769f4d0377bf127bcf5" title="Sets a celestial object to be a major planet, or the Sun, Moon, Solar-system Barycenter,...">make_planet()</a></span>, <span class="tt"><a class="el" href="group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2" title="Sets a celestial object to be a Solar-system ephemeris body.">make_ephem_object()</a></span>, or <span class="tt"><a class="el" href="group__source.html#ga3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a></span>.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000015">Deprecated</a></b></dt><dd>More functionality and more readable, code results from using one of the specific alternatives: <span class="tt"><a class="el" href="group__source.html#gab9b7a622486f2904615ceed1ba94cd8f" title="Populates and object data structure with the data for a catalog source.">make_cat_object()</a></span>, <span class="tt"><a class="el" href="group__source.html#gae579a49d84696a913fd0d9f348bb5b11" title="Populates a celestial object data structure with the ICRS astrometric parameters for a redhifted cata...">make_redshifted_object()</a></span>, <span class="tt"><a class="el" href="group__source.html#ga4c7846be95299769f4d0377bf127bcf5" title="Sets a celestial object to be a major planet, or the Sun, Moon, Solar-system Barycenter,...">make_planet()</a></span>, <span class="tt"><a class="el" href="group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2" title="Sets a celestial object to be a Solar-system ephemeris body.">make_ephem_object()</a></span>, or <span class="tt"><a class="el" href="group__source.html#ga3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a></span>.</dd></dl>
 <p>Populates an object data structure using the parameters provided. By default (for compatibility with NOVAS C) source names are converted to upper-case internally. You can however enable case-sensitive processing by calling <a class="el" href="group__source.html#ga8f832afe92680a11c3489aaa224ac2e2" title="Enables or disables case-sensitive processing of the object name.">novas_case_sensitive()</a> before.</p>
 <p>NOTES: </p><ol>
 <li>
@@ -4065,7 +4073,7 @@ Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated</a></b></dt><dd>Use <a class="el" href="group__earth.html#ga231f535f73e846d3867dbd914054d47b" title="Returns the Greenwich Mean Sidereal Time (GMST) for a given UT1 date, using eq.">novas_gmst()</a> or <a class="el" href="group__earth.html#ga348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a> instead to get the same results simpler.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated</a></b></dt><dd>Use <a class="el" href="group__earth.html#ga231f535f73e846d3867dbd914054d47b" title="Returns the Greenwich Mean Sidereal Time (GMST) for a given UT1 date, using eq.">novas_gmst()</a> or <a class="el" href="group__earth.html#ga348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a> instead to get the same results simpler.</dd></dl>
 <p>Computes the Greenwich sidereal time, either mean or apparent, at the specified Julian date. The Julian date can be broken into two parts if convenient, but for the highest precision, set 'jd_high' to be the integral part of the Julian date, and set 'jd_low' to be the fractional part.</p>
 <p>NOTES: </p><ol>
 <li>
@@ -4158,7 +4166,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000015">Deprecated</a></b></dt><dd>This function can be confusing to use due to the output coordinate system being specified by a combination of two options. Use <a class="el" href="group__equatorial.html#ga12953f66c0f774284f0700ae785784d0" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical CIRS frame of date (IAU 20...">itrs_to_cirs()</a> or <a class="el" href="group__equatorial.html#ga3f6ae564cfac3766a21e0754905e5f7c" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical True of Date (TOD) frame o...">itrs_to_tod()</a> instead. You can then follow these with other conversions to GCRS (or whatever else) as appropriate.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000016">Deprecated</a></b></dt><dd>This function can be confusing to use due to the output coordinate system being specified by a combination of two options. Use <a class="el" href="group__equatorial.html#ga12953f66c0f774284f0700ae785784d0" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical CIRS frame of date (IAU 20...">itrs_to_cirs()</a> or <a class="el" href="group__equatorial.html#ga3f6ae564cfac3766a21e0754905e5f7c" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical True of Date (TOD) frame o...">itrs_to_tod()</a> instead. You can then follow these with other conversions to GCRS (or whatever else) as appropriate.</dd></dl>
 <p>Rotates a vector from the terrestrial to the celestial system. Specifically, it transforms a vector in the ITRS (rotating earth-fixed system) to the True of Date (TOD), CIRS, or GCRS (a local space-fixed system) by applying rotations for polar motion, Earth rotation (for TOD); and nutation, precession, and the dynamical-to-GCRS frame tie (for GCRS).</p>
 <p>If 'system' is NOVAS_CIRS then method EROT_ERA must be used. Similarly, if 'system' is NOVAS_TOD then method must be EROT_ERA. Otherwise an error 3 is returned.</p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
