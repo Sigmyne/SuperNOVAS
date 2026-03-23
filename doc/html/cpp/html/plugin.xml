@@ -1,6 +1,0 @@
-<plugin name="edu.harvard.cfa.supernovas" id="edu.harvard.cfa.supernovas"
-        version="1.0.0" provider-name="Doxygen">
-  <extension point="org.eclipse.help.toc">
-    <toc file="toc.xml" primary="true" />
-  </extension>
-</plugin>

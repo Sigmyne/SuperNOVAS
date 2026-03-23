@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['z_0',['z',['../classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08',1,'supernovas::Vector']]],
-  ['zenith_5fangle_1',['zenith_angle',['../classsupernovas_1_1Horizontal.html#aface5655311d8017cb07d7eb383d8b32',1,'supernovas::Horizontal']]],
-  ['zero_2',['zero',['../classsupernovas_1_1Coordinate.html#a9511f9f4073d0b2552e175d3f8d064a3',1,'supernovas::Coordinate::zero()'],['../classsupernovas_1_1Interval.html#a8523c7802c342170c93c1dec1d0440d8',1,'supernovas::Interval::zero()'],['../classsupernovas_1_1TimeAngle.html#a4947ba9bb1cd1176f7ca54a07f9f0e08',1,'supernovas::TimeAngle::zero()']]]
-];
