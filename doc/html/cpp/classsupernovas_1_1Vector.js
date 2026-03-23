@@ -8,7 +8,7 @@ var classsupernovas_1_1Vector =
     [ "dot", "classsupernovas_1_1Vector.html#a17572fd5d9e2127b813c5f0186dde2ee", null ],
     [ "equals", "classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791", null ],
     [ "is_zero", "classsupernovas_1_1Vector.html#a731ab991e6b7426666dfeb9047da8dc8", null ],
-    [ "operator*", "classsupernovas_1_1Vector.html#ad77e9e7cec72509ecc93ef42aadf1edd", null ],
+    [ "operator*", "classsupernovas_1_1Vector.html#a97c4fd36e79bcd6f02d5a8c2d540942b", null ],
     [ "phi", "classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f", null ],
     [ "projection_on", "classsupernovas_1_1Vector.html#a6a9ec63eb5edce53642a058fc8b5fc83", null ],
     [ "scaled", "classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46", null ],

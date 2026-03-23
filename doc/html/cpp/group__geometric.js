@@ -42,6 +42,7 @@ var group__geometric =
       [ "operator!=", "classsupernovas_1_1Position.html#aa64a15de66a603ca504951c454e18216", null ],
       [ "operator+", "classsupernovas_1_1Position.html#aa3e3dc3dc3da0cc3641f9c50a73b7c95", null ],
       [ "operator-", "classsupernovas_1_1Position.html#a97b9b8f521c1843f640842a4c6eb5c8c", null ],
+      [ "operator/", "classsupernovas_1_1Position.html#ab424d6ee655671b37c35e678bbfc8cce", null ],
       [ "operator==", "classsupernovas_1_1Position.html#ab28229ab97d018e87efddbb06cbf2bdb", null ],
       [ "to_spherical", "classsupernovas_1_1Position.html#a8158b16437d04f06a8f4e5213ca82a92", null ],
       [ "to_string", "classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984", null ]

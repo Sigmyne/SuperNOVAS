@@ -7,7 +7,7 @@ var searchData=
   ['sc_5fvel_4',['sc_vel',['../structnovas__in__space.html#ab4a55b14aa16bcbc5ca3bdc1a6d078af',1,'novas_in_space']]],
   ['scalarevolution_5',['ScalarEvolution',['../classsupernovas_1_1ScalarEvolution.html',1,'supernovas::ScalarEvolution'],['../classsupernovas_1_1ScalarEvolution.html#a0862991291dc7b1bf375806fdd1e369d',1,'supernovas::ScalarEvolution::ScalarEvolution()']]],
   ['scalarevolution_2ecpp_6',['ScalarEvolution.cpp',['../ScalarEvolution_8cpp.html',1,'']]],
-  ['scalarvelocity_7',['ScalarVelocity',['../classsupernovas_1_1ScalarVelocity.html',1,'supernovas::ScalarVelocity'],['../classsupernovas_1_1ScalarVelocity.html#a08b7a8a135acb5cd5da7886f6dbace17',1,'supernovas::ScalarVelocity::ScalarVelocity(double m_per_s)'],['../classsupernovas_1_1ScalarVelocity.html#a2e906f3a9e9f7a9ca731c62b11701f21',1,'supernovas::ScalarVelocity::ScalarVelocity(const Coordinate &amp;d, const Interval &amp;time)']]],
+  ['scalarvelocity_7',['ScalarVelocity',['../classsupernovas_1_1ScalarVelocity.html',1,'supernovas::ScalarVelocity'],['../classsupernovas_1_1ScalarVelocity.html#a08b7a8a135acb5cd5da7886f6dbace17',1,'supernovas::ScalarVelocity::ScalarVelocity()']]],
   ['scalarvelocity_2ecpp_8',['ScalarVelocity.cpp',['../ScalarVelocity_8cpp.html',1,'']]],
   ['scaled_9',['scaled',['../classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46',1,'supernovas::Vector']]],
   ['schedule_10',['Release schedule',['../index.html#autotoc_md40',1,'']]],

@@ -214,6 +214,13 @@ travelled, e.g.:
 is the same as `Interval(5.0 * Unit::s) * v`, and is the same as `v.travel(5.0 * Unit::s)` or 
 `v.travel(Interval(5.0 * Unit::s))`.
 
+Conversely, you can define (scalar and vector) velocities by dividing the traveled coordinate or position vector 
+with a time interval:
+
+```cpp
+  ScalarVelocity v = Coordinate(120.0 * Unit::km) / Interval(14.3 * Unit::s);
+```
+
 Celestial coordinates, which can be expressed in different reference systems, can be transformed to another system
 with the `>>` operator, which is just a shorthand for the `.to_system()` method. E.g., if you have `Equatorial`
 coordinates `eq` in some reference system, and want it to be converted to ICRS, you might write: 

@@ -46,7 +46,6 @@ var group__spectral =
     ] ],
     [ "supernovas::ScalarVelocity", "classsupernovas_1_1ScalarVelocity.html", [
       [ "ScalarVelocity", "classsupernovas_1_1ScalarVelocity.html#a08b7a8a135acb5cd5da7886f6dbace17", null ],
-      [ "ScalarVelocity", "classsupernovas_1_1ScalarVelocity.html#a2e906f3a9e9f7a9ca731c62b11701f21", null ],
       [ "abs", "classsupernovas_1_1ScalarVelocity.html#ac26f24e75fd80a2d90541da306454350", null ],
       [ "au_per_day", "classsupernovas_1_1ScalarVelocity.html#a58e4061fa373cfbeb80f1f0eb98cb156", null ],
       [ "beta", "classsupernovas_1_1ScalarVelocity.html#a412cc2aa831495a3372aaa09fa861cbe", null ],

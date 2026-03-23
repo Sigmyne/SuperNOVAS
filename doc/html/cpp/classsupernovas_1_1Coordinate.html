@@ -139,6 +139,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab234567fddc6ad5337c9ad11d6ca74ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance in meters.  <br /></td></tr>
 <tr class="memitem:a224984b16c07dec5e0f373912898da3b" id="r_a224984b16c07dec5e0f373912898da3b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a224984b16c07dec5e0f373912898da3b">Mpc</a> () const</td></tr>
 <tr class="memdesc:a224984b16c07dec5e0f373912898da3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance in megaparsecs.  <br /></td></tr>
+<tr class="memitem:abca5dea0e57561e564c5be11174f2693" id="r_abca5dea0e57561e564c5be11174f2693"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#abca5dea0e57561e564c5be11174f2693">operator/</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;dt) const</td></tr>
+<tr class="memdesc:abca5dea0e57561e564c5be11174f2693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the scalar velocity that is equal to this coordinate travelled under the specified time interval.  <br /></td></tr>
 <tr class="memitem:af862edb5c1eddd4451e1639e256cf1c1" id="r_af862edb5c1eddd4451e1639e256cf1c1"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#af862edb5c1eddd4451e1639e256cf1c1">parallax</a> () const</td></tr>
 <tr class="memdesc:af862edb5c1eddd4451e1639e256cf1c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the parallax angle that corresponds to this distance instance.  <br /></td></tr>
 <tr class="memitem:ab0f236c74f41fd3ee004cc77f7452687" id="r_ab0f236c74f41fd3ee004cc77f7452687"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ab0f236c74f41fd3ee004cc77f7452687">pc</a> () const</td></tr>
@@ -471,6 +473,35 @@ Additional Inherited Members</h2></td></tr>
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a5d9b548b564b26a85176bfdd77246058">supernovas::Unit::Mpc</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a8a08f3db84302f9d17576f39238400dd">to_string()</a>.</p>
+
+</div>
+</div>
+<a id="abca5dea0e57561e564c5be11174f2693" name="abca5dea0e57561e564c5be11174f2693"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abca5dea0e57561e564c5be11174f2693">&#9670;&#160;</a></span>operator/()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a> supernovas::Coordinate::operator/ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the scalar velocity that is equal to this coordinate travelled under the specified time interval. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>the time interval on the right-hand-side of '/'. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>scalar velocity v = x / dt, where x is this coordinate.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Position.html#ab424d6ee655671b37c35e678bbfc8cce" title="Returns the velocity vector that is equal to this position vector travelled under the specified time ...">Position::operator/()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>.</p>
 
 </div>
 </div>

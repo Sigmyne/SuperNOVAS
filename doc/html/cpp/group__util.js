@@ -30,6 +30,7 @@ var group__util =
       [ "lyr", "classsupernovas_1_1Coordinate.html#aa5662fdbd4f441551cec288d1fdd8c37", null ],
       [ "m", "classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff", null ],
       [ "Mpc", "classsupernovas_1_1Coordinate.html#a224984b16c07dec5e0f373912898da3b", null ],
+      [ "operator/", "classsupernovas_1_1Coordinate.html#abca5dea0e57561e564c5be11174f2693", null ],
       [ "parallax", "classsupernovas_1_1Coordinate.html#af862edb5c1eddd4451e1639e256cf1c1", null ],
       [ "pc", "classsupernovas_1_1Coordinate.html#ab0f236c74f41fd3ee004cc77f7452687", null ],
       [ "to_string", "classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd", null ]
@@ -69,7 +70,6 @@ var group__util =
     ] ],
     [ "supernovas::ScalarVelocity", "classsupernovas_1_1ScalarVelocity.html", [
       [ "ScalarVelocity", "classsupernovas_1_1ScalarVelocity.html#a08b7a8a135acb5cd5da7886f6dbace17", null ],
-      [ "ScalarVelocity", "classsupernovas_1_1ScalarVelocity.html#a2e906f3a9e9f7a9ca731c62b11701f21", null ],
       [ "abs", "classsupernovas_1_1ScalarVelocity.html#ac26f24e75fd80a2d90541da306454350", null ],
       [ "au_per_day", "classsupernovas_1_1ScalarVelocity.html#a58e4061fa373cfbeb80f1f0eb98cb156", null ],
       [ "beta", "classsupernovas_1_1ScalarVelocity.html#a412cc2aa831495a3372aaa09fa861cbe", null ],
@@ -133,7 +133,7 @@ var group__util =
       [ "dot", "classsupernovas_1_1Vector.html#a17572fd5d9e2127b813c5f0186dde2ee", null ],
       [ "equals", "classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791", null ],
       [ "is_zero", "classsupernovas_1_1Vector.html#a731ab991e6b7426666dfeb9047da8dc8", null ],
-      [ "operator*", "classsupernovas_1_1Vector.html#ad77e9e7cec72509ecc93ef42aadf1edd", null ],
+      [ "operator*", "classsupernovas_1_1Vector.html#a97c4fd36e79bcd6f02d5a8c2d540942b", null ],
       [ "phi", "classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f", null ],
       [ "projection_on", "classsupernovas_1_1Vector.html#a6a9ec63eb5edce53642a058fc8b5fc83", null ],
       [ "scaled", "classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46", null ],

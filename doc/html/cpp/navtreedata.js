@@ -132,9 +132,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Angle_8cpp.html",
-"classsupernovas_1_1Equatorial.html#a084ea74c4e83b73ef43a43e273770270",
-"classsupernovas_1_1Pressure.html#ab799a59ae7b317d7908848bb90f42a3d",
-"classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f",
+"classsupernovas_1_1Equatorial.html#a0529a5acdb0015a4c195858da3524c76",
+"classsupernovas_1_1Pressure.html#a57dbcdc6261d85b915d1e1a32725a7a4",
+"classsupernovas_1_1Vector.html#a97c4fd36e79bcd6f02d5a8c2d540942b",
 "group__nonequatorial.html#gafa2abe3d408721348c0bbb9971507cfb",
 "novas_8h.html#a219df36b21dc4476656e708d14d08045a9fcf58133828600a062725ced448cfcf",
 "novas_8h.html#ab75165e2d69231da10c67de025ee05d8",

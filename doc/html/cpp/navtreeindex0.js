@@ -200,14 +200,15 @@ var NAVTREEINDEX0 =
 "classsupernovas_1_1Coordinate.html#a224984b16c07dec5e0f373912898da3b":[6,13,2,8],
 "classsupernovas_1_1Coordinate.html#a7bdf7782eefcc95e5c8bcca862dfa109":[6,13,2,2],
 "classsupernovas_1_1Coordinate.html#a843a7a4276b18b03b00fd8808198c9f0":[6,13,2,5],
-"classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd":[6,13,2,11],
+"classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd":[6,13,2,12],
 "classsupernovas_1_1Coordinate.html#a9a7803523870607942abbea098c9347a":[6,13,2,3],
 "classsupernovas_1_1Coordinate.html#aa5662fdbd4f441551cec288d1fdd8c37":[6,13,2,6],
-"classsupernovas_1_1Coordinate.html#ab0f236c74f41fd3ee004cc77f7452687":[6,13,2,10],
+"classsupernovas_1_1Coordinate.html#ab0f236c74f41fd3ee004cc77f7452687":[6,13,2,11],
 "classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff":[6,13,2,7],
+"classsupernovas_1_1Coordinate.html#abca5dea0e57561e564c5be11174f2693":[6,13,2,9],
 "classsupernovas_1_1Coordinate.html#ad96930867483ebfe5e849fb0c9da7a59":[6,13,2,0],
 "classsupernovas_1_1Coordinate.html#add0db7d8cd5c028cdc26b5dff8b08b95":[6,13,2,4],
-"classsupernovas_1_1Coordinate.html#af862edb5c1eddd4451e1639e256cf1c1":[6,13,2,9],
+"classsupernovas_1_1Coordinate.html#af862edb5c1eddd4451e1639e256cf1c1":[6,13,2,10],
 "classsupernovas_1_1Coordinate.html#afe1f9ddf413878c862a7e7d7c914964e":[6,13,2,1],
 "classsupernovas_1_1EOP.html":[6,11,0],
 "classsupernovas_1_1EOP.html#a0b8ca59fd650c1dbfe4f7fe313c2a5c1":[6,11,0,8],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classsupernovas_1_1EphemerisSource.html#a78e33490ee3766c7cb7effed0e413fa0":[6,0,2,2],
 "classsupernovas_1_1EphemerisSource.html#abcd51283f8e155b21ada7389b3a083fc":[6,0,2,3],
 "classsupernovas_1_1EphemerisSource.html#af6eef3af2b52aaa44a8c7ef9e2bc3c2b":[6,0,2,0],
-"classsupernovas_1_1Equatorial.html":[6,6,0],
-"classsupernovas_1_1Equatorial.html#a0529a5acdb0015a4c195858da3524c76":[6,6,0,23]
+"classsupernovas_1_1Equatorial.html":[6,6,0]
 };

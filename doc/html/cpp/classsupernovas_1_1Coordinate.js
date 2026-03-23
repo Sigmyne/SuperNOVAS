@@ -9,6 +9,7 @@ var classsupernovas_1_1Coordinate =
     [ "lyr", "classsupernovas_1_1Coordinate.html#aa5662fdbd4f441551cec288d1fdd8c37", null ],
     [ "m", "classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff", null ],
     [ "Mpc", "classsupernovas_1_1Coordinate.html#a224984b16c07dec5e0f373912898da3b", null ],
+    [ "operator/", "classsupernovas_1_1Coordinate.html#abca5dea0e57561e564c5be11174f2693", null ],
     [ "parallax", "classsupernovas_1_1Coordinate.html#af862edb5c1eddd4451e1639e256cf1c1", null ],
     [ "pc", "classsupernovas_1_1Coordinate.html#ab0f236c74f41fd3ee004cc77f7452687", null ],
     [ "to_string", "classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd", null ]

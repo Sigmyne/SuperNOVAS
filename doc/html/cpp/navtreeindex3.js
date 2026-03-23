@@ -1,10 +1,10 @@
 var NAVTREEINDEX3 =
 {
+"classsupernovas_1_1Vector.html#a97c4fd36e79bcd6f02d5a8c2d540942b":[6,13,10,8],
 "classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f":[6,13,10,9],
 "classsupernovas_1_1Vector.html#aa5cd444d1ad1aecfae916a9a73ffceb2":[6,13,10,12],
 "classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610":[6,13,10,4],
 "classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52":[6,13,10,14],
-"classsupernovas_1_1Vector.html#ad77e9e7cec72509ecc93ef42aadf1edd":[6,13,10,8],
 "classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08":[6,13,10,17],
 "classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e":[6,13,10,15],
 "classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc":[6,13,10,0],
