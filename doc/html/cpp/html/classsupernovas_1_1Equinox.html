@@ -175,9 +175,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1b28e4b358c30737e8bcb503eceb984" id="r_aa1b28e4b358c30737e8bcb503eceb984"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#aa1b28e4b358c30737e8bcb503eceb984">cirs</a> (double jd_tt)</td></tr>
 <tr class="memdesc:aa1b28e4b358c30737e8bcb503eceb984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a Celestial Intermediate Reference System (CIRS) equatorial system for the given (TT-based) Julian date.  <br /></td></tr>
 <tr class="memitem:a1e093e32feee83e7d589f51783ce2912" id="r_a1e093e32feee83e7d589f51783ce2912"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#a1e093e32feee83e7d589f51783ce2912">from_string</a> (const std::string &amp;<a class="el" href="#a577bc493cd571f08cb8d388371cd719d">name</a>)</td></tr>
-<tr class="memdesc:a1e093e32feee83e7d589f51783ce2912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new <a class="el" href="classsupernovas_1_1Equinox.html" title="Equatorial coordinate system, defining the orientation of the equator and the location of the equinox...">Equinox</a> instance from a string, such as 'ICRS', 'J2000', 'FK5', B1950', or 'HIP'; or else <span class="tt">{}</span>.  <br /></td></tr>
+<tr class="memdesc:a1e093e32feee83e7d589f51783ce2912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new equinox instance from a string, such as 'ICRS', 'J2000', 'FK5', B1950', or 'HIP'; or else <span class="tt">{}</span>.  <br /></td></tr>
 <tr class="memitem:a1939d9369448feac66a3b09cd1aa9d6a" id="r_a1939d9369448feac66a3b09cd1aa9d6a"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#a1939d9369448feac66a3b09cd1aa9d6a">from_system_type</a> (enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> system, double jd_tt=<a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>)</td></tr>
-<tr class="memdesc:a1939d9369448feac66a3b09cd1aa9d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new <a class="el" href="classsupernovas_1_1Equinox.html" title="Equatorial coordinate system, defining the orientation of the equator and the location of the equinox...">Equinox</a> given a coordinate reference system type and a date.  <br /></td></tr>
+<tr class="memdesc:a1939d9369448feac66a3b09cd1aa9d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new equinox instance given a coordinate reference system type and a date.  <br /></td></tr>
 <tr class="memitem:ace7e30fcac219145415fcdd8d9555c40" id="r_ace7e30fcac219145415fcdd8d9555c40"><td class="memItemLeft">static const Equinox &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ace7e30fcac219145415fcdd8d9555c40">hip</a> ()</td></tr>
 <tr class="memdesc:ace7e30fcac219145415fcdd8d9555c40"><td class="mdescLeft">&#160;</td><td class="mdescRight">The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal mean epoch of the Hipparcos catalog.  <br /></td></tr>
 <tr class="memitem:a94d2f811f21d992feabef754d64f6bb2" id="r_a94d2f811f21d992feabef754d64f6bb2"><td class="memItemLeft">static const Equinox &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2">icrs</a> ()</td></tr>
@@ -501,7 +501,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a new <a class="el" href="classsupernovas_1_1Equinox.html" title="Equatorial coordinate system, defining the orientation of the equator and the location of the equinox...">Equinox</a> instance from a string, such as 'ICRS', 'J2000', 'FK5', B1950', or 'HIP'; or else <span class="tt">{}</span>. </p>
+<p>Returns a new equinox instance from a string, such as 'ICRS', 'J2000', 'FK5', B1950', or 'HIP'; or else <span class="tt">{}</span>. </p>
 <p>It is generally preferable to use one of the other static initializers, such as <a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, or <a class="el" href="#a8f74265a182736c65f358d3535b4cfb4" title="The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000).">j2000()</a>, which are guaranteed to return a valid instance.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -545,7 +545,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a new <a class="el" href="classsupernovas_1_1Equinox.html" title="Equatorial coordinate system, defining the orientation of the equator and the location of the equinox...">Equinox</a> given a coordinate reference system type and a date. </p>
+<p>Returns a new equinox instance given a coordinate reference system type and a date. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">system</td><td>The coordinate reference system type </td></tr>

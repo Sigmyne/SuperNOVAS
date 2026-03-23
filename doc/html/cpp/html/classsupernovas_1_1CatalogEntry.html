@@ -113,7 +113,7 @@ $(function(){initNavTree('classsupernovas_1_1CatalogEntry.html','','classsuperno
 </div><!--header-->
 <div class="contents">
 
-<p>Defines the astrometric parameters of a sidereal source, such as a star, a <a class="el" href="classsupernovas_1_1Galactic.html" title="Galactic coordinates (l, b), representing the direction on the sky, relative to the Galactic plane an...">Galactic</a> cloud, a distant galaxy, or a quasar.  
+<p>Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud, a distant galaxy, or a quasar.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;supernovas.h&gt;</code></p>
@@ -200,7 +200,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a4aa2e66ea6acca6705d87457a08ac2d6 inherit pro_attribs_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">the state variable.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Defines the astrometric parameters of a sidereal source, such as a star, a <a class="el" href="classsupernovas_1_1Galactic.html" title="Galactic coordinates (l, b), representing the direction on the sky, relative to the Galactic plane an...">Galactic</a> cloud, a distant galaxy, or a quasar. </p>
+<div class="textblock"><p>Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud, a distant galaxy, or a quasar. </p>
 <p>NOTES:</p>
 <ol type="1">
 <li>This class uses a builder pattern to populate the astrometric parameters, bit-by-bit, as needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid using the builder functions in a multi-threaded environment. The best practice is to build the catalog entry first, before using in parallel threads unmodified.</li>
@@ -292,7 +292,7 @@ Additional Inherited Members</h2></td></tr>
 <p>See CatalogEntry(strd::string&amp;, Equatorial&amp;) for more information on using builder patterns.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775" title="Returns the catalog name that was defined.">name</a></td><td><a class="el" href="classsupernovas_1_1Source.html" title="An abstract astronomical source, or target of observation.">Source</a> name. It is treated case insensitively, unless the user calls <span class="tt">novas_case_sensitive(true)</span> prior to instantiation. The user may chose any name that is appropriate for their application. </td></tr>
+    <tr><td class="paramname"><a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775" title="Returns the catalog name that was defined.">name</a></td><td>Source name. It is treated case insensitively, unless the user calls <span class="tt">novas_case_sensitive(true)</span> prior to instantiation. The user may chose any name that is appropriate for their application. </td></tr>
     <tr><td class="paramname">coords</td><td>Catalog coordinates (ecliptic)</td></tr>
   </table>
   </dd>
@@ -332,11 +332,11 @@ Additional Inherited Members</h2></td></tr>
 </ul>
 <p>See CatalogEntry(strd::string&amp;, Equatorial&amp;) for more information on using builder patterns.</p>
 <p>NOTES:</p><ol type="1">
-<li>The <a class="el" href="classsupernovas_1_1Galactic.html" title="Galactic coordinates (l, b), representing the direction on the sky, relative to the Galactic plane an...">Galactic</a> coordinate system is somewhat ambigiously defined (see Liu+2011). As a result one should probably avoid using it when high precision is required.</li>
+<li>The Galactic coordinate system is somewhat ambigiously defined (see Liu+2011). As a result one should probably avoid using it when high precision is required.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775" title="Returns the catalog name that was defined.">name</a></td><td><a class="el" href="classsupernovas_1_1Source.html" title="An abstract astronomical source, or target of observation.">Source</a> name. It is treated case insensitively, unless the user calls <span class="tt">novas_case_sensitive(true)</span> prior to instantiation. The user may chose any name that is appropriate for their application. </td></tr>
+    <tr><td class="paramname"><a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775" title="Returns the catalog name that was defined.">name</a></td><td>Source name. It is treated case insensitively, unless the user calls <span class="tt">novas_case_sensitive(true)</span> prior to instantiation. The user may chose any name that is appropriate for their application. </td></tr>
     <tr><td class="paramname">coords</td><td>Catalog coordinates (galactic)</td></tr>
   </table>
   </dd>
