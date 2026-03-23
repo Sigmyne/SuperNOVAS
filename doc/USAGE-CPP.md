@@ -1,6 +1,6 @@
 # C++ Usage
 
-A guide to using __SuperNOVAS__ promarily as a C++ library.
+A guide to using __SuperNOVAS__ primarily as a C++ library.
 
  - [Building your application with SuperNOVAS (C++)](#integration-cpp)
  - [Example C++ usage](#examples-cpp)
