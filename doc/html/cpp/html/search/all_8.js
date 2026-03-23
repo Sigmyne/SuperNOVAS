@@ -6,13 +6,13 @@ var searchData=
   ['features_3',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['fixed_20novas_20c_203_201_20issues_4',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
   ['fjd_5ftt_5',['fjd_tt',['../structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c',1,'novas_timespec']]],
-  ['for_20a_20sidereal_20source_6',['for a sidereal source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52',1,'Calculating positions for a sidereal source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89',1,'Calculating positions for a sidereal source']]],
-  ['for_20a_20solar_20system_20source_7',['for a Solar system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculating positions for a Solar-system source']]],
+  ['for_20a_20sidereal_20source_6',['for a sidereal source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48',1,'Calculating positions for a sidereal source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87',1,'Calculating positions for a sidereal source']]],
+  ['for_20a_20solar_20system_20source_7',['for a Solar system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'Calculating positions for a Solar-system source']]],
   ['for_5fnaif_5fid_8',['for_naif_id',['../classsupernovas_1_1Planet.html#ac0d1c89e3b7f05582d6953155bb2a66d',1,'supernovas::Planet']]],
   ['for_5fname_9',['for_name',['../classsupernovas_1_1Planet.html#adb0e145526bc874a87dc38b617d6e403',1,'supernovas::Planet']]],
   ['fraction_10',['fraction',['../classsupernovas_1_1Angle.html#ae68fb837fb8c311196188dc37eee93d7',1,'supernovas::Angle']]],
   ['frame_11',['Frame',['../classsupernovas_1_1Frame.html',1,'supernovas::Frame'],['../classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6',1,'supernovas::Frame::Frame()']]],
-  ['frame_12',['frame',['../structnovas__transform.html#a292690830561c2c367027eec8a7942bb',1,'novas_transform::frame'],['../classsupernovas_1_1Apparent.html#a8d0bac28eca1d45a86b567a090c12973',1,'supernovas::Apparent::frame()'],['../classsupernovas_1_1Geometric.html#ae50d0c332eca559038ac15bb76a1458d',1,'supernovas::Geometric::frame()'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56',1,'Set up the observing frame'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95',1,'Set up the observing frame']]],
+  ['frame_12',['frame',['../structnovas__transform.html#a292690830561c2c367027eec8a7942bb',1,'novas_transform::frame'],['../classsupernovas_1_1Apparent.html#a8d0bac28eca1d45a86b567a090c12973',1,'supernovas::Apparent::frame()'],['../classsupernovas_1_1Geometric.html#ae50d0c332eca559038ac15bb76a1458d',1,'supernovas::Geometric::frame()'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53',1,'Set up the observing frame'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93',1,'Set up the observing frame']]],
   ['frame_5fat_13',['frame_at',['../group__frame.html#gadd24c03a86837e10783af06be02a8b21',1,'supernovas::Observer']]],
   ['frame_5ftie_14',['frame_tie',['../novas_8h.html#aa11d2253a44261370af8d0c32f0715e9',1,'novas.h']]],
   ['frames_15',['Observing frames',['../group__frame.html',1,'']]],
@@ -33,5 +33,5 @@ var searchData=
   ['from_5ftod_5fsky_5fpos_30',['from_tod_sky_pos',['../classsupernovas_1_1Apparent.html#a45da01a47195b9319ed2e0d86bae95b1',1,'supernovas::Apparent']]],
   ['functionality_20highlights_31',['New functionality highlights',['../index.html#autotoc_md38',1,'']]],
   ['fund_5fargs_32',['fund_args',['../novas_8h.html#a312b5ab1a004b179d80463a07ca7da8f',1,'novas.h']]],
-  ['fundamentals_33',['Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'']]]
+  ['fundamentals_33',['Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81',1,'']]]
 ];

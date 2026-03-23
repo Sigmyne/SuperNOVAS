@@ -1,5 +1,7 @@
 # C99 Usage
 
+A guide to using __SuperNOVAS__ as a C99 (only) library.
+
  - [Building your application with SuperNOVAS (C99)](#integration-c99)
  - [Example C99 usage](#examples-c99)
  - [Tips &amp; Tricks (C99)](#tips-c99)
@@ -567,7 +569,7 @@ they use a `novas_planet_provider` function to access ephemeris data with their 
   
  // Mars will be handled by the planet provider function
  make_planet(NOVAS_MARS, &mars);
-  
+   without background checks
  // Ceres will be handled by the generic ephemeris provider function, which let's say 
  // uses the NAIF ID of 2000001 _or_ the name 'Ceres' (depending on the implementation)
  make_ephem_object("Ceres", 2000001, &ceres);
