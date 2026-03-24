@@ -571,7 +571,7 @@ Velocity GeodeticObserver::enu_velocity() const {
   return vel;
 }
 
-static void to_system(enum novas_reference_system system, const Time& time, double *xyz) {
+static void tod_to_system(enum novas_reference_system system, const Time& time, double *xyz) {
   switch(system) {
     case NOVAS_TOD:
       return;
@@ -602,17 +602,19 @@ static void to_system(enum novas_reference_system system, const Time& time, doub
  *
  * @param time      Astrometric time instant
  * @param system    (optional) output coordinate reference system type (default: TOD).
- * @return          the geocentric equatorial position vector of the observer.
+ * @return          the geocentric equatorial position vector of the observer in the specified
+ *                  type of coordinate system.
  *
  * @sa geocentric_velocity_at()
  */
 Position GeodeticObserver::geocentric_position_at(const Time& time, enum novas_reference_system system) const {
   double xyz[3] = {0.0};
-  terra(site()._on_surface(), time.gst().hours(), xyz, NULL);
+
+  terra(site()._on_surface(), 0.0, xyz, NULL);
 
   if(system != NOVAS_ITRS) {
     itrs_to_tod(time.jd(), 0.0, eop().dUT1().seconds(), NOVAS_FULL_ACCURACY, eop().xp().arcsec(), eop().yp().arcsec(), xyz, xyz);
-    to_system(system, time, xyz);
+    tod_to_system(system, time, xyz);
   }
 
   Position p = Position(xyz, Unit::AU);
@@ -627,7 +629,8 @@ Position GeodeticObserver::geocentric_position_at(const Time& time, enum novas_r
  *
  * @param time      Astrometric time instant
  * @param system    (optional) output coordinate reference system type (default: TOD).
- * @return          the geocentric equatorial velocity vector of the observer.
+ * @return          the geocentric equatorial velocity vector of the observer in the specified
+ *                  type of coordinate system.
  *
  * @sa geocentric_position_at()
  */
@@ -637,7 +640,7 @@ Velocity GeodeticObserver::geocentric_velocity_at(const Time& time, enum novas_r
 
   if(system != NOVAS_ITRS) {
     itrs_to_tod(time.jd(), 0.0, eop().dUT1().seconds(), NOVAS_FULL_ACCURACY, eop().xp().arcsec(), eop().yp().arcsec(), xyz, xyz);
-    to_system(system, time, xyz);
+    tod_to_system(system, time, xyz);
   }
 
   Velocity v = Velocity(xyz, Unit::AU / Unit::day);
@@ -649,10 +652,10 @@ Velocity GeodeticObserver::geocentric_velocity_at(const Time& time, enum novas_r
 /**
  * Returns _u_,_v_,_w_ coordinates for a ground-based interferometer station. That is, it returns
  * _u_,_v_,_w_ coordinates, for this geodetic station, relative to the geocenter, for a given
- * apparent line-of-sight on the sky, observed at the specified local sidereal time. The _u_ and
- * _v_ coordinates are the projections of the site to the East and North, as seen from the source,
- * relative to the geocenter, while _w_ is the distance (inverse delay) from the geocenter along
- * the line of sight.
+ * apparent line-of-sight on the sky, observed at the specified time. The _u_ and _v_ coordinates
+ * are the orthogonal projections of the site in the directions of local East and North
+ * respectively, as seen from the source, relative to the geocenter, while _w_ is the distance
+ * from the geocenter along the line of sight.
  *
  * For interferometers, each station is its own specific site, and the array is usually referenced
  * to one of the stations, or to some other reference location (a virtual site). As such, one
@@ -660,18 +663,21 @@ Velocity GeodeticObserver::geocentric_velocity_at(const Time& time, enum novas_r
  * obtained from the geocentric _uvw_ provided by this method, via simple differencing:
  *
  * ```cpp
- *  GeodeticObserver station = ...;     // location of one of the interferometer stations
- *  GeodeticObserver reference = ...;   // location of the array reference
+ *  // We want to calculate apparent positions for an observer at the geocenter
+ *  Time time = ...;                    // Astrometric time of observation
+ *  Frame frame = Observer::at_geocenter().frame_at(time);
  *
- *  Equatorial eq = ...;    // the location of the phase center
- *  Time t = ...;           // astrometric time instance of observation
+ *  // the apparent location of the phase center for an observer at the geocenter
+ *  Source source = ...;                // The source at the interferometric phase center
+ *  Apparent app = source.apparent_in(frame);
  *
  *  // u,v,w coordinates of the station relative to the array reference
- *  Position rel_uwv = station.uwv(eq, t) - reference.uvw(eq, t);
+ *  GeodeticObserver station = ...;     // location of one of the interferometer stations
+ *  GeodeticObserver reference = ...;   // location of the array reference
+ *  Interferometric uwv = station.interferometric(app, t) - reference.interferometric(app, t);
  *
- *  // the geometric delay of the station, relative to the array reference is is the negated _w_
- *  ('z') coordinate divided by the speed of light.
- *  Interval rel_delay = Interval(-rel_uvw.z() / Constant::c);
+ *  // the geometric delay of the station, relative to the array reference
+ *  Interval delay = uvw.geometric_delay()
  * ```
  *
  * NOTES:
@@ -680,56 +686,29 @@ Velocity GeodeticObserver::geocentric_velocity_at(const Time& time, enum novas_r
  *    as a separate atmospheric delay term on top of the geometric delays returned here, and the
  *    various other delay terms that account for optics, cabling, and digital electronics etc.
  *
- *  - For space-based interferometry, see `AstrometricPosition::uvw()` instead.
+ *  - For space-based interferometry, see `AstrometricPosition::to_interferometric()` instead.
  *
+ * @param geocentric      %Apparent place on sky for a geocentric observer at the time of observation.
  * @param time            Astrometric time of observation.
- * @param geocentric      %Apparent geocentric equatorial coordinates of the observed place on sky
- *                        at the time of observation.
- * @param distance        (optional) %Apparent distance to source at the time of observation
- *                        (default: 1 Gpc).
+ * @param accuracy        (optional) NOVAS_FULL_ACCURACY (0; default) or NOVAS_REDUCED_ACCURACY (1).
  *
  * @return            interferometric uvw coordinates for this site viewed from the direction of
  *                    the source at the specified time.
  *
- * @sa AstrometricPosition::uvw()
+ * @sa AstrometricPosition::to_interferometric(), Observer::at_geocenter()
  */
-Position GeodeticObserver::uvw(const Time& time, const Equatorial& geocentric, const Coordinate& distance) const {
-  Equatorial tod = geocentric.to_tod(time.jd());
+Interferometric GeodeticObserver::interferometric(const Apparent& geocentric, const Time& time, enum novas_accuracy accuracy) const {
+  Equatorial tod = geocentric.equatorial();
 
-  double ha = remainder(time.lst(site()).hours() - tod.ra().hours(), 24.0);
-
+  const double *xyz = tod.xyz(geocentric.distance()).scaled(1.0 / Unit::AU)._array();
   double uvw[3] = {0.0};
-  novas_xyz_to_uvw(geocentric_position_at(time)._array(), ha, tod.dec().deg(), uvw);
+  novas_site_uvw(time._novas_timespec(), site()._on_surface(), xyz, eop().xp().arcsec(), eop().yp().arcsec(), accuracy, uvw);
 
-  Position p(uvw);
+  Interferometric p(uvw[0], uvw[1], uvw[2]);
   if(!p.is_valid())
-    novas_trace_invalid("Site::uvw()");
+    novas_trace_invalid("GeodeticObserver::interferometric()");
   return p;
 }
-
-/**
- * Returns the geometric delay in the arrival of the the light from the observed direction for this
- * geodetic observer location, relative to the arrival time at the geocenter.
- *
- * @param time            Astrometric time of observation.
- * @param geocentric      %Apparent geocentric equatorial coordinates of the observed place on sky
- *                        at the time of observation.
- * @param distance        (optional) %Apparent distance to phase center at the time of observation
- *                        (default: 1 Gpc).
- * @return                the geometric delay of light observed from the phase center at this
- *                        astrometric position, relative to that observed at the reference location.
- *
- * @sa GeodeticObserver::geometric_delay_for()
- */
-Interval GeodeticObserver::geometric_delay_for(const Time& time, const Equatorial& geocentric, const Coordinate& distance) const {
-  Interval dt = Interval(-uvw(time, geocentric, distance).z() / Constant::c);
-  if(!dt.is_valid())
-    novas_trace_invalid("AstrometricPosition::geometric_delay_for()");
-  return dt;
-}
-
-
-
 
 /**
  * Earth Orientation Parameters (EOP) appropriate around the time of observation.
@@ -739,7 +718,6 @@ Interval GeodeticObserver::geometric_delay_for(const Time& time, const Equatoria
 const EOP& GeodeticObserver::eop() const {
   return _eop;
 }
-
 
 /**
  * Returns a string representation of this Earth-based observer location.

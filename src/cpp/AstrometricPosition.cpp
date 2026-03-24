@@ -169,75 +169,55 @@ AstrometricPosition AstrometricPosition::referenced_to_ssb() const {
 }
 
 /**
- * Returns _u_,_v_,_w_ coordinates for a space-based interferometer station. That is, it returns
- * the _u_,_v_,_w_ coordinates of this astrometric place (of a station), measured relative to a
- * reference point (array reference), for a given apparent line-of-sight on the sky (source) at
- * the same time as when the station location is defined. The _u_ and _v_ coordinates are the
- * projections of the site to the East and North, as seen from the source, relative to the array
- * center, while _w_ is the distance (inverse delay) from the array center along the line of
- * sight.
- *
- * For space-based interferometers, this astrometric place can represent the momentary position of
- * a station, relative to the array reference. As such, the returned  _uvw_ coordinates are
- * relative to the array reference.
+ * Returns _u_,_v_,_w_ coordinates for a space-based interferometer station represented by this
+ * astrometric position. That is, it returns the _u_,_v_,_w_ coordinates of this astrometric place
+ * (of a station), measured relative to the reference point (array reference location), for a
+ * given apparent line-of-sight on the sky (source) at the time as when the station location is
+ * defined. The _u_ and _v_ coordinates are the orthogonal projections of the site in the
+ * direction of the local East and North respectively, as seen from the source, relative to the
+ * array reference, while _w_ is the distance from the array reference along the line of sight.
  *
  * ```cpp
  *  // The momentary position of a station relative to the array reference
  *  AstrometricPosition station = ...;
  *
- *  // u,v,w coordinates for a source observed at the time the station position is defined
- *  Position uwv = station.uwv(eq);
+ *  // the location of the phase center
+ *  Equatorial eq = ...;
  *
- *  // the geometric delay of the station, relative to the array reference is is the negated _w_
- *  ('z') coordinate divided by the speed of light.
- *  Interval rel_delay = Interval(-uvw.z() / Constant::c);
+ *  // u,v,w coordinates for a source observed at the time the station position is defined
+ *  Interferometric uwv = station.to_interferometric(eq);
+ *
+ *  // the geometric delay of the station, relative to the array reference
+ *  Interval& dt = uvw.geometric_delay();
  * ```
  *
- * @param phase_center    %Apparent equatorial coordinates of the interferometric phase center,
- *                        as seen from the array reference position.
- * @param distance        (optional) %Apparent distance to phase center at the time of observation
- *                        (default: 1 Gpc).
+ * For ground-based interferometric application, see `GeodeticObserver::interferometric()`
+ * instead.
+ *
+ * @param phase_center      %Apparent equatorial coordinates of the interferometric phase center,
+ *                          as seen from the array reference position.
+ * @param distance          (optional) %Apparent distance to phase center at the time of
+ *                          observation (default: 1 Gpc).
+ * @param relative_motion   (optional station's velocity vector relative to the reference position
+ *                          (default: stationary).
  *
  * @return            interferometric uvw coordinates for this astrometric place viewed from the
  *                    direction of the source at the specified time.
  *
- * @sa GeodeticObserver::uvw(), geometric_delay_for()
+ * @sa GeodeticObserver::interferometric()
  */
-Position AstrometricPosition::uvw(const Equatorial& phase_center, const Coordinate& distance) const {
-  Equinox system = Equinox::from_system_type(_ref_sys, obs_time().jd(NOVAS_TDB));
+Interferometric AstrometricPosition::to_interferometric(const Equatorial& phase_center, const Coordinate& distance, const Velocity& relative_motion) const {
+  Equinox system = Equinox::from_system_type(_ref_sys, obs_time().jd());
 
-  // Change to coordinate system of this astrometric position, and then
-  // calculate the direction of the phase center from the station
-  Position xyz = phase_center.to_system(system).xyz(distance);
-  Equatorial los = Equatorial(xyz - *this, system);
-
+  // Calculate the line-of-sight projection
   double uvw[3] = {0.0};
-  novas_xyz_to_los(_array(), los.ra().deg(), los.dec().deg(), uvw);
+  novas_uvw(scaled(1.0 / Unit::AU)._array(), relative_motion.scaled(Unit::day / Unit::AU)._array(),
+          phase_center.to_system(system).xyz(distance).scaled(1.0 / Unit::AU)._array(), uvw);
 
-  Position p(uvw);
+  Interferometric p(uvw[0], uvw[1], uvw[2]);
   if(!p.is_valid())
-    novas_trace_invalid("AstrometricPosition::uvw()");
+    novas_trace_invalid("AstrometricPosition::interferometric()");
   return p;
-}
-
-/**
- * Returns the geometric delay in the arrival of the the light from the observed direction for this
- * astrometric position, relative to the arrival time at the reference position.
- *
- * @param phase_center    %Apparent equatorial coordinates of the interferometric phase center,
- *                        as seen from the array reference position.
- * @param distance        (optional) %Apparent distance to phase center at the time of observation
- *                        (default: 1 Gpc).
- * @return                the geometric delay of light observed from the phase center at this
- *                        astrometric position, relative to that observed at the reference location.
- *
- * @sa GeodeticObserver::geometric_delay_for()
- */
-Interval AstrometricPosition::geometric_delay_for(const Equatorial& phase_center, const Coordinate& distance) const {
-  Interval dt = Interval(-uvw(phase_center, distance).z() / Constant::c);
-  if(!dt.is_valid())
-    novas_trace_invalid("AstrometricPosition::geometric_delay_for()");
-  return dt;
 }
 
 /**

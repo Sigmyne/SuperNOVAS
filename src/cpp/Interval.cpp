@@ -321,7 +321,19 @@ std::string Interval::to_string(int decimals) const {
 
   double d = fabs(_seconds);
 
-  if(d < Unit::s) {
+  if(d < Unit::ns) {
+    value = 1e12 * _seconds;
+    unit = "ps";
+  }
+  else if(d < Unit::us) {
+    value = 1e9 * _seconds;
+    unit = "ns";
+  }
+  else if(d < Unit::ms) {
+    value = 1e6 * _seconds;
+    unit = "us";
+  }
+  else if(d < Unit::s) {
     value = milliseconds();
     unit = "ms";
   }

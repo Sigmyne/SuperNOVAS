@@ -852,23 +852,29 @@ int novas_xyz_to_los(const double *xyz, double lon, double lat, double *los) {
 }
 
 /**
- * Converts rectangular telescope x,y,z (absolute or relative) coordinates (in ITRS) to equatorial
- * u,v,w projected coordinates for a specified line of sight.
+ * Converts rectangular telescope x,y,z (absolute or relative) coordinates (in PEF) to an
+ * equatorial u,v,w projection for a specified line of sight.
  *
- * x,y,z are Cartesian coordinates w.r.t the Greenwich meridian, in the ITRS frame. The directions
- * are x: long=0, lat=0; y: long=90, lat=0; z: lat=90.
+ * x,y,z are Cartesian coordinates w.r.t the Greenwich meridian, in the PEF frame. The directions
+ * are x: long=0, lat=0; y: long=90, lat=0; z: lat=90. To calculate PEF from ITRS, use `wobble()`
+ * first, before calling this function. Or, for arcsecond-level precision you might use PEF and
+ * ITRS positions interchangeably.
  *
- * u,v,w are Cartesian coordinates (u,v) along the local equatorial R.A. and declination
+ * u,v,w are Cartesian coordinates, with (u,v) along the local East (R.A.) and North (declination)
  * directions as seen from a direction on the sky (w). As such, they are effectively ITRS-based
  * line-of-sight (LOS) coordinates.
  *
- * @param xyz           [arb.u.] Absolute or relative x,y,z coordinates (double[3]).
+ * Alternatively, use `novas_site_uvw()` instead to convert a geodetic (ITRS) site location more
+ * directly to a u, v, w projection.
+ *
+ * @param xyz           [arb.u.] Absolute or relative x,y,z coordinates (double[3]) in the
+ *                      Pseudo Earth Frame (PEF).
  * @param ha            [h] Hourangle (LST - RA) i.e., the difference between the Local (apparent)
  *                      Sidereal Time and the apparent (true-of-date) Right Ascension of observed
- *                      source.
- * @param dec           [deg] Apparent (true-of-date) declination of source
- * @param[out] uvw      [arb.u.] Converted u,v,w coordinates (double[3]) in same units as xyz.
- *                      It may be the same vector as the input.
+ *                      source, from the input location.
+ * @param dec           [deg] Apparent (true-of-date) declination of source at the input location
+ * @param[out] uvw      [arb.u.] Converted u,v,w coordinates (double[3]), in same units as
+ *                      the input xyz. It may be the same vector as the input.
  *
  * @return              0 if successful, or else -1 if either vector argument is NULL (errno will
  *                      be set to EINVAL)
@@ -876,7 +882,7 @@ int novas_xyz_to_los(const double *xyz, double lon, double lat, double *los) {
  * @since 1.3
  * @author Attila Kovacs
  *
- * @sa novas_uvw_to_xyz()
+ * @sa novas_site_uvw(), novas_uvw_to_xyz(), wobble()
  */
 int novas_xyz_to_uvw(const double *xyz, double ha, double dec, double *uvw) {
   prop_error("novas_xyz_to_uvw", novas_xyz_to_los(xyz, -15.0 * ha, dec, uvw), 0);
@@ -885,22 +891,24 @@ int novas_xyz_to_uvw(const double *xyz, double ha, double dec, double *uvw) {
 
 /**
  * Converts equatorial u,v,w projected (absolute or relative) coordinates to rectangular telescope
- * x,y,z coordinates (in ITRS) to for a specified line of sight.
+ * x,y,z coordinates (in PEF) to for a specified line of sight.
  *
- * u,v,w are Cartesian coordinates (u,v) along the local equatorial R.A. and declination
- * directions as seen from a direction on the sky (w). As such, they are effectively ITRS-based
- * line-of-sight (LOS) coordinates.
+ * u,v,w are Cartesian coordinates, with (u,v) along the local East (R.A.) and North (declination)
+ * directions as seen from a direction on the sky (w). As such, they are effectively line-of-sight
+ * (LOS) coordinates.
  *
- * x,y,z are Cartesian coordinates w.r.t the Greenwich meridian in the ITRS frame. The directions
- * are x: long=0, lat=0; y: long=90, lat=0; z: lat=90.
+ * x,y,z are Cartesian coordinates w.r.t the Greenwich meridian in the rotating Pseudo Earth Frame
+ * (PEF). The directions are x: long=0, lat=0; y: long=90, lat=0; z: lat=90. To convert thse to
+ * ITRS, use `wobble()` after calling this function. Or, for arcsecond-level precision you might
+ * use PEF and ITRS positions interchangeably.
  *
- * @param xyz           [arb.u.] Absolute or relative u,v,w coordinates (double[3]).
+ * @param uvw           [arb.u.] Absolute or relative line of sight coordinates (double[3]).
  * @param ha            [h] Hourangle (LST - RA) i.e., the difference between the Local (apparent)
  *                      Sidereal Time and the apparent (true-of-date) Right Ascension of observed
  *                      source.
- * @param dec           [deg] Apparent (true-of-date) declination of source
- * @param[out] uvw      [arb.u.] Converted x,y,z coordinates (double[3]) in the same unit as uvw.
- *                      It may be the same vector as the input.
+ * @param dec           [deg] Apparent (true-of-date) declination of source.
+ * @param[out] xyz      [arb.u.] Converted x,y,z coordinates (double[3]) in the same unit as uvw,
+ *                      in the Pseudo Earth Frame (PEF). It may be the same vector as the input.
  *
  * @return              0 if successful, or else -1 if either vector argument is NULL
  *                      (errno will be set to EINVAL)
@@ -908,7 +916,7 @@ int novas_xyz_to_uvw(const double *xyz, double ha, double dec, double *uvw) {
  * @since 1.3
  * @author Attila Kovacs
  *
- * @sa novas_xyz_to_uvw()
+ * @sa novas_xyz_to_uvw(), wobble()
  */
 int novas_uvw_to_xyz(const double *uvw, double ha, double dec, double *xyz) {
   prop_error("novas_uvw_to_xyz", novas_los_to_xyz(uvw, -15.0 * ha, dec, xyz), 0);

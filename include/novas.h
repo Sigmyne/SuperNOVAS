@@ -239,6 +239,12 @@
  *   information can also be used to calculate interpolated positions on sky on short timescales
  *   much faster than through full-fledged positional calculations.
  *
+ *
+ * \defgroup interferometry   Interferometric applications
+ *
+ *   Various tools supporting interferometric applications, such as _u_, _v_, _w_ projections
+ *   of observing stations and delay calculations along a line of sight.
+ *
  * \defgroup util             Helpers and utilities
  *
  *   Various helpers tools and utilities of the __SuperNOVAS__ library.
@@ -3008,16 +3014,16 @@ int novas_h2e_offset(double daz, double del, double pa, double *restrict dra, do
 /// @ingroup nonequatorial
 int novas_e2h_offset(double dra, double ddec, double pa, double *restrict daz, double *restrict del);
 
-/// @ingroup nonequatorial
+/// @c_interferometry
 int novas_los_to_xyz(const double *los, double lon, double lat, double *xyz);
 
-/// @ingroup nonequatorial
+/// @c_interferometry
 int novas_xyz_to_los(const double *xyz, double lon, double lat, double *los);
 
-/// @ingroup nonequatorial
+/// @c_interferometry
 int novas_xyz_to_uvw(const double *xyz, double ha, double dec, double *uvw);
 
-/// @ingroup nonequatorial
+/// @c_interferometry
 int novas_uvw_to_xyz(const double *uvw, double ha, double dec, double *xyz);
 
 // in util.c
@@ -3359,6 +3365,16 @@ int novas_moon_elp_sky_pos_fp(const novas_frame *restrict frame, double limit, e
 int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos);
 
 int novas_moon_elp_ecl_vel(double jd_tdb, double limit, double *vel);
+
+// in observer.c
+/// @c_interferometry
+int novas_uvw(const double *restrict station_pos, const double *restrict station_vel, const double *restrict phase_center,
+        double *restrict uvw);
+
+/// @c_interferometry
+int novas_site_uvw(const novas_timespec *restrict ts, const on_surface *restrict station, const double *restrict geocentric_source,
+        double xp, double yp, enum novas_accuracy accuracy, double *restrict uvw);
+
 
 // <================= END of SuperNOVAS API =====================>
 

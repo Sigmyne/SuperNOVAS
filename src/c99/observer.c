@@ -989,8 +989,6 @@ short light_time(double jd_tdb, const object *restrict body, const double *pos_o
   return 0;
 }
 
-
-
 /**
  * Sets default weather parameters based on an approximate global model to the mean annualized
  * temperatures, based on Feulner et al. (2013), and scaling relations with altitude (up to 12 km).
@@ -1047,3 +1045,128 @@ int novas_set_default_weather(on_surface *site) {
 
   return 0;
 }
+
+/**
+ * Returns _u_,_v_,_w_ coordinates for a space-based interferometer station. That is, it returns
+ * the _u_,_v_,_w_ coordinates of this astrometric place (of a station), measured relative to a
+ * reference point (array reference), for a given apparent line-of-sight on the sky (source) at
+ * the same time as when the station location is defined. The _u_ and _v_ coordinates are the
+ * projections of the site in the direction of the local East and North respectively, as seen
+ * from the source, relative to the array reference, while _w_ is the distance (inverse delay)
+ * from the array reference along the line of sight.
+ *
+ * For space-based interferometers, this astrometric place can represent the momentary position of
+ * a station, relative to the array reference. As such, the returned  _uvw_ coordinates are
+ * relative to the array reference.
+ *
+ *
+ * @param station_pos     [AU] 3D position vector of interferometric station, relative to the
+ *                        array reference. It can be defined in any system, as long as the
+ *                        phase center is defined in the same coordinate reference system.
+ * @param station_vel     [AU/day] 3D position vector of interferometric station, relative to the
+ *                        array reference, in the same coordinate reference system as the
+ *                        position. It may be NULL for a station that is not moving relative
+ *                        to the array reference.
+ * @param phase_center    [AU] %Apparent position vector of the interferometric phase center
+ *                        (observed source), as seen from the reference location at the time of
+ *                        observation, in the same coordinate reference system, in which the
+ *                        station vectors are defined.
+ * @param[out] uvw        [m] output _u_, _v_, _w_ coordinates, relative to reference place.
+ * @return                0 if succcessful or else -1 if the station position or phase center is
+ *                        NULL (errno will be set to EINVAL).
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_site_uvw()
+ */
+int novas_uvw(const double *restrict station_pos, const double *restrict station_vel, const double *restrict phase_center,
+        double *restrict uvw) {
+  static const char *fn = "novas_orbital_uvw";
+
+  double los[3] = {0.0};
+  double ra = 0.0, dec = 0.0;
+  int i;
+
+  if(!station_pos)
+    return novas_error(-1, EINVAL, fn, "input observer station is NULL");
+
+  if(!phase_center)
+    return novas_error(-1, EINVAL, fn, "input phase_center is NULL");
+
+  if(!uvw)
+    return novas_error(-1, EINVAL, fn, "output uvw position is NULL");
+
+  // Calculate station line-of-sight, and convert velocity to AU/day
+  for(i = 0; i < 3; i++)
+    los[i] = phase_center[i] - station_pos[i];
+
+  // Correct for aberration as necessary for a moving station, relative to array reference.
+  if(station_vel)
+    aberration(los, station_vel, 0.0, los);
+
+  // Line-of-sight projection
+  vector2radec(los, &ra, &dec);
+  novas_xyz_to_los(station_pos, 15.0 * ra, dec, uvw);
+
+  for(i = 0; i < 3; i++)
+    uvw[i] *= NOVAS_AU;
+
+  return 0;
+}
+
+/**
+ * Returns _u_,_v_,_w_ coordinates for a ground-based interferometer station. That is, it returns
+ * _u_,_v_,_w_ coordinates, for a geodetic station, relative to the geocenter, for a given
+ * apparent line-of-sight on the sky, observed at the specified time. The _u_ and _v_ coordinates
+ * are the projections of the site in the direction of the local East and North respectively, as
+ * seen from the source, relative to the geocenter, while _w_ is the distance (inverse delay) from
+ * the geocenter along the line of sight.
+ *
+ * For interferometers, each station is its own specific site, and the array is usually referenced
+ * to one of the stations, or to some other reference location (a virtual site). As such, one
+ * is typically interested in _uvw_ coordinates relative to the reference position, which can be
+ * obtained from the geocentric _uvw_ provided by this method, via simple vector differencing.
+ *
+ * @param ts                  Astrometric time of observation.
+ * @param station             Interferometric station site.
+ * @param geocentric_source   [AU] %Apparent true-of-date (TOD) position of a source, as seen from
+ *                            the geocenter at the time of observation.
+ * @param xp                  [arcsec] IERS polar offset _x_<sub>p</sub>, such as obtained from
+ *                            the IERS bulletins or online service.
+ * @param yp                  [arcsec] IERS polar offset _y_<sub>p</sub>, such as obtained from
+ *                            the IERS bulletins or online service.
+ * @param accuracy            NOVAS_FULL_ACCYRACY (0) or NOVAS_REDUCED_ACCURACY (1)
+ * @param[out] uvw            [m] output _u_, _v_, _w_ coordinates, relative to geocenter.
+ * @return                    0 if succcessful or else -1 if any of the pointer arguments are NULL
+ *                            or if the accuracy is invalid (errno will be set to EINVAL).
+ * @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_uvw()
+ */
+int novas_site_uvw(const novas_timespec *restrict ts, const on_surface *restrict station, const double *restrict geocentric_source,
+        double xp, double yp, enum novas_accuracy accuracy, double *restrict uvw) {
+  static const char *fn = "novas_site_uvw";
+
+  double p[3] = {0.0}, v[3] = {0.0};
+
+  if(!ts)
+    return novas_error(-1, EINVAL, fn, "input time specification is NULL");
+
+  if(!station)
+    return novas_error(-1, EINVAL, fn, "input observer station is NULL");
+
+  // geocentric ITRS pos/vel
+  terra(station, 0.0, p, v);
+
+  // ITRS -> TOD
+  prop_error(fn, itrs_to_tod(ts->ijd_tt, ts->fjd_tt, ts->ut1_to_tt, accuracy, xp, yp, p, p), 0);
+  itrs_to_tod(ts->ijd_tt, ts->fjd_tt, ts->ut1_to_tt, accuracy, xp, yp, v, v);
+
+  prop_error(fn, novas_uvw(p, v, geocentric_source, uvw), 0);
+
+  return 0;
+}
+
+

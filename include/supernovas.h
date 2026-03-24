@@ -37,6 +37,7 @@ class Vector;
 class   Position;
 class     AstrometricPosition;
 class   Velocity;
+class Interferometric;
 class Equinox;
 class Coordinate;
 class Interval;
@@ -722,6 +723,49 @@ public:
 };
 
 /**
+ * _u_, _v_, _w_ projections of an interferometric station along a line of sight. The _u_ and _v_
+ * coordinates are the orthogonal projections of the station in the direction of the local East
+ * and North, as seen from the source, relative to the array reference, while _w_ is the distance
+ * from the array reference location along the line of sight.
+ *
+ * @sa GeodeticObserver::interferometric(), AstrometricPosition::interferometric()
+ *
+ * @ingroup interferometry
+ */
+class Interferometric : public Validating {
+private:
+  double _uvw[3] = {0.0};
+
+  /// Instantiates undefined interferometric coordinates.
+  Interferometric() : Interferometric(NAN, NAN, NAN) {}
+
+public:
+  Interferometric(double u, double v, double w);
+
+  Interferometric(const Coordinate& u, const Coordinate& v, const Coordinate& w);
+
+  Interferometric(const Coordinate& u, const Coordinate& v, const Interval& geom_delay);
+
+  const double *_array() const;
+
+  Coordinate u() const;
+
+  Coordinate v() const;
+
+  Coordinate w() const;
+
+  Interval geometric_delay() const;
+
+  Interferometric operator+(const Interferometric& r) const;
+
+  Interferometric operator-(const Interferometric& r) const;
+
+  std::string to_string(int decimals = 6) const;
+
+  static const Interferometric& undefined();
+};
+
+/**
  * A scalar velocity (if signed) or speed (unsigned).
  *
  * @sa Position
@@ -1358,9 +1402,8 @@ public:
 
   Velocity geocentric_velocity_at(const Time& time, enum novas_reference_system system = NOVAS_TOD) const;
 
-  Position uvw(const Time& time, const Equatorial& geocentric, const Coordinate& distance = Coordinate::at_Gpc()) const;
-
-  Interval geometric_delay_for(const Time& time, const Equatorial& geocentric, const Coordinate& distance = Coordinate::at_Gpc()) const;
+  /// @ingroup interferometry
+  Interferometric interferometric(const Apparent& geocentric, const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   const EOP& eop() const;
 
@@ -2492,9 +2535,9 @@ class AstrometricPosition : public Position {
 
     AstrometricPosition referenced_to_ssb() const;
 
-    Position uvw(const Equatorial& phase_center, const Coordinate& distance = Coordinate::at_Gpc()) const;
-
-    Interval geometric_delay_for(const Equatorial& phase_center, const Coordinate& distance = Coordinate::at_Gpc()) const;
+    /// @ingroup interferometry
+    Interferometric to_interferometric(const Equatorial& phase_center, const Coordinate& distance = Coordinate::at_Gpc(),
+            const Velocity& relative_motion = Velocity::stationary()) const;
 
     std::string to_string(int decimals = 3) const override;
 };
