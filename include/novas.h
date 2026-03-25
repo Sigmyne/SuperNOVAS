@@ -140,9 +140,18 @@
  * \defgroup frame            Observing frames
  *
  *   Observing frames are a combination of an observer place, and an specific time of observation.
- *   They provide a snapshot of the apparent place of sources on the sky, as well as their
- *   geometric locations and velocoties in 3D space. As such, frames make it easy to convert
- *   apparent places and geometric coordinates between different coordinate systems.
+ *
+ *   SuperNOVAS _observing frames_ are not to be confused with _coordinate reference frames_, even
+ *   if the two do have aspects in common. Here, a frame provides a topological snapshot of
+ *   apparent places of all sources on the sky, as well as their geometric locations and
+ *   velocities in 3D space -- without imposing a particular coordinate system on them. So, while
+ *   a _coordinate reference frame_ (such as ICRF) implies a particular choice of a coordinate
+ *   system, a __SuperNOVAS__ _observing frame_ is essentially coordinate-system independent in
+ *   nature.
+ *
+ *   The power of observing frames is that they make it easy to express locations on the celestial
+ *   sphere in any coordinate system, and allow to convert apparent places and geometric coordinates
+ *   between different coordinate systems with superior efficiency.
  *
  * \defgroup apparent         Apparent equatorial positions on sky
  *
