@@ -331,12 +331,23 @@ The __SuperNOVAS__ CMake build supports the following options (in addition to th
  - `ENABLE_CSPICE=ON|OFF` (default: OFF) - Optional CSPICE ephemeris plugin support. Requires `cspice` library 
    installed.
 
-For example, to build __SuperNOVAS__ as shared libraries with 
+For example, to configure the build of __SuperNOVAS__ with shared libraries and with 
 [CALCEPH](https://calceph.imcce.fr) integration for ephemeris support:
 
 ```bash
   $ cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DENABLE_CALCEPH=ON
+```
+
+and then perform the build:
+
+```bash 
   $ cmake --build build
+```
+
+Or, on Windows (Microsoft Visual C) you will want:
+
+```bash
+  $ cmake --build build --config Release
 ```
 
 If a `CMAKE_BUILD_TYPE` is not set, the build will only use the `CFLAGS` (if any) that were set in the environment.
@@ -349,22 +360,10 @@ After a successful build, you can install the `Runtime` (libraries), and `Develo
 `pkg-config`) components, e.g. under `/usr/local`, as:
 
 ```bash
-  $ cmake --build build
-```
-
-Or, on Windows (Microsoft Visual C) you will want:
-
-```bash
-  $ cmake --build build --config Release
-```
-
-After the build, you can install the __SuperNOVAS__ files in the location of choice (e.g. `/usr/local`): 
-
-```bash
   $ cmake --install build --prefix /usr/local 
 ```
 
-You can also use the `--component` option to install just the selected components. For example to install just
+Or, you can use the `--component` option to install just the selected components. For example to install just
 the `Runtime` component:
 
 ```bash

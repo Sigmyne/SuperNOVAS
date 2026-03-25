@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['data_20or_20services_0',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md43',1,'']]],
-  ['data_20service_20integration_1',['Universal ephemeris data / service integration',['../index.html#autotoc_md46',1,'']]],
-  ['dates_2',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md102',1,'']]],
-  ['debug_20support_3',['Runtime debug support',['../index.html#autotoc_md51',1,'']]],
+  ['data_20or_20services_0',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md105',1,'']]],
+  ['data_20service_20integration_1',['Universal ephemeris data / service integration',['../index.html#autotoc_md108',1,'']]],
+  ['dates_2',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md78',1,'']]],
+  ['debug_20support_3',['Runtime debug support',['../index.html#autotoc_md113',1,'']]],
   ['define_20mtx_5flock_20void_4',['define mtx_lock (void)',['../solsys-cspice_8c.html#autotoc_md14',1,'']]],
   ['define_20mtx_5funlock_20void_5',['define mtx_unlock (void)',['../solsys-cspice_8c.html#autotoc_md15',1,'']]],
   ['define_20mutex_5finit_20initializesrwlock_6',['define mutex_init InitializeSRWLock',['../solsys-cspice_8c.html#autotoc_md10',1,'']]],
@@ -17,7 +17,7 @@ var searchData=
   ['define_20mutex_5funlock_20releasesrwlockexclusive_14',['define mutex_unlock ReleaseSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md12',1,'']]],
   ['define_20thread_5fsafe_200_15',['define THREAD_SAFE 0',['../solsys-cspice_8c.html#autotoc_md16',1,'']]],
   ['define_20thread_5fsafe_201_16',['define THREAD_SAFE 1',['../solsys-cspice_8c.html#autotoc_md4',1,'define THREAD_SAFE 1'],['../solsys-cspice_8c.html#autotoc_md9',1,'define THREAD_SAFE 1'],['../solsys-cspice_8c.html#autotoc_md13',1,'define THREAD_SAFE 1']]],
-  ['deprecated_20api_17',['Deprecated API',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md67',1,'']]],
+  ['deprecated_20api_17',['Deprecated API',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md24',1,'']]],
   ['deprecated_20list_18',['Deprecated List',['../deprecated.html',1,'']]],
-  ['don_20t_20reference_20external_20objects_20internally_19',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'']]]
+  ['don_20t_20reference_20external_20objects_20internally_19',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md43',1,'']]]
 ];

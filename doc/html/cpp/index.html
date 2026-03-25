@@ -276,17 +276,16 @@ Details</summary>
 <li><span class="tt">ENABLE_CALCEPH=ON|OFF</span> (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires <span class="tt">calceph</span> package.</li>
 <li><span class="tt">ENABLE_CSPICE=ON|OFF</span> (default: OFF) - Optional CSPICE ephemeris plugin support. Requires <span class="tt">cspice</span> library installed.</li>
 </ul>
-<p>For example, to build <b>SuperNOVAS</b> as shared libraries with <a href="https://calceph.imcce.fr">CALCEPH</a> integration for ephemeris support:</p>
+<p>For example, to configure the build of <b>SuperNOVAS</b> with shared libraries and with <a href="https://calceph.imcce.fr">CALCEPH</a> integration for ephemeris support:</p>
 <div class="fragment"><div class="line">$ cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DENABLE_CALCEPH=ON</div>
-<div class="line">$ cmake --build build</div>
-</div><!-- fragment --><p>If a <span class="tt">CMAKE_BUILD_TYPE</span> is not set, the build will only use the <span class="tt">CFLAGS</span> (if any) that were set in the environment. This is ideal for those who want to have full control of the compiler flags used in the build. Specifying <span class="tt">Release</span> or <span class="tt">Debug</span> will append a particular set of appropriate compiler options which are suited for the given build type. (If you want to use the MinGW compiler on Windows, you'll want to set <span class="tt">-DCMAKE_C_COMPILER=gcc -G "MinGW Makefiles"</span> options also.)</p>
-<p>After a successful build, you can install the <span class="tt">Runtime</span> (libraries), and <span class="tt">Development</span> (headers, CMake config, and <span class="tt">pkg-config</span>) components, e.g. under <span class="tt">/usr/local</span>, as:</p>
+</div><!-- fragment --><p>and then perform the build:</p>
 <div class="fragment"><div class="line">$ cmake --build build</div>
 </div><!-- fragment --><p>Or, on Windows (Microsoft Visual C) you will want:</p>
 <div class="fragment"><div class="line">$ cmake --build build --config Release</div>
-</div><!-- fragment --><p>After the build, you can install the <b>SuperNOVAS</b> files in the location of choice (e.g. <span class="tt">/usr/local</span>):</p>
+</div><!-- fragment --><p>If a <span class="tt">CMAKE_BUILD_TYPE</span> is not set, the build will only use the <span class="tt">CFLAGS</span> (if any) that were set in the environment. This is ideal for those who want to have full control of the compiler flags used in the build. Specifying <span class="tt">Release</span> or <span class="tt">Debug</span> will append a particular set of appropriate compiler options which are suited for the given build type. (If you want to use the MinGW compiler on Windows, you'll want to set <span class="tt">-DCMAKE_C_COMPILER=gcc -G "MinGW Makefiles"</span> options also.)</p>
+<p>After a successful build, you can install the <span class="tt">Runtime</span> (libraries), and <span class="tt">Development</span> (headers, CMake config, and <span class="tt">pkg-config</span>) components, e.g. under <span class="tt">/usr/local</span>, as:</p>
 <div class="fragment"><div class="line">$ cmake --install build --prefix /usr/local </div>
-</div><!-- fragment --><p>You can also use the <span class="tt">--component</span> option to install just the selected components. For example to install just the <span class="tt">Runtime</span> component:</p>
+</div><!-- fragment --><p>Or, you can use the <span class="tt">--component</span> option to install just the selected components. For example to install just the <span class="tt">Runtime</span> component:</p>
 <div class="fragment"><div class="line">$ cmake --install build --component Runtime --prefix /usr/local</div>
 </div><!-- fragment --> </details>
 <p><a class="anchor" id="vcpkg-port"></a> </p>
