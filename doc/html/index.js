@@ -1,24 +1,24 @@
 var index =
 [
-    [ "Table of Contents", "index.html#autotoc_md50", null ],
-    [ "Introduction", "index.html#autotoc_md52", [
-      [ "Related links", "index.html#autotoc_md60", null ]
+    [ "Table of Contents", "index.html#autotoc_md25", null ],
+    [ "Introduction", "index.html#autotoc_md28", [
+      [ "Related links", "index.html#autotoc_md35", null ]
     ] ],
-    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md63", null ],
-    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md68", null ],
-    [ "Building and installation", "index.html#autotoc_md70", [
-      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md71", null ],
-      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md79", null ],
-      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md83", null ],
-      [ "Linux packages", "index.html#autotoc_md84", null ],
-      [ "Homebrew package", "index.html#autotoc_md87", null ],
-      [ "Nix package", "index.html#autotoc_md89", null ]
+    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md41", null ],
+    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md49", null ],
+    [ "Building and installation", "index.html#autotoc_md53", [
+      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md55", null ],
+      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md65", null ],
+      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md72", null ],
+      [ "Linux packages", "index.html#autotoc_md75", null ],
+      [ "Homebrew package", "index.html#autotoc_md78", null ],
+      [ "Nix package", "index.html#autotoc_md79", null ]
     ] ],
-    [ "Building your application with SuperNOVAS", "index.html#autotoc_md91", null ],
-    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md93", null ],
-    [ "Example use cases", "index.html#autotoc_md101", null ],
-    [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md103", [
-      [ "CALCEPH integration", "index.html#autotoc_md104", null ],
+    [ "Building your application with SuperNOVAS", "index.html#autotoc_md84", null ],
+    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md88", null ],
+    [ "Example use cases", "index.html#autotoc_md100", null ],
+    [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md102", [
+      [ "CALCEPH integration", "index.html#autotoc_md103", null ],
       [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md105", null ],
       [ "Universal ephemeris data / service integration", "index.html#autotoc_md106", null ]
     ] ],
