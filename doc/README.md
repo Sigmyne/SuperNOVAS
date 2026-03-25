@@ -386,7 +386,8 @@ You can install the complete SuperNOVAS library with `vcpkg` as:
   $ vcpkg install supernovas
 ```
 
-Or, including the the C++11 API library and the `solsys-calceph` plugin library as:
+Or, a set of selected component, such as the core C99 library, the C++11 library, and the `solsys-calceph` plugin 
+library as:
 
 ```bash
   $ vcpkg install supernovas[core,cpp,solsys-calceph]

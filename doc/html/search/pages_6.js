@@ -17,7 +17,7 @@ var searchData=
   ['define_20mutex_5funlock_20releasesrwlockexclusive_14',['define mutex_unlock ReleaseSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md12',1,'']]],
   ['define_20thread_5fsafe_200_15',['define THREAD_SAFE 0',['../solsys-cspice_8c.html#autotoc_md16',1,'']]],
   ['define_20thread_5fsafe_201_16',['define THREAD_SAFE 1',['../solsys-cspice_8c.html#autotoc_md4',1,'define THREAD_SAFE 1'],['../solsys-cspice_8c.html#autotoc_md9',1,'define THREAD_SAFE 1'],['../solsys-cspice_8c.html#autotoc_md13',1,'define THREAD_SAFE 1']]],
-  ['deprecated_20api_17',['Deprecated API',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md24',1,'']]],
+  ['deprecated_20api_17',['Deprecated API',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md39',1,'']]],
   ['deprecated_20list_18',['Deprecated List',['../deprecated.html',1,'']]],
-  ['don_20t_20reference_20external_20objects_20internally_19',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md43',1,'']]]
+  ['don_20t_20reference_20external_20objects_20internally_19',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md29',1,'']]]
 ];
