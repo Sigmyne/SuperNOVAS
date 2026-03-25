@@ -268,8 +268,8 @@ Details</summary>
 </div><!-- fragment --><p>The <b>SuperNOVAS</b> CMake build supports the following options (in addition to the standard CMake options):</p>
 <ul>
 <li><span class="tt">BUILD_SHARED_LIBS=ON|OFF</span> (default: OFF) - Build shared libraries instead of static</li>
-<li><span class="tt">BUILD_DOC=ON|OFF</span> (default: ON) - Compile HTML documentation. Requires <span class="tt">doxygen</span>.</li>
-<li><span class="tt">BUILD_EXAMPLES=ON|OFF</span> (default: ON) - Build the included examples</li>
+<li><span class="tt">BUILD_DOC=ON|OFF</span> (default: OFF) - Compile HTML documentation. Requires <span class="tt">doxygen</span>.</li>
+<li><span class="tt">BUILD_EXAMPLES=ON|OFF</span> (default: OFF) - Build the included examples</li>
 <li><span class="tt">BUILD_TESTING=ON|OFF</span> (default: ON - Build regression tests</li>
 <li><span class="tt">BUILD_BENCHMARK=ON|OFF</span> (default: OFF - Build benchmarking programs</li>
 <li><span class="tt">ENABLE_CPP=ON|OFF</span> (default: OFF - Build C++11 library (<span class="tt">supernovas++</span>) also.</li>
@@ -527,7 +527,7 @@ Details</summary>
 <div class="line">  <span class="comment">// Your custom ephemeris reader implementation here</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="anovas_8h_html_a208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1051</div></div>
+<div class="ttc" id="anovas_8h_html_a208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1060</div></div>
 </div><!-- fragment --><p>which takes an object ID number (such as a NAIF), an object name, and a split TDB date (for precision) as it inputs, and returns the type of origin with corresponding ICRS position and velocity vectors in the supplied pointer locations. The function can use either the ID number or the name to identify the object or file (whatever is the most appropriate for the implementation and for the supplied parameters). The positions and velocities may be returned either relative to the SSB or relative to the heliocenter, and accordingly, your function should set the value pointed at by origin to <span class="tt"><a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c" title="Origin at the Solar-system baricenter (i.e. BCRS).">NOVAS_BARYCENTER</a></span> or <span class="tt"><a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27bea13c0711a025b9aebd4186ab9127cbd7b" title="Origin at the center of the Sun.">NOVAS_HELIOCENTER</a></span> accordingly. Positions and velocities are rectangular ICRS <em>x,y,z</em> vectors in units of AU and AU/day respectively.</p>
 <p>This way you can easily integrate current ephemeris data, e.g. for the Minor Planet Center (MPC), or whatever other ephemeris service you prefer.</p>
 <p></p>

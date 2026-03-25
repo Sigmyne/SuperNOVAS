@@ -322,8 +322,8 @@ The basic build recipe for CMake is:
 The __SuperNOVAS__ CMake build supports the following options (in addition to the standard CMake options):
 
  - `BUILD_SHARED_LIBS=ON|OFF` (default: OFF) - Build shared libraries instead of static
- - `BUILD_DOC=ON|OFF` (default: ON) - Compile HTML documentation. Requires `doxygen`.
- - `BUILD_EXAMPLES=ON|OFF` (default: ON) - Build the included examples
+ - `BUILD_DOC=ON|OFF` (default: OFF) - Compile HTML documentation. Requires `doxygen`.
+ - `BUILD_EXAMPLES=ON|OFF` (default: OFF) - Build the included examples
  - `BUILD_TESTING=ON|OFF` (default: ON - Build regression tests
  - `BUILD_BENCHMARK=ON|OFF` (default: OFF - Build benchmarking programs 
  - `ENABLE_CPP=ON|OFF` (default: OFF - Build C++11 library (`supernovas++`) also. 
