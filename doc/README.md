@@ -543,8 +543,48 @@ __NOTE__
 <a name="examples"></a>
 ## Example use cases
 
+ - [Recommendation: set up an ephemeris provider](#recommendation)
+ - [Pick you flavor (C or C++)](#usage-flavors)
+
+<a name="recommendation"></a>
+### Recommendation: set up an ephemeris provider
+
+__SuperNOVAS__ can do a lot of things on its own. What it cannot do is provide precise positions for Solar-system 
+bodies. For that, you need ephemeris data and an interface to access them. Even if you don't particularly care to 
+obtain precise planet positions, they are needed for a range of high-precision calculations (such as gravitational 
+deflections in full-precision observing frames).
+
+Therefore, it is strongly recommended that you download [planetary ephemeris files from NASA / JPL](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/) (such as the DE440 or DE440s), and install 
+[CALCEPH](https://calceph.imcce.fr/) or the [CSPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html)
+library for accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and
+it is also more modern, and actively maintained. 
+
+Provided you installed CALCEPH, your application using __SuperNOVAS__ should always start with something like this 
+(regardless of whether you will use the C99 or the C++ API afterwards):
+
+```c
+ #include <novas-calceph.h>
+  
+ // Use DE440 or DE440s as your planet provider...
+ t_calcephbin *pleph = calceph_open("/path/to/de440.bsp");
+ status = novas_use_calceph_planets(pleph);
+ if(status < 0) {
+   // Oops something went wrong...
+ }
+```
+
+Don't forget to link with `-lsolsys-calceph` and `-lcalceph` flags added you yor build. With that, you have now 
+unlocked a lot of the high-precision capabilities of __SuperNOVAS__. Have fun with it!
+
+For more details on using CALCEPH or integrating other ways for providing ephemeris data to __SuperNOVAS__ look at 
+the [section below](#solarsystem).
+
+
+<a name="usage-flavors"></a>
+### Pick you flavor (C or C++)
+
 As of v1.6 __SuperNOVAS__ comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which 
-one you intend to use, choose the appropriate link to an external document below:
+one you intend to use, choose the appropriate link to an external document below for further information:
 
  - [Using the C99 API](USAGE-C99.md)
  - [Using the C++11 API](USAGE-CPP.md)
@@ -590,24 +630,34 @@ Of course, you will need access to the CALCEPH C development files (C headers an
 library) for the build to succeed. Here is an example on how you'd use CALCEPH with __SuperNOVAS__ in your application 
 code:
 
+First and foremost, you should use CALCEPH to provide planet positions via the DE440 or DE440s ephemeris data:
+
 ```c
- #include <novas.h>
  #include <novas-calceph.h>
   
- // You can open a set of JPL/INPOP ephemeris files with CALCEPH...
- t_calcephbin *eph = calceph_open_array(...);
-  
- // Then use them as your generic SuperNOVAS ephemeris provider
- int status = novas_use_calceph(eph);
+ // Use DE440 or DE440s as your planet provider...
+ t_calcephbin *pleph = calceph_open("/path/to/de440.bsp");
+ status = novas_use_calceph_planets(pleph);
  if(status < 0) {
    // Oops something went wrong...
  }
+```
+
+Even if you don't care for the planets, you'll still need the planetary ephemeris for a lot of the high-precision
+calculations, so don't skip on this step if you can help it.
+
+Beyond just the planets, you might want to download and use further ephemeris data, such as for the many moons 
+orbiting planets, the major asteroids, various minor bodies of interest (e.g. comets, NEOs), or man-made spacecrafts. 
+You can activate an additional set (or sets) of ephemeris files separately from the planetary ephemeris above. For 
+example:
+
+```c
+ // Open all files that you will use concurrently
+ t_calcephbin *eph = calceph_open_array(...);
   
- // -----------------------------------------------------------------------
- // Optionally you may use a separate ephemeris dataset for major planets
- // (or if planet ephemeris was included in 'eph' above, you don't have to) 
- t_calcephbin *pleph = calceph_open(...);
- status = novas_use_calceph_planets(pleph);
+ // Tell SperNOVAS to use CALCEPH with these files for obtaining
+ // positions for objects contained within them
+ int status = novas_use_calceph(eph);
  if(status < 0) {
    // Oops something went wrong...
  }

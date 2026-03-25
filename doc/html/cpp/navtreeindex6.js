@@ -1,5 +1,7 @@
 var NAVTREEINDEX6 =
 {
+"novas_8h.html#ab5fb62a9fb185632175ae622bce28dea":[9,0,0,2,243],
+"novas_8h.html#ab6908b0eee06b4a44242fba1fd9d506c":[9,0,0,2,404],
 "novas_8h.html#ab75165e2d69231da10c67de025ee05d8":[9,0,0,2,192],
 "novas_8h.html#ab7611704bab9ce717744a8b5575c5378":[9,0,0,2,217],
 "novas_8h.html#ab7db8026c598e8e126a4725ac3b388bf":[9,0,0,2,262],
@@ -247,7 +249,5 @@ var NAVTREEINDEX6 =
 "structnovas__delaunay__args.html#af6987ccf8afceedd1cd2394a7bdf10b0":[8,0,2,4],
 "structnovas__frame.html":[8,0,3],
 "structnovas__frame.html#a0524a3109f686582f8693602b09320f7":[8,0,3,5],
-"structnovas__frame.html#a09881b59fca2d3ba8dc48a5aba1a2479":[8,0,3,20],
-"structnovas__frame.html#a1a565eeb8311e69122226a4dcfbd5d76":[8,0,3,21],
-"structnovas__frame.html#a24e21ec075b9676de2efc644d1de95be":[8,0,3,24]
+"structnovas__frame.html#a09881b59fca2d3ba8dc48a5aba1a2479":[8,0,3,20]
 };
