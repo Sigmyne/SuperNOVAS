@@ -26,7 +26,7 @@ __SuperNOVAS__ is entirely free to use without licensing restrictions. Its sourc
 standard, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library,
 it fully supports the IAU 2000/2006 standards for microarcsecond-level position calculations. 
 
-This document has been updated for the `v1.5` and later releases.
+This document has been updated for the `v1.6` and later releases.
 
 
 ## Table of Contents
@@ -35,7 +35,6 @@ This document has been updated for the `v1.5` and later releases.
  - [Fixed NOVAS C 3.1 issues](#fixed-issues)
  - [Compatibility with NOVAS C 3.1](#compatibility)
  - [Building and installation](#installation)
- - [Building your application with SuperNOVAS](#integration)
  - [Celestial coordinate systems (old vs. new)](#methodologies)
  - [Example use cases](#examples)
  - [Incorporating Solar-system ephemeris data or services](#solarsystem)
@@ -73,10 +72,11 @@ __SuperNOVAS__ is really quite easy to use. Its new API is just as simple and in
 we strive for it to be), and it is similarly well documented also (see the 
 documentation for the [C99](https://sigmyne.github.io/SuperNOVAS/doc/html/files.html)) and/or
 [C++](https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/files.html) APIs. You can typically achieve the 
-same results with 
-[similar lines of code](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/SuperNOVAS_vs_astropy.md) 
-with __SuperNOVAS__ as with __astropy__, notwithstanding a little more involved error handling at every step (due to 
-the lack of `try / except` style constructs in C).
+same results with similar lines of code on
+[C](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/SuperNOVAS_vs_astropy.md) or 
+[C++](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/cpp/SuperNOVAS++_vs_astropy.md)
+with __SuperNOVAS__ as with __astropy__, notwithstanding a little more involved error handling (due to the lack of 
+`try / except` style constructs in C/C++).
  
 __SuperNOVAS__ is currently based on NOVAS C version 3.1. We plan to rebase __SuperNOVAS__ to the latest upstream 
 release of the NOVAS C library, if possible when new releases become available.
@@ -416,8 +416,8 @@ And or Fedora / EPEL based distributions as:
   $ sudo dnf install supernovas supernovas-c++ supernovas-solsys-calceph supernovas-doc supernovas-devel
 ```
 
-In both cases the first package is the runtime library, the second is the C++11 API library, the third is the runtime 
-library for the `solsys-calceph` plugin, the fourth is documentation, and the last one is the files needed for 
+In both cases the first package is the runtime library, the second is the C++11 runtime library, the third is the 
+runtime for the `solsys-calceph` plugin, the fourth is documentation, and the last one is the files needed for 
 application development.
 
 
@@ -463,17 +463,6 @@ Or include in your Nix build of other software with
 ```
 
 
-
------------------------------------------------------------------------------
-
-<a name="integration"></a>
-## Building your application with SuperNOVAS
-
-As of v1.6 __SuperNOVAS__ comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which 
-one you intend to use, choose the appropriate link to an external document below:
-
- - [Using the C99 API](USAGE-C99.md)
- - [Using the C++11 API](USAGE-CPP.md)
 
 -----------------------------------------------------------------------------
 
@@ -550,11 +539,11 @@ __NOTE__
 ### Recommendation: set up an ephemeris provider
 
 __SuperNOVAS__ can do a lot of things on its own. What it cannot do is provide precise positions for Solar-system 
-bodies. For that, you need ephemeris data and an interface to access them. Even if you don't particularly care to 
-obtain precise planet positions, they are needed for a range of high-precision calculations (such as gravitational 
-deflections in full-precision observing frames).
+bodies. For that, you need ephemeris data and an external tool to access them. Even if you don't particularly care to 
+obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for 
+positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).
 
-Therefore, it is strongly recommended that you download [planetary ephemeris files from NASA / JPL](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/) (such as the DE440 or DE440s), and install 
+Therefore, it is strongly recommended that you download [planetary ephemeris files from NASA / JPL](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/) (such as the DE440, or the smaller DE440s, or the lon-term DE441), and install 
 [CALCEPH](https://calceph.imcce.fr/) or the [CSPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html)
 library for accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and
 it is also more modern, and actively maintained. 
@@ -565,7 +554,7 @@ Provided you installed CALCEPH, your application using __SuperNOVAS__ should alw
 ```c
  #include <novas-calceph.h>
   
- // Use DE440 or DE440s as your planet provider...
+ // Use DE440, DE440s, or DE441 as your planet provider...
  t_calcephbin *pleph = calceph_open("/path/to/de440.bsp");
  status = novas_use_calceph_planets(pleph);
  if(status < 0) {
@@ -588,7 +577,7 @@ one you intend to use, choose the appropriate link to an external document below
 
  - [Using the C99 API](USAGE-C99.md)
  - [Using the C++11 API](USAGE-CPP.md)
- 
+
 
 -----------------------------------------------------------------------------
 
@@ -630,12 +619,13 @@ Of course, you will need access to the CALCEPH C development files (C headers an
 library) for the build to succeed. Here is an example on how you'd use CALCEPH with __SuperNOVAS__ in your application 
 code:
 
-First and foremost, you should use CALCEPH to provide planet positions via the DE440 or DE440s ephemeris data:
+First and foremost, you should use CALCEPH to provide planet positions via the DE440 or DE440s (smaller file size) 
+or DE441 (long term) ephemeris data:
 
 ```c
  #include <novas-calceph.h>
   
- // Use DE440 or DE440s as your planet provider...
+ // Use DE440, DE440s, or DE441 as your planet provider...
  t_calcephbin *pleph = calceph_open("/path/to/de440.bsp");
  status = novas_use_calceph_planets(pleph);
  if(status < 0) {
@@ -689,14 +679,13 @@ Solar-system sources, or for major planets only, or for other bodies only, respe
 active kernels with the `cspice_add_kernel()` and `cspice_remove_kernel()` functions.
 
 Of course, you will need access to the CSPICE development files (C headers, installed under a `cspice/` directory 
-of an header search location, and the unversioned `libcspice.so` or `.a` library) for the build to succeed. You may 
+of a header search location, and the unversioned `libcspice.so` or `.a` library) for the build to succeed. You may 
 want to check out the [Sigmyne/cspice-sharedlib](https://github.com/Sigmyne/cspice-sharedlib) GitHub 
 repository to help you build CSPICE with shared libraries and dynamically linked tools.
 
 Here is an example on how you might use CSPICE with __SuperNOVAS__ in your application code:
 
 ```c
- #include <novas.h>
  #include <novas-cspice.h>
 
  // You can load the desired kernels for CSPICE
@@ -723,6 +712,7 @@ to it.
 
 When using CSPICE, ephemeris objects are referenced by their NAIF ID numbers (`object.number`), unless that number is 
 set to -1, in which case name-based lookup will be used instead.
+
 
 
 <a name="universal-ephemerides"></a>
@@ -785,7 +775,7 @@ are calculated. The argument can have one of two values, which correspond to typ
  | `enum novas_accuracy` value  | Typical precision                |
  | ---------------------------- |:-------------------------------- |
  | `NOVAS_REDUCED_ACCURACY`     | ~ 1 milli-arcsecond (mas)        |
- | `NOVAS_FULL_ACCURACY`        | ~ 1 micro-arcsecond (&mu;as) |
+ | `NOVAS_FULL_ACCURACY`        | ~ 1 micro-arcsecond (&mu;as)     |
 
 Note, that some functions will not support full accuracy calculations, unless you have provided a high-precision
 ephemeris provider for the major planets (and any Solar-system bodies of interest), which does not come with 
@@ -849,12 +839,12 @@ via `novas_itrf_transform_eop()`.
    
 
 Ground based observations are subject to atmospheric refraction. __SuperNOVAS__ offers the option to include 
-refraction corrections with a set of atmospheric models. Estimating refraction accurately requires local weather 
-parameters (pressure, temperature, and humidity), which may be be specified within the `on_surface` data structure 
-alongside the observer location. A standard radio refraction model is included as of version __1.1__, as well as our 
-implementation of the wavelength-dependent IAU refraction model (`novas_wave_refraction()` since version 1.4) based on 
-the SOFA `iauRefco()` function. If none of the supplied options satisfies your needs, you may also implement your own 
-refraction correction to use.
+refraction corrections with a set of atmospheric models, or using models you provide. Estimating refraction accurately 
+requires local weather parameters (pressure, temperature, and humidity), which may be be specified within the 
+`on_surface` data structure alongside the observer location. A standard radio refraction model is included as of 
+version __1.1__, as well as our implementation of the wavelength-dependent IAU refraction model 
+(`novas_wave_refraction()` since version 1.4) based on the SOFA `iauRefco()` function. If none of the built-in options 
+satisfies your needs, you may also implement your own refraction correction to use.
 
 
 <a name="reduced-accuracy"></a>
@@ -916,9 +906,9 @@ better idea of what exactly did not go to plan (and where). The debug messages c
 ## Representative benchmarks
 
 To get an idea of the speed of __SuperNOVAS__, you can use `make benchmark` on your machine. Figure 2 below 
-summarizes the single-threaded results obtained on an AMD Ryzen 5 PRO 6650U laptop. While this is clearly not the 
-state of the art for today's server class machines, it nevertheless gives you a ballpark idea for how a typical, not 
-so new, run-of-the-mill PC might perform.
+summarizes the single-threaded results obtained with v1.5.0 on an AMD Ryzen 5 PRO 6650U laptop. While this is clearly 
+not the state of the art for today's server class machines, it nevertheless gives you a ballpark idea for how a 
+typical, not so new, run-of-the-mill PC might perform.
 
 | ![SuperNOVAS benchmarks](resources/SuperNOVAS-benchmark.png) |
 |:--:| 

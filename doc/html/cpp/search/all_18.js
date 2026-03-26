@@ -3,7 +3,7 @@ var searchData=
   ['v_5flsr_0',['v_lsr',['../classsupernovas_1_1CatalogEntry.html#a23c9875e4a6e480d214c9288f9debe7b',1,'supernovas::CatalogEntry::v_lsr() const'],['../classsupernovas_1_1CatalogEntry.html#a5abe557f04d1f2ed2dccdaac1e2c0b4b',1,'supernovas::CatalogEntry::v_lsr(double v_ms)'],['../classsupernovas_1_1CatalogEntry.html#a74120ab096b8a9db05ebb87e6dce8f84',1,'supernovas::CatalogEntry::v_lsr(const ScalarVelocity &amp;v)']]],
   ['v_5fobs_1',['v_obs',['../structnovas__frame.html#a2dd2191a88584012b9947cb4e998f598',1,'novas_frame']]],
   ['validating_2',['Validating',['../classsupernovas_1_1Validating.html',1,'supernovas::Validating'],['../classsupernovas_1_1Validating.html#aeabd2d0135eafd2a6a55447054ff81f7',1,'supernovas::Validating::Validating()']]],
-  ['validation_3',['Validation',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87',1,'']]],
+  ['validation_3',['Validation',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85',1,'']]],
   ['value_4',['value',['../classsupernovas_1_1ScalarEvolution.html#af4f7a15acc9dd930335dce034175e1fa',1,'supernovas::ScalarEvolution']]],
   ['vcpkg_5',['Install SuperNOVAS via &lt;span class=&quot;tt&quot;&gt;vcpkg&lt;/span&gt;',['../index.html#autotoc_md13',1,'']]],
   ['vector_6',['Vector',['../classsupernovas_1_1Vector.html',1,'supernovas::Vector'],['../classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc',1,'supernovas::Vector::Vector()'],['../classsupernovas_1_1Vector.html#a67f0cc38bb4f768c9f52a2c8227b89eb',1,'supernovas::Vector::Vector(double x, double y, double z)']]],
@@ -13,14 +13,14 @@ var searchData=
   ['velocities_10',['Geometric equatorial positions and velocities',['../group__geometric.html',1,'']]],
   ['velocity_11',['Velocity',['../classsupernovas_1_1Velocity.html',1,'supernovas::Velocity'],['../classsupernovas_1_1Velocity.html#a2f26da36dd9c4dba704ec314585ebc2c',1,'supernovas::Velocity::Velocity(double x_ms, double y_ms, double z_ms)'],['../classsupernovas_1_1Velocity.html#a5bb1ea41d36509cddef281e0a6d16376',1,'supernovas::Velocity::Velocity(const double vel[3], double unit=1.0)']]],
   ['velocity_12',['velocity',['../classsupernovas_1_1Orbital.html#aba60772bc15f18614cf091ad606a3f42',1,'supernovas::Orbital::velocity()'],['../classsupernovas_1_1Geometric.html#ab84cc3daa11fcb1433ce8b0e292021d5',1,'supernovas::Geometric::velocity()']]],
-  ['velocity_20transforms_20change_20of_20coordinate_20system_13',['velocity transforms change of coordinate system',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md67',1,'Coordinate and velocity transforms (change of coordinate system)'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md108',1,'Coordinate and velocity transforms (change of coordinate system)']]],
+  ['velocity_20transforms_20change_20of_20coordinate_20system_13',['velocity transforms change of coordinate system',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'Coordinate and velocity transforms (change of coordinate system)'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106',1,'Coordinate and velocity transforms (change of coordinate system)']]],
   ['velocity_2ecpp_14',['Velocity.cpp',['../Velocity_8cpp.html',1,'']]],
   ['venus_15',['venus',['../classsupernovas_1_1Planet.html#abed300084b896be008f1047157f93545',1,'supernovas::Planet']]],
   ['via_20vcpkg_16',['Install SuperNOVAS via &lt;span class=&quot;tt&quot;&gt;vcpkg&lt;/span&gt;',['../index.html#autotoc_md13',1,'']]],
   ['virtual_5fplanet_17',['virtual_planet',['../novas_8h.html#a0dc172d82eec79f78c2d218c1a7b9cbe',1,'virtual_planet(double jd_tt, const object *restrict ss_body, enum novas_accuracy accuracy, double *restrict ra, double *restrict dec, double *restrict dis):&#160;place.c'],['../place_8c.html#a0dc172d82eec79f78c2d218c1a7b9cbe',1,'virtual_planet(double jd_tt, const object *restrict ss_body, enum novas_accuracy accuracy, double *restrict ra, double *restrict dec, double *restrict dis):&#160;place.c']]],
   ['virtual_5fstar_18',['virtual_star',['../novas_8h.html#aaf187624a93349391518f9d6bb3051e5',1,'virtual_star(double jd_tt, const cat_entry *restrict star, enum novas_accuracy accuracy, double *restrict ra, double *restrict dec):&#160;place.c'],['../place_8c.html#aaf187624a93349391518f9d6bb3051e5',1,'virtual_star(double jd_tt, const cat_entry *restrict star, enum novas_accuracy accuracy, double *restrict ra, double *restrict dec):&#160;place.c']]],
-  ['void_19',['void',['../solsys-cspice_8c.html#autotoc_md124',1,'define mtx_lock (void)'],['../solsys-cspice_8c.html#autotoc_md125',1,'define mtx_unlock (void)']]],
+  ['void_19',['void',['../solsys-cspice_8c.html#autotoc_md122',1,'define mtx_lock (void)'],['../solsys-cspice_8c.html#autotoc_md123',1,'define mtx_unlock (void)']]],
   ['vs_20astropy_20',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
   ['vs_20c99_21',['SuperNOVAS C++ vs. C99',['../md_SuperNOVAS_09_09__vs__C99.html',1,'']]],
-  ['vs_20new_22',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md20',1,'']]]
+  ['vs_20new_22',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md18',1,'']]]
 ];
