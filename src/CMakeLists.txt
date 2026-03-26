@@ -32,6 +32,7 @@ set(SUPERNOVAS_CORE_SOURCES
     ephemeris.c
     solsys3.c
     solsys-ephem.c
+    moon.c
 )
 
 
