@@ -1351,6 +1351,12 @@ public:
 
   const EOP& eop() const;
 
+  /// @ingroup geometric
+  Geometric geometric_moon_elp2000(const Time& time, double limit_term = 0.0) const;
+
+  /// @ingroup apparent
+  Apparent apparent_moon_elp2000(const Time& time, double limit_term = 0.0) const;
+
   std::string to_string() const override;
 };
 
@@ -1374,6 +1380,12 @@ public:
   Position geocentric_position() const;
 
   Velocity geocentric_velocity() const;
+
+  /// @ingroup geometric
+  Geometric geometric_moon_elp2000(const Time& time, double limit_term = 0.0) const;
+
+  /// @ingroup apparent
+  Apparent apparent_moon_elp2000(const Time& time, double limit_term = 0.0) const;
 
   std::string to_string() const override;
 };
@@ -2623,8 +2635,6 @@ public:
 
   static EquatorialTrack from_novas_track(const Equinox& system, const novas_track *track, const Interval& range);
 };
-
-
 
 
 } // namespace supernovas

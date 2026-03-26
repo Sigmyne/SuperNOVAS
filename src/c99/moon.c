@@ -664,7 +664,7 @@ int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_referenc
 
   prop_error(fn, check_earth_bound(frame), 0);
 
-  if(frame->observer.where !=  NOVAS_OBSERVER_AT_GEOCENTER)
+  if(frame->observer.where != NOVAS_OBSERVER_AT_GEOCENTER)
     loc = &frame->observer.on_surf;
 
   limit = (frame->accuracy == NOVAS_REDUCED_ACCURACY) ? 1e-2 : 0.0;
@@ -685,13 +685,14 @@ int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_referenc
  *
  * @param time          Astrometric time (not NULL)
  * @param obs           Geodetic observer location (may be NULL).
- * @param v_ground      [km/s] Observer's velocity over the ground in the ITRS, or NULL if fixed
- *                      site location. It is unused if `obs` is NULL.
+ * @param obs_vel       [km/s] Observer's velocity over the ground in the ITRS, or NULL if fixed
+ *                      site location. It is unused if `obs` is NULL. Or, geocentric observer's
+ *                      velocity in the ICRS.
  * @param sys           Celestial coordinate reference system in which position is given.
  * @param[in,out] pos   [AU] Moon's position (in: geometric, out: aberration corrected).
  * @return              0
  */
-static int moon_aberration(const novas_timespec *restrict time, const on_surface *restrict obs, const double *restrict v_ground,
+static int moon_aberration(const novas_timespec *restrict time, const on_surface *restrict obs, const double *restrict obs_vel,
         enum novas_reference_system sys, double *restrict pos) {
 
   const double pos0[3] = { pos[0], pos[1], pos[2] };
@@ -702,19 +703,24 @@ static int moon_aberration(const novas_timespec *restrict time, const on_surface
   double d, vobs, beta, gamma, p, q, r;
   int k;
 
-  if(!obs)
+  if(!obs && !obs_vel)
     return 0;
 
   // Earth rotation at observer location
-  terra(obs, novas_time_gst(time, NOVAS_REDUCED_ACCURACY), NULL, ovel);
+  if(obs)
+    terra(obs, novas_time_gst(time, NOVAS_REDUCED_ACCURACY), NULL, ovel);
 
   // Add observer ground motion (in TOD).
-  if(v_ground) {
-    double vg[3] = {0.0};
+  if(obs_vel) {
+    double vo[3] = {0.0};
 
-    itrs_to_tod(tdb, 0.0, time->ut1_to_tt, NOVAS_REDUCED_ACCURACY, 0.0, 0.0, v_ground, vg);
+    if(obs)
+      itrs_to_tod(tdb, 0.0, time->ut1_to_tt, NOVAS_REDUCED_ACCURACY, 0.0, 0.0, obs_vel, vo);
+    else
+      gcrs_to_tod(tdb, NOVAS_REDUCED_ACCURACY, obs_vel, vo);
+
     for(k = 3; --k >= 0; )
-      ovel[k] += vg[k] * kms_to_auday;
+      ovel[k] += vo[k] * kms_to_auday;
   }
 
   if(sys != NOVAS_TOD) {
