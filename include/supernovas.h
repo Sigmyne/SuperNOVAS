@@ -278,7 +278,8 @@ public:
  * co-rotating systems (TIRS and ITRS).
  *
  * @sa CatalogEntry, Equatorial, Ecliptic, Apparent, Geometric
- * @ingroup source
+ *
+ * @ingroup util
  */
 class Equinox : public Validating {
 private:
@@ -875,17 +876,11 @@ public:
 
   Equatorial to_hip() const;
 
-  Equatorial to_mod(double jd_tdb) const;
-
   Equatorial to_mod(const Time& time) const;
 
   Equatorial to_mod_at_besselian_epoch(double year) const;
 
-  Equatorial to_tod(double jd_tdb) const;
-
   Equatorial to_tod(const Time& time) const;
-
-  Equatorial to_cirs(double jd_tdb) const;
 
   Equatorial to_cirs(const Time& time) const;
 
@@ -953,11 +948,7 @@ public:
 
   Ecliptic to_j2000() const;
 
-  Ecliptic to_mod(double jd_tdb) const;
-
   Ecliptic to_mod(const Time& time) const;
-
-  Ecliptic to_tod(double jd_tdb) const;
 
   Ecliptic to_tod(const Time& time) const;
 
@@ -1128,7 +1119,7 @@ public:
 };
 
 /**
- * Mean (inerpolated) IERS Earth Orientation Parameters (%EOP), without diurnal variations. IERS
+ * Mean (interpolated) IERS Earth Orientation Parameters (%EOP), without diurnal variations. IERS
  * publishes daily values, short-term and medium term forecasts, and historical data for the
  * measured, unmodelled (by the IAU 2006 precession-nutation model), _x_<sub>p</sub>,
  * _y_<sub>p</sub> pole offsets, leap-seconds (UTC - TAI difference), and the current UT1 - UTC
@@ -1852,6 +1843,7 @@ public:
 
   Equatorial equatorial() const;
 
+  /// @ingroup source
   CatalogSource to_source() const;
 
   CatalogEntry& proper_motion(double ra, double dec);
@@ -2031,7 +2023,7 @@ public:
  *     or referencing it in parallel threads unmodified.
  *
  * @sa Orbital
- * @ingroup source
+ * @ingroup util
  */
 class OrbitalSystem : public Validating {
 private:
@@ -2093,7 +2085,7 @@ public:
  *     the orbital first, before using in parallel threads unmodified.
  *
  * @sa EphemerisSource, Planet::orbit()
- * @ingroup source
+ * @ingroup util
  */
 class Orbital : public Validating {
 private:
@@ -2148,6 +2140,7 @@ public:
 
   Velocity velocity(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
+  /// @ingroup source
   OrbitalSource to_source(const std::string& name) const;
 
   Orbital& eccentricity(double e, double periapsis_rad);
@@ -2179,6 +2172,10 @@ public:
   std::string to_string() const;
 
   static Orbital from_novas_orbit(const novas_orbital *orbit);
+
+  static Orbital moon_orbit_at(const Time& time);
+
+  static Orbital moon_mean_orbit_at(const Time& time);
 };
 
 /**
@@ -2409,7 +2406,7 @@ public:
 
   const Angle& elevation() const;
 
-  const Angle zenith_angle() const;
+  Angle zenith_angle() const;
 
   /// @ingroup refract
   Horizontal to_refracted(RefractionModel ref, const Weather& weather = Weather::standard(), const Time &time = Time::undefined());
@@ -2576,7 +2573,7 @@ public:
  * validity, at very low computational cost.
  *
  * @sa Apparent::horizontal(), EquatorialTrack
- * @ingroup tracking nonequatorial
+ * @ingroup tracking
  */
 class HorizontalTrack : public Track<Horizontal> {
 private:
@@ -2606,7 +2603,7 @@ public:
  * of validity, at very low computational cost.
  *
  * @sa Apparent::equatorial(), HorizontalTrack
- * @ingroup tracking apparent
+ * @ingroup tracking
  */
 class EquatorialTrack : public Track<Equatorial> {
 private:

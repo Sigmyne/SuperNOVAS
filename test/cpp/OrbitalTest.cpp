@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <string.h>
 
 #include "TestUtil.hpp"
 
@@ -303,6 +304,21 @@ int main() {
   if(!test.check("from_novas_orbit(node period = NAN)", !Orbital::from_novas_orbit(&no).is_valid())) n++;
   no.node_period = -1.0 / Unit::julian_century;
   if(!test.check("from_novas_orbit(node period = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
+
+
+  novas_orbital mo = {};
+  novas_make_moon_orbit(Time::b1950().jd(NOVAS_TDB), &mo);
+  Orbital m = Orbital::moon_orbit_at(Time::b1950());
+  if(!test.check("moon_orbit_at(time invalid)", !Orbital::moon_orbit_at(Time::undefined()).is_valid())) n++;
+  if(!test.check("moon_orbit_at()", m.is_valid())) n++;
+  if(!test.check("moon_orbit_at() ==", memcmp(m._novas_orbital(), &mo, sizeof(novas_orbital)) == 0)) n++;
+
+  novas_make_moon_mean_orbit(Time::b1950().jd(NOVAS_TDB), &mo);
+  m = Orbital::moon_mean_orbit_at(Time::b1950());
+  if(!test.check("moon_mean_orbit_at(time invalid)", !Orbital::moon_mean_orbit_at(Time::undefined()).is_valid())) n++;
+  if(!test.check("moon_mean_orbit_at()", m.is_valid())) n++;
+  if(!test.check("moon_mean_orbit_at() ==", memcmp(m._novas_orbital(), &mo, sizeof(novas_orbital)) == 0)) n++;
+
 
   std::cout << "Orbital.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

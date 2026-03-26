@@ -1046,6 +1046,71 @@ Orbital Orbital::from_novas_orbit(const novas_orbital *orbit) {
   return o;
 }
 
+/**
+ * Returns an approximation of the `current` Keplerian orbital of the Moon relative to the
+ * geocenter for the specified epoch of observation. The orbit includes the most dominant Solar
+ * perturbation terms to produce results with an accuracy at the ~10 arcmin level near (+- 0.5
+ * days) the reference time argument of the orbit. The perturbed orbit is based on the ELP/MPP02
+ * model.
+ *
+ * While, the ELP/MPP02 model itself can be highly precise, the Moon's orbit is strongly
+ * non-Keplerian, and so any attempt to describe it in purely Keplerian terms is inherently flawed,
+ * which is the reason for the generally poor accuracy of this model.
+ *
+ * REFERENCES:
+ *
+ *  - Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  - Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.
+ *  - Chapront J., Francou G., 2003, A&amp;A, 404, 735
+ *
+ *
+ * @param time        Astrometric time for which to calculate the secular orbital parameters
+ *                    of the moon.
+ * @return            the Moon orbital defined with the mean orbital elements of date.
+ *
+ * @sa moon_mean_orbit_at()
+ */
+Orbital Orbital::moon_orbit_at(const Time& time) {
+  novas_orbital orbit = {};
+  novas_make_moon_orbit(time.jd(NOVAS_TDB), &orbit);
+  Orbital o = Orbital::from_novas_orbit(&orbit);
+  if(!o.is_valid())
+    novas_trace_invalid("Orbit::moon_orbit_at()");
+  return o;
+}
+
+/**
+ * Returns the mean Keplerian orbital for the Moon relative to the geocenter for the specified
+ * epoch of observation. It is based on the secular parameters of the ELP2000-85 model, but does
+ * not include the harmonic series and the perturbation terms. As such it has accuracy at the few
+ * degrees level only, however it is 'valid' for long-term projections (i.e. for years around the
+ * orbit's reference epoch) at that coarse level.
+ *
+ * For the short-term , `Orbital::moon_orbit_at()` can provide somewhat more accurate
+ * predictions for up to a day or so around the reference epoch of the orbit.
+ *
+ * REFERENCES:
+ *
+ *  - Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  - Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.
+ *  - Chapront J., Francou G., 2003, A&amp;A, 404, 735
+ *  - Laskar J., 1986, A&amp;A, 157, 59
+ *
+ * @param time        Astrometric time for which to calculate the secular orbital parameters
+ *                    of the moon.
+ * @return            the Moon orbital defined with the mean orbital elements of date.
+ *
+ * @sa moon_orbit_at()
+ */
+Orbital Orbital::moon_mean_orbit_at(const Time& time) {
+  novas_orbital orbit = {};
+  novas_make_moon_mean_orbit(time.jd(NOVAS_TDB), &orbit);
+  Orbital o = Orbital::from_novas_orbit(&orbit);
+  if(!o.is_valid())
+    novas_trace_invalid("Orbit::moon_mean_orbit_at()");
+  return o;
+}
+
 
 
 } // namespace supernovas

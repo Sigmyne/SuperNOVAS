@@ -334,7 +334,7 @@
 /// [m] Default distance at which sidereal sources are assumed when not specified otherwise
 /// Historically NOVAS placed sources with no parallax at 1 Gpc distance, and so we follow.
 /// @since 1.5
-/// @ingroup source
+/// @c_source
 #define NOVAS_DEFAULT_DISTANCE    (1e9 * NOVAS_PARSEC)
 
 /// [m<sup>3</sup>/s<sup>2</sup>] Heliocentric gravitational constant (GM<sub>sun</sub>) from DE440,
@@ -1739,7 +1739,7 @@ typedef struct novas_ra_of_cio {
 
 
 /**
- * Constants to reference various astrnomical timescales used
+ * Constants to reference various astronomical timescales used
  *
  * @since 1.1
  *
@@ -3172,7 +3172,7 @@ int novas_orbit_native_posvel(double jd_tdb, const novas_orbital *restrict orbit
 /// @c_source
 int novas_make_planet_orbit(enum novas_planet id, double jd_tdb, novas_orbital *restrict orbit);
 
-/// @ingroup source
+/// @c_source
 int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit);
 
 /// @c_geometric
@@ -3299,7 +3299,7 @@ int novas_set_default_weather(on_surface *site);
 
 // ---------------------- Added in 1.5.1 -------------------------
 
-/// @ingroup source
+/// @c_source
 int novas_make_moon_mean_orbit(double jd_tdb, novas_orbital *restrict orbit);
 
 

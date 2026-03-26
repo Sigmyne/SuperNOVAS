@@ -94,7 +94,7 @@ const Angle& Horizontal::elevation() const {
  *
  * @sa elevation(), azimuth()
  */
-const Angle Horizontal::zenith_angle() const {
+Angle Horizontal::zenith_angle() const {
   Angle a(Constant::half_pi - latitude().rad());
   if(!a.is_valid())
     novas_trace_invalid("Horizontal::zenith_angle()");

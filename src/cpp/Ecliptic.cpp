@@ -294,59 +294,21 @@ Ecliptic Ecliptic::to_j2000() const {
  * Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the
  * specified epch.
  *
- * @param jd_tdb  [day] the (TDB-based) Julian date specifying the coordinate epoch.
- * @return        the equivalent MOD ecliptic coordinates at the specified date.
- *
- * @sa to_system(), to_mod(), to_tod(), to_icrs(), to_j2000()
- */
-Ecliptic Ecliptic::to_mod(double jd_tdb) const {
-  if(!isfinite(jd_tdb))
-    novas_set_errno(EINVAL, "Ecliptic::to_mod()", "input Julian Date is NAN or infinite");
-
-  if(jd_tdb == NOVAS_JD_J2000)
-    return to_j2000();
-
-  if(_equator == NOVAS_MEAN_EQUATOR && _jd == jd_tdb)
-    return (*this);
-
-  Ecliptic e = to_equatorial().to_mod(jd_tdb).to_ecliptic();
-  if(!e.is_valid())
-    novas_trace_invalid("Ecliptic::to_mod()");
-  return e;
-}
-
-/**
- * Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the
- * specified epch.
- *
  * @param time    the astronomical time specifying the coordinate epoch.
  * @return        the equivalent MOD ecliptic coordinates at the specified date.
  *
  * @sa to_system(), to_mod(), to_tod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_mod(const Time& time) const {
-  return to_mod(time.jd(NOVAS_TDB));
-}
+  if(time == Time::j2000())
+    return to_j2000();
 
-/**
- * Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the
- * specified epch.
- *
- * @param jd_tdb  [day] the (TDB-based) Julian date specifying the coordinate epoch.
- * @return        the equivalent TOD ecliptic coordinates at the specified date.
- *
- * @sa to_system(), to_tod(), to_mod(), to_icrs(), to_j2000()
- */
-Ecliptic Ecliptic::to_tod(double jd_tdb) const {
-  if(!isfinite(jd_tdb))
-      novas_set_errno(EINVAL, "Ecliptic::to_tod()", "input Julian Date is NAN or infinite");
-
-  if(_equator == NOVAS_TRUE_EQUATOR && _jd == jd_tdb)
+  if(_equator == NOVAS_MEAN_EQUATOR && _jd == time.jd())
     return (*this);
 
-  Ecliptic e = to_equatorial().to_tod(jd_tdb).to_ecliptic();
+  Ecliptic e = to_equatorial().to_mod(time).to_ecliptic();
   if(!e.is_valid())
-    novas_trace_invalid("Ecliptic::to_tod()");
+    novas_trace_invalid("Ecliptic::to_mod()");
   return e;
 }
 
@@ -360,7 +322,13 @@ Ecliptic Ecliptic::to_tod(double jd_tdb) const {
  * @sa to_system(), to_tod(), to_mod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_tod(const Time& time) const {
-  return to_tod(time.jd(NOVAS_TDB));
+  if(_equator == NOVAS_TRUE_EQUATOR && _jd == time.jd())
+    return (*this);
+
+  Ecliptic e = to_equatorial().to_tod(time).to_ecliptic();
+  if(!e.is_valid())
+    novas_trace_invalid("Ecliptic::to_tod()");
+  return e;
 }
 
 /**

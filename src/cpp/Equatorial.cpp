@@ -316,29 +316,9 @@ Equatorial Equatorial::to_j2000() const {
  * @sa to_system(), to_icrs(), to_j2000()
  */
 Equatorial Equatorial::to_hip() const {
-  Equatorial e = to_system(Equinox::mod(NOVAS_JD_HIP));
+  Equatorial e = to_system(Equinox::hip());
   if(!e.is_valid())
     novas_trace_invalid("Equatorial::to_hip()");
-  return e;
-}
-
-/**
- * Converts these equatorial coordinates to the Mean-of-Date (MOD) catalog coordinate system, at
- * the specified coordinate epoch.
- *
- * @param jd_tdb    [day] (TDB-based) Julian date of the coordinate epoch.
- * @return          new equatorial coordinates, which represent the same equatorial position as
- *                  this, but expressed in the MOD catalog system of date.
- *
- * @sa to_mod_at_besselian_epoch(), to_system(), to_j2000(), to_tod()
- */
-Equatorial Equatorial::to_mod(double jd_tdb) const {
-  if(!isfinite(jd_tdb))
-      novas_set_errno(EINVAL, "Equatorial::to_mod()", "input Julian Date is NAN or infinite");
-
-  Equatorial e = to_system(Equinox::mod(jd_tdb));
-  if(!e.is_valid())
-    novas_trace_invalid("Equatorial::to_mod()");
   return e;
 }
 
@@ -353,7 +333,10 @@ Equatorial Equatorial::to_mod(double jd_tdb) const {
  * @sa to_mod_at_besselian_epoch(), to_system(), to_j2000(), to_tod()
  */
 Equatorial Equatorial::to_mod(const Time& time) const {
-  return to_mod(time.jd(NOVAS_TDB));
+  Equatorial e = to_system(Equinox::mod(time));
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::to_mod()");
+  return e;
 }
 
 /**
@@ -381,27 +364,6 @@ Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
  * specified coordinate epoch. TOD is defined on the true dynamical equator of date, with its
  * origin at the true equinox of date.
  *
- * @param jd_tdb    [day] (TDB-based) Julian date of the coordinate epoch.
- * @return          new equatorial coordinates, which represent the same equatorial position as
- *                  this, but expressed with respect to the true equator and equinox of date.
- *
- * @sa to_system(), to_cirs(), to_j2000(), to_mod()
- */
-Equatorial Equatorial::to_tod(double jd_tdb) const {
-  if(!isfinite(jd_tdb))
-      novas_set_errno(EINVAL, "Equatorial::to_tod()", "input Julian Date is NAN or infinite");
-
-  Equatorial e = to_system(Equinox::tod(jd_tdb));
-  if(!e.is_valid())
-    novas_trace_invalid("Equatorial::to_tod()");
-  return e;
-}
-
-/**
- * Converts these equatorial coordinates to the True-of-Date (TOD) coordinate system, at the
- * specified coordinate epoch. TOD is defined on the true dynamical equator of date, with its
- * origin at the true equinox of date.
- *
  * @param time      [day] the astronomical time specification for the coordinate epoch.
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed with respect to the true equator and equinox of date.
@@ -409,27 +371,9 @@ Equatorial Equatorial::to_tod(double jd_tdb) const {
  * @sa to_system(), to_cirs(), to_j2000(), to_mod()
  */
 Equatorial Equatorial::to_tod(const Time& time) const {
-  return to_tod(time.jd(NOVAS_TDB));
-}
-
-/**
- * Converts these equatorial coordinates to the Celestial Intermediate Reference System (CIRS)
- * coordinate system, at the specified coordinate epoch. CIRS is defined on the true dynamical
- * equator of date, with its origin at the Celestial Intermediate Origin (CIO).
- *
- * @param jd_tdb    [day] (TDB-based) Julian date of the coordinate epoch.
- * @return          new equatorial coordinates, which represent the same equatorial position as this,
- *                  but with respect to the true equator and CIO of date.
- *
- * @sa to_system(), to_tod(), to_icrs()
- */
-Equatorial Equatorial::to_cirs(double jd_tdb) const {
-  if(!isfinite(jd_tdb))
-      novas_set_errno(EINVAL, "Equatorial::to_cirs()", "input Julian Date is NAN or infinite");
-
-  Equatorial e = to_system(Equinox::cirs(jd_tdb));
+  Equatorial e = to_system(Equinox::tod(time));
   if(!e.is_valid())
-    novas_trace_invalid("Equatorial::to_cirs()");
+    novas_trace_invalid("Equatorial::to_tod()");
   return e;
 }
 
@@ -445,7 +389,10 @@ Equatorial Equatorial::to_cirs(double jd_tdb) const {
  * @sa to_system(), to_tod(), to_icrs()
  */
 Equatorial Equatorial::to_cirs(const Time& time) const {
-  return to_cirs(time.jd(NOVAS_TDB));
+  Equatorial e = to_system(Equinox::cirs(time));
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::to_cirs()");
+  return e;
 }
 
 /**

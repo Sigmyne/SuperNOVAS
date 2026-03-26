@@ -11,7 +11,6 @@
 #include "TestUtil.hpp"
 
 
-
 int main() {
   TestUtil test = TestUtil("Velocity");
 
