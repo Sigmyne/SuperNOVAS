@@ -5,7 +5,7 @@ var searchData=
   ['naif_2ec_2',['naif.c',['../naif_8c.html',1,'']]],
   ['naif_5fto_5fnovas_5fplanet_3',['naif_to_novas_planet',['../group__source.html#ga1c4b3f67a3b82808dd16ae43dfaf0f86',1,'naif_to_novas_planet(long id):&#160;naif.c'],['../group__source.html#ga1c4b3f67a3b82808dd16ae43dfaf0f86',1,'naif_to_novas_planet(long id):&#160;naif.c']]],
   ['name_4',['name',['../structnovas__object.html#a9a4a65802b8ff0edc09062867a51d145',1,'novas_object']]],
-  ['namespace_5',['Namespace',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md39',1,'']]],
+  ['namespace_5',['Namespace',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md33',1,'']]],
   ['near_5fearth_6',['near_earth',['../structnovas__observer.html#a1d62a0649b551e6ce86160c950d551dd',1,'novas_observer']]],
   ['new_7',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md97',1,'']]],
   ['new_20functionality_20highlights_8',['New functionality highlights',['../index.html#autotoc_md116',1,'']]],

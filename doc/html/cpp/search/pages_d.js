@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['legacy_20linking_20solarsystem_20solarsystem_5fhp_20and_20readeph_20modules_0',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45',1,'']]],
-  ['legacy_20modules_3a_20a_20better_20way_1',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md46',1,'']]],
-  ['linking_20solarsystem_20solarsystem_5fhp_20and_20readeph_20modules_2',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45',1,'']]],
+  ['legacy_20linking_20solarsystem_20solarsystem_5fhp_20and_20readeph_20modules_0',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48',1,'']]],
+  ['legacy_20modules_3a_20a_20better_20way_1',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49',1,'']]],
+  ['linking_20solarsystem_20solarsystem_5fhp_20and_20readeph_20modules_2',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48',1,'']]],
   ['links_3',['Related links',['../index.html#autotoc_md4',1,'']]],
   ['linux_20packages_4',['Linux packages',['../index.html#autotoc_md14',1,'']]],
   ['list_5',['Deprecated List',['../deprecated.html',1,'']]],

@@ -1,8 +1,8 @@
 var index =
 [
-    [ "Table of Contents", "index.html#autotoc_md79", null ],
-    [ "Introduction", "index.html#autotoc_md82", [
-      [ "Related links", "index.html#autotoc_md83", null ]
+    [ "Table of Contents", "index.html#autotoc_md75", null ],
+    [ "Introduction", "index.html#autotoc_md78", [
+      [ "Related links", "index.html#autotoc_md82", null ]
     ] ],
     [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md85", null ],
     [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md87", null ],
