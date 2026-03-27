@@ -30,8 +30,8 @@ var index =
     ] ],
     [ "Runtime debug support", "index.html#autotoc_md32", null ],
     [ "Representative benchmarks", "index.html#autotoc_md34", null ],
-    [ "SuperNOVAS added features", "index.html#autotoc_md36", [
-      [ "New functionality highlights", "index.html#autotoc_md37", null ],
+    [ "SuperNOVAS added features", "index.html#autotoc_md37", [
+      [ "New functionality highlights", "index.html#autotoc_md38", null ],
       [ "Refinements to the NOVAS C API", "index.html#autotoc_md39", null ]
     ] ],
     [ "Release schedule", "index.html#autotoc_md41", null ]

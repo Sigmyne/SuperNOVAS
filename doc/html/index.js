@@ -29,10 +29,10 @@ var index =
       [ "Reduced accuracy shortcuts", "index.html#autotoc_md109", null ]
     ] ],
     [ "Runtime debug support", "index.html#autotoc_md111", null ],
-    [ "Representative benchmarks", "index.html#autotoc_md113", null ],
-    [ "SuperNOVAS added features", "index.html#autotoc_md115", [
-      [ "New functionality highlights", "index.html#autotoc_md116", null ],
-      [ "Refinements to the NOVAS C API", "index.html#autotoc_md117", null ]
+    [ "Representative benchmarks", "index.html#autotoc_md114", null ],
+    [ "SuperNOVAS added features", "index.html#autotoc_md117", [
+      [ "New functionality highlights", "index.html#autotoc_md118", null ],
+      [ "Refinements to the NOVAS C API", "index.html#autotoc_md119", null ]
     ] ],
-    [ "Release schedule", "index.html#autotoc_md119", null ]
+    [ "Release schedule", "index.html#autotoc_md121", null ]
 ];
