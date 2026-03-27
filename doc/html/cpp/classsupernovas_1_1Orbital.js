@@ -32,7 +32,7 @@ var classsupernovas_1_1Orbital =
     [ "reference_mean_anomaly", "classsupernovas_1_1Orbital.html#a1b51c042026f6e6c5a5c48661de7dc0e", null ],
     [ "semi_major_axis", "classsupernovas_1_1Orbital.html#afdfffb7bc52d616fc89e0556e9069022", null ],
     [ "system", "classsupernovas_1_1Orbital.html#a0f2cf24da6d3c36177e1a6ff6f1e9b9b", null ],
-    [ "to_source", "classsupernovas_1_1Orbital.html#adde40fcf893deea67578d8d5491b8ce7", null ],
+    [ "to_source", "group__source.html#gadde40fcf893deea67578d8d5491b8ce7", null ],
     [ "to_string", "classsupernovas_1_1Orbital.html#a970b21b88d6311105067aaede175696b", null ],
     [ "velocity", "classsupernovas_1_1Orbital.html#aba60772bc15f18614cf091ad606a3f42", null ]
 ];

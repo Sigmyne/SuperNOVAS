@@ -15,10 +15,6 @@ var group__apparent =
       [ "to_string", "classsupernovas_1_1Apparent.html#ab6ad132b6915699516106d9c8e836cd5", null ],
       [ "xyz", "classsupernovas_1_1Apparent.html#a579b557f58e145adbfa03eaca29ead7c", null ]
     ] ],
-    [ "supernovas::EquatorialTrack", "classsupernovas_1_1EquatorialTrack.html", [
-      [ "EquatorialTrack", "classsupernovas_1_1EquatorialTrack.html#ace8d716b1283373fe6f5e8a3bf686fac", null ],
-      [ "projected_at", "classsupernovas_1_1EquatorialTrack.html#a8f41282a1f30c8ede1f28b829ae67480", null ]
-    ] ],
     [ "DEFAULT_GRAV_BODIES_FULL_ACCURACY", "group__apparent.html#ga4cb74da554b236c835302480688cfaac", null ],
     [ "DEFAULT_GRAV_BODIES_REDUCED_ACCURACY", "group__apparent.html#gaec64bf67d5a03b2b4fb2583e5918f1de", null ],
     [ "supernovas::Source::angle_to", "group__apparent.html#ga600eddf89ef347be4838130f327da6df", null ],

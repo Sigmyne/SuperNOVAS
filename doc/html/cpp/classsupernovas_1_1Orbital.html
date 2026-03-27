@@ -100,7 +100,7 @@ $(function(){initNavTree('classsupernovas_1_1Orbital.html','','classsupernovas_1
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">supernovas::Orbital Class Reference<div class="ingroups"><a class="el" href="group__source.html">Astronomical object of interest</a></div></div></div>
+  <div class="headertitle"><div class="title">supernovas::Orbital Class Reference<div class="ingroups"><a class="el" href="group__util.html">Helpers and utilities</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -185,8 +185,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afdfffb7bc52d616fc89e0556e9069022"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the semi-major axis (that is the radius for circular orbits) of this orbital.  <br /></td></tr>
 <tr class="memitem:a0f2cf24da6d3c36177e1a6ff6f1e9b9b" id="r_a0f2cf24da6d3c36177e1a6ff6f1e9b9b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1OrbitalSystem.html">OrbitalSystem</a>&#160;</td><td class="memItemRight"><a class="el" href="#a0f2cf24da6d3c36177e1a6ff6f1e9b9b">system</a> () const</td></tr>
 <tr class="memdesc:a0f2cf24da6d3c36177e1a6ff6f1e9b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new instance of the orbital system in which this orbit is defined.  <br /></td></tr>
-<tr class="memitem:adde40fcf893deea67578d8d5491b8ce7" id="r_adde40fcf893deea67578d8d5491b8ce7"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1OrbitalSource.html">OrbitalSource</a>&#160;</td><td class="memItemRight"><a class="el" href="#adde40fcf893deea67578d8d5491b8ce7">to_source</a> (const std::string &amp;name) const</td></tr>
-<tr class="memdesc:adde40fcf893deea67578d8d5491b8ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new orbital source from this orbital and with the specified name and number designations.  <br /></td></tr>
+<tr class="memitem:gadde40fcf893deea67578d8d5491b8ce7" id="r_gadde40fcf893deea67578d8d5491b8ce7"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1OrbitalSource.html">OrbitalSource</a>&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#gadde40fcf893deea67578d8d5491b8ce7">to_source</a> (const std::string &amp;name) const</td></tr>
+<tr class="memdesc:gadde40fcf893deea67578d8d5491b8ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new orbital source from this orbital and with the specified name and number designations.  <br /></td></tr>
 <tr class="memitem:a970b21b88d6311105067aaede175696b" id="r_a970b21b88d6311105067aaede175696b"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a970b21b88d6311105067aaede175696b">to_string</a> () const</td></tr>
 <tr class="memdesc:a970b21b88d6311105067aaede175696b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a basic human-readable description of this orbital, with just the major parameters.  <br /></td></tr>
 <tr class="memitem:aba60772bc15f18614cf091ad606a3f42" id="r_aba60772bc15f18614cf091ad606a3f42"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#aba60772bc15f18614cf091ad606a3f42">velocity</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
@@ -205,6 +205,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a01968b29405deb9f71ad534e62bcd7f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a new instance of a new Keplerian orbital in the specified orbital system and the basic circular orbital parameters, with mean motion used instead of a orbital period.  <br /></td></tr>
 <tr class="memitem:a6258445d39cc07b8c4679f3deca4af13" id="r_a6258445d39cc07b8c4679f3deca4af13"><td class="memItemLeft">static Orbital&#160;</td><td class="memItemRight"><a class="el" href="#a6258445d39cc07b8c4679f3deca4af13">from_novas_orbit</a> (const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *orbit)</td></tr>
 <tr class="memdesc:a6258445d39cc07b8c4679f3deca4af13"><td class="mdescLeft">&#160;</td><td class="mdescRight">(<em>for internal use</em>) Returns a new instance of a Keplerian orbital, using a copy of a NOVAS C orbital data structure, or <span class="tt">std::nullopt</span> if the argument is NULL.  <br /></td></tr>
+<tr class="memitem:a54a6508c863a590f42309ae413e113c7" id="r_a54a6508c863a590f42309ae413e113c7"><td class="memItemLeft">static Orbital&#160;</td><td class="memItemRight"><a class="el" href="#a54a6508c863a590f42309ae413e113c7">moon_mean_orbit_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time)</td></tr>
+<tr class="memdesc:a54a6508c863a590f42309ae413e113c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mean Keplerian orbital for the Moon relative to the geocenter for the specified epoch of observation.  <br /></td></tr>
+<tr class="memitem:a56592ba52eaba57d16138abbb9153a48" id="r_a56592ba52eaba57d16138abbb9153a48"><td class="memItemLeft">static Orbital&#160;</td><td class="memItemRight"><a class="el" href="#a56592ba52eaba57d16138abbb9153a48">moon_orbit_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time)</td></tr>
+<tr class="memdesc:a56592ba52eaba57d16138abbb9153a48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an approximation of the <span class="tt">current</span> Keplerian orbital of the Moon relative to the geocenter for the specified epoch of observation.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -762,7 +766,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Planet.html#a660d13408cb13cbc42b7263f0196c36d">supernovas::Planet::orbit()</a>, and <a class="el" href="classsupernovas_1_1OrbitalSource.html#a07580304c8d5ee81fb918946f7f40616">supernovas::OrbitalSource::orbital()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a54a6508c863a590f42309ae413e113c7">moon_mean_orbit_at()</a>, <a class="el" href="#a56592ba52eaba57d16138abbb9153a48">moon_orbit_at()</a>, <a class="el" href="classsupernovas_1_1Planet.html#a660d13408cb13cbc42b7263f0196c36d">supernovas::Planet::orbit()</a>, and <a class="el" href="classsupernovas_1_1OrbitalSource.html#a07580304c8d5ee81fb918946f7f40616">supernovas::OrbitalSource::orbital()</a>.</p>
 
 </div>
 </div>
@@ -881,6 +885,97 @@ Additional Inherited Members</h2></td></tr>
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#aae185fccc7fb024dcae3384002c511b7">period()</a>.</p>
+
+</div>
+</div>
+<a id="a54a6508c863a590f42309ae413e113c7" name="a54a6508c863a590f42309ae413e113c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54a6508c863a590f42309ae413e113c7">&#9670;&#160;</a></span>moon_mean_orbit_at()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Orbital supernovas::Orbital::moon_mean_orbit_at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the mean Keplerian orbital for the Moon relative to the geocenter for the specified epoch of observation. </p>
+<p>It is based on the secular parameters of the ELP2000-85 model, but does not include the harmonic series and the perturbation terms. As such it has accuracy at the few degrees level only, however it is 'valid' for long-term projections (i.e. for years around the orbit's reference epoch) at that coarse level.</p>
+<p>For the short-term , <span class="tt"><a class="el" href="#a56592ba52eaba57d16138abbb9153a48" title="Returns an approximation of the current Keplerian orbital of the Moon relative to the geocenter for t...">Orbital::moon_orbit_at()</a></span> can provide somewhat more accurate predictions for up to a day or so around the reference epoch of the orbit.</p>
+<p>REFERENCES:</p>
+<ul>
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.</li>
+<li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
+<li>Laskar J., 1986, A&amp;A, 157, 59</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time for which to calculate the secular orbital parameters of the moon. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the Moon orbital defined with the mean orbital elements of date.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a56592ba52eaba57d16138abbb9153a48" title="Returns an approximation of the current Keplerian orbital of the Moon relative to the geocenter for t...">moon_orbit_at()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a6258445d39cc07b8c4679f3deca4af13">from_novas_orbit()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#ac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>.</p>
+
+</div>
+</div>
+<a id="a56592ba52eaba57d16138abbb9153a48" name="a56592ba52eaba57d16138abbb9153a48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56592ba52eaba57d16138abbb9153a48">&#9670;&#160;</a></span>moon_orbit_at()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Orbital supernovas::Orbital::moon_orbit_at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns an approximation of the <span class="tt">current</span> Keplerian orbital of the Moon relative to the geocenter for the specified epoch of observation. </p>
+<p>The orbit includes the most dominant Solar perturbation terms to produce results with an accuracy at the ~10 arcmin level near (+- 0.5 days) the reference time argument of the orbit. The perturbed orbit is based on the ELP/MPP02 model.</p>
+<p>While, the ELP/MPP02 model itself can be highly precise, the Moon's orbit is strongly non-Keplerian, and so any attempt to describe it in purely Keplerian terms is inherently flawed, which is the reason for the generally poor accuracy of this model.</p>
+<p>REFERENCES:</p>
+<ul>
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.</li>
+<li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time for which to calculate the secular orbital parameters of the moon. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the Moon orbital defined with the mean orbital elements of date.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a54a6508c863a590f42309ae413e113c7" title="Returns the mean Keplerian orbital for the Moon relative to the geocenter for the specified epoch of ...">moon_mean_orbit_at()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a6258445d39cc07b8c4679f3deca4af13">from_novas_orbit()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>.</p>
 
 </div>
 </div>
@@ -1223,7 +1318,7 @@ E.M. Standish and J.G. Williams 1992. </li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time of observation </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time of observation </td></tr>
     <tr><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1). </td></tr>
   </table>
   </dd>
@@ -1326,34 +1421,6 @@ E.M. Standish and J.G. Williams 1992. </li>
 
 </div>
 </div>
-<a id="adde40fcf893deea67578d8d5491b8ce7" name="adde40fcf893deea67578d8d5491b8ce7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adde40fcf893deea67578d8d5491b8ce7">&#9670;&#160;</a></span>to_source()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classsupernovas_1_1OrbitalSource.html">OrbitalSource</a> supernovas::Orbital::to_source </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns a new orbital source from this orbital and with the specified name and number designations. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>the designated source name </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a new source with this orbit and the specified designations. </dd></dl>
-
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
-
-</div>
-</div>
 <a id="a970b21b88d6311105067aaede175696b" name="a970b21b88d6311105067aaede175696b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a970b21b88d6311105067aaede175696b">&#9670;&#160;</a></span>to_string()</h2>
 
@@ -1410,7 +1477,7 @@ E.M. Standish and J.G. Williams 1992. </li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time of observation </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time of observation </td></tr>
     <tr><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1). </td></tr>
   </table>
   </dd>

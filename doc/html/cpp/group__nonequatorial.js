@@ -20,11 +20,9 @@ var group__nonequatorial =
       [ "to_icrs", "classsupernovas_1_1Ecliptic.html#a6a0cfeb643b055e65c48a57c2c624227", null ],
       [ "to_j2000", "classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582", null ],
       [ "to_mod", "classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47", null ],
-      [ "to_mod", "classsupernovas_1_1Ecliptic.html#acc22ddefa30d092615fee19e8b4b1677", null ],
       [ "to_string", "classsupernovas_1_1Ecliptic.html#a6f3453f8bd380ee096834cc38985299d", null ],
       [ "to_system", "classsupernovas_1_1Ecliptic.html#ab078048d3728c4cf4d164b77d57f9c5f", null ],
-      [ "to_tod", "classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d", null ],
-      [ "to_tod", "classsupernovas_1_1Ecliptic.html#ac5f98a9a651dd7cce9c8f5d197e9e70a", null ]
+      [ "to_tod", "classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d", null ]
     ] ],
     [ "supernovas::Galactic", "classsupernovas_1_1Galactic.html", [
       [ "Galactic", "classsupernovas_1_1Galactic.html#a29c85315c630e50b29c218beec0c6195", null ],
@@ -56,11 +54,7 @@ var group__nonequatorial =
       [ "to_refracted", "group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029", null ],
       [ "to_string", "classsupernovas_1_1Horizontal.html#a9e2ec24c847c7f68d62659b4d5ee1021", null ],
       [ "to_unrefracted", "group__refract.html#gab44266c51e667838736e49e59008a9be", null ],
-      [ "zenith_angle", "classsupernovas_1_1Horizontal.html#aface5655311d8017cb07d7eb383d8b32", null ]
-    ] ],
-    [ "supernovas::HorizontalTrack", "classsupernovas_1_1HorizontalTrack.html", [
-      [ "HorizontalTrack", "classsupernovas_1_1HorizontalTrack.html#a03a3318119a3f77db23cbd8fc0171632", null ],
-      [ "projected_at", "classsupernovas_1_1HorizontalTrack.html#ac81fc4f94c292ff2a92cafd1a7404fd7", null ]
+      [ "zenith_angle", "classsupernovas_1_1Horizontal.html#a41a2959b8c966369e8d71af38671093d", null ]
     ] ],
     [ "supernovas::Apparent::ecliptic", "group__nonequatorial.html#gafa2abe3d408721348c0bbb9971507cfb", null ],
     [ "supernovas::Geometric::ecliptic", "group__nonequatorial.html#ga93ec5fed0411781a11cd3c30f256462c", null ],

@@ -104,7 +104,7 @@ $(function(){initNavTree('group__spectral.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Calculating precice spectroscopic radial velocity measures or redshifts.  
+<p>Calculating precise spectroscopic radial velocity measures or redshifts.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
@@ -133,7 +133,11 @@ Functions</h2></td></tr>
 <tr class="memdesc:gaea89203030ca831260dec18f83081d23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undoes an incremental redshift correction that was applied to radial velocity.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Calculating precice spectroscopic radial velocity measures or redshifts. </p>
+<div class="textblock"><p>Calculating precise spectroscopic radial velocity measures or redshifts. </p>
+<p>When defining catalog (that is non-Solar-system) sources <b>SuperNOVAS</b> allows you to specify spectroscopic velocity measures, either as a Solar-system Barycentric radial velocity, or relative to the Local Standard of Rest (LSR), or as a redshift measure (<em>z</em>). And, when you calculate apparent places in an observing frame, <b>SuperNOVAS</b> will use that information (or the geometric velocity vecotr obtained for Solar-system bodies), to calculate the precise spectroscopic radial velocity that the observer would measure, using the appropriate relativistic formulae to account for both the kinetic and gravitational effects, including projection effects due to gravitational bending.</p>
+<p>The spectroscopic measure of velocity (<em>v</em><sub>r</sub>) or redshift (<em>z</em>) is one that relates the wavelength of the observed light (&lambda;<sub>obs</sub>) to that of the emitted light (&lambda;<sub>rest</sub>):</p>
+<p>&lambda;<sub>obs</sub> / &lambda;<sub>rest</sub> = 1 + <em>z</em> = [(1 + <em>v</em><sub>r</sub> / <em>c</em>) / (1 - <em>v</em><sub>r</sub> / <em>c</em>)]<sup>1/2</sup>,</p>
+<p>where <em>c</em> is the speed of light. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="ga3ce6b306bc183387d0aaac97abbd82e8" name="ga3ce6b306bc183387d0aaac97abbd82e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga3ce6b306bc183387d0aaac97abbd82e8">&#9670;&#160;</a></span>grav_redshift()</h2>

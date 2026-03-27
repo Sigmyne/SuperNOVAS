@@ -47,7 +47,9 @@ var searchData=
   ['month_5fname_44',['month_name',['../classsupernovas_1_1CalendarDate.html#ac2f0d28681561bf807669721683e6efe',1,'supernovas::CalendarDate']]],
   ['moon_45',['moon',['../classsupernovas_1_1Planet.html#a0d65c875c7bc426241516ac37456e09f',1,'supernovas::Planet']]],
   ['moon_5fangle_46',['moon_angle',['../group__apparent.html#ga4d8c425044b5594fa8251812db25f0d7',1,'supernovas::Source']]],
-  ['moon_5fphase_47',['moon_phase',['../classsupernovas_1_1Time.html#a7d4ae0fa41ccc3fab1ff30222656b858',1,'supernovas::Time']]],
-  ['moving_5fon_5fearth_48',['moving_on_earth',['../classsupernovas_1_1Observer.html#abd2f95516ccb885c0328574b7201ff6f',1,'supernovas::Observer::moving_on_earth(const Site &amp;site, const Velocity &amp;itrs_vel, const EOP &amp;eop)'],['../classsupernovas_1_1Observer.html#aa0abf1c22d33bb94f266219a9c8282d7',1,'supernovas::Observer::moving_on_earth(const Site &amp;site, const EOP &amp;eop, const ScalarVelocity &amp;horizontal, const Angle &amp;direction, const ScalarVelocity &amp;vertical=ScalarVelocity::stationary())']]],
-  ['mpc_49',['Mpc',['../classsupernovas_1_1Coordinate.html#a224984b16c07dec5e0f373912898da3b',1,'supernovas::Coordinate']]]
+  ['moon_5fmean_5forbit_5fat_47',['moon_mean_orbit_at',['../classsupernovas_1_1Orbital.html#a54a6508c863a590f42309ae413e113c7',1,'supernovas::Orbital']]],
+  ['moon_5forbit_5fat_48',['moon_orbit_at',['../classsupernovas_1_1Orbital.html#a56592ba52eaba57d16138abbb9153a48',1,'supernovas::Orbital']]],
+  ['moon_5fphase_49',['moon_phase',['../classsupernovas_1_1Time.html#a7d4ae0fa41ccc3fab1ff30222656b858',1,'supernovas::Time']]],
+  ['moving_5fon_5fearth_50',['moving_on_earth',['../classsupernovas_1_1Observer.html#abd2f95516ccb885c0328574b7201ff6f',1,'supernovas::Observer::moving_on_earth(const Site &amp;site, const Velocity &amp;itrs_vel, const EOP &amp;eop)'],['../classsupernovas_1_1Observer.html#aa0abf1c22d33bb94f266219a9c8282d7',1,'supernovas::Observer::moving_on_earth(const Site &amp;site, const EOP &amp;eop, const ScalarVelocity &amp;horizontal, const Angle &amp;direction, const ScalarVelocity &amp;vertical=ScalarVelocity::stationary())']]],
+  ['mpc_51',['Mpc',['../classsupernovas_1_1Coordinate.html#a224984b16c07dec5e0f373912898da3b',1,'supernovas::Coordinate']]]
 ];

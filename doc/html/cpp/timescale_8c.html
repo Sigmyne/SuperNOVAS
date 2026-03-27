@@ -568,7 +568,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the astronomical time specification data structure. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the astronomical time specification data structure. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the returned Julian Date is to be provided </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ijd</td><td>[day] The integer part of the Julian date in the requested timescale. It may be NULL if not required. </td></tr>
   </table>
@@ -608,7 +608,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <p>The returned time is accurate to a few &mu;s (microsecond) due to the inherent precision of the double-precision result. For higher precision applications you may use <span class="tt"><a class="el" href="#a32d8336084b65fac14d092ab6198c27d" title="Returns the fractional Julian date of an astronomical time in the specified timescale,...">novas_get_split_time()</a></span> instead, which has an inherent accuracy at the picosecond level.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the astronomical time specification data structure. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the astronomical time specification data structure. </td></tr>
     <tr><td class="paramname">timescale</td><td>The astronomical time scale in which the returned Julian Date is to be provided </td></tr>
   </table>
   </dd>
@@ -646,7 +646,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <p>Returns the UNIX time for an astronomical time instant. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the astronomical time specification data structure. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the astronomical time specification data structure. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">nanos</td><td>[ns] UTC sub-second component. It may be NULL if not required. </td></tr>
   </table>
   </dd>
@@ -700,7 +700,7 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the astronomical time specification data structure. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the astronomical time specification data structure. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>Output string buffer. At least 25 bytes are required for a complete timestamp with termination. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">maxlen</td><td>The maximum number of characters that can be printed into the output buffer, including the string termination. If the full ISO timestamp is longer than <span class="tt">maxlen</span>, then it will be truncated to fit in the allotted space, including a termination character. </td></tr>
   </table>
@@ -794,7 +794,7 @@ IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obsp
 <p>Increments the astrometric time by a given amount. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Original time specification </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Original time specification </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">seconds</td><td>[s] Seconds to add to the original </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>New incremented time specification. It may be the same as the input. </td></tr>
   </table>
@@ -883,7 +883,7 @@ With MSC, this function uses the C11 standard <span class="tt">timespec_get()</s
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="novas_8h.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
 </dl>
@@ -961,7 +961,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
     <tr><td class="paramdir"></td><td class="paramname">fjd</td><td>[day] fractional part Julian day value in the specified timescale </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="novas_8h.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1018,7 +1018,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
     <tr><td class="paramdir"></td><td class="paramname">str</td><td>The astronomical date specification, possibly including time and timezone, in a standard format. The date is assumed to be in the astronomical calendar of date, which differs from ISO 8601 timestamps for dates prior to the Gregorian calendar reform of 1582 October 15 (otherwise, the two are identical). See <span class="tt"><a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a></span> for more on acceptable formats. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides). If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="novas_8h.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1075,7 +1075,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
     <tr><td class="paramdir"></td><td class="paramname">jd</td><td>[day] Julian day value in the specified timescale </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides). If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="novas_8h.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1132,7 +1132,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
     <tr><td class="paramdir"></td><td class="paramname">nanos</td><td>[ns] UTC sub-second component </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="novas_8h.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1170,7 +1170,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <p>If you need mean sidereal time (GMST), you should use <a class="el" href="earth_8c.html#a6eacba14d3c382d67307856a2ea290e3">sidereal_time()</a> instead.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>The astronomoical time specification. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>The astronomoical time specification. </td></tr>
     <tr><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1). </td></tr>
   </table>
   </dd>
@@ -1204,7 +1204,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <p>Returns the leap seconds component of an astronomical time specification. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>The astronomoical time specification. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>The astronomoical time specification. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1245,7 +1245,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <p>Returns the Local (apparent) Sidereal Time (LST/LaST) for a given astronomical time specification and observer location. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>The astronomoical time specification. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>The astronomoical time specification. </td></tr>
     <tr><td class="paramname">lon</td><td>[deg] The geodetic longitude of the observer. </td></tr>
     <tr><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1). </td></tr>
   </table>
@@ -1305,7 +1305,7 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the astronomical time specification data structure. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the astronomical time specification data structure. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">scale</td><td>The timescale to use. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>Output string buffer. At least 28 bytes are required for a complete timestamp with termination. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">maxlen</td><td>The maximum number of characters that can be printed into the output buffer, including the string termination. If the full ISO timestamp is longer than <span class="tt">maxlen</span>, then it will be truncated to fit in the allotted space, including a termination character. </td></tr>

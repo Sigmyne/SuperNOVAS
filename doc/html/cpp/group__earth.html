@@ -110,7 +110,7 @@ $(function(){initNavTree('group__earth.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:supernovas_3A_3AEOP" id="r_supernovas_3A_3AEOP"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1EOP.html">supernovas::EOP</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.  <a href="classsupernovas_1_1EOP.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.  <a href="classsupernovas_1_1EOP.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -126,7 +126,8 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Earth Orientation Parameters (EOP), for defining the unmodelled (via the IAU 2000 / 2006 precession-nutation models) polar motion and rotational variations of the physical Earth. </p>
-<p>EOP are necessary to transform between pseudo Earth-fixed (e.g. the Terrestrial Intermediate Reference System [TIRS]) and the Earth-fixed International Terrestrial Reference System (ITRS). IERS publishes daily Earth orientation parameters, in various ITRF realizations. For the utmost accuracy (below the mas-level), these must be further corrected for diurnal variations caused by librarion and the oceans tides. </p>
+<p>EOP are necessary to transform between pseudo Earth-fixed (e.g. the Terrestrial Intermediate Reference System [TIRS]) and the Earth-fixed International Terrestrial Reference System (ITRS). They are essential for precise calculations for Earth-based observers.</p>
+<p>IERS publishes daily <a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">Earth orientation data</a>, in various ITRF realizations. For the utmost accuracy (below the mas-level), these must be further corrected for diurnal variations caused by librarion and the oceans tides, which is something that <b>SuperNOVAS</b> does automatically when defining astrometric time or an observing frame with the interpolated published EOP values. </p>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="ga1f0e319630e7a47f17247bf51f7bf36c" name="ga1f0e319630e7a47f17247bf51f7bf36c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga1f0e319630e7a47f17247bf51f7bf36c">&#9670;&#160;</a></span>novas_nutation_provider</h2>

@@ -117,7 +117,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ga4f7dee9d4c9db4cf201af8383c72d4db" id="r_ga4f7dee9d4c9db4cf201af8383c72d4db"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga4f7dee9d4c9db4cf201af8383c72d4db">NOVAS_DEFAULT_WAVELENGTH</a>&#160;&#160;&#160;0.55</td></tr>
-<tr class="memdesc:ga4f7dee9d4c9db4cf201af8383c72d4db"><td class="mdescLeft">&#160;</td><td class="mdescRight">[&mu;m] Default wavelength, e.g.  <br /></td></tr>
+<tr class="memdesc:ga4f7dee9d4c9db4cf201af8383c72d4db"><td class="mdescLeft">&#160;</td><td class="mdescRight">[&mu;m] Default wavelength, for wavelength-dependent refraction models.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -143,7 +143,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Accounting for atmopheric refraction for observers on or above Earth's surface. </p>
-<p>SuperNOVAS provides various atmopsheric refraction models. Some use the specified weather parameters, while others use a standard weather for the observer location. Some models are wavelength dependent, so user's can (should) specify a observing wavelength when using them. </p>
+<p><b>SuperNOVAS</b> provides various atmopsheric refraction models. Some use the specified weather parameters, while others use a standard weather for the observer location. Some models are wavelength dependent, so user's can (should) specify a observing wavelength when using them. </p>
 </div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
 <a id="ga4f7dee9d4c9db4cf201af8383c72d4db" name="ga4f7dee9d4c9db4cf201af8383c72d4db"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga4f7dee9d4c9db4cf201af8383c72d4db">&#9670;&#160;</a></span>NOVAS_DEFAULT_WAVELENGTH</h2>
@@ -157,8 +157,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[&mu;m] Default wavelength, e.g. </p>
-<p>for wavelength-dependent refraction models. It is set to the median wavelength of visible light. </p><dl class="section since"><dt>Since</dt><dd>1.4 </dd></dl>
+<p>[&mu;m] Default wavelength, for wavelength-dependent refraction models. </p>
+<p>It is set to the median wavelength of visible light. </p><dl class="section since"><dt>Since</dt><dd>1.4 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gac673c4fef94847b796dc2aa2f4d0807d" title="Sets the observing wavelength for which refraction is to be calculated when using a wavelength-depene...">novas_refract_wavelength()</a> </dd></dl>
 
 </div>
@@ -500,7 +500,7 @@ Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.  </li>
   <table class="params">
     <tr><td class="paramname">ref</td><td>refraction model to use, or NULL to skip refraction correction </td></tr>
     <tr><td class="paramname">weather</td><td>(optional) local weather parameters to use for the refraction correction. (default: standard atmopshere). </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>(optional) <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> of observation, for time-dependent refraction models. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>(optional) <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> of observation, for time-dependent refraction models. </td></tr>
   </table>
   </dd>
 </dl>
@@ -540,7 +540,7 @@ Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.  </li>
   <table class="params">
     <tr><td class="paramname">ref</td><td>refraction model to use, or NULL to skip refraction correction </td></tr>
     <tr><td class="paramname">weather</td><td>(optional) local weather parameters to use for the refraction correction. (default: standard atmopshere). </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>(optional) <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> of observation, for time-dependent refraction models. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>(optional) <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> of observation, for time-dependent refraction models. </td></tr>
   </table>
   </dd>
 </dl>

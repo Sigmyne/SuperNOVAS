@@ -152,8 +152,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9e2ec24c847c7f68d62659b4d5ee1021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of these horizontal coordinates, optionally defining the separator type to use for the DMS angle representations, and the number of decimal places to print also.  <br /></td></tr>
 <tr class="memitem:gab44266c51e667838736e49e59008a9be" id="r_gab44266c51e667838736e49e59008a9be"><td class="memItemLeft">Horizontal&#160;</td><td class="memItemRight"><a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be">to_unrefracted</a> (<a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0395574b9c5b2bdb7b9f8e04e1342029">Weather::standard</a>(), const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time=<a class="el" href="classsupernovas_1_1Time.html#a20657cd4e3e19ce0987ec1b765225161">Time::undefined</a>())</td></tr>
 <tr class="memdesc:gab44266c51e667838736e49e59008a9be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undoes atmospheric refraction correction for these coordinates, returning the result.  <br /></td></tr>
-<tr class="memitem:aface5655311d8017cb07d7eb383d8b32" id="r_aface5655311d8017cb07d7eb383d8b32"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#aface5655311d8017cb07d7eb383d8b32">zenith_angle</a> () const</td></tr>
-<tr class="memdesc:aface5655311d8017cb07d7eb383d8b32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the zenith distance angle.  <br /></td></tr>
+<tr class="memitem:a41a2959b8c966369e8d71af38671093d" id="r_a41a2959b8c966369e8d71af38671093d"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#a41a2959b8c966369e8d71af38671093d">zenith_angle</a> () const</td></tr>
+<tr class="memdesc:a41a2959b8c966369e8d71af38671093d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the zenith distance angle.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Spherical"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Spherical')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Spherical.html">supernovas::Spherical</a></td></tr>
 <tr class="memitem:a50902496f54614a2ef3594191b6404a0 inherit pub_methods_classsupernovas_1_1Spherical" id="r_a50902496f54614a2ef3594191b6404a0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Spherical.html#a50902496f54614a2ef3594191b6404a0">Spherical</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;<a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">longitude</a>, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;<a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">latitude</a>)</td></tr>
 <tr class="memdesc:a50902496f54614a2ef3594191b6404a0 inherit pub_methods_classsupernovas_1_1Spherical"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates new spherical coordinates with the specified components.  <br /></td></tr>
@@ -297,7 +297,9 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> for details on string representation that can be parsed. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> for details on string representation that can be parsed. </dd>
+<dd>
+<a class="el" href="group__util.html#gad3d04d065e76a5921995e96f67c24c41" title="Parses an angle in degrees from a string that contains either a decimal degrees or else a broken-down...">novas_parse_degrees()</a> for more managed parsing from strings. </dd></dl>
 
 <p class="reference">References <a class="el" href="#ac808b5b7f4a4c1f09a54ab5c8e219f3a">azimuth()</a>, and <a class="el" href="#a82ab515e78cdee62524825584e7299a4">elevation()</a>.</p>
 
@@ -322,7 +324,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the azimuth angle. </p>
 <p>Same as <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285" title="Returns the longitude coordinate as an angle.">Spherical::longitude()</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the azimuth angle stored internally.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285" title="Returns the longitude coordinate as an angle.">longitude()</a>, <a class="el" href="#a82ab515e78cdee62524825584e7299a4" title="Returns the elevation angle.">elevation()</a>, <a class="el" href="#aface5655311d8017cb07d7eb383d8b32" title="Returns the zenith distance angle.">zenith_angle()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285" title="Returns the longitude coordinate as an angle.">longitude()</a>, <a class="el" href="#a82ab515e78cdee62524825584e7299a4" title="Returns the elevation angle.">elevation()</a>, <a class="el" href="#a41a2959b8c966369e8d71af38671093d" title="Returns the zenith distance angle.">zenith_angle()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>.</p>
 
@@ -376,7 +378,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the elevation angle. </p>
 <p>Same as <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2" title="Returns the latitude coordinate as an angle.">Spherical::latitude()</a>.</p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the elevation angle stored internally.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2" title="Returns the latitude coordinate as an angle.">latitude()</a>, <a class="el" href="#aface5655311d8017cb07d7eb383d8b32" title="Returns the zenith distance angle.">zenith_angle()</a>, <a class="el" href="#ac808b5b7f4a4c1f09a54ab5c8e219f3a" title="Returns the azimuth angle.">azimuth()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2" title="Returns the latitude coordinate as an angle.">latitude()</a>, <a class="el" href="#a41a2959b8c966369e8d71af38671093d" title="Returns the zenith distance angle.">zenith_angle()</a>, <a class="el" href="#ac808b5b7f4a4c1f09a54ab5c8e219f3a" title="Returns the azimuth angle.">azimuth()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>.</p>
 
@@ -586,14 +588,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aface5655311d8017cb07d7eb383d8b32" name="aface5655311d8017cb07d7eb383d8b32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aface5655311d8017cb07d7eb383d8b32">&#9670;&#160;</a></span>zenith_angle()</h2>
+<a id="a41a2959b8c966369e8d71af38671093d" name="a41a2959b8c966369e8d71af38671093d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41a2959b8c966369e8d71af38671093d">&#9670;&#160;</a></span>zenith_angle()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> supernovas::Horizontal::zenith_angle </td>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a> supernovas::Horizontal::zenith_angle </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>

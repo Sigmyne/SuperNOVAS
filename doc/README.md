@@ -23,8 +23,8 @@ __SuperNOVAS__ is easy to use and it is very fast, with 3--5 orders of magnitude
 will scale further with the number of CPUs when calculations are performed in parallel threads.
 
 __SuperNOVAS__ is entirely free to use without licensing restrictions. Its source code is compatible with the C99 
-standard, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library,
-it fully supports the IAU 2000/2006 standards for microarcsecond-level position calculations. 
+and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a 
+light-weight library, it fully supports the IAU 2000/2006 standards for microarcsecond-level position calculations. 
 
 This document has been updated for the `v1.6` and later releases.
 
@@ -897,6 +897,19 @@ better idea of what exactly did not go to plan (and where). The debug messages c
        @ light_time2 [=> 22]
        @ obs_planets [=> 12]
        @ grav_def [=> 12]
+```
+
+You can use the built-in error tracing to identify where things go awry in your code. You can turn on error tracing
+for your entire code, or for a relevant section, in which a __SuperNOVAS__ function returns an error (such as -1 or 
+NaN), e.g.:
+
+```c
+  novas_debug(NOVAS_DEBUG_ON);
+  
+  // The part of your code that might have to do with the error return...
+  ...
+
+  novas_debug(NOVAS_DEBUG_OFF);
 ```
 
 

@@ -115,14 +115,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A sidereal source, defined by its catalog coordinates and other catalog parameters.  <a href="classsupernovas_1_1CatalogSource.html#details">More...</a><br /></td></tr>
 <tr class="memitem:supernovas_3A_3AEphemerisSource" id="r_supernovas_3A_3AEphemerisSource"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1EphemerisSource.html">supernovas::EphemerisSource</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Solar-system source, whose positions / velocities are provided from ephemeris data.  <a href="classsupernovas_1_1EphemerisSource.html#details">More...</a><br /></td></tr>
-<tr class="memitem:supernovas_3A_3AEquinox" id="r_supernovas_3A_3AEquinox"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Equinox.html">supernovas::Equinox</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equatorial coordinate system, defining the orientation of the equator and the location of the equinox, relative to which the right ascention and declination (RA/Dec) coordinates are defined.  <a href="classsupernovas_1_1Equinox.html#details">More...</a><br /></td></tr>
-<tr class="memitem:supernovas_3A_3AOrbital" id="r_supernovas_3A_3AOrbital"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Orbital.html">supernovas::Orbital</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keplerian orbital elements, for example, for a comet using parameters published by the IAU Minor <a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a> Center.  <a href="classsupernovas_1_1Orbital.html#details">More...</a><br /></td></tr>
 <tr class="memitem:supernovas_3A_3AOrbitalSource" id="r_supernovas_3A_3AOrbitalSource"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1OrbitalSource.html">supernovas::OrbitalSource</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Solar-system source, whose position and velocity can be calculated using Keplerian orbital elements.  <a href="classsupernovas_1_1OrbitalSource.html#details">More...</a><br /></td></tr>
-<tr class="memitem:supernovas_3A_3AOrbitalSystem" id="r_supernovas_3A_3AOrbitalSystem"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1OrbitalSystem.html">supernovas::OrbitalSystem</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classsupernovas_1_1Orbital.html" title="Keplerian orbital elements, for example, for a comet using parameters published by the IAU Minor Plan...">Orbital</a> system for Keplerian orbitals, defining the orbital plane and orientation, and the central body (such as the Sun or a planet), around which the Keplerian orbital is to be defined.  <a href="classsupernovas_1_1OrbitalSystem.html#details">More...</a><br /></td></tr>
 <tr class="memitem:supernovas_3A_3APlanet" id="r_supernovas_3A_3APlanet"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Planet.html">supernovas::Planet</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB), the Earth-Moon Barycenter (EMB), and the Pluto-system barycenter.  <a href="classsupernovas_1_1Planet.html#details">More...</a><br /></td></tr>
 <tr class="memitem:supernovas_3A_3ASolarSystemSource" id="r_supernovas_3A_3ASolarSystemSource"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1SolarSystemSource.html">supernovas::SolarSystemSource</a></td></tr>
@@ -132,8 +126,6 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ga57c7c4597ca170d17e5c7cb64c93ec24" id="r_ga57c7c4597ca170d17e5c7cb64c93ec24"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga57c7c4597ca170d17e5c7cb64c93ec24">NOVAS_DEFAULT_DISTANCE</a>&#160;&#160;&#160;(1e9 * <a class="el" href="novas_8h.html#a0408e0c92b505e9914753930ea3f047f">NOVAS_PARSEC</a>)</td></tr>
-<tr class="memdesc:ga57c7c4597ca170d17e5c7cb64c93ec24"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] Default distance at which sidereal sources are assumed when not specified otherwise Historically NOVAS placed sources with no parallax at 1 Gpc distance, and so we follow.  <br /></td></tr>
 <tr class="memitem:gaf32c72297e36b77bead56044d23082f7" id="r_gaf32c72297e36b77bead56044d23082f7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#gaf32c72297e36b77bead56044d23082f7">SIZE_OF_CAT_NAME</a>&#160;&#160;&#160;6</td></tr>
 <tr class="memdesc:gaf32c72297e36b77bead56044d23082f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum maximum bytes stored for catalog IDs including string termination.  <br /></td></tr>
 <tr class="memitem:ga977a43db51d544f728ea8a22b4a53783" id="r_ga977a43db51d544f728ea8a22b4a53783"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>&#160;&#160;&#160;50</td></tr>
@@ -141,32 +133,15 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gac5bba418b7f5ebad8a9b44cc7644c99a" id="r_gac5bba418b7f5ebad8a9b44cc7644c99a"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit</a> (double jd_tdb, <a class="el" href="structnovas__orbital.html">novas_orbital</a> *restrict orbit)</td></tr>
-<tr class="memdesc:gac5bba418b7f5ebad8a9b44cc7644c99a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets mean orbital elements for the Moon relative to the geocenter for the specified epoch of observation.  <br /></td></tr>
-<tr class="memitem:gad6e6c7f6dc2745030e3fd4d407e982bd" id="r_gad6e6c7f6dc2745030e3fd4d407e982bd"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a> (double jd_tdb, <a class="el" href="structnovas__orbital.html">novas_orbital</a> *restrict orbit)</td></tr>
-<tr class="memdesc:gad6e6c7f6dc2745030e3fd4d407e982bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an approximation of the <span class="tt">current</span> Keplerian orbital elements for the Moon relative to the geocenter for the specified epoch of observation.  <br /></td></tr>
+<tr class="memitem:ga632dcb4b6edb3e341fae0710150aa49a" id="r_ga632dcb4b6edb3e341fae0710150aa49a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CatalogSource.html">CatalogSource</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga632dcb4b6edb3e341fae0710150aa49a">supernovas::CatalogEntry::to_source</a> () const</td></tr>
+<tr class="memdesc:ga632dcb4b6edb3e341fae0710150aa49a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new catalog source based created from this catalog entry.  <br /></td></tr>
+<tr class="memitem:gadde40fcf893deea67578d8d5491b8ce7" id="r_gadde40fcf893deea67578d8d5491b8ce7"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1OrbitalSource.html">OrbitalSource</a>&#160;</td><td class="memItemRight"><a class="el" href="#gadde40fcf893deea67578d8d5491b8ce7">supernovas::Orbital::to_source</a> (const std::string &amp;name) const</td></tr>
+<tr class="memdesc:gadde40fcf893deea67578d8d5491b8ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new orbital source from this orbital and with the specified name and number designations.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defining the astronomical source of interest, or accessing properties thereof. </p>
-<p>Source may be sidereal catalog sources, such as as star, molecular cloud or a distant galaxy, or else they may be Solar-system objects, such as planets, moons, asteroids, comets or near-Earth objects (NEOs). Thet may have positions and velocities provided through ephemeris data (such as the NASA JPL planetary on other ephemeris files), or else via orbital models (such as published by the IAU Minor Planet Center [MPC]). </p>
+<p>A source may be a sidereal catalog source, such as as star, molecular cloud or a distant galaxy, or else it may be a Solar-system body, such as planets, moons, asteroids, comets or near-Earth objects (NEOs). Solar-system sources may have positions and velocities provided through ephemeris data (such as the NASA JPL planetary on other ephemeris files), or else via orbital models (such as published by the <a href="https://www.minorplanetcenter.net/">IAU Minor Planet Center</a> [MPC]). </p>
 </div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
-<a id="ga57c7c4597ca170d17e5c7cb64c93ec24" name="ga57c7c4597ca170d17e5c7cb64c93ec24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga57c7c4597ca170d17e5c7cb64c93ec24">&#9670;&#160;</a></span>NOVAS_DEFAULT_DISTANCE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NOVAS_DEFAULT_DISTANCE&#160;&#160;&#160;(1e9 * <a class="el" href="novas_8h.html#a0408e0c92b505e9914753930ea3f047f">NOVAS_PARSEC</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>[m] Default distance at which sidereal sources are assumed when not specified otherwise Historically NOVAS placed sources with no parallax at 1 Gpc distance, and so we follow. </p>
-<dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
-
-</div>
-</div>
 <a id="gaf32c72297e36b77bead56044d23082f7" name="gaf32c72297e36b77bead56044d23082f7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaf32c72297e36b77bead56044d23082f7">&#9670;&#160;</a></span>SIZE_OF_CAT_NAME</h2>
 
@@ -206,101 +181,53 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
-<a id="gac5bba418b7f5ebad8a9b44cc7644c99a" name="gac5bba418b7f5ebad8a9b44cc7644c99a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac5bba418b7f5ebad8a9b44cc7644c99a">&#9670;&#160;</a></span>novas_make_moon_mean_orbit()</h2>
+<a id="ga632dcb4b6edb3e341fae0710150aa49a" name="ga632dcb4b6edb3e341fae0710150aa49a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga632dcb4b6edb3e341fae0710150aa49a">&#9670;&#160;</a></span>to_source() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int novas_make_moon_mean_orbit </td>
+          <td class="memname"><a class="el" href="classsupernovas_1_1CatalogSource.html">CatalogSource</a> supernovas::CatalogEntry::to_source </td>
           <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>jd_tdb</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structnovas__orbital.html">novas_orbital</a> *restrict</td>          <td class="paramname"><span class="paramname"><em>orbit</em></span>&#160;)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets mean orbital elements for the Moon relative to the geocenter for the specified epoch of observation. </p>
-<p>It is based on the secular parameters of the ELP2000-85 model, but does not include the harmonic series and the perturbation terms. As such it has accuracy at the few degrees level only, however it is 'valid' for long-term projections (i.e. for years around the orbit's reference epoch) at that coarse level.</p>
-<p>For the short-term , <span class="tt"><a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a></span> can provide somewhat more accurate predictions for up to a day or so around the reference epoch of the orbit.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352. </li>
-<li>
-Chapront J., Francou G., 2003, A&amp;A, 404, 735 </li>
-<li>
-Laskar J., 1986, A&amp;A, 157, 59 </li>
-</ol>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">jd_tdb</td><td>[day] Barycentric Dynamical Time (TDB) based Julian Date. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">orbit</td><td>Orbital elements data structure to populate. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 (<span class="tt">errno</span> set to <span class="tt">EINVAL</span>).</dd></dl>
-<dl class="section since"><dt>Since</dt><dd>1.4 </dd></dl>
-<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a>, <a class="el" href="planets_8c.html#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a>, <a class="el" href="novas_8h.html#a3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a> </dd></dl>
+<p>Returns a new catalog source based created from this catalog entry. </p>
+<dl class="section return"><dt>Returns</dt><dd>a new catalog source for this entry. </dd></dl>
 
-<p class="reference">References <a class="el" href="novas_8h.html#abc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045adc941f5a3613952d6d6102281e70e5c0">NOVAS_EARTH</a>, <a class="el" href="novas_8h.html#a9ee18ab5f8fdc009913c11f04026122fac0d0495aebd235ecd346b8932cc1943e">NOVAS_ECLIPTIC_PLANE</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#a85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>, and <a class="el" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>
-<a id="gad6e6c7f6dc2745030e3fd4d407e982bd" name="gad6e6c7f6dc2745030e3fd4d407e982bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad6e6c7f6dc2745030e3fd4d407e982bd">&#9670;&#160;</a></span>novas_make_moon_orbit()</h2>
+<a id="gadde40fcf893deea67578d8d5491b8ce7" name="gadde40fcf893deea67578d8d5491b8ce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadde40fcf893deea67578d8d5491b8ce7">&#9670;&#160;</a></span>to_source() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int novas_make_moon_orbit </td>
+          <td class="memname"><a class="el" href="classsupernovas_1_1OrbitalSource.html">OrbitalSource</a> supernovas::Orbital::to_source </td>
           <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>jd_tdb</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structnovas__orbital.html">novas_orbital</a> *restrict</td>          <td class="paramname"><span class="paramname"><em>orbit</em></span>&#160;)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets an approximation of the <span class="tt">current</span> Keplerian orbital elements for the Moon relative to the geocenter for the specified epoch of observation. </p>
-<p>The orbit includes the most dominant Solar perturbation terms to produce results with an accuracy at the ~10 arcmin level near (+- 0.5 days) the reference time argument of the orbit. The perturbed orbit is based on the ELP/MPP02 model.</p>
-<p>While, the ELP/MPP02 model itself can be highly precise, the Moon's orbit is strongly non-Keplerian, and so any attempt to describe it in purely Keplerian terms is inherently flawed, which is the reason for the generally poor accuracy of this model.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352. </li>
-<li>
-Chapront J., Francou G., 2003, A&amp;A, 404, 735 </li>
-</ol>
+<p>Returns a new orbital source from this orbital and with the specified name and number designations. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">jd_tdb</td><td>[day] Barycentric Dynamical Time (TDB) based Julian Date. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">orbit</td><td>Orbital elements data structure to populate. </td></tr>
+    <tr><td class="paramname">name</td><td>the designated source name </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 (<span class="tt">errno</span> set to <span class="tt">EINVAL</span>).</dd></dl>
-<dl class="section since"><dt>Since</dt><dd>1.5.1 </dd></dl>
-<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a" title="Gets mean orbital elements for the Moon relative to the geocenter for the specified epoch of observat...">novas_make_moon_mean_orbit()</a>, <a class="el" href="planets_8c.html#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a>, <a class="el" href="novas_8h.html#a3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new source with this orbit and the specified designations. </dd></dl>
 
-<p class="reference">References <a class="el" href="novas_8h.html#abc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#a0a84af1a760ed2aaa01dd93e9e22bdf1">NOVAS_KM</a>, and <a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="novas_8h.html#a9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric()</a>, and <a class="el" href="novas_8h.html#a2dbdafd6b07f079815ae52d00e142861">novas_moon_phase()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>

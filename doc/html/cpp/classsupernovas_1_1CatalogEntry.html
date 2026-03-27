@@ -165,8 +165,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9e0a05b1eed0c217932181f7b8a843d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the redshift of this source relative to the Solar System Barycenter (SSB), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:a9e7358ee7c3f4e90550839662cedd5bf" id="r_a9e7358ee7c3f4e90550839662cedd5bf"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf">system</a> () const</td></tr>
 <tr class="memdesc:a9e7358ee7c3f4e90550839662cedd5bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equatorial coordinate system in which this catalog entry is defined.  <br /></td></tr>
-<tr class="memitem:a632dcb4b6edb3e341fae0710150aa49a" id="r_a632dcb4b6edb3e341fae0710150aa49a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CatalogSource.html">CatalogSource</a>&#160;</td><td class="memItemRight"><a class="el" href="#a632dcb4b6edb3e341fae0710150aa49a">to_source</a> () const</td></tr>
-<tr class="memdesc:a632dcb4b6edb3e341fae0710150aa49a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new catalog source based created from this catalog entry.  <br /></td></tr>
+<tr class="memitem:ga632dcb4b6edb3e341fae0710150aa49a" id="r_ga632dcb4b6edb3e341fae0710150aa49a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CatalogSource.html">CatalogSource</a>&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga632dcb4b6edb3e341fae0710150aa49a">to_source</a> () const</td></tr>
+<tr class="memdesc:ga632dcb4b6edb3e341fae0710150aa49a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new catalog source based created from this catalog entry.  <br /></td></tr>
 <tr class="memitem:a809dd3e1a781361694cc1332d5e1f363" id="r_a809dd3e1a781361694cc1332d5e1f363"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a809dd3e1a781361694cc1332d5e1f363">to_string</a> (int decimals=3) const</td></tr>
 <tr class="memdesc:a809dd3e1a781361694cc1332d5e1f363"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a human-readable string representation of this catalog entry, showing only the most basic data.  <br /></td></tr>
 <tr class="memitem:a23c9875e4a6e480d214c9288f9debe7b" id="r_a23c9875e4a6e480d214c9288f9debe7b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b">v_lsr</a> () const</td></tr>
@@ -232,7 +232,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">   .parallax(5.89 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">Unit::arcsec</a>)</div>
 <div class="line">   .radial_velocity(-3.4 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">Unit::km</a> / <a class="code hl_variable" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">Unit::s</a>);</div>
 <div class="ttc" id="aclasssupernovas_1_1CatalogEntry_html_a41899562721a238bb89ac5b5d59dc5c5"><div class="ttname"><a href="#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry</a></div><div class="ttdeci">CatalogEntry(const std::string &amp;name, const Equatorial &amp;coords)</div><div class="ttdoc">Instantiates a new catalog entry with a given name and catalog coordinates.</div><div class="ttdef"><b>Definition</b> CatalogEntry.cpp:76</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Equatorial_html"><div class="ttname"><a href="classsupernovas_1_1Equatorial.html">supernovas::Equatorial</a></div><div class="ttdoc">Equatorial coordinates (RA, Dec = α, δ), representing the direction ob the sky, for a particular type...</div><div class="ttdef"><b>Definition</b> supernovas.h:830</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Equatorial_html"><div class="ttname"><a href="classsupernovas_1_1Equatorial.html">supernovas::Equatorial</a></div><div class="ttdoc">Equatorial coordinates (RA, Dec = α, δ), representing the direction ob the sky, for a particular type...</div><div class="ttdef"><b>Definition</b> supernovas.h:831</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Equinox_html_ac8a0a1ea6d912d4a81ddaa7afd34b030"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#ac8a0a1ea6d912d4a81ddaa7afd34b030">supernovas::Equinox::b1950</a></div><div class="ttdeci">static const Equinox &amp; b1950()</div><div class="ttdoc">The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950).</div><div class="ttdef"><b>Definition</b> Equinox.cpp:553</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_a06a5719176ea23f07378bfb5f04a84a2"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a></div><div class="ttdeci">static constexpr double km</div><div class="ttdoc">[m] 1 Angstrom in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:120</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_a7b59616535bdb57399eac0c8216a34f3"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">supernovas::Unit::arcsec</a></div><div class="ttdeci">static constexpr double arcsec</div><div class="ttdoc">[rad] 1 minute of arc in radians</div><div class="ttdef"><b>Definition</b> supernovas.h:152</div></div>
@@ -889,28 +889,6 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa53d9659cd7c098bb1457678db73104b" title="Returns the catalog right ascention (R.A.) coordinate as a time-angle.">ra()</a>, <a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3" title="Returns the catalog declination coordinate as a angle.">dec()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#a3797f4e2394ceca4ed4e49e0d46f66e0" title="Returns the barycentric radial velocity of the source, that is the radial velocity with respect to th...">radial_velocity()</a>, <a class="el" href="#a23c9875e4a6e480d214c9288f9debe7b" title="Returns the scalar source velocity with respect to the Local Standard of Rest (LSR).">v_lsr()</a>, <a class="el" href="#af5d8c901e2be5be1131087ee2ae860f5" title="Returns the barycentric redshift of the source, that is the redshift measure with respect to the Sola...">redshift()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#ab4b85b7dd5b5c430670b1210c2fc9ff7">CatalogEntry()</a>, <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1CatalogSource.html#ab309ce8e3bd4d09229aa6eff97248b5e">supernovas::CatalogSource::CatalogSource()</a>, and <a class="el" href="#a7831a2379b0c26f06b17603c60181cb4">equatorial()</a>.</p>
-
-</div>
-</div>
-<a id="a632dcb4b6edb3e341fae0710150aa49a" name="a632dcb4b6edb3e341fae0710150aa49a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a632dcb4b6edb3e341fae0710150aa49a">&#9670;&#160;</a></span>to_source()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classsupernovas_1_1CatalogSource.html">CatalogSource</a> supernovas::CatalogEntry::to_source </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns a new catalog source based created from this catalog entry. </p>
-<dl class="section return"><dt>Returns</dt><dd>a new catalog source for this entry. </dd></dl>
-
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
 </div>
 </div>

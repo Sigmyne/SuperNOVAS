@@ -331,7 +331,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="#a1af1c4eb0cc73283892750b9a1af5b64" title="Returns the precise Julian Date of this time instance, in the specific timescale of choice.">jd</a></td><td>[day] Julian date (in the selected timescale) </td></tr>
-    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS. </td></tr>
+    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS. </td></tr>
     <tr><td class="paramname">timescale</td><td>(optional) Astronomical timescale (default: TT).</td></tr>
   </table>
   </dd>
@@ -427,7 +427,7 @@ Additional Inherited Members</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">ijd</td><td>[day] integer part of Julian date (in the selected timescale) </td></tr>
     <tr><td class="paramname">fjd</td><td>[day] fractional part of Julian date (in the selected timescale) </td></tr>
-    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS. </td></tr>
+    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS. </td></tr>
     <tr><td class="paramname">timescale</td><td>(optional) Astronomical timescale (default: TT).</td></tr>
   </table>
   </dd>
@@ -477,7 +477,9 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1634e281fe67ec0c8d8b83ef9838831b" title="Resturns a new astrometric time instance for the current time.">now()</a>, <a class="el" href="#a312b167a2ea16dd21a20e0ebc8e5d80c" title="Returns a new astrometric time instance for a given Modified Julian Date (MJD), specified in the time...">from_mjd()</a>, <a class="el" href="#a2a483b407997ca602f9a79fb134468e9" title="Returns the astrometric time for the J2000 epoch.">j2000()</a>, <a class="el" href="#a88061d30b8941199b51e0d7fc1f5063b" title="Returns the astrometric time for the B1950 epoch.">b1950()</a>, <a class="el" href="#afb95cc52b6bd739843bca41a2b6cc18f" title="Returns the astrometric time for the B1900 epoch.">b1900()</a>, <a class="el" href="#a82ddf5c0b7bc2109f18bb2209f8901f2" title="Returns the astrometric time for the Hipparcos catalog epoch (which is J1991.25).">hip()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1634e281fe67ec0c8d8b83ef9838831b" title="Resturns a new astrometric time instance for the current time.">now()</a>, <a class="el" href="#a312b167a2ea16dd21a20e0ebc8e5d80c" title="Returns a new astrometric time instance for a given Modified Julian Date (MJD), specified in the time...">from_mjd()</a>, <a class="el" href="#a2a483b407997ca602f9a79fb134468e9" title="Returns the astrometric time for the J2000 epoch.">j2000()</a>, <a class="el" href="#a88061d30b8941199b51e0d7fc1f5063b" title="Returns the astrometric time for the B1950 epoch.">b1950()</a>, <a class="el" href="#afb95cc52b6bd739843bca41a2b6cc18f" title="Returns the astrometric time for the B1900 epoch.">b1900()</a>, <a class="el" href="#a82ddf5c0b7bc2109f18bb2209f8901f2" title="Returns the astrometric time for the Hipparcos catalog epoch (which is J1991.25).">hip()</a> </dd>
+<dd>
+<a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a>, novas_parse_ido_date(), <a class="el" href="group__util.html#ga5ec9d054b7d363b3db1d065507a1ba41" title="Parses a calendar date/time string, expressed in the specified type of calendar, into a Julian day (J...">novas_parse_date_format()</a>, <a class="el" href="group__util.html#ga72245b3ea6099c573278f721a4bfd3d9" title="Parses the timescale from a string containing a standard abbreviation (case insensitive),...">novas_parse_timescale()</a> for more managed parsing from strings. </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="#acf5b4f03c103c649a2561cb7b6696e14">dUT1()</a>, <a class="el" href="#af5f3b37c56645a2d06486e054e9dd681">leap_seconds()</a>, and <a class="el" href="novas_8h.html#a4b5b82161f8eb474aaa650815b7ca66f">novas_set_str_time()</a>.</p>
 
@@ -511,12 +513,14 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">timestamp</td><td>A precision timestamp, such as an ISO 8601 timestamp. </td></tr>
-    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS. </td></tr>
+    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS. </td></tr>
     <tr><td class="paramname">timescale</td><td>(optional) Astronomical timescale (default: TT).</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1634e281fe67ec0c8d8b83ef9838831b" title="Resturns a new astrometric time instance for the current time.">now()</a>, <a class="el" href="#a312b167a2ea16dd21a20e0ebc8e5d80c" title="Returns a new astrometric time instance for a given Modified Julian Date (MJD), specified in the time...">from_mjd()</a>, <a class="el" href="#a2a483b407997ca602f9a79fb134468e9" title="Returns the astrometric time for the J2000 epoch.">j2000()</a>, <a class="el" href="#a88061d30b8941199b51e0d7fc1f5063b" title="Returns the astrometric time for the B1950 epoch.">b1950()</a>, <a class="el" href="#afb95cc52b6bd739843bca41a2b6cc18f" title="Returns the astrometric time for the B1900 epoch.">b1900()</a>, <a class="el" href="#a82ddf5c0b7bc2109f18bb2209f8901f2" title="Returns the astrometric time for the Hipparcos catalog epoch (which is J1991.25).">hip()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1634e281fe67ec0c8d8b83ef9838831b" title="Resturns a new astrometric time instance for the current time.">now()</a>, <a class="el" href="#a312b167a2ea16dd21a20e0ebc8e5d80c" title="Returns a new astrometric time instance for a given Modified Julian Date (MJD), specified in the time...">from_mjd()</a>, <a class="el" href="#a2a483b407997ca602f9a79fb134468e9" title="Returns the astrometric time for the J2000 epoch.">j2000()</a>, <a class="el" href="#a88061d30b8941199b51e0d7fc1f5063b" title="Returns the astrometric time for the B1950 epoch.">b1950()</a>, <a class="el" href="#afb95cc52b6bd739843bca41a2b6cc18f" title="Returns the astrometric time for the B1900 epoch.">b1900()</a>, <a class="el" href="#a82ddf5c0b7bc2109f18bb2209f8901f2" title="Returns the astrometric time for the Hipparcos catalog epoch (which is J1991.25).">hip()</a> </dd>
+<dd>
+<a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a>, novas_parse_ido_date(), <a class="el" href="group__util.html#ga5ec9d054b7d363b3db1d065507a1ba41" title="Parses a calendar date/time string, expressed in the specified type of calendar, into a Julian day (J...">novas_parse_date_format()</a>, <a class="el" href="group__util.html#ga72245b3ea6099c573278f721a4bfd3d9" title="Parses the timescale from a string containing a standard abbreviation (case insensitive),...">novas_parse_timescale()</a> for more managed parsing from strings. </dd></dl>
 
 <p class="reference">References <a class="el" href="#acf5b4f03c103c649a2561cb7b6696e14">dUT1()</a>, and <a class="el" href="#af5f3b37c56645a2d06486e054e9dd681">leap_seconds()</a>.</p>
 
@@ -584,7 +588,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>A precision POSIX standard UTC timestamp. </td></tr>
-    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS.</td></tr>
+    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS.</td></tr>
   </table>
   </dd>
 </dl>
@@ -812,7 +816,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Checks if this time instance is the same as another time within the specified precision. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>the other time </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>the other time </td></tr>
     <tr><td class="paramname">precision</td><td>(optional) The precision for the comparison (default: 1 &mu;s). </td></tr>
   </table>
   </dd>
@@ -846,7 +850,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Checks if this time instance is the same as another time within the specified precision. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>the other time </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>the other time </td></tr>
     <tr><td class="paramname">precision</td><td>[s] (optional) The precision for the comparison (default: 1 &amp;mus) </td></tr>
   </table>
   </dd>
@@ -918,7 +922,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="#aa00bd10a56e82fdb411f67b5b3a2beb9" title="Returns the precise Modified Julian Date (MJD) this time instance, in the specific timescale of choic...">mjd</a></td><td>[day] Modified Julian Date, in the timescale of choice </td></tr>
-    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS. </td></tr>
+    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS. </td></tr>
     <tr><td class="paramname">timescale</td><td>(optional) timescale in which MJD was specified (default: TT) </td></tr>
   </table>
   </dd>
@@ -1098,6 +1102,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baadb0d1437b46022bca75d4e7ab0542c7">NOVAS_TT</a>.</p>
 
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47">supernovas::Ecliptic::to_mod()</a>.</p>
+
 </div>
 </div>
 <a id="a1af1c4eb0cc73283892750b9a1af5b64" name="a1af1c4eb0cc73283892750b9a1af5b64"></a>
@@ -1127,7 +1133,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="novas_8h.html#ae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#ab4dc0b7f28c99848a6171b7c5f6730df">Time()</a>, <a class="el" href="#a97d9b5141a32888f67d6d2c5deea6367">Time()</a>, <a class="el" href="group__geometric.html#gaf83481c3e551cd9fbfc949257567b468">supernovas::Planet::approx_geometric_in()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#aee1a45536be9fdf26a410ef3a8322479">supernovas::Equinox::cirs()</a>, <a class="el" href="#ac60c89df769b5a9afaa6c6e0e12e7ba5">day_of_week()</a>, <a class="el" href="#aaff57314263437bb06e1d7adcd6febcf">epoch()</a>, <a class="el" href="group__tracking.html#ga1da60cae52d719260947c000891cfa87">supernovas::Source::equatorial_track()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a7eaa3df88d837a1c1373e8be87324854">supernovas::Orbital::from_mean_motion()</a>, <a class="el" href="classsupernovas_1_1SolarSystemSource.html#a63fda9415eea42ffa1e87e5d85e221df">supernovas::SolarSystemSource::helio_distance()</a>, <a class="el" href="classsupernovas_1_1SolarSystemSource.html#acb725151c7561dcbb19d8e6e3b18a52f">supernovas::SolarSystemSource::helio_rate()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#aacad3ee3ea5fa096d555333fdbfd09f9">supernovas::Equinox::mod()</a>, <a class="el" href="#a7d4ae0fa41ccc3fab1ff30222656b858">moon_phase()</a>, <a class="el" href="#ac4c3aacc0f4b28984c9705eedc6c9caf">next_moon_phase()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#a6a21b9432e3362cf6cfa8082f383e3d3">supernovas::OrbitalSystem::orbit()</a>, <a class="el" href="classsupernovas_1_1Planet.html#a660d13408cb13cbc42b7263f0196c36d">supernovas::Planet::orbit()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#ab9e6f5d8f38a363e8df0d3d6490692d1">supernovas::Orbital::position()</a>, <a class="el" href="classsupernovas_1_1SolarSystemSource.html#a882f4b33dc6ec7a17c5dbd5bc47e7a8b">supernovas::SolarSystemSource::solar_power()</a>, <a class="el" href="#ab1f01976ad639b8f0716f902013fc9c1">to_calendar_date()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ad946e6985b8d089e6e9d017631617d14">supernovas::Equatorial::to_cirs()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47">supernovas::Ecliptic::to_mod()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ad8484d48ecc0922a602c23f8fd4a9092">supernovas::Equatorial::to_mod()</a>, <a class="el" href="group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029">supernovas::Horizontal::to_refracted()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d">supernovas::Ecliptic::to_tod()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ab5c1c9d9c14fe35a6cf7e542ce87343b">supernovas::Equatorial::to_tod()</a>, <a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be">supernovas::Horizontal::to_unrefracted()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#aa7e8bf68ef10dcbd7598390bd8513178">supernovas::Equinox::tod()</a>, and <a class="el" href="classsupernovas_1_1Orbital.html#aba60772bc15f18614cf091ad606a3f42">supernovas::Orbital::velocity()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#ab4dc0b7f28c99848a6171b7c5f6730df">Time()</a>, <a class="el" href="#a97d9b5141a32888f67d6d2c5deea6367">Time()</a>, <a class="el" href="group__geometric.html#gaf83481c3e551cd9fbfc949257567b468">supernovas::Planet::approx_geometric_in()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#aee1a45536be9fdf26a410ef3a8322479">supernovas::Equinox::cirs()</a>, <a class="el" href="#ac60c89df769b5a9afaa6c6e0e12e7ba5">day_of_week()</a>, <a class="el" href="#aaff57314263437bb06e1d7adcd6febcf">epoch()</a>, <a class="el" href="group__tracking.html#ga1da60cae52d719260947c000891cfa87">supernovas::Source::equatorial_track()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a7eaa3df88d837a1c1373e8be87324854">supernovas::Orbital::from_mean_motion()</a>, <a class="el" href="classsupernovas_1_1SolarSystemSource.html#a63fda9415eea42ffa1e87e5d85e221df">supernovas::SolarSystemSource::helio_distance()</a>, <a class="el" href="classsupernovas_1_1SolarSystemSource.html#acb725151c7561dcbb19d8e6e3b18a52f">supernovas::SolarSystemSource::helio_rate()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#aacad3ee3ea5fa096d555333fdbfd09f9">supernovas::Equinox::mod()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a54a6508c863a590f42309ae413e113c7">supernovas::Orbital::moon_mean_orbit_at()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a56592ba52eaba57d16138abbb9153a48">supernovas::Orbital::moon_orbit_at()</a>, <a class="el" href="#a7d4ae0fa41ccc3fab1ff30222656b858">moon_phase()</a>, <a class="el" href="#ac4c3aacc0f4b28984c9705eedc6c9caf">next_moon_phase()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#a6a21b9432e3362cf6cfa8082f383e3d3">supernovas::OrbitalSystem::orbit()</a>, <a class="el" href="classsupernovas_1_1Planet.html#a660d13408cb13cbc42b7263f0196c36d">supernovas::Planet::orbit()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#ab9e6f5d8f38a363e8df0d3d6490692d1">supernovas::Orbital::position()</a>, <a class="el" href="classsupernovas_1_1SolarSystemSource.html#a882f4b33dc6ec7a17c5dbd5bc47e7a8b">supernovas::SolarSystemSource::solar_power()</a>, <a class="el" href="#ab1f01976ad639b8f0716f902013fc9c1">to_calendar_date()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47">supernovas::Ecliptic::to_mod()</a>, <a class="el" href="group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029">supernovas::Horizontal::to_refracted()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d">supernovas::Ecliptic::to_tod()</a>, <a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be">supernovas::Horizontal::to_unrefracted()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#aa7e8bf68ef10dcbd7598390bd8513178">supernovas::Equinox::tod()</a>, and <a class="el" href="classsupernovas_1_1Orbital.html#aba60772bc15f18614cf091ad606a3f42">supernovas::Orbital::velocity()</a>.</p>
 
 </div>
 </div>
@@ -1422,7 +1428,7 @@ Additional Inherited Members</h2></td></tr>
 <p>It is only as accurate as the system clock, and its precision may be limited by the resolution of the system clock also. Be sure that your computer is well synchronized to a trustworthy time server, preferably on a local network, such as an ntp server with a GPS receiver.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (inerpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS. </td></tr>
+    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>) values, e.g. obtained from IERS. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1456,7 +1462,7 @@ Additional Inherited Members</h2></td></tr>
 <p>All timescales are supported.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>the other time </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>the other time </td></tr>
     <tr><td class="paramname">timescale</td><td>(optional) the timescale in which to return the result (default: TT). </td></tr>
   </table>
   </dd>
@@ -1488,7 +1494,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Checks if this time instance differs from another time by more than 1 &mu;s. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>the other time </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>the other time </td></tr>
   </table>
   </dd>
 </dl>
@@ -1743,7 +1749,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Checks if this time instance is the same as another time within 1 &mu;s. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astrobomical timescales,...">Time of observation and astronomical timescales</a></td><td>the other time </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>the other time </td></tr>
   </table>
   </dd>
 </dl>

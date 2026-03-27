@@ -16,7 +16,7 @@ var group__refract =
       [ "to_refracted", "group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029", null ],
       [ "to_string", "classsupernovas_1_1Horizontal.html#a9e2ec24c847c7f68d62659b4d5ee1021", null ],
       [ "to_unrefracted", "group__refract.html#gab44266c51e667838736e49e59008a9be", null ],
-      [ "zenith_angle", "classsupernovas_1_1Horizontal.html#aface5655311d8017cb07d7eb383d8b32", null ]
+      [ "zenith_angle", "classsupernovas_1_1Horizontal.html#a41a2959b8c966369e8d71af38671093d", null ]
     ] ],
     [ "supernovas::Weather", "classsupernovas_1_1Weather.html", [
       [ "Weather", "classsupernovas_1_1Weather.html#afa980c7de58a62254a6b0c4bd018d48e", null ],

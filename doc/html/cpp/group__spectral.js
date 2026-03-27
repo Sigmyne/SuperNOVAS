@@ -38,7 +38,7 @@ var group__spectral =
       [ "redshift", "classsupernovas_1_1CatalogEntry.html#af5d8c901e2be5be1131087ee2ae860f5", null ],
       [ "redshift", "classsupernovas_1_1CatalogEntry.html#a9e0a05b1eed0c217932181f7b8a843d4", null ],
       [ "system", "classsupernovas_1_1CatalogEntry.html#a9e7358ee7c3f4e90550839662cedd5bf", null ],
-      [ "to_source", "classsupernovas_1_1CatalogEntry.html#a632dcb4b6edb3e341fae0710150aa49a", null ],
+      [ "to_source", "group__source.html#ga632dcb4b6edb3e341fae0710150aa49a", null ],
       [ "to_string", "classsupernovas_1_1CatalogEntry.html#a809dd3e1a781361694cc1332d5e1f363", null ],
       [ "v_lsr", "classsupernovas_1_1CatalogEntry.html#a23c9875e4a6e480d214c9288f9debe7b", null ],
       [ "v_lsr", "classsupernovas_1_1CatalogEntry.html#a74120ab096b8a9db05ebb87e6dce8f84", null ],

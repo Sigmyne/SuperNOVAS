@@ -19,9 +19,7 @@ var classsupernovas_1_1Ecliptic =
     [ "to_icrs", "classsupernovas_1_1Ecliptic.html#a6a0cfeb643b055e65c48a57c2c624227", null ],
     [ "to_j2000", "classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582", null ],
     [ "to_mod", "classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47", null ],
-    [ "to_mod", "classsupernovas_1_1Ecliptic.html#acc22ddefa30d092615fee19e8b4b1677", null ],
     [ "to_string", "classsupernovas_1_1Ecliptic.html#a6f3453f8bd380ee096834cc38985299d", null ],
     [ "to_system", "classsupernovas_1_1Ecliptic.html#ab078048d3728c4cf4d164b77d57f9c5f", null ],
-    [ "to_tod", "classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d", null ],
-    [ "to_tod", "classsupernovas_1_1Ecliptic.html#ac5f98a9a651dd7cce9c8f5d197e9e70a", null ]
+    [ "to_tod", "classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d", null ]
 ];

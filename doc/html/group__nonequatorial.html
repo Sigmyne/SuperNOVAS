@@ -159,11 +159,11 @@ Functions</h2></td></tr>
 <tr class="memitem:ga73fcb54e47b2be0aa92810b5f55f7a3c" id="r_ga73fcb54e47b2be0aa92810b5f55f7a3c"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga73fcb54e47b2be0aa92810b5f55f7a3c">novas_hpa</a> (double az, double el, double lat)</td></tr>
 <tr class="memdesc:ga73fcb54e47b2be0aa92810b5f55f7a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Parallactic Angle (PA) calculated for a horizontal Az/El location of the sky.  <br /></td></tr>
 <tr class="memitem:ga601d246673742cf72a5dbe1449c97560" id="r_ga601d246673742cf72a5dbe1449c97560"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga601d246673742cf72a5dbe1449c97560">novas_los_to_xyz</a> (const double *los, double lon, double lat, double *xyz)</td></tr>
-<tr class="memdesc:ga601d246673742cf72a5dbe1449c97560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a 3D line-of-sight vector (&delta;&phi;, &delta;&theta; &delta;r) to a rectangular equatorial (&delta;x, &delta;y, &delta;z) vector.  <br /></td></tr>
+<tr class="memdesc:ga601d246673742cf72a5dbe1449c97560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a 3D line-of-sight vector (&delta;&phi;, &delta;&theta;, &delta;r) to a rectangular equatorial (&delta;x, &delta;y, &delta;z) vector.  <br /></td></tr>
 <tr class="memitem:ga16c920eee105431247e9a1d9bf1c3021" id="r_ga16c920eee105431247e9a1d9bf1c3021"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga16c920eee105431247e9a1d9bf1c3021">novas_uvw_to_xyz</a> (const double *uvw, double ha, double dec, double *xyz)</td></tr>
 <tr class="memdesc:ga16c920eee105431247e9a1d9bf1c3021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts equatorial u,v,w projected (absolute or relative) coordinates to rectangular telescope x,y,z coordinates (in ITRS) to for a specified line of sight.  <br /></td></tr>
 <tr class="memitem:ga14deb6fdce80ba213e1f1d5238306e17" id="r_ga14deb6fdce80ba213e1f1d5238306e17"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los</a> (const double *xyz, double lon, double lat, double *los)</td></tr>
-<tr class="memdesc:ga14deb6fdce80ba213e1f1d5238306e17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a 3D rectangular equatorial (&delta;x, &delta;y, &delta;z) vector to a polar (&delta;&phi;, &delta;&theta; &delta;r) vector along a line-of-sight.  <br /></td></tr>
+<tr class="memdesc:ga14deb6fdce80ba213e1f1d5238306e17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a 3D rectangular equatorial (&delta;x, &delta;y, &delta;z) vector to a polar (&delta;&phi;, &delta;&theta;, &delta;r) vector along a line-of-sight.  <br /></td></tr>
 <tr class="memitem:ga87867e8e7fc7decaa44777a696465353" id="r_ga87867e8e7fc7decaa44777a696465353"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga87867e8e7fc7decaa44777a696465353">novas_xyz_to_uvw</a> (const double *xyz, double ha, double dec, double *uvw)</td></tr>
 <tr class="memdesc:ga87867e8e7fc7decaa44777a696465353"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts rectangular telescope x,y,z (absolute or relative) coordinates (in ITRS) to equatorial u,v,w projected coordinates for a specified line of sight.  <br /></td></tr>
 <tr class="memitem:gaead87744eeb3029ce7d5ffb1801ee652" id="r_gaead87744eeb3029ce7d5ffb1801ee652"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gaead87744eeb3029ce7d5ffb1801ee652">wobble</a> (double jd_tt, enum <a class="el" href="#gaab27106a2d5c2c7fa64b2f208deff7f5">novas_wobble_direction</a> direction, double xp, double yp, const double *in, double *out)</td></tr>
@@ -1014,10 +1014,10 @@ Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395
       </table>
 </div><div class="memdoc">
 
-<p>Converts a 3D line-of-sight vector (&delta;&phi;, &delta;&theta; &delta;r) to a rectangular equatorial (&delta;x, &delta;y, &delta;z) vector. </p>
+<p>Converts a 3D line-of-sight vector (&delta;&phi;, &delta;&theta;, &delta;r) to a rectangular equatorial (&delta;x, &delta;y, &delta;z) vector. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">los</td><td>[arb.u.] Line-of-sight 3-vector (&delta;&phi;, &delta;&theta; &delta;r). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">los</td><td>[arb.u.] Line-of-sight 3-vector (&delta;&phi;, &delta;&theta;, &delta;r). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] Line-of-sight longitude. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] Line-of-sight latitude. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">xyz</td><td>[arb.u.] Output rectangular equatorial 3-vector (&delta;x, &delta;y, &delta;z), in the same units as the input. It may be the same vector as the input. </td></tr>
@@ -1027,7 +1027,7 @@ Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if either vector argument is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga14deb6fdce80ba213e1f1d5238306e17" title="Converts a 3D rectangular equatorial (δx, δy, δz) vector to a polar (δφ, δθ δr) vector along a line-o...">novas_xyz_to_los()</a>, <a class="el" href="#ga16c920eee105431247e9a1d9bf1c3021" title="Converts equatorial u,v,w projected (absolute or relative) coordinates to rectangular telescope x,...">novas_uvw_to_xyz()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga14deb6fdce80ba213e1f1d5238306e17" title="Converts a 3D rectangular equatorial (δx, δy, δz) vector to a polar (δφ, δθ, δr) vector along a line-...">novas_xyz_to_los()</a>, <a class="el" href="#ga16c920eee105431247e9a1d9bf1c3021" title="Converts equatorial u,v,w projected (absolute or relative) coordinates to rectangular telescope x,...">novas_uvw_to_xyz()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#ga16c920eee105431247e9a1d9bf1c3021">novas_uvw_to_xyz()</a>, <a class="el" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>, and <a class="el" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 
@@ -1112,20 +1112,20 @@ Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395
       </table>
 </div><div class="memdoc">
 
-<p>Converts a 3D rectangular equatorial (&delta;x, &delta;y, &delta;z) vector to a polar (&delta;&phi;, &delta;&theta; &delta;r) vector along a line-of-sight. </p>
+<p>Converts a 3D rectangular equatorial (&delta;x, &delta;y, &delta;z) vector to a polar (&delta;&phi;, &delta;&theta;, &delta;r) vector along a line-of-sight. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">xyz</td><td>[arb.u.] Rectangular equatorial 3-vector (&delta;x, &delta;y, &delta;z). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] Line-of-sight longitude. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] Line-of-sight latitude. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">los</td><td>[arb.u.] Output line-of-sight 3-vector (&delta;&phi;, &delta;&theta; &delta;r), in the same units as the input. It may be the same vector as the input. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">los</td><td>[arb.u.] Output line-of-sight 3-vector (&delta;&phi;, &delta;&theta;, &delta;r), in the same units as the input. It may be the same vector as the input. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if either vector argument is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga601d246673742cf72a5dbe1449c97560" title="Converts a 3D line-of-sight vector (δφ, δθ δr) to a rectangular equatorial (δx, δy,...">novas_los_to_xyz()</a>, <a class="el" href="#ga87867e8e7fc7decaa44777a696465353" title="Converts rectangular telescope x,y,z (absolute or relative) coordinates (in ITRS) to equatorial u,...">novas_xyz_to_uvw()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga601d246673742cf72a5dbe1449c97560" title="Converts a 3D line-of-sight vector (δφ, δθ, δr) to a rectangular equatorial (δx, δy,...">novas_los_to_xyz()</a>, <a class="el" href="#ga87867e8e7fc7decaa44777a696465353" title="Converts rectangular telescope x,y,z (absolute or relative) coordinates (in ITRS) to equatorial u,...">novas_xyz_to_uvw()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#ga87867e8e7fc7decaa44777a696465353">novas_xyz_to_uvw()</a>, and <a class="el" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 

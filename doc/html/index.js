@@ -1,10 +1,10 @@
 var index =
 [
-    [ "Table of Contents", "index.html#autotoc_md74", null ],
-    [ "Introduction", "index.html#autotoc_md76", [
-      [ "Related links", "index.html#autotoc_md80", null ]
+    [ "Table of Contents", "index.html#autotoc_md80", null ],
+    [ "Introduction", "index.html#autotoc_md82", [
+      [ "Related links", "index.html#autotoc_md83", null ]
     ] ],
-    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md83", null ],
+    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md85", null ],
     [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md87", null ],
     [ "Building and installation", "index.html#autotoc_md89", [
       [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md90", null ],
@@ -26,13 +26,13 @@ var index =
     ] ],
     [ "Notes on precision", "index.html#autotoc_md107", [
       [ "Prerequisites to precise results", "index.html#autotoc_md108", null ],
-      [ "Reduced accuracy shortcuts", "index.html#autotoc_md109", null ]
+      [ "Reduced accuracy shortcuts", "index.html#autotoc_md110", null ]
     ] ],
-    [ "Runtime debug support", "index.html#autotoc_md111", null ],
-    [ "Representative benchmarks", "index.html#autotoc_md113", null ],
-    [ "SuperNOVAS added features", "index.html#autotoc_md115", [
-      [ "New functionality highlights", "index.html#autotoc_md116", null ],
-      [ "Refinements to the NOVAS C API", "index.html#autotoc_md117", null ]
+    [ "Runtime debug support", "index.html#autotoc_md112", null ],
+    [ "Representative benchmarks", "index.html#autotoc_md115", null ],
+    [ "SuperNOVAS added features", "index.html#autotoc_md117", [
+      [ "New functionality highlights", "index.html#autotoc_md118", null ],
+      [ "Refinements to the NOVAS C API", "index.html#autotoc_md119", null ]
     ] ],
-    [ "Release schedule", "index.html#autotoc_md119", null ]
+    [ "Release schedule", "index.html#autotoc_md121", null ]
 ];
