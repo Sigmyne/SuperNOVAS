@@ -3,7 +3,7 @@ var searchData=
   ['c_0',['C',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79',1,'Building your application with SuperNOVAS (C++)'],['../index.html#autotoc_md22',1,'Pick you flavor (C or C++)']]],
   ['c_203_201_1',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['c_203_201_20issues_2',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
-  ['c_20api_3',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
+  ['c_20api_3',['Refinements to the NOVAS C API',['../index.html#autotoc_md38',1,'']]],
   ['c_20fundamentals_4',['C++ Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83',1,'']]],
   ['c_20or_20c_5',['Pick you flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],
   ['c_20usage_6',['C++ Usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html',1,'']]],
