@@ -6,8 +6,8 @@ var searchData=
   ['features_3',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['fixed_20novas_20c_203_201_20issues_4',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
   ['fjd_5ftt_5',['fjd_tt',['../structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c',1,'novas_timespec']]],
-  ['flavor_20c_20or_20c_6',['Pick you flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],
-  ['for_20a_20sidereal_20source_7',['for a sidereal source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52',1,'Calculating positions for a sidereal source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91',1,'Calculating positions for a sidereal source']]],
+  ['flavor_20c_20or_20c_6',['Pick you flavor (C or C++)',['../index.html#autotoc_md23',1,'']]],
+  ['for_20a_20sidereal_20source_7',['for a sidereal source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'Calculating positions for a sidereal source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91',1,'Calculating positions for a sidereal source']]],
   ['for_20a_20solar_20system_20source_8',['for a Solar system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculating positions for a Solar-system source']]],
   ['for_5fnaif_5fid_9',['for_naif_id',['../classsupernovas_1_1Planet.html#ae4aa8a696d5def0c3cd9a97e9d1186fc',1,'supernovas::Planet']]],
   ['for_5fname_10',['for_name',['../classsupernovas_1_1Planet.html#a7cec4323d92f0c576fd25fdc3633efb3',1,'supernovas::Planet']]],
@@ -36,5 +36,5 @@ var searchData=
   ['from_5ftod_5fsky_5fpos_33',['from_tod_sky_pos',['../classsupernovas_1_1Apparent.html#ae4fb352249e2eac3311b6239b1e6c5b0',1,'supernovas::Apparent']]],
   ['functionality_20highlights_34',['New functionality highlights',['../index.html#autotoc_md38',1,'']]],
   ['fund_5fargs_35',['fund_args',['../novas_8h.html#a312b5ab1a004b179d80463a07ca7da8f',1,'fund_args(double t, novas_delaunay_args *restrict a):&#160;equator.c'],['../equator_8c.html#a312b5ab1a004b179d80463a07ca7da8f',1,'fund_args(double t, novas_delaunay_args *restrict a):&#160;equator.c']]],
-  ['fundamentals_36',['C++ Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83',1,'']]]
+  ['fundamentals_36',['C++ Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82',1,'']]]
 ];

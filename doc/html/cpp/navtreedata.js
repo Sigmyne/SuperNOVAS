@@ -27,16 +27,16 @@ var NAVTREE =
   [ "SuperNOVAS C++ API", "index.html", [
     [ "User's guide", "index.html", "index" ],
     [ "C99 Usage", "md__2github_2workspace_2doc_2USAGE-C99.html", [
-      [ "Building your application with SuperNOVAS (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44", [
-        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45", null ],
-        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md46", null ],
-        [ "Deprecated API", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47", null ],
-        [ "Legacy linking <span class=\"tt\">solarsystem()</span> / <span class=\"tt\">solarsystem_hp()</span> and <span class=\"tt\">readeph()</span> modules", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48", null ],
-        [ "Legacy modules: a better way", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49", null ]
+      [ "Building your application with SuperNOVAS (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md41", [
+        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md42", null ],
+        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md43", null ],
+        [ "Deprecated API", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44", null ],
+        [ "Legacy linking <span class=\"tt\">solarsystem()</span> / <span class=\"tt\">solarsystem_hp()</span> and <span class=\"tt\">readeph()</span> modules", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45", null ],
+        [ "Legacy modules: a better way", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md46", null ]
       ] ],
-      [ "Example C99 usage", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51", [
-        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52", [
-          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53", null ],
+      [ "Example C99 usage", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48", [
+        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51", [
+          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52", null ],
           [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54", null ],
           [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55", null ],
           [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56", null ],
@@ -60,12 +60,12 @@ var NAVTREE =
       ] ]
     ] ],
     [ "C++ Usage", "md__2github_2workspace_2doc_2USAGE-CPP.html", [
-      [ "Building your application with SuperNOVAS (C++)", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79", [
-        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80", null ],
-        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81", null ],
-        [ "C++ Fundamentals", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83", [
-          [ "Namespace", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84", null ],
-          [ "Validation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85", null ],
+      [ "Building your application with SuperNOVAS (C++)", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md78", [
+        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79", null ],
+        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80", null ],
+        [ "C++ Fundamentals", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82", [
+          [ "Namespace", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83", null ],
+          [ "Validation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84", null ],
           [ "Immutable instances", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86", null ],
           [ "Classes don't reference external objects internally", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87", null ],
           [ "Operator overloading", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88", null ]
