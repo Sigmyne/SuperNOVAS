@@ -7,7 +7,7 @@ var searchData=
   ['a_20solar_20system_20source_4',['a Solar system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculating positions for a Solar-system source']]],
   ['accuracy_20shortcuts_5',['Reduced accuracy shortcuts',['../index.html#autotoc_md30',1,'']]],
   ['acquiresrwlockexclusive_6',['define mutex_lock AcquireSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md119',1,'']]],
-  ['added_20features_7',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
+  ['added_20features_7',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['an_20apparent_20place_20on_20sky_8',['an apparent place on sky',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98',1,'Calculate an apparent place on sky']]],
   ['an_20ephemeris_20provider_9',['Recommendation: set up an ephemeris provider',['../index.html#autotoc_md21',1,'']]],
   ['and_20angles_10',['String times and angles',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'']]],

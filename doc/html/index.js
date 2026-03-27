@@ -1,10 +1,10 @@
 var index =
 [
-    [ "Table of Contents", "index.html#autotoc_md75", null ],
+    [ "Table of Contents", "index.html#autotoc_md76", null ],
     [ "Introduction", "index.html#autotoc_md78", [
-      [ "Related links", "index.html#autotoc_md82", null ]
+      [ "Related links", "index.html#autotoc_md81", null ]
     ] ],
-    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md85", null ],
+    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md84", null ],
     [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md87", null ],
     [ "Building and installation", "index.html#autotoc_md89", [
       [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md90", null ],
@@ -34,5 +34,5 @@ var index =
       [ "New functionality highlights", "index.html#autotoc_md116", null ],
       [ "Refinements to the NOVAS C API", "index.html#autotoc_md117", null ]
     ] ],
-    [ "Release schedule", "index.html#autotoc_md119", null ]
+    [ "Release schedule", "index.html#autotoc_md120", null ]
 ];

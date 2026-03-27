@@ -3,7 +3,7 @@ var searchData=
   ['f_0',['F',['../structnovas__delaunay__args.html#ab2d0e2b9731d4a0b737e359e8d35ba73',1,'novas_delaunay_args']]],
   ['f_5fearth_1',['F_earth',['../classsupernovas_1_1Constant.html#a5c77f7cb7e9e31fac251554faf08e80e',1,'supernovas::Constant']]],
   ['farenheit_2',['farenheit',['../classsupernovas_1_1Temperature.html#aa9a2354a7fb058c412270a95e1a964de',1,'supernovas::Temperature::farenheit() const'],['../classsupernovas_1_1Temperature.html#a7965a353b25180bc06adbd52462ef42a',1,'supernovas::Temperature::farenheit(double value)']]],
-  ['features_3',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
+  ['features_3',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['fixed_20novas_20c_203_201_20issues_4',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
   ['fjd_5ftt_5',['fjd_tt',['../structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c',1,'novas_timespec']]],
   ['flavor_20c_20or_20c_6',['Pick you flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],
