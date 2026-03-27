@@ -55,7 +55,7 @@ jobs:
       run: make coverage
 
     - name: Upload coverage to Codecov.io
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v6
       continue-on-error: true
       with:
         fail_ci_if_error: false
