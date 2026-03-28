@@ -19,7 +19,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 16px;
   font-weight: 600;
   line-height: 1.25;
-  color: #8d0034;
+  color: #de0000;
 }
 
 h1 {
@@ -64,7 +64,7 @@ div.fragment {
 }
 
 span.comment {
-  color: #555D68;
+  color: #808080;
 }
 
 
@@ -89,16 +89,54 @@ a.hl_function, a.hl_struct, span.keywordtype, span.keywordflow {
   font-weight: bold;
 }
 
+
+html {
+  --title-background-color: #D8D8D8;
+  --nav-background-color: #F0F0F0;
+  --memdef-title-background-color: #D8D8D8;
+  --memdef-proto-background-color: #D8D8D8;
+  --memdef-doc-background-color: #F0F0F0;
+  
+  --fragment-foreground-color: #101010;
+  --code-type-keyword-color: #606060;
+  --memdef-proto-text-color: #282828;
+  --memdef-param-name-color: #d6368a;
+  
+  --menu-link-color: #303030;
+  --page-link-color: #de0000;
+  --code-link-color: #de0000;
+  --page-visited-link-color: #bf0000;
+}
+
+html.dark-mode {
+  --page-background-color: black;
+  --nav-background-color: black;
+  --title-background-color: #181818;
+  --memdef-title-background-color: #181818;
+  --memdef-proto-background-color: #181818;
+  --memdef-doc-background-color: #303030;
+ 
+  --fragment-foreground-color: #e0e0e0; 
+  --code-type-keyword-color: #a0a0a0;
+  --memdef-proto-text-color: #c8c8c8;
+  --memdef-param-name-color: #d68a36;
+  
+  --menu-link-color: #D0D0D0; 
+  --page-link-color: #de0000;
+  --code-link-color: #da3633;
+  --page-visited-link-color: #bf0000;
+}
+
 span.keywordflow {
-  color: #C6809A;
+  color: var(--code-type-keyword-color);
 }
 
 a {
   color: var(--page-link-color); 
 }
 
-a:visited, a.dark-mode {
-  color: #894270;
+a:visited {
+  color: var(--page-visited-link-color);
 }
 
 #main-nav a {
@@ -113,54 +151,17 @@ a:visited, a.dark-mode {
   color: var(--menu-link-color);
 }
 
-/* tint 15/85           80%: 894270  */ 
-/* tint 30/70 482562 -> 80%: 6D5182  */
-/* tint 50/50 5C1B55 */
-/* tint 70/30 701048 */
-/* 80% red A4335D */
-/* 100% blue 283266 */
-/* 80% blue 555DA3 */
-/* 70% blue 6B719E */
-/* 60% blue 8086AC */
-/* 50% blue 959ABA */
-/* 40% blue AAAEC8 */
-html {
-  --title-background-color: #D8D8D8;
-  --nav-background-color: #F0F0F0;
-  --memdef-title-background-color: #D8D8D8;
-  --memdef-proto-background-color: #D8D8D8;
-  --memdef-doc-background-color: #F0F0F0;
-  --fragment-foreground-color: #283266;
-  --menu-link-color: #303030;
-  --page-link-color: #8d0034;
-  --code-link-color: #8d0034;
-  --page-visited-link-color: #701048;
-  --code-type-keyword-color: #5C1B55;
-  --memdef-proto-text-color: #283266;
-}
-
-html.dark-mode {
-  --title-background-color: #181818;
-  --page-background-color: black;
-  --nav-background-color: black;
-  --memdef-title-background-color: #181818;
-  --memdef-proto-background-color: #181818;
-  --memdef-doc-background-color: #303030;
-  --fragment-foreground-color: #959ABA;
-  --menu-link-color: #D0D0D0; 
-  --page-link-color: #A4335D;
-  --code-link-color: #A4335D;
-  --page-visited-link-color: #894270; 
-  --code-type-keyword-color: #6D5182;
-  --memdef-proto-text-color: #555DA3;
-}
 
 .paramtype {
    color: var(--code-type-keyword-color);
 }
 
 .paramname {
-   color: #BB0085;
+   color: var(--memdef-param-name-color);
+}
+
+.paramdefval {
+   color: var(--code-type-keyword-color);
 }
 
 .memtitle {

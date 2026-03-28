@@ -21,7 +21,7 @@ var searchData=
   ['specify_20the_20time_20of_20observation_18',['Specify the time of observation',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55',1,'Specify the time of observation'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96',1,'Specify the time of observation']]],
   ['string_20dates_19',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md71',1,'']]],
   ['string_20times_20and_20angles_20',['String times and angles',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'']]],
-  ['supernovas_20added_20features_21',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
+  ['supernovas_20added_20features_21',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
   ['supernovas_20c_22',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79',1,'']]],
   ['supernovas_20c_20vs_20astropy_23',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
   ['supernovas_20c_20vs_20c99_24',['SuperNOVAS C++ vs. C99',['../md_SuperNOVAS_09_09__vs__C99.html',1,'']]],

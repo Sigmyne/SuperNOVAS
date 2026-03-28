@@ -10,7 +10,7 @@ var searchData=
   ['near_5fearth_7',['near_earth',['../structnovas__observer.html#a1d62a0649b551e6ce86160c950d551dd',1,'novas_observer']]],
   ['neptune_8',['neptune',['../classsupernovas_1_1Planet.html#af853091ea7b7547398994bc3e85bab40',1,'supernovas::Planet']]],
   ['new_9',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md18',1,'']]],
-  ['new_20functionality_20highlights_10',['New functionality highlights',['../index.html#autotoc_md38',1,'']]],
+  ['new_20functionality_20highlights_10',['New functionality highlights',['../index.html#autotoc_md37',1,'']]],
   ['next_5fmoon_5fphase_11',['next_moon_phase',['../classsupernovas_1_1Time.html#ac4c3aacc0f4b28984c9705eedc6c9caf',1,'supernovas::Time']]],
   ['nix_20package_12',['Nix package',['../index.html#autotoc_md16',1,'']]],
   ['nm_13',['nm',['../classsupernovas_1_1Unit.html#ac02d2f231a4a868a4a02bdb127a50d78',1,'supernovas::Unit']]],
