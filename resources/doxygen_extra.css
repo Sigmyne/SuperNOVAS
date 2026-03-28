@@ -99,8 +99,8 @@ html {
   
   --fragment-foreground-color: #101010;
   --code-type-keyword-color: #606060;
-  --memdef-proto-text-color: #282828;
-  --memdef-param-name-color: #d6368a;
+  --memdef-proto-text-color: #383838;
+  --memdef-param-name-color: #5040a8;
   
   --menu-link-color: #303030;
   --page-link-color: #de0000;
@@ -111,19 +111,19 @@ html {
 html.dark-mode {
   --page-background-color: black;
   --nav-background-color: black;
-  --title-background-color: #181818;
-  --memdef-title-background-color: #181818;
-  --memdef-proto-background-color: #181818;
-  --memdef-doc-background-color: #303030;
+  --title-background-color: #202020;
+  --memdef-title-background-color: #202020;
+  --memdef-proto-background-color: #202020;
+  --memdef-doc-background-color: #404040;
  
-  --fragment-foreground-color: #e0e0e0; 
-  --code-type-keyword-color: #a0a0a0;
-  --memdef-proto-text-color: #c8c8c8;
-  --memdef-param-name-color: #d68a36;
+  --fragment-foreground-color: #ffffff; 
+  --code-type-keyword-color: #c0c0c0;
+  --memdef-proto-text-color: #d8d8d8;
+  --memdef-param-name-color: #d6a036;
   
-  --menu-link-color: #D0D0D0; 
-  --page-link-color: #de0000;
-  --code-link-color: #da3633;
+  --menu-link-color: #d8d8d8; 
+  --page-link-color: #ff6060;
+  --code-link-color: #ff6060;
   --page-visited-link-color: #bf0000;
 }
 
@@ -151,7 +151,6 @@ a:visited {
   color: var(--menu-link-color);
 }
 
-
 .paramtype {
    color: var(--code-type-keyword-color);
 }
@@ -166,6 +165,7 @@ a:visited {
 
 .memtitle {
   font-weight: bold;
+  color: var(--code-type-keyword-color);
 }
 
 .memname {
