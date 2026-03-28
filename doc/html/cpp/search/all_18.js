@@ -13,7 +13,7 @@ var searchData=
   ['velocities_10',['Geometric equatorial positions and velocities',['../group__geometric.html',1,'']]],
   ['velocity_11',['Velocity',['../classsupernovas_1_1Velocity.html',1,'supernovas::Velocity'],['../classsupernovas_1_1Velocity.html#a2f26da36dd9c4dba704ec314585ebc2c',1,'supernovas::Velocity::Velocity(double x_ms, double y_ms, double z_ms)'],['../classsupernovas_1_1Velocity.html#a5bb1ea41d36509cddef281e0a6d16376',1,'supernovas::Velocity::Velocity(const double vel[3], double unit=1.0)']]],
   ['velocity_12',['velocity',['../classsupernovas_1_1Orbital.html#aba60772bc15f18614cf091ad606a3f42',1,'supernovas::Orbital::velocity()'],['../classsupernovas_1_1Geometric.html#ab84cc3daa11fcb1433ce8b0e292021d5',1,'supernovas::Geometric::velocity()']]],
-  ['velocity_20transforms_20change_20of_20coordinate_20system_13',['velocity transforms change of coordinate system',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53',1,'Coordinate and velocity transforms (change of coordinate system)'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103',1,'Coordinate and velocity transforms (change of coordinate system)']]],
+  ['velocity_20transforms_20change_20of_20coordinate_20system_13',['velocity transforms change of coordinate system',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62',1,'Coordinate and velocity transforms (change of coordinate system)'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105',1,'Coordinate and velocity transforms (change of coordinate system)']]],
   ['velocity_2ecpp_14',['Velocity.cpp',['../Velocity_8cpp.html',1,'']]],
   ['venus_15',['venus',['../classsupernovas_1_1Planet.html#abed300084b896be008f1047157f93545',1,'supernovas::Planet']]],
   ['via_20vcpkg_16',['Install SuperNOVAS via &lt;span class=&quot;tt&quot;&gt;vcpkg&lt;/span&gt;',['../index.html#autotoc_md14',1,'']]],
@@ -22,5 +22,5 @@ var searchData=
   ['void_19',['void',['../solsys-cspice_8c.html#autotoc_md122',1,'define mtx_lock (void)'],['../solsys-cspice_8c.html#autotoc_md123',1,'define mtx_unlock (void)']]],
   ['vs_20astropy_20',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
   ['vs_20c99_21',['SuperNOVAS C++ vs. C99',['../md_SuperNOVAS_09_09__vs__C99.html',1,'']]],
-  ['vs_20new_22',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md22',1,'']]]
+  ['vs_20new_22',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md19',1,'']]]
 ];

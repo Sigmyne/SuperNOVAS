@@ -27,36 +27,36 @@ var NAVTREE =
   [ "SuperNOVAS C++ API", "index.html", [
     [ "User's guide", "index.html", "index" ],
     [ "C99 Usage", "md__2github_2workspace_2doc_2USAGE-C99.html", [
-      [ "Building your application with SuperNOVAS (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md18", [
-        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md20", null ],
-        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md23", null ],
-        [ "Deprecated API", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md24", null ],
-        [ "Legacy linking <span class=\"tt\">solarsystem()</span> / <span class=\"tt\">solarsystem_hp()</span> and <span class=\"tt\">readeph()</span> modules", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md25", null ],
-        [ "Legacy modules: a better way", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md26", null ]
+      [ "Building your application with SuperNOVAS (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md32", [
+        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md33", null ],
+        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md35", null ],
+        [ "Deprecated API", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md36", null ],
+        [ "Legacy linking <span class=\"tt\">solarsystem()</span> / <span class=\"tt\">solarsystem_hp()</span> and <span class=\"tt\">readeph()</span> modules", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md39", null ],
+        [ "Legacy modules: a better way", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md40", null ]
       ] ],
-      [ "Example C99 usage", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md28", [
-        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md29", [
-          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md33", null ],
-          [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md37", null ],
-          [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md39", null ],
-          [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md40", null ],
-          [ "Calculate an apparent place on sky", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md42", null ],
-          [ "Calculate azimuth and elevation angles at the observing location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44", null ]
+      [ "Example C99 usage", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44", [
+        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45", [
+          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md46", null ],
+          [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47", null ],
+          [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48", null ],
+          [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52", null ],
+          [ "Calculate an apparent place on sky", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53", null ],
+          [ "Calculate azimuth and elevation angles at the observing location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54", null ]
         ] ],
-        [ "Calculating positions for a Solar-system source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45", [
-          [ "Planets and/or ephemeris type objects", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47", null ],
-          [ "Solar-system objects with Keplerian orbital parameters", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49", null ],
-          [ "Approximate planet and Moon orbitals", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md50", null ]
+        [ "Calculating positions for a Solar-system source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55", [
+          [ "Planets and/or ephemeris type objects", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56", null ],
+          [ "Solar-system objects with Keplerian orbital parameters", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57", null ],
+          [ "Approximate planet and Moon orbitals", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58", null ]
         ] ],
-        [ "Going in reverse...", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51", null ],
-        [ "Calculate rise, set, and transit times", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52", null ],
-        [ "Coordinate and velocity transforms (change of coordinate system)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53", null ]
+        [ "Going in reverse...", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md60", null ],
+        [ "Calculate rise, set, and transit times", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61", null ],
+        [ "Coordinate and velocity transforms (change of coordinate system)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62", null ]
       ] ],
-      [ "Tips and tricks (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55", [
-        [ "Multi-threaded calculations", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57", null ],
-        [ "Physical units", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md60", null ],
-        [ "String times and angles", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61", null ],
-        [ "String dates", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64", null ]
+      [ "Tips and tricks (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64", [
+        [ "Multi-threaded calculations", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65", null ],
+        [ "Physical units", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md66", null ],
+        [ "String times and angles", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md67", null ],
+        [ "String dates", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70", null ]
       ] ]
     ] ],
     [ "C++ Usage", "md__2github_2workspace_2doc_2USAGE-CPP.html", [
@@ -66,31 +66,31 @@ var NAVTREE =
         [ "C++ Fundamentals", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79", [
           [ "Namespace", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80", null ],
           [ "Validation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81", null ],
-          [ "Immutable instances", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82", null ],
-          [ "Classes don't reference external objects internally", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83", null ],
-          [ "Operator overloading", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84", null ]
+          [ "Immutable instances", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83", null ],
+          [ "Classes don't reference external objects internally", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84", null ],
+          [ "Operator overloading", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85", null ]
         ] ]
       ] ],
-      [ "Example C++ usage", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86", [
-        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87", [
-          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88", null ],
-          [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89", [
-            [ "A. Earth-based observer location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90", null ],
-            [ "B. other observer locations", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91", null ]
+      [ "Example C++ usage", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88", [
+        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89", [
+          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90", null ],
+          [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91", [
+            [ "A. Earth-based observer location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92", null ],
+            [ "B. other observer locations", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93", null ]
           ] ],
-          [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92", null ],
-          [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93", null ],
-          [ "Calculate an apparent place on sky", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94", null ],
-          [ "Calculate azimuth and elevation angles at the observing location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95", null ]
+          [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94", null ],
+          [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95", null ],
+          [ "Calculate an apparent place on sky", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96", null ],
+          [ "Calculate azimuth and elevation angles at the observing location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97", null ]
         ] ],
-        [ "Calculating positions for a Solar-system source", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96", [
-          [ "Planets and/or ephemeris type objects", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97", null ],
-          [ "Solar-system objects with Keplerian orbital parameters", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98", null ],
-          [ "Approximate planet orbitals", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99", null ]
+        [ "Calculating positions for a Solar-system source", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98", [
+          [ "Planets and/or ephemeris type objects", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99", null ],
+          [ "Solar-system objects with Keplerian orbital parameters", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101", null ],
+          [ "Approximate planet orbitals", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102", null ]
         ] ],
-        [ "Going in reverse...", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100", null ],
-        [ "Calculate rise, set, and transit times", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102", null ],
-        [ "Coordinate and velocity transforms (change of coordinate system)", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103", null ]
+        [ "Going in reverse...", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103", null ],
+        [ "Calculate rise, set, and transit times", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104", null ],
+        [ "Coordinate and velocity transforms (change of coordinate system)", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105", null ]
       ] ]
     ] ],
     [ "SuperNOVAS C++ vs. astropy", "md_SuperNOVAS_09_09__vs__astropy.html", null ],

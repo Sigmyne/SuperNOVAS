@@ -5,31 +5,31 @@ var index =
       [ "Related links", "index.html#autotoc_md53", null ]
     ] ],
     [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md55", null ],
-    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md59", null ],
-    [ "Building and installation", "index.html#autotoc_md63", [
-      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md66", null ],
-      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md71", null ],
-      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md75", null ],
-      [ "Linux packages", "index.html#autotoc_md77", null ],
-      [ "Homebrew package", "index.html#autotoc_md79", null ],
-      [ "Nix package", "index.html#autotoc_md80", null ]
+    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md57", null ],
+    [ "Building and installation", "index.html#autotoc_md59", [
+      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md60", null ],
+      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md61", null ],
+      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md62", null ],
+      [ "Linux packages", "index.html#autotoc_md63", null ],
+      [ "Homebrew package", "index.html#autotoc_md64", null ],
+      [ "Nix package", "index.html#autotoc_md65", null ]
     ] ],
-    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md84", null ],
-    [ "Example use cases", "index.html#autotoc_md93", [
-      [ "Recommendation: set up an ephemeris provider", "index.html#autotoc_md94", null ],
-      [ "Pick you flavor (C or C++)", "index.html#autotoc_md96", null ]
+    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md67", null ],
+    [ "Example use cases", "index.html#autotoc_md80", [
+      [ "Recommendation: set up an ephemeris provider", "index.html#autotoc_md81", null ],
+      [ "Pick you flavor (C or C++)", "index.html#autotoc_md82", null ]
     ] ],
-    [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md99", [
-      [ "CALCEPH integration", "index.html#autotoc_md101", null ],
-      [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md104", null ],
-      [ "Universal ephemeris data / service integration", "index.html#autotoc_md105", null ]
+    [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md87", [
+      [ "CALCEPH integration", "index.html#autotoc_md89", null ],
+      [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md92", null ],
+      [ "Universal ephemeris data / service integration", "index.html#autotoc_md95", null ]
     ] ],
-    [ "Notes on precision", "index.html#autotoc_md107", [
-      [ "Prerequisites to precise results", "index.html#autotoc_md108", null ],
-      [ "Reduced accuracy shortcuts", "index.html#autotoc_md109", null ]
+    [ "Notes on precision", "index.html#autotoc_md98", [
+      [ "Prerequisites to precise results", "index.html#autotoc_md101", null ],
+      [ "Reduced accuracy shortcuts", "index.html#autotoc_md106", null ]
     ] ],
-    [ "Runtime debug support", "index.html#autotoc_md111", null ],
-    [ "Representative benchmarks", "index.html#autotoc_md113", null ],
+    [ "Runtime debug support", "index.html#autotoc_md109", null ],
+    [ "Representative benchmarks", "index.html#autotoc_md112", null ],
     [ "SuperNOVAS added features", "index.html#autotoc_md115", [
       [ "New functionality highlights", "index.html#autotoc_md116", null ],
       [ "Refinements to the NOVAS C API", "index.html#autotoc_md117", null ]

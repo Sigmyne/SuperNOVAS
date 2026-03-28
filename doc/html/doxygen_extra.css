@@ -98,9 +98,9 @@ html {
   --memdef-doc-background-color: #F0F0F0;
   
   --fragment-foreground-color: #101010;
-  --code-type-keyword-color: #505050;
-  --memdef-proto-text-color: #282828;
-  --memdef-param-name-color: #5040a0;
+  --code-type-keyword-color: #606060;
+  --memdef-proto-text-color: #383838;
+  --memdef-param-name-color: #5040a8;
   
   --menu-link-color: #303030;
   --page-link-color: #de0000;
