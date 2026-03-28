@@ -330,74 +330,6 @@ Velocity GeocentricObserver::geocentric_velocity() const {
 }
 
 /**
- * Returns the Moon's geometric position using the ELP/MPP02 model by Chapront &amp; Francou
- * (2003), down to the specified limiting term amplitude.
- *
- * NOTES:
- *
- *  - The initial implementation (in v1.6) truncates the full series, keeping only terms with
- *    amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- *    accuracy below 1 km level (and less than 100 meter error typically for 1900 -- 2100).
- *
- * REFERENCES:
- *
- *  - Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
- *  - Chapront, J., Francou G., 2003, A&amp;A, 404, 735
- *  - Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
- *
- * @param time          astrometric time
- * @param limit_term    (optional) [arcsec|km] Sum only the harmonic terms with amplitudes larger
- *                      than this limit.
- * @return              The geometric geocentric position and velocity w.r.t. the ICRS equator
- *
- * @sa apparent_moon_elp2000(), GeodeticObserver::geometric_moon_elp2000()
- */
-Geometric GeocentricObserver::geometric_moon_elp2000(const Time& time, double limit_term) const {
-  double p[3] = {0.0}, v[3] = {0.0};
-  novas_moon_elp_posvel_fp(time._novas_timespec(), NULL, limit_term, NOVAS_ICRS, p, v);
-
-  Geometric g(frame_at(time, NOVAS_REDUCED_ACCURACY), Position(p, Unit::AU), Velocity(v, Unit::AU / Unit::day), NOVAS_J2000);
-  if(!g.is_valid())
-    novas_trace_invalid("GeocentricObserver::geometric_moon_elp_2000()");
-  return g;
-}
-
-/**
- * Returns the Moon's apparent position using the ELP/MPP02 model by Chapront &amp; Francou
- * (2003) down to the specified limiting term amplitude.
- *
- * NOTES:
- *
- *  - The initial implementation (in v1.6) truncates the full series, keeping only terms with
- *    amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- *    accuracy below 1 km level (and less than 100 meter error typically for 1900 -- 2100).
- *
- * REFERENCES:
- *
- *  - Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
- *  - Chapront, J., Francou G., 2003, A&amp;A, 404, 735
- *  - Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
- *
- * @param time          astrometric time
- * @param limit_term    (optional) [arcsec|km] Sum only the harmonic terms with amplitudes larger
- *                      than this limit.
- * @return              The apparent place of the moon on the observer's sky.
- *
- * @sa geometric_moon_elp2000(), GeodeticObserver::apparent_moon_elp2000()
- */
-Apparent GeocentricObserver::apparent_moon_elp2000(const Time& time, double limit_term) const {
-  sky_pos p = {};
-  novas_moon_elp_sky_pos_fp(time._novas_timespec(), NULL, _observer.near_earth.sc_vel, limit_term, NOVAS_TOD, &p);
-
-  Apparent a = Apparent::from_tod_sky_pos(frame_at(time, NOVAS_REDUCED_ACCURACY), &p);
-  if(!a.is_valid())
-    novas_trace_invalid("GeocentricObserver::apparent_moon_elp2000()");
-  return a;
-}
-
-/**
  * Returns a string representation of this geocentric observer.
  *
  * @return    a string representation of this observer.
@@ -411,7 +343,6 @@ std::string GeocentricObserver::to_string() const {
 
   return "Geocentric Observer" + p + v;
 }
-
 
 /**
  * Instantiates a new stationary observer located at the Solar-System Barycenter (SSB).
@@ -642,73 +573,6 @@ Velocity GeodeticObserver::enu_velocity() const {
 }
 
 
-/**
- * Returns the Moon's geometric position using the ELP/MPP02 model by Chapront &amp; Francou
- * (2003), down to the specified limiting term amplitude.
- *
- * NOTES:
- *
- *  - The initial implementation (in v1.6) truncates the full series, keeping only terms with
- *    amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- *    accuracy below 1 km level (and less than 100 meter error typically for 1900 -- 2100).
- *
- * REFERENCES:
- *
- *  - Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
- *  - Chapront, J., Francou G., 2003, A&amp;A, 404, 735
- *  - Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
- *
- * @param time          astrometric time
- * @param limit_term    (optional) [arcsec|km] Sum only the harmonic terms with amplitudes larger
- *                      than this limit.
- * @return              The geometric geocentric position and velocity w.r.t. the ICRS equator
- *
- * @sa apparent_moon_elp2000(), GeodeticObserver::geometric_moon_elp2000()
- */
-Geometric GeodeticObserver::geometric_moon_elp2000(const Time& time, double limit_term) const {
-  double p[3] = {0.0}, v[3] = {0.0};
-  novas_moon_elp_posvel_fp(time._novas_timespec(), &_observer.on_surf, limit_term, NOVAS_ICRS, p, v);
-
-  Geometric g(frame_at(time, NOVAS_REDUCED_ACCURACY), Position(p, Unit::AU), Velocity(v, Unit::AU / Unit::day), NOVAS_J2000);
-  if(!g.is_valid())
-    novas_trace_invalid("GeocentricObserver::geometric_moon_elp_2000()");
-  return g;
-}
-
-/**
- * Returns the Moon's apparent position using the ELP/MPP02 model by Chapront &amp; Francou
- * (2003) down to the specified limiting term amplitude.
- *
- * NOTES:
- *
- *  - The initial implementation (in v1.6) truncates the full series, keeping only terms with
- *    amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- *    accuracy below 1 km level (and less than 100 meter error typically for 1900 -- 2100).
- *
- * REFERENCES:
- *
- *  - Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
- *  - Chapront, J., Francou G., 2003, A&amp;A, 404, 735
- *  - Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
- *
- * @param time          astrometric time
- * @param limit_term    (optional) [arcsec|km] Sum only the harmonic terms with amplitudes larger
- *                      than this limit.
- * @return              The apparent place of the moon on the observer's sky.
- *
- * @sa geometric_moon_elp2000(), GeocentricObserver::apparent_moon_elp2000()
- */
-Apparent GeodeticObserver::apparent_moon_elp2000(const Time& time, double limit_term) const {
-  sky_pos p = {};
-  novas_moon_elp_sky_pos_fp(time._novas_timespec(), &_observer.on_surf, _observer.near_earth.sc_vel, limit_term, NOVAS_TOD, &p);
-
-  Apparent a = Apparent::from_tod_sky_pos(frame_at(time, NOVAS_REDUCED_ACCURACY), &p);
-  if(!a.is_valid())
-    novas_trace_invalid("GeocentricObserver::apparent_moon_elp2000()");
-  return a;
-}
 
 /**
  * Earth Orientation Parameters (EOP) appropriate around the time of observation.

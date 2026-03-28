@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <string.h>
 
 #include "TestUtil.hpp"
 
@@ -18,9 +19,12 @@ int main() {
 
   GeocentricObserver gc = Observer::at_geocenter();
 
-  if(!test.check("invalid", !Frame::undefined().is_valid())) n++;
-  if(!test.check("observer_position(invalid)", !Frame::undefined().observer_position().is_valid())) n++;
-  if(!test.check("observer_velocity(invalid)", !Frame::undefined().observer_velocity().is_valid())) n++;
+  Frame x = Frame::undefined();
+  if(!test.check("invalid", !x.is_valid())) n++;
+  if(!test.check("observer_position(invalid)", !x.observer_position().is_valid())) n++;
+  if(!test.check("observer_velocity(invalid)", !x.observer_velocity().is_valid())) n++;
+  if(!test.check("geometric_moon_elp2000(invalid)", !x.geometric_moon_elp2000().is_valid())) n++;
+  if(!test.check("apparent_moon_elp2000(invalid)", !x.apparent_moon_elp2000().is_valid())) n++;
 
   if(!test.check("invalid observer", !Frame(Observer::undefined(), Time::j2000(), (enum novas_accuracy) -1).is_valid())) n++;
   if(!test.check("invalid time", !Frame(gc, Time::undefined(), (enum novas_accuracy) -1).is_valid())) n++;
@@ -34,6 +38,19 @@ int main() {
   if(!test.equals("observer() type", a.observer().type(), NOVAS_OBSERVER_AT_GEOCENTER)) n++;
   if(!test.equals("clock_skew()", a.clock_skew(NOVAS_TT), novas_clock_skew(a._novas_frame(), NOVAS_TT))) n++;
   if(!test.equals("to_string()", a.to_string(), "Frame for Geocentric Observer at 2000-01-01T11:58:55.816 UTC")) n++;
+
+  double mp[3] = {0.0}, mv[3] = {0.0};
+  novas_moon_elp_posvel_fp(a._novas_frame(), 0.1, NOVAS_ICRS, mp, mv);
+  Geometric mg = a.geometric_moon_elp2000(0.1);
+  if(!test.check("geometric_moon_elp2000()", mg.is_valid())) n++;
+  if(!test.check("geometric_moon_elp2000().position()", mg.position() == Position(mp, Unit::AU))) n++;
+  if(!test.check("geometric_moon_elp2000().velocity()", mg.velocity() == Velocity(mp, Unit::AU / Unit::day))) n++;
+
+  sky_pos mpos = {};
+  novas_moon_elp_sky_pos_fp(a._novas_frame(), 0.1, NOVAS_TOD, &mpos);
+  Apparent ma = a.apparent_moon_elp2000(0.1);
+  if(!test.check("apparent_moon_elp2000()", ma.is_valid())) n++;
+  if(!test.check("apparent_moon_elp2000().position()", memcmp(ma._sky_pos(), &mpos, sizeof(sky_pos)) == 0)) n++;
 
   Frame b(gc, Time::j2000(), NOVAS_REDUCED_ACCURACY);
   if(!test.check("Frame(reduced accuracy).is_valid()", b.is_valid())) n++;

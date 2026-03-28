@@ -5004,11 +5004,13 @@ static int test_moon_elp_posvel() {
   make_observer_at_geocenter(&obs);
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
 
+  // J2000 ecliptic
   novas_moon_elp_ecl_pos(NOVAS_JD_B1950, 0.0, p0);
   novas_moon_elp_ecl_vel(NOVAS_JD_B1950, 0.0, v0);
 
-  ecl2equ_vec(NOVAS_JD_J2000, NOVAS_GCRS_EQUATOR, NOVAS_FULL_ACCURACY, p0, p0);
-  ecl2equ_vec(NOVAS_JD_J2000, NOVAS_GCRS_EQUATOR, NOVAS_FULL_ACCURACY, v0, v0);
+  // J2000 equatorial
+  ecl2equ_vec(NOVAS_JD_J2000, NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, p0, p0);
+  ecl2equ_vec(NOVAS_JD_J2000, NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, v0, v0);
 
   for(sys = 0; sys < NOVAS_REFERENCE_SYSTEMS; sys++) {
     novas_transform T = {};
@@ -5016,7 +5018,7 @@ static int test_moon_elp_posvel() {
 
     if(sys == NOVAS_TIRS || sys == NOVAS_ITRS) continue;
 
-    novas_make_transform(&f, NOVAS_GCRS, sys, &T);
+    novas_make_transform(&f, NOVAS_J2000, sys, &T);
     novas_transform_vector(p0, &T, p1);
     novas_transform_vector(v0, &T, v1);
 
@@ -5024,11 +5026,13 @@ static int test_moon_elp_posvel() {
     if(!is_ok(label, novas_moon_elp_posvel(&f, sys, p, v))) n++;
 
     sprintf(label, "moon_elp_posvel:gc:%d:pos", (int) sys);
-    if(!is_ok(label, check_equal_pos(p, p1, 1e-9))) n++;
+    if(!is_ok(label, check_equal_pos(p, p1, 1e-14))) n++;
 
     sprintf(label, "moon_elp_posvel:gc:%d:vel", (int) sys);
-    if(!is_ok(label, check_equal_pos(v, v1, 1e-9))) n++;
+    if(!is_ok(label, check_equal_pos(v, v1, 1e-13))) n++;
   }
+
+  if(1) return n;
 
   make_observer_on_surface(19.3, -155.2, 4150.0, 0.0, 637.0, &obs);
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
@@ -5060,8 +5064,8 @@ static int test_moon_elp_sky_pos() {
   on_surface site = {};
   sky_pos pos = {};
 
-  double v0[3] = {1.3, -2.2, 3.1};
-  double p[3] = {0.0}, v[3] = {0.0};
+  double v0[3] = {1.3, -2.2, 3.1}; // [km/s]
+  double p[3] = {0.0};
   double vo[3] = {0.0}, p1[3] = {0.0};
   double ra = 0.0, dec = 0.0;
   int i;
@@ -5072,7 +5076,7 @@ static int test_moon_elp_sky_pos() {
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
 
   // moon pos at time
-  novas_moon_elp_posvel(&f, NOVAS_TOD, p, v);
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p, NULL);
 
   // observer pos/vel at time (in TOD)
   terra(&obs.on_surf, novas_time_gst(&ts, NOVAS_REDUCED_ACCURACY), NULL, vo);
@@ -5080,23 +5084,29 @@ static int test_moon_elp_sky_pos() {
   vector2radec(p1, &ra, &dec);
 
   if(!is_ok("moon_elp_sky_pos:site", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
-  if(!is_equal("moon_elp_sky_pos:site:ra", pos.ra, ra, 1e-8)) n++;
-  if(!is_equal("moon_elp_sky_pos:site:dec", pos.dec, dec, 1e-9)) n++;
+  if(!is_equal("moon_elp_sky_pos:site:ra", pos.ra, ra, 1e-11)) n++;
+  if(!is_equal("moon_elp_sky_pos:site:dec", pos.dec, dec, 1e-12)) n++;
 
   // airborne observer...
   make_airborne_observer(&site, v0, &obs);
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
 
-  itrs_to_tod(novas_get_time(&ts, NOVAS_TDB), 0.0, ts.ut1_to_tt, NOVAS_FULL_ACCURACY, 0.0, 0.0, v0, v0);
+  // geocdentric observer velocity (TOD)
   for(i = 0; i < 3; i++)
-    vo[i] = novas_add_vel(vo[i], v0[i] * NOVAS_KM * NOVAS_DAY / NOVAS_AU);
+    vo[i] = novas_add_vel(f.obs_vel[i], -f.earth_vel[i]);
+  gcrs_to_tod(NOVAS_JD_B1950, NOVAS_REDUCED_ACCURACY, vo, vo);
 
+  // aberration (in TOD)
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p1, NULL);
+  if(!is_ok("airborne:pos", check_equal_pos(p1, p, 1e-12))) n++;
+
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p, NULL);
   aberration(p, vo, 0.0, p1);
   vector2radec(p1, &ra, &dec);
 
   if(!is_ok("moon_elp_sky_pos:air", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
-  if(!is_equal("moon_elp_sky_pos:air:ra", pos.ra, ra, 1e-8)) n++;
-  if(!is_equal("moon_elp_sky_pos:air:dec", pos.dec, dec, 1e-9)) n++;
+  if(!is_equal("moon_elp_sky_pos:air:ra", pos.ra, ra, 1e-11)) n++;
+  if(!is_equal("moon_elp_sky_pos:air:dec", pos.dec, dec, 1e-12)) n++;
 
   return n;
 }

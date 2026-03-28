@@ -1351,12 +1351,6 @@ public:
 
   const EOP& eop() const;
 
-  /// @ingroup geometric
-  Geometric geometric_moon_elp2000(const Time& time, double limit_term = 0.0) const;
-
-  /// @ingroup apparent
-  Apparent apparent_moon_elp2000(const Time& time, double limit_term = 0.0) const;
-
   std::string to_string() const override;
 };
 
@@ -1380,12 +1374,6 @@ public:
   Position geocentric_position() const;
 
   Velocity geocentric_velocity() const;
-
-  /// @ingroup geometric
-  Geometric geometric_moon_elp2000(const Time& time, double limit_term = 0.0) const;
-
-  /// @ingroup apparent
-  Apparent apparent_moon_elp2000(const Time& time, double limit_term = 0.0) const;
 
   std::string to_string() const override;
 };
@@ -1729,6 +1717,12 @@ public:
   Position observer_position() const;
 
   Velocity observer_velocity() const;
+
+  /// @ingroup geometric
+  Geometric geometric_moon_elp2000(double limit_term = 0.0) const;
+
+  /// @ingroup apparent
+  Apparent apparent_moon_elp2000(double limit_term = 0.0) const;
 
   std::string to_string() const;
 

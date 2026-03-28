@@ -143,10 +143,8 @@ static int cmp_sys(enum novas_reference_system a, enum novas_reference_system b)
 }
 
 static int matrix_transform(const double *in, const novas_matrix *matrix, double *out) {
-  double v[3];
+  const double v[3] = { in[0], in[1], in[2] };
   int i;
-
-  memcpy(v, in, sizeof(v));
 
   for(i = 3; --i >= 0;)
     out[i] = (matrix->M[i][0] * v[0]) + (matrix->M[i][1] * v[1]) + (matrix->M[i][2] * v[2]);
@@ -156,10 +154,8 @@ static int matrix_transform(const double *in, const novas_matrix *matrix, double
 
 static int matrix_inv_rotate(const double *in, const novas_matrix *matrix, double *out) {
   // IMPORTANT! use only with unitary matrices.
-  double v[3];
+  const double v[3] = { in[0], in[1], in[2] };
   int i;
-
-  memcpy(v, in, sizeof(v));
 
   for(i = 3; --i >= 0;)
     out[i] = (matrix->M[0][i] * v[0]) + (matrix->M[1][i] * v[1]) + (matrix->M[2][i] * v[2]);

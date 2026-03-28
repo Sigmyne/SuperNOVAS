@@ -339,7 +339,7 @@ int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
   lat = elp_sin(&args, elp_lat, elp_n_lat, limit) * ARCSEC;
   dis = elp_cos(&args, elp_dis, elp_n_dis, limit) * NOVAS_KM / NOVAS_AU;
 
-  if(limit < fabs(leading->A)) {
+  if(fabs(leading->A) > limit) {
     double planets[NOVAS_NEPTUNE + 1] = {0.0};
     double zeta = elp.W1 + (5029.0966 - 0.29965) * ARCSEC * t;
     int i;
@@ -452,52 +452,14 @@ int novas_moon_elp_ecl_vel(double jd_tdb, double limit, double *vel) {
 }
 
 /**
- * Convers an ICRS equatorial position vector to a vector in the specified celestial coordinate
- * reference system, at the specified time of observation
- *
- * @param tdb           [day] Barycentric Dynamical Time (TDB) based Julian date.
- * @param[in, out] v    [arb.u.] Vector to transform
- * @param sys           The desired output reference system. It may not be Earth-bound TIRS or
- *                      ITRS.
- * @return              0 if successful, or else -1 if the coordinate system is invalid (errno
- *                      is set to EINVAL).
- */
-static int icrs_to_sys(double tdb, double *v, enum novas_reference_system sys) {
-  static const char *fn = "icrs_to_sys";
-
-  switch(sys) {
-    case NOVAS_GCRS:
-    case NOVAS_ICRS:
-      break;
-    case NOVAS_J2000:
-      gcrs_to_j2000(v, v);
-      break;
-    case NOVAS_MOD:
-      gcrs_to_mod(tdb, v, v);
-      break;
-    case NOVAS_TOD:
-      gcrs_to_tod(tdb, NOVAS_REDUCED_ACCURACY, v, v);
-      break;
-    case NOVAS_CIRS: {
-      gcrs_to_cirs(tdb, NOVAS_REDUCED_ACCURACY, v, v);
-      break;
-    }
-    default:
-      return novas_error(-1, EINVAL, fn, "unsupported celestial coordinate reference system: %d.", (int) sys);
-  }
-  return 0;
-}
-
-/**
- * Checks that a frame is valid and is for an earth-bound observer (geocentric, on-Earth, or
- * airborne observer).
+ * Checks that a frame is valid and the observer is valid
  *
  * @param frame     The frame to check
  * @return          0 if the frame is valid and is for an Earth-bound observer, or else -1
  *                  (errno set to EINVAL).
  */
-static int check_earth_bound(const novas_frame *frame) {
-  static const char *fn = "check_earth_bound";
+static int check_frame(const novas_frame *frame) {
+  static const char *fn = "check_frame";
 
   if(!frame)
     return novas_error(-1, EINVAL, fn, "input frame is NULL");
@@ -505,15 +467,10 @@ static int check_earth_bound(const novas_frame *frame) {
   if(!novas_frame_is_initialized(frame))
     return novas_error(-1, EINVAL, fn, "frame at %p not initialized", frame);
 
-  switch(frame->observer.where) {
-    case NOVAS_OBSERVER_AT_GEOCENTER:
-    case NOVAS_OBSERVER_ON_EARTH:
-    case NOVAS_AIRBORNE_OBSERVER:
-    case NOVAS_OBSERVER_IN_EARTH_ORBIT:
-      return 0;
-    default:
-      return novas_error(-1, EINVAL, fn, "observer type %d is not Earth-bound", (int) frame->observer.where);
-  }
+  if((unsigned) frame->observer.where >= NOVAS_OBSERVER_PLACES)
+    return novas_error(-1, EINVAL, fn, "observer type %d is not Earth-bound", (int) frame->observer.where);
+
+  return 0;
 }
 
 /**
@@ -527,10 +484,6 @@ static int check_earth_bound(const novas_frame *frame) {
  *   amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
  *   accuracy below the 1 km level (and less than 100 m error typically for 1900 -- 2100).
  *
- * - The implementation ignores polar wobble, at the tenths of arcsecond level, since it does
- *   not really affect the accuracy of the result at the same level.
- *
- *
  * REFERENCES:
  * <ol>
  * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
@@ -539,8 +492,7 @@ static int check_earth_bound(const novas_frame *frame) {
  * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
  * </ol>
  *
- * @param time      Astrometric time of observation.
- * @param obs       Earth-based observer location, or NULL for geocentric.
+ * @param frame     Earth-based observing frame
  * @param limit     [arcsec|km] Sum only terms with amplitudes larger than this limit. The
  *                  resulting accuracy is typically an order-of-magnitude above the set limiting
  *                  amplitude.
@@ -562,52 +514,46 @@ static int check_earth_bound(const novas_frame *frame) {
  * @sa novas_make_moon_orbit()
  * @sa novas_geom_posvel()
  */
-int novas_moon_elp_posvel_fp(const novas_timespec *restrict time, const on_surface *restrict obs, double limit,
+int novas_moon_elp_posvel_fp(const novas_frame *restrict frame, double limit,
         enum novas_reference_system sys, double *restrict pos, double *restrict vel) {
   static const char *fn = "novas_moon_elp_posvel_fp";
 
-  double tdb;
-  double opos[3] = {0.0}, ovel[3] = {0.0};
+  novas_transform T = {};
   enum novas_accuracy acc = limit < 1e-3 ? NOVAS_FULL_ACCURACY : NOVAS_REDUCED_ACCURACY;
+  double tdb;
+  int k;
 
-  if(!time)
-    return novas_error(-1, EINVAL, fn, "input time specification is NULL");
+  prop_error(fn, check_frame(frame), 0);
 
   if(!pos && !vel)
     return novas_error(-1, EINVAL, fn, "both output pos and vel are NULL");
 
-  tdb = novas_get_time(time, NOVAS_TDB);
+  prop_error(fn, novas_make_transform(frame, NOVAS_J2000, sys, &T), 0);
 
-  if(obs) {
-    terra(obs, novas_time_gst(time, NOVAS_REDUCED_ACCURACY), opos, ovel);
-    tod_to_gcrs(tdb, NOVAS_REDUCED_ACCURACY, opos, opos);
-    tod_to_gcrs(tdb, NOVAS_REDUCED_ACCURACY, ovel, ovel);
-  }
+  tdb = novas_get_time(&frame->time, NOVAS_TDB);
 
   if(pos) {
-    int k;
-
     novas_moon_elp_ecl_pos(tdb, limit, pos);
-    ecl2equ_vec(NOVAS_JD_J2000, NOVAS_GCRS_EQUATOR, acc, pos, pos);
+    ecl2equ_vec(NOVAS_JD_J2000, NOVAS_MEAN_EQUATOR, acc, pos, pos);
 
     // w.r.t. observer
     for(k = 3; --k >= 0; )
-      pos[k] -= opos[k];
+      pos[k] += frame->earth_pos[k] - frame->obs_pos[k];
 
-    prop_error(fn, icrs_to_sys(tdb, pos, sys), 0);
+    novas_transform_vector(pos, &T, pos);
   }
 
   if(vel) {
-    int k;
-
     novas_moon_elp_ecl_vel(tdb, limit, vel);
-    ecl2equ_vec(NOVAS_JD_J2000, NOVAS_GCRS_EQUATOR, acc, vel, vel);
+    ecl2equ_vec(NOVAS_JD_J2000, NOVAS_MEAN_EQUATOR, acc, vel, vel);
 
     // w.r.t. observer
-    for(k = 3; --k >= 0; )
-      vel[k] = novas_add_vel(vel[k], -ovel[k]);
+    for(k = 0; k < 3; k++) {
+      // v = v_gc - vo_gc = v - (v_ssb - vo_ssb)
+      vel[k] = novas_add_vel(vel[k], -novas_add_vel(frame->earth_vel[k], -frame->obs_vel[k]));
+    }
 
-    prop_error(fn, icrs_to_sys(tdb, vel, sys), 0);
+    novas_transform_vector(vel, &T, vel);
   }
 
   return 0;
@@ -618,12 +564,10 @@ int novas_moon_elp_posvel_fp(const novas_timespec *restrict time, const on_surfa
  * (or the geocenter), using the ELP/MPP02 model by Chapront &amp; Francou (2003).
  *
  * NOTES:
- * <ol>
- * <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with
- * amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- * accuracy below the 1 km level (and less than 100 m error typically for 1900 -- 2100).
- * </li>
- * </ol>
+ *
+ * - The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *   amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
+ *   accuracy below the 1 km level (and less than 100 m error typically for 1900 -- 2100).
  *
  * REFERENCES:
  * <ol>
@@ -653,38 +597,9 @@ int novas_moon_elp_posvel_fp(const novas_timespec *restrict time, const on_surfa
  * @sa novas_geom_posvel()
  */
 int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_reference_system sys, double *restrict pos, double *restrict vel) {
-  static const char *fn = "novas_moon_elp_posvel";
-
-  const on_surface *loc = NULL;
-  double limit;
-
-  prop_error(fn, check_earth_bound(frame), 0);
-
-  if(frame->observer.where != NOVAS_OBSERVER_AT_GEOCENTER)
-    loc = &frame->observer.on_surf;
-
-  limit = (frame->accuracy == NOVAS_REDUCED_ACCURACY) ? 1e-2 : 0.0;
-  prop_error("novas_moon_elp_posvel", novas_moon_elp_posvel_fp(&frame->time, loc, limit, sys, pos, vel), 0);
-
-  // For airborne observers subtract the ground velocity....
-  if(frame->observer.where == NOVAS_AIRBORNE_OBSERVER) {
-    int k;
-    for(k = 3; --k >= 0; )
-      vel[k] = novas_add_vel(vel[k], -frame->observer.near_earth.sc_vel[k] * NOVAS_KMS / (NOVAS_AU / NOVAS_DAY));
-  }
-
-  if(frame->observer.where == NOVAS_OBSERVER_IN_EARTH_ORBIT) {
-    int k;
-    for(k = 3; --k >= 0; ) {
-      pos[k] -= frame->observer.near_earth.sc_pos[k] * NOVAS_KM / NOVAS_AU;
-      novas_add_vel(vel[k], -frame->observer.near_earth.sc_vel[k] * NOVAS_KMS / (NOVAS_AU / NOVAS_DAY));
-    }
-  }
-
+  prop_error("novas_moon_elp_posvel", novas_moon_elp_posvel_fp(frame, 0.0, sys, pos, vel), 0);
   return 0;
 }
-
-
 
 /**
  * Returns the Moon's apparent place, relative to an Earth-based observer (or the geocenter),
@@ -692,13 +607,11 @@ int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_referenc
  * specified limit are used to provide a result with the desired precision.
  *
  * NOTES:
- * <ol>
- * <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with
- * amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- * accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for
- * 1900 -- 2100).
- * </li>
- * </ol>
+ *
+ * - The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *   amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
+ *   accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for
+ *   1900 -- 2100).
  *
  * REFERENCES:
  * <ol>
@@ -708,11 +621,7 @@ int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_referenc
  * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
  * </ol>
  *
- * @param time      Astrometric time of observation.
- * @param obs       Earth-based observer location, or NULL for geocentric.
- * @param vobs      [km/s] Observer's velocity over the ground in the ITRS (when `obs` is not NULL),
- *                  or orbital velocity in ICRS (when `obs` is NULL), or NULL if fixed site
- *                  location or at geocenter.
+ * @param frame     Earth-based observing frame
  * @param limit     [arcsec|km] Sum only terms with amplitudes larger than this limit. The
  *                  resulting accuracy is typically an order-of-magnitude above the set limiting
  *                  amplitude.
@@ -730,56 +639,36 @@ int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_referenc
  * @sa novas_make_moon_orbit()
  * @sa novas_sky_pos()
  */
-int novas_moon_elp_sky_pos_fp(const novas_timespec *restrict time, const on_surface *restrict obs, const double *restrict vobs,
-        double limit, enum novas_reference_system sys, sky_pos *restrict pos) {
+int novas_moon_elp_sky_pos_fp(const novas_frame *restrict frame, double limit, enum novas_reference_system sys, sky_pos *restrict pos) {
   static const char *fn = "novas_moon_elp_skypos_fp";
 
+  novas_transform T = {};
   const double kms_to_auday = NOVAS_KM * NOVAS_DAY / NOVAS_AU;
   double p[3] = {0.0}, v[3] = {0.0}, vo[3] = {0.0};
-  double tdb;
   int k;
 
   if(!pos)
     return novas_error(-1, EINVAL, fn, "output position is NULL.");
 
-  prop_error(fn, novas_moon_elp_posvel_fp(time, obs, limit, sys, p, v), 0);
+  prop_error(fn, novas_moon_elp_posvel_fp(frame, limit, NOVAS_ICRS, p, v), 0);
 
-  tdb = novas_get_time(time, NOVAS_TDB);
+  pos->dis = novas_vlen(p);
+  pos->rv = novas_vdot(pos->r_hat, v) / kms_to_auday;
 
-  // Observer's velocity in ICRS...
-  if(obs) {
-    // Earth rotation (in ITRS)
-    terra(obs, 0.0, NULL, vo);
+  // Geocentric observer velocity (J2000)
+  for(k = 0; k < 3; k++)
+    vo[k] = novas_add_vel(frame->obs_vel[k], -frame->earth_vel[k]);
 
-    if(vobs) {
-      // ... plus ground motion
-      for(k = 0; k < 3; k++)
-        vo[k] = novas_add_vel(vo[k], vobs[k] * kms_to_auday);
-    }
-
-    // observer motion in ICRS
-    itrs_to_tod(time->ijd_tt, time->fjd_tt, time->ut1_to_tt, NOVAS_FULL_ACCURACY, 0.0, 0.0, vo, vo);
-    tod_to_gcrs(tdb, NOVAS_FULL_ACCURACY, vo, vo);
-  }
-  else if(vobs) {
-    // orbital motion in ICRS
-    for(k = 0; k < 3; k++)
-      vo[k] = vobs[k] * kms_to_auday;
-  }
-
-  // Motion in output system
-  icrs_to_sys(tdb, vo, sys);
-
-  // Aberration correction
+  // Aberration correction (J2000)
   aberration(p, vo, 0.0, p);
 
+  // convert to output system
+  prop_error(fn, novas_make_transform(frame, NOVAS_ICRS, sys, &T), 0);
+  novas_transform_vector(p, &T, p);
   vector2radec(p, &pos->ra, &pos->dec);
-  pos->dis = novas_vlen(p);
 
   for(k = 3; --k >= 0; )
     pos->r_hat[k] = p[k] / pos->dis;
-
-  pos->rv = novas_vdot(pos->r_hat, v) / kms_to_auday;
 
   return 0;
 }
@@ -789,13 +678,11 @@ int novas_moon_elp_sky_pos_fp(const novas_timespec *restrict time, const on_surf
  * using the ELP/MPP02 model by Chapront &amp; Francou (2003).
  *
  * NOTES:
- * <ol>
- * <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with
- * amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- * accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for
- * 1900 -- 2100).
- * </li>
- * </ol>
+ *
+ * - The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *   amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
+ *   accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for
+ *   1900 -- 2100).
  *
  * REFERENCES:
  * <ol>
@@ -821,21 +708,7 @@ int novas_moon_elp_sky_pos_fp(const novas_timespec *restrict time, const on_surf
  * @sa novas_sky_pos()
  */
 int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_reference_system sys, sky_pos *restrict pos) {
-  static const char *fn = "novas_moon_elp_sky_pos";
-
-  double limit = (frame && frame->accuracy == NOVAS_REDUCED_ACCURACY) ? 1e-2 : 0.0;
-  const on_surface *loc = NULL;
-  const double *vg = NULL;
-
-  prop_error(fn, check_earth_bound(frame), 0);
-
-  if(frame->observer.where !=  NOVAS_OBSERVER_AT_GEOCENTER) {
-    loc = &frame->observer.on_surf;
-    if(frame->observer.where == NOVAS_AIRBORNE_OBSERVER)
-      vg = frame->observer.near_earth.sc_vel;
-  }
-
-  prop_error("novas_moon_elp_skypos", novas_moon_elp_sky_pos_fp(&frame->time, loc, vg, limit, sys, pos), 0);
+  prop_error("novas_moon_elp_skypos", novas_moon_elp_sky_pos_fp(frame, 0.0, sys, pos), 0);
   return 0;
 }
 

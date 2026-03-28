@@ -2603,17 +2603,14 @@ static int test_moon_elp_posvel() {
   if(check("moon_elp_posvel:frame:null", -1, novas_moon_elp_posvel(NULL, NOVAS_ICRS, p, v))) n++;
   if(check("moon_elp_posvel:frame:init", -1, novas_moon_elp_posvel(&f, NOVAS_ICRS, p, v))) n++;
 
-  make_solar_system_observer(p, v, &obs);
-  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
-  if(check("moon_elp_posvel:frame:ssb", -1, novas_moon_elp_posvel(&f, NOVAS_ICRS, p, v))) n++;
-
   make_observer_at_geocenter(&obs);
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
 
   if(check("moon_elp_posvel:sys:-1", -1, novas_moon_elp_posvel(&f, (enum novas_reference_system) -1, p, v))) n++;
   if(check("moon_elp_posvel:p=v=0", -1, novas_moon_elp_posvel(&f, NOVAS_ICRS, NULL, NULL))) n++;
 
-  if(check("moon_elp_posvel_fp:time:null", -1, novas_moon_elp_posvel_fp(NULL, &obs.on_surf, 0.0, (enum novas_reference_system) -1, p, v))) n++;
+  f.observer.where = -1;
+  if(check("moon_elp_posvel:obs:where:-1", -1, novas_moon_elp_posvel(&f, NOVAS_ICRS, p, v))) n++;
 
   return n;
 }
@@ -2625,22 +2622,20 @@ static int test_moon_elp_sky_pos() {
   novas_timespec ts = {};
   novas_frame f = {};
   sky_pos p = {};
-  double ps[3] = {0.0}, vs[3] = {0.0};
 
   novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.0, &ts);
 
   if(check("moon_elp_sky_pos:frame:null", -1, novas_moon_elp_sky_pos(NULL, NOVAS_ICRS, &p))) n++;
   if(check("moon_elp_sky_pos:frame:init", -1, novas_moon_elp_sky_pos(&f, NOVAS_ICRS, &p))) n++;
 
-  make_solar_system_observer(ps, vs, &obs);
-  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
-  if(check("moon_elp_sky_pos:frame:ssb", -1, novas_moon_elp_sky_pos(&f, NOVAS_ICRS, &p))) n++;
-
   make_observer_at_geocenter(&obs);
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
 
   if(check("moon_elp_sky_pos:sys:-1", -1, novas_moon_elp_sky_pos(&f, (enum novas_reference_system) -1, &p))) n++;
   if(check("moon_elp_sky_pos:pos:null", -1, novas_moon_elp_sky_pos(&f, NOVAS_ICRS, NULL))) n++;
+
+  f.observer.where = -1;
+  if(check("moon_elp_sky_pos:obs:where:-1", -1, novas_moon_elp_sky_pos(&f, NOVAS_ICRS, &p))) n++;
 
   return n;
 }
