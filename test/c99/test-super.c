@@ -4988,6 +4988,119 @@ static int test_time_leap() {
   return n;
 }
 
+static int test_moon_elp_posvel() {
+  int n = 0;
+
+  observer obs = {};
+  novas_timespec ts = {};
+  novas_frame f = {};
+  double p0[3] = {0.0}, v0[3] = {0.0};
+  double p1[3] = {0.0}, v1[3] = {0.0};
+  double p[3] = {0.0}, v[3] = {0.0};
+  enum novas_reference_system sys;
+  int i;
+
+  novas_set_time(NOVAS_TDB, NOVAS_JD_B1950, 32, 0.0, &ts);
+  make_observer_at_geocenter(&obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+
+  novas_moon_elp_ecl_pos(NOVAS_JD_B1950, 0.0, p0);
+  novas_moon_elp_ecl_vel(NOVAS_JD_B1950, 0.0, v0);
+
+  ecl2equ_vec(NOVAS_JD_J2000, NOVAS_GCRS_EQUATOR, NOVAS_FULL_ACCURACY, p0, p0);
+  ecl2equ_vec(NOVAS_JD_J2000, NOVAS_GCRS_EQUATOR, NOVAS_FULL_ACCURACY, v0, v0);
+
+  for(sys = 0; sys < NOVAS_REFERENCE_SYSTEMS; sys++) {
+    novas_transform T = {};
+    char label[100] = {'\0'};
+
+    if(sys == NOVAS_TIRS || sys == NOVAS_ITRS) continue;
+
+    novas_make_transform(&f, NOVAS_GCRS, sys, &T);
+    novas_transform_vector(p0, &T, p1);
+    novas_transform_vector(v0, &T, v1);
+
+    sprintf(label, "moon_elp_posvel:gc:%d", (int) sys);
+    if(!is_ok(label, novas_moon_elp_posvel(&f, sys, p, v))) n++;
+
+    sprintf(label, "moon_elp_posvel:gc:%d:pos", (int) sys);
+    if(!is_ok(label, check_equal_pos(p, p1, 1e-9))) n++;
+
+    sprintf(label, "moon_elp_posvel:gc:%d:vel", (int) sys);
+    if(!is_ok(label, check_equal_pos(v, v1, 1e-9))) n++;
+  }
+
+  make_observer_on_surface(19.3, -155.2, 4150.0, 0.0, 637.0, &obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+
+  // observer pos at time.
+  terra(&obs.on_surf, novas_time_gst(&ts, NOVAS_REDUCED_ACCURACY), p1, v1);
+  tod_to_gcrs(NOVAS_JD_B1950, NOVAS_FULL_ACCURACY, p1, p1);
+  tod_to_gcrs(NOVAS_JD_B1950, NOVAS_FULL_ACCURACY, v1, v1);
+
+  // moon rel. observer (in TOD)
+  for(i = 0; i < 3; i++) {
+    p1[i] = p0[i] - p1[i];
+    v1[i] = v0[i] - v1[i];
+  }
+
+  if(!is_ok("moon_elp_posvel:site", novas_moon_elp_posvel(&f, NOVAS_ICRS, p, v))) n++;
+  if(!is_ok("moon_elp_posvel:site:pos", check_equal_pos(p, p1, 1e-9))) n++;
+  if(!is_ok("moon_elp_posvel:site:vel", check_equal_pos(p, p1, 1e-9))) n++;
+
+  return n;
+}
+
+static int test_moon_elp_sky_pos() {
+  int n = 0;
+
+  observer obs = {};
+  novas_timespec ts = {};
+  novas_frame f = {};
+  on_surface site = {};
+  sky_pos pos = {};
+
+  double v0[3] = {1.3, -2.2, 3.1};
+  double p[3] = {0.0}, v[3] = {0.0};
+  double vo[3] = {0.0}, p1[3] = {0.0};
+  double ra = 0.0, dec = 0.0;
+  int i;
+
+  make_itrf_site(19.3, -155.2, 4150.0, &site);
+  make_observer_at_site(&site, &obs);
+  novas_set_time(NOVAS_TDB, NOVAS_JD_B1950, 32, 0.0, &ts);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+
+  // moon pos at time
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p, v);
+
+  // observer pos/vel at time (in TOD)
+  terra(&obs.on_surf, novas_time_gst(&ts, NOVAS_REDUCED_ACCURACY), NULL, vo);
+  aberration(p, vo, 0.0, p1);
+  vector2radec(p1, &ra, &dec);
+
+  if(!is_ok("moon_elp_sky_pos:site", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
+  if(!is_equal("moon_elp_sky_pos:site:ra", pos.ra, ra, 1e-8)) n++;
+  if(!is_equal("moon_elp_sky_pos:site:dec", pos.dec, dec, 1e-9)) n++;
+
+  // airborne observer...
+  make_airborne_observer(&site, v0, &obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+
+  itrs_to_tod(novas_get_time(&ts, NOVAS_TDB), 0.0, ts.ut1_to_tt, NOVAS_FULL_ACCURACY, 0.0, 0.0, v0, v0);
+  for(i = 0; i < 3; i++)
+    vo[i] = novas_add_vel(vo[i], v0[i] * NOVAS_KM * NOVAS_DAY / NOVAS_AU);
+
+  aberration(p, vo, 0.0, p1);
+  vector2radec(p1, &ra, &dec);
+
+  if(!is_ok("moon_elp_sky_pos:air", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
+  if(!is_equal("moon_elp_sky_pos:air:ra", pos.ra, ra, 1e-8)) n++;
+  if(!is_equal("moon_elp_sky_pos:air:dec", pos.dec, dec, 1e-9)) n++;
+
+  return n;
+}
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -5150,6 +5263,9 @@ int main(int argc, char *argv[]) {
   if(test_time_leap()) n++;
 
   if(test_print_decimal()) n++;
+
+  if(test_moon_elp_posvel()) n++;
+  if(test_moon_elp_sky_pos()) n++;
 
   n += test_dates();
 

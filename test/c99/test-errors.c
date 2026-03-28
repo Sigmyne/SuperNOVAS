@@ -2603,7 +2603,7 @@ static int test_moon_elp_posvel() {
   if(check("moon_elp_posvel:frame:null", -1, novas_moon_elp_posvel(NULL, NOVAS_ICRS, p, v))) n++;
   if(check("moon_elp_posvel:frame:init", -1, novas_moon_elp_posvel(&f, NOVAS_ICRS, p, v))) n++;
 
-  make_observer_in_space(p, v, &obs);
+  make_solar_system_observer(p, v, &obs);
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
   if(check("moon_elp_posvel:frame:ssb", -1, novas_moon_elp_posvel(&f, NOVAS_ICRS, p, v))) n++;
 
@@ -2632,7 +2632,7 @@ static int test_moon_elp_sky_pos() {
   if(check("moon_elp_sky_pos:frame:null", -1, novas_moon_elp_sky_pos(NULL, NOVAS_ICRS, &p))) n++;
   if(check("moon_elp_sky_pos:frame:init", -1, novas_moon_elp_sky_pos(&f, NOVAS_ICRS, &p))) n++;
 
-  make_observer_in_space(ps, vs, &obs);
+  make_solar_system_observer(ps, vs, &obs);
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
   if(check("moon_elp_sky_pos:frame:ssb", -1, novas_moon_elp_sky_pos(&f, NOVAS_ICRS, &p))) n++;
 
