@@ -30,15 +30,9 @@
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
-#include "novas.h"
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-namespace novas {
-#  endif
-#endif
-
 #define ELP_DELTA       0.01      ///< [day] for cord estimate
+
+#include "novas.h"
 
 typedef struct {
   double A;             ///< [arcsec|km] amplitude
@@ -579,8 +573,6 @@ int novas_moon_elp_posvel_fp(const novas_timespec *restrict time, const on_surfa
     return novas_error(-1, EINVAL, fn, "both output pos and vel are NULL");
 
   tdb = novas_get_time(time, NOVAS_TDB);
-  if(isnan(tdb))
-    novas_trace(fn, -1, 0);
 
   if(obs) {
     terra(obs, novas_time_gst(time, NOVAS_REDUCED_ACCURACY), opos, ovel);
@@ -855,7 +847,7 @@ int novas_moon_elp_sky_pos_fp(const novas_timespec *restrict time, const on_surf
 int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_reference_system sys, sky_pos *restrict pos) {
   static const char *fn = "novas_moon_elp_sky_pos";
 
-  double limit = (frame->accuracy == NOVAS_REDUCED_ACCURACY) ? 1e-2 : 0.0;
+  double limit = (frame && frame->accuracy == NOVAS_REDUCED_ACCURACY) ? 1e-2 : 0.0;
   const on_surface *loc = NULL;
   const double *vg = NULL;
 
@@ -880,6 +872,14 @@ int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_referen
  *
  * For the short-term , `novas_make_moon_orbit()` can provide somewhat more accurate
  * predictions for up to a day or so around the reference epoch of the orbit.
+ *
+ * NOTES:
+ *
+ *  - The Moon's orbit is strongly non Keplerian due to the tidal distortions (esp. by the Sun),
+ *    hence any attempt to describe it it purely Keplerian terms is inherently flawed. If you
+ *    want to calculate the Moon's position (and/or velocity) with some precision, without using
+ *    ephemerides, you should probably use the ELP2000/MPP02 model provided by
+ *    `novas_moon_elp_posvel()` and `novas_moon_elp_sky_pos()`.
  *
  * REFERENCES:
  * <ol>
@@ -1013,57 +1013,57 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
 
 
   // From ELP01: https://cyrano-se.obspm.fr/pub/2_lunar_solutions/1_elp82b/elp_series/ELP01
-  static const elp_coeffs clon[7] = {
-          {  0,  0,  1,  2,      -45.10032 }, //
+  static const elp_coeffs clon[] = {
           {  0,  0,  1, -2,       39.53393 }, //
           {  1,  0, -1,  0,      -18.58467 }, //
           {  2,  0,  0, -2,       55.17801 }, //
-          {  2,  0,  2,  0,       14.37964 }, //
           {  4,  0, -2,  0,       30.77247 }, //
           {  2,  2, -1,  0,       -9.36601 }, //
+          {  0,  1,  1,  0,     -109.38419 }, // E
+          {  2,  0,  1,  0,      191.95575 }, // E
+          {  4,  0, -1,  0,       38.42974 }  // E
 
           // Principal terms not included
           // (These degrade the Keplerian model)
+          //{  0,  0,  1,  2,      -45.10032 }, //
+          //{  2,  0,  2,  0,       14.37964 }, //
           //{  0,  0,  0,  2,     -411.60287 }, //
           //{  2,  0, -2,  0,      211.65487 }, // T
           //{  2,  0, -3,  0,       13.19400 }, //
 
           // The following elongate the orbit, and are at least partly degenerate with eccentric
           // deformation...
-          //{  0,  1,  1,  0,     -109.38419 }, // E
           //{  0,  1, -1,  0,     -147.32654 }, // E-
           //{  2,  0, -1,  0,     4586.43061 }, // E
-          //{  2,  0,  1,  0,      191.95575 }, // E
           //{  2,  1, -1,  0,      -28.39810 }  // E?
           //{  2, -1,  1,  0,       14.53078 }, // E
           //{  2, -1, -1,  0,      205.44315 }, // E
-          //{  4,  0, -1,  0,       38.42974 }, // E
   };
 
   // From ELP01: https://cyrano-se.obspm.fr/pub/2_lunar_solutions/1_elp82b/elp_series/ELP01
-  static const elp_coeffs comega[7] = {
+  static const elp_coeffs comega[] = {
           {  0,  1,  0,  0,     -666.44186 },
           {  1,  0,  0,  0,     -124.98806 }, //
           {  1,  1,  0,  0,       17.95512 }, //
           {  2,  0,  0,  0,     2369.91227 }, //
           {  2,  1,  0,  0,      -24.35910 }, //
           {  2, -1,  0,  0,      164.73458 }, //
-          {  4,  0,  0,  0,       13.89903 }, //
+          {  4,  0,  0,  0,       13.89903 }  //
   };
 
   // From ELP02: https://cyrano-se.obspm.fr/pub/2_lunar_solutions/1_elp82b/elp_series/ELP02
-  static const elp_coeffs clat[8] = {
+  static const elp_coeffs clat[] = {
           {  0,  0,  2, -1,       31.75985 }, //
           {  2,  0,  0, -1,      623.65783 }, //
           {  2,  0,  1, -1,       33.35743 }, // *
           {  2,  1,  0, -1,      -12.09470 }, //
-          {  0,  1,  1, -1,       -5.07614 }, // *
-          {  0,  1,  1,  1,       -5.31151 }, //
-          {  2,  0,  1,  1,       15.12165 }, //
-          {  2, -1,  0, -1,       29.57794 }  //
+          {  2, -1,  0, -1,       29.57794 } //
 
           // Principal terms not included
           // (These degrade the Keplerian model)
+          //{  0,  1,  1, -1,       -5.07614 }, // *
+          //{  0,  1,  1,  1,       -5.31151 }, //
+          //{  2,  0,  1,  1,       15.12165 }, //
           //{  0,  0,  1, -1,      999.70079 }, // *
           //{  0,  0,  1,  1,     1010.17430 }, //
           //{  0,  0,  2,  1,       61.91229 }, //
@@ -1074,7 +1074,7 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
 
 
   // From ELP03: https://cyrano-se.obspm.fr/pub/2_lunar_solutions/1_elp82b/elp_series/ELP03
-  static const elp_coeffs ce[11] = {
+  static const elp_coeffs ce[] = {
           {  0,  1,  1,  0,      104.75896 }, // E
           {  2,  0, -1,  0,    -3699.10468 }, // E
           {  2,  0,  1,  0,     -170.73274 }, // E
@@ -1095,7 +1095,7 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
   };
 
   // From ELP03: https://cyrano-se.obspm.fr/pub/2_lunar_solutions/1_elp82b/elp_series/ELP03
-  static const elp_coeffs cdis[7] = {
+  static const elp_coeffs cdis[] = {
           {  0,  1,  0,  0,       48.89010 }, //
           {  1,  0,  0,  0,      108.74265 }, //
           {  1,  1,  0,  0,      -16.67533 }, //
@@ -1127,7 +1127,7 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
   elp_args(t, &elp, &args);
 
   // Perturb longitude...
-  for(i = 0; i < 7; i++) {
+  for(i = 0; i < 8; i++) {
     const elp_coeffs *c = &clon[i];
     const double arg = (c->iD * args.D + c->il1 * args.l1 + c->il * args.l + c->iF * args.F);
     dL += c->A * sin(arg);
@@ -1163,7 +1163,7 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
   pole[2] =  cos(orbit->i * DEGREE);
 
   // Perturb pole...
-  for(i = 0; i < 8; i++) {
+  for(i = 0; i < 5; i++) {
     const elp_coeffs *c = &clat[i];
     double arg = (c->iD * args.D + c->il1 * args.l1 + c->il * args.l + c->iF * args.F);
     dY += c->A * sin(arg);
@@ -1360,16 +1360,4 @@ double novas_next_moon_phase(double phase, double jd_tdb) {
   return NAN;
 }
 
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif
-
-
-#if __cplusplus
-#  ifdef NOVAS_NAMESPACE
-} // namespace novas
-#  endif
-#endif
 

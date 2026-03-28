@@ -2574,6 +2574,78 @@ static int test_check_nan() {
   return n;
 }
 
+static int test_moon_elp_ecl_pos() {
+  int n = 0;
+
+  if(check("moon_elp_ecl_pos:pos:null", -1, novas_moon_elp_ecl_pos(NOVAS_JD_J2000, 0.0, NULL))) n++;
+
+  return n;
+}
+
+static int test_moon_elp_ecl_vel() {
+  int n = 0;
+
+  if(check("moon_elp_ecl_vel:vel:null", -1, novas_moon_elp_ecl_vel(NOVAS_JD_J2000, 0.0, NULL))) n++;
+
+  return n;
+}
+
+static int test_moon_elp_posvel() {
+  int n = 0;
+
+  observer obs = {};
+  novas_timespec ts = {};
+  novas_frame f = {};
+  double p[3] = {0.0}, v[3] = {0.0};
+
+  novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.0, &ts);
+
+  if(check("moon_elp_posvel:frame:null", -1, novas_moon_elp_posvel(NULL, NOVAS_ICRS, p, v))) n++;
+  if(check("moon_elp_posvel:frame:init", -1, novas_moon_elp_posvel(&f, NOVAS_ICRS, p, v))) n++;
+
+  make_observer_in_space(p, v, &obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+  if(check("moon_elp_posvel:frame:ssb", -1, novas_moon_elp_posvel(&f, NOVAS_ICRS, p, v))) n++;
+
+  make_observer_at_geocenter(&obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+
+  if(check("moon_elp_posvel:sys:-1", -1, novas_moon_elp_posvel(&f, (enum novas_reference_system) -1, p, v))) n++;
+  if(check("moon_elp_posvel:p=v=0", -1, novas_moon_elp_posvel(&f, NOVAS_ICRS, NULL, NULL))) n++;
+
+  if(check("moon_elp_posvel_fp:time:null", -1, novas_moon_elp_posvel_fp(NULL, &obs.on_surf, 0.0, (enum novas_reference_system) -1, p, v))) n++;
+
+  return n;
+}
+
+static int test_moon_elp_sky_pos() {
+  int n = 0;
+
+  observer obs = {};
+  novas_timespec ts = {};
+  novas_frame f = {};
+  sky_pos p = {};
+  double ps[3] = {0.0}, vs[3] = {0.0};
+
+  novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.0, &ts);
+
+  if(check("moon_elp_sky_pos:frame:null", -1, novas_moon_elp_sky_pos(NULL, NOVAS_ICRS, &p))) n++;
+  if(check("moon_elp_sky_pos:frame:init", -1, novas_moon_elp_sky_pos(&f, NOVAS_ICRS, &p))) n++;
+
+  make_observer_in_space(ps, vs, &obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+  if(check("moon_elp_sky_pos:frame:ssb", -1, novas_moon_elp_sky_pos(&f, NOVAS_ICRS, &p))) n++;
+
+  make_observer_at_geocenter(&obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+
+  if(check("moon_elp_sky_pos:sys:-1", -1, novas_moon_elp_sky_pos(&f, (enum novas_reference_system) -1, &p))) n++;
+  if(check("moon_elp_sky_pos:pos:null", -1, novas_moon_elp_sky_pos(&f, NOVAS_ICRS, NULL))) n++;
+
+  return n;
+}
+
+
 int main(int argc, const char *argv[]) {
   int n = 0;
 
@@ -2795,6 +2867,11 @@ int main(int argc, const char *argv[]) {
 
   if(test_trace_invalid()) n++;
   if(test_check_nan()) n++;
+
+  if(test_moon_elp_ecl_pos()) n++;
+  if(test_moon_elp_ecl_vel()) n++;
+  if(test_moon_elp_posvel()) n++;
+  if(test_moon_elp_sky_pos()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");
