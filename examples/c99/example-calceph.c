@@ -58,7 +58,7 @@ int main(int argc, const char *argv[]) {
 
   // Command line argument can define the ephemeris data to use.
   if(argc > 1)
-    datafile = argv[1];
+    datafile = (char *) argv[1];
 
   // We'll print debugging messages and error traces...
   novas_debug(NOVAS_DEBUG_ON);
