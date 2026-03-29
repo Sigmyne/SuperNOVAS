@@ -12,6 +12,8 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
 
 ### Fixed
 
+ - #293: `geo_posvel()` applied TOD to ICRS conversions twice for airborne observers, resulting in imprecise
+   observer coordinates relative to the geocenter.
 
 ### Added
 
