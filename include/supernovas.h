@@ -1401,6 +1401,8 @@ public:
 
   Velocity enu_velocity() const;
 
+  Geometric geocentric_at(const Time &time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
+
   const EOP& eop() const;
 
   std::string to_string() const override;

@@ -195,7 +195,7 @@ Interferometric Observer::to_interferometric(const Apparent& phase_center) const
 
   // Station pos/vel w.r.t. geocenter
   double pobs[3] = {0.0}, vobs[3] = {0.0};
-  if(geo_posvel(t.jd(), t.dUT1().seconds(), frame.accuracy(), _novas_observer(), pobs, vobs) != 0) {
+  if(geo_posvel(t.jd(), t.dUT1().seconds(), frame.accuracy(), &_observer, pobs, vobs) != 0) {
     novas_trace_invalid(fn);
     return Interferometric::undefined();
   }
@@ -662,6 +662,30 @@ Velocity GeodeticObserver::enu_velocity() const {
   if(!vel.is_valid())
     novas_trace_invalid("GeodeticObserver::enu_velocity()");
   return vel;
+}
+
+/**
+ * Returns the geocentric geometric position and velocity vectors for this geodetic observer at the
+ * specified time and accuracy.
+ *
+ * @param time        Astrometric time of observation
+ * @param accuracy    (optional) NOVAS_FULL_ACCURACY or NOVAS_REDUCED_ACCURACY.
+ * @return            The geometric geocentric position and velocity vectors of this observer
+ *                    at the specified time.
+ */
+Geometric GeodeticObserver::geocentric_at(const Time &time, enum novas_accuracy accuracy) const {
+  static const char *fn = "GeodeticObserver::geocentric_in()";
+
+  double p[3] = {0.0}, v[3] = {0.0};
+  if(geo_posvel(time.jd(), time.dUT1().seconds(), accuracy, &_observer, p, v) != 0) {
+    novas_trace_invalid(fn);
+    return Geometric::undefined();
+  }
+
+  Geometric g = Geometric(frame_at(time, accuracy), Position(p, Unit::AU), Velocity(v, Unit::AU / Unit::day), NOVAS_ICRS);
+  if(!g.is_valid())
+    novas_trace_invalid(fn);
+  return g;
 }
 
 /**
