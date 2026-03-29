@@ -172,7 +172,7 @@ endif
 SOURCES = target.c observer.c earth.c equator.c system.c transform.c cio.c \
           orbital.c spectral.c grav.c nutation.c timescale.c frames.c place.c \
           calendar.c refract.c naif.c parse.c util.c planets.c itrf.c \
-          ephemeris.c solsys3.c solsys-ephem.c
+          ephemeris.c solsys3.c solsys-ephem.c moon.c
 
 # Generate a list of object (obj/*.o) files from the input sources
 OBJECTS := $(addprefix $(OBJ)/,$(subst .c,.o,$(SOURCES)))

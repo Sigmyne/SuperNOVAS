@@ -204,6 +204,76 @@ Velocity Frame::observer_velocity() const {
 }
 
 /**
+ * Returns the Moon's geometric position using the ELP/MPP02 model by Chapront &amp; Francou
+ * (2003), down to the specified limiting term amplitude.
+ *
+ * NOTES:
+ *
+ *  - The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *    amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
+ *    accuracy below 1 km level (and less than 100 meter error typically for 1900 -- 2100).
+ *
+ * REFERENCES:
+ *
+ *  - Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *  - Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *  - Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *    https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
+ *
+ * @param limit_term    (optional) [arcsec|km] Sum only the harmonic terms with amplitudes larger
+ *                      than this limit.
+ * @return              The calculated geometric geocentric position and velocity of the Moon
+ *                      in the ICRS.
+ *
+ * @sa apparent_moon_elp2000()
+ */
+Geometric Frame::geometric_moon_elp2000(double limit_term) const {
+  if(!is_valid()) {
+    novas_trace_invalid("Frame::geometric_moon_elp_2000()");
+    return Geometric::undefined();
+  }
+
+  double p[3] = {0.0}, v[3] = {0.0};
+  novas_moon_elp_posvel_fp(_novas_frame(), limit_term, NOVAS_ICRS, p, v);
+  return Geometric(*this, Position(p, Unit::AU), Velocity(v, Unit::AU / Unit::day), NOVAS_ICRS);
+}
+
+/**
+ * Returns the Moon's apparent position using the ELP/MPP02 model by Chapront &amp; Francou
+ * (2003) down to the specified limiting term amplitude.
+ *
+ * NOTES:
+ *
+ *  - The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *    amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
+ *    accuracy below 1 km level (and less than 100 meter error typically for 1900 -- 2100).
+ *
+ * REFERENCES:
+ *
+ *  - Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *  - Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *  - Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *    https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
+ *
+ * @param limit_term    (optional) [arcsec|km] Sum only the harmonic terms with amplitudes larger
+ *                      than this limit.
+ * @return              The apparent place of the moon on the observer's sky.
+ *
+ * @sa geometric_moon_elp2000()
+ */
+Apparent Frame::apparent_moon_elp2000(double limit_term) const {
+  if(!is_valid()) {
+    novas_trace_invalid("Frame::apparent_moon_elp_2000()");
+    return Apparent::undefined();
+  }
+
+  sky_pos p = {};
+  novas_moon_elp_sky_pos_fp(_novas_frame(), limit_term, NOVAS_TOD, &p);
+
+  return Apparent::from_tod_sky_pos(*this, &p);
+}
+
+/**
  * Returns a reduced accuracy observing frame for the specified observer at the specified time.
  * Reduced accuracy frames provide 1 mas accuracy typically, and do not require a planet provider
  * to be configured. As such, they offer a simplest way for obtaining astrometric positions for

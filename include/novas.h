@@ -3342,6 +3342,24 @@ double novas_diff_time_scale(const novas_timespec *t1, const novas_timespec *t2,
 /// @c_time
 int novas_time_leap(const novas_timespec *time);
 
+/// @c_geometric
+int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_reference_system sys, double *restrict pos, double *restrict vel);
+
+/// @c_geometric
+int novas_moon_elp_posvel_fp(const novas_frame *restrict frame, double limit,
+        enum novas_reference_system sys, double *restrict pos, double *restrict vel);
+
+/// @c_apparent
+int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_reference_system sys, sky_pos *restrict pos);
+
+/// @c_apparent
+int novas_moon_elp_sky_pos_fp(const novas_frame *restrict frame, double limit, enum novas_reference_system sys, sky_pos *restrict pos);
+
+/// @c_nonequatorial
+int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos);
+
+int novas_moon_elp_ecl_vel(double jd_tdb, double limit, double *vel);
+
 // <================= END of SuperNOVAS API =====================>
 
 

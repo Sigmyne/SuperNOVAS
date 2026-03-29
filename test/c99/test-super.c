@@ -4118,7 +4118,7 @@ static int test_approx_sky_pos() {
   return n;
 }
 
-static int test_make_moon_orbit() {
+static int test_make_moon_orbit_elp() {
   int n = 0;
 
   observer obs = {};
@@ -4130,90 +4130,38 @@ static int test_make_moon_orbit() {
   double jd = NOVAS_JD_J2000;
   double sumx = 0.0, sumy = 0.0, rms;
 
-  double jpl[52][3] = { //
-          { 2451544.5,     216.67576,  -8.99703 },
-          { 2452264.5,     342.36276, -12.90842 },
-          { 2452984.5,     103.29512,  26.98992 },
-          { 2453704.5,     223.82514, -19.76069 },
-          { 2454424.5,     353.01741,  -1.12209 },
-          { 2455144.5,     129.95454,  17.06337 },
-          { 2455864.5,     259.20091, -22.57588 },
-          { 2456584.5,      23.47711,  10.95540 },
-          { 2457304.5,     152.92399,   8.41774 },
-          { 2458024.5,     273.71177, -19.44667 },
-          { 2458744.5,      35.78456,   9.29532 },
-          { 2459464.5,     167.05508,  10.92245 },
-          { 2460184.5,     293.21493, -26.87518 },
-          { 2460904.5,      61.34374,  26.00650 },
-          { 2461624.5,     193.47181, -10.99723 },
-          { 2462344.5,     322.31292, -10.82091 },
-          { 2463064.5,      85.59313,  20.85130 },
-          { 2463784.5,     206.16268,  -9.77217 },
-          { 2464504.5,     332.90633, -10.61694 },
-          { 2465224.5,     100.92869,  21.39741 },
-          { 2465944.5,     226.71784, -14.50273 },
-          { 2466664.5,       2.21811,  -3.01084 },
-          { 2467384.5,     136.57748,  20.96113 },
-          { 2468104.5,     254.81795, -27.49122 },
-          { 2468824.5,      16.62860,  12.48050 },
-          { 2469544.5,     143.11761,   9.40655 },
-          { 2470264.5,     265.50603, -19.10177 },
-          { 2470984.5,      35.42012,  10.39975 },
-          { 2471704.5,     168.33755,   7.67623 },
-          { 2472424.5,     299.37536, -22.22046 },
-          { 2473144.5,      66.54787,  22.38175 },
-          { 2473864.5,     191.10386,  -3.89302 },
-          { 2474584.5,     317.66613, -18.82552 },
-          { 2475304.5,      76.20722,  26.76212 },
-          { 2476024.5,     197.84292, -12.82374 },
-          { 2476744.5,     333.68438,  -5.50634 },
-          { 2477464.5,     106.16260,  17.55346 },
-          { 2478184.5,     232.74963, -13.92513 },
-          { 2478904.5,       5.10081,  -3.02749 },
-          { 2479624.5,     130.09104,  22.53349 },
-          { 2480344.5,     246.45525, -24.29337 },
-          { 2481064.5,      11.71903,   6.09685 },
-          { 2481784.5,     140.16308,  16.12728 },
-          { 2482504.5,     270.15019, -24.68580 },
-          { 2483224.5,      40.81044,  17.73999 },
-          { 2483944.5,     170.40302,   0.81585 },
-          { 2484664.5,     299.55050, -16.43272 },
-          { 2485384.5,      60.21242,  15.51971 },
-          { 2486104.5,     184.73889,   3.52971 },
-          { 2486824.5,     312.51612, -22.68359 },
-          { 2487544.5,      72.33317,  26.71028 },
-          { 2488264.5,     203.01589, -13.75745 }
-  };
-
   const double tol = 0.2; // [deg]
   int i;
 
   // Compare to JPL Horizons...
   make_observer_at_geocenter(&obs);
 
-  for(i = 0; i < 52; i++) {
+  for(i = 0; i < 520; i++) {
     double elon0, elon1, elat0, elat1, dlon, dlat;
+    sky_pos elp  = {};
     char label[80] = {'\0'};
 
-    jd = jpl[i][0];
+    jd = NOVAS_JD_J2000 + 12.0 * i;
 
-    novas_set_time(NOVAS_UTC, jd, 32, 0.0, &t);
+    novas_set_time(NOVAS_TDB, jd, 32, 0.0, &t);
     novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &t, 0.0, 0.0, &f);
     novas_make_moon_orbit(jd, &moon_orbit);
     make_orbital_object("Moon", -1, &moon_orbit, &moon);
     novas_sky_pos(&moon, &f, NOVAS_ICRS, &pos);
 
-    sprintf(label, "make_moon_orbit:%.2f:ra", 2000.0 + (jd - NOVAS_JD_J2000) / 365.25);
-    if(!is_equal(label, 15.0 * pos.ra, jpl[i][1], tol)) n++;
+    novas_moon_elp_sky_pos(&f, NOVAS_ICRS, &elp);
 
-    sprintf(label, "make_moon_orbit:%.2f:dec", 2000.0 + (jd - NOVAS_JD_J2000) / 365.25);
-    if(!is_equal(label, pos.dec, jpl[i][2], tol)) n++;
-
-    equ2ecl(jd, NOVAS_GCRS_EQUATOR, NOVAS_FULL_ACCURACY, jpl[i][1] / 15.0, jpl[i][2], &elon0, &elat0);
+    equ2ecl(jd, NOVAS_GCRS_EQUATOR, NOVAS_FULL_ACCURACY, elp.ra, elp.dec, &elon0, &elat0);
     equ2ecl(jd, NOVAS_GCRS_EQUATOR, NOVAS_FULL_ACCURACY, pos.ra, pos.dec, &elon1, &elat1);
 
     dlon = (elon1 - elon0) * cos(elat0 * DEGREE) * 3600.0;
     dlat = (elat1 - elat0) * 3600.0;
+
+    sprintf(label, "make_moon_orbit:elp:%.2f:lon", (2000.0 + (jd - NOVAS_JD_J2000) / 365.25));
+    if(!is_equal(label, dlon / 3600.0, 0.0, tol)) n++;
+
+    sprintf(label, "make_moon_orbit:elp:%.2f:lat", (2000.0 + (jd - NOVAS_JD_J2000) / 365.25));
+    if(!is_equal(label, dlat / 3600.0, 0.0, tol)) n++;
 
     //printf("### %2d:  %10.3f   %10.3f\n", i, dlon, dlat);
 
@@ -4221,21 +4169,73 @@ static int test_make_moon_orbit() {
     sumy += dlat * dlat;
   }
 
-  rms = sqrt((sumx + sumy) / 52);
+  rms = sqrt((sumx + sumy) / 1000);
 
-  sumx = sqrt(sumx / 52);
-  sumy = sqrt(sumy / 52);
-
-
+  sumx = sqrt(sumx / 1000);
+  sumy = sqrt(sumy / 1000);
 
   if(rms > 500.0) {
-    printf("  ERROR! make_moon_orbit: RMS = %8.3f (x: %8.3f, y: %8.3f)\n", rms, sumx, sumy);
+    printf("  ERROR! make_moon_orbit / ELP: RMS = %8.3f (x: %8.3f, y: %8.3f)\n", rms, sumx, sumy);
     n++;
   }
   else {
     printf("  ... make_moon_orbit: RMS = %8.3f (x: %8.3f, y: %8.3f)\n", rms, sumx, sumy);
   }
 
+  return n;
+}
+
+
+static int test_moon_elp_ecl_pos() {
+  int n = 0;
+
+  // Table 8.b. from https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/elpmpp02.pdf
+  double test[5][4] = {
+          { 2500000.5,  274034.59103,  252067.53689, -18998.75519 },
+          { 2300000.5,  353104.31359, -195254.11808,  34943.54592 },
+          { 2100000.5,  -19851.27674, -385646.17717, -27597.66134 },
+          { 1900000.5, -370342.79254,  -37574.25533,  -4527.91840 },
+          { 1700000.5, -164673.04720,  367791.71329,  31603.98027 }
+  };
+  int k;
+
+  for(k = 0; k < 5; k++) {
+    double tdb = test[k][0];
+    double *p0 = &test[k][1];
+    double pos[3] = {0.0};
+    char label[80] = {'\0'};
+    int i;
+
+    novas_moon_elp_ecl_pos(tdb, 0.0, pos);
+    for(i = 3; --i >= 0; ) pos[i] *= NOVAS_AU / NOVAS_KM;
+    sprintf(label, "moon_elp_posvel:%.1f", tdb);
+
+    printf("  ... %s: d = %.3f km\n", label, novas_vdist(pos, p0));
+
+    if(!is_ok(label, check_equal_pos(pos, p0, 1.0))) n++;
+  }
+
+  return n;
+}
+
+static int test_moon_elp_ecl_vel() {
+  int n = 0;
+
+  double p1[3] = {0.0}, p2[3] = {0.0}, v[3] = {0.0};
+
+  novas_moon_elp_ecl_pos(NOVAS_JD_J2000 - 0.01, 0.0, p1);
+  novas_moon_elp_ecl_pos(NOVAS_JD_J2000 + 0.01, 0.0, p2);
+
+  novas_moon_elp_ecl_vel(NOVAS_JD_J2000, 0.0, v);
+
+  if(!is_equal("moon_elp_ecl_vel:x", v[0], (p2[0] - p1[0]) / 0.02, 1e-12)) n++;
+  if(!is_equal("moon_elp_ecl_vel:y", v[1], (p2[1] - p1[1]) / 0.02, 1e-12)) n++;
+  if(!is_equal("moon_elp_ecl_vel:z", v[2], (p2[2] - p1[2]) / 0.02, 1e-12)) n++;
+
+  novas_moon_elp_ecl_vel(NOVAS_JD_J2000, 0.0, v);
+  if(!is_equal("moon_elp_ecl_vel:rep:x", v[0], (p2[0] - p1[0]) / 0.02, 1e-12)) n++;
+  if(!is_equal("moon_elp_ecl_vel:rep:y", v[1], (p2[1] - p1[1]) / 0.02, 1e-12)) n++;
+  if(!is_equal("moon_elp_ecl_vel:rep:z", v[2], (p2[2] - p1[2]) / 0.02, 1e-12)) n++;
 
   return n;
 }
@@ -4988,6 +4988,129 @@ static int test_time_leap() {
   return n;
 }
 
+static int test_moon_elp_posvel() {
+  int n = 0;
+
+  observer obs = {};
+  novas_timespec ts = {};
+  novas_frame f = {};
+  double p0[3] = {0.0}, v0[3] = {0.0};
+  double p1[3] = {0.0}, v1[3] = {0.0};
+  double p[3] = {0.0}, v[3] = {0.0};
+  enum novas_reference_system sys;
+  int i;
+
+  novas_set_time(NOVAS_TDB, NOVAS_JD_B1950, 32, 0.0, &ts);
+  make_observer_at_geocenter(&obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+
+  // J2000 ecliptic
+  novas_moon_elp_ecl_pos(NOVAS_JD_B1950, 0.01, p0);
+  novas_moon_elp_ecl_vel(NOVAS_JD_B1950, 0.01, v0);
+
+  // J2000 equatorial
+  ecl2equ_vec(NOVAS_JD_J2000, NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, p0, p0);
+  ecl2equ_vec(NOVAS_JD_J2000, NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, v0, v0);
+
+  for(sys = 0; sys < NOVAS_REFERENCE_SYSTEMS; sys++) {
+    novas_transform T = {};
+    char label[100] = {'\0'};
+
+    if(sys == NOVAS_TIRS || sys == NOVAS_ITRS) continue;
+
+    novas_make_transform(&f, NOVAS_J2000, sys, &T);
+    novas_transform_vector(p0, &T, p1);
+    novas_transform_vector(v0, &T, v1);
+
+    sprintf(label, "moon_elp_posvel:gc:%d", (int) sys);
+    if(!is_ok(label, novas_moon_elp_posvel_fp(&f, 0.01, sys, p, v))) n++;
+
+    sprintf(label, "moon_elp_posvel:gc:%d:pos", (int) sys);
+    if(!is_ok(label, check_equal_pos(p, p1, 1e-14))) n++;
+
+    sprintf(label, "moon_elp_posvel:gc:%d:vel", (int) sys);
+    if(!is_ok(label, check_equal_pos(v, v1, 1e-13))) n++;
+  }
+
+  if(1) return n;
+
+  make_observer_on_surface(19.3, -155.2, 4150.0, 0.0, 637.0, &obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+
+  // observer pos at time.
+  terra(&obs.on_surf, novas_time_gst(&ts, NOVAS_REDUCED_ACCURACY), p1, v1);
+  tod_to_gcrs(NOVAS_JD_B1950, NOVAS_FULL_ACCURACY, p1, p1);
+  tod_to_gcrs(NOVAS_JD_B1950, NOVAS_FULL_ACCURACY, v1, v1);
+
+  // moon rel. observer (in TOD)
+  for(i = 0; i < 3; i++) {
+    p1[i] = p0[i] - p1[i];
+    v1[i] = v0[i] - v1[i];
+  }
+
+  if(!is_ok("moon_elp_posvel:site", novas_moon_elp_posvel(&f, NOVAS_ICRS, p, v))) n++;
+  if(!is_ok("moon_elp_posvel:site:pos", check_equal_pos(p, p1, 1e-9))) n++;
+  if(!is_ok("moon_elp_posvel:site:vel", check_equal_pos(p, p1, 1e-9))) n++;
+
+  return n;
+}
+
+static int test_moon_elp_sky_pos() {
+  int n = 0;
+
+  observer obs = {};
+  novas_timespec ts = {};
+  novas_frame f = {};
+  on_surface site = {};
+  sky_pos pos = {};
+
+  double v0[3] = {1.3, -2.2, 3.1}; // [km/s]
+  double p[3] = {0.0};
+  double vo[3] = {0.0}, p1[3] = {0.0};
+  double ra = 0.0, dec = 0.0;
+  int i;
+
+  make_itrf_site(19.3, -155.2, 4150.0, &site);
+  make_observer_at_site(&site, &obs);
+  novas_set_time(NOVAS_TDB, NOVAS_JD_B1950, 32, 0.0, &ts);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+
+  // moon pos at time
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p, NULL);
+
+  // observer pos/vel at time (in TOD)
+  terra(&obs.on_surf, novas_time_gst(&ts, NOVAS_REDUCED_ACCURACY), NULL, vo);
+  aberration(p, vo, 0.0, p1);
+  vector2radec(p1, &ra, &dec);
+
+  if(!is_ok("moon_elp_sky_pos:site", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
+  if(!is_equal("moon_elp_sky_pos:site:ra", pos.ra, ra, 1e-11)) n++;
+  if(!is_equal("moon_elp_sky_pos:site:dec", pos.dec, dec, 1e-12)) n++;
+
+  // airborne observer...
+  make_airborne_observer(&site, v0, &obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+
+  // geocdentric observer velocity (TOD)
+  for(i = 0; i < 3; i++)
+    vo[i] = novas_add_vel(f.obs_vel[i], -f.earth_vel[i]);
+  gcrs_to_tod(NOVAS_JD_B1950, NOVAS_REDUCED_ACCURACY, vo, vo);
+
+  // aberration (in TOD)
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p1, NULL);
+  if(!is_ok("airborne:pos", check_equal_pos(p1, p, 1e-12))) n++;
+
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p, NULL);
+  aberration(p, vo, 0.0, p1);
+  vector2radec(p1, &ra, &dec);
+
+  if(!is_ok("moon_elp_sky_pos:air", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
+  if(!is_equal("moon_elp_sky_pos:air:ra", pos.ra, ra, 1e-11)) n++;
+  if(!is_equal("moon_elp_sky_pos:air:dec", pos.dec, dec, 1e-12)) n++;
+
+  return n;
+}
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -5111,7 +5234,9 @@ int main(int argc, char *argv[]) {
 
   if(test_approx_heliocentric()) n++;
   if(test_approx_sky_pos()) n++;
-  if(test_make_moon_orbit()) n++;
+  if(test_make_moon_orbit_elp()) n++;
+  if(test_moon_elp_ecl_pos()) n++;
+  if(test_moon_elp_ecl_vel()) n++;
   if(test_moon_phase()) n++;
   if(test_next_moon_phase()) n++;
 
@@ -5148,6 +5273,9 @@ int main(int argc, char *argv[]) {
   if(test_time_leap()) n++;
 
   if(test_print_decimal()) n++;
+
+  if(test_moon_elp_posvel()) n++;
+  if(test_moon_elp_sky_pos()) n++;
 
   n += test_dates();
 

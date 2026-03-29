@@ -14,7 +14,6 @@
 #include "supernovas.h"
 
 
-
 namespace supernovas {
 
 
@@ -345,7 +344,6 @@ std::string GeocentricObserver::to_string() const {
   return "Geocentric Observer" + p + v;
 }
 
-
 /**
  * Instantiates a new stationary observer located at the Solar-System Barycenter (SSB).
  *
@@ -575,6 +573,7 @@ Velocity GeodeticObserver::enu_velocity() const {
 }
 
 
+
 /**
  * Earth Orientation Parameters (EOP) appropriate around the time of observation.
  *
@@ -583,6 +582,7 @@ Velocity GeodeticObserver::enu_velocity() const {
 const EOP& GeodeticObserver::eop() const {
   return _eop;
 }
+
 
 /**
  * Returns a string representation of this Earth-based observer location.
