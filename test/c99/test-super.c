@@ -5005,8 +5005,8 @@ static int test_moon_elp_posvel() {
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
 
   // J2000 ecliptic
-  novas_moon_elp_ecl_pos(NOVAS_JD_B1950, 0.0, p0);
-  novas_moon_elp_ecl_vel(NOVAS_JD_B1950, 0.0, v0);
+  novas_moon_elp_ecl_pos(NOVAS_JD_B1950, 0.01, p0);
+  novas_moon_elp_ecl_vel(NOVAS_JD_B1950, 0.01, v0);
 
   // J2000 equatorial
   ecl2equ_vec(NOVAS_JD_J2000, NOVAS_MEAN_EQUATOR, NOVAS_FULL_ACCURACY, p0, p0);
@@ -5023,7 +5023,7 @@ static int test_moon_elp_posvel() {
     novas_transform_vector(v0, &T, v1);
 
     sprintf(label, "moon_elp_posvel:gc:%d", (int) sys);
-    if(!is_ok(label, novas_moon_elp_posvel(&f, sys, p, v))) n++;
+    if(!is_ok(label, novas_moon_elp_posvel_fp(&f, 0.01, sys, p, v))) n++;
 
     sprintf(label, "moon_elp_posvel:gc:%d:pos", (int) sys);
     if(!is_ok(label, check_equal_pos(p, p1, 1e-14))) n++;
