@@ -85,20 +85,6 @@ enum novas_observer_place Observer::type() const {
 }
 
 /**
- * Returns the geometric position and velocity of this observer at the specified time (or at the
- * time for which the observer was defined), and relative to the geocenter.
- *
- * @param time      Astrometric time of observation (it may be ignored).
- * @param accuracy  (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
- * @return          The geometric position and velocity of this observer at the specified time (or
- *                  at the time the observer was defined).
- */
-Geometric Observer::geocentric_at(const Time& time, enum novas_accuracy accuracy) const {
-  novas_set_errno(ENOSYS, "Observer::geocentric_icrs_at()", "Not provided by base Observer class");
-  return Geometric::undefined();
-}
-
-/**
  * Returns an observing frame for this observer at the specified time and optionally with a
  * specified accuracy. Full accuracy frames (default) require that a high-precision planet
  * provider is configured prior, to the call.
@@ -202,13 +188,27 @@ Frame Observer::reduced_accuracy_frame_at(const Time& time) const {
  * @sa AstrometricPosition::to_interferometric()
  */
 Interferometric Observer::to_interferometric(const Apparent& phase_center) const {
+  static const char *fn = "Observer::to_interferometric";
+
   const Frame& frame = phase_center.frame();
+  const Time& t = frame.time();
 
-  Geometric loc = geocentric_at(frame.time()).to_system(NOVAS_TOD);
-  Geometric ref = frame.observer().geocentric_at(frame.time()).to_system(NOVAS_TOD);
+  // Station pos/vel w.r.t. geocenter
+  double pobs[3] = {0.0}, vobs[3] = {0.0};
+  if(geo_posvel(t.jd(), t.dUT1().seconds(), frame.accuracy(), _novas_observer(), pobs, vobs) != 0) {
+    novas_trace_invalid(fn);
+    return Interferometric::undefined();
+  }
 
-  Position pos = loc.position() - ref.position();
-  Velocity vel = loc.velocity() - ref.velocity();
+  // Array reference pos/vel w.r.t. geocenter
+  double pref[3] = {0.0}, vref[3] = {0.0};;
+  if(geo_posvel(t.jd(), t.dUT1().seconds(), frame.accuracy(), frame.observer()._novas_observer(), pref, vref) != 0) {
+    novas_trace_invalid(fn);
+    return Interferometric::undefined();
+  }
+
+  Position pos = Position(pobs, Unit::AU) - Position(pref, Unit::AU);
+  Velocity vel = Velocity(vobs, Unit::AU / Unit::day) - Velocity(vref, Unit::AU / Unit::day);
   Position los = phase_center.equatorial().xyz(phase_center.distance()) - pos;
 
   double uvw[3] = {0.0};
@@ -216,7 +216,7 @@ Interferometric Observer::to_interferometric(const Apparent& phase_center) const
 
   Interferometric i(uvw[0], uvw[1], uvw[2]);
   if(!i.is_valid())
-    novas_trace_invalid("GeodeticObserver::to_interferometric()");
+    novas_trace_invalid(fn);
   return i;
 }
 
@@ -380,10 +380,6 @@ GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
     _valid = true;
 }
 
-Geometric GeocentricObserver::geocentric_at(const Time& time, enum novas_accuracy accuracy) const {
-  return Geometric(Observer::at_geocenter().frame_at(time), geocentric_position(), geocentric_velocity(), NOVAS_ICRS);
-}
-
 /**
  * Returns a pointer to a newly allocated copy of this geocentric observer instance.
  *
@@ -471,13 +467,6 @@ SolarSystemObserver::SolarSystemObserver(const Position& pos, const Velocity& ve
     novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s)");
   else
     _valid = true;
-}
-
-Geometric SolarSystemObserver::geocentric_at(const Time& time, enum novas_accuracy accuracy) const {
-  return Geometric(Observer::at_geocenter().frame_at(time, accuracy),
-          ssb_position() - Planet::earth().geometric_at(time, accuracy).position(),
-          ssb_velocity() - Planet::earth().geometric_at(time, accuracy).velocity(),
-          NOVAS_ICRS);
 }
 
 /**
@@ -610,12 +599,6 @@ GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop, const Scala
   v[2] = vertical.km_per_s();
 
   novas_enu_to_itrs(v, site.longitude().deg(), site.latitude().deg(), _observer.near_earth.sc_vel);
-}
-
-Geometric GeodeticObserver::geocentric_at(const Time& time, enum novas_accuracy accuracy) const {
-  double p[3] = {0.0}, v[3] = {0.0};;
-  terra(site()._on_surface(), 0.0, p, v);
-  return Geometric(Observer::at_geocenter().frame_at(time), Position(p, Unit::AU), Velocity(v, Unit::AU / Unit::day) + itrs_velocity(), NOVAS_ITRS);
 }
 
 /**

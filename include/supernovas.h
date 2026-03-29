@@ -1324,8 +1324,6 @@ protected:
   explicit Observer(enum novas_observer_place type, const Site& site = Site::undefined(), const Position& pos = Position::origin(),
           const Velocity& vel = Velocity::stationary());
 
-  virtual Geometric geocentric_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
-
 public:
 
   virtual ~Observer() {}
@@ -1403,8 +1401,6 @@ public:
 
   Velocity enu_velocity() const;
 
-  Geometric geocentric_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const override;
-
   const EOP& eop() const;
 
   std::string to_string() const override;
@@ -1418,9 +1414,6 @@ public:
  * @ingroup observer
  */
 class GeocentricObserver : public Observer {
-protected:
-  Geometric geocentric_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const override;
-
 public:
   GeocentricObserver();
 
@@ -1444,9 +1437,6 @@ public:
  * @ingroup observer
  */
 class SolarSystemObserver : public Observer {
-protected:
-  Geometric geocentric_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const override;
-
 public:
 
   SolarSystemObserver();
