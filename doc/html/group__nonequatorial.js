@@ -30,6 +30,7 @@ var group__nonequatorial =
     [ "novas_hor_to_app", "group__nonequatorial.html#gaa57cbcae2001fece2ee4a2babfbc5f89", null ],
     [ "novas_hpa", "group__nonequatorial.html#ga73fcb54e47b2be0aa92810b5f55f7a3c", null ],
     [ "novas_los_to_xyz", "group__nonequatorial.html#ga601d246673742cf72a5dbe1449c97560", null ],
+    [ "novas_moon_elp_ecl_pos", "group__nonequatorial.html#ga7eba1ad9605f1e334973d42eb1ef765f", null ],
     [ "novas_uvw_to_xyz", "group__nonequatorial.html#ga16c920eee105431247e9a1d9bf1c3021", null ],
     [ "novas_xyz_to_los", "group__nonequatorial.html#ga14deb6fdce80ba213e1f1d5238306e17", null ],
     [ "novas_xyz_to_uvw", "group__nonequatorial.html#ga87867e8e7fc7decaa44777a696465353", null ],

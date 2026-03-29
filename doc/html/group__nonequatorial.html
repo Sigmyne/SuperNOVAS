@@ -160,6 +160,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga73fcb54e47b2be0aa92810b5f55f7a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Parallactic Angle (PA) calculated for a horizontal Az/El location of the sky.  <br /></td></tr>
 <tr class="memitem:ga601d246673742cf72a5dbe1449c97560" id="r_ga601d246673742cf72a5dbe1449c97560"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga601d246673742cf72a5dbe1449c97560">novas_los_to_xyz</a> (const double *los, double lon, double lat, double *xyz)</td></tr>
 <tr class="memdesc:ga601d246673742cf72a5dbe1449c97560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a 3D line-of-sight vector (&delta;&phi;, &delta;&theta;, &delta;r) to a rectangular equatorial (&delta;x, &delta;y, &delta;z) vector.  <br /></td></tr>
+<tr class="memitem:ga7eba1ad9605f1e334973d42eb1ef765f" id="r_ga7eba1ad9605f1e334973d42eb1ef765f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos</a> (double jd_tdb, double limit, double *pos)</td></tr>
+<tr class="memdesc:ga7eba1ad9605f1e334973d42eb1ef765f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the Moon's geocentric position using the ELP/MPP02 model by Chapront &amp; Francou (2003), in the ELP2000 reference plane (i.e.  <br /></td></tr>
 <tr class="memitem:ga16c920eee105431247e9a1d9bf1c3021" id="r_ga16c920eee105431247e9a1d9bf1c3021"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga16c920eee105431247e9a1d9bf1c3021">novas_uvw_to_xyz</a> (const double *uvw, double ha, double dec, double *xyz)</td></tr>
 <tr class="memdesc:ga16c920eee105431247e9a1d9bf1c3021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts equatorial u,v,w projected (absolute or relative) coordinates to rectangular telescope x,y,z coordinates (in ITRS) to for a specified line of sight.  <br /></td></tr>
 <tr class="memitem:ga14deb6fdce80ba213e1f1d5238306e17" id="r_ga14deb6fdce80ba213e1f1d5238306e17"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los</a> (const double *xyz, double lon, double lat, double *los)</td></tr>
@@ -392,7 +394,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="group__earth.html#gab75165e2d69231da10c67de025ee05d8">e_tilt()</a>, <a class="el" href="group__equatorial.html#gaa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="group__equatorial.html#ggae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>, <a class="el" href="group__earth.html#gaf182ee8cc4239f581f746aa974827d61">mean_obliq()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66">NOVAS_GCRS_EQUATOR</a>, <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846">NOVAS_REDUCED_ACCURACY</a>, and <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f">NOVAS_TRUE_EQUATOR</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#ga41ca0cfd79ad07c9e857ba02fa94928e">ecl2equ()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#ga41ca0cfd79ad07c9e857ba02fa94928e">ecl2equ()</a>, and <a class="el" href="group__geometric.html#ga8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>.</p>
 
 </div>
 </div>
@@ -1030,6 +1032,65 @@ Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga14deb6fdce80ba213e1f1d5238306e17" title="Converts a 3D rectangular equatorial (δx, δy, δz) vector to a polar (δφ, δθ, δr) vector along a line-...">novas_xyz_to_los()</a>, <a class="el" href="#ga16c920eee105431247e9a1d9bf1c3021" title="Converts equatorial u,v,w projected (absolute or relative) coordinates to rectangular telescope x,...">novas_uvw_to_xyz()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#ga16c920eee105431247e9a1d9bf1c3021">novas_uvw_to_xyz()</a>, <a class="el" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>, and <a class="el" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+
+</div>
+</div>
+<a id="ga7eba1ad9605f1e334973d42eb1ef765f" name="ga7eba1ad9605f1e334973d42eb1ef765f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7eba1ad9605f1e334973d42eb1ef765f">&#9670;&#160;</a></span>novas_moon_elp_ecl_pos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_moon_elp_ecl_pos </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>jd_tdb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>limit</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the Moon's geocentric position using the ELP/MPP02 model by Chapront &amp; Francou (2003), in the ELP2000 reference plane (i.e. </p>
+<p>the inertial ecliptic and equinox of J2000), down to the specified limiting term amplitude.</p>
+<p>NOTES: </p><ol>
+<li>
+The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting accuracy below 1 km level (and less than 100 meter error typically for 1900 &ndash; 2100).  </li>
+</ol>
+<p>REFERENCES: </p><ol>
+<li>
+Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988) </li>
+<li>
+Chapront, J., Francou G., 2003, A&amp;A, 404, 735 </li>
+<li>
+Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a> </li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">jd_tdb</td><td>[day] Barycentric Dynamical Time (TDB) based Julian date. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">limit</td><td>[arcsec|km] Sum only the harmonic terms with amplitudes larger than this limit. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] Output geocentric position vector w.r.t. the intertial ecliptic and equinox of J2000. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will indicate the type of error.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a>, <a class="el" href="group__apparent.html#ga03aca2626e38d04bcdf94fae14c6d11c" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos()</a> </dd>
+<dd>
+<a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045adc941f5a3613952d6d6102281e70e5c0">NOVAS_EARTH</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="group__util.html#ga0a84af1a760ed2aaa01dd93e9e22bdf1">NOVAS_KM</a>, <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045af12d26e56aa375fd2aa0c0edfd1c9ae3">NOVAS_NEPTUNE</a>, <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045a03b12ea0f93a1a1045d7bcccd613c6f2">NOVAS_SATURN</a>, <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045a7c452cc654265f03e78801f9aead83de">NOVAS_VENUS</a>, and <a class="el" href="planets_8c.html#aacc6a0daf29b8bdc18f46647a94694d3">planet_lon()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="moon_8c.html#a873ac52b14e599237dc75b4abb4f126f">novas_moon_elp_ecl_vel()</a>, <a class="el" href="group__geometric.html#ga8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, and <a class="el" href="group__apparent.html#ga2dbdafd6b07f079815ae52d00e142861">novas_moon_phase()</a>.</p>
 
 </div>
 </div>

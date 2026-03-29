@@ -349,7 +349,7 @@ Functions</h2></td></tr>
 <p>[m] Astronomical unit (AU). </p>
 <p>IAU definition. See <a href="https://www.iau.org/static/resolutions/IAU2012_English.pdf">IAU 2012 Resolution B2</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__solar-system.html#gaf303bf91582509624aa40c6a87eb95ac" title="[m] Astronomical unit (AU).">DE405_AU</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="grav_8c.html#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="group__time.html#ga9061a46b13dfca669c327283f7357586">novas_clock_skew()</a>, <a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="group__spectral.html#ga37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>, and <a class="el" href="#ga27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="grav_8c.html#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="group__time.html#ga9061a46b13dfca669c327283f7357586">novas_clock_skew()</a>, <a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="group__nonequatorial.html#ga7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="group__apparent.html#ga59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="group__spectral.html#ga37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>, and <a class="el" href="#ga27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>.</p>
 
 </div>
 </div>
@@ -1829,15 +1829,19 @@ Low accuracy mean elements for planets from JPL Horizons: <a href="https://ssd.j
 </div><div class="memdoc">
 
 <p>Gets mean orbital elements for the Moon relative to the geocenter for the specified epoch of observation. </p>
-<p>It is based on the secular parameters of the ELP2000-85 model, but does not include the harmonic series and the perturbation terms. As such it has accuracy at the few degrees level only, however it is 'valid' for long-term projections (i.e. for years around the orbit's reference epoch) at that coarse level.</p>
+<p>It is based on the secular parameters of the ELP2000-85 model, not including the harmonic series the perturbation terms. As such it has accuracy at the few degrees level only, however it is 'valid' for long-term projections (i.e. for years around the orbit's reference epoch) at that coarse level.</p>
 <p>For the short-term , <span class="tt"><a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a></span> can provide somewhat more accurate predictions for up to a day or so around the reference epoch of the orbit.</p>
+<p>NOTES:</p>
+<ul>
+<li>The Moon's orbit is strongly non Keplerian due to the tidal distortions (esp. by the Sun), hence any attempt to describe it it purely Keplerian terms is inherently flawed. If you want to calculate the Moon's position (and/or velocity) with some precision, without using ephemerides, you should probably use the ELP2000/MPP02 model provided by <span class="tt"><a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a></span> and <span class="tt"><a class="el" href="group__apparent.html#ga03aca2626e38d04bcdf94fae14c6d11c" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos()</a></span>.</li>
+</ul>
 <p>REFERENCES: </p><ol>
 <li>
 Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
 <li>
 Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352. </li>
 <li>
-Chapront J., Francou G., 2003, A&amp;A, 404, 735 </li>
+Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735 </li>
 <li>
 Laskar J., 1986, A&amp;A, 157, 59 </li>
 </ol>
@@ -1851,7 +1855,9 @@ Laskar J., 1986, A&amp;A, 157, 59 </li>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 (<span class="tt">errno</span> set to <span class="tt">EINVAL</span>).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.4 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a>, <a class="el" href="#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a>, <a class="el" href="#ga3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a>, <a class="el" href="#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a>, <a class="el" href="#ga3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a> </dd>
+<dd>
+<a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a>, <a class="el" href="group__apparent.html#ga03aca2626e38d04bcdf94fae14c6d11c" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="#gga219df36b21dc4476656e708d14d08045adc941f5a3613952d6d6102281e70e5c0">NOVAS_EARTH</a>, <a class="el" href="#gga9ee18ab5f8fdc009913c11f04026122fac0d0495aebd235ecd346b8932cc1943e">NOVAS_ECLIPTIC_PLANE</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="#ga85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>, and <a class="el" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>.</p>
 
@@ -1879,7 +1885,7 @@ Laskar J., 1986, A&amp;A, 157, 59 </li>
 </div><div class="memdoc">
 
 <p>Gets an approximation of the <span class="tt">current</span> Keplerian orbital elements for the Moon relative to the geocenter for the specified epoch of observation. </p>
-<p>The orbit includes the most dominant Solar perturbation terms to produce results with an accuracy at the ~10 arcmin level near (+- 0.5 days) the reference time argument of the orbit. The perturbed orbit is based on the ELP/MPP02 model.</p>
+<p>The orbit includes the most dominant Solar perturbation terms to produce results with an accuracy at the few arcmin level near (+- 0.5 days) the reference time argument of the orbit. The perturbed orbit is based on the ELP/MPP02 model.</p>
 <p>While, the ELP/MPP02 model itself can be highly precise, the Moon's orbit is strongly non-Keplerian, and so any attempt to describe it in purely Keplerian terms is inherently flawed, which is the reason for the generally poor accuracy of this model.</p>
 <p>REFERENCES: </p><ol>
 <li>
@@ -1899,11 +1905,13 @@ Chapront J., Francou G., 2003, A&amp;A, 404, 735 </li>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 (<span class="tt">errno</span> set to <span class="tt">EINVAL</span>).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a" title="Gets mean orbital elements for the Moon relative to the geocenter for the specified epoch of observat...">novas_make_moon_mean_orbit()</a>, <a class="el" href="#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a>, <a class="el" href="#ga3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a" title="Gets mean orbital elements for the Moon relative to the geocenter for the specified epoch of observat...">novas_make_moon_mean_orbit()</a>, <a class="el" href="#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a>, <a class="el" href="#ga3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a> </dd>
+<dd>
+<a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a>, <a class="el" href="group__apparent.html#ga03aca2626e38d04bcdf94fae14c6d11c" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="group__util.html#ga0a84af1a760ed2aaa01dd93e9e22bdf1">NOVAS_KM</a>, and <a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>.</p>
+<p class="reference">References <a class="el" href="structnovas__delaunay__args.html#af49414d0a8f73222730f65384706f633">novas_delaunay_args::D</a>, <a class="el" href="structnovas__delaunay__args.html#ab2d0e2b9731d4a0b737e359e8d35ba73">novas_delaunay_args::F</a>, <a class="el" href="structnovas__delaunay__args.html#aa1630a9fee0b9072bf57b2c13d9a9c61">novas_delaunay_args::l</a>, <a class="el" href="structnovas__delaunay__args.html#a8528d95bd5e3b2ba7f4bc09112907d9f">novas_delaunay_args::l1</a>, <a class="el" href="#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="group__util.html#ga0a84af1a760ed2aaa01dd93e9e22bdf1">NOVAS_KM</a>, and <a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__geometric.html#ga9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric()</a>, and <a class="el" href="group__apparent.html#ga2dbdafd6b07f079815ae52d00e142861">novas_moon_phase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__geometric.html#ga9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric()</a>.</p>
 
 </div>
 </div>

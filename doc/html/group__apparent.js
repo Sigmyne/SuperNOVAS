@@ -19,6 +19,8 @@ var group__apparent =
     [ "novas_approx_sky_pos", "group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62", null ],
     [ "novas_equ_sep", "group__apparent.html#ga4f7e06b2fa5b3145b37aec4f9c2d1602", null ],
     [ "novas_moon_angle", "group__apparent.html#ga121940d7f0ef41297d28fab8e6df5998", null ],
+    [ "novas_moon_elp_sky_pos", "group__apparent.html#ga03aca2626e38d04bcdf94fae14c6d11c", null ],
+    [ "novas_moon_elp_sky_pos_fp", "group__apparent.html#ga59509eb558c0125e9c5081e712f7c3c7", null ],
     [ "novas_moon_phase", "group__apparent.html#ga2dbdafd6b07f079815ae52d00e142861", null ],
     [ "novas_object_sep", "group__apparent.html#gafa5f3a823a895bed01876df6b2a00370", null ],
     [ "novas_sep", "group__apparent.html#ga9f33de2b26a19a5e20827e9e918b3375", null ],

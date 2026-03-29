@@ -9,6 +9,8 @@ var group__geometric =
     [ "novas_approx_heliocentric", "group__geometric.html#ga9ead627eed7fabd8583f1353e89f42e7", null ],
     [ "novas_geom_posvel", "group__geometric.html#gac6652ee3257621080dac342313d0a0a7", null ],
     [ "novas_geom_to_app", "group__geometric.html#ga4817703c9357f702a27812584c91f87c", null ],
+    [ "novas_moon_elp_posvel", "group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f", null ],
+    [ "novas_moon_elp_posvel_fp", "group__geometric.html#ga8b6d81b2cb348dbd6dc157a9724962e0", null ],
     [ "novas_orbit_native_posvel", "group__geometric.html#ga6b88d2403a3051ab32229244cf98d7ab", null ],
     [ "novas_transform_vector", "group__geometric.html#gaa77895c891e9eeb4b1541f03acfd154e", null ],
     [ "obs_posvel", "group__geometric.html#ga0e4e5ff7c37e6521ca75ae62aaf4050e", null ]

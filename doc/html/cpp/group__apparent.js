@@ -19,6 +19,7 @@ var group__apparent =
     [ "DEFAULT_GRAV_BODIES_REDUCED_ACCURACY", "group__apparent.html#gaec64bf67d5a03b2b4fb2583e5918f1de", null ],
     [ "supernovas::Source::angle_to", "group__apparent.html#ga600eddf89ef347be4838130f327da6df", null ],
     [ "supernovas::Source::apparent_in", "group__apparent.html#ga30cfb5d2c48b4464e015c8429174e771", null ],
+    [ "supernovas::Frame::apparent_moon_elp2000", "group__apparent.html#ga1c1afd88b17a269740a4d5c8b7eb36ee", null ],
     [ "supernovas::Planet::approx_apparent_in", "group__apparent.html#gad531705b1b07e32ead410483e109248f", null ],
     [ "supernovas::Source::moon_angle", "group__apparent.html#ga4d8c425044b5594fa8251812db25f0d7", null ],
     [ "supernovas::Source::sun_angle", "group__apparent.html#ga837b7cc8012af33b66b577bfed9597d9", null ],

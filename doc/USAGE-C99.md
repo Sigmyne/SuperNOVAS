@@ -476,7 +476,9 @@ angles.
 
  - [Planets and/or ephemeris type objects](#ephemeris-sources-c99)
  - [Solar-system objects with Keplerian orbital parameters](#orbital-sources-c99)
- - [Approximate planet and Moon orbitals](#planet-orbitals-c99)
+ - [Approximate planet orbitals](#planet-orbitals-c99)
+ - [Moon's position and phase](#moon-c99)
+ 
 
 Solar-system sources work similarly to the above with a few important differences at the start.
 
@@ -547,7 +549,7 @@ etc.):
 
 
 <a name="planet-orbitals-c99"></a>
-#### Approximate planet and Moon orbitals
+#### Approximate planet orbitals
 
 
 Finally, as of version __1.4__, you might generate approximate (arcmin-level) orbitals for the major planets (but not 
@@ -560,7 +562,7 @@ Earth!), the Moon, and the Earth-Moon Barycenter (EMB) also. E.g.:
  novas_orbital mars_orbit = NOVAS_ORBIT_INIT;
  novas_make_planet_orbit(NOVAS_MARS, jd_tdb, &mars_orbit);
   
- // Moon's orbital around Earth
+ // Moon's (very approcimate) orbital around Earth
  novas_orbital moon_orbit = NOVAS_ORBIT_INIT;
  novas_make_moon_orbit(jd_tdb, &moon_orbit);
 ```
@@ -568,6 +570,47 @@ Earth!), the Moon, and the Earth-Moon Barycenter (EMB) also. E.g.:
 While the planet and Moon orbitals are not suitable for precision applications, they can be useful for determining 
 approximate positions (e.g. via the `novas_approx_heliocentric()` and `novas_approx_sky_pos()` functions), and for 
 rise/set time calculations.
+
+<a name="moon-c99"></a>
+#### Moon's position and phase
+
+__SuperNOVAS__ can calculate positions and velocities for the Moon to arcsecond (or km) level, or better, accuracy 
+using the ELP2000 / MPP02 semi-analytical model by Chapront &amp; Francou (2003). This means that you can calculate 
+astrometric quantities for the Moon with reasonable accuracy even without an ephemeris provider configured.
+
+For example, you can calculate the apparent place of the Moon in an observing frame as:
+
+```c
+ novas_frame frame = ...;   // observer location and time of observation
+ sky_pos apparent = {};     // apparent data structure to populate...
+ 
+ // Calculate apparent position, say in true-of-date (TOD) system
+ if(novas_moon_elp_sky_pos(&frame, NOVAS_TOD, &apparent) != 0) {
+   // Oops something went wrong...
+   return -1;
+ }
+```
+
+Alternatively, you can obtain geometric positions and velocities of the Moon, relative to the 
+observer using `novas_moon_elp_posvel()` instead.
+
+You can also obtain the current phase of the Moon, for the time of observation:
+
+```c
+  double jd_tdb = ...;  // TDB-based Julian Date of observation
+  
+  // [deg] Moon's phase at the specified time (0 is new moon).
+  double phase = novas_moon_phase(jd_tdb);
+```
+
+or, calculate when the Moon will reach a particular phase next:
+
+```c
+  // TDB-based Julian Date of the next full moon (phase = 180 deg), after TDB-based date
+  double jd_tdb_full = novas_next_moon_phase(jd_tdb, 180.0);
+```
+
+
 
 
 <a name="reverse-place-c99"></a>
@@ -638,6 +681,7 @@ rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set m
 the above calls may still return a valid time, only without the guarantee that it is the time of the first such event 
 after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for 
 updates.
+
 
 
 <a name="transforms-c99"></a>

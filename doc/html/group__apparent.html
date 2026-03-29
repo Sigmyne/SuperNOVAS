@@ -150,6 +150,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga4f7e06b2fa5b3145b37aec4f9c2d1602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of two equatorial locations on a sphere.  <br /></td></tr>
 <tr class="memitem:ga121940d7f0ef41297d28fab8e6df5998" id="r_ga121940d7f0ef41297d28fab8e6df5998"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga121940d7f0ef41297d28fab8e6df5998">novas_moon_angle</a> (const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict source, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame)</td></tr>
 <tr class="memdesc:ga121940d7f0ef41297d28fab8e6df5998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the apparent angular distance of a source from the Moon from the observer's point of view.  <br /></td></tr>
+<tr class="memitem:ga03aca2626e38d04bcdf94fae14c6d11c" id="r_ga03aca2626e38d04bcdf94fae14c6d11c"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga03aca2626e38d04bcdf94fae14c6d11c">novas_moon_elp_sky_pos</a> (const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> sys, <a class="el" href="#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *restrict pos)</td></tr>
+<tr class="memdesc:ga03aca2626e38d04bcdf94fae14c6d11c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Moon's apparent place, relative to an Earth-based observer (or the geocenter), using the ELP/MPP02 model by Chapront &amp; Francou (2003).  <br /></td></tr>
+<tr class="memitem:ga59509eb558c0125e9c5081e712f7c3c7" id="r_ga59509eb558c0125e9c5081e712f7c3c7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp</a> (const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, double limit, enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> sys, <a class="el" href="#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *restrict pos)</td></tr>
+<tr class="memdesc:ga59509eb558c0125e9c5081e712f7c3c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Moon's apparent place, relative to an Earth-based observer (or the geocenter), using the ELP/MPP02 model by Chapront &amp; Francou (2003).  <br /></td></tr>
 <tr class="memitem:ga2dbdafd6b07f079815ae52d00e142861" id="r_ga2dbdafd6b07f079815ae52d00e142861"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga2dbdafd6b07f079815ae52d00e142861">novas_moon_phase</a> (double jd_tdb)</td></tr>
 <tr class="memdesc:ga2dbdafd6b07f079815ae52d00e142861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the Moon's phase at a given time.  <br /></td></tr>
 <tr class="memitem:gafa5f3a823a895bed01876df6b2a00370" id="r_gafa5f3a823a895bed01876df6b2a00370"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gafa5f3a823a895bed01876df6b2a00370">novas_object_sep</a> (const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *source1, const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *source2, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame)</td></tr>
@@ -766,6 +770,135 @@ Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-
 
 </div>
 </div>
+<a id="ga03aca2626e38d04bcdf94fae14c6d11c" name="ga03aca2626e38d04bcdf94fae14c6d11c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga03aca2626e38d04bcdf94fae14c6d11c">&#9670;&#160;</a></span>novas_moon_elp_sky_pos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_moon_elp_sky_pos </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict</td>          <td class="paramname"><span class="paramname"><em>frame</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a></td>          <td class="paramname"><span class="paramname"><em>sys</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *restrict</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the Moon's apparent place, relative to an Earth-based observer (or the geocenter), using the ELP/MPP02 model by Chapront &amp; Francou (2003). </p>
+<p>NOTES:</p>
+<ul>
+<li>The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for 1900 &ndash; 2100).</li>
+</ul>
+<p>REFERENCES: </p><ol>
+<li>
+Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988) </li>
+<li>
+Chapront, J., Francou G., 2003, A&amp;A, 404, 735 </li>
+<li>
+Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a> </li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Earth-based observing frame. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The celestial coordinate reference system in which to return the result. (It may not be Earth-based TIRS or ITRS). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>The Moon's position, relative to the true equator and equinox of date. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will indicate the type of error.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga59509eb558c0125e9c5081e712f7c3c7" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos_fp()</a> </dd>
+<dd>
+<a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
+<dd>
+<a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a> </dd>
+<dd>
+<a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ga59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>.</p>
+
+</div>
+</div>
+<a id="ga59509eb558c0125e9c5081e712f7c3c7" name="ga59509eb558c0125e9c5081e712f7c3c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga59509eb558c0125e9c5081e712f7c3c7">&#9670;&#160;</a></span>novas_moon_elp_sky_pos_fp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_moon_elp_sky_pos_fp </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict</td>          <td class="paramname"><span class="paramname"><em>frame</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>limit</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a></td>          <td class="paramname"><span class="paramname"><em>sys</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *restrict</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the Moon's apparent place, relative to an Earth-based observer (or the geocenter), using the ELP/MPP02 model by Chapront &amp; Francou (2003). </p>
+<p>Only terms larger than the specified limit are used to provide a result with the desired precision.</p>
+<p>NOTES:</p>
+<ul>
+<li>The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for 1900 &ndash; 2100).</li>
+</ul>
+<p>REFERENCES: </p><ol>
+<li>
+Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988) </li>
+<li>
+Chapront, J., Francou G., 2003, A&amp;A, 404, 735 </li>
+<li>
+Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a> </li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">limit</td><td>[arcsec|km] Sum only terms with amplitudes larger than this limit. The resulting accuracy is typically an order-of-magnitude above the set limiting amplitude. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The celestial coordinate reference system in which to return the result. (It may not be Earth-based TIRS or ITRS). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>The Moon's position, relative to the true equator and equinox of date. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will indicate the type of error.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga59509eb558c0125e9c5081e712f7c3c7" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos_fp()</a> </dd>
+<dd>
+<a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
+<dd>
+<a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a> </dd>
+<dd>
+<a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="observer_8c.html#a033f1bf4b01e0e21a0e05e13c19c02f6">aberration()</a>, <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="group__time.html#ga0b0c2c5ccc61c8740de2e2ac277cd836">NOVAS_DAY</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="group__util.html#ga0a84af1a760ed2aaa01dd93e9e22bdf1">NOVAS_KM</a>, <a class="el" href="group__frame.html#ga4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>, <a class="el" href="group__geometric.html#ga8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="group__geometric.html#gaa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector()</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga03aca2626e38d04bcdf94fae14c6d11c">novas_moon_elp_sky_pos()</a>.</p>
+
+</div>
+</div>
 <a id="ga2dbdafd6b07f079815ae52d00e142861" name="ga2dbdafd6b07f079815ae52d00e142861"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga2dbdafd6b07f079815ae52d00e142861">&#9670;&#160;</a></span>novas_moon_phase()</h2>
 
@@ -782,12 +915,14 @@ Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-
 </div><div class="memdoc">
 
 <p>Calculates the Moon's phase at a given time. </p>
-<p>It uses orbital models for Earth (E.M. Standish and J.G. Williams 1992), and for the Moon (Chapront, J. et al., 2002), and takes into account the slightly eccentric nature of both orbits.</p>
+<p>It uses orbital models for Earth (E.M. Standish and J.G. Williams 1992), and the ELP2000/MPP02 semi-analytical model for the Moon (Chapront &amp; Francou, 2002, 2003), and takes into account the slightly eccentric nature of both orbits.</p>
 <p>NOTES: </p><ol>
 <li>
 The Moon's phase here follows the definition by the Astronomical Almanac, as the excess ecliptic longitude of the Moon over that of the Sun seen from the geocenter. </li>
 <li>
 There are other definitions of the phase too, depending on which you might find slightly different answers, but regardless of the details most phase calculations should match to within a few degrees. </li>
+<li>
+As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the Moon by Chapront &amp; Francou (2003). </li>
 </ol>
 <p>NOTES: </p><ol>
 <li>
@@ -804,6 +939,8 @@ E.M. Standish and J.G. Williams 1992. </li>
 Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
 <li>
 Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62. </li>
+<li>
+Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735 </li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -816,7 +953,7 @@ Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__time.html#gad0bd6e212af549309b0fcb792ed8cb79" title="Calculates the date / time at which the Moon will reach the specified phase next, after the specified...">novas_next_moon_phase()</a>, <a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a>, <a class="el" href="#gac780bd907a12957995d36ad916dd4ec1" title="Returns the Solar illumination fraction of a source, assuming a spherical geometry for the observed b...">novas_solar_illum()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045ad1785b619d72877c4eb78d61aedf9e1a">NOVAS_EMB</a>, <a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="group__source.html#ga85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>, <a class="el" href="group__geometric.html#ga6b88d2403a3051ab32229244cf98d7ab">novas_orbit_native_posvel()</a>, and <a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec()</a>.</p>
+<p class="reference">References <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045ad1785b619d72877c4eb78d61aedf9e1a">NOVAS_EMB</a>, <a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="group__nonequatorial.html#ga7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="group__source.html#ga85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>, <a class="el" href="group__geometric.html#ga6b88d2403a3051ab32229244cf98d7ab">novas_orbit_native_posvel()</a>, and <a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__time.html#gad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase()</a>.</p>
 

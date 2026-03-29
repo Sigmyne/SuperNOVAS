@@ -64,5 +64,6 @@ var group__geometric =
     ] ],
     [ "supernovas::Planet::approx_geometric_in", "group__geometric.html#gaf83481c3e551cd9fbfc949257567b468", null ],
     [ "supernovas::Apparent::astrometric_position", "group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e", null ],
-    [ "supernovas::Source::geometric_in", "group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a", null ]
+    [ "supernovas::Source::geometric_in", "group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a", null ],
+    [ "supernovas::Frame::geometric_moon_elp2000", "group__geometric.html#gaa71fbf15b25159c91f9563e630536a32", null ]
 ];

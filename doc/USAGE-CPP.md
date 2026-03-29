@@ -515,6 +515,7 @@ Earth based observer (otherwise, you'll get an invalid result):
  - [Planets and/or ephemeris type objects](#ephemeris-sources-cpp)
  - [Solar-system objects with Keplerian orbital parameters](#orbital-sources-cpp)
  - [Approximate planet orbitals](#planet-orbitals-cpp)
+ - [Moon's position and phase](#moon-c99)
 
 Solar-system sources work similarly to the above with a few important differences at the start.
 
@@ -634,6 +635,45 @@ Or, you can use such orbitals (implicitly) to calculate approximate positions an
 ```
 
 Keep in mind that the planet and Moon orbitals are not suitable for precision applications.
+
+
+<a name="moon-cpp"></a>
+#### Moon's position and phase
+
+__SuperNOVAS__ can calculate positions and velocities for the Moon to arcsecond (or km) level, or better, accuracy 
+using the ELP2000 / MPP02 semi-analytical model by Chapront &amp; Francou (2003). This means that you can calculate 
+astrometric quantities for the Moon with reasonable accuracy even without an ephemeris provider configured.
+
+For example, you can calculate the apparent place of the Moon in an observing frame as:
+
+```cpp
+  Frame frame = ...;  // Observer location and time of observation
+
+  // Apparent position of the Moon on observer's sky.
+  Apparent app = frame.apparent_moon_elp2000();
+```
+
+Alternatively, you can obtain geometric positions and velocities of the Moon, relative to the 
+observer using `supernovas::Frame::geometric_moon_elp2000()` instead.
+
+You can also obtain the current phase of the Moon, for the time of observation:
+
+```cpp
+  Time t_obs = ...;   // Astrometric time of observation
+
+  // Moon's phase at the specified time (0 is new moon).
+  Angle phase = t_obs.moon_phase();
+```
+
+or, calculate when the Moon will reach a particular phase next:
+
+```cpp
+  Time t_obs = ...;   // Astrometric time of observation
+  
+  // Astrometric time of next full moon (phase = 180 deg).
+  Time t_full = t_obs.next_moon_phase(Angle(180.0 * Unit::deg));
+```
+
 
 
 <a name="reverse-place-cpp"></a>

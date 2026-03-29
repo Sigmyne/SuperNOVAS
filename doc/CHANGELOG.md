@@ -17,6 +17,10 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
 
 ### Added
 
+ - #281: Added a truncated version of semi-analytic ELP/MPP02 model of the Moon's position relative to the geocenter 
+   by Chapront &amp; Francou (2003), usng up to about 3400 terms, and reaching accuracies to the 1 arcsec / 1km
+   level (or better for the present era). 
+
  - #256: New C++11 API to wrap the C99 functions into a higher-level, easier to use, and object-oriented interface.
 
  - #256: New `novas_time_leap()` to simplify back calculating the leap seconds from a `novas_timespec` structure.
@@ -25,8 +29,8 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    coordinates and ITRS. ENU is a natural local cartesian coordinate system of an observer at or near the Earth's 
    surface.
 
- - New `novas_diff_time_scale()` for obtaining time difference between two astrometric times in the specified timescale
-   of choice.
+ - New `novas_diff_time_scale()` for obtaining time difference between two astrometric times in the specified 
+   timescale of choice.
 
 ### Changed
 
