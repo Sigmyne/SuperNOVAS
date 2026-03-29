@@ -22,12 +22,13 @@ __SuperNOVAS__ is easy to use and it is very fast, providing 3--5 orders of magn
 [astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
 will scale with the number of CPUs when calculations are performed in parallel threads.
 
-__SuperNOVAS__ is entirely free to use without licensing restrictions. Its source code is compatible with the C99 
-standard, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library,
-it fully supports the IAU 2000/2006 standards for sub-microarcsecond position calculations. 
+__SuperNOVAS__  it is freely available via the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS/) repository 
+on GitHub, without licensing restrictions. Its source code is compatible with the C99 and/or C++11 standards, and 
+hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully 
+supports the IAU 2000/2006 conventions for sub-microarcsecond position calculations. 
 
-__SuperNOVAS__ is maintained by [Attila Kovacs](https://github.com/attipaci) (Sigmyne LLC), and it is freely available 
-via the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS/) repository on GitHub.
+__SuperNOVAS__ is maintained by [Attila Kovacs](https://github.com/attipaci) (Sigmyne LLC), a professional 
+astrophysicist with a long history of telescope control and data reduction software. __SuperNOVAS__
 
 This site contains various online resources that support the library:
 
@@ -74,10 +75,10 @@ You can install the core SuperNOVAS library with `vcpkg` on Linux, MacOS, Window
   $ vcpkg install supernovas
 ```
 
-Or, including the `solsys-calceph` plugin library as:
+Or, just the `core` packages without the `solsys-calceph` plugin library as:
 
 ```bash
-  $ vcpkg install supernovas[solsys-calceph]
+  $ vcpkg install supernovas[core]
 ```
 
 __Homebrew__ 
