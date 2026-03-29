@@ -2,10 +2,7 @@
 excerpt: SuperNOVAS is a light-weight, high-precision astrometry C/C++ library, based on NOVAS C 3.1.
 ---
 
-<img src="/SuperNOVAS/images/banner-620x240.png" alt="SuperNOVAS banner" width="620" height="240" align="center">
-<br clear="all">
-
-<img src="/SuperNOVAS/resources/Sigmyne-logo-200x44.png" alt="Sigmyne logo" width="200" height="44" align="right">
+<img src="/SuperNOVAS/resources/SuperNOVAS-logo-200x75.png" alt="SuperNOVAS logo" width="200" height="75" align="right">
 <br clear="all">
 
 <img src="https://img.shields.io/github/v/release/Sigmyne/SuperNOVAS?label=github" class="badge" alt="GitHub release version" align="left">
