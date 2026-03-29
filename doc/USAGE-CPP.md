@@ -184,7 +184,7 @@ source stays immutable with the parameters that were used when it was instantiat
 <a name="operators-cpp"></a>
 #### Operator overloading
 
-Several __SuperNOVAS__ classes override arithmetic operators (often `+` and `-`, and sometimes `*`), but only when 
+Several __SuperNOVAS__ classes override arithmetic operators (often `+` and `-`, and sometimes `*` and `/`), but only when 
 this is physically meaningful. For example, you can add and difference position or velocity vectors: for positions
 `a` and `b`, `a + b` is the two positions superimposed, `a - b` is the difference vector of the same type. For 
 velocities the addition and subtraction follows the relativistic formulae, e.g. for velocity vectors `v1` and `v2`: 
@@ -219,6 +219,17 @@ with a time interval:
 
 ```cpp
   ScalarVelocity v = Coordinate(120.0 * Unit::km) / Interval(14.3 * Unit::s);
+```
+
+Or, using a bunch of the arithmetic operators already discussed, you can calculate a velocity from two positions 
+measured at two different time instances: 
+
+```cpp
+ Position p0, p1;  // Postions measured at two different times
+ Time t0, t1;      // the times of the measurements 
+ 
+ // Calculate an average velocity from the above...
+ Velocity v = (p1 - p0) / (t1 - t0);
 ```
 
 Celestial coordinates, which can be expressed in different reference systems, can be transformed to another system

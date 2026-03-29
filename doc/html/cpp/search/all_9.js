@@ -3,7 +3,7 @@ var searchData=
   ['f_0',['F',['../structnovas__delaunay__args.html#ab2d0e2b9731d4a0b737e359e8d35ba73',1,'novas_delaunay_args']]],
   ['f_5fearth_1',['F_earth',['../classsupernovas_1_1Constant.html#a5c77f7cb7e9e31fac251554faf08e80e',1,'supernovas::Constant']]],
   ['farenheit_2',['farenheit',['../classsupernovas_1_1Temperature.html#aa9a2354a7fb058c412270a95e1a964de',1,'supernovas::Temperature::farenheit() const'],['../classsupernovas_1_1Temperature.html#a7965a353b25180bc06adbd52462ef42a',1,'supernovas::Temperature::farenheit(double value)']]],
-  ['features_3',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
+  ['features_3',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
   ['fixed_20novas_20c_203_201_20issues_4',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
   ['fjd_5ftt_5',['fjd_tt',['../structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c',1,'novas_timespec']]],
   ['flavor_20c_20or_20c_6',['Pick you flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],
@@ -34,7 +34,7 @@ var searchData=
   ['from_5fsystem_5ftype_31',['from_system_type',['../classsupernovas_1_1Equinox.html#a1939d9369448feac66a3b09cd1aa9d6a',1,'supernovas::Equinox']]],
   ['from_5ftod_32',['from_tod',['../classsupernovas_1_1Apparent.html#aadc3caa3baa42467026600990394b43d',1,'supernovas::Apparent::from_tod(double ra_rad, double dec_rad, const Frame &amp;frame, double rv_ms=0.0)'],['../classsupernovas_1_1Apparent.html#a1dcedd8e837756d5ba7c3fd56400f70c',1,'supernovas::Apparent::from_tod(const Angle &amp;ra, const Angle &amp;dec, const Frame &amp;frame, const ScalarVelocity &amp;rv)']]],
   ['from_5ftod_5fsky_5fpos_33',['from_tod_sky_pos',['../classsupernovas_1_1Apparent.html#ae4fb352249e2eac3311b6239b1e6c5b0',1,'supernovas::Apparent']]],
-  ['functionality_20highlights_34',['New functionality highlights',['../index.html#autotoc_md38',1,'']]],
+  ['functionality_20highlights_34',['New functionality highlights',['../index.html#autotoc_md37',1,'']]],
   ['fund_5fargs_35',['fund_args',['../novas_8h.html#a312b5ab1a004b179d80463a07ca7da8f',1,'fund_args(double t, novas_delaunay_args *restrict a):&#160;equator.c'],['../equator_8c.html#a312b5ab1a004b179d80463a07ca7da8f',1,'fund_args(double t, novas_delaunay_args *restrict a):&#160;equator.c']]],
   ['fundamentals_36',['C++ Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'']]]
 ];

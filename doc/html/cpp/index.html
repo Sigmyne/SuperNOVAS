@@ -588,7 +588,7 @@ Atmospheric refraction model</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="reduced-accuracy"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 Reduced accuracy shortcuts</h2>
 <p>When one does not need positions at the microarcsecond level, some shortcuts can be made to the recipe above:</p>
 <ul>
@@ -600,7 +600,7 @@ Reduced accuracy shortcuts</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="debug-support"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
 Runtime debug support</h1>
 <p>You can enable or disable debugging output to <span class="tt">stderr</span> with <span class="tt"><a class="el" href="group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug(enum novas_debug_mode)</a></span>, where the argument is one of the defined constants from <span class="tt"><a class="el" href="novas_8h.html" title="SuperNOVAS types, definitions, and function prototypes.">novas.h</a></span>:</p>
 <table class="markdownTable">
@@ -633,7 +633,7 @@ Runtime debug support</h1>
 <div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65">NOVAS_DEBUG_ON</a></div><div class="ttdeci">@ NOVAS_DEBUG_ON</div><div class="ttdoc">Print errors and traces to the standard error.</div><div class="ttdef"><b>Definition</b> novas.h:549</div></div>
 </div><!-- fragment --><hr  />
 <p><a class="anchor" id="benchmarks"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
 Representative benchmarks</h1>
 <p>To get an idea of the speed of <b>SuperNOVAS</b>, you can use <span class="tt">make benchmark</span> on your machine. Figure 2 below summarizes the single-threaded results obtained with v1.5.0 on an AMD Ryzen 5 PRO 6650U laptop. While this is clearly not the state of the art for today's server class machines, it nevertheless gives you a ballpark idea for how a typical, not so new, run-of-the-mill PC might perform.</p>
 <table class="markdownTable">
@@ -693,14 +693,14 @@ Details</summary>
 <p>The above benchmarks are all for single-threaded performance. Since <b>SuperNOVAS</b> is generally thread-safe, you can expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single core performance, you could calculate up to 32 million precise positions per second, if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in under one minute.</p>
 <hr  />
 <p><a class="anchor" id="supernovas-features"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
 SuperNOVAS added features</h1>
 <ul>
 <li><a class="el" href="#added-functionality" title="added-functionality">Newly functionality highlights</a></li>
 <li><a class="el" href="#api-changes" title="api-changes">Refinements to the NOVAS C API</a></li>
 </ul>
 <p><a class="anchor" id="added-functionality"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 New functionality highlights</h2>
 <p>Below is a non-exhaustive overview new features added by <b>SuperNOVAS</b> on top of the existing NOVAS C API. See <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/CHANGELOG.md"><span class="tt">CHANGELOG.md</span></a> for more details.</p>
 <details >
