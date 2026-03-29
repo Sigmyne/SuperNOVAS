@@ -1,26 +1,26 @@
 var index =
 [
-    [ "Table of Contents", "index.html#autotoc_md51", null ],
-    [ "Introduction", "index.html#autotoc_md53", [
-      [ "Related links", "index.html#autotoc_md54", null ]
+    [ "Table of Contents", "index.html#autotoc_md81", null ],
+    [ "Introduction", "index.html#autotoc_md83", [
+      [ "Related links", "index.html#autotoc_md85", null ]
     ] ],
-    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md59", null ],
-    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md67", null ],
-    [ "Building and installation", "index.html#autotoc_md70", [
-      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md71", null ],
-      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md77", null ],
-      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md81", null ],
-      [ "Linux packages", "index.html#autotoc_md83", null ],
-      [ "Homebrew package", "index.html#autotoc_md85", null ],
-      [ "Nix package", "index.html#autotoc_md87", null ]
+    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md87", null ],
+    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md89", null ],
+    [ "Building and installation", "index.html#autotoc_md91", [
+      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md92", null ],
+      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md93", null ],
+      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md94", null ],
+      [ "Linux packages", "index.html#autotoc_md95", null ],
+      [ "Homebrew package", "index.html#autotoc_md96", null ],
+      [ "Nix package", "index.html#autotoc_md97", null ]
     ] ],
-    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md89", null ],
-    [ "Example use cases", "index.html#autotoc_md97", [
-      [ "Recommendation: set up an ephemeris provider", "index.html#autotoc_md98", null ],
-      [ "Pick you flavor (C or C++)", "index.html#autotoc_md101", null ]
+    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md99", null ],
+    [ "Example use cases", "index.html#autotoc_md101", [
+      [ "Recommendation: set up an ephemeris provider", "index.html#autotoc_md102", null ],
+      [ "Pick you flavor (C or C++)", "index.html#autotoc_md103", null ]
     ] ],
-    [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md103", [
-      [ "CALCEPH integration", "index.html#autotoc_md105", null ],
+    [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md105", [
+      [ "CALCEPH integration", "index.html#autotoc_md106", null ],
       [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md107", null ],
       [ "Universal ephemeris data / service integration", "index.html#autotoc_md108", null ]
     ] ],
@@ -34,5 +34,5 @@ var index =
       [ "New functionality highlights", "index.html#autotoc_md118", null ],
       [ "Refinements to the NOVAS C API", "index.html#autotoc_md119", null ]
     ] ],
-    [ "Release schedule", "index.html#autotoc_md122", null ]
+    [ "Release schedule", "index.html#autotoc_md121", null ]
 ];
