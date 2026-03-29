@@ -114,9 +114,9 @@ $(function(){initNavTree('index.html','',''); });
 </ul>
 <p><a href="https://github.com/Sigmyne/SuperNOVAS/">SuperNOVAS</a> is a C/C++ astronomy software library, providing high-precision astrometry such as one might need for running an observatory, a precise planetarium program, or for analyzing astronomical datasets. It started as a fork of the Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>) C version 3.1, but since then it has grown into its own, providing bug fixes, tons of new features, and a much improved API compared to the original NOVAS.</p>
 <p><b>SuperNOVAS</b> is easy to use and it is very fast, with 3&ndash;5 orders of magnitude faster position calculations than <a href="https://www.astropy.org/">astropy</a> 7.0.0 in a single thread (see the <a class="el" href="#benchmarks" title="benchmarks">benchmarks</a>), and its performance will scale further with the number of CPUs when calculations are performed in parallel threads.</p>
-<p><b>SuperNOVAS</b> is entirely free to use without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports the IAU 2000/2006 standards for microarcsecond-level position calculations.</p>
+<p><b>SuperNOVAS</b> is and it is available through the <a href="https://github.com/Sigmyne/SuperNOVAS">Sigmyne/SuperNOVAS</a> repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports the IAU 2000/2006 conventions for microarcsecond-level position calculations.</p>
 <p>This document has been updated for the <span class="tt">v1.6</span> and later releases.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md65"></a>
 Table of Contents</h1>
 <ul>
 <li><a class="el" href="#introduction" title="introduction">Introduction</a></li>
@@ -134,7 +134,7 @@ Table of Contents</h1>
 </ul>
 <hr  />
 <p><a class="anchor" id="introduction"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md67"></a>
 Introduction</h1>
 <p><b>SuperNOVAS</b> is a fork of the The Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>). (It is not related to the separate NOVA / libnova library.)</p>
 <p>The primary goal of <b>SuperNOVAS</b> is to improve on the original NOVAS C library via:</p>
@@ -152,9 +152,9 @@ Introduction</h1>
 <p>At the same time, <b>SuperNOVAS</b> aims to be fully backward compatible with the intended functionality of the upstream NOVAS C library, such that it can be used as a <em>build-time</em> replacement for NOVAS in your application without having to change existing (functional) code you may have written for NOVAS C.</p>
 <p><b>SuperNOVAS</b> is really quite easy to use. Its new API is just as simple and intuitive as that of <b>astropy</b> (or so we strive for it to be), and it is similarly well documented also (see the documentation for the <a href="https://sigmyne.github.io/SuperNOVAS/doc/html/files.html">C99</a>) and/or <a href="https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/files.html">C++</a> APIs. You can typically achieve the same results with similar lines of code on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/SuperNOVAS_vs_astropy.md">C</a> or <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/cpp/SuperNOVAS++_vs_astropy.md">C++</a> with <b>SuperNOVAS</b> as with <b>astropy</b>, notwithstanding a little more involved error handling (due to the lack of <span class="tt">try / except</span> style constructs in C/C++).</p>
 <p><b>SuperNOVAS</b> is currently based on NOVAS C version 3.1. We plan to rebase <b>SuperNOVAS</b> to the latest upstream release of the NOVAS C library, if possible when new releases become available.</p>
-<p><b>SuperNOVAS</b> is maintained by <a href="https://github.com/attipaci">Attila Kovács</a> (Sigmyne, LLC), and it is available through the <a href="https://github.com/Sigmyne/SuperNOVAS">Sigmyne/SuperNOVAS</a> repository on GitHub.</p>
+<p><b>SuperNOVAS</b> is maintained by <a href="https://github.com/attipaci">Attila Kovács</a> (Sigmyne, LLC),</p>
 <p>Outside contributions are very welcome. See <a href="https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html">how you can contribute</a> on how you can make <b>SuperNOVAS</b> even better.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md73"></a>
 Related links</h2>
 <ul>
 <li><a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a> home page at the US Naval Observatory.</li>
@@ -166,7 +166,7 @@ Related links</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="fixed-issues"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md76"></a>
 Fixed NOVAS C 3.1 issues</h1>
 <p><b>SuperNOVAS</b> fixes a number of outstanding issues with NOVAS C 3.1:</p>
 <details >
@@ -194,7 +194,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="compatibility"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md89"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
 Compatibility with NOVAS C 3.1</h1>
 <p><b>SuperNOVAS</b> strives to maintain API compatibility with the upstream NOVAS C 3.1 library, but not binary (ABI) compatibility.</p>
 <p>If you have code that was written for NOVAS C 3.1, it should work with <b>SuperNOVAS</b> as is, without modifications. Simply (re)build your application against <b>SuperNOVAS</b>, and you are good to go.</p>
@@ -202,7 +202,7 @@ Compatibility with NOVAS C 3.1</h1>
 <p>This is because some function signatures have changed, e.g. to use an <span class="tt">enum</span> argument instead of the nondescript <span class="tt">short int</span> option arguments used in NOVAS C 3.1, or because we added a return value to a function that was declared <span class="tt">void</span> in NOVAS C 3.1. We also changed the <span class="tt"><a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> structure to contain a <span class="tt">long</span> ID number instead of <span class="tt">short</span> to accommodate JPL NAIF codes, for which 16-bit storage is insufficient.</p>
 <hr  />
 <p><a class="anchor" id="installation"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
 Building and installation</h1>
 <ul>
 <li><a class="el" href="#gnu-build" title="gnu-build">Build SuperNOVAS using GNU make</a></li>
@@ -213,7 +213,7 @@ Building and installation</h1>
 <li><a class="el" href="#nix" title="nix">Nix package</a></li>
 </ul>
 <p><a class="anchor" id="gnu-build"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md92"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
 Build SuperNOVAS using GNU make</h2>
 <p>The <b>SuperNOVAS</b> distribution contains a GNU <span class="tt">Makefile</span>, which is suitable for compiling the library (as well as local documentation, and tests, etc.) on POSIX systems such as Linux, Mac OS X, BSD, Cygwin or WSL &ndash; using <a href="https://www.gnu.org/software/make/">GNU <span class="tt">make</span></a>.</p>
 <details >
@@ -254,7 +254,7 @@ Details</summary>
 <dl class="section remark"><dt>Remarks</dt><dd>On BSD, you will need to use <span class="tt">gmake</span> instead of <span class="tt">make</span>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>if you want to build <b>SuperNOVAS</b> for with your old NOVAS C applications you might want to further customize the build. See section on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99">legacy application</a> in the <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">C99 User's guide</a>.</dd></dl>
 <p><a class="anchor" id="cmake-build"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
 Build SuperNOVAS using CMake</h2>
 <p>As of v1.5, <b>SuperNOVAS</b> can be built using <a href="https://cmake.org/">CMake</a> (many thanks to Kiran Shila). CMake allows for greater portability than the regular GNU <span class="tt">Makefile</span>. Note, however, that the CMake configuration does not support all of the build options of the GNU <span class="tt">Makefile</span>, such as automatic CALCEPH and CSPICE integration on Linux, supporting legacy NOVAS C style builds, and code coverage tracking.</p>
 <details >
@@ -288,7 +288,7 @@ Details</summary>
 <div class="fragment"><div class="line">$ cmake --install build --component Runtime --prefix /usr/local</div>
 </div><!-- fragment --> </details>
 <p><a class="anchor" id="vcpkg-port"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md94"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
 Install SuperNOVAS via <span class="tt">vcpkg</span></h2>
 <p>As of version 1.5, <b>SuperNOVAS</b> is available through the <a href="https://vcpkg.io/en/">vcpkg</a> registry. The <span class="tt">vcpkg</span> port supports a wide range of platforms, including Linux, Windows, MacOS, and Android &ndash; for both <span class="tt">arm64</span> and <span class="tt">x64</span> architectures (and in case of Windows also <span class="tt">x86</span>). It is effectively the same as the CMake build (above), only with more simplicity, convenience, and dependency resolution.</p>
 <details >
@@ -395,9 +395,9 @@ Example use cases</h1>
 <p><a class="anchor" id="recommendation"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md102"></a>
 Recommendation: set up an ephemeris provider</h2>
-<p><b>SuperNOVAS</b> can do a lot of things on its own. What it cannot do is provide precise positions for Solar-system bodies. For that, you need ephemeris data and an external tool to access them. Even if you don't particularly care to obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).</p>
-<p>Therefore, it is strongly recommended that you download <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/">planetary ephemeris files from NASA / JPL</a> (such as the DE440, or the smaller DE440s, or the lon-term DE441), and install <a href="https://calceph.imcce.fr/">CALCEPH</a> or the <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">CSPICE Toolkit</a> library for accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and it is also more modern, and actively maintained.</p>
-<p>Provided you installed CALCEPH, your application using <b>SuperNOVAS</b> should always start with something like this (regardless of whether you will use the C99 or the C++ API afterwards):</p>
+<p><b>SuperNOVAS</b> can do a lot of things on its own. What it cannot do on its own is provide precise positions for Solar-system bodies. For that, you need ephemeris data and a helping hand from an external tool to access them. Even if you don't particularly care to obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).</p>
+<p>Therefore, it is strongly recommended that you download <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/">planetary ephemeris files from NASA / JPL</a> (such as the DE440, or the smaller DE440s, or the long-term DE441), and install <a href="https://calceph.imcce.fr/">CALCEPH</a> or the <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">CSPICE Toolkit</a> for accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and it is also more modern, and actively maintained.</p>
+<p>Provided you installed CALCEPH, you usage of <b>SuperNOVAS</b> should always start with something like this (regardless of whether you will use the C99 or the C++ API afterwards):</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="novas-calceph_8h.html">novas-calceph.h</a>&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Use DE440, DE440s, or DE441 as your planet provider...</span></div>

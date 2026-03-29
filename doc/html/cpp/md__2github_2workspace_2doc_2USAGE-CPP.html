@@ -103,7 +103,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-CPP.html','',''); }
   <div class="headertitle"><div class="title">C++ Usage </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md74"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md75"></a></p>
 <p>This guide is specifically for using <b>SuperNOVAS</b> primarily as a C++11 library. There is a separate guide for <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">using the C99 API</a>. The links below let you jump to the relevant sections:</p>
 <ul>
 <li><a class="el" href="#integration-cpp" title="integration-cpp">Building your application with SuperNOVAS (C++)</a></li>
@@ -118,7 +118,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-CPP.html','',''); }
 </ul>
 <hr  />
 <p><a class="anchor" id="integration-cpp"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md79"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
 Building your application with SuperNOVAS (C++)</h1>
 <p>There are a number of ways you can build your application with <b>SuperNOVAS</b>. See which of the options suits your needs best:</p>
 <ul>
@@ -126,7 +126,7 @@ Building your application with SuperNOVAS (C++)</h1>
 <li><a class="el" href="#cmake-application-cpp" title="cmake-application-cpp">Using CMake</a></li>
 </ul>
 <p><a class="anchor" id="makefile-application-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
 Using a GNU <span class="tt">Makefile</span></h2>
 <details >
 <summary >
@@ -141,7 +141,7 @@ Details</summary>
 </div><!-- fragment --><p></p>
 </details>
 <p><a class="anchor" id="cmake-application-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
 Using CMake</h2>
 <details >
 <summary >
@@ -155,7 +155,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="fundamentals-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
 C++ Fundamentals</h2>
 <ul>
 <li><a class="el" href="#namespace-cpp" title="namespace-cpp">Namespace</a></li>
@@ -166,7 +166,7 @@ C++ Fundamentals</h2>
 </ul>
 <p>Before we dive into specific examples for using the <b>SuperNOVAS</b> C++ API, you should know of the generic features and design principles that underly the C++ implementation.</p>
 <p><a class="anchor" id="namespace-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
 Namespace</h3>
 <p>To allow using simple class names, while being cognizant of potential namespace conflicts, the <b>SuperNOVAS</b> classes all live under the <span class="tt"><a class="el" href="namespacesupernovas.html">supernovas</a></span> namespace. Thus, the class <span class="tt">Angle</span>, for example, has a full name <span class="tt"><a class="el" href="classsupernovas_1_1Angle.html" title="A representation of a regularized angle, which can be expressed in various commonly used angular unit...">supernovas::Angle</a></span> that can be used in any context. But, when convenient you can make one of more namespaces default in your source code, e.g.:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="supernovas_8h.html">supernovas.h</a>&gt;</span></div>
@@ -188,7 +188,7 @@ Namespace</h3>
 <div class="line">  ...</div>
 <div class="line">}</div>
 </div><!-- fragment --><p><a class="anchor" id="validation-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
 Validation</h3>
 <p>C++ does not have runtime exceptions the same way as Python or Java, which can be caught. While C++17 introduced <span class="tt">std::optional</span> types that can be used to return with or without a valid data, <b>SuperNOVAS</b> does not use these, because <em>(a)</em> the optionals are not supported on Apple and Windows (in 2026), and <em>(b)</em> they don't do anything for constructors.</p>
 <p>Instead all <b>SuperNOVAS</b> classes are based on a <span class="tt"><a class="el" href="classsupernovas_1_1Validating.html" title="A simple interface class handling validation checking for classes that inherit it.">supernovas::Validating</a></span> base class, providing an <span class="tt">is_valid()</span> method. All subclasses (that is all <b>SuperNOVAS</b> classes) sanity check their data as part of their constructor. And, mutable classes sanity check every time they are modified as well. The checks typically include flagging NaNs and infinite values (unless they are explicitly allowed), enum values outside of their normal range (yes the compiler checks for these, but those checks can be easily bypassed), and whatever else is necessary to ensure that the objects contain fully usable data.</p>

@@ -22,9 +22,10 @@ __SuperNOVAS__ is easy to use and it is very fast, with 3--5 orders of magnitude
 [astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
 will scale further with the number of CPUs when calculations are performed in parallel threads.
 
-__SuperNOVAS__ is entirely free to use without licensing restrictions. Its source code is compatible with the C99 
-and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a 
-light-weight library, it fully supports the IAU 2000/2006 standards for microarcsecond-level position calculations. 
+__SuperNOVAS__ is and it is available through the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS) 
+repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, 
+and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully 
+supports the IAU 2000/2006 conventions for microarcsecond-level position calculations. 
 
 This document has been updated for the `v1.6` and later releases.
 
@@ -81,8 +82,7 @@ with __SuperNOVAS__ as with __astropy__, notwithstanding a little more involved 
 __SuperNOVAS__ is currently based on NOVAS C version 3.1. We plan to rebase __SuperNOVAS__ to the latest upstream 
 release of the NOVAS C library, if possible when new releases become available.
  
-__SuperNOVAS__ is maintained by [Attila Kovács](https://github.com/attipaci) (Sigmyne, LLC), and it is available through 
-the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS) repository on GitHub.
+__SuperNOVAS__ is maintained by [Attila Kovács](https://github.com/attipaci) (Sigmyne, LLC), 
 
 Outside contributions are very welcome. See
 [how you can contribute](https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html) on how you can make __SuperNOVAS__ 
@@ -538,18 +538,19 @@ __NOTE__
 <a name="recommendation"></a>
 ### Recommendation: set up an ephemeris provider
 
-__SuperNOVAS__ can do a lot of things on its own. What it cannot do is provide precise positions for Solar-system 
-bodies. For that, you need ephemeris data and an external tool to access them. Even if you don't particularly care to 
-obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for 
-positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).
+__SuperNOVAS__ can do a lot of things on its own. What it cannot do on its own is provide precise positions for 
+Solar-system bodies. For that, you need ephemeris data and a helping hand from an external tool to access them. Even 
+if you don't particularly care to obtain precise planet positions per se, they are needed for a range of 
+high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational 
+deflections in full-precision observing frames).
 
-Therefore, it is strongly recommended that you download [planetary ephemeris files from NASA / JPL](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/) (such as the DE440, or the smaller DE440s, or the lon-term DE441), and install 
-[CALCEPH](https://calceph.imcce.fr/) or the [CSPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html)
-library for accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and
-it is also more modern, and actively maintained. 
+Therefore, it is strongly recommended that you download [planetary ephemeris files from NASA / JPL](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/) (such as the DE440, or the smaller DE440s, or the long-term DE441), and install 
+[CALCEPH](https://calceph.imcce.fr/) or the [CSPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html) for 
+accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and it is also 
+more modern, and actively maintained. 
 
-Provided you installed CALCEPH, your application using __SuperNOVAS__ should always start with something like this 
-(regardless of whether you will use the C99 or the C++ API afterwards):
+Provided you installed CALCEPH, you usage of __SuperNOVAS__ should always start with something like this (regardless 
+of whether you will use the C99 or the C++ API afterwards):
 
 ```c
  #include <novas-calceph.h>
