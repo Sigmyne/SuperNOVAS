@@ -76,7 +76,7 @@ Add the appropriate bits from below to the `CMakeLists.txt` file of your applica
 
  - [Namespace](#namespace-cpp)
  - [Validation](#validation-cpp)
- - [Classes don't reference external objects internally](#internal-copies-cpp)
+ - [Thread safety](#thread-safety-cpp)
  - [Operator overloading](#operators-cpp)
 
 Before we dive into specific examples for using the __SuperNOVAS__ C++ API, you should know of the generic
@@ -153,14 +153,24 @@ at least in the relevant section of your code. __SuperNOVAS__ will provide error
 time an invalid class instance is created, and when methods create invalid objects themselves. 
 
 
-<a name="internal-copies-cpp"></a>
-#### Classes don't reference external objects internally
+<a name="thread-safety-cpp"></a>
+#### Thread safety
 
-The __SuperNOVAS__ classes never store references to external objects internally. Instead, they always store copies
-of the parameters that were supplied. While this may result in a small computational overhead, it adds to the thread 
-safety. Thus, even if a `supernovas::CatalogEntry` object is mutable, once a `supernovas::CatalogSource` is created 
-from it, that source will store a copy of the entry internally. So, even if the entry is modified afterwards, the 
-source stays immutable with the parameters that were used when it was instantiated.
+It is easy to use the C++ API safely in a multi-threaded environment, even without explicit mutexing. The best 
+practice is to always declare your shared (among threads) class variables as `const` so they will never get 
+accidentally modified by one thread while another thread accesses them concurrently. While most __SuperNOVAS__ classes 
+do not have explicitly declared methods that would modify them, their contents can nevertheless get overwritten easily 
+with the implicit copy-assignment operator -- but not when the variable was declared as `const`. For example:
+
+```c++
+  // Declaring 'frame' as const will make it safe to use in threads.
+  const Frame frame = ...;
+```
+
+To make the __SuperNOVAS__ classes more thread-safe, they are designed never to store references to external objects 
+internally. Instead, they always store copies of the parameters that were supplied by their constructors or update 
+methods. While the explit copying may result in a small overhead, it also means that the objects referenced internally 
+cannot vanish or change unexpectedly.
 
 
 <a name="operators-cpp"></a>
