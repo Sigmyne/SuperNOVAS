@@ -14,16 +14,18 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
 
  - #293: `geo_posvel()` applied TOD to ICRS conversions twice for airborne observers, resulting in imprecise
    observer coordinates relative to the geocenter.
+   
+ - #296: Possible puffer overflow in `novas_print_dms()`. (Thanks to aleberti)
 
 ### Added
-
- - #281: Added a truncated version of semi-analytic ELP/MPP02 model of the Moon's position relative to the geocenter 
-   by Chapront &amp; Francou (2003), usng up to about 3400 terms, and reaching accuracies to the 1 arcsec / 1km
-   level (or better for the present era). 
 
  - #256: New C++11 API to wrap the C99 functions into a higher-level, easier to use, and object-oriented interface.
 
  - #256: New `novas_time_leap()` to simplify back calculating the leap seconds from a `novas_timespec` structure.
+
+ - #281: Added a truncated version of semi-analytic ELP/MPP02 model of the Moon's position relative to the geocenter 
+   by Chapront &amp; Francou (2003), usng up to about 3400 terms, and reaching accuracies to the 1 arcsec / 1km
+   level (or better for the present era). 
 
  - Added `novas_enu_to_itrs()` and `novas_itrs_to_enu()` functions to help convert between local East-North-Up (ENU)
    coordinates and ITRS. ENU is a natural local cartesian coordinate system of an observer at or near the Earth's 
