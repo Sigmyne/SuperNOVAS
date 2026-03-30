@@ -17,9 +17,14 @@ plugins:
   - jekyll-toc
   
 defaults:
+  # Exclude symlinked apidoc/ folder
+  - scope:
+      path: apidoc/**
+    values:
+      sitemap: false
   # Exclude search pages from sitemap
   - scope:
-      path: apidoc/html/search/**
+      path: doc/html/**/search/*
     values:
       sitemap: false
   # Exclude google site verification from sitemap
