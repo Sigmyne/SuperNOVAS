@@ -17,7 +17,7 @@
     <topic label="Celestial coordinate systems (old vs. new)" href="index.html#autotoc_md18"/>
     <topic label="Example use cases" href="index.html#autotoc_md20">
       <topic label="Recommendation: set up an ephemeris provider" href="index.html#autotoc_md21"/>
-      <topic label="Pick you flavor (C or C++)" href="index.html#autotoc_md22"/>
+      <topic label="Pick your flavor (C or C++)" href="index.html#autotoc_md22"/>
     </topic>
     <topic label="Incorporating Solar-system ephemeris data or services" href="index.html#autotoc_md24">
       <topic label="CALCEPH integration" href="index.html#autotoc_md25"/>
@@ -30,11 +30,11 @@
     </topic>
     <topic label="Runtime debug support" href="index.html#autotoc_md32"/>
     <topic label="Representative benchmarks" href="index.html#autotoc_md34"/>
-    <topic label="SuperNOVAS added features" href="index.html#autotoc_md36">
-      <topic label="New functionality highlights" href="index.html#autotoc_md37"/>
-      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md38"/>
+    <topic label="SuperNOVAS added features" href="index.html#autotoc_md37">
+      <topic label="New functionality highlights" href="index.html#autotoc_md38"/>
+      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md39"/>
     </topic>
-    <topic label="Release schedule" href="index.html#autotoc_md40"/>
+    <topic label="Release schedule" href="index.html#autotoc_md41"/>
   </topic>
   <topic label="C99 Usage" href="md__2github_2workspace_2doc_2USAGE-C99.html">
     <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44">
@@ -738,6 +738,7 @@
         <topic label="NOVAS_ID_CALCEPH" href="group__solar-system.html#ggac42df1db80fbcb6f7a72de80d9f9c531a074c723dfc1f03c82d52347c46ee0719"/>
       </topic>
       <topic label="cspice_add_kernel" href="group__solar-system.html#gae02d26964099f56c375dc78172ad135b"/>
+      <topic label="cspice_clear_kernels" href="group__solar-system.html#ga7bc6da3bfca1a23e77e79a6742f77685"/>
       <topic label="cspice_remove_kernel" href="group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1"/>
       <topic label="get_ephem_provider" href="group__solar-system.html#gaa6fad38297a49ba78a6bd49cedf889b1"/>
       <topic label="get_planet_provider" href="group__solar-system.html#ga0f0a786b5614a788c02b37a462eae2d2"/>
@@ -2729,6 +2730,7 @@
         </topic>
         <topic label="novas-cspice.h" href="novas-cspice_8h.html">
           <topic label="cspice_add_kernel" href="group__solar-system.html#gae02d26964099f56c375dc78172ad135b"/>
+          <topic label="cspice_clear_kernels" href="group__solar-system.html#ga7bc6da3bfca1a23e77e79a6742f77685"/>
           <topic label="cspice_remove_kernel" href="group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1"/>
           <topic label="novas_cspice_is_thread_safe" href="group__solar-system.html#gadbb028231581d55f7f8c5fd428ba98c7"/>
           <topic label="novas_use_cspice" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4"/>
@@ -3667,6 +3669,7 @@
           </topic>
           <topic label="solsys-cspice.c" href="solsys-cspice_8c.html">
             <topic label="cspice_add_kernel" href="group__solar-system.html#gae02d26964099f56c375dc78172ad135b"/>
+            <topic label="cspice_clear_kernels" href="group__solar-system.html#ga7bc6da3bfca1a23e77e79a6742f77685"/>
             <topic label="cspice_remove_kernel" href="group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1"/>
             <topic label="novas_cspice_is_thread_safe" href="group__solar-system.html#gadbb028231581d55f7f8c5fd428ba98c7"/>
             <topic label="novas_use_cspice" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4"/>

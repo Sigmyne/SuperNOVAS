@@ -104,258 +104,486 @@ $(function(){initNavTree('index.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__2github_2workspace_2doc_2README"></a></p>
-<p><a href="https://doi.org/10.5281/zenodo.14584983"><img src="748170057.svg" alt="Zenodo DOI badge" align="left" style="pointer-events: none;" class="inline"/> </a> <br  clear="all" />
-</p>
-<p>The NOVAS C astrometry library, made better.</p>
-<ul>
-<li><a href="https://sigmyne.github.io/SuperNOVAS/doc/html/topics.html">C99 API documentation</a></li>
-<li><a href="https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/topics.html">C++ API documentation</a></li>
-<li><a href="https://sigmyne.github.io/SuperNOVAS">SuperNOVAS pages</a> on github.io</li>
-</ul>
-<p><a href="https://github.com/Sigmyne/SuperNOVAS/">SuperNOVAS</a> is a C/C++ astronomy software library, providing high-precision astrometry such as one might need for running an observatory, a precise planetarium program, or for analyzing astronomical datasets. It started as a fork of the Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>) C version 3.1, but since then it has grown into its own, providing bug fixes, tons of new features, and a much improved API compared to the original NOVAS.</p>
-<p><b>SuperNOVAS</b> is easy to use and it is very fast, with 3&ndash;5 orders of magnitude faster position calculations than <a href="https://www.astropy.org/">astropy</a> 7.0.0 in a single thread (see the <a class="el" href="#benchmarks" title="benchmarks">benchmarks</a>), and its performance will scale further with the number of CPUs when calculations are performed in parallel threads.</p>
-<p><b>SuperNOVAS</b> is and it is available through the <a href="https://github.com/Sigmyne/SuperNOVAS">Sigmyne/SuperNOVAS</a> repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports the IAU 2000/2006 conventions for microarcsecond-level position calculations.</p>
-<p>This document has been updated for the <span class="tt">v1.6</span> and later releases.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
-Table of Contents</h1>
-<ul>
-<li><a class="el" href="#introduction" title="introduction">Introduction</a></li>
-<li><a class="el" href="#fixed-issues" title="fixed-issues">Fixed NOVAS C 3.1 issues</a></li>
-<li><a class="el" href="#compatibility" title="compatibility">Compatibility with NOVAS C 3.1</a></li>
-<li><a class="el" href="#installation" title="installation">Building and installation</a></li>
-<li><a class="el" href="#methodologies" title="methodologies">Celestial coordinate systems (old vs. new)</a></li>
-<li><a class="el" href="#examples" title="examples">Example use cases</a></li>
-<li><a class="el" href="#solarsystem" title="solarsystem">Incorporating Solar-system ephemeris data or services</a></li>
-<li><a class="el" href="#precision" title="precision">Notes on precision</a></li>
-<li><a class="el" href="#debug-support" title="debug-support">Runtime debug support</a></li>
-<li><a class="el" href="#benchmarks" title="benchmarks">Representative benchmarks</a></li>
-<li><a class="el" href="#supernovas-features" title="supernovas-features">SuperNOVAS added features</a></li>
-<li><a class="el" href="#release-schedule" title="release-schedule">Release schedule</a></li>
-</ul>
-<hr  />
-<p><a class="anchor" id="introduction"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-Introduction</h1>
-<p><b>SuperNOVAS</b> is a fork of the The Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>). (It is not related to the separate NOVA / libnova library.)</p>
-<p>The primary goal of <b>SuperNOVAS</b> is to improve on the original NOVAS C library via:</p>
-<ul>
-<li>Fixing <a class="el" href="#fixed-issues" title="fixed-issues">outstanding issues</a>.</li>
-<li>Improved <a href="https://sigmyne.github.io/SuperNOVAS/doc/html/files.html">C99 API documentation</a>.</li>
-<li><a class="el" href="#benchmarks" title="benchmarks">Faster calculations</a>.</li>
-<li><a class="el" href="#added-functionality" title="added-functionality">New features</a>.</li>
-<li><a class="el" href="#api-changes" title="api-changes">Refined C99 API</a> to promote best programming practices.</li>
-<li>New, high-level, <a class="el" href="md__2github_2workspace_2doc_2USAGE-CPP.html" title="C++ Usage">C++11 API</a>.</li>
-<li><a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#multi-threading-c99">Thread-safe calculations</a>.</li>
-<li><a class="el" href="#debug-support" title="debug-support">Debug mode</a> with informative error tracing.</li>
-<li><a href="https://codecov.io/gh/Sigmyne/SuperNOVAS">Regression testing</a> and continuous integration on GitHub.</li>
-</ul>
-<p>At the same time, <b>SuperNOVAS</b> aims to be fully backward compatible with the intended functionality of the upstream NOVAS C library, such that it can be used as a <em>build-time</em> replacement for NOVAS in your application without having to change existing (functional) code you may have written for NOVAS C.</p>
-<p><b>SuperNOVAS</b> is really quite easy to use. Its new API is just as simple and intuitive as that of <b>astropy</b> (or so we strive for it to be), and it is similarly well documented also (see the documentation for the <a href="https://sigmyne.github.io/SuperNOVAS/doc/html/files.html">C99</a>) and/or <a href="https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/files.html">C++</a> APIs. You can typically achieve the same results with similar lines of code on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/SuperNOVAS_vs_astropy.md">C</a> or <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/cpp/SuperNOVAS++_vs_astropy.md">C++</a> with <b>SuperNOVAS</b> as with <b>astropy</b>, notwithstanding a little more involved error handling (due to the lack of <span class="tt">try / except</span> style constructs in C/C++).</p>
-<p><b>SuperNOVAS</b> is currently based on NOVAS C version 3.1. We plan to rebase <b>SuperNOVAS</b> to the latest upstream release of the NOVAS C library, if possible when new releases become available.</p>
-<p><b>SuperNOVAS</b> is maintained by <a href="https://github.com/attipaci">Attila Kovács</a> (Sigmyne, LLC),</p>
-<p>Outside contributions are very welcome. See <a href="https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html">how you can contribute</a> on how you can make <b>SuperNOVAS</b> even better.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
-Related links</h2>
-<ul>
-<li><a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a> home page at the US Naval Observatory.</li>
-<li><a href="https://calceph.imcce.fr">CALCEPH C library</a> for integrating Solar-system ephemerides from JPL and/or in INPOP 2.0/3.0 format.</li>
-<li><a href="https://naif.jpl.nasa.gov/naif/toolkit.html">NAIF SPICE toolkit</a> for integrating Solar-system ephemerides from JPL.</li>
-<li><a href="https://github.com/Sigmyne/cspice-sharedlib">Sigmyne/cspice-sharedlib</a> for building CSPICE as a shared library for dynamic linking.</li>
-<li><a href="https://www.minorplanetcenter.net/iau/mpc.html">IAU Minor Planet Center</a> provides up-to-date orbital elements for asteroids, comets, and near-Earth objects (NEOs), including newly discovered objects.</li>
-<li><a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">IERS Earth Rotation and Reference Systems Service</a> provides Earth Orientation Parameter (EOP) data for many high accuracy calculations.</li>
-</ul>
-<hr  />
-<p><a class="anchor" id="fixed-issues"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
-Fixed NOVAS C 3.1 issues</h1>
-<p><b>SuperNOVAS</b> fixes a number of outstanding issues with NOVAS C 3.1:</p>
-<details >
-<summary >
-Details</summary>
-<p></p>
-<ul>
-<li>Fixes the <a href="https://aa.usno.navy.mil/software/novas_faq">sidereal_time bug</a>, whereby the <span class="tt"><a class="el" href="earth_8c.html#a6eacba14d3c382d67307856a2ea290e3">sidereal_time()</a></span> function had an incorrect unit cast. This was a documented issue of NOVAS C 3.1.</li>
-<li>Fixes the <a href="https://aa.usno.navy.mil/software/novas_faq">ephem_close bug</a>, whereby <span class="tt">ephem_close()</span> in <span class="tt">eph_manager.c</span> did not reset the <span class="tt">EPHFILE</span> pointer to NULL. This was a documented issue of NOVAS C 3.1.</li>
-<li>Fixes antedating velocities and distances for light travel time in <span class="tt"><a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23" title="Retrieves the position and velocity of a solar system body using the currently configured plugins tha...">ephemeris()</a></span>. When getting positions and velocities for Solar-system sources, it is important to use the values from the time light originated from the observed body rather than at the time that light arrives to the observer. This correction was done properly for positions, but not for velocities or distances, resulting in incorrect observed radial velocities or apparent distances being reported for spectroscopic observations or for angular-physical size conversions.</li>
-<li>Fixes bug in <span class="tt"><a class="el" href="novas_8h.html#aea0e1028baf14d16d9de800e36a17086" title="Compute the intermediate right ascension of the equinox at the input Julian date, using an analytical...">ira_equinox()</a></span> which may return the result for the wrong type of equinox (mean vs. true) if the <span class="tt">equinox</span> argument was changing from 1 to 0, and back to 1 again with the date being held the same. This affected routines downstream also, such as <span class="tt"><a class="el" href="earth_8c.html#a6eacba14d3c382d67307856a2ea290e3">sidereal_time()</a></span>.</li>
-<li>Fixes accuracy switching bug in <span class="tt"><a class="el" href="cio_8c.html#a51bfbe9b491f50851326b2522dc2a29f">cio_basis()</a></span>, <span class="tt"><a class="el" href="cio_8c.html#a65ffaaa2b527ed03149eadc7568f3714">cio_location()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a41ca0cfd79ad07c9e857ba02fa94928e" title="Convert ecliptic longitude and latitude to right ascension and declination.">ecl2equ()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#aa05ecc76c1ccc0c3445f8b642d6c5311" title="Converts an equatorial position vector to an ecliptic position vector.">equ2ecl_vec()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a6fa1eada41005ac70290d0bb5df1ec26" title="Converts an ecliptic position vector to an equatorial position vector.">ecl2equ_vec()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, and <span class="tt"><a class="el" href="earth_8c.html#a6eacba14d3c382d67307856a2ea290e3">sidereal_time()</a></span>. All these functions returned a cached value for the other accuracy if the other input parameters are the same as a prior call, except the accuracy.</li>
-<li>Fixes multiple bugs related to using cached values in <span class="tt"><a class="el" href="cio_8c.html#a51bfbe9b491f50851326b2522dc2a29f">cio_basis()</a></span> with alternating CIO location reference systems. This affected many CIRS-based position calculations downstream.</li>
-<li>Fixes bug in <span class="tt"><a class="el" href="novas_8h.html#aa05ecc76c1ccc0c3445f8b642d6c5311" title="Converts an equatorial position vector to an ecliptic position vector.">equ2ecl_vec()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#a6fa1eada41005ac70290d0bb5df1ec26" title="Converts an ecliptic position vector to an equatorial position vector.">ecl2equ_vec()</a></span> whereby a query with <span class="tt">coord_sys = 2</span> (GCRS) has overwritten the cached mean obliquity value for <span class="tt">coord_sys = 0</span> (mean equinox of date). As a result, a subsequent call with <span class="tt">coord_sys = 0</span> and the same date as before would return the results in GCRS coordinates instead of the requested mean equinox of date coordinates.</li>
-<li>Some remainder calculations in NOVAS C 3.1 used the result from <span class="tt">fmod()</span> unchecked, which resulted in angles outside of the expected [0:2&pi;] range and was also the reason why <span class="tt"><a class="el" href="novas_8h.html#a044f1359abcf0a039ac6452a95729b5a" title="This function will compute a broken down date on the astronomical calendar given the Julian day input...">cal_date()</a></span> did not work for negative JD values.</li>
-<li>Fixes <span class="tt"><a class="el" href="novas_8h.html#a033f1bf4b01e0e21a0e05e13c19c02f6" title="Corrects position vector for aberration of light.">aberration()</a></span> returning NaN vectors if the <span class="tt">ve</span> argument is 0. It now returns the unmodified input vector appropriately instead.</li>
-<li>Fixes unpopulated <span class="tt">az</span> output value in <span class="tt"><a class="el" href="system_8c.html#ad932a8617973ef06e4a5c955b7897bb0">equ2hor()</a></span> at zenith. While any azimuth is acceptable really, it results in unpredictable behavior. Hence, we set <span class="tt">az</span> to 0.0 for zenith to be consistent.</li>
-<li>Fixes potential string overflows and eliminates associated compiler warnings.</li>
-<li>Nutation series used truncated expressions for the fundamental arguments, resulting in &mu;as-level errors in when dozens or more years away from the reference epoch of J2000.</li>
-<li>[<b>v1.1</b>] Fixes division by zero bug in <span class="tt"><a class="el" href="novas_8h.html#ad799864f637c483fb49491bde5a93e25" title="Returns the difference in light-time, for a star, between the barycenter of the solar system and the ...">d_light()</a></span> if the first position argument is the ephemeris reference position (e.g. the Sun for <span class="tt"><a class="el" href="solsys3_8c.html" title="Planet calculator functions for the Earth and Sun only, with an orbital model fitted to the DE405 eph...">solsys3.c</a></span>). The bug affects for example <span class="tt"><a class="el" href="novas_8h.html#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a></span>, where it effectively results in the gravitational deflection due to the Sun being skipped.</li>
-<li>[<b>v1.1</b>] The NOVAS C 3.1 implementation of <span class="tt"><a class="el" href="novas_8h.html#afca24d914664bb60d20fb428177f329a" title="Predicts the radial velocity of the observed object as it would be measured by spectroscopic means.">rad_vel()</a></span> has a number of issues that produce inaccurate results. The errors are typically at or below the tens of m/s level for objects not moving at relativistic speeds.</li>
-<li>[<b>v1.4</b>] The NOVAS C 3.1 implementation of <span class="tt"><a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a></span> / <span class="tt"><a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a></span> was such that if both <span class="tt">xp</span> and <span class="tt">yp</span> parameters were zero, then no wobble correction was applied, not even for the TIO longitude (s'). The error from this omission is very small, at just a few &mu;as (microarcseconds) within a couple of centuries of J2000.</li>
-</ul>
-<p></p>
-</details>
-<hr  />
-<p><a class="anchor" id="compatibility"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
-Compatibility with NOVAS C 3.1</h1>
-<p><b>SuperNOVAS</b> strives to maintain API compatibility with the upstream NOVAS C 3.1 library, but not binary (ABI) compatibility.</p>
-<p>If you have code that was written for NOVAS C 3.1, it should work with <b>SuperNOVAS</b> as is, without modifications. Simply (re)build your application against <b>SuperNOVAS</b>, and you are good to go.</p>
-<p>The lack of binary compatibility just means that you cannot drop-in replace the libraries (e.g. the static <span class="tt">libnovas.a</span>, or the shared <span class="tt">libnovas.so</span>), from NOVAS C 3.1 with those from <b>SuperNOVAS</b>. Instead, you will have to build (compile) your application referencing the <b>SuperNOVAS</b> headers and/or libraries from the start.</p>
-<p>This is because some function signatures have changed, e.g. to use an <span class="tt">enum</span> argument instead of the nondescript <span class="tt">short int</span> option arguments used in NOVAS C 3.1, or because we added a return value to a function that was declared <span class="tt">void</span> in NOVAS C 3.1. We also changed the <span class="tt"><a class="el" href="novas_8h.html#a8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> structure to contain a <span class="tt">long</span> ID number instead of <span class="tt">short</span> to accommodate JPL NAIF codes, for which 16-bit storage is insufficient.</p>
-<hr  />
-<p><a class="anchor" id="installation"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
-Building and installation</h1>
-<ul>
-<li><a class="el" href="#gnu-build" title="gnu-build">Build SuperNOVAS using GNU make</a></li>
-<li><a class="el" href="#cmake-build" title="cmake-build">Build SuperNOVAS using CMake</a></li>
-<li><a class="el" href="#vcpkg-port" title="vcpkg-port">Install SuperNOVAS via `vcpkg`</a></li>
-<li><a class="el" href="#linux-packages" title="linux-packages">Linux packages</a></li>
-<li><a class="el" href="#homebrew" title="homebrew">Homebrew package</a></li>
-<li><a class="el" href="#nix" title="nix">Nix package</a></li>
-</ul>
-<p><a class="anchor" id="gnu-build"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
-Build SuperNOVAS using GNU make</h2>
-<p>The <b>SuperNOVAS</b> distribution contains a GNU <span class="tt">Makefile</span>, which is suitable for compiling the library (as well as local documentation, and tests, etc.) on POSIX systems such as Linux, Mac OS X, BSD, Cygwin or WSL &ndash; using <a href="https://www.gnu.org/software/make/">GNU <span class="tt">make</span></a>.</p>
-<details >
-<summary >
-Details</summary>
-<p></p>
-<p>Before compiling the library take a look a <span class="tt">config.mk</span> and edit it as necessary for your needs, or else define the necessary variables in the shell prior to invoking <span class="tt">make</span>. For example:</p>
-<ul>
-<li><span class="tt">ENABLE_CPP</span>: As of v1.6, <b>SuperNOVAS</b> offers a C++11 API and library also, but it is not enabled by default. To build C++ library (<span class="tt">libsupernovas++</span>), and install the C++ header (<span class="tt"><a class="el" href="supernovas_8h.html">supernovas.h</a></span>) and documentation you should set this option to 1, either in your environment or else in <span class="tt">config.mk</span>.</li>
-<li><a href="https://www.imcce.fr/recherche/equipes/asd/calceph/">CALCEPH</a> C library integration is automatic on Linux if <span class="tt">ldconfig</span> can locate the <span class="tt">libcalceph</span> shared library. You can also control CALCEPH integration manually, e.g. by setting <span class="tt">CALCEPH_SUPPORT = 1</span> in <span class="tt">config.mk</span> or in the shell prior to the build. CALCEPH integration will require an accessible installation of the CALCEPH development files (C headers and unversioned static or shared libraries depending on the needs of the build).</li>
-<li><a href="https://naif.jpl.nasa.gov/naif/toolkit.html">NAIF CSPICE Toolkit</a> integration is automatic on Linux if <span class="tt">ldconfig</span> can locate the <span class="tt">libcspice</span> shared library. You can also control CSPICE integration manually, e.g. by setting <span class="tt">CSPICE_SUPPORT = 1</span> in <span class="tt">config.mk</span> or in the shell prior to the build. CSPICE integration will require an accessible installation of the CSPICE development files (C headers, under a <span class="tt">cspice/</span> subfolder in the header search path, and unversioned static or shared libraries depending on the needs of the build). You might want to check out the <a href="https://github.com/Sigmyne/cspice-sharedlib">Sigmyne/cspice-sharedlib</a> repository for building CSPICE as a shared library.</li>
-<li>If your compiler does not support the C11 standard and it is not GCC &gt;=3.3, but provides some nonstandard support for declaring thread-local variables, you may want to pass the keyword to use to declare variables as thread local via <span class="tt">-DTHREAD_LOCAL=...</span> added to <span class="tt">CFLAGS</span>. (Don't forget to enclose the string value in escaped quotes in <span class="tt">config.mk</span>, or unescaped if defining the <span class="tt">THREAD_LOCAL</span> shell variable prior to invoking <span class="tt">make</span>.)</li>
-</ul>
-<p>Additionally, you may set number of environment variables to futher customize the build, such as:</p>
-<ul>
-<li><span class="tt">CC</span>: The C compiler to use (default: <span class="tt">gcc</span>).</li>
-<li><span class="tt">CPPFLAGS</span>: C preprocessor flags, such as externally defined compiler constants.</li>
-<li><span class="tt">CFLAGS</span>: Flags to pass onto the C compiler (default: <span class="tt">-g -Os -Wall</span>). Note, <span class="tt">-Iinclude</span> will be added automatically.</li>
-<li><span class="tt">LDFLAGS</span>: Extra linker flags (default is <em>not set</em>). Note, <span class="tt">-lm</span> will be added automatically.</li>
-<li><span class="tt">CSTANDARD</span>: Optionally, specify the C standard to compile for, e.g. <span class="tt">c99</span> to compile for the C99 standard. If defined then <span class="tt">-std=$(CSTANDARD)</span> is added to <span class="tt">CFLAGS</span> automatically.</li>
-<li><span class="tt">WEXTRA</span>: If set to 1, <span class="tt">-Wextra</span> is added to <span class="tt">CFLAGS</span> automatically.</li>
-<li><span class="tt">FORTIFY</span>: If set it will set the <span class="tt">_FORTIFY_SOURCE</span> macro to the specified value (<span class="tt">gcc</span> supports values 1 through 3). It affords varying levels of extra compile time / runtime checks.</li>
-<li><span class="tt">CHECKEXTRA</span>: Extra options to pass to <span class="tt">cppcheck</span> for the <span class="tt">make check</span> target</li>
-<li><span class="tt">DOXYGEN</span>: Specify the <span class="tt">doxygen</span> executable to use for generating documentation. If not set (default), <span class="tt">make</span> will use <span class="tt">doxygen</span> in your <span class="tt">PATH</span> (if any). You can also set it to <span class="tt">none</span> to disable document generation and the checking for a usable <span class="tt">doxygen</span> version entirely.</li>
-</ul>
-<p>Now you are ready to build the library:</p>
-<div class="fragment"><div class="line">$ make</div>
-</div><!-- fragment --><p>will compile the shared (e.g. <span class="tt">lib/libsupernovas.so</span>) libraries, and compile the API documentation (into <span class="tt">doc/</span>) using <span class="tt">doxygen</span> (if available). Alternatively, you can build select components of the above with the <span class="tt">make</span> targets <span class="tt">shared</span>, and <span class="tt">local-dox</span> respectively. And, if unsure, you can always call <span class="tt">make help</span> to see what build targets are available.</p>
-<p>To build <b>SuperNOVAS</b> as static libraries, use <span class="tt">make static</span>.</p>
-<p>After building the library you can install the above components to the desired locations on your system. For a system-wide install you may simply run:</p>
-<div class="fragment"><div class="line">$ sudo make install</div>
-</div><!-- fragment --><p>Or, to install in some other locations, you may set a prefix and/or <span class="tt">DESTDIR</span>. For example, to install under <span class="tt">/opt</span> instead, you can:</p>
-<div class="fragment"><div class="line">$ sudo make prefix=&quot;/opt&quot; install</div>
-</div><!-- fragment --><p>Or, to stage the installation (to <span class="tt">/usr</span>) under a 'build root':</p>
-<div class="fragment"><div class="line">$ make DESTDIR=&quot;/tmp/stage&quot; install</div>
-</div><!-- fragment --><p></p>
-</details>
-<dl class="section remark"><dt>Remarks</dt><dd>On BSD, you will need to use <span class="tt">gmake</span> instead of <span class="tt">make</span>.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd>if you want to build <b>SuperNOVAS</b> for with your old NOVAS C applications you might want to further customize the build. See section on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99">legacy application</a> in the <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">C99 User's guide</a>.</dd></dl>
-<p><a class="anchor" id="cmake-build"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
-Build SuperNOVAS using CMake</h2>
-<p>As of v1.5, <b>SuperNOVAS</b> can be built using <a href="https://cmake.org/">CMake</a> (many thanks to Kiran Shila). CMake allows for greater portability than the regular GNU <span class="tt">Makefile</span>. Note, however, that the CMake configuration does not support all of the build options of the GNU <span class="tt">Makefile</span>, such as automatic CALCEPH and CSPICE integration on Linux, supporting legacy NOVAS C style builds, and code coverage tracking.</p>
-<details >
-<summary >
-Details</summary>
-<p></p>
-<p>The basic build recipe for CMake is:</p>
-<div class="fragment"><div class="line">$ cmake -B build</div>
-<div class="line">$ cmake --build build</div>
-</div><!-- fragment --><p>The <b>SuperNOVAS</b> CMake build supports the following options (in addition to the standard CMake options):</p>
-<ul>
-<li><span class="tt">BUILD_SHARED_LIBS=ON|OFF</span> (default: OFF) - Build shared libraries instead of static</li>
-<li><span class="tt">BUILD_DOC=ON|OFF</span> (default: OFF) - Compile HTML documentation. Requires <span class="tt">doxygen</span>.</li>
-<li><span class="tt">BUILD_EXAMPLES=ON|OFF</span> (default: OFF) - Build the included examples</li>
-<li><span class="tt">BUILD_TESTING=ON|OFF</span> (default: ON - Build regression tests</li>
-<li><span class="tt">BUILD_BENCHMARK=ON|OFF</span> (default: OFF - Build benchmarking programs</li>
-<li><span class="tt">ENABLE_CPP=ON|OFF</span> (default: OFF - Build C++11 library (<span class="tt">supernovas++</span>) also.</li>
-<li><span class="tt">ENABLE_CALCEPH=ON|OFF</span> (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires <span class="tt">calceph</span> package.</li>
-<li><span class="tt">ENABLE_CSPICE=ON|OFF</span> (default: OFF) - Optional CSPICE ephemeris plugin support. Requires <span class="tt">cspice</span> library installed.</li>
-</ul>
-<p>For example, to configure the build of <b>SuperNOVAS</b> with shared libraries and with <a href="https://calceph.imcce.fr">CALCEPH</a> integration for ephemeris support:</p>
-<div class="fragment"><div class="line">$ cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DENABLE_CALCEPH=ON</div>
-</div><!-- fragment --><p>and then perform the build:</p>
-<div class="fragment"><div class="line">$ cmake --build build</div>
-</div><!-- fragment --><p>Or, on Windows (Microsoft Visual C) you will want:</p>
-<div class="fragment"><div class="line">$ cmake --build build --config Release</div>
-</div><!-- fragment --><p>If a <span class="tt">CMAKE_BUILD_TYPE</span> is not set, the build will only use the <span class="tt">CFLAGS</span> (if any) that were set in the environment. This is ideal for those who want to have full control of the compiler flags used in the build. Specifying <span class="tt">Release</span> or <span class="tt">Debug</span> will append a particular set of appropriate compiler options which are suited for the given build type. (If you want to use the MinGW compiler on Windows, you'll want to set <span class="tt">-DCMAKE_C_COMPILER=gcc -G "MinGW Makefiles"</span> options also.)</p>
-<p>After a successful build, you can install the <span class="tt">Runtime</span> (libraries), and <span class="tt">Development</span> (headers, CMake config, and <span class="tt">pkg-config</span>) components, e.g. under <span class="tt">/usr/local</span>, as:</p>
-<div class="fragment"><div class="line">$ cmake --install build --prefix /usr/local </div>
-</div><!-- fragment --><p>Or, you can use the <span class="tt">--component</span> option to install just the selected components. For example to install just the <span class="tt">Runtime</span> component:</p>
-<div class="fragment"><div class="line">$ cmake --install build --component Runtime --prefix /usr/local</div>
-</div><!-- fragment --> </details>
-<p><a class="anchor" id="vcpkg-port"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
-Install SuperNOVAS via <span class="tt">vcpkg</span></h2>
-<p>As of version 1.5, <b>SuperNOVAS</b> is available through the <a href="https://vcpkg.io/en/">vcpkg</a> registry. The <span class="tt">vcpkg</span> port supports a wide range of platforms, including Linux, Windows, MacOS, and Android &ndash; for both <span class="tt">arm64</span> and <span class="tt">x64</span> architectures (and in case of Windows also <span class="tt">x86</span>). It is effectively the same as the CMake build (above), only with more simplicity, convenience, and dependency resolution.</p>
-<details >
-<summary >
-Details</summary>
-<p></p>
-<p>You can install the complete SuperNOVAS library with <span class="tt">vcpkg</span> as:</p>
-<div class="fragment"><div class="line">$ vcpkg install supernovas</div>
-</div><!-- fragment --><p>Or, a set of selected component, such as the core C99 library, the C++11 library, and the <span class="tt">solsys-calceph</span> plugin library as:</p>
-<div class="fragment"><div class="line">$ vcpkg install supernovas[core,cpp,solsys-calceph]</div>
-</div><!-- fragment --><p>The latter will also install the <span class="tt">calceph</span> library dependency, as needed.</p>
-<p></p>
-</details>
-<p><a class="anchor" id="linux-packages"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
-Linux packages</h2>
-<p><b>SuperNOVAS</b> is packaged for Debian, Fedora / EPEL, and NixOS Linux distributions, and derivatives based on these (Ubuntu, Mint, RHEL, CentOS Stream, Alma Linux, Rocky Linux, Oracle Linux etc.).</p>
-<details >
-<summary >
-Details</summary>
-<p></p>
-<p>On Debian-based platforms you might install all components via:</p>
-<div class="fragment"><div class="line">$ sudo apt-get install libsupernovas1 libsupernovas++1 libsolsys-calceph1 libsupernovas-doc libsupernovas-dev</div>
-</div><!-- fragment --><p>And or Fedora / EPEL based distributions as:</p>
-<div class="fragment"><div class="line">$ sudo dnf install supernovas supernovas-c++ supernovas-solsys-calceph supernovas-doc supernovas-devel</div>
-</div><!-- fragment --><p>In both cases the first package is the runtime library, the second is the C++11 runtime library, the third is the runtime for the <span class="tt">solsys-calceph</span> plugin, the fourth is documentation, and the last one is the files needed for application development.</p>
-<p></p>
-</details>
-<dl class="section note"><dt>Note</dt><dd>The turnaround time for Debian packages is quite slow, and typically follows the 6-month Debian release cycle, whereas the Fedora / EPEL packages are usually fully up-to-date (i.e. in <span class="tt">stable</span>) within a week of a new SuperNOVAS release. Somewhat newer Debian versions may be found in <span class="tt">testing</span>, but even that tends to lag behind the <span class="tt">stable</span> Fedora / EPEL updates.</dd></dl>
-<p><a class="anchor" id="homebrew"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
-Homebrew package</h2>
-<p>As of version 1.5, there is also a <a href="https://brew.sh/">Homebrew</a> package through the maintainer's own Tap, which includes the <span class="tt">solsys-calceph</span> plugin by default. And, as of the 1.6 release it includes the C++11 API library also.</p>
-<details >
-<summary >
-Details</summary>
-<p></p>
-<div class="fragment"><div class="line">$ brew tap attipaci/pub</div>
-<div class="line">$ brew install supernovas</div>
-</div><!-- fragment --><p></p>
-</details>
-<p><a class="anchor" id="nix"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
-Nix package</h2>
-<p>As of version 1.5, there is also a <a href="https://nixos.org/">Nix</a> <a href="https://search.nixos.org/packages?channel=unstable&amp;show=supernovas&amp;query=supernovas">package</a>. This declarative and determinstic package manager can be used on every linux distribution as well as MacOS. The default package includes the <span class="tt">solsys-calceph</span> plugin, but can be overriden by changing <span class="tt">withCalceph</span>.</p>
-<details >
-<summary >
-Details</summary>
-<p></p>
-<p>Install to your profile with</p>
-<div class="fragment"><div class="line">$ nix profile add nixpkgs#supernovas</div>
-</div><!-- fragment --><p>Or include in your Nix build of other software with</p>
-<div class="fragment"><div class="line">nativeBuildInputs = with pkgs; [supernovas];</div>
-</div><!-- fragment --><p></p>
-</details>
-<hr  />
-<p><a class="anchor" id="methodologies"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
-Celestial coordinate systems (old vs. new)</h1>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadCenter"><p class="starttd"><img src="SuperNOVAS-systems.png" alt="" class="inline" title="SuperNOVAS coordinate systems and conversions"/>    </p>
-<p class="endtd"></p>
-</th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyCenter"><b>Figure 1.</b> SuperNOVAS Coordinate Systems and Conversions. Functions indicated in bold face are available in NOVAS C also. All other functions are available in SuperNOVAS only. SuperNOVAS also adds efficient <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#transforms-c99">matrix transformations</a> between the equatorial systems.  </td></tr>
-</table>
+<p>[<img src="https://zenodo.org/badge/DOI/10.5281/zenodo.14584983.svg" alt="DOI" style="pointer-events: none;" class="inline"/>]("https://doi.org/10.5281/zenodo.14584983)
+
+The NOVAS C astrometry library, made better.
+
+ - &lt;a href="<a href="https://sigmyne.github.io/SuperNOVAS/doc/html/topics.html">https://sigmyne.github.io/SuperNOVAS/doc/html/topics.html</a>" &gt;C99 API documentation&lt;/a&gt;
+ - &lt;a href="<a href="https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/topics.html">https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/topics.html</a>" &gt;C++ API documentation&lt;/a&gt;
+ - &lt;a href="<a href="https://sigmyne.github.io/SuperNOVAS">https://sigmyne.github.io/SuperNOVAS</a>" &gt;SuperNOVAS pages&lt;/a&gt; on github.io 
+
+&lt;a href="<a href="https://github.com/Sigmyne/SuperNOVAS/">https://github.com/Sigmyne/SuperNOVAS/</a>" &gt;SuperNOVAS&lt;/a&gt; is a C/C++ astronomy software library, providing 
+high-precision astrometry such as one might need for running an observatory, a precise planetarium program, or for
+analyzing astronomical datasets. It started as a fork of the Naval Observatory Vector Astrometry Software 
+(&lt;a href="<a href="https://aa.usno.navy.mil/software/novas_info">https://aa.usno.navy.mil/software/novas_info</a>" &gt;NOVAS&lt;/a&gt;) C version 3.1, but since then it has grown into its own, 
+providing bug fixes, tons of new features, and a much improved API compared to the original NOVAS.
+
+&lt;strong&gt;SuperNOVAS&lt;/strong&gt; is easy to use and it is very fast, with 3&amp;ndash;5 orders of magnitude faster position calculations than 
+&lt;a href="<a href="https://www.astropy.org/">https://www.astropy.org/</a>" &gt;astropy&lt;/a&gt; 7.0.0 in a single thread (see the @ref "benchmarks" "benchmarks"), and its performance 
+will scale further with the number of CPUs when calculations are performed in parallel threads.
+
+&lt;strong&gt;SuperNOVAS&lt;/strong&gt; is and it is available through the &lt;a href="<a href="https://github.com/Sigmyne/SuperNOVAS">https://github.com/Sigmyne/SuperNOVAS</a>" &gt;Sigmyne/SuperNOVAS&lt;/a&gt; 
+repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, 
+and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully 
+supports the IAU 2000/2006 conventions for microarcsecond-level position calculations. 
+
+This document has been updated for the &lt;tt&gt;v1.6&lt;/tt&gt; and later releases.
+
+
+@section autotoc_md1 Table of Contents
+
+ - @ref "introduction" "Introduction"
+ - @ref "fixed-issues" "Fixed NOVAS C 3.1 issues"
+ - @ref "compatibility" "Compatibility with NOVAS C 3.1"
+ - @ref "installation" "Building and installation"
+ - @ref "methodologies" "Celestial coordinate systems (old vs. new)"
+ - @ref "examples" "Example use cases"
+ - @ref "solarsystem" "Incorporating Solar-system ephemeris data or services"
+ - @ref "precision" "Notes on precision"
+ - @ref "debug-support" "Runtime debug support"
+ - @ref "benchmarks" "Representative benchmarks"
+ - @ref "supernovas-features" "SuperNOVAS added features"
+ - @ref "release-schedule" "Release schedule"
+
+&lt;hr&gt;
+
+@anchor introduction &lt;a&gt;&lt;/a&gt;
+@section autotoc_md3 Introduction
+
+&lt;strong&gt;SuperNOVAS&lt;/strong&gt; is a fork of the The Naval Observatory Vector Astrometry Software 
+(&lt;a href="<a href="https://aa.usno.navy.mil/software/novas_info">https://aa.usno.navy.mil/software/novas_info</a>" &gt;NOVAS&lt;/a&gt;). (It is not related to the separate NOVA / libnova library.)
+
+The primary goal of &lt;strong&gt;SuperNOVAS&lt;/strong&gt; is to improve on the original NOVAS C library via:
+
+ - Fixing @ref "fixed-issues" "outstanding issues".
+ - Improved &lt;a href="<a href="https://sigmyne.github.io/SuperNOVAS/doc/html/files.html">https://sigmyne.github.io/SuperNOVAS/doc/html/files.html</a>" &gt;C99 API documentation&lt;/a&gt;.
+ - @ref "benchmarks" "Faster calculations".
+ - @ref "added-functionality" "New features".
+ - @ref "api-changes" "Refined C99 API" to promote best programming practices.
+ - New, high-level, @ref "/github/workspace/doc/USAGE-CPP.md" "C++11 API".
+ - &lt;a href="<a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#multi-threading-c99">https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#multi-threading-c99</a>" &gt;Thread-safe calculations&lt;/a&gt;.
+ - @ref "debug-support" "Debug mode" with informative error tracing.
+ - &lt;a href="<a href="https://codecov.io/gh/Sigmyne/SuperNOVAS">https://codecov.io/gh/Sigmyne/SuperNOVAS</a>" &gt;Regression testing&lt;/a&gt; and continuous integration on GitHub.
+
+At the same time, &lt;strong&gt;SuperNOVAS&lt;/strong&gt; aims to be fully backward compatible with the intended functionality of the upstream 
+NOVAS C library, such that it can be used as a &lt;em&gt;build-time&lt;/em&gt; replacement for NOVAS in your application without having 
+to change existing (functional) code you may have written for NOVAS C. 
+
+&lt;strong&gt;SuperNOVAS&lt;/strong&gt; is really quite easy to use. Its new API is just as simple and intuitive as that of &lt;strong&gt;astropy&lt;/strong&gt; (or so 
+we strive for it to be), and it is similarly well documented also (see the 
+documentation for the &lt;a href="<a href="https://sigmyne.github.io/SuperNOVAS/doc/html/files.html">https://sigmyne.github.io/SuperNOVAS/doc/html/files.html</a>" &gt;C99&lt;/a&gt;) and/or
+&lt;a href="<a href="https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/files.html">https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/files.html</a>" &gt;C++&lt;/a&gt; APIs. You can typically achieve the 
+same results with similar lines of code on
+&lt;a href="<a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/SuperNOVAS_vs_astropy.md">https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/SuperNOVAS_vs_astropy.md</a>" &gt;C&lt;/a&gt; or 
+&lt;a href="<a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/cpp/SuperNOVAS++_vs_astropy.md">https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/cpp/SuperNOVAS++_vs_astropy.md</a>" &gt;C++&lt;/a&gt;
+with &lt;strong&gt;SuperNOVAS&lt;/strong&gt; as with &lt;strong&gt;astropy&lt;/strong&gt;, notwithstanding a little more involved error handling (due to the lack of 
+&lt;tt&gt;try / except&lt;/tt&gt; style constructs in C/C++).
+
+&lt;strong&gt;SuperNOVAS&lt;/strong&gt; is currently based on NOVAS C version 3.1. We plan to rebase &lt;strong&gt;SuperNOVAS&lt;/strong&gt; to the latest upstream 
+release of the NOVAS C library, if possible when new releases become available.
+
+&lt;strong&gt;SuperNOVAS&lt;/strong&gt; is maintained by &lt;a href="<a href="https://github.com/attipaci">https://github.com/attipaci</a>" &gt;Attila Kovács&lt;/a&gt; (Sigmyne, LLC), 
+
+Outside contributions are very welcome. See
+&lt;a href="<a href="https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html">https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html</a>" &gt;how you can contribute&lt;/a&gt; on how you can make &lt;strong&gt;SuperNOVAS&lt;/strong&gt; 
+even better.
+
+@subsection autotoc_md4 Related links
+
+ - &lt;a href="<a href="https://aa.usno.navy.mil/software/novas_info">https://aa.usno.navy.mil/software/novas_info</a>" &gt;NOVAS&lt;/a&gt; home page at the US Naval Observatory.
+ - &lt;a href="<a href="https://calceph.imcce.fr">https://calceph.imcce.fr</a>" &gt;CALCEPH C library&lt;/a&gt; for integrating Solar-system ephemerides
+   from JPL and/or in INPOP 2.0/3.0 format.
+ - &lt;a href="<a href="https://naif.jpl.nasa.gov/naif/toolkit.html">https://naif.jpl.nasa.gov/naif/toolkit.html</a>" &gt;NAIF SPICE toolkit&lt;/a&gt; for integrating Solar-system ephemerides
+   from JPL.
+ - &lt;a href="<a href="https://github.com/Sigmyne/cspice-sharedlib">https://github.com/Sigmyne/cspice-sharedlib</a>" &gt;Sigmyne/cspice-sharedlib&lt;/a&gt; for building CSPICE as a shared
+   library for dynamic linking.
+ - &lt;a href="<a href="https://www.minorplanetcenter.net/iau/mpc.html">https://www.minorplanetcenter.net/iau/mpc.html</a>" &gt;IAU Minor Planet Center&lt;/a&gt; provides up-to-date orbital elements
+   for asteroids, comets, and near-Earth objects (NEOs), including newly discovered objects.
+ - &lt;a href="<a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop</a>" &gt;IERS Earth Rotation and Reference Systems Service&lt;/a&gt;
+   provides Earth Orientation Parameter (EOP) data for many high accuracy calculations.
+
+
+&lt;hr&gt;
+
+@anchor fixed-issues &lt;a&gt;&lt;/a&gt;
+@section autotoc_md6 Fixed NOVAS C 3.1 issues
+
+&lt;strong&gt;SuperNOVAS&lt;/strong&gt; fixes a number of outstanding issues with NOVAS C 3.1:
+
+&lt;details&gt;
+
+ - Fixes the &lt;a href="<a href="https://aa.usno.navy.mil/software/novas_faq">https://aa.usno.navy.mil/software/novas_faq</a>" &gt;sidereal_time bug&lt;/a&gt;, whereby the &lt;tt&gt;sidereal_time()&lt;/tt&gt; function 
+   had an incorrect unit cast. This was a documented issue of NOVAS C 3.1.
+
+ - Fixes the &lt;a href="<a href="https://aa.usno.navy.mil/software/novas_faq">https://aa.usno.navy.mil/software/novas_faq</a>" &gt;ephem_close bug&lt;/a&gt;, whereby &lt;tt&gt;ephem_close()&lt;/tt&gt; in 
+   &lt;tt&gt;eph_manager.c&lt;/tt&gt; did not reset the &lt;tt&gt;EPHFILE&lt;/tt&gt; pointer to NULL. This was a documented issue of NOVAS C 3.1.
+
+ - Fixes antedating velocities and distances for light travel time in &lt;tt&gt;ephemeris()&lt;/tt&gt;. When getting positions and 
+   velocities for Solar-system sources, it is important to use the values from the time light originated from the 
+   observed body rather than at the time that light arrives to the observer. This correction was done properly for 
+   positions, but not for velocities or distances, resulting in incorrect observed radial velocities or apparent 
+   distances being reported for spectroscopic observations or for angular-physical size conversions. 
+
+ - Fixes bug in &lt;tt&gt;ira_equinox()&lt;/tt&gt; which may return the result for the wrong type of equinox (mean vs. true) if the 
+   &lt;tt&gt;equinox&lt;/tt&gt; argument was changing from 1 to 0, and back to 1 again with the date being held the same. This affected 
+   routines downstream also, such as &lt;tt&gt;sidereal_time()&lt;/tt&gt;.
+
+ - Fixes accuracy switching bug in &lt;tt&gt;cio_basis()&lt;/tt&gt;, &lt;tt&gt;cio_location()&lt;/tt&gt;, &lt;tt&gt;ecl2equ()&lt;/tt&gt;, &lt;tt&gt;equ2ecl_vec()&lt;/tt&gt;, &lt;tt&gt;ecl2equ_vec()&lt;/tt&gt;, 
+   &lt;tt&gt;geo_posvel()&lt;/tt&gt;, &lt;tt&gt;place()&lt;/tt&gt;, and &lt;tt&gt;sidereal_time()&lt;/tt&gt;. All these functions returned a cached value for the other 
+   accuracy if the other input parameters are the same as a prior call, except the accuracy. 
+
+ - Fixes multiple bugs related to using cached values in &lt;tt&gt;cio_basis()&lt;/tt&gt; with alternating CIO location reference 
+   systems. This affected many CIRS-based position calculations downstream.
+
+ - Fixes bug in &lt;tt&gt;equ2ecl_vec()&lt;/tt&gt; and &lt;tt&gt;ecl2equ_vec()&lt;/tt&gt; whereby a query with &lt;tt&gt;coord_sys = 2&lt;/tt&gt; (GCRS) has overwritten the
+   cached mean obliquity value for &lt;tt&gt;coord_sys = 0&lt;/tt&gt; (mean equinox of date). As a result, a subsequent call with
+   &lt;tt&gt;coord_sys = 0&lt;/tt&gt; and the same date as before would return the results in GCRS coordinates instead of the requested 
+   mean equinox of date coordinates.
+
+ - Some remainder calculations in NOVAS C 3.1 used the result from &lt;tt&gt;fmod()&lt;/tt&gt; unchecked, which resulted in angles outside
+   of the expected [0:2&amp;pi;] range and was also the reason why &lt;tt&gt;cal_date()&lt;/tt&gt; did not work for negative JD values.
+
+ - Fixes &lt;tt&gt;aberration()&lt;/tt&gt; returning NaN vectors if the &lt;tt&gt;ve&lt;/tt&gt; argument is 0. It now returns the unmodified input vector 
+   appropriately instead.
+
+ - Fixes unpopulated &lt;tt&gt;az&lt;/tt&gt; output value in &lt;tt&gt;equ2hor()&lt;/tt&gt; at zenith. While any azimuth is acceptable really, it results in 
+   unpredictable behavior. Hence, we set &lt;tt&gt;az&lt;/tt&gt; to 0.0 for zenith to be consistent.
+
+ - Fixes potential string overflows and eliminates associated compiler warnings.
+
+ - Nutation series used truncated expressions for the fundamental arguments, resulting in &amp;mu;as-level errors in when 
+   dozens or more years away from the reference epoch of J2000.
+
+ - [&lt;strong&gt;v1.1&lt;/strong&gt;] Fixes division by zero bug in &lt;tt&gt;d_light()&lt;/tt&gt; if the first position argument is the ephemeris reference
+   position (e.g. the Sun for &lt;tt&gt;solsys3.c&lt;/tt&gt;). The bug affects for example &lt;tt&gt;grav_def()&lt;/tt&gt;, where it effectively results in
+   the gravitational deflection due to the Sun being skipped.
+
+ - [&lt;strong&gt;v1.1&lt;/strong&gt;] The NOVAS C 3.1 implementation of &lt;tt&gt;rad_vel()&lt;/tt&gt; has a number of issues that produce inaccurate results. 
+   The errors are typically at or below the tens of m/s level for objects not moving at relativistic speeds.
+
+ - [&lt;strong&gt;v1.4&lt;/strong&gt;] The NOVAS C 3.1 implementation of &lt;tt&gt;cel2ter()&lt;/tt&gt; / &lt;tt&gt;ter2cel()&lt;/tt&gt; was such that if both &lt;tt&gt;xp&lt;/tt&gt; and &lt;tt&gt;yp&lt;/tt&gt; 
+   parameters were zero, then no wobble correction was applied, not even for the TIO longitude (s'). The error from 
+   this omission is very small, at just a few &amp;mu;as (microarcseconds) within a couple of centuries of J2000.
+
+&lt;/details&gt;
+
+&lt;hr&gt;
+
+@anchor compatibility &lt;a&gt;&lt;/a&gt;
+@section autotoc_md8 Compatibility with NOVAS C 3.1
+
+&lt;strong&gt;SuperNOVAS&lt;/strong&gt; strives to maintain API compatibility with the upstream NOVAS C 3.1 library, but not binary (ABI) 
+compatibility. 
+
+If you have code that was written for NOVAS C 3.1, it should work with &lt;strong&gt;SuperNOVAS&lt;/strong&gt; as is, without modifications. 
+Simply (re)build your application against &lt;strong&gt;SuperNOVAS&lt;/strong&gt;, and you are good to go. 
+
+The lack of binary compatibility just means that you cannot drop-in replace the libraries (e.g. the static 
+&lt;tt&gt;libnovas.a&lt;/tt&gt;, or the shared &lt;tt&gt;libnovas.so&lt;/tt&gt;), from NOVAS C 3.1 with those from &lt;strong&gt;SuperNOVAS&lt;/strong&gt;. Instead, you will have to 
+build (compile) your application referencing the &lt;strong&gt;SuperNOVAS&lt;/strong&gt; headers and/or libraries from the start.
+
+This is because some function signatures have changed, e.g. to use an &lt;tt&gt;enum&lt;/tt&gt; argument instead of the nondescript 
+&lt;tt&gt;short int&lt;/tt&gt; option arguments used in NOVAS C 3.1, or because we added a return value to a function that was declared 
+&lt;tt&gt;void&lt;/tt&gt; in NOVAS C 3.1. We also changed the &lt;tt&gt;object&lt;/tt&gt; structure to contain a &lt;tt&gt;long&lt;/tt&gt; ID number instead of &lt;tt&gt;short&lt;/tt&gt; to 
+accommodate JPL NAIF codes, for which 16-bit storage is insufficient. 
+
+
+&lt;hr&gt;
+
+@anchor installation &lt;a&gt;&lt;/a&gt;
+@section autotoc_md10 Building and installation
+
+ - @ref "gnu-build" "Build SuperNOVAS using GNU make"
+ - @ref "cmake-build" "Build SuperNOVAS using CMake"
+ - @ref "vcpkg-port" "Install SuperNOVAS via `vcpkg`"
+ - @ref "linux-packages" "Linux packages"
+ - @ref "homebrew" "Homebrew package"
+ - @ref "nix" "Nix package"
+
+@anchor gnu-build &lt;a&gt;&lt;/a&gt;
+@subsection autotoc_md11 Build SuperNOVAS using GNU make
+
+The &lt;strong&gt;SuperNOVAS&lt;/strong&gt; distribution contains a GNU &lt;tt&gt;Makefile&lt;/tt&gt;, which is suitable for compiling the library (as well as 
+local documentation, and tests, etc.) on POSIX systems such as Linux, Mac OS X, BSD, Cygwin or WSL &amp;ndash; using 
+&lt;a href="<a href="https://www.gnu.org/software/make/">https://www.gnu.org/software/make/</a>" &gt;GNU &lt;tt&gt;make&lt;/tt&gt;&lt;/a&gt;.
+
+&lt;details&gt;
+
+Before compiling the library take a look a &lt;tt&gt;config.mk&lt;/tt&gt; and edit it as necessary for your needs, or else define
+the necessary variables in the shell prior to invoking &lt;tt&gt;make&lt;/tt&gt;. For example:
+
+ - &lt;tt&gt;ENABLE_CPP&lt;/tt&gt;: As of v1.6, &lt;strong&gt;SuperNOVAS&lt;/strong&gt; offers a C++11 API and library also, but it is not enabled by default. To
+   build C++ library (&lt;tt&gt;libsupernovas++&lt;/tt&gt;), and install the C++ header (&lt;tt&gt;supernovas.h&lt;/tt&gt;) and documentation you should
+   set this option to 1, either in your environment or else in &lt;tt&gt;config.mk&lt;/tt&gt;. 
+
+ - &lt;a href="<a href="https://www.imcce.fr/recherche/equipes/asd/calceph/">https://www.imcce.fr/recherche/equipes/asd/calceph/</a>" &gt;CALCEPH&lt;/a&gt; C library integration is automatic on Linux if 
+   &lt;tt&gt;ldconfig&lt;/tt&gt; can locate the &lt;tt&gt;libcalceph&lt;/tt&gt; shared library. You can also control CALCEPH integration manually, e.g. by 
+   setting &lt;tt&gt;CALCEPH_SUPPORT = 1&lt;/tt&gt; in &lt;tt&gt;config.mk&lt;/tt&gt; or in the shell prior to the build. CALCEPH integration will require 
+   an accessible installation of the CALCEPH development files (C headers and unversioned static or shared libraries 
+   depending on the needs of the build).
+
+ - &lt;a href="<a href="https://naif.jpl.nasa.gov/naif/toolkit.html">https://naif.jpl.nasa.gov/naif/toolkit.html</a>" &gt;NAIF CSPICE Toolkit&lt;/a&gt; integration is automatic on Linux if &lt;tt&gt;ldconfig&lt;/tt&gt; 
+   can locate the &lt;tt&gt;libcspice&lt;/tt&gt; shared library. You can also control CSPICE integration manually, e.g. by setting 
+   &lt;tt&gt;CSPICE_SUPPORT = 1&lt;/tt&gt; in &lt;tt&gt;config.mk&lt;/tt&gt; or in the shell prior to the build. CSPICE integration will require an 
+   accessible installation of the CSPICE development files (C headers, under a &lt;tt&gt;cspice/&lt;/tt&gt; subfolder in the header 
+   search path, and unversioned static or shared libraries depending on the needs of the build). You might want to 
+   check out the &lt;a href="<a href="https://github.com/Sigmyne/cspice-sharedlib">https://github.com/Sigmyne/cspice-sharedlib</a>" &gt;Sigmyne/cspice-sharedlib&lt;/a&gt; repository for 
+   building CSPICE as a shared library.
+
+ - If your compiler does not support the C11 standard and it is not GCC &amp;gt;=3.3, but provides some nonstandard
+   support for declaring thread-local variables, you may want to pass the keyword to use to declare variables as
+   thread local via &lt;tt&gt;-DTHREAD_LOCAL=...&lt;/tt&gt; added to &lt;tt&gt;CFLAGS&lt;/tt&gt;. (Don't forget to enclose the string value in escaped
+   quotes in &lt;tt&gt;config.mk&lt;/tt&gt;, or unescaped if defining the &lt;tt&gt;THREAD_LOCAL&lt;/tt&gt; shell variable prior to invoking &lt;tt&gt;make&lt;/tt&gt;.)
+
+Additionally, you may set number of environment variables to futher customize the build, such as:
+
+ - &lt;tt&gt;CC&lt;/tt&gt;: The C compiler to use (default: &lt;tt&gt;gcc&lt;/tt&gt;).
+
+ - &lt;tt&gt;CPPFLAGS&lt;/tt&gt;: C preprocessor flags, such as externally defined compiler constants.
+
+ - &lt;tt&gt;CFLAGS&lt;/tt&gt;: Flags to pass onto the C compiler (default: &lt;tt&gt;-g -Os -Wall&lt;/tt&gt;). Note, &lt;tt&gt;-Iinclude&lt;/tt&gt; will be added 
+   automatically.
+
+ - &lt;tt&gt;LDFLAGS&lt;/tt&gt;: Extra linker flags (default is &lt;em&gt;not set&lt;/em&gt;). Note, &lt;tt&gt;-lm&lt;/tt&gt; will be added automatically.
+
+ - &lt;tt&gt;CSTANDARD&lt;/tt&gt;: Optionally, specify the C standard to compile for, e.g. &lt;tt&gt;c99&lt;/tt&gt; to compile for the C99 standard. If
+   defined then &lt;tt&gt;-std=\$(CSTANDARD)&lt;/tt&gt; is added to &lt;tt&gt;CFLAGS&lt;/tt&gt; automatically.
+
+ - &lt;tt&gt;WEXTRA&lt;/tt&gt;: If set to 1, &lt;tt&gt;-Wextra&lt;/tt&gt; is added to &lt;tt&gt;CFLAGS&lt;/tt&gt; automatically.
+
+ - &lt;tt&gt;FORTIFY&lt;/tt&gt;: If set it will set the &lt;tt&gt;_FORTIFY_SOURCE&lt;/tt&gt; macro to the specified value (&lt;tt&gt;gcc&lt;/tt&gt; supports values 1 
+   through 3). It affords varying levels of extra compile time / runtime checks.
+
+ - &lt;tt&gt;CHECKEXTRA&lt;/tt&gt;: Extra options to pass to &lt;tt&gt;cppcheck&lt;/tt&gt; for the &lt;tt&gt;make check&lt;/tt&gt; target
+
+ - &lt;tt&gt;DOXYGEN&lt;/tt&gt;: Specify the &lt;tt&gt;doxygen&lt;/tt&gt; executable to use for generating documentation. If not set (default), &lt;tt&gt;make&lt;/tt&gt; will
+   use &lt;tt&gt;doxygen&lt;/tt&gt; in your &lt;tt&gt;PATH&lt;/tt&gt; (if any). You can also set it to &lt;tt&gt;none&lt;/tt&gt; to disable document generation and the
+   checking for a usable &lt;tt&gt;doxygen&lt;/tt&gt; version entirely.
+
+Now you are ready to build the library:
+
+@icode{bash} 
+  $ make
+@endicode 
+
+will compile the shared (e.g. &lt;tt&gt;lib/libsupernovas.so&lt;/tt&gt;) libraries, and compile the API documentation (into &lt;tt&gt;doc/&lt;/tt&gt;) 
+using &lt;tt&gt;doxygen&lt;/tt&gt; (if available). Alternatively, you can build select components of the above with the &lt;tt&gt;make&lt;/tt&gt; targets 
+&lt;tt&gt;shared&lt;/tt&gt;, and &lt;tt&gt;local-dox&lt;/tt&gt; respectively. And, if unsure, you can always call &lt;tt&gt;make help&lt;/tt&gt; to see what build targets are 
+available.
+
+To build &lt;strong&gt;SuperNOVAS&lt;/strong&gt; as static libraries, use &lt;tt&gt;make static&lt;/tt&gt;.
+
+After building the library you can install the above components to the desired locations on your system. For a 
+system-wide install you may simply run:
+
+@icode{bash} 
+  $ sudo make install
+@endicode 
+
+Or, to install in some other locations, you may set a prefix and/or &lt;tt&gt;DESTDIR&lt;/tt&gt;. For example, to install under &lt;tt&gt;/opt&lt;/tt&gt; 
+instead, you can:
+
+@icode{bash} 
+  $ sudo make prefix="/opt" install
+@endicode 
+
+Or, to stage the installation (to &lt;tt&gt;/usr&lt;/tt&gt;) under a 'build root':
+
+@icode{bash} 
+  $ make DESTDIR="/tmp/stage" install
+@endicode 
+
+&lt;/details&gt;
+
+\remark 
+On BSD, you will need to use &lt;tt&gt;gmake&lt;/tt&gt; instead of &lt;tt&gt;make&lt;/tt&gt;.
+
+\note 
+if you want to build &lt;strong&gt;SuperNOVAS&lt;/strong&gt; for with your old NOVAS C applications you might want to further customize the 
+build. See section on 
+&lt;a href="<a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99">https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99</a>" &gt;legacy application&lt;/a&gt; in the 
+@ref "/github/workspace/doc/USAGE-C99.md" "C99 User's guide". 
+
+
+@anchor cmake-build &lt;a&gt;&lt;/a&gt;
+@subsection autotoc_md12 Build SuperNOVAS using CMake
+
+As of v1.5, &lt;strong&gt;SuperNOVAS&lt;/strong&gt; can be built using &lt;a href="<a href="https://cmake.org/">https://cmake.org/</a>" &gt;CMake&lt;/a&gt; (many thanks to Kiran Shila). CMake allows 
+for greater portability than the regular GNU &lt;tt&gt;Makefile&lt;/tt&gt;. Note, however, that the CMake configuration does not support 
+all of the build options of the GNU &lt;tt&gt;Makefile&lt;/tt&gt;, such as automatic CALCEPH and CSPICE integration on Linux, supporting 
+legacy NOVAS C style builds, and code coverage tracking. 
+
+&lt;details&gt;
+
+The basic build recipe for CMake is:
+
+@icode{bash} 
+  $ cmake -B build
+  $ cmake --build build
+@endicode 
+
+The &lt;strong&gt;SuperNOVAS&lt;/strong&gt; CMake build supports the following options (in addition to the standard CMake options):
+
+ - &lt;tt&gt;BUILD_SHARED_LIBS=ON|OFF&lt;/tt&gt; (default: OFF) - Build shared libraries instead of static
+ - &lt;tt&gt;BUILD_DOC=ON|OFF&lt;/tt&gt; (default: OFF) - Compile HTML documentation. Requires &lt;tt&gt;doxygen&lt;/tt&gt;.
+ - &lt;tt&gt;BUILD_EXAMPLES=ON|OFF&lt;/tt&gt; (default: OFF) - Build the included examples
+ - &lt;tt&gt;BUILD_TESTING=ON|OFF&lt;/tt&gt; (default: ON - Build regression tests
+ - &lt;tt&gt;BUILD_BENCHMARK=ON|OFF&lt;/tt&gt; (default: OFF - Build benchmarking programs 
+ - &lt;tt&gt;ENABLE_CPP=ON|OFF&lt;/tt&gt; (default: OFF - Build C++11 library (&lt;tt&gt;supernovas++&lt;/tt&gt;) also. 
+ - &lt;tt&gt;ENABLE_CALCEPH=ON|OFF&lt;/tt&gt; (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires &lt;tt&gt;calceph&lt;/tt&gt; package.
+ - &lt;tt&gt;ENABLE_CSPICE=ON|OFF&lt;/tt&gt; (default: OFF) - Optional CSPICE ephemeris plugin support. Requires &lt;tt&gt;cspice&lt;/tt&gt; library 
+   installed.
+
+For example, to configure the build of &lt;strong&gt;SuperNOVAS&lt;/strong&gt; with shared libraries and with 
+&lt;a href="<a href="https://calceph.imcce.fr">https://calceph.imcce.fr</a>" &gt;CALCEPH&lt;/a&gt; integration for ephemeris support:
+
+@icode{bash} 
+  $ cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DENABLE_CALCEPH=ON
+@endicode 
+
+and then perform the build:
+
+@icode{bash} 
+  $ cmake --build build
+@endicode 
+
+Or, on Windows (Microsoft Visual C) you will want:
+
+@icode{bash} 
+  $ cmake --build build --config Release
+@endicode 
+
+If a &lt;tt&gt;CMAKE_BUILD_TYPE&lt;/tt&gt; is not set, the build will only use the &lt;tt&gt;CFLAGS&lt;/tt&gt; (if any) that were set in the environment.
+This is ideal for those who want to have full control of the compiler flags used in the build. Specifying
+&lt;tt&gt;Release&lt;/tt&gt; or &lt;tt&gt;Debug&lt;/tt&gt; will append a particular set of appropriate compiler options which are suited for the given 
+build type. (If you want to use the MinGW compiler on Windows, you'll want to set 
+&lt;tt&gt;-DCMAKE_C_COMPILER=gcc -G \"MinGW Makefiles\"&lt;/tt&gt; options also.)
+
+After a successful build, you can install the &lt;tt&gt;Runtime&lt;/tt&gt; (libraries), and &lt;tt&gt;Development&lt;/tt&gt; (headers, CMake config, and 
+&lt;tt&gt;pkg-config&lt;/tt&gt;) components, e.g. under &lt;tt&gt;/usr/local&lt;/tt&gt;, as:
+
+@icode{bash} 
+  $ cmake --install build --prefix /usr/local 
+@endicode 
+
+Or, you can use the &lt;tt&gt;--component&lt;/tt&gt; option to install just the selected components. For example to install just
+the &lt;tt&gt;Runtime&lt;/tt&gt; component:
+
+@icode{bash} 
+  $ cmake --install build --component Runtime --prefix /usr/local
+@endicode 
+&lt;/details&gt;
+
+
+@anchor vcpkg-port &lt;a&gt;&lt;/a&gt;
+@subsection autotoc_md13 Install SuperNOVAS via &lt;tt&gt;vcpkg&lt;/tt&gt;
+
+As of version 1.5, &lt;strong&gt;SuperNOVAS&lt;/strong&gt; is available through the &lt;a href="<a href="https://vcpkg.io/en/">https://vcpkg.io/en/</a>" &gt;vcpkg&lt;/a&gt; registry. The &lt;tt&gt;vcpkg&lt;/tt&gt; port 
+supports a wide range of platforms, including Linux, Windows, MacOS, and Android &amp;ndash; for both &lt;tt&gt;arm64&lt;/tt&gt; and &lt;tt&gt;x64&lt;/tt&gt; 
+architectures (and in case of Windows also &lt;tt&gt;x86&lt;/tt&gt;). It is effectively the same as the CMake build (above), only with 
+more simplicity, convenience, and dependency resolution.
+
+&lt;details&gt;
+
+You can install the complete SuperNOVAS library with &lt;tt&gt;vcpkg&lt;/tt&gt; as:
+
+@icode{bash} 
+  $ vcpkg install supernovas
+@endicode 
+
+Or, a set of selected component, such as the core C99 library, the C++11 library, and the &lt;tt&gt;solsys-calceph&lt;/tt&gt; plugin 
+library as:
+
+@icode{bash} 
+  $ vcpkg install supernovas[core,cpp,solsys-calceph]
+@endicode 
+
+The latter will also install the &lt;tt&gt;calceph&lt;/tt&gt; library dependency, as needed.
+
+&lt;/details&gt;
+
+
+@anchor linux-packages &lt;a&gt;&lt;/a&gt;
+@subsection autotoc_md14 Linux packages
+
+&lt;strong&gt;SuperNOVAS&lt;/strong&gt; is packaged for Debian, Fedora / EPEL, and NixOS Linux distributions, and derivatives based on these 
+(Ubuntu, Mint, RHEL, CentOS Stream, Alma Linux, Rocky Linux, Oracle Linux etc.).
+
+&lt;details&gt;
+
+On Debian-based platforms you might install all components via:
+
+@icode{bash} 
+  $ sudo apt-get install libsupernovas1 libsupernovas++1 libsolsys-calceph1 libsupernovas-doc libsupernovas-dev
+@endicode 
+
+And or Fedora / EPEL based distributions as:
+
+@icode{bash} 
+  $ sudo dnf install supernovas supernovas-c++ supernovas-solsys-calceph supernovas-doc supernovas-devel
+@endicode 
+
+In both cases the first package is the runtime library, the second is the C++11 runtime library, the third is the 
+runtime for the &lt;tt&gt;solsys-calceph&lt;/tt&gt; plugin, the fourth is documentation, and the last one is the files needed for 
+application development.
+
+&lt;/details&gt;
+
+\note 
+The turnaround time for Debian packages is quite slow, and typically follows the 6-month Debian release cycle, 
+whereas the Fedora / EPEL packages are usually fully up-to-date (i.e. in &lt;tt&gt;stable&lt;/tt&gt;) within a week of a new SuperNOVAS 
+release. Somewhat newer Debian versions may be found in &lt;tt&gt;testing&lt;/tt&gt;, but even that tends to lag behind the &lt;tt&gt;stable&lt;/tt&gt; 
+Fedora / EPEL updates.
+
+
+@anchor homebrew &lt;a&gt;&lt;/a&gt;
+@subsection autotoc_md15 Homebrew package
+
+As of version 1.5, there is also a &lt;a href="<a href="https://brew.sh/">https://brew.sh/</a>" &gt;Homebrew&lt;/a&gt; package through the maintainer's own Tap, which 
+includes the &lt;tt&gt;solsys-calceph&lt;/tt&gt; plugin by default. And, as of the 1.6 release it includes the C++11 API library also.
+
+&lt;details&gt;
+
+@icode{bash} 
+  $ brew tap attipaci/pub
+  $ brew install supernovas
+@endicode 
+
+&lt;/details&gt;
+
+@anchor nix &lt;a&gt;&lt;/a&gt;
+@subsection autotoc_md16 Nix package
+
+As of version 1.5, there is also a &lt;a href="<a href="https://nixos.org/">https://nixos.org/</a>" &gt;Nix&lt;/a&gt; &lt;a href="<a href="https://search.nixos.org/packages?channel=unstable&amp;show=supernovas&amp;query=supernovas">https://search.nixos.org/packages?channel=unstable&amp;show=supernovas&amp;query=supernovas</a>" &gt;package&lt;/a&gt;.
+This declarative and determinstic package manager can be used on every linux distribution as well as MacOS.
+The default package includes the &lt;tt&gt;solsys-calceph&lt;/tt&gt; plugin, but can be overriden by changing &lt;tt&gt;withCalceph&lt;/tt&gt;.
+
+&lt;details&gt;
+
+Install to your profile with
+
+@icode{bash} 
+  $ nix profile add nixpkgs#supernovas
+@endicode 
+
+Or include in your Nix build of other software with
+
+@icode{nix} 
+  nativeBuildInputs = with pkgs; [supernovas];
+@endicode 
+
+&lt;/details&gt;
+
+
+&lt;hr&gt;
+
+
+@anchor methodologies &lt;a&gt;&lt;/a&gt;
+@section autotoc_md18 Celestial coordinate systems (old vs. new)
+
+&lt;table class="markdownTable"&gt;
+  &lt;tr class="markdownTableHead"&gt;    &lt;th class="markdownTableHeadCenter"&gt;@image{inline} html resources/SuperNOVAS-systems.png "SuperNOVAS coordinate systems and conversions"    </p>
+<p><b>Figure 1.</b> SuperNOVAS Coordinate Systems and Conversions. Functions indicated in bold face are available in NOVAS C also. All other functions are available in SuperNOVAS only. SuperNOVAS also adds efficient <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#transforms-c99">matrix transformations</a> between the equatorial systems.  </p>
 <p>The IAU 2000 and 2006 resolutions have completely overhauled the system of astronomical coordinate transformations to enable higher precision astrometry. (Super)NOVAS supports coordinate calculations both in the old (pre IAU 2000) ways, and in the new IAU standard method. The table below provides an overview of how the old and new methods define some of the terms differently:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -412,7 +640,7 @@ Recommendation: set up an ephemeris provider</h2>
 <p>For more details on using CALCEPH or integrating other ways for providing ephemeris data to <b>SuperNOVAS</b> look at the <a class="el" href="#solarsystem" title="solarsystem">section below</a>.</p>
 <p><a class="anchor" id="usage-flavors"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
-Pick you flavor (C or C++)</h2>
+Pick your flavor (C or C++)</h2>
 <p>As of v1.6 <b>SuperNOVAS</b> comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which one you intend to use, choose the appropriate link to an external document below for further information:</p>
 <ul>
 <li><a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">Using the C99 API</a></li>
@@ -493,7 +721,7 @@ Details</summary>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Then use CSPICE as your SuperNOVAS ephemeris provider</span></div>
 <div class="line"><a class="code hl_function" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4">novas_use_cspice</a>();</div>
-<div class="ttc" id="agroup__solar-system_html_ga9b44218bca5fce1e9e5103494c15dde4"><div class="ttname"><a href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4">novas_use_cspice</a></div><div class="ttdeci">int novas_use_cspice()</div><div class="ttdoc">Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...</div><div class="ttdef"><b>Definition</b> solsys-cspice.c:636</div></div>
+<div class="ttc" id="agroup__solar-system_html_ga9b44218bca5fce1e9e5103494c15dde4"><div class="ttname"><a href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4">novas_use_cspice</a></div><div class="ttdeci">int novas_use_cspice()</div><div class="ttdoc">Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...</div><div class="ttdef"><b>Definition</b> solsys-cspice.c:666</div></div>
 <div class="ttc" id="agroup__solar-system_html_gae02d26964099f56c375dc78172ad135b"><div class="ttname"><a href="group__solar-system.html#gae02d26964099f56c375dc78172ad135b">cspice_add_kernel</a></div><div class="ttdeci">int cspice_add_kernel(const char *filename)</div><div class="ttdoc">Adds a SPICE kernel to the currently managed open kernels.</div><div class="ttdef"><b>Definition</b> solsys-cspice.c:207</div></div>
 <div class="ttc" id="anovas-cspice_8h_html"><div class="ttname"><a href="novas-cspice_8h.html">novas-cspice.h</a></div><div class="ttdoc">SuperNOVAS functions interfacing with the NAIF CSPICE Toolkit.</div></div>
 </div><!-- fragment --><p>All JPL ephemeris data will work with the <span class="tt">solsys-cspice</span> plugin. When linking your application, add <span class="tt">-lsolsys-cspice</span> to your link flags (or else link with <span class="tt">solsys-cspice.o</span>), and of course the CSPICE library also. That's all there is to it.</p>
@@ -693,14 +921,14 @@ Details</summary>
 <p>The above benchmarks are all for single-threaded performance. Since <b>SuperNOVAS</b> is generally thread-safe, you can expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single core performance, you could calculate up to 32 million precise positions per second, if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in under one minute.</p>
 <hr  />
 <p><a class="anchor" id="supernovas-features"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 SuperNOVAS added features</h1>
 <ul>
 <li><a class="el" href="#added-functionality" title="added-functionality">Newly functionality highlights</a></li>
 <li><a class="el" href="#api-changes" title="api-changes">Refinements to the NOVAS C API</a></li>
 </ul>
 <p><a class="anchor" id="added-functionality"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
 New functionality highlights</h2>
 <p>Below is a non-exhaustive overview new features added by <b>SuperNOVAS</b> on top of the existing NOVAS C API. See <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/CHANGELOG.md"><span class="tt">CHANGELOG.md</span></a> for more details.</p>
 <details >
@@ -794,11 +1022,12 @@ New in v1.6</summary>
 <p></p>
 <ul>
 <li>Introducing a new, high-level, C++11 API (<span class="tt">supernovas++</span>) on top of the standard C99 one.</li>
+<li>Added a truncated version of the ELP2000 / MPP02 semi-analytical model of the Moon (Chapront &amp; Francou 2003), allowing arcsec (km) level position calculations for the Moon even without ephemeris data.</li>
 </ul>
 <p></p>
 </details>
 <p><a class="anchor" id="api-changes"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
 Refinements to the NOVAS C API</h2>
 <p>Many <b>SuperNOVAS</b> changes are focused on improving the usability and promote best coding practices so that both the library and your application will be safer, and less prone to nagging errors. Below is a detailed listing of the principal ways <b>SuperNOVAS</b> has improved on the original NOVAS C library in these respects.</p>
 <details >
@@ -837,7 +1066,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="release-schedule"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md40"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
 Release schedule</h1>
 <p>A predictable release schedule and process can help manage expectations and reduce stress on adopters and developers alike.</p>
 <p><b>SuperNOVAS</b> will try to follow a quarterly release schedule. You may expect upcoming releases to be published around <b>February 1</b>, <b>May 1</b>, <b>August 1</b>, and/or <b>November 1</b> each year, on an as-needed basis. That means that if there are outstanding bugs, or new pull requests (PRs), you may expect a release that addresses these in the upcoming quarter. The dates are placeholders only, with no guarantee that a new release will actually be available every quarter. If nothing of note comes up, a potential release date may pass without a release being published.</p>

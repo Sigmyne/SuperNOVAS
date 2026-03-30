@@ -127,6 +127,8 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:gae02d26964099f56c375dc78172ad135b" id="r_gae02d26964099f56c375dc78172ad135b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gae02d26964099f56c375dc78172ad135b">cspice_add_kernel</a> (const char *filename)</td></tr>
 <tr class="memdesc:gae02d26964099f56c375dc78172ad135b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a SPICE kernel to the currently managed open kernels.  <br /></td></tr>
+<tr class="memitem:ga7bc6da3bfca1a23e77e79a6742f77685" id="r_ga7bc6da3bfca1a23e77e79a6742f77685"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga7bc6da3bfca1a23e77e79a6742f77685">cspice_clear_kernels</a> ()</td></tr>
+<tr class="memdesc:ga7bc6da3bfca1a23e77e79a6742f77685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes and removes all SPICE kernels currently configured, freeing up the associated resources.  <br /></td></tr>
 <tr class="memitem:ga38e3b3155cad3b3822fbc3e553060ab1" id="r_ga38e3b3155cad3b3822fbc3e553060ab1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga38e3b3155cad3b3822fbc3e553060ab1">cspice_remove_kernel</a> (const char *filename)</td></tr>
 <tr class="memdesc:ga38e3b3155cad3b3822fbc3e553060ab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a SPICE kernel from the currently managed open kernels.  <br /></td></tr>
 <tr class="memitem:gaa6fad38297a49ba78a6bd49cedf889b1" id="r_gaa6fad38297a49ba78a6bd49cedf889b1"><td class="memItemLeft"><a class="el" href="#gaebb3d71006e8d93de242df61510374ad">novas_ephem_provider</a>&#160;</td><td class="memItemRight"><a class="el" href="#gaa6fad38297a49ba78a6bd49cedf889b1">get_ephem_provider</a> ()</td></tr>
@@ -322,7 +324,31 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to EINVAL).</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga38e3b3155cad3b3822fbc3e553060ab1" title="Removes a SPICE kernel from the currently managed open kernels.">cspice_remove_kernel()</a>, <a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga38e3b3155cad3b3822fbc3e553060ab1" title="Removes a SPICE kernel from the currently managed open kernels.">cspice_remove_kernel()</a>, <a class="el" href="#ga7bc6da3bfca1a23e77e79a6742f77685" title="Closes and removes all SPICE kernels currently configured, freeing up the associated resources.">cspice_clear_kernels()</a>, <a class="el" href="#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a> </dd></dl>
+
+</div>
+</div>
+<a id="ga7bc6da3bfca1a23e77e79a6742f77685" name="ga7bc6da3bfca1a23e77e79a6742f77685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7bc6da3bfca1a23e77e79a6742f77685">&#9670;&#160;</a></span>cspice_clear_kernels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int cspice_clear_kernels </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Closes and removes all SPICE kernels currently configured, freeing up the associated resources. </p>
+<p>However CSPICE will remain your ephemeris provider for planets and/or ephemeris type objects, as configured before.</p>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 (errno will be set to EAGAIN).</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga38e3b3155cad3b3822fbc3e553060ab1" title="Removes a SPICE kernel from the currently managed open kernels.">cspice_remove_kernel()</a>, <a class="el" href="#gae02d26964099f56c375dc78172ad135b" title="Adds a SPICE kernel to the currently managed open kernels.">cspice_add_kernel()</a> </dd></dl>
 
 </div>
 </div>
@@ -356,7 +382,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to EINVAL).</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae02d26964099f56c375dc78172ad135b" title="Adds a SPICE kernel to the currently managed open kernels.">cspice_add_kernel()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae02d26964099f56c375dc78172ad135b" title="Adds a SPICE kernel to the currently managed open kernels.">cspice_add_kernel()</a>, <a class="el" href="#ga7bc6da3bfca1a23e77e79a6742f77685" title="Closes and removes all SPICE kernels currently configured, freeing up the associated resources.">cspice_clear_kernels()</a> </dd></dl>
 
 </div>
 </div>

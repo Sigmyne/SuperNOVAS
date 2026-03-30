@@ -2,7 +2,7 @@ var searchData=
 [
   ['s_20guide_0',['User&apos;s guide',['../index.html',1,'']]],
   ['s_20position_20and_20phase_1',['s position and phase',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63',1,'Moon&apos;s position and phase'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105',1,'Moon&apos;s position and phase']]],
-  ['schedule_2',['Release schedule',['../index.html#autotoc_md40',1,'']]],
+  ['schedule_2',['Release schedule',['../index.html#autotoc_md41',1,'']]],
   ['service_20integration_3',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
   ['services_4',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
   ['set_20and_20transit_20times_5',['set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107',1,'Calculate rise, set, and transit times']]],
@@ -22,7 +22,7 @@ var searchData=
   ['specify_20the_20time_20of_20observation_19',['Specify the time of observation',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55',1,'Specify the time of observation'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97',1,'Specify the time of observation']]],
   ['string_20dates_20',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md72',1,'']]],
   ['string_20times_20and_20angles_21',['String times and angles',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md71',1,'']]],
-  ['supernovas_20added_20features_22',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
+  ['supernovas_20added_20features_22',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['supernovas_20c_23',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80',1,'']]],
   ['supernovas_20c_20vs_20astropy_24',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
   ['supernovas_20c_20vs_20c99_25',['SuperNOVAS C++ vs. C99',['../md_SuperNOVAS_09_09__vs__C99.html',1,'']]],

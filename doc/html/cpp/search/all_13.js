@@ -14,7 +14,7 @@ var searchData=
   ['phi_11',['phi',['../classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f',1,'supernovas::Vector']]],
   ['physical_20units_12',['Physical units',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'']]],
   ['pi_13',['pi',['../classsupernovas_1_1Constant.html#a9706ac7b0557b7941e06bc23404b1320',1,'supernovas::Constant']]],
-  ['pick_20you_20flavor_20c_20or_20c_14',['Pick you flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],
+  ['pick_20your_20flavor_20c_20or_20c_14',['Pick your flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],
   ['place_15',['place',['../novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c',1,'place(double jd_tt, const object *restrict source, const observer *restrict location, double ut1_to_tt, enum novas_reference_system coord_sys, enum novas_accuracy accuracy, sky_pos *restrict output):&#160;place.c'],['../place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c',1,'place(double jd_tt, const object *restrict source, const observer *restrict location, double ut1_to_tt, enum novas_reference_system coord_sys, enum novas_accuracy accuracy, sky_pos *restrict output):&#160;place.c']]],
   ['place_20on_20sky_16',['place on sky',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'Calculate an apparent place on sky']]],
   ['place_2ec_17',['place.c',['../place_8c.html',1,'']]],

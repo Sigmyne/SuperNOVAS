@@ -138,9 +138,9 @@ var NAVTREEINDEX =
 "classsupernovas_1_1ScalarEvolution.html#af4a7ebb8e64e194ad08e0321a52425c4",
 "classsupernovas_1_1Velocity.html#a45a6d8f9d412efcd6e9cb034802cba9a",
 "group__solar-system.html",
-"novas_8h.html#a219df36b21dc4476656e708d14d08045a7c452cc654265f03e78801f9aead83de",
-"novas_8h.html#ab0f64e76b53aa2c526d9b35930339e2e",
-"structnovas__delaunay__args.html#ab2d0e2b9731d4a0b737e359e8d35ba73"
+"novas_8h.html#a219df36b21dc4476656e708d14d08045a71d987d5d11d3a162807cdf0c994ad28",
+"novas_8h.html#ab07d86d425d68a62e94e965dd36b7a32",
+"structnovas__delaunay__args.html#aa1630a9fee0b9072bf57b2c13d9a9c61"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['c_0',['C',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80',1,'Building your application with SuperNOVAS (C++)'],['../index.html#autotoc_md22',1,'Pick you flavor (C or C++)']]],
+  ['c_0',['C',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80',1,'Building your application with SuperNOVAS (C++)'],['../index.html#autotoc_md22',1,'Pick your flavor (C or C++)']]],
   ['c_1',['c',['../classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531',1,'supernovas::Constant']]],
   ['c_203_201_2',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['c_203_201_20issues_3',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
-  ['c_20api_4',['Refinements to the NOVAS C API',['../index.html#autotoc_md38',1,'']]],
+  ['c_20api_4',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
   ['c_20fundamentals_5',['C++ Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'']]],
-  ['c_20or_20c_6',['Pick you flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],
+  ['c_20or_20c_6',['Pick your flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],
   ['c_20usage_7',['C++ Usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html',1,'']]],
   ['c_20usage_8',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91',1,'']]],
   ['c_20vs_20astropy_9',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
@@ -70,6 +70,7 @@ var searchData=
   ['copy_67',['copy',['../classsupernovas_1_1Observer.html#ab96ce405d6c8cbe8d90e50c8e4da2e42',1,'supernovas::Observer::copy()'],['../classsupernovas_1_1GeodeticObserver.html#a2efc7112c0b475e84aa94219d77b960b',1,'supernovas::GeodeticObserver::copy()'],['../classsupernovas_1_1GeocentricObserver.html#ae578757821ffde79329e535e54e45b28',1,'supernovas::GeocentricObserver::copy()'],['../classsupernovas_1_1SolarSystemObserver.html#a3ba91583e539cc02241b82ced9675aab',1,'supernovas::SolarSystemObserver::copy()'],['../classsupernovas_1_1Source.html#af5a18693fc942953c44bf6a04d512060',1,'supernovas::Source::copy()'],['../classsupernovas_1_1CatalogSource.html#a98b76a5026ad51a77796f3e8d5a79ce9',1,'supernovas::CatalogSource::copy()'],['../classsupernovas_1_1Planet.html#aa312a35f47299d8dbb58f84fc15491b4',1,'supernovas::Planet::copy()'],['../classsupernovas_1_1EphemerisSource.html#a1db6c1e6e9709b75eb684b253c70c9fe',1,'supernovas::EphemerisSource::copy()'],['../classsupernovas_1_1OrbitalSource.html#ab7d23a68a9b0af5cec3778db13cafe8b',1,'supernovas::OrbitalSource::copy()']]],
   ['cspice_20toolkit_20integration_68',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md26',1,'']]],
   ['cspice_5fadd_5fkernel_69',['cspice_add_kernel',['../group__solar-system.html#gae02d26964099f56c375dc78172ad135b',1,'cspice_add_kernel(const char *filename):&#160;solsys-cspice.c'],['../group__solar-system.html#gae02d26964099f56c375dc78172ad135b',1,'cspice_add_kernel(const char *filename):&#160;solsys-cspice.c']]],
-  ['cspice_5fremove_5fkernel_70',['cspice_remove_kernel',['../group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1',1,'cspice_remove_kernel(const char *filename):&#160;solsys-cspice.c'],['../group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1',1,'cspice_remove_kernel(const char *filename):&#160;solsys-cspice.c']]],
-  ['cy_71',['cy',['../classsupernovas_1_1Unit.html#a5c29e3270b2be1d220d6ec1e8cef6cd0',1,'supernovas::Unit']]]
+  ['cspice_5fclear_5fkernels_70',['cspice_clear_kernels',['../group__solar-system.html#ga7bc6da3bfca1a23e77e79a6742f77685',1,'cspice_clear_kernels():&#160;solsys-cspice.c'],['../group__solar-system.html#ga7bc6da3bfca1a23e77e79a6742f77685',1,'cspice_clear_kernels():&#160;solsys-cspice.c']]],
+  ['cspice_5fremove_5fkernel_71',['cspice_remove_kernel',['../group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1',1,'cspice_remove_kernel(const char *filename):&#160;solsys-cspice.c'],['../group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1',1,'cspice_remove_kernel(const char *filename):&#160;solsys-cspice.c']]],
+  ['cy_72',['cy',['../classsupernovas_1_1Unit.html#a5c29e3270b2be1d220d6ec1e8cef6cd0',1,'supernovas::Unit']]]
 ];

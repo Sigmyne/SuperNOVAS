@@ -14,6 +14,7 @@ var group__solar_system =
       [ "NOVAS_HELIOCENTER", "group__solar-system.html#gga208120c5fa3e12853eb37cb99d3e27bea13c0711a025b9aebd4186ab9127cbd7b", null ]
     ] ],
     [ "cspice_add_kernel", "group__solar-system.html#gae02d26964099f56c375dc78172ad135b", null ],
+    [ "cspice_clear_kernels", "group__solar-system.html#ga7bc6da3bfca1a23e77e79a6742f77685", null ],
     [ "cspice_remove_kernel", "group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1", null ],
     [ "earth_sun_calc", "group__solar-system.html#ga580f5949c8a29cdd7bf4787aee891f2b", null ],
     [ "earth_sun_calc_hp", "group__solar-system.html#ga338e3436ba86dadf6bd4d7390f9940ec", null ],

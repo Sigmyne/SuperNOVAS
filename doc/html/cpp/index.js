@@ -17,7 +17,7 @@ var index =
     [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md18", null ],
     [ "Example use cases", "index.html#autotoc_md20", [
       [ "Recommendation: set up an ephemeris provider", "index.html#autotoc_md21", null ],
-      [ "Pick you flavor (C or C++)", "index.html#autotoc_md22", null ]
+      [ "Pick your flavor (C or C++)", "index.html#autotoc_md22", null ]
     ] ],
     [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md24", [
       [ "CALCEPH integration", "index.html#autotoc_md25", null ],
@@ -30,9 +30,9 @@ var index =
     ] ],
     [ "Runtime debug support", "index.html#autotoc_md32", null ],
     [ "Representative benchmarks", "index.html#autotoc_md34", null ],
-    [ "SuperNOVAS added features", "index.html#autotoc_md36", [
-      [ "New functionality highlights", "index.html#autotoc_md37", null ],
-      [ "Refinements to the NOVAS C API", "index.html#autotoc_md38", null ]
+    [ "SuperNOVAS added features", "index.html#autotoc_md37", [
+      [ "New functionality highlights", "index.html#autotoc_md38", null ],
+      [ "Refinements to the NOVAS C API", "index.html#autotoc_md39", null ]
     ] ],
-    [ "Release schedule", "index.html#autotoc_md40", null ]
+    [ "Release schedule", "index.html#autotoc_md41", null ]
 ];

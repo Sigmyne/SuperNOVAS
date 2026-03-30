@@ -27,6 +27,9 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  - #281: Added a truncated version of semi-analytic ELP/MPP02 model of the Moon's position relative to the geocenter 
    by Chapront &amp; Francou (2003), usng up to about 3400 terms, and reaching accuracies to the 1 arcsec / 1km
    level (or better for the present era). 
+   
+ - #298: Added `cspice_clear_kernels()` to CSPICE plugin to close all kernels and free up the resources they use 
+   (thanks to aleberti)
 
  - Added `novas_enu_to_itrs()` and `novas_itrs_to_enu()` functions to help convert between local East-North-Up (ENU)
    coordinates and ITRS. ENU is a natural local cartesian coordinate system of an observer at or near the Earth's 

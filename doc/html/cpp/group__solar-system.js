@@ -8,6 +8,7 @@ var group__solar_system =
       [ "NOVAS_ID_CALCEPH", "group__solar-system.html#ggac42df1db80fbcb6f7a72de80d9f9c531a074c723dfc1f03c82d52347c46ee0719", null ]
     ] ],
     [ "cspice_add_kernel", "group__solar-system.html#gae02d26964099f56c375dc78172ad135b", null ],
+    [ "cspice_clear_kernels", "group__solar-system.html#ga7bc6da3bfca1a23e77e79a6742f77685", null ],
     [ "cspice_remove_kernel", "group__solar-system.html#ga38e3b3155cad3b3822fbc3e553060ab1", null ],
     [ "get_ephem_provider", "group__solar-system.html#gaa6fad38297a49ba78a6bd49cedf889b1", null ],
     [ "get_planet_provider", "group__solar-system.html#ga0f0a786b5614a788c02b37a462eae2d2", null ],

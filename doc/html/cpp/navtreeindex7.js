@@ -1,5 +1,6 @@
 var NAVTREEINDEX7 =
 {
+"structnovas__delaunay__args.html#aa1630a9fee0b9072bf57b2c13d9a9c61":[8,0,2,2],
 "structnovas__delaunay__args.html#ab2d0e2b9731d4a0b737e359e8d35ba73":[8,0,2,1],
 "structnovas__delaunay__args.html#af49414d0a8f73222730f65384706f633":[8,0,2,0],
 "structnovas__delaunay__args.html#af6987ccf8afceedd1cd2394a7bdf10b0":[8,0,2,4],

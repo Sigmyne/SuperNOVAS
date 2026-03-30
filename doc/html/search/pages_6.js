@@ -2,7 +2,7 @@ var searchData=
 [
   ['data_20or_20services_0',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md105',1,'']]],
   ['data_20service_20integration_1',['Universal ephemeris data / service integration',['../index.html#autotoc_md108',1,'']]],
-  ['dates_2',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64',1,'']]],
+  ['dates_2',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md79',1,'']]],
   ['debug_20support_3',['Runtime debug support',['../index.html#autotoc_md113',1,'']]],
   ['define_20mtx_5flock_20void_4',['define mtx_lock (void)',['../solsys-cspice_8c.html#autotoc_md14',1,'']]],
   ['define_20mtx_5funlock_20void_5',['define mtx_unlock (void)',['../solsys-cspice_8c.html#autotoc_md15',1,'']]],
@@ -19,5 +19,5 @@ var searchData=
   ['define_20thread_5fsafe_201_16',['define THREAD_SAFE 1',['../solsys-cspice_8c.html#autotoc_md4',1,'define THREAD_SAFE 1'],['../solsys-cspice_8c.html#autotoc_md9',1,'define THREAD_SAFE 1'],['../solsys-cspice_8c.html#autotoc_md13',1,'define THREAD_SAFE 1']]],
   ['deprecated_20api_17',['Deprecated API',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md24',1,'']]],
   ['deprecated_20list_18',['Deprecated List',['../deprecated.html',1,'']]],
-  ['don_20t_20reference_20external_20objects_20internally_19',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md53',1,'']]]
+  ['don_20t_20reference_20external_20objects_20internally_19',['Classes don&apos;t reference external objects internally',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md40',1,'']]]
 ];

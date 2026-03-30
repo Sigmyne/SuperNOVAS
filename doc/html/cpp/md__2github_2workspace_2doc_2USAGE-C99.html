@@ -103,7 +103,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-C99.html','',''); }
   <div class="headertitle"><div class="title">C99 Usage </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md42"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md35"></a></p>
 <p>This guide is specifically for using <b>SuperNOVAS</b> as a C99 library. There is a separate guide for <a class="el" href="md__2github_2workspace_2doc_2USAGE-CPP.html" title="C++ Usage">using the C++11 API</a>. The links below let you jump to the relevant sections:</p>
 <ul>
 <li><a class="el" href="#integration-c99" title="integration-c99">Building your application with SuperNOVAS (C99)</a></li>
@@ -451,7 +451,7 @@ Approximate planet orbitals</h3>
 <div class="line"><a class="code hl_struct" href="structnovas__orbital.html">novas_orbital</a> moon_orbit = <a class="code hl_define" href="novas_8h.html#a85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>;</div>
 <div class="line"><a class="code hl_function" href="novas_8h.html#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a>(jd_tdb, &amp;moon_orbit);</div>
 <div class="ttc" id="anovas_8h_html_a63b094e813d8b752a6f3344419e80031"><div class="ttname"><a href="novas_8h.html#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit</a></div><div class="ttdeci">int novas_make_planet_orbit(enum novas_planet id, double jd_tdb, novas_orbital *restrict orbit)</div><div class="ttdoc">Get approximate current heliocentric orbital elements for the major planets.</div><div class="ttdef"><b>Definition</b> planets.c:106</div></div>
-<div class="ttc" id="anovas_8h_html_ad6e6c7f6dc2745030e3fd4d407e982bd"><div class="ttname"><a href="novas_8h.html#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a></div><div class="ttdeci">int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit)</div><div class="ttdoc">Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...</div><div class="ttdef"><b>Definition</b> moon.c:854</div></div>
+<div class="ttc" id="anovas_8h_html_ad6e6c7f6dc2745030e3fd4d407e982bd"><div class="ttname"><a href="novas_8h.html#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a></div><div class="ttdeci">int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit)</div><div class="ttdoc">Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...</div><div class="ttdef"><b>Definition</b> moon.c:855</div></div>
 </div><!-- fragment --><p>While the planet and Moon orbitals are not suitable for precision applications, they can be useful for determining approximate positions (e.g. via the <span class="tt"><a class="el" href="novas_8h.html#a9ead627eed7fabd8583f1353e89f42e7" title="Returns the approximate geometric heliocentric orbital positions and velocities for the major planets...">novas_approx_heliocentric()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#a4cb01609f76b0ff8487817b9446a3a62" title="Calculates an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon Barycent...">novas_approx_sky_pos()</a></span> functions), and for rise/set time calculations.</p>
 <p><a class="anchor" id="moon-c99"></a> </p>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md63"></a>
@@ -466,18 +466,18 @@ Moon's position and phase</h3>
 <div class="line">  <span class="comment">// Oops something went wrong...</span></div>
 <div class="line">  <span class="keywordflow">return</span> -1;</div>
 <div class="line">}</div>
-<div class="ttc" id="anovas_8h_html_a03aca2626e38d04bcdf94fae14c6d11c"><div class="ttname"><a href="novas_8h.html#a03aca2626e38d04bcdf94fae14c6d11c">novas_moon_elp_sky_pos</a></div><div class="ttdeci">int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_reference_system sys, sky_pos *restrict pos)</div><div class="ttdoc">Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...</div><div class="ttdef"><b>Definition</b> moon.c:710</div></div>
+<div class="ttc" id="anovas_8h_html_a03aca2626e38d04bcdf94fae14c6d11c"><div class="ttname"><a href="novas_8h.html#a03aca2626e38d04bcdf94fae14c6d11c">novas_moon_elp_sky_pos</a></div><div class="ttdeci">int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_reference_system sys, sky_pos *restrict pos)</div><div class="ttdoc">Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...</div><div class="ttdef"><b>Definition</b> moon.c:711</div></div>
 </div><!-- fragment --><p>Alternatively, you can obtain geometric positions and velocities of the Moon, relative to the observer using <span class="tt"><a class="el" href="novas_8h.html#a504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a></span> instead.</p>
 <p>You can also obtain the current phase of the Moon, for the time of observation:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> jd_tdb = ...;  <span class="comment">// TDB-based Julian Date of observation</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// [deg] Moon&#39;s phase at the specified time (0 is new moon).</span></div>
 <div class="line"><span class="keywordtype">double</span> phase = <a class="code hl_function" href="novas_8h.html#a2dbdafd6b07f079815ae52d00e142861">novas_moon_phase</a>(jd_tdb);</div>
-<div class="ttc" id="anovas_8h_html_a2dbdafd6b07f079815ae52d00e142861"><div class="ttname"><a href="novas_8h.html#a2dbdafd6b07f079815ae52d00e142861">novas_moon_phase</a></div><div class="ttdeci">double novas_moon_phase(double jd_tdb)</div><div class="ttdoc">Calculates the Moon&#39;s phase at a given time.</div><div class="ttdef"><b>Definition</b> moon.c:1107</div></div>
+<div class="ttc" id="anovas_8h_html_a2dbdafd6b07f079815ae52d00e142861"><div class="ttname"><a href="novas_8h.html#a2dbdafd6b07f079815ae52d00e142861">novas_moon_phase</a></div><div class="ttdeci">double novas_moon_phase(double jd_tdb)</div><div class="ttdoc">Calculates the Moon&#39;s phase at a given time.</div><div class="ttdef"><b>Definition</b> moon.c:1108</div></div>
 </div><!-- fragment --><p>or, calculate when the Moon will reach a particular phase next:</p>
 <div class="fragment"><div class="line"><span class="comment">// TDB-based Julian Date of the next full moon (phase = 180 deg), after TDB-based date</span></div>
 <div class="line"><span class="keywordtype">double</span> jd_tdb_full = <a class="code hl_function" href="novas_8h.html#ad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase</a>(jd_tdb, 180.0);</div>
-<div class="ttc" id="anovas_8h_html_ad0bd6e212af549309b0fcb792ed8cb79"><div class="ttname"><a href="novas_8h.html#ad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase</a></div><div class="ttdeci">double novas_next_moon_phase(double phase, double jd_tdb)</div><div class="ttdoc">Calculates the date / time at which the Moon will reach the specified phase next, after the specified...</div><div class="ttdef"><b>Definition</b> moon.c:1179</div></div>
+<div class="ttc" id="anovas_8h_html_ad0bd6e212af549309b0fcb792ed8cb79"><div class="ttname"><a href="novas_8h.html#ad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase</a></div><div class="ttdeci">double novas_next_moon_phase(double phase, double jd_tdb)</div><div class="ttdoc">Calculates the date / time at which the Moon will reach the specified phase next, after the specified...</div><div class="ttdef"><b>Definition</b> moon.c:1180</div></div>
 </div><!-- fragment --><p><a class="anchor" id="reverse-place-c99"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md64"></a>
 Going in reverse...</h2>

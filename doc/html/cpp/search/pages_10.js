@@ -17,7 +17,7 @@ var searchData=
   ['on_20precision_14',['Notes on precision',['../index.html#autotoc_md28',1,'']]],
   ['on_20sky_15',['on sky',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'Calculate an apparent place on sky']]],
   ['operator_20overloading_16',['Operator overloading',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89',1,'']]],
-  ['or_20c_17',['Pick you flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],
+  ['or_20c_17',['Pick your flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],
   ['or_20ephemeris_20type_20objects_18',['or ephemeris type objects',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md60',1,'Planets and/or ephemeris type objects'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102',1,'Planets and/or ephemeris type objects']]],
   ['or_20services_19',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
   ['orbital_20parameters_20',['orbital parameters',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103',1,'Solar-system objects with Keplerian orbital parameters']]],

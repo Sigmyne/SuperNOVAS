@@ -1,15 +1,15 @@
 var index =
 [
-    [ "Table of Contents", "index.html#autotoc_md65", null ],
-    [ "Introduction", "index.html#autotoc_md67", [
-      [ "Related links", "index.html#autotoc_md73", null ]
+    [ "Table of Contents", "index.html#autotoc_md82", null ],
+    [ "Introduction", "index.html#autotoc_md84", [
+      [ "Related links", "index.html#autotoc_md85", null ]
     ] ],
-    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md76", null ],
-    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md82", null ],
-    [ "Building and installation", "index.html#autotoc_md84", [
-      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md85", null ],
-      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md91", null ],
-      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md93", null ],
+    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md87", null ],
+    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md89", null ],
+    [ "Building and installation", "index.html#autotoc_md91", [
+      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md92", null ],
+      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md93", null ],
+      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md94", null ],
       [ "Linux packages", "index.html#autotoc_md95", null ],
       [ "Homebrew package", "index.html#autotoc_md96", null ],
       [ "Nix package", "index.html#autotoc_md97", null ]
@@ -17,7 +17,7 @@ var index =
     [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md99", null ],
     [ "Example use cases", "index.html#autotoc_md101", [
       [ "Recommendation: set up an ephemeris provider", "index.html#autotoc_md102", null ],
-      [ "Pick you flavor (C or C++)", "index.html#autotoc_md103", null ]
+      [ "Pick your flavor (C or C++)", "index.html#autotoc_md103", null ]
     ] ],
     [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md105", [
       [ "CALCEPH integration", "index.html#autotoc_md106", null ],
@@ -32,7 +32,7 @@ var index =
     [ "Representative benchmarks", "index.html#autotoc_md115", null ],
     [ "SuperNOVAS added features", "index.html#autotoc_md117", [
       [ "New functionality highlights", "index.html#autotoc_md118", null ],
-      [ "Refinements to the NOVAS C API", "index.html#autotoc_md119", null ]
+      [ "Refinements to the NOVAS C API", "index.html#autotoc_md120", null ]
     ] ],
-    [ "Release schedule", "index.html#autotoc_md121", null ]
+    [ "Release schedule", "index.html#autotoc_md122", null ]
 ];

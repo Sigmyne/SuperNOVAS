@@ -1,10 +1,7 @@
 # User's guide
 
 
-<a href="https://doi.org/10.5281/zenodo.14584983">
-  <img src="748170057.svg" alt="Zenodo DOI badge" align="left"/>
-</a>
-<br clear="all">
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14584983.svg)]("https://doi.org/10.5281/zenodo.14584983)
 
 The NOVAS C astrometry library, made better.
 
@@ -571,7 +568,7 @@ the [section below](#solarsystem).
 
 
 <a name="usage-flavors"></a>
-### Pick you flavor (C or C++)
+### Pick your flavor (C or C++)
 
 As of v1.6 __SuperNOVAS__ comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which 
 one you intend to use, choose the appropriate link to an external document below for further information:
@@ -1137,6 +1134,9 @@ Below is a non-exhaustive overview new features added by __SuperNOVAS__ on top o
 
  - Introducing a new, high-level, C++11 API (`supernovas++`) on top of the standard C99 one.
  
+ - Added a truncated version of the ELP2000 / MPP02 semi-analytical model of the Moon (Chapront &amp; Francou 2003),
+   allowing arcsec (km) level position calculations for the Moon even without ephemeris data.
+   
 
 <a name="api-changes"></a>
 ### Refinements to the NOVAS C API
