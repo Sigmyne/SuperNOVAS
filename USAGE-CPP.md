@@ -76,7 +76,6 @@ Add the appropriate bits from below to the `CMakeLists.txt` file of your applica
 
  - [Namespace](#namespace-cpp)
  - [Validation](#validation-cpp)
- - [Immutable instances](#immutable-cpp)
  - [Classes don't reference external objects internally](#internal-copies-cpp)
  - [Operator overloading](#operators-cpp)
 
@@ -153,23 +152,6 @@ And if in doubt as to why your object is invalid, you can always turn on debuggi
 at least in the relevant section of your code. __SuperNOVAS__ will provide error descriptions and call traces every
 time an invalid class instance is created, and when methods create invalid objects themselves. 
 
-
-<a name="immutable-cpp"></a>
-#### Immutable instances
-
-Almost all classes of the __SuperNOVAS__ library use immutable instances. The immutability makes these __SuperNOVAS__ 
-classes inherently thread safe. Given they are immutable, it is impossible for one thread to modify the class while 
-another accesses it concurrently. No mutexes are needed for these.
-
-The exceptions to immutabilty are `supernovas::CatalogEntry`, `supernovas::Orbital` and `supernovas::OrbitalSystem`. 
-These classes have too many possible parameters, and also alternate parametrizations. It simply does not make sense to 
-define everything in a constuctor. Rather, these classes take a minimalist approach to the constructor, which define 
-the most essential parameters only. Then, you can define additional (optional) parameters using a builder pattern (see 
-for example the sections on defining a [catalog source](#specify-object-cpp) or an 
-[orbital source](#orbital-sources-cpp)). This approach also handles alternate parametrizations (e.g. radial velocity 
-vs. LSR velocity vs. redshift, or distance vs. parallax). The best practice for these mutable types is to define them 
-once in a single-thread, and never attempt to further modify them once they are passed into a multi-threaded 
-environment.
 
 <a name="internal-copies-cpp"></a>
 #### Classes don't reference external objects internally

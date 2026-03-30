@@ -72,6 +72,31 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
 }
 
 /**
+ * Custom copy contructor, that points to a copy of the observer.
+ *
+ * @param frame   the frame to be copied.
+ */
+Frame::Frame(const Frame& frame)
+: Validating(frame), _observer(frame._observer->copy()), _time(frame._time), _frame(frame._frame) {}
+
+/**
+ * Custom copy-assignment operator, which updates the observer pointer to
+ * a copy of the original frame's observer.
+ *
+ * @param frame   the frame to be copied.
+ * @return        itself
+ */
+Frame& Frame::operator=(const Frame& frame) {
+  const Observer *old = _observer;
+  _observer = frame._observer->copy();
+  _time = frame._time;
+  _frame = frame._frame;
+  _valid = frame._valid;
+  delete old;
+  return *this;
+}
+
+/**
  * Returns the pointer to the underlying NOVAS C `novas_frame` data structure of this observing
  * frame.
  *

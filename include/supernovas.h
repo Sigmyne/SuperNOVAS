@@ -1690,7 +1690,7 @@ public:
  */
 class Frame : public Validating {
 private:
-  const Observer *_observer;
+  const Observer *_observer = NULL;
   Time _time;
   novas_frame _frame = {}; ///< Stored frame data
 
@@ -1701,6 +1701,14 @@ private:
 
 public:
   Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY);
+
+  ~Frame() {
+    delete _observer;
+  }
+
+  Frame(const Frame& frame);
+
+  Frame& operator=(const Frame& frame);
 
   const novas_frame* _novas_frame() const;
 
