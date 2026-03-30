@@ -75,7 +75,7 @@ You can install the core SuperNOVAS library with `vcpkg` on Linux, MacOS, Window
   $ vcpkg install supernovas
 ```
 
-Or, just the `core` packages without the `solsys-calceph` plugin library as:
+Or, just the `core` library component without the `solsys-calceph` plugin as:
 
 ```bash
   $ vcpkg install supernovas[core]
