@@ -1345,7 +1345,7 @@ public:
   Frame reduced_accuracy_frame_at(const Time& time) const;
 
   /// @ingroup interferometry
-  Interferometric to_interferometric(const Apparent& phase_center) const;
+  Interferometric to_interferometric(const Apparent& phase_center, enum novas_reference_system system = NOVAS_ICRS) const;
 
   virtual std::string to_string() const;
 

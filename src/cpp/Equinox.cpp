@@ -192,7 +192,7 @@ bool Equinox::is_true() const {
 }
 
 /**
- * Returns the (TT-based) Julian date that corresponds to this system instance. That is, it returns
+ * Returns the (TT) Julian date that corresponds to this system instance. That is, it returns
  * the date for which the mean dynamical equator best matches the equator of this catalog system.
  *
  * @return        [day] the (TT-based) Julian date at which the mean dynamical equator matches
@@ -348,7 +348,9 @@ Equinox Equinox::from_string(const std::string& name) {
  * Returns a new equinox instance given a coordinate reference system type and a date.
  *
  * @param system    The coordinate reference system type
- * @param jd_tt     [day] The (TT-based) Julian date (for dynamical systems).
+ * @param jd_tt     [day] The (TT-based) Julian date (for dynamical systems). TDB based dates
+ *                  may be used here also without affecting precision of coordinate
+ *                  transformations at the micro-arcsecond (&mu;as) level.
  * @return          an optional containing the corresponding valid equatorial system, or else
  *                  `std::nullopt`.
  */

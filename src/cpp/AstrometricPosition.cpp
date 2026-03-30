@@ -212,6 +212,8 @@ AstrometricPosition AstrometricPosition::referenced_to_ssb() const {
  *
  * @return            interferometric _uvw_ projection this astrometric place viewed from the
  *                    direction of the source at the time for which this position was defined.
+ *                    The _u_ and _v_ directions are aligned with the local East and Noth in
+ *                    the coordinate system in which the phase center was specified.
  *
  * @sa Observer::to_interferometric()
  */

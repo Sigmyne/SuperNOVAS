@@ -132,8 +132,9 @@ Frame Observer::reduced_accuracy_frame_at(const Time& time) const {
  * _u_,_v_,_w_ coordinates, for this observer (station), for a given apparent line-of-sight on the
  * sky, at the time of observation and relative to the location it was calculated for. The _u_ and
  * _v_ coordinates are the orthogonal projections of the site, relative to the array reference, in
- * the directions of local East and North respectively, as seen from the source; while _w_ is the
- * distance from the array reference along the line of sight.
+ * the directions of local East and North respectively (w.r.t. the coordinate system of choice),
+ * as seen from the source; while _w_ is the distance from the array reference along the line of
+ * sight.
  *
  * The supplied phase center defines the time of observation and the array reference position in
  * its observing frame. For example:
@@ -157,7 +158,7 @@ Frame Observer::reduced_accuracy_frame_at(const Time& time) const {
  *  // Define an interferometer station (e.g. on Earth)
  *  auto station = Observer::on_earth(...);
  *
- *  // u,v,w coordinates of the station relative to the array reference
+ *  // u,v,w coordinates of the station relative to the array reference (w.r.t. ICRS)
  *  Interferometric uwv = station.to_interferometric(app);
  *
  *  // the geometric delay of the station, relative to the array reference
@@ -177,42 +178,53 @@ Frame Observer::reduced_accuracy_frame_at(const Time& time) const {
  *    increasing distance from Earth, and may not be suitable for interferometers far from Earth.
  *    When precision is a concern, you might use `AstrometricPosition::to_interferometric()`
  *    instead, with positions (and velocities) of the stations defined relative to the array
- *    center -- enabling higher precision projections than this method.
+ *    center -- enabling higher precision projections than this method for interferometers
+ *    far from Earth.
  *
  * @param phase_center    %Apparent place on sky from the array reference place, at the time
  *                        of observation.
+ * @param system          (optional) Coordinate reference system type in which to return result.
+ *                        (default: ICRS). Specifically, the _u_ and _v_ directions of the
+ *                        returned projection will be aligned to the local East and North
+ *                        directions of the specified coordinate reference system type at the time
+ *                        of observation.
  *
- * @return            interferometric uvw projection of this site, relative to the array reference,
- *                    viewed from the direction of the source at the specified time.
+ * @return            interferometric _uvw _projection of this site in the ICRS, relative to the
+ *                    array reference, viewed from the direction of the source at the specified
+ *                    time. The _u_ and _v_ directions are aligned with the local East and North
+ *                    w.r.t. the coordinate system of choice (default: ICRS).
  *
  * @sa AstrometricPosition::to_interferometric()
  */
-Interferometric Observer::to_interferometric(const Apparent& phase_center) const {
-  static const char *fn = "Observer::to_interferometric";
+Interferometric Observer::to_interferometric(const Apparent& phase_center, enum novas_reference_system system) const {
+  static const char *fn = "Observer::to_interferometric()";
 
   const Frame& frame = phase_center.frame();
   const Time& t = frame.time();
 
-  // Station pos/vel w.r.t. geocenter
   double pobs[3] = {0.0}, vobs[3] = {0.0};
   if(geo_posvel(t.jd(), t.dUT1().seconds(), frame.accuracy(), &_observer, pobs, vobs) != 0) {
     novas_trace_invalid(fn);
     return Interferometric::undefined();
   }
 
-  // Array reference pos/vel w.r.t. geocenter
-  double pref[3] = {0.0}, vref[3] = {0.0};;
+  double pref[3] = {0.0}, vref[3] = {0.0};
   if(geo_posvel(t.jd(), t.dUT1().seconds(), frame.accuracy(), frame.observer()._novas_observer(), pref, vref) != 0) {
     novas_trace_invalid(fn);
     return Interferometric::undefined();
   }
 
-  Position pos = Position(pobs, Unit::AU) - Position(pref, Unit::AU);
-  Velocity vel = Velocity(vobs, Unit::AU / Unit::day) - Velocity(vref, Unit::AU / Unit::day);
-  Position los = phase_center.equatorial().xyz(phase_center.distance()) - pos;
+  // Geocentric positions and velocities
+  Geometric g = Geometric(frame,
+          Position(pobs, Unit::AU) - Position(pref, Unit::AU),
+          Velocity(vobs, Unit::AU / Unit::day) - Velocity(vref, Unit::AU / Unit::day),
+          NOVAS_ICRS).to_system(system);
+
+  Equinox equinox = Equinox::from_system_type(system, t.jd());
+  Position los = phase_center.equatorial().to_system(equinox).xyz(phase_center.distance()) - g.position();
 
   double uvw[3] = {0.0};
-  novas_uvw(pos.scaled(1.0 / Unit::AU)._array(), vel.scaled(Unit::day / Unit::AU)._array(), los.scaled(1.0 / Unit::AU)._array(), uvw);
+  novas_uvw(g.position().scaled(1.0 / Unit::AU)._array(), g.velocity().scaled(Unit::day / Unit::AU)._array(), los.scaled(1.0 / Unit::AU)._array(), uvw);
 
   Interferometric i(uvw[0], uvw[1], uvw[2]);
   if(!i.is_valid())

@@ -1072,6 +1072,9 @@ int novas_set_default_weather(on_surface *site) {
  *                        observation, in the same coordinate reference system, in which the
  *                        station vectors are defined.
  * @param[out] uvw        [m] output _u_, _v_, _w_ coordinates, relative to reference place.
+ *                        The _u_, and _v_ coordinates are aligned with the local East and
+ *                        North directions in the system, in which the coordinates were
+ *                        specified.
  * @return                0 if succcessful or else -1 if the station position or phase center is
  *                        NULL (errno will be set to EINVAL).
  *
@@ -1147,7 +1150,9 @@ int novas_uvw(const double *restrict station_pos, const double *restrict station
  * @param yp                  [arcsec] IERS polar offset _y_<sub>p</sub>, such as obtained from
  *                            the IERS bulletins or online service.
  * @param accuracy            NOVAS_FULL_ACCYRACY (0) or NOVAS_REDUCED_ACCURACY (1)
- * @param[out] uvw            [m] output _u_, _v_, _w_ coordinates, relative to geocenter.
+ * @param[out] uvw            [m] output _u_, _v_, _w_ coordinates, relative to geocenter, the
+ *                            _u_, and _v_ coordinates are aligned with the local East and
+ *                            North directions in the ICRS.
  * @return                    0 if succcessful or else -1 if any of the pointer arguments are NULL
  *                            or if the accuracy is invalid (errno will be set to EINVAL).
  * @since 1.6
@@ -1159,7 +1164,8 @@ int novas_site_uvw(const novas_timespec *restrict ts, const on_surface *restrict
         double xp, double yp, enum novas_accuracy accuracy, double *restrict uvw) {
   static const char *fn = "novas_site_uvw";
 
-  double p[3] = {0.0}, v[3] = {0.0};
+  double p[3] = {0.0}, v[3] = {0.0}, los[3] = {0.0};
+  double tdb;
 
   if(!ts)
     return novas_error(-1, EINVAL, fn, "input time specification is NULL");
@@ -1174,7 +1180,13 @@ int novas_site_uvw(const novas_timespec *restrict ts, const on_surface *restrict
   prop_error(fn, itrs_to_tod(ts->ijd_tt, ts->fjd_tt, ts->ut1_to_tt, accuracy, xp, yp, p, p), 0);
   itrs_to_tod(ts->ijd_tt, ts->fjd_tt, ts->ut1_to_tt, accuracy, xp, yp, v, v);
 
-  prop_error(fn, novas_uvw(p, v, geocentric_source, uvw), 0);
+  // TOD -> ICRS
+  tdb = novas_get_time(ts, NOVAS_TDB);
+  tod_to_gcrs(tdb, accuracy, p, p);
+  tod_to_gcrs(tdb, accuracy, v, v);
+  tod_to_gcrs(tdb, accuracy, geocentric_source, los);
+
+  prop_error(fn, novas_uvw(p, v, los, uvw), 0);
 
   return 0;
 }
