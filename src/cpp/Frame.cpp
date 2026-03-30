@@ -87,6 +87,9 @@ Frame::Frame(const Frame& frame)
  * @return        itself
  */
 Frame& Frame::operator=(const Frame& frame) {
+  if(this == &frame)
+    return *this;     // self assignment
+
   const Observer *old = _observer;
   _observer = frame._observer->copy();
   _time = frame._time;
