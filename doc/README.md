@@ -535,7 +535,7 @@ __NOTE__
 <a name="recommendation"></a>
 ### Recommendation: set up an ephemeris provider
 
-__SuperNOVAS__ can do a lot of things on its own. What it cannot do on its own is provide precise positions for 
+__SuperNOVAS__ can do a lot of things on its own. What it cannot do alone is provide precise positions for 
 Solar-system bodies. For that, you need ephemeris data and a helping hand from an external tool to access them. Even 
 if you don't particularly care to obtain precise planet positions per se, they are needed for a range of 
 high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational 

@@ -130,7 +130,7 @@ supports the IAU 2000/2006 conventions for microarcsecond-level position calcula
 This document has been updated for the &lt;tt&gt;v1.6&lt;/tt&gt; and later releases.
 
 
-@section autotoc_md82 Table of Contents
+@section autotoc_md70 Table of Contents
 
  - @ref "introduction" "Introduction"
  - @ref "fixed-issues" "Fixed NOVAS C 3.1 issues"
@@ -148,7 +148,7 @@ This document has been updated for the &lt;tt&gt;v1.6&lt;/tt&gt; and later relea
 &lt;hr&gt;
 
 @anchor introduction &lt;a&gt;&lt;/a&gt;
-@section autotoc_md84 Introduction
+@section autotoc_md74 Introduction
 
 &lt;strong&gt;SuperNOVAS&lt;/strong&gt; is a fork of the The Naval Observatory Vector Astrometry Software 
 (&lt;a href="<a href="https://aa.usno.navy.mil/software/novas_info">https://aa.usno.navy.mil/software/novas_info</a>" &gt;NOVAS&lt;/a&gt;). (It is not related to the separate NOVA / libnova library.)
@@ -188,7 +188,7 @@ Outside contributions are very welcome. See
 &lt;a href="<a href="https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html">https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html</a>" &gt;how you can contribute&lt;/a&gt; on how you can make &lt;strong&gt;SuperNOVAS&lt;/strong&gt; 
 even better.
 
-@subsection autotoc_md85 Related links
+@subsection autotoc_md80 Related links
 
  - &lt;a href="<a href="https://aa.usno.navy.mil/software/novas_info">https://aa.usno.navy.mil/software/novas_info</a>" &gt;NOVAS&lt;/a&gt; home page at the US Naval Observatory.
  - &lt;a href="<a href="https://calceph.imcce.fr">https://calceph.imcce.fr</a>" &gt;CALCEPH C library&lt;/a&gt; for integrating Solar-system ephemerides
@@ -206,7 +206,7 @@ even better.
 &lt;hr&gt;
 
 @anchor fixed-issues &lt;a&gt;&lt;/a&gt;
-@section autotoc_md87 Fixed NOVAS C 3.1 issues
+@section autotoc_md82 Fixed NOVAS C 3.1 issues
 
 &lt;strong&gt;SuperNOVAS&lt;/strong&gt; fixes a number of outstanding issues with NOVAS C 3.1:
 
@@ -270,7 +270,7 @@ even better.
 &lt;hr&gt;
 
 @anchor compatibility &lt;a&gt;&lt;/a&gt;
-@section autotoc_md89 Compatibility with NOVAS C 3.1
+@section autotoc_md88 Compatibility with NOVAS C 3.1
 
 &lt;strong&gt;SuperNOVAS&lt;/strong&gt; strives to maintain API compatibility with the upstream NOVAS C 3.1 library, but not binary (ABI) 
 compatibility. 
@@ -623,7 +623,7 @@ Example use cases</h1>
 <p><a class="anchor" id="recommendation"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md102"></a>
 Recommendation: set up an ephemeris provider</h2>
-<p><b>SuperNOVAS</b> can do a lot of things on its own. What it cannot do on its own is provide precise positions for Solar-system bodies. For that, you need ephemeris data and a helping hand from an external tool to access them. Even if you don't particularly care to obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).</p>
+<p><b>SuperNOVAS</b> can do a lot of things on its own. What it cannot do alone is provide precise positions for Solar-system bodies. For that, you need ephemeris data and a helping hand from an external tool to access them. Even if you don't particularly care to obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).</p>
 <p>Therefore, it is strongly recommended that you download <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/">planetary ephemeris files from NASA / JPL</a> (such as the DE440, or the smaller DE440s, or the long-term DE441), and install <a href="https://calceph.imcce.fr/">CALCEPH</a> or the <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">CSPICE Toolkit</a> for accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and it is also more modern, and actively maintained.</p>
 <p>Provided you installed CALCEPH, you usage of <b>SuperNOVAS</b> should always start with something like this (regardless of whether you will use the C99 or the C++ API afterwards):</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="novas-calceph_8h.html">novas-calceph.h</a>&gt;</span></div>
@@ -1027,7 +1027,7 @@ New in v1.6</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="api-changes"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md120"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md119"></a>
 Refinements to the NOVAS C API</h2>
 <p>Many <b>SuperNOVAS</b> changes are focused on improving the usability and promote best coding practices so that both the library and your application will be safer, and less prone to nagging errors. Below is a detailed listing of the principal ways <b>SuperNOVAS</b> has improved on the original NOVAS C library in these respects.</p>
 <details >
@@ -1066,7 +1066,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="release-schedule"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md122"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md121"></a>
 Release schedule</h1>
 <p>A predictable release schedule and process can help manage expectations and reduce stress on adopters and developers alike.</p>
 <p><b>SuperNOVAS</b> will try to follow a quarterly release schedule. You may expect upcoming releases to be published around <b>February 1</b>, <b>May 1</b>, <b>August 1</b>, and/or <b>November 1</b> each year, on an as-needed basis. That means that if there are outstanding bugs, or new pull requests (PRs), you may expect a release that addresses these in the upcoming quarter. The dates are placeholders only, with no guarantee that a new release will actually be available every quarter. If nothing of note comes up, a potential release date may pass without a release being published.</p>

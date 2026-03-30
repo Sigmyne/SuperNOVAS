@@ -623,7 +623,7 @@ Example use cases</h1>
 <p><a class="anchor" id="recommendation"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 Recommendation: set up an ephemeris provider</h2>
-<p><b>SuperNOVAS</b> can do a lot of things on its own. What it cannot do on its own is provide precise positions for Solar-system bodies. For that, you need ephemeris data and a helping hand from an external tool to access them. Even if you don't particularly care to obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).</p>
+<p><b>SuperNOVAS</b> can do a lot of things on its own. What it cannot do alone is provide precise positions for Solar-system bodies. For that, you need ephemeris data and a helping hand from an external tool to access them. Even if you don't particularly care to obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).</p>
 <p>Therefore, it is strongly recommended that you download <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/">planetary ephemeris files from NASA / JPL</a> (such as the DE440, or the smaller DE440s, or the long-term DE441), and install <a href="https://calceph.imcce.fr/">CALCEPH</a> or the <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">CSPICE Toolkit</a> for accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and it is also more modern, and actively maintained.</p>
 <p>Provided you installed CALCEPH, you usage of <b>SuperNOVAS</b> should always start with something like this (regardless of whether you will use the C99 or the C++ API afterwards):</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="novas-calceph_8h.html">novas-calceph.h</a>&gt;</span></div>
@@ -921,14 +921,14 @@ Details</summary>
 <p>The above benchmarks are all for single-threaded performance. Since <b>SuperNOVAS</b> is generally thread-safe, you can expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single core performance, you could calculate up to 32 million precise positions per second, if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in under one minute.</p>
 <hr  />
 <p><a class="anchor" id="supernovas-features"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
 SuperNOVAS added features</h1>
 <ul>
 <li><a class="el" href="#added-functionality" title="added-functionality">Newly functionality highlights</a></li>
 <li><a class="el" href="#api-changes" title="api-changes">Refinements to the NOVAS C API</a></li>
 </ul>
 <p><a class="anchor" id="added-functionality"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 New functionality highlights</h2>
 <p>Below is a non-exhaustive overview new features added by <b>SuperNOVAS</b> on top of the existing NOVAS C API. See <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/CHANGELOG.md"><span class="tt">CHANGELOG.md</span></a> for more details.</p>
 <details >
