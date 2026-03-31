@@ -10,7 +10,7 @@ var classsupernovas_1_1Geometric =
     [ "system_type", "classsupernovas_1_1Geometric.html#a1ae884c6a1cc126e645fcfe8d2d6e935", null ],
     [ "to_cirs", "classsupernovas_1_1Geometric.html#a4eaa5ef168b723741ca2a702e9c79161", null ],
     [ "to_icrs", "classsupernovas_1_1Geometric.html#aa6c7a97528d32e674903d807e4e7c5c6", null ],
-    [ "to_itrs", "classsupernovas_1_1Geometric.html#a25e2215f87bf9b52f54b2893791cf687", null ],
+    [ "to_itrs", "classsupernovas_1_1Geometric.html#a2764e6a0ebbb02b419651342531bd080", null ],
     [ "to_j2000", "classsupernovas_1_1Geometric.html#a7ad414ef7383322a2dcb9b6f5404f12d", null ],
     [ "to_mod", "classsupernovas_1_1Geometric.html#a8de79e7260f9245f91573210f4b6c6e0", null ],
     [ "to_string", "classsupernovas_1_1Geometric.html#a6240a71612a75193fe47c6a2dac106bf", null ],

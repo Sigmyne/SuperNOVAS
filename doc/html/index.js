@@ -1,20 +1,20 @@
 var index =
 [
-    [ "Table of Contents", "index.html#autotoc_md60", null ],
-    [ "Introduction", "index.html#autotoc_md63", [
-      [ "Related links", "index.html#autotoc_md65", null ]
+    [ "Table of Contents", "index.html#autotoc_md81", null ],
+    [ "Introduction", "index.html#autotoc_md83", [
+      [ "Related links", "index.html#autotoc_md84", null ]
     ] ],
-    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md69", null ],
-    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md76", null ],
-    [ "Building and installation", "index.html#autotoc_md79", [
-      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md80", null ],
-      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md86", null ],
-      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md90", null ],
-      [ "Linux packages", "index.html#autotoc_md91", null ],
-      [ "Homebrew package", "index.html#autotoc_md93", null ],
-      [ "Nix package", "index.html#autotoc_md94", null ]
+    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md86", null ],
+    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md88", null ],
+    [ "Building and installation", "index.html#autotoc_md90", [
+      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md91", null ],
+      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md92", null ],
+      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md93", null ],
+      [ "Linux packages", "index.html#autotoc_md94", null ],
+      [ "Homebrew package", "index.html#autotoc_md95", null ],
+      [ "Nix package", "index.html#autotoc_md96", null ]
     ] ],
-    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md97", null ],
+    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md98", null ],
     [ "Example use cases", "index.html#autotoc_md100", [
       [ "Recommendation: set up an ephemeris provider", "index.html#autotoc_md101", null ],
       [ "Pick your flavor (C or C++)", "index.html#autotoc_md102", null ]

@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc":[6,13,13,0],
 "classsupernovas_1_1Velocity.html":[6,5,3],
 "classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c":[6,5,3,10],
 "classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297":[6,5,3,12],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "group__observer.html":[6,1],
 "group__refract.html":[6,8],
 "group__refract.html#ga4f7dee9d4c9db4cf201af8383c72d4db":[6,8,2],
-"group__refract.html#ga6b49f92f8f818f2272613e3432185a39":[6,8,5],
-"group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029":[6,8,9]
+"group__refract.html#ga6b49f92f8f818f2272613e3432185a39":[6,8,5]
 };

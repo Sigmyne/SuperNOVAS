@@ -134,12 +134,12 @@ var NAVTREEINDEX =
 [
 "Angle_8cpp.html",
 "classsupernovas_1_1Equatorial.html#a2d1aac72884524e74ee29322b23cb916",
-"classsupernovas_1_1ScalarEvolution.html#af1136a7264eea6e0395bcf8e72fc5eb1",
-"classsupernovas_1_1Velocity.html",
-"group__refract.html#ga7b9ad6dfbd86e4faa2d8068c7d64fac4",
-"novas_8h.html#a219df36b21dc4476656e708d14d08045a1255a982524abb49bf076014d8d6acb5",
-"novas_8h.html#aaf00ed93616e93d09df832d485a0e115",
-"structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560"
+"classsupernovas_1_1ScalarEvolution.html#a0862991291dc7b1bf375806fdd1e369d",
+"classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc",
+"group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029",
+"novas_8h.html#a219df36b21dc4476656e708d14d08045a03b12ea0f93a1a1045d7bcccd613c6f2",
+"novas_8h.html#aaed93e356acfc0d15d0f64ae0793b4f0",
+"structnovas__cat__entry.html#ac2e6fe6d5aa8aece4e1d3f2ebc8e5c63"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
