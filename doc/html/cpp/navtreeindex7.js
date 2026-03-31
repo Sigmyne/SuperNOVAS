@@ -1,5 +1,10 @@
 var NAVTREEINDEX7 =
 {
+"structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560":[8,0,1,4],
+"structnovas__cat__entry.html#ada95bd9127ffe9e1204a233057869f5a":[8,0,1,0],
+"structnovas__cat__entry.html#aff726e9a11a48c6ccbd80672a1fa5cc8":[8,0,1,6],
+"structnovas__delaunay__args.html":[8,0,2],
+"structnovas__delaunay__args.html#a8528d95bd5e3b2ba7f4bc09112907d9f":[8,0,2,3],
 "structnovas__delaunay__args.html#aa1630a9fee0b9072bf57b2c13d9a9c61":[8,0,2,2],
 "structnovas__delaunay__args.html#ab2d0e2b9731d4a0b737e359e8d35ba73":[8,0,2,1],
 "structnovas__delaunay__args.html#af49414d0a8f73222730f65384706f633":[8,0,2,0],

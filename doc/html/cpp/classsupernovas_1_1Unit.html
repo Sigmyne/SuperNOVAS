@@ -155,7 +155,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:af58838c87d2da1453834b2be9c0a8172" id="r_af58838c87d2da1453834b2be9c0a8172"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#af58838c87d2da1453834b2be9c0a8172">lyr</a> = <a class="el" href="novas_8h.html#a263f4d362ee47983c825f276201c38e3">NOVAS_LIGHT_YEAR</a></td></tr>
 <tr class="memdesc:af58838c87d2da1453834b2be9c0a8172"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] 1 gigaparsec in meters  <br /></td></tr>
 <tr class="memitem:af95881057f4dbd4b8a907b12e866c515" id="r_af95881057f4dbd4b8a907b12e866c515"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#af95881057f4dbd4b8a907b12e866c515">m</a> = 1.0</td></tr>
-<tr class="memdesc:af95881057f4dbd4b8a907b12e866c515"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] 1 AU (lowe-case)  <br /></td></tr>
+<tr class="memdesc:af95881057f4dbd4b8a907b12e866c515"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] 1 AU (lower-case)  <br /></td></tr>
 <tr class="memitem:a9e80b032a29bd9c9e4baace09f2f859c" id="r_a9e80b032a29bd9c9e4baace09f2f859c"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a9e80b032a29bd9c9e4baace09f2f859c">mas</a> = 1e-3 * <a class="el" href="#a7b59616535bdb57399eac0c8216a34f3">arcsec</a></td></tr>
 <tr class="memdesc:a9e80b032a29bd9c9e4baace09f2f859c"><td class="mdescLeft">&#160;</td><td class="mdescRight">[rad] 1 second or arc in radians  <br /></td></tr>
 <tr class="memitem:a09dcd47a0e4c66e14372ce96638768cf" id="r_a09dcd47a0e4c66e14372ce96638768cf"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a09dcd47a0e4c66e14372ce96638768cf">mbar</a> = <a class="el" href="#a29e1134ae56b5b0266fa649f0b910c2a">hPa</a></td></tr>
@@ -202,9 +202,10 @@ Static Public Attributes</h2></td></tr>
 <div class="textblock"><p>Various physical units for converting quantities expressed in conventional units to SI, and vice versa. </p>
 <p>The SuperNOVAS C++ API uses SI quantities consistently for inputs, so these units can be useful for converting quantities in other units to SI, or to convert return values from SI to conventional units.</p>
 <p>For example, if you have distance in AU, then you can use <a class="el" href="#afe0d2d901c66e59c39d5a5acb26547de" title="[m] 1 Astronomical Unit in meters.">Unit::au</a> to convert it to an SI distance (i.e. meters) as:</p>
-<div class="fragment"><div class="line"><span class="keywordtype">double</span> d = 2.4103 * <a class="code hl_variable" href="#afe0d2d901c66e59c39d5a5acb26547de">Unit::au</a>;</div>
-<div class="ttc" id="aclasssupernovas_1_1Unit_html_afe0d2d901c66e59c39d5a5acb26547de"><div class="ttname"><a href="#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a></div><div class="ttdeci">static constexpr double au</div><div class="ttdoc">[m] 1 Astronomical Unit in meters.</div><div class="ttdef"><b>Definition</b> supernovas.h:112</div></div>
-</div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Constant.html" title="Various physical constants that SuperNOVAS uses for astrometric calculations, all expressed in terms ...">Constant</a> </dd></dl>
+<div class="fragment"><div class="line"><span class="keywordtype">double</span> d = 2.4103 * <a class="code hl_variable" href="#a595105395ceead45ee25d8093a92a231">Unit::AU</a>;</div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a595105395ceead45ee25d8093a92a231"><div class="ttname"><a href="#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a></div><div class="ttdeci">static constexpr double AU</div><div class="ttdef"><b>Definition</b> supernovas.h:112</div></div>
+</div><!-- fragment --><p>Note, this class cannot be instantiated or copied. You should only use its static fields.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Constant.html" title="Various physical constants that SuperNOVAS uses for astrometric calculations, all expressed in terms ...">Constant</a> </dd></dl>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
 <a id="a360406a0d9bc43e769ae104cee178859" name="a360406a0d9bc43e769ae104cee178859"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a360406a0d9bc43e769ae104cee178859">&#9670;&#160;</a></span>angstrom</h2>
@@ -786,7 +787,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>[m] 1 AU (lowe-case) </p>
+<p>[m] 1 AU (lower-case) </p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Site.html#a443da3a82bde66f22240b3d6e91fa577">supernovas::Site::altitude()</a>, and <a class="el" href="classsupernovas_1_1Site.html#afd64e176ce0c75201d410015d803c648">supernovas::Site::itrf_transformed()</a>.</p>
 

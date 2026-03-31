@@ -76,8 +76,7 @@ Add the appropriate bits from below to the `CMakeLists.txt` file of your applica
 
  - [Namespace](#namespace-cpp)
  - [Validation](#validation-cpp)
- - [Immutable instances](#immutable-cpp)
- - [Classes don't reference external objects internally](#internal-copies-cpp)
+ - [Thread safety](#thread-safety-cpp)
  - [Operator overloading](#operators-cpp)
 
 Before we dive into specific examples for using the __SuperNOVAS__ C++ API, you should know of the generic
@@ -132,7 +131,7 @@ It is generally a good idea to check for validity whenever getting sane numerica
 if you are not entirely sure. For example:
 
 ```cpp
-  Observer obs = ...  // Define an observer location
+  Observer obs = ...;  // Define an observer location
   if(!obs.is_valid()) {
     // Oops, something isn't right...
     return;
@@ -142,7 +141,7 @@ if you are not entirely sure. For example:
 or, equivalently the objects themselves can be evaluated as boolean types, the same as calling `is_valid()`, i.e.:
 
 ```cpp
-  Observer obs = ...  // Define an observer location
+  Observer obs = ...;  // Define an observer location
   if(!obs) {
     // Oops, something isn't right...
     return;
@@ -154,31 +153,24 @@ at least in the relevant section of your code. __SuperNOVAS__ will provide error
 time an invalid class instance is created, and when methods create invalid objects themselves. 
 
 
-<a name="immutable-cpp"></a>
-#### Immutable instances
+<a name="thread-safety-cpp"></a>
+#### Thread safety
 
-Almost all classes of the __SuperNOVAS__ library use immutable instances. The immutability makes these __SuperNOVAS__ 
-classes inherently thread safe. Given they are immutable, it is impossible for one thread to modify the class while 
-another accesses it concurrently. No mutexes are needed for these.
+It is easy to use the C++ API safely in a multi-threaded environment, even without explicit mutexing. The best 
+practice is to always declare your shared (among threads) class variables as `const` so they will never get 
+accidentally modified by one thread while another thread accesses them concurrently. While most __SuperNOVAS__ classes 
+do not have explicitly declared methods that would modify them, their contents can nevertheless get overwritten easily 
+with the implicit copy-assignment operator -- but not when the variable was declared as `const`. For example:
 
-The exceptions to immutabilty are `supernovas::CatalogEntry`, `supernovas::Orbital` and `supernovas::OrbitalSystem`. 
-These classes have too many possible parameters, and also alternate parametrizations. It simply does not make sense to 
-define everything in a constuctor. Rather, these classes take a minimalist approach to the constructor, which define 
-the most essential parameters only. Then, you can define additional (optional) parameters using a builder pattern (see 
-for example the sections on defining a [catalog source](#specify-object-cpp) or an 
-[orbital source](#orbital-sources-cpp)). This approach also handles alternate parametrizations (e.g. radial velocity 
-vs. LSR velocity vs. redshift, or distance vs. parallax). The best practice for these mutable types is to define them 
-once in a single-thread, and never attempt to further modify them once they are passed into a multi-threaded 
-environment.
+```c++
+  // Declaring 'frame' as const will make it safe to use in threads.
+  const Frame frame = ...;
+```
 
-<a name="internal-copies-cpp"></a>
-#### Classes don't reference external objects internally
-
-The __SuperNOVAS__ classes never store references to external objects internally. Instead, they always store copies
-of the parameters that were supplied. While this may result in a small computational overhead, it adds to the thread 
-safety. Thus, even if a `supernovas::CatalogEntry` object is mutable, once a `supernovas::CatalogSource` is created 
-from it, that source will store a copy of the entry internally. So, even if the entry is modified afterwards, the 
-source stays immutable with the parameters that were used when it was instantiated.
+To further support thread safety, the __SuperNOVAS__ classes are designed never to store references to external 
+objects internally. Instead, they always store copies of the parameters that were supplied by their constructors or 
+update methods. While the copying may result in a small overhead, it guarantess that the internal data cannot vanish 
+or change unexpectedly.
 
 
 <a name="operators-cpp"></a>
@@ -193,7 +185,7 @@ velocities the addition and subtraction follows the relativistic formulae, e.g. 
  Velocity dv = v2 - v1;  // Relativistic difference of two velocity vectors.
 ```
 
-You can also add or subtract intervals around `Time` instances, for `Time t`, you might define: 
+You can also add or subtract intervals around `Time` instances, such as for `Time t` you might define: 
 
 ```cpp
  Time t1 = t + 1.1 * Unit::min;  // offset time (in the same timescale)
@@ -337,7 +329,7 @@ deg E, 60m elevation:
 
 ```cpp
  // Specify the location we are observing from, e.g. a GPS / WGS84 location
- Site site = Site::from_GPS(50.7374 * Unit::deg, 7.0982 * Unit::deg, 60.0 * Unit::m);
+ Site site = Site::from_GPS(7.0982 * Unit::deg, 50.7374 * Unit::deg, 60.0 * Unit::m);
 ```
 
 > [!TIP]
@@ -347,7 +339,7 @@ deg E, 60m elevation:
 Again you could have specified the coordinates as DMS strings, or as `supernovas::Angle` objects also, e.g.:
 
 ```cpp
- Site site = Site::from_GPS("50.7374N", "7.0982 deg E", Coordinate(60.0 * Unit::m));
+ Site site = Site::from_GPS("7.0982 deg E", "50.7374N", Coordinate(60.0 * Unit::m));
 ```
 
 Next, you will want to create an `supernovas::Observer` instance for that location with the appropriate Earth 

@@ -607,7 +607,7 @@ or, calculate when the Moon will reach a particular phase next:
 
 ```c
   // TDB-based Julian Date of the next full moon (phase = 180 deg), after TDB-based date
-  double jd_tdb_full = novas_next_moon_phase(jd_tdb, 180.0);
+  double jd_tdb_full = novas_next_moon_phase(180.0, jd_tdb);
 ```
 
 

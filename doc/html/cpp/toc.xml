@@ -32,7 +32,7 @@
     <topic label="Representative benchmarks" href="index.html#autotoc_md34"/>
     <topic label="SuperNOVAS added features" href="index.html#autotoc_md36">
       <topic label="New functionality highlights" href="index.html#autotoc_md37"/>
-      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md39"/>
+      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md38"/>
     </topic>
     <topic label="Release schedule" href="index.html#autotoc_md41"/>
   </topic>
@@ -77,32 +77,31 @@
       <topic label="C++ Fundamentals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84">
         <topic label="Namespace" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85"/>
         <topic label="Validation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86"/>
-        <topic label="Immutable instances" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87"/>
-        <topic label="Classes don&apos;t reference external objects internally" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88"/>
-        <topic label="Operator overloading" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89"/>
+        <topic label="Thread safety" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87"/>
+        <topic label="Operator overloading" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88"/>
       </topic>
     </topic>
-    <topic label="Example C++ usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91">
-      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92">
-        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93"/>
-        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94">
-          <topic label="A. Earth-based observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95"/>
-          <topic label="B. other observer locations" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96"/>
+    <topic label="Example C++ usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90">
+      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91">
+        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92"/>
+        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93">
+          <topic label="A. Earth-based observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94"/>
+          <topic label="B. other observer locations" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95"/>
         </topic>
-        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97"/>
-        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98"/>
-        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99"/>
-        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100"/>
+        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96"/>
+        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97"/>
+        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98"/>
+        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99"/>
       </topic>
-      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101">
-        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102"/>
-        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103"/>
-        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104"/>
-        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105"/>
+      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100">
+        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101"/>
+        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102"/>
+        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103"/>
+        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104"/>
       </topic>
-      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106"/>
-      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107"/>
-      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md108"/>
+      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105"/>
+      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106"/>
+      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107"/>
     </topic>
   </topic>
   <topic label="SuperNOVAS C++ vs. astropy" href="md_SuperNOVAS_09_09__vs__astropy.html"/>
@@ -396,6 +395,8 @@
     <topic label="Observing frames" href="group__frame.html">
       <topic label="supernovas::Frame" href="classsupernovas_1_1Frame.html">
         <topic label="Frame" href="classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6"/>
+        <topic label="~Frame" href="classsupernovas_1_1Frame.html#a4f1ae334ec980c176ffa2ecc30a61180"/>
+        <topic label="Frame" href="classsupernovas_1_1Frame.html#a074fa6f8c669da6f40f7a885d39af88e"/>
         <topic label="_novas_frame" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98"/>
         <topic label="accuracy" href="classsupernovas_1_1Frame.html#a662b8d1698620c98076d66c08d5ce00f"/>
         <topic label="apparent_moon_elp2000" href="group__apparent.html#ga1c1afd88b17a269740a4d5c8b7eb36ee"/>
@@ -405,6 +406,7 @@
         <topic label="observer" href="classsupernovas_1_1Frame.html#abb6d18dd97fe8d58da012339c00c23fc"/>
         <topic label="observer_position" href="classsupernovas_1_1Frame.html#a451583ed66f8337044c4aed6dcd2f3d5"/>
         <topic label="observer_velocity" href="classsupernovas_1_1Frame.html#a819789b9fded24f49dbc895e599ef6cc"/>
+        <topic label="operator=" href="classsupernovas_1_1Frame.html#ab704a402e50378dd391b5a2842323df1"/>
         <topic label="time" href="classsupernovas_1_1Frame.html#ad6eb32c4b1cf68e839d6257ad1933d4a"/>
         <topic label="to_string" href="classsupernovas_1_1Frame.html#a5db9df648f909d7a99d4238b3d006dc9"/>
       </topic>
@@ -723,6 +725,7 @@
         <topic label="operator+" href="classsupernovas_1_1ScalarVelocity.html#af5e2a24bde6d46d14fbff5aae4193410"/>
         <topic label="operator-" href="classsupernovas_1_1ScalarVelocity.html#a0dc464dcc90e8e2f778cb3d3d57dbdc8"/>
         <topic label="operator==" href="classsupernovas_1_1ScalarVelocity.html#a21cc9e0039e5679ac018506afb7988db"/>
+        <topic label="operator[]" href="classsupernovas_1_1ScalarVelocity.html#a375326df7ac6874e583b075b32ef8062"/>
         <topic label="redshift" href="classsupernovas_1_1ScalarVelocity.html#a3e9f2e43aef64460fe591c4786cce141"/>
         <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85"/>
         <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#aff4009979f33f3c12b6e585010dceafb"/>
@@ -940,6 +943,7 @@
         <topic label="operator+" href="classsupernovas_1_1ScalarVelocity.html#af5e2a24bde6d46d14fbff5aae4193410"/>
         <topic label="operator-" href="classsupernovas_1_1ScalarVelocity.html#a0dc464dcc90e8e2f778cb3d3d57dbdc8"/>
         <topic label="operator==" href="classsupernovas_1_1ScalarVelocity.html#a21cc9e0039e5679ac018506afb7988db"/>
+        <topic label="operator[]" href="classsupernovas_1_1ScalarVelocity.html#a375326df7ac6874e583b075b32ef8062"/>
         <topic label="redshift" href="classsupernovas_1_1ScalarVelocity.html#a3e9f2e43aef64460fe591c4786cce141"/>
         <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85"/>
         <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#aff4009979f33f3c12b6e585010dceafb"/>
@@ -991,6 +995,7 @@
         <topic label="equals" href="classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791"/>
         <topic label="is_zero" href="classsupernovas_1_1Vector.html#a731ab991e6b7426666dfeb9047da8dc8"/>
         <topic label="operator*" href="classsupernovas_1_1Vector.html#a97c4fd36e79bcd6f02d5a8c2d540942b"/>
+        <topic label="operator[]" href="classsupernovas_1_1Vector.html#a7612aaea33ea473db7f467e9725c4eae"/>
         <topic label="phi" href="classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f"/>
         <topic label="projection_on" href="classsupernovas_1_1Vector.html#a6a9ec63eb5edce53642a058fc8b5fc83"/>
         <topic label="scaled" href="classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46"/>
@@ -1257,6 +1262,8 @@
         </topic>
         <topic label="Frame" href="classsupernovas_1_1Frame.html">
           <topic label="Frame" href="classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6"/>
+          <topic label="~Frame" href="classsupernovas_1_1Frame.html#a4f1ae334ec980c176ffa2ecc30a61180"/>
+          <topic label="Frame" href="classsupernovas_1_1Frame.html#a074fa6f8c669da6f40f7a885d39af88e"/>
           <topic label="_novas_frame" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98"/>
           <topic label="accuracy" href="classsupernovas_1_1Frame.html#a662b8d1698620c98076d66c08d5ce00f"/>
           <topic label="apparent_moon_elp2000" href="group__apparent.html#ga1c1afd88b17a269740a4d5c8b7eb36ee"/>
@@ -1266,6 +1273,7 @@
           <topic label="observer" href="classsupernovas_1_1Frame.html#abb6d18dd97fe8d58da012339c00c23fc"/>
           <topic label="observer_position" href="classsupernovas_1_1Frame.html#a451583ed66f8337044c4aed6dcd2f3d5"/>
           <topic label="observer_velocity" href="classsupernovas_1_1Frame.html#a819789b9fded24f49dbc895e599ef6cc"/>
+          <topic label="operator=" href="classsupernovas_1_1Frame.html#ab704a402e50378dd391b5a2842323df1"/>
           <topic label="time" href="classsupernovas_1_1Frame.html#ad6eb32c4b1cf68e839d6257ad1933d4a"/>
           <topic label="to_string" href="classsupernovas_1_1Frame.html#a5db9df648f909d7a99d4238b3d006dc9"/>
         </topic>
@@ -1503,6 +1511,7 @@
           <topic label="operator+" href="classsupernovas_1_1ScalarVelocity.html#af5e2a24bde6d46d14fbff5aae4193410"/>
           <topic label="operator-" href="classsupernovas_1_1ScalarVelocity.html#a0dc464dcc90e8e2f778cb3d3d57dbdc8"/>
           <topic label="operator==" href="classsupernovas_1_1ScalarVelocity.html#a21cc9e0039e5679ac018506afb7988db"/>
+          <topic label="operator[]" href="classsupernovas_1_1ScalarVelocity.html#a375326df7ac6874e583b075b32ef8062"/>
           <topic label="redshift" href="classsupernovas_1_1ScalarVelocity.html#a3e9f2e43aef64460fe591c4786cce141"/>
           <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85"/>
           <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#aff4009979f33f3c12b6e585010dceafb"/>
@@ -1694,6 +1703,7 @@
           <topic label="equals" href="classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791"/>
           <topic label="is_zero" href="classsupernovas_1_1Vector.html#a731ab991e6b7426666dfeb9047da8dc8"/>
           <topic label="operator*" href="classsupernovas_1_1Vector.html#a97c4fd36e79bcd6f02d5a8c2d540942b"/>
+          <topic label="operator[]" href="classsupernovas_1_1Vector.html#a7612aaea33ea473db7f467e9725c4eae"/>
           <topic label="phi" href="classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f"/>
           <topic label="projection_on" href="classsupernovas_1_1Vector.html#a6a9ec63eb5edce53642a058fc8b5fc83"/>
           <topic label="scaled" href="classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46"/>
@@ -1975,6 +1985,8 @@
         </topic>
         <topic label="Frame" href="classsupernovas_1_1Frame.html">
           <topic label="Frame" href="classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6"/>
+          <topic label="~Frame" href="classsupernovas_1_1Frame.html#a4f1ae334ec980c176ffa2ecc30a61180"/>
+          <topic label="Frame" href="classsupernovas_1_1Frame.html#a074fa6f8c669da6f40f7a885d39af88e"/>
           <topic label="_novas_frame" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98"/>
           <topic label="accuracy" href="classsupernovas_1_1Frame.html#a662b8d1698620c98076d66c08d5ce00f"/>
           <topic label="apparent_moon_elp2000" href="group__apparent.html#ga1c1afd88b17a269740a4d5c8b7eb36ee"/>
@@ -1984,6 +1996,7 @@
           <topic label="observer" href="classsupernovas_1_1Frame.html#abb6d18dd97fe8d58da012339c00c23fc"/>
           <topic label="observer_position" href="classsupernovas_1_1Frame.html#a451583ed66f8337044c4aed6dcd2f3d5"/>
           <topic label="observer_velocity" href="classsupernovas_1_1Frame.html#a819789b9fded24f49dbc895e599ef6cc"/>
+          <topic label="operator=" href="classsupernovas_1_1Frame.html#ab704a402e50378dd391b5a2842323df1"/>
           <topic label="time" href="classsupernovas_1_1Frame.html#ad6eb32c4b1cf68e839d6257ad1933d4a"/>
           <topic label="to_string" href="classsupernovas_1_1Frame.html#a5db9df648f909d7a99d4238b3d006dc9"/>
         </topic>
@@ -2221,6 +2234,7 @@
           <topic label="operator+" href="classsupernovas_1_1ScalarVelocity.html#af5e2a24bde6d46d14fbff5aae4193410"/>
           <topic label="operator-" href="classsupernovas_1_1ScalarVelocity.html#a0dc464dcc90e8e2f778cb3d3d57dbdc8"/>
           <topic label="operator==" href="classsupernovas_1_1ScalarVelocity.html#a21cc9e0039e5679ac018506afb7988db"/>
+          <topic label="operator[]" href="classsupernovas_1_1ScalarVelocity.html#a375326df7ac6874e583b075b32ef8062"/>
           <topic label="redshift" href="classsupernovas_1_1ScalarVelocity.html#a3e9f2e43aef64460fe591c4786cce141"/>
           <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85"/>
           <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#aff4009979f33f3c12b6e585010dceafb"/>
@@ -2412,6 +2426,7 @@
           <topic label="equals" href="classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791"/>
           <topic label="is_zero" href="classsupernovas_1_1Vector.html#a731ab991e6b7426666dfeb9047da8dc8"/>
           <topic label="operator*" href="classsupernovas_1_1Vector.html#a97c4fd36e79bcd6f02d5a8c2d540942b"/>
+          <topic label="operator[]" href="classsupernovas_1_1Vector.html#a7612aaea33ea473db7f467e9725c4eae"/>
           <topic label="phi" href="classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f"/>
           <topic label="projection_on" href="classsupernovas_1_1Vector.html#a6a9ec63eb5edce53642a058fc8b5fc83"/>
           <topic label="scaled" href="classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46"/>

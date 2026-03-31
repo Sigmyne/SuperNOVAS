@@ -15,12 +15,14 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  - #293: `geo_posvel()` applied TOD to ICRS conversions twice for airborne observers, resulting in imprecise
    observer coordinates relative to the geocenter.
    
- - #296: Possible puffer overflow in `novas_print_dms()`. (Thanks to aleberti)
+ - #296: Possible puffer overflow in `novas_print_dms()`. (thanks to aleberti)
+ 
+ - #299: Fix memory leak in `Frame`. (thanks to aleberti)
 
 ### Added
 
  - #256: New C++11 API to wrap the C99 functions into a higher-level, easier to use, and object-oriented interface.
-   (Thanks to aleberti for helping with testing and debugging).
+   (thanks to aleberti for helping with testing and debugging).
 
  - #256: New `novas_time_leap()` to simplify back calculating the leap seconds from a `novas_timespec` structure.
 

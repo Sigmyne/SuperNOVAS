@@ -121,8 +121,11 @@ $(function(){initNavTree('classsupernovas_1_1Frame.html','','classsupernovas_1_1
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a074fa6f8c669da6f40f7a885d39af88e" id="r_a074fa6f8c669da6f40f7a885d39af88e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a074fa6f8c669da6f40f7a885d39af88e">Frame</a> (const Frame &amp;frame)</td></tr>
+<tr class="memdesc:a074fa6f8c669da6f40f7a885d39af88e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom copy contructor, that points to a copy of the observer.  <br /></td></tr>
 <tr class="memitem:a78db236d969702337800d8cfcd33cba6" id="r_a78db236d969702337800d8cfcd33cba6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a78db236d969702337800d8cfcd33cba6">Frame</a> (const <a class="el" href="classsupernovas_1_1Observer.html">Observer</a> &amp;obs, const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;<a class="el" href="#ad6eb32c4b1cf68e839d6257ad1933d4a">time</a>, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> <a class="el" href="#a662b8d1698620c98076d66c08d5ce00f">accuracy</a>=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>)</td></tr>
 <tr class="memdesc:a78db236d969702337800d8cfcd33cba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new observer frame, given the observer location and time of observation, and optionally the required accuracy.  <br /></td></tr>
+<tr class="memitem:a4f1ae334ec980c176ffa2ecc30a61180" id="r_a4f1ae334ec980c176ffa2ecc30a61180"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4f1ae334ec980c176ffa2ecc30a61180">~Frame</a> ()</td></tr>
 <tr class="memitem:a4e10de68f7acb16e4aa067101808ad98" id="r_a4e10de68f7acb16e4aa067101808ad98"><td class="memItemLeft">const <a class="el" href="structnovas__frame.html">novas_frame</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a4e10de68f7acb16e4aa067101808ad98">_novas_frame</a> () const</td></tr>
 <tr class="memdesc:a4e10de68f7acb16e4aa067101808ad98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the pointer to the underlying NOVAS C <span class="tt"><a class="el" href="structnovas__frame.html" title="A set of parameters that uniquely define the place and time of observation.">novas_frame</a></span> data structure of this observing frame.  <br /></td></tr>
 <tr class="memitem:a662b8d1698620c98076d66c08d5ce00f" id="r_a662b8d1698620c98076d66c08d5ce00f"><td class="memItemLeft">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a>&#160;</td><td class="memItemRight"><a class="el" href="#a662b8d1698620c98076d66c08d5ce00f">accuracy</a> () const</td></tr>
@@ -141,6 +144,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a451583ed66f8337044c4aed6dcd2f3d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the observer's position w.r.t.  <br /></td></tr>
 <tr class="memitem:a819789b9fded24f49dbc895e599ef6cc" id="r_a819789b9fded24f49dbc895e599ef6cc"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#a819789b9fded24f49dbc895e599ef6cc">observer_velocity</a> () const</td></tr>
 <tr class="memdesc:a819789b9fded24f49dbc895e599ef6cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the observer's velocity w.r.t.  <br /></td></tr>
+<tr class="memitem:ab704a402e50378dd391b5a2842323df1" id="r_ab704a402e50378dd391b5a2842323df1"><td class="memItemLeft">Frame &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ab704a402e50378dd391b5a2842323df1">operator=</a> (const Frame &amp;frame)</td></tr>
+<tr class="memdesc:ab704a402e50378dd391b5a2842323df1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom copy-assignment operator, which updates the observer pointer to a copy of the original frame's observer.  <br /></td></tr>
 <tr class="memitem:ad6eb32c4b1cf68e839d6257ad1933d4a" id="r_ad6eb32c4b1cf68e839d6257ad1933d4a"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ad6eb32c4b1cf68e839d6257ad1933d4a">time</a> () const</td></tr>
 <tr class="memdesc:ad6eb32c4b1cf68e839d6257ad1933d4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the astrometric time of observation of this observing frame.  <br /></td></tr>
 <tr class="memitem:a5db9df648f909d7a99d4238b3d006dc9" id="r_a5db9df648f909d7a99d4238b3d006dc9"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a5db9df648f909d7a99d4238b3d006dc9">to_string</a> () const</td></tr>
@@ -175,7 +180,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Source.html" title="An abstract astronomical source, or target of observation.">Source</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a78db236d969702337800d8cfcd33cba6" name="a78db236d969702337800d8cfcd33cba6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78db236d969702337800d8cfcd33cba6">&#9670;&#160;</a></span>Frame()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a78db236d969702337800d8cfcd33cba6">&#9670;&#160;</a></span>Frame() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,8 +210,8 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// This did not work as expected...</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Frame_html_ad6eb32c4b1cf68e839d6257ad1933d4a"><div class="ttname"><a href="#ad6eb32c4b1cf68e839d6257ad1933d4a">supernovas::Frame::time</a></div><div class="ttdeci">const Time &amp; time() const</div><div class="ttdoc">Returns the astrometric time of observation of this observing frame.</div><div class="ttdef"><b>Definition</b> Frame.cpp:100</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:243</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Frame_html_ad6eb32c4b1cf68e839d6257ad1933d4a"><div class="ttname"><a href="#ad6eb32c4b1cf68e839d6257ad1933d4a">supernovas::Frame::time</a></div><div class="ttdeci">const Time &amp; time() const</div><div class="ttdoc">Returns the astrometric time of observation of this observing frame.</div><div class="ttdef"><b>Definition</b> Frame.cpp:128</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:247</div></div>
 </div><!-- fragment --><p>The returned new frame may be invalid for multiple reasons, such as:</p>
 <ul>
 <li>the input observer or time is invalid.</li>
@@ -226,6 +231,58 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__frame.html#gadd24c03a86837e10783af06be02a8b21" title="Returns an observing frame for this observer at the specified time and optionally with a specified ac...">Observer::frame_at()</a>, <a class="el" href="#ac1c71cf92a4019d1a993a9868b105173" title="Returns a reduced accuracy observing frame for the specified observer at the specified time.">reduced_accuracy()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Observer.html#a06604bddb755e5070caeefb4306de037">supernovas::Observer::_novas_observer()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="#a662b8d1698620c98076d66c08d5ce00f">accuracy()</a>, <a class="el" href="classsupernovas_1_1Observer.html#aa5d4f5181e308afd56b517038f1f8720">supernovas::Observer::is_geodetic()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, and <a class="el" href="#ad6eb32c4b1cf68e839d6257ad1933d4a">time()</a>.</p>
+
+</div>
+</div>
+<a id="a4f1ae334ec980c176ffa2ecc30a61180" name="a4f1ae334ec980c176ffa2ecc30a61180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f1ae334ec980c176ffa2ecc30a61180">&#9670;&#160;</a></span>~Frame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">supernovas::Frame::~Frame </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a074fa6f8c669da6f40f7a885d39af88e" name="a074fa6f8c669da6f40f7a885d39af88e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a074fa6f8c669da6f40f7a885d39af88e">&#9670;&#160;</a></span>Frame() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">supernovas::Frame::Frame </td>
+          <td>(</td>
+          <td class="paramtype">const Frame &amp;</td>          <td class="paramname"><span class="paramname"><em>frame</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Custom copy contructor, that points to a copy of the observer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>the frame to be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aeabd2d0135eafd2a6a55447054ff81f7">supernovas::Validating::Validating()</a>.</p>
 
 </div>
 </div>
@@ -423,6 +480,34 @@ IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obsp
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a451583ed66f8337044c4aed6dcd2f3d5" title="Returns the observer&#39;s position w.r.t.">observer_position()</a>, <a class="el" href="#abb6d18dd97fe8d58da012339c00c23fc" title="Returns the observer location (and motion) of this observing frame.">observer()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a4e10de68f7acb16e4aa067101808ad98">_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Velocity.html#a807883f5d42e5b1bef89249a0377c762">supernovas::Velocity::undefined()</a>.</p>
+
+</div>
+</div>
+<a id="ab704a402e50378dd391b5a2842323df1" name="ab704a402e50378dd391b5a2842323df1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab704a402e50378dd391b5a2842323df1">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Frame &amp; supernovas::Frame::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const Frame &amp;</td>          <td class="paramname"><span class="paramname"><em>frame</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Custom copy-assignment operator, which updates the observer pointer to a copy of the original frame's observer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>the frame to be copied. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>itself </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="classsupernovas_1_1Observer.html#ab96ce405d6c8cbe8d90e50c8e4da2e42">supernovas::Observer::copy()</a>.</p>
 
 </div>
 </div>

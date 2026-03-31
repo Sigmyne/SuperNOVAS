@@ -15,6 +15,7 @@ var classsupernovas_1_1ScalarVelocity =
     [ "operator+", "classsupernovas_1_1ScalarVelocity.html#af5e2a24bde6d46d14fbff5aae4193410", null ],
     [ "operator-", "classsupernovas_1_1ScalarVelocity.html#a0dc464dcc90e8e2f778cb3d3d57dbdc8", null ],
     [ "operator==", "classsupernovas_1_1ScalarVelocity.html#a21cc9e0039e5679ac018506afb7988db", null ],
+    [ "operator[]", "classsupernovas_1_1ScalarVelocity.html#a375326df7ac6874e583b075b32ef8062", null ],
     [ "redshift", "classsupernovas_1_1ScalarVelocity.html#a3e9f2e43aef64460fe591c4786cce141", null ],
     [ "to_string", "classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85", null ],
     [ "travel", "classsupernovas_1_1ScalarVelocity.html#aff4009979f33f3c12b6e585010dceafb", null ],

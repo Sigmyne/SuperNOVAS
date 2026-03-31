@@ -1,5 +1,11 @@
 var NAVTREEINDEX3 =
 {
+"classsupernovas_1_1Velocity.html":[6,5,3],
+"classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c":[6,5,3,10],
+"classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297":[6,5,3,12],
+"classsupernovas_1_1Velocity.html#a2f26da36dd9c4dba704ec314585ebc2c":[6,5,3,0],
+"classsupernovas_1_1Velocity.html#a3a628bca731814c5e98c77642ea2de29":[6,5,3,5],
+"classsupernovas_1_1Velocity.html#a3dbaf0927a89219ae14a2a759c103f09":[6,5,3,9],
 "classsupernovas_1_1Velocity.html#a45a6d8f9d412efcd6e9cb034802cba9a":[6,5,3,2],
 "classsupernovas_1_1Velocity.html#a5bb1ea41d36509cddef281e0a6d16376":[6,5,3,1],
 "classsupernovas_1_1Velocity.html#a6c2174cd805b548a519664879cbb0486":[6,5,3,4],
@@ -243,11 +249,5 @@ var NAVTREEINDEX3 =
 "group__refract.html":[6,8],
 "group__refract.html#ga4f7dee9d4c9db4cf201af8383c72d4db":[6,8,2],
 "group__refract.html#ga6b49f92f8f818f2272613e3432185a39":[6,8,5],
-"group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029":[6,8,9],
-"group__refract.html#ga7b9ad6dfbd86e4faa2d8068c7d64fac4":[6,8,8],
-"group__refract.html#gab04bff3b97c132e358e11c3a5b7a3081":[6,8,7],
-"group__refract.html#gab44266c51e667838736e49e59008a9be":[6,8,10],
-"group__refract.html#gac673c4fef94847b796dc2aa2f4d0807d":[6,8,6],
-"group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9":[6,8,3],
-"group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4":[6,8,4]
+"group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029":[6,8,9]
 };
