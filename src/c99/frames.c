@@ -1634,7 +1634,7 @@ static double novas_cross_el_date(double el, int sign, const object *source, con
 double novas_transit_time(const object *restrict source, const novas_frame *restrict frame) {
   double utc = novas_cross_el_date(NAN, 0, source, frame, NULL);
   if(isnan(utc))
-    return novas_trace_nan("novas_rises_above");
+    return novas_trace_nan("novas_transit_time");
   return utc;
 }
 

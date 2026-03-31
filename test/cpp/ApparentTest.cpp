@@ -72,7 +72,7 @@ int main() {
   if(!test.check("astrometric_position() ==", rp == Position(v, Unit::AU))) n++;
   if(!test.check("astrometric_position(frame invalid)", !x.astrometric_position().is_valid())) n++;
 
-  double ra_cirs = app_to_cirs_ra(frame.time().jd(), NOVAS_REDUCED_ACCURACY, p.ra);
+  double ra_cirs = app_to_cirs_ra(frame.jd(), NOVAS_REDUCED_ACCURACY, p.ra);
   if(!test.check("to_cirs()", tod.cirs() == Equatorial(ra_cirs * Unit::hour_angle, p.dec * Unit::deg, Equinox::cirs(Time::j2000())))) n++;
 
   Apparent tod2 = Apparent::from_tod(Angle::undefined(), Angle(p.dec * Unit::deg), frame, ScalarVelocity(p.rv * Unit::km / Unit::s));
@@ -82,7 +82,7 @@ int main() {
   if(!test.check("from_tod()", tod2.equatorial() == tod.equatorial())) n++;
 
   Apparent cirs = Apparent::from_cirs_sky_pos(frame, &p);
-  double ra_tod = cirs_to_app_ra(frame.time().jd(), NOVAS_REDUCED_ACCURACY, p.ra);
+  double ra_tod = cirs_to_app_ra(frame.jd(), NOVAS_REDUCED_ACCURACY, p.ra);
   if(!test.check("to_cirs(CIRS)", cirs.cirs() == Equatorial(p.ra * Unit::hour_angle, p.dec * Unit::deg, Equinox::cirs(Time::j2000())))) n++;
   if(!test.check("equatorial(CIRS)", cirs.equatorial() == Equatorial(ra_tod * Unit::hour_angle, p.dec * Unit::deg, Equinox::tod(Time::j2000())))) n++;
 
@@ -96,11 +96,11 @@ int main() {
 
   sky_pos p1 = p; p1.ra = NAN;
   if(!test.check("invalid p.ra", !Apparent::from_tod_sky_pos(frame, &p1).is_valid())) n++;
-  if(!test.check("to_horizontral(invalid RA)", !x.to_horizontal().is_valid())) n++;
+  if(!test.check("to_horizontal(invalid RA)", !x.to_horizontal().is_valid())) n++;
 
   p1 = p; p1.dec = NAN;
   if(!test.check("invalid p.dec", !Apparent::from_tod_sky_pos(frame, &p1).is_valid())) n++;
-  if(!test.check("to_horizontral(invalid Dec)", !x.to_horizontal().is_valid())) n++;
+  if(!test.check("to_horizontal(invalid Dec)", !x.to_horizontal().is_valid())) n++;
 
   p1 = p; p1.rv = NAN;
   if(!test.check("invalid p.rv", !Apparent::from_tod_sky_pos(frame, &p1).is_valid())) n++;

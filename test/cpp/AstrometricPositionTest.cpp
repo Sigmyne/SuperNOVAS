@@ -36,17 +36,17 @@ int main() {
   if(!test.check("is_valid()", a.is_valid())) n++;
   if(!test.check(" == position", a == p)) n++;
   if(!test.equals("system_type()", a.system_type(), NOVAS_TOD)) n++;
-  if(!test.check("reference()", a.reference() == frame.observer_position())) n++;
+  if(!test.check("reference()", a.reference() == frame.observer_ssb_position())) n++;
   if(!test.check("obs_time()", a.obs_time() == Time::b1950())) n++;
   if(!test.check("emit_time()", a.emit_time() == (Time::b1950() - (a.distance().m() / Constant::c)))) n++;
-  if(!test.check("origin(0)", a.reference() == frame.observer_position())) n++;
+  if(!test.check("origin(0)", a.reference() == frame.observer_ssb_position())) n++;
 
   Position r = Position(1.3 * Unit::AU, -2.2 * Unit::AU, 3.1 * Unit::AU);
   Observer o2 = Observer::in_solar_system(r, Velocity::stationary());
   AstrometricPosition b(p, o2.reduced_accuracy_frame_at(Time::b1950()));
   if(!test.check("reference()", b.reference() == r)) n++;
 
-  if(!test.check("referenced_to()", a.referenced_to(r) == (p + frame.observer_position() - r))) n++;
+  if(!test.check("referenced_to()", a.referenced_to(r) == (p + frame.observer_ssb_position() - r))) n++;
   if(!test.check("referenced_to().reference()", a.referenced_to(r).reference() == r)) n++;
   if(!test.check("referenced_to(invalid pos)", !a.referenced_to(Position::undefined()).is_valid())) n++;
 

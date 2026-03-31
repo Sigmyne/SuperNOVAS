@@ -21,8 +21,8 @@ int main() {
 
   Frame x = Frame::undefined();
   if(!test.check("invalid", !x.is_valid())) n++;
-  if(!test.check("observer_position(invalid)", !x.observer_position().is_valid())) n++;
-  if(!test.check("observer_velocity(invalid)", !x.observer_velocity().is_valid())) n++;
+  if(!test.check("observer_ssb_position(invalid)", !x.observer_ssb_position().is_valid())) n++;
+  if(!test.check("observer_ssb_velocity(invalid)", !x.observer_ssb_velocity().is_valid())) n++;
   if(!test.check("geometric_moon_elp2000(invalid)", !x.geometric_moon_elp2000().is_valid())) n++;
   if(!test.check("apparent_moon_elp2000(invalid)", !x.apparent_moon_elp2000().is_valid())) n++;
 
@@ -33,8 +33,8 @@ int main() {
   Frame a = Frame::reduced_accuracy(gc, Time::j2000());
   if(!test.equals("accuracy()", a.accuracy(), NOVAS_REDUCED_ACCURACY)) n++;
   if(!test.check("time()", a.time() == Time::j2000())) n++;
-  if(!test.check("observer_position()", a.observer_position() == Position(a._novas_frame()->obs_pos, Unit::AU))) n++;
-  if(!test.check("observer_velocity()", a.observer_velocity() == Velocity(a._novas_frame()->obs_vel, Unit::AU / Unit::day))) n++;
+  if(!test.check("observer_ssb_position()", a.observer_ssb_position() == Position(a._novas_frame()->obs_pos, Unit::AU))) n++;
+  if(!test.check("observer_ssb_velocity()", a.observer_ssb_velocity() == Velocity(a._novas_frame()->obs_vel, Unit::AU / Unit::day))) n++;
   if(!test.equals("observer() type", a.observer().type(), NOVAS_OBSERVER_AT_GEOCENTER)) n++;
   if(!test.equals("clock_skew()", a.clock_skew(NOVAS_TT), novas_clock_skew(a._novas_frame(), NOVAS_TT))) n++;
   if(!test.equals("to_string()", a.to_string(), "Frame for Geocentric Observer at 2000-01-01T11:58:55.816 UTC")) n++;

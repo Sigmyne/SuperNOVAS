@@ -197,10 +197,10 @@ int main() {
   if(!test.check("_novas_orbital()", memcmp(os._novas_orbital(), orb._novas_orbital(), sizeof(novas_orbital)) == 0)) n++;
   if(!test.check("orbital()", memcmp(os.orbital()._novas_orbital(), orb._novas_orbital(), sizeof(novas_orbital)) == 0)) n++;
   if(!test.equals("solar_illumination()", os.solar_illumination(frame), novas_solar_illum(os._novas_object(), frame._novas_frame()), 1e-9)) n++;
-  if(!test.equals("solar_power()", os.solar_power(frame.time()), novas_solar_power(frame.time().jd(NOVAS_TDB), os._novas_object()), 1e-9)) n++;
+  if(!test.equals("solar_power()", os.solar_power(frame.time()), novas_solar_power(frame.jd(NOVAS_TDB), os._novas_object()), 1e-9)) n++;
 
   double rate = 0.0;
-  if(!test.equals("helio_distance()", os.helio_distance(frame.time()).au(), novas_helio_dist(frame.time().jd(NOVAS_TDB), os._novas_object(), &rate), 1e-9)) n++;
+  if(!test.equals("helio_distance()", os.helio_distance(frame.time()).au(), novas_helio_dist(frame.jd(NOVAS_TDB), os._novas_object(), &rate), 1e-9)) n++;
   if(!test.equals("helio_distance()", os.helio_rate(frame.time()).au_per_day(), rate, 1e-9)) n++;
   if(!test.equals("to_string()", os.to_string(), "OrbitalSource test")) n++;
 

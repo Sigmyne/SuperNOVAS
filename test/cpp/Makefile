@@ -1,6 +1,7 @@
 # Flags for measuring test coverage
 
 CPPFLAGS += -I../../include
+CFLAGS += -g
 LDFLAGS += --coverage -lm 
 
 include ../../config.mk

@@ -100,7 +100,7 @@ int main() {
 
   Geometric geom = Planet::jupiter().approx_geometric_in(frame);
   double p[3] = {0.0}, v[3] = {0.0};
-  novas_approx_heliocentric(NOVAS_JUPITER, frame.time().jd(NOVAS_TDB), p, v);
+  novas_approx_heliocentric(NOVAS_JUPITER, frame.jd(NOVAS_TDB), p, v);
   const novas_frame *f = frame._novas_frame();
 
   if(!test.check("approx_geometric_in(invalid)", !Planet::mars().approx_geometric_in(Frame::undefined()).is_valid())) n++;

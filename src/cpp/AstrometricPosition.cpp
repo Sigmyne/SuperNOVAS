@@ -62,7 +62,7 @@ AstrometricPosition::AstrometricPosition(const Position& equ_pos, const Time &ti
  *                      position and observer location (default: TOD).
  */
 AstrometricPosition::AstrometricPosition(const Position& equ_pos, const Frame &frame, enum novas_reference_system system) :
-        AstrometricPosition(equ_pos, frame.time(), frame.observer_position(), system) {
+        AstrometricPosition(equ_pos, frame.time(), frame.observer_ssb_position(), system) {
 }
 
 /**

@@ -1697,11 +1697,11 @@ public:
  */
 class Frame : public Validating {
 private:
-  const Observer *_observer = NULL;
-  Time _time;
-  novas_frame _frame = {}; ///< Stored frame data
+  const Observer* _observer = NULL; ///< Pointer to copied observer data
+  Time _time;                       ///< Astrometric time of observation
+  novas_frame _frame = {};          ///< Stored frame data
 
-  /// Intantiates an undefined observing frame
+  /// Instantiates an undefined observing frame
   Frame() : _observer(Observer::undefined().copy()), _time(Time::undefined()) {}
 
   void diurnal_correct();
@@ -1709,29 +1709,29 @@ private:
 public:
   Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY);
 
-  ~Frame() {
-    delete _observer;
-  }
-
   Frame(const Frame& frame);
 
   Frame& operator=(const Frame& frame);
 
   const novas_frame* _novas_frame() const;
 
+  enum novas_accuracy accuracy() const;
+
   const Observer& observer() const;
 
   const Time& time() const;
 
-  enum novas_accuracy accuracy() const;
+  const EOP eop() const;
+
+  double jd(enum novas_timescale = NOVAS_TT) const;
 
   double clock_skew(enum novas_timescale = NOVAS_TT) const;
 
   Geometric geometric(const Position& p, const Velocity& v, enum novas_reference_system system = NOVAS_TOD) const;
 
-  Position observer_position() const;
+  Position observer_ssb_position() const;
 
-  Velocity observer_velocity() const;
+  Velocity observer_ssb_velocity() const;
 
   /// @ingroup geometric
   Geometric geometric_moon_elp2000(double limit_term = 0.0) const;
@@ -2385,7 +2385,7 @@ public:
 
   Geometric to_tirs() const;
 
-  Geometric to_itrs(const EOP& eop = EOP::undefined()) const;
+  Geometric to_itrs() const;
 
   std::string to_string(int decimals = 3) const;
 

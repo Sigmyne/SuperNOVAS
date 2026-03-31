@@ -119,7 +119,7 @@ const Velocity& Geometric::velocity() const {
  * @sa Apparent::equatorial(), ecliptic(), galactic(), position(), velocity()
  */
 Equatorial Geometric::equatorial() const {
-  Equatorial e = Equatorial(_pos, Equinox::from_system_type(_system, _frame.time().jd()));
+  Equatorial e = Equatorial(_pos, Equinox::from_system_type(_system, _frame.jd()));
   if(!e.is_valid())
     novas_trace_invalid("Geometric::equatorial");
   return e;
@@ -169,26 +169,6 @@ Galactic Geometric::galactic() const {
   return g;
 }
 
-Geometric Geometric::to_system(const novas_frame *f, enum novas_reference_system system) const {
-  static const char *fn = "Geometric::to_system()";
-
-  novas_transform T = {};
-  double p[3] = {0.0}, v[3] = {0.0};
-
-  if(novas_make_transform(f, _system, system, &T) != 0) {
-    novas_trace_invalid(fn);
-    return Geometric::undefined();
-  }
-
-  novas_transform_vector(_pos._array(), &T, p);
-  novas_transform_vector(_vel._array(), &T, v);
-
-  Geometric g(_frame, Position(p), Velocity(v), system);
-  if(!g.is_valid())
-    novas_trace_invalid(fn);
-  return g;
-}
-
 /**
  * Returns new geometric coordinates that are transformed from these into a different coordinate
  * reference system. For dynamical coordinate systems, the result is in the coordinate epoch
@@ -206,17 +186,26 @@ Geometric Geometric::to_system(const novas_frame *f, enum novas_reference_system
  * @sa operator>>(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_system(enum novas_reference_system system) const {
+  static const char *fn = "Geometric::to_system()";
+
   if(system == _system)
     return *this;
 
-  if(system == NOVAS_ITRS) {
-    Geometric itrs = to_itrs();
-    if(!itrs.is_valid())
-      novas_trace_invalid("Geometric::to_system()");
-    return itrs;
+  novas_transform T = {};
+  double p[3] = {0.0}, v[3] = {0.0};
+
+  if(novas_make_transform(_frame._novas_frame(), _system, system, &T) != 0) {
+    novas_trace_invalid(fn);
+    return Geometric::undefined();
   }
 
-  return to_system(_frame._novas_frame(), system);
+  novas_transform_vector(_pos._array(), &T, p);
+  novas_transform_vector(_vel._array(), &T, v);
+
+  Geometric g(_frame, Position(p), Velocity(v), system);
+  if(!g.is_valid())
+    novas_trace_invalid(fn);
+  return g;
 }
 
 /**
@@ -334,47 +323,17 @@ Geometric Geometric::to_tirs() const {
  *  }
  * ```
  *
- * @param eop       Earth Orientation Parameters (EOP) appropriate for the date, such as obtained
- *                  from the IERS bulletins or web service.
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the ITRS. The returned instance may be invalid if an invalid EOP
  *                  was supplied and the observer also does not define its own valid EOP.
  *
  * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs()
  */
-Geometric Geometric::to_itrs(const EOP& eop) const {
-  if(_system == NOVAS_ITRS)
-    return Geometric(*this);
-
-  // Apply specified EOP to frame
-  if(eop.is_valid()) {
-    novas_frame f = * _frame._novas_frame();
-
-    f.dx = eop.xp().mas();
-    f.dy = eop.yp().mas();
-
-    if(_frame.accuracy() == NOVAS_FULL_ACCURACY) {
-      // Add diurnal corrections
-      double xp = 0.0, yp = 0.0;
-      novas_diurnal_eop_at_time(_frame.time()._novas_timespec(), &xp, &yp, NULL);
-
-      f.dx += 1000.0 * xp;
-      f.dy += 1000.0 * yp;
-    }
-
-    Geometric g = to_system(&f, NOVAS_ITRS);
-    if(!g.is_valid())
+Geometric Geometric::to_itrs() const {
+  Geometric g = to_system(NOVAS_ITRS);
+  if(!g.is_valid())
       novas_trace_invalid("Geometric::to_itrs()");
-    return g;
-  }
-
-  // Or, use observer's EOP
-  if(_frame.observer().is_geodetic())
-    return to_itrs(dynamic_cast<const GeodeticObserver &>(_frame.observer()).eop());
-
-  // Or, we can't really convert to ITRS
-  novas_set_errno(EINVAL, "Geometric::to_itrs()", "Needs valid EOP for non geodetic observer frame");
-  return Geometric::undefined();
+  return g;
 }
 
 /**

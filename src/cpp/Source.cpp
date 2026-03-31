@@ -154,11 +154,6 @@ Geometric Source::geometric_in(const Frame& frame, enum novas_reference_system s
   return Geometric::undefined();
 }
 
-static const EOP& extract_eop(const Frame &frame) {
-  const GeodeticObserver& eobs = dynamic_cast<const GeodeticObserver&>(frame.observer());
-  return eobs.eop();
-}
-
 /**
  * Returns the time when the source rises above the specified elevation next for an observer
  * located on or near Earth's surface, or else `std::nullopt` if the observer is not near Earth's
@@ -178,22 +173,10 @@ static const EOP& extract_eop(const Frame &frame) {
  * @sa sets_below(), transits_in()
  */
 Time Source::rises_above(const Angle& el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
-  static const char *fn = "Source::rises_above()";
-
-  if(frame.observer().is_geodetic()) {
-    novas_frame f = *frame._novas_frame();
-    on_surface *s = &f.observer.on_surf;
-
-    s->temperature = weather.temperature().celsius();
-    s->pressure = weather.pressure().mbar();
-    s->humidity = weather.humidity();
-
-    Time t(novas_check_nan(fn, novas_rises_above(el.deg(), &_object, &f, ref)), extract_eop(frame));
-    return t;
-  }
-
-  novas_set_errno(ENOSYS, fn, "Cannot calculate rise time for a non-geodetic observer.");
-  return Time::undefined();
+  Time t(novas_rises_above(el.deg(), &_object, frame._novas_frame(), ref), frame.eop());
+  if(!t.is_valid())
+    novas_trace_invalid("Source::rises_above()");
+  return t;
 }
 
 /**
@@ -207,15 +190,10 @@ Time Source::rises_above(const Angle& el, const Frame &frame, RefractionModel re
  * @sa sets_below(), transits_in()
  */
 Time Source::transits_in(const Frame &frame) const {
-  static const char *fn = "Source::transits_in()";
-
-  if(frame.observer().is_geodetic())
-    return Time(
-          novas_check_nan(fn, novas_transit_time(&_object, frame._novas_frame())),
-          extract_eop(frame));
-
-  novas_set_errno(ENOSYS, fn, "Cannot calculate transit time for a non-geodetic observer.");
-  return Time::undefined();
+  Time t(novas_transit_time(&_object, frame._novas_frame()), frame.eop());
+  if(!t.is_valid())
+    novas_trace_invalid("Source::transits_in()");
+  return t;
 }
 
 /**
@@ -237,23 +215,10 @@ Time Source::transits_in(const Frame &frame) const {
  * @sa rises_above(), transits_in()
  */
 Time Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
-  static const char *fn = "Source::sets_below()";
-
-  if(frame.observer().is_geodetic()) {
-    novas_frame f = *frame._novas_frame();
-    on_surface *s = &f.observer.on_surf;
-
-    s->temperature = weather.temperature().celsius();
-    s->pressure = weather.pressure().mbar();
-    s->humidity = weather.humidity();
-
-    return Time(
-            novas_check_nan(fn, novas_sets_below(el.deg(), &_object, &f, ref)),
-            extract_eop(frame));
-  }
-
-  novas_set_errno(ENOSYS, fn, "Cannot calculate setting time for a non-geodetic observer.");
-  return Time::undefined();
+  Time t(novas_sets_below(el.deg(), &_object, frame._novas_frame(), ref), frame.eop());
+  if(!t.is_valid())
+    novas_trace_invalid("Source::sets_below()");
+  return t;
 }
 
 
@@ -279,7 +244,7 @@ Time Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref
 EquatorialTrack Source::equatorial_track(const Frame &frame, double range_seconds) const {
   novas_track track = {};
   novas_equ_track(_novas_object(), frame._novas_frame(), range_seconds, &track);
-  EquatorialTrack et = EquatorialTrack::from_novas_track(Equinox::tod(frame.time().jd()), &track, Interval(range_seconds));
+  EquatorialTrack et = EquatorialTrack::from_novas_track(Equinox::tod(frame.jd()), &track, Interval(range_seconds));
   if(!et.is_valid())
     novas_trace_invalid("Source::equatorial_track()");
   return et;
@@ -776,7 +741,7 @@ Apparent Planet::approx_apparent_in(const Frame& frame) const {
 Geometric Planet::approx_geometric_in(const Frame& frame) const {
   double p[3] = {0.0}, v[3] = {0.0};
 
-  novas_approx_heliocentric(novas_id(), frame.time().jd(NOVAS_TDB), p, v);
+  novas_approx_heliocentric(novas_id(), frame.jd(NOVAS_TDB), p, v);
 
   for(int i = 0; i < 3; i++) {
     const novas_frame *f = frame._novas_frame();

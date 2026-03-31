@@ -43,7 +43,7 @@ namespace supernovas {
  * In either case, you can obtain more information on why things went wrong, when they do, by
  * enabling debug mode is enabled via `novas_debug()` prior to constructing a Frame.
  *
- * @param obs         observer location (copied)
+ * @param obs         observer location
  * @param time        time of observation
  * @param accuracy    (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  *
@@ -53,9 +53,17 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
 : _observer(obs.copy()), _time(time) {
   static const char *fn = "Frame()";
 
+  double xp = NAN, yp = NAN;
+
   errno = 0;
 
-  if(novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), 0.0, 0.0, &_frame) != 0)
+  if(obs.is_geodetic()) {
+    const GeodeticObserver *go = dynamic_cast<const GeodeticObserver *>(_observer);
+    xp = go->eop().xp().mas();
+    yp = go->eop().yp().mas();
+  }
+
+  if(novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), xp, yp, &_frame) != 0)
     novas_trace_invalid(fn);
   if(!obs.is_valid())
     novas_set_errno(EINVAL, fn, "input observer is invalid");
@@ -63,12 +71,6 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
     novas_set_errno(EINVAL, fn, "input time is invalid");
 
   _valid = (errno == 0);
-
-  if(!obs.is_geodetic()) {
-    // Force NANs if one tries to used EOP for a non-geodetic observer.
-    _frame.dx = NAN;
-    _frame.dy = NAN;
-  }
 }
 
 /**
@@ -77,7 +79,7 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
  * @param frame   the frame to be copied.
  */
 Frame::Frame(const Frame& frame)
-: Validating(frame), _observer(frame._observer->copy()), _time(frame._time), _frame(frame._frame) {}
+: Validating(frame), _observer(frame._observer->copy()), _time(frame.time()), _frame(frame._frame) {}
 
 /**
  * Custom copy-assignment operator, which updates the observer pointer to
@@ -119,17 +121,6 @@ enum novas_accuracy Frame::accuracy() const {
 }
 
 /**
- * Returns the astrometric time of observation of this observing frame.
- *
- * @return    the astrometric time of observation
- *
- * @sa observer()
- */
-const Time& Frame::time() const {
-  return _time;
-}
-
-/**
  * Returns the observer location (and motion) of this observing frame
  *
  * @return    the observer location (and motion).
@@ -138,6 +129,47 @@ const Time& Frame::time() const {
  */
 const Observer& Frame::observer() const {
   return *_observer;
+}
+
+/**
+ * Returns the astrometric time of observation of this observing frame.
+ *
+ * @return    the astrometric time of observation
+ *
+ * @sa jd(), observer()
+ */
+const Time& Frame::time() const {
+  return _time;
+}
+
+/**
+ * Returns the Earth Orientation Parameters contained in this frame. The returned parameters are
+ * valid only if this frame was defined for a geodetic observer location such as an observer at a
+ * fixed site on Earth or an airborne observer location.
+ *
+ * @return    The Earth orientation parameters of this observing frame, or an undefined (invalid)
+ *            EOP if the observer is not on or near Earth's surface.
+ *
+ * @sa GeodeticObserver
+ */
+const EOP Frame::eop() const {
+  EOP eop = EOP(novas_time_leap(&_frame.time), _frame.time.dut1, _frame.dx * Unit::mas, _frame.dy * Unit::mas);
+  if(!eop.is_valid())
+    novas_trace_invalid("Frame::eop()");
+  return eop;
+}
+
+/**
+ * Returns the precise Julian Date of this observing frame, in the specific timescale of choice.
+ * It is but a shorthand for `time().jd(timescale)`.
+ *
+ * @param timescale   (optional) the timescale in which to return the result (default: TT).
+ * @return            [day] the precise Julian date in the requested timescale.
+ *
+ * @sa Time::jd(), time()
+ */
+double Frame::jd(enum novas_timescale timescale) const {
+  return _time.jd(timescale);
 }
 
 /**
@@ -202,30 +234,30 @@ Geometric Frame::geometric(const Position& p, const Velocity& v, enum novas_refe
 }
 
 /**
- * Returns the observer's position w.r.t. the Solar System Barycenter (SSB).
+ * Returns the observer's ICRS position relative to the Solar System Barycenter (SSB).
  *
  * @return      The Solar system barycentric position of the observer at the time of observation.
  *
- * @sa observer_velocity(), observer()
+ * @sa observer_ssb_velocity(), observer()
  */
-Position Frame::observer_position() const {
+Position Frame::observer_ssb_position() const {
   if(!is_valid()) {
-    novas_trace_invalid("Frame::observer_position()");
+    novas_trace_invalid("Frame::observer_ssb_position()");
     return Position::undefined();
   }
   return Position(_novas_frame()->obs_pos, Unit::AU);
 }
 
 /**
- * Returns the observer's velocity w.r.t. the Solar System Barycenter (SSB).
+ * Returns the observer's ICRS velocity relative to the Solar System Barycenter (SSB).
  *
  * @return      The Solar system barycentric velocity of the observer at the time of observation.
  *
- * @sa observer_position(), observer()
+ * @sa observer_ssb_position(), observer()
  */
-Velocity Frame::observer_velocity() const {
+Velocity Frame::observer_ssb_velocity() const {
   if(!is_valid()) {
-    novas_trace_invalid("Frame::observer_velocity()");
+    novas_trace_invalid("Frame::observer_ssb_velocity()");
     return Velocity::undefined();
   }
   return Velocity(_novas_frame()->obs_vel, Unit::AU / Unit::day);
@@ -322,7 +354,6 @@ Frame Frame::reduced_accuracy(const Observer& obs, const Time& time) {
     novas_trace_invalid("Frame::reduced_accuracy()");
   return f;
 }
-
 
 /**
  * Returns a human-readable string representation of this observing frame.

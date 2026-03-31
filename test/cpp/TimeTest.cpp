@@ -47,6 +47,7 @@ int main() {
   if(!test.check("invalid dUT1()", !x.dUT1().is_valid())) n++;
   if(!test.equals("invalid day_of_week()", x.day_of_week(), -1)) n++;
   if(!test.check("invalid moon_phase()", !x.moon_phase().is_valid())) n++;
+  if(!test.check("invalid moon_phase()", !x.next_moon_phase(Angle(0.0)).is_valid())) n++;
   if(!test.check("invalid to_calendar_date()", !x.to_calendar_date().is_valid())) n++;
   if(!test.equals("invalid to_string()", x.to_string(), "<invalid time>")) n++;
   if(!test.equals("invalid to_iso_string()", x.to_iso_string(), "<invalid time>")) n++;

@@ -32,7 +32,7 @@ int main() {
   if(!test.check("invalid to_tod()", !x.to_tod().is_valid())) n++;
   if(!test.check("invalid to_cirs()", !x.to_cirs().is_valid())) n++;
   if(!test.check("invalid to_tirs()", !x.to_tirs().is_valid())) n++;
-  if(!test.check("invalid to_itrs()", !x.to_itrs(EOP(32, 0.0, 0.0, 0.0)).is_valid())) n++;
+  if(!test.check("invalid to_itrs()", !x.to_itrs().is_valid())) n++;
   if(!test.check("invalid operator>>(icrs)", !(x >> NOVAS_ICRS).is_valid())) n++;
 
   Frame frame = Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000());
@@ -71,32 +71,32 @@ int main() {
   if(!test.check("operator>>().velocity()", a1.velocity() == a.to_icrs().velocity())) n++;
 
   double pos1[3] = {0.0}, vel1[3] = {0.0};
-  tod_to_gcrs(frame.time().jd(NOVAS_TDB), frame.accuracy(), pos._array(), pos1);
-  tod_to_gcrs(frame.time().jd(NOVAS_TDB), frame.accuracy(), vel._array(), vel1);
+  tod_to_gcrs(frame.jd(NOVAS_TDB), frame.accuracy(), pos._array(), pos1);
+  tod_to_gcrs(frame.jd(NOVAS_TDB), frame.accuracy(), vel._array(), vel1);
 
   if(!test.equals("to_icrs().system_type()", a1.system_type(), NOVAS_ICRS)) n++;
   if(!test.check("to_icrs().position()", a1.position() == Position(pos1))) n++;
   if(!test.check("to_icrs().velocity()", a1.velocity() == Velocity(vel1))) n++;
 
   Geometric a2 = a.to_j2000();
-  tod_to_j2000(frame.time().jd(NOVAS_TDB), frame.accuracy(), pos._array(), pos1);
-  tod_to_j2000(frame.time().jd(NOVAS_TDB), frame.accuracy(), vel._array(), vel1);
+  tod_to_j2000(frame.jd(NOVAS_TDB), frame.accuracy(), pos._array(), pos1);
+  tod_to_j2000(frame.jd(NOVAS_TDB), frame.accuracy(), vel._array(), vel1);
 
   if(!test.equals("to_j2000().system_type()", a2.system_type(), NOVAS_J2000)) n++;
   if(!test.check("to_j2000().position()", a2.position() == Position(pos1))) n++;
   if(!test.check("to_j2000().velocity()", a2.velocity() == Velocity(vel1))) n++;
 
   Geometric a3 = a.to_mod();
-  nutation(frame.time().jd(NOVAS_TDB), NUTATE_TRUE_TO_MEAN, frame.accuracy(), pos._array(), pos1);
-  nutation(frame.time().jd(NOVAS_TDB), NUTATE_TRUE_TO_MEAN, frame.accuracy(), vel._array(), vel1);
+  nutation(frame.jd(NOVAS_TDB), NUTATE_TRUE_TO_MEAN, frame.accuracy(), pos._array(), pos1);
+  nutation(frame.jd(NOVAS_TDB), NUTATE_TRUE_TO_MEAN, frame.accuracy(), vel._array(), vel1);
 
   if(!test.equals("to_mod().system_type()", a3.system_type(), NOVAS_MOD)) n++;
   if(!test.check("to_mod().position()", a3.position() == Position(pos1))) n++;
   if(!test.check("to_mod().velocity()", a3.velocity() == Velocity(vel1))) n++;
 
   Geometric a4 = a.to_cirs();
-  tod_to_cirs(frame.time().jd(), frame.accuracy(), pos._array(), pos1);
-  tod_to_cirs(frame.time().jd(), frame.accuracy(), vel._array(), vel1);
+  tod_to_cirs(frame.jd(), frame.accuracy(), pos._array(), pos1);
+  tod_to_cirs(frame.jd(), frame.accuracy(), vel._array(), vel1);
 
   if(!test.equals("to_cirs().system_type()", a4.system_type(), NOVAS_CIRS)) n++;
   if(!test.check("to_cirs().position()", a4.position() == Position(pos1))) n++;
@@ -128,7 +128,7 @@ int main() {
   Geometric opt = a.to_itrs();
   if(!test.check("to_itrs(gc).is_valid()", !opt.is_valid())) n++;
 
-  opt = b.to_itrs(eop);
+  opt = b.to_itrs();
   if(!test.check("to_itrs().is_valid()", opt.is_valid())) n++;
   else {
     Geometric b2 = opt;
@@ -143,7 +143,7 @@ int main() {
     if(!test.check("to_itrs().position()", b2.position() == Position(pos1))) n++;
     if(!test.check("to_itrs().velocity()", b2.velocity() == Velocity(vel1))) n++;
 
-    Geometric b3 = b2.to_itrs(eop);
+    Geometric b3 = b2.to_itrs();
     if(!test.equals("to_itrs(ITRS).system_type()", b3.system_type(), NOVAS_ITRS)) n++;
     if(!test.check("to_itrs(ITRS).position()", b3.position() == b2.position())) n++;
     if(!test.check("to_itrs(ITRS).velocity()", b3.velocity() == b2.velocity())) n++;
@@ -174,11 +174,8 @@ int main() {
     Geometric b2 = opt;
     novas_frame f = {};
 
-    double xp, yp;
-    novas_diurnal_eop_at_time(frame.time()._novas_timespec(), &xp, &yp, NULL);
-
     novas_make_frame(NOVAS_REDUCED_ACCURACY, frame.observer()._novas_observer(), frame.time()._novas_timespec(),
-            eop.xp().mas() + 1000.0 * xp, eop.yp().mas() + 1000.0 * yp, &f);
+            eop.xp().mas(), eop.yp().mas(), &f);
 
     f.accuracy = NOVAS_FULL_ACCURACY;
 

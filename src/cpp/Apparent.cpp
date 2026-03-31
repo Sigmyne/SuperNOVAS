@@ -41,7 +41,7 @@ Apparent::Apparent(const Frame& f)
   else
     _valid = true;
 
-  cirs2tod_ra = -ira_equinox(f.time().jd(), NOVAS_TRUE_EQUINOX, f.accuracy());
+  cirs2tod_ra = -ira_equinox(f.jd(), NOVAS_TRUE_EQUINOX, f.accuracy());
 }
 
 Apparent::Apparent(const Frame& frame, enum novas_reference_system sys, double ra_rad, double dec_rad, double rv_ms)
@@ -306,18 +306,15 @@ Galactic Apparent::galactic() const {
  * @sa Horizontal::to_apparent(), GeodeticObserver
  */
 Horizontal Apparent::to_horizontal() const {
-
-  if(!_frame.observer().is_geodetic()) {
-    novas_set_errno(EINVAL, "Apparent::to_horizontal()", "cannot convert for non-geodetic observer frame");
-    return Horizontal::undefined();
-  }
-
   double ra = 0.0, dec = 0.0, az = 0.0, el = 0.0;
 
   // pos.ra / pos.dec may be NAN for ITRS / TIRS...
   vector2radec(_pos.r_hat, &ra, &dec);
 
-  novas_app_to_hor(_frame._novas_frame(), NOVAS_TOD, ra, dec, NULL, &az, &el);
+  if(novas_app_to_hor(_frame._novas_frame(), NOVAS_TOD, ra, dec, NULL, &az, &el) != 0) {
+    novas_trace_invalid("Apparent::to_horizontal()");
+    return Horizontal::undefined();
+  }
 
   Horizontal h(az * Unit::deg, el * Unit::deg);
   if(!h.is_valid())
