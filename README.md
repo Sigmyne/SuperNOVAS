@@ -6,7 +6,14 @@
 <a href="https://codecov.io/gh/Sigmyne/SuperNOVAS">
  ![Coverage Status](https://codecov.io/gh/Sigmyne/SuperNOVAS/graph/badge.svg?token=E11OFOISMW)
 </a>
+<br clear="all">
 
+<picture>
+  <source srcset="resources/logo-light-300x113.png" alt="SuperNOVAS logo" media="(prefers-color-scheme: dark)"/>
+  <source srcset="resources/logo-dark-300x113.png" alt="SuperNOVAS logo" media="(prefers-color-scheme: light)"/>
+  <img src="resources/logo-300x113.png" alt="SuperNOVAS logo" width="300" height="113" align="right"/>
+</picture>
+<br clear="all">
 
 # SuperNOVAS
 

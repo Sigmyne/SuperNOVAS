@@ -15,7 +15,7 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  - #293: `geo_posvel()` applied TOD to ICRS conversions twice for airborne observers, resulting in imprecise
    observer coordinates relative to the geocenter.
    
- - #296: Possible puffer overflow in `novas_print_dms()`. (thanks to aleberti)
+ - #296: Possible buffer overflow in `novas_print_dms()`. (thanks to aleberti)
  
  - #299: Fix memory leak in `Frame`. (thanks to aleberti)
 
