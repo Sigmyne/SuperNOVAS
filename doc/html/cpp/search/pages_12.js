@@ -5,7 +5,7 @@ var searchData=
   ['reduced_20accuracy_20shortcuts_2',['Reduced accuracy shortcuts',['../index.html#autotoc_md30',1,'']]],
   ['refinements_20to_20the_20novas_20c_20api_3',['Refinements to the NOVAS C API',['../index.html#autotoc_md38',1,'']]],
   ['related_20links_4',['Related links',['../index.html#autotoc_md4',1,'']]],
-  ['release_20schedule_5',['Release schedule',['../index.html#autotoc_md41',1,'']]],
+  ['release_20schedule_5',['Release schedule',['../index.html#autotoc_md40',1,'']]],
   ['releasesrwlockexclusive_6',['define mutex_unlock ReleaseSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md121',1,'']]],
   ['representative_20benchmarks_7',['Representative benchmarks',['../index.html#autotoc_md34',1,'']]],
   ['results_8',['Prerequisites to precise results',['../index.html#autotoc_md29',1,'']]],

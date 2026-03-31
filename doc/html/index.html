@@ -130,7 +130,7 @@ supports the IAU 2000/2006 conventions for microarcsecond-level position calcula
 This document has been updated for the &lt;tt&gt;v1.6&lt;/tt&gt; and later releases.
 
 
-@section autotoc_md70 Table of Contents
+@section autotoc_md60 Table of Contents
 
  - @ref "introduction" "Introduction"
  - @ref "fixed-issues" "Fixed NOVAS C 3.1 issues"
@@ -148,7 +148,7 @@ This document has been updated for the &lt;tt&gt;v1.6&lt;/tt&gt; and later relea
 &lt;hr&gt;
 
 @anchor introduction &lt;a&gt;&lt;/a&gt;
-@section autotoc_md73 Introduction
+@section autotoc_md63 Introduction
 
 &lt;strong&gt;SuperNOVAS&lt;/strong&gt; is a fork of the The Naval Observatory Vector Astrometry Software 
 (&lt;a href="<a href="https://aa.usno.navy.mil/software/novas_info">https://aa.usno.navy.mil/software/novas_info</a>" &gt;NOVAS&lt;/a&gt;). (It is not related to the separate NOVA / libnova library.)
@@ -188,7 +188,7 @@ Outside contributions are very welcome. See
 &lt;a href="<a href="https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html">https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html</a>" &gt;how you can contribute&lt;/a&gt; on how you can make &lt;strong&gt;SuperNOVAS&lt;/strong&gt; 
 even better.
 
-@subsection autotoc_md77 Related links
+@subsection autotoc_md65 Related links
 
  - &lt;a href="<a href="https://aa.usno.navy.mil/software/novas_info">https://aa.usno.navy.mil/software/novas_info</a>" &gt;NOVAS&lt;/a&gt; home page at the US Naval Observatory.
  - &lt;a href="<a href="https://calceph.imcce.fr">https://calceph.imcce.fr</a>" &gt;CALCEPH C library&lt;/a&gt; for integrating Solar-system ephemerides
@@ -206,7 +206,7 @@ even better.
 &lt;hr&gt;
 
 @anchor fixed-issues &lt;a&gt;&lt;/a&gt;
-@section autotoc_md79 Fixed NOVAS C 3.1 issues
+@section autotoc_md69 Fixed NOVAS C 3.1 issues
 
 &lt;strong&gt;SuperNOVAS&lt;/strong&gt; fixes a number of outstanding issues with NOVAS C 3.1:
 
@@ -270,7 +270,7 @@ even better.
 &lt;hr&gt;
 
 @anchor compatibility &lt;a&gt;&lt;/a&gt;
-@section autotoc_md85 Compatibility with NOVAS C 3.1
+@section autotoc_md76 Compatibility with NOVAS C 3.1
 
 &lt;strong&gt;SuperNOVAS&lt;/strong&gt; strives to maintain API compatibility with the upstream NOVAS C 3.1 library, but not binary (ABI) 
 compatibility. 
@@ -291,7 +291,7 @@ accommodate JPL NAIF codes, for which 16-bit storage is insufficient.
 &lt;hr&gt;
 
 @anchor installation &lt;a&gt;&lt;/a&gt;
-@section autotoc_md88 Building and installation
+@section autotoc_md79 Building and installation
 
  - @ref "gnu-build" "Build SuperNOVAS using GNU make"
  - @ref "cmake-build" "Build SuperNOVAS using CMake"
@@ -301,7 +301,7 @@ accommodate JPL NAIF codes, for which 16-bit storage is insufficient.
  - @ref "nix" "Nix package"
 
 @anchor gnu-build &lt;a&gt;&lt;/a&gt;
-@subsection autotoc_md89 Build SuperNOVAS using GNU make
+@subsection autotoc_md80 Build SuperNOVAS using GNU make
 
 The &lt;strong&gt;SuperNOVAS&lt;/strong&gt; distribution contains a GNU &lt;tt&gt;Makefile&lt;/tt&gt;, which is suitable for compiling the library (as well as 
 local documentation, and tests, etc.) on POSIX systems such as Linux, Mac OS X, BSD, Cygwin or WSL &amp;ndash; using 
@@ -406,7 +406,7 @@ build. See section on
 
 
 @anchor cmake-build &lt;a&gt;&lt;/a&gt;
-@subsection autotoc_md92 Build SuperNOVAS using CMake
+@subsection autotoc_md86 Build SuperNOVAS using CMake
 
 As of v1.5, &lt;strong&gt;SuperNOVAS&lt;/strong&gt; can be built using &lt;a href="<a href="https://cmake.org/">https://cmake.org/</a>" &gt;CMake&lt;/a&gt; (many thanks to Kiran Shila). CMake allows 
 for greater portability than the regular GNU &lt;tt&gt;Makefile&lt;/tt&gt;. Note, however, that the CMake configuration does not support 
@@ -476,7 +476,7 @@ the &lt;tt&gt;Runtime&lt;/tt&gt; component:
 
 
 @anchor vcpkg-port &lt;a&gt;&lt;/a&gt;
-@subsection autotoc_md93 Install SuperNOVAS via &lt;tt&gt;vcpkg&lt;/tt&gt;
+@subsection autotoc_md90 Install SuperNOVAS via &lt;tt&gt;vcpkg&lt;/tt&gt;
 
 As of version 1.5, &lt;strong&gt;SuperNOVAS&lt;/strong&gt; is available through the &lt;a href="<a href="https://vcpkg.io/en/">https://vcpkg.io/en/</a>" &gt;vcpkg&lt;/a&gt; registry. The &lt;tt&gt;vcpkg&lt;/tt&gt; port 
 supports a wide range of platforms, including Linux, Windows, MacOS, and Android &amp;ndash; for both &lt;tt&gt;arm64&lt;/tt&gt; and &lt;tt&gt;x64&lt;/tt&gt; 
@@ -504,7 +504,7 @@ The latter will also install the &lt;tt&gt;calceph&lt;/tt&gt; library dependency
 
 
 @anchor linux-packages &lt;a&gt;&lt;/a&gt;
-@subsection autotoc_md94 Linux packages
+@subsection autotoc_md91 Linux packages
 
 &lt;strong&gt;SuperNOVAS&lt;/strong&gt; is packaged for Debian, Fedora / EPEL, and NixOS Linux distributions, and derivatives based on these 
 (Ubuntu, Mint, RHEL, CentOS Stream, Alma Linux, Rocky Linux, Oracle Linux etc.).
@@ -537,7 +537,7 @@ Fedora / EPEL updates.
 
 
 @anchor homebrew &lt;a&gt;&lt;/a&gt;
-@subsection autotoc_md95 Homebrew package
+@subsection autotoc_md93 Homebrew package
 
 As of version 1.5, there is also a &lt;a href="<a href="https://brew.sh/">https://brew.sh/</a>" &gt;Homebrew&lt;/a&gt; package through the maintainer's own Tap, which 
 includes the &lt;tt&gt;solsys-calceph&lt;/tt&gt; plugin by default. And, as of the 1.6 release it includes the C++11 API library also.
@@ -552,7 +552,7 @@ includes the &lt;tt&gt;solsys-calceph&lt;/tt&gt; plugin by default. And, as of t
 &lt;/details&gt;
 
 @anchor nix &lt;a&gt;&lt;/a&gt;
-@subsection autotoc_md96 Nix package
+@subsection autotoc_md94 Nix package
 
 As of version 1.5, there is also a &lt;a href="<a href="https://nixos.org/">https://nixos.org/</a>" &gt;Nix&lt;/a&gt; &lt;a href="<a href="https://search.nixos.org/packages?channel=unstable&amp;show=supernovas&amp;query=supernovas">https://search.nixos.org/packages?channel=unstable&amp;show=supernovas&amp;query=supernovas</a>" &gt;package&lt;/a&gt;.
 This declarative and determinstic package manager can be used on every linux distribution as well as MacOS.
@@ -579,7 +579,7 @@ Or include in your Nix build of other software with
 
 
 @anchor methodologies &lt;a&gt;&lt;/a&gt;
-@section autotoc_md98 Celestial coordinate systems (old vs. new)
+@section autotoc_md97 Celestial coordinate systems (old vs. new)
 
 &lt;table class="markdownTable"&gt;
   &lt;tr class="markdownTableHead"&gt;    &lt;th class="markdownTableHeadCenter"&gt;@image{inline} html resources/SuperNOVAS-systems.png "SuperNOVAS coordinate systems and conversions"    </p>
@@ -1027,7 +1027,7 @@ New in v1.6</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="api-changes"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md120"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md118"></a>
 Refinements to the NOVAS C API</h2>
 <p>Many <b>SuperNOVAS</b> changes are focused on improving the usability and promote best coding practices so that both the library and your application will be safer, and less prone to nagging errors. Below is a detailed listing of the principal ways <b>SuperNOVAS</b> has improved on the original NOVAS C library in these respects.</p>
 <details >
@@ -1066,7 +1066,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="release-schedule"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md122"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md120"></a>
 Release schedule</h1>
 <p>A predictable release schedule and process can help manage expectations and reduce stress on adopters and developers alike.</p>
 <p><b>SuperNOVAS</b> will try to follow a quarterly release schedule. You may expect upcoming releases to be published around <b>February 1</b>, <b>May 1</b>, <b>August 1</b>, and/or <b>November 1</b> each year, on an as-needed basis. That means that if there are outstanding bugs, or new pull requests (PRs), you may expect a release that addresses these in the upcoming quarter. The dates are placeholders only, with no guarantee that a new release will actually be available every quarter. If nothing of note comes up, a potential release date may pass without a release being published.</p>

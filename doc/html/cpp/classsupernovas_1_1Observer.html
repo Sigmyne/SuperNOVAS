@@ -132,9 +132,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:gadd24c03a86837e10783af06be02a8b21" id="r_gadd24c03a86837e10783af06be02a8b21"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Frame.html">Frame</a>&#160;</td><td class="memItemRight"><a class="el" href="group__frame.html#gadd24c03a86837e10783af06be02a8b21">frame_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
 <tr class="memdesc:gadd24c03a86837e10783af06be02a8b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an observing frame for this observer at the specified time and optionally with a specified accuracy.  <br /></td></tr>
 <tr class="memitem:a990a78463a20d985f50b6e86ee8bf7e5" id="r_a990a78463a20d985f50b6e86ee8bf7e5"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a990a78463a20d985f50b6e86ee8bf7e5">is_geocentric</a> () const</td></tr>
-<tr class="memdesc:a990a78463a20d985f50b6e86ee8bf7e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this is a fictious observer located at the geocenter.  <br /></td></tr>
+<tr class="memdesc:a990a78463a20d985f50b6e86ee8bf7e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>.  <br /></td></tr>
 <tr class="memitem:aa5d4f5181e308afd56b517038f1f8720" id="r_aa5d4f5181e308afd56b517038f1f8720"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#aa5d4f5181e308afd56b517038f1f8720">is_geodetic</a> () const</td></tr>
-<tr class="memdesc:aa5d4f5181e308afd56b517038f1f8720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this observer is at a geodetic location, such as an observer at a fixed observatory location, or an airborne observer.  <br /></td></tr>
+<tr class="memdesc:aa5d4f5181e308afd56b517038f1f8720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>.  <br /></td></tr>
 <tr class="memitem:gae636a2863ee350bd67d5d53c19a694ba" id="r_gae636a2863ee350bd67d5d53c19a694ba"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Frame.html">Frame</a>&#160;</td><td class="memItemRight"><a class="el" href="group__frame.html#gae636a2863ee350bd67d5d53c19a694ba">reduced_accuracy_frame_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time) const</td></tr>
 <tr class="memdesc:gae636a2863ee350bd67d5d53c19a694ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reduced accuracy observing frame for this observer at the specified time.  <br /></td></tr>
 <tr class="memitem:a6976e04ac1fe70d10ac5b9966ff73c8b" id="r_a6976e04ac1fe70d10ac5b9966ff73c8b"><td class="memItemLeft">virtual std::string&#160;</td><td class="memItemRight"><a class="el" href="#a6976e04ac1fe70d10ac5b9966ff73c8b">to_string</a> () const</td></tr>
@@ -489,9 +489,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Checks if this is a fictious observer located at the geocenter. </p>
-<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this observer is located at the geocenter, otherwise <span class="tt">false</span></dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa5d4f5181e308afd56b517038f1f8720" title="Checks if this observer is at a geodetic location, such as an observer at a fixed observatory locatio...">is_geodetic()</a> </dd></dl>
+<p>Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this observer is an instance of <a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>, <a class="el" href="#aa5d4f5181e308afd56b517038f1f8720" title="Checks if this observer can be cast to a GeodeticObserver.">is_geodetic()</a> </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1GeocentricObserver.html#a41440873d5710e13571ba76f316da510">supernovas::GeocentricObserver</a>.</p>
 
@@ -524,9 +524,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Checks if this observer is at a geodetic location, such as an observer at a fixed observatory location, or an airborne observer. </p>
-<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> is this a geodetic observer on or near Earth's surface, otherwise <span class="tt">false</span></dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a990a78463a20d985f50b6e86ee8bf7e5" title="Checks if this is a fictious observer located at the geocenter.">is_geocentric()</a> </dd></dl>
+<p>Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> is this observer is an instance of <a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>, <a class="el" href="#a990a78463a20d985f50b6e86ee8bf7e5" title="Checks if this observer can be cast to a GeocentricObserver.">is_geocentric()</a> </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a9f60da5e45c61acedbcd84333507c29e">supernovas::GeodeticObserver</a>.</p>
 

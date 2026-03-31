@@ -3,7 +3,7 @@ var searchData=
   ['s_20guide_0',['User&apos;s guide',['../index.html',1,'']]],
   ['s_20position_20and_20phase_1',['s position and phase',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63',1,'Moon&apos;s position and phase'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104',1,'Moon&apos;s position and phase']]],
   ['safety_2',['Thread safety',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87',1,'']]],
-  ['schedule_3',['Release schedule',['../index.html#autotoc_md41',1,'']]],
+  ['schedule_3',['Release schedule',['../index.html#autotoc_md40',1,'']]],
   ['service_20integration_4',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
   ['services_5',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
   ['set_20and_20transit_20times_6',['set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106',1,'Calculate rise, set, and transit times']]],

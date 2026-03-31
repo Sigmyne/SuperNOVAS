@@ -72,7 +72,7 @@ Add the appropriate bits from below to the `CMakeLists.txt` file of your applica
 -----------------------------------------------------------------------------
 
 <a name="fundamentals-cpp"></a>
-### C++ Fundamentals
+## C++ Fundamentals
 
  - [Namespace](#namespace-cpp)
  - [Validation](#validation-cpp)
@@ -83,7 +83,7 @@ Before we dive into specific examples for using the __SuperNOVAS__ C++ API, you 
 features and design principles that underly the C++ implementation.
  
 <a name="namespace-cpp"></a>
-#### Namespace
+### Namespace
 
 To allow using simple class names, while being cognizant of potential namespace conflicts, the __SuperNOVAS__ classes
 all live under the `supernovas` namespace. Thus, the class `Angle`, for example, has a full name `supernovas::Angle`
@@ -113,10 +113,10 @@ is equivalent to:
 ```
 
 <a name="validation-cpp"></a>
-#### Validation
+### Validation
 
 C++ does not have runtime exceptions the same way as Python or Java, which can be caught. While C++17 introduced
-`std::optional` types that can be used to return with or without a valid data, __SuperNOVAS__ does not use these,
+`std::optional` types that can be used to return with or without valid data, __SuperNOVAS__ does not use these,
 because _(a)_ the optionals are not supported on Apple and Windows (in 2026), and _(b)_ they don't do anything for 
 constructors.
 
@@ -154,12 +154,12 @@ time an invalid class instance is created, and when methods create invalid objec
 
 
 <a name="thread-safety-cpp"></a>
-#### Thread safety
+### Thread safety
 
 It is easy to use the C++ API safely in a multi-threaded environment, even without explicit mutexing. The best 
 practice is to always declare your shared (among threads) class variables as `const` so they will never get 
 accidentally modified by one thread while another thread accesses them concurrently. While most __SuperNOVAS__ classes 
-do not have explicitly declared methods that would modify them, their contents can nevertheless get overwritten easily 
+do not have explicitly declared methods that can modify them, their contents can nevertheless get overwritten easily 
 with the implicit copy-assignment operator -- but not when the variable was declared as `const`. For example:
 
 ```c++
@@ -174,36 +174,38 @@ or change unexpectedly.
 
 
 <a name="operators-cpp"></a>
-#### Operator overloading
+### Operator overloading
 
-Several __SuperNOVAS__ classes override arithmetic operators (often `+` and `-`, and sometimes `*` and `/`), but only when 
-this is physically meaningful. For example, you can add and difference position or velocity vectors: for positions
-`a` and `b`, `a + b` is the two positions superimposed, `a - b` is the difference vector of the same type. For 
-velocities the addition and subtraction follows the relativistic formulae, e.g. for velocity vectors `v1` and `v2`: 
+Several __SuperNOVAS__ classes override arithmetic operators (often `+` and `-`, and sometimes `*` and `/`), but only 
+when this is physically meaningful. For example, you can add and difference position or velocity vectors: for 
+`supernovas::Position`, __a__ and __b__, __a__ + __b__ is the two positions superimposed, __a__ - __b__ is the 
+difference vector of the same type. For `supernovas::Velocity`, the addition and subtraction follows the relativistic 
+formulae, e.g. for velocity vectors `v1` and `v2`: 
 
 ```cpp
  Velocity dv = v2 - v1;  // Relativistic difference of two velocity vectors.
 ```
 
-You can also add or subtract intervals around `Time` instances, such as for `Time t` you might define: 
+You can also add or subtract intervals around `supernovas::Time` instances, such as: 
 
 ```cpp
- Time t1 = t + 1.1 * Unit::min;  // offset time (in the same timescale)
+ Time t = ...;           // An astrometric time instance
+
+ Time t1 = t + 1.1 * Unit::min;  // offset time (in a terrestrial timescale)
 ``` 
 
 This works for small intervals so long as the Earth Orientation Parameters (leap seconds and UT1 - UTC time 
-difference) remain the same, _and_ the timescales also match up (e.g. both `t` and the offset time are in say UTC). 
-The above is the same as `t + Interval(1.1 * Unit::min)` or `t.shifted(1.1 * Unit::min)` or 
-`t.shifted(Interval(1.1 * Unit::min))`.
+difference) remain the same, _and_ the offset is in a terrestrial timescale (UTC, TT, TAI, or GPS). The above is the 
+same as `t + Interval(1.1 * Unit::min)` or `t.shifted(1.1 * Unit::min)` or `t.shifted(Interval(1.1 * Unit::min))`.
 
-You can also multiply a `Velocity` or `ScalarVelocity` (`rv`) with a time interval on either side to get distance 
-travelled, e.g.: 
+You can also multiply a `supernovas::Velocity` or `supernovas::ScalarVelocity` (`rv`) with a time interval on either 
+side to get distance travelled, e.g.: 
 
 ```cpp
  Coordinate dr = rv * Interval(5.0 * Unit::s);  // distance travelled
 ```
 
-is the same as `Interval(5.0 * Unit::s) * v`, and is the same as `v.travel(5.0 * Unit::s)` or 
+is the same as `Interval(5.0 * Unit::s) * rv`, and is the same as `v.travel(5.0 * Unit::s)` or 
 `v.travel(Interval(5.0 * Unit::s))`.
 
 Conversely, you can define (scalar and vector) velocities by dividing the traveled coordinate or position vector 
@@ -225,8 +227,9 @@ measured at two different time instances:
 ```
 
 Celestial coordinates, which can be expressed in different reference systems, can be transformed to another system
-with the `>>` operator, which is just a shorthand for the `.to_system()` method. E.g., if you have `Equatorial`
-coordinates `eq` in some reference system, and want it to be converted to ICRS, you might write: 
+with the `>>` operator, which is just a shorthand for the `.to_system()` method. E.g., if you have 
+`supernovas::Equatorial` coordinates `eq` in some reference system, and want it to be converted to ICRS, you might 
+write: 
 
 ```cpp
  Equatorial icrs = eq >> Equinox::icrs();  // ICRS coordinates
@@ -237,10 +240,10 @@ which is the same as `eq.to_system(Equinox::icrs())` or `eq.to_icrs()`.
 Many classes also define `==` and `!=` to check for equality. This is the same as calling their `.equals()` method 
 with the default precision, or it's negated form, respectively.
 
-`Time` and `CalendarDate` also have comparison operators defined: `<`, `>`, `<=`, and `>=`. The `<` and `>` always 
-evaluate at the full precision, whereas `<=` and `>=` follow the default precision of `==`. This makes `<=` fully
-consistent with `<` _or_ `==`, and `>=` with `>` _or_ `==`. So for two times instances `t1` and `t2`, you could
-check, e.g.:
+`supernovas::Time` and `supernovas::CalendarDate` also have comparison operators defined: `<`, `>`, `<=`, and `>=`. 
+The `<` and `>` always evaluate at the full precision, whereas `<=` and `>=` follow the default precision of `==`. 
+This makes `<=` fully consistent with `<` _or_ `==`, and `>=` with `>` _or_ `==`. So for two times instances `t1` and 
+`t2`, you could check, e.g.:
 
 ```cpp
  if(t1 >= t2)
@@ -484,7 +487,7 @@ velocity or redshift (including gravitational effects) as:
 And, you can also get a distance:
 
 ```cpp
- Distance d = app.distance();
+ Coordinate d = app.distance();
 ```
 
 > [!NOTE]
@@ -508,7 +511,7 @@ Earth based observer (otherwise, you'll get an invalid result):
  Weather weather = Weather(Temperature::celsius(12.0), Pressure::mbar(895.0), 47.0);
  
  // Obrtain refraction cofrrected horizontal coordinates
- hor = app.to_horizontal().to_refracted(novas_optical_refraction, weather);
+ hor = hor.to_refracted(novas_optical_refraction, weather);
 ```
 
 

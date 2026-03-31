@@ -38,7 +38,7 @@ var searchData=
   ['refraction_35',['Atmospheric refraction',['../group__refract.html',1,'']]],
   ['refractionmodel_36',['RefractionModel',['../group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9',1,'novas.h']]],
   ['related_20links_37',['Related links',['../index.html#autotoc_md4',1,'']]],
-  ['release_20schedule_38',['Release schedule',['../index.html#autotoc_md41',1,'']]],
+  ['release_20schedule_38',['Release schedule',['../index.html#autotoc_md40',1,'']]],
   ['releasesrwlockexclusive_39',['define mutex_unlock ReleaseSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md121',1,'']]],
   ['representative_20benchmarks_40',['Representative benchmarks',['../index.html#autotoc_md34',1,'']]],
   ['results_41',['Prerequisites to precise results',['../index.html#autotoc_md29',1,'']]],

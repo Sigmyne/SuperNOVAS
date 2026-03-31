@@ -12,7 +12,7 @@ var searchData=
   ['scalarvelocity_9',['ScalarVelocity',['../classsupernovas_1_1ScalarVelocity.html',1,'supernovas::ScalarVelocity'],['../classsupernovas_1_1ScalarVelocity.html#a08b7a8a135acb5cd5da7886f6dbace17',1,'supernovas::ScalarVelocity::ScalarVelocity()']]],
   ['scalarvelocity_2ecpp_10',['ScalarVelocity.cpp',['../ScalarVelocity_8cpp.html',1,'']]],
   ['scaled_11',['scaled',['../classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46',1,'supernovas::Vector']]],
-  ['schedule_12',['Release schedule',['../index.html#autotoc_md41',1,'']]],
+  ['schedule_12',['Release schedule',['../index.html#autotoc_md40',1,'']]],
   ['sec_13',['sec',['../classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064',1,'supernovas::Unit']]],
   ['seconds_14',['seconds',['../classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06',1,'supernovas::Interval::seconds()'],['../classsupernovas_1_1TimeAngle.html#ad3e673f9bf33b709f7d032a797900904',1,'supernovas::TimeAngle::seconds() const'],['../classsupernovas_1_1TimeAngle.html#af2441cf4b199ba525dda1e09f659e4c7',1,'supernovas::TimeAngle::seconds(double value)']]],
   ['semi_5fmajor_5faxis_15',['semi_major_axis',['../classsupernovas_1_1Orbital.html#afdfffb7bc52d616fc89e0556e9069022',1,'supernovas::Orbital']]],

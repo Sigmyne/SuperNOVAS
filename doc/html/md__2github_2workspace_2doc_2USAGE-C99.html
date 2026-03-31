@@ -118,7 +118,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-C99.html','',''); }
 </ul>
 <hr  />
 <p><a class="anchor" id="integration-c99"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 Building your application with SuperNOVAS (C99)</h1>
 <p>There are a number of ways you can build your application with <b>SuperNOVAS</b>. See which of the options suits your needs best:</p>
 <ul>
@@ -129,7 +129,7 @@ Building your application with SuperNOVAS (C99)</h1>
 <li><a class="el" href="#preferred-legacy-application-c99" title="preferred-legacy-application-c99">Legacy modules: a better way</a></li>
 </ul>
 <p><a class="anchor" id="makefile-application-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
 Using a GNU <span class="tt">Makefile</span></h2>
 <details >
 <summary >
@@ -616,7 +616,7 @@ Physical units</h2>
 <div class="ttc" id="agroup__source_html_ga7822b81ad3f75b448f446ed4da774e75"><div class="ttname"><a href="group__source.html#ga7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a></div><div class="ttdeci">#define NOVAS_KMS</div><div class="ttdoc">[m] One km/s in m/s.</div><div class="ttdef"><b>Definition</b> novas.h:325</div></div>
 <div class="ttc" id="agroup__source_html_gabc8f275a2d431e59a1ec9e276abaca1a"><div class="ttname"><a href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a></div><div class="ttdeci">#define NOVAS_AU</div><div class="ttdoc">[m] Astronomical unit (AU).</div><div class="ttdef"><b>Definition</b> novas.h:331</div></div>
 </div><!-- fragment --><p><a class="anchor" id="string-times-and-angles-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md48"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md52"></a>
 String times and angles</h2>
 <p><b>SuperNOVAS</b> functions typically input and output times and angles as decimal values (hours and degrees, but also as days and hour-angles), but that is not how these are represented in many cases. Time and right-ascention are often given as string values indicating hours, minutes, and seconds (e.g. "11:32:31.595", or "11h 32m 31.595s"). Similarly angles, are commonly represented as degrees, arc-minutes, and arc-seconds (e.g. "+53 60 19.9"). For that reason, <b>SuperNOVAS</b> provides a set of functions to convert string values expressed in decimal or broken-down format to floating point representation. E.g.,</p>
 <div class="fragment"><div class="line"><span class="comment">// Right ascention from string</span></div>
@@ -631,7 +631,7 @@ String times and angles</h2>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> ra_h = <a class="code hl_function" href="group__util.html#ga3ed26b6af870f6dbc353f651563afd4a">novas_str_hours</a>(<span class="stringliteral">&quot;9.31363&quot;</span>);</div>
 <div class="line"><span class="keywordtype">double</span> dec_d = <a class="code hl_function" href="group__util.html#ga6d6ada07aab7ce09fb8ea7b12660ebcd">novas_str_degrees</a>(<span class="stringliteral">&quot;53.16870278d South&quot;</span>);</div>
 </div><!-- fragment --><p><a class="anchor" id="string-dates-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md49"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md57"></a>
 String dates</h2>
 <p>Dates are typically represented broken down into year, month, and day (e.g. "2025-02-16", or "16.02.2025", or "2/16/2025"), with or without a time marker, which itself may or may not include a time zone specification. In astronomy, the most commonly used string representation of dates is with ISO 8601 timestamps. The following are all valid ISO date specifications:</p>
 <div class="fragment"><div class="line">2025-02-16         # Date only (0 UTC)</div>
