@@ -23,7 +23,7 @@ var searchData=
   ['usage_2dc99_2emd_20',['USAGE-C99.md',['../USAGE-C99_8md.html',1,'']]],
   ['usage_2dcpp_2emd_21',['USAGE-CPP.md',['../USAGE-CPP_8md.html',1,'']]],
   ['use_20cases_22',['Example use cases',['../index.html#autotoc_md20',1,'']]],
-  ['user_20s_20guide_23',['User&apos;s guide',['../index.html',1,'']]],
+  ['user_20s_20guide_23',['User&apos;s guide',['../index.html#autotoc_md0',1,'']]],
   ['using_20a_20gnu_20makefile_24',['Using a GNU Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
   ['using_20cmake_25',['Using CMake',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md46',1,'Using CMake'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82',1,'Using CMake']]],
   ['using_20cmake_26',['Build SuperNOVAS using CMake',['../index.html#autotoc_md12',1,'']]],

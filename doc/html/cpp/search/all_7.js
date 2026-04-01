@@ -14,7 +14,7 @@ var searchData=
   ['days_11',['days',['../classsupernovas_1_1Interval.html#a3eb33d55e5c5a4763b65a850d4ee124d',1,'supernovas::Interval']]],
   ['de405_5fau_12',['DE405_AU',['../novas_8h.html#af303bf91582509624aa40c6a87eb95ac',1,'novas.h']]],
   ['de_5fnumber_13',['de_number',['../classsupernovas_1_1Planet.html#aabb4badd53f6c696872ef95bb65cf53c',1,'supernovas::Planet']]],
-  ['debug_20support_14',['Runtime debug support',['../index.html#autotoc_md33',1,'']]],
+  ['debug_20support_14',['Runtime debug support',['../index.html#autotoc_md32',1,'']]],
   ['dec_15',['dec',['../structnovas__cat__entry.html#ab539dc076c350cf98ac047453fa18c9c',1,'novas_cat_entry::dec'],['../structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f',1,'novas_sky_pos::dec'],['../classsupernovas_1_1Equatorial.html#aa4101d906d7943a36a1b6b5363bfb731',1,'supernovas::Equatorial::dec()'],['../classsupernovas_1_1CatalogEntry.html#ad3fbfae4e65d4cb968bf356f8bad08a3',1,'supernovas::CatalogEntry::dec()']]],
   ['default_5fgrav_5fbodies_5ffull_5faccuracy_16',['DEFAULT_GRAV_BODIES_FULL_ACCURACY',['../group__apparent.html#ga4cb74da554b236c835302480688cfaac',1,'novas.h']]],
   ['default_5fgrav_5fbodies_5freduced_5faccuracy_17',['DEFAULT_GRAV_BODIES_REDUCED_ACCURACY',['../group__apparent.html#gaec64bf67d5a03b2b4fb2583e5918f1de',1,'novas.h']]],

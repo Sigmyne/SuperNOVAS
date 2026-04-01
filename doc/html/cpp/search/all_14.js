@@ -22,7 +22,7 @@ var searchData=
   ['redshift_5fat_19',['redshift_at',['../classsupernovas_1_1Track.html#ad9fb35cb904f565fb07e22a48d343a10',1,'supernovas::Track']]],
   ['redshift_5fevolution_20',['redshift_evolution',['../classsupernovas_1_1Track.html#afb7ae9347827cf49c54204579b809120',1,'supernovas::Track']]],
   ['redshift_5fvrad_21',['redshift_vrad',['../novas_8h.html#af56088995d42a0673e03bca1f3891544',1,'redshift_vrad(double vrad, double z):&#160;spectral.c'],['../spectral_8c.html#af56088995d42a0673e03bca1f3891544',1,'redshift_vrad(double vrad, double z):&#160;spectral.c']]],
-  ['reduced_20accuracy_20shortcuts_22',['Reduced accuracy shortcuts',['../index.html#autotoc_md31',1,'']]],
+  ['reduced_20accuracy_20shortcuts_22',['Reduced accuracy shortcuts',['../index.html#autotoc_md30',1,'']]],
   ['reduced_5faccuracy_23',['reduced_accuracy',['../classsupernovas_1_1Frame.html#ac1c71cf92a4019d1a993a9868b105173',1,'supernovas::Frame']]],
   ['reduced_5faccuracy_5fframe_5fat_24',['reduced_accuracy_frame_at',['../group__frame.html#gae636a2863ee350bd67d5d53c19a694ba',1,'supernovas::Observer']]],
   ['reference_25',['reference',['../classsupernovas_1_1AstrometricPosition.html#a812f65f637969fa3049ce897690d4ddb',1,'supernovas::AstrometricPosition']]],
@@ -41,11 +41,11 @@ var searchData=
   ['release_20schedule_38',['Release schedule',['../index.html#autotoc_md41',1,'']]],
   ['releasesrwlockexclusive_39',['define mutex_unlock ReleaseSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md121',1,'']]],
   ['representative_20benchmarks_40',['Representative benchmarks',['../index.html#autotoc_md35',1,'']]],
-  ['results_41',['Prerequisites to precise results',['../index.html#autotoc_md30',1,'']]],
+  ['results_41',['Prerequisites to precise results',['../index.html#autotoc_md29',1,'']]],
   ['reverse_42',['reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105',1,'Going in reverse...']]],
   ['rise_20set_20and_20transit_20times_43',['rise set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106',1,'Calculate rise, set, and transit times']]],
   ['rises_5fabove_44',['rises_above',['../group__time.html#gaecda13098f9fcb4f0a5a864c68bbf697',1,'supernovas::Source']]],
   ['roman_45',['roman',['../classsupernovas_1_1Calendar.html#a927c915e21f2fce2c186b9e1f258fc34',1,'supernovas::Calendar']]],
-  ['runtime_20debug_20support_46',['Runtime debug support',['../index.html#autotoc_md33',1,'']]],
+  ['runtime_20debug_20support_46',['Runtime debug support',['../index.html#autotoc_md32',1,'']]],
   ['rv_47',['rv',['../structnovas__sky__pos.html#ae98432478d2c3a8e5eb1a1674394499f',1,'novas_sky_pos']]]
 ];

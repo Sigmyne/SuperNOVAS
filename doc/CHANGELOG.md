@@ -6,7 +6,7 @@ file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to 
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.6.0-rc2] - 2026-04-01
 
 Upcoming feature release, introducing a proper C++ API for the first time, and bringing various other improvements.
 
@@ -15,7 +15,7 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  - #293: `geo_posvel()` applied TOD to ICRS conversions twice for airborne observers, resulting in imprecise
    observer coordinates relative to the geocenter.
    
- - #296: Possible puffer overflow in `novas_print_dms()`. (thanks to aleberti)
+ - #296: Possible buffer overflow in `novas_print_dms()`. (thanks to aleberti)
  
  - #299: Fix memory leak in `Frame`. (thanks to aleberti)
 
@@ -27,7 +27,7 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  - #256: New `novas_time_leap()` to simplify back calculating the leap seconds from a `novas_timespec` structure.
 
  - #281: Added a truncated version of semi-analytic ELP/MPP02 model of the Moon's position relative to the geocenter 
-   by Chapront &amp; Francou (2003), usng up to about 3400 terms, and reaching accuracies to the 1 arcsec / 1km
+   by Chapront &amp; Francou (2003), using up to about 3400 terms, and reaching accuracies to the 1 arcsec / 1km
    level (or better for the present era). 
    
  - #298: Added `cspice_clear_kernels()` to CSPICE plugin to close all kernels and free up the resources they use 

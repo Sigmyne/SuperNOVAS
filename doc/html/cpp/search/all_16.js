@@ -34,7 +34,7 @@ var searchData=
   ['timescale_2ec_31',['timescale.c',['../timescale_8c.html',1,'']]],
   ['timescales_32',['Time of observation and astronomical timescales',['../group__time.html',1,'']]],
   ['tips_20and_20tricks_20c99_33',['Tips and tricks (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68',1,'']]],
-  ['to_20precise_20results_34',['Prerequisites to precise results',['../index.html#autotoc_md30',1,'']]],
+  ['to_20precise_20results_34',['Prerequisites to precise results',['../index.html#autotoc_md29',1,'']]],
   ['to_20the_20novas_20c_20api_35',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
   ['to_5fapparent_36',['to_apparent',['../group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae',1,'supernovas::Horizontal::to_apparent(const Frame &amp;frame, double rv=0.0, double distance=Unit::Gpc) const'],['../group__apparent.html#ga02abf3d9fe725653e8220619a000fc8d',1,'supernovas::Horizontal::to_apparent(const Frame &amp;frame, const ScalarVelocity &amp;rv=ScalarVelocity::stationary(), const Coordinate &amp;distance=Coordinate::at_Gpc()) const']]],
   ['to_5fcalendar_37',['to_calendar',['../classsupernovas_1_1CalendarDate.html#a879bbc76f05f17495edf6a0db6e994b8',1,'supernovas::CalendarDate']]],

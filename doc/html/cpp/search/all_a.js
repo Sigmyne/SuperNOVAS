@@ -49,5 +49,5 @@ var searchData=
   ['gregorian_46',['gregorian',['../classsupernovas_1_1Calendar.html#a0d625010c543eed0c3db85a57777c15c',1,'supernovas::Calendar']]],
   ['gst_47',['gst',['../structnovas__frame.html#ae630c8535a6407922324073c1c4622e5',1,'novas_frame::gst'],['../classsupernovas_1_1Time.html#aa5902cfaf7c0427109a604a69511d356',1,'supernovas::Time::gst()']]],
   ['guess_48',['guess',['../classsupernovas_1_1Weather.html#ae522250022ddc02a84eda4ecdc7cacb6',1,'supernovas::Weather']]],
-  ['guide_49',['User&apos;s guide',['../index.html',1,'']]]
+  ['guide_49',['User&apos;s guide',['../index.html#autotoc_md0',1,'']]]
 ];

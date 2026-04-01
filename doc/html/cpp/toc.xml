@@ -1,5 +1,5 @@
 <toc label="SuperNOVAS C++ API" topic="index.html">
-  <topic label="User&apos;s guide" href="index.html">
+  <topic label="User&apos;s guide" href="index.html#autotoc_md0">
     <topic label="Table of Contents" href="index.html#autotoc_md1"/>
     <topic label="Introduction" href="index.html#autotoc_md3">
       <topic label="Related links" href="index.html#autotoc_md4"/>
@@ -24,11 +24,11 @@
       <topic label="NAIF CSPICE toolkit integration" href="index.html#autotoc_md26"/>
       <topic label="Universal ephemeris data / service integration" href="index.html#autotoc_md27"/>
     </topic>
-    <topic label="Notes on precision" href="index.html#autotoc_md29">
-      <topic label="Prerequisites to precise results" href="index.html#autotoc_md30"/>
-      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md31"/>
+    <topic label="Notes on precision" href="index.html#autotoc_md28">
+      <topic label="Prerequisites to precise results" href="index.html#autotoc_md29"/>
+      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md30"/>
     </topic>
-    <topic label="Runtime debug support" href="index.html#autotoc_md33"/>
+    <topic label="Runtime debug support" href="index.html#autotoc_md32"/>
     <topic label="Representative benchmarks" href="index.html#autotoc_md35"/>
     <topic label="SuperNOVAS added features" href="index.html#autotoc_md37">
       <topic label="New functionality highlights" href="index.html#autotoc_md38"/>

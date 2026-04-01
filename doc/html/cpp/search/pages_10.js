@@ -13,7 +13,7 @@ var searchData=
   ['of_20interest_10',['of interest',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53',1,'Specify the object of interest'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92',1,'Specify the object of interest']]],
   ['of_20observation_11',['of observation',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55',1,'Specify the time of observation'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96',1,'Specify the time of observation']]],
   ['old_20vs_20new_12',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md18',1,'']]],
-  ['on_20precision_13',['Notes on precision',['../index.html#autotoc_md29',1,'']]],
+  ['on_20precision_13',['Notes on precision',['../index.html#autotoc_md28',1,'']]],
   ['on_20sky_14',['on sky',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98',1,'Calculate an apparent place on sky']]],
   ['operator_20overloading_15',['Operator overloading',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88',1,'']]],
   ['or_20c_16',['Pick your flavor (C or C++)',['../index.html#autotoc_md22',1,'']]],

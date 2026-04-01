@@ -1,7 +1,10 @@
+<img src="logo-300x113.png" alt="SuperNOVAS logo" width="300" height="113" align="right"/>
+<br clear="all">
+
 # User's guide
 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14584983.svg)](https://doi.org/10.5281/zenodo.14584983)
+[![DOI: 10.5281/zenodo.14584983](https://zenodo.org/badge/DOI/10.5281/zenodo.14584983.svg)](https://doi.org/10.5281/zenodo.14584983)
 
 The NOVAS C astrometry library, made better.
 
