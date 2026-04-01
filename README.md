@@ -17,7 +17,7 @@
 
 # SuperNOVAS
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14584983.svg)](https://doi.org/10.5281/zenodo.14584983)
+[![DOI: 10.5281/zenodo.14584983](https://zenodo.org/badge/DOI/10.5281/zenodo.14584983.svg)](https://doi.org/10.5281/zenodo.14584983)
 
 The NOVAS C astrometry library, made better.
 
