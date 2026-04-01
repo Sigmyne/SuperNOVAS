@@ -183,8 +183,6 @@ private:
   /// Private Constructor
   Constant() {}
 
-  void operator=(Constant const&);    // Don't implement
-
 public:
   /// \cond PRIVATE
   /// Delete the copy constructor to prevent copies
@@ -418,7 +416,7 @@ public:
  */
 class Interval : public Validating {
 private:
-  double _seconds;                      ///< [s] stored time of the interval
+  double _seconds;               ///< [s] stored time of the interval
   enum novas_timescale _scale;   ///< store timescale of the interval
 
 public:
@@ -598,7 +596,7 @@ protected:
 
 public:
 
-  virtual ~Vector() {}; // something virtual to make class polymorphic for dynamic casting.
+  virtual ~Vector() {};
 
   Vector operator*(double r) const;
 
@@ -1759,7 +1757,7 @@ protected:
   Source() {}
 
 public:
-  virtual ~Source() {}; // something virtual to make class polymorphic for dynamic casting.
+  virtual ~Source() {};
 
   /**
    * Returns a pointer to a newly allocated copy of this instance
@@ -2123,7 +2121,8 @@ public:
 
   static Orbital from_mean_motion(const OrbitalSystem& system, double jd_tdb, double semi_majpr_m, double mean_anomaly_rad, double rad_per_s);
 
-  static Orbital from_mean_motion(const OrbitalSystem& system, const Time& ref_time, const Coordinate& semi_major, const Angle& mean_anomaly, double rad_per_s);
+  static Orbital from_mean_motion(const OrbitalSystem& system, const Time& ref_time, const Coordinate& semi_major, const Angle& mean_anomaly,
+          double rad_per_s);
 
   const novas_orbital * _novas_orbital() const;
 
@@ -2339,10 +2338,10 @@ public:
  */
 class Geometric : public Validating {
 private:
-  Frame _frame;                               ///< stored frame data
-  Position _pos;                              ///< stored geometric position w.r.t. observer
-  Velocity _vel;                              ///< stored geometric velocity w.r.t. observer
-  enum novas_reference_system _system; ///< stored coordinate reference system type
+  Frame _frame;                         ///< stored frame data
+  Position _pos;                        ///< stored geometric position w.r.t. observer
+  Velocity _vel;                        ///< stored geometric velocity w.r.t. observer
+  enum novas_reference_system _system;  ///< stored coordinate reference system type
 
   /// Instantiates undefined geometric positions
   Geometric() : _frame(Frame::undefined()), _pos(Position::undefined()), _vel(Velocity::undefined()), _system((enum novas_reference_system) -1) {}
