@@ -18,9 +18,9 @@ int main() {
 
   Position x = Position::undefined();
   if(!test.check("is_valid() invalid", !x.is_valid())) n++;
-  if(!test.check("x() invalid", isnan(x.x()))) n++;
-  if(!test.check("y() invalid", isnan(x.y()))) n++;
-  if(!test.check("z() invalid", isnan(x.z()))) n++;
+  if(!test.check("x() invalid", !x.x().is_valid())) n++;
+  if(!test.check("y() invalid", !x.y().is_valid())) n++;
+  if(!test.check("z() invalid", !x.z().is_valid())) n++;
   if(!test.check("operator+() invalid", !(x + Position::origin()).is_valid())) n++;
   if(!test.check("operator-() invalid", !(x - Position::origin()).is_valid())) n++;
   if(!test.check("inv() invalid", !x.inv().is_valid())) n++;
@@ -28,9 +28,9 @@ int main() {
 
   Position z = Position::origin();
   if(!test.check("is_valid() origin", z.is_valid())) n++;
-  if(!test.equals("x() origin", z.x(), 0.0)) n++;
-  if(!test.equals("y() origin", z.y(), 0.0)) n++;
-  if(!test.equals("z() origin", z.z(), 0.0)) n++;
+  if(!test.equals("x() origin", z.x().m(), 0.0)) n++;
+  if(!test.equals("y() origin", z.y().m(), 0.0)) n++;
+  if(!test.equals("z() origin", z.z().m(), 0.0)) n++;
   if(!test.check("is_zero(origin)", z.is_zero())) n++;
   if(!test.check("operator+(invalid)", !(z + x).is_valid())) n++;
   if(!test.check("operator-(invalid)", !(z - x).is_valid())) n++;
@@ -41,9 +41,9 @@ int main() {
 
   Position a(-1.0 * Unit::au, 2.0 * Unit::au, -3.0 * Unit::au);
   if(!test.check("is_valid(-1 AU, 2 AU, -3 AU)", a.is_valid())) n++;
-  if(!test.equals("x()", a.x(), -1.0 * Unit::au)) n++;
-  if(!test.equals("y()", a.y(), 2.0 * Unit::au)) n++;
-  if(!test.equals("z()", a.z(), -3.0 * Unit::au)) n++;
+  if(!test.equals("x()", a.x().m(), -1.0 * Unit::au)) n++;
+  if(!test.equals("y()", a.y().m(), 2.0 * Unit::au)) n++;
+  if(!test.equals("z()", a.z().m(), -3.0 * Unit::au)) n++;
   if(!test.check("is_zero()", !a.is_zero())) n++;
   if(!test.equals("distance()", a.distance().au(), sqrt(14.0), 1e-14)) n++;
   if(!test.equals("to_string()", a.to_string(), "Position (-1.000 AU, 2.000 AU, -3.000 AU)")) n++;
@@ -63,9 +63,9 @@ int main() {
   if(!test.check("as_astrometric().emit_time()", ap.emit_time() == (Time::j2000() - (a.distance().m() / Constant::c)))) n++;
 
   Position ai = a.inv();
-  if(!test.equals("x() inv", ai.x(), -a.x())) n++;
-  if(!test.equals("y() inv", ai.y(), -a.y())) n++;
-  if(!test.equals("z() inv", ai.z(), -a.z())) n++;
+  if(!test.equals("x() inv", ai.x().m(), -a.x().m())) n++;
+  if(!test.equals("y() inv", ai.y().m(), -a.y().m())) n++;
+  if(!test.equals("z() inv", ai.z().m(), -a.z().m())) n++;
   if(!test.check("operator!=() inv", (a != ai))) n++;
   if(!test.check("operator==() inv !", !(a == ai))) n++;
 
@@ -87,26 +87,26 @@ int main() {
   if(!test.check("operator==() mm", c == c1)) n++;
   if(!test.check("operator!=() mm !", !(c != c1))) n++;
 
-  if(!test.equals("projection_on(x)", a.projection_on(Position(5.0, 0.0, 0.0)), a.x(), 1e-15 * Unit::au)) n++;
-  if(!test.equals("projection_on(y)", a.projection_on(Position(0.0, 5.0, 0.0)), a.y(), 1e-15 * Unit::au)) n++;
-  if(!test.equals("projection_on(z)", a.projection_on(Position(0.0, 0.0, 5.0)), a.z(), 1e-15 * Unit::au)) n++;
+  if(!test.equals("projection_on(x)", a.projection_on(Position(5.0, 0.0, 0.0)), a.x().m(), 1e-15 * Unit::AU)) n++;
+  if(!test.equals("projection_on(y)", a.projection_on(Position(0.0, 5.0, 0.0)), a.y().m(), 1e-15 * Unit::AU)) n++;
+  if(!test.equals("projection_on(z)", a.projection_on(Position(0.0, 0.0, 5.0)), a.z().m(), 1e-15 * Unit::AU)) n++;
 
   double l = a.abs();
-  if(!test.equals("unit_vector().x()", a.unit_vector().x(), a.x() / l, 1e-15)) n++;
-  if(!test.equals("unit_vector().y()", a.unit_vector().y(), a.y() / l, 1e-15)) n++;
-  if(!test.equals("unit_vector().z()", a.unit_vector().z(), a.z() / l, 1e-15)) n++;
+  if(!test.equals("unit_vector().x()", a.unit_vector()[0], a.x().m() / l, 1e-15)) n++;
+  if(!test.equals("unit_vector().y()", a.unit_vector()[1], a.y().m() / l, 1e-15)) n++;
+  if(!test.equals("unit_vector().z()", a.unit_vector()[2], a.z().m() / l, 1e-15)) n++;
 
-  if(!test.equals("x(a - b)", (a - b).x(), 0.0)) n++;
-  if(!test.equals("y(a - b)", (a - b).y(), 0.0)) n++;
-  if(!test.equals("z(a - b)", (a - b).z(), 0.0)) n++;
+  if(!test.equals("x(a - b)", (a - b).x().m(), 0.0)) n++;
+  if(!test.equals("y(a - b)", (a - b).y().m(), 0.0)) n++;
+  if(!test.equals("z(a - b)", (a - b).z().m(), 0.0)) n++;
 
-  if(!test.equals("x(a + b)", (a + b).x(), -2.0 * Unit::au, 1e-14 * Unit::au)) n++;
-  if(!test.equals("y(a + b)", (a + b).y(), 4.0 * Unit::au, 1e-14 * Unit::au)) n++;
-  if(!test.equals("z(a + b)", (a + b).z(), -6.0 * Unit::au, 1e-14 * Unit::au)) n++;
+  if(!test.equals("x(a + b)", (a + b).x().au(), -2.0, 1e-14)) n++;
+  if(!test.equals("y(a + b)", (a + b).y().au(), 4.0, 1e-14)) n++;
+  if(!test.equals("z(a + b)", (a + b).z().au(), -6.0, 1e-14)) n++;
 
-  if(!test.equals("x(2 * a)", (2 * a).x(), -2.0 * Unit::au, 1e-14 * Unit::au)) n++;
-  if(!test.equals("y(2 * a)", (2 * a).y(), 4.0 * Unit::au, 1e-14 * Unit::au)) n++;
-  if(!test.equals("z(2 * a)", (2 * a).z(), -6.0 * Unit::au, 1e-14 * Unit::au)) n++;
+  if(!test.equals("x(2 * a)", (2 * a)[0], -2.0 * Unit::au, 1e-14 * Unit::au)) n++;
+  if(!test.equals("y(2 * a)", (2 * a)[1], 4.0 * Unit::au, 1e-14 * Unit::au)) n++;
+  if(!test.equals("z(2 * a)", (2 * a)[2], -6.0 * Unit::au, 1e-14 * Unit::au)) n++;
 
   if(!test.equals("dot(b)", a.dot(b), a.abs() * b.abs())) n++;
 

@@ -37,7 +37,7 @@ class Vector;
 class   Position;
 class     AstrometricPosition;
 class   Velocity;
-class Interferometric;
+class   Interferometric;
 class Equinox;
 class Coordinate;
 class Interval;
@@ -603,12 +603,6 @@ public:
 
   double operator[](int idx) const;
 
-  double x() const;
-
-  double y() const;
-
-  double z() const;
-
   bool is_zero() const;
 
   Vector scaled(double factor) const;
@@ -659,6 +653,12 @@ public:
 
   bool operator!=(const Velocity& v) const;
 
+  ScalarVelocity x() const;
+
+  ScalarVelocity y() const;
+
+  ScalarVelocity z() const;
+
   ScalarVelocity speed() const;
 
   Velocity inv() const;
@@ -707,6 +707,12 @@ public:
 
   Velocity operator/(const Interval& dt) const;
 
+  Coordinate x() const;
+
+  Coordinate y() const;
+
+  Coordinate z() const;
+
   Coordinate distance() const;
 
   Position inv() const;
@@ -732,12 +738,10 @@ public:
  *
  * @ingroup interferometry
  */
-class Interferometric : public Validating {
+class Interferometric : public Vector {
 private:
-  double _uvw[3] = {0.0};
-
   /// Instantiates undefined interferometric coordinates.
-  Interferometric() : Interferometric(NAN, NAN, NAN) {}
+  Interferometric() : Vector() {}
 
 public:
   Interferometric(double u, double v, double w);
@@ -745,8 +749,6 @@ public:
   Interferometric(const Coordinate& u, const Coordinate& v, const Coordinate& w);
 
   Interferometric(const Coordinate& u, const Coordinate& v, const Interval& geom_delay);
-
-  const double *_array() const;
 
   Coordinate u() const;
 
@@ -760,7 +762,7 @@ public:
 
   Interferometric operator-(const Interferometric& r) const;
 
-  std::string to_string(int decimals = 6) const;
+  std::string to_string(int decimals = 6) const override;
 
   static const Interferometric& undefined();
 };

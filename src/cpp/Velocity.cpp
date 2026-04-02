@@ -123,6 +123,39 @@ Velocity Velocity::operator-(const Velocity& r) const {
 }
 
 /**
+ * Returns the _x_ component of this velocity vector.
+ *
+ * @return    the _x_ component
+ *
+ * @sa y(), z()
+ */
+ScalarVelocity Velocity::x() const {
+  return ScalarVelocity(_component[0]);
+}
+
+/**
+ * Returns the _y_ component of this velocity vector.
+ *
+ * @return    the _y_ component
+ *
+ * @sa x(), z()
+ */
+ScalarVelocity Velocity::y() const {
+  return ScalarVelocity(_component[1]);
+}
+
+/**
+ * Returns the _z_ component of this velocity vector.
+ *
+ * @return    the _z_ component
+ *
+ * @sa x(), y()
+ */
+ScalarVelocity Velocity::z() const {
+  return ScalarVelocity(_component[2]);
+}
+
+/**
  * Returns the speed (absolute value) of this velocity vector.
  *
  * @return    the speed (absolute value) of this velocity.

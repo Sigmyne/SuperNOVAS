@@ -21,15 +21,10 @@ namespace supernovas {
  * @param v           [m] Projection along the orthogonalized North Direction
  * @param w           [m] Projection along the line of sight
  */
-Interferometric::Interferometric(double u, double v, double w) {
-  _uvw[0] = u;
-  _uvw[1] = v;
-  _uvw[2] = w;
-
-  if(!isfinite(u) || ! isfinite(v) || !isfinite(w))
-    novas_set_errno(EINVAL, "Interferometric()", "one or more components are NAN or infinite.");
-  else
-    _valid = true;
+Interferometric::Interferometric(double u, double v, double w)
+: Vector(u, v, w) {
+  if(!_valid)
+      novas_trace_invalid("Interferometric()");
 }
 
 /**
@@ -53,14 +48,6 @@ Interferometric::Interferometric(const Coordinate& u, const Coordinate& v, const
 Interferometric::Interferometric(const Coordinate& u, const Coordinate& v, const Interval& geom_delay)
 : Interferometric(u.m(), v.m(), -geom_delay.seconds() * Constant::c) {}
 
-/**
- * Returns the underlying C array that stored data for this projection internally.
- *
- * @return    the C array that stores the _uvw_ data internally.
- */
-const double *Interferometric::_array() const {
-  return _uvw;
-}
 
 /**
  * Returns the _u_ coordinate of this projection, which is the offset of this station projection from the
@@ -72,7 +59,7 @@ const double *Interferometric::_array() const {
  * @sa v(), w()
  */
 Coordinate Interferometric::u() const {
-  return Coordinate(_uvw[0]);
+  return Coordinate(_component[0]);
 }
 
 /**
@@ -85,7 +72,7 @@ Coordinate Interferometric::u() const {
  * @sa u(), w()
  */
 Coordinate Interferometric::v() const {
-  return Coordinate(_uvw[1]);
+  return Coordinate(_component[1]);
 }
 
 /**
@@ -97,7 +84,7 @@ Coordinate Interferometric::v() const {
  * @sa geometric_delay(), u(), v()
  */
 Coordinate Interferometric::w() const {
-  return Coordinate(_uvw[2]);
+  return Coordinate(_component[2]);
 }
 
 /**
@@ -122,7 +109,7 @@ Interval Interferometric::geometric_delay() const {
  * @sa operator-()
  */
 Interferometric Interferometric::operator+(const Interferometric& r) const {
-  Interferometric x(_uvw[0] + r._uvw[0], _uvw[1] + r._uvw[1], _uvw[2] + r._uvw[2]);
+  Interferometric x(_component[0] + r._component[0], _component[1] + r._component[1], _component[2] + r._component[2]);
   if(!x.is_valid())
     novas_trace_invalid("Interferometric::operator+()");
   return x;
@@ -138,7 +125,7 @@ Interferometric Interferometric::operator+(const Interferometric& r) const {
  * @sa operator+()
  */
 Interferometric Interferometric::operator-(const Interferometric& r) const {
-  Interferometric x(_uvw[0] - r._uvw[0], _uvw[1] - r._uvw[1], _uvw[2] - r._uvw[2]);
+  Interferometric x(_component[0] - r._component[0], _component[1] - r._component[1], _component[2] - r._component[2]);
   if(!x.is_valid())
     novas_trace_invalid("Interferometric::operator-()");
   return x;

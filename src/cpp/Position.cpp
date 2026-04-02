@@ -130,6 +130,40 @@ Velocity Position::operator/(const Interval& dt) const {
   return v;
 }
 
+
+/**
+ * Returns the _x_ component of this position vector.
+ *
+ * @return    the _x_ component
+ *
+ * @sa y(), z()
+ */
+Coordinate Position::x() const {
+  return Coordinate(_component[0]);
+}
+
+/**
+ * Returns the _y_ component of this position vector.
+ *
+ * @return    the _y_ component
+ *
+ * @sa x(), z()
+ */
+Coordinate Position::y() const {
+  return Coordinate(_component[1]);
+}
+
+/**
+ * Returns the _z_ component of this position vector.
+ *
+ * @return    the _z_ component
+ *
+ * @sa x(), y()
+ */
+Coordinate Position::z() const {
+  return Coordinate(_component[2]);
+}
+
 /**
  * Returns the distance to the location indicated by this position (that is the absolute value of
  * this position vector).
