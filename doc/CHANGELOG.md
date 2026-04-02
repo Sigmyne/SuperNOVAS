@@ -6,7 +6,7 @@ file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to 
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.6.0-rc2] - 2026-04-01
+## [Unreleased]
 
 Upcoming feature release, introducing a proper C++ API for the first time, and bringing various other improvements.
 
@@ -18,6 +18,8 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  - #296: Possible buffer overflow in `novas_print_dms()`. (thanks to aleberti)
  
  - #299: Fix memory leak in `Frame`. (thanks to aleberti)
+
+ - #305: `novas_geom_posvel()` returned velocities were referenced to SSB, not the observer.
 
 ### Added
 
