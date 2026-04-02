@@ -36,7 +36,7 @@ int main() {
   if(!test.equals("humidity_fraction() ==", b.humidity_fraction(), a.humidity_fraction(), 1e-15)) n++;
 
   Site site = Site(45.0 * Unit::deg, 30.0 * Unit::deg, 1500.0 * Unit::m);
-  Weather c = Weather::guess(site);
+  Weather c = site.average_weather();
 
   const Weather& d = Weather::standard();
   if(!test.equals("standard temperature() ==", d.temperature().celsius(), 10.0, 1e-15)) n++;

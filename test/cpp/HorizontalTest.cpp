@@ -38,7 +38,7 @@ int main() {
   if(!test.equals("to_string()", a.to_string(), "HOR  -20d 00m 00.000s  -30d 00m 00.000s")) n++;
 
   Site site(15.0 * Unit::deg, -42.0 * Unit::deg, 1.5 * Unit::km);
-  Horizontal a1 = a.to_refracted(novas_standard_refraction,  Weather::guess(site));
+  Horizontal a1 = a.to_refracted(novas_standard_refraction, site.average_weather());
   on_surface s = *site._on_surface();
   novas_set_default_weather(&s);
 
@@ -46,7 +46,7 @@ int main() {
   if(!test.equals("to_refracted() az", a1.azimuth().deg(), a.azimuth().deg(), 1e-6)) n++;
   if(!test.equals("to_refracted() el", a1.elevation().deg(), a.elevation().deg() + r, 1e-6)) n++;
 
-  Horizontal a2 = a1.to_unrefracted(novas_standard_refraction,  Weather::guess(site));
+  Horizontal a2 = a1.to_unrefracted(novas_standard_refraction, site.average_weather());
   r = novas_standard_refraction(NAN, &s, NOVAS_REFRACT_OBSERVED, a1.elevation().deg());
   if(!test.equals("to_refracted() az", a2.azimuth().deg(), a.azimuth().deg(), 1e-6)) n++;
   if(!test.equals("to_refracted() el", a2.elevation().deg(), a.elevation().deg(), 1e-6)) n++;

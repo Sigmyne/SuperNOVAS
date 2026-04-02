@@ -1194,8 +1194,6 @@ public:
 
   std::string to_string() const;
 
-  static Weather guess(const Site& site);
-
   static const Weather& standard();
 };
 
@@ -1324,6 +1322,9 @@ public:
   Position enu_to_itrs(const Position& p) const;
 
   Velocity enu_to_itrs(const Velocity& p) const;
+
+  /// @ingroup refract
+  Weather average_weather() const;
 
   GeodeticObserver to_observer(const EOP& eop) const;
 

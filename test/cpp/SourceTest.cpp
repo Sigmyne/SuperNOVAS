@@ -72,7 +72,7 @@ int main() {
           c.rises_above(Angle(20.0 * Unit::deg), frame).jd(),
           novas_rises_above(20.0, c._novas_object(), frame._novas_frame(), NULL), 1e-7)) n++;
   if(!test.equals("rises_above(refract)",
-          c.rises_above(Angle(20.0 * Unit::deg), frame, novas_standard_refraction, Weather::guess(site)).jd(),
+          c.rises_above(Angle(20.0 * Unit::deg), frame, novas_standard_refraction, site.average_weather()).jd(),
           novas_rises_above(20.0, c._novas_object(), frame._novas_frame(), novas_standard_refraction), 1e-7)) n++;
   if(!test.check("rises_above(gc)", !c.rises_above(Angle(20.0 * Unit::deg), gc).is_valid())) n++;
   if(!test.check("rises_above(invalid geo)", !c.rises_above(Angle(20.0 * Unit::deg), gfx).is_valid())) n++;
@@ -84,7 +84,7 @@ int main() {
           c.sets_below(Angle(20.0 * Unit::deg), frame).jd(),
           novas_sets_below(20.0, c._novas_object(), frame._novas_frame(), NULL), 1e-7)) n++;
   if(!test.equals("sets_below(refract)",
-          c.sets_below(Angle(20.0 * Unit::deg), frame, novas_standard_refraction, Weather::guess(site)).jd(),
+          c.sets_below(Angle(20.0 * Unit::deg), frame, novas_standard_refraction, site.average_weather()).jd(),
           novas_sets_below(20.0, c._novas_object(), frame._novas_frame(), novas_standard_refraction), 1e-7)) n++;
   if(!test.check("sets_below(gc)", !c.sets_below(Angle(20.0 * Unit::deg), gc).is_valid())) n++;
   if(!test.check("sets_below(invalid geo)", !c.sets_below(Angle(20.0 * Unit::deg), gfx).is_valid())) n++;

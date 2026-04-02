@@ -114,24 +114,6 @@ std::string Weather::to_string() const {
 }
 
 /**
- * Returns a new weather dataset populated with typical annual average weather parameters for the
- * given observing site, based on a simple global weather model. This provides a very crude
- * educated guess for the weather at the site. For any precision application (e.g. refraction
- * calculation) you should always use measured weather values instead.
- *
- * @param site    The observing site
- * @return        The typical annual average weather at the site, based on a simple global weather
- *                model.
- *
- * @sa Weather()
- */
-Weather Weather::guess(const Site& site) {
-  on_surface s = *site._on_surface();
-  novas_set_default_weather(&s);
-  return Weather(s.temperature, s.pressure * Unit::mbar, s.humidity);
-}
-
-/**
  * Returns a reference to a fixed standard weather instance (T = 10%deg;C, p = 1 atm, humidity =
  * 50%).
  *
