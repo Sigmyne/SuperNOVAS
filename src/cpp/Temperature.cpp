@@ -7,6 +7,8 @@
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+
+#define KELVIN_0C         273.15  ///< [K] 0 celsius.
 /// \endcond
 
 #include "supernovas.h"
@@ -21,7 +23,7 @@ namespace supernovas {
  *
  * @sa celsius(), kelvin(), farenheit()
  */
-Temperature::Temperature(double deg_C) : Scalar(deg_C) {
+Temperature::Temperature(double deg_C) : Scalar(KELVIN_0C + deg_C) {
   static const char *fn = "Temperature()";
 
   if(!is_valid())
@@ -40,7 +42,7 @@ Temperature::Temperature(double deg_C) : Scalar(deg_C) {
  * @sa kelvin(), farenheit()
  */
 double Temperature::celsius() const {
-  return _value;
+  return _value - KELVIN_0C;
 }
 
 /**
@@ -51,7 +53,7 @@ double Temperature::celsius() const {
  * @sa celsius(), farenheit()
  */
 double Temperature::kelvin() const {
-  return 273.15 + _value;
+  return _value;
 }
 
 /**
@@ -62,7 +64,7 @@ double Temperature::kelvin() const {
  * @sa celsius(), kelvin()
  */
 double Temperature::farenheit() const {
-  return 32.0 + 1.8 * _value;
+  return 32.0 + 1.8 * celsius();
 }
 
 std::string Temperature::SI_unit() const {
@@ -77,7 +79,7 @@ std::string Temperature::SI_unit() const {
  */
 std::string Temperature::to_string(int decimals) const {
   char s[40] = {'\0'};
-  snprintf(s, sizeof(s), "%.1f C", _value);
+  snprintf(s, sizeof(s), "%.1f C", celsius());
   return std::string(s);
 }
 
@@ -107,7 +109,7 @@ Temperature Temperature::celsius(double value) {
  * @sa celsius(), farenheit()
  */
 Temperature Temperature::kelvin(double value) {
-  Temperature T(value - 273.15);
+  Temperature T(value - KELVIN_0C);
   if(!T.is_valid())
     novas_trace_invalid("Temperature::kelvin(double)");
   return T;

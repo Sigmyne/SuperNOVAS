@@ -30,16 +30,32 @@ Scalar::Scalar(double si_value)
 }
 
 /**
- * The value of this scalar quantity in S.I. units.
+ * The value of this scalar quantity in S.I. units. All concrete subclasses must implement
+ * this.
  *
- * @return    the value in the standrad S.I. units.
+ * @return    the value in the standard S.I. units.
  */
 double Scalar::SI_value() const {
   return _value;
 }
 
 /**
- * Returns a human readable representation of this scalar quantity.
+ * Checks if this scalar quantity is the same as another, within the specified precision.
+ * Two scalar quantities are equal only if they have the same S.I. units and the same
+ * S.I. values within the specified precision.
+ *
+ * @param other       Another scalar quantity.
+ * @param precision   Precision for the comparison in the same S.I. units as this quantity.
+ * @return            `true` if the two scalars have the same S.I. units and values
+ *                    within the specified precision, otherwise `false`.
+ */
+bool Scalar::equals(const Scalar& other, double precision) const {
+  return fabs(_value - other._value) <= precision && SI_unit() == other.SI_unit();
+}
+
+/**
+ * Returns a human readable representation of this scalar quantity. Subclasses may override the
+ * default implementation to provide their own.
  *
  * @param decimals    (optional) [0:16] Number of decimal places to print (default: 3).
  * @return            a string representation of this scalar quantity.

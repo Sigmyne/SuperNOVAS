@@ -104,6 +104,15 @@ const Velocity& Geometric::velocity() const {
 }
 
 /**
+ * Returns the geometric distance.
+ *
+ * @return    the geoemtric distance.
+ */
+Coordinate Geometric::distance() const {
+  return Coordinate(_pos.abs());
+}
+
+/**
  * Returns the geometric equatorial coordinates, in the system in which the geometric positions
  * and velocities were defined. Note, that these coordinates are phyisical, and not what an observer
  * would perceive at the time of observation, because:

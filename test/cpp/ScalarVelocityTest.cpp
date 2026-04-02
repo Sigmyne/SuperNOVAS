@@ -43,6 +43,8 @@ int main() {
   if(!test.equals("in_direction(x)", a.in_direction(Position(0.0, 5.0, 0.0)).x().m_per_s(), 0.0, 1e-15)) n++;
   if(!test.check("in_direction(invalid)", !a.in_direction(Position::undefined()).is_valid())) n++;
   if(!test.check("travel(NAN)", !a.travel(NAN).is_valid())) n++;
+  if(!test.equals("SI_unit()", a.SI_unit(), "m/s")) n++;
+  if(!test.equals("SI_value()", a.SI_value(), a.m_per_s(), 0.0)) n++;
   if(!test.check("operator*(invalid interval)", !(a * Interval(NAN)).is_valid())) n++;
   if(!test.check("operator+(invalid)", !(a + x).is_valid())) n++;
   if(!test.check("operator-(invalid)", !(a - x).is_valid())) n++;

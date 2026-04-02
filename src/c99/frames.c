@@ -757,15 +757,15 @@ int novas_geom_posvel(const object *restrict source, const novas_frame *restrict
       }
 
     // Otherwise, get the position of body wrt observer, antedated for light-time.
-    if(!got) {
+    if(!got)
       prop_error(fn, light_time2(jd_tdb, source, frame->obs_pos, 0.0, frame->accuracy, pos1, vel1, &t_light), 50);
-    }
   }
 
   if(pos) {
     prop_error(fn, icrs_to_sys(frame, pos1, sys), 0);
     memcpy(pos, pos1, sizeof(pos1));
   }
+
   if(vel) {
     int k;
 

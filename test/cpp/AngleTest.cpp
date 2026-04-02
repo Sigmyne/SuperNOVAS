@@ -38,6 +38,8 @@ int main() {
   if(!test.equals("mas()", a.mas(), 45.0 * 3.6e6, 1e-5)) n++;
   if(!test.equals("uas()", a.uas(), 45.0 * 3.6e9, 1e-2)) n++;
   if(!test.equals("fraction()", a.fraction(), 1.0 / 8.0, 1e-15)) n++;
+  if(!test.equals("SI_unit()", a.SI_unit(), "rad")) n++;
+  if(!test.equals("SI_value()", a.SI_value(), a.rad(), 0.0)) n++;
 
   Angle b(30.0 * Unit::deg);
   if(!test.check("operator ==", a == a)) n++;

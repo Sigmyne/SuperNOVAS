@@ -27,6 +27,8 @@ int main() {
   if(!test.equals("celsius()", a.celsius(), 45.0)) n++;
   if(!test.equals("farenheit()", a.farenheit(), 45.0 * 1.8 + 32.0, 1e-15)) n++;
   if(!test.equals("kelvin()", a.kelvin(), 45.0 + 273.15, 1e-12)) n++;
+  if(!test.equals("SI_unit()", a.SI_unit(), "K")) n++;
+  if(!test.equals("SI_value()", a.SI_value(), a.kelvin(), 0.0)) n++;
 
   Temperature b = Temperature::farenheit(451.0);
   if(!test.equals("F(value)", b.farenheit(), 451.0)) n++;

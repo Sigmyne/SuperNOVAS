@@ -37,9 +37,12 @@ int main() {
   if(!test.equals("kpc()", a.kpc(), Unit::au / Unit::kpc, 1e-23)) n++;
   if(!test.equals("Mpc()", a.Mpc(), Unit::au / Unit::Mpc, 1e-26)) n++;
   if(!test.equals("Gpc()", a.Gpc(), Unit::au / Unit::Gpc, 1e-29)) n++;
+  if(!test.equals("SI_unit()", a.SI_unit(), "m")) n++;
+  if(!test.equals("SI_value()", a.SI_value(), a.m(), 0.0)) n++;
   if(!test.equals("operator/()", (a / Interval(100.0 * Unit::day)).au_per_day(),
           ScalarVelocity(0.01 * Unit::AU / Unit::day).au_per_day(), 1e-12 * Unit::AU / Unit::day)) n++;
   if(!test.check("operator/(0.0)", !(a / Interval::zero()).is_valid())) n++;
+
 
   Coordinate b(1.0 * Unit::pc);
   if(!test.equals("pc(1 pc)", b.pc(), 1.0)) n++;

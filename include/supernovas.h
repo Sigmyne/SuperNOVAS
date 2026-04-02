@@ -89,7 +89,15 @@ class   EquatorialTrack;
  * distance (i.e. meters) as:
  *
  * ```c
+ *   // Standard S.I. distance, defined in astronomical units (AUs)
  *   double d = 2.4103 * Unit::AU;
+ * ```
+ *
+ * Conversely, you can cast a quantity in S.I. units to S.I. units as:
+ *
+ * ```c
+ *   // standard S.I. distance cast into units of 'km'.
+ *   double d_km = d / Unit::km;
  * ```
  *
  * Note, this class cannot be instantiated or copied. You should only use its static fields.
@@ -127,7 +135,8 @@ public:
   static constexpr double Gpc = 1e9 * pc;                 /// [m] 1 gigaparsec in meters
   static constexpr double lyr = NOVAS_LIGHT_YEAR;         /// [m] 1 light-year in meters
 
-  static constexpr double ns = 1e-9;                      /// [s] 1 nanoseconds in seconds
+  static constexpr double ps = 1e-12;                     /// [s] 1 picosecond in seconds
+  static constexpr double ns = 1e-9;                      /// [s] 1 nanosecond in seconds
   static constexpr double us = 1e-6;                      /// [s] 1 microsecond in seconds
   static constexpr double ms = 1e-3;                      /// [s] 1 millisecond in seconds
   static constexpr double s = 1.0;                        /// [s] 1 second (standard unit of time)
@@ -285,6 +294,7 @@ class Scalar : public Validating {
 protected:
   double _value;      ///< The value in S.I. units
 
+  /// Instantiates a standard undefined (invalid) scalar quantity with NAN value.
   Scalar() : _value(NAN) {}
 
   Scalar(double si_value);
@@ -294,6 +304,8 @@ public:
   virtual ~Scalar() {}
 
   double SI_value() const;
+
+  bool equals(const Scalar& other, double precision) const;
 
   virtual std::string SI_unit() const = 0;
 
@@ -2002,7 +2014,7 @@ protected:
 public:
 
   /// @ingroup geometric
-  Geometric geometric_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
+  Geometric ssb_posvel_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   Coordinate helio_distance(const Time& time) const;
 
@@ -2443,6 +2455,8 @@ public:
   const Position& position() const;
 
   const Velocity& velocity() const;
+
+  Coordinate distance() const;
 
   /// @ingroup equatorial
   Equatorial equatorial() const;

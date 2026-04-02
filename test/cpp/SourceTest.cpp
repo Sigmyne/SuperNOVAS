@@ -158,6 +158,23 @@ int main() {
 
 
   test = TestUtil("Planet");
+  Geometric gs = sun.geometric_in(frame).to_icrs();
+  Geometric pv = sun.ssb_posvel_at(frame.time() - gs.distance().m() / Constant::c, NOVAS_REDUCED_ACCURACY);
+
+  if(!test.check("ssb_posvel_at()", pv.is_valid())) n++;
+  if(!test.check("ssb_posvel_at() position", pv.position().equals(gs.position() + frame.observer_ssb_position(), Unit::cm))) {
+    std::cout << "### " << (pv.position() - gs.position() - frame.observer_ssb_position()).to_string(9) << "\n";
+    n++;
+  }
+  if(!test.check("ssb_posvel_at() velocity", pv.velocity().equals(gs.velocity() + frame.observer_ssb_velocity(), Unit::mm / Unit::s))) {
+    std::cout << "### " << (pv.velocity() - gs.velocity() - frame.observer_ssb_velocity()).to_string(9) << "\n";
+    std::cout << "### " << pv.velocity().to_string(9) << " vs " << (gs.velocity() + frame.observer_ssb_velocity()).to_string(9) << "\n";
+    n++;
+  }
+
+  // We don't have an ephemeris provider for mars...
+  if(!test.check("ssb_posvel_at(invalid)", !Planet::mars().ssb_posvel_at(frame.time()).is_valid())) n++;
+
   if(!test.equals("rises_above(Sun)",
           sun.rises_above(Angle(20.0 * Unit::deg), frame).jd(),
           novas_rises_above(20.0, sun._novas_object(), frame._novas_frame(), NULL), 1e-7)) n++;
@@ -203,7 +220,6 @@ int main() {
   if(!test.equals("helio_distance()", os.helio_distance(frame.time()).au(), novas_helio_dist(frame.jd(NOVAS_TDB), os._novas_object(), &rate), 1e-9)) n++;
   if(!test.equals("helio_distance()", os.helio_rate(frame.time()).au_per_day(), rate, 1e-9)) n++;
   if(!test.equals("to_string()", os.to_string(), "OrbitalSource test")) n++;
-
 
   test = TestUtil("EphemerisSource");
 
