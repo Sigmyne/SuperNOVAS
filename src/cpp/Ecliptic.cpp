@@ -252,7 +252,11 @@ Angle Ecliptic::distance_to(const Ecliptic& other) const {
  * @sa operator>>(), to_icrs(), to_j2000(), to_mod(), to_tod()
  */
 Ecliptic Ecliptic::to_system(const Equinox& system) const {
-  Ecliptic e = to_equatorial().to_system(system).to_ecliptic();if(!e.is_valid())
+  if(system == this->system())
+    return *this;
+
+  Ecliptic e = to_equatorial().to_system(system).to_ecliptic();
+  if(!e.is_valid())
     novas_trace_invalid("Ecliptic::to_system()");
   return e;
 }

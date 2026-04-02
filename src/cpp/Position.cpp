@@ -93,7 +93,7 @@ bool Position::operator!=(const Position& p) const {
  * @sa operator-()
  */
 Position Position::operator+(const Position& r) const {
-  Position p(x() + r.x(), y() + r.y(), z() + r.z());
+  Position p(_component[0] + r._component[0], _component[1] + r._component[1], _component[2] + r._component[2]);
   if(!p.is_valid())
     novas_trace_invalid("Position::operator+()");
   return p;
@@ -108,7 +108,7 @@ Position Position::operator+(const Position& r) const {
  * @sa operator+()
  */
 Position Position::operator-(const Position& r) const {
-  Position p(x() - r.x(), y() - r.y(), z() - r.z());
+  Position p(_component[0] - r._component[0], _component[1] - r._component[1], _component[2] - r._component[2]);
   if(!p.is_valid())
     novas_trace_invalid("Position::operator-()");
   return p;
@@ -212,7 +212,8 @@ AstrometricPosition Position::as_astrometric(const Frame& frame, enum novas_refe
  * @return            a string representation of this position vector.
  */
 std::string Position::to_string(int decimals) const {
-  return "Position (" + Coordinate(x()).to_string(decimals) + ", " + Coordinate(y()).to_string(decimals) + ", " + Coordinate(z()).to_string(decimals) + ")";
+  return "Position (" + Coordinate(_component[0]).to_string(decimals) + ", "
+          + Coordinate(_component[1]).to_string(decimals) + ", " + Coordinate(_component[2]).to_string(decimals) + ")";
 }
 
 /**

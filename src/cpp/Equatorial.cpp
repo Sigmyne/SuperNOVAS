@@ -220,7 +220,7 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
   static const char *fn = "Equatorial::to_system()";
 
   if(_sys == system)
-    return Equatorial(*this);
+    return *this;
 
   double p[3] = {'\0'};
   radec2vector(ra().hours(), dec().deg(), 1.0, p);

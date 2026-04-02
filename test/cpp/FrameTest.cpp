@@ -39,6 +39,9 @@ int main() {
   if(!test.equals("clock_skew()", a.clock_skew(NOVAS_TT), novas_clock_skew(a._novas_frame(), NOVAS_TT))) n++;
   if(!test.equals("to_string()", a.to_string(), "Frame for Geocentric Observer at 2000-01-01T11:58:55.816 UTC")) n++;
 
+  a = a; // @suppress("Assignment to itself")
+  if(!test.equals("self assign", a.to_string(), "Frame for Geocentric Observer at 2000-01-01T11:58:55.816 UTC")) n++;
+
   double mp[3] = {0.0}, mv[3] = {0.0};
   novas_moon_elp_posvel_fp(a._novas_frame(), 0.1, NOVAS_ICRS, mp, mv);
   Geometric mg = a.geometric_moon_elp2000(0.1);

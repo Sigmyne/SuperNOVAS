@@ -100,7 +100,7 @@ bool Velocity::operator!=(const Velocity& v) const {
  * @sa operator-()
  */
 Velocity Velocity::operator+(const Velocity& r) const {
-  Velocity v(v_add(x(), r.x()), v_add(y(), r.y()), v_add(z(), r.z()));
+  Velocity v(v_add(_component[0], r._component[0]), v_add(_component[1], r._component[1]), v_add(_component[2], r._component[2]));
   if(!v.is_valid())
     novas_trace_invalid("Velocity::operator+()");
   return v;
@@ -116,7 +116,7 @@ Velocity Velocity::operator+(const Velocity& r) const {
  * @sa operator+()
  */
 Velocity Velocity::operator-(const Velocity& r) const {
-  Velocity v(v_add(x(), -r.x()), v_add(y(), -r.y()), v_add(z(), -r.z()));
+  Velocity v(v_add(_component[0], -r._component[0]), v_add(_component[1], -r._component[01]), v_add(_component[2], -r._component[2]));
   if(!v.is_valid())
     novas_trace_invalid("Velocity::operator-()");
   return v;
@@ -157,7 +157,7 @@ Position Velocity::travel(const Interval& t) const {
  * @sa operator*(), ScalarVelocity:travel()
  */
 Position Velocity::travel(double seconds) const {
-  Position p(x() * seconds, y() * seconds, z() * seconds);
+  Position p(_component[0] * seconds, _component[1] * seconds, _component[2] * seconds);
   if(!p.is_valid())
     novas_trace_invalid("Velocity::travel()");
   return p;
@@ -210,7 +210,7 @@ const Velocity& Velocity::stationary() {
  * @return            a new string with a representation of this velocity.
  */
 std::string Velocity::to_string(int decimals) const {
-  return "Velocity (" + ScalarVelocity(x()).to_string(decimals) + ", " + ScalarVelocity(y()).to_string(decimals) + ", " + ScalarVelocity(z()).to_string(decimals) + ")";
+  return "Velocity (" + ScalarVelocity(_component[0]).to_string(decimals) + ", " + ScalarVelocity(_component[1]).to_string(decimals) + ", " + ScalarVelocity(_component[2]).to_string(decimals) + ")";
 }
 
 /**
