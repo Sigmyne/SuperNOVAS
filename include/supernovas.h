@@ -799,6 +799,12 @@ public:
 
   Interval geometric_delay() const;
 
+  bool equals(const Interferometric& p, double precision) const;
+
+  bool operator==(const Interferometric& p) const;
+
+  bool operator!=(const Interferometric& p) const;
+
   Interferometric operator+(const Interferometric& r) const;
 
   Interferometric operator-(const Interferometric& r) const;
@@ -2014,7 +2020,7 @@ protected:
 public:
 
   /// @ingroup geometric
-  Geometric ssb_posvel_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
+  Geometric barycentric_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   Coordinate helio_distance(const Time& time) const;
 

@@ -5111,6 +5111,65 @@ static int test_moon_elp_sky_pos() {
   return n;
 }
 
+static int test_uvw() {
+  int n = 0;
+
+  double s[3] = {1.0, 2.0, 3.0}, v[3] = {-0.1, -0.3, 0.2}, p[3] = {3.0e3, -2.0e3, 1.0e3}, u[3] = {0.0};
+  double los[3] = {p[0] - s[0], p[1] - s[1], p[2] - s[2]}, u0[3] = {0.0};
+  double ra, dec;
+  int k;
+
+  // los from station
+  vector2radec(los, &ra, &dec);
+  novas_xyz_to_los(s, 15.0 * ra, dec, u0);
+  for(k = 0; k < 3; k++) u0[k] *= NOVAS_AU;   // AU -> m
+
+  if(!is_ok("uvw:v=0", novas_uvw(s, NULL, p, u))) n++;
+  if(!is_ok("uvw:v=0:check", check_equal_pos(u, u0, 1e-12))) n++;
+
+  aberration(los, v, 0.0, los);
+  vector2radec(los, &ra, &dec);
+  novas_xyz_to_los(s, 15.0 * ra, dec, u0);
+  for(k = 0; k < 3; k++) u0[k] *= NOVAS_AU;   // AU -> m
+
+  if(!is_ok("uvw:v", novas_uvw(s, v, p, u))) n++;
+  if(!is_ok("uvw:v:check", check_equal_pos(u, u0, 1e-12))) n++;
+
+  return n;
+}
+
+static int test_site_uvw() {
+  int n = 0;
+
+  novas_timespec ts = {};
+  on_surface s = {};
+  double op[3] = {0.0}, ov[3] = {0.0}, p[3] = {3.0e3, -2.0e3, 1.0e3}, p0[3] = {0.0}, u[3] = {0.0};
+  double u0[3] = {0.0};
+  double xp = 0.2, yp = -0.3; // [arcsec]
+  double tdb;
+
+  novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.0, &ts);
+  make_itrf_site(30.0, -120.0, 1200.0, &s);
+
+  // First everything in TOD...
+  terra(&s, 0.0, op, ov);
+  itrs_to_tod(ts.ijd_tt, ts.fjd_tt, ts.ut1_to_tt, NOVAS_FULL_ACCURACY, xp, yp, op, op);
+  itrs_to_tod(ts.ijd_tt, ts.fjd_tt, ts.ut1_to_tt, NOVAS_FULL_ACCURACY, xp, yp, ov, ov);
+
+  // Then everything in GCRS...
+  tdb = novas_get_time(&ts, NOVAS_TDB);
+  tod_to_gcrs(tdb, NOVAS_FULL_ACCURACY, p,  p0);
+  tod_to_gcrs(tdb, NOVAS_FULL_ACCURACY, op, op);
+  tod_to_gcrs(tdb, NOVAS_FULL_ACCURACY, ov, ov);
+
+  novas_uvw(op, ov, p0, u0);
+
+  if(!is_ok("site_uvw", novas_site_uvw(&ts, &s, p, xp, yp, NOVAS_FULL_ACCURACY, u))) n++;
+  if(!is_ok("site_uvw:v:check", check_equal_pos(u, u0, 1e-12))) n++;
+
+  return n;
+}
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -5276,6 +5335,9 @@ int main(int argc, char *argv[]) {
 
   if(test_moon_elp_posvel()) n++;
   if(test_moon_elp_sky_pos()) n++;
+
+  if(test_uvw()) n++;
+  if(test_site_uvw()) n++;
 
   n += test_dates();
 

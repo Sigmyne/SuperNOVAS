@@ -703,6 +703,11 @@ int wobble(double jd_tt, enum novas_wobble_direction direction, double xp, doubl
 /**
  * Computes the geocentric GCRS position and velocity of an observer.
  *
+ * NOTES:
+ *
+ *  - For Earth-based observers, this function does not include polar wobble corrections, so the
+ *    returned GCRS positions and velocities are accurate at the arcsecond level only.
+ *
  * @param jd_tt       [day] Terrestrial Time (TT) based Julian date.
  * @param ut1_to_tt   [s] TT - UT1 time difference in seconds
  * @param accuracy    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)

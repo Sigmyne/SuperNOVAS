@@ -434,7 +434,7 @@ std::string CatalogSource::to_string() const {
  *                    at the specified time, as obtained from ephemeris lookup; or else an
  *                    undefined (invalid) object if the place ould not be determined.
  */
-Geometric SolarSystemSource::ssb_posvel_at(const Time& time, enum novas_accuracy accuracy) const {
+Geometric SolarSystemSource::barycentric_at(const Time& time, enum novas_accuracy accuracy) const {
   const double tdb[2] = { time.jd(NOVAS_TDB), 0.0 };
   double p[3] = {0.0}, v[3] = {0.0};
 

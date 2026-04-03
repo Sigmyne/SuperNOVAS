@@ -58,7 +58,7 @@ bool Position::equals(const Position& p, double precision) const {
  * or 1mm (whichever is larger).
  *
  * @param p   the reference position
- * @return    `true` if this position equals the argument to 12 significant figures or 1mm, or
+ * @return    `true` if this position equals the argument to 12 significant figures or 1 mm, or
  *            else `false`.
  *
  * @sa equals(), operator!=()
@@ -71,11 +71,11 @@ bool Position::operator==(const Position& p) const {
 }
 
 /**
- * Checks if this position is differs fro the specified other position by more than the 12th
+ * Checks if this position differs from the specified other position by more than the 12th
  * significant figure, or 1mm (whichever is larger).
  *
  * @param p   the reference position
- * @return    `true` if this position equals the argument to 12 significant figures or 1mm, or
+ * @return    `true` if this position equals the argument to 12 significant figures or 1 mm, or
  *            else `false`.
  *
  * @sa equals(), operator==()

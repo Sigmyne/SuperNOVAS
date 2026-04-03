@@ -2641,6 +2641,33 @@ static int test_moon_elp_sky_pos() {
 }
 
 
+
+static int test_uvw() {
+  int n = 0;
+
+  double s[3] = {0.0}, v[3] = {0.0}, p[3] = {0.0}, u[3] = {0.0};
+
+  if(check("uvw:station:NULL", -1, novas_uvw(NULL, v, p, u))) n++;
+  if(check("uvw:phase_center:NULL", -1, novas_uvw(s, v, NULL, u))) n++;
+  if(check("uvw:uvw:NULL", -1, novas_uvw(s, v, p, NULL))) n++;
+
+  return n;
+}
+
+static int test_site_uvw() {
+  int n = 0;
+
+  novas_timespec ts = {};
+  on_surface s = {};
+  double p[3] = {0.0}, u[3] = {0.0};
+
+  if(check("site_uvw:time:NULL", -1, novas_site_uvw(NULL, &s, p, 0.0, 0.0, NOVAS_REDUCED_ACCURACY, u))) n++;
+  if(check("site_uvw:station:NULL", -1, novas_site_uvw(&ts, NULL, p, 0.0, 0.0, NOVAS_REDUCED_ACCURACY, u))) n++;
+
+  return n;
+}
+
+
 int main(int argc, const char *argv[]) {
   int n = 0;
 
@@ -2867,6 +2894,9 @@ int main(int argc, const char *argv[]) {
   if(test_moon_elp_ecl_vel()) n++;
   if(test_moon_elp_posvel()) n++;
   if(test_moon_elp_sky_pos()) n++;
+
+  if(test_uvw()) n++;
+  if(test_site_uvw()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");

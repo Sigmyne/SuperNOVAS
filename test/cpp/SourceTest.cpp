@@ -159,7 +159,7 @@ int main() {
 
   test = TestUtil("Planet");
   Geometric gs = sun.geometric_in(frame).to_icrs();
-  Geometric pv = sun.ssb_posvel_at(frame.time() - gs.distance().m() / Constant::c, NOVAS_REDUCED_ACCURACY);
+  Geometric pv = sun.barycentric_at(frame.time() - gs.distance().m() / Constant::c, NOVAS_REDUCED_ACCURACY);
 
   if(!test.check("ssb_posvel_at()", pv.is_valid())) n++;
   if(!test.check("ssb_posvel_at() position", pv.position().equals(gs.position() + frame.observer_ssb_position(), Unit::cm))) {
@@ -173,7 +173,7 @@ int main() {
   }
 
   // We don't have an ephemeris provider for mars...
-  if(!test.check("ssb_posvel_at(invalid)", !Planet::mars().ssb_posvel_at(frame.time()).is_valid())) n++;
+  if(!test.check("ssb_posvel_at(invalid)", !Planet::mars().barycentric_at(frame.time()).is_valid())) n++;
 
   if(!test.equals("rises_above(Sun)",
           sun.rises_above(Angle(20.0 * Unit::deg), frame).jd(),

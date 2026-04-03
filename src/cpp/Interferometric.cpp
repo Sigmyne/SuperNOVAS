@@ -100,6 +100,53 @@ Interval Interferometric::geometric_delay() const {
 }
 
 /**
+ * Checks if this interferometric projection is the same as another, within the specified
+ * precision.
+ *
+ * @param p           the reference projection
+ * @param precision   the precision for testing equality.
+ * @return            `true` if this projection equals the argument within the specified
+ *                    precision, or else `false`.
+ *
+ * @sa operator==(), operator!=()
+ */
+bool Interferometric::equals(const Interferometric& p, double precision) const {
+  return Vector::equals(p, precision);
+}
+
+/**
+ * Checks if this interferometric projection is the same as the specified other propjection to 12
+ * significant figures, or 1nm (whichever is larger).
+ *
+ * @param p   the reference projection
+ * @return    `true` if this projection equals the argument to 12 significant figures or 1 nm, or
+ *            else `false`.
+ *
+ * @sa equals(), operator!=()
+ */
+bool Interferometric::operator==(const Interferometric& p) const {
+  double tol = 1e-12 * p.abs();
+  if(tol < Unit::nm)
+    tol = Unit::nm;
+  return equals(p, tol);
+}
+
+/**
+ * Checks if this interferometric projection differs from the specified other projection by more
+ * than the 12th significant figure, or 1nm (whichever is larger).
+ *
+ * @param p   the reference projection
+ * @return    `true` if this projection equals the argument to 12 significant figures or 1 nm, or
+ *            else `false`.
+ *
+ * @sa equals(), operator==()
+ */
+bool Interferometric::operator!=(const Interferometric& p) const {
+  return !(*this == p);
+}
+
+
+/**
  * Returns the vector sum of this interferometric projection and the specified other projection
  * on the right hand side.
  *
@@ -130,6 +177,7 @@ Interferometric Interferometric::operator-(const Interferometric& r) const {
     novas_trace_invalid("Interferometric::operator-()");
   return x;
 }
+
 
 /**
  * Returns a human-readable representation of these interferometric projection.

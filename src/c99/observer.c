@@ -1085,7 +1085,7 @@ int novas_set_default_weather(on_surface *site) {
  */
 int novas_uvw(const double *restrict station_pos, const double *restrict station_vel, const double *restrict phase_center,
         double *restrict uvw) {
-  static const char *fn = "novas_orbital_uvw";
+  static const char *fn = "novas_uvw";
 
   double los[3] = {0.0};
   double ra = 0.0, dec = 0.0;
@@ -1173,7 +1173,7 @@ int novas_site_uvw(const novas_timespec *restrict ts, const on_surface *restrict
   if(!station)
     return novas_error(-1, EINVAL, fn, "input observer station is NULL");
 
-  // geocentric ITRS pos/vel
+  // ITRS pos/vel
   terra(station, 0.0, p, v);
 
   // ITRS -> TOD
