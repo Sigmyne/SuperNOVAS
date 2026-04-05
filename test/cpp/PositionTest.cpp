@@ -53,14 +53,14 @@ int main() {
 
   Frame frame = Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000());
 
-  if(!test.check("as_astrometric(invalid)", !x.as_astrometric(frame).is_valid())) n++;
-  if(!test.check("as_astrometric(frame invalid)", !a.as_astrometric(Frame::undefined()).is_valid())) n++;
+  if(!test.check("to_astrometric(invalid)", !x.to_astrometric(frame).is_valid())) n++;
+  if(!test.check("to_astrometric(frame invalid)", !a.to_astrometric(Frame::undefined()).is_valid())) n++;
 
-  AstrometricPosition ap = a.as_astrometric(frame);
-  if(!test.check("as_astrometric()", ap.is_valid())) n++;
-  if(!test.check("as_astrometric() ==", ap == a)) n++;
-  if(!test.check("as_astrometric().obs_time()", ap.obs_time() == Time::j2000())) n++;
-  if(!test.check("as_astrometric().emit_time()", ap.emit_time() == (Time::j2000() - (a.distance().m() / Constant::c)))) n++;
+  AstrometricPosition ap = a.to_astrometric(frame);
+  if(!test.check("to_astrometric()", ap.is_valid())) n++;
+  if(!test.check("to_astrometric() ==", ap == a)) n++;
+  if(!test.check("to_astrometric().obs_time()", ap.obs_time() == Time::j2000())) n++;
+  if(!test.check("to_astrometric().emit_time()", ap.emit_time() == (Time::j2000() - (a.distance().m() / Constant::c)))) n++;
 
   Position ai = a.inv();
   if(!test.equals("x() inv", ai.x().m(), -a.x().m())) n++;

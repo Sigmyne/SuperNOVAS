@@ -762,7 +762,7 @@ public:
 
   Spherical to_spherical() const;
 
-  AstrometricPosition as_astrometric(const Frame& frame, enum novas_reference_system system = NOVAS_TOD) const;
+  AstrometricPosition to_astrometric(const Frame& frame, enum novas_reference_system system = NOVAS_TOD) const;
 
   virtual std::string to_string(int decimals = 3) const override;
 
@@ -2570,7 +2570,7 @@ public:
  * The astrometric 3D geometric equatorial position of an object, referenced to the Solar System
  * Barycenter (SSB) or place in the Solar-system w.r.t. the SSB, at a specific astrometric time.
  *
- * @sa Geometric, Apparent::astrometric_position(), Position::as_astrometric()
+ * @sa Geometric, Apparent::astrometric_position(), Position::to_astrometric()
  *
  * @ingroup geometric
  */
@@ -2599,7 +2599,7 @@ class AstrometricPosition : public Position {
     Time obs_time() const;
 
     /// @ingroup equatorial
-    Equatorial as_equatorial() const;
+    Equatorial to_equatorial() const;
 
     AstrometricPosition referenced_to(const Position& ssb_pos) const;
 

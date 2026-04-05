@@ -231,10 +231,10 @@ const Position& Position::origin() {
  *                      referenced to the time when light was emitted, and the observer location
  *                      w.r.t. the Solar-system barycenter (SSB).
  */
-AstrometricPosition Position::as_astrometric(const Frame& frame, enum novas_reference_system system) const {
+AstrometricPosition Position::to_astrometric(const Frame& frame, enum novas_reference_system system) const {
   AstrometricPosition p = AstrometricPosition(*this, frame, system);
   if(!p.is_valid())
-    novas_trace_invalid("Position::as_astrometric()");
+    novas_trace_invalid("Position::to_astrometric()");
   return p;
 }
 

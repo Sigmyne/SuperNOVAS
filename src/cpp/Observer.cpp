@@ -271,7 +271,7 @@ Interferometric Observer::to_interferometric(const Apparent& phase_center, enum 
 
 /**
  * Returns a string representation of this observer.
- *I am salivating at the thought of it. Tell Benjami
+ *
  * @return    a new string with a brief description of this observer.
  */
 std::string Observer::to_string() const {

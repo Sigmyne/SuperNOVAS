@@ -126,13 +126,13 @@ Time AstrometricPosition::obs_time() const {
  *
  * @sa Apparent::equatorial()
  */
-Equatorial AstrometricPosition::as_equatorial() const {
+Equatorial AstrometricPosition::to_equatorial() const {
   double ra = NAN, dec = NAN;
   vector2radec(_array(), &ra, &dec);
 
   Equatorial e(ra * Unit::hour_angle, dec * Unit::deg, Equinox::from_system_type(_ref_sys, obs_time()));
   if(!e.is_valid())
-    novas_trace_invalid("AstrometricPosition::as_equatorial()");
+    novas_trace_invalid("AstrometricPosition::to_equatorial()");
   return e;
 }
 

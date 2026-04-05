@@ -20,12 +20,14 @@ int main() {
 
   EOP eop(37, 0.15, 0.2 * Unit::arcsec, -0.3 * Unit::arcsec);
   Site site(Angle(-2.0), Angle(1.0), Coordinate(75.0));
+  Apparent app = Apparent::from_tod(1.234 * Unit::hour_angle, -23.45 * Unit::deg, Observer::at_geocenter().reduced_accuracy_frame_at(Time::b1950()));
 
   Observer x = Observer::undefined();
   const Observer *copy;
 
   if(!test.check("undefined()", !x.is_valid())) n++;
   if(!test.equals("undefined().type", (int) x.type(), -1)) n++;
+  if(!test.check("undefined().to_interferometric", !x.to_interferometric(app).is_valid())) n++;
 
   copy = x.copy();
   if(!test.check("undefined().copy()", !copy->is_valid())) n++;
@@ -77,7 +79,6 @@ int main() {
   if(!test.check("copy(on_earth)", memcmp(copy->_novas_observer(), g1._novas_observer(), sizeof(observer)) == 0)) n++;
   delete copy;
 
-  Apparent app = Apparent::from_tod(1.234 * Unit::hour_angle, -23.45 * Unit::deg, Observer::at_geocenter().reduced_accuracy_frame_at(Time::b1950()));
   EOP e = g1.eop_at(app.frame().time());
 
   double uvw[3] = {0.0};
@@ -90,9 +91,24 @@ int main() {
   if(!test.equals("to_interferometric() v", u[1], uvw[1], 1e-8)) n++;
   if(!test.equals("to_interferometric() w", u[2], uvw[2], 1e-8)) n++;
 
+  if(!test.check("to_interferometric(invalid)", !gdx.to_interferometric(app).is_valid())) n++;
+  if(!test.check("to_interferometric(phase_center invalid)", !g1.to_interferometric(Apparent::undefined()).is_valid())) n++;
+  if(!test.check("to_interferometric(system invalid)", !g1.to_interferometric(app, (enum novas_reference_system) -1).is_valid())) n++;
+
+  Apparent xapp = app;
+  ((novas_frame *) xapp.frame()._novas_frame())->accuracy = (enum novas_accuracy) -1;
+  if(!test.check("to_interferometric(accuracy invalid)", !gdx.to_interferometric(xapp).is_valid())) n++;
 
   const observer *o = g1._novas_observer();
   if(!test.check("_novas_observer(on_earth)", o != NULL && o->where == NOVAS_OBSERVER_ON_EARTH)) n++;
+
+  double gcp[3] = {0.0}, gcv[3] = {0.0};
+  novas_site_gcrs_posvel(app.frame().time()._novas_timespec(), g1.site()._on_surface(), NULL, e.xp().arcsec(), e.yp().arcsec(), NOVAS_FULL_ACCURACY, gcp, gcv);
+  GeocentricObserver gco = g1.to_geocentric_at(app.frame().time(), NOVAS_FULL_ACCURACY);
+  if(!test.check("to_geocentric_at()", gco.is_valid())) n++;
+  if(!test.check("to_geocentric_at(invalid)", !gdx.to_geocentric_at(app.frame().time()).is_valid())) n++;
+  if(!test.check("to_geocentric_at() pos", gco.gcrs_position() == Position(gcp, Unit::AU))) n++;
+  if(!test.check("to_geocentric_at() vel", gco.gcrs_velocity() == Velocity(gcv, Unit::AU / Unit::day))) n++;
 
   Velocity v1 = Velocity(1.0, -2.0, 3.0);
   GeodeticObserver g2 = Observer::moving_on_earth(site, v1, eop);
