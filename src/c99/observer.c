@@ -871,7 +871,29 @@ int obs_posvel(double jd_tdb, double ut1_to_tt, enum novas_accuracy accuracy, co
 }
 
 /**
- * Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth's
+ * Returns the ITRS postion and velocity vectors for an observer located on or near Earth's
+ * surface.
+ *
+ * @param site      ITRF / GRS80 geodetic location on Earth
+ * @param[out] pos  ITRS position vector of observer. It may be NULL if not required.
+ * @param[out] vel  ITRS velocity vector of observer. It may be NULL if not required.
+ * @return          0 if successful, or else -1 if any of the site is NULL or if
+ *                  both output pointers are NULL (errno will be set to EINVAL).
+ *
+ * @author Attila Kovacs
+ * @since 1.6
+ *
+ * @c_geometric
+ *
+ * @sa novas_site_gcrs_posvel(), novas_cartesian_to_geodetic()
+ */
+int novas_site_itrs_posvel(const on_surface *restrict site, double *restrict pos, double *restrict vel) {
+  prop_error("novas_site_xyz", terra(site, 0.0, pos, vel), 0);
+  return 0;
+}
+
+/**
+ * Returns precise GCRS postion and velocity vectors for an observer located on or near Earth's
  * surface.
  *
  * NOTES:
@@ -900,7 +922,7 @@ int obs_posvel(double jd_tdb, double ut1_to_tt, enum novas_accuracy accuracy, co
  *
  * @c_geometric
  *
- * @sa geo_posvel()
+ * @sa novas_site_itrs_posvel(), geo_posvel()
  */
 int novas_site_gcrs_posvel(const novas_timespec *restrict ts, const on_surface *restrict site, const double *restrict v_itrs,
         double xp, double yp, enum novas_accuracy accuracy, double *restrict pos, double *restrict vel) {
@@ -921,7 +943,7 @@ int novas_site_gcrs_posvel(const novas_timespec *restrict ts, const on_surface *
     return novas_error(-1, EINVAL, fn, "identical output vectors pos = vel", accuracy);
 
   // ITRS
-  terra(site, 0.0, pos, vel);
+  novas_site_itrs_posvel(site, pos, vel);
 
   // Add surface velocity...
   if(vel && v_itrs) {
@@ -1385,5 +1407,6 @@ int novas_site_uvw(const novas_timespec *restrict ts, const on_surface *restrict
 
   return 0;
 }
+
 
 

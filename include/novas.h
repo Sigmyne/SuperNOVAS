@@ -3376,6 +3376,9 @@ int novas_site_uvw(const novas_timespec *restrict ts, const on_surface *restrict
         double xp, double yp, enum novas_accuracy accuracy, double *restrict uvw);
 
 /// @c_observer
+int novas_site_itrs_posvel(const on_surface *restrict site, double *restrict pos, double *restrict vel);
+
+/// @c_observer
 int novas_site_gcrs_posvel(const novas_timespec *restrict ts, const on_surface *restrict site, const double *restrict v_itrs,
         double xp, double yp, enum novas_accuracy accuracy, double *restrict pos, double *restrict vel);
 

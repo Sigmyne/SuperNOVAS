@@ -37,6 +37,9 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    
  - #306: Added `novas_site_gcrs_posvel()` as a more precise alternative to `geo_posvel()` for Earth-bound observers,
    when polar wobble offsets are known.
+   
+ - Added `novas_site_itrs_posvel()` for converting `on_surface()` locations to geocentric positions and velocity 
+   vectors in the Earth-fixed ITRS coordinate system.
 
  - Added `novas_enu_to_itrs()` and `novas_itrs_to_enu()` functions to help convert between local East-North-Up (ENU)
    coordinates and ITRS. ENU is a natural local cartesian coordinate system of an observer at or near the Earth's 
