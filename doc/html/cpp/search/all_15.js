@@ -92,7 +92,7 @@ var searchData=
   ['sun_5fpos_89',['sun_pos',['../structnovas__frame.html#a97d688f1061399fb56a93f5684efbeec',1,'novas_frame']]],
   ['sun_5fvel_90',['sun_vel',['../structnovas__frame.html#a5babf593c14bcc79e16c16dc1e8f23b9',1,'novas_frame']]],
   ['supernovas_91',['supernovas',['../namespacesupernovas.html',1,'']]],
-  ['supernovas_20added_20features_92',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
+  ['supernovas_20added_20features_92',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['supernovas_20c_93',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80',1,'']]],
   ['supernovas_20c_20api_94',['SuperNOVAS C++ API',['../index.html',1,'']]],
   ['supernovas_20c_20vs_20astropy_95',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],

@@ -191,7 +191,7 @@ Details</summary>
 <li>[<b>v1.1</b>] Fixes division by zero bug in <span class="tt"><a class="el" href="novas_8h.html#ad799864f637c483fb49491bde5a93e25" title="Returns the difference in light-time, for a star, between the barycenter of the solar system and the ...">d_light()</a></span> if the first position argument is the ephemeris reference position (e.g. the Sun for <span class="tt"><a class="el" href="solsys3_8c.html" title="Planet calculator functions for the Earth and Sun only, with an orbital model fitted to the DE405 eph...">solsys3.c</a></span>). The bug affects for example <span class="tt"><a class="el" href="novas_8h.html#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a></span>, where it effectively results in the gravitational deflection due to the Sun being skipped.</li>
 <li>[<b>v1.1</b>] The NOVAS C 3.1 implementation of <span class="tt"><a class="el" href="novas_8h.html#afca24d914664bb60d20fb428177f329a" title="Predicts the radial velocity of the observed object as it would be measured by spectroscopic means.">rad_vel()</a></span> has a number of issues that produce inaccurate results. The errors are typically at or below the tens of m/s level for objects not moving at relativistic speeds.</li>
 <li>[<b>v1.4</b>] The NOVAS C 3.1 implementation of <span class="tt"><a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a></span> / <span class="tt"><a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a></span> was such that if both <span class="tt">xp</span> and <span class="tt">yp</span> parameters were zero, then no wobble correction was applied, not even for the TIO longitude (s'). The error from this omission is very small, at just a few &mu;as (microarcseconds) within a couple of centuries of J2000.</li>
-<li>[<b>v1.6</b>] The NOVAS C <span class="tt"><a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a></span> function is imprecise for geodetic observer locations on Earth, since it does not account for polar offsets <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub>. As such the geocentric GCRS observer position and velocity vectors are accurate at the tens of meters level only.</li>
+<li>[<b>v1.6</b>] The NOVAS C <span class="tt"><a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a></span> function is imprecise for geodetic observer locations on Earth, since it does not account for polar offsets <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub>. As such the geocentric GCRS observer position and velocity vectors are accurate at the tens of meters level only. For Earth-based observers, <b>SuperNOVAS</b> adds <span class="tt"><a class="el" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth&#39;s surface.">novas_site_gcrs_posvel()</a></span> as a more precise aletrnative.</li>
 </ul>
 <p></p>
 </details>
@@ -696,14 +696,14 @@ Details</summary>
 <p>The above benchmarks are all for single-threaded performance. Since <b>SuperNOVAS</b> is generally thread-safe, you can expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single core performance, you could calculate up to 32 million precise positions per second, if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in under one minute.</p>
 <hr  />
 <p><a class="anchor" id="supernovas-features"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 SuperNOVAS added features</h2>
 <ul>
 <li><a class="el" href="#added-functionality" title="added-functionality">Newly functionality highlights</a></li>
 <li><a class="el" href="#api-changes" title="api-changes">Refinements to the NOVAS C API</a></li>
 </ul>
 <p><a class="anchor" id="added-functionality"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
 New functionality highlights</h3>
 <p>Below is a non-exhaustive overview new features added by <b>SuperNOVAS</b> on top of the existing NOVAS C API. See <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/CHANGELOG.md"><span class="tt">CHANGELOG.md</span></a> for more details.</p>
 <details >
@@ -802,7 +802,7 @@ New in v1.6</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="api-changes"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
 Refinements to the NOVAS C API</h3>
 <p>Many <b>SuperNOVAS</b> changes are focused on improving the usability and promote best coding practices so that both the library and your application will be safer, and less prone to nagging errors. Below is a detailed listing of the principal ways <b>SuperNOVAS</b> has improved on the original NOVAS C library in these respects.</p>
 <details >
