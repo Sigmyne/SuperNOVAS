@@ -167,7 +167,7 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
  - [__v1.6__] The NOVAS C `geo_posvel()` function is imprecise for geodetic observer locations on Earth, since it 
    does not account for polar offsets _x_<sub>p</sub>, _y_<sub>p</sub>. As such the geocentric GCRS observer position 
    and velocity vectors are accurate at the tens of meters level only. For Earth-based observers, __SuperNOVAS__ adds
-   `novas_site_gcrs_posvel()` as a more precise aletrnative.
+   `novas_site_gcrs_posvel()` as a more precise alternative.
 
    
 -----------------------------------------------------------------------------

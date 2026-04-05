@@ -35,9 +35,9 @@ var searchData=
   ['gm_5fearth_32',['GM_earth',['../classsupernovas_1_1Constant.html#a03b9c8bd0b3a7340f13454d202021a42',1,'supernovas::Constant']]],
   ['gm_5fsun_33',['GM_sun',['../classsupernovas_1_1Constant.html#a9de961740408cf29989240919a143673',1,'supernovas::Constant']]],
   ['gmst_34',['gmst',['../classsupernovas_1_1Time.html#a03cb4f1df78716f6780e90c02bcd2600',1,'supernovas::Time']]],
-  ['gnu_20make_35',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md11',1,'']]],
-  ['gnu_20makefile_36',['GNU Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
-  ['going_20in_20reverse_37',['Going in reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105',1,'Going in reverse...']]],
+  ['gnu_20make_35',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md12',1,'']]],
+  ['gnu_20makefile_36',['GNU Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md30',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md77',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
+  ['going_20in_20reverse_37',['Going in reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md60',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103',1,'Going in reverse...']]],
   ['gpc_38',['Gpc',['../classsupernovas_1_1Unit.html#a3c85a1a9786a6d60fe6959c817bf25bb',1,'supernovas::Unit::Gpc'],['../classsupernovas_1_1Coordinate.html#a9a7803523870607942abbea098c9347a',1,'supernovas::Coordinate::Gpc()']]],
   ['grav_2ec_39',['grav.c',['../grav_8c.html',1,'']]],
   ['grav_5fbodies_5ffull_5faccuracy_40',['grav_bodies_full_accuracy',['../group__apparent.html#ga18647d39520d1a15a137661f698cb12a',1,'grav_bodies_full_accuracy:&#160;grav.c'],['../group__apparent.html#ga18647d39520d1a15a137661f698cb12a',1,'grav_bodies_full_accuracy:&#160;grav.c']]],
@@ -50,5 +50,5 @@ var searchData=
   ['grav_5fvec_47',['grav_vec',['../novas_8h.html#a08a008572e2746a70bec19739b5fb7e6',1,'grav_vec(const double *pos_src, const double *pos_obs, const double *pos_body, double rmass, double *out):&#160;grav.c'],['../grav_8c.html#a08a008572e2746a70bec19739b5fb7e6',1,'grav_vec(const double *pos_src, const double *pos_obs, const double *pos_body, double rmass, double *out):&#160;grav.c']]],
   ['gregorian_48',['gregorian',['../classsupernovas_1_1Calendar.html#a0d625010c543eed0c3db85a57777c15c',1,'supernovas::Calendar']]],
   ['gst_49',['gst',['../structnovas__frame.html#ae630c8535a6407922324073c1c4622e5',1,'novas_frame::gst'],['../classsupernovas_1_1Time.html#aa5902cfaf7c0427109a604a69511d356',1,'supernovas::Time::gst()']]],
-  ['guide_50',['User&apos;s guide',['../index.html#autotoc_md0',1,'']]]
+  ['guide_50',['User&apos;s guide',['../index.html#autotoc_md1',1,'']]]
 ];
