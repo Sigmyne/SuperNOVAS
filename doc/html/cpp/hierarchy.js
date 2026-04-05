@@ -25,19 +25,14 @@ var hierarchy =
       [ "supernovas::Track< Horizontal >", "classsupernovas_1_1Track.html", [
         [ "supernovas::HorizontalTrack", "classsupernovas_1_1HorizontalTrack.html", null ]
       ] ],
-      [ "supernovas::Angle", "classsupernovas_1_1Angle.html", [
-        [ "supernovas::TimeAngle", "classsupernovas_1_1TimeAngle.html", null ]
-      ] ],
       [ "supernovas::Apparent", "classsupernovas_1_1Apparent.html", null ],
       [ "supernovas::Calendar", "classsupernovas_1_1Calendar.html", null ],
       [ "supernovas::CalendarDate", "classsupernovas_1_1CalendarDate.html", null ],
       [ "supernovas::CatalogEntry", "classsupernovas_1_1CatalogEntry.html", null ],
-      [ "supernovas::Coordinate", "classsupernovas_1_1Coordinate.html", null ],
       [ "supernovas::EOP", "classsupernovas_1_1EOP.html", null ],
       [ "supernovas::Equinox", "classsupernovas_1_1Equinox.html", null ],
       [ "supernovas::Frame", "classsupernovas_1_1Frame.html", null ],
       [ "supernovas::Geometric", "classsupernovas_1_1Geometric.html", null ],
-      [ "supernovas::Interval", "classsupernovas_1_1Interval.html", null ],
       [ "supernovas::Observer", "classsupernovas_1_1Observer.html", [
         [ "supernovas::GeocentricObserver", "classsupernovas_1_1GeocentricObserver.html", null ],
         [ "supernovas::GeodeticObserver", "classsupernovas_1_1GeodeticObserver.html", null ],
@@ -45,9 +40,17 @@ var hierarchy =
       ] ],
       [ "supernovas::Orbital", "classsupernovas_1_1Orbital.html", null ],
       [ "supernovas::OrbitalSystem", "classsupernovas_1_1OrbitalSystem.html", null ],
-      [ "supernovas::Pressure", "classsupernovas_1_1Pressure.html", null ],
+      [ "supernovas::Scalar", "classsupernovas_1_1Scalar.html", [
+        [ "supernovas::Angle", "classsupernovas_1_1Angle.html", [
+          [ "supernovas::TimeAngle", "classsupernovas_1_1TimeAngle.html", null ]
+        ] ],
+        [ "supernovas::Coordinate", "classsupernovas_1_1Coordinate.html", null ],
+        [ "supernovas::Interval", "classsupernovas_1_1Interval.html", null ],
+        [ "supernovas::Pressure", "classsupernovas_1_1Pressure.html", null ],
+        [ "supernovas::ScalarVelocity", "classsupernovas_1_1ScalarVelocity.html", null ],
+        [ "supernovas::Temperature", "classsupernovas_1_1Temperature.html", null ]
+      ] ],
       [ "supernovas::ScalarEvolution", "classsupernovas_1_1ScalarEvolution.html", null ],
-      [ "supernovas::ScalarVelocity", "classsupernovas_1_1ScalarVelocity.html", null ],
       [ "supernovas::Site", "classsupernovas_1_1Site.html", null ],
       [ "supernovas::Source", "classsupernovas_1_1Source.html", [
         [ "supernovas::CatalogSource", "classsupernovas_1_1CatalogSource.html", null ],
@@ -63,10 +66,10 @@ var hierarchy =
         [ "supernovas::Galactic", "classsupernovas_1_1Galactic.html", null ],
         [ "supernovas::Horizontal", "classsupernovas_1_1Horizontal.html", null ]
       ] ],
-      [ "supernovas::Temperature", "classsupernovas_1_1Temperature.html", null ],
       [ "supernovas::Time", "classsupernovas_1_1Time.html", null ],
       [ "supernovas::Track< CoordType >", "classsupernovas_1_1Track.html", null ],
       [ "supernovas::Vector", "classsupernovas_1_1Vector.html", [
+        [ "supernovas::Interferometric", "classsupernovas_1_1Interferometric.html", null ],
         [ "supernovas::Position", "classsupernovas_1_1Position.html", [
           [ "supernovas::AstrometricPosition", "classsupernovas_1_1AstrometricPosition.html", null ]
         ] ],

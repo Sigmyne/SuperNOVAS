@@ -1,7 +1,6 @@
 var earth_8c =
 [
     [ "era", "group__earth.html#gaef1f8daaad470353648de90576aefc66", null ],
-    [ "geo_posvel", "group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e", null ],
     [ "limb_angle", "group__apparent.html#ga022957936bc7c5a3e9651776689c9380", null ],
     [ "novas_diurnal_eop", "group__earth.html#ga9fc52f6fd358463d0c1ca7aa651e65f6", null ],
     [ "novas_diurnal_eop_at_time", "group__earth.html#ga087d587e90b4e2138c0dba12d727696e", null ],

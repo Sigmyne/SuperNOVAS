@@ -15,13 +15,13 @@ var group__nonequatorial =
       [ "operator==", "classsupernovas_1_1Ecliptic.html#aa30d882659dad848f4c0be01f0f08a68", null ],
       [ "operator>>", "classsupernovas_1_1Ecliptic.html#ab34beaf9d178f058ec6b813240cafd48", null ],
       [ "system", "classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8", null ],
-      [ "to_equatorial", "group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3", null ],
-      [ "to_galactic", "group__nonequatorial.html#ga6be266741f04bb666e9b04deeaca5769", null ],
+      [ "to_equatorial", "classsupernovas_1_1Ecliptic.html#acea27eeec615359be97fab4372061c65", null ],
+      [ "to_galactic", "classsupernovas_1_1Ecliptic.html#a6be266741f04bb666e9b04deeaca5769", null ],
       [ "to_icrs", "classsupernovas_1_1Ecliptic.html#a6a0cfeb643b055e65c48a57c2c624227", null ],
       [ "to_j2000", "classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582", null ],
       [ "to_mod", "classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47", null ],
       [ "to_string", "classsupernovas_1_1Ecliptic.html#a6f3453f8bd380ee096834cc38985299d", null ],
-      [ "to_system", "classsupernovas_1_1Ecliptic.html#ab078048d3728c4cf4d164b77d57f9c5f", null ],
+      [ "to_system", "classsupernovas_1_1Ecliptic.html#ac468f153f58b25ca2e305fa607997dc3", null ],
       [ "to_tod", "classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d", null ]
     ] ],
     [ "supernovas::Galactic", "classsupernovas_1_1Galactic.html", [
@@ -34,8 +34,8 @@ var group__nonequatorial =
       [ "equals", "classsupernovas_1_1Galactic.html#a9c84c27b2d4926fab89cfd13f8983ca4", null ],
       [ "operator!=", "classsupernovas_1_1Galactic.html#afc45bc27fb00d28df964ad23cef41bcb", null ],
       [ "operator==", "classsupernovas_1_1Galactic.html#a0f9bf04fae88e2f67ec4ffc727a300a0", null ],
-      [ "to_ecliptic", "group__nonequatorial.html#ga3b6d652ed174bcf1be08cae63b061b21", null ],
-      [ "to_equatorial", "group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99", null ],
+      [ "to_ecliptic", "classsupernovas_1_1Galactic.html#a3b6d652ed174bcf1be08cae63b061b21", null ],
+      [ "to_equatorial", "classsupernovas_1_1Galactic.html#a730750345a8ea40b0af9e5b9c60bfd99", null ],
       [ "to_string", "classsupernovas_1_1Galactic.html#a2a1d58fe6cb7610c91d11517c3b6c021", null ]
     ] ],
     [ "supernovas::Horizontal", "classsupernovas_1_1Horizontal.html", [
@@ -64,13 +64,7 @@ var group__nonequatorial =
     [ "novas_epa", "group__nonequatorial.html#ga095ba0ee644dc00c11dcdc5616bc96b0", null ],
     [ "novas_h2e_offset", "group__nonequatorial.html#ga7977de3e3edf8120b50cbd026c155f47", null ],
     [ "novas_hpa", "group__nonequatorial.html#ga73fcb54e47b2be0aa92810b5f55f7a3c", null ],
-    [ "novas_los_to_xyz", "group__nonequatorial.html#ga601d246673742cf72a5dbe1449c97560", null ],
-    [ "novas_uvw_to_xyz", "group__nonequatorial.html#ga16c920eee105431247e9a1d9bf1c3021", null ],
-    [ "novas_xyz_to_los", "group__nonequatorial.html#ga14deb6fdce80ba213e1f1d5238306e17", null ],
-    [ "novas_xyz_to_uvw", "group__nonequatorial.html#ga87867e8e7fc7decaa44777a696465353", null ],
-    [ "supernovas::Equatorial::to_ecliptic", "group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd", null ],
-    [ "supernovas::Galactic::to_ecliptic", "group__nonequatorial.html#ga3b6d652ed174bcf1be08cae63b061b21", null ],
-    [ "supernovas::Ecliptic::to_galactic", "group__nonequatorial.html#ga6be266741f04bb666e9b04deeaca5769", null ],
+    [ "supernovas::Equatorial::to_ecliptic", "group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b", null ],
     [ "supernovas::Equatorial::to_galactic", "group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526", null ],
     [ "supernovas::Apparent::to_horizontal", "group__nonequatorial.html#ga39a5c71512aa41496371b99fd2a892d4", null ]
 ];

@@ -124,8 +124,18 @@ Functions</h2></td></tr>
 <tr class="memdesc:gaf83481c3e551cd9fbfc949257567b468"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns approximate eometric posiitions and velocities for a major planet, Sun, Moon, Earth-Moon Barycenter (EMB) &ndash; typically to arcmin level accuracy &ndash; using Keplerian orbital elements.  <br /></td></tr>
 <tr class="memitem:ga9955f022efa8e92d2c6a5e037794451e" id="r_ga9955f022efa8e92d2c6a5e037794451e"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1AstrometricPosition.html">AstrometricPosition</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga9955f022efa8e92d2c6a5e037794451e">supernovas::Apparent::astrometric_position</a> () const</td></tr>
 <tr class="memdesc:ga9955f022efa8e92d2c6a5e037794451e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the projected 3D position, relative to the SSB or other Solar-System place, which gave rise to these apparent place on sky.  <br /></td></tr>
+<tr class="memitem:ga42b4fe858ef5da0ae538e676f2bb7ca8" id="r_ga42b4fe858ef5da0ae538e676f2bb7ca8"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Geometric.html">Geometric</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga42b4fe858ef5da0ae538e676f2bb7ca8">supernovas::SolarSystemSource::barycentric_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
+<tr class="memdesc:ga42b4fe858ef5da0ae538e676f2bb7ca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Solar-system barycentric position and velocity of this Solar-system source, or else an undefined geometry if the source's place cannot be determined at the requested time or accuracy.  <br /></td></tr>
+<tr class="memitem:gaa611c71d2b1150452cb203455ffdc013" id="r_gaa611c71d2b1150452cb203455ffdc013"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Position.html">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="#gaa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver::gcrs_position_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const override</td></tr>
+<tr class="memdesc:gaa611c71d2b1150452cb203455ffdc013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the geocentric geometric position vector for this observer, in the GCRS, at the specified time and accuracy.  <br /></td></tr>
+<tr class="memitem:gadb604ebb6581bd982943b203a89677aa" id="r_gadb604ebb6581bd982943b203a89677aa"><td class="memItemLeft">virtual <a class="el" href="classsupernovas_1_1Position.html">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="#gadb604ebb6581bd982943b203a89677aa">supernovas::Observer::gcrs_position_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
+<tr class="memdesc:gadb604ebb6581bd982943b203a89677aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the geocentric geometric position vector for this observer, in the GCRS, at the specified time and accuracy.  <br /></td></tr>
+<tr class="memitem:gad53631f865c62ee8cb8c535be22ed180" id="r_gad53631f865c62ee8cb8c535be22ed180"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#gad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver::gcrs_velocity_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const override</td></tr>
+<tr class="memdesc:gad53631f865c62ee8cb8c535be22ed180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the geocentric geometric velocity vector for this observer, in the GCRS, at the specified time and accuracy.  <br /></td></tr>
+<tr class="memitem:ga8cd84f51fedc118c9ed6f8c14f813fbd" id="r_ga8cd84f51fedc118c9ed6f8c14f813fbd"><td class="memItemLeft">virtual <a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga8cd84f51fedc118c9ed6f8c14f813fbd">supernovas::Observer::gcrs_velocity_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
+<tr class="memdesc:ga8cd84f51fedc118c9ed6f8c14f813fbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the geocentric geometric velocity vector for this observer, in the GCRS, at the specified time and accuracy.  <br /></td></tr>
 <tr class="memitem:ga5d45ffe8479b2b0945e66ef1a0c7cc0a" id="r_ga5d45ffe8479b2b0945e66ef1a0c7cc0a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Geometric.html">Geometric</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga5d45ffe8479b2b0945e66ef1a0c7cc0a">supernovas::Source::geometric_in</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> system=<a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>) const</td></tr>
-<tr class="memdesc:ga5d45ffe8479b2b0945e66ef1a0c7cc0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the geometric position of a source (if possible), or else an invalid position.  <br /></td></tr>
+<tr class="memdesc:ga5d45ffe8479b2b0945e66ef1a0c7cc0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the geometric position of a source (if possible) relative to the observer, or else an invalid position if the source could not be positioned in the observing frame.  <br /></td></tr>
 <tr class="memitem:gaa71fbf15b25159c91f9563e630536a32" id="r_gaa71fbf15b25159c91f9563e630536a32"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Geometric.html">Geometric</a>&#160;</td><td class="memItemRight"><a class="el" href="#gaa71fbf15b25159c91f9563e630536a32">supernovas::Frame::geometric_moon_elp2000</a> (double limit_term=0.0) const</td></tr>
 <tr class="memdesc:gaa71fbf15b25159c91f9563e630536a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Moon's geometric position using the ELP/MPP02 model by Chapront &amp; Francou (2003), down to the specified limiting term amplitude.  <br /></td></tr>
 </table>
@@ -204,6 +214,223 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
 
 </div>
 </div>
+<a id="ga42b4fe858ef5da0ae538e676f2bb7ca8" name="ga42b4fe858ef5da0ae538e676f2bb7ca8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga42b4fe858ef5da0ae538e676f2bb7ca8">&#9670;&#160;</a></span>barycentric_at()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Geometric.html">Geometric</a> supernovas::SolarSystemSource::barycentric_at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a></td>          <td class="paramname"><span class="paramname"><em>accuracy</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the Solar-system barycentric position and velocity of this Solar-system source, or else an undefined geometry if the source's place cannot be determined at the requested time or accuracy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>The astrometric time </td></tr>
+    <tr><td class="paramname">accuracy</td><td>(optional) NOVAS_FULL_ACCURACY (default), or NOVAS_REDUCED_ACCURACY. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The Solar-system barycentric geometric position and velocity of this source at the specified time, as obtained from ephemeris lookup; or else an undefined (invalid) object if the place ould not be determined. </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a085d8cf394db6147cd785d8a86ef7856">supernovas::Source::_novas_object()</a>, <a class="el" href="classsupernovas_1_1Observer.html#a559ac67489ac1b98ff52312367e0b98f">supernovas::Observer::at_ssb()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c">NOVAS_BARYCENTER</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, and <a class="el" href="classsupernovas_1_1Geometric.html#a3cfb7d613c6fba958ebbeeb1c2fcd498">supernovas::Geometric::undefined()</a>.</p>
+
+</div>
+</div>
+<a id="gaa611c71d2b1150452cb203455ffdc013" name="gaa611c71d2b1150452cb203455ffdc013"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa611c71d2b1150452cb203455ffdc013">&#9670;&#160;</a></span>gcrs_position_at() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Position.html">Position</a> supernovas::GeodeticObserver::gcrs_position_at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a></td>          <td class="paramname"><span class="paramname"><em>accuracy</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the geocentric geometric position vector for this observer, in the GCRS, at the specified time and accuracy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time of observation </td></tr>
+    <tr><td class="paramname">accuracy</td><td>(optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ICRS geometric geocentric position vector of this observer at the specified time.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad53631f865c62ee8cb8c535be22ed180" title="Returns the geocentric geometric velocity vector for this observer, in the GCRS, at the specified tim...">gcrs_velocity_at()</a> </dd></dl>
+
+<p>Reimplemented from <a class="el" href="#gadb604ebb6581bd982943b203a89677aa">supernovas::Observer</a>.</p>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Time.html#a2d5f0c36a81ba50e8f7205e18c9308f3">supernovas::Time::_novas_timespec()</a>, <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">supernovas::Observer::_observer</a>, <a class="el" href="classsupernovas_1_1Angle.html#a62d566900a6fe0052db3d82ea416b6ae">supernovas::Angle::arcsec()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a66c8d9adc7dad77300f861899866e3cf">eop_at()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="classsupernovas_1_1Position.html#afb825ceba8d381d95c371802cd9a269c">supernovas::Position::undefined()</a>, <a class="el" href="classsupernovas_1_1EOP.html#a0b8ca59fd650c1dbfe4f7fe313c2a5c1">supernovas::EOP::xp()</a>, and <a class="el" href="classsupernovas_1_1EOP.html#a366bb7cd103b544c14e62db54950cad4">supernovas::EOP::yp()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#abdc0c77266d40efcd665b353b4a06fc4">to_geocentric_at()</a>.</p>
+
+</div>
+</div>
+<a id="gadb604ebb6581bd982943b203a89677aa" name="gadb604ebb6581bd982943b203a89677aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadb604ebb6581bd982943b203a89677aa">&#9670;&#160;</a></span>gcrs_position_at() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Position.html">Position</a> supernovas::Observer::gcrs_position_at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a></td>          <td class="paramname"><span class="paramname"><em>accuracy</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the geocentric geometric position vector for this observer, in the GCRS, at the specified time and accuracy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time of observation </td></tr>
+    <tr><td class="paramname">accuracy</td><td>(optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ICRS geometric geocentric position vector of this observer at the specified time.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga8cd84f51fedc118c9ed6f8c14f813fbd" title="Returns the geocentric geometric velocity vector for this observer, in the GCRS, at the specified tim...">gcrs_velocity_at()</a> </dd></dl>
+
+<p>Reimplemented in <a class="el" href="#gaa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver</a>.</p>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Time.html#a2d5f0c36a81ba50e8f7205e18c9308f3">supernovas::Time::_novas_timespec()</a>, <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">_observer</a>, <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="#gadb604ebb6581bd982943b203a89677aa">gcrs_position_at()</a>, <a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="classsupernovas_1_1Position.html#afb825ceba8d381d95c371802cd9a269c">supernovas::Position::undefined()</a>, and <a class="el" href="structnovas__timespec.html#a75467e1db6ec68f1828cd010efefe469">novas_timespec::ut1_to_tt</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#gadb604ebb6581bd982943b203a89677aa">gcrs_position_at()</a>, and <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">to_interferometric()</a>.</p>
+
+</div>
+</div>
+<a id="gad53631f865c62ee8cb8c535be22ed180" name="gad53631f865c62ee8cb8c535be22ed180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad53631f865c62ee8cb8c535be22ed180">&#9670;&#160;</a></span>gcrs_velocity_at() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a> supernovas::GeodeticObserver::gcrs_velocity_at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a></td>          <td class="paramname"><span class="paramname"><em>accuracy</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the geocentric geometric velocity vector for this observer, in the GCRS, at the specified time and accuracy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time of observation </td></tr>
+    <tr><td class="paramname">accuracy</td><td>(optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ICRS geometric geocentric velocity vector of this observer at the specified time.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaa611c71d2b1150452cb203455ffdc013" title="Returns the geocentric geometric position vector for this observer, in the GCRS, at the specified tim...">gcrs_position_at()</a> </dd></dl>
+
+<p>Reimplemented from <a class="el" href="#ga8cd84f51fedc118c9ed6f8c14f813fbd">supernovas::Observer</a>.</p>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Time.html#a2d5f0c36a81ba50e8f7205e18c9308f3">supernovas::Time::_novas_timespec()</a>, <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">supernovas::Observer::_observer</a>, <a class="el" href="classsupernovas_1_1Angle.html#a62d566900a6fe0052db3d82ea416b6ae">supernovas::Angle::arcsec()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a66c8d9adc7dad77300f861899866e3cf">eop_at()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#a807883f5d42e5b1bef89249a0377c762">supernovas::Velocity::undefined()</a>, <a class="el" href="classsupernovas_1_1EOP.html#a0b8ca59fd650c1dbfe4f7fe313c2a5c1">supernovas::EOP::xp()</a>, and <a class="el" href="classsupernovas_1_1EOP.html#a366bb7cd103b544c14e62db54950cad4">supernovas::EOP::yp()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#abdc0c77266d40efcd665b353b4a06fc4">to_geocentric_at()</a>.</p>
+
+</div>
+</div>
+<a id="ga8cd84f51fedc118c9ed6f8c14f813fbd" name="ga8cd84f51fedc118c9ed6f8c14f813fbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8cd84f51fedc118c9ed6f8c14f813fbd">&#9670;&#160;</a></span>gcrs_velocity_at() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a> supernovas::Observer::gcrs_velocity_at </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a></td>          <td class="paramname"><span class="paramname"><em>accuracy</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the geocentric geometric velocity vector for this observer, in the GCRS, at the specified time and accuracy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time of observation </td></tr>
+    <tr><td class="paramname">accuracy</td><td>(optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The ICRS geometric geocentric velocity vector of this observer at the specified time.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gadb604ebb6581bd982943b203a89677aa" title="Returns the geocentric geometric position vector for this observer, in the GCRS, at the specified tim...">gcrs_position_at()</a> </dd></dl>
+
+<p>Reimplemented in <a class="el" href="#gad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver</a>.</p>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Time.html#a2d5f0c36a81ba50e8f7205e18c9308f3">supernovas::Time::_novas_timespec()</a>, <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">_observer</a>, <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="#ga8cd84f51fedc118c9ed6f8c14f813fbd">gcrs_velocity_at()</a>, <a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#a807883f5d42e5b1bef89249a0377c762">supernovas::Velocity::undefined()</a>, and <a class="el" href="structnovas__timespec.html#a75467e1db6ec68f1828cd010efefe469">novas_timespec::ut1_to_tt</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga8cd84f51fedc118c9ed6f8c14f813fbd">gcrs_velocity_at()</a>, and <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">to_interferometric()</a>.</p>
+
+</div>
+</div>
 <a id="ga5d45ffe8479b2b0945e66ef1a0c7cc0a" name="ga5d45ffe8479b2b0945e66ef1a0c7cc0a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga5d45ffe8479b2b0945e66ef1a0c7cc0a">&#9670;&#160;</a></span>geometric_in()</h2>
 
@@ -223,15 +450,15 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
       </table>
 </div><div class="memdoc">
 
-<p>Returns the geometric position of a source (if possible), or else an invalid position. </p>
+<p>Returns the geometric position of a source (if possible) relative to the observer, or else an invalid position if the source could not be positioned in the observing frame. </p>
 <p>After the return, you should probably check for validity:</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Geometric.html">Geometric</a> geom = my_source.geometric(frame);</div>
 <div class="line"><span class="keywordflow">if</span>(!geom.<a class="code hl_function" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a>()) {</div>
 <div class="line">  <span class="comment">// We could not obtain geometric positions for some reason.</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Geometric_html"><div class="ttname"><a href="classsupernovas_1_1Geometric.html">supernovas::Geometric</a></div><div class="ttdoc">The geometric (3D) position and velocity of a source relative to an observer location.</div><div class="ttdef"><b>Definition</b> supernovas.h:2340</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:247</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Geometric_html"><div class="ttname"><a href="classsupernovas_1_1Geometric.html">supernovas::Geometric</a></div><div class="ttdoc">The geometric (3D) position and velocity of a source relative to an observer location.</div><div class="ttdef"><b>Definition</b> supernovas.h:2454</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:256</div></div>
 </div><!-- fragment --><p> There are multiple reasons why we might not be able to calculate valid geometric positions, such as:</p>
 <ul>
 <li>the frame itself may be invalid.</li>

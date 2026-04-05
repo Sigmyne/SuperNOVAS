@@ -6,6 +6,7 @@ var classsupernovas_1_1Site =
     [ "Site", "classsupernovas_1_1Site.html#ae3c0e9347db58370576e913e60be374d", null ],
     [ "_on_surface", "classsupernovas_1_1Site.html#ab2c362564b314d64ef26bf6bf97c9984", null ],
     [ "altitude", "classsupernovas_1_1Site.html#a443da3a82bde66f22240b3d6e91fa577", null ],
+    [ "average_weather", "group__refract.html#ga90e61dee02f1d0b082bfb4e43fdb850b", null ],
     [ "enu_to_itrs", "classsupernovas_1_1Site.html#a73daad5121d46a112c0e73377f851073", null ],
     [ "enu_to_itrs", "classsupernovas_1_1Site.html#a9601544186a4f015da31840d2a3dcc8d", null ],
     [ "equals", "classsupernovas_1_1Site.html#ae5e869ca76595e10505865f571203eac", null ],

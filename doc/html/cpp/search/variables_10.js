@@ -10,5 +10,6 @@ var searchData=
   ['precession_7',['precession',['../structnovas__frame.html#a09881b59fca2d3ba8dc48a5aba1a2479',1,'novas_frame']]],
   ['pressure_8',['pressure',['../structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab',1,'novas_on_surface']]],
   ['promodec_9',['promodec',['../structnovas__cat__entry.html#a64faf35923c3c09bb24265a8ddb2b2f1',1,'novas_cat_entry']]],
-  ['promora_10',['promora',['../structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560',1,'novas_cat_entry']]]
+  ['promora_10',['promora',['../structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560',1,'novas_cat_entry']]],
+  ['ps_11',['ps',['../classsupernovas_1_1Unit.html#a55edd7fccc254c1226bd925e7d602db4',1,'supernovas::Unit']]]
 ];

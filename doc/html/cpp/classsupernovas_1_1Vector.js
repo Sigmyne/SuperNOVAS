@@ -16,8 +16,5 @@ var classsupernovas_1_1Vector =
     [ "theta", "classsupernovas_1_1Vector.html#aa5cd444d1ad1aecfae916a9a73ffceb2", null ],
     [ "to_string", "classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f", null ],
     [ "unit_vector", "classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52", null ],
-    [ "x", "classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e", null ],
-    [ "y", "classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f", null ],
-    [ "z", "classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08", null ],
     [ "_component", "classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18", null ]
 ];

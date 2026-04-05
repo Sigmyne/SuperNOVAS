@@ -16,8 +16,9 @@ var classsupernovas_1_1Interval =
     [ "operator-", "classsupernovas_1_1Interval.html#a2b229b8e5d7d900ce07eb96120c35ff7", null ],
     [ "operator==", "classsupernovas_1_1Interval.html#affee4933e52aa3b61d59a4f716cd33ba", null ],
     [ "seconds", "classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06", null ],
+    [ "SI_unit", "classsupernovas_1_1Interval.html#a6d2e8cfd7453d2c4b0598afbc006f22f", null ],
     [ "timescale", "classsupernovas_1_1Interval.html#a12e5f716d3da4873be848d4487735dee", null ],
-    [ "to_string", "classsupernovas_1_1Interval.html#a958f0ef65b6a16b8a9f3d60ea2a1a221", null ],
+    [ "to_string", "classsupernovas_1_1Interval.html#ae4795edc09b8b84b4a815f3c238bcf38", null ],
     [ "to_timescale", "classsupernovas_1_1Interval.html#a00a7a7eaeb23bc1ec831cd7414c5027a", null ],
     [ "weeks", "classsupernovas_1_1Interval.html#a110c6b6fbed14d27791b4c3379491547", null ],
     [ "years", "classsupernovas_1_1Interval.html#ade377a82ccf6542288c49956408d9315", null ]

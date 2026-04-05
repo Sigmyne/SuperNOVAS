@@ -14,7 +14,7 @@ var searchData=
   ['_5fobject_11',['_object',['../classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080',1,'supernovas::Source']]],
   ['_5fobserver_12',['_observer',['../classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b',1,'supernovas::Observer']]],
   ['_5fon_5fsurface_13',['_on_surface',['../classsupernovas_1_1Site.html#ab2c362564b314d64ef26bf6bf97c9984',1,'supernovas::Site']]],
-  ['_5frad_14',['_rad',['../classsupernovas_1_1Angle.html#af6e6db865035c41e06774db14657d444',1,'supernovas::Angle']]],
-  ['_5fsky_5fpos_15',['_sky_pos',['../classsupernovas_1_1Apparent.html#aba4760f7cee680f4310daa5b5d83e508',1,'supernovas::Apparent']]],
-  ['_5fvalid_16',['_valid',['../classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6',1,'supernovas::Validating']]]
+  ['_5fsky_5fpos_14',['_sky_pos',['../classsupernovas_1_1Apparent.html#aba4760f7cee680f4310daa5b5d83e508',1,'supernovas::Apparent']]],
+  ['_5fvalid_15',['_valid',['../classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6',1,'supernovas::Validating']]],
+  ['_5fvalue_16',['_value',['../classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f',1,'supernovas::Scalar']]]
 ];

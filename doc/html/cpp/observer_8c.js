@@ -2,6 +2,7 @@ var observer_8c =
 [
     [ "aberration", "observer_8c.html#a033f1bf4b01e0e21a0e05e13c19c02f6", null ],
     [ "bary2obs", "observer_8c.html#a1d58fd371e7604f75df315365672941e", null ],
+    [ "geo_posvel", "observer_8c.html#ada5ca37110e66c8b65f623c9e26ae52e", null ],
     [ "light_time", "observer_8c.html#afb2cc37c7bdcd34c5c167afe092aed68", null ],
     [ "light_time2", "observer_8c.html#a5c940b62732d74e6c6b1c844931aaa76", null ],
     [ "make_airborne_observer", "observer_8c.html#aa2663594794b4419e3b6feb927383a65", null ],
@@ -19,6 +20,9 @@ var observer_8c =
     [ "make_solar_system_observer", "observer_8c.html#a9c3f1a1bc3fd9ac6d211806913d2d529", null ],
     [ "make_xyz_site", "observer_8c.html#a9e3cbe310a40919ff94d2d530ffa74ee", null ],
     [ "novas_set_default_weather", "observer_8c.html#a0fc8f315f8606e09571ab49efb13baca", null ],
+    [ "novas_site_gcrs_posvel", "observer_8c.html#a65df4b49c0c33285ef5ddcf6814384dc", null ],
+    [ "novas_site_uvw", "observer_8c.html#aa75f22539fa6135b64f5026c6e1fcba1", null ],
+    [ "novas_uvw", "observer_8c.html#a81f4b147c3f132a1498cdd833042d804", null ],
     [ "obs_planets", "observer_8c.html#a07490a134a685fe0842b2b4816559292", null ],
     [ "obs_posvel", "observer_8c.html#a0e4e5ff7c37e6521ca75ae62aaf4050e", null ]
 ];

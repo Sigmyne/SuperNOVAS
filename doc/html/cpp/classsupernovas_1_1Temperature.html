@@ -115,6 +115,7 @@ $(function(){initNavTree('classsupernovas_1_1Temperature.html','','classsupernov
  <div class="center">
   <img src="classsupernovas_1_1Temperature.png" usemap="#supernovas_3A_3ATemperature_map" alt=""/>
   <map id="supernovas_3A_3ATemperature_map" name="supernovas_3A_3ATemperature_map">
+<area href="classsupernovas_1_1Scalar.html" title="Abstract base class for scalar quantities, expressed in standard S.I." alt="supernovas::Scalar" shape="rect" coords="0,56,155,80"/>
 <area href="classsupernovas_1_1Validating.html" title="A simple interface class handling validation checking for classes that inherit it." alt="supernovas::Validating" shape="rect" coords="0,0,155,24"/>
   </map>
 </div></div>
@@ -127,8 +128,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa9a2354a7fb058c412270a95e1a964de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the temperature value in degrees Farenheit.  <br /></td></tr>
 <tr class="memitem:ac848561c69d13def40510d3aba529bec" id="r_ac848561c69d13def40510d3aba529bec"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ac848561c69d13def40510d3aba529bec">kelvin</a> () const</td></tr>
 <tr class="memdesc:ac848561c69d13def40510d3aba529bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the temperature value in degrees Kelvin.  <br /></td></tr>
-<tr class="memitem:a389aae9e239a426cded558caaff814df" id="r_a389aae9e239a426cded558caaff814df"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a389aae9e239a426cded558caaff814df">to_string</a> () const</td></tr>
-<tr class="memdesc:a389aae9e239a426cded558caaff814df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a human-readable string representation of this temperature value.  <br /></td></tr>
+<tr class="memitem:ab64b24b58d12c752e750a460c96510f8" id="r_ab64b24b58d12c752e750a460c96510f8"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ab64b24b58d12c752e750a460c96510f8">SI_unit</a> () const override</td></tr>
+<tr class="memitem:ae26a9c37b273842ca4abd37e260f0286" id="r_ae26a9c37b273842ca4abd37e260f0286"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ae26a9c37b273842ca4abd37e260f0286">to_string</a> (int decimals=1) const override</td></tr>
+<tr class="memdesc:ae26a9c37b273842ca4abd37e260f0286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a human-readable string representation of this temperature value.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classsupernovas_1_1Scalar"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Scalar')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Scalar.html">supernovas::Scalar</a></td></tr>
+<tr class="memitem:ad6ba6d2c13c7c4df083da1ecb0852c3a inherit pub_methods_classsupernovas_1_1Scalar" id="r_ad6ba6d2c13c7c4df083da1ecb0852c3a"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#ad6ba6d2c13c7c4df083da1ecb0852c3a">~Scalar</a> ()</td></tr>
+<tr class="memitem:a6448cf148c3d70d91d0d36a3fd8fed7b inherit pub_methods_classsupernovas_1_1Scalar" id="r_a6448cf148c3d70d91d0d36a3fd8fed7b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#a6448cf148c3d70d91d0d36a3fd8fed7b">equals</a> (const <a class="el" href="classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514">Scalar</a> &amp;other, double precision) const</td></tr>
+<tr class="memdesc:a6448cf148c3d70d91d0d36a3fd8fed7b inherit pub_methods_classsupernovas_1_1Scalar"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this scalar quantity is the same as another, within the specified precision.  <br /></td></tr>
+<tr class="memitem:a75736196388337d2abc9ba1b50cde736 inherit pub_methods_classsupernovas_1_1Scalar" id="r_a75736196388337d2abc9ba1b50cde736"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#a75736196388337d2abc9ba1b50cde736">SI_value</a> () const</td></tr>
+<tr class="memdesc:a75736196388337d2abc9ba1b50cde736 inherit pub_methods_classsupernovas_1_1Scalar"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of this scalar quantity in S.I.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -146,9 +154,17 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classsupernovas_1_1Scalar"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classsupernovas_1_1Scalar')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classsupernovas_1_1Scalar.html">supernovas::Scalar</a></td></tr>
+<tr class="memitem:ac2d7c237c6edb123d01a416730258514 inherit pro_methods_classsupernovas_1_1Scalar" id="r_ac2d7c237c6edb123d01a416730258514"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514">Scalar</a> ()</td></tr>
+<tr class="memdesc:ac2d7c237c6edb123d01a416730258514 inherit pro_methods_classsupernovas_1_1Scalar"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a standard undefined (invalid) scalar quantity with NAN value.  <br /></td></tr>
+<tr class="memitem:a5c317ff1c67f0312b8c6023ca3f3def0 inherit pro_methods_classsupernovas_1_1Scalar" id="r_a5c317ff1c67f0312b8c6023ca3f3def0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#a5c317ff1c67f0312b8c6023ca3f3def0">Scalar</a> (double si_value)</td></tr>
+<tr class="memdesc:a5c317ff1c67f0312b8c6023ca3f3def0 inherit pro_methods_classsupernovas_1_1Scalar"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a scalar quantity with an initializing value in standard S.I.  <br /></td></tr>
 <tr class="inherit_header pro_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating" id="r_aeabd2d0135eafd2a6a55447054ff81f7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aeabd2d0135eafd2a6a55447054ff81f7">Validating</a> ()</td></tr>
 <tr class="memdesc:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">dummy constructor;  <br /></td></tr>
+<tr class="inherit_header pro_attribs_classsupernovas_1_1Scalar"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classsupernovas_1_1Scalar')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classsupernovas_1_1Scalar.html">supernovas::Scalar</a></td></tr>
+<tr class="memitem:a40c1eb15b68ba82627105e79b0bee85f inherit pro_attribs_classsupernovas_1_1Scalar" id="r_a40c1eb15b68ba82627105e79b0bee85f"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">_value</a></td></tr>
+<tr class="memdesc:a40c1eb15b68ba82627105e79b0bee85f inherit pro_attribs_classsupernovas_1_1Scalar"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value in S.I. units.  <br /></td></tr>
 <tr class="inherit_header pro_attribs_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:a4aa2e66ea6acca6705d87457a08ac2d6 inherit pro_attribs_classsupernovas_1_1Validating" id="r_a4aa2e66ea6acca6705d87457a08ac2d6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">_valid</a> = false</td></tr>
 <tr class="memdesc:a4aa2e66ea6acca6705d87457a08ac2d6 inherit pro_attribs_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">the state variable.  <br /></td></tr>
@@ -177,9 +193,9 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[C] The temperature value</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac848561c69d13def40510d3aba529bec" title="Returns the temperature value in degrees Kelvin.">kelvin()</a>, <a class="el" href="#aa9a2354a7fb058c412270a95e1a964de" title="Returns the temperature value in degrees Farenheit.">farenheit()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a61afe4ec08615a30efefcc5513827f65">celsius()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="#a61afe4ec08615a30efefcc5513827f65">celsius()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a61afe4ec08615a30efefcc5513827f65">celsius()</a>, <a class="el" href="#a93965f9d68a7efe060be3925d9998f19">celsius()</a>, and <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a61afe4ec08615a30efefcc5513827f65">celsius()</a>, <a class="el" href="#a93965f9d68a7efe060be3925d9998f19">celsius()</a>, <a class="el" href="#aa9a2354a7fb058c412270a95e1a964de">farenheit()</a>, <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>, and <a class="el" href="#ae26a9c37b273842ca4abd37e260f0286">to_string()</a>.</p>
 
 </div>
 </div>
@@ -239,7 +255,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[F] The temperature value</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a61afe4ec08615a30efefcc5513827f65" title="Returns the temperature value in degrees Celsius.">celsius()</a>, <a class="el" href="#ac848561c69d13def40510d3aba529bec" title="Returns the temperature value in degrees Kelvin.">kelvin()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#aa9a2354a7fb058c412270a95e1a964de">farenheit()</a>.</p>
+<p class="reference">References <a class="el" href="#a61afe4ec08615a30efefcc5513827f65">celsius()</a>, and <a class="el" href="#aa9a2354a7fb058c412270a95e1a964de">farenheit()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#aa9a2354a7fb058c412270a95e1a964de">farenheit()</a>, and <a class="el" href="#a7965a353b25180bc06adbd52462ef42a">farenheit()</a>.</p>
 
@@ -301,7 +317,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[K] The temperature value</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a61afe4ec08615a30efefcc5513827f65" title="Returns the temperature value in degrees Celsius.">celsius()</a>, <a class="el" href="#aa9a2354a7fb058c412270a95e1a964de" title="Returns the temperature value in degrees Farenheit.">farenheit()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ac848561c69d13def40510d3aba529bec">kelvin()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="#ac848561c69d13def40510d3aba529bec">kelvin()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ac848561c69d13def40510d3aba529bec">kelvin()</a>, and <a class="el" href="#a6236ceef6554399ae8f91b371e916cb3">kelvin()</a>.</p>
 
@@ -344,27 +360,74 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a389aae9e239a426cded558caaff814df" name="a389aae9e239a426cded558caaff814df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a389aae9e239a426cded558caaff814df">&#9670;&#160;</a></span>to_string()</h2>
+<a id="ab64b24b58d12c752e750a460c96510f8" name="ab64b24b58d12c752e750a460c96510f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab64b24b58d12c752e750a460c96510f8">&#9670;&#160;</a></span>SI_unit()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string supernovas::Temperature::to_string </td>
+          <td class="memname">std::string supernovas::Temperature::SI_unit </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classsupernovas_1_1Scalar.html#adfdc9060344c26788490a6dcae617dea">supernovas::Scalar</a>.</p>
+
+<p class="reference">References <a class="el" href="#ab64b24b58d12c752e750a460c96510f8">SI_unit()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ab64b24b58d12c752e750a460c96510f8">SI_unit()</a>.</p>
+
+</div>
+</div>
+<a id="ae26a9c37b273842ca4abd37e260f0286" name="ae26a9c37b273842ca4abd37e260f0286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae26a9c37b273842ca4abd37e260f0286">&#9670;&#160;</a></span>to_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string supernovas::Temperature::to_string </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>decimals</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Returns a human-readable string representation of this temperature value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">decimals</td><td>(optional) [0:16] decimal places to print (default: 1). </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>a string with the human readable representation of this temperature. </dd></dl>
 
-<p class="reference">References <a class="el" href="#a389aae9e239a426cded558caaff814df">to_string()</a>.</p>
+<p>Reimplemented from <a class="el" href="classsupernovas_1_1Scalar.html#a57a227e1a36070e68e57b8debc84e9ab">supernovas::Scalar</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a389aae9e239a426cded558caaff814df">to_string()</a>.</p>
+<p class="reference">References <a class="el" href="#a61afe4ec08615a30efefcc5513827f65">celsius()</a>, and <a class="el" href="#ae26a9c37b273842ca4abd37e260f0286">to_string()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ae26a9c37b273842ca4abd37e260f0286">to_string()</a>.</p>
 
 </div>
 </div>

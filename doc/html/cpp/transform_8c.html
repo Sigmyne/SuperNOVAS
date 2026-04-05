@@ -276,7 +276,7 @@ Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000016">Deprecated</a></b></dt><dd>This function can be confusing to use due to the input coordinate system being specified by a combination of two options. Use <a class="el" href="#a12953f66c0f774284f0700ae785784d0" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical CIRS frame of date (IAU 20...">itrs_to_cirs()</a> or <a class="el" href="#a3f6ae564cfac3766a21e0754905e5f7c" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical True of Date (TOD) frame o...">itrs_to_tod()</a> instead. You can then follow these with other conversions to GCRS (or whatever else) as appropriate.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000017">Deprecated</a></b></dt><dd>This function can be confusing to use due to the input coordinate system being specified by a combination of two options. Use <a class="el" href="#a12953f66c0f774284f0700ae785784d0" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical CIRS frame of date (IAU 20...">itrs_to_cirs()</a> or <a class="el" href="#a3f6ae564cfac3766a21e0754905e5f7c" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical True of Date (TOD) frame o...">itrs_to_tod()</a> instead. You can then follow these with other conversions to GCRS (or whatever else) as appropriate.</dd></dl>
 <p>Rotates a vector from the celestial to the terrestrial system. Specifically, it transforms a vector in the GCRS, or the dynamical (CIRS or TOD) frames to the ITRS (a rotating Earth-fixed system) by applying rotations for the GCRS-to-dynamical frame tie, precession, nutation, Earth rotation, and polar motion.</p>
 <p>If 'system' is NOVAS_CIRS then method EROT_ERA must be used. Similarly, if 'system' is NOVAS_TOD then method must be EROT_ERA. Otherwise an error 3 is returned.</p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
@@ -407,7 +407,7 @@ Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
 
 <p class="reference">References <a class="el" href="#a9cac4f3a18d4c14939519e7123b4d504">cirs_to_tod()</a>, and <a class="el" href="#a6871e7fecde44084c7b4e1b8dda5ac70">tod_to_gcrs()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>, and <a class="el" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086">supernovas::Equatorial::to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>, and <a class="el" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0">supernovas::Equatorial::to_system()</a>.</p>
 
 </div>
 </div>
@@ -712,7 +712,7 @@ Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
 
 <p class="reference">References <a class="el" href="#a9c900b81a718a184281a8a0b733b4db7">gcrs_to_tod()</a>, and <a class="el" href="#adb48b2acaf76cc3a1e3a1412cc42c232">tod_to_cirs()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="novas_8h.html#abd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086">supernovas::Equatorial::to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="novas_8h.html#abd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0">supernovas::Equatorial::to_system()</a>.</p>
 
 </div>
 </div>
@@ -751,7 +751,7 @@ Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
 
 <p class="reference">References <a class="el" href="#aa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, and <a class="el" href="novas_8h.html#ae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086">supernovas::Equatorial::to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0">supernovas::Equatorial::to_system()</a>.</p>
 
 </div>
 </div>
@@ -796,7 +796,7 @@ Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
 
 <p class="reference">References <a class="el" href="#aa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="novas_8h.html#ae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, and <a class="el" href="novas_8h.html#a9178358732325399f3a5e3582080ced3">precession()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="novas_8h.html#abd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086">supernovas::Equatorial::to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#abd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0">supernovas::Equatorial::to_system()</a>.</p>
 
 </div>
 </div>
@@ -847,7 +847,7 @@ Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
 
 <p class="reference">References <a class="el" href="#aa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="novas_8h.html#ae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>, and <a class="el" href="#a02fa1ee652c20160055cbd2c7bd9ca63">j2000_to_tod()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="novas_8h.html#abd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="novas_8h.html#a51ea4a016336dd3cf7783061c14d165c">gcrs_to_cirs()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086">supernovas::Equatorial::to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="novas_8h.html#abd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="novas_8h.html#a51ea4a016336dd3cf7783061c14d165c">gcrs_to_cirs()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0">supernovas::Equatorial::to_system()</a>.</p>
 
 </div>
 </div>
@@ -1009,6 +1009,8 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
 
 <p class="reference">References <a class="el" href="#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>.</p>
 
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>.</p>
+
 </div>
 </div>
 <a id="a9d51ca5c972013024755c644c96d0586" name="a9d51ca5c972013024755c644c96d0586"></a>
@@ -1046,7 +1048,7 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
 
 <p class="reference">References <a class="el" href="#aa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, and <a class="el" href="novas_8h.html#ae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086">supernovas::Equatorial::to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0">supernovas::Equatorial::to_system()</a>.</p>
 
 </div>
 </div>
@@ -1141,7 +1143,7 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
 
 <p class="reference">References <a class="el" href="#aa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="novas_8h.html#ae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, and <a class="el" href="novas_8h.html#a9178358732325399f3a5e3582080ced3">precession()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086">supernovas::Equatorial::to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0">supernovas::Equatorial::to_system()</a>.</p>
 
 </div>
 </div>
@@ -1203,7 +1205,7 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000014">Deprecated</a></b></dt><dd>This function can be confusing to use due to the output coordinate system being specified by a combination of two options. Use <a class="el" href="#a12953f66c0f774284f0700ae785784d0" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical CIRS frame of date (IAU 20...">itrs_to_cirs()</a> or <a class="el" href="#a3f6ae564cfac3766a21e0754905e5f7c" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical True of Date (TOD) frame o...">itrs_to_tod()</a> instead. You can then follow these with other conversions to GCRS (or whatever else) as appropriate.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000016">Deprecated</a></b></dt><dd>This function can be confusing to use due to the output coordinate system being specified by a combination of two options. Use <a class="el" href="#a12953f66c0f774284f0700ae785784d0" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical CIRS frame of date (IAU 20...">itrs_to_cirs()</a> or <a class="el" href="#a3f6ae564cfac3766a21e0754905e5f7c" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical True of Date (TOD) frame o...">itrs_to_tod()</a> instead. You can then follow these with other conversions to GCRS (or whatever else) as appropriate.</dd></dl>
 <p>Rotates a vector from the terrestrial to the celestial system. Specifically, it transforms a vector in the ITRS (rotating earth-fixed system) to the True of Date (TOD), CIRS, or GCRS (a local space-fixed system) by applying rotations for polar motion, Earth rotation (for TOD); and nutation, precession, and the dynamical-to-GCRS frame tie (for GCRS).</p>
 <p>If 'system' is NOVAS_CIRS then method EROT_ERA must be used. Similarly, if 'system' is NOVAS_TOD then method must be EROT_ERA. Otherwise an error 3 is returned.</p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
@@ -1334,7 +1336,7 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
 
 <p class="reference">References <a class="el" href="#aa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="novas_8h.html#ae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>, and <a class="el" href="#a6205edb1361e56cc0c7aed0f088f7437">tod_to_j2000()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cio_8c.html#a51bfbe9b491f50851326b2522dc2a29f">cio_basis()</a>, <a class="el" href="novas_8h.html#ac0ba048cd1732d0d0398397396d158bc">cirs_to_gcrs()</a>, <a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, <a class="el" href="#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>, and <a class="el" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086">supernovas::Equatorial::to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cio_8c.html#a51bfbe9b491f50851326b2522dc2a29f">cio_basis()</a>, <a class="el" href="novas_8h.html#ac0ba048cd1732d0d0398397396d158bc">cirs_to_gcrs()</a>, <a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, <a class="el" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="novas_8h.html#aa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw()</a>, <a class="el" href="#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>, and <a class="el" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0">supernovas::Equatorial::to_system()</a>.</p>
 
 </div>
 </div>

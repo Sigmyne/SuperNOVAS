@@ -1,7 +1,6 @@
 var group__util =
 [
     [ "supernovas::Angle", "classsupernovas_1_1Angle.html", [
-      [ "~Angle", "classsupernovas_1_1Angle.html#a36ce17ee438a8d128af4f60c1f4ce548", null ],
       [ "Angle", "classsupernovas_1_1Angle.html#ada81acd45becf847f82fa353523b977c", null ],
       [ "Angle", "classsupernovas_1_1Angle.html#a0af20b06639e0cee8a24cde361d80f88", null ],
       [ "arcmin", "classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf", null ],
@@ -15,9 +14,10 @@ var group__util =
       [ "operator-", "classsupernovas_1_1Angle.html#a61870ec8a57c3d67c14a5ebf508794f3", null ],
       [ "operator==", "classsupernovas_1_1Angle.html#a73d4cf5daf3c1fdaf81940b3a2ba4551", null ],
       [ "rad", "classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04", null ],
-      [ "to_string", "classsupernovas_1_1Angle.html#a37f5d6a238897cf0a3f016d6c42b9099", null ],
-      [ "uas", "classsupernovas_1_1Angle.html#a39ee92c930646bae2fa5224132ac4804", null ],
-      [ "_rad", "classsupernovas_1_1Angle.html#af6e6db865035c41e06774db14657d444", null ]
+      [ "SI_unit", "classsupernovas_1_1Angle.html#a5e1069581348e342fb2f4d7b0ffb9b77", null ],
+      [ "to_string", "classsupernovas_1_1Angle.html#ad59ac7f3877e6f1728789c300eda3bd7", null ],
+      [ "to_string", "classsupernovas_1_1Angle.html#aa43390f74139176aa53a3dd26d5b1818", null ],
+      [ "uas", "classsupernovas_1_1Angle.html#a39ee92c930646bae2fa5224132ac4804", null ]
     ] ],
     [ "supernovas::Constant", "classsupernovas_1_1Constant.html", null ],
     [ "supernovas::Coordinate", "classsupernovas_1_1Coordinate.html", [
@@ -33,7 +33,8 @@ var group__util =
       [ "operator/", "classsupernovas_1_1Coordinate.html#abca5dea0e57561e564c5be11174f2693", null ],
       [ "parallax", "classsupernovas_1_1Coordinate.html#af862edb5c1eddd4451e1639e256cf1c1", null ],
       [ "pc", "classsupernovas_1_1Coordinate.html#ab0f236c74f41fd3ee004cc77f7452687", null ],
-      [ "to_string", "classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd", null ]
+      [ "SI_unit", "classsupernovas_1_1Coordinate.html#a0cf4f4b4eaff7c85c50e8b083e2539f0", null ],
+      [ "to_string", "classsupernovas_1_1Coordinate.html#af7002241f1407a01092aa9aa0b2db6a2", null ]
     ] ],
     [ "supernovas::Equinox", "classsupernovas_1_1Equinox.html", [
       [ "epoch", "classsupernovas_1_1Equinox.html#a656b256555c06a140bd8bf612778e3ff", null ],
@@ -68,8 +69,9 @@ var group__util =
       [ "operator-", "classsupernovas_1_1Interval.html#a2b229b8e5d7d900ce07eb96120c35ff7", null ],
       [ "operator==", "classsupernovas_1_1Interval.html#affee4933e52aa3b61d59a4f716cd33ba", null ],
       [ "seconds", "classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06", null ],
+      [ "SI_unit", "classsupernovas_1_1Interval.html#a6d2e8cfd7453d2c4b0598afbc006f22f", null ],
       [ "timescale", "classsupernovas_1_1Interval.html#a12e5f716d3da4873be848d4487735dee", null ],
-      [ "to_string", "classsupernovas_1_1Interval.html#a958f0ef65b6a16b8a9f3d60ea2a1a221", null ],
+      [ "to_string", "classsupernovas_1_1Interval.html#ae4795edc09b8b84b4a815f3c238bcf38", null ],
       [ "to_timescale", "classsupernovas_1_1Interval.html#a00a7a7eaeb23bc1ec831cd7414c5027a", null ],
       [ "weeks", "classsupernovas_1_1Interval.html#a110c6b6fbed14d27791b4c3379491547", null ],
       [ "years", "classsupernovas_1_1Interval.html#ade377a82ccf6542288c49956408d9315", null ]
@@ -134,7 +136,8 @@ var group__util =
       [ "kPa", "classsupernovas_1_1Pressure.html#af9d2e95aebba41d40fb338155a29d0ff", null ],
       [ "mbar", "classsupernovas_1_1Pressure.html#a86b184ea2c33af4055f32ad3ff7e75f8", null ],
       [ "Pa", "classsupernovas_1_1Pressure.html#ae7770914f59dabc4848148032d136515", null ],
-      [ "to_string", "classsupernovas_1_1Pressure.html#a12eb934c910cc590369c3efa20679bb1", null ],
+      [ "SI_unit", "classsupernovas_1_1Pressure.html#ae019c0c01c86efafbbc346bffd7775d1", null ],
+      [ "to_string", "classsupernovas_1_1Pressure.html#ae759aee7c292a9206440a232c6f84f28", null ],
       [ "torr", "classsupernovas_1_1Pressure.html#a57dbcdc6261d85b915d1e1a32725a7a4", null ]
     ] ],
     [ "supernovas::ScalarVelocity", "classsupernovas_1_1ScalarVelocity.html", [
@@ -155,7 +158,8 @@ var group__util =
       [ "operator==", "classsupernovas_1_1ScalarVelocity.html#a21cc9e0039e5679ac018506afb7988db", null ],
       [ "operator[]", "classsupernovas_1_1ScalarVelocity.html#a375326df7ac6874e583b075b32ef8062", null ],
       [ "redshift", "classsupernovas_1_1ScalarVelocity.html#a3e9f2e43aef64460fe591c4786cce141", null ],
-      [ "to_string", "classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85", null ],
+      [ "SI_unit", "classsupernovas_1_1ScalarVelocity.html#a39fce3a6b6f7241a19ef352369133249", null ],
+      [ "to_string", "classsupernovas_1_1ScalarVelocity.html#aa88204f78ca6e4abad63413a842970e9", null ],
       [ "travel", "classsupernovas_1_1ScalarVelocity.html#aff4009979f33f3c12b6e585010dceafb", null ],
       [ "travel", "classsupernovas_1_1ScalarVelocity.html#a110e032d258bec4e4341003a736d0b5b", null ]
     ] ],
@@ -176,7 +180,8 @@ var group__util =
       [ "celsius", "classsupernovas_1_1Temperature.html#a61afe4ec08615a30efefcc5513827f65", null ],
       [ "farenheit", "classsupernovas_1_1Temperature.html#aa9a2354a7fb058c412270a95e1a964de", null ],
       [ "kelvin", "classsupernovas_1_1Temperature.html#ac848561c69d13def40510d3aba529bec", null ],
-      [ "to_string", "classsupernovas_1_1Temperature.html#a389aae9e239a426cded558caaff814df", null ]
+      [ "SI_unit", "classsupernovas_1_1Temperature.html#ab64b24b58d12c752e750a460c96510f8", null ],
+      [ "to_string", "classsupernovas_1_1Temperature.html#ae26a9c37b273842ca4abd37e260f0286", null ]
     ] ],
     [ "supernovas::TimeAngle", "classsupernovas_1_1TimeAngle.html", [
       [ "TimeAngle", "classsupernovas_1_1TimeAngle.html#aefc4d47845acc009e22b368255827448", null ],
@@ -211,9 +216,6 @@ var group__util =
       [ "theta", "classsupernovas_1_1Vector.html#aa5cd444d1ad1aecfae916a9a73ffceb2", null ],
       [ "to_string", "classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f", null ],
       [ "unit_vector", "classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52", null ],
-      [ "x", "classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e", null ],
-      [ "y", "classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f", null ],
-      [ "z", "classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08", null ],
       [ "_component", "classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18", null ]
     ] ],
     [ "novas_debug_mode", "group__util.html#ga9d8d2a1f5c06b488e4c817bc9877e3ba", [

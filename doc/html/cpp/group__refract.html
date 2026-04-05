@@ -126,6 +126,8 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ga90e61dee02f1d0b082bfb4e43fdb850b" id="r_ga90e61dee02f1d0b082bfb4e43fdb850b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Weather.html">Weather</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga90e61dee02f1d0b082bfb4e43fdb850b">supernovas::Site::average_weather</a> () const</td></tr>
+<tr class="memdesc:ga90e61dee02f1d0b082bfb4e43fdb850b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a default mean annual weather for this site based on a simple global model.  <br /></td></tr>
 <tr class="memitem:gae4511a80a1defbb1e1fdc29c289e7de4" id="r_gae4511a80a1defbb1e1fdc29c289e7de4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a> (double jd_tt, const <a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *loc, enum <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468">novas_refraction_type</a> type, double el)</td></tr>
 <tr class="memdesc:gae4511a80a1defbb1e1fdc29c289e7de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an optical refraction correction using the weather parameters defined for the observer location.  <br /></td></tr>
 <tr class="memitem:ga6b49f92f8f818f2272613e3432185a39" id="r_ga6b49f92f8f818f2272613e3432185a39"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga6b49f92f8f818f2272613e3432185a39">novas_radio_refraction</a> (double jd_tt, const <a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *loc, enum <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468">novas_refraction_type</a> type, double el)</td></tr>
@@ -193,6 +195,29 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ga90e61dee02f1d0b082bfb4e43fdb850b" name="ga90e61dee02f1d0b082bfb4e43fdb850b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga90e61dee02f1d0b082bfb4e43fdb850b">&#9670;&#160;</a></span>average_weather()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Weather.html">Weather</a> supernovas::Site::average_weather </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a default mean annual weather for this site based on a simple global model. </p>
+<p>It is best to use actual weather parameters, but as a blind default these represent something that is 'typical' for the observing site.</p>
+<dl class="section return"><dt>Returns</dt><dd>the 'typical' mean annual weather at this site, based on a very simple global model. </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2">novas_on_surface::humidity</a>, <a class="el" href="classsupernovas_1_1Unit.html#a09dcd47a0e4c66e14372ce96638768cf">supernovas::Unit::mbar</a>, <a class="el" href="novas_8h.html#a0fc8f315f8606e09571ab49efb13baca">novas_set_default_weather()</a>, <a class="el" href="structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab">novas_on_surface::pressure</a>, and <a class="el" href="structnovas__on__surface.html#a1fd9464e53f03ebb2cb987aa1a2dc41b">novas_on_surface::temperature</a>.</p>
+
+</div>
+</div>
 <a id="gae4511a80a1defbb1e1fdc29c289e7de4" name="gae4511a80a1defbb1e1fdc29c289e7de4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gae4511a80a1defbb1e1fdc29c289e7de4">&#9670;&#160;</a></span>novas_optical_refraction()</h2>
 

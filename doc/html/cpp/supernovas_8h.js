@@ -1,5 +1,6 @@
 var supernovas_8h =
 [
+    [ "supernovas::Scalar", "classsupernovas_1_1Scalar.html", "classsupernovas_1_1Scalar" ],
     [ "supernovas::ScalarEvolution", "classsupernovas_1_1ScalarEvolution.html", "classsupernovas_1_1ScalarEvolution" ],
     [ "supernovas::Track&lt; CoordType &gt;", "classsupernovas_1_1Track.html", "classsupernovas_1_1Track" ],
     [ "supernovas::Validating", "classsupernovas_1_1Validating.html", "classsupernovas_1_1Validating" ],

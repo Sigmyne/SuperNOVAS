@@ -163,6 +163,10 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
  - [__v1.4__] The NOVAS C 3.1 implementation of `cel2ter()` / `ter2cel()` was such that if both `xp` and `yp` 
    parameters were zero, then no wobble correction was applied, not even for the TIO longitude (s'). The error from 
    this omission is very small, at just a few &mu;as (microarcseconds) within a couple of centuries of J2000.
+   
+ - [__v1.6__] The NOVAS C `geo_posvel()` function is imprecise for geodetic observer locations on Earth, since it 
+   does not account for polar offsets _x_<sub>p</sub>, _y_<sub>p</sub>. As such the geocentric GCRS observer position 
+   and velocity vectors are accurate at the tens of meters level only.
 
    
 -----------------------------------------------------------------------------
@@ -1135,7 +1139,7 @@ Below is a non-exhaustive overview new features added by __SuperNOVAS__ on top o
 
 <summary>New in v1.6</summary>
 
- - Introducing a new, high-level, C++11 API (`supernovas++`) on top of the standard C99 one.
+ - Introducing a new, high-level, C++11 API (`libsupernovas++`) on top of the standard C99 one.
  
  - Added a truncated version of the ELP2000 / MPP02 semi-analytical model of the Moon (Chapront &amp; Francou 2003),
    allowing arcsec (km) level position calculations for the Moon even without ephemeris data.

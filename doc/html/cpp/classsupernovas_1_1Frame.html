@@ -214,7 +214,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  ...</div>
 <div class="line">}</div>
 <div class="ttc" id="aclasssupernovas_1_1Frame_html_ad6eb32c4b1cf68e839d6257ad1933d4a"><div class="ttname"><a href="#ad6eb32c4b1cf68e839d6257ad1933d4a">supernovas::Frame::time</a></div><div class="ttdeci">const Time &amp; time() const</div><div class="ttdoc">Returns the astrometric time of observation of this observing frame.</div><div class="ttdef"><b>Definition</b> Frame.cpp:141</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:247</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:256</div></div>
 </div><!-- fragment --><p>The returned new frame may be invalid for multiple reasons, such as:</p>
 <ul>
 <li>the input observer or time is invalid.</li>
@@ -305,7 +305,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the accuracy type of this bserving frame. </p>
 <dl class="section return"><dt>Returns</dt><dd>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1). </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#a78db236d969702337800d8cfcd33cba6">Frame()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a78db236d969702337800d8cfcd33cba6">Frame()</a>, and <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">supernovas::Observer::to_interferometric()</a>.</p>
 
 </div>
 </div>
@@ -368,8 +368,8 @@ IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obsp
 </div><div class="memdoc">
 
 <p>Returns the Earth Orientation Parameters contained in this frame. </p>
-<p>The returned parameters are valid only if this frame was defined for a geodetic observer location such as an observer at a fixed site on Earth or an airborne observer location.</p>
-<dl class="section return"><dt>Returns</dt><dd>The Earth orientation parameters of this observing frame, or an undefined (invalid) <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> if the observer is not on or near Earth's surface.</dd></dl>
+<p>The returned parameters include diurnal variations for libration and ocean tides, and are valid only if this frame was defined for a geodetic observer location such as an observer at a fixed site on Earth or an airborne observer location.</p>
+<dl class="section return"><dt>Returns</dt><dd>The Earth orientation parameters of this observing frame, including diurnal variations for libration and ocean tides; or else an undefined (invalid) <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> if the observer is not on or near Earth's surface.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aec03822a46bbd6c686285ab718cb61b3">eop()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">supernovas::Unit::mas</a>, and <a class="el" href="novas_8h.html#a28a5e4ae2b4d6c0069400a6ac5a600cf">novas_time_leap()</a>.</p>
@@ -442,7 +442,7 @@ IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obsp
 <dl class="section return"><dt>Returns</dt><dd>[day] the precise Julian date in the requested timescale.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64" title="Returns the precise Julian Date of this time instance, in the specific timescale of choice.">Time::jd()</a>, <a class="el" href="#ad6eb32c4b1cf68e839d6257ad1933d4a" title="Returns the astrometric time of observation of this observing frame.">time()</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="group__geometric.html#gaf83481c3e551cd9fbfc949257567b468">supernovas::Planet::approx_geometric_in()</a>, and <a class="el" href="group__tracking.html#ga1da60cae52d719260947c000891cfa87">supernovas::Source::equatorial_track()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__geometric.html#gaf83481c3e551cd9fbfc949257567b468">supernovas::Planet::approx_geometric_in()</a>.</p>
 
 </div>
 </div>
@@ -465,7 +465,7 @@ IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obsp
 <dl class="section return"><dt>Returns</dt><dd>the observer location (and motion).</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ad6eb32c4b1cf68e839d6257ad1933d4a" title="Returns the astrometric time of observation of this observing frame.">time()</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>, and <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">supernovas::Observer::to_interferometric()</a>.</p>
 
 </div>
 </div>
@@ -608,7 +608,7 @@ IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obsp
 <dl class="section return"><dt>Returns</dt><dd>the astrometric time of observation</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3a8ad7789f7e16a6a64a97aafd0e4d17" title="Returns the precise Julian Date of this observing frame, in the specific timescale of choice.">jd()</a>, <a class="el" href="#abb6d18dd97fe8d58da012339c00c23fc" title="Returns the observer location (and motion) of this observing frame.">observer()</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#a074fa6f8c669da6f40f7a885d39af88e">Frame()</a>, <a class="el" href="#a78db236d969702337800d8cfcd33cba6">Frame()</a>, and <a class="el" href="#ac1c71cf92a4019d1a993a9868b105173">reduced_accuracy()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a074fa6f8c669da6f40f7a885d39af88e">Frame()</a>, <a class="el" href="#a78db236d969702337800d8cfcd33cba6">Frame()</a>, <a class="el" href="group__tracking.html#ga1da60cae52d719260947c000891cfa87">supernovas::Source::equatorial_track()</a>, <a class="el" href="#ac1c71cf92a4019d1a993a9868b105173">reduced_accuracy()</a>, and <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">supernovas::Observer::to_interferometric()</a>.</p>
 
 </div>
 </div>

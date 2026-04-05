@@ -115,6 +115,7 @@ $(function(){initNavTree('classsupernovas_1_1Pressure.html','','classsupernovas_
  <div class="center">
   <img src="classsupernovas_1_1Pressure.png" usemap="#supernovas_3A_3APressure_map" alt=""/>
   <map id="supernovas_3A_3APressure_map" name="supernovas_3A_3APressure_map">
+<area href="classsupernovas_1_1Scalar.html" title="Abstract base class for scalar quantities, expressed in standard S.I." alt="supernovas::Scalar" shape="rect" coords="0,56,140,80"/>
 <area href="classsupernovas_1_1Validating.html" title="A simple interface class handling validation checking for classes that inherit it." alt="supernovas::Validating" shape="rect" coords="0,0,140,24"/>
   </map>
 </div></div>
@@ -133,10 +134,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a86b184ea2c33af4055f32ad3ff7e75f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the atmospheric pressure value in millibars.  <br /></td></tr>
 <tr class="memitem:ae7770914f59dabc4848148032d136515" id="r_ae7770914f59dabc4848148032d136515"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ae7770914f59dabc4848148032d136515">Pa</a> () const</td></tr>
 <tr class="memdesc:ae7770914f59dabc4848148032d136515"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the atmospheric pressure value in pascals.  <br /></td></tr>
-<tr class="memitem:a12eb934c910cc590369c3efa20679bb1" id="r_a12eb934c910cc590369c3efa20679bb1"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a12eb934c910cc590369c3efa20679bb1">to_string</a> () const</td></tr>
-<tr class="memdesc:a12eb934c910cc590369c3efa20679bb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a human-readable string representation of this atmospheric pressure in millibars.  <br /></td></tr>
+<tr class="memitem:ae019c0c01c86efafbbc346bffd7775d1" id="r_ae019c0c01c86efafbbc346bffd7775d1"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ae019c0c01c86efafbbc346bffd7775d1">SI_unit</a> () const override</td></tr>
+<tr class="memitem:ae759aee7c292a9206440a232c6f84f28" id="r_ae759aee7c292a9206440a232c6f84f28"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ae759aee7c292a9206440a232c6f84f28">to_string</a> (int decimals=3) const override</td></tr>
+<tr class="memdesc:ae759aee7c292a9206440a232c6f84f28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a human-readable string representation of this atmospheric pressure in millibars.  <br /></td></tr>
 <tr class="memitem:a57dbcdc6261d85b915d1e1a32725a7a4" id="r_a57dbcdc6261d85b915d1e1a32725a7a4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4">torr</a> () const</td></tr>
 <tr class="memdesc:a57dbcdc6261d85b915d1e1a32725a7a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the atmospheric pressure value in millimeters of Hg (torr).  <br /></td></tr>
+<tr class="inherit_header pub_methods_classsupernovas_1_1Scalar"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Scalar')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Scalar.html">supernovas::Scalar</a></td></tr>
+<tr class="memitem:ad6ba6d2c13c7c4df083da1ecb0852c3a inherit pub_methods_classsupernovas_1_1Scalar" id="r_ad6ba6d2c13c7c4df083da1ecb0852c3a"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#ad6ba6d2c13c7c4df083da1ecb0852c3a">~Scalar</a> ()</td></tr>
+<tr class="memitem:a6448cf148c3d70d91d0d36a3fd8fed7b inherit pub_methods_classsupernovas_1_1Scalar" id="r_a6448cf148c3d70d91d0d36a3fd8fed7b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#a6448cf148c3d70d91d0d36a3fd8fed7b">equals</a> (const <a class="el" href="classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514">Scalar</a> &amp;other, double precision) const</td></tr>
+<tr class="memdesc:a6448cf148c3d70d91d0d36a3fd8fed7b inherit pub_methods_classsupernovas_1_1Scalar"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this scalar quantity is the same as another, within the specified precision.  <br /></td></tr>
+<tr class="memitem:a75736196388337d2abc9ba1b50cde736 inherit pub_methods_classsupernovas_1_1Scalar" id="r_a75736196388337d2abc9ba1b50cde736"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#a75736196388337d2abc9ba1b50cde736">SI_value</a> () const</td></tr>
+<tr class="memdesc:a75736196388337d2abc9ba1b50cde736 inherit pub_methods_classsupernovas_1_1Scalar"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value of this scalar quantity in S.I.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' stae of the implementing instance.  <br /></td></tr>
@@ -162,9 +170,17 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_classsupernovas_1_1Scalar"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classsupernovas_1_1Scalar')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classsupernovas_1_1Scalar.html">supernovas::Scalar</a></td></tr>
+<tr class="memitem:ac2d7c237c6edb123d01a416730258514 inherit pro_methods_classsupernovas_1_1Scalar" id="r_ac2d7c237c6edb123d01a416730258514"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514">Scalar</a> ()</td></tr>
+<tr class="memdesc:ac2d7c237c6edb123d01a416730258514 inherit pro_methods_classsupernovas_1_1Scalar"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a standard undefined (invalid) scalar quantity with NAN value.  <br /></td></tr>
+<tr class="memitem:a5c317ff1c67f0312b8c6023ca3f3def0 inherit pro_methods_classsupernovas_1_1Scalar" id="r_a5c317ff1c67f0312b8c6023ca3f3def0"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#a5c317ff1c67f0312b8c6023ca3f3def0">Scalar</a> (double si_value)</td></tr>
+<tr class="memdesc:a5c317ff1c67f0312b8c6023ca3f3def0 inherit pro_methods_classsupernovas_1_1Scalar"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a scalar quantity with an initializing value in standard S.I.  <br /></td></tr>
 <tr class="inherit_header pro_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating" id="r_aeabd2d0135eafd2a6a55447054ff81f7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aeabd2d0135eafd2a6a55447054ff81f7">Validating</a> ()</td></tr>
 <tr class="memdesc:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">dummy constructor;  <br /></td></tr>
+<tr class="inherit_header pro_attribs_classsupernovas_1_1Scalar"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classsupernovas_1_1Scalar')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classsupernovas_1_1Scalar.html">supernovas::Scalar</a></td></tr>
+<tr class="memitem:a40c1eb15b68ba82627105e79b0bee85f inherit pro_attribs_classsupernovas_1_1Scalar" id="r_a40c1eb15b68ba82627105e79b0bee85f"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">_value</a></td></tr>
+<tr class="memdesc:a40c1eb15b68ba82627105e79b0bee85f inherit pro_attribs_classsupernovas_1_1Scalar"><td class="mdescLeft">&#160;</td><td class="mdescRight">The value in S.I. units.  <br /></td></tr>
 <tr class="inherit_header pro_attribs_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Attributes inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:a4aa2e66ea6acca6705d87457a08ac2d6 inherit pro_attribs_classsupernovas_1_1Validating" id="r_a4aa2e66ea6acca6705d87457a08ac2d6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">_valid</a> = false</td></tr>
 <tr class="memdesc:a4aa2e66ea6acca6705d87457a08ac2d6 inherit pro_attribs_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">the state variable.  <br /></td></tr>
@@ -193,7 +209,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[atm] the atmospheric pressure.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae7770914f59dabc4848148032d136515" title="Returns the atmospheric pressure value in pascals.">Pa()</a>, <a class="el" href="#aca8c999522c852fb20631f2733116254" title="Returns the atmospheric pressure value in hectopascals.">hPa()</a>, <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff" title="Returns the atmospheric pressure value in kilopascals.">kPa()</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8" title="Returns the atmospheric pressure value in millibars.">mbar()</a>, <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d" title="Returns the atmospheric pressure value in bars.">bar()</a>, <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4" title="Returns the atmospheric pressure value in millimeters of Hg (torr).">torr()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220">atm()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a3628143537380360c9b3b3dbe5a38584">supernovas::Unit::atm</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220">atm()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a3628143537380360c9b3b3dbe5a38584">supernovas::Unit::atm</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220">atm()</a>, and <a class="el" href="#ad0051ff6def72b7ecd0c9f05a6ba2cfe">atm()</a>.</p>
 
@@ -255,7 +271,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[bar] the atmospheric pressure</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae7770914f59dabc4848148032d136515" title="Returns the atmospheric pressure value in pascals.">Pa()</a>, <a class="el" href="#aca8c999522c852fb20631f2733116254" title="Returns the atmospheric pressure value in hectopascals.">hPa()</a>, <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff" title="Returns the atmospheric pressure value in kilopascals.">kPa()</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8" title="Returns the atmospheric pressure value in millibars.">mbar()</a>, <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4" title="Returns the atmospheric pressure value in millimeters of Hg (torr).">torr()</a>, <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220" title="Returns the atmospheric pressure value in atmospheres.">atm()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d">bar()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a301e71f1a3ec6047adfa2d00f915edaf">supernovas::Unit::bar</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d">bar()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a301e71f1a3ec6047adfa2d00f915edaf">supernovas::Unit::bar</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d">bar()</a>, and <a class="el" href="#a880f0d8183ca4bcd07a766917b8b4fd7">bar()</a>.</p>
 
@@ -317,7 +333,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[hPa] the atmospheric pressure</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae7770914f59dabc4848148032d136515" title="Returns the atmospheric pressure value in pascals.">Pa()</a>, <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff" title="Returns the atmospheric pressure value in kilopascals.">kPa()</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8" title="Returns the atmospheric pressure value in millibars.">mbar()</a>, <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d" title="Returns the atmospheric pressure value in bars.">bar()</a>, <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4" title="Returns the atmospheric pressure value in millimeters of Hg (torr).">torr()</a>, <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220" title="Returns the atmospheric pressure value in atmospheres.">atm()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#aca8c999522c852fb20631f2733116254">hPa()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="#aca8c999522c852fb20631f2733116254">hPa()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#aca8c999522c852fb20631f2733116254">hPa()</a>, and <a class="el" href="#a19df0a0c9426a9941339456705045a44">hPa()</a>.</p>
 
@@ -379,7 +395,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[kPa] the atmospheric pressure</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae7770914f59dabc4848148032d136515" title="Returns the atmospheric pressure value in pascals.">Pa()</a>, <a class="el" href="#aca8c999522c852fb20631f2733116254" title="Returns the atmospheric pressure value in hectopascals.">hPa()</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8" title="Returns the atmospheric pressure value in millibars.">mbar()</a>, <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d" title="Returns the atmospheric pressure value in bars.">bar()</a>, <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4" title="Returns the atmospheric pressure value in millimeters of Hg (torr).">torr()</a>, <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220" title="Returns the atmospheric pressure value in atmospheres.">atm()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff">kPa()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff">kPa()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff">kPa()</a>, and <a class="el" href="#a7bc3365988d7a6b1230bc72548744fc6">kPa()</a>.</p>
 
@@ -441,7 +457,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[mbar] the atmospheric pressure</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae7770914f59dabc4848148032d136515" title="Returns the atmospheric pressure value in pascals.">Pa()</a>, <a class="el" href="#aca8c999522c852fb20631f2733116254" title="Returns the atmospheric pressure value in hectopascals.">hPa()</a>, <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff" title="Returns the atmospheric pressure value in kilopascals.">kPa()</a>, <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d" title="Returns the atmospheric pressure value in bars.">bar()</a>, <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4" title="Returns the atmospheric pressure value in millimeters of Hg (torr).">torr()</a>, <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220" title="Returns the atmospheric pressure value in atmospheres.">atm()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8">mbar()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a09dcd47a0e4c66e14372ce96638768cf">supernovas::Unit::mbar</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8">mbar()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a09dcd47a0e4c66e14372ce96638768cf">supernovas::Unit::mbar</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8">mbar()</a>, and <a class="el" href="#a82553cf415e4e28df6535585741c5045">mbar()</a>.</p>
 
@@ -503,7 +519,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[Pa] the atmospheric pressure</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aca8c999522c852fb20631f2733116254" title="Returns the atmospheric pressure value in hectopascals.">hPa()</a>, <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff" title="Returns the atmospheric pressure value in kilopascals.">kPa()</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8" title="Returns the atmospheric pressure value in millibars.">mbar()</a>, <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d" title="Returns the atmospheric pressure value in bars.">bar()</a>, <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4" title="Returns the atmospheric pressure value in millimeters of Hg (torr).">torr()</a>, <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220" title="Returns the atmospheric pressure value in atmospheres.">atm()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ae7770914f59dabc4848148032d136515">Pa()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="#ae7770914f59dabc4848148032d136515">Pa()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ae7770914f59dabc4848148032d136515">Pa()</a>, and <a class="el" href="#a61734621d2041a7be5943d35b729c73c">Pa()</a>.</p>
 
@@ -546,27 +562,74 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a12eb934c910cc590369c3efa20679bb1" name="a12eb934c910cc590369c3efa20679bb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12eb934c910cc590369c3efa20679bb1">&#9670;&#160;</a></span>to_string()</h2>
+<a id="ae019c0c01c86efafbbc346bffd7775d1" name="ae019c0c01c86efafbbc346bffd7775d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae019c0c01c86efafbbc346bffd7775d1">&#9670;&#160;</a></span>SI_unit()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string supernovas::Pressure::to_string </td>
+          <td class="memname">std::string supernovas::Pressure::SI_unit </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classsupernovas_1_1Scalar.html#adfdc9060344c26788490a6dcae617dea">supernovas::Scalar</a>.</p>
+
+<p class="reference">References <a class="el" href="#ae019c0c01c86efafbbc346bffd7775d1">SI_unit()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ae019c0c01c86efafbbc346bffd7775d1">SI_unit()</a>.</p>
+
+</div>
+</div>
+<a id="ae759aee7c292a9206440a232c6f84f28" name="ae759aee7c292a9206440a232c6f84f28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae759aee7c292a9206440a232c6f84f28">&#9670;&#160;</a></span>to_string()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string supernovas::Pressure::to_string </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>decimals</em></span><span class="paramdefsep"> = </span><span class="paramdefval">3</span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Returns a human-readable string representation of this atmospheric pressure in millibars. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">decimals</td><td>(optional) [0:16] decimal places to print (default: 3). </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>a new string representation of this pressure in millibars. </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a09dcd47a0e4c66e14372ce96638768cf">supernovas::Unit::mbar</a>, and <a class="el" href="#a12eb934c910cc590369c3efa20679bb1">to_string()</a>.</p>
+<p>Reimplemented from <a class="el" href="classsupernovas_1_1Scalar.html#a57a227e1a36070e68e57b8debc84e9ab">supernovas::Scalar</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a12eb934c910cc590369c3efa20679bb1">to_string()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="classsupernovas_1_1Unit.html#a09dcd47a0e4c66e14372ce96638768cf">supernovas::Unit::mbar</a>, and <a class="el" href="#ae759aee7c292a9206440a232c6f84f28">to_string()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ae759aee7c292a9206440a232c6f84f28">to_string()</a>.</p>
 
 </div>
 </div>
@@ -589,7 +652,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[torr] the atmospheric pressure (millimeters of Hg).</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae7770914f59dabc4848148032d136515" title="Returns the atmospheric pressure value in pascals.">Pressure::Pa()</a>, <a class="el" href="#aca8c999522c852fb20631f2733116254" title="Returns the atmospheric pressure value in hectopascals.">Pressure::hPa()</a>, <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff" title="Returns the atmospheric pressure value in kilopascals.">Pressure::kPa()</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8" title="Returns the atmospheric pressure value in millibars.">Pressure::mbar()</a>, <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d" title="Returns the atmospheric pressure value in bars.">Pressure::bar()</a>, <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220" title="Returns the atmospheric pressure value in atmospheres.">Pressure::atm()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4">torr()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a969a4c94dfc198ea16a49727f8d82e99">supernovas::Unit::torr</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4">torr()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a969a4c94dfc198ea16a49727f8d82e99">supernovas::Unit::torr</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4">torr()</a>, and <a class="el" href="#aea6a10ca86c416bedf5d5e742995d9e3">torr()</a>.</p>
 

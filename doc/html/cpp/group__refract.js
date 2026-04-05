@@ -29,6 +29,7 @@ var group__refract =
     ] ],
     [ "NOVAS_DEFAULT_WAVELENGTH", "group__refract.html#ga4f7dee9d4c9db4cf201af8383c72d4db", null ],
     [ "RefractionModel", "group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9", null ],
+    [ "supernovas::Site::average_weather", "group__refract.html#ga90e61dee02f1d0b082bfb4e43fdb850b", null ],
     [ "novas_optical_refraction", "group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4", null ],
     [ "novas_radio_refraction", "group__refract.html#ga6b49f92f8f818f2272613e3432185a39", null ],
     [ "novas_refract_wavelength", "group__refract.html#gac673c4fef94847b796dc2aa2f4d0807d", null ],

@@ -62,7 +62,8 @@ var searchData=
   ['proper_5fmotion_59',['proper_motion',['../classsupernovas_1_1CatalogEntry.html#a9561e1d23eb50de3b85352ac06792055',1,'supernovas::CatalogEntry::proper_motion()'],['../novas_8h.html#a24b69e1809a33113d4a041dd3e4082ad',1,'proper_motion(double jd_tdb_in, const double *pos, const double *restrict vel, double jd_tdb_out, double *out):&#160;target.c'],['../target_8c.html#a24b69e1809a33113d4a041dd3e4082ad',1,'proper_motion(double jd_tdb_in, const double *pos, const double *restrict vel, double jd_tdb_out, double *out):&#160;target.c']]],
   ['provider_60',['Recommendation: set up an ephemeris provider',['../index.html#autotoc_md21',1,'']]],
   ['providers_61',['Solar-system ephemeris providers',['../group__solar-system.html',1,'']]],
-  ['pthread_5fmutex_5finit_62',['define mutex_init pthread_mutex_init',['../solsys-cspice_8c.html#autotoc_md110',1,'']]],
-  ['pthread_5fmutex_5flock_63',['define mutex_lock pthread_mutex_lock',['../solsys-cspice_8c.html#autotoc_md111',1,'']]],
-  ['pthread_5fmutex_5funlock_64',['define mutex_unlock pthread_mutex_unlock',['../solsys-cspice_8c.html#autotoc_md112',1,'']]]
+  ['ps_62',['ps',['../classsupernovas_1_1Unit.html#a55edd7fccc254c1226bd925e7d602db4',1,'supernovas::Unit']]],
+  ['pthread_5fmutex_5finit_63',['define mutex_init pthread_mutex_init',['../solsys-cspice_8c.html#autotoc_md110',1,'']]],
+  ['pthread_5fmutex_5flock_64',['define mutex_lock pthread_mutex_lock',['../solsys-cspice_8c.html#autotoc_md111',1,'']]],
+  ['pthread_5fmutex_5funlock_65',['define mutex_unlock pthread_mutex_unlock',['../solsys-cspice_8c.html#autotoc_md112',1,'']]]
 ];

@@ -29,10 +29,10 @@
       <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md30"/>
     </topic>
     <topic label="Runtime debug support" href="index.html#autotoc_md32"/>
-    <topic label="Representative benchmarks" href="index.html#autotoc_md35"/>
-    <topic label="SuperNOVAS added features" href="index.html#autotoc_md37">
-      <topic label="New functionality highlights" href="index.html#autotoc_md38"/>
-      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md39"/>
+    <topic label="Representative benchmarks" href="index.html#autotoc_md34"/>
+    <topic label="SuperNOVAS added features" href="index.html#autotoc_md36">
+      <topic label="New functionality highlights" href="index.html#autotoc_md37"/>
+      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md38"/>
     </topic>
     <topic label="Release schedule" href="index.html#autotoc_md41"/>
   </topic>
@@ -172,7 +172,7 @@
       </topic>
       <topic label="supernovas::SolarSystemSource" href="classsupernovas_1_1SolarSystemSource.html">
         <topic label="SolarSystemSource" href="classsupernovas_1_1SolarSystemSource.html#a192c6969f37446887886c2425cf50ec1"/>
-        <topic label="geometric_at" href="classsupernovas_1_1SolarSystemSource.html#ac587aa4a41bda5647ad020c82319d43a"/>
+        <topic label="barycentric_at" href="group__geometric.html#ga42b4fe858ef5da0ae538e676f2bb7ca8"/>
         <topic label="helio_distance" href="classsupernovas_1_1SolarSystemSource.html#a63fda9415eea42ffa1e87e5d85e221df"/>
         <topic label="helio_rate" href="classsupernovas_1_1SolarSystemSource.html#acb725151c7561dcbb19d8e6e3b18a52f"/>
         <topic label="solar_illumination" href="classsupernovas_1_1SolarSystemSource.html#a60c9efbfb902ea476b34734966b8c5ab"/>
@@ -209,8 +209,8 @@
         <topic label="GeocentricObserver" href="classsupernovas_1_1GeocentricObserver.html#a60091b8caa93724af5a5e8c976a7f1ed"/>
         <topic label="GeocentricObserver" href="classsupernovas_1_1GeocentricObserver.html#aeedaaf768920eea598deae2d210a6235"/>
         <topic label="copy" href="classsupernovas_1_1GeocentricObserver.html#ae578757821ffde79329e535e54e45b28"/>
-        <topic label="geocentric_position" href="classsupernovas_1_1GeocentricObserver.html#a92fa620b6e585bd3b39f2d6916f9dbe7"/>
-        <topic label="geocentric_velocity" href="classsupernovas_1_1GeocentricObserver.html#aa89491c2b0ba0615fe8cdc84008482fc"/>
+        <topic label="gcrs_position" href="classsupernovas_1_1GeocentricObserver.html#a293c24268408aba93899f3cf0937db5b"/>
+        <topic label="gcrs_velocity" href="classsupernovas_1_1GeocentricObserver.html#a220c1019edab5f90502c3ae5141d886e"/>
         <topic label="is_geocentric" href="classsupernovas_1_1GeocentricObserver.html#a41440873d5710e13571ba76f316da510"/>
         <topic label="to_string" href="classsupernovas_1_1GeocentricObserver.html#af587b52511d647b46951511b2fa3f472"/>
       </topic>
@@ -220,10 +220,14 @@
         <topic label="GeodeticObserver" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445"/>
         <topic label="copy" href="classsupernovas_1_1GeodeticObserver.html#a2efc7112c0b475e84aa94219d77b960b"/>
         <topic label="enu_velocity" href="classsupernovas_1_1GeodeticObserver.html#a9a65457117d1ae66096805c92e66767b"/>
-        <topic label="eop" href="classsupernovas_1_1GeodeticObserver.html#ac49ab6acc25e7dd026228655ceae5df4"/>
+        <topic label="eop_at" href="classsupernovas_1_1GeodeticObserver.html#a66c8d9adc7dad77300f861899866e3cf"/>
+        <topic label="gcrs_position_at" href="group__geometric.html#gaa611c71d2b1150452cb203455ffdc013"/>
+        <topic label="gcrs_velocity_at" href="group__geometric.html#gad53631f865c62ee8cb8c535be22ed180"/>
         <topic label="is_geodetic" href="classsupernovas_1_1GeodeticObserver.html#a9f60da5e45c61acedbcd84333507c29e"/>
         <topic label="itrs_velocity" href="classsupernovas_1_1GeodeticObserver.html#a84a0187e4e74e9a51122a41493e80b09"/>
+        <topic label="mean_eop" href="classsupernovas_1_1GeodeticObserver.html#a4f64c1064ca99efcb87e4c0b399c004a"/>
         <topic label="site" href="classsupernovas_1_1GeodeticObserver.html#a31a5dac606725a7730fad04b5f0e8b5b"/>
+        <topic label="to_geocentric_at" href="classsupernovas_1_1GeodeticObserver.html#abdc0c77266d40efcd665b353b4a06fc4"/>
         <topic label="to_string" href="classsupernovas_1_1GeodeticObserver.html#a33aee6eb9517ac8c0961de8f9072a61d"/>
       </topic>
       <topic label="supernovas::Observer" href="classsupernovas_1_1Observer.html">
@@ -232,9 +236,12 @@
         <topic label="_novas_observer" href="classsupernovas_1_1Observer.html#a06604bddb755e5070caeefb4306de037"/>
         <topic label="copy" href="classsupernovas_1_1Observer.html#ab96ce405d6c8cbe8d90e50c8e4da2e42"/>
         <topic label="frame_at" href="group__frame.html#gadd24c03a86837e10783af06be02a8b21"/>
+        <topic label="gcrs_position_at" href="group__geometric.html#gadb604ebb6581bd982943b203a89677aa"/>
+        <topic label="gcrs_velocity_at" href="group__geometric.html#ga8cd84f51fedc118c9ed6f8c14f813fbd"/>
         <topic label="is_geocentric" href="classsupernovas_1_1Observer.html#a990a78463a20d985f50b6e86ee8bf7e5"/>
         <topic label="is_geodetic" href="classsupernovas_1_1Observer.html#aa5d4f5181e308afd56b517038f1f8720"/>
         <topic label="reduced_accuracy_frame_at" href="group__frame.html#gae636a2863ee350bd67d5d53c19a694ba"/>
+        <topic label="to_interferometric" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629"/>
         <topic label="to_string" href="classsupernovas_1_1Observer.html#a6976e04ac1fe70d10ac5b9966ff73c8b"/>
         <topic label="type" href="classsupernovas_1_1Observer.html#a68214f28fee06df8aa28478475eccf04"/>
         <topic label="_observer" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b"/>
@@ -246,6 +253,7 @@
         <topic label="Site" href="classsupernovas_1_1Site.html#ae3c0e9347db58370576e913e60be374d"/>
         <topic label="_on_surface" href="classsupernovas_1_1Site.html#ab2c362564b314d64ef26bf6bf97c9984"/>
         <topic label="altitude" href="classsupernovas_1_1Site.html#a443da3a82bde66f22240b3d6e91fa577"/>
+        <topic label="average_weather" href="group__refract.html#ga90e61dee02f1d0b082bfb4e43fdb850b"/>
         <topic label="enu_to_itrs" href="classsupernovas_1_1Site.html#a73daad5121d46a112c0e73377f851073"/>
         <topic label="enu_to_itrs" href="classsupernovas_1_1Site.html#a9601544186a4f015da31840d2a3dcc8d"/>
         <topic label="equals" href="classsupernovas_1_1Site.html#ae5e869ca76595e10505865f571203eac"/>
@@ -450,17 +458,19 @@
     <topic label="Geometric equatorial positions and velocities" href="group__geometric.html">
       <topic label="supernovas::AstrometricPosition" href="classsupernovas_1_1AstrometricPosition.html">
         <topic label="AstrometricPosition" href="classsupernovas_1_1AstrometricPosition.html#ad3222f81abdac05fbf1a9d23d2de1895"/>
-        <topic label="as_equatorial" href="group__equatorial.html#ga90c00e6b66260a85bd49b8fdb1d61051"/>
         <topic label="emit_time" href="group__time.html#ga0dc237a45a3138f480b47c12efd7514b"/>
         <topic label="obs_time" href="group__time.html#ga3c5993440d5413726a8c16abcebd9397"/>
         <topic label="reference" href="classsupernovas_1_1AstrometricPosition.html#a812f65f637969fa3049ce897690d4ddb"/>
         <topic label="referenced_to" href="classsupernovas_1_1AstrometricPosition.html#ad22e40b2d1ce13900451bf303c737b56"/>
         <topic label="referenced_to_ssb" href="classsupernovas_1_1AstrometricPosition.html#a99e7e7d64227a3394723568a73334e9e"/>
         <topic label="system_type" href="classsupernovas_1_1AstrometricPosition.html#afc7f5368a8fcdeea835db2c1617b2022"/>
+        <topic label="to_equatorial" href="group__equatorial.html#ga0e8a6330b443d3f9eaaeee7016d59777"/>
+        <topic label="to_interferometric" href="group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36"/>
         <topic label="to_string" href="classsupernovas_1_1AstrometricPosition.html#a95a3f74fbdfb734a19e520f71ae98d0a"/>
       </topic>
       <topic label="supernovas::Geometric" href="classsupernovas_1_1Geometric.html">
         <topic label="Geometric" href="classsupernovas_1_1Geometric.html#aa83e4bb4c2b6536cd21176e846270432"/>
+        <topic label="distance" href="classsupernovas_1_1Geometric.html#acd3414c999c4def1460214ded38fee23"/>
         <topic label="ecliptic" href="group__nonequatorial.html#ga93ec5fed0411781a11cd3c30f256462c"/>
         <topic label="equatorial" href="group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257"/>
         <topic label="frame" href="classsupernovas_1_1Geometric.html#ae50d0c332eca559038ac15bb76a1458d"/>
@@ -483,7 +493,6 @@
         <topic label="Position" href="classsupernovas_1_1Position.html#abac0617b150aa85cea17e9dfec1aac78"/>
         <topic label="Position" href="classsupernovas_1_1Position.html#afdd4d47f9e694ef44aa7b8719f7a6b45"/>
         <topic label="Position" href="classsupernovas_1_1Position.html#aad6baaf00a81c50b8e744f7ab21df205"/>
-        <topic label="as_astrometric" href="classsupernovas_1_1Position.html#ac1e9d20f0b57a1d86eb7ced02c787395"/>
         <topic label="distance" href="classsupernovas_1_1Position.html#a578e1552f7e48d5f0029e451bfe9342c"/>
         <topic label="equals" href="classsupernovas_1_1Position.html#af5a5f447de9406d87925400351a527a5"/>
         <topic label="inv" href="classsupernovas_1_1Position.html#aa9f09750127bb0b33d34ef0a01156847"/>
@@ -492,8 +501,12 @@
         <topic label="operator-" href="classsupernovas_1_1Position.html#a97b9b8f521c1843f640842a4c6eb5c8c"/>
         <topic label="operator/" href="classsupernovas_1_1Position.html#ab424d6ee655671b37c35e678bbfc8cce"/>
         <topic label="operator==" href="classsupernovas_1_1Position.html#ab28229ab97d018e87efddbb06cbf2bdb"/>
+        <topic label="to_astrometric" href="classsupernovas_1_1Position.html#ad9ca593b0c5ce9fe51f2334f41274183"/>
         <topic label="to_spherical" href="classsupernovas_1_1Position.html#a8158b16437d04f06a8f4e5213ca82a92"/>
         <topic label="to_string" href="classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984"/>
+        <topic label="x" href="classsupernovas_1_1Position.html#a470aaa5d33b653944778cb9e7296349b"/>
+        <topic label="y" href="classsupernovas_1_1Position.html#ab4cbdca69a14093ce6bfe4f0f237a5f7"/>
+        <topic label="z" href="classsupernovas_1_1Position.html#a0de42fa3ff4d852b9adfc6c59c0df920"/>
       </topic>
       <topic label="supernovas::Velocity" href="classsupernovas_1_1Velocity.html">
         <topic label="Velocity" href="classsupernovas_1_1Velocity.html#a2f26da36dd9c4dba704ec314585ebc2c"/>
@@ -509,9 +522,17 @@
         <topic label="to_string" href="classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c"/>
         <topic label="travel" href="classsupernovas_1_1Velocity.html#abe62c156f9ab61154ec48b894be1cc05"/>
         <topic label="travel" href="classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297"/>
+        <topic label="x" href="classsupernovas_1_1Velocity.html#a1f63d95df40f71b85c51cc4a6f57b8d4"/>
+        <topic label="y" href="classsupernovas_1_1Velocity.html#a1a4e51da1cf116f95f9a1bb8dd28e826"/>
+        <topic label="z" href="classsupernovas_1_1Velocity.html#ad034a48f76943c43dd9899aa456791dd"/>
       </topic>
       <topic label="supernovas::Planet::approx_geometric_in" href="group__geometric.html#gaf83481c3e551cd9fbfc949257567b468"/>
       <topic label="supernovas::Apparent::astrometric_position" href="group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e"/>
+      <topic label="supernovas::SolarSystemSource::barycentric_at" href="group__geometric.html#ga42b4fe858ef5da0ae538e676f2bb7ca8"/>
+      <topic label="supernovas::GeodeticObserver::gcrs_position_at" href="group__geometric.html#gaa611c71d2b1150452cb203455ffdc013"/>
+      <topic label="supernovas::Observer::gcrs_position_at" href="group__geometric.html#gadb604ebb6581bd982943b203a89677aa"/>
+      <topic label="supernovas::GeodeticObserver::gcrs_velocity_at" href="group__geometric.html#gad53631f865c62ee8cb8c535be22ed180"/>
+      <topic label="supernovas::Observer::gcrs_velocity_at" href="group__geometric.html#ga8cd84f51fedc118c9ed6f8c14f813fbd"/>
       <topic label="supernovas::Source::geometric_in" href="group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a"/>
       <topic label="supernovas::Frame::geometric_moon_elp2000" href="group__geometric.html#gaa71fbf15b25159c91f9563e630536a32"/>
     </topic>
@@ -532,7 +553,7 @@
         <topic label="system" href="classsupernovas_1_1Equatorial.html#a6a19445d6302007ebb6e321151599c46"/>
         <topic label="system_type" href="classsupernovas_1_1Equatorial.html#a0ed912a979ffb625f8766694e6d0bdc1"/>
         <topic label="to_cirs" href="classsupernovas_1_1Equatorial.html#ad946e6985b8d089e6e9d017631617d14"/>
-        <topic label="to_ecliptic" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd"/>
+        <topic label="to_ecliptic" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b"/>
         <topic label="to_galactic" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526"/>
         <topic label="to_hip" href="classsupernovas_1_1Equatorial.html#a084ea74c4e83b73ef43a43e273770270"/>
         <topic label="to_icrs" href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864"/>
@@ -540,17 +561,15 @@
         <topic label="to_mod" href="classsupernovas_1_1Equatorial.html#ad8484d48ecc0922a602c23f8fd4a9092"/>
         <topic label="to_mod_at_besselian_epoch" href="classsupernovas_1_1Equatorial.html#a0529a5acdb0015a4c195858da3524c76"/>
         <topic label="to_string" href="classsupernovas_1_1Equatorial.html#a32bfe60a4d887c5b659720756a3b6006"/>
-        <topic label="to_system" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086"/>
+        <topic label="to_system" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0"/>
         <topic label="to_tod" href="classsupernovas_1_1Equatorial.html#ab5c1c9d9c14fe35a6cf7e542ce87343b"/>
       </topic>
-      <topic label="supernovas::AstrometricPosition::as_equatorial" href="group__equatorial.html#ga90c00e6b66260a85bd49b8fdb1d61051"/>
       <topic label="supernovas::Apparent::cirs" href="group__equatorial.html#gac950452210e4912eac9cef2953f8faf1"/>
       <topic label="supernovas::Apparent::equatorial" href="group__equatorial.html#gafc85c07b57504bce62e2f7b06947dfb8"/>
       <topic label="supernovas::Geometric::equatorial" href="group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257"/>
-      <topic label="supernovas::Ecliptic::to_equatorial" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3"/>
-      <topic label="supernovas::Galactic::to_equatorial" href="group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99"/>
+      <topic label="supernovas::AstrometricPosition::to_equatorial" href="group__equatorial.html#ga0e8a6330b443d3f9eaaeee7016d59777"/>
       <topic label="supernovas::Equatorial::to_icrs" href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864"/>
-      <topic label="supernovas::Equatorial::to_system" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086"/>
+      <topic label="supernovas::Equatorial::to_system" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0"/>
     </topic>
     <topic label="Non-equatorial coordinates" href="group__nonequatorial.html">
       <topic label="supernovas::Ecliptic" href="classsupernovas_1_1Ecliptic.html">
@@ -568,13 +587,13 @@
         <topic label="operator==" href="classsupernovas_1_1Ecliptic.html#aa30d882659dad848f4c0be01f0f08a68"/>
         <topic label="operator&gt;&gt;" href="classsupernovas_1_1Ecliptic.html#ab34beaf9d178f058ec6b813240cafd48"/>
         <topic label="system" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8"/>
-        <topic label="to_equatorial" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3"/>
-        <topic label="to_galactic" href="group__nonequatorial.html#ga6be266741f04bb666e9b04deeaca5769"/>
+        <topic label="to_equatorial" href="classsupernovas_1_1Ecliptic.html#acea27eeec615359be97fab4372061c65"/>
+        <topic label="to_galactic" href="classsupernovas_1_1Ecliptic.html#a6be266741f04bb666e9b04deeaca5769"/>
         <topic label="to_icrs" href="classsupernovas_1_1Ecliptic.html#a6a0cfeb643b055e65c48a57c2c624227"/>
         <topic label="to_j2000" href="classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582"/>
         <topic label="to_mod" href="classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47"/>
         <topic label="to_string" href="classsupernovas_1_1Ecliptic.html#a6f3453f8bd380ee096834cc38985299d"/>
-        <topic label="to_system" href="classsupernovas_1_1Ecliptic.html#ab078048d3728c4cf4d164b77d57f9c5f"/>
+        <topic label="to_system" href="classsupernovas_1_1Ecliptic.html#ac468f153f58b25ca2e305fa607997dc3"/>
         <topic label="to_tod" href="classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d"/>
       </topic>
       <topic label="supernovas::Galactic" href="classsupernovas_1_1Galactic.html">
@@ -587,8 +606,8 @@
         <topic label="equals" href="classsupernovas_1_1Galactic.html#a9c84c27b2d4926fab89cfd13f8983ca4"/>
         <topic label="operator!=" href="classsupernovas_1_1Galactic.html#afc45bc27fb00d28df964ad23cef41bcb"/>
         <topic label="operator==" href="classsupernovas_1_1Galactic.html#a0f9bf04fae88e2f67ec4ffc727a300a0"/>
-        <topic label="to_ecliptic" href="group__nonequatorial.html#ga3b6d652ed174bcf1be08cae63b061b21"/>
-        <topic label="to_equatorial" href="group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99"/>
+        <topic label="to_ecliptic" href="classsupernovas_1_1Galactic.html#a3b6d652ed174bcf1be08cae63b061b21"/>
+        <topic label="to_equatorial" href="classsupernovas_1_1Galactic.html#a730750345a8ea40b0af9e5b9c60bfd99"/>
         <topic label="to_string" href="classsupernovas_1_1Galactic.html#a2a1d58fe6cb7610c91d11517c3b6c021"/>
       </topic>
       <topic label="supernovas::Horizontal" href="classsupernovas_1_1Horizontal.html">
@@ -617,13 +636,7 @@
       <topic label="novas_epa" href="group__nonequatorial.html#ga095ba0ee644dc00c11dcdc5616bc96b0"/>
       <topic label="novas_h2e_offset" href="group__nonequatorial.html#ga7977de3e3edf8120b50cbd026c155f47"/>
       <topic label="novas_hpa" href="group__nonequatorial.html#ga73fcb54e47b2be0aa92810b5f55f7a3c"/>
-      <topic label="novas_los_to_xyz" href="group__nonequatorial.html#ga601d246673742cf72a5dbe1449c97560"/>
-      <topic label="novas_uvw_to_xyz" href="group__nonequatorial.html#ga16c920eee105431247e9a1d9bf1c3021"/>
-      <topic label="novas_xyz_to_los" href="group__nonequatorial.html#ga14deb6fdce80ba213e1f1d5238306e17"/>
-      <topic label="novas_xyz_to_uvw" href="group__nonequatorial.html#ga87867e8e7fc7decaa44777a696465353"/>
-      <topic label="supernovas::Equatorial::to_ecliptic" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd"/>
-      <topic label="supernovas::Galactic::to_ecliptic" href="group__nonequatorial.html#ga3b6d652ed174bcf1be08cae63b061b21"/>
-      <topic label="supernovas::Ecliptic::to_galactic" href="group__nonequatorial.html#ga6be266741f04bb666e9b04deeaca5769"/>
+      <topic label="supernovas::Equatorial::to_ecliptic" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b"/>
       <topic label="supernovas::Equatorial::to_galactic" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526"/>
       <topic label="supernovas::Apparent::to_horizontal" href="group__nonequatorial.html#ga39a5c71512aa41496371b99fd2a892d4"/>
     </topic>
@@ -657,6 +670,7 @@
       </topic>
       <topic label="NOVAS_DEFAULT_WAVELENGTH" href="group__refract.html#ga4f7dee9d4c9db4cf201af8383c72d4db"/>
       <topic label="RefractionModel" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9"/>
+      <topic label="supernovas::Site::average_weather" href="group__refract.html#ga90e61dee02f1d0b082bfb4e43fdb850b"/>
       <topic label="novas_optical_refraction" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4"/>
       <topic label="novas_radio_refraction" href="group__refract.html#ga6b49f92f8f818f2272613e3432185a39"/>
       <topic label="novas_refract_wavelength" href="group__refract.html#gac673c4fef94847b796dc2aa2f4d0807d"/>
@@ -728,7 +742,8 @@
         <topic label="operator==" href="classsupernovas_1_1ScalarVelocity.html#a21cc9e0039e5679ac018506afb7988db"/>
         <topic label="operator[]" href="classsupernovas_1_1ScalarVelocity.html#a375326df7ac6874e583b075b32ef8062"/>
         <topic label="redshift" href="classsupernovas_1_1ScalarVelocity.html#a3e9f2e43aef64460fe591c4786cce141"/>
-        <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85"/>
+        <topic label="SI_unit" href="classsupernovas_1_1ScalarVelocity.html#a39fce3a6b6f7241a19ef352369133249"/>
+        <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#aa88204f78ca6e4abad63413a842970e9"/>
         <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#aff4009979f33f3c12b6e585010dceafb"/>
         <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#a110e032d258bec4e4341003a736d0b5b"/>
       </topic>
@@ -789,9 +804,27 @@
       <topic label="supernovas::Source::equatorial_track" href="group__tracking.html#ga1da60cae52d719260947c000891cfa87"/>
       <topic label="supernovas::Source::horizontal_track" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842"/>
     </topic>
+    <topic label="Interferometric applications" href="group__interferometry.html">
+      <topic label="supernovas::Interferometric" href="classsupernovas_1_1Interferometric.html">
+        <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html#a7e9c0ca7daa0a70ff05ed8a7dffbb969"/>
+        <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html#a1c660bf9bc042802f3880c992da1bc0f"/>
+        <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html#a6c70086451a96d3055e9ee1f5d9f61ab"/>
+        <topic label="equals" href="classsupernovas_1_1Interferometric.html#a33f65ad7f0ebd05b72bf3c96ac55c751"/>
+        <topic label="geometric_delay" href="classsupernovas_1_1Interferometric.html#a0caf2a7bdd5e33ad308cf110efdf71b6"/>
+        <topic label="operator!=" href="classsupernovas_1_1Interferometric.html#a732c94884500274ab30ce90181caa8a6"/>
+        <topic label="operator+" href="classsupernovas_1_1Interferometric.html#a3e7d2c6c0717e65c480875769b9c4a11"/>
+        <topic label="operator-" href="classsupernovas_1_1Interferometric.html#aca4cba4dd5d57893b18dd096ff898931"/>
+        <topic label="operator==" href="classsupernovas_1_1Interferometric.html#a36e14e33618177e8bfa6708d4df28d7e"/>
+        <topic label="to_string" href="classsupernovas_1_1Interferometric.html#a736e48afb83ea51f7a819e78ceeb0962"/>
+        <topic label="u" href="classsupernovas_1_1Interferometric.html#ae6fb0bb29fb7f71a28f110831a73214c"/>
+        <topic label="v" href="classsupernovas_1_1Interferometric.html#a2b44e2714041b5ccd8a05b579a98cfa3"/>
+        <topic label="w" href="classsupernovas_1_1Interferometric.html#a1b71f65844129ff291699c759dcb2a1e"/>
+      </topic>
+      <topic label="supernovas::AstrometricPosition::to_interferometric" href="group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36"/>
+      <topic label="supernovas::Observer::to_interferometric" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629"/>
+    </topic>
     <topic label="Helpers and utilities" href="group__util.html">
       <topic label="supernovas::Angle" href="classsupernovas_1_1Angle.html">
-        <topic label="~Angle" href="classsupernovas_1_1Angle.html#a36ce17ee438a8d128af4f60c1f4ce548"/>
         <topic label="Angle" href="classsupernovas_1_1Angle.html#ada81acd45becf847f82fa353523b977c"/>
         <topic label="Angle" href="classsupernovas_1_1Angle.html#a0af20b06639e0cee8a24cde361d80f88"/>
         <topic label="arcmin" href="classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf"/>
@@ -805,9 +838,10 @@
         <topic label="operator-" href="classsupernovas_1_1Angle.html#a61870ec8a57c3d67c14a5ebf508794f3"/>
         <topic label="operator==" href="classsupernovas_1_1Angle.html#a73d4cf5daf3c1fdaf81940b3a2ba4551"/>
         <topic label="rad" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04"/>
-        <topic label="to_string" href="classsupernovas_1_1Angle.html#a37f5d6a238897cf0a3f016d6c42b9099"/>
+        <topic label="SI_unit" href="classsupernovas_1_1Angle.html#a5e1069581348e342fb2f4d7b0ffb9b77"/>
+        <topic label="to_string" href="classsupernovas_1_1Angle.html#ad59ac7f3877e6f1728789c300eda3bd7"/>
+        <topic label="to_string" href="classsupernovas_1_1Angle.html#aa43390f74139176aa53a3dd26d5b1818"/>
         <topic label="uas" href="classsupernovas_1_1Angle.html#a39ee92c930646bae2fa5224132ac4804"/>
-        <topic label="_rad" href="classsupernovas_1_1Angle.html#af6e6db865035c41e06774db14657d444"/>
       </topic>
       <topic label="supernovas::Constant" href="classsupernovas_1_1Constant.html">
       </topic>
@@ -824,7 +858,8 @@
         <topic label="operator/" href="classsupernovas_1_1Coordinate.html#abca5dea0e57561e564c5be11174f2693"/>
         <topic label="parallax" href="classsupernovas_1_1Coordinate.html#af862edb5c1eddd4451e1639e256cf1c1"/>
         <topic label="pc" href="classsupernovas_1_1Coordinate.html#ab0f236c74f41fd3ee004cc77f7452687"/>
-        <topic label="to_string" href="classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd"/>
+        <topic label="SI_unit" href="classsupernovas_1_1Coordinate.html#a0cf4f4b4eaff7c85c50e8b083e2539f0"/>
+        <topic label="to_string" href="classsupernovas_1_1Coordinate.html#af7002241f1407a01092aa9aa0b2db6a2"/>
       </topic>
       <topic label="supernovas::Equinox" href="classsupernovas_1_1Equinox.html">
         <topic label="epoch" href="classsupernovas_1_1Equinox.html#a656b256555c06a140bd8bf612778e3ff"/>
@@ -859,8 +894,9 @@
         <topic label="operator-" href="classsupernovas_1_1Interval.html#a2b229b8e5d7d900ce07eb96120c35ff7"/>
         <topic label="operator==" href="classsupernovas_1_1Interval.html#affee4933e52aa3b61d59a4f716cd33ba"/>
         <topic label="seconds" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06"/>
+        <topic label="SI_unit" href="classsupernovas_1_1Interval.html#a6d2e8cfd7453d2c4b0598afbc006f22f"/>
         <topic label="timescale" href="classsupernovas_1_1Interval.html#a12e5f716d3da4873be848d4487735dee"/>
-        <topic label="to_string" href="classsupernovas_1_1Interval.html#a958f0ef65b6a16b8a9f3d60ea2a1a221"/>
+        <topic label="to_string" href="classsupernovas_1_1Interval.html#ae4795edc09b8b84b4a815f3c238bcf38"/>
         <topic label="to_timescale" href="classsupernovas_1_1Interval.html#a00a7a7eaeb23bc1ec831cd7414c5027a"/>
         <topic label="weeks" href="classsupernovas_1_1Interval.html#a110c6b6fbed14d27791b4c3379491547"/>
         <topic label="years" href="classsupernovas_1_1Interval.html#ade377a82ccf6542288c49956408d9315"/>
@@ -925,7 +961,8 @@
         <topic label="kPa" href="classsupernovas_1_1Pressure.html#af9d2e95aebba41d40fb338155a29d0ff"/>
         <topic label="mbar" href="classsupernovas_1_1Pressure.html#a86b184ea2c33af4055f32ad3ff7e75f8"/>
         <topic label="Pa" href="classsupernovas_1_1Pressure.html#ae7770914f59dabc4848148032d136515"/>
-        <topic label="to_string" href="classsupernovas_1_1Pressure.html#a12eb934c910cc590369c3efa20679bb1"/>
+        <topic label="SI_unit" href="classsupernovas_1_1Pressure.html#ae019c0c01c86efafbbc346bffd7775d1"/>
+        <topic label="to_string" href="classsupernovas_1_1Pressure.html#ae759aee7c292a9206440a232c6f84f28"/>
         <topic label="torr" href="classsupernovas_1_1Pressure.html#a57dbcdc6261d85b915d1e1a32725a7a4"/>
       </topic>
       <topic label="supernovas::ScalarVelocity" href="classsupernovas_1_1ScalarVelocity.html">
@@ -946,7 +983,8 @@
         <topic label="operator==" href="classsupernovas_1_1ScalarVelocity.html#a21cc9e0039e5679ac018506afb7988db"/>
         <topic label="operator[]" href="classsupernovas_1_1ScalarVelocity.html#a375326df7ac6874e583b075b32ef8062"/>
         <topic label="redshift" href="classsupernovas_1_1ScalarVelocity.html#a3e9f2e43aef64460fe591c4786cce141"/>
-        <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85"/>
+        <topic label="SI_unit" href="classsupernovas_1_1ScalarVelocity.html#a39fce3a6b6f7241a19ef352369133249"/>
+        <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#aa88204f78ca6e4abad63413a842970e9"/>
         <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#aff4009979f33f3c12b6e585010dceafb"/>
         <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#a110e032d258bec4e4341003a736d0b5b"/>
       </topic>
@@ -967,7 +1005,8 @@
         <topic label="celsius" href="classsupernovas_1_1Temperature.html#a61afe4ec08615a30efefcc5513827f65"/>
         <topic label="farenheit" href="classsupernovas_1_1Temperature.html#aa9a2354a7fb058c412270a95e1a964de"/>
         <topic label="kelvin" href="classsupernovas_1_1Temperature.html#ac848561c69d13def40510d3aba529bec"/>
-        <topic label="to_string" href="classsupernovas_1_1Temperature.html#a389aae9e239a426cded558caaff814df"/>
+        <topic label="SI_unit" href="classsupernovas_1_1Temperature.html#ab64b24b58d12c752e750a460c96510f8"/>
+        <topic label="to_string" href="classsupernovas_1_1Temperature.html#ae26a9c37b273842ca4abd37e260f0286"/>
       </topic>
       <topic label="supernovas::TimeAngle" href="classsupernovas_1_1TimeAngle.html">
         <topic label="TimeAngle" href="classsupernovas_1_1TimeAngle.html#aefc4d47845acc009e22b368255827448"/>
@@ -1003,9 +1042,6 @@
         <topic label="theta" href="classsupernovas_1_1Vector.html#aa5cd444d1ad1aecfae916a9a73ffceb2"/>
         <topic label="to_string" href="classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f"/>
         <topic label="unit_vector" href="classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52"/>
-        <topic label="x" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e"/>
-        <topic label="y" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f"/>
-        <topic label="z" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08"/>
         <topic label="_component" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18"/>
       </topic>
       <topic label="novas_debug_mode" href="group__util.html#ga9d8d2a1f5c06b488e4c817bc9877e3ba">
@@ -1029,7 +1065,6 @@
     <topic label="Namespace List" href="namespaces.html">
       <topic label="supernovas" href="namespacesupernovas.html">
         <topic label="Angle" href="classsupernovas_1_1Angle.html">
-          <topic label="~Angle" href="classsupernovas_1_1Angle.html#a36ce17ee438a8d128af4f60c1f4ce548"/>
           <topic label="Angle" href="classsupernovas_1_1Angle.html#ada81acd45becf847f82fa353523b977c"/>
           <topic label="Angle" href="classsupernovas_1_1Angle.html#a0af20b06639e0cee8a24cde361d80f88"/>
           <topic label="arcmin" href="classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf"/>
@@ -1043,9 +1078,10 @@
           <topic label="operator-" href="classsupernovas_1_1Angle.html#a61870ec8a57c3d67c14a5ebf508794f3"/>
           <topic label="operator==" href="classsupernovas_1_1Angle.html#a73d4cf5daf3c1fdaf81940b3a2ba4551"/>
           <topic label="rad" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04"/>
-          <topic label="to_string" href="classsupernovas_1_1Angle.html#a37f5d6a238897cf0a3f016d6c42b9099"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Angle.html#a5e1069581348e342fb2f4d7b0ffb9b77"/>
+          <topic label="to_string" href="classsupernovas_1_1Angle.html#ad59ac7f3877e6f1728789c300eda3bd7"/>
+          <topic label="to_string" href="classsupernovas_1_1Angle.html#aa43390f74139176aa53a3dd26d5b1818"/>
           <topic label="uas" href="classsupernovas_1_1Angle.html#a39ee92c930646bae2fa5224132ac4804"/>
-          <topic label="_rad" href="classsupernovas_1_1Angle.html#af6e6db865035c41e06774db14657d444"/>
         </topic>
         <topic label="Apparent" href="classsupernovas_1_1Apparent.html">
           <topic label="_sky_pos" href="classsupernovas_1_1Apparent.html#aba4760f7cee680f4310daa5b5d83e508"/>
@@ -1064,13 +1100,14 @@
         </topic>
         <topic label="AstrometricPosition" href="classsupernovas_1_1AstrometricPosition.html">
           <topic label="AstrometricPosition" href="classsupernovas_1_1AstrometricPosition.html#ad3222f81abdac05fbf1a9d23d2de1895"/>
-          <topic label="as_equatorial" href="group__equatorial.html#ga90c00e6b66260a85bd49b8fdb1d61051"/>
           <topic label="emit_time" href="group__time.html#ga0dc237a45a3138f480b47c12efd7514b"/>
           <topic label="obs_time" href="group__time.html#ga3c5993440d5413726a8c16abcebd9397"/>
           <topic label="reference" href="classsupernovas_1_1AstrometricPosition.html#a812f65f637969fa3049ce897690d4ddb"/>
           <topic label="referenced_to" href="classsupernovas_1_1AstrometricPosition.html#ad22e40b2d1ce13900451bf303c737b56"/>
           <topic label="referenced_to_ssb" href="classsupernovas_1_1AstrometricPosition.html#a99e7e7d64227a3394723568a73334e9e"/>
           <topic label="system_type" href="classsupernovas_1_1AstrometricPosition.html#afc7f5368a8fcdeea835db2c1617b2022"/>
+          <topic label="to_equatorial" href="group__equatorial.html#ga0e8a6330b443d3f9eaaeee7016d59777"/>
+          <topic label="to_interferometric" href="group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36"/>
           <topic label="to_string" href="classsupernovas_1_1AstrometricPosition.html#a95a3f74fbdfb734a19e520f71ae98d0a"/>
         </topic>
         <topic label="Calendar" href="classsupernovas_1_1Calendar.html">
@@ -1170,7 +1207,8 @@
           <topic label="operator/" href="classsupernovas_1_1Coordinate.html#abca5dea0e57561e564c5be11174f2693"/>
           <topic label="parallax" href="classsupernovas_1_1Coordinate.html#af862edb5c1eddd4451e1639e256cf1c1"/>
           <topic label="pc" href="classsupernovas_1_1Coordinate.html#ab0f236c74f41fd3ee004cc77f7452687"/>
-          <topic label="to_string" href="classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Coordinate.html#a0cf4f4b4eaff7c85c50e8b083e2539f0"/>
+          <topic label="to_string" href="classsupernovas_1_1Coordinate.html#af7002241f1407a01092aa9aa0b2db6a2"/>
         </topic>
         <topic label="Ecliptic" href="classsupernovas_1_1Ecliptic.html">
           <topic label="Ecliptic" href="classsupernovas_1_1Ecliptic.html#a822af8b9e6bb24c7f0c83ca740dc439d"/>
@@ -1187,13 +1225,13 @@
           <topic label="operator==" href="classsupernovas_1_1Ecliptic.html#aa30d882659dad848f4c0be01f0f08a68"/>
           <topic label="operator&gt;&gt;" href="classsupernovas_1_1Ecliptic.html#ab34beaf9d178f058ec6b813240cafd48"/>
           <topic label="system" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8"/>
-          <topic label="to_equatorial" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3"/>
-          <topic label="to_galactic" href="group__nonequatorial.html#ga6be266741f04bb666e9b04deeaca5769"/>
+          <topic label="to_equatorial" href="classsupernovas_1_1Ecliptic.html#acea27eeec615359be97fab4372061c65"/>
+          <topic label="to_galactic" href="classsupernovas_1_1Ecliptic.html#a6be266741f04bb666e9b04deeaca5769"/>
           <topic label="to_icrs" href="classsupernovas_1_1Ecliptic.html#a6a0cfeb643b055e65c48a57c2c624227"/>
           <topic label="to_j2000" href="classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582"/>
           <topic label="to_mod" href="classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47"/>
           <topic label="to_string" href="classsupernovas_1_1Ecliptic.html#a6f3453f8bd380ee096834cc38985299d"/>
-          <topic label="to_system" href="classsupernovas_1_1Ecliptic.html#ab078048d3728c4cf4d164b77d57f9c5f"/>
+          <topic label="to_system" href="classsupernovas_1_1Ecliptic.html#ac468f153f58b25ca2e305fa607997dc3"/>
           <topic label="to_tod" href="classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d"/>
         </topic>
         <topic label="EOP" href="classsupernovas_1_1EOP.html">
@@ -1230,7 +1268,7 @@
           <topic label="system" href="classsupernovas_1_1Equatorial.html#a6a19445d6302007ebb6e321151599c46"/>
           <topic label="system_type" href="classsupernovas_1_1Equatorial.html#a0ed912a979ffb625f8766694e6d0bdc1"/>
           <topic label="to_cirs" href="classsupernovas_1_1Equatorial.html#ad946e6985b8d089e6e9d017631617d14"/>
-          <topic label="to_ecliptic" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd"/>
+          <topic label="to_ecliptic" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b"/>
           <topic label="to_galactic" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526"/>
           <topic label="to_hip" href="classsupernovas_1_1Equatorial.html#a084ea74c4e83b73ef43a43e273770270"/>
           <topic label="to_icrs" href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864"/>
@@ -1238,7 +1276,7 @@
           <topic label="to_mod" href="classsupernovas_1_1Equatorial.html#ad8484d48ecc0922a602c23f8fd4a9092"/>
           <topic label="to_mod_at_besselian_epoch" href="classsupernovas_1_1Equatorial.html#a0529a5acdb0015a4c195858da3524c76"/>
           <topic label="to_string" href="classsupernovas_1_1Equatorial.html#a32bfe60a4d887c5b659720756a3b6006"/>
-          <topic label="to_system" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086"/>
+          <topic label="to_system" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0"/>
           <topic label="to_tod" href="classsupernovas_1_1Equatorial.html#ab5c1c9d9c14fe35a6cf7e542ce87343b"/>
         </topic>
         <topic label="EquatorialTrack" href="classsupernovas_1_1EquatorialTrack.html">
@@ -1289,16 +1327,16 @@
           <topic label="equals" href="classsupernovas_1_1Galactic.html#a9c84c27b2d4926fab89cfd13f8983ca4"/>
           <topic label="operator!=" href="classsupernovas_1_1Galactic.html#afc45bc27fb00d28df964ad23cef41bcb"/>
           <topic label="operator==" href="classsupernovas_1_1Galactic.html#a0f9bf04fae88e2f67ec4ffc727a300a0"/>
-          <topic label="to_ecliptic" href="group__nonequatorial.html#ga3b6d652ed174bcf1be08cae63b061b21"/>
-          <topic label="to_equatorial" href="group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99"/>
+          <topic label="to_ecliptic" href="classsupernovas_1_1Galactic.html#a3b6d652ed174bcf1be08cae63b061b21"/>
+          <topic label="to_equatorial" href="classsupernovas_1_1Galactic.html#a730750345a8ea40b0af9e5b9c60bfd99"/>
           <topic label="to_string" href="classsupernovas_1_1Galactic.html#a2a1d58fe6cb7610c91d11517c3b6c021"/>
         </topic>
         <topic label="GeocentricObserver" href="classsupernovas_1_1GeocentricObserver.html">
           <topic label="GeocentricObserver" href="classsupernovas_1_1GeocentricObserver.html#a60091b8caa93724af5a5e8c976a7f1ed"/>
           <topic label="GeocentricObserver" href="classsupernovas_1_1GeocentricObserver.html#aeedaaf768920eea598deae2d210a6235"/>
           <topic label="copy" href="classsupernovas_1_1GeocentricObserver.html#ae578757821ffde79329e535e54e45b28"/>
-          <topic label="geocentric_position" href="classsupernovas_1_1GeocentricObserver.html#a92fa620b6e585bd3b39f2d6916f9dbe7"/>
-          <topic label="geocentric_velocity" href="classsupernovas_1_1GeocentricObserver.html#aa89491c2b0ba0615fe8cdc84008482fc"/>
+          <topic label="gcrs_position" href="classsupernovas_1_1GeocentricObserver.html#a293c24268408aba93899f3cf0937db5b"/>
+          <topic label="gcrs_velocity" href="classsupernovas_1_1GeocentricObserver.html#a220c1019edab5f90502c3ae5141d886e"/>
           <topic label="is_geocentric" href="classsupernovas_1_1GeocentricObserver.html#a41440873d5710e13571ba76f316da510"/>
           <topic label="to_string" href="classsupernovas_1_1GeocentricObserver.html#af587b52511d647b46951511b2fa3f472"/>
         </topic>
@@ -1308,14 +1346,19 @@
           <topic label="GeodeticObserver" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445"/>
           <topic label="copy" href="classsupernovas_1_1GeodeticObserver.html#a2efc7112c0b475e84aa94219d77b960b"/>
           <topic label="enu_velocity" href="classsupernovas_1_1GeodeticObserver.html#a9a65457117d1ae66096805c92e66767b"/>
-          <topic label="eop" href="classsupernovas_1_1GeodeticObserver.html#ac49ab6acc25e7dd026228655ceae5df4"/>
+          <topic label="eop_at" href="classsupernovas_1_1GeodeticObserver.html#a66c8d9adc7dad77300f861899866e3cf"/>
+          <topic label="gcrs_position_at" href="group__geometric.html#gaa611c71d2b1150452cb203455ffdc013"/>
+          <topic label="gcrs_velocity_at" href="group__geometric.html#gad53631f865c62ee8cb8c535be22ed180"/>
           <topic label="is_geodetic" href="classsupernovas_1_1GeodeticObserver.html#a9f60da5e45c61acedbcd84333507c29e"/>
           <topic label="itrs_velocity" href="classsupernovas_1_1GeodeticObserver.html#a84a0187e4e74e9a51122a41493e80b09"/>
+          <topic label="mean_eop" href="classsupernovas_1_1GeodeticObserver.html#a4f64c1064ca99efcb87e4c0b399c004a"/>
           <topic label="site" href="classsupernovas_1_1GeodeticObserver.html#a31a5dac606725a7730fad04b5f0e8b5b"/>
+          <topic label="to_geocentric_at" href="classsupernovas_1_1GeodeticObserver.html#abdc0c77266d40efcd665b353b4a06fc4"/>
           <topic label="to_string" href="classsupernovas_1_1GeodeticObserver.html#a33aee6eb9517ac8c0961de8f9072a61d"/>
         </topic>
         <topic label="Geometric" href="classsupernovas_1_1Geometric.html">
           <topic label="Geometric" href="classsupernovas_1_1Geometric.html#aa83e4bb4c2b6536cd21176e846270432"/>
+          <topic label="distance" href="classsupernovas_1_1Geometric.html#acd3414c999c4def1460214ded38fee23"/>
           <topic label="ecliptic" href="group__nonequatorial.html#ga93ec5fed0411781a11cd3c30f256462c"/>
           <topic label="equatorial" href="group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257"/>
           <topic label="frame" href="classsupernovas_1_1Geometric.html#ae50d0c332eca559038ac15bb76a1458d"/>
@@ -1356,6 +1399,21 @@
           <topic label="HorizontalTrack" href="classsupernovas_1_1HorizontalTrack.html#a03a3318119a3f77db23cbd8fc0171632"/>
           <topic label="projected_at" href="classsupernovas_1_1HorizontalTrack.html#ac81fc4f94c292ff2a92cafd1a7404fd7"/>
         </topic>
+        <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html">
+          <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html#a7e9c0ca7daa0a70ff05ed8a7dffbb969"/>
+          <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html#a1c660bf9bc042802f3880c992da1bc0f"/>
+          <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html#a6c70086451a96d3055e9ee1f5d9f61ab"/>
+          <topic label="equals" href="classsupernovas_1_1Interferometric.html#a33f65ad7f0ebd05b72bf3c96ac55c751"/>
+          <topic label="geometric_delay" href="classsupernovas_1_1Interferometric.html#a0caf2a7bdd5e33ad308cf110efdf71b6"/>
+          <topic label="operator!=" href="classsupernovas_1_1Interferometric.html#a732c94884500274ab30ce90181caa8a6"/>
+          <topic label="operator+" href="classsupernovas_1_1Interferometric.html#a3e7d2c6c0717e65c480875769b9c4a11"/>
+          <topic label="operator-" href="classsupernovas_1_1Interferometric.html#aca4cba4dd5d57893b18dd096ff898931"/>
+          <topic label="operator==" href="classsupernovas_1_1Interferometric.html#a36e14e33618177e8bfa6708d4df28d7e"/>
+          <topic label="to_string" href="classsupernovas_1_1Interferometric.html#a736e48afb83ea51f7a819e78ceeb0962"/>
+          <topic label="u" href="classsupernovas_1_1Interferometric.html#ae6fb0bb29fb7f71a28f110831a73214c"/>
+          <topic label="v" href="classsupernovas_1_1Interferometric.html#a2b44e2714041b5ccd8a05b579a98cfa3"/>
+          <topic label="w" href="classsupernovas_1_1Interferometric.html#a1b71f65844129ff291699c759dcb2a1e"/>
+        </topic>
         <topic label="Interval" href="classsupernovas_1_1Interval.html">
           <topic label="Interval" href="classsupernovas_1_1Interval.html#a19eebc4e2f6f20bc28fb3e56db66fb60"/>
           <topic label="days" href="classsupernovas_1_1Interval.html#a3eb33d55e5c5a4763b65a850d4ee124d"/>
@@ -1373,8 +1431,9 @@
           <topic label="operator-" href="classsupernovas_1_1Interval.html#a2b229b8e5d7d900ce07eb96120c35ff7"/>
           <topic label="operator==" href="classsupernovas_1_1Interval.html#affee4933e52aa3b61d59a4f716cd33ba"/>
           <topic label="seconds" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Interval.html#a6d2e8cfd7453d2c4b0598afbc006f22f"/>
           <topic label="timescale" href="classsupernovas_1_1Interval.html#a12e5f716d3da4873be848d4487735dee"/>
-          <topic label="to_string" href="classsupernovas_1_1Interval.html#a958f0ef65b6a16b8a9f3d60ea2a1a221"/>
+          <topic label="to_string" href="classsupernovas_1_1Interval.html#ae4795edc09b8b84b4a815f3c238bcf38"/>
           <topic label="to_timescale" href="classsupernovas_1_1Interval.html#a00a7a7eaeb23bc1ec831cd7414c5027a"/>
           <topic label="weeks" href="classsupernovas_1_1Interval.html#a110c6b6fbed14d27791b4c3379491547"/>
           <topic label="years" href="classsupernovas_1_1Interval.html#ade377a82ccf6542288c49956408d9315"/>
@@ -1385,9 +1444,12 @@
           <topic label="_novas_observer" href="classsupernovas_1_1Observer.html#a06604bddb755e5070caeefb4306de037"/>
           <topic label="copy" href="classsupernovas_1_1Observer.html#ab96ce405d6c8cbe8d90e50c8e4da2e42"/>
           <topic label="frame_at" href="group__frame.html#gadd24c03a86837e10783af06be02a8b21"/>
+          <topic label="gcrs_position_at" href="group__geometric.html#gadb604ebb6581bd982943b203a89677aa"/>
+          <topic label="gcrs_velocity_at" href="group__geometric.html#ga8cd84f51fedc118c9ed6f8c14f813fbd"/>
           <topic label="is_geocentric" href="classsupernovas_1_1Observer.html#a990a78463a20d985f50b6e86ee8bf7e5"/>
           <topic label="is_geodetic" href="classsupernovas_1_1Observer.html#aa5d4f5181e308afd56b517038f1f8720"/>
           <topic label="reduced_accuracy_frame_at" href="group__frame.html#gae636a2863ee350bd67d5d53c19a694ba"/>
+          <topic label="to_interferometric" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629"/>
           <topic label="to_string" href="classsupernovas_1_1Observer.html#a6976e04ac1fe70d10ac5b9966ff73c8b"/>
           <topic label="type" href="classsupernovas_1_1Observer.html#a68214f28fee06df8aa28478475eccf04"/>
           <topic label="_observer" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b"/>
@@ -1469,7 +1531,6 @@
           <topic label="Position" href="classsupernovas_1_1Position.html#abac0617b150aa85cea17e9dfec1aac78"/>
           <topic label="Position" href="classsupernovas_1_1Position.html#afdd4d47f9e694ef44aa7b8719f7a6b45"/>
           <topic label="Position" href="classsupernovas_1_1Position.html#aad6baaf00a81c50b8e744f7ab21df205"/>
-          <topic label="as_astrometric" href="classsupernovas_1_1Position.html#ac1e9d20f0b57a1d86eb7ced02c787395"/>
           <topic label="distance" href="classsupernovas_1_1Position.html#a578e1552f7e48d5f0029e451bfe9342c"/>
           <topic label="equals" href="classsupernovas_1_1Position.html#af5a5f447de9406d87925400351a527a5"/>
           <topic label="inv" href="classsupernovas_1_1Position.html#aa9f09750127bb0b33d34ef0a01156847"/>
@@ -1478,8 +1539,12 @@
           <topic label="operator-" href="classsupernovas_1_1Position.html#a97b9b8f521c1843f640842a4c6eb5c8c"/>
           <topic label="operator/" href="classsupernovas_1_1Position.html#ab424d6ee655671b37c35e678bbfc8cce"/>
           <topic label="operator==" href="classsupernovas_1_1Position.html#ab28229ab97d018e87efddbb06cbf2bdb"/>
+          <topic label="to_astrometric" href="classsupernovas_1_1Position.html#ad9ca593b0c5ce9fe51f2334f41274183"/>
           <topic label="to_spherical" href="classsupernovas_1_1Position.html#a8158b16437d04f06a8f4e5213ca82a92"/>
           <topic label="to_string" href="classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984"/>
+          <topic label="x" href="classsupernovas_1_1Position.html#a470aaa5d33b653944778cb9e7296349b"/>
+          <topic label="y" href="classsupernovas_1_1Position.html#ab4cbdca69a14093ce6bfe4f0f237a5f7"/>
+          <topic label="z" href="classsupernovas_1_1Position.html#a0de42fa3ff4d852b9adfc6c59c0df920"/>
         </topic>
         <topic label="Pressure" href="classsupernovas_1_1Pressure.html">
           <topic label="atm" href="classsupernovas_1_1Pressure.html#ac76a94c028ecfdb29b0a66fdd9f28220"/>
@@ -1488,8 +1553,19 @@
           <topic label="kPa" href="classsupernovas_1_1Pressure.html#af9d2e95aebba41d40fb338155a29d0ff"/>
           <topic label="mbar" href="classsupernovas_1_1Pressure.html#a86b184ea2c33af4055f32ad3ff7e75f8"/>
           <topic label="Pa" href="classsupernovas_1_1Pressure.html#ae7770914f59dabc4848148032d136515"/>
-          <topic label="to_string" href="classsupernovas_1_1Pressure.html#a12eb934c910cc590369c3efa20679bb1"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Pressure.html#ae019c0c01c86efafbbc346bffd7775d1"/>
+          <topic label="to_string" href="classsupernovas_1_1Pressure.html#ae759aee7c292a9206440a232c6f84f28"/>
           <topic label="torr" href="classsupernovas_1_1Pressure.html#a57dbcdc6261d85b915d1e1a32725a7a4"/>
+        </topic>
+        <topic label="Scalar" href="classsupernovas_1_1Scalar.html">
+          <topic label="Scalar" href="classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514"/>
+          <topic label="Scalar" href="classsupernovas_1_1Scalar.html#a5c317ff1c67f0312b8c6023ca3f3def0"/>
+          <topic label="~Scalar" href="classsupernovas_1_1Scalar.html#ad6ba6d2c13c7c4df083da1ecb0852c3a"/>
+          <topic label="equals" href="classsupernovas_1_1Scalar.html#a6448cf148c3d70d91d0d36a3fd8fed7b"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Scalar.html#adfdc9060344c26788490a6dcae617dea"/>
+          <topic label="SI_value" href="classsupernovas_1_1Scalar.html#a75736196388337d2abc9ba1b50cde736"/>
+          <topic label="to_string" href="classsupernovas_1_1Scalar.html#a57a227e1a36070e68e57b8debc84e9ab"/>
+          <topic label="_value" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f"/>
         </topic>
         <topic label="ScalarEvolution" href="classsupernovas_1_1ScalarEvolution.html">
           <topic label="ScalarEvolution" href="classsupernovas_1_1ScalarEvolution.html#a0862991291dc7b1bf375806fdd1e369d"/>
@@ -1515,7 +1591,8 @@
           <topic label="operator==" href="classsupernovas_1_1ScalarVelocity.html#a21cc9e0039e5679ac018506afb7988db"/>
           <topic label="operator[]" href="classsupernovas_1_1ScalarVelocity.html#a375326df7ac6874e583b075b32ef8062"/>
           <topic label="redshift" href="classsupernovas_1_1ScalarVelocity.html#a3e9f2e43aef64460fe591c4786cce141"/>
-          <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85"/>
+          <topic label="SI_unit" href="classsupernovas_1_1ScalarVelocity.html#a39fce3a6b6f7241a19ef352369133249"/>
+          <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#aa88204f78ca6e4abad63413a842970e9"/>
           <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#aff4009979f33f3c12b6e585010dceafb"/>
           <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#a110e032d258bec4e4341003a736d0b5b"/>
         </topic>
@@ -1526,6 +1603,7 @@
           <topic label="Site" href="classsupernovas_1_1Site.html#ae3c0e9347db58370576e913e60be374d"/>
           <topic label="_on_surface" href="classsupernovas_1_1Site.html#ab2c362564b314d64ef26bf6bf97c9984"/>
           <topic label="altitude" href="classsupernovas_1_1Site.html#a443da3a82bde66f22240b3d6e91fa577"/>
+          <topic label="average_weather" href="group__refract.html#ga90e61dee02f1d0b082bfb4e43fdb850b"/>
           <topic label="enu_to_itrs" href="classsupernovas_1_1Site.html#a73daad5121d46a112c0e73377f851073"/>
           <topic label="enu_to_itrs" href="classsupernovas_1_1Site.html#a9601544186a4f015da31840d2a3dcc8d"/>
           <topic label="equals" href="classsupernovas_1_1Site.html#ae5e869ca76595e10505865f571203eac"/>
@@ -1551,7 +1629,7 @@
         </topic>
         <topic label="SolarSystemSource" href="classsupernovas_1_1SolarSystemSource.html">
           <topic label="SolarSystemSource" href="classsupernovas_1_1SolarSystemSource.html#a192c6969f37446887886c2425cf50ec1"/>
-          <topic label="geometric_at" href="classsupernovas_1_1SolarSystemSource.html#ac587aa4a41bda5647ad020c82319d43a"/>
+          <topic label="barycentric_at" href="group__geometric.html#ga42b4fe858ef5da0ae538e676f2bb7ca8"/>
           <topic label="helio_distance" href="classsupernovas_1_1SolarSystemSource.html#a63fda9415eea42ffa1e87e5d85e221df"/>
           <topic label="helio_rate" href="classsupernovas_1_1SolarSystemSource.html#acb725151c7561dcbb19d8e6e3b18a52f"/>
           <topic label="solar_illumination" href="classsupernovas_1_1SolarSystemSource.html#a60c9efbfb902ea476b34734966b8c5ab"/>
@@ -1595,7 +1673,8 @@
           <topic label="celsius" href="classsupernovas_1_1Temperature.html#a61afe4ec08615a30efefcc5513827f65"/>
           <topic label="farenheit" href="classsupernovas_1_1Temperature.html#aa9a2354a7fb058c412270a95e1a964de"/>
           <topic label="kelvin" href="classsupernovas_1_1Temperature.html#ac848561c69d13def40510d3aba529bec"/>
-          <topic label="to_string" href="classsupernovas_1_1Temperature.html#a389aae9e239a426cded558caaff814df"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Temperature.html#ab64b24b58d12c752e750a460c96510f8"/>
+          <topic label="to_string" href="classsupernovas_1_1Temperature.html#ae26a9c37b273842ca4abd37e260f0286"/>
         </topic>
         <topic label="Time" href="classsupernovas_1_1Time.html">
           <topic label="Time" href="classsupernovas_1_1Time.html#a97d9b5141a32888f67d6d2c5deea6367"/>
@@ -1712,9 +1791,6 @@
           <topic label="theta" href="classsupernovas_1_1Vector.html#aa5cd444d1ad1aecfae916a9a73ffceb2"/>
           <topic label="to_string" href="classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f"/>
           <topic label="unit_vector" href="classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52"/>
-          <topic label="x" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e"/>
-          <topic label="y" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f"/>
-          <topic label="z" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08"/>
           <topic label="_component" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18"/>
         </topic>
         <topic label="Velocity" href="classsupernovas_1_1Velocity.html">
@@ -1731,6 +1807,9 @@
           <topic label="to_string" href="classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c"/>
           <topic label="travel" href="classsupernovas_1_1Velocity.html#abe62c156f9ab61154ec48b894be1cc05"/>
           <topic label="travel" href="classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297"/>
+          <topic label="x" href="classsupernovas_1_1Velocity.html#a1f63d95df40f71b85c51cc4a6f57b8d4"/>
+          <topic label="y" href="classsupernovas_1_1Velocity.html#a1a4e51da1cf116f95f9a1bb8dd28e826"/>
+          <topic label="z" href="classsupernovas_1_1Velocity.html#ad034a48f76943c43dd9899aa456791dd"/>
         </topic>
         <topic label="Weather" href="classsupernovas_1_1Weather.html">
           <topic label="Weather" href="classsupernovas_1_1Weather.html#afa980c7de58a62254a6b0c4bd018d48e"/>
@@ -1753,7 +1832,6 @@
     <topic label="Class List" href="annotated.html">
       <topic label="supernovas" href="namespacesupernovas.html">
         <topic label="Angle" href="classsupernovas_1_1Angle.html">
-          <topic label="~Angle" href="classsupernovas_1_1Angle.html#a36ce17ee438a8d128af4f60c1f4ce548"/>
           <topic label="Angle" href="classsupernovas_1_1Angle.html#ada81acd45becf847f82fa353523b977c"/>
           <topic label="Angle" href="classsupernovas_1_1Angle.html#a0af20b06639e0cee8a24cde361d80f88"/>
           <topic label="arcmin" href="classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf"/>
@@ -1767,9 +1845,10 @@
           <topic label="operator-" href="classsupernovas_1_1Angle.html#a61870ec8a57c3d67c14a5ebf508794f3"/>
           <topic label="operator==" href="classsupernovas_1_1Angle.html#a73d4cf5daf3c1fdaf81940b3a2ba4551"/>
           <topic label="rad" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04"/>
-          <topic label="to_string" href="classsupernovas_1_1Angle.html#a37f5d6a238897cf0a3f016d6c42b9099"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Angle.html#a5e1069581348e342fb2f4d7b0ffb9b77"/>
+          <topic label="to_string" href="classsupernovas_1_1Angle.html#ad59ac7f3877e6f1728789c300eda3bd7"/>
+          <topic label="to_string" href="classsupernovas_1_1Angle.html#aa43390f74139176aa53a3dd26d5b1818"/>
           <topic label="uas" href="classsupernovas_1_1Angle.html#a39ee92c930646bae2fa5224132ac4804"/>
-          <topic label="_rad" href="classsupernovas_1_1Angle.html#af6e6db865035c41e06774db14657d444"/>
         </topic>
         <topic label="Apparent" href="classsupernovas_1_1Apparent.html">
           <topic label="_sky_pos" href="classsupernovas_1_1Apparent.html#aba4760f7cee680f4310daa5b5d83e508"/>
@@ -1788,13 +1867,14 @@
         </topic>
         <topic label="AstrometricPosition" href="classsupernovas_1_1AstrometricPosition.html">
           <topic label="AstrometricPosition" href="classsupernovas_1_1AstrometricPosition.html#ad3222f81abdac05fbf1a9d23d2de1895"/>
-          <topic label="as_equatorial" href="group__equatorial.html#ga90c00e6b66260a85bd49b8fdb1d61051"/>
           <topic label="emit_time" href="group__time.html#ga0dc237a45a3138f480b47c12efd7514b"/>
           <topic label="obs_time" href="group__time.html#ga3c5993440d5413726a8c16abcebd9397"/>
           <topic label="reference" href="classsupernovas_1_1AstrometricPosition.html#a812f65f637969fa3049ce897690d4ddb"/>
           <topic label="referenced_to" href="classsupernovas_1_1AstrometricPosition.html#ad22e40b2d1ce13900451bf303c737b56"/>
           <topic label="referenced_to_ssb" href="classsupernovas_1_1AstrometricPosition.html#a99e7e7d64227a3394723568a73334e9e"/>
           <topic label="system_type" href="classsupernovas_1_1AstrometricPosition.html#afc7f5368a8fcdeea835db2c1617b2022"/>
+          <topic label="to_equatorial" href="group__equatorial.html#ga0e8a6330b443d3f9eaaeee7016d59777"/>
+          <topic label="to_interferometric" href="group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36"/>
           <topic label="to_string" href="classsupernovas_1_1AstrometricPosition.html#a95a3f74fbdfb734a19e520f71ae98d0a"/>
         </topic>
         <topic label="Calendar" href="classsupernovas_1_1Calendar.html">
@@ -1894,7 +1974,8 @@
           <topic label="operator/" href="classsupernovas_1_1Coordinate.html#abca5dea0e57561e564c5be11174f2693"/>
           <topic label="parallax" href="classsupernovas_1_1Coordinate.html#af862edb5c1eddd4451e1639e256cf1c1"/>
           <topic label="pc" href="classsupernovas_1_1Coordinate.html#ab0f236c74f41fd3ee004cc77f7452687"/>
-          <topic label="to_string" href="classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Coordinate.html#a0cf4f4b4eaff7c85c50e8b083e2539f0"/>
+          <topic label="to_string" href="classsupernovas_1_1Coordinate.html#af7002241f1407a01092aa9aa0b2db6a2"/>
         </topic>
         <topic label="Ecliptic" href="classsupernovas_1_1Ecliptic.html">
           <topic label="Ecliptic" href="classsupernovas_1_1Ecliptic.html#a822af8b9e6bb24c7f0c83ca740dc439d"/>
@@ -1911,13 +1992,13 @@
           <topic label="operator==" href="classsupernovas_1_1Ecliptic.html#aa30d882659dad848f4c0be01f0f08a68"/>
           <topic label="operator&gt;&gt;" href="classsupernovas_1_1Ecliptic.html#ab34beaf9d178f058ec6b813240cafd48"/>
           <topic label="system" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8"/>
-          <topic label="to_equatorial" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3"/>
-          <topic label="to_galactic" href="group__nonequatorial.html#ga6be266741f04bb666e9b04deeaca5769"/>
+          <topic label="to_equatorial" href="classsupernovas_1_1Ecliptic.html#acea27eeec615359be97fab4372061c65"/>
+          <topic label="to_galactic" href="classsupernovas_1_1Ecliptic.html#a6be266741f04bb666e9b04deeaca5769"/>
           <topic label="to_icrs" href="classsupernovas_1_1Ecliptic.html#a6a0cfeb643b055e65c48a57c2c624227"/>
           <topic label="to_j2000" href="classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582"/>
           <topic label="to_mod" href="classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47"/>
           <topic label="to_string" href="classsupernovas_1_1Ecliptic.html#a6f3453f8bd380ee096834cc38985299d"/>
-          <topic label="to_system" href="classsupernovas_1_1Ecliptic.html#ab078048d3728c4cf4d164b77d57f9c5f"/>
+          <topic label="to_system" href="classsupernovas_1_1Ecliptic.html#ac468f153f58b25ca2e305fa607997dc3"/>
           <topic label="to_tod" href="classsupernovas_1_1Ecliptic.html#a04ee64b71415e5d39a045be7523fa86d"/>
         </topic>
         <topic label="EOP" href="classsupernovas_1_1EOP.html">
@@ -1954,7 +2035,7 @@
           <topic label="system" href="classsupernovas_1_1Equatorial.html#a6a19445d6302007ebb6e321151599c46"/>
           <topic label="system_type" href="classsupernovas_1_1Equatorial.html#a0ed912a979ffb625f8766694e6d0bdc1"/>
           <topic label="to_cirs" href="classsupernovas_1_1Equatorial.html#ad946e6985b8d089e6e9d017631617d14"/>
-          <topic label="to_ecliptic" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd"/>
+          <topic label="to_ecliptic" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b"/>
           <topic label="to_galactic" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526"/>
           <topic label="to_hip" href="classsupernovas_1_1Equatorial.html#a084ea74c4e83b73ef43a43e273770270"/>
           <topic label="to_icrs" href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864"/>
@@ -1962,7 +2043,7 @@
           <topic label="to_mod" href="classsupernovas_1_1Equatorial.html#ad8484d48ecc0922a602c23f8fd4a9092"/>
           <topic label="to_mod_at_besselian_epoch" href="classsupernovas_1_1Equatorial.html#a0529a5acdb0015a4c195858da3524c76"/>
           <topic label="to_string" href="classsupernovas_1_1Equatorial.html#a32bfe60a4d887c5b659720756a3b6006"/>
-          <topic label="to_system" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086"/>
+          <topic label="to_system" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0"/>
           <topic label="to_tod" href="classsupernovas_1_1Equatorial.html#ab5c1c9d9c14fe35a6cf7e542ce87343b"/>
         </topic>
         <topic label="EquatorialTrack" href="classsupernovas_1_1EquatorialTrack.html">
@@ -2013,16 +2094,16 @@
           <topic label="equals" href="classsupernovas_1_1Galactic.html#a9c84c27b2d4926fab89cfd13f8983ca4"/>
           <topic label="operator!=" href="classsupernovas_1_1Galactic.html#afc45bc27fb00d28df964ad23cef41bcb"/>
           <topic label="operator==" href="classsupernovas_1_1Galactic.html#a0f9bf04fae88e2f67ec4ffc727a300a0"/>
-          <topic label="to_ecliptic" href="group__nonequatorial.html#ga3b6d652ed174bcf1be08cae63b061b21"/>
-          <topic label="to_equatorial" href="group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99"/>
+          <topic label="to_ecliptic" href="classsupernovas_1_1Galactic.html#a3b6d652ed174bcf1be08cae63b061b21"/>
+          <topic label="to_equatorial" href="classsupernovas_1_1Galactic.html#a730750345a8ea40b0af9e5b9c60bfd99"/>
           <topic label="to_string" href="classsupernovas_1_1Galactic.html#a2a1d58fe6cb7610c91d11517c3b6c021"/>
         </topic>
         <topic label="GeocentricObserver" href="classsupernovas_1_1GeocentricObserver.html">
           <topic label="GeocentricObserver" href="classsupernovas_1_1GeocentricObserver.html#a60091b8caa93724af5a5e8c976a7f1ed"/>
           <topic label="GeocentricObserver" href="classsupernovas_1_1GeocentricObserver.html#aeedaaf768920eea598deae2d210a6235"/>
           <topic label="copy" href="classsupernovas_1_1GeocentricObserver.html#ae578757821ffde79329e535e54e45b28"/>
-          <topic label="geocentric_position" href="classsupernovas_1_1GeocentricObserver.html#a92fa620b6e585bd3b39f2d6916f9dbe7"/>
-          <topic label="geocentric_velocity" href="classsupernovas_1_1GeocentricObserver.html#aa89491c2b0ba0615fe8cdc84008482fc"/>
+          <topic label="gcrs_position" href="classsupernovas_1_1GeocentricObserver.html#a293c24268408aba93899f3cf0937db5b"/>
+          <topic label="gcrs_velocity" href="classsupernovas_1_1GeocentricObserver.html#a220c1019edab5f90502c3ae5141d886e"/>
           <topic label="is_geocentric" href="classsupernovas_1_1GeocentricObserver.html#a41440873d5710e13571ba76f316da510"/>
           <topic label="to_string" href="classsupernovas_1_1GeocentricObserver.html#af587b52511d647b46951511b2fa3f472"/>
         </topic>
@@ -2032,14 +2113,19 @@
           <topic label="GeodeticObserver" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445"/>
           <topic label="copy" href="classsupernovas_1_1GeodeticObserver.html#a2efc7112c0b475e84aa94219d77b960b"/>
           <topic label="enu_velocity" href="classsupernovas_1_1GeodeticObserver.html#a9a65457117d1ae66096805c92e66767b"/>
-          <topic label="eop" href="classsupernovas_1_1GeodeticObserver.html#ac49ab6acc25e7dd026228655ceae5df4"/>
+          <topic label="eop_at" href="classsupernovas_1_1GeodeticObserver.html#a66c8d9adc7dad77300f861899866e3cf"/>
+          <topic label="gcrs_position_at" href="group__geometric.html#gaa611c71d2b1150452cb203455ffdc013"/>
+          <topic label="gcrs_velocity_at" href="group__geometric.html#gad53631f865c62ee8cb8c535be22ed180"/>
           <topic label="is_geodetic" href="classsupernovas_1_1GeodeticObserver.html#a9f60da5e45c61acedbcd84333507c29e"/>
           <topic label="itrs_velocity" href="classsupernovas_1_1GeodeticObserver.html#a84a0187e4e74e9a51122a41493e80b09"/>
+          <topic label="mean_eop" href="classsupernovas_1_1GeodeticObserver.html#a4f64c1064ca99efcb87e4c0b399c004a"/>
           <topic label="site" href="classsupernovas_1_1GeodeticObserver.html#a31a5dac606725a7730fad04b5f0e8b5b"/>
+          <topic label="to_geocentric_at" href="classsupernovas_1_1GeodeticObserver.html#abdc0c77266d40efcd665b353b4a06fc4"/>
           <topic label="to_string" href="classsupernovas_1_1GeodeticObserver.html#a33aee6eb9517ac8c0961de8f9072a61d"/>
         </topic>
         <topic label="Geometric" href="classsupernovas_1_1Geometric.html">
           <topic label="Geometric" href="classsupernovas_1_1Geometric.html#aa83e4bb4c2b6536cd21176e846270432"/>
+          <topic label="distance" href="classsupernovas_1_1Geometric.html#acd3414c999c4def1460214ded38fee23"/>
           <topic label="ecliptic" href="group__nonequatorial.html#ga93ec5fed0411781a11cd3c30f256462c"/>
           <topic label="equatorial" href="group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257"/>
           <topic label="frame" href="classsupernovas_1_1Geometric.html#ae50d0c332eca559038ac15bb76a1458d"/>
@@ -2080,6 +2166,21 @@
           <topic label="HorizontalTrack" href="classsupernovas_1_1HorizontalTrack.html#a03a3318119a3f77db23cbd8fc0171632"/>
           <topic label="projected_at" href="classsupernovas_1_1HorizontalTrack.html#ac81fc4f94c292ff2a92cafd1a7404fd7"/>
         </topic>
+        <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html">
+          <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html#a7e9c0ca7daa0a70ff05ed8a7dffbb969"/>
+          <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html#a1c660bf9bc042802f3880c992da1bc0f"/>
+          <topic label="Interferometric" href="classsupernovas_1_1Interferometric.html#a6c70086451a96d3055e9ee1f5d9f61ab"/>
+          <topic label="equals" href="classsupernovas_1_1Interferometric.html#a33f65ad7f0ebd05b72bf3c96ac55c751"/>
+          <topic label="geometric_delay" href="classsupernovas_1_1Interferometric.html#a0caf2a7bdd5e33ad308cf110efdf71b6"/>
+          <topic label="operator!=" href="classsupernovas_1_1Interferometric.html#a732c94884500274ab30ce90181caa8a6"/>
+          <topic label="operator+" href="classsupernovas_1_1Interferometric.html#a3e7d2c6c0717e65c480875769b9c4a11"/>
+          <topic label="operator-" href="classsupernovas_1_1Interferometric.html#aca4cba4dd5d57893b18dd096ff898931"/>
+          <topic label="operator==" href="classsupernovas_1_1Interferometric.html#a36e14e33618177e8bfa6708d4df28d7e"/>
+          <topic label="to_string" href="classsupernovas_1_1Interferometric.html#a736e48afb83ea51f7a819e78ceeb0962"/>
+          <topic label="u" href="classsupernovas_1_1Interferometric.html#ae6fb0bb29fb7f71a28f110831a73214c"/>
+          <topic label="v" href="classsupernovas_1_1Interferometric.html#a2b44e2714041b5ccd8a05b579a98cfa3"/>
+          <topic label="w" href="classsupernovas_1_1Interferometric.html#a1b71f65844129ff291699c759dcb2a1e"/>
+        </topic>
         <topic label="Interval" href="classsupernovas_1_1Interval.html">
           <topic label="Interval" href="classsupernovas_1_1Interval.html#a19eebc4e2f6f20bc28fb3e56db66fb60"/>
           <topic label="days" href="classsupernovas_1_1Interval.html#a3eb33d55e5c5a4763b65a850d4ee124d"/>
@@ -2097,8 +2198,9 @@
           <topic label="operator-" href="classsupernovas_1_1Interval.html#a2b229b8e5d7d900ce07eb96120c35ff7"/>
           <topic label="operator==" href="classsupernovas_1_1Interval.html#affee4933e52aa3b61d59a4f716cd33ba"/>
           <topic label="seconds" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Interval.html#a6d2e8cfd7453d2c4b0598afbc006f22f"/>
           <topic label="timescale" href="classsupernovas_1_1Interval.html#a12e5f716d3da4873be848d4487735dee"/>
-          <topic label="to_string" href="classsupernovas_1_1Interval.html#a958f0ef65b6a16b8a9f3d60ea2a1a221"/>
+          <topic label="to_string" href="classsupernovas_1_1Interval.html#ae4795edc09b8b84b4a815f3c238bcf38"/>
           <topic label="to_timescale" href="classsupernovas_1_1Interval.html#a00a7a7eaeb23bc1ec831cd7414c5027a"/>
           <topic label="weeks" href="classsupernovas_1_1Interval.html#a110c6b6fbed14d27791b4c3379491547"/>
           <topic label="years" href="classsupernovas_1_1Interval.html#ade377a82ccf6542288c49956408d9315"/>
@@ -2109,9 +2211,12 @@
           <topic label="_novas_observer" href="classsupernovas_1_1Observer.html#a06604bddb755e5070caeefb4306de037"/>
           <topic label="copy" href="classsupernovas_1_1Observer.html#ab96ce405d6c8cbe8d90e50c8e4da2e42"/>
           <topic label="frame_at" href="group__frame.html#gadd24c03a86837e10783af06be02a8b21"/>
+          <topic label="gcrs_position_at" href="group__geometric.html#gadb604ebb6581bd982943b203a89677aa"/>
+          <topic label="gcrs_velocity_at" href="group__geometric.html#ga8cd84f51fedc118c9ed6f8c14f813fbd"/>
           <topic label="is_geocentric" href="classsupernovas_1_1Observer.html#a990a78463a20d985f50b6e86ee8bf7e5"/>
           <topic label="is_geodetic" href="classsupernovas_1_1Observer.html#aa5d4f5181e308afd56b517038f1f8720"/>
           <topic label="reduced_accuracy_frame_at" href="group__frame.html#gae636a2863ee350bd67d5d53c19a694ba"/>
+          <topic label="to_interferometric" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629"/>
           <topic label="to_string" href="classsupernovas_1_1Observer.html#a6976e04ac1fe70d10ac5b9966ff73c8b"/>
           <topic label="type" href="classsupernovas_1_1Observer.html#a68214f28fee06df8aa28478475eccf04"/>
           <topic label="_observer" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b"/>
@@ -2193,7 +2298,6 @@
           <topic label="Position" href="classsupernovas_1_1Position.html#abac0617b150aa85cea17e9dfec1aac78"/>
           <topic label="Position" href="classsupernovas_1_1Position.html#afdd4d47f9e694ef44aa7b8719f7a6b45"/>
           <topic label="Position" href="classsupernovas_1_1Position.html#aad6baaf00a81c50b8e744f7ab21df205"/>
-          <topic label="as_astrometric" href="classsupernovas_1_1Position.html#ac1e9d20f0b57a1d86eb7ced02c787395"/>
           <topic label="distance" href="classsupernovas_1_1Position.html#a578e1552f7e48d5f0029e451bfe9342c"/>
           <topic label="equals" href="classsupernovas_1_1Position.html#af5a5f447de9406d87925400351a527a5"/>
           <topic label="inv" href="classsupernovas_1_1Position.html#aa9f09750127bb0b33d34ef0a01156847"/>
@@ -2202,8 +2306,12 @@
           <topic label="operator-" href="classsupernovas_1_1Position.html#a97b9b8f521c1843f640842a4c6eb5c8c"/>
           <topic label="operator/" href="classsupernovas_1_1Position.html#ab424d6ee655671b37c35e678bbfc8cce"/>
           <topic label="operator==" href="classsupernovas_1_1Position.html#ab28229ab97d018e87efddbb06cbf2bdb"/>
+          <topic label="to_astrometric" href="classsupernovas_1_1Position.html#ad9ca593b0c5ce9fe51f2334f41274183"/>
           <topic label="to_spherical" href="classsupernovas_1_1Position.html#a8158b16437d04f06a8f4e5213ca82a92"/>
           <topic label="to_string" href="classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984"/>
+          <topic label="x" href="classsupernovas_1_1Position.html#a470aaa5d33b653944778cb9e7296349b"/>
+          <topic label="y" href="classsupernovas_1_1Position.html#ab4cbdca69a14093ce6bfe4f0f237a5f7"/>
+          <topic label="z" href="classsupernovas_1_1Position.html#a0de42fa3ff4d852b9adfc6c59c0df920"/>
         </topic>
         <topic label="Pressure" href="classsupernovas_1_1Pressure.html">
           <topic label="atm" href="classsupernovas_1_1Pressure.html#ac76a94c028ecfdb29b0a66fdd9f28220"/>
@@ -2212,8 +2320,19 @@
           <topic label="kPa" href="classsupernovas_1_1Pressure.html#af9d2e95aebba41d40fb338155a29d0ff"/>
           <topic label="mbar" href="classsupernovas_1_1Pressure.html#a86b184ea2c33af4055f32ad3ff7e75f8"/>
           <topic label="Pa" href="classsupernovas_1_1Pressure.html#ae7770914f59dabc4848148032d136515"/>
-          <topic label="to_string" href="classsupernovas_1_1Pressure.html#a12eb934c910cc590369c3efa20679bb1"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Pressure.html#ae019c0c01c86efafbbc346bffd7775d1"/>
+          <topic label="to_string" href="classsupernovas_1_1Pressure.html#ae759aee7c292a9206440a232c6f84f28"/>
           <topic label="torr" href="classsupernovas_1_1Pressure.html#a57dbcdc6261d85b915d1e1a32725a7a4"/>
+        </topic>
+        <topic label="Scalar" href="classsupernovas_1_1Scalar.html">
+          <topic label="Scalar" href="classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514"/>
+          <topic label="Scalar" href="classsupernovas_1_1Scalar.html#a5c317ff1c67f0312b8c6023ca3f3def0"/>
+          <topic label="~Scalar" href="classsupernovas_1_1Scalar.html#ad6ba6d2c13c7c4df083da1ecb0852c3a"/>
+          <topic label="equals" href="classsupernovas_1_1Scalar.html#a6448cf148c3d70d91d0d36a3fd8fed7b"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Scalar.html#adfdc9060344c26788490a6dcae617dea"/>
+          <topic label="SI_value" href="classsupernovas_1_1Scalar.html#a75736196388337d2abc9ba1b50cde736"/>
+          <topic label="to_string" href="classsupernovas_1_1Scalar.html#a57a227e1a36070e68e57b8debc84e9ab"/>
+          <topic label="_value" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f"/>
         </topic>
         <topic label="ScalarEvolution" href="classsupernovas_1_1ScalarEvolution.html">
           <topic label="ScalarEvolution" href="classsupernovas_1_1ScalarEvolution.html#a0862991291dc7b1bf375806fdd1e369d"/>
@@ -2239,7 +2358,8 @@
           <topic label="operator==" href="classsupernovas_1_1ScalarVelocity.html#a21cc9e0039e5679ac018506afb7988db"/>
           <topic label="operator[]" href="classsupernovas_1_1ScalarVelocity.html#a375326df7ac6874e583b075b32ef8062"/>
           <topic label="redshift" href="classsupernovas_1_1ScalarVelocity.html#a3e9f2e43aef64460fe591c4786cce141"/>
-          <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#abe34df58d2438a0aebd140637ce96a85"/>
+          <topic label="SI_unit" href="classsupernovas_1_1ScalarVelocity.html#a39fce3a6b6f7241a19ef352369133249"/>
+          <topic label="to_string" href="classsupernovas_1_1ScalarVelocity.html#aa88204f78ca6e4abad63413a842970e9"/>
           <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#aff4009979f33f3c12b6e585010dceafb"/>
           <topic label="travel" href="classsupernovas_1_1ScalarVelocity.html#a110e032d258bec4e4341003a736d0b5b"/>
         </topic>
@@ -2250,6 +2370,7 @@
           <topic label="Site" href="classsupernovas_1_1Site.html#ae3c0e9347db58370576e913e60be374d"/>
           <topic label="_on_surface" href="classsupernovas_1_1Site.html#ab2c362564b314d64ef26bf6bf97c9984"/>
           <topic label="altitude" href="classsupernovas_1_1Site.html#a443da3a82bde66f22240b3d6e91fa577"/>
+          <topic label="average_weather" href="group__refract.html#ga90e61dee02f1d0b082bfb4e43fdb850b"/>
           <topic label="enu_to_itrs" href="classsupernovas_1_1Site.html#a73daad5121d46a112c0e73377f851073"/>
           <topic label="enu_to_itrs" href="classsupernovas_1_1Site.html#a9601544186a4f015da31840d2a3dcc8d"/>
           <topic label="equals" href="classsupernovas_1_1Site.html#ae5e869ca76595e10505865f571203eac"/>
@@ -2275,7 +2396,7 @@
         </topic>
         <topic label="SolarSystemSource" href="classsupernovas_1_1SolarSystemSource.html">
           <topic label="SolarSystemSource" href="classsupernovas_1_1SolarSystemSource.html#a192c6969f37446887886c2425cf50ec1"/>
-          <topic label="geometric_at" href="classsupernovas_1_1SolarSystemSource.html#ac587aa4a41bda5647ad020c82319d43a"/>
+          <topic label="barycentric_at" href="group__geometric.html#ga42b4fe858ef5da0ae538e676f2bb7ca8"/>
           <topic label="helio_distance" href="classsupernovas_1_1SolarSystemSource.html#a63fda9415eea42ffa1e87e5d85e221df"/>
           <topic label="helio_rate" href="classsupernovas_1_1SolarSystemSource.html#acb725151c7561dcbb19d8e6e3b18a52f"/>
           <topic label="solar_illumination" href="classsupernovas_1_1SolarSystemSource.html#a60c9efbfb902ea476b34734966b8c5ab"/>
@@ -2319,7 +2440,8 @@
           <topic label="celsius" href="classsupernovas_1_1Temperature.html#a61afe4ec08615a30efefcc5513827f65"/>
           <topic label="farenheit" href="classsupernovas_1_1Temperature.html#aa9a2354a7fb058c412270a95e1a964de"/>
           <topic label="kelvin" href="classsupernovas_1_1Temperature.html#ac848561c69d13def40510d3aba529bec"/>
-          <topic label="to_string" href="classsupernovas_1_1Temperature.html#a389aae9e239a426cded558caaff814df"/>
+          <topic label="SI_unit" href="classsupernovas_1_1Temperature.html#ab64b24b58d12c752e750a460c96510f8"/>
+          <topic label="to_string" href="classsupernovas_1_1Temperature.html#ae26a9c37b273842ca4abd37e260f0286"/>
         </topic>
         <topic label="Time" href="classsupernovas_1_1Time.html">
           <topic label="Time" href="classsupernovas_1_1Time.html#a97d9b5141a32888f67d6d2c5deea6367"/>
@@ -2436,9 +2558,6 @@
           <topic label="theta" href="classsupernovas_1_1Vector.html#aa5cd444d1ad1aecfae916a9a73ffceb2"/>
           <topic label="to_string" href="classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f"/>
           <topic label="unit_vector" href="classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52"/>
-          <topic label="x" href="classsupernovas_1_1Vector.html#af22c6e7f19a6f790218cc9605215ac7e"/>
-          <topic label="y" href="classsupernovas_1_1Vector.html#a61f8871b8be5382f4e65a5c541fa742f"/>
-          <topic label="z" href="classsupernovas_1_1Vector.html#ae8f15b39c7385ae66232e312020d7b08"/>
           <topic label="_component" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18"/>
         </topic>
         <topic label="Velocity" href="classsupernovas_1_1Velocity.html">
@@ -2455,6 +2574,9 @@
           <topic label="to_string" href="classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c"/>
           <topic label="travel" href="classsupernovas_1_1Velocity.html#abe62c156f9ab61154ec48b894be1cc05"/>
           <topic label="travel" href="classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297"/>
+          <topic label="x" href="classsupernovas_1_1Velocity.html#a1f63d95df40f71b85c51cc4a6f57b8d4"/>
+          <topic label="y" href="classsupernovas_1_1Velocity.html#a1a4e51da1cf116f95f9a1bb8dd28e826"/>
+          <topic label="z" href="classsupernovas_1_1Velocity.html#ad034a48f76943c43dd9899aa456791dd"/>
         </topic>
         <topic label="Weather" href="classsupernovas_1_1Weather.html">
           <topic label="Weather" href="classsupernovas_1_1Weather.html#afa980c7de58a62254a6b0c4bd018d48e"/>
@@ -2625,19 +2747,14 @@
         <topic label="supernovas::Track&lt; Horizontal &gt;" href="classsupernovas_1_1Track.html">
           <topic label="supernovas::HorizontalTrack" href="classsupernovas_1_1HorizontalTrack.html"/>
         </topic>
-        <topic label="supernovas::Angle" href="classsupernovas_1_1Angle.html">
-          <topic label="supernovas::TimeAngle" href="classsupernovas_1_1TimeAngle.html"/>
-        </topic>
         <topic label="supernovas::Apparent" href="classsupernovas_1_1Apparent.html"/>
         <topic label="supernovas::Calendar" href="classsupernovas_1_1Calendar.html"/>
         <topic label="supernovas::CalendarDate" href="classsupernovas_1_1CalendarDate.html"/>
         <topic label="supernovas::CatalogEntry" href="classsupernovas_1_1CatalogEntry.html"/>
-        <topic label="supernovas::Coordinate" href="classsupernovas_1_1Coordinate.html"/>
         <topic label="supernovas::EOP" href="classsupernovas_1_1EOP.html"/>
         <topic label="supernovas::Equinox" href="classsupernovas_1_1Equinox.html"/>
         <topic label="supernovas::Frame" href="classsupernovas_1_1Frame.html"/>
         <topic label="supernovas::Geometric" href="classsupernovas_1_1Geometric.html"/>
-        <topic label="supernovas::Interval" href="classsupernovas_1_1Interval.html"/>
         <topic label="supernovas::Observer" href="classsupernovas_1_1Observer.html">
           <topic label="supernovas::GeocentricObserver" href="classsupernovas_1_1GeocentricObserver.html"/>
           <topic label="supernovas::GeodeticObserver" href="classsupernovas_1_1GeodeticObserver.html"/>
@@ -2645,9 +2762,17 @@
         </topic>
         <topic label="supernovas::Orbital" href="classsupernovas_1_1Orbital.html"/>
         <topic label="supernovas::OrbitalSystem" href="classsupernovas_1_1OrbitalSystem.html"/>
-        <topic label="supernovas::Pressure" href="classsupernovas_1_1Pressure.html"/>
+        <topic label="supernovas::Scalar" href="classsupernovas_1_1Scalar.html">
+          <topic label="supernovas::Angle" href="classsupernovas_1_1Angle.html">
+            <topic label="supernovas::TimeAngle" href="classsupernovas_1_1TimeAngle.html"/>
+          </topic>
+          <topic label="supernovas::Coordinate" href="classsupernovas_1_1Coordinate.html"/>
+          <topic label="supernovas::Interval" href="classsupernovas_1_1Interval.html"/>
+          <topic label="supernovas::Pressure" href="classsupernovas_1_1Pressure.html"/>
+          <topic label="supernovas::ScalarVelocity" href="classsupernovas_1_1ScalarVelocity.html"/>
+          <topic label="supernovas::Temperature" href="classsupernovas_1_1Temperature.html"/>
+        </topic>
         <topic label="supernovas::ScalarEvolution" href="classsupernovas_1_1ScalarEvolution.html"/>
-        <topic label="supernovas::ScalarVelocity" href="classsupernovas_1_1ScalarVelocity.html"/>
         <topic label="supernovas::Site" href="classsupernovas_1_1Site.html"/>
         <topic label="supernovas::Source" href="classsupernovas_1_1Source.html">
           <topic label="supernovas::CatalogSource" href="classsupernovas_1_1CatalogSource.html"/>
@@ -2663,10 +2788,10 @@
           <topic label="supernovas::Galactic" href="classsupernovas_1_1Galactic.html"/>
           <topic label="supernovas::Horizontal" href="classsupernovas_1_1Horizontal.html"/>
         </topic>
-        <topic label="supernovas::Temperature" href="classsupernovas_1_1Temperature.html"/>
         <topic label="supernovas::Time" href="classsupernovas_1_1Time.html"/>
         <topic label="supernovas::Track&lt; CoordType &gt;" href="classsupernovas_1_1Track.html"/>
         <topic label="supernovas::Vector" href="classsupernovas_1_1Vector.html">
+          <topic label="supernovas::Interferometric" href="classsupernovas_1_1Interferometric.html"/>
           <topic label="supernovas::Position" href="classsupernovas_1_1Position.html">
             <topic label="supernovas::AstrometricPosition" href="classsupernovas_1_1AstrometricPosition.html"/>
           </topic>
@@ -3303,7 +3428,7 @@
           <topic label="novas_itrs_to_enu" href="novas_8h.html#a8e7cb3d7902bbecdb9329bf584950367"/>
           <topic label="novas_jd_from_date" href="novas_8h.html#a54eee84c46900c80ca9966857c217cc8"/>
           <topic label="novas_jd_to_date" href="novas_8h.html#a8ed2fb55bcf86d9f1f434a2f832356a2"/>
-          <topic label="novas_los_to_xyz" href="group__nonequatorial.html#ga601d246673742cf72a5dbe1449c97560"/>
+          <topic label="novas_los_to_xyz" href="novas_8h.html#a601d246673742cf72a5dbe1449c97560"/>
           <topic label="novas_lsr_to_ssb_vel" href="novas_8h.html#aad80bf94be2efc36c340994829df8207"/>
           <topic label="novas_make_frame" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838"/>
           <topic label="novas_make_moon_mean_orbit" href="novas_8h.html#ac5bba418b7f5ebad8a9b44cc7644c99a"/>
@@ -3357,6 +3482,8 @@
           <topic label="novas_set_time" href="novas_8h.html#af4a1a5180905a7d8f76aeafe3f9a8ebb"/>
           <topic label="novas_set_unix_time" href="novas_8h.html#a9d54ea7c6cdbc75ee78cf552a7e1858d"/>
           <topic label="novas_sets_below" href="novas_8h.html#a23af09cd8e5ec5ef4d0b03a347a4add0"/>
+          <topic label="novas_site_gcrs_posvel" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc"/>
+          <topic label="novas_site_uvw" href="novas_8h.html#aa75f22539fa6135b64f5026c6e1fcba1"/>
           <topic label="novas_sky_pos" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f"/>
           <topic label="novas_solar_illum" href="novas_8h.html#ac780bd907a12957995d36ad916dd4ec1"/>
           <topic label="novas_solar_power" href="novas_8h.html#a763f9a9dd2edb4645a5db05184ca7495"/>
@@ -3376,11 +3503,12 @@
           <topic label="novas_transform_sky_pos" href="novas_8h.html#acfcfb90637cd1fdb25ef9afd1bda8e30"/>
           <topic label="novas_transform_vector" href="novas_8h.html#aa77895c891e9eeb4b1541f03acfd154e"/>
           <topic label="novas_transit_time" href="novas_8h.html#ad04f1ebd7b2d39e5258b152fec231001"/>
-          <topic label="novas_uvw_to_xyz" href="group__nonequatorial.html#ga16c920eee105431247e9a1d9bf1c3021"/>
+          <topic label="novas_uvw" href="novas_8h.html#a81f4b147c3f132a1498cdd833042d804"/>
+          <topic label="novas_uvw_to_xyz" href="novas_8h.html#a16c920eee105431247e9a1d9bf1c3021"/>
           <topic label="novas_v2z" href="novas_8h.html#aa54cd00024b294d38fa29433c017c65f"/>
           <topic label="novas_wave_refraction" href="group__refract.html#ga7b9ad6dfbd86e4faa2d8068c7d64fac4"/>
-          <topic label="novas_xyz_to_los" href="group__nonequatorial.html#ga14deb6fdce80ba213e1f1d5238306e17"/>
-          <topic label="novas_xyz_to_uvw" href="group__nonequatorial.html#ga87867e8e7fc7decaa44777a696465353"/>
+          <topic label="novas_xyz_to_los" href="novas_8h.html#a14deb6fdce80ba213e1f1d5238306e17"/>
+          <topic label="novas_xyz_to_uvw" href="novas_8h.html#a87867e8e7fc7decaa44777a696465353"/>
           <topic label="novas_z2v" href="novas_8h.html#a63621cea3b4985c1bfcc4514a7aa3fb1"/>
           <topic label="novas_z_add" href="novas_8h.html#a493ab751eee5804db77157c37e94e5c3"/>
           <topic label="novas_z_inv" href="novas_8h.html#a1130ad2ce520e948c71f03a25a713075"/>
@@ -3436,6 +3564,16 @@
           <topic label="grav_bodies_reduced_accuracy" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24"/>
         </topic>
         <topic label="supernovas.h" href="supernovas_8h.html">
+          <topic label="supernovas::Scalar" href="classsupernovas_1_1Scalar.html">
+            <topic label="Scalar" href="classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514"/>
+            <topic label="Scalar" href="classsupernovas_1_1Scalar.html#a5c317ff1c67f0312b8c6023ca3f3def0"/>
+            <topic label="~Scalar" href="classsupernovas_1_1Scalar.html#ad6ba6d2c13c7c4df083da1ecb0852c3a"/>
+            <topic label="equals" href="classsupernovas_1_1Scalar.html#a6448cf148c3d70d91d0d36a3fd8fed7b"/>
+            <topic label="SI_unit" href="classsupernovas_1_1Scalar.html#adfdc9060344c26788490a6dcae617dea"/>
+            <topic label="SI_value" href="classsupernovas_1_1Scalar.html#a75736196388337d2abc9ba1b50cde736"/>
+            <topic label="to_string" href="classsupernovas_1_1Scalar.html#a57a227e1a36070e68e57b8debc84e9ab"/>
+            <topic label="_value" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f"/>
+          </topic>
           <topic label="supernovas::ScalarEvolution" href="classsupernovas_1_1ScalarEvolution.html">
             <topic label="ScalarEvolution" href="classsupernovas_1_1ScalarEvolution.html#a0862991291dc7b1bf375806fdd1e369d"/>
             <topic label="acceleration" href="classsupernovas_1_1ScalarEvolution.html#af4a7ebb8e64e194ad08e0321a52425c4"/>
@@ -3495,7 +3633,6 @@
           </topic>
           <topic label="earth.c" href="earth_8c.html">
             <topic label="era" href="earth_8c.html#aef1f8daaad470353648de90576aefc66"/>
-            <topic label="geo_posvel" href="earth_8c.html#ada5ca37110e66c8b65f623c9e26ae52e"/>
             <topic label="limb_angle" href="earth_8c.html#a022957936bc7c5a3e9651776689c9380"/>
             <topic label="novas_diurnal_eop" href="earth_8c.html#a3fe699281044873f4137344b28884cea"/>
             <topic label="novas_diurnal_eop_at_time" href="earth_8c.html#a087d587e90b4e2138c0dba12d727696e"/>
@@ -3597,6 +3734,7 @@
           <topic label="observer.c" href="observer_8c.html">
             <topic label="aberration" href="observer_8c.html#a033f1bf4b01e0e21a0e05e13c19c02f6"/>
             <topic label="bary2obs" href="observer_8c.html#a1d58fd371e7604f75df315365672941e"/>
+            <topic label="geo_posvel" href="observer_8c.html#ada5ca37110e66c8b65f623c9e26ae52e"/>
             <topic label="light_time" href="observer_8c.html#afb2cc37c7bdcd34c5c167afe092aed68"/>
             <topic label="light_time2" href="observer_8c.html#a5c940b62732d74e6c6b1c844931aaa76"/>
             <topic label="make_airborne_observer" href="observer_8c.html#aa2663594794b4419e3b6feb927383a65"/>
@@ -3614,6 +3752,9 @@
             <topic label="make_solar_system_observer" href="observer_8c.html#a9c3f1a1bc3fd9ac6d211806913d2d529"/>
             <topic label="make_xyz_site" href="observer_8c.html#a9e3cbe310a40919ff94d2d530ffa74ee"/>
             <topic label="novas_set_default_weather" href="observer_8c.html#a0fc8f315f8606e09571ab49efb13baca"/>
+            <topic label="novas_site_gcrs_posvel" href="observer_8c.html#a65df4b49c0c33285ef5ddcf6814384dc"/>
+            <topic label="novas_site_uvw" href="observer_8c.html#aa75f22539fa6135b64f5026c6e1fcba1"/>
+            <topic label="novas_uvw" href="observer_8c.html#a81f4b147c3f132a1498cdd833042d804"/>
             <topic label="obs_planets" href="observer_8c.html#a07490a134a685fe0842b2b4816559292"/>
             <topic label="obs_posvel" href="observer_8c.html#a0e4e5ff7c37e6521ca75ae62aaf4050e"/>
           </topic>
@@ -3732,10 +3873,10 @@
             <topic label="novas_h2e_offset" href="group__nonequatorial.html#ga7977de3e3edf8120b50cbd026c155f47"/>
             <topic label="novas_hpa" href="group__nonequatorial.html#ga73fcb54e47b2be0aa92810b5f55f7a3c"/>
             <topic label="novas_itrs_to_enu" href="system_8c.html#a8e7cb3d7902bbecdb9329bf584950367"/>
-            <topic label="novas_los_to_xyz" href="group__nonequatorial.html#ga601d246673742cf72a5dbe1449c97560"/>
-            <topic label="novas_uvw_to_xyz" href="group__nonequatorial.html#ga16c920eee105431247e9a1d9bf1c3021"/>
-            <topic label="novas_xyz_to_los" href="group__nonequatorial.html#ga14deb6fdce80ba213e1f1d5238306e17"/>
-            <topic label="novas_xyz_to_uvw" href="group__nonequatorial.html#ga87867e8e7fc7decaa44777a696465353"/>
+            <topic label="novas_los_to_xyz" href="system_8c.html#a601d246673742cf72a5dbe1449c97560"/>
+            <topic label="novas_uvw_to_xyz" href="system_8c.html#a16c920eee105431247e9a1d9bf1c3021"/>
+            <topic label="novas_xyz_to_los" href="system_8c.html#a14deb6fdce80ba213e1f1d5238306e17"/>
+            <topic label="novas_xyz_to_uvw" href="system_8c.html#a87867e8e7fc7decaa44777a696465353"/>
           </topic>
           <topic label="target.c" href="target_8c.html">
             <topic label="make_cat_entry" href="target_8c.html#aa040bcfe8bee7d8e1307800f48efddd7"/>
@@ -3841,9 +3982,7 @@
           <topic label="Apparent.cpp" href="Apparent_8cpp.html">
           </topic>
           <topic label="AstrometricPosition.cpp" href="AstrometricPosition_8cpp.html"/>
-          <topic label="Calendar.cpp" href="Calendar_8cpp.html">
-            <topic label="UNIX_UTC_J2000" href="Calendar_8cpp.html#a8ce9212620a8939c723ca25c579c8585"/>
-          </topic>
+          <topic label="Calendar.cpp" href="Calendar_8cpp.html"/>
           <topic label="CatalogEntry.cpp" href="CatalogEntry_8cpp.html"/>
           <topic label="Coordinate.cpp" href="Coordinate_8cpp.html"/>
           <topic label="Ecliptic.cpp" href="Ecliptic_8cpp.html">
@@ -3857,12 +3996,14 @@
           <topic label="Geometric.cpp" href="Geometric_8cpp.html"/>
           <topic label="Horizontal.cpp" href="Horizontal_8cpp.html">
           </topic>
+          <topic label="Interferometric.cpp" href="Interferometric_8cpp.html"/>
           <topic label="Interval.cpp" href="Interval_8cpp.html">
           </topic>
           <topic label="Observer.cpp" href="Observer_8cpp.html"/>
           <topic label="Orbital.cpp" href="Orbital_8cpp.html"/>
           <topic label="Position.cpp" href="Position_8cpp.html"/>
           <topic label="Pressure.cpp" href="Pressure_8cpp.html"/>
+          <topic label="Scalar.cpp" href="Scalar_8cpp.html"/>
           <topic label="ScalarEvolution.cpp" href="ScalarEvolution_8cpp.html"/>
           <topic label="ScalarVelocity.cpp" href="ScalarVelocity_8cpp.html"/>
           <topic label="Site.cpp" href="Site_8cpp.html"/>
@@ -3870,7 +4011,6 @@
           <topic label="Spherical.cpp" href="Spherical_8cpp.html"/>
           <topic label="Temperature.cpp" href="Temperature_8cpp.html"/>
           <topic label="Time.cpp" href="Time_8cpp.html">
-            <topic label="E9" href="Time_8cpp.html#a6b83e351c9b9bdcb7e78621e4596c5c1"/>
           </topic>
           <topic label="TimeAngle.cpp" href="TimeAngle_8cpp.html"/>
           <topic label="Track.cpp" href="Track_8cpp.html"/>

@@ -55,10 +55,10 @@ var NAVTREE =
         [ "Reduced accuracy shortcuts", "index.html#autotoc_md30", null ]
       ] ],
       [ "Runtime debug support", "index.html#autotoc_md32", null ],
-      [ "Representative benchmarks", "index.html#autotoc_md35", null ],
-      [ "SuperNOVAS added features", "index.html#autotoc_md37", [
-        [ "New functionality highlights", "index.html#autotoc_md38", null ],
-        [ "Refinements to the NOVAS C API", "index.html#autotoc_md39", null ]
+      [ "Representative benchmarks", "index.html#autotoc_md34", null ],
+      [ "SuperNOVAS added features", "index.html#autotoc_md36", [
+        [ "New functionality highlights", "index.html#autotoc_md37", null ],
+        [ "Refinements to the NOVAS C API", "index.html#autotoc_md38", null ]
       ] ],
       [ "Release schedule", "index.html#autotoc_md41", null ]
     ] ],
@@ -169,13 +169,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Angle_8cpp.html",
-"classsupernovas_1_1Equatorial.html#a2d1aac72884524e74ee29322b23cb916",
-"classsupernovas_1_1ScalarEvolution.html#a0862991291dc7b1bf375806fdd1e369d",
-"classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc",
-"group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029",
-"novas_8h.html#a219df36b21dc4476656e708d14d08045a03b12ea0f93a1a1045d7bcccd613c6f2",
-"novas_8h.html#aaed93e356acfc0d15d0f64ae0793b4f0",
-"structnovas__cat__entry.html#ac2e6fe6d5aa8aece4e1d3f2ebc8e5c63"
+"classsupernovas_1_1Equatorial.html#a084ea74c4e83b73ef43a43e273770270",
+"classsupernovas_1_1Position.html#a8158b16437d04f06a8f4e5213ca82a92",
+"classsupernovas_1_1Track.html#ad88920e8a678fc24904c0013e50ef718",
+"group__earth.html",
+"novas_8h.html#a044f1359abcf0a039ac6452a95729b5a",
+"novas_8h.html#a98daa33604665eda41d9a9de964d7cc2",
+"place_8c.html#a0f307c2a37d594a68e99c5c8af6d50c9",
+"transform_8c.html#a6205edb1361e56cc0c7aed0f088f7437"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

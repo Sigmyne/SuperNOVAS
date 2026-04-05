@@ -12,5 +12,6 @@ var classsupernovas_1_1Coordinate =
     [ "operator/", "classsupernovas_1_1Coordinate.html#abca5dea0e57561e564c5be11174f2693", null ],
     [ "parallax", "classsupernovas_1_1Coordinate.html#af862edb5c1eddd4451e1639e256cf1c1", null ],
     [ "pc", "classsupernovas_1_1Coordinate.html#ab0f236c74f41fd3ee004cc77f7452687", null ],
-    [ "to_string", "classsupernovas_1_1Coordinate.html#a8a08f3db84302f9d17576f39238400dd", null ]
+    [ "SI_unit", "classsupernovas_1_1Coordinate.html#a0cf4f4b4eaff7c85c50e8b083e2539f0", null ],
+    [ "to_string", "classsupernovas_1_1Coordinate.html#af7002241f1407a01092aa9aa0b2db6a2", null ]
 ];

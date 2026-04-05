@@ -1,6 +1,7 @@
 var classsupernovas_1_1Geometric =
 [
     [ "Geometric", "classsupernovas_1_1Geometric.html#aa83e4bb4c2b6536cd21176e846270432", null ],
+    [ "distance", "classsupernovas_1_1Geometric.html#acd3414c999c4def1460214ded38fee23", null ],
     [ "ecliptic", "group__nonequatorial.html#ga93ec5fed0411781a11cd3c30f256462c", null ],
     [ "equatorial", "group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257", null ],
     [ "frame", "classsupernovas_1_1Geometric.html#ae50d0c332eca559038ac15bb76a1458d", null ],

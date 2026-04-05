@@ -150,10 +150,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab34beaf9d178f058ec6b813240cafd48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified equinox of date.  <br /></td></tr>
 <tr class="memitem:ac76fe2b0eec8eb935a3da7cbed3084b8" id="r_ac76fe2b0eec8eb935a3da7cbed3084b8"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac76fe2b0eec8eb935a3da7cbed3084b8">system</a> () const</td></tr>
 <tr class="memdesc:ac76fe2b0eec8eb935a3da7cbed3084b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equinox of date relative to which these ecliptic coordinates are defined.  <br /></td></tr>
-<tr class="memitem:ga4e98b7f6776ae07f7d2ce3537e390de3" id="r_ga4e98b7f6776ae07f7d2ce3537e390de3"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Equatorial.html">Equatorial</a>&#160;</td><td class="memItemRight"><a class="el" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3">to_equatorial</a> () const</td></tr>
-<tr class="memdesc:ga4e98b7f6776ae07f7d2ce3537e390de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined standard invalid Galactic coordinates.  <br /></td></tr>
-<tr class="memitem:ga6be266741f04bb666e9b04deeaca5769" id="r_ga6be266741f04bb666e9b04deeaca5769"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Galactic.html">Galactic</a>&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga6be266741f04bb666e9b04deeaca5769">to_galactic</a> () const</td></tr>
-<tr class="memdesc:ga6be266741f04bb666e9b04deeaca5769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these ecliptic coordinates to equivalent Galactic coordinates.  <br /></td></tr>
+<tr class="memitem:acea27eeec615359be97fab4372061c65" id="r_acea27eeec615359be97fab4372061c65"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Equatorial.html">Equatorial</a>&#160;</td><td class="memItemRight"><a class="el" href="#acea27eeec615359be97fab4372061c65">to_equatorial</a> (enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
+<tr class="memdesc:acea27eeec615359be97fab4372061c65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these ecliptic coordinates to equivalent equatorial coordinates.  <br /></td></tr>
+<tr class="memitem:a6be266741f04bb666e9b04deeaca5769" id="r_a6be266741f04bb666e9b04deeaca5769"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Galactic.html">Galactic</a>&#160;</td><td class="memItemRight"><a class="el" href="#a6be266741f04bb666e9b04deeaca5769">to_galactic</a> () const</td></tr>
+<tr class="memdesc:a6be266741f04bb666e9b04deeaca5769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these ecliptic coordinates to equivalent Galactic coordinates.  <br /></td></tr>
 <tr class="memitem:a6a0cfeb643b055e65c48a57c2c624227" id="r_a6a0cfeb643b055e65c48a57c2c624227"><td class="memItemLeft">Ecliptic&#160;</td><td class="memItemRight"><a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227">to_icrs</a> () const</td></tr>
 <tr class="memdesc:a6a0cfeb643b055e65c48a57c2c624227"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these ecliptic coordinates to ICRS ecliptic coordinates.  <br /></td></tr>
 <tr class="memitem:ae4a7d476d5e137f909f6e50b91ac6582" id="r_ae4a7d476d5e137f909f6e50b91ac6582"><td class="memItemLeft">Ecliptic&#160;</td><td class="memItemRight"><a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582">to_j2000</a> () const</td></tr>
@@ -162,8 +162,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a27fdb2ae4ac178709197a635ca5c3d47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.  <br /></td></tr>
 <tr class="memitem:a6f3453f8bd380ee096834cc38985299d" id="r_a6f3453f8bd380ee096834cc38985299d"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a6f3453f8bd380ee096834cc38985299d">to_string</a> (enum <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40e">novas_separator_type</a> separator=<a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a>, int decimals=3) const override</td></tr>
 <tr class="memdesc:a6f3453f8bd380ee096834cc38985299d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of these ecliptic coordinates, optionally specifying a type of separator to use for the DMS angles, and the decimal places to show for the seconds.  <br /></td></tr>
-<tr class="memitem:ab078048d3728c4cf4d164b77d57f9c5f" id="r_ab078048d3728c4cf4d164b77d57f9c5f"><td class="memItemLeft">Ecliptic&#160;</td><td class="memItemRight"><a class="el" href="#ab078048d3728c4cf4d164b77d57f9c5f">to_system</a> (const <a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a> &amp;<a class="el" href="#ac76fe2b0eec8eb935a3da7cbed3084b8">system</a>) const</td></tr>
-<tr class="memdesc:ab078048d3728c4cf4d164b77d57f9c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified equinox of date.  <br /></td></tr>
+<tr class="memitem:ac468f153f58b25ca2e305fa607997dc3" id="r_ac468f153f58b25ca2e305fa607997dc3"><td class="memItemLeft">Ecliptic&#160;</td><td class="memItemRight"><a class="el" href="#ac468f153f58b25ca2e305fa607997dc3">to_system</a> (const <a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a> &amp;<a class="el" href="#ac76fe2b0eec8eb935a3da7cbed3084b8">system</a>, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
+<tr class="memdesc:ac468f153f58b25ca2e305fa607997dc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified equinox of date.  <br /></td></tr>
 <tr class="memitem:a04ee64b71415e5d39a045be7523fa86d" id="r_a04ee64b71415e5d39a045be7523fa86d"><td class="memItemLeft">Ecliptic&#160;</td><td class="memItemRight"><a class="el" href="#a04ee64b71415e5d39a045be7523fa86d">to_tod</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time) const</td></tr>
 <tr class="memdesc:a04ee64b71415e5d39a045be7523fa86d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Spherical"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Spherical')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Spherical.html">supernovas::Spherical</a></td></tr>
@@ -316,7 +316,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// oops, looks like the angles could not be parsed...</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:247</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:256</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285" title="Returns the longitude coordinate as an angle.">longitude</a></td><td>string representation of the longitude coordinate in DMS or a decimnal degrees. </td></tr>
@@ -615,7 +615,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified equinox of date. </p>
-<p>Same as <span class="tt"><a class="el" href="#ab078048d3728c4cf4d164b77d57f9c5f" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a></span>.</p>
+<p>Same as <span class="tt"><a class="el" href="#ac468f153f58b25ca2e305fa607997dc3" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a></span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="#ac76fe2b0eec8eb935a3da7cbed3084b8" title="Returns the equinox of date relative to which these ecliptic coordinates are defined.">system</a></td><td>the requested equinox of date for returned coordinates. </td></tr>
@@ -623,9 +623,9 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new ecliptic coordinates, which represent the same position as this, but expressed relaive to the specified equinox.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab078048d3728c4cf4d164b77d57f9c5f" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac468f153f58b25ca2e305fa607997dc3" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#ac76fe2b0eec8eb935a3da7cbed3084b8">system()</a>, and <a class="el" href="#ab078048d3728c4cf4d164b77d57f9c5f">to_system()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#ac76fe2b0eec8eb935a3da7cbed3084b8">system()</a>, and <a class="el" href="#ac468f153f58b25ca2e305fa607997dc3">to_system()</a>.</p>
 
 </div>
 </div>
@@ -649,7 +649,61 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">supernovas::Equinox::icrs()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a8f74265a182736c65f358d3535b4cfb4">supernovas::Equinox::j2000()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#adfef9ebd870cdb45547b91afb34dd7ef">supernovas::Equinox::mod()</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66">NOVAS_GCRS_EQUATOR</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f">NOVAS_TRUE_EQUATOR</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a16cb36d215fbb4bc394b0942db30b88b">supernovas::Equinox::tod()</a>, and <a class="el" href="classsupernovas_1_1Equinox.html#a7e1791e187c321b135a422a3e34ec9b6">supernovas::Equinox::undefined()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a976996bb54def45d58528dcea073c38e">Ecliptic()</a>, <a class="el" href="#ace0e8080c665a757e28fc8feb3526a8e">Ecliptic()</a>, <a class="el" href="#a926aee5b59a630f097bda63ee925d5a8">Ecliptic()</a>, <a class="el" href="#a822af8b9e6bb24c7f0c83ca740dc439d">Ecliptic()</a>, <a class="el" href="#a2986f3e28124b274ba670005d126b0b9">distance_to()</a>, <a class="el" href="#ab34beaf9d178f058ec6b813240cafd48">operator&gt;&gt;()</a>, <a class="el" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3">to_equatorial()</a>, and <a class="el" href="#ab078048d3728c4cf4d164b77d57f9c5f">to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a976996bb54def45d58528dcea073c38e">Ecliptic()</a>, <a class="el" href="#ace0e8080c665a757e28fc8feb3526a8e">Ecliptic()</a>, <a class="el" href="#a926aee5b59a630f097bda63ee925d5a8">Ecliptic()</a>, <a class="el" href="#a822af8b9e6bb24c7f0c83ca740dc439d">Ecliptic()</a>, <a class="el" href="#a2986f3e28124b274ba670005d126b0b9">distance_to()</a>, <a class="el" href="#ab34beaf9d178f058ec6b813240cafd48">operator&gt;&gt;()</a>, <a class="el" href="#acea27eeec615359be97fab4372061c65">to_equatorial()</a>, and <a class="el" href="#ac468f153f58b25ca2e305fa607997dc3">to_system()</a>.</p>
+
+</div>
+</div>
+<a id="acea27eeec615359be97fab4372061c65" name="acea27eeec615359be97fab4372061c65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acea27eeec615359be97fab4372061c65">&#9670;&#160;</a></span>to_equatorial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Equatorial.html">Equatorial</a> supernovas::Ecliptic::to_equatorial </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a></td>          <td class="paramname"><span class="paramname"><em>accuracy</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts these ecliptic coordinates to equivalent equatorial coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accuracy</td><td>(optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the equivalent equatorial coordinates for the same place on sky.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b" title="Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates.">Equatorial::to_ecliptic()</a>, <a class="el" href="#a6be266741f04bb666e9b04deeaca5769" title="Converts these ecliptic coordinates to equivalent Galactic coordinates.">to_galactic()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="novas_8h.html#a41ca0cfd79ad07c9e857ba02fa94928e">ecl2equ()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, <a class="el" href="#ac76fe2b0eec8eb935a3da7cbed3084b8">system()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#a0235e7c9ec219477c114ce9dadf25ce6">supernovas::Equatorial::undefined()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a6be266741f04bb666e9b04deeaca5769">to_galactic()</a>, <a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227">to_icrs()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582">to_j2000()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47">to_mod()</a>, <a class="el" href="#ac468f153f58b25ca2e305fa607997dc3">to_system()</a>, and <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d">to_tod()</a>.</p>
+
+</div>
+</div>
+<a id="a6be266741f04bb666e9b04deeaca5769" name="a6be266741f04bb666e9b04deeaca5769"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6be266741f04bb666e9b04deeaca5769">&#9670;&#160;</a></span>to_galactic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Galactic.html">Galactic</a> supernovas::Ecliptic::to_galactic </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts these ecliptic coordinates to equivalent Galactic coordinates. </p>
+<dl class="section return"><dt>Returns</dt><dd>the equivalent Galactic coordinates for the same place on sky.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Galactic.html#a3b6d652ed174bcf1be08cae63b061b21" title="Converts these galactic coordinates to equivalent ICRS ecliptic coordinates.">Galactic::to_ecliptic()</a>, <a class="el" href="#acea27eeec615359be97fab4372061c65" title="Converts these ecliptic coordinates to equivalent equatorial coordinates.">to_equatorial()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#acea27eeec615359be97fab4372061c65">to_equatorial()</a>, and <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">supernovas::Equatorial::to_galactic()</a>.</p>
 
 </div>
 </div>
@@ -670,9 +724,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Converts these ecliptic coordinates to ICRS ecliptic coordinates. </p>
 <dl class="section return"><dt>Returns</dt><dd>the equivalent ICRS ecliptic coordinates.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab078048d3728c4cf4d164b77d57f9c5f" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582" title="Converts these ecliptic coordinates to J2000 ecliptic coordinates.">to_j2000()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac468f153f58b25ca2e305fa607997dc3" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582" title="Converts these ecliptic coordinates to J2000 ecliptic coordinates.">to_j2000()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66">NOVAS_GCRS_EQUATOR</a>, <a class="el" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3">to_equatorial()</a>, and <a class="el" href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864">supernovas::Equatorial::to_icrs()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66">NOVAS_GCRS_EQUATOR</a>, <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="#acea27eeec615359be97fab4372061c65">to_equatorial()</a>, and <a class="el" href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864">supernovas::Equatorial::to_icrs()</a>.</p>
 
 </div>
 </div>
@@ -693,9 +747,9 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Converts these ecliptic coordinates to J2000 ecliptic coordinates. </p>
 <dl class="section return"><dt>Returns</dt><dd>the equivalent J2000 ecliptic coordinates.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab078048d3728c4cf4d164b77d57f9c5f" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a>, <a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227" title="Converts these ecliptic coordinates to ICRS ecliptic coordinates.">to_icrs()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac468f153f58b25ca2e305fa607997dc3" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a>, <a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227" title="Converts these ecliptic coordinates to ICRS ecliptic coordinates.">to_icrs()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a>, <a class="el" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3">to_equatorial()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#a2d1aac72884524e74ee29322b23cb916">supernovas::Equatorial::to_j2000()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a>, <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="#acea27eeec615359be97fab4372061c65">to_equatorial()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#a2d1aac72884524e74ee29322b23cb916">supernovas::Equatorial::to_j2000()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47">to_mod()</a>.</p>
 
@@ -724,9 +778,9 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the equivalent MOD ecliptic coordinates at the specified date.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab078048d3728c4cf4d164b77d57f9c5f" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a>, <a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227" title="Converts these ecliptic coordinates to ICRS ecliptic coordinates.">to_icrs()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582" title="Converts these ecliptic coordinates to J2000 ecliptic coordinates.">to_j2000()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac468f153f58b25ca2e305fa607997dc3" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a>, <a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227" title="Converts these ecliptic coordinates to ICRS ecliptic coordinates.">to_icrs()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582" title="Converts these ecliptic coordinates to J2000 ecliptic coordinates.">to_j2000()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a2a483b407997ca602f9a79fb134468e9">supernovas::Time::j2000()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a>, <a class="el" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3">to_equatorial()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582">to_j2000()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#ad8484d48ecc0922a602c23f8fd4a9092">supernovas::Equatorial::to_mod()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a2a483b407997ca602f9a79fb134468e9">supernovas::Time::j2000()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a>, <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="#acea27eeec615359be97fab4372061c65">to_equatorial()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582">to_j2000()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#ad8484d48ecc0922a602c23f8fd4a9092">supernovas::Equatorial::to_mod()</a>.</p>
 
 </div>
 </div>
@@ -773,8 +827,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ab078048d3728c4cf4d164b77d57f9c5f" name="ab078048d3728c4cf4d164b77d57f9c5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab078048d3728c4cf4d164b77d57f9c5f">&#9670;&#160;</a></span>to_system()</h2>
+<a id="ac468f153f58b25ca2e305fa607997dc3" name="ac468f153f58b25ca2e305fa607997dc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac468f153f58b25ca2e305fa607997dc3">&#9670;&#160;</a></span>to_system()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -782,8 +836,12 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">Ecliptic supernovas::Ecliptic::to_system </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>system</em></span></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Equinox.html">Equinox</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>system</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a></td>          <td class="paramname"><span class="paramname"><em>accuracy</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -792,13 +850,14 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="#ac76fe2b0eec8eb935a3da7cbed3084b8" title="Returns the equinox of date relative to which these ecliptic coordinates are defined.">system</a></td><td>the requested equinox of date for returned coordinates. </td></tr>
+    <tr><td class="paramname">accuracy</td><td>(optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new ecliptic coordinates, which represent the same position as this, but expressed relaive to the specified equinox.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab34beaf9d178f058ec6b813240cafd48" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">operator&gt;&gt;()</a>, <a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227" title="Converts these ecliptic coordinates to ICRS ecliptic coordinates.">to_icrs()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582" title="Converts these ecliptic coordinates to J2000 ecliptic coordinates.">to_j2000()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#ac76fe2b0eec8eb935a3da7cbed3084b8">system()</a>, <a class="el" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3">to_equatorial()</a>, and <a class="el" href="group__equatorial.html#ga3e5a62c6dbe61baf8763dac2859fc086">supernovas::Equatorial::to_system()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#ac76fe2b0eec8eb935a3da7cbed3084b8">system()</a>, <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="#acea27eeec615359be97fab4372061c65">to_equatorial()</a>, and <a class="el" href="group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0">supernovas::Equatorial::to_system()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ab34beaf9d178f058ec6b813240cafd48">operator&gt;&gt;()</a>.</p>
 
@@ -827,9 +886,9 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the equivalent TOD ecliptic coordinates at the specified date.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab078048d3728c4cf4d164b77d57f9c5f" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227" title="Converts these ecliptic coordinates to ICRS ecliptic coordinates.">to_icrs()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582" title="Converts these ecliptic coordinates to J2000 ecliptic coordinates.">to_j2000()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac468f153f58b25ca2e305fa607997dc3" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227" title="Converts these ecliptic coordinates to ICRS ecliptic coordinates.">to_icrs()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582" title="Converts these ecliptic coordinates to J2000 ecliptic coordinates.">to_j2000()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f">NOVAS_TRUE_EQUATOR</a>, <a class="el" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="group__equatorial.html#ga4e98b7f6776ae07f7d2ce3537e390de3">to_equatorial()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#ab5c1c9d9c14fe35a6cf7e542ce87343b">supernovas::Equatorial::to_tod()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f">NOVAS_TRUE_EQUATOR</a>, <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">supernovas::Equatorial::to_ecliptic()</a>, <a class="el" href="#acea27eeec615359be97fab4372061c65">to_equatorial()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#ab5c1c9d9c14fe35a6cf7e542ce87343b">supernovas::Equatorial::to_tod()</a>.</p>
 
 </div>
 </div>
@@ -860,7 +919,7 @@ Additional Inherited Members</h2></td></tr>
 <p>These invalid coordinates may be used inside any object that is invalid itself.</p>
 <dl class="section return"><dt>Returns</dt><dd>a reference to the static standard invalid coordinates. </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="group__nonequatorial.html#ga7d5b29acdd5ce322d31264d1486b01dd">supernovas::Equatorial::to_ecliptic()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">supernovas::Equatorial::to_ecliptic()</a>.</p>
 
 </div>
 </div>

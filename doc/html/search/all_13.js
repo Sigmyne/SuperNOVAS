@@ -24,13 +24,13 @@ var searchData=
   ['refract_5fastro_21',['refract_astro',['../group__refract.html#gafe1d4e96dd66676f5567a279e83e88d9',1,'refract_astro(const on_surface *restrict location, enum novas_refraction_model model, double zd_astro):&#160;refract.c'],['../group__refract.html#gafe1d4e96dd66676f5567a279e83e88d9',1,'refract_astro(const on_surface *restrict location, enum novas_refraction_model model, double zd_astro):&#160;refract.c']]],
   ['refraction_22',['Atmospheric refraction',['../group__refract.html',1,'']]],
   ['refractionmodel_23',['RefractionModel',['../group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9',1,'novas.h']]],
-  ['related_20links_24',['Related links',['../index.html#autotoc_md75',1,'']]],
-  ['release_20schedule_25',['Release schedule',['../index.html#autotoc_md121',1,'']]],
+  ['related_20links_24',['Related links',['../index.html#autotoc_md47',1,'']]],
+  ['release_20schedule_25',['Release schedule',['../index.html#autotoc_md120',1,'']]],
   ['releasesrwlockexclusive_26',['define mutex_unlock ReleaseSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md12',1,'']]],
   ['representative_20benchmarks_27',['Representative benchmarks',['../index.html#autotoc_md114',1,'']]],
   ['results_28',['Prerequisites to precise results',['../index.html#autotoc_md109',1,'']]],
-  ['reverse_29',['reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md40',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85',1,'Going in reverse...']]],
-  ['rise_20set_20and_20transit_20times_30',['rise set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md41',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88',1,'Calculate rise, set, and transit times']]],
+  ['reverse_29',['reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md71',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90',1,'Going in reverse...']]],
+  ['rise_20set_20and_20transit_20times_30',['rise set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md73',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94',1,'Calculate rise, set, and transit times']]],
   ['runtime_20debug_20support_31',['Runtime debug support',['../index.html#autotoc_md112',1,'']]],
   ['rv_32',['rv',['../structnovas__sky__pos.html#ae98432478d2c3a8e5eb1a1674394499f',1,'novas_sky_pos']]]
 ];

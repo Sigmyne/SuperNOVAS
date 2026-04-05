@@ -2,17 +2,19 @@ var group__geometric =
 [
     [ "supernovas::AstrometricPosition", "classsupernovas_1_1AstrometricPosition.html", [
       [ "AstrometricPosition", "classsupernovas_1_1AstrometricPosition.html#ad3222f81abdac05fbf1a9d23d2de1895", null ],
-      [ "as_equatorial", "group__equatorial.html#ga90c00e6b66260a85bd49b8fdb1d61051", null ],
       [ "emit_time", "group__time.html#ga0dc237a45a3138f480b47c12efd7514b", null ],
       [ "obs_time", "group__time.html#ga3c5993440d5413726a8c16abcebd9397", null ],
       [ "reference", "classsupernovas_1_1AstrometricPosition.html#a812f65f637969fa3049ce897690d4ddb", null ],
       [ "referenced_to", "classsupernovas_1_1AstrometricPosition.html#ad22e40b2d1ce13900451bf303c737b56", null ],
       [ "referenced_to_ssb", "classsupernovas_1_1AstrometricPosition.html#a99e7e7d64227a3394723568a73334e9e", null ],
       [ "system_type", "classsupernovas_1_1AstrometricPosition.html#afc7f5368a8fcdeea835db2c1617b2022", null ],
+      [ "to_equatorial", "group__equatorial.html#ga0e8a6330b443d3f9eaaeee7016d59777", null ],
+      [ "to_interferometric", "group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36", null ],
       [ "to_string", "classsupernovas_1_1AstrometricPosition.html#a95a3f74fbdfb734a19e520f71ae98d0a", null ]
     ] ],
     [ "supernovas::Geometric", "classsupernovas_1_1Geometric.html", [
       [ "Geometric", "classsupernovas_1_1Geometric.html#aa83e4bb4c2b6536cd21176e846270432", null ],
+      [ "distance", "classsupernovas_1_1Geometric.html#acd3414c999c4def1460214ded38fee23", null ],
       [ "ecliptic", "group__nonequatorial.html#ga93ec5fed0411781a11cd3c30f256462c", null ],
       [ "equatorial", "group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257", null ],
       [ "frame", "classsupernovas_1_1Geometric.html#ae50d0c332eca559038ac15bb76a1458d", null ],
@@ -35,7 +37,6 @@ var group__geometric =
       [ "Position", "classsupernovas_1_1Position.html#abac0617b150aa85cea17e9dfec1aac78", null ],
       [ "Position", "classsupernovas_1_1Position.html#afdd4d47f9e694ef44aa7b8719f7a6b45", null ],
       [ "Position", "classsupernovas_1_1Position.html#aad6baaf00a81c50b8e744f7ab21df205", null ],
-      [ "as_astrometric", "classsupernovas_1_1Position.html#ac1e9d20f0b57a1d86eb7ced02c787395", null ],
       [ "distance", "classsupernovas_1_1Position.html#a578e1552f7e48d5f0029e451bfe9342c", null ],
       [ "equals", "classsupernovas_1_1Position.html#af5a5f447de9406d87925400351a527a5", null ],
       [ "inv", "classsupernovas_1_1Position.html#aa9f09750127bb0b33d34ef0a01156847", null ],
@@ -44,8 +45,12 @@ var group__geometric =
       [ "operator-", "classsupernovas_1_1Position.html#a97b9b8f521c1843f640842a4c6eb5c8c", null ],
       [ "operator/", "classsupernovas_1_1Position.html#ab424d6ee655671b37c35e678bbfc8cce", null ],
       [ "operator==", "classsupernovas_1_1Position.html#ab28229ab97d018e87efddbb06cbf2bdb", null ],
+      [ "to_astrometric", "classsupernovas_1_1Position.html#ad9ca593b0c5ce9fe51f2334f41274183", null ],
       [ "to_spherical", "classsupernovas_1_1Position.html#a8158b16437d04f06a8f4e5213ca82a92", null ],
-      [ "to_string", "classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984", null ]
+      [ "to_string", "classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984", null ],
+      [ "x", "classsupernovas_1_1Position.html#a470aaa5d33b653944778cb9e7296349b", null ],
+      [ "y", "classsupernovas_1_1Position.html#ab4cbdca69a14093ce6bfe4f0f237a5f7", null ],
+      [ "z", "classsupernovas_1_1Position.html#a0de42fa3ff4d852b9adfc6c59c0df920", null ]
     ] ],
     [ "supernovas::Velocity", "classsupernovas_1_1Velocity.html", [
       [ "Velocity", "classsupernovas_1_1Velocity.html#a2f26da36dd9c4dba704ec314585ebc2c", null ],
@@ -60,10 +65,18 @@ var group__geometric =
       [ "speed", "classsupernovas_1_1Velocity.html#a3dbaf0927a89219ae14a2a759c103f09", null ],
       [ "to_string", "classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c", null ],
       [ "travel", "classsupernovas_1_1Velocity.html#abe62c156f9ab61154ec48b894be1cc05", null ],
-      [ "travel", "classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297", null ]
+      [ "travel", "classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297", null ],
+      [ "x", "classsupernovas_1_1Velocity.html#a1f63d95df40f71b85c51cc4a6f57b8d4", null ],
+      [ "y", "classsupernovas_1_1Velocity.html#a1a4e51da1cf116f95f9a1bb8dd28e826", null ],
+      [ "z", "classsupernovas_1_1Velocity.html#ad034a48f76943c43dd9899aa456791dd", null ]
     ] ],
     [ "supernovas::Planet::approx_geometric_in", "group__geometric.html#gaf83481c3e551cd9fbfc949257567b468", null ],
     [ "supernovas::Apparent::astrometric_position", "group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e", null ],
+    [ "supernovas::SolarSystemSource::barycentric_at", "group__geometric.html#ga42b4fe858ef5da0ae538e676f2bb7ca8", null ],
+    [ "supernovas::GeodeticObserver::gcrs_position_at", "group__geometric.html#gaa611c71d2b1150452cb203455ffdc013", null ],
+    [ "supernovas::Observer::gcrs_position_at", "group__geometric.html#gadb604ebb6581bd982943b203a89677aa", null ],
+    [ "supernovas::GeodeticObserver::gcrs_velocity_at", "group__geometric.html#gad53631f865c62ee8cb8c535be22ed180", null ],
+    [ "supernovas::Observer::gcrs_velocity_at", "group__geometric.html#ga8cd84f51fedc118c9ed6f8c14f813fbd", null ],
     [ "supernovas::Source::geometric_in", "group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a", null ],
     [ "supernovas::Frame::geometric_moon_elp2000", "group__geometric.html#gaa71fbf15b25159c91f9563e630536a32", null ]
 ];

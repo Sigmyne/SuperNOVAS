@@ -128,10 +128,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aeedaaf768920eea598deae2d210a6235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new observer located (and moving) relative to the geocenter.  <br /></td></tr>
 <tr class="memitem:ae578757821ffde79329e535e54e45b28" id="r_ae578757821ffde79329e535e54e45b28"><td class="memItemLeft">const Observer *&#160;</td><td class="memItemRight"><a class="el" href="#ae578757821ffde79329e535e54e45b28">copy</a> () const override</td></tr>
 <tr class="memdesc:ae578757821ffde79329e535e54e45b28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to a newly allocated copy of this geocentric observer instance.  <br /></td></tr>
-<tr class="memitem:a92fa620b6e585bd3b39f2d6916f9dbe7" id="r_a92fa620b6e585bd3b39f2d6916f9dbe7"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Position.html">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="#a92fa620b6e585bd3b39f2d6916f9dbe7">geocentric_position</a> () const</td></tr>
-<tr class="memdesc:a92fa620b6e585bd3b39f2d6916f9dbe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the momentary geocentric position of this observer.  <br /></td></tr>
-<tr class="memitem:aa89491c2b0ba0615fe8cdc84008482fc" id="r_aa89491c2b0ba0615fe8cdc84008482fc"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa89491c2b0ba0615fe8cdc84008482fc">geocentric_velocity</a> () const</td></tr>
-<tr class="memdesc:aa89491c2b0ba0615fe8cdc84008482fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the momentary geocentric velocity of this observer.  <br /></td></tr>
+<tr class="memitem:a293c24268408aba93899f3cf0937db5b" id="r_a293c24268408aba93899f3cf0937db5b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Position.html">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="#a293c24268408aba93899f3cf0937db5b">gcrs_position</a> () const</td></tr>
+<tr class="memdesc:a293c24268408aba93899f3cf0937db5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the momentary geocentric position of this observer in the GCRS.  <br /></td></tr>
+<tr class="memitem:a220c1019edab5f90502c3ae5141d886e" id="r_a220c1019edab5f90502c3ae5141d886e"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#a220c1019edab5f90502c3ae5141d886e">gcrs_velocity</a> () const</td></tr>
+<tr class="memdesc:a220c1019edab5f90502c3ae5141d886e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the momentary geocentric velocity of this observer in the GCRS.  <br /></td></tr>
 <tr class="memitem:a41440873d5710e13571ba76f316da510" id="r_a41440873d5710e13571ba76f316da510"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a41440873d5710e13571ba76f316da510">is_geocentric</a> () const override</td></tr>
 <tr class="memdesc:a41440873d5710e13571ba76f316da510"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>.  <br /></td></tr>
 <tr class="memitem:af587b52511d647b46951511b2fa3f472" id="r_af587b52511d647b46951511b2fa3f472"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#af587b52511d647b46951511b2fa3f472">to_string</a> () const override</td></tr>
@@ -146,6 +146,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa5d4f5181e308afd56b517038f1f8720 inherit pub_methods_classsupernovas_1_1Observer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>.  <br /></td></tr>
 <tr class="memitem:gae636a2863ee350bd67d5d53c19a694ba inherit pub_methods_classsupernovas_1_1Observer" id="r_gae636a2863ee350bd67d5d53c19a694ba"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Frame.html">Frame</a>&#160;</td><td class="memItemRight"><a class="el" href="group__frame.html#gae636a2863ee350bd67d5d53c19a694ba">reduced_accuracy_frame_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time) const</td></tr>
 <tr class="memdesc:gae636a2863ee350bd67d5d53c19a694ba inherit pub_methods_classsupernovas_1_1Observer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reduced accuracy observing frame for this observer at the specified time.  <br /></td></tr>
+<tr class="memitem:gadda2670c6c66d72fbd1b57eb0827e629 inherit pub_methods_classsupernovas_1_1Observer" id="r_gadda2670c6c66d72fbd1b57eb0827e629"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Interferometric.html">Interferometric</a>&#160;</td><td class="memItemRight"><a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">to_interferometric</a> (const <a class="el" href="classsupernovas_1_1Apparent.html">Apparent</a> &amp;phase_center, enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> system=<a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>) const</td></tr>
+<tr class="memdesc:gadda2670c6c66d72fbd1b57eb0827e629 inherit pub_methods_classsupernovas_1_1Observer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns projected <em>u</em>,<em>v</em>,<em>w</em> coordinates for an interferometer station.  <br /></td></tr>
 <tr class="memitem:a68214f28fee06df8aa28478475eccf04 inherit pub_methods_classsupernovas_1_1Observer" id="r_a68214f28fee06df8aa28478475eccf04"><td class="memItemLeft">enum <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3">novas_observer_place</a>&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Observer.html#a68214f28fee06df8aa28478475eccf04">type</a> () const</td></tr>
 <tr class="memdesc:a68214f28fee06df8aa28478475eccf04 inherit pub_methods_classsupernovas_1_1Observer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the observer type.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
@@ -175,6 +177,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a305489d2635ff31ceda03baff28594ea inherit pub_static_methods_classsupernovas_1_1Observer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined standard invalid observer.  <br /></td></tr>
 <tr class="inherit_header pro_methods_classsupernovas_1_1Observer"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classsupernovas_1_1Observer')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classsupernovas_1_1Observer.html">supernovas::Observer</a></td></tr>
 <tr class="memitem:a65ae0b0d36341717bf7b958ac3236f8c inherit pro_methods_classsupernovas_1_1Observer" id="r_a65ae0b0d36341717bf7b958ac3236f8c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Observer.html#a65ae0b0d36341717bf7b958ac3236f8c">Observer</a> (enum <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3">novas_observer_place</a> <a class="el" href="classsupernovas_1_1Observer.html#a68214f28fee06df8aa28478475eccf04">type</a>, const <a class="el" href="classsupernovas_1_1Site.html">Site</a> &amp;site=<a class="el" href="classsupernovas_1_1Site.html#ac62bd70af69ded57cd0ae5c13cc7f0b2">Site::undefined</a>(), const <a class="el" href="classsupernovas_1_1Position.html">Position</a> &amp;pos=<a class="el" href="classsupernovas_1_1Position.html#a19205d6b0c798f0266dbcec14c2651a1">Position::origin</a>(), const <a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a> &amp;vel=<a class="el" href="classsupernovas_1_1Velocity.html#a2944f9bdb4beabe0c0b91a46ffd8e3fb">Velocity::stationary</a>())</td></tr>
+<tr class="memitem:gadb604ebb6581bd982943b203a89677aa inherit pro_methods_classsupernovas_1_1Observer" id="r_gadb604ebb6581bd982943b203a89677aa"><td class="memItemLeft">virtual <a class="el" href="classsupernovas_1_1Position.html">Position</a>&#160;</td><td class="memItemRight"><a class="el" href="group__geometric.html#gadb604ebb6581bd982943b203a89677aa">gcrs_position_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
+<tr class="memdesc:gadb604ebb6581bd982943b203a89677aa inherit pro_methods_classsupernovas_1_1Observer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the geocentric geometric position vector for this observer, in the GCRS, at the specified time and accuracy.  <br /></td></tr>
+<tr class="memitem:ga8cd84f51fedc118c9ed6f8c14f813fbd inherit pro_methods_classsupernovas_1_1Observer" id="r_ga8cd84f51fedc118c9ed6f8c14f813fbd"><td class="memItemLeft">virtual <a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a>&#160;</td><td class="memItemRight"><a class="el" href="group__geometric.html#ga8cd84f51fedc118c9ed6f8c14f813fbd">gcrs_velocity_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
+<tr class="memdesc:ga8cd84f51fedc118c9ed6f8c14f813fbd inherit pro_methods_classsupernovas_1_1Observer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the geocentric geometric velocity vector for this observer, in the GCRS, at the specified time and accuracy.  <br /></td></tr>
 <tr class="inherit_header pro_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Protected Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating" id="r_aeabd2d0135eafd2a6a55447054ff81f7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aeabd2d0135eafd2a6a55447054ff81f7">Validating</a> ()</td></tr>
 <tr class="memdesc:aeabd2d0135eafd2a6a55447054ff81f7 inherit pro_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">dummy constructor;  <br /></td></tr>
@@ -234,8 +240,8 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates a new observer located (and moving) relative to the geocenter. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pos</td><td>momentary position of the observer relative to the geocenter. </td></tr>
-    <tr><td class="paramname">vel</td><td>momentary velocity of the observer relative to the geocenter. </td></tr>
+    <tr><td class="paramname">pos</td><td>momentary GCRS position of the observer relative to the geocenter. </td></tr>
+    <tr><td class="paramname">vel</td><td>momentary GCRS velocity of the observer relative to the geocenter. </td></tr>
   </table>
   </dd>
 </dl>
@@ -277,14 +283,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="a92fa620b6e585bd3b39f2d6916f9dbe7" name="a92fa620b6e585bd3b39f2d6916f9dbe7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92fa620b6e585bd3b39f2d6916f9dbe7">&#9670;&#160;</a></span>geocentric_position()</h2>
+<a id="a293c24268408aba93899f3cf0937db5b" name="a293c24268408aba93899f3cf0937db5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a293c24268408aba93899f3cf0937db5b">&#9670;&#160;</a></span>gcrs_position()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classsupernovas_1_1Position.html">Position</a> supernovas::GeocentricObserver::geocentric_position </td>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Position.html">Position</a> supernovas::GeocentricObserver::gcrs_position </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -292,9 +298,9 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the momentary geocentric position of this observer. </p>
-<dl class="section return"><dt>Returns</dt><dd>the momentary geocentric position</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa89491c2b0ba0615fe8cdc84008482fc" title="Returns the momentary geocentric velocity of this observer.">geocentric_velocity()</a> </dd></dl>
+<p>Returns the momentary geocentric position of this observer in the GCRS. </p>
+<dl class="section return"><dt>Returns</dt><dd>the momentary ICRS geocentric position</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a220c1019edab5f90502c3ae5141d886e" title="Returns the momentary geocentric velocity of this observer in the GCRS.">gcrs_velocity()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">supernovas::Observer::_observer</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a>.</p>
 
@@ -302,14 +308,14 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aa89491c2b0ba0615fe8cdc84008482fc" name="aa89491c2b0ba0615fe8cdc84008482fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa89491c2b0ba0615fe8cdc84008482fc">&#9670;&#160;</a></span>geocentric_velocity()</h2>
+<a id="a220c1019edab5f90502c3ae5141d886e" name="a220c1019edab5f90502c3ae5141d886e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a220c1019edab5f90502c3ae5141d886e">&#9670;&#160;</a></span>gcrs_velocity()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a> supernovas::GeocentricObserver::geocentric_velocity </td>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a> supernovas::GeocentricObserver::gcrs_velocity </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -317,9 +323,9 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the momentary geocentric velocity of this observer. </p>
-<dl class="section return"><dt>Returns</dt><dd>the momentary geocentric velocity</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a92fa620b6e585bd3b39f2d6916f9dbe7" title="Returns the momentary geocentric position of this observer.">geocentric_position()</a> </dd></dl>
+<p>Returns the momentary geocentric velocity of this observer in the GCRS. </p>
+<dl class="section return"><dt>Returns</dt><dd>the momentary ICRS geocentric velocity</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a293c24268408aba93899f3cf0937db5b" title="Returns the momentary geocentric position of this observer in the GCRS.">gcrs_position()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">supernovas::Observer::_observer</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
 
@@ -386,7 +392,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Observer.html#a6976e04ac1fe70d10ac5b9966ff73c8b">supernovas::Observer</a>.</p>
 
-<p class="reference">References <a class="el" href="#a92fa620b6e585bd3b39f2d6916f9dbe7">geocentric_position()</a>, <a class="el" href="#aa89491c2b0ba0615fe8cdc84008482fc">geocentric_velocity()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a731ab991e6b7426666dfeb9047da8dc8">supernovas::Vector::is_zero()</a>, <a class="el" href="classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984">supernovas::Position::to_string()</a>, and <a class="el" href="classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c">supernovas::Velocity::to_string()</a>.</p>
+<p class="reference">References <a class="el" href="#a293c24268408aba93899f3cf0937db5b">gcrs_position()</a>, <a class="el" href="#a220c1019edab5f90502c3ae5141d886e">gcrs_velocity()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a731ab991e6b7426666dfeb9047da8dc8">supernovas::Vector::is_zero()</a>, <a class="el" href="classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984">supernovas::Position::to_string()</a>, and <a class="el" href="classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c">supernovas::Velocity::to_string()</a>.</p>
 
 </div>
 </div>

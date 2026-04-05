@@ -12,5 +12,8 @@ var classsupernovas_1_1Velocity =
     [ "speed", "classsupernovas_1_1Velocity.html#a3dbaf0927a89219ae14a2a759c103f09", null ],
     [ "to_string", "classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c", null ],
     [ "travel", "classsupernovas_1_1Velocity.html#abe62c156f9ab61154ec48b894be1cc05", null ],
-    [ "travel", "classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297", null ]
+    [ "travel", "classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297", null ],
+    [ "x", "classsupernovas_1_1Velocity.html#a1f63d95df40f71b85c51cc4a6f57b8d4", null ],
+    [ "y", "classsupernovas_1_1Velocity.html#a1a4e51da1cf116f95f9a1bb8dd28e826", null ],
+    [ "z", "classsupernovas_1_1Velocity.html#ad034a48f76943c43dd9899aa456791dd", null ]
 ];

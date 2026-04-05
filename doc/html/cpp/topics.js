@@ -13,5 +13,6 @@ var topics =
     [ "Solar-system ephemeris providers", "group__solar-system.html", "group__solar-system" ],
     [ "Earth orientation", "group__earth.html", "group__earth" ],
     [ "Telescope tracking", "group__tracking.html", "group__tracking" ],
+    [ "Interferometric applications", "group__interferometry.html", "group__interferometry" ],
     [ "Helpers and utilities", "group__util.html", "group__util" ]
 ];
