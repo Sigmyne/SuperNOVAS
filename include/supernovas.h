@@ -327,15 +327,15 @@ class Equinox : public Validating {
 private:
   std::string _name;    ///< name of the catalog system, e.g. 'ICRS' or 'J2000'
   enum novas_reference_system _system; ///< Coordinate reference system.
-  double _jd;           ///< [day] Julian date of the dynamical equator (or closest to it) that
+  double _jd;           ///< [day] TT-based Julian date of the dynamical equator (or closest to it) that
   ///< matches the system
 
   /// Instantiates an undefined equinox
   Equinox() : _name("invalid"), _system((enum novas_reference_system) -1), _jd(NAN) {}
 
-  Equinox(const std::string& name, double jd_tt);
+  Equinox(const std::string& name, double jd_tdb);
 
-  explicit Equinox(enum novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
+  explicit Equinox(enum novas_reference_system system, double jd_tdb = NOVAS_JD_J2000);
 
 public:
 
@@ -370,6 +370,8 @@ public:
   static Equinox from_string(const std::string& name);
 
   static Equinox from_system_type(enum novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
+
+  static Equinox from_system_type(enum novas_reference_system system, const Time& time);
 
   static Equinox mod(double jd_tt);
 
@@ -966,7 +968,7 @@ public:
   Angle distance_to(const Equatorial& other) const;
 
   /// @ingroup equatorial
-  Equatorial to_system(const Equinox& system) const;
+  Equatorial to_system(const Equinox& system, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   /// @ingroup equatorial
   Equatorial to_icrs() const;
@@ -984,7 +986,7 @@ public:
   Equatorial to_cirs(const Time& time) const;
 
   /// @ingroup nonequatorial
-  Ecliptic to_ecliptic() const;
+  Ecliptic to_ecliptic(enum novas_accuracy = NOVAS_FULL_ACCURACY) const;
 
   /// @ingroup nonequatorial
   Galactic to_galactic() const;
@@ -1041,7 +1043,7 @@ public:
 
   Angle distance_to(const Ecliptic& other) const;
 
-  Ecliptic to_system(const Equinox& system) const;
+  Ecliptic to_system(const Equinox& system, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   Ecliptic to_icrs() const;
 
@@ -1052,7 +1054,7 @@ public:
   Ecliptic to_tod(const Time& time) const;
 
   /// @ingroup equatorial
-  Equatorial to_equatorial() const;
+  Equatorial to_equatorial(enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   /// @ingroup nonequatorial
   Galactic to_galactic() const;
@@ -1468,7 +1470,9 @@ public:
 
   GeocentricObserver to_geocentric_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
-  const EOP& eop() const;
+  const EOP& mean_eop() const;
+
+  EOP eop_at(const Time& time) const;
 
   std::string to_string() const override;
 };

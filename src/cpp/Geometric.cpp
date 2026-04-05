@@ -128,7 +128,7 @@ Coordinate Geometric::distance() const {
  * @sa Apparent::equatorial(), ecliptic(), galactic(), position(), velocity()
  */
 Equatorial Geometric::equatorial() const {
-  Equatorial e = Equatorial(_pos, Equinox::from_system_type(_system, _frame.jd()));
+  Equatorial e = Equatorial(_pos, Equinox::from_system_type(_system, _frame.time()));
   if(!e.is_valid())
     novas_trace_invalid("Geometric::equatorial");
   return e;

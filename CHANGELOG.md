@@ -33,7 +33,7 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  - #298: Added `cspice_clear_kernels()` to CSPICE plugin to close all kernels and free up the resources they use 
    (thanks to aleberti)
    
- - #306: Added `novas_geodetic_posvel()` as a more precise alternative to `geo_posvel()` for Earth-bound observers,
+ - #306: Added `novas_site_gcrs_posvel()` as a more precise alternative to `geo_posvel()` for Earth-bound observers,
    when polar wobble offsets are known.
 
  - Added `novas_enu_to_itrs()` and `novas_itrs_to_enu()` functions to help convert between local East-North-Up (ENU)

@@ -59,8 +59,8 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
 
   if(obs.is_geodetic()) {
     const GeodeticObserver *go = dynamic_cast<const GeodeticObserver *>(_observer);
-    xp = go->eop().xp().mas();
-    yp = go->eop().yp().mas();
+    xp = go->mean_eop().xp().mas();
+    yp = go->mean_eop().yp().mas();
   }
 
   if(novas_make_frame(accuracy, obs._novas_observer(), time._novas_timespec(), xp, yp, &_frame) != 0)

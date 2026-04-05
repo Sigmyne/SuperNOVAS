@@ -18,7 +18,6 @@ int main() {
 
   int n = 0;
 
-
   EOP eop(37, 0.15, 0.2 * Unit::arcsec, -0.3 * Unit::arcsec);
   Site site(Angle(-2.0), Angle(1.0), Coordinate(75.0));
 
@@ -68,7 +67,7 @@ int main() {
   if(!test.check("is_geocentric(on_earth)", !g1.is_geocentric())) n++;
   if(!test.check("site()", g1.site() == site)) n++;
   if(!test.check("velocity()", g1.itrs_velocity() == Velocity::stationary())) n++;
-  if(!test.check("site()", g1.eop() == eop)) n++;
+  if(!test.check("site()", g1.mean_eop() == eop)) n++;
   if(!test.check("frame_at(reduced)", g1.frame_at(Time::j2000(), NOVAS_REDUCED_ACCURACY).is_valid())) n++;
   if(!test.check("frame_at(full)", !g1.frame_at(Time::j2000(), NOVAS_FULL_ACCURACY).is_valid())) n++;
   if(!test.equals("to_string(on_earth)", g1.to_string(),
@@ -77,6 +76,20 @@ int main() {
   copy = g1.copy();
   if(!test.check("copy(on_earth)", memcmp(copy->_novas_observer(), g1._novas_observer(), sizeof(observer)) == 0)) n++;
   delete copy;
+
+  Apparent app = Apparent::from_tod(1.234 * Unit::hour_angle, -23.45 * Unit::deg, Observer::at_geocenter().reduced_accuracy_frame_at(Time::b1950()));
+  EOP e = g1.eop_at(app.frame().time());
+
+  double uvw[3] = {0.0};
+  novas_site_uvw(app.frame().time()._novas_timespec(), g1.site()._on_surface(), app.xyz().scaled(1.0 / Unit::AU)._array(),
+          e.xp().arcsec(), e.yp().arcsec(), NOVAS_REDUCED_ACCURACY, uvw);
+
+  Interferometric u = g1.to_interferometric(app);
+  if(!test.check("to_interferometric()", u.is_valid())) n++;
+  if(!test.equals("to_interferometric() u", u[0], uvw[0], 1e-8)) n++;
+  if(!test.equals("to_interferometric() v", u[1], uvw[1], 1e-8)) n++;
+  if(!test.equals("to_interferometric() w", u[2], uvw[2], 1e-8)) n++;
+
 
   const observer *o = g1._novas_observer();
   if(!test.check("_novas_observer(on_earth)", o != NULL && o->where == NOVAS_OBSERVER_ON_EARTH)) n++;
@@ -91,6 +104,7 @@ int main() {
   copy = g2.copy();
   if(!test.check("copy(moving)", memcmp(copy->_novas_observer(), g2._novas_observer(), sizeof(observer)) == 0)) n++;
   delete copy;
+
 
   double v_enu[3] = {1.0, -2.0, 3.0}, v_itrs[3] = {0.0};
   novas_enu_to_itrs(v_enu, site.longitude().deg(), site.latitude().deg(), v_itrs);
@@ -137,6 +151,8 @@ int main() {
   if(!test.check("geocentric_position(orbit)", o1.gcrs_position() == p1)) n++;
   if(!test.check("geocentric_velocity(orbit)", o1.gcrs_velocity() == v1)) n++;
   if(!test.equals("to_string(orbit)", o1.to_string(), "Geocentric Observer at Position (10000.000 km, 0.000 m, 0.000 m) moving at Velocity (0.001 km/s, -0.002 km/s, 0.003 km/s)")) n++;
+
+
 
   o = o1._novas_observer();
   if(!test.check("_novas_observer(orbit)", o != NULL && o->where == NOVAS_OBSERVER_IN_EARTH_ORBIT)) n++;

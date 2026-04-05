@@ -132,7 +132,7 @@ Frame Observer::reduced_accuracy_frame_at(const Time& time) const {
  * specified time and accuracy.
  *
  * @param time        Astrometric time of observation
- * @param accuracy    (optional) NOVAS_FULL_ACCURACY or NOVAS_REDUCED_ACCURACY.
+ * @param accuracy    (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  * @return            The ICRS geometric geocentric position vector of this observer at the
  *                    specified time.
  *
@@ -152,7 +152,7 @@ Position Observer::gcrs_position_at(const Time& time, enum novas_accuracy accura
  * specified time and accuracy.
  *
  * @param time        Astrometric time of observation
- * @param accuracy    (optional) NOVAS_FULL_ACCURACY or NOVAS_REDUCED_ACCURACY.
+ * @param accuracy    (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  * @return            The ICRS geometric geocentric velocity vector of this observer at the
  *                    specified time.
  *
@@ -201,7 +201,7 @@ Velocity Observer::gcrs_velocity_at(const Time& time, enum novas_accuracy accura
  *  // u,v,w coordinates of the station relative to the array reference (w.r.t. ICRS)
  *  Interferometric uwv = station.to_interferometric(app);
  *
- *  // the geometric delay of the station, relative to the array reference
+ *  // the geometric delay of the stanovas_site_uvwtion, relative to the array reference
  *  Interval delay = uvw.geometric_delay()
  * ```
  *
@@ -252,14 +252,16 @@ Interferometric Observer::to_interferometric(const Apparent& phase_center, enum 
   const Frame& frame = phase_center.frame();
   const Time& t = frame.time();
 
+  // ICRS position / velocity vectors w.r.t. the observing reference
   Position p = gcrs_position_at(t, frame.accuracy()) - frame.observer().gcrs_position_at(t, frame.accuracy());
   Velocity v = gcrs_velocity_at(t, frame.accuracy()) - frame.observer().gcrs_velocity_at(t, frame.accuracy());
 
-  // Geocentric positions and velocities
+  // Geocentric positions and velocities (in output system)
   Geometric g = Geometric(frame, p, v, NOVAS_ICRS).to_system(system);
 
-  Equinox equinox = Equinox::from_system_type(system, t.jd());
-  Position los = phase_center.equatorial().to_system(equinox).xyz(phase_center.distance());
+  // Array phase center line-of-sight (in output system).
+  Equinox equinox = Equinox::from_system_type(system, t);
+  Position los = phase_center.equatorial().to_system(equinox, frame.accuracy()).xyz(phase_center.distance());
 
   double uvw[3] = {0.0};
   novas_uvw(g.position().scaled(1.0 / Unit::AU)._array(), g.velocity().scaled(Unit::day / Unit::AU)._array(), los.scaled(1.0 / Unit::AU)._array(), uvw);
@@ -718,8 +720,10 @@ Velocity GeodeticObserver::enu_velocity() const {
 Position GeodeticObserver::gcrs_position_at(const Time &time, enum novas_accuracy accuracy) const {
   static const char *fn = "GeodeticObserver::gcrs_position_at()";
 
+  EOP eop = eop_at(time);
+
   double p[3] = {0.0};
-  if(novas_site_gcrs_posvel(time._novas_timespec(), &_observer.on_surf, _observer.near_earth.sc_vel, _eop.xp().arcsec(), _eop.yp().arcsec(), accuracy, p, NULL) != 0) {
+  if(novas_site_gcrs_posvel(time._novas_timespec(), &_observer.on_surf, NULL, eop.xp().arcsec(), eop.yp().arcsec(), accuracy, p, NULL) != 0) {
     novas_trace_invalid(fn);
     return Position::undefined();
   }
@@ -727,19 +731,22 @@ Position GeodeticObserver::gcrs_position_at(const Time &time, enum novas_accurac
   Position pos(p, Unit::AU);
   if(!pos.is_valid())
     novas_trace_invalid(fn);
+
   return pos;
 }
 
 Velocity GeodeticObserver::gcrs_velocity_at(const Time &time, enum novas_accuracy accuracy) const {
   static const char *fn = "GeodeticObserver::gcrs_velocity_at()";
 
+  EOP eop = eop_at(time);
+
   double v[3] = {0.0};
-  if(novas_site_gcrs_posvel(time._novas_timespec(), &_observer.on_surf, _observer.near_earth.sc_vel, _eop.xp().arcsec(), _eop.yp().arcsec(), accuracy, NULL, v) != 0) {
+  if(novas_site_gcrs_posvel(time._novas_timespec(), &_observer.on_surf, _observer.near_earth.sc_vel, eop.xp().arcsec(), eop.yp().arcsec(), accuracy, NULL, v) != 0) {
     novas_trace_invalid(fn);
     return Velocity::undefined();
   }
 
-  Velocity vel(v, Unit::AU);
+  Velocity vel(v, Unit::AU / Unit::day);
   if(!vel.is_valid())
     novas_trace_invalid(fn);
   return vel;
@@ -766,10 +773,29 @@ GeocentricObserver GeodeticObserver::to_geocentric_at(const Time& time, enum nov
  *
  * @return    the mean Earth Orientation Parameters (EOP) defined for this observer, not including
  *            libration and ocean tides.
+ *
+ * @sa eop_at()
  */
-const EOP& GeodeticObserver::eop() const {
+const EOP& GeodeticObserver::mean_eop() const {
   return _eop;
 }
+
+/**
+ * Returns the Earth Orientation Parameters (EOP), including diurnal corrections for libration and
+ * ocrean tides.
+ *
+ * @param time    Astrometric time for which to apply diurnal corrections
+ * @return        EOP corrected for libration and ocean tides at the specified time.
+ *
+ * @sa mean_eop()
+ */
+EOP GeodeticObserver::eop_at(const Time& time) const {
+  double dx = 0.0, dy = 0.0, dut = 0.0;
+  novas_diurnal_eop_at_time(time._novas_timespec(), &dx, &dy, &dut);
+  const EOP& m = mean_eop();
+  return EOP(time.leap_seconds(), time.dUT1().seconds() + dut, m.xp().rad() + dx * Unit::arcsec, m.yp().rad() + dy * Unit::arcsec);
+}
+
 
 /**
  * Returns a string representation of this Earth-based observer location.

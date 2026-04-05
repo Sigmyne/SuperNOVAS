@@ -246,16 +246,17 @@ Angle Ecliptic::distance_to(const Ecliptic& other) const {
  * specified equinox of date.
  *
  * @param system    the requested equinox of date for returned coordinates.
+ * @param accuracy  (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  * @return          new ecliptic coordinates, which represent the same position as
  *                  this, but expressed relaive to the specified equinox.
  *
  * @sa operator>>(), to_icrs(), to_j2000(), to_mod(), to_tod()
  */
-Ecliptic Ecliptic::to_system(const Equinox& system) const {
+Ecliptic Ecliptic::to_system(const Equinox& system, enum novas_accuracy accuracy) const {
   if(system == this->system())
     return *this;
 
-  Ecliptic e = to_equatorial().to_system(system).to_ecliptic();
+  Ecliptic e = to_equatorial().to_system(system, accuracy).to_ecliptic();
   if(!e.is_valid())
     novas_trace_invalid("Ecliptic::to_system()");
   return e;
@@ -337,22 +338,17 @@ Ecliptic Ecliptic::to_tod(const Time& time) const {
 }
 
 /**
- * Returns a reference to a statically defined standard invalid %Galactic coordinates. These invalid
- * coordinates may be used inside any object that is invalid itself.
+ * Converts these ecliptic coordinates to equivalent equatorial coordinates.
  *
- * @return    a reference to the static standard invalid coordinates.
- */
-/**
- * Converts these ecliptic coordinates to equivalent equatorial coordinates
- *
- * @return    the equivalent equatorial coordinates for the same place on sky.
+ * @param accuracy  (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
+ * @return          the equivalent equatorial coordinates for the same place on sky.
  *
  * @sa Equatorial::to_ecliptic(), to_galactic()
  */
-Equatorial Ecliptic::to_equatorial() const {
+Equatorial Ecliptic::to_equatorial(enum novas_accuracy accuracy) const {
   if(is_valid()) {
     double ra = 0.0, dec = 0.0;
-    ecl2equ(_jd, _equator, NOVAS_FULL_ACCURACY, longitude().deg(), latitude().deg(), &ra, &dec);
+    ecl2equ(_jd, _equator, accuracy, longitude().deg(), latitude().deg(), &ra, &dec);
     return Equatorial(ra * Unit::hour_angle, dec * Unit::deg, system());
   }
 

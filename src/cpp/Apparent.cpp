@@ -56,7 +56,7 @@ Apparent::Apparent(const Frame& frame, enum novas_reference_system sys, double r
 
   _pos.dec = dec_rad / Unit::deg;
   _pos.rv = rv_ms / (Unit::km / Unit::sec);
-  _pos.dis = NOVAS_DEFAULT_DISTANCE;
+  _pos.dis = NOVAS_DEFAULT_DISTANCE / Unit::au;
 
   radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
 

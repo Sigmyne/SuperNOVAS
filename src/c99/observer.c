@@ -881,8 +881,8 @@ int obs_posvel(double jd_tdb, double ut1_to_tt, enum novas_accuracy accuracy, co
  *
  * @param ts        Astrometric time of oservation
  * @param site      ITRF / GRS80 geodetic location on Earth
- * @param v_itrs    surface velocity vecotri in ITRS, or NULL if observing from a fixed Earth
- *                  location
+ * @param v_itrs    [km/s] surface velocity vector in ITRS, or NULL if observing from a fixed
+ *                  Earth location.
  * @param xp        [arcsec] Earth orientation parameter, polar offset in _x_, e.g. from the
  *                  IERS Bulletins, and including diurnal libration and ocean tides. You can use
  *                  0.0 if sub-arcsecond accuracy is not required.
@@ -897,6 +897,8 @@ int obs_posvel(double jd_tdb, double ut1_to_tt, enum novas_accuracy accuracy, co
  *
  * @author Attila Kovacs
  * @since 1.6
+ *
+ * @c_geometric
  *
  * @sa geo_posvel()
  */
@@ -939,7 +941,7 @@ int novas_site_gcrs_posvel(const novas_timespec *restrict ts, const on_surface *
 
   if(vel) {
    itrs_to_tod(ts->ijd_tt, ts->fjd_tt, ts->ut1_to_tt, accuracy, xp, yp, vel, vel);
-   tod_to_gcrs(tdb, accuracy, pos, pos);
+   tod_to_gcrs(tdb, accuracy, vel, vel);
   }
 
   return 0;
@@ -1328,12 +1330,12 @@ int novas_uvw(const double *restrict station_pos, const double *restrict station
 }
 
 /**
- * Returns _u_,_v_,_w_ coordinates for a ground-based interferometer station. That is, it returns
- * _u_,_v_,_w_ coordinates, for a geodetic station, relative to the geocenter, for a given
- * apparent line-of-sight on the sky, observed at the specified time. The _u_ and _v_ coordinates
- * are the projections of the site in the direction of the local East and North respectively, as
- * seen from the source, relative to the geocenter, while _w_ is the distance (inverse delay) from
- * the geocenter along the line of sight.
+ * Returns geocentric _u_,_v_,_w_ coordinates for a ground-based interferometer station. That is,
+ * it returns _u_,_v_,_w_ coordinates, for a geodetic station, relative to the geocenter, for a
+ * given apparent line-of-sight on the sky, observed at the specified time. The _u_ and _v_
+ * coordinates are the projections of the site in the GCRS direction of the local East and North
+ * respectively, as seen from the source, relative to the geocenter, while _w_ is the distance
+ * (inverse delay) from the geocenter along the line of sight.
  *
  * For interferometers, each station is its own specific site, and the array is usually referenced
  * to one of the stations, or to some other reference location (a virtual site). As such, one
@@ -1361,7 +1363,7 @@ int novas_uvw(const double *restrict station_pos, const double *restrict station
  * @param accuracy            NOVAS_FULL_ACCYRACY (0) or NOVAS_REDUCED_ACCURACY (1)
  * @param[out] uvw            [m] output _u_, _v_, _w_ coordinates, relative to geocenter, the
  *                            _u_, and _v_ coordinates are aligned with the local East and
- *                            North directions in the ICRS.
+ *                            North directions in the GCRS.
  * @return                    0 if succcessful or else -1 if any of the pointer arguments are NULL
  *                            or if the accuracy is invalid (errno will be set to EINVAL).
  * @since 1.6

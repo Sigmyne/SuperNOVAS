@@ -245,7 +245,7 @@ Time Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref
 EquatorialTrack Source::equatorial_track(const Frame &frame, double range_seconds) const {
   novas_track track = {};
   novas_equ_track(_novas_object(), frame._novas_frame(), range_seconds, &track);
-  EquatorialTrack et = EquatorialTrack::from_novas_track(Equinox::tod(frame.jd()), &track, Interval(range_seconds));
+  EquatorialTrack et = EquatorialTrack::from_novas_track(Equinox::tod(frame.time()), &track, Interval(range_seconds));
   if(!et.is_valid())
     novas_trace_invalid("Source::equatorial_track()");
   return et;

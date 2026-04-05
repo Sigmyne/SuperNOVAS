@@ -56,7 +56,6 @@
  * @sa solsys-calceph.c, ephemeris.c, orbital.c
  */
 
-#include <stdio.h>
 #include <string.h>
 #include <errno.h>
 

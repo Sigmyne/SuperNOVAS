@@ -130,7 +130,7 @@ Equatorial AstrometricPosition::as_equatorial() const {
   double ra = NAN, dec = NAN;
   vector2radec(_array(), &ra, &dec);
 
-  Equatorial e(ra * Unit::hour_angle, dec * Unit::deg, Equinox::from_system_type(_ref_sys, obs_time().jd()));
+  Equatorial e(ra * Unit::hour_angle, dec * Unit::deg, Equinox::from_system_type(_ref_sys, obs_time()));
   if(!e.is_valid())
     novas_trace_invalid("AstrometricPosition::as_equatorial()");
   return e;
@@ -218,7 +218,7 @@ AstrometricPosition AstrometricPosition::referenced_to_ssb() const {
  * @sa Observer::to_interferometric()
  */
 Interferometric AstrometricPosition::to_interferometric(const Equatorial& phase_center, const Coordinate& distance, const Velocity& relative_motion) const {
-  Equinox system = Equinox::from_system_type(_ref_sys, obs_time().jd());
+  Equinox system = Equinox::from_system_type(_ref_sys, obs_time());
 
   // Calculate the line-of-sight projection
   double uvw[3] = {0.0};

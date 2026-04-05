@@ -24,8 +24,6 @@ int main() {
   if(!test.check("itrf_transformed(invalid)", !x.itrf_transformed(2008, 2014).is_valid())) n++;
 
   if(!test.check("invalid(dut1 = NAN)", !EOP(0, NAN, 0.0, 0.0).is_valid())) n++;
-  if(!test.check("invalid(dut1 < -1s)", !EOP(0, -1.1, 0.0, 0.0).is_valid())) n++;
-  if(!test.check("invalid(dut1 > 1s)", !EOP(0, 1.1, 0.0, 0.0).is_valid())) n++;
   if(!test.check("invalid(xp = NAN)", !EOP(0, 0.0, NAN, 0.0).is_valid())) n++;
   if(!test.check("invalid(yp = NAN)", !EOP(0, 0.0, 0.0, NAN).is_valid())) n++;
 

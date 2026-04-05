@@ -210,13 +210,14 @@ Angle Equatorial::distance_to(const Equatorial& other) const {
  * Converts these equatorial coordinates to another equatorial coordinate system.
  *
  * @param system    the equatorial coordinate system (type and epoch) to convert to.
+ * @param accuracy  (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed in the specified other coordinate reference system.
  *
  * @sa operator>>(), to_icrs(), to_j2000(), to_hip(), to_mod(), to_mod_at_besselian_epoch(),
  *     to_tod(), to_cirs()
  */
-Equatorial Equatorial::to_system(const Equinox& system) const {
+Equatorial Equatorial::to_system(const Equinox& system, enum novas_accuracy accuracy) const {
   static const char *fn = "Equatorial::to_system()";
 
   if(_sys == system)
@@ -237,10 +238,10 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
       mod_to_gcrs(_sys.jd(), p, p);
       break;
     case NOVAS_CIRS:
-      cirs_to_gcrs(_sys.jd(), NOVAS_FULL_ACCURACY, p, p);
+      cirs_to_gcrs(_sys.jd(), accuracy, p, p);
       break;
     case NOVAS_TOD:
-      tod_to_gcrs(_sys.jd(), NOVAS_FULL_ACCURACY, p, p);
+      tod_to_gcrs(_sys.jd(), accuracy, p, p);
       break;
     default:
       novas_set_errno(ERANGE, fn, "invalid equatorial with system type %d", _sys.system_type());
@@ -259,10 +260,10 @@ Equatorial Equatorial::to_system(const Equinox& system) const {
       gcrs_to_mod(system.jd(), p, p);
       break;
     case NOVAS_TOD:
-      gcrs_to_tod(system.jd(), NOVAS_FULL_ACCURACY, p, p);
+      gcrs_to_tod(system.jd(), accuracy, p, p);
       break;
     case NOVAS_CIRS:
-      gcrs_to_cirs(system.jd(), NOVAS_FULL_ACCURACY, p, p);
+      gcrs_to_cirs(system.jd(), accuracy, p, p);
       break;
     default:
       novas_set_errno(ERANGE, fn, "invalid output system type %d", system.system_type());
@@ -424,12 +425,13 @@ const Angle& Equatorial::dec() const {
 /**
  * Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates.
  *
- * @return    the ecliptic coordinates that represent the same position on sky as these equariorial
- *            coordinates.
+ * @param accuracy  (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
+ * @return          the ecliptic coordinates that represent the same position on sky as these
+ *                  equariorial coordinates.
  *
  * @sa Ecliptic::to_equatorial(), to_galactic()
  */
-Ecliptic Equatorial::to_ecliptic() const {
+Ecliptic Equatorial::to_ecliptic(enum novas_accuracy accuracy) const {
   double lon, lat;
 
   if(!is_valid()) {
@@ -441,9 +443,9 @@ Ecliptic Equatorial::to_ecliptic() const {
   double d = dec().deg();
 
   if(_sys.system_type() == NOVAS_CIRS)
-    r -= ira_equinox(_sys.jd(), NOVAS_TRUE_EQUINOX, NOVAS_FULL_ACCURACY);
+    r -= ira_equinox(_sys.jd(), NOVAS_TRUE_EQUINOX, accuracy);
 
-  equ2ecl(_sys.jd(), _sys.equator_type(), NOVAS_FULL_ACCURACY, r, d, &lon, &lat);
+  equ2ecl(_sys.jd(), _sys.equator_type(), accuracy, r, d, &lon, &lat);
 
   return Ecliptic(lon * Unit::deg, lat * Unit::deg, _sys);
 }
