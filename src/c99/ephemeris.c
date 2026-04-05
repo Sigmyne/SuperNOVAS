@@ -250,7 +250,8 @@ novas_planet_provider_hp get_planet_provider_hp() {
  *
  * It is recommended that the input structure 'cel_obj' be created using make_object()
  *
- * @param jd_tdb    [day] Barycentric Dynamic Time (TDB) based Julian date
+ * @param jd_tdb    [day] (double[2]) Barycentric Dynamic Time (TDB) based Julian date, split into
+ *                  high order and low-order components.
  * @param body      Pointer to structure containing the designation of the body of interest
  * @param origin    NOVAS_BARYCENTER (0) or NOVAS_HELIOCENTER (1)
  * @param accuracy  NOCAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)

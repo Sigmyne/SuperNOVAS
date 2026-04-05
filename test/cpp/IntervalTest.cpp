@@ -42,6 +42,8 @@ int main() {
   if(!test.equals("julian_years()", a.julian_years(), Unit::min / Unit::julian_year, 1e-22)) n++;
   if(!test.equals("julian_centuries()", a.julian_centuries(), Unit::min / Unit::julian_century, 1e-23)) n++;
   if(!test.equals("timescale()", (long) a.timescale(), (long) NOVAS_TT)) n++;
+  if(!test.equals("SI_unit()", a.SI_unit(), "s")) n++;
+  if(!test.equals("SI_value()", a.SI_value(), a.seconds(), 0.0)) n++;
   if(!test.equals("operator - (tt)", (a - a).seconds(), 0.0, 1e-16)) n++;
   if(!test.check("operator+(NAN)", !(a + x).is_valid())) n++;
   if(!test.check("operator-(NAN)", !(a - x).is_valid())) n++;
@@ -71,6 +73,9 @@ int main() {
 
   if(!test.differs("operator - (tcb / tcg)", (d - c).seconds(), 0.0, 1e-15)) n++;
 
+  if(!test.equals("to_string(10 ps)", Interval(10.0 * Unit::ps).to_string(), "10.000 ps")) n++;
+  if(!test.equals("to_string(10 ns)", Interval(10.0 * Unit::ns).to_string(), "10.000 ns")) n++;
+  if(!test.equals("to_string(10 us)", Interval(10.0 * Unit::us).to_string(), "10.000 us")) n++;
   if(!test.equals("to_string(10 ms)", Interval(10.0 * Unit::ms).to_string(), "10.000 ms")) n++;
   if(!test.equals("to_string(10 s)", Interval(10.0 * Unit::s).to_string(), "10.000 s")) n++;
   if(!test.equals("to_string(10 min)", Interval(10.0 * Unit::min).to_string(), "600.000 s")) n++;

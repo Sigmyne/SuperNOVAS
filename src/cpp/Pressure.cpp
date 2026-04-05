@@ -21,15 +21,15 @@ namespace supernovas {
  *
  * @sa Pa(), hPa(), kPa(), mbar(), bar(), torr(), atm()
  */
-Pressure::Pressure(double value) : _pascal(value) {
+Pressure::Pressure(double value) : Scalar(value) {
   static const char *fn = "Pressure()";
 
-  if(!isfinite(value))
-    novas_set_errno(EINVAL, fn, "input value is NAN or infinite");
-  else if(value < 0.0)
+  if(!is_valid())
+    novas_trace_invalid(fn);
+  else if(value < 0.0) {
     novas_set_errno(EINVAL, fn, "input value is negative");
-  else
-    _valid = true;
+    _valid = false;
+  }
 }
 
 /**
@@ -40,7 +40,7 @@ Pressure::Pressure(double value) : _pascal(value) {
  * @sa hPa(), kPa(), mbar(), bar(), torr(), atm()
  */
 double Pressure::Pa() const {
-  return _pascal;
+  return _value;
 }
 
 /**
@@ -51,7 +51,7 @@ double Pressure::Pa() const {
  * @sa Pa(), kPa(), mbar(), bar(), torr(), atm()
  */
 double Pressure::hPa() const {
-  return 0.01 * _pascal;
+  return 0.01 * _value;
 }
 
 /**
@@ -62,7 +62,7 @@ double Pressure::hPa() const {
  * @sa Pa(), hPa(), mbar(), bar(), torr(), atm()
  */
 double Pressure::kPa() const {
-  return 1e-3 * _pascal;
+  return 1e-3 * _value;
 }
 
 /**
@@ -73,7 +73,7 @@ double Pressure::kPa() const {
  * @sa Pa(), hPa(), kPa(), bar(), torr(), atm()
  */
 double Pressure::mbar() const {
-  return _pascal / Unit::mbar;
+  return _value / Unit::mbar;
 }
 
 /**
@@ -84,7 +84,7 @@ double Pressure::mbar() const {
  * @sa Pa(), hPa(), kPa(), mbar(), torr(), atm()
  */
 double Pressure::bar() const {
-  return _pascal / Unit::bar;
+  return _value / Unit::bar;
 }
 
 /**
@@ -96,7 +96,7 @@ double Pressure::bar() const {
  *     Pressure::atm()
  */
 double Pressure::torr() const {
-  return _pascal / Unit::torr;
+  return _value / Unit::torr;
 }
 
 /**
@@ -107,18 +107,23 @@ double Pressure::torr() const {
  * @sa Pa(), hPa(), kPa(), mbar(), bar(), torr()
  */
 double Pressure::atm() const {
-  return _pascal / Unit::atm;
+  return _value / Unit::atm;
+}
+
+std::string Pressure::SI_unit() const {
+  return "Pa";
 }
 
 /**
  * Returns a human-readable string representation of this atmospheric pressure in
  * millibars.
  *
- * @return    a new string representation of this pressure in millibars.
+ * @param decimals  (optional) [0:16] decimal places to print (default: 3).
+ * @return          a new string representation of this pressure in millibars.
  */
-std::string Pressure::to_string() const {
+std::string Pressure::to_string(int decimals) const {
   char s[40] = {'\0'};
-  snprintf(s, sizeof(s), "%.1f mbar", _pascal / Unit::mbar);
+  snprintf(s, sizeof(s), "%.1f mbar", _value / Unit::mbar);
   return std::string(s);
 }
 

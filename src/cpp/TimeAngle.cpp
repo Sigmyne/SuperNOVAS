@@ -23,7 +23,7 @@ namespace supernovas {
  */
 TimeAngle::TimeAngle(double radians)
 : Angle(radians) {
-  if(_rad < 0.0) _rad += TWOPI;
+  if(_value < 0.0) _value += TWOPI;
 }
 
 /**
@@ -52,7 +52,7 @@ TimeAngle::TimeAngle(const Angle& angle)
  * @sa minutes(), seconds(), Angle::rad(), Angle::deg(), Angle::arcmin(), Angle::arcsec()
  */
 double TimeAngle::hours() const {
-  return _rad / Unit::hour_angle;
+  return _value / Unit::hour_angle;
 }
 
 /**
@@ -110,7 +110,7 @@ Angle TimeAngle::operator-(const Angle& r) const {
  * @sa operator-()
  */
 TimeAngle TimeAngle::operator+(const TimeAngle& r) const {
-  TimeAngle ta(rad() + r.rad());
+  TimeAngle ta(_value + r._value);
   if(!ta.is_valid())
     novas_trace_invalid("TimeAngle::operator+(TimeAngle&)");
   return ta;
@@ -126,7 +126,7 @@ TimeAngle TimeAngle::operator+(const TimeAngle& r) const {
  * @sa operator+()
  */
 TimeAngle TimeAngle::operator-(const TimeAngle& r) const {
-  TimeAngle ta(rad() - r.rad());
+  TimeAngle ta(_value - r._value);
   if(!ta.is_valid())
     novas_trace_invalid("TimeAngle::operator-(TimeAngle&)");
   return ta;

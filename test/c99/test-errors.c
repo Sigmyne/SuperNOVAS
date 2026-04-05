@@ -843,6 +843,7 @@ static int test_bary2obs() {
 }
 
 static int test_geo_posvel() {
+  enum novas_debug_mode m = novas_get_debug_mode();
   observer o;
   double p[3] = {0.0}, v[3] = {0.0};
   int n = 0;
@@ -851,6 +852,10 @@ static int test_geo_posvel() {
   if(check("geo_posvel:loc", -1, geo_posvel(0.0, 0.0, NOVAS_FULL_ACCURACY, NULL, p, v))) n++;
   if(check("geo_posvel:pos+vel", -1, geo_posvel(0.0, 0.0, NOVAS_FULL_ACCURACY, &o, NULL, NULL))) n++;
   if(check("geo_posvel:accuracy", 1, geo_posvel(0.0, 0.0, -1, &o, p, v))) n++;
+
+  novas_debug(NOVAS_DEBUG_EXTRA);
+  if(check("geo_posvel:geodetic", -1, geo_posvel(0.0, 0.0, NOVAS_REDUCED_ACCURACY, &o, p, v))) n++;
+  novas_debug(m);
 
   o.where = -1;
   if(check("geo_posvel:where", 2, geo_posvel(0.0, 0.0, NOVAS_FULL_ACCURACY, &o, p, v))) n++;
@@ -2640,6 +2645,46 @@ static int test_moon_elp_sky_pos() {
   return n;
 }
 
+static int test_uvw() {
+  int n = 0;
+
+  double s[3] = {0.0}, v[3] = {0.0}, p[3] = {0.0}, u[3] = {0.0};
+
+  if(check("uvw:station:NULL", -1, novas_uvw(NULL, v, p, u))) n++;
+  if(check("uvw:phase_center:NULL", -1, novas_uvw(s, v, NULL, u))) n++;
+  if(check("uvw:uvw:NULL", -1, novas_uvw(s, v, p, NULL))) n++;
+
+  return n;
+}
+
+static int test_site_uvw() {
+  int n = 0;
+
+  novas_timespec ts = {};
+  on_surface s = {};
+  double p[3] = {0.0}, u[3] = {0.0};
+
+  if(check("site_uvw:time:NULL", -1, novas_site_uvw(NULL, &s, p, 0.0, 0.0, NOVAS_REDUCED_ACCURACY, u))) n++;
+  if(check("site_uvw:station:NULL", -1, novas_site_uvw(&ts, NULL, p, 0.0, 0.0, NOVAS_REDUCED_ACCURACY, u))) n++;
+
+  return n;
+}
+
+static int test_site_gcrs_posvel() {
+  int n = 0;
+
+  novas_timespec ts = {};
+  on_surface s = {};
+  double p[3] = {0.0}, v[3] = {0.0}, vs[3] = {0.0};
+
+  if(check("site_gcrs_posvel:ts:NULL", -1, novas_site_gcrs_posvel(NULL, &s, vs, 0.0, 0.0, NOVAS_REDUCED_ACCURACY, p, v))) n++;
+  if(check("site_gcrs_posvel:site:NULL", -1, novas_site_gcrs_posvel(&ts, NULL, vs, 0.0, 0.0, NOVAS_REDUCED_ACCURACY, p, v))) n++;
+  if(check("site_gcrs_posvel:accuracy:-1", -1, novas_site_gcrs_posvel(&ts, &s, vs, 0.0, 0.0, (enum novas_accuracy) -1, p, v))) n++;
+  if(check("site_gcrs_posvel:accuracy:p=v=NULL", -1, novas_site_gcrs_posvel(&ts, &s, vs, 0.0, 0.0, NOVAS_REDUCED_ACCURACY, NULL, NULL))) n++;
+
+  return n;
+}
+
 
 int main(int argc, const char *argv[]) {
   int n = 0;
@@ -2867,6 +2912,10 @@ int main(int argc, const char *argv[]) {
   if(test_moon_elp_ecl_vel()) n++;
   if(test_moon_elp_posvel()) n++;
   if(test_moon_elp_sky_pos()) n++;
+
+  if(test_uvw()) n++;
+  if(test_site_uvw()) n++;
+  if(test_site_gcrs_posvel()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");

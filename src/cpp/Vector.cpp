@@ -47,39 +47,6 @@ Vector Vector::operator*(double r) const {
 }
 
 /**
- * Returns the _x_ component of this vector.
- *
- * @return    the _x_ component
- *
- * @sa y(), z()
- */
-double Vector::x() const {
-  return _component[0];
-}
-
-/**
- * Returns the _y_ component of this vector.
- *
- * @return    the _y_ component
- *
- * @sa x(), z()
- */
-double Vector::y() const {
-  return _component[1];
-}
-
-/**
- * Returns the _z_ component of this vector.
- *
- * @return    the _z_ component
- *
- * @sa x(), y()
- */
-double Vector::z() const {
-  return _component[2];
-}
-
-/**
  * Returns the component at the specified index.
  *
  * @param idx   [0:2] The 0-based coordinate index.

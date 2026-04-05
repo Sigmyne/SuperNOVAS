@@ -13,7 +13,7 @@
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
 /// \endcond
 
-#include <stdio.h>
+#include <stdio.h>                // sscanf()
 #include <math.h>
 #include <errno.h>
 #include <string.h>

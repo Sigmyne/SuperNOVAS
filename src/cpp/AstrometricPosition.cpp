@@ -126,13 +126,13 @@ Time AstrometricPosition::obs_time() const {
  *
  * @sa Apparent::equatorial()
  */
-Equatorial AstrometricPosition::as_equatorial() const {
+Equatorial AstrometricPosition::to_equatorial() const {
   double ra = NAN, dec = NAN;
   vector2radec(_array(), &ra, &dec);
 
-  Equatorial e(ra * Unit::hour_angle, dec * Unit::deg, Equinox::from_system_type(_ref_sys, obs_time().jd()));
+  Equatorial e(ra * Unit::hour_angle, dec * Unit::deg, Equinox::from_system_type(_ref_sys, obs_time()));
   if(!e.is_valid())
-    novas_trace_invalid("AstrometricPosition::as_equatorial()");
+    novas_trace_invalid("AstrometricPosition::to_equatorial()");
   return e;
 }
 
@@ -168,6 +168,68 @@ AstrometricPosition AstrometricPosition::referenced_to_ssb() const {
   return p;
 }
 
+/**
+ * Returns _u_,_v_,_w_ coordinates for a space-based interferometer station represented by this
+ * astrometric position. That is, it returns the _u_,_v_,_w_ coordinates of this astrometric place
+ * (of a station), measured relative to the reference point (array reference location), for a
+ * given apparent line-of-sight on the sky (source) at the time as when the station location is
+ * defined. The _u_ and _v_ coordinates are the orthogonal projections of the site, relative to
+ * the array reference, in the direction of the local East and North respectively, as seen from
+ * the source; while _w_ is the distance from the array reference along the line of sight.
+ *
+ * You could also use `Observer::to_interferometric()` instead. However, using relative astrometric
+ * positions can overcome numerical precision issues for interferometers located far from the
+ * geocenter or the SSB, such as at L2. Specifically, `Observer::to_interferometric()` uses absolute
+ * geocentric and SSB station positions, and interferometric baselines are obtained from differencing
+ * these with the reference position used in defining the phase center direction. In contrast,
+ * astrometric positions are always defined as relative positions from the array reference, and
+ * will be more accurate, in general.
+ *
+ * ```cpp
+ *  // The momentary position of a station relative to the array reference
+ *  AstrometricPosition station = ...;
+ *
+ *  // the location of the phase center
+ *  Equatorial eq = ...;
+ *
+ *  // u,v,w coordinates for a source observed at the time the station position is defined
+ *  Interferometric uwv = station.to_interferometric(eq);
+ *
+ *  // the geometric delay of the station, relative to the array reference
+ *  Interval& dt = uvw.geometric_delay();
+ * ```
+ *
+ * For ground-based interferometric application, see `GeodeticObserver::to_interferometric()`
+ * instead.
+ *
+ * @param phase_center      %Apparent equatorial coordinates of the interferometric phase center,
+ *                          as seen from the array reference position, at the time at which
+ *                          this position is defined.
+ * @param distance          (optional) %Apparent distance to phase center, from the array
+ *                          reference, at the time of observation (default: 1 Gpc).
+ * @param relative_motion   (optional station's velocity vector relative to the reference position
+ *                          (default: stationary).
+ *
+ * @return            interferometric _uvw_ projection this astrometric place viewed from the
+ *                    direction of the source at the time for which this position was defined.
+ *                    The _u_ and _v_ directions are aligned with the local East and Noth in
+ *                    the coordinate system in which the phase center was specified.
+ *
+ * @sa Observer::to_interferometric()
+ */
+Interferometric AstrometricPosition::to_interferometric(const Equatorial& phase_center, const Coordinate& distance, const Velocity& relative_motion) const {
+  Equinox system = Equinox::from_system_type(_ref_sys, obs_time());
+
+  // Calculate the line-of-sight projection
+  double uvw[3] = {0.0};
+  novas_uvw(scaled(1.0 / Unit::AU)._array(), relative_motion.scaled(Unit::day / Unit::AU)._array(),
+          phase_center.to_system(system).xyz(distance).scaled(1.0 / Unit::AU)._array(), uvw);
+
+  Interferometric p(uvw[0], uvw[1], uvw[2]);
+  if(!p.is_valid())
+    novas_trace_invalid("AstrometricPosition::interferometric()");
+  return p;
+}
 
 /**
  * Returns a human-readable string representation of this referenced position.

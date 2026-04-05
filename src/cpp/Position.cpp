@@ -58,7 +58,7 @@ bool Position::equals(const Position& p, double precision) const {
  * or 1mm (whichever is larger).
  *
  * @param p   the reference position
- * @return    `true` if this position equals the argument to 12 significant figures or 1mm, or
+ * @return    `true` if this position equals the argument to 12 significant figures or 1 mm, or
  *            else `false`.
  *
  * @sa equals(), operator!=()
@@ -71,11 +71,11 @@ bool Position::operator==(const Position& p) const {
 }
 
 /**
- * Checks if this position is differs fro the specified other position by more than the 12th
+ * Checks if this position differs from the specified other position by more than the 12th
  * significant figure, or 1mm (whichever is larger).
  *
  * @param p   the reference position
- * @return    `true` if this position equals the argument to 12 significant figures or 1mm, or
+ * @return    `true` if this position equals the argument to 12 significant figures or 1 mm, or
  *            else `false`.
  *
  * @sa equals(), operator==()
@@ -128,6 +128,40 @@ Velocity Position::operator/(const Interval& dt) const {
   if(!v.is_valid())
     novas_trace_invalid("Position::operator/()");
   return v;
+}
+
+
+/**
+ * Returns the _x_ component of this position vector.
+ *
+ * @return    the _x_ component
+ *
+ * @sa y(), z()
+ */
+Coordinate Position::x() const {
+  return Coordinate(_component[0]);
+}
+
+/**
+ * Returns the _y_ component of this position vector.
+ *
+ * @return    the _y_ component
+ *
+ * @sa x(), z()
+ */
+Coordinate Position::y() const {
+  return Coordinate(_component[1]);
+}
+
+/**
+ * Returns the _z_ component of this position vector.
+ *
+ * @return    the _z_ component
+ *
+ * @sa x(), y()
+ */
+Coordinate Position::z() const {
+  return Coordinate(_component[2]);
 }
 
 /**
@@ -197,10 +231,10 @@ const Position& Position::origin() {
  *                      referenced to the time when light was emitted, and the observer location
  *                      w.r.t. the Solar-system barycenter (SSB).
  */
-AstrometricPosition Position::as_astrometric(const Frame& frame, enum novas_reference_system system) const {
+AstrometricPosition Position::to_astrometric(const Frame& frame, enum novas_reference_system system) const {
   AstrometricPosition p = AstrometricPosition(*this, frame, system);
   if(!p.is_valid())
-    novas_trace_invalid("Position::as_astrometric()");
+    novas_trace_invalid("Position::to_astrometric()");
   return p;
 }
 

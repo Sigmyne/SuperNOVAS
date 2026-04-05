@@ -22,15 +22,15 @@ namespace supernovas {
  *
  * @sa from_redshift()
  */
-ScalarVelocity::ScalarVelocity(double m_per_s) : _ms(m_per_s) {
+ScalarVelocity::ScalarVelocity(double m_per_s) : Scalar(m_per_s) {
   static const char *fn = "ScalarVelocity()";
 
-  if(!isfinite(m_per_s))
-    novas_set_errno(EINVAL, fn, "input value is NAN or infinite");
-  else if(fabs(m_per_s) > Constant::c)
+  if(!is_valid())
+    novas_trace_invalid(fn);
+  else if(fabs(m_per_s) > Constant::c) {
     novas_set_errno(ERANGE, fn, "input speed exceeds the speed of light: %g m/s", m_per_s);
-  else
-    _valid = true;
+    _valid = false;
+  }
 }
 
 /**
@@ -76,7 +76,7 @@ ScalarVelocity ScalarVelocity::operator-(const ScalarVelocity& r) const {
  * @sa operator==(), operator!=()
  */
 bool ScalarVelocity::equals(const ScalarVelocity& speed, double tolerance) const {
-  return fabs(_ms - speed._ms) < fabs(tolerance);
+  return fabs(_value - speed._value) < fabs(tolerance);
 }
 
 /**
@@ -124,7 +124,7 @@ bool ScalarVelocity::operator!=(const ScalarVelocity& speed) const {
  * @return    the absolute value of this (possibly signed) speed.
  */
 ScalarVelocity ScalarVelocity::abs() const {
-  ScalarVelocity v(fabs(_ms));
+  ScalarVelocity v(fabs(_value));
   if(!v.is_valid())
     novas_trace_invalid("ScalarVelocity::abs()");
   return v;
@@ -138,7 +138,7 @@ ScalarVelocity ScalarVelocity::abs() const {
  * @sa km_per_s(), au_per_day(), beta(), Gamma(), redshift()
  */
 double ScalarVelocity::m_per_s() const {
-  return _ms;
+  return _value;
 }
 
 /**
@@ -149,7 +149,7 @@ double ScalarVelocity::m_per_s() const {
  * @sa m_per_s(), au_per_day(), beta(), Gamma(), redshift()
  */
 double ScalarVelocity::km_per_s() const {
-  return 1e-3 * _ms;
+  return 1e-3 * _value;
 }
 
 /**
@@ -160,7 +160,7 @@ double ScalarVelocity::km_per_s() const {
  * @sa m_per_s(), km_per_s(), beta(), Gamma(), redshift()
  */
 double ScalarVelocity::au_per_day() const {
-  return _ms * Unit::day / Unit::au;
+  return _value * Unit::day / Unit::au;
 }
 
 /**
@@ -171,7 +171,7 @@ double ScalarVelocity::au_per_day() const {
  * @sa m_per_s(), km_per_s(), au_per_day(), Gamma(), redshift()
  */
 double ScalarVelocity::beta() const {
-  return _ms / Constant::c;
+  return _value / Constant::c;
 }
 
 /**
@@ -205,7 +205,7 @@ double ScalarVelocity::redshift() const {
  * @sa operator*(), Velocity::travel()
  */
 Coordinate ScalarVelocity::travel(double seconds) const {
-  Coordinate x(_ms * seconds);
+  Coordinate x(_value * seconds);
   if(!x.is_valid())
     novas_trace_invalid("ScalarVelocity::travel()");
   return x;
@@ -238,6 +238,10 @@ Coordinate ScalarVelocity::operator*(const Interval& time) const {
   return x;
 }
 
+std::string ScalarVelocity::SI_unit() const {
+  return "m/s";
+}
+
 /**
  * Returns a string representation of this speed in km/s with the specified decimal places shown.
  *
@@ -262,7 +266,7 @@ std::string ScalarVelocity::to_string(int decimals) const {
  *                    this speed.
  */
 Velocity ScalarVelocity::in_direction(const Vector& direction) const {
-  Velocity v(direction._array(), _ms / direction.abs());
+  Velocity v(direction._array(), _value / direction.abs());
   if(!v.is_valid())
     novas_trace_invalid("ScalarVelocity::to_direction()");
   return v;

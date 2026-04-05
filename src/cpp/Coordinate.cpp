@@ -28,11 +28,9 @@ namespace supernovas {
  *
  * @sa zero(), at_Gpc()
  */
-Coordinate::Coordinate(double meters) : _meters(meters) {
-  if(isnan(meters))
-    novas_set_errno(EINVAL, "Coordinate()", "input value is NAN");
-  else
-    _valid = true;
+Coordinate::Coordinate(double meters) : Scalar(meters) {
+  if(!is_valid())
+    novas_trace_invalid("Coordinate()");
 }
 
 /**
@@ -41,7 +39,7 @@ Coordinate::Coordinate(double meters) : _meters(meters) {
  * @return    the absolute value (length or distance) for this coordinate, as a coordinate itself.
  */
 Coordinate Coordinate::abs() const {
-  Coordinate d(fabs(_meters));
+  Coordinate d(fabs(_value));
   if(!d.is_valid())
     novas_trace_invalid("Coordinate::abs()");
   return d;
@@ -57,7 +55,7 @@ Coordinate Coordinate::abs() const {
  * @sa Position::operator/()
  */
 ScalarVelocity Coordinate::operator/(const Interval& dt) const {
-  ScalarVelocity v(_meters / dt.seconds());
+  ScalarVelocity v(_value / dt.seconds());
   if(!v.is_valid())
     novas_trace_invalid("Coordinate::operator/()");
   return v;
@@ -71,7 +69,7 @@ ScalarVelocity Coordinate::operator/(const Interval& dt) const {
  * @sa km(), au(), lyr(), pc(), kpc(), Mpc(), Gpc()
  */
 double Coordinate::m() const {
-  return _meters;
+  return _value;
 }
 
 /**
@@ -82,7 +80,7 @@ double Coordinate::m() const {
  * @sa m(), au(), lyr(), pc(), kpc(), Mpc(), Gpc()
  */
 double Coordinate::km() const {
-  return 1e-3 * _meters;
+  return 1e-3 * _value;
 }
 
 /**
@@ -93,7 +91,7 @@ double Coordinate::km() const {
  * @sa m(), km(), lyr(), pc(), kpc(), Mpc(), Gpc()
  */
 double Coordinate::au() const {
-  return _meters / Unit::au;
+  return _value / Unit::au;
 }
 
 /**
@@ -104,7 +102,7 @@ double Coordinate::au() const {
  * @sa m(), km(), au(), pc(), kpc(), Mpc(), Gpc()
  */
 double Coordinate::lyr() const {
-  return _meters / Unit::lyr;
+  return _value / Unit::lyr;
 }
 
 /**
@@ -115,7 +113,7 @@ double Coordinate::lyr() const {
  * @sa m(), km(), au(), lyr(), kpc(), Mpc(), Gpc()
  */
 double Coordinate::pc() const {
-  return _meters / Unit::pc;
+  return _value / Unit::pc;
 }
 
 /**
@@ -126,7 +124,7 @@ double Coordinate::pc() const {
  * @sa m(), km(), au(), lyr(), pc(), Mpc(), Gpc()
  */
 double Coordinate::kpc() const {
-  return _meters / Unit::kpc;
+  return _value / Unit::kpc;
 }
 
 /**
@@ -137,7 +135,7 @@ double Coordinate::kpc() const {
  * @sa m(), km(), au(), lyr(), pc(), kpc(), Gpc()
  */
 double Coordinate::Mpc() const {
-  return _meters / Unit::Mpc;
+  return _value / Unit::Mpc;
 }
 
 /**
@@ -148,7 +146,7 @@ double Coordinate::Mpc() const {
  * @sa m(), km(), au(), lyr(), pc(), kpc(), Mpc()
  */
 double Coordinate::Gpc() const {
-  return _meters / Unit::Gpc;
+  return _value / Unit::Gpc;
 }
 
 /**
@@ -163,6 +161,11 @@ Angle Coordinate::parallax() const {
   if(!a.is_valid())
     novas_trace_invalid("Coordinate::parallax()");
   return a;
+}
+
+
+std::string Coordinate::SI_unit() const {
+  return "m";
 }
 
 /**
@@ -183,10 +186,10 @@ std::string Coordinate::to_string(int decimals) const {
   else if(decimals > 16)
     decimals = 16;
 
-  double d = fabs(_meters);
+  double d = fabs(_value);
 
   if(d < 1e4) {
-    value = _meters;
+    value = _value;
     unit = "m";
   }
   else if(d < 1e9) {

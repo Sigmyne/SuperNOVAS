@@ -37,12 +37,16 @@ class Vector;
 class   Position;
 class     AstrometricPosition;
 class   Velocity;
+class   Interferometric;
 class Equinox;
-class Coordinate;
-class Interval;
-class Angle;
-class   TimeAngle;
-class ScalarVelocity;
+class Scalar;
+class   Coordinate;
+class   Interval;
+class   Angle;
+class     TimeAngle;
+class   ScalarVelocity;
+class   Temperature;
+class   Pressure;
 class Spherical;
 class   Horizontal;
 class   Equatorial;
@@ -52,8 +56,6 @@ class EOP;
 class Calendar;
 class CalendarDate;
 class Time;
-class Temperature;
-class Pressure;
 class Weather;
 class Site;
 class Observer;
@@ -87,7 +89,15 @@ class   EquatorialTrack;
  * distance (i.e. meters) as:
  *
  * ```c
+ *   // Standard S.I. distance, defined in astronomical units (AUs)
  *   double d = 2.4103 * Unit::AU;
+ * ```
+ *
+ * Conversely, you can cast a quantity in S.I. units to S.I. units as:
+ *
+ * ```c
+ *   // standard S.I. distance cast into units of 'km'.
+ *   double d_km = d / Unit::km;
  * ```
  *
  * Note, this class cannot be instantiated or copied. You should only use its static fields.
@@ -125,7 +135,8 @@ public:
   static constexpr double Gpc = 1e9 * pc;                 /// [m] 1 gigaparsec in meters
   static constexpr double lyr = NOVAS_LIGHT_YEAR;         /// [m] 1 light-year in meters
 
-  static constexpr double ns = 1e-9;                      /// [s] 1 nanoseconds in seconds
+  static constexpr double ps = 1e-12;                     /// [s] 1 picosecond in seconds
+  static constexpr double ns = 1e-9;                      /// [s] 1 nanosecond in seconds
   static constexpr double us = 1e-6;                      /// [s] 1 microsecond in seconds
   static constexpr double ms = 1e-3;                      /// [s] 1 millisecond in seconds
   static constexpr double s = 1.0;                        /// [s] 1 second (standard unit of time)
@@ -273,6 +284,35 @@ public:
   explicit operator bool() const { return _valid; }
 };
 
+
+/**
+ * Abstract base class for scalar quantities, expressed in standard S.I. units.
+ *
+ * @sa Angle, TimeAngle, Interval, Coordinate, ScalarVelocity, Temperature, Pressure
+ */
+class Scalar : public Validating {
+protected:
+  double _value;      ///< The value in S.I. units
+
+  /// Instantiates a standard undefined (invalid) scalar quantity with NAN value.
+  Scalar() : _value(NAN) {}
+
+  Scalar(double si_value);
+
+public:
+
+  virtual ~Scalar() {}
+
+  double SI_value() const;
+
+  bool equals(const Scalar& other, double precision) const;
+
+  virtual std::string SI_unit() const = 0;
+
+  virtual std::string to_string(int decimals = 3) const;
+};
+
+
 /**
  * %Equatorial coordinate system, defining the orientation of the equator and the location of the
  * equinox, relative to which the right ascention and declination (RA/Dec) coordinates are defined.
@@ -287,15 +327,15 @@ class Equinox : public Validating {
 private:
   std::string _name;    ///< name of the catalog system, e.g. 'ICRS' or 'J2000'
   enum novas_reference_system _system; ///< Coordinate reference system.
-  double _jd;           ///< [day] Julian date of the dynamical equator (or closest to it) that
+  double _jd;           ///< [day] TT-based Julian date of the dynamical equator (or closest to it) that
   ///< matches the system
 
   /// Instantiates an undefined equinox
   Equinox() : _name("invalid"), _system((enum novas_reference_system) -1), _jd(NAN) {}
 
-  Equinox(const std::string& name, double jd_tt);
+  Equinox(const std::string& name, double jd_tdb);
 
-  explicit Equinox(enum novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
+  explicit Equinox(enum novas_reference_system system, double jd_tdb = NOVAS_JD_J2000);
 
 public:
 
@@ -331,6 +371,8 @@ public:
 
   static Equinox from_system_type(enum novas_reference_system system, double jd_tt = NOVAS_JD_J2000);
 
+  static Equinox from_system_type(enum novas_reference_system system, const Time& time);
+
   static Equinox mod(double jd_tt);
 
   static Equinox mod(const Time& time);
@@ -365,12 +407,10 @@ public:
  * @sa Position
  * @ingroup util
  */
-class Coordinate : public Validating {
+class Coordinate : public Scalar {
 private:
-  double _meters;         ///< [m] stored distance
-
   /// Instantiate undefined coordinates.
-  Coordinate() : _meters(NAN) {}
+  Coordinate() : Scalar() {}
 
 public:
   explicit Coordinate(double meters);
@@ -397,7 +437,9 @@ public:
 
   Angle parallax() const;
 
-  std::string to_string(int decimals = 3) const;
+  std::string SI_unit() const override;
+
+  std::string to_string(int decimals = 3) const override;
 
   static Coordinate from_parallax(const Angle& parallax);
 
@@ -414,9 +456,8 @@ public:
  * @sa Time, TimeAngle
  * @ingroup util
  */
-class Interval : public Validating {
+class Interval : public Scalar {
 private:
-  double _seconds;               ///< [s] stored time of the interval
   enum novas_timescale _scale;   ///< store timescale of the interval
 
 public:
@@ -461,7 +502,9 @@ public:
 
   Interval to_timescale(enum novas_timescale scale) const;
 
-  std::string to_string(int decimals = 3) const;
+  std::string SI_unit() const override;
+
+  std::string to_string(int decimals = 3) const override;
 
   static const Interval& zero();
 };
@@ -474,17 +517,12 @@ public:
  * @sa TimeAngle
  * @ingroup util
  */
-class Angle : public Validating {
+class Angle : public Scalar {
 private:
   /// Instantiates an indefined angle
-  Angle()  : _rad(NAN) {}
-
-protected:
-  double _rad;      ///< [rad] stored angle value, usually [-&pi;:&pi;), but can be different for subclasses.
+  Angle() : Scalar() {}
 
 public:
-
-  virtual ~Angle() {}
 
   explicit Angle(double radians);
 
@@ -514,7 +552,13 @@ public:
 
   double fraction() const;
 
-  virtual std::string to_string(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
+  std::string SI_unit() const override;
+
+  std::string to_string(int decimals = 3) const override {
+    return to_string(NOVAS_SEP_UNITS_AND_SPACES, decimals);
+  }
+
+  virtual std::string to_string(enum novas_separator_type separator, int decimals = 3) const;
 
   static const Angle& undefined();
 
@@ -596,17 +640,11 @@ protected:
 
 public:
 
-  virtual ~Vector() {};
+  virtual ~Vector() {}
 
   Vector operator*(double r) const;
 
   double operator[](int idx) const;
-
-  double x() const;
-
-  double y() const;
-
-  double z() const;
 
   bool is_zero() const;
 
@@ -658,6 +696,12 @@ public:
 
   bool operator!=(const Velocity& v) const;
 
+  ScalarVelocity x() const;
+
+  ScalarVelocity y() const;
+
+  ScalarVelocity z() const;
+
   ScalarVelocity speed() const;
 
   Velocity inv() const;
@@ -706,13 +750,19 @@ public:
 
   Velocity operator/(const Interval& dt) const;
 
+  Coordinate x() const;
+
+  Coordinate y() const;
+
+  Coordinate z() const;
+
   Coordinate distance() const;
 
   Position inv() const;
 
   Spherical to_spherical() const;
 
-  AstrometricPosition as_astrometric(const Frame& frame, enum novas_reference_system system = NOVAS_TOD) const;
+  AstrometricPosition to_astrometric(const Frame& frame, enum novas_reference_system system = NOVAS_TOD) const;
 
   virtual std::string to_string(int decimals = 3) const override;
 
@@ -722,17 +772,61 @@ public:
 };
 
 /**
+ * _u_, _v_, _w_ projections of an interferometric station along a line of sight. The _u_ and _v_
+ * coordinates are the orthogonal projections of the station, relative to the array reference, in the
+ * direction of the local East and North, as seen from the source; while _w_ is the distance
+ * from the array reference location along the line of sight.
+ *
+ * @sa Observer::to_interferometric(), AstrometricPosition::to_interferometric()
+ *
+ * @ingroup interferometry
+ */
+class Interferometric : public Vector {
+private:
+  /// Instantiates undefined interferometric coordinates.
+  Interferometric() : Vector() {}
+
+public:
+  Interferometric(double u, double v, double w);
+
+  Interferometric(const Coordinate& u, const Coordinate& v, const Coordinate& w);
+
+  Interferometric(const Coordinate& u, const Coordinate& v, const Interval& geom_delay);
+
+  Coordinate u() const;
+
+  Coordinate v() const;
+
+  Coordinate w() const;
+
+  Interval geometric_delay() const;
+
+  bool equals(const Interferometric& p, double precision) const;
+
+  bool operator==(const Interferometric& p) const;
+
+  bool operator!=(const Interferometric& p) const;
+
+  Interferometric operator+(const Interferometric& r) const;
+
+  Interferometric operator-(const Interferometric& r) const;
+
+  std::string to_string(int decimals = 6) const override;
+
+  static const Interferometric& undefined();
+};
+
+/**
  * A scalar velocity (if signed) or speed (unsigned).
  *
  * @sa Position
  * @ingroup util, spectral
  */
-class ScalarVelocity : public Validating {
+class ScalarVelocity : public Scalar {
 private:
-  double _ms;       ///< [m/s] stored speed
 
   /// Instantiates an undefined scalar velocity
-  ScalarVelocity() : _ms(NAN) {}
+  ScalarVelocity() : Scalar() {}
 
 public:
   explicit ScalarVelocity(double m_per_s);
@@ -778,7 +872,9 @@ public:
 
   Velocity in_direction(const Vector& direction) const;
 
-  std::string to_string(int decimals = 3) const;
+  std::string SI_unit() const override;
+
+  std::string to_string(int decimals = 3) const override;
 
   static ScalarVelocity from_redshift(double z);
 
@@ -809,7 +905,7 @@ protected:
   }
 
 public:
-  virtual ~Spherical() {};
+  virtual ~Spherical() {}
 
   Spherical(double longitude_rad, double latitude_rad);
 
@@ -872,7 +968,7 @@ public:
   Angle distance_to(const Equatorial& other) const;
 
   /// @ingroup equatorial
-  Equatorial to_system(const Equinox& system) const;
+  Equatorial to_system(const Equinox& system, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   /// @ingroup equatorial
   Equatorial to_icrs() const;
@@ -890,7 +986,7 @@ public:
   Equatorial to_cirs(const Time& time) const;
 
   /// @ingroup nonequatorial
-  Ecliptic to_ecliptic() const;
+  Ecliptic to_ecliptic(enum novas_accuracy = NOVAS_FULL_ACCURACY) const;
 
   /// @ingroup nonequatorial
   Galactic to_galactic() const;
@@ -947,7 +1043,7 @@ public:
 
   Angle distance_to(const Ecliptic& other) const;
 
-  Ecliptic to_system(const Equinox& system) const;
+  Ecliptic to_system(const Equinox& system, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   Ecliptic to_icrs() const;
 
@@ -958,7 +1054,7 @@ public:
   Ecliptic to_tod(const Time& time) const;
 
   /// @ingroup equatorial
-  Equatorial to_equatorial() const;
+  Equatorial to_equatorial(enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   /// @ingroup nonequatorial
   Galactic to_galactic() const;
@@ -1019,10 +1115,8 @@ public:
  * @sa Weather
  * @ingroup util
  */
-class Temperature : public Validating {
+class Temperature : public Scalar {
 private:
-  double _deg_C;        ///< [C] stored temperature
-
   explicit Temperature(double deg_C);
 
 public:
@@ -1032,7 +1126,9 @@ public:
 
   double farenheit() const;
 
-  std::string to_string() const;
+  std::string SI_unit() const override;
+
+  std::string to_string(int decimals = 1) const override;
 
   static Temperature celsius(double value);
 
@@ -1050,10 +1146,8 @@ public:
  * @sa Weather
  * @ingroup util
  */
-class Pressure : public Validating {
+class Pressure : public Scalar {
 private:
-  double _pascal;     ///< [Pa] stored pressure
-
   explicit Pressure(double value);
 
 public:
@@ -1071,7 +1165,9 @@ public:
 
   double atm() const;
 
-  std::string to_string() const;
+  std::string SI_unit() const override;
+
+  std::string to_string(int decimals = 3) const override;
 
   static Pressure Pa(double value);
 
@@ -1117,8 +1213,6 @@ public:
   double humidity_fraction() const;
 
   std::string to_string() const;
-
-  static Weather guess(const Site& site);
 
   static const Weather& standard();
 };
@@ -1249,6 +1343,9 @@ public:
 
   Velocity enu_to_itrs(const Velocity& p) const;
 
+  /// @ingroup refract
+  Weather average_weather() const;
+
   GeodeticObserver to_observer(const EOP& eop) const;
 
   std::string to_string(enum novas_separator_type separator = NOVAS_SEP_UNITS_AND_SPACES, int decimals = 3) const;
@@ -1280,6 +1377,13 @@ protected:
   explicit Observer(enum novas_observer_place type, const Site& site = Site::undefined(), const Position& pos = Position::origin(),
           const Velocity& vel = Velocity::stationary());
 
+  /// @ingroup geometric
+  virtual Position gcrs_position_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
+
+  /// @ingroup geometric
+  virtual Velocity gcrs_velocity_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
+
+
 public:
 
   virtual ~Observer() {}
@@ -1299,6 +1403,9 @@ public:
 
   /// @ingroup frame
   Frame reduced_accuracy_frame_at(const Time& time) const;
+
+  /// @ingroup interferometry
+  Interferometric to_interferometric(const Apparent& phase_center, enum novas_reference_system system = NOVAS_ICRS) const;
 
   virtual std::string to_string() const;
 
@@ -1335,6 +1442,13 @@ private:
 
   void diurnal_correct();
 
+protected:
+  /// @ingroup geometric
+  Position gcrs_position_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const override;
+
+  /// @ingroup geometric
+  Velocity gcrs_velocity_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const override;
+
 public:
 
   GeodeticObserver(const Site& site, const EOP& eop);
@@ -1354,7 +1468,11 @@ public:
 
   Velocity enu_velocity() const;
 
-  const EOP& eop() const;
+  GeocentricObserver to_geocentric_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
+
+  const EOP& mean_eop() const;
+
+  EOP eop_at(const Time& time) const;
 
   std::string to_string() const override;
 };
@@ -1372,13 +1490,13 @@ public:
 
   GeocentricObserver(const Position& pos, const Velocity& vel);
 
+  Position gcrs_position() const;
+
+  Velocity gcrs_velocity() const;
+
   const Observer *copy() const override;
 
   bool is_geocentric() const override;
-
-  Position geocentric_position() const;
-
-  Velocity geocentric_velocity() const;
 
   std::string to_string() const override;
 };
@@ -1757,7 +1875,7 @@ protected:
   Source() {}
 
 public:
-  virtual ~Source() {};
+  virtual ~Source() {}
 
   /**
    * Returns a pointer to a newly allocated copy of this instance
@@ -1919,7 +2037,8 @@ protected:
 
 public:
 
-  Geometric geometric_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const; // TODO
+  /// @ingroup geometric
+  Geometric barycentric_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   Coordinate helio_distance(const Time& time) const;
 
@@ -2361,6 +2480,8 @@ public:
 
   const Velocity& velocity() const;
 
+  Coordinate distance() const;
+
   /// @ingroup equatorial
   Equatorial equatorial() const;
 
@@ -2449,7 +2570,7 @@ public:
  * The astrometric 3D geometric equatorial position of an object, referenced to the Solar System
  * Barycenter (SSB) or place in the Solar-system w.r.t. the SSB, at a specific astrometric time.
  *
- * @sa Geometric, Apparent::astrometric_position(), Position::as_astrometric()
+ * @sa Geometric, Apparent::astrometric_position(), Position::to_astrometric()
  *
  * @ingroup geometric
  */
@@ -2478,11 +2599,15 @@ class AstrometricPosition : public Position {
     Time obs_time() const;
 
     /// @ingroup equatorial
-    Equatorial as_equatorial() const;
+    Equatorial to_equatorial() const;
 
     AstrometricPosition referenced_to(const Position& ssb_pos) const;
 
     AstrometricPosition referenced_to_ssb() const;
+
+    /// @ingroup interferometry
+    Interferometric to_interferometric(const Equatorial& phase_center, const Coordinate& distance = Coordinate::at_Gpc(),
+            const Velocity& relative_motion = Velocity::stationary()) const;
 
     std::string to_string(int decimals = 3) const override;
 };

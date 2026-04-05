@@ -17,7 +17,7 @@
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
 /// \endcond
 
-#include <stdio.h>
+#include <stdio.h>    // snprintf()
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
@@ -157,8 +157,8 @@ int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff) {
  * <li>Moyer, T.D. (1981), Celestial mechanics, Volume 23, Issue 1, pp. 57-68<.li>
  * </ol>
  *
- * @param jd_tt     [day] Terrestrial Time (TT) based Julian date, but Barycentri Dynamical Time (TDB)
- *                  can also be used here without any loss of precision on the result.
+ * @param jd_tt     [day] Terrestrial Time (TT) based Julian date, but Barycentric Dynamical Time
+ *                  (TDB) can also be used here without any loss of precision on the result.
  * @return          [s] TDB - TT time difference.
  *
  * @since 1.0

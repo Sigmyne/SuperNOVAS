@@ -8,7 +8,7 @@
  */
 
 #include <stdarg.h>               // before stdio for vfprintf on LynxOS 3.1
-#include <stdio.h>
+#include <stdio.h>                // snprintf()
 #include <string.h>
 #include <errno.h>
 

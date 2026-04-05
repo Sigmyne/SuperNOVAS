@@ -303,7 +303,8 @@ ALIASES                = c_source= \
                          c_solar-system= \
                          c_earth= \
                          c_util= \
-                         c_tracking=
+                         c_tracking= \
+                         c_interferometry=
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
 # only. Doxygen will then generate output that is more tailored for C. For

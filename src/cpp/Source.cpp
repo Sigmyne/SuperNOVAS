@@ -98,8 +98,9 @@ Apparent Source::apparent_in(const Frame& frame) const {
 }
 
 /**
- * Returns the geometric position of a source (if possible), or else an invalid position. After
- * the return, you should probably check for validity:
+ * Returns the geometric position of a source (if possible) relative to the observer, or else an
+ * invalid position if the source could not be positioned in the observing frame. After the
+ * return, you should probably check for validity:
  *
  * ```c
  *   Geometric geom = my_source.geometric(frame);
@@ -244,7 +245,7 @@ Time Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref
 EquatorialTrack Source::equatorial_track(const Frame &frame, double range_seconds) const {
   novas_track track = {};
   novas_equ_track(_novas_object(), frame._novas_frame(), range_seconds, &track);
-  EquatorialTrack et = EquatorialTrack::from_novas_track(Equinox::tod(frame.jd()), &track, Interval(range_seconds));
+  EquatorialTrack et = EquatorialTrack::from_novas_track(Equinox::tod(frame.time()), &track, Interval(range_seconds));
   if(!et.is_valid())
     novas_trace_invalid("Source::equatorial_track()");
   return et;
@@ -422,7 +423,29 @@ std::string CatalogSource::to_string() const {
           " " + Angle(c->dec * Unit::deg).to_string() + " " + _cat.system().to_string();
 }
 
+/**
+ * Returns the Solar-system barycentric position and velocity of this Solar-system source, or else
+ * an undefined geometry if the source's place cannot be determined at the requested time or
+ * accuracy.
+ *
+ * @param time        The astrometric time
+ * @param accuracy    (optional) NOVAS_FULL_ACCURACY (default), or NOVAS_REDUCED_ACCURACY.
+ * @return            The Solar-system barycentric geometric position and velocity of this source
+ *                    at the specified time, as obtained from ephemeris lookup; or else an
+ *                    undefined (invalid) object if the place ould not be determined.
+ */
+Geometric SolarSystemSource::barycentric_at(const Time& time, enum novas_accuracy accuracy) const {
+  const double tdb[2] = { time.jd(NOVAS_TDB), 0.0 };
+  double p[3] = {0.0}, v[3] = {0.0};
 
+  if(ephemeris(tdb, _novas_object(), NOVAS_BARYCENTER, accuracy, p, v) != 0) {
+    novas_trace_invalid("SolarSystemSource::ssb_position_at()");
+    return Geometric::undefined();
+  }
+
+  return Geometric(Observer::at_ssb().frame_at(time, accuracy),
+          Position(p, Unit::AU), Velocity(v, Unit::AU / Unit::day), NOVAS_ICRS);
+}
 
 
 /**

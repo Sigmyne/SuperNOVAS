@@ -41,9 +41,9 @@ int main() {
   if(!test.equals("latitude()", c.latitude().deg(), 30.0, 1e-14)) n++;
 
   Position xyz = a.xyz(Coordinate(10.0 * Unit::au));
-  if(!test.equals("xyz().x()", xyz.x(), 10.0 * Unit::au * cos(a.latitude().rad()) * cos(a.longitude().rad()))) n++;
-  if(!test.equals("xyz().y()", xyz.y(), 10.0 * Unit::au * cos(a.latitude().rad()) * sin(a.longitude().rad()))) n++;
-  if(!test.equals("xyz().z()", xyz.z(), 10.0 * Unit::au * sin(a.latitude().rad()))) n++;
+  if(!test.equals("xyz().x()", xyz.x().au(), 10.0 * cos(a.latitude().rad()) * cos(a.longitude().rad()), 1e-15 * Unit::AU)) n++;
+  if(!test.equals("xyz().y()", xyz.y().au(), 10.0 * cos(a.latitude().rad()) * sin(a.longitude().rad()), 1e-15 * Unit::AU)) n++;
+  if(!test.equals("xyz().z()", xyz.z().au(), 10.0 * sin(a.latitude().rad()), 1e-15 * Unit::AU)) n++;
 
   a.to_string();
 

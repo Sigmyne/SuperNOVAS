@@ -104,6 +104,15 @@ const Velocity& Geometric::velocity() const {
 }
 
 /**
+ * Returns the geometric distance.
+ *
+ * @return    the geoemtric distance.
+ */
+Coordinate Geometric::distance() const {
+  return Coordinate(_pos.abs());
+}
+
+/**
  * Returns the geometric equatorial coordinates, in the system in which the geometric positions
  * and velocities were defined. Note, that these coordinates are phyisical, and not what an observer
  * would perceive at the time of observation, because:
@@ -119,7 +128,7 @@ const Velocity& Geometric::velocity() const {
  * @sa Apparent::equatorial(), ecliptic(), galactic(), position(), velocity()
  */
 Equatorial Geometric::equatorial() const {
-  Equatorial e = Equatorial(_pos, Equinox::from_system_type(_system, _frame.jd()));
+  Equatorial e = Equatorial(_pos, Equinox::from_system_type(_system, _frame.time()));
   if(!e.is_valid())
     novas_trace_invalid("Geometric::equatorial");
   return e;

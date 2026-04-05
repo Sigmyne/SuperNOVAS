@@ -23,7 +23,7 @@ static double from_tt(double x, enum novas_timescale timescale) {
   }
 }
 
-static double tt_seconds(const Interval& interval) {
+static double tt_value(const Interval& interval) {
   switch(interval.timescale()) {
     case NOVAS_TCB: return  interval.seconds() / (1.0 + Constant::L_B);
     case NOVAS_TCG: return  interval.seconds() / (1.0 + Constant::L_G);
@@ -41,15 +41,15 @@ static double tt_seconds(const Interval& interval) {
  * @sa zero()
  */
 Interval::Interval(double seconds, enum novas_timescale timescale)
-: _seconds(seconds), _scale(timescale) {
+: Scalar(seconds), _scale(timescale) {
   static const char *fn = "Interval(seconds, timescale)";
 
-  if(!isfinite(seconds))
-    novas_set_errno(EINVAL, fn , "input seconds is NAN or infinite");
-  else if((unsigned) timescale >= NOVAS_TIMESCALES)
+  if(!is_valid())
+    novas_trace_invalid(fn);
+  if((unsigned) timescale >= NOVAS_TIMESCALES) {
     novas_set_errno(EINVAL, fn , "invalid timescale: %d", timescale);
-  else
-    _valid = true;
+    _valid = false;
+  }
 }
 
 /**
@@ -88,7 +88,7 @@ Position Interval::operator*(const Velocity& v) const {
  * @sa operator-()
  */
 Interval Interval::operator+(const Interval& r) const {
-  double dt = from_tt(tt_seconds(*this) + tt_seconds(r), _scale);
+  double dt = from_tt(tt_value(*this) + tt_value(r), _scale);
   if(!isfinite(dt))
     novas_trace_invalid("Interval::operator+()");
   return Interval(dt, _scale);
@@ -104,7 +104,7 @@ Interval Interval::operator+(const Interval& r) const {
  * @sa operator+()
  */
 Interval Interval::operator-(const Interval& r) const {
-  double dt = from_tt(tt_seconds(*this) - tt_seconds(r), _scale);
+  double dt = from_tt(tt_value(*this) - tt_value(r), _scale);
   if(!isfinite(dt))
     novas_trace_invalid("Interval::operator-()");
   return Interval(dt, _scale);
@@ -122,7 +122,7 @@ Interval Interval::operator-(const Interval& r) const {
  * @sa operator==(), operator!=()
  */
 bool Interval::equals(const Interval& interval, double precision) const {
-  return fabs(tt_seconds(*this) - tt_seconds(interval)) < fabs(precision);
+  return fabs(tt_value(*this) - tt_value(interval)) < fabs(precision);
 }
 
 /**
@@ -168,7 +168,7 @@ enum novas_timescale Interval::timescale() const {
  * @return    a new time interval with the same absolute value, but negated.
  */
 Interval Interval::inv() const {
-  return Interval(-_seconds);
+  return Interval(-_value);
 }
 
 /**
@@ -179,7 +179,7 @@ Interval Interval::inv() const {
  * @sa seconds(), minutes(), hours(), days(), weeks(), years(), julian_years(), julian_centuries()
  */
 double Interval::milliseconds() const {
-  return _seconds / Unit::ms;
+  return _value / Unit::ms;
 }
 
 /**
@@ -192,7 +192,7 @@ double Interval::milliseconds() const {
  *      Interval::julian_centuries()
  */
 double Interval::seconds() const {
-  return _seconds;
+  return _value;
 }
 
 /**
@@ -204,7 +204,7 @@ double Interval::seconds() const {
  *      julian_centuries()
  */
 double Interval::minutes() const {
-  return _seconds / Unit::min;
+  return _value / Unit::min;
 }
 
 /**
@@ -216,7 +216,7 @@ double Interval::minutes() const {
  *      julian_centuries()
  */
 double Interval::hours() const {
-  return _seconds / Unit::hour;
+  return _value / Unit::hour;
 }
 
 /**
@@ -228,7 +228,7 @@ double Interval::hours() const {
  *      julian_centuries()
  */
 double Interval::days() const {
-  return _seconds / Unit::day;
+  return _value / Unit::day;
 }
 
 /**
@@ -240,7 +240,7 @@ double Interval::days() const {
  *      julian_centuries()
  */
 double Interval::weeks() const {
-  return _seconds / Unit::week;
+  return _value / Unit::week;
 }
 
 /**
@@ -252,7 +252,7 @@ double Interval::weeks() const {
  *      julian_centuries()
  */
 double Interval::years() const {
-  return _seconds / Unit::yr;
+  return _value / Unit::yr;
 }
 
 /**
@@ -264,7 +264,7 @@ double Interval::years() const {
  *      julian_centuries()
  */
 double Interval::julian_years() const {
-  return _seconds / Unit::julian_year;
+  return _value / Unit::julian_year;
 }
 
 /**
@@ -275,7 +275,7 @@ double Interval::julian_years() const {
  *  @sa milliseconds(), seconds(), minutes(), hours(), days(), weeks(), years(), julian_years()
  */
 double Interval::julian_centuries() const {
-  return _seconds / Unit::julian_century;
+  return _value / Unit::julian_century;
 }
 
 /**
@@ -285,7 +285,7 @@ double Interval::julian_centuries() const {
  * @return        the equivalent time interval in the specified timescale
  */
 Interval Interval::to_timescale(enum novas_timescale scale) const {
-  double dt = from_tt(tt_seconds(*this), scale);
+  double dt = from_tt(tt_value(*this), scale);
   if(!isfinite(dt))
     novas_trace_invalid("Interval::to_timescale()");
   return Interval(dt, scale);
@@ -299,6 +299,10 @@ Interval Interval::to_timescale(enum novas_timescale scale) const {
 const Interval& Interval::zero() {
   static const Interval _zero = Interval(0.0);
   return _zero;
+}
+
+std::string Interval::SI_unit() const {
+  return "s";
 }
 
 /**
@@ -319,14 +323,26 @@ std::string Interval::to_string(int decimals) const {
   else if(decimals > 16)
     decimals = 16;
 
-  double d = fabs(_seconds);
+  double d = fabs(_value);
 
-  if(d < Unit::s) {
+  if(d < Unit::ns) {
+    value = 1e12 * _value;
+    unit = "ps";
+  }
+  else if(d < Unit::us) {
+    value = 1e9 * _value;
+    unit = "ns";
+  }
+  else if(d < Unit::ms) {
+    value = 1e6 * _value;
+    unit = "us";
+  }
+  else if(d < Unit::s) {
     value = milliseconds();
     unit = "ms";
   }
   else if(d < Unit::hour) {
-    value = _seconds;
+    value = _value;
     unit = "s";
   }
   else if(d < Unit::day) {

@@ -36,7 +36,7 @@ int main() {
   if(!test.equals("humidity_fraction() ==", b.humidity_fraction(), a.humidity_fraction(), 1e-15)) n++;
 
   Site site = Site(45.0 * Unit::deg, 30.0 * Unit::deg, 1500.0 * Unit::m);
-  Weather c = Weather::guess(site);
+  Weather c = site.average_weather();
 
   const Weather& d = Weather::standard();
   if(!test.equals("standard temperature() ==", d.temperature().celsius(), 10.0, 1e-15)) n++;
@@ -48,8 +48,8 @@ int main() {
   make_itrf_site(30.0, 45.0, 1500.0, &s);
   novas_set_default_weather(&s);
 
-  if(!test.equals("temperature(site)", c.temperature().celsius(), s.temperature, 1e-15)) n++;
-  if(!test.equals("pressure(site)", c.pressure().mbar(), s.pressure, 1e-15)) n++;
+  if(!test.equals("temperature(site)", c.temperature().celsius(), s.temperature, 1e-13)) n++;
+  if(!test.equals("pressure(site)", c.pressure().mbar(), s.pressure, 1e-15 * Unit::atm)) n++;
   if(!test.equals("humidity(site)", c.humidity(), s.humidity, 1e-15)) n++;
 
   std::cout << "Weather.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";

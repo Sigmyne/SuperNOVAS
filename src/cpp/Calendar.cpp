@@ -15,8 +15,9 @@
 
 #include "supernovas.h"
 
+/// \cond PROTECTED
 #define UNIX_UTC_J2000    946728000L    ///< 12:00, 1 Jan 2000 (UTC timescale)
-
+/// \endcond
 
 
 namespace supernovas {

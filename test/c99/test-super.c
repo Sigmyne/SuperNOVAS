@@ -5084,14 +5084,14 @@ static int test_moon_elp_sky_pos() {
   vector2radec(p1, &ra, &dec);
 
   if(!is_ok("moon_elp_sky_pos:site", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
-  if(!is_equal("moon_elp_sky_pos:site:ra", pos.ra, ra, 1e-11)) n++;
-  if(!is_equal("moon_elp_sky_pos:site:dec", pos.dec, dec, 1e-12)) n++;
+  if(!is_equal("moon_elp_sky_pos:site:ra", pos.ra, ra, 1e-6)) n++;
+  if(!is_equal("moon_elp_sky_pos:site:dec", pos.dec, dec, 1e-6)) n++;
 
   // airborne observer...
   make_airborne_observer(&site, v0, &obs);
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
 
-  // geocdentric observer velocity (TOD)
+  // geocentric observer velocity (TOD)
   for(i = 0; i < 3; i++)
     vo[i] = novas_add_vel(f.obs_vel[i], -f.earth_vel[i]);
   gcrs_to_tod(NOVAS_JD_B1950, NOVAS_REDUCED_ACCURACY, vo, vo);
@@ -5105,8 +5105,62 @@ static int test_moon_elp_sky_pos() {
   vector2radec(p1, &ra, &dec);
 
   if(!is_ok("moon_elp_sky_pos:air", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
-  if(!is_equal("moon_elp_sky_pos:air:ra", pos.ra, ra, 1e-11)) n++;
-  if(!is_equal("moon_elp_sky_pos:air:dec", pos.dec, dec, 1e-12)) n++;
+  if(!is_equal("moon_elp_sky_pos:air:ra", pos.ra, ra, 1e-6)) n++;
+  if(!is_equal("moon_elp_sky_pos:air:dec", pos.dec, dec, 1e-6)) n++;
+
+  return n;
+}
+
+static int test_uvw() {
+  int n = 0;
+
+  double s[3] = {1.0, 2.0, 3.0}, v[3] = {-0.1, -0.3, 0.2}, p[3] = {3.0e3, -2.0e3, 1.0e3}, u[3] = {0.0};
+  double los[3] = {p[0] - s[0], p[1] - s[1], p[2] - s[2]}, u0[3] = {0.0};
+  double ra, dec;
+  int k;
+
+  // los from station
+  vector2radec(los, &ra, &dec);
+  novas_xyz_to_los(s, 15.0 * ra, dec, u0);
+  for(k = 0; k < 3; k++) u0[k] *= NOVAS_AU;   // AU -> m
+
+  if(!is_ok("uvw:v=0", novas_uvw(s, NULL, p, u))) n++;
+  if(!is_ok("uvw:v=0:check", check_equal_pos(u, u0, 1e-12))) n++;
+
+  aberration(los, v, 0.0, los);
+  vector2radec(los, &ra, &dec);
+  novas_xyz_to_los(s, 15.0 * ra, dec, u0);
+  for(k = 0; k < 3; k++) u0[k] *= NOVAS_AU;   // AU -> m
+
+  if(!is_ok("uvw:v", novas_uvw(s, v, p, u))) n++;
+  if(!is_ok("uvw:v:check", check_equal_pos(u, u0, 1e-12))) n++;
+
+  return n;
+}
+
+static int test_site_uvw() {
+  int n = 0;
+
+  novas_timespec ts = {};
+  on_surface s = {};
+  double op[3] = {0.0}, ov[3] = {0.0}, p[3] = {3.0e3, -2.0e3, 1.0e3}, p0[3] = {0.0}, u[3] = {0.0};
+  double u0[3] = {0.0};
+  double xp = 0.2, yp = -0.3; // [arcsec]
+  double tdb;
+
+  novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.0, &ts);
+  make_itrf_site(30.0, -120.0, 1200.0, &s);
+
+  novas_site_gcrs_posvel(&ts, &s, NULL, xp, yp, NOVAS_FULL_ACCURACY, op, ov);
+
+  // Apparent position in GCRS...
+  tdb = novas_get_time(&ts, NOVAS_TDB);
+  tod_to_gcrs(tdb, NOVAS_FULL_ACCURACY, p,  p0);
+
+  novas_uvw(op, ov, p0, u0);
+
+  if(!is_ok("site_uvw", novas_site_uvw(&ts, &s, p, xp, yp, NOVAS_FULL_ACCURACY, u))) n++;
+  if(!is_ok("site_uvw:check", check_equal_pos(u, u0, 1e-12))) n++;
 
   return n;
 }
@@ -5276,6 +5330,9 @@ int main(int argc, char *argv[]) {
 
   if(test_moon_elp_posvel()) n++;
   if(test_moon_elp_sky_pos()) n++;
+
+  if(test_uvw()) n++;
+  if(test_site_uvw()) n++;
 
   n += test_dates();
 

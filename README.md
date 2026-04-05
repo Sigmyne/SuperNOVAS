@@ -177,6 +177,10 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
  - [__v1.4__] The NOVAS C 3.1 implementation of `cel2ter()` / `ter2cel()` was such that if both `xp` and `yp` 
    parameters were zero, then no wobble correction was applied, not even for the TIO longitude (s'). The error from 
    this omission is very small, at just a few &mu;as (microarcseconds) within a couple of centuries of J2000.
+   
+ - [__v1.6__] The NOVAS C `geo_posvel()` function is imprecise for geodetic observer locations on Earth, since it 
+   does not account for polar offsets _x_<sub>p</sub>, _y_<sub>p</sub>. As such the geocentric GCRS observer position 
+   and velocity vectors are accurate at the arc-seconds level only.
 
 </details>
    

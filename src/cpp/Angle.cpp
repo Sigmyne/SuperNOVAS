@@ -30,11 +30,9 @@ namespace supernovas {
  *
  * @sa TimeAngle, Unit
  */
-Angle::Angle(double radians) : _rad(remainder(radians, Constant::two_pi)) {
-  if(!isfinite(radians))
-    novas_set_errno(EINVAL, "Angle()", "input angle is NAN or infinite");
-  else
-    _valid = true;
+Angle::Angle(double radians) : Scalar(remainder(radians, Constant::two_pi)) {
+  if(!is_valid())
+    novas_trace_invalid("Angle()");
 }
 
 /**
@@ -48,13 +46,7 @@ Angle::Angle(double radians) : _rad(remainder(radians, Constant::two_pi)) {
  *
  * @sa novas:novas_str_degrees()
  */
-Angle::Angle(const std::string& str) {
-  _rad = novas_str_degrees(str.c_str()) * Unit::deg;
-  if(!isfinite(_rad))
-    novas_set_errno(EINVAL, "Angle()", "invalid input angle: %s", str.c_str());
-  else
-    _valid = true;
-}
+Angle::Angle(const std::string& str) : Angle(novas_str_degrees(str.c_str()) * Unit::deg) {}
 
 /**
  * Returns a new angle that is the sum of this angle and the specified other angle.
@@ -99,7 +91,7 @@ Angle Angle::operator-(const Angle& r) const {
  * @sa operator==(), operator!=()
  */
 bool Angle::equals(const Angle& angle, double precision) const {
-  return fabs(remainder(_rad - angle._rad, Constant::two_pi)) < fabs(precision);
+  return fabs(remainder(_value - angle._value, Constant::two_pi)) < fabs(precision);
 }
 
 /**
@@ -135,7 +127,7 @@ bool Angle::operator!=(const Angle& angle) const {
  * @sa deg(), arcmin(), arcsec(), mas(), uas()
  */
 double Angle::rad() const {
-  return _rad;
+  return _value;
 }
 
 /**
@@ -147,7 +139,7 @@ double Angle::rad() const {
  * @sa rad(), arcmin(), arcsec(), mas(), uas()
  */
 double Angle::deg() const {
-  return rad() / Unit::deg;
+  return _value / Unit::deg;
 }
 
 /**
@@ -159,7 +151,7 @@ double Angle::deg() const {
  * @sa rad(), deg(), arcsec(), mas(), uas()
  */
 double Angle::arcmin() const {
-  return rad() / Unit::arcmin;
+  return _value / Unit::arcmin;
 }
 
 /**
@@ -171,7 +163,7 @@ double Angle::arcmin() const {
  * @sa rad(), deg(), arcmin(), mas(), uas()
  */
 double Angle::arcsec() const {
-  return rad() / Unit::arcsec;
+  return _value / Unit::arcsec;
 }
 
 /**
@@ -183,7 +175,7 @@ double Angle::arcsec() const {
  * @sa rad(), deg(), arcmin(), arcsec(), uas()
  */
 double Angle::mas() const {
-  return rad() / Unit::mas;
+  return _value / Unit::mas;
 }
 
 /**
@@ -195,7 +187,7 @@ double Angle::mas() const {
  * @sa rad(), deg(), arcmin(), arcsec(), mas()
  */
 double Angle::uas() const {
-  return rad() / Unit::uas;
+  return _value / Unit::uas;
 }
 
 /**
@@ -204,8 +196,12 @@ double Angle::uas() const {
  * @return    the angle as a fraction of the circle, usually in the [0:1) range.
  */
 double Angle::fraction() const {
-  double f = _rad / Constant::two_pi;
+  double f = _value / Constant::two_pi;
   return f >= 0 ? f : 1.0 + f;
+}
+
+std::string Angle::SI_unit() const {
+  return "rad";
 }
 
 /**
@@ -214,8 +210,8 @@ double Angle::fraction() const {
  *
  * @param separator   the type of separators / unit markers used to distinguish the degree,
  *                    minute, and second components.
- * @param decimals    [0:9] the number of decimal places to print for the arc seconds
- *                    component.
+ * @param decimals    (optional) [0:9] the number of decimal places to print for the arc seconds
+ *                    component (default: 3).
  * @return            the strung representation of this angle in degrees.
  *
  * @sa TimeAngle::to_string()

@@ -12,7 +12,6 @@
 #include "supernovas.h"
 
 
-
 namespace supernovas {
 
 /**
@@ -302,7 +301,7 @@ Velocity Site::enu_to_itrs(const Velocity& v) const {
 }
 
 /**
- * Returns the geocentric position of this site in rectangular coordinates.
+ * Returns the geocentric position of this site in ITRS rectangular coordinates.
  *
  * @return  a new position with the geocentric rectangular coordinates of the site.
  */
@@ -313,6 +312,19 @@ Position Site::xyz() const {
   if(!p.is_valid())
     novas_trace_invalid("Site::xyz()");
   return p;
+}
+
+/**
+ * Returns a default mean annual weather for this site based on a simple global model. It is best
+ * to use actual weather parameters, but as a blind default these represent something that is
+ * 'typical' for the observing site.
+ *
+ * @return    the 'typical' mean annual weather at this site, based on a very simple global model.
+ */
+Weather Site::average_weather() const {
+  on_surface s = _site;
+  novas_set_default_weather(&s);
+  return Weather(s.temperature, s.pressure * Unit::mbar, s.humidity);
 }
 
 /**

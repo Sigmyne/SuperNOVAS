@@ -97,7 +97,6 @@
  * @sa timescale.c, observer.c, target.c, ephemeris.c
  */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
@@ -390,8 +389,22 @@ static int set_wobble_matrix(const novas_frame *frame, novas_matrix *T) {
 }
 
 static int set_obs_posvel(novas_frame *frame) {
-  int res = obs_posvel(novas_get_time(&frame->time, NOVAS_TDB), frame->time.ut1_to_tt, frame->accuracy, &frame->observer,
-          frame->earth_pos, frame->earth_vel, frame->obs_pos, frame->obs_vel);
+  int k, res;
+
+  if(frame->observer.where == NOVAS_OBSERVER_ON_EARTH || frame->observer.where == NOVAS_AIRBORNE_OBSERVER) {
+    const double *v_itrs = (frame->observer.where == NOVAS_AIRBORNE_OBSERVER) ? frame->observer.near_earth.sc_vel : NULL;
+    res = novas_site_gcrs_posvel(&frame->time, &frame->observer.on_surf, v_itrs, 1e-3 * frame->dx, 1e-3 * frame->dy,
+            frame->accuracy, frame->obs_pos, frame->obs_vel);
+  }
+  else {
+    res = geo_posvel(novas_get_time(&frame->time, NOVAS_TT), frame->time.ut1_to_tt, frame->accuracy, &frame->observer,
+            frame->obs_pos, frame->obs_vel);
+  }
+
+  for(k = 0; k < 3; k++) {
+    frame->obs_pos[k] += frame->earth_pos[k];
+    frame->obs_vel[k] = novas_add_vel(frame->obs_vel[k], frame->earth_vel[k]);
+  }
 
   frame->v_obs = novas_vlen(frame->obs_vel);
   frame->beta = frame->v_obs / C_AUDAY;
@@ -757,15 +770,15 @@ int novas_geom_posvel(const object *restrict source, const novas_frame *restrict
       }
 
     // Otherwise, get the position of body wrt observer, antedated for light-time.
-    if(!got) {
+    if(!got)
       prop_error(fn, light_time2(jd_tdb, source, frame->obs_pos, 0.0, frame->accuracy, pos1, vel1, &t_light), 50);
-    }
   }
 
   if(pos) {
     prop_error(fn, icrs_to_sys(frame, pos1, sys), 0);
     memcpy(pos, pos1, sizeof(pos1));
   }
+
   if(vel) {
     int k;
 

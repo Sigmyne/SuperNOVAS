@@ -16,15 +16,12 @@
 /// \cond PROTECTED
 #define DTA               32.184        ///< [s] TT - TAI time difference
 #define UNIX_UTC_J2000    946728000L    ///< 12:00, 1 Jan 2000 (UTC timescale)
+#define E9                1000000000L   ///< 10<sup>9</sup> as an integer
 /// \endcond
 
 static double novas_era(long ijd, double fjd) {
   return era((double) ijd, fjd);
 }
-
-#define E9                1000000000L   ///< 10<sup>9</sup> as an integer
-
-
 
 namespace supernovas {
 

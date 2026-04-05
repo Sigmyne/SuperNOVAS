@@ -51,7 +51,8 @@ static std::string _name_for(const char *base, double year) {
   return std::string(s);
 }
 
-Equinox::Equinox(const std::string& name, double jd) : _name(name), _system(NOVAS_MOD), _jd(jd) {
+Equinox::Equinox(const std::string& name, double jd)
+: _name(name), _system(NOVAS_MOD), _jd(jd) {
   _valid = isfinite(jd);
 }
 
@@ -192,8 +193,9 @@ bool Equinox::is_true() const {
 }
 
 /**
- * Returns the (TT-based) Julian date that corresponds to this system instance. That is, it returns
- * the date for which the mean dynamical equator best matches the equator of this catalog system.
+ * Returns the (TT-based) Julian date that corresponds to this system instance. That is, it
+ * returns the date for which the mean dynamical equator best matches the equator of this catalog
+ * system.
  *
  * @return        [day] the (TT-based) Julian date at which the mean dynamical equator matches
  *                this system. E.g. for 'ICRS' it will return the Julian date for the J2000.0
@@ -348,9 +350,11 @@ Equinox Equinox::from_string(const std::string& name) {
  * Returns a new equinox instance given a coordinate reference system type and a date.
  *
  * @param system    The coordinate reference system type
- * @param jd_tt     [day] The (TT-based) Julian date (for dynamical systems).
+ * @param jd_tt     [day] The (TT-based) Julian date (for dynamical systems). TDB-based dates
+ *                  may be used here also without affecting precision of coordinate
+ *                  transformations at the micro-arcsecond (&mu;as) level.
  * @return          an optional containing the corresponding valid equatorial system, or else
- *                  `std::nullopt`.
+ *                  an undefined (invalid) equinox.
  */
 Equinox Equinox::from_system_type(enum novas_reference_system system, double jd_tt) {
   static const char *fn = "Equatorial::for_reference_system()";
@@ -369,11 +373,25 @@ Equinox Equinox::from_system_type(enum novas_reference_system system, double jd_
 }
 
 /**
+ * Returns a new equinox instance given a coordinate reference system type and a time.
+ *
+ * @param system    The coordinate reference system type
+ * @param time      [day] astrometric time (for dynamical systems).
+ * @return          an optional containing the corresponding valid equatorial system, or else
+ *                  an undefined (invalid) equinox.
+ */
+Equinox Equinox::from_system_type(enum novas_reference_system system, const Time& time) {
+  return from_system_type(system, time.jd());
+}
+
+/**
  * Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch. MOD coordinates
  * take into account Earth's slow precession but not nutation. Julian-date based MODs were
  * commonly used for catalogs, such as J2000, or HIP.
  *
- * @param jd_tt     [day] TT-based Julian day.
+ * @param jd_tt     [day] TT-based Julian day.  TDB-based days may be used here also without
+ *                  affecting precision of coordinate transformations at the micro-arcsecond
+ *                  (&mu;as) level.
  * @return          A reference system with the mean dynamical equator of date, with origin at
  *                  the mean equinox of date.
  *
@@ -426,7 +444,7 @@ Equinox Equinox::mod_at_besselian_epoch(double year) {
  * date.
  *
  * @param jd_tt     [day] The (TT-based) Julian date for when of the true dynamical equator and
- *                  true equinox of date define the returned equatorial coordinate system,
+ *                  true equinox of date define the returned equatorial coordinate system.
  * @return          the equatorial coordinate system based on the true dynamical equator and
  *                  equinox of date.
  *
@@ -444,7 +462,7 @@ Equinox Equinox::tod(double jd_tt) {
  * the system on the true dynamical equator of date, with its origin at the true equinox of
  * date.
  *
- * @param time      astromemtric time specifying the coordinate epoch,
+ * @param time      astrometric time specifying the coordinate epoch,
  * @return          the equatorial coordinate system based on the true dynamical equator and
  *                  equinox of date.
  *

@@ -36,6 +36,8 @@ int main() {
   if(!test.equals("bar()", a.bar(), 1.0, 1e-15)) n++;
   if(!test.equals("atm()", a.atm(), 1e5 / Unit::atm, 1e-15)) n++;
   if(!test.equals("torr()", a.torr(), 1e5 / Unit::torr, 1e-15)) n++;
+  if(!test.equals("SI_unit()", a.SI_unit(), "Pa")) n++;
+  if(!test.equals("SI_value()", a.SI_value(), a.Pa(), 0.0)) n++;
 
   if(!test.equals("hPA(x)", Pressure::hPa(99.0).hPa(), 99.0, 1e-13)) n++;
   if(!test.equals("kPA(x)", Pressure::kPa(99.0).kPa(), 99.0, 1e-13)) n++;
