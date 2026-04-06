@@ -44,10 +44,10 @@ typedef struct {
 /**
  * @deprecated This NOVAS C function does not account for polar wobble, so the geodetic ITRS /
  *             GRS80 locations on Earth are not converted into a proper equatorial system, such as
- *             a true-of-date (TOD) coordinate system. Use `novas_site_gcrs_posvel()` or
- *             `novas_site_itrs_posvel()` instead, either of which you can follow by a coordinate
- *             transformation, such as e.g. `gcrs_to_tod()` / `itrs_to_tod()` if you need
- *             geocentric  observer coordinates in the true-of-date (TOD) equatorial system.
+ *             a true-of-date (TOD) coordinate system. Use `novas_site_gcrs_posvel()` instead,
+ *             which you can follow by a coordinate transformation, such as `tod_to_gcrs()` if you
+ *             need geocentric observer coordinates in e.g. the true-of-date (TOD) equatorial
+ *             system.
  *
  * Computes the position and velocity vectors of a terrestrial observer with respect to the
  * center of the Earth, based on the GRS80 reference ellipsoid, used for the International
@@ -82,7 +82,7 @@ typedef struct {
  * @return            0 if successful, or -1 if location is NULL or if the pos and vel output
  *                    arguments are identical pointers.
  *
- * @sa novas_site_gcrs_posvel(), novas_site_itrs_posvel(), geo_posvel()
+ * @sa novas_site_gcrs_posvel(), geo_posvel()
  * @sa make_gps_site(), make_itrf_site(), make_xyz_site(), novas_gast(), novas_time_gst()
  */
 int terra(const on_surface *restrict location, double gast, double *restrict pos, double *restrict vel) {
