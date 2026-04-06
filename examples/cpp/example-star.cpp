@@ -124,7 +124,8 @@ int main() {
   Apparent apparent = source.apparent_in(frame);
 
   // Let's print the apparent position
-  std::cout << apparent.to_string() << "\n";
+  std::cout << source.name() << ":\n";
+  std::cout << "  " << apparent.equatorial().to_string() << "\n";
 
 
   // -------------------------------------------------------------------------
@@ -140,7 +141,7 @@ int main() {
   }
 
   // Let's print the calculated azimuth and elevation
-  std::cout << hor.to_string() << "\n";
+  std::cout << "  " << hor.to_string() << "\n";
 
   // -------------------------------------------------------------------------
   // Clean up before we exit...

@@ -82,7 +82,7 @@ int main() {
   //   GPS, or TDB...)
   Time time2 = date2.to_time(LEAP_SECONDS, DUT1, NOVAS_TAI);
 
-  std::cout << "Time 2 is " << time1.to_string() << "\n";
+  std::cout << "Time 2 is " << time2.to_string() << "\n";
 
   // -------------------------------------------------------------------------
   // 1.d. UNIX time
@@ -125,15 +125,21 @@ int main() {
   // - Difference in UTC.
   std::cout << "UTC time difference is " << time1.offset_from(time2, NOVAS_UTC).to_string() << "\n";
 
+
   // -------------------------------------------------------------------------
-  // 4. Offset time
+  // 4. Difference in timescales
+  std::cout << "Time 1 UTC-TT difference is " << time1.timescale_offset(NOVAS_UTC, NOVAS_TT).to_string() << "\n";
+
+
+  // -------------------------------------------------------------------------
+  // 5. Offset time
 
   // - Add 5.31 seconds to time1.
   time1 = time1 + 5.31 * Unit::s;
 
 
   // -------------------------------------------------------------------------
-  // 5. Print time
+  // 6. Print time
 
   // - Print an UTC-based ISO timestamp to a string
   std::cout << "Offset time is: " << time1.to_iso_string() << "\n";
@@ -143,7 +149,7 @@ int main() {
 
 
   // -------------------------------------------------------------------------
-  // 6. Get Calendar date in specific calendar
+  // 7. Get Calendar date in specific calendar
 
   // - Get a Broken down date, say in the Julian/Roman calendar
   struct tm tm = {};

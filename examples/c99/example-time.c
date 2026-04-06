@@ -78,6 +78,9 @@ int main() {
   //   GPS, or TDB...)
   novas_set_time(NOVAS_TAI, jd, LEAP_SECONDS, DUT1, &time1);
 
+  // Print ISO 8601 timestamp
+  novas_iso_timestamp(&time1, timestamp, sizeof(timestamp));
+  printf("Time 1 is %s\n", timestamp);
 
   // -------------------------------------------------------------------------
   // 1.c. Dates from broken-down time
@@ -91,6 +94,9 @@ int main() {
   //   GPS, or TDB...)
   novas_set_time(NOVAS_TAI, jd, LEAP_SECONDS, DUT1, &time2);
 
+  // Print ISO 8601 timestamp
+  novas_iso_timestamp(&time2, timestamp, sizeof(timestamp));
+  printf("Time 2 is %s\n", timestamp);
 
   // -------------------------------------------------------------------------
   // 1.d. UNIX time
@@ -122,7 +128,7 @@ int main() {
 
   // - Or for higher precision, get a split JD...
   fjd = novas_get_split_time(&time1, NOVAS_TDB, &ijd);
-  printf("Split date is %ld / %.9f", ijd, fjd);
+  printf("Split date is %ld / %.9f\n", ijd, fjd);
 
 
   // -------------------------------------------------------------------------
@@ -130,18 +136,17 @@ int main() {
 
   // - Difference in Earth-based time measures (UTC, GPS, TAI, TT)
   dt = novas_diff_time(&time1, &time2);
-  printf(" UTC Time difference is %.6f days\n", dt / NOVAS_DAY);
+  printf("UTC Time difference is %.6f days\n", dt / NOVAS_DAY);
 
-  // - Difference in TCG -- time progresses differently outside of Earth gravity
-  dt = novas_diff_tcg(&time1, &time2);
-  printf(" TCG Time difference is %.6f days\n", dt / NOVAS_DAY);
-
-  // - Difference in TCB -- time progresses differently outside of Earth gravity
-  dt = novas_diff_tcb(&time1, &time2);
-  printf(" TDB Time difference is %.6f days\n", dt / NOVAS_DAY);
 
   // -------------------------------------------------------------------------
-  // 4. Offset time
+  // 4. Difference in timescales
+  dt = novas_timescale_offset(&time1, NOVAS_UTC, NOVAS_TT);
+  printf("Time 1 UTC-TT difference is %.6f seconds\n", dt);
+
+
+  // -------------------------------------------------------------------------
+  // 5. Offset time
 
   // - Add 5.31 seconds to time1. We can put the result in a different time data
   //   or we can overwrite the input (as we'll do here).
@@ -149,7 +154,7 @@ int main() {
 
 
   // -------------------------------------------------------------------------
-  // 5. Print time
+  // 6. Print time
 
   // - Print an UTC-based ISO timestamp to a string
   novas_iso_timestamp(&time1, timestamp, sizeof(timestamp));
@@ -157,12 +162,12 @@ int main() {
 
 
   // - Print a timestamp in a specific time measure, e.g. GPS time
-  novas_timestamp(&time1, NOVAS_GPS, timestamp, sizeof(timestamp));
+  novas_timestamp(&time1, NOVAS_TDB, timestamp, sizeof(timestamp));
   printf(" in TDB        : %s\n", timestamp);
 
 
   // -------------------------------------------------------------------------
-  // 6. Get Calendar date in specific calendar
+  // 7. Get Calendar date in specific calendar
 
   // - Get a Broken down date, say in the Julian/Roman calendar
   novas_jd_to_date(jd, NOVAS_ROMAN_CALENDAR, &year, &month, &day, &hours);

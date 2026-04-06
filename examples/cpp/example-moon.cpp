@@ -113,7 +113,8 @@ int main() {
   Apparent apparent = frame.apparent_moon_elp2000();
 
   // Let's print the apparent position
-  std::cout << apparent.to_string() << "\n";
+  std::cout << "Moon:\n";
+  std::cout << "  " << apparent.equatorial().to_string() << "\n";
 
 
   // -------------------------------------------------------------------------
@@ -124,22 +125,22 @@ int main() {
 
   Horizontal hor = apparent.to_horizontal().to_refracted(novas_optical_refraction, weather);
   if(!hor) {
-    std::cerr << "ERROR! observer has no Earth-based horizon.";
+    std::cerr << "  ERROR! observer has no Earth-based horizon.";
     return 1;
   }
 
   // Let's print the calculated azimuth and elevation
-  std::cout << hor.to_string() << "\n";
+  std::cout << "  " << hor.to_string() << "\n";
 
 
   // -------------------------------------------------------------------------
   // Let's print the phase of the moon
-  std::cout << " phase = " <<  t.moon_phase().deg() << " deg\n";
+  std::cout << "  phase = " <<  t.moon_phase().deg() << " deg\n";
 
 
   // -------------------------------------------------------------------------
   // Let's figure out when the next full moon is
-  std::cout << " next full moon is at " << t.next_moon_phase(Angle(180.0 * Unit::deg)).to_string() << "\n";
+  std::cout << "  next full moon is at " << t.next_moon_phase(Angle(180.0 * Unit::deg)).to_string() << "\n";
 
 
   // -------------------------------------------------------------------------

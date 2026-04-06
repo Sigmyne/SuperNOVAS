@@ -149,7 +149,8 @@ int main(int argc, const char *argv[]) {
   Apparent apparent = source.apparent_in(frame);
 
   // Let's print the apparent position
-  std::cout << apparent.to_string() << "\n";
+  std::cout << source.name() << ":\n";
+  std::cout << "  " << apparent.equatorial().to_string() << "\n";
 
   // -------------------------------------------------------------------------
   // Convert the apparent position on sky to horizontal coordinates
@@ -159,12 +160,12 @@ int main(int argc, const char *argv[]) {
 
   Horizontal hor = apparent.to_horizontal().to_refracted(novas_optical_refraction, weather);
   if(!hor) {
-    std::cerr << "ERROR! observer has no Earth-based horizon.";
+    std::cerr << "  ERROR! observer has no Earth-based horizon.";
     return 1;
   }
 
   // Let's print the calculated azimuth and elevation
-  std::cout << hor.to_string() << "\n";
+  std::cout << "  " << hor.to_string() << "\n";
 
 
   // -------------------------------------------------------------------------
