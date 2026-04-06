@@ -44,6 +44,9 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
 
  - New `novas_diff_time_scale()` for obtaining time difference between two astrometric times in the specified 
    timescale of choice.
+   
+ - New `novas_timescale_offset()` for returning the time offset in two different timescale representations of a time
+   instance
 
 ### Changed
 

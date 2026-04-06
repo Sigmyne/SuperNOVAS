@@ -176,7 +176,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ga694288eb631d6a69ecf313b7b5b4a677" id="r_ga694288eb631d6a69ecf313b7b5b4a677"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga694288eb631d6a69ecf313b7b5b4a677">set_nutation_lp_provider</a> (<a class="el" href="#ga1f0e319630e7a47f17247bf51f7bf36c">novas_nutation_provider</a> func)</td></tr>
 <tr class="memdesc:ga694288eb631d6a69ecf313b7b5b4a677"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the function to use for low-precision IAU 2000 nutation calculations instead of the default <a class="el" href="#gabd066c2857d1b1cc06d8bd51b912d841" title="Computes the forced nutation of the non-rigid Earth: Model NU2000K.">nu2000k()</a>.  <br /></td></tr>
 <tr class="memitem:gadc81730affa75f5facc8c6bd280c83c9" id="r_gadc81730affa75f5facc8c6bd280c83c9"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gadc81730affa75f5facc8c6bd280c83c9">terra</a> (const <a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict location, double gast, double *restrict pos, double *restrict vel)</td></tr>
-<tr class="memdesc:gadc81730affa75f5facc8c6bd280c83c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the position and velocity vectors of a terrestrial observer with respect to the center of the Earth, based on the GRS80 reference ellipsoid, used for the International Terrestrial Reference Frame (ITRF) and its realizations.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Earth Orientation Parameters (EOP), for defining the unmodelled (via the IAU 2000 / 2006 precession-nutation models) polar motion and rotational variations of the physical Earth. </p>
@@ -1429,8 +1428,8 @@ Liu, J.-C., &amp; Capitaine, N. (2017), A&amp;A 597, A83 </li>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Computes the position and velocity vectors of a terrestrial observer with respect to the center of the Earth, based on the GRS80 reference ellipsoid, used for the International Terrestrial Reference Frame (ITRF) and its realizations. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated</a></b></dt><dd>This NOVAS C function does not account for polar wobble, so the geodetic ITRS / GRS80 locations on Earth are not converted into a proper equatorial system, such as a true-of-date (TOD) coordinate system. Use <span class="tt"><a class="el" href="group__geometric.html#ga65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth&#39;s surface.">novas_site_gcrs_posvel()</a></span> instead, which you can follow by a coordinate transformation, such as <span class="tt"><a class="el" href="group__equatorial.html#ga6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a></span> if you need geocentric observer coordinates in e.g. the true-of-date (TOD) equatorial system.</dd></dl>
+<p>Computes the position and velocity vectors of a terrestrial observer with respect to the center of the Earth, based on the GRS80 reference ellipsoid, used for the International Terrestrial Reference Frame (ITRF) and its realizations.</p>
 <p>This function ignores polar motion, unless the observer's longitude and latitude have been corrected for it, and variation in the length of day (angular velocity of earth).</p>
 <p>The true equator and equinox of date do not form an inertial system. Therefore, with respect to an inertial system, the very small velocity component (several meters/day) due to the precession and nutation of the Earth's axis is not accounted for here.</p>
 <p>REFERENCES: </p><ol>
@@ -1440,14 +1439,14 @@ Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">location</td><td>ITRF / GRS80 geodetic location of observer in Earth's rotating frame. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">gast</td><td>[h] Greenwich apparent sidereal time (GAST). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">gast</td><td>[h] Greenwich apparent sidereal time (GAST). If set to 0, it returns positions and velocities w.r.t. the ITRS. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] Position vector of observer with respect to center of Earth, equatorial rectangular coordinates, referred to true equator and equinox of date, components in AU. If reference meridian is Greenwich and 'lst' = 0, 'pos' is effectively referred to equator and Greenwich. (It may be NULL if no position data is required). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">vel</td><td>[AU/day] Velocity vector of observer with respect to center of Earth, equatorial rectangular coordinates, referred to true equator and equinox of date, components in AU/day. (It must be distinct from the pos output vector, and may be NULL if no velocity data is required).</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if location is NULL or if the pos and vel output arguments are identical pointers.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__geometric.html#ga65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth&#39;s surface.">novas_site_gcrs_posvel()</a>, <a class="el" href="group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a> </dd>
 <dd>
 <a class="el" href="group__observer.html#gab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a>, <a class="el" href="group__observer.html#ga236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="group__observer.html#ga9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a>, <a class="el" href="#ga348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a>, <a class="el" href="#gaaf53fcad3fade814381cef3d06779a8c" title="Returns the Greenwich (apparent) Sidereal Time (GST/GaST) for a given astronomical time specification...">novas_time_gst()</a> </dd></dl>
 

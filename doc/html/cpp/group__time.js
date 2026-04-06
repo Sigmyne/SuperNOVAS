@@ -92,6 +92,7 @@ var group__time =
       [ "shifted", "classsupernovas_1_1Time.html#aca48f9a915ccf368a9a299b8a7644cfd", null ],
       [ "shifted", "classsupernovas_1_1Time.html#afb780ba361ceb3fa054c90de435d560f", null ],
       [ "time_of_day", "classsupernovas_1_1Time.html#a8dbb3589d1c01cacdbab496dfad66e54", null ],
+      [ "timescale_offset", "classsupernovas_1_1Time.html#af33279ca2f6544f78f8715c4ae984063", null ],
       [ "to_calendar_date", "classsupernovas_1_1Time.html#ab1f01976ad639b8f0716f902013fc9c1", null ],
       [ "to_calendar_date", "classsupernovas_1_1Time.html#aeec9b895b84a210134b38583dd65b9bf", null ],
       [ "to_epoch_string", "classsupernovas_1_1Time.html#aaddb1b3164912a4a515ce2458dfa60bf", null ],

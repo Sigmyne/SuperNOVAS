@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['data_20or_20services_0',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md25',1,'']]],
-  ['data_20service_20integration_1',['Universal ephemeris data / service integration',['../index.html#autotoc_md31',1,'']]],
-  ['dates_2',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68',1,'']]],
-  ['debug_20support_3',['Runtime debug support',['../index.html#autotoc_md45',1,'']]],
+  ['data_20or_20services_0',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
+  ['data_20service_20integration_1',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
+  ['dates_2',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md72',1,'']]],
+  ['debug_20support_3',['Runtime debug support',['../index.html#autotoc_md32',1,'']]],
   ['define_20mtx_5flock_20void_4',['define mtx_lock (void)',['../solsys-cspice_8c.html#autotoc_md123',1,'']]],
   ['define_20mtx_5funlock_20void_5',['define mtx_unlock (void)',['../solsys-cspice_8c.html#autotoc_md124',1,'']]],
   ['define_20mutex_5finit_20initializesrwlock_6',['define mutex_init InitializeSRWLock',['../solsys-cspice_8c.html#autotoc_md119',1,'']]],
@@ -17,6 +17,6 @@ var searchData=
   ['define_20mutex_5funlock_20releasesrwlockexclusive_14',['define mutex_unlock ReleaseSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md121',1,'']]],
   ['define_20thread_5fsafe_200_15',['define THREAD_SAFE 0',['../solsys-cspice_8c.html#autotoc_md125',1,'']]],
   ['define_20thread_5fsafe_201_16',['define THREAD_SAFE 1',['../solsys-cspice_8c.html#autotoc_md113',1,'define THREAD_SAFE 1'],['../solsys-cspice_8c.html#autotoc_md118',1,'define THREAD_SAFE 1'],['../solsys-cspice_8c.html#autotoc_md122',1,'define THREAD_SAFE 1']]],
-  ['deprecated_20api_17',['Deprecated API',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md33',1,'']]],
+  ['deprecated_20api_17',['Deprecated API',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47',1,'']]],
   ['deprecated_20list_18',['Deprecated List',['../deprecated.html',1,'']]]
 ];

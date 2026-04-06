@@ -24,6 +24,7 @@ var timescale_8c =
     [ "novas_time_gst", "group__earth.html#gaaf53fcad3fade814381cef3d06779a8c", null ],
     [ "novas_time_leap", "group__time.html#ga28a5e4ae2b4d6c0069400a6ac5a600cf", null ],
     [ "novas_time_lst", "group__time.html#ga9e99ea879ba0ddc1d9fbefc4b32b1ef1", null ],
+    [ "novas_timescale_offset", "group__time.html#gabd183433827f671e73505b550a36f593", null ],
     [ "novas_timestamp", "group__time.html#gac8e83c48005d5aabb3e7bbf8d9f8ed81", null ],
     [ "tdb2tt", "group__time.html#ga90d5fae30728b51151c3daf355ca585b", null ],
     [ "tt2tdb", "group__time.html#ga129acca41760da486e1179c93cb9e86d", null ],

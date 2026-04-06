@@ -157,6 +157,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:a28a5e4ae2b4d6c0069400a6ac5a600cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the leap seconds component of an astronomical time specification.  <br /></td></tr>
 <tr class="memitem:a9e99ea879ba0ddc1d9fbefc4b32b1ef1" id="r_a9e99ea879ba0ddc1d9fbefc4b32b1ef1"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a9e99ea879ba0ddc1d9fbefc4b32b1ef1">novas_time_lst</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time, double lon, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy)</td></tr>
 <tr class="memdesc:a9e99ea879ba0ddc1d9fbefc4b32b1ef1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Local (apparent) Sidereal Time (LST/LaST) for a given astronomical time specification and observer location.  <br /></td></tr>
+<tr class="memitem:abd183433827f671e73505b550a36f593" id="r_abd183433827f671e73505b550a36f593"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#abd183433827f671e73505b550a36f593">novas_timescale_offset</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *ts, enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale, enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> ref_scale)</td></tr>
+<tr class="memdesc:abd183433827f671e73505b550a36f593"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time difference between two different timescales at a specific astrometric time instance.  <br /></td></tr>
 <tr class="memitem:ac8e83c48005d5aabb3e7bbf8d9f8ed81" id="r_ac8e83c48005d5aabb3e7bbf8d9f8ed81"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ac8e83c48005d5aabb3e7bbf8d9f8ed81">novas_timestamp</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time, enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> scale, char *restrict dst, int maxlen)</td></tr>
 <tr class="memdesc:ac8e83c48005d5aabb3e7bbf8d9f8ed81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints an astronomical timestamp to millisecond precision in the specified timescale to the specified string buffer.  <br /></td></tr>
 <tr class="memitem:a90d5fae30728b51151c3daf355ca585b" id="r_a90d5fae30728b51151c3daf355ca585b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a> (double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</td></tr>
@@ -579,8 +581,6 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ad47bcb1e3c5df56a0ffdf1a127e52598" title="Sets an astronomical time to the split Julian Date value, defined in the specified timescale.">novas_set_split_time()</a>, <a class="el" href="#ae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0bac29f535fdae4e29e1baeccacf8f0b98d">NOVAS_GPS</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba328f2523f4f064c5252f4ac858bddc4b">NOVAS_TAI</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4">NOVAS_TCB</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba5935a299729a67971b12a78ee682f89a">NOVAS_TCG</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baadb0d1437b46022bca75d4e7ab0542c7">NOVAS_TT</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baa6fc4520426c4c9cbe497ab87f2ad583">NOVAS_UT1</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>.</p>
-
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a619493eb6cf86aa2199b02d9947e13b1">supernovas::Time::jd_day()</a>, <a class="el" href="classsupernovas_1_1Time.html#a33b76c484b331f5cf89fb289a3d8cba2">supernovas::Time::jd_frac()</a>, <a class="el" href="classsupernovas_1_1Time.html#aa00bd10a56e82fdb411f67b5b3a2beb9">supernovas::Time::mjd()</a>, <a class="el" href="classsupernovas_1_1Time.html#a69d2a1fd717d2ed1e425009715793303">supernovas::Time::mjd_day()</a>, <a class="el" href="novas_8h.html#ab23af98e7a63ce54c6a8d2534e07dc36">novas_diff_time_scale()</a>, <a class="el" href="novas_8h.html#ae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time()</a>, <a class="el" href="novas_8h.html#afa1a1d804ca70050418429f971c2045a">novas_get_unix_time()</a>, <a class="el" href="novas_8h.html#a4d6da26d0a7d7d904f25d2be00030b25">novas_iso_timestamp()</a>, <a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="novas_8h.html#ac8e83c48005d5aabb3e7bbf8d9f8ed81">novas_timestamp()</a>, and <a class="el" href="classsupernovas_1_1Time.html#afb780ba361ceb3fa054c90de435d560f">supernovas::Time::shifted()</a>.</p>
 
 </div>
@@ -970,7 +970,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="#a9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a>, <a class="el" href="#a32d8336084b65fac14d092ab6198c27d" title="Returns the fractional Julian date of an astronomical time in the specified timescale,...">novas_get_split_time()</a>, <a class="el" href="group__time.html#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="novas_8h.html#a9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="novas_8h.html#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0bac29f535fdae4e29e1baeccacf8f0b98d">NOVAS_GPS</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba328f2523f4f064c5252f4ac858bddc4b">NOVAS_TAI</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4">NOVAS_TCB</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba5935a299729a67971b12a78ee682f89a">NOVAS_TCG</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baadb0d1437b46022bca75d4e7ab0542c7">NOVAS_TT</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baa6fc4520426c4c9cbe497ab87f2ad583">NOVAS_UT1</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>, and <a class="el" href="#a5709058076f4aea4eeaeeb000342cd94">tt2tdb_hp()</a>.</p>
+<p class="reference">References <a class="el" href="novas_8h.html#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4">NOVAS_TCB</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, and <a class="el" href="#a5709058076f4aea4eeaeeb000342cd94">tt2tdb_hp()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a42b9ebbe3c7bda154643b752d2df5ee1">supernovas::Time::Time()</a>, <a class="el" href="novas_8h.html#af4a1a5180905a7d8f76aeafe3f9a8ebb">novas_set_time()</a>, <a class="el" href="novas_8h.html#a9d54ea7c6cdbc75ee78cf552a7e1858d">novas_set_unix_time()</a>, and <a class="el" href="classsupernovas_1_1Time.html#afb780ba361ceb3fa054c90de435d560f">supernovas::Time::shifted()</a>.</p>
 
@@ -1262,6 +1262,47 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 
 </div>
 </div>
+<a id="abd183433827f671e73505b550a36f593" name="abd183433827f671e73505b550a36f593"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd183433827f671e73505b550a36f593">&#9670;&#160;</a></span>novas_timescale_offset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double novas_timescale_offset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *</td>          <td class="paramname"><span class="paramname"><em>ts</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a></td>          <td class="paramname"><span class="paramname"><em>timescale</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a></td>          <td class="paramname"><span class="paramname"><em>ref_scale</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the time difference between two different timescales at a specific astrometric time instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ts</td><td>astrometric time </td></tr>
+    <tr><td class="paramname">timescale</td><td>a timescale </td></tr>
+    <tr><td class="paramname">ref_scale</td><td>the reference timescale </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>[s] the time difference between the time expressed in the first timescale vs that in the reference timescale, or else NAN if either timescale parameter is invalid.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#af33279ca2f6544f78f8715c4ae984063">supernovas::Time::timescale_offset()</a>.</p>
+
+</div>
+</div>
 <a id="ac8e83c48005d5aabb3e7bbf8d9f8ed81" name="ac8e83c48005d5aabb3e7bbf8d9f8ed81"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac8e83c48005d5aabb3e7bbf8d9f8ed81">&#9670;&#160;</a></span>novas_timestamp()</h2>
 
@@ -1351,12 +1392,12 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 <p>It has a maximum error of 10 &mu;s between for dates 1600 and 2200.</p>
 <p>This function is wrapped by <span class="tt"><a class="el" href="#a129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a></span>, which is typically a lot easier to use as it returns the time difference directly, which can then be used to convert time in both directions with greater ease. For exable to convert a TT-based date to a TDB-based date:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> TDB = TT + <a class="code hl_function" href="novas_8h.html#a129acca41760da486e1179c93cb9e86d">tt2tdb</a>(TT) / 86400.0;</div>
-<div class="ttc" id="anovas_8h_html_a129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="novas_8h.html#a129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:169</div></div>
+<div class="ttc" id="anovas_8h_html_a129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="novas_8h.html#a129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:168</div></div>
 </div><!-- fragment --><p>is equivalent to:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> dt;</div>
 <div class="line"><a class="code hl_function" href="novas_8h.html#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a>(TT, NULL, &amp;dt);   <span class="comment">// Uses TT input so don&#39;t attempt to calculate TT here...</span></div>
 <div class="line"><span class="keywordtype">double</span> TDB = TT + dt / 86400.0;</div>
-<div class="ttc" id="anovas_8h_html_a90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="novas_8h.html#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:126</div></div>
+<div class="ttc" id="anovas_8h_html_a90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="novas_8h.html#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:125</div></div>
 </div><!-- fragment --><p>NOTES: </p><ol>
 <li>
 This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call. </li>

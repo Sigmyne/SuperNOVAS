@@ -76,6 +76,7 @@ var group__time =
     [ "novas_time_leap", "group__time.html#ga28a5e4ae2b4d6c0069400a6ac5a600cf", null ],
     [ "novas_time_lst", "group__time.html#ga9e99ea879ba0ddc1d9fbefc4b32b1ef1", null ],
     [ "novas_timescale_for_string", "group__time.html#gab344242721ca00709d4dc482a7934e2a", null ],
+    [ "novas_timescale_offset", "group__time.html#gabd183433827f671e73505b550a36f593", null ],
     [ "novas_timestamp", "group__time.html#gac8e83c48005d5aabb3e7bbf8d9f8ed81", null ],
     [ "novas_transit_time", "group__time.html#gad04f1ebd7b2d39e5258b152fec231001", null ],
     [ "tdb2tt", "group__time.html#ga90d5fae30728b51151c3daf355ca585b", null ],
