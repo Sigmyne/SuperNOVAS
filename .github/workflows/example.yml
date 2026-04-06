@@ -18,46 +18,20 @@ on:
 
 jobs:
   build:
-    name: Check C99 examples
+    name: Check examples
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        prog: [star, high-z, orbital, time, rise-set, moon]
+
     steps:
     - uses: actions/checkout@v6
 
-    - name: Compile example-star.c
+    - name: Compile example-${{ matrix.prog }}.c
       run: |
-        gcc -c -Wall -Werror -Iinclude examples/c99/example-star.c
+        gcc -c -Wall -Werror -Iinclude examples/c99/example-${{matrix.prog }}.c
 
-    - name: Compile example-high-z.c
+    - name: Compile example-${{ matrix.prog }}.cpp
       run: |
-        gcc -c -Wall -Werror -Iinclude examples/c99/example-high-z.c
-
-    - name: Compile example-orbital.c
-      run: |
-        gcc -c -Wall -Werror -Iinclude examples/c99/example-orbital.c
-
-    - name: Compile example-time.c
-      run: |
-        gcc -c -Wall -Werror -Iinclude examples/c99/example-time.c
-        
-    - name: Compile example-rise-set.c
-      run: |
-        gcc -c -Wall -Werror -Iinclude examples/c99/example-rise-set.c
-
-  build-cpp:
-    name: Check C++ examples
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v6
-
-    - name: Compile example-star.cpp
-      run: |
-        g++ -c -Wall -Werror -Iinclude examples/cpp/example-star.cpp
-
-    - name: Compile example-high-z.cpp
-      run: |
-        g++ -c -Wall -Werror -Iinclude examples/cpp/example-high-z.cpp
-
-    - name: Compile example-time.cpp
-      run: |
-        g++ -c -Wall -Werror -Iinclude examples/cpp/example-time.cpp
+        g++ -c -Wall -Werror -Iinclude examples/cpp/example-${{ matrix.prog }}.cpp
 
