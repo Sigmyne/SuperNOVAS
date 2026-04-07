@@ -1,7 +1,7 @@
 var searchData=
 [
   ['table_20of_20contents_0',['Table of Contents',['../index.html#autotoc_md1',1,'']]],
-  ['the_20novas_20c_20api_1',['Refinements to the NOVAS C API',['../index.html#autotoc_md38',1,'']]],
+  ['the_20novas_20c_20api_1',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
   ['the_20object_20of_20interest_2',['the object of interest',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53',1,'Specify the object of interest'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92',1,'Specify the object of interest']]],
   ['the_20observer_20location_3',['the observer location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54',1,'Specify the observer location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93',1,'Specify the observer location']]],
   ['the_20observing_20frame_4',['the observing frame',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56',1,'Set up the observing frame'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97',1,'Set up the observing frame']]],
@@ -16,7 +16,7 @@ var searchData=
   ['times_20and_20angles_13',['String times and angles',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md71',1,'']]],
   ['tips_20and_20tricks_20c99_14',['Tips and tricks (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68',1,'']]],
   ['to_20precise_20results_15',['Prerequisites to precise results',['../index.html#autotoc_md29',1,'']]],
-  ['to_20the_20novas_20c_20api_16',['Refinements to the NOVAS C API',['../index.html#autotoc_md38',1,'']]],
+  ['to_20the_20novas_20c_20api_16',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
   ['toolkit_20integration_17',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md26',1,'']]],
   ['transforms_20change_20of_20coordinate_20system_18',['transforms change of coordinate system',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md66',1,'Coordinate and velocity transforms (change of coordinate system)'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107',1,'Coordinate and velocity transforms (change of coordinate system)']]],
   ['transit_20times_19',['transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106',1,'Calculate rise, set, and transit times']]],

@@ -58,9 +58,9 @@ var NAVTREE =
       [ "Representative benchmarks", "index.html#autotoc_md34", null ],
       [ "SuperNOVAS added features", "index.html#autotoc_md36", [
         [ "New functionality highlights", "index.html#autotoc_md37", null ],
-        [ "Refinements to the NOVAS C API", "index.html#autotoc_md38", null ]
+        [ "Refinements to the NOVAS C API", "index.html#autotoc_md39", null ]
       ] ],
-      [ "Release schedule", "index.html#autotoc_md40", null ]
+      [ "Release schedule", "index.html#autotoc_md41", null ]
     ] ],
     [ "C99 Usage", "md__2github_2workspace_2doc_2USAGE-C99.html", [
       [ "Building your application with SuperNOVAS (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44", [
