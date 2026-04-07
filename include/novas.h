@@ -229,7 +229,7 @@
  *   something that __SuperNOVAS__ does automatically when defining astrometric time or an
  *   observing frame with the interpolated published EOP values.
  *
- * \defgroup tracking         Telescope tracking/// [m/s] 1 km / s
+ * \defgroup tracking         Telescope tracking
  *
  *   Tools for supporting telescope tracking, with readily available position, rate of movement,
  *   and acceleration of the source's trajectory on sky. These parameters may be used directly

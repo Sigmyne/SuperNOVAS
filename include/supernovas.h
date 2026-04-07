@@ -151,6 +151,7 @@ public:
   static constexpr double km_per_s = km / s;              ///< [m/s] 1 kilometer per second in m/s
   static constexpr double AU_per_day = AU / day;          ///< [m/s] 1 AU per day in m/s
 
+  // Common time units
   /// [s] 1 tropical calendar year in seconds (at J2000)
   static constexpr double yr = NOVAS_TROPICAL_YEAR_DAYS * day;
   /// [s] 1 tropical calendar century in seconds (at J2000)
@@ -162,6 +163,7 @@ public:
   /// [s] 1 Julian century in seconds
   static constexpr double julian_century = 100.0 * julian_year;
 
+  // Angular units
   static constexpr double rad = 1.0;                      ///< [rad] 1 radian (standard unit of angle)
   static constexpr double hour_angle = NOVAS_HOURANGLE;   ///< [rad] 1 hour of angle in radians on the 24h circle.
   static constexpr double deg = NOVAS_DEGREE;             ///< [rad] 1 degree in radians
@@ -170,6 +172,7 @@ public:
   static constexpr double mas = 1e-3 * arcsec;            ///< [rad] 1 millisecond of arc in radians
   static constexpr double uas = 1e-6 * arcsec;            ///< [rad] 1 microsecond of arc in radians
 
+  // Pressure units
   static constexpr double Pa = 1.0;                       ///< [Pa] 1 pascal (standard unit of perssure)
   static constexpr double hPa = 100.0;                    ///< [Pa] 1 hectopascal in pascals
   static constexpr double mbar = hPa;                     ///< [Pa] 1 millibar in pascals
