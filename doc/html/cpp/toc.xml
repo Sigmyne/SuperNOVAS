@@ -32,9 +32,9 @@
     <topic label="Representative benchmarks" href="index.html#autotoc_md34"/>
     <topic label="SuperNOVAS added features" href="index.html#autotoc_md36">
       <topic label="New functionality highlights" href="index.html#autotoc_md37"/>
-      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md39"/>
+      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md38"/>
     </topic>
-    <topic label="Release schedule" href="index.html#autotoc_md41"/>
+    <topic label="Release schedule" href="index.html#autotoc_md40"/>
   </topic>
   <topic label="C99 Usage" href="md__2github_2workspace_2doc_2USAGE-C99.html">
     <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44">
@@ -792,7 +792,7 @@
       <topic label="get_nutation_lp_provider" href="group__earth.html#ga416a96426a0b3c52c1d5fc6452357366"/>
       <topic label="set_nutation_lp_provider" href="group__earth.html#ga694288eb631d6a69ecf313b7b5b4a677"/>
     </topic>
-    <topic label="Telescope tracking" href="group__tracking.html">
+    <topic label="Telescope tracking/// [m/s] 1 km / s" href="group__tracking.html">
       <topic label="supernovas::EquatorialTrack" href="classsupernovas_1_1EquatorialTrack.html">
         <topic label="EquatorialTrack" href="classsupernovas_1_1EquatorialTrack.html#ace8d716b1283373fe6f5e8a3bf686fac"/>
         <topic label="projected_at" href="classsupernovas_1_1EquatorialTrack.html#a8f41282a1f30c8ede1f28b829ae67480"/>
@@ -3028,6 +3028,7 @@
           <topic label="NOVAS_ARCSEC" href="novas_8h.html#a0fb993148083be267e8321f4f5227527"/>
           <topic label="NOVAS_AU" href="novas_8h.html#abc8f275a2d431e59a1ec9e276abaca1a"/>
           <topic label="NOVAS_AU_KM" href="novas_8h.html#ab94b49a9d44c6078c5ea12171029eb96"/>
+          <topic label="NOVAS_AU_PER_DAY" href="novas_8h.html#addc432c55434789acee7bc2beacd7d69"/>
           <topic label="NOVAS_AU_SEC" href="novas_8h.html#a610c7260c1879f89913bf7a5549b4649"/>
           <topic label="NOVAS_BESSELIAN_YEAR_DAYS" href="novas_8h.html#a4d0100d73e0d474804b1d45d0f9129d2"/>
           <topic label="NOVAS_C" href="novas_8h.html#a5fb4713ad9802152e40a83bf3c1ee242"/>

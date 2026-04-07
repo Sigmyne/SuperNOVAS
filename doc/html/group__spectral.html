@@ -107,6 +107,11 @@ $(function(){initNavTree('group__spectral.html','',''); });
 <p>Calculating precise spectroscopic radial velocity measures or redshifts.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gaddc432c55434789acee7bc2beacd7d69" id="r_gaddc432c55434789acee7bc2beacd7d69"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#gaddc432c55434789acee7bc2beacd7d69">NOVAS_AU_PER_DAY</a>&#160;&#160;&#160;( <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a> / <a class="el" href="group__time.html#ga0b0c2c5ccc61c8740de2e2ac277cd836">NOVAS_DAY</a> )</td></tr>
+<tr class="memdesc:gaddc432c55434789acee7bc2beacd7d69"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m/s] 1 AU / day  <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga3ce6b306bc183387d0aaac97abbd82e8" id="r_ga3ce6b306bc183387d0aaac97abbd82e8"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga3ce6b306bc183387d0aaac97abbd82e8">grav_redshift</a> (double M_kg, double r_m)</td></tr>
@@ -138,7 +143,27 @@ Functions</h2></td></tr>
 <p>The spectroscopic measure of velocity (<em>v</em><sub>r</sub>) or redshift (<em>z</em>) is one that relates the wavelength of the observed light (&lambda;<sub>obs</sub>) to that of the emitted light (&lambda;<sub>rest</sub>):</p>
 <p>&lambda;<sub>obs</sub> / &lambda;<sub>rest</sub> = 1 + <em>z</em> = [(1 + <em>v</em><sub>r</sub> / <em>c</em>) / (1 - <em>v</em><sub>r</sub> / <em>c</em>)]<sup>1/2</sup>,</p>
 <p>where <em>c</em> is the speed of light. </p>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="gaddc432c55434789acee7bc2beacd7d69" name="gaddc432c55434789acee7bc2beacd7d69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaddc432c55434789acee7bc2beacd7d69">&#9670;&#160;</a></span>NOVAS_AU_PER_DAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NOVAS_AU_PER_DAY&#160;&#160;&#160;( <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a> / <a class="el" href="group__time.html#ga0b0c2c5ccc61c8740de2e2ac277cd836">NOVAS_DAY</a> )</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[m/s] 1 AU / day </p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__apparent.html#ga59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="group__geometric.html#ga65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, and <a class="el" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="ga3ce6b306bc183387d0aaac97abbd82e8" name="ga3ce6b306bc183387d0aaac97abbd82e8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga3ce6b306bc183387d0aaac97abbd82e8">&#9670;&#160;</a></span>grav_redshift()</h2>
 

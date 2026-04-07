@@ -17,6 +17,7 @@ var novas_8h =
     [ "NOVAS_ARCSEC", "group__util.html#ga0fb993148083be267e8321f4f5227527", null ],
     [ "NOVAS_AU", "group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a", null ],
     [ "NOVAS_AU_KM", "novas_8h.html#ab94b49a9d44c6078c5ea12171029eb96", null ],
+    [ "NOVAS_AU_PER_DAY", "group__spectral.html#gaddc432c55434789acee7bc2beacd7d69", null ],
     [ "NOVAS_AU_SEC", "novas_8h.html#a610c7260c1879f89913bf7a5549b4649", null ],
     [ "NOVAS_BESSELIAN_YEAR_DAYS", "group__time.html#ga4d0100d73e0d474804b1d45d0f9129d2", null ],
     [ "NOVAS_C", "group__util.html#ga5fb4713ad9802152e40a83bf3c1ee242", null ],

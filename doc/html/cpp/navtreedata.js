@@ -58,9 +58,9 @@ var NAVTREE =
       [ "Representative benchmarks", "index.html#autotoc_md34", null ],
       [ "SuperNOVAS added features", "index.html#autotoc_md36", [
         [ "New functionality highlights", "index.html#autotoc_md37", null ],
-        [ "Refinements to the NOVAS C API", "index.html#autotoc_md39", null ]
+        [ "Refinements to the NOVAS C API", "index.html#autotoc_md38", null ]
       ] ],
-      [ "Release schedule", "index.html#autotoc_md41", null ]
+      [ "Release schedule", "index.html#autotoc_md40", null ]
     ] ],
     [ "C99 Usage", "md__2github_2workspace_2doc_2USAGE-C99.html", [
       [ "Building your application with SuperNOVAS (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44", [
@@ -175,8 +175,8 @@ var NAVTREEINDEX =
 "group__apparent.html#gaec64bf67d5a03b2b4fb2583e5918f1de",
 "novas_8h.html#a0408e0c92b505e9914753930ea3f047f",
 "novas_8h.html#a98c96461c56c17948f6ba1cc746f85eb",
-"place_8c.html",
-"transform_8c.html#a3fa57a154f2f423612736e5e3a5addbf"
+"parse_8c.html#af4e18885b7d173eb3fe5f18b06f0b4d4",
+"transform_8c.html#a3f6ae564cfac3766a21e0754905e5f7c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

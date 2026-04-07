@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['refraction_0',['Atmospheric refraction',['../group__refract.html',1,'']]]
+  ['non_20equatorial_20coordinates_0',['Non-equatorial coordinates',['../group__nonequatorial.html',1,'']]]
 ];

@@ -1,5 +1,6 @@
 var group__spectral =
 [
+    [ "NOVAS_AU_PER_DAY", "group__spectral.html#gaddc432c55434789acee7bc2beacd7d69", null ],
     [ "grav_redshift", "group__spectral.html#ga3ce6b306bc183387d0aaac97abbd82e8", null ],
     [ "novas_lsr_to_ssb_vel", "group__spectral.html#gaad80bf94be2efc36c340994829df8207", null ],
     [ "novas_ssb_to_lsr_vel", "group__spectral.html#ga99ed25baa029f3980924da8c8af54d1a", null ],

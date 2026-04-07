@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['positions_20and_20velocities_0',['Geometric equatorial positions and velocities',['../group__geometric.html',1,'']]],
-  ['positions_20on_20sky_1',['Apparent equatorial positions on sky',['../group__apparent.html',1,'']]],
-  ['providers_2',['Solar-system ephemeris providers',['../group__solar-system.html',1,'']]]
+  ['m_20s_201_20km_20s_0',['Telescope tracking/// [m/s] 1 km / s',['../group__tracking.html',1,'']]]
 ];

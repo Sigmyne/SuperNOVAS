@@ -105,7 +105,7 @@ $(function(){initNavTree('index.html','',''); });
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__2github_2workspace_2doc_2README"></a> <img src="logo-300x113.png" alt="SuperNOVAS logo" width="300" height="113" align="right" class="inline"/> <br  clear="all" />
 </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md75"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md79"></a>
 User's guide</h1>
 <p><a href="https://doi.org/10.5281/zenodo.14584983"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.14584983.svg" alt="DOI: 10.5281/zenodo.14584983" style="pointer-events: none;" class="inline"/></a></p>
 <p>The NOVAS C astrometry library, made better.</p>
@@ -118,7 +118,7 @@ User's guide</h1>
 <p><b>SuperNOVAS</b> is easy to use and it is very fast, with 3&ndash;5 orders of magnitude faster position calculations than <a href="https://www.astropy.org/">astropy</a> 7.0.0 in a single thread (see the <a class="el" href="#benchmarks" title="benchmarks">benchmarks</a>), and its performance will scale further with the number of CPUs when calculations are performed in parallel threads.</p>
 <p><b>SuperNOVAS</b> is and it is available through the <a href="https://github.com/Sigmyne/SuperNOVAS">Sigmyne/SuperNOVAS</a> repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports the IAU 2000/2006 conventions for microarcsecond-level position calculations.</p>
 <p>This document has been updated for the <span class="tt">v1.6</span> and later releases.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md78"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
 Table of Contents</h2>
 <ul>
 <li><a class="el" href="#introduction" title="introduction">Introduction</a></li>
@@ -136,7 +136,7 @@ Table of Contents</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="introduction"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
 Introduction</h2>
 <p><b>SuperNOVAS</b> is a fork of the The Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>). (It is not related to the separate NOVA / libnova library.)</p>
 <p>The primary goal of <b>SuperNOVAS</b> is to improve on the original NOVAS C library via:</p>
@@ -156,7 +156,7 @@ Introduction</h2>
 <p><b>SuperNOVAS</b> is currently based on NOVAS C version 3.1. We plan to rebase <b>SuperNOVAS</b> to the latest upstream release of the NOVAS C library, if possible when new releases become available.</p>
 <p><b>SuperNOVAS</b> is maintained by <a href="https://www.sigmyne.com/attipaci">Attila Kovács</a>.</p>
 <p>Outside contributions are very welcome. See <a href="https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html">how you can contribute</a> on how you can make <b>SuperNOVAS</b> even better.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
 Related links</h3>
 <ul>
 <li><a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a> home page at the US Naval Observatory.</li>
@@ -168,7 +168,7 @@ Related links</h3>
 </ul>
 <hr  />
 <p><a class="anchor" id="fixed-issues"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
 Fixed NOVAS C 3.1 issues</h2>
 <p><b>SuperNOVAS</b> fixes a number of outstanding issues with NOVAS C 3.1:</p>
 <details >
@@ -517,7 +517,7 @@ Details</summary>
 <div class="line">  <span class="comment">// Your custom ephemeris reader implementation here</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__solar-system_html_ga208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="group__solar-system.html#ga208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1090</div></div>
+<div class="ttc" id="agroup__solar-system_html_ga208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="group__solar-system.html#ga208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1092</div></div>
 </div><!-- fragment --><p>which takes an object ID number (such as a NAIF), an object name, and a split TDB date (for precision) as it inputs, and returns the type of origin with corresponding ICRS position and velocity vectors in the supplied pointer locations. The function can use either the ID number or the name to identify the object or file (whatever is the most appropriate for the implementation and for the supplied parameters). The positions and velocities may be returned either relative to the SSB or relative to the heliocenter, and accordingly, your function should set the value pointed at by origin to <span class="tt"><a class="el" href="group__solar-system.html#gga208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c" title="Origin at the Solar-system baricenter (i.e. BCRS).">NOVAS_BARYCENTER</a></span> or <span class="tt"><a class="el" href="group__solar-system.html#gga208120c5fa3e12853eb37cb99d3e27bea13c0711a025b9aebd4186ab9127cbd7b" title="Origin at the center of the Sun.">NOVAS_HELIOCENTER</a></span> accordingly. Positions and velocities are rectangular ICRS <em>x,y,z</em> vectors in units of AU and AU/day respectively.</p>
 <p>This way you can easily integrate current ephemeris data, e.g. for the Minor Planet Center (MPC), or whatever other ephemeris service you prefer.</p>
 <p></p>
@@ -632,8 +632,8 @@ Runtime debug support</h2>
 <div class="line"> </div>
 <div class="line">novas_debug(<a class="code hl_enumvalue" href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a>);</div>
 <div class="ttc" id="agroup__util_html_ga5f35633b872751df4dacd2fb2cbe4ac3"><div class="ttname"><a href="group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug</a></div><div class="ttdeci">PROTECTED void novas_debug(enum novas_debug_mode mode)</div><div class="ttdoc">Enables or disables reporting errors and traces to the standard error stream.</div><div class="ttdef"><b>Definition</b> util.c:451</div></div>
-<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a></div><div class="ttdeci">@ NOVAS_DEBUG_OFF</div><div class="ttdoc">Do not print errors and traces to the standard error (default).</div><div class="ttdef"><b>Definition</b> novas.h:554</div></div>
-<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65">NOVAS_DEBUG_ON</a></div><div class="ttdeci">@ NOVAS_DEBUG_ON</div><div class="ttdoc">Print errors and traces to the standard error.</div><div class="ttdef"><b>Definition</b> novas.h:555</div></div>
+<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a></div><div class="ttdeci">@ NOVAS_DEBUG_OFF</div><div class="ttdoc">Do not print errors and traces to the standard error (default).</div><div class="ttdef"><b>Definition</b> novas.h:556</div></div>
+<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65">NOVAS_DEBUG_ON</a></div><div class="ttdeci">@ NOVAS_DEBUG_ON</div><div class="ttdoc">Print errors and traces to the standard error.</div><div class="ttdef"><b>Definition</b> novas.h:557</div></div>
 </div><!-- fragment --><hr  />
 <p><a class="anchor" id="benchmarks"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md114"></a>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['utilities_0',['Helpers and utilities',['../group__util.html',1,'']]]
+  ['refraction_0',['Atmospheric refraction',['../group__refract.html',1,'']]]
 ];

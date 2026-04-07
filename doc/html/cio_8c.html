@@ -158,7 +158,7 @@ Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated</a></b></dt><dd>This function is no longer used within SuperNOVAS. It is still provided, however, in order to retain 100% API compatibility with NOVAS C.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated</a></b></dt><dd>This function is no longer used within SuperNOVAS. It is still provided, however, in order to retain 100% API compatibility with NOVAS C.</dd></dl>
 <p>Given an input TDB Julian date and the number of data points desired, this function returns a set of Julian dates and corresponding values of the GCRS right ascension of the celestial intermediate origin (CIO). The range of dates is centered on the requested date.</p>
 <p>NOTES: </p><ol>
 <li>
@@ -286,7 +286,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated</a></b></dt><dd>This function is no longer used internally in the library. Given that the CIO is defined on the dynamical equator of date, it is not normally meaningful to provide an R.A. coordinate for it in GCRS. Instead, you might use <span class="tt"><a class="el" href="group__equatorial.html#gacc331c69187b3077b98280bfb57f6670" title="Computes the true right ascension of the celestial intermediate origin (CIO) vs the equinox of date o...">cio_ra()</a></span> to get the CIO location w.r.t. the equinox of date (on the same dynamical equator), or equivalently <span class="tt"><a class="el" href="group__equatorial.html#gaea0e1028baf14d16d9de800e36a17086" title="Compute the intermediate right ascension of the equinox at the input Julian date, using an analytical...">ira_equinox()</a></span> to return the negated value of the same.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated</a></b></dt><dd>This function is no longer used internally in the library. Given that the CIO is defined on the dynamical equator of date, it is not normally meaningful to provide an R.A. coordinate for it in GCRS. Instead, you might use <span class="tt"><a class="el" href="group__equatorial.html#gacc331c69187b3077b98280bfb57f6670" title="Computes the true right ascension of the celestial intermediate origin (CIO) vs the equinox of date o...">cio_ra()</a></span> to get the CIO location w.r.t. the equinox of date (on the same dynamical equator), or equivalently <span class="tt"><a class="el" href="group__equatorial.html#gaea0e1028baf14d16d9de800e36a17086" title="Compute the intermediate right ascension of the equinox at the input Julian date, using an analytical...">ira_equinox()</a></span> to return the negated value of the same.</dd></dl>
 <p>Returns the location of the celestial intermediate origin (CIO) for a given Julian date, as a right ascension with respect to the true equinox of date. The CIO is always located on the true equator (= intermediate equator) of date.</p>
 <p>NOTES: </p><ol>
 <li>
