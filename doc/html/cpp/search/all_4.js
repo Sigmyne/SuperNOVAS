@@ -12,9 +12,9 @@ var searchData=
   ['acceleration_9',['acceleration',['../classsupernovas_1_1ScalarEvolution.html#af4a7ebb8e64e194ad08e0321a52425c4',1,'supernovas::ScalarEvolution']]],
   ['accum_5fprec_10',['accum_prec',['../novas_8h.html#ad1de5b481e41cf193c199bd0dc5084bd',1,'accum_prec(double t):&#160;equator.c'],['../equator_8c.html#ad1de5b481e41cf193c199bd0dc5084bd',1,'accum_prec(double t):&#160;equator.c']]],
   ['accuracy_11',['accuracy',['../structnovas__frame.html#a3903377726bbadb61a3e181b5acb45c8',1,'novas_frame::accuracy'],['../classsupernovas_1_1Frame.html#a662b8d1698620c98076d66c08d5ce00f',1,'supernovas::Frame::accuracy()']]],
-  ['accuracy_20shortcuts_12',['Reduced accuracy shortcuts',['../index.html#autotoc_md31',1,'']]],
+  ['accuracy_20shortcuts_12',['Reduced accuracy shortcuts',['../index.html#autotoc_md30',1,'']]],
   ['acquiresrwlockexclusive_13',['define mutex_lock AcquireSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md120',1,'']]],
-  ['added_20features_14',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
+  ['added_20features_14',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
   ['altitude_15',['altitude',['../classsupernovas_1_1Site.html#a443da3a82bde66f22240b3d6e91fa577',1,'supernovas::Site']]],
   ['an_20apparent_20place_20on_20sky_16',['an apparent place on sky',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98',1,'Calculate an apparent place on sky']]],
   ['an_20ephemeris_20provider_17',['Recommendation: set up an ephemeris provider',['../index.html#autotoc_md21',1,'']]],
@@ -76,8 +76,9 @@ var searchData=
   ['atmospheric_20refraction_73',['Atmospheric refraction',['../group__refract.html',1,'']]],
   ['au_74',['AU',['../classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231',1,'supernovas::Unit']]],
   ['au_75',['au',['../classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de',1,'supernovas::Unit::au'],['../classsupernovas_1_1Coordinate.html#a7bdf7782eefcc95e5c8bcca862dfa109',1,'supernovas::Coordinate::au()']]],
-  ['au_5fper_5fday_76',['au_per_day',['../classsupernovas_1_1ScalarVelocity.html#a58e4061fa373cfbeb80f1f0eb98cb156',1,'supernovas::ScalarVelocity']]],
-  ['average_5fweather_77',['average_weather',['../group__refract.html#ga90e61dee02f1d0b082bfb4e43fdb850b',1,'supernovas::Site']]],
-  ['azimuth_78',['azimuth',['../classsupernovas_1_1Horizontal.html#ac808b5b7f4a4c1f09a54ab5c8e219f3a',1,'supernovas::Horizontal']]],
-  ['azimuth_20and_20elevation_20angles_20at_20the_20observing_20location_79',['azimuth and elevation angles at the observing location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'Calculate azimuth and elevation angles at the observing location']]]
+  ['au_5fper_5fday_76',['AU_per_day',['../classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7',1,'supernovas::Unit']]],
+  ['au_5fper_5fday_77',['au_per_day',['../classsupernovas_1_1ScalarVelocity.html#a58e4061fa373cfbeb80f1f0eb98cb156',1,'supernovas::ScalarVelocity']]],
+  ['average_5fweather_78',['average_weather',['../group__refract.html#ga90e61dee02f1d0b082bfb4e43fdb850b',1,'supernovas::Site']]],
+  ['azimuth_79',['azimuth',['../classsupernovas_1_1Horizontal.html#ac808b5b7f4a4c1f09a54ab5c8e219f3a',1,'supernovas::Horizontal']]],
+  ['azimuth_20and_20elevation_20angles_20at_20the_20observing_20location_80',['azimuth and elevation angles at the observing location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'Calculate azimuth and elevation angles at the observing location']]]
 ];

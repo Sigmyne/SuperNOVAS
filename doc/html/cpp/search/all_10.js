@@ -4,7 +4,7 @@ var searchData=
   ['m_1',['m',['../classsupernovas_1_1Unit.html#af95881057f4dbd4b8a907b12e866c515',1,'supernovas::Unit::m'],['../classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff',1,'supernovas::Coordinate::m()']]],
   ['m0_2',['M0',['../structnovas__orbital.html#a7d15d917c5ef6798f54ba0bfebcfbe56',1,'novas_orbital']]],
   ['m_5fearth_3',['M_earth',['../classsupernovas_1_1Constant.html#a0870d31b2c6e609d991dee5db8e155ae',1,'supernovas::Constant']]],
-  ['m_5fper_5fs_4',['m_per_s',['../classsupernovas_1_1ScalarVelocity.html#a02b0343abd20757afcdf69acf2b11d00',1,'supernovas::ScalarVelocity']]],
+  ['m_5fper_5fs_4',['m_per_s',['../classsupernovas_1_1Unit.html#ae41536856abf6789ada012eb360ed47b',1,'supernovas::Unit::m_per_s'],['../classsupernovas_1_1ScalarVelocity.html#a02b0343abd20757afcdf69acf2b11d00',1,'supernovas::ScalarVelocity::m_per_s()']]],
   ['m_5fpi_5',['M_PI',['../novas_8h.html#ae71449b1cc6e6250b91f539153a7a0d3',1,'novas.h']]],
   ['m_5fsun_6',['M_sun',['../classsupernovas_1_1Constant.html#a63b4473c34fb6d24422d98fdf0d61616',1,'supernovas::Constant']]],
   ['make_7',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md11',1,'']]],

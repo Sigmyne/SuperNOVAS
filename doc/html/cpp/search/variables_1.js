@@ -9,5 +9,6 @@ var searchData=
   ['arcsec_6',['arcsec',['../classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3',1,'supernovas::Unit']]],
   ['atm_7',['atm',['../classsupernovas_1_1Unit.html#a3628143537380360c9b3b3dbe5a38584',1,'supernovas::Unit']]],
   ['au_8',['AU',['../classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231',1,'supernovas::Unit']]],
-  ['au_9',['au',['../classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de',1,'supernovas::Unit']]]
+  ['au_9',['au',['../classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de',1,'supernovas::Unit']]],
+  ['au_5fper_5fday_10',['AU_per_day',['../classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7',1,'supernovas::Unit']]]
 ];

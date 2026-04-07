@@ -112,7 +112,7 @@ $(function(){initNavTree('classsupernovas_1_1Constant.html','','classsupernovas_
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:acb407c995c70664707773b91ff049531" id="r_acb407c995c70664707773b91ff049531"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#acb407c995c70664707773b91ff049531">c</a> = <a class="el" href="novas_8h.html#a5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a></td></tr>
-<tr class="memdesc:acb407c995c70664707773b91ff049531"><td class="mdescLeft">&#160;</td><td class="mdescRight">[rad] &pi;/2  <br /></td></tr>
+<tr class="memdesc:acb407c995c70664707773b91ff049531"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m/s] speed of light  <br /></td></tr>
 <tr class="memitem:a5c77f7cb7e9e31fac251554faf08e80e" id="r_a5c77f7cb7e9e31fac251554faf08e80e"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a5c77f7cb7e9e31fac251554faf08e80e">F_earth</a> = <a class="el" href="novas_8h.html#ae283901f9a884acc6c5b88c6afb040b4">NOVAS_GRS80_FLATTENING</a></td></tr>
 <tr class="memdesc:a5c77f7cb7e9e31fac251554faf08e80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">GRS80 Earth flattening.  <br /></td></tr>
 <tr class="memitem:a86a697b7dcc5c487e5052335e2fab00d" id="r_a86a697b7dcc5c487e5052335e2fab00d"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a86a697b7dcc5c487e5052335e2fab00d">G</a> = 6.67428e-1</td></tr>
@@ -122,7 +122,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a9de961740408cf29989240919a143673" id="r_a9de961740408cf29989240919a143673"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a9de961740408cf29989240919a143673">GM_sun</a> = <a class="el" href="novas_8h.html#a6d955f313593b4a56fef202708d5722b">NOVAS_G_SUN</a></td></tr>
 <tr class="memdesc:a9de961740408cf29989240919a143673"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m<sup>3</sup> s<sup>-2</sup>] Solar graviational constant  <br /></td></tr>
 <tr class="memitem:a07126f2b68cfd91a381122935c80f80b" id="r_a07126f2b68cfd91a381122935c80f80b"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a07126f2b68cfd91a381122935c80f80b">half_pi</a> = 0.5 * <a class="el" href="#a9706ac7b0557b7941e06bc23404b1320">pi</a></td></tr>
-<tr class="memdesc:a07126f2b68cfd91a381122935c80f80b"><td class="mdescLeft">&#160;</td><td class="mdescRight">[rad] 2&pi;  <br /></td></tr>
+<tr class="memdesc:a07126f2b68cfd91a381122935c80f80b"><td class="mdescLeft">&#160;</td><td class="mdescRight">[rad] &pi;/2  <br /></td></tr>
 <tr class="memitem:ad8e2656cc801880776884720430bd7f2" id="r_ad8e2656cc801880776884720430bd7f2"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#ad8e2656cc801880776884720430bd7f2">L_B</a> = 1.550519768e-8</td></tr>
 <tr class="memdesc:ad8e2656cc801880776884720430bd7f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycentric clock rate increment over TT.  <br /></td></tr>
 <tr class="memitem:ac5c3666ee76d1c1bf4eb24b389798d5c" id="r_ac5c3666ee76d1c1bf4eb24b389798d5c"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#ac5c3666ee76d1c1bf4eb24b389798d5c">L_G</a> = 6.969290134e-10</td></tr>
@@ -132,17 +132,19 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a63b4473c34fb6d24422d98fdf0d61616" id="r_a63b4473c34fb6d24422d98fdf0d61616"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a63b4473c34fb6d24422d98fdf0d61616">M_sun</a> = <a class="el" href="#a9de961740408cf29989240919a143673">GM_sun</a> / <a class="el" href="#a86a697b7dcc5c487e5052335e2fab00d">G</a></td></tr>
 <tr class="memdesc:a63b4473c34fb6d24422d98fdf0d61616"><td class="mdescLeft">&#160;</td><td class="mdescRight">[kg] Mass of the Sun  <br /></td></tr>
 <tr class="memitem:a9706ac7b0557b7941e06bc23404b1320" id="r_a9706ac7b0557b7941e06bc23404b1320"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a9706ac7b0557b7941e06bc23404b1320">pi</a> = <a class="el" href="novas_8h.html#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a></td></tr>
+<tr class="memdesc:a9706ac7b0557b7941e06bc23404b1320"><td class="mdescLeft">&#160;</td><td class="mdescRight">[rad] &pi;  <br /></td></tr>
 <tr class="memitem:ac4831c8c8ca0c930145ad322b5f26f16" id="r_ac4831c8c8ca0c930145ad322b5f26f16"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#ac4831c8c8ca0c930145ad322b5f26f16">R_earth</a> = <a class="el" href="novas_8h.html#a5518e094e90ed1053aeb03c41d531452">NOVAS_GRS80_RADIUS</a></td></tr>
+<tr class="memdesc:ac4831c8c8ca0c930145ad322b5f26f16"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] 1 Earth quatorial radius (GRS80) in meters  <br /></td></tr>
 <tr class="memitem:a336dd6cdeb2253ed70164d251f027c47" id="r_a336dd6cdeb2253ed70164d251f027c47"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a336dd6cdeb2253ed70164d251f027c47">two_pi</a> = <a class="el" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a></td></tr>
-<tr class="memdesc:a336dd6cdeb2253ed70164d251f027c47"><td class="mdescLeft">&#160;</td><td class="mdescRight">[rad] &pi;  <br /></td></tr>
+<tr class="memdesc:a336dd6cdeb2253ed70164d251f027c47"><td class="mdescLeft">&#160;</td><td class="mdescRight">[rad] 2&pi;  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Various physical constants that SuperNOVAS uses for astrometric calculations, all expressed in terms of SI units. </p>
-<p>You can use them also. For example, you might use <a class="el" href="#acb407c995c70664707773b91ff049531" title="[rad] π/2">Constant::c</a> to turn a velocity (im m/s) to a unitless &beta;:</p>
+<p>You can use them also. For example, you might use <a class="el" href="#acb407c995c70664707773b91ff049531" title="[m/s] speed of light">Constant::c</a> to turn a velocity (im m/s) to a unitless &beta;:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> beta = (29.5 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">Unit::km</a> / <a class="code hl_variable" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">Unit::sec</a>) / <a class="code hl_variable" href="#acb407c995c70664707773b91ff049531">Constant::c</a>;</div>
-<div class="ttc" id="aclasssupernovas_1_1Constant_html_acb407c995c70664707773b91ff049531"><div class="ttname"><a href="#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a></div><div class="ttdeci">static constexpr double c</div><div class="ttdoc">[rad] π/2</div><div class="ttdef"><b>Definition</b> supernovas.h:210</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Unit_html_a06a5719176ea23f07378bfb5f04a84a2"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a></div><div class="ttdeci">static constexpr double km</div><div class="ttdoc">[m] 1 Angstrom in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:131</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Unit_html_af44b7254ee42e6568e894ed4b7266064"><div class="ttname"><a href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a></div><div class="ttdeci">static constexpr double sec</div><div class="ttdoc">[s] 1 second (standard unit of time)</div><div class="ttdef"><b>Definition</b> supernovas.h:143</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Constant_html_acb407c995c70664707773b91ff049531"><div class="ttname"><a href="#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a></div><div class="ttdeci">static constexpr double c</div><div class="ttdoc">[m/s] speed of light</div><div class="ttdef"><b>Definition</b> supernovas.h:215</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a06a5719176ea23f07378bfb5f04a84a2"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a></div><div class="ttdeci">static constexpr double km</div><div class="ttdoc">[m] 1 kilometer in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:131</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_af44b7254ee42e6568e894ed4b7266064"><div class="ttname"><a href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a></div><div class="ttdeci">static constexpr double sec</div><div class="ttdoc">[s] 1 second by another name</div><div class="ttdef"><b>Definition</b> supernovas.h:143</div></div>
 </div><!-- fragment --><p>Note, this class cannot be instantiated or copied. You should only use its static fields.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Unit.html" title="Various physical units for converting quantities expressed in conventional units to SI,...">Unit</a> </dd></dl>
 </div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
@@ -166,7 +168,6 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>[rad] &pi;/2 </p>
 <p>[m/s] speed of light </p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1ScalarVelocity.html#a08b7a8a135acb5cd5da7886f6dbace17">supernovas::ScalarVelocity::ScalarVelocity()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#a2f26da36dd9c4dba704ec314585ebc2c">supernovas::Velocity::Velocity()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#a412cc2aa831495a3372aaa09fa861cbe">supernovas::ScalarVelocity::beta()</a>, <a class="el" href="classsupernovas_1_1Interferometric.html#a0caf2a7bdd5e33ad308cf110efdf71b6">supernovas::Interferometric::geometric_delay()</a>, <a class="el" href="group__time.html#ga3c5993440d5413726a8c16abcebd9397">supernovas::AstrometricPosition::obs_time()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#af5e2a24bde6d46d14fbff5aae4193410">supernovas::ScalarVelocity::operator+()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#a0dc464dcc90e8e2f778cb3d3d57dbdc8">supernovas::ScalarVelocity::operator-()</a>, <a class="el" href="classsupernovas_1_1CatalogEntry.html#aecae9979ad82c997b2a4e674e7f20741">supernovas::CatalogEntry::radial_velocity()</a>, and <a class="el" href="classsupernovas_1_1CatalogEntry.html#a5abe557f04d1f2ed2dccdaac1e2c0b4b">supernovas::CatalogEntry::v_lsr()</a>.</p>
@@ -289,7 +290,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>[rad] 2&pi; </p>
+<p>[rad] &pi;/2 </p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Site.html#aefc52a24735924b2912317cc5a975958">supernovas::Site::Site()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a56058332425eb69e7d4ae75146d20fe9">supernovas::Spherical::Spherical()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#ab3888018d097a68762e0900c01266e65">supernovas::Orbital::pole()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a7c834939ef49bc1cce47c5b273eaf2be">supernovas::Orbital::pole()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#aed822a8688e97c28af2e40b63ba1e145">supernovas::OrbitalSystem::pole()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#a3ffeb369b9aecbf7282ea04225b0d7a3">supernovas::OrbitalSystem::pole()</a>, and <a class="el" href="classsupernovas_1_1Horizontal.html#a41a2959b8c966369e8d71af38671093d">supernovas::Horizontal::zenith_angle()</a>.</p>
 
@@ -413,6 +414,8 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>[rad] &pi; </p>
+
 </div>
 </div>
 <a id="ac4831c8c8ca0c930145ad322b5f26f16" name="ac4831c8c8ca0c930145ad322b5f26f16"></a>
@@ -434,6 +437,8 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>[m] 1 Earth quatorial radius (GRS80) in meters </p>
 
 </div>
 </div>
@@ -457,7 +462,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>[rad] &pi; </p>
+<p>[rad] 2&pi; </p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Orbital.html#a13f7aaf93ac2f1c20b50ad120a42bb06">supernovas::Orbital::apsis_rate()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a70dfaf3c67a2781f1ff52d31ba5f65b3">supernovas::Orbital::apsis_rate()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a4645972967822541c9f964a8f0393e1b">supernovas::Angle::equals()</a>, <a class="el" href="classsupernovas_1_1Angle.html#ae68fb837fb8c311196188dc37eee93d7">supernovas::Angle::fraction()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a01968b29405deb9f71ad534e62bcd7f4">supernovas::Orbital::from_mean_motion()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#afaf0000a33c68b01b1257cacbd655331">supernovas::Orbital::node_rate()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a05d61ea153f256ed7fafd87370f4fa77">supernovas::Orbital::node_rate()</a>, and <a class="el" href="classsupernovas_1_1Orbital.html#aae185fccc7fb024dcae3384002c511b7">supernovas::Orbital::period()</a>.</p>
 
