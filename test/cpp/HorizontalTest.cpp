@@ -55,16 +55,16 @@ int main() {
   if(!test.check("to_unrefracted(NULL)", a.to_unrefracted(NULL) == a)) n++;
 
   Apparent opt = a.to_apparent(Observer::at_geocenter().reduced_accuracy_frame_at(Time::j2000()),
-          ScalarVelocity(Unit::km / Unit::s), Coordinate(Unit::pc));
+          ScalarVelocity(Unit::km_per_s), Coordinate(Unit::pc));
   if(!test.check("to_apparent(geocentric)", !opt.is_valid())) n++;
 
-  opt = a.to_apparent(Frame::undefined(), ScalarVelocity(Unit::km / Unit::s), Coordinate(Unit::pc));
+  opt = a.to_apparent(Frame::undefined(), ScalarVelocity(Unit::km_per_s), Coordinate(Unit::pc));
   if(!test.check("to_apparent(Frame invalid).is_valid()", !opt.is_valid())) n++;
 
   EOP eop(32, 0.1, 0.2 * Unit::arcsec, 0.3 * Unit::arcsec);
   Frame frame = Observer::on_earth(site, eop).reduced_accuracy_frame_at(Time::j2000());
 
-  opt = a.to_apparent(frame, ScalarVelocity(Unit::km / Unit::s), Coordinate(Unit::pc));
+  opt = a.to_apparent(frame, ScalarVelocity(Unit::km_per_s), Coordinate(Unit::pc));
   if(!test.check("to_apparent().is_valid()", opt.is_valid())) n++;
 
   sky_pos p = {};
@@ -74,7 +74,7 @@ int main() {
   if(!test.equals("to_apparent() Dec", tod.equatorial().dec().deg(), p.dec, 1e-9)) n++;
 
   Frame gf = Observer::on_earth(site, eop).reduced_accuracy_frame_at(Time::j2000());
-  tod = a.to_apparent(gf, ScalarVelocity(Unit::km / Unit::s), Coordinate(Unit::pc));
+  tod = a.to_apparent(gf, ScalarVelocity(Unit::km_per_s), Coordinate(Unit::pc));
   if(!test.check("to_apparent(geodetic)", tod.is_valid())) n++;
   if(!test.equals("to_apparent(geodetic) R.A.", tod.equatorial().ra().hours(), p.ra, 1e-10)) n++;
   if(!test.equals("to_apparent(geodetic) Dec", tod.equatorial().dec().deg(), p.dec, 1e-9)) n++;
@@ -87,7 +87,7 @@ int main() {
 
   novas_frame *nf = (novas_frame *) gf._novas_frame();
   nf->observer.where = NOVAS_OBSERVER_AT_GEOCENTER;
-  tod = a.to_apparent(gf, ScalarVelocity(Unit::km / Unit::s), Coordinate(Unit::pc));
+  tod = a.to_apparent(gf, ScalarVelocity(Unit::km_per_s), Coordinate(Unit::pc));
   if(!test.check("to_apparent(geodetic frame invalid)", !tod.is_valid())) n++;
 
   Horizontal b(a);

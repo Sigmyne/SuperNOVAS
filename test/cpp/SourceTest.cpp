@@ -114,7 +114,7 @@ int main() {
   Geometric geom = sun.geometric_in(frame, NOVAS_TOD);
   if(!test.check("geometric(TOD)", geom.is_valid())) n++;
   if(!test.check("geometric(TOD).position()", geom.position() == Position(p, Unit::AU))) n++;
-  if(!test.check("geometric(TOD).velocity()", geom.velocity() == Velocity(v, Unit::AU / Unit::day))) n++;
+  if(!test.check("geometric(TOD).velocity()", geom.velocity() == Velocity(v, Unit::AU_per_day))) n++;
   if(!test.check("geometric(invalid)", !Planet((enum novas_planet) -1).geometric_in(frame).is_valid())) n++;
 
   if(!test.check("equatorial_track(frame invalid)", !c.equatorial_track(Frame::undefined(), Interval(Unit::hour)).is_valid())) n++;

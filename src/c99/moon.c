@@ -643,7 +643,7 @@ int novas_moon_elp_sky_pos_fp(const novas_frame *restrict frame, double limit, e
   static const char *fn = "novas_moon_elp_skypos_fp";
 
   novas_transform T = {};
-  const double kms_to_auday = NOVAS_KM * NOVAS_DAY / NOVAS_AU;
+  const double kms_to_auday = NOVAS_KMS / NOVAS_AU_PER_DAY;
   double p[3] = {0.0}, v[3] = {0.0}, vo[3] = {0.0};
   int k;
 

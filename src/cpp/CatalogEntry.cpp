@@ -63,7 +63,7 @@ void CatalogEntry::validate(const char *loc) {
  *       CatalogEntry("Antares", Equatorial("16h26m20.1918s", "-26d19m23.138s", Equinox::b1950()))
  *       .proper_motion( -12.11 * Unit::mas / Unit::year, -23.30 * Unit::mas / Unit::year)
  *       .parallax(5.89 * Unit::arcsec)
- *       .radial_velocity(-3.4 * Unit::km / Unit::s);
+ *       .radial_velocity(-3.4 * Unit::km_per_s);
  *  ```
  *
  * @param name      source name. It is treated case insensitively, unless the user calls
@@ -221,7 +221,7 @@ Angle CatalogEntry::dec() const {
  * @sa ra(), dec(), distance(), parallax()
  */
 ScalarVelocity CatalogEntry::v_lsr() const {
-  ScalarVelocity v(novas_ssb_to_lsr_vel(_sys.epoch(), _entry.ra, _entry.dec, _entry.radialvelocity) * Unit::km / Unit::sec);
+  ScalarVelocity v(novas_ssb_to_lsr_vel(_sys.epoch(), _entry.ra, _entry.dec, _entry.radialvelocity) * Unit::km_per_s);
   if(!v.is_valid())
     novas_trace_invalid("CatalogEntry::v_lsr()");
   return v;
@@ -239,7 +239,7 @@ ScalarVelocity CatalogEntry::v_lsr() const {
  *
  */
 ScalarVelocity CatalogEntry::radial_velocity() const {
-  ScalarVelocity v(_entry.radialvelocity * Unit::km / Unit::sec);
+  ScalarVelocity v(_entry.radialvelocity * Unit::km_per_s);
   if(!v.is_valid())
     novas_trace_invalid("CatalogEntry::radial_velocity()");
   return v;
@@ -256,7 +256,7 @@ ScalarVelocity CatalogEntry::radial_velocity() const {
  * @sa ra(), dec(), distance(), parallax()
  */
 double CatalogEntry::redshift() const {
-  return novas_check_nan("CatalogEntry::redshift", novas_v2z(_entry.radialvelocity * Unit::km / Unit::sec));
+  return novas_check_nan("CatalogEntry::redshift", novas_v2z(_entry.radialvelocity * Unit::km_per_s));
 }
 
 /**
@@ -447,7 +447,7 @@ CatalogEntry& CatalogEntry::distance(const Coordinate& dist) {
 CatalogEntry& CatalogEntry::v_lsr(double v_ms) {
   static const char *fn = "CatalogEntry::v_lsr()";
 
-  novas_set_lsr_vel(&_entry, _sys.epoch(), v_ms / (Unit::km / Unit::sec));
+  novas_set_lsr_vel(&_entry, _sys.epoch(), v_ms / (Unit::km_per_s));
 
   if(!isfinite(v_ms)) {
     novas_set_errno(EINVAL, fn, "input LSR velocity is NAN or infinite");
@@ -492,7 +492,7 @@ CatalogEntry& CatalogEntry::v_lsr(const ScalarVelocity& v) {
 CatalogEntry& CatalogEntry::radial_velocity(double v_ms) {
   static const char *fn = "CatalogEntry::radial_velocity()";
 
-  novas_set_ssb_vel(&_entry, v_ms / (Unit::km / Unit::sec));
+  novas_set_ssb_vel(&_entry, v_ms / (Unit::km_per_s));
 
   if(!isfinite(v_ms)) {
     novas_set_errno(EINVAL, fn, "input value is NAN or infinite");

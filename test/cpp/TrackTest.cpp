@@ -65,7 +65,7 @@ int main() {
   if(!test.equals("radial_velocity_at().value()", ov.m_per_s(), r.rate(ip), 1e-6)) n++;
 
   if(!test.check("redshift_at()", isfinite(h.redshift_at(t1)))) n++;
-  if(!test.equals("redshift_at().value()", h.redshift_at(t1), novas_v2z(r.rate(ip) / (Unit::km / Unit::s)), 1e-15)) n++;
+  if(!test.equals("redshift_at().value()", h.redshift_at(t1), novas_v2z(r.rate(ip) / (Unit::km_per_s)), 1e-15)) n++;
 
   Horizontal oh = h.projected_at(t1);
   if(!test.check("projected_at()", oh.is_valid())) n++;
@@ -174,7 +174,7 @@ int main() {
   if(!test.equals("radial_velocity_at().value()", ov.m_per_s(), r.rate(ip), 1e-6)) n++;
 
   if(!test.check("redshift_at()", isfinite(et.redshift_at(t1)))) n++;
-  if(!test.equals("redshift_at().value()", et.redshift_at(t1), novas_v2z(r.rate(ip) / (Unit::km / Unit::s)), 1e-15)) n++;
+  if(!test.equals("redshift_at().value()", et.redshift_at(t1), novas_v2z(r.rate(ip) / (Unit::km_per_s)), 1e-15)) n++;
 
   Equatorial oe = et.projected_at(t1);
   if(!test.check("projected_at()", oe.is_valid())) n++;

@@ -25,7 +25,7 @@ Observer::Observer(enum novas_observer_place type, const Site& site, const Posit
   _observer.on_surf = *site._on_surface();
 
   double pUnit = (type == NOVAS_SOLAR_SYSTEM_OBSERVER) ? Unit::AU : Unit::km;
-  double vUnit = (type == NOVAS_SOLAR_SYSTEM_OBSERVER) ? Unit::AU / Unit::day : Unit::km / Unit::s;
+  double vUnit = (type == NOVAS_SOLAR_SYSTEM_OBSERVER) ? Unit::AU_per_day : Unit::km_per_s;
 
   for(int i = 0; i < 3; i++) {
     _observer.near_earth.sc_pos[i] = pos[i] / pUnit;
@@ -463,7 +463,7 @@ Position GeocentricObserver::gcrs_position() const {
  * @sa gcrs_position()
  */
 Velocity GeocentricObserver::gcrs_velocity() const {
-  Velocity vel(_observer.near_earth.sc_vel, Unit::km / Unit::sec);
+  Velocity vel(_observer.near_earth.sc_vel, Unit::km_per_s);
   if(!vel.is_valid())
     novas_trace_invalid("GeocentricObserver::gcrs_velocity()");
   return vel;
@@ -550,7 +550,7 @@ Position SolarSystemObserver::ssb_position() const {
  * @sa ssb_position()
  */
 Velocity SolarSystemObserver::ssb_velocity() const {
-  Velocity vel(_observer.near_earth.sc_vel, Unit::au / Unit::day);
+  Velocity vel(_observer.near_earth.sc_vel, Unit::AU_per_day);
   if(!vel.is_valid())
     novas_trace_invalid("SolarSystemObserver::ssb_velocity()");
   return vel;
@@ -690,7 +690,7 @@ Site GeodeticObserver::site() const {
  * @sa enu_velocity(), Site::itrs_to_enu()
  */
 Velocity GeodeticObserver::itrs_velocity() const {
-  Velocity vel(_observer.near_earth.sc_vel, Unit::km / Unit::s);
+  Velocity vel(_observer.near_earth.sc_vel, Unit::km_per_s);
   if(!vel.is_valid())
     novas_trace_invalid("GeodeticObserver::itrs_velocity()");
   return vel;
@@ -709,7 +709,7 @@ Velocity GeodeticObserver::enu_velocity() const {
   double v[3] = {0.0};
   novas_itrs_to_enu(_observer.near_earth.sc_vel, _observer.on_surf.longitude, _observer.on_surf.latitude, v);
 
-  Velocity vel(v, Unit::km / Unit::s);
+  Velocity vel(v, Unit::km_per_s);
   if(!vel.is_valid())
     novas_trace_invalid("GeodeticObserver::enu_velocity()");
   return vel;
@@ -744,7 +744,7 @@ Velocity GeodeticObserver::gcrs_velocity_at(const Time &time, enum novas_accurac
     return Velocity::undefined();
   }
 
-  Velocity vel(v, Unit::AU / Unit::day);
+  Velocity vel(v, Unit::AU_per_day);
   if(!vel.is_valid())
     novas_trace_invalid(fn);
   return vel;

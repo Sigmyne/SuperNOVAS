@@ -39,9 +39,9 @@ template<class CoordType> void Track<CoordType>::validate() {
 
   if(!_z.is_valid() && _r.is_valid() && _range.is_valid()) {
     double dt = fabs(_range.seconds());
-    double z0 = novas_v2z(_r.rate(Interval::zero()) / (Unit::km / Unit::s));
-    double zp = novas_v2z(_r.rate(Interval(dt)) / (Unit::km / Unit::s));
-    double zm = novas_v2z(_r.rate(Interval(-dt)) / (Unit::km / Unit::s));
+    double z0 = novas_v2z(_r.rate(Interval::zero()) / (Unit::km_per_s));
+    double zp = novas_v2z(_r.rate(Interval(dt)) / (Unit::km_per_s));
+    double zm = novas_v2z(_r.rate(Interval(-dt)) / (Unit::km_per_s));
     double z1 = 0.5 * (zp - zm) / dt;
     _z = ScalarEvolution(z0, z1);
   }
@@ -359,7 +359,7 @@ template<class CoordType> Coordinate Track<CoordType>::distance_at(const Time& t
  */
 template<class CoordType> ScalarVelocity Track<CoordType>::radial_velocity_at(const Time& time) const {
   if(is_valid_at(time)) {
-    ScalarVelocity v(novas_z2v(unchecked_redshift(time)) * (Unit::km / Unit::s));
+    ScalarVelocity v(novas_z2v(unchecked_redshift(time)) * (Unit::km_per_s));
     if(!v.is_valid())
       novas_trace_invalid("Track::radial_velocity_at()");
     return v;

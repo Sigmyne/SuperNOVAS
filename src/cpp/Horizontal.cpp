@@ -254,7 +254,7 @@ Apparent Horizontal::to_apparent(const Frame& frame, double rv, double distance)
     return Apparent::undefined();
   }
 
-  p.rv = rv / (Unit::au / Unit::day);
+  p.rv = rv / (Unit::AU_per_day);
   p.dis = distance / Unit::au;
   radec2vector(p.ra, p.dec, 1.0, p.r_hat);
 

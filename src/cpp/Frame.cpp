@@ -265,7 +265,7 @@ Velocity Frame::observer_ssb_velocity() const {
     novas_trace_invalid("Frame::observer_ssb_velocity()");
     return Velocity::undefined();
   }
-  return Velocity(_novas_frame()->obs_vel, Unit::AU / Unit::day);
+  return Velocity(_novas_frame()->obs_vel, Unit::AU_per_day);
 }
 
 /**
@@ -300,7 +300,7 @@ Geometric Frame::geometric_moon_elp2000(double limit_term) const {
 
   double p[3] = {0.0}, v[3] = {0.0};
   novas_moon_elp_posvel_fp(_novas_frame(), limit_term, NOVAS_ICRS, p, v);
-  return Geometric(*this, Position(p, Unit::AU), Velocity(v, Unit::AU / Unit::day), NOVAS_ICRS);
+  return Geometric(*this, Position(p, Unit::AU), Velocity(v, Unit::AU_per_day), NOVAS_ICRS);
 }
 
 /**

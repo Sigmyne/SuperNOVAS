@@ -40,7 +40,7 @@ int main() {
   if(!test.equals("SI_unit()", a.SI_unit(), "m")) n++;
   if(!test.equals("SI_value()", a.SI_value(), a.m(), 0.0)) n++;
   if(!test.equals("operator/()", (a / Interval(100.0 * Unit::day)).au_per_day(),
-          ScalarVelocity(0.01 * Unit::AU / Unit::day).au_per_day(), 1e-12 * Unit::AU / Unit::day)) n++;
+          ScalarVelocity(0.01 * Unit::AU_per_day).au_per_day(), 1e-12 * Unit::AU_per_day)) n++;
   if(!test.check("operator/(0.0)", !(a / Interval::zero()).is_valid())) n++;
 
 

@@ -28,8 +28,8 @@ static bool is_valid_sky_pos(const char *fn, const sky_pos *p) {
   if(!isfinite(p->rv))
     novas_set_errno(EINVAL, fn, "input radial velocity is NAN or infinite");
 
-  if(p->rv * Unit::km / Unit::s > Constant::c)
-    novas_set_errno(EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", p->rv * Unit::km / Unit::s);
+  if(p->rv * Unit::km_per_s > Constant::c)
+    novas_set_errno(EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", p->rv * Unit::km_per_s);
 
   return (errno == 0);
 }
@@ -55,7 +55,7 @@ Apparent::Apparent(const Frame& frame, enum novas_reference_system sys, double r
     _pos.ra += cirs2tod_ra;
 
   _pos.dec = dec_rad / Unit::deg;
-  _pos.rv = rv_ms / (Unit::km / Unit::sec);
+  _pos.rv = rv_ms / (Unit::km_per_s);
   _pos.dis = NOVAS_DEFAULT_DISTANCE / Unit::au;
 
   radec2vector(_pos.ra, _pos.dec, 1.0, _pos.r_hat);
@@ -64,7 +64,7 @@ Apparent::Apparent(const Frame& frame, enum novas_reference_system sys, double r
 }
 
 Apparent::Apparent(const Frame& frame, enum novas_reference_system sys, const sky_pos *p)
-: Apparent(frame, sys, p->ra * Unit::hour_angle, p->dec * Unit::deg, p->rv * Unit::km / Unit::s) {
+: Apparent(frame, sys, p->ra * Unit::hour_angle, p->dec * Unit::deg, p->rv * Unit::km_per_s) {
   if(!(p->dis > 0)) {
     novas_set_errno(EINVAL, "Apparent()", "input pos.dis is invalid: %g AU", p->dis / Unit::au);
     _valid = false;
@@ -188,7 +188,7 @@ Position Apparent::xyz() const {
  * @sa redshift()
  */
 ScalarVelocity Apparent::radial_velocity() const {
-  ScalarVelocity v(_pos.rv * Unit::km / Unit::sec);
+  ScalarVelocity v(_pos.rv * Unit::km_per_s);
   if(!v.is_valid())
     novas_trace_invalid("Apparent::radial_velocity()");
   return v;

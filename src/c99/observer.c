@@ -926,7 +926,7 @@ int novas_site_gcrs_posvel(const novas_timespec *restrict ts, const on_surface *
   // Add surface velocity...
   if(vel && v_itrs) {
     int k;
-    double kms = NOVAS_KM * NOVAS_DAY / NOVAS_AU;
+    double kms = NOVAS_KMS / NOVAS_AU_PER_DAY;
     for(k = 0; k < 3; k++)
       vel[k] = novas_add_vel(vel[k], v_itrs[k] * kms);
   }

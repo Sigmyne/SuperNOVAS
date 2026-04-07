@@ -34,7 +34,7 @@ int main() {
   if(!test.equals("accuracy()", a.accuracy(), NOVAS_REDUCED_ACCURACY)) n++;
   if(!test.check("time()", a.time() == Time::j2000())) n++;
   if(!test.check("observer_ssb_position()", a.observer_ssb_position() == Position(a._novas_frame()->obs_pos, Unit::AU))) n++;
-  if(!test.check("observer_ssb_velocity()", a.observer_ssb_velocity() == Velocity(a._novas_frame()->obs_vel, Unit::AU / Unit::day))) n++;
+  if(!test.check("observer_ssb_velocity()", a.observer_ssb_velocity() == Velocity(a._novas_frame()->obs_vel, Unit::AU_per_day))) n++;
   if(!test.equals("observer() type", a.observer().type(), NOVAS_OBSERVER_AT_GEOCENTER)) n++;
   if(!test.equals("clock_skew()", a.clock_skew(NOVAS_TT), novas_clock_skew(a._novas_frame(), NOVAS_TT))) n++;
   if(!test.check("clock_skew(timescale invalid)", isnan(a.clock_skew((enum novas_timescale) -1)))) n++;
@@ -48,7 +48,7 @@ int main() {
   Geometric mg = a.geometric_moon_elp2000(0.1);
   if(!test.check("geometric_moon_elp2000()", mg.is_valid())) n++;
   if(!test.check("geometric_moon_elp2000().position()", mg.position() == Position(mp, Unit::AU))) n++;
-  if(!test.check("geometric_moon_elp2000().velocity()", mg.velocity() == Velocity(mv, Unit::AU / Unit::day))) n++;
+  if(!test.check("geometric_moon_elp2000().velocity()", mg.velocity() == Velocity(mv, Unit::AU_per_day))) n++;
 
   sky_pos mpos = {};
   novas_moon_elp_sky_pos_fp(a._novas_frame(), 0.1, NOVAS_TOD, &mpos);

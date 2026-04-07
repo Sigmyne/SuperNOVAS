@@ -44,7 +44,7 @@ int main() {
   if(!test.check("operator-(invalid)", !(z - x).is_valid())) n++;
   if(!test.check("travel(invalid interval)", !x.travel(Interval(NAN)).is_valid())) n++;
 
-  Velocity a(-1.0 * Unit::km / Unit::s, 2.0 * Unit::km / Unit::s, -3.0 * Unit::km / Unit::s);
+  Velocity a(-1.0 * Unit::km_per_s, 2.0 * Unit::km_per_s, -3.0 * Unit::km_per_s);
   if(!test.check("is_valid(-1 km/s, 2 km/s, -3 km/s)", a.is_valid())) n++;
   if(!test.equals("x()", a.x().km_per_s(), -1.0)) n++;
   if(!test.equals("y()", a.y().km_per_s(), 2.0)) n++;
@@ -60,15 +60,15 @@ int main() {
   if(!test.equals("y() inv", ai.y().m_per_s(), -a.y().m_per_s())) n++;
   if(!test.equals("z() inv", ai.z().m_per_s(), -a.z().m_per_s())) n++;
 
-  if(!test.equals("[0]", a[0], -1.0 * Unit::km / Unit::s)) n++;
-  if(!test.equals("[1]", a[1], 2.0 * Unit::km / Unit::s)) n++;
-  if(!test.equals("[2]", a[2], -3.0 * Unit::km / Unit::s)) n++;
+  if(!test.equals("[0]", a[0], -1.0 * Unit::km_per_s)) n++;
+  if(!test.equals("[1]", a[1], 2.0 * Unit::km_per_s)) n++;
+  if(!test.equals("[2]", a[2], -3.0 * Unit::km_per_s)) n++;
 
   double p[3] = {-1.0, 2.0, -3.0};
-  Velocity b(p, Unit::km / Unit::s);
+  Velocity b(p, Unit::km_per_s);
 
-  if(!test.check("equals()", a.equals(b, 1e-15 * Unit::km / Unit::s))) n++;
-  if(!test.check("!equals()", !a.equals(ai, 1e-15 * Unit::km / Unit::s))) n++;
+  if(!test.check("equals()", a.equals(b, 1e-15 * Unit::km_per_s))) n++;
+  if(!test.check("!equals()", !a.equals(ai, 1e-15 * Unit::km_per_s))) n++;
 
   if(!test.check("operator ==", a == b)) n++;
   if(!test.check("operator !=", a != ai)) n++;
@@ -91,9 +91,9 @@ int main() {
   if(!test.equals("y(a + b)", (a + b).y().au_per_day(), novas_add_vel(a.y().au_per_day(), b.y().au_per_day()), 1e-15)) n++;
   if(!test.equals("z(a + b)", (a + b).z().au_per_day(), novas_add_vel(a.z().au_per_day(), b.z().au_per_day()), 1e-15)) n++;
 
-  if(!test.equals("x(2 * a)", (2 * a)[0], -2.0 * Unit::km / Unit::s, 1e-14 * Unit::km / Unit::s)) n++;
-  if(!test.equals("y(2 * a)", (2 * a)[1], 4.0 * Unit::km / Unit::s, 1e-14 * Unit::km / Unit::s)) n++;
-  if(!test.equals("z(2 * a)", (2 * a)[2], -6.0 * Unit::km / Unit::s, 1e-14 * Unit::km / Unit::s)) n++;
+  if(!test.equals("x(2 * a)", (2 * a)[0], -2.0 * Unit::km_per_s, 1e-14 * Unit::km_per_s)) n++;
+  if(!test.equals("y(2 * a)", (2 * a)[1], 4.0 * Unit::km_per_s, 1e-14 * Unit::km_per_s)) n++;
+  if(!test.equals("z(2 * a)", (2 * a)[2], -6.0 * Unit::km_per_s, 1e-14 * Unit::km_per_s)) n++;
 
   if(!test.equals("dot(b)", a.dot(b), a.abs() * b.abs(), 1e-15 * a.abs() * b.abs())) n++;
 

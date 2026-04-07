@@ -29,12 +29,12 @@ int main() {
 
   if(!test.check("is_valid(> c)", !ScalarVelocity(Constant::c + 1.0).is_valid())) n++;
 
-  ScalarVelocity a(45.0 * Unit::km / Unit::s);
+  ScalarVelocity a(45.0 * Unit::km_per_s);
   if(!test.check("is_valid(45 km/s)", a.is_valid())) n++;
   if(!test.equals("m_per_s()", a.m_per_s(), 45000.0, 1e-11)) n++;
   if(!test.equals("km_per_s()", a.km_per_s(), 45.0)) n++;
   if(!test.equals("au_per_day()", a.au_per_day(), 45.0 * Unit::km * Unit::day / Unit::au, 1e-10)) n++;
-  if(!test.equals("beta()", a.beta(), 45.0 * Unit::km / Unit::sec / Constant::c, 1e-20)) n++;
+  if(!test.equals("beta()", a.beta(), 45.0 * Unit::km_per_s / Constant::c, 1e-20)) n++;
   if(!test.equals("Gamma()", a.Gamma(), 1.0 / sqrt(1.0 - a.beta() * a.beta()), 1e-15)) n++;
   if(!test.equals("redshift()", a.redshift(), a.beta(), 1e-6)) n++;
   if(!test.equals("travel()", a.travel(Interval(10.0)).km(), 450.0, 1e-12)) n++;
@@ -49,7 +49,7 @@ int main() {
   if(!test.check("operator+(invalid)", !(a + x).is_valid())) n++;
   if(!test.check("operator-(invalid)", !(a - x).is_valid())) n++;
 
-  ScalarVelocity b(-30.0 * Unit::km / Unit::s);
+  ScalarVelocity b(-30.0 * Unit::km_per_s);
   if(!test.equals("km_per_s(-30 km/s)", b.km_per_s(), -30.0)) n++;
   if(!test.equals("abs(-30 km/s)", b.abs().km_per_s(), 30.0)) n++;
 

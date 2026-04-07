@@ -146,7 +146,7 @@ Geometric Source::geometric_in(const Frame& frame, enum novas_reference_system s
   if(novas_geom_posvel(&_object, frame._novas_frame(), NOVAS_TOD, p, v) == 0) {
     return Geometric(frame,
             Position(p[0] * Unit::au, p[1] * Unit::au, p[2] * Unit::au),
-            Velocity(v[0] * Unit::au / Unit::day, v[1] * Unit::au / Unit::day, v[2] * Unit::au / Unit::day),
+            Velocity(v[0] * Unit::AU_per_day, v[1] * Unit::AU_per_day, v[2] * Unit::AU_per_day),
             system
     );
   }
@@ -444,7 +444,7 @@ Geometric SolarSystemSource::barycentric_at(const Time& time, enum novas_accurac
   }
 
   return Geometric(Observer::at_ssb().frame_at(time, accuracy),
-          Position(p, Unit::AU), Velocity(v, Unit::AU / Unit::day), NOVAS_ICRS);
+          Position(p, Unit::AU), Velocity(v, Unit::AU_per_day), NOVAS_ICRS);
 }
 
 
@@ -490,7 +490,7 @@ ScalarVelocity SolarSystemSource::helio_rate(const Time& time) const {
   double v = NAN;
   novas_helio_dist(time.jd(NOVAS_TDB), &_object, &v);
   novas_check_nan("SolarSystemSource::helio_rate()", v);
-  return ScalarVelocity(v * Unit::au / Unit::day);
+  return ScalarVelocity(v * Unit::AU_per_day);
 }
 
 /**
@@ -772,7 +772,7 @@ Geometric Planet::approx_geometric_in(const Frame& frame) const {
     v[i] += f->sun_vel[i];
   }
 
-  Geometric g(frame, Position(p, Unit::AU), Velocity(v, Unit::AU / Unit::day));
+  Geometric g(frame, Position(p, Unit::AU), Velocity(v, Unit::AU_per_day));
   if(!g.is_valid())
     novas_trace_invalid("Source::geometric_in()");
   return g;

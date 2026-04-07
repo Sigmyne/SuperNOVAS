@@ -43,7 +43,7 @@ int main() {
   if(!test.check("emit_time()", a.emit_time() == (Time::b1950() - (a.distance().m() / Constant::c)))) n++;
   if(!test.check("origin(0)", a.reference() == frame.observer_ssb_position())) n++;
 
-  Velocity vrel(1.0 * Unit::km / Unit::s, -2.0 * Unit::km / Unit::s, 3.0 * Unit::km / Unit::s);
+  Velocity vrel(1.0 * Unit::km_per_s, -2.0 * Unit::km_per_s, 3.0 * Unit::km_per_s);
   Coordinate dist(Unit::Gpc);
   double uvw[3] = {0.0};
   novas_uvw(a.scaled(1.0 / Unit::AU)._array(), vrel.scaled(Unit::day / Unit::AU)._array(),

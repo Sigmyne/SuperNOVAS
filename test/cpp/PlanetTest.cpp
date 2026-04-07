@@ -107,7 +107,7 @@ int main() {
 
   if(!test.check("approx_geometric_in(jupiter)", geom.is_valid())) n++;
   if(!test.check("approx_geometric_in(jupiter).position()", geom.position() == (Position(p, Unit::AU) + Position(f->sun_pos, Unit::AU)))) n++;
-  if(!test.check("approx_geometric_in(jupiter).velocity()", geom.velocity() == (Velocity(v, Unit::AU / Unit::day) + Velocity(f->sun_vel, Unit::AU / Unit::day)))) n++;
+  if(!test.check("approx_geometric_in(jupiter).velocity()", geom.velocity() == (Velocity(v, Unit::AU_per_day) + Velocity(f->sun_vel, Unit::AU_per_day)))) n++;
 
   std::cout << "Planet.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

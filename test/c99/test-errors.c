@@ -2685,14 +2685,14 @@ static int test_site_gcrs_posvel() {
   return n;
 }
 
-static int test_timescale_diff() {
+static int test_timescale_offset() {
   int n = 0;
 
   novas_timespec ts = {};
 
-  if(check_nan("timescale_diff:ts:null", novas_timescale_offset(NULL, NOVAS_TAI, NOVAS_TT))) n++;
-  if(check_nan("timescale_diff:scale:-1", novas_timescale_offset(&ts, (enum novas_timescale) -1, NOVAS_TT))) n++;
-  if(check_nan("timescale_diff:ref:-1", novas_timescale_offset(&ts, NOVAS_TT, (enum novas_timescale) -1))) n++;
+  if(check_nan("timescale_offset:ts:null", novas_timescale_offset(NULL, NOVAS_TAI, NOVAS_TT))) n++;
+  if(check_nan("timescale_offset:scale:-1", novas_timescale_offset(&ts, (enum novas_timescale) -1, NOVAS_TT))) n++;
+  if(check_nan("timescale_offset:ref:-1", novas_timescale_offset(&ts, NOVAS_TT, (enum novas_timescale) -1))) n++;
 
   return n;
 }
@@ -2927,7 +2927,7 @@ int main(int argc, const char *argv[]) {
   if(test_uvw()) n++;
   if(test_site_uvw()) n++;
   if(test_site_gcrs_posvel()) n++;
-  if(test_timescale_diff()) n++;
+  if(test_timescale_offset()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");

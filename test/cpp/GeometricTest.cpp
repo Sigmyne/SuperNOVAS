@@ -43,7 +43,7 @@ int main() {
   if(!test.check("invalid (system -1)", !Geometric(frame, Position::origin(), Velocity::stationary(), (enum novas_reference_system) -1).is_valid())) n++;
 
   Position pos(1.0 * Unit::pc, 2.0 * Unit::pc, 3.0 * Unit::pc);
-  Velocity vel(-1.1 * Unit::km / Unit::s, -2.2 * Unit::km / Unit::s, -3.3 * Unit::km / Unit::s);
+  Velocity vel(-1.1 * Unit::km_per_s, -2.2 * Unit::km_per_s, -3.3 * Unit::km_per_s);
 
   if(!test.check("galactic(invalid pos)", !frame.geometric(Position::undefined(), vel).galactic().is_valid())) n++;
   if(!test.check("galactic(invalid vel)", frame.geometric(pos, Velocity::undefined()).galactic().is_valid())) n++;

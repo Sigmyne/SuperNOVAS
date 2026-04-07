@@ -280,7 +280,7 @@ Velocity ScalarVelocity::in_direction(const Vector& direction) const {
  * @return    a scalar velocity instance corresponding to the specified redshift value.
  */
 ScalarVelocity ScalarVelocity::from_redshift(double z) {
-  ScalarVelocity v(novas_z2v(z) * Unit::km / Unit::sec);
+  ScalarVelocity v(novas_z2v(z) * Unit::km_per_s);
   if(!v.is_valid())
     novas_trace_invalid("ScalarVelocity::from_redshift()");
   return v;

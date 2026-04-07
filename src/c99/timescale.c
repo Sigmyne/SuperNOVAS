@@ -1485,7 +1485,7 @@ static double clock_skew_near_earth(const novas_frame *frame) {
   for(i = 3; --i >= 0; )
     vo[i] = novas_add_vel(frame->obs_vel[i], -frame->earth_vel[i]);
 
-  vr = novas_vlen(vo) * (NOVAS_AU / DAY); // geocentric motion
+  vr = novas_vlen(vo) * (NOVAS_AU_PER_DAY); // geocentric motion
   if(vr >= NOVAS_C)
     return -1.0;
 
@@ -1618,7 +1618,7 @@ double novas_clock_skew(const novas_frame *frame, enum novas_timescale timescale
     }
 
     case NOVAS_TCB : {
-      double b = novas_vlen(frame->obs_vel) * (NOVAS_AU / DAY) / NOVAS_C; // geocentric motion
+      double b = novas_vlen(frame->obs_vel) / NOVAS_C_AU_PER_DAY; // geocentric motion
       D = b >= 1.0 ? -1.0 : kinetic_potential(b) + sqrt(1.0 - b * b) * solar_system_potential(frame, frame->obs_pos);
       break;
     }

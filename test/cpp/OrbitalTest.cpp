@@ -233,7 +233,7 @@ int main() {
   novas_orbit_posvel(NOVAS_JD_HIP, o._novas_orbital(), NOVAS_FULL_ACCURACY, p, v);
 
   if(!test.check("position()", o.position(Time::hip(), NOVAS_FULL_ACCURACY) == Position(p, Unit::au))) n++;
-  if(!test.check("velocity()", o.velocity(Time::hip(), NOVAS_FULL_ACCURACY) == Velocity(v, Unit::au / Unit::day))) n++;
+  if(!test.check("velocity()", o.velocity(Time::hip(), NOVAS_FULL_ACCURACY) == Velocity(v, Unit::AU_per_day))) n++;
 
   if(!test.check("position(time invalid)", !o.position(Time::undefined()).is_valid())) n++;
   if(!test.check("velocity(time invalid)", !o.velocity(Time::undefined()).is_valid())) n++;

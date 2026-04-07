@@ -45,7 +45,7 @@ Velocity::Velocity(double x_ms, double y_ms, double z_ms)
  * unit.
  *
  * @param vel   The _xyz_ 3-vector defining the components
- * @param unit  (optional) the physical unit (e.g. Unit::kms, or Unit::au / Unit::day) in which
+ * @param unit  (optional) the physical unit (e.g. Unit::kms, or Unit::AU_per_day) in which
  *              the components were specified (default: Unit:m / Unit::s = 1.0).
  */
 Velocity::Velocity(const double vel[3], double unit)

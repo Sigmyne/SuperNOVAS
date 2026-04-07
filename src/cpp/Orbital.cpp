@@ -693,7 +693,7 @@ Velocity Orbital::velocity(const Time& time, enum novas_accuracy accuracy) const
     return Velocity::undefined();
   }
 
-  return Velocity(v, Unit::au / Unit::day);
+  return Velocity(v, Unit::AU_per_day);
 }
 
 /**

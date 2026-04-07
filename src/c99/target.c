@@ -768,7 +768,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
     // motion with units of AU/day.
     motion[0] = k * star->promora / (paralx * JULIAN_YEAR_DAYS);
     motion[1] = k * star->promodec / (paralx * JULIAN_YEAR_DAYS);
-    motion[2] = k * star->radialvelocity * NOVAS_KMS / (NOVAS_AU / DAY);
+    motion[2] = k * star->radialvelocity * NOVAS_KMS / NOVAS_AU_PER_DAY;
 
     // Transform motion vector to equatorial system.
     novas_los_to_xyz(motion, 15.0 * star->ra, star->dec, motion);

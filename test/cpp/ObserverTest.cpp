@@ -108,7 +108,7 @@ int main() {
   if(!test.check("to_geocentric_at()", gco.is_valid())) n++;
   if(!test.check("to_geocentric_at(invalid)", !gdx.to_geocentric_at(app.frame().time()).is_valid())) n++;
   if(!test.check("to_geocentric_at() pos", gco.gcrs_position() == Position(gcp, Unit::AU))) n++;
-  if(!test.check("to_geocentric_at() vel", gco.gcrs_velocity() == Velocity(gcv, Unit::AU / Unit::day))) n++;
+  if(!test.check("to_geocentric_at() vel", gco.gcrs_velocity() == Velocity(gcv, Unit::AU_per_day))) n++;
 
   Velocity v1 = Velocity(1.0, -2.0, 3.0);
   GeodeticObserver g2 = Observer::moving_on_earth(site, v1, eop);
@@ -124,10 +124,10 @@ int main() {
 
   double v_enu[3] = {1.0, -2.0, 3.0}, v_itrs[3] = {0.0};
   novas_enu_to_itrs(v_enu, site.longitude().deg(), site.latitude().deg(), v_itrs);
-  GeodeticObserver g3 = Observer::moving_on_earth(site, eop, ScalarVelocity(hypot(v_enu[0], v_enu[1]) * Unit::km / Unit::s), Angle(atan2(v_enu[0], v_enu[1])), ScalarVelocity(3.0 * Unit::km / Unit::s));
+  GeodeticObserver g3 = Observer::moving_on_earth(site, eop, ScalarVelocity(hypot(v_enu[0], v_enu[1]) * Unit::km_per_s), Angle(atan2(v_enu[0], v_enu[1])), ScalarVelocity(3.0 * Unit::km_per_s));
   if(!test.equals("type(moving ENU)", g3.type(), NOVAS_AIRBORNE_OBSERVER)) n++;
-  if(!test.check("enu_velocity(moving ENU)", g3.enu_velocity() == Velocity(v_enu, Unit::km / Unit::s))) n++;
-  if(!test.check("itrs_velocity(moving ENU)", g3.itrs_velocity() == Velocity(v_itrs, Unit::km / Unit::s))) n++;
+  if(!test.check("enu_velocity(moving ENU)", g3.enu_velocity() == Velocity(v_enu, Unit::km_per_s))) n++;
+  if(!test.check("itrs_velocity(moving ENU)", g3.itrs_velocity() == Velocity(v_itrs, Unit::km_per_s))) n++;
   if(!test.equals("to_string(moving ENU)", g3.to_string(),
           "GeodeticObserver at Site (W 114d 35m 29.612s, N  57d 17m 44.806s, altitude 75 m) moving at ENU Velocity (1.000 km/s, -2.000 km/s, 3.000 km/s)")) n++;
 
@@ -192,7 +192,7 @@ int main() {
   if(!test.check("_novas_observer(ssb)", o != NULL && o->where == NOVAS_SOLAR_SYSTEM_OBSERVER)) n++;
 
   Position p2(-1.1 * Unit::au, 2.2 * Unit::au, -3.3 * Unit::au);
-  Velocity v2(1.0 * Unit::au / Unit::day, -2.0 * Unit::au / Unit::day, 3.0 * Unit::au / Unit::day);
+  Velocity v2(1.0 * Unit::AU_per_day, -2.0 * Unit::AU_per_day, 3.0 * Unit::AU_per_day);
 
   SolarSystemObserver sx = Observer::in_solar_system(Position::undefined(), Velocity::undefined());
   if(!test.check("is_valid(invalid)", !sx.is_valid())) n++;

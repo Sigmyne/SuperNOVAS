@@ -207,7 +207,6 @@
  *
  *   where _c_ is the speed of light.
  *
- *
  * \defgroup solar-system     Solar-system ephemeris providers
  *
  *   Defining how ephemeris positions for Solar-system objects are provided. __SuperNOVAS__ does
@@ -230,7 +229,7 @@
  *   something that __SuperNOVAS__ does automatically when defining astrometric time or an
  *   observing frame with the interpolated published EOP values.
  *
- * \defgroup tracking         Telescope tracking
+ * \defgroup tracking         Telescope tracking/// [m/s] 1 km / s
  *
  *   Tools for supporting telescope tracking, with readily available position, rate of movement,
  *   and acceleration of the source's trajectory on sky. These parameters may be used directly
@@ -238,7 +237,6 @@
  *   equatorial and horizontal mounts. Apart from direct control of telescope drives, tracking
  *   information can also be used to calculate interpolated positions on sky on short timescales
  *   much faster than through full-fledged positional calculations.
- *
  *
  * \defgroup interferometry   Interferometric applications
  *
@@ -340,6 +338,11 @@
 /// @sa NOVAS_AU
 /// @c_solar-system
 #define DE405_AU                  1.4959787069098932e+11
+
+/// [m/s] 1 AU / day
+/// @since 1.6
+/// @c_spectral
+#define NOVAS_AU_PER_DAY          ( NOVAS_AU / NOVAS_DAY )
 
 /// [s] Light-time for one astronomical unit (AU) in seconds.
 #define NOVAS_AU_SEC              ( NOVAS_AU / NOVAS_C )
@@ -444,7 +447,6 @@
 /// The day prior to that was 4 October 1582 in the Julian Calendar.
 /// @ingroup time
 #define NOVAS_JD_START_GREGORIAN  2299160.5
-
 
 /// The ICRS system as a string
 /// @since 1.3
