@@ -147,9 +147,9 @@ public:
   static constexpr double week = 7 * day;                 ///< [s] 1 week in seconds
 
   // Common velocity measures
-  static constexpr double m_per_s = km / s;               ///< [m/s] 1 meter per second
-  static constexpr double km_per_s = km / s;              ///< [km/s] 1 kilometer per second
-  static constexpr double AU_per_day = AU / day;          ///< [AU/day] 1 AU / day
+  static constexpr double m_per_s = m / s;                ///< [m/s] 1 meter per second
+  static constexpr double km_per_s = km / s;              ///< [m/s] 1 kilometer per second in m/s
+  static constexpr double AU_per_day = AU / day;          ///< [m/s] 1 AU per day in m/s
 
   /// [s] 1 tropical calendar year in seconds (at J2000)
   static constexpr double yr = NOVAS_TROPICAL_YEAR_DAYS * day;
