@@ -862,7 +862,7 @@ IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obsp
 <dl class="section return"><dt>Returns</dt><dd>The incremental rate at which the observer's proper time clock ticks faster than the specified timescale, or else NAN if the input frame is NULL or uninitialized, or if the timescale is not supported (errno set to EINVAL), or if the frame is configured for full accuracy but it does not have sufficient planet position information to evaluate the local gravitational potential with precision (errno set to EAGAIN).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad2d5ef17b41a30ebca91e4c70e636acf" title="Returns the averaged incremental rate at which the observer&#39;s clock (i.e.">novas_mean_clock_skew()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad2d5ef17b41a30ebca91e4c70e636acf" title="Returns the averaged incremental rate at which the observer&#39;s clock (i.e.">novas_mean_clock_skew()</a>, <a class="el" href="#gabd183433827f671e73505b550a36f593" title="Returns the time difference between two different timescales at a specific astrometric time instance.">novas_timescale_offset()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c">novas_timespec::fjd_tt</a>, <a class="el" href="structnovas__timespec.html#afab74bb3269be2c4a8df484c3dbadb35">novas_timespec::ijd_tt</a>, <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="group__util.html#ga5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a>, <a class="el" href="#ga9061a46b13dfca669c327283f7357586">novas_clock_skew()</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0bac29f535fdae4e29e1baeccacf8f0b98d">NOVAS_GPS</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0ba328f2523f4f064c5252f4ac858bddc4b">NOVAS_TAI</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4">NOVAS_TCB</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0ba5935a299729a67971b12a78ee682f89a">NOVAS_TCG</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0baadb0d1437b46022bca75d4e7ab0542c7">NOVAS_TT</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, <a class="el" href="structnovas__frame.html#a2f5a693f9c43adc7d5472579a7cae85a">novas_frame::obs_pos</a>, <a class="el" href="structnovas__frame.html#ab25d5251c5c639e87046bfc4e31ca336">novas_frame::obs_vel</a>, <a class="el" href="structnovas__frame.html#a24e21ec075b9676de2efc644d1de95be">novas_frame::time</a>, and <a class="el" href="#ga129acca41760da486e1179c93cb9e86d">tt2tdb()</a>.</p>
 
@@ -1284,6 +1284,8 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad47bcb1e3c5df56a0ffdf1a127e52598" title="Sets an astronomical time to the split Julian Date value, defined in the specified timescale.">novas_set_split_time()</a>, <a class="el" href="#gae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#a7505fe27b163e97b60bcf4406eadffa7">NOVAS_TIMESCALES</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#gab23af98e7a63ce54c6a8d2534e07dc36">novas_diff_time_scale()</a>, <a class="el" href="#gae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time()</a>, <a class="el" href="#gafa1a1d804ca70050418429f971c2045a">novas_get_unix_time()</a>, <a class="el" href="#ga4d6da26d0a7d7d904f25d2be00030b25">novas_iso_timestamp()</a>, <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, and <a class="el" href="#gac8e83c48005d5aabb3e7bbf8d9f8ed81">novas_timestamp()</a>.</p>
 
@@ -1921,7 +1923,7 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="#ga9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a>, <a class="el" href="#ga32d8336084b65fac14d092ab6198c27d" title="Returns the fractional Julian date of an astronomical time in the specified timescale,...">novas_get_split_time()</a>, <a class="el" href="#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="group__earth.html#ga9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4">NOVAS_TCB</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, and <a class="el" href="#ga5709058076f4aea4eeaeeb000342cd94">tt2tdb_hp()</a>.</p>
+<p class="reference">References <a class="el" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4">NOVAS_TCB</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="novas_8h.html#a7505fe27b163e97b60bcf4406eadffa7">NOVAS_TIMESCALES</a>, and <a class="el" href="#ga5709058076f4aea4eeaeeb000342cd94">tt2tdb_hp()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb">novas_set_time()</a>, and <a class="el" href="#ga9d54ea7c6cdbc75ee78cf552a7e1858d">novas_set_unix_time()</a>.</p>
 
@@ -2290,7 +2292,10 @@ This function calculates the time when the center (not the limb!) of the source 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>[s] the time difference between the time expressed in the first timescale vs that in the reference timescale, or else NAN if either timescale parameter is invalid.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9061a46b13dfca669c327283f7357586" title="Returns the instantaneous incremental rate at which the observer&#39;s clock (i.e.">novas_clock_skew()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#a7505fe27b163e97b60bcf4406eadffa7">NOVAS_TIMESCALES</a>.</p>
 
 </div>
 </div>

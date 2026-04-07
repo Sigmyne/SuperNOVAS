@@ -346,7 +346,7 @@ IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obsp
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The incremental rate at which the observer's proper time clock ticks faster than the specified timescale, or else NAN if the input frame is NULL or uninitialized, or if the timescale is not supported (errno set to EINVAL), or if the frame is configured for full accuracy but it does not have sufficient planet position information to evaluate the local gravitational potential with precision (errno set to EAGAIN).</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a9061a46b13dfca669c327283f7357586" title="Returns the instantaneous incremental rate at which the observer&#39;s clock (i.e.">novas_clock_skew()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a9061a46b13dfca669c327283f7357586" title="Returns the instantaneous incremental rate at which the observer&#39;s clock (i.e.">novas_clock_skew()</a>, <a class="el" href="classsupernovas_1_1Time.html#af33279ca2f6544f78f8715c4ae984063" title="Returns the time difference between two timescales at this specific time instance.">Time::timescale_offset()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a9061a46b13dfca669c327283f7357586">novas_clock_skew()</a>, and <a class="el" href="novas_8h.html#a7505fe27b163e97b60bcf4406eadffa7">NOVAS_TIMESCALES</a>.</p>
 
