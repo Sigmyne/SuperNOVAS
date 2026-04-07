@@ -6,7 +6,7 @@ var searchData=
   ['new_20functionality_20highlights_3',['New functionality highlights',['../index.html#autotoc_md117',1,'']]],
   ['nix_20package_4',['Nix package',['../index.html#autotoc_md96',1,'']]],
   ['notes_20on_20precision_5',['Notes on precision',['../index.html#autotoc_md108',1,'']]],
-  ['novas_20c_203_201_6',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md88',1,'']]],
-  ['novas_20c_203_201_20issues_7',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md86',1,'']]],
+  ['novas_20c_203_201_6',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md81',1,'']]],
+  ['novas_20c_203_201_20issues_7',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md69',1,'']]],
   ['novas_20c_20api_8',['Refinements to the NOVAS C API',['../index.html#autotoc_md118',1,'']]]
 ];
