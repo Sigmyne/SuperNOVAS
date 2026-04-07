@@ -67,12 +67,6 @@ static int make_headless_readme() {
     if(img) replace(img, "resources" PATH_SEP, "");
 
     if(head) {
-      if(img) {
-        fwrite(img, strlen(img), 1, out);
-        fwrite(HTML_CLEAR_ALL, sizeof(HTML_CLEAR_ALL) - 1, 1, out);
-        continue;
-      }
-
       if(strncmp(line, "# ", 2) != 0) continue;
       fwrite(README_TITLE, sizeof(README_TITLE) - 1, 1, out);
       head = 0;
