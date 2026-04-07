@@ -119,32 +119,37 @@ public:
   Unit& operator=(const Unit& other) = delete;
   /// \endcond
 
-  static constexpr double AU = NOVAS_AU;                  /// [m] 1 Astronomical Unit in meters.
-  static constexpr double au = AU;                        /// [m] 1 AU (lower-case)
-  static constexpr double m = 1.0;                        /// [m] 1 meter (standard unit of distance)
-  static constexpr double cm = 0.01;                      /// [m] 1 centimeter in meters
-  static constexpr double mm = 1e-3;                      /// [m] 1 millimeter in meters
-  static constexpr double um = 1e-6;                      /// [m] 1 micrometer (=micron) in meters
-  static constexpr double micron = um;                    /// [m] 1 micron (=micrometer) in meters, by another name.
-  static constexpr double nm = 1e-9;                      /// [m] 1 nanometer in meters
-  static constexpr double angstrom = 1e-10;               /// [m] 1 Angstrom in meters
-  static constexpr double km = NOVAS_KM;                  /// [m] 1 kilometer in meters
-  static constexpr double pc = NOVAS_PARSEC;              /// [m] 1 parsec in meters
-  static constexpr double kpc = 1000.0 * pc;              /// [m] 1 kiloparsec in meters
-  static constexpr double Mpc = 1e6 * pc;                 /// [m] 1 megaparsec in meters
-  static constexpr double Gpc = 1e9 * pc;                 /// [m] 1 gigaparsec in meters
-  static constexpr double lyr = NOVAS_LIGHT_YEAR;         /// [m] 1 light-year in meters
+  static constexpr double AU = NOVAS_AU;                  ///< [m] 1 Astronomical Unit in meters.
+  static constexpr double au = AU;                        ///< [m] 1 AU (lower-case)
+  static constexpr double m = 1.0;                        ///< [m] 1 meter (standard unit of distance)
+  static constexpr double cm = 0.01;                      ///< [m] 1 centimeter in meters
+  static constexpr double mm = 1e-3;                      ///< [m] 1 millimeter in meters
+  static constexpr double um = 1e-6;                      ///< [m] 1 micrometer (=micron) in meters
+  static constexpr double micron = um;                    ///< [m] 1 micron (=micrometer) in meters, by another name.
+  static constexpr double nm = 1e-9;                      ///< [m] 1 nanometer in meters
+  static constexpr double angstrom = 1e-10;               ///< [m] 1 Angstrom in meters
+  static constexpr double km = NOVAS_KM;                  ///< [m] 1 kilometer in meters
+  static constexpr double pc = NOVAS_PARSEC;              ///< [m] 1 parsec in meters
+  static constexpr double kpc = 1000.0 * pc;              ///< [m] 1 kiloparsec in meters
+  static constexpr double Mpc = 1e6 * pc;                 ///< [m] 1 megaparsec in meters
+  static constexpr double Gpc = 1e9 * pc;                 ///< [m] 1 gigaparsec in meters
+  static constexpr double lyr = NOVAS_LIGHT_YEAR;         ///< [m] 1 light-year in meters
 
-  static constexpr double ps = 1e-12;                     /// [s] 1 picosecond in seconds
-  static constexpr double ns = 1e-9;                      /// [s] 1 nanosecond in seconds
-  static constexpr double us = 1e-6;                      /// [s] 1 microsecond in seconds
-  static constexpr double ms = 1e-3;                      /// [s] 1 millisecond in seconds
-  static constexpr double s = 1.0;                        /// [s] 1 second (standard unit of time)
-  static constexpr double sec = s;                        /// [s] 1 second by another name
-  static constexpr double min = 60.0;                     /// [s] 1 minute in seconds
-  static constexpr double hour = 3600.0;                  /// [s] 1 hour in seconds
-  static constexpr double day = NOVAS_DAY;                /// [s] 1 day in seconds
-  static constexpr double week = 7 * day;                 /// [s] 1 week in seconds
+  static constexpr double ps = 1e-12;                     ///< [s] 1 picosecond in seconds
+  static constexpr double ns = 1e-9;                      ///< [s] 1 nanosecond in seconds
+  static constexpr double us = 1e-6;                      ///< [s] 1 microsecond in seconds
+  static constexpr double ms = 1e-3;                      ///< [s] 1 millisecond in seconds
+  static constexpr double s = 1.0;                        ///< [s] 1 second (standard unit of time)
+  static constexpr double sec = s;                        ///< [s] 1 second by another name
+  static constexpr double min = 60.0;                     ///< [s] 1 minute in seconds
+  static constexpr double hour = 3600.0;                  ///< [s] 1 hour in seconds
+  static constexpr double day = NOVAS_DAY;                ///< [s] 1 day in seconds
+  static constexpr double week = 7 * day;                 ///< [s] 1 week in seconds
+
+  // Common velocity measures
+  static constexpr double m_per_s = km / s;               ///< [m/s] 1 meter per second
+  static constexpr double km_per_s = km / s;              ///< [km/s] 1 kilometer per second
+  static constexpr double AU_per_day = AU / day;          ///< [AU/day] 1 AU / day
 
   /// [s] 1 tropical calendar year in seconds (at J2000)
   static constexpr double yr = NOVAS_TROPICAL_YEAR_DAYS * day;
@@ -157,22 +162,22 @@ public:
   /// [s] 1 Julian century in seconds
   static constexpr double julian_century = 100.0 * julian_year;
 
-  static constexpr double rad = 1.0;                      /// [rad] 1 radian (standard unit of angle)
-  static constexpr double hour_angle = NOVAS_HOURANGLE;   /// [rad] 1 hour of angle in radians on the 24h circle.
-  static constexpr double deg = NOVAS_DEGREE;             /// [rad] 1 degree in radians
-  static constexpr double arcmin = deg / 60.0;            /// [rad] 1 minute of arc in radians
-  static constexpr double arcsec = NOVAS_ARCSEC;          /// [rad] 1 second or arc in radians
-  static constexpr double mas = 1e-3 * arcsec;            /// [rad] 1 millisecond of arc in radians
-  static constexpr double uas = 1e-6 * arcsec;            /// [rad] 1 microsecond of arc in radians
+  static constexpr double rad = 1.0;                      ///< [rad] 1 radian (standard unit of angle)
+  static constexpr double hour_angle = NOVAS_HOURANGLE;   ///< [rad] 1 hour of angle in radians on the 24h circle.
+  static constexpr double deg = NOVAS_DEGREE;             ///< [rad] 1 degree in radians
+  static constexpr double arcmin = deg / 60.0;            ///< [rad] 1 minute of arc in radians
+  static constexpr double arcsec = NOVAS_ARCSEC;          ///< [rad] 1 second or arc in radians
+  static constexpr double mas = 1e-3 * arcsec;            ///< [rad] 1 millisecond of arc in radians
+  static constexpr double uas = 1e-6 * arcsec;            ///< [rad] 1 microsecond of arc in radians
 
-  static constexpr double Pa = 1.0;                       /// [Pa] 1 pascal (standard unit of perssure)
-  static constexpr double hPa = 100.0;                    /// [Pa] 1 hectopascal in pascals
-  static constexpr double mbar = hPa;                     /// [Pa] 1 millibar in pascals
-  static constexpr double bar = 1000.0 * mbar;            /// [Pa] 1 bar in pascals
-  static constexpr double kPa = 1000.0;                   /// [Pa] 1 kilopascal in pascals
-  static constexpr double MPa = 1e6;                      /// [Pa] 1 megapascal in pascals
-  static constexpr double torr = 133.3223684211;          /// [Pa] 1 torr (mm of Hg) in pascals
-  static constexpr double atm = 101325.0;                 /// [Pa] 1 atmosphere in pascals
+  static constexpr double Pa = 1.0;                       ///< [Pa] 1 pascal (standard unit of perssure)
+  static constexpr double hPa = 100.0;                    ///< [Pa] 1 hectopascal in pascals
+  static constexpr double mbar = hPa;                     ///< [Pa] 1 millibar in pascals
+  static constexpr double bar = 1000.0 * mbar;            ///< [Pa] 1 bar in pascals
+  static constexpr double kPa = 1000.0;                   ///< [Pa] 1 kilopascal in pascals
+  static constexpr double MPa = 1e6;                      ///< [Pa] 1 megapascal in pascals
+  static constexpr double torr = 133.3223684211;          ///< [Pa] 1 torr (mm of Hg) in pascals
+  static constexpr double atm = 101325.0;                 ///< [Pa] 1 atmosphere in pascals
 };
 
 /**
@@ -203,9 +208,9 @@ public:
   Constant& operator=(const Constant other) = delete;
   /// \endcond
 
-  static constexpr double pi = M_PI;                    /// [rad] &pi;
-  static constexpr double two_pi = TWOPI;                /// [rad] 2&pi;
-  static constexpr double half_pi = 0.5 * pi;            /// [rad] &pi;/2
+  static constexpr double pi = M_PI;                    ///< [rad] &pi;
+  static constexpr double two_pi = TWOPI;               ///< [rad] 2&pi;
+  static constexpr double half_pi = 0.5 * pi;           ///< [rad] &pi;/2
 
   static constexpr double c = NOVAS_C;                  ///< [m/s] speed of light
   static constexpr double G = 6.67428e-1;               ///< [m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>]
@@ -220,7 +225,7 @@ public:
   static constexpr double M_sun = GM_sun / G;           ///< [kg] Mass of the Sun
   static constexpr double M_earth = GM_sun / G;         ///< [kg] Earth mass
 
-  static constexpr double R_earth = NOVAS_GRS80_RADIUS;   /// [m] 1 Earth quatorial radius (GRS80) in meters
+  static constexpr double R_earth = NOVAS_GRS80_RADIUS; ///< [m] 1 Earth quatorial radius (GRS80) in meters
 };
 
 /**
