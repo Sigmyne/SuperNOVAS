@@ -26,6 +26,8 @@ static void use_weather(const Weather& weather, on_surface *s) {
  *
  * @param azimuth     [rad] azimuth angle
  * @param elevation   [rad] elevation angle
+ *
+ * @since 1.6
  */
 Horizontal::Horizontal(double azimuth, double elevation)
 : Spherical(azimuth, elevation) {
@@ -38,6 +40,8 @@ Horizontal::Horizontal(double azimuth, double elevation)
  *
  * @param azimuth     azimuth angle
  * @param elevation   elevation angle
+ *
+ * @since 1.6
  */
 Horizontal::Horizontal(const Angle& azimuth, const Angle& elevation)
 : Spherical(azimuth, elevation) {}
@@ -60,6 +64,7 @@ Horizontal::Horizontal(const Angle& azimuth, const Angle& elevation)
  * @param elevation   string representation of the elevation coordinate as DMS or decimal
  *                    degrees.
  *
+ * @since 1.6
  * @sa novas_str_degrees() for details on string representation that can be parsed.
  * @sa novas_parse_degrees() for more managed parsing from strings.
  */
@@ -71,6 +76,7 @@ Horizontal::Horizontal(const std::string& azimuth, const std::string& elevation)
  *
  * @return  the reference to the azimuth angle stored internally.
  *
+ * @since 1.6
  * @sa longitude(), elevation(), zenith_angle()
  */
 const Angle& Horizontal::azimuth() const {
@@ -82,6 +88,7 @@ const Angle& Horizontal::azimuth() const {
  *
  * @return  the reference to the elevation angle stored internally.
  *
+ * @since 1.6
  * @sa latitude(), zenith_angle(), azimuth()
  */
 const Angle& Horizontal::elevation() const {
@@ -93,6 +100,7 @@ const Angle& Horizontal::elevation() const {
  *
  * @return  the zenith angle.
  *
+ * @since 1.6
  * @sa elevation(), azimuth()
  */
 Angle Horizontal::zenith_angle() const {
@@ -111,6 +119,7 @@ Angle Horizontal::zenith_angle() const {
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Horizontal::equals(const Horizontal& other, double precision_rad) const {
@@ -126,6 +135,7 @@ bool Horizontal::equals(const Horizontal& other, double precision_rad) const {
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 // cppcheck-suppress functionStatic
@@ -153,6 +163,7 @@ bool Horizontal::operator==(const Horizontal& other) const {
  * @return                `true` if these coordinates differ from the reference, by more than
  *                        1 &mu;as, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Horizontal::operator!=(const Horizontal& other) const {
@@ -165,6 +176,8 @@ bool Horizontal::operator!=(const Horizontal& other) const {
  *
  * @param other   the reference horizontal coordinates
  * @return        the angular distance of these coordinates to/from the argument.
+ *
+ * @since 1.6
  */
 Angle Horizontal::distance_to(const Horizontal& other) const {
   Angle a = Spherical::distance_to(other);
@@ -182,6 +195,7 @@ Angle Horizontal::distance_to(const Horizontal& other) const {
  * @param time      (optional) Time of observation, for time-dependent refraction models.
  * @return          refracted horizontal coordinates.
  *
+ * @since 1.6
  * @sa to_unrefracted()
  */
 Horizontal Horizontal::to_refracted(RefractionModel ref, const Weather& weather, const Time& time) {
@@ -205,6 +219,7 @@ Horizontal Horizontal::to_refracted(RefractionModel ref, const Weather& weather,
  * @return          refracted horizontal coordinates.
  * @return          unrefracted (astrometric) horizontal coordinates.
  *
+ * @since 1.6
  * @sa to_refracted()
  */
 Horizontal Horizontal::to_unrefracted(RefractionModel ref, const Weather& weather, const Time& time) {
@@ -243,6 +258,7 @@ Horizontal Horizontal::to_unrefracted(RefractionModel ref, const Weather& weathe
  *                  coordinates on the sky, or Apparent::undefined() if the observing frame is not
  *                  Earth surface based.
  *
+ * @since 1.6
  * @sa to_unrefracted(), Apparent::to_horizontal()
  */
 Apparent Horizontal::to_apparent(const Frame& frame, double rv, double distance) const {
@@ -289,6 +305,7 @@ Apparent Horizontal::to_apparent(const Frame& frame, double rv, double distance)
  *                  coordinates on the sky, or Apparent::udefined() if the observing frame is not
  *                  Earth surface based.
  *
+ * @since 1.6
  * @sa to_unrefracted(), Apparent::to_horizontal()
  */
 Apparent Horizontal::to_apparent(const Frame& frame, const ScalarVelocity& rv, const Coordinate& distance) const {
@@ -302,6 +319,8 @@ Apparent Horizontal::to_apparent(const Frame& frame, const ScalarVelocity& rv, c
  * @param separator   the DMS separator type (default: units and spaces).
  * @param decimals    the number of decimal places to print for the seconds (default: 3).
  * @return            a new string with the human-readable representation of these horizontal coordinates.
+ *
+ * @since 1.6
  */
 std::string Horizontal::to_string(enum novas_separator_type separator, int decimals) const {
   return "HOR " + Spherical::to_string(separator, decimals);
@@ -312,6 +331,8 @@ std::string Horizontal::to_string(enum novas_separator_type separator, int decim
  * coordinates may be used inside any object that is invalid itself.
  *
  * @return    a reference to the static standard invalid coordinates.
+ *
+ * @since 1.6
  */
 const Horizontal& Horizontal::undefined() {
   static const Horizontal _invalid = Horizontal();

@@ -20,6 +20,7 @@ namespace supernovas {
  *
  * @param m_per_s   [m/s] the speed
  *
+ * @since 1.6
  * @sa from_redshift()
  */
 ScalarVelocity::ScalarVelocity(double m_per_s) : Scalar(m_per_s) {
@@ -40,6 +41,7 @@ ScalarVelocity::ScalarVelocity(double m_per_s) : Scalar(m_per_s) {
  * @param r     the speed on the right-hand side
  * @return      the relativistic sum of this speed and the argument.
  *
+ * @since 1.6
  * @sa operator-()
  */
 ScalarVelocity ScalarVelocity::operator+(const ScalarVelocity& r) const {
@@ -56,6 +58,7 @@ ScalarVelocity ScalarVelocity::operator+(const ScalarVelocity& r) const {
  * @param r     the speed on the right-hand side
  * @return      the relativistic difference of this speed and the argument.
  *
+ * @since 1.6
  * @sa operator+()
  */
 ScalarVelocity ScalarVelocity::operator-(const ScalarVelocity& r) const {
@@ -73,6 +76,7 @@ ScalarVelocity ScalarVelocity::operator-(const ScalarVelocity& r) const {
  * @return            `true` if this speed equals the argument within the tolerance, or else
  *                    `false`
  *
+ * @since 1.6
  * @sa operator==(), operator!=()
  */
 bool ScalarVelocity::equals(const ScalarVelocity& speed, double tolerance) const {
@@ -87,6 +91,7 @@ bool ScalarVelocity::equals(const ScalarVelocity& speed, double tolerance) const
  * @return            `true` if this speed equals the argument within the tolerance, or else
  *                    `false`
  *
+ * @since 1.6
  * @sa operator==(), operator!=()
  */
 // cppcheck-suppress functionStatic
@@ -100,6 +105,7 @@ bool ScalarVelocity::equals(const ScalarVelocity& speed, const ScalarVelocity& t
  * @param speed     the reference speed
  * @return          `true` if this speed equals the argument within 1 mm/s, or else `false`
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 bool ScalarVelocity::operator==(const ScalarVelocity& speed) const {
@@ -113,6 +119,7 @@ bool ScalarVelocity::operator==(const ScalarVelocity& speed) const {
  * @return          `true` if this speed differs from the argument by more than 1 mm/s, or else
  *                  `false`
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool ScalarVelocity::operator!=(const ScalarVelocity& speed) const {
@@ -123,6 +130,8 @@ bool ScalarVelocity::operator!=(const ScalarVelocity& speed) const {
  * Returns the unsigned magnitude of this (possibly signed) speed.
  *
  * @return    the absolute value of this (possibly signed) speed.
+ *
+ * @since 1.6
  */
 ScalarVelocity ScalarVelocity::abs() const {
   ScalarVelocity v(fabs(_value));
@@ -136,6 +145,7 @@ ScalarVelocity ScalarVelocity::abs() const {
  *
  * @return    [m/s] the speed value.
  *
+ * @since 1.6
  * @sa km_per_s(), au_per_day(), beta(), Gamma(), redshift()
  */
 double ScalarVelocity::m_per_s() const {
@@ -147,6 +157,7 @@ double ScalarVelocity::m_per_s() const {
  *
  * @return    [km/s] the speed value.
  *
+ * @since 1.6
  * @sa m_per_s(), au_per_day(), beta(), Gamma(), redshift()
  */
 double ScalarVelocity::km_per_s() const {
@@ -158,6 +169,7 @@ double ScalarVelocity::km_per_s() const {
  *
  * @return    [AU/day] the speed value.
  *
+ * @since 1.6
  * @sa m_per_s(), km_per_s(), beta(), Gamma(), redshift()
  */
 double ScalarVelocity::au_per_day() const {
@@ -169,6 +181,7 @@ double ScalarVelocity::au_per_day() const {
  *
  * @return    &beta; = _v_ / _c_
  *
+ * @since 1.6
  * @sa m_per_s(), km_per_s(), au_per_day(), Gamma(), redshift()
  */
 double ScalarVelocity::beta() const {
@@ -180,6 +193,7 @@ double ScalarVelocity::beta() const {
  *
  * @return    the relativistic boost &Gamma; = &radic (1 - _v_<sup>2</sup> / _c_<sup>2</sup>)
  *
+ * @since 1.6
  * @sa m_per_s(), km_per_s(), au_per_day(), redshift()
  */
 double ScalarVelocity::Gamma() const {
@@ -191,6 +205,7 @@ double ScalarVelocity::Gamma() const {
  *
  * @return    the equivalent redshift measure _z_.
  *
+ * @since 1.6
  * @sa m_per_s(), km_per_s(), au_per_day(), Gamma()
  */
 double ScalarVelocity::redshift() const {
@@ -203,6 +218,7 @@ double ScalarVelocity::redshift() const {
  * @param seconds   [s] the time interval
  * @return          the distance travelled
  *
+ * @since 1.6
  * @sa operator*(), Velocity::travel()
  */
 Coordinate ScalarVelocity::travel(double seconds) const {
@@ -218,6 +234,7 @@ Coordinate ScalarVelocity::travel(double seconds) const {
  * @param time      the time interval
  * @return          the distance travelled
  *
+ * @since 1.6
  * @sa operator*(), Velocity::travel()
  */
 Coordinate ScalarVelocity::travel(const Interval& time) const {
@@ -230,6 +247,7 @@ Coordinate ScalarVelocity::travel(const Interval& time) const {
  * @param time      the time interval
  * @return          the distance travelled
  *
+ * @since 1.6
  * @sa travel()
  */
 Coordinate ScalarVelocity::operator*(const Interval& time) const {
@@ -248,6 +266,8 @@ std::string ScalarVelocity::SI_unit() const {
  *
  * @param decimals    (optional) the number of decimal places to print (default: 3)
  * @return            a new string containing a representation of this speed.
+ *
+ * @since 1.6
  */
 std::string ScalarVelocity::to_string(int decimals) const {
   char fmt[20] = {'\0'}, s[40] = {'\0'};
@@ -265,6 +285,8 @@ std::string ScalarVelocity::to_string(int decimals) const {
  * @param direction   a vector specifying the direction. Its magnitude is irrelevant.
  * @return            a new velocity vector, in the specified direction and with the magnitude of
  *                    this speed.
+ *
+ * @since 1.6
  */
 Velocity ScalarVelocity::in_direction(const Vector& direction) const {
   Velocity v(direction._array(), _value / direction.abs());
@@ -278,6 +300,8 @@ Velocity ScalarVelocity::in_direction(const Vector& direction) const {
  *
  * @param z   the redshift value.
  * @return    a scalar velocity instance corresponding to the specified redshift value.
+ *
+ * @since 1.6
  */
 ScalarVelocity ScalarVelocity::from_redshift(double z) {
   ScalarVelocity v(novas_z2v(z) * Unit::km_per_s);
@@ -290,6 +314,8 @@ ScalarVelocity ScalarVelocity::from_redshift(double z) {
  * Returns a reference to a statically defined zero speed of a stationary object.
  *
  * @return    a reference to a static instance of zero speed.
+ *
+ * @since 1.6
  */
 const ScalarVelocity& ScalarVelocity::stationary() {
   static const ScalarVelocity _stationary = ScalarVelocity(0.0);
@@ -300,6 +326,8 @@ const ScalarVelocity& ScalarVelocity::stationary() {
  * Returns a reference to a static instance of an undefined / invalid scalar velocity.
  *
  * @return    a reference to a standard undefined scalar velocity instance.
+ *
+ * @since 1.6
  */
 const ScalarVelocity& ScalarVelocity::undefined() {
   static const ScalarVelocity _undefined = ScalarVelocity();

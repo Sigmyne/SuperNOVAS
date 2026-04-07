@@ -28,6 +28,7 @@ namespace supernovas {
  *
  * @param radians     [rad] the initializing value.
  *
+ * @since 1.6
  * @sa TimeAngle, Unit
  */
 Angle::Angle(double radians) : Scalar(remainder(radians, Constant::two_pi)) {
@@ -44,6 +45,7 @@ Angle::Angle(double radians) : Scalar(remainder(radians, Constant::two_pi)) {
  * @param str   a string specifying an angle either as decimal degrees or as DDD:MM:SS.SSS and
  *              variants thereof.
  *
+ * @since 1.6
  * @sa novas:novas_str_degrees()
  */
 Angle::Angle(const std::string& str) : Angle(novas_str_degrees(str.c_str()) * Unit::deg) {}
@@ -54,6 +56,7 @@ Angle::Angle(const std::string& str) : Angle(novas_str_degrees(str.c_str()) * Un
  * @param r   the other angle on the right-hand-side.
  * @return    the sum of this angle and the argument, as a new angle.
  *
+ * @since 1.6
  * @sa operator-()
  */
 Angle Angle::operator+(const Angle& r) const {
@@ -69,6 +72,7 @@ Angle Angle::operator+(const Angle& r) const {
  * @param r   the other angle on the right-hand-side.
  * @return    the difference of this angle and the argument, as a new angle.
  *
+ * @since 1.6
  * @sa operator+()
  */
 Angle Angle::operator-(const Angle& r) const {
@@ -88,6 +92,7 @@ Angle Angle::operator-(const Angle& r) const {
  * @return            `true` if the two angles match within the specified precision, or else
  *                    `false`.
  *
+ * @since 1.6
  * @sa operator==(), operator!=()
  */
 bool Angle::equals(const Angle& angle, double precision) const {
@@ -100,6 +105,7 @@ bool Angle::equals(const Angle& angle, double precision) const {
  * @param angle       another angle
  * @return            `true` if the two angles match within 1 &mu;as, or else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 bool Angle::operator==(const Angle& angle) const {
@@ -112,6 +118,7 @@ bool Angle::operator==(const Angle& angle) const {
  * @param angle       another angle
  * @return            `true` if the two angles differ by more than 1 &mu;as, or else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator==()
  */
 bool Angle::operator!=(const Angle& angle) const {
@@ -124,6 +131,7 @@ bool Angle::operator!=(const Angle& angle) const {
  * @return    [rad] the angle in radians, usually in the [-&pi;:&pi;) range, although subclasses
  *            may support different ranges for the returned value.
  *
+ * @since 1.6
  * @sa deg(), arcmin(), arcsec(), mas(), uas()
  */
 double Angle::rad() const {
@@ -136,6 +144,7 @@ double Angle::rad() const {
  * @return    [degrees] the angle in degrees, usually in the [-180:180) range, although subclasses
  *            may support different ranges for the returned value.
  *
+ * @since 1.6
  * @sa rad(), arcmin(), arcsec(), mas(), uas()
  */
 double Angle::deg() const {
@@ -148,6 +157,7 @@ double Angle::deg() const {
  * @return    [arcmin] the angle in arc minutes, usually in the [-10800:10800) range, although
  *            subclasses may support different ranges for the returned value.
  *
+ * @since 1.6
  * @sa rad(), deg(), arcsec(), mas(), uas()
  */
 double Angle::arcmin() const {
@@ -160,6 +170,7 @@ double Angle::arcmin() const {
  * @return    [arcsec] the angle in arc seconds, usually in the [-648000:648000) range, although
  *            subclasses may support different ranges for the returned value.
  *
+ * @since 1.6
  * @sa rad(), deg(), arcmin(), mas(), uas()
  */
 double Angle::arcsec() const {
@@ -172,6 +183,7 @@ double Angle::arcsec() const {
  * @return    [mas] the angle in milliarcseconds, usually in the [-6.48e8:6.48e8) range, although
  *            subclasses may support different ranges for the returned value.
  *
+ * @since 1.6
  * @sa rad(), deg(), arcmin(), arcsec(), uas()
  */
 double Angle::mas() const {
@@ -184,6 +196,7 @@ double Angle::mas() const {
  * @return    [&mu;as] the angle in microarcseconds, usually in the [-6.48e11:6.48e11) range,
  *            although subclasses may support different ranges for the returned value.
  *
+ * @since 1.6
  * @sa rad(), deg(), arcmin(), arcsec(), mas()
  */
 double Angle::uas() const {
@@ -194,6 +207,8 @@ double Angle::uas() const {
  * Returns the angle as a fraction of the circle.
  *
  * @return    the angle as a fraction of the circle, usually in the [0:1) range.
+ *
+ * @since 1.6
  */
 double Angle::fraction() const {
   double f = _value / Constant::two_pi;

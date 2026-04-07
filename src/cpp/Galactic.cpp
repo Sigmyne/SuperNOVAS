@@ -20,6 +20,8 @@ namespace supernovas {
  *
  * @param longitude_rad   [rad] galactic longitude coordinate
  * @param latitude_rad    [rad] galactic latitude coordinate
+ *
+ * @since 1.6
  */
 Galactic::Galactic(double longitude_rad, double latitude_rad)
 : Spherical(longitude_rad, latitude_rad) {
@@ -32,6 +34,8 @@ Galactic::Galactic(double longitude_rad, double latitude_rad)
  *
  * @param longitude   galactic longitude coordinate
  * @param latitude    galactic latitude coordinate
+ *
+ * @since 1.6
  */
 Galactic::Galactic(const Angle& longitude, const Angle& latitude)
 : Spherical(longitude, latitude) {
@@ -57,6 +61,7 @@ Galactic::Galactic(const Angle& longitude, const Angle& latitude)
  * @param latitude    string representation of the declination coordinate as DMS or decimal
  *                    degrees.
  *
+ * @since 1.6
  * @sa novas_str_degrees() for details on string representation that can be parsed.
  * @sa novas_parse_degrees() for more managed parsing from strings.
  */
@@ -67,6 +72,8 @@ Galactic::Galactic(const std::string& longitude, const std::string& latitude)
  * Instantiates new galactic coordinates with the specified cartesian position vector.
  *
  * @param pos             _xyz_ position vector in the galactic coordinate system.
+ *
+ * @since 1.6
  */
 Galactic::Galactic(const Position& pos)
 : Spherical(pos.to_spherical()) {
@@ -83,7 +90,9 @@ Galactic::Galactic(const Position& pos)
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
- * operator==()
+ *
+ * @since 1.6
+ * @sa operator==()
  */
 bool Galactic::equals(const Galactic& other, double precision_rad) const {
   return Spherical::equals(other, precision_rad);
@@ -97,6 +106,7 @@ bool Galactic::equals(const Galactic& other, double precision_rad) const {
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 // cppcheck-suppress functionStatic
@@ -111,6 +121,7 @@ bool Galactic::equals(const Galactic& other, const Angle& precision) const {
  * @return                `true` if these coordinates are the same as the reference within 1 &mu;as,
  *                        or else `false`.
  *
+ * @since 1.6
  * @sa operator!=()
  */
 bool Galactic::operator==(const Galactic& other) const {
@@ -124,6 +135,7 @@ bool Galactic::operator==(const Galactic& other) const {
  * @return                `true` if these coordinates differ from the reference, by more than
  *                        1 &mu;as, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Galactic::operator!=(const Galactic& other) const {
@@ -136,6 +148,8 @@ bool Galactic::operator!=(const Galactic& other) const {
  *
  * @param other   the reference galactic coordinates
  * @return        the angular distance of these coordinates to/from the argument.
+ *
+ * @since 1.6
  */
 Angle Galactic::distance_to(const Galactic& other) const {
   Angle a = Spherical::distance_to(other);
@@ -149,6 +163,7 @@ Angle Galactic::distance_to(const Galactic& other) const {
  *
  * @return    the equivalent ICRS equatorial coordinates.
  *
+ * @since 1.6
  * @sa Equatorial::to_galactic(), to_ecliptic()
  */
 Equatorial Galactic::to_equatorial() const {
@@ -167,6 +182,7 @@ Equatorial Galactic::to_equatorial() const {
  *
  * @return    the equivalent ICRS ecliptic coordinates.
  *
+ * @since 1.6
  * @sa Ecliptic::to_galactic(), to_equatorial()
  */
 Ecliptic Galactic::to_ecliptic() const {
@@ -185,6 +201,8 @@ Ecliptic Galactic::to_ecliptic() const {
  * @param decimals    (optional) the number of decimal places to print for the seconds
  *                    (default: 3)
  * @return  the human-readable string representation of these %Galactic coordinates.
+ *
+ * @since 1.6
  */
 std::string Galactic::to_string(enum novas_separator_type separator, int decimals) const {
   return "GAL " + Spherical::to_string(separator, decimals);
@@ -195,6 +213,8 @@ std::string Galactic::to_string(enum novas_separator_type separator, int decimal
  * coordinates may be used inside any object that is invalid itself.
  *
  * @return    a reference to the static standard invalid coordinates.
+ *
+ * @since 1.6
  */
 const Galactic& Galactic::undefined() {
   static const Galactic _invalid = Galactic();

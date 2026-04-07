@@ -37,6 +37,8 @@ void Equatorial::validate() {
  * @param dec_rad     [rad] declination coordinate
  * @param system      (optional) the equatorial coordinate reference system in which the
  *                    coordinates are specified (default: ICRS)
+ *
+ * @since 1.6
  */
 Equatorial::Equatorial(double ra_rad, double dec_rad, const Equinox &system)
 : Spherical(ra_rad, dec_rad), _sys(system) {
@@ -51,6 +53,8 @@ Equatorial::Equatorial(double ra_rad, double dec_rad, const Equinox &system)
  * @param dec         declination coordinate
  * @param system      (optional) the equatorial coordinate reference system in which the
  *                    coordinates are specified (default: ICRS)
+ *
+ * @since 1.6
  */
 Equatorial::Equatorial(const Angle& ra, const Angle& dec, const Equinox &system)
 : Spherical(ra, dec), _sys(system) {
@@ -78,6 +82,7 @@ Equatorial::Equatorial(const Angle& ra, const Angle& dec, const Equinox &system)
  * @param system      (optional) the equatorial coordinate reference system in which the
  *                    coordinates are specified (default: ICRS)
  *
+ * @since 1.6
  * @sa novas_str_hours(), novas_str_degrees() for details on string representation that can be parsed.
  * @sa novas_parse_hours(), novas_parse_degrees() for more managed parsing from strings.
  */
@@ -91,6 +96,8 @@ Equatorial::Equatorial(const std::string& ra, const std::string& dec, const Equi
  * @param pos         position vector
  * @param system      (optional) the equatorial coordinate reference system in which the
  *                    coordinates are specified (default: ICRS)
+ *
+ * @since 1.6
  */
 Equatorial::Equatorial(const Position& pos, const Equinox& system)
 : Spherical(pos.to_spherical()), _sys(system) {
@@ -106,6 +113,7 @@ Equatorial::Equatorial(const Position& pos, const Equinox& system)
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator==()
  */
 bool Equatorial::equals(const Equatorial& other, double precision_rad) const {
@@ -121,6 +129,7 @@ bool Equatorial::equals(const Equatorial& other, double precision_rad) const {
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 // cppcheck-suppress functionStatic
@@ -135,6 +144,7 @@ bool Equatorial::equals(const Equatorial& other, const Angle& precision) const {
  * @return                `true` if these coordinates are the same as the reference within 1 &mu;as,
  *                        or else `false`.
  *
+ * @since 1.6
  * @sa operator!=()
  */
 bool Equatorial::operator==(const Equatorial& other) const {
@@ -147,6 +157,7 @@ bool Equatorial::operator==(const Equatorial& other) const {
  * @return                `true` if these coordinates differ from the reference, by more than
  *                        1 &mu;as, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Equatorial::operator!=(const Equatorial& other) const {
@@ -161,6 +172,7 @@ bool Equatorial::operator!=(const Equatorial& other) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed in the specified other coordinate reference system.
  *
+ * @since 1.6
  * @sa to_system()
  */
 Equatorial Equatorial::operator>>(const Equinox& system) const {
@@ -175,6 +187,7 @@ Equatorial Equatorial::operator>>(const Equinox& system) const {
  *
  * @return    the coordinate reference system (type and epoch).
  *
+ * @since 1.6
  * @sa system_type()
  */
 const Equinox& Equatorial::system() const {
@@ -186,6 +199,7 @@ const Equinox& Equatorial::system() const {
  *
  * @return    the type of coordinate reference system
  *
+ * @since 1.6
  * @sa system()
  */
 enum novas_reference_system Equatorial::system_type() const {
@@ -198,6 +212,8 @@ enum novas_reference_system Equatorial::system_type() const {
  *
  * @param other   the reference equatorial coordinates
  * @return        the angular distance of thereturn Angle::operator+(r);se coordinates to/from the argument.
+ *
+ * @since 1.6
  */
 Angle Equatorial::distance_to(const Equatorial& other) const {
   Angle a = Spherical::distance_to(other >> _sys);
@@ -214,6 +230,7 @@ Angle Equatorial::distance_to(const Equatorial& other) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed in the specified other coordinate reference system.
  *
+ * @since 1.6
  * @sa operator>>(), to_icrs(), to_j2000(), to_hip(), to_mod(), to_mod_at_besselian_epoch(),
  *     to_tod(), to_cirs()
  */
@@ -285,6 +302,7 @@ Equatorial Equatorial::to_system(const Equinox& system, enum novas_accuracy accu
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed in the ICRS (= FK6).
  *
+ * @since 1.6
  * @sa to_system()
  */
 Equatorial Equatorial::to_icrs() const {
@@ -300,6 +318,7 @@ Equatorial Equatorial::to_icrs() const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed in the J2000 (= FK5) catalog system.
  *
+ * @since 1.6
  * @sa to_system(), to_icrs(), to_hip(), to_mod(), to_mod_at_besselian_epoch(), to_tod(), to_cirs()
  */
 Equatorial Equatorial::to_j2000() const {
@@ -315,6 +334,7 @@ Equatorial Equatorial::to_j2000() const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed in the Hipparcos (= J1991.25) catalog system.
  *
+ * @since 1.6
  * @sa to_system(), to_icrs(), to_j2000()
  */
 Equatorial Equatorial::to_hip() const {
@@ -332,6 +352,7 @@ Equatorial Equatorial::to_hip() const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed in the MOD catalog system of date.
  *
+ * @since 1.6
  * @sa to_mod_at_besselian_epoch(), to_system(), to_j2000(), to_tod()
  */
 Equatorial Equatorial::to_mod(const Time& time) const {
@@ -349,6 +370,7 @@ Equatorial Equatorial::to_mod(const Time& time) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed in the catalog system of the specified Besselian epoch.
  *
+ * @since 1.6
  * @sa to_mod(), to_system(), to_j2000(), to_tod()
  */
 Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
@@ -370,6 +392,7 @@ Equatorial Equatorial::to_mod_at_besselian_epoch(double year) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as
  *                  this, but expressed with respect to the true equator and equinox of date.
  *
+ * @since 1.6
  * @sa to_system(), to_cirs(), to_j2000(), to_mod()
  */
 Equatorial Equatorial::to_tod(const Time& time) const {
@@ -388,6 +411,7 @@ Equatorial Equatorial::to_tod(const Time& time) const {
  * @return          new equatorial coordinates, which represent the same equatorial position as this,
  *                  but with respect to the true equator and CIO of date.
  *
+ * @since 1.6
  * @sa to_system(), to_tod(), to_icrs()
  */
 Equatorial Equatorial::to_cirs(const Time& time) const {
@@ -402,6 +426,7 @@ Equatorial Equatorial::to_cirs(const Time& time) const {
  *
  * @return    the right ascention (R.A.) coordinate.
  *
+ * @since 1.6
  * @sa dec()
  */
 TimeAngle Equatorial::ra() const {
@@ -416,6 +441,7 @@ TimeAngle Equatorial::ra() const {
  *
  * @return    the declination coordinate.
  *
+ * @since 1.6
  * @sa ra()
  */
 const Angle& Equatorial::dec() const {
@@ -429,6 +455,7 @@ const Angle& Equatorial::dec() const {
  * @return          the ecliptic coordinates that represent the same position on sky as these
  *                  equariorial coordinates.
  *
+ * @since 1.6
  * @sa Ecliptic::to_equatorial(), to_galactic()
  */
 Ecliptic Equatorial::to_ecliptic(enum novas_accuracy accuracy) const {
@@ -456,6 +483,7 @@ Ecliptic Equatorial::to_ecliptic(enum novas_accuracy accuracy) const {
  * @return    the galactic coordinates that represent the same position on sky as these equariorial
  *            coordinates.
  *
+ * @since 1.6
  * @sa Galactic::to_equatorial(), to_ecliptic()
  */
 Galactic Equatorial::to_galactic() const {
@@ -480,6 +508,8 @@ Galactic Equatorial::to_galactic() const {
  * @param decimals    (optional) the number of decimal places to print for the seconds
  *                    (default: 3)
  * @return    a new string with the human-readable representation of these equatorial coordinates.
+ *
+ * @since 1.6
  */
 std::string Equatorial::to_string(enum novas_separator_type separator, int decimals) const {
   return "EQU " + ra().to_string(separator, decimals + 1) + "  "
@@ -491,6 +521,8 @@ std::string Equatorial::to_string(enum novas_separator_type separator, int decim
  * coordinates may be used inside any object that is invalid itself.
  *
  * @return    a reference to a static standard invalid equatorial coordinates.
+ *
+ * @since 1.6
  */
 const Equatorial& Equatorial::undefined() {
   static const Equatorial _invalid = Equatorial();

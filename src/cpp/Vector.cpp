@@ -23,6 +23,8 @@ Vector::Vector() : _component{NAN, NAN, NAN} {}
  * @param x   [arb.u.] _x_ component
  * @param y   [arb.u.] _y_ component
  * @param z   [arb.u.] _z_ component
+ *
+ * @since 1.6
  */
 Vector::Vector(double x, double y, double z) : _component{x, y, z} {
   if(!isfinite(abs()))
@@ -37,7 +39,7 @@ Vector::Vector(double x, double y, double z) : _component{x, y, z} {
  * @param r   scaling factor on the right-hand side
  * @return    a new vector that is the rescaled version of this vector.
  *
- * @sa operator/()
+ * @since 1.6
  */
 Vector Vector::operator*(double r) const {
   Vector v = scaled(r);
@@ -52,6 +54,8 @@ Vector Vector::operator*(double r) const {
  * @param idx   [0:2] The 0-based coordinate index.
  * @return      The component value at that index, or else NAN if the index is out of the [0:2]
  *              (errno will be set to ERANGE).
+ *
+ * @since 1.6
  */
 double Vector::operator[](int idx) const {
   if(idx < 0 || idx >= 3) {
@@ -66,6 +70,8 @@ double Vector::operator[](int idx) const {
  * Checks if this verctor is a null vector, that is all of its components are zero.
  *
  * @return    `true` if this is a null vector, with all components being zero; or else `false`.
+ *
+ * @since 1.6
  */
 bool Vector::is_zero() const {
   return _component[0] == 0.0 && _component[1] == 0.0 && _component[2] == 0.0;
@@ -78,6 +84,8 @@ bool Vector::is_zero() const {
  * @param precision   precision for the equality test
  * @return            `true` if this vector is equal to the argument within the specified
  *                    precision, or else `false`.
+ *
+ * @since 1.6
  */
 bool Vector::equals(const Vector& v, double precision) const {
   double d2 = 0.0;
@@ -94,6 +102,8 @@ bool Vector::equals(const Vector& v, double precision) const {
  * @param factor    scaling factor, such as a cast to/from a physical unit
  * @return          a new vector that is the rescaled version of this vector with the specified
  *                  scaling factor.
+ *
+ * @since 1.6
  */
 Vector Vector::scaled(double factor) const {
   Vector v(_component[0] * factor, _component[1] * factor, _component[2] * factor);
@@ -107,6 +117,8 @@ Vector Vector::scaled(double factor) const {
  * internally. Such an array may be used with the SuperNOVAS C functions.
  *
  * @return  the uderlying `double[3]` array that stores the components of this vector.
+ *
+ * @since 1.6
  */
 const double *Vector::_array() const {
   return _component;
@@ -116,6 +128,8 @@ const double *Vector::_array() const {
  * Returns the absolute value (length / magnitude) of this vector.
  *
  * @return    the absolute value (length / magnitude) of this vector.
+ *
+ * @since 1.6
  */
 double Vector::abs() const {
   return novas_vlen(_component);
@@ -126,6 +140,8 @@ double Vector::abs() const {
  *
  * @param v   the other vector
  * @return    the dot product of this vector and the argument.
+ *
+ * @since 1.6
  */
 double Vector::dot(const Vector &v) const {
   return novas_vdot(_component, v._component);
@@ -136,6 +152,8 @@ double Vector::dot(const Vector &v) const {
  *
  * @param v   the other vector
  * @return    the projection of this vector along the direction of the argument vector.
+ *
+ * @since 1.6
  */
 double Vector::projection_on(const Vector& v) const {
   return dot(v) / v.abs();
@@ -146,6 +164,7 @@ double Vector::projection_on(const Vector& v) const {
  *
  * @return    the azimuthal angle &phi;.
  *
+ * @since 1.6
  * @sa theta()
  */
 Angle Vector::phi() const {
@@ -160,6 +179,7 @@ Angle Vector::phi() const {
  *
  * @return    the polar angle &theta;.
  *
+ * @since 1.6
  * @sa phi()
  */
 Angle Vector::theta() const {
@@ -173,6 +193,8 @@ Angle Vector::theta() const {
  * Returns a unit vector in the direction of this vector.
  *
  * @return    a new unit vector in the same direction as this vector.
+ *
+ * @since 1.6
  */
 Vector Vector::unit_vector() const {
   Vector u = scaled(1.0 / abs());
@@ -186,7 +208,9 @@ Vector Vector::unit_vector() const {
  *
  * @param decimals    (optional) the numberof decimal places to print for the components
  *                    (default: 3).
- * @return
+ * @return            a string representation of this 3D vector.
+ *
+ * @since 1.6
  */
 std::string Vector::to_string(int decimals) const {
   char sx[40] = {'\0'}, sy[40] = {'\0'}, sz[40] = {'\0'};
@@ -206,6 +230,8 @@ std::string Vector::to_string(int decimals) const {
  * @param v         the vector on the right-hand side
  * @return          a new vector that is the scaled version of the input vector by the specified
  *                  factor.
+ *
+ * @since 1.6
  */
 Vector operator*(double factor, const Vector& v) {
   Vector v1 = v * factor;

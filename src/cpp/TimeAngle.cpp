@@ -20,6 +20,8 @@ namespace supernovas {
  * in radians.
  *
  * @param radians   [rad] the angle in radians
+ *
+ * @since 1.6
  */
 TimeAngle::TimeAngle(double radians)
 : Angle(radians) {
@@ -32,6 +34,8 @@ TimeAngle::TimeAngle(double radians)
  *
  * @param str   A decimal or HMS representation of time, using spaces, colons, and/or the letters
  *              `h`, `m` (and optionally `s`) as separators.
+ *
+ * @since 1.6
  */
 TimeAngle::TimeAngle(const std::string& str)
 : Angle(novas_str_hours(str.c_str()) * Unit::hour_angle) {}
@@ -40,6 +44,8 @@ TimeAngle::TimeAngle(const std::string& str)
  * Instantiates an angle, to be represented as time on a 24 hour interval, from an angle instance.
  *
  * @param angle   an angle to initialize with.
+ *
+ * @since 1.6
  */
 TimeAngle::TimeAngle(const Angle& angle)
 : Angle(angle) {}
@@ -49,6 +55,7 @@ TimeAngle::TimeAngle(const Angle& angle)
  *
  * @return    [h] the angle as hours of time on the [0.0:24.0) interval.
  *
+ * @since 1.6
  * @sa minutes(), seconds(), Angle::rad(), Angle::deg(), Angle::arcmin(), Angle::arcsec()
  */
 double TimeAngle::hours() const {
@@ -60,6 +67,7 @@ double TimeAngle::hours() const {
  *
  * @return    [m] the angle as minutes of time on the [0.0:1440.0) interval.
  *
+ * @since 1.6
  * @sa hours(), seconds(), Angle::rad(), Angle::deg(), Angle::arcmin(), Angle::arcsec()
  */
 double TimeAngle::minutes() const {
@@ -71,6 +79,7 @@ double TimeAngle::minutes() const {
  *
  * @return    [s] the angle as seconds of time on the [0.0:86400.0) interval.
  *
+ * @since 1.6
  * @sa hours(), minutes(), seconds(), Angle::rad(), Angle::deg(), Angle::arcmin(), Angle::arcsec()
  */
 double TimeAngle::seconds() const {
@@ -86,6 +95,8 @@ double TimeAngle::seconds() const {
  * @param decimals    [0:9] the number of decimal places to print for the arc seconds
  *                    component.
  * @return            the strung representation of this angle in degrees.
+ *
+ * @since 1.6
  */
 std::string TimeAngle::to_string(enum novas_separator_type separator, int decimals) const {
   char s[100] = {'\0'};
@@ -107,6 +118,7 @@ Angle TimeAngle::operator-(const Angle& r) const {
  * @param r   the other time-angle on the right-hand-side.
  * @return    the sum of this time-angle and the argument, as a new time-angle.
  *
+ * @since 1.6
  * @sa operator-()
  */
 TimeAngle TimeAngle::operator+(const TimeAngle& r) const {
@@ -123,6 +135,7 @@ TimeAngle TimeAngle::operator+(const TimeAngle& r) const {
  * @param r   the other time-angle on the right-hand-side.
  * @return    the difference of this time-angle and the argument, as a new time-angle.
  *
+ * @since 1.6
  * @sa operator+()
  */
 TimeAngle TimeAngle::operator-(const TimeAngle& r) const {
@@ -138,6 +151,7 @@ TimeAngle TimeAngle::operator-(const TimeAngle& r) const {
  * @param offset   the time interval on the right-hand-side.
  * @return         the sum of this time-angle and the time interval, as a new time-angle.
  *
+ * @since 1.6
  * @sa operator-()
  */
 TimeAngle TimeAngle::operator+(const Interval& offset) const {
@@ -154,6 +168,7 @@ TimeAngle TimeAngle::operator+(const Interval& offset) const {
  * @param offset   the time interval on the right-hand-side.
  * @return         the difference of this time-angle and the time interval, as a new time-angle.
  *
+ * @since 1.6
  * @sa operator+()
  */
 TimeAngle TimeAngle::operator-(const Interval& offset) const {
@@ -170,6 +185,7 @@ TimeAngle TimeAngle::operator-(const Interval& offset) const {
  * @param value   [h] the angle defined as hours of time.
  * @return        a new time-angle with the specified time defining the angle.
  *
+ * @since 1.6
  * @sa minutes(), seconds()
  */
 TimeAngle TimeAngle::hours(double value) {
@@ -186,6 +202,7 @@ TimeAngle TimeAngle::hours(double value) {
  * @param value   [m] the angle defined as minutes of time.
  * @return        a new time-angle with the specified time defining the angle.
  *
+ * @since 1.6
  * @sa hours(), seconds()
  */
 TimeAngle TimeAngle::minutes(double value) {
@@ -202,6 +219,7 @@ TimeAngle TimeAngle::minutes(double value) {
  * @param value   [s] the angle defined as seconds of time.
  * @return        a new time-angle with the specified time defining the angle.
  *
+ * @since 1.6
  * @sa hours(), minutes()
  */
 TimeAngle TimeAngle::seconds(double value) {
@@ -215,6 +233,8 @@ TimeAngle TimeAngle::seconds(double value) {
  * Returns a reference to a statically defined time-angle that represents a zero angle.
  *
  * @return    a reference to the statically defined zero angle.
+ *
+ * @since 1.6
  */
 const TimeAngle& TimeAngle::zero() {
   static const TimeAngle _zero = TimeAngle(0.0);
@@ -225,6 +245,8 @@ const TimeAngle& TimeAngle::zero() {
  * Returns a reference to a statically defined time angle corresponding to noon (12h).
  *
  * @return    a reference to the statically defined time-angle for noon (12h).
+ *
+ * @since 1.6
  */
 const TimeAngle& TimeAngle::noon() {
   static const TimeAngle _12h = TimeAngle(12.0 * Unit::hour_angle);

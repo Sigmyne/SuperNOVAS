@@ -23,6 +23,7 @@ namespace supernovas {
  * @param altitude_m      [m] (optional) %Observers's altitude above sea level (default: 0 m)
  * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
  *
+ * @since 1.6
  * @sa from_xyz(), from_GPS()
  */
 Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum novas_reference_ellipsoid ellipsoid) {
@@ -60,6 +61,7 @@ Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum no
  * @param altitude        (optional) %Observers's altitude above sea level (default: 0 m)
  * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
  *
+ * @since 1.6
  * @sa from_xyz(), Site::from_GPS()
  */
 Site::Site(const Angle& longitude, const Angle& latitude, const Coordinate& altitude, enum novas_reference_ellipsoid ellipsoid)
@@ -69,6 +71,8 @@ Site::Site(const Angle& longitude, const Angle& latitude, const Coordinate& alti
  * Instantiates a new observing site with the specified geocentric position vector.
  *
  * @param xyz   Observers geocentric position vector in rectangular coordinates.
+ *
+ * @since 1.6
  */
 Site::Site(const Position& xyz) {
   static const char *fn = "Site()";
@@ -96,6 +100,7 @@ Site::Site(const Position& xyz) {
  * @param altitude        (optional) Observers's altitude above sea level (default: 0 m)
  * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
  *
+ * @since 1.6
  * @sa from_xyz(), Site::from_GPS()
  */
 Site::Site(const std::string& longitude, const std::string& latitude, const Coordinate& altitude, enum novas_reference_ellipsoid ellipsoid)
@@ -107,6 +112,7 @@ Site::Site(const std::string& longitude, const std::string& latitude, const Coor
  *
  * @return    The pointer to the NOVAS C `on_surface` data structure.
  *
+ * @since 1.6
  * @sa xyz()
  */
 const on_surface *Site::_on_surface() const {
@@ -119,8 +125,8 @@ const on_surface *Site::_on_surface() const {
  *
  * @return    The geodetic longitude on the GRS80 reference ellipsoid.
  *
- * @sa latitude()
- * @sa altitude()
+ * @since 1.6
+ * @sa latitude(), altitude()
  */
 const Angle Site::longitude() const {
   Angle a(_site.longitude * Unit::deg);
@@ -135,8 +141,8 @@ const Angle Site::longitude() const {
  *
  * @return    The geodetic longitude on the GRS80 reference ellipsoid.
  *
- * @sa longitude()
- * @sa altitude()
+ * @since 1.6
+ * @sa longitude(), altitude()
  */
 const Angle Site::latitude() const {
   Angle a(_site.latitude * Unit::deg);
@@ -151,8 +157,8 @@ const Angle Site::latitude() const {
  *
  * @return    The altitude above sea level (GRS80 reference ellipsoid).
  *
- * @sa longitude()
- * @sa latitude()
+ * @since 1.6
+ * @sa longitude(), latitude()
  */
 const Coordinate Site::altitude() const {
   Coordinate h(_site.height * Unit::m);
@@ -168,6 +174,7 @@ const Coordinate Site::altitude() const {
  * @param tol_m   [m] distance tolerance for equality (default: 1 mm).
  * @return        `true` if the two sites are equal within the tolerance, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Site::equals(const Site& site, double tol_m) const {
@@ -181,6 +188,7 @@ bool Site::equals(const Site& site, double tol_m) const {
  * @param tol     distance tolerance for equality (default: 1 mm).
  * @return        `true` if the two sites are equal within the tolerance, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Site::equals(const Site& site, const Coordinate& tol) const {
@@ -193,6 +201,7 @@ bool Site::equals(const Site& site, const Coordinate& tol) const {
  * @param site    another site
  * @return        `true` if the two sites are equal within 1 mm, or else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 bool Site::operator==(const Site& site) const {
@@ -205,6 +214,7 @@ bool Site::operator==(const Site& site) const {
  * @param site    another site
  * @return        `true` if the two sites differ by more than 1 mm, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Site::operator!=(const Site& site) const {
@@ -221,6 +231,7 @@ bool Site::operator!=(const Site& site) const {
  * @param to_year     [yr] The ITRF realization year of the returned new Site, e.g. 2014.
  * @return    a new observing site after transforming between ITRF realizations.
  *
+ * @since 1.6
  * @sa EOP::itrf_transformed()
  */
 Site Site::itrf_transformed(int from_year, int to_year) const {
@@ -238,6 +249,7 @@ Site Site::itrf_transformed(int from_year, int to_year) const {
  * @param p   _xyz_ position vector in ITRF.
  * @return    the same vector in East-North-Up (ENU) directions at the site.
  *
+ * @since 1.6
  * @sa enu_to_itrf()
  */
 Position Site::itrs_to_enu(const Position& p) const {
@@ -255,6 +267,7 @@ Position Site::itrs_to_enu(const Position& p) const {
  * @param v   _xyz_ velocity vector in ITRF.
  * @return    the same vector in East-North-Up (ENU) directions at the site.
  *
+ * @since 1.6
  * @sa enu_to_itrf()
  */
 Velocity Site::itrs_to_enu(const Velocity& v) const {
@@ -272,6 +285,7 @@ Velocity Site::itrs_to_enu(const Velocity& v) const {
  * @param p   position vector in East-North-Up (ENU) directions at the site.
  * @return    the same position vector in ITRF.
  *
+ * @since 1.6
  * @sa itrf_to_enu()
  */
 Position Site::enu_to_itrs(const Position& p) const {
@@ -289,6 +303,7 @@ Position Site::enu_to_itrs(const Position& p) const {
  * @param v   velocity vector in East-North-Up (ENU) directions at the site.
  * @return    the same position vector in ITRF.
  *
+ * @since 1.6
  * @sa itrf_to_enu()
  */
 Velocity Site::enu_to_itrs(const Velocity& v) const {
@@ -304,6 +319,8 @@ Velocity Site::enu_to_itrs(const Velocity& v) const {
  * Returns the geocentric position of this site in ITRS rectangular coordinates.
  *
  * @return  a new position with the geocentric rectangular coordinates of the site.
+ *
+ * @since 1.6
  */
 Position Site::xyz() const {
   double x[3] = {0.0};
@@ -320,6 +337,8 @@ Position Site::xyz() const {
  * 'typical' for the observing site.
  *
  * @return    the 'typical' mean annual weather at this site, based on a very simple global model.
+ *
+ * @since 1.6
  */
 Weather Site::average_weather() const {
   on_surface s = _site;
@@ -335,6 +354,7 @@ Weather Site::average_weather() const {
  *                this site (if &mu;as precision is required).
  * @return        A geodetic observer location for this site.
  *
+ * @since 1.6
  * @sa Observer::on_earth()
  */
 GeodeticObserver Site::to_observer(const EOP& eop) const {
@@ -351,6 +371,8 @@ GeodeticObserver Site::to_observer(const EOP& eop) const {
  *                   `NOVAS_SEP_UNITS_AND_SPACES`).
  * @param decimals   (optional) the number of decimal places to print (default: 3).
  * @return   a new string representation of this observing site.
+ *
+ * @since 1.6
  */
 std::string Site::to_string(enum novas_separator_type separator, int decimals) const {
   return std::string("Site (") + (_site.longitude < 0 ? "W" : "E") + Angle(fabs(_site.longitude * Unit::deg)).to_string(separator, decimals) +
@@ -366,6 +388,7 @@ std::string Site::to_string(enum novas_separator_type separator, int decimals) c
  * @param altitude    [m] (optional) GPS altitude (default: 0 m)
  * @return    a new observing site at the specified GSP location.
  *
+ * @since 1.6
  * @sa Site(), from_xyz()
  */
 Site Site::from_GPS(double longitude, double latitude, double altitude) {
@@ -383,6 +406,7 @@ Site Site::from_GPS(double longitude, double latitude, double altitude) {
  * @param altitude    (optional) GPS altitude (default: 0 m)
  * @return    a new observing site at the specified GSP location.
  *
+ * @since 1.6
  * @sa Site(), from_xyz()
  */
 Site Site::from_GPS(const Angle& longitude, const Angle& latitude, const Coordinate& altitude) {
@@ -398,6 +422,7 @@ Site Site::from_GPS(const Angle& longitude, const Angle& latitude, const Coordin
  * @param altitude    (optional) GPS altitude (default: 0 m)
  * @return    a new observing site at the specified GSP location.
  *
+ * @since 1.6
  * @sa Site(), from_xyz(), Angle()
  */
 Site Site::from_GPS(const std::string& longitude, const std::string& latitude, const Coordinate& altitude) {
@@ -408,6 +433,8 @@ Site Site::from_GPS(const std::string& longitude, const std::string& latitude, c
  * Returns a reference to a statically allocated undefined observing site instance.
  *
  * @return    a static reference to an undefined observing site.
+ *
+ * @since 1.6
  */
 const Site& Site::undefined() {
   static const Site _invalid = Site();

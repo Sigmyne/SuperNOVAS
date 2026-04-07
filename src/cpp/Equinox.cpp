@@ -101,6 +101,7 @@ Equinox::Equinox(enum novas_reference_system system, double jd_tt)
  * @param dt      [s] The tolerance to epoch differences in seconds.
  * @return        `true` if the two equatorial systems are essentially the same, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Equinox::equals(const Equinox& system, double dt) const {
@@ -119,6 +120,7 @@ bool Equinox::equals(const Equinox& system, double dt) const {
  * @param dt      [s] The tolerance to epoch differences.
  * @return        `true` if the two equatorial systems are essentially the same, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Equinox::equals(const Equinox& system, const Interval& dt) const {
@@ -132,6 +134,7 @@ bool Equinox::equals(const Equinox& system, const Interval& dt) const {
  * @param system  The equatorial system on the right-hand side.
  * @return        `true` if the two equatorial systems are essentially the same, or else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 bool Equinox::operator==(const Equinox& system) const {
@@ -144,6 +147,7 @@ bool Equinox::operator==(const Equinox& system) const {
  * @param system  The equatorial system on the right-hand side.
  * @return        `true` if the two equatorial systems are differ, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Equinox::operator!=(const Equinox& system) const {
@@ -157,6 +161,7 @@ bool Equinox::operator!=(const Equinox& system) const {
  *
  * @return    `true` if this equatorial system is the ICRS, or else `false`.
  *
+ * @since 1.6
  * @sa is_mod(), is_true()
  */
 bool Equinox::is_icrs() const {
@@ -171,6 +176,7 @@ bool Equinox::is_icrs() const {
  * @return    `true` if this equatorial system is a Mean-of-Date (MOD) catalog system, or else
  *            `false`.
  *
+ * @since 1.6
  * @sa is_icrs(), is_true()
  */
 bool Equinox::is_mod() const {
@@ -186,6 +192,7 @@ bool Equinox::is_mod() const {
  * @return    `true` if this equatorial system is defined on the true dynamical equator of date, or
  *            else `false`.
  *
+ * @since 1.6
  * @sa is_icrs(), is_mod()
  */
 bool Equinox::is_true() const {
@@ -201,6 +208,7 @@ bool Equinox::is_true() const {
  *                this system. E.g. for 'ICRS' it will return the Julian date for the J2000.0
  *                epoch.
  *
+ * @since 1.6
  * @sa mjd(), epoch(), Time
  */
 double Equinox::jd() const {
@@ -216,6 +224,7 @@ double Equinox::jd() const {
  *                equator matches this system. E.g. for 'ICRS' it will return the MJD for the
  *                J2000.0 epoch.
  *
+ * @since 1.6
  * @sa jd(), epoch(), Time
  */
 double Equinox::mjd() const {
@@ -226,6 +235,8 @@ double Equinox::mjd() const {
  * Returns the coordinate reference system type for this equatorial system.
  *
  * @return      the coordinate reference system type
+ *
+ * @since 1.6
  */
 enum novas_reference_system Equinox::system_type() const {
   return _system;
@@ -235,6 +246,8 @@ enum novas_reference_system Equinox::system_type() const {
  * Returns the type of equator used in this equatorial coordinate system.
  *
  * @return    the type of equator used in this equatorial system.
+ *
+ * @since 1.6
  */
 enum novas_equator_type Equinox::equator_type() const {
   switch(system_type()) {
@@ -258,6 +271,7 @@ enum novas_equator_type Equinox::equator_type() const {
  *
  * @return      [yr] The Julian epoch year of this catalog system.
  *
+ * @since 1.6
  * @sa jd(), mjd(), Time::epoch()
  */
 double Equinox::epoch() const {
@@ -268,6 +282,8 @@ double Equinox::epoch() const {
  * Returns a reference to the name of this system.
  *
  * @return    A reference to the string that stores the system's name
+ *
+ * @since 1.6
  */
 const std::string& Equinox::name() const {
   return _name;
@@ -278,6 +294,8 @@ const std::string& Equinox::name() const {
  * except it returns a copy rather than the reference.
  *
  * @return    A string identification of this catalog system.
+ *
+ * @since 1.6
  */
 std::string Equinox::to_string() const {
   return std::string(_name);
@@ -295,6 +313,8 @@ std::string Equinox::to_string() const {
  * @return          an optional containing the corresponding valid equatorial system, or else
  *                  Equinox::undefined().
  *
+ * @since 1.6
+ * @sa from_system_type()
  * @sa is_valid(), icrs(), j2000(), b1950(), b1900()
  */
 Equinox Equinox::from_string(const std::string& name) {
@@ -355,6 +375,9 @@ Equinox Equinox::from_string(const std::string& name) {
  *                  transformations at the micro-arcsecond (&mu;as) level.
  * @return          an optional containing the corresponding valid equatorial system, or else
  *                  an undefined (invalid) equinox.
+ *
+ * @since 1.6
+ * @sa from_string()
  */
 Equinox Equinox::from_system_type(enum novas_reference_system system, double jd_tt) {
   static const char *fn = "Equatorial::for_reference_system()";
@@ -379,6 +402,9 @@ Equinox Equinox::from_system_type(enum novas_reference_system system, double jd_
  * @param time      [day] astrometric time (for dynamical systems).
  * @return          an optional containing the corresponding valid equatorial system, or else
  *                  an undefined (invalid) equinox.
+ *
+ * @since 1.6
+ * @sa from_string()
  */
 Equinox Equinox::from_system_type(enum novas_reference_system system, const Time& time) {
   return from_system_type(system, time.jd());
@@ -395,6 +421,7 @@ Equinox Equinox::from_system_type(enum novas_reference_system system, const Time
  * @return          A reference system with the mean dynamical equator of date, with origin at
  *                  the mean equinox of date.
  *
+ * @since 1.6
  * @sa mod_at_besselial_epoch(), j2000(), hip()
  */
 Equinox Equinox::mod(double jd_tt) {
@@ -413,6 +440,7 @@ Equinox Equinox::mod(double jd_tt) {
  * @return          A reference system with the mean dynamical equator of date, with origin at
  *                  the mean equinox of date.
  *
+ * @since 1.6
  * @sa mod_at_besselial_epoch(), j2000(), hip()
  */
 Equinox Equinox::mod(const Time& time) {
@@ -429,6 +457,7 @@ Equinox Equinox::mod(const Time& time) {
  * @return          A reference system with the mean dynamical equator of date, with origin at
  *                  the mean equinox of date.
  *
+ * @since 1.6
  * @sa at_julian_date(), b1900(), b1950()
  */
 Equinox Equinox::mod_at_besselian_epoch(double year) {
@@ -448,6 +477,7 @@ Equinox Equinox::mod_at_besselian_epoch(double year) {
  * @return          the equatorial coordinate system based on the true dynamical equator and
  *                  equinox of date.
  *
+ * @since 1.6
  * @sa cirs()
  */
 Equinox Equinox::tod(double jd_tt) {
@@ -466,6 +496,7 @@ Equinox Equinox::tod(double jd_tt) {
  * @return          the equatorial coordinate system based on the true dynamical equator and
  *                  equinox of date.
  *
+ * @since 1.6
  * @sa cirs()
  */
 Equinox Equinox::tod(const Time& time) {
@@ -482,6 +513,7 @@ Equinox Equinox::tod(const Time& time) {
  * @return          the equatorial coordinate system based on the true dynamical equator, with
  *                  its origin at the CIO
  *
+ * @since 1.6
  * @sa tod()
  */
 Equinox Equinox::cirs(double jd_tt) {
@@ -500,6 +532,7 @@ Equinox Equinox::cirs(double jd_tt) {
  * @return          the equatorial coordinate system based on the true dynamical equator, with
  *                  its origin at the CIO
  *
+ * @since 1.6
  * @sa tod()
  */
 Equinox Equinox::cirs(const Time& time) {
@@ -519,6 +552,7 @@ Equinox Equinox::cirs(const Time& time) {
  *
  * @return A reference to a reusable statically allocated ICRS system instance.
  *
+ * @since 1.6
  * @sa NOVAS_ICRS, NOVAS_GCRS, NOVAS_SYSTEM_ICRS
  */
 const Equinox& Equinox::icrs() {
@@ -534,6 +568,7 @@ const Equinox& Equinox::icrs() {
  *
  * @return A reference to a reusable statically allocated J2000 coordinate system instance.
  *
+ * @since 1.6
  * @sa icrs(), mod(), Time::j2000(), NOVAS_JD_J2000, NOVAS_SYSTEM_J2000
  */
 const Equinox& Equinox::j2000() {
@@ -550,6 +585,7 @@ const Equinox& Equinox::j2000() {
  *
  * @return A reference to a reusable statically allocated Hipparcos coordinate system instance.
  *
+ * @since 1.6
  * @sa icrs(), mod(), Time::hip() NOVAS_JD_HIP, NOVAS_SYSTEM_HIP
  */
 const Equinox& Equinox::hip() {
@@ -566,6 +602,7 @@ const Equinox& Equinox::hip() {
  *
  * @return A reference to a reusable statically allocated B1950 coordinate system instance.
  *
+ * @since 1.6
  * @sa icrs(), mod(), Time::b1950(), NOVAS_JD_B1950, NOVAS_SYSTEM_B1950
  */
 const Equinox& Equinox::b1950() {
@@ -579,6 +616,7 @@ const Equinox& Equinox::b1950() {
  *
  * @return A reference to a reusable statically allocated B1900 coordinate system instance.
  *
+ * @since 1.6
  * @sa icrs(), mod(), Time::b1900(), NOVAS_JD_B1900, NOVAS_SYSTEM_B1900
  */
 const Equinox& Equinox::b1900() {
@@ -591,6 +629,8 @@ const Equinox& Equinox::b1900() {
  * equatorial system may be used inside any object that is invalid itself.
  *
  * @return    a reference to a static standard invalid equatorial system.
+ *
+ * @since 1.6
  */
 const Equinox& Equinox::undefined() {
   static const Equinox _invalid = Equinox();

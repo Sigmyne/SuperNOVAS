@@ -19,6 +19,7 @@ namespace supernovas {
  *
  * @param value [Pa] the atmospheric pressure
  *
+ * @since 1.6
  * @sa Pa(), hPa(), kPa(), mbar(), bar(), torr(), atm()
  */
 Pressure::Pressure(double value) : Scalar(value) {
@@ -37,6 +38,7 @@ Pressure::Pressure(double value) : Scalar(value) {
  *
  * @return    [Pa] the atmospheric pressure
  *
+ * @since 1.6
  * @sa hPa(), kPa(), mbar(), bar(), torr(), atm()
  */
 double Pressure::Pa() const {
@@ -48,6 +50,7 @@ double Pressure::Pa() const {
  *
  * @return    [hPa] the atmospheric pressure
  *
+ * @since 1.6
  * @sa Pa(), kPa(), mbar(), bar(), torr(), atm()
  */
 double Pressure::hPa() const {
@@ -59,6 +62,7 @@ double Pressure::hPa() const {
  *
  * @return    [kPa] the atmospheric pressure
  *
+ * @since 1.6
  * @sa Pa(), hPa(), mbar(), bar(), torr(), atm()
  */
 double Pressure::kPa() const {
@@ -70,6 +74,7 @@ double Pressure::kPa() const {
  *
  * @return    [mbar] the atmospheric pressure
  *
+ * @since 1.6
  * @sa Pa(), hPa(), kPa(), bar(), torr(), atm()
  */
 double Pressure::mbar() const {
@@ -81,6 +86,7 @@ double Pressure::mbar() const {
  *
  * @return    [bar] the atmospheric pressure
  *
+ * @since 1.6
  * @sa Pa(), hPa(), kPa(), mbar(), torr(), atm()
  */
 double Pressure::bar() const {
@@ -92,6 +98,7 @@ double Pressure::bar() const {
  *
  * @return    [torr] the atmospheric pressure (millimeters of Hg).
  *
+ * @since 1.6
  * @sa Pressure::Pa(), Pressure::hPa(), Pressure::kPa(), Pressure::mbar(), Pressure::bar(),
  *     Pressure::atm()
  */
@@ -104,6 +111,7 @@ double Pressure::torr() const {
  *
  * @return    [atm] the atmospheric pressure.
  *
+ * @since 1.6
  * @sa Pa(), hPa(), kPa(), mbar(), bar(), torr()
  */
 double Pressure::atm() const {
@@ -120,6 +128,8 @@ std::string Pressure::SI_unit() const {
  *
  * @param decimals  (optional) [0:16] decimal places to print (default: 3).
  * @return          a new string representation of this pressure in millibars.
+ *
+ * @since 1.6
  */
 std::string Pressure::to_string(int decimals) const {
   char s[40] = {'\0'};
@@ -133,6 +143,7 @@ std::string Pressure::to_string(int decimals) const {
  * @param value   [Pa] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
+ * @since 1.6
  * @sa hPa(), kPa(), mbar(), bar(), torr(), atm()
  */
 Pressure Pressure::Pa(double value) {
@@ -148,6 +159,7 @@ Pressure Pressure::Pa(double value) {
  * @param value   [hPa] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
+ * @since 1.6
  * @sa Pa(), kPa(), mbar(), bar(), torr(), atm()
  */
 Pressure Pressure::hPa(double value) {
@@ -163,6 +175,7 @@ Pressure Pressure::hPa(double value) {
  * @param value   [kPa] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
+ * @since 1.6
  * @sa Pa(), hPa(), mbar(), bar(), torr(), atm()
  */
 Pressure Pressure::kPa(double value) {
@@ -178,6 +191,7 @@ Pressure Pressure::kPa(double value) {
  * @param value   [mbar] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
+ * @since 1.6
  * @sa Pa(), hPa(), kPa(), bar(), torr(), atm()
  */
 Pressure Pressure::mbar(double value) {
@@ -193,6 +207,7 @@ Pressure Pressure::mbar(double value) {
  * @param value   [bar] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
+ * @since 1.6
  * @sa Pa(), hPa(), kPa(), mbar(), torr(), atm()
  */
 Pressure Pressure::bar(double value) {
@@ -208,6 +223,7 @@ Pressure Pressure::bar(double value) {
  * @param value   [torr] atmospheric pressure value in millimeters of Hg.
  * @return        A new pressure object with the specified value.
  *
+ * @since 1.6
  * @sa Pa(), hPa(), kPa(), mbar(), bar(), atm()
  */
 Pressure Pressure::torr(double value) {
@@ -223,6 +239,7 @@ Pressure Pressure::torr(double value) {
  * @param value   [atm] atmospheric pressure value
  * @return        A new pressure object with the specified value.
  *
+ * @since 1.6
  * @sa Pa(), hPa(), kPa(), mbar(), bar(), torr()
  */
 Pressure Pressure::atm(double value) {

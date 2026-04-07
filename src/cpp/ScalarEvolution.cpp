@@ -26,6 +26,8 @@ namespace supernovas {
  * @param value   [?] momentary value
  * @param rate    [?/s] (optional) momentary rate of change in value (default: 0).
  * @param accel   [?/s<sup>2</sup>] (optional) momentary acceleration of value (default: 0).
+ *
+ * @since 1.6
  */
 ScalarEvolution::ScalarEvolution(double value, double rate, double accel)
         : _value(value), _rate(rate), _accel(accel) {
@@ -50,6 +52,7 @@ ScalarEvolution::ScalarEvolution(double value, double rate, double accel)
  * @param offset    time offset from when reference value and derivatives were defined.
  * @return          the extrapolated momentary scalar value at the offset time.
  *
+ * @since 1.6
  * @sa rate(), acceleration()
  */
 double ScalarEvolution::value(const Interval& offset) const {
@@ -63,6 +66,7 @@ double ScalarEvolution::value(const Interval& offset) const {
  * @param offset    time offset from when reference value and derivatives were defined.
  * @return          the extrapolated momentary rate of change at the offset time.
  *
+ * @since 1.6
  * @sa value(), acceleration()
  */
 double ScalarEvolution::rate(const Interval& offset) const {
@@ -74,6 +78,7 @@ double ScalarEvolution::rate(const Interval& offset) const {
  *
  * @return    the acceleration that was defined.
  *
+ * @since 1.6
  * @sa value(), rate()
  */
 double ScalarEvolution::acceleration() const {
@@ -85,6 +90,8 @@ double ScalarEvolution::acceleration() const {
  *
  * @param value   The stationary (unevolving) value
  * @return        a non-evolving scalar evolution instance with the specified stationary value.
+ *
+ * @since 1.6
  */
 ScalarEvolution ScalarEvolution::stationary(double value) {
   ScalarEvolution e(value);
@@ -97,6 +104,8 @@ ScalarEvolution ScalarEvolution::stationary(double value) {
  * Returns a reference to a statically allocated undefined scalar evolution instance.
  *
  * @return    a reference to a static undefined scalar evolution instance.
+ *
+ * @since 1.6
  */
 const ScalarEvolution& ScalarEvolution::undefined() {
   static const ScalarEvolution _undefined = ScalarEvolution();

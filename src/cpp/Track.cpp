@@ -61,6 +61,8 @@ template<class CoordType> void Track<CoordType>::validate() {
  * @param z         the time evolution of redshift, including gravitational effects.
  *                  If it's kinetic only, then you can leave it undefined to let the
  *                  distance evolution determine it automatically.
+ *
+ * @since 1.6
  */
 template<class CoordType> Track<CoordType>::Track(const Time& ref_time, const Interval& range, const ScalarEvolution& lon, const ScalarEvolution& lat,
         const ScalarEvolution& r, const ScalarEvolution& z)
@@ -80,6 +82,7 @@ template<class CoordType> Track<CoordType>::Track(const Time& ref_time, const In
  * @param range     time range of validity around the reference time. Attempts to extrapolate
  *                  outside this interval will produce invalid data.
  *
+ * @since 1.6
  * @sa HorizontalTrack(), EquatorialTrack()
  */
 template<class CoordType> Track<CoordType>::Track(const novas_track *track, const Interval& range)
@@ -101,6 +104,7 @@ template<class CoordType> Track<CoordType>::Track(const novas_track *track, cons
  *
  * @return    the longitudinal time evolution component.
  *
+ * @since 1.6
  * @sa longitude_at(), latitude_evolution(), distance_evolution(), redshift_evolution()
  */
 template<class CoordType> const ScalarEvolution& Track<CoordType>::longitude_evolution() const {
@@ -112,6 +116,7 @@ template<class CoordType> const ScalarEvolution& Track<CoordType>::longitude_evo
  *
  * @return    the latitudinal time evolution component.
  *
+ * @since 1.6
  * @sa latitude_at(), longitude_evolution(), distance_evolution(), redshift_evolution()
  */
 template<class CoordType> const ScalarEvolution& Track<CoordType>::latitude_evolution() const {
@@ -123,6 +128,7 @@ template<class CoordType> const ScalarEvolution& Track<CoordType>::latitude_evol
  *
  * @return    the time evolution of distance.
  *
+ * @since 1.6
  * @sa distance_at(), redshift_evolution(), longitude_evolution(), latitude_evolution()
  */
 template<class CoordType> const ScalarEvolution& Track<CoordType>::distance_evolution() const {
@@ -134,6 +140,7 @@ template<class CoordType> const ScalarEvolution& Track<CoordType>::distance_evol
  *
  * @return    the time evolution of redshift.
  *
+ * @since 1.6
  * @sa redshift_at(), radial_velocity_at(), longitude_evolution(), latitude_evolution(), distance_evolution()
  */
 template<class CoordType> const ScalarEvolution& Track<CoordType>::redshift_evolution() const {
@@ -148,6 +155,7 @@ template<class CoordType> const ScalarEvolution& Track<CoordType>::redshift_evol
  *                data for the given time instant, or else `false` if the time is outside the
  *                range of validity for this trajectory.
  *
+ * @since 1.6
  * @sa reference_time(), range()
  */
 template<class CoordType> bool Track<CoordType>::is_valid_at(const Time& time) const {
@@ -159,6 +167,7 @@ template<class CoordType> bool Track<CoordType>::is_valid_at(const Time& time) c
  *
  * @return  the reference time for this trajectory.
  *
+ * @since 1.6
  * @sa range(), is_valid()
  */
 template<class CoordType> const Time& Track<CoordType>::reference_time() const {
@@ -172,6 +181,7 @@ template<class CoordType> const Time& Track<CoordType>::reference_time() const {
  *
  * @return   the time range of validity around the reference time.
  *
+ * @since 1.6
  * @sa reference_time(), is_valid()
  */
 template<class CoordType> const Interval& Track<CoordType>::range() const {
@@ -185,6 +195,7 @@ template<class CoordType> const Interval& Track<CoordType>::range() const {
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated longitude angle.
  *
+ * @since 1.6
  * @sa unchecked_latitude(), unchecked_distance(), unchecked_redshift()
  */
 template<class CoordType> Angle Track<CoordType>::unchecked_longitude(const Time& time) const {
@@ -201,6 +212,7 @@ template<class CoordType> Angle Track<CoordType>::unchecked_longitude(const Time
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated latitude angle.
  *
+ * @since 1.6
  * @sa unchecked_longitude(), unchecked_distance(), unchecked_redshift()
  */
 template<class CoordType> Angle Track<CoordType>::unchecked_latitude(const Time& time) const {
@@ -217,6 +229,7 @@ template<class CoordType> Angle Track<CoordType>::unchecked_latitude(const Time&
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated distance.
  *
+ * @since 1.6
  * @sa unchecked_redshift(), unchecked_longitude(), unchecked_latitude()
  */
 template<class CoordType> Coordinate Track<CoordType>::unchecked_distance(const Time& time) const {
@@ -233,6 +246,7 @@ template<class CoordType> Coordinate Track<CoordType>::unchecked_distance(const 
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated redshift.
  *
+ * @since 1.6
  * @sa unchecked_distance(), unchecked_longitude(), unchecked_latitude()
  */
 template<class CoordType> double Track<CoordType>::unchecked_redshift(const Time& time) const {
@@ -255,6 +269,7 @@ template<class CoordType> double Track<CoordType>::unchecked_redshift(const Time
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated longitude angle (if valid), or else `std::nullopt`.
  *
+ * @since 1.6
  * @sa latitude_at(), distance_at(), radial_velocity_at(), redshift_at()
  */
 template<class CoordType> Angle Track<CoordType>::longitude_at(const Time& time) const {
@@ -280,6 +295,7 @@ template<class CoordType> Angle Track<CoordType>::longitude_at(const Time& time)
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated latitude angle (if valid), or else `std::nullopt`.
  *
+ * @since 1.6
  * @sa longitude_at(), distance_at(), radial_velocity_at(), redshift_at()
  */
 template<class CoordType> Angle Track<CoordType>::latitude_at(const Time& time) const {
@@ -305,6 +321,7 @@ template<class CoordType> Angle Track<CoordType>::latitude_at(const Time& time) 
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated redshift measure (if valid), or else NAN.
  *
+ * @since 1.6
  * @sa longitude_at(), latitude_at(), distance_at(), radial_velocity_at()
  */
 template<class CoordType> double Track<CoordType>::redshift_at(const Time& time) const {
@@ -330,6 +347,7 @@ template<class CoordType> double Track<CoordType>::redshift_at(const Time& time)
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated distance (if valid), or else `std::nullopt`.
  *
+ * @since 1.6
  * @sa longitude_at(), latitude_at(), radial_velocity_at(), redshift_at()
  */
 template<class CoordType> Coordinate Track<CoordType>::distance_at(const Time& time) const {
@@ -355,6 +373,7 @@ template<class CoordType> Coordinate Track<CoordType>::distance_at(const Time& t
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated radial velocity (if valid), or else `std::nullopt`.
  *
+ * @since 1.6
  * @sa longitude(), latitude(), distance(), redshift_at()
  */
 template<class CoordType> ScalarVelocity Track<CoordType>::radial_velocity_at(const Time& time) const {
@@ -379,6 +398,8 @@ template class Track<Equatorial>;
  *
  * @param track   pointer to a C `novas_track` data structure.
  * @param range   time range of validity around the reference time of the trajectory.
+ *
+ * @since 1.6
  */
 HorizontalTrack::HorizontalTrack(const novas_track *track, const Interval& range)
 : Track(track, range) {
@@ -399,6 +420,7 @@ HorizontalTrack::HorizontalTrack(const novas_track *track, const Interval& range
  *                    If it's kinetic only, then you can leave it undefined to let the
  *                    distance evolution determine it automatically.
  *
+ * @since 1.6
  * @sa from_novas_track(), EquatorialTrack::EquatorialTrack()
  */
 HorizontalTrack::HorizontalTrack(const Time& ref_time, const Interval& range,
@@ -426,6 +448,7 @@ HorizontalTrack::HorizontalTrack(const Time& ref_time, const Interval& range,
  * @return          the momentary extrapolated horizontal coordinates (if valid), or else
  *                  `std::nullopt`.
  *
+ * @since 1.6
  * @sa EquatorialTrack::projected_at()
  */
 Horizontal HorizontalTrack::projected_at(const Time& time) const {
@@ -458,6 +481,7 @@ Horizontal HorizontalTrack::projected_at(const Time& time) const {
  * @param range     time range of validity around the reference time. Attempts to extrapolate
  *                  outside this interval will produce invalid data.
  *
+ * @since 1.6
  * @sa EquatorialTrack::from_novas_track()
  */
 HorizontalTrack HorizontalTrack::from_novas_track(const novas_track *track, const Interval& range) {
@@ -481,6 +505,8 @@ HorizontalTrack HorizontalTrack::from_novas_track(const novas_track *track, cons
  * Returns a reference to a static instance of a standard undefined horizontal track.
  *
  * @return    the reference to a standard undefined horizontal track.
+ *
+ * @since 1.6
  */
 const HorizontalTrack& HorizontalTrack::undefined() {
   static HorizontalTrack _undefined = HorizontalTrack();
@@ -504,6 +530,7 @@ const HorizontalTrack& HorizontalTrack::undefined() {
  * @return          the momentary extrapolated equatorial coordinates (if valid), or else
  *                  `std::nullopt`.
  *
+ * @since 1.6
  * @sa HorizontalTrack::projected_at()
  */
 Equatorial EquatorialTrack::projected_at(const Time& time) const {
@@ -523,6 +550,8 @@ Equatorial EquatorialTrack::projected_at(const Time& time) const {
  *
  * @param track   pointer to a C `novas_track` data structure.
  * @param range   time range of validity around the reference time of the trajectory.
+ *
+ * @since 1.6
  */
 EquatorialTrack::EquatorialTrack(const Equinox& system, const novas_track *track, const Interval& range)
 : Track(track, range), _system(system) {
@@ -561,6 +590,7 @@ EquatorialTrack::EquatorialTrack(const Equinox& system, const novas_track *track
  *                    If it's kinetic only, then you can leave it undefined to let the
  *                    distance evolution determine it automatically.
  *
+ * @since 1.6
  * @sa from_novas_track(), HorizontalTrack::HorizontalTrackTrack()
  */
 EquatorialTrack::EquatorialTrack(const Equinox& system, const Time& ref_time, const Interval& range,
@@ -597,6 +627,7 @@ EquatorialTrack::EquatorialTrack(const Equinox& system, const Time& ref_time, co
  * @param range     time range of validity around the reference time. Attempts to extrapolate
  *                  outside this interval will produce invalid data.
  *
+ * @since 1.6
  * @sa HorizontalTrack::from_novas_track()
  */
 EquatorialTrack EquatorialTrack::from_novas_track(const Equinox& system, const novas_track *track, const Interval& range) {

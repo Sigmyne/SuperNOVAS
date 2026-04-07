@@ -82,6 +82,7 @@ Apparent::Apparent(const Frame& frame, enum novas_reference_system sys, const sk
  * @param rv_ms     [m/s] radial velocity
  * @return          new apparent location on sky with the specified parameters.
  *
+ * @since 1.6
  * @sa from_tod()
  */
 Apparent Apparent::from_cirs(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
@@ -100,6 +101,7 @@ Apparent Apparent::from_cirs(double ra_rad, double dec_rad, const Frame& frame, 
  * @param rv        radial velocity
  * @return          new apparent location on sky with the specified parameters.
  *
+ * @since 1.6
  * @sa from_tod()
  */
 Apparent Apparent::from_cirs(const Angle& ra, const Angle& dec, const Frame& frame, const ScalarVelocity& rv) {
@@ -116,6 +118,7 @@ Apparent Apparent::from_cirs(const Angle& ra, const Angle& dec, const Frame& fra
  * @param rv_ms     [m/s] radial velocity
  * @return          new apparent location on sky with the specified parameters.
  *
+ * @since 1.6
  * @sa from_cirs()
  */
 Apparent Apparent::from_tod(double ra_rad, double dec_rad, const Frame& frame, double rv_ms) {
@@ -135,6 +138,7 @@ Apparent Apparent::from_tod(double ra_rad, double dec_rad, const Frame& frame, d
  * @param rv        radial velocity
  * @return          new apparent location on sky with the specified parameters.
  *
+ * @since 1.6
  * @sa from_cirs()
  */
 Apparent Apparent::from_tod(const Angle& ra, const Angle& dec, const Frame& frame, const ScalarVelocity& rv) {
@@ -146,6 +150,8 @@ Apparent Apparent::from_tod(const Angle& ra, const Angle& dec, const Frame& fram
  *
  * @return      the ovbserving frame (time of observation and observer location) for this
  *              apparent position.
+ *
+ * @since 1.6
  */
 const Frame& Apparent::frame() const {
   return _frame;
@@ -156,6 +162,8 @@ const Frame& Apparent::frame() const {
  * this apparent position.
  *
  * @return    pointer to the NOVAS C sky_pos data used internally.
+ *
+ * @since 1.6
  */
 const sky_pos *Apparent::_sky_pos() const {
   return &_pos;
@@ -172,6 +180,8 @@ const sky_pos *Apparent::_sky_pos() const {
  *
  * @return    the projected position vector of where the source appears to be from the observer's
  *            point of view.
+ *
+ * @since 1.6
  */
 Position Apparent::xyz() const {
   Position p(_pos.r_hat, _pos.dis * Unit::au);
@@ -185,6 +195,7 @@ Position Apparent::xyz() const {
  *
  * @return    the radiual velocity with respect to the observer
  *
+ * @since 1.6
  * @sa redshift()
  */
 ScalarVelocity Apparent::radial_velocity() const {
@@ -199,6 +210,7 @@ ScalarVelocity Apparent::radial_velocity() const {
  *
  * @return    the redshift measure with respect to the observer.
  *
+ * @since 1.6
  * @sa radial_velocity()
  */
 double Apparent::redshift() const {
@@ -215,6 +227,8 @@ double Apparent::redshift() const {
  *  - gravitational bending around the massive Solar-system bodies.
  *
  * @return the apparent (light-time) distance of the source from the observer
+ *
+ * @since 1.6
  */
 Coordinate Apparent::distance() const {
   Coordinate d(_pos.dis * Unit::au);
@@ -229,6 +243,7 @@ Coordinate Apparent::distance() const {
  *
  * @return    True-of-date (TOD) equatorial coordinates in the observing frame.
  *
+ * @since 1.6
  * @sa cirs(), ecliptic(), galactic(), to_horizontal()
  */
 Equatorial Apparent::equatorial() const {
@@ -245,6 +260,7 @@ Equatorial Apparent::equatorial() const {
  *
  * @return    the CIRS equatorial coordinates in the observing frame.
  *
+ * @since 1.6
  * @sa equatorial(), ecliptic(), galactic(), to_horizontal()
  */
 Equatorial Apparent::cirs() const {
@@ -259,6 +275,7 @@ Equatorial Apparent::cirs() const {
  *
  * @return    the apparent ecliptic coordinates with respect to the true equinox of date.
  *
+ * @since 1.6
  * @sa equatorial(), galactic(), to_horizontal()
  * @sa Equatorial::to_ecliptic()
  */
@@ -274,6 +291,7 @@ Ecliptic Apparent::ecliptic() const {
  *
  * @return    the apparent galactic coordinates for this position.
  *
+ * @since 1.6
  * @sa equatorial(), ecliptic(), to_horizontal()
  * @sa Equatorial::to_galactic()
  */
@@ -302,6 +320,7 @@ Galactic Apparent::galactic() const {
  * @return    the unrefracted (astrometric) horizontal position on the Earth-bound observer's
  *            sky, or else Horizontal::undefined() if the observer is not on or near Earth's surface.
  *
+ * @since 1.6
  * @sa equatorial(), ecliptic(), galactic()
  * @sa Horizontal::to_apparent(), GeodeticObserver
  */
@@ -329,6 +348,8 @@ Horizontal Apparent::to_horizontal() const {
  *
  * @return        The position referenced to the given Solar-system body or place, and antedated
  *                for light travel time for this apparent position.
+ *
+ * @since 1.6
  */
 AstrometricPosition Apparent::astrometric_position() const {
   double p[3] = {0.0};
@@ -344,6 +365,8 @@ AstrometricPosition Apparent::astrometric_position() const {
  *
  * @param decimals    (optional) Number of decimal places to print after the decimal point (default: 3).
  * @return            a string description of these apparent positions.
+ *
+ * @since 1.6
  */
 std::string Apparent::to_string(int decimals) const {
   return "Apparent " + equatorial().to_string(NOVAS_SEP_UNITS_AND_SPACES, decimals) + " in " + _frame.to_string();
@@ -359,6 +382,7 @@ std::string Apparent::to_string(int decimals) const {
  * @return        new apparent positions constructed with the parameters. It may be invalid if
  *                the input values themselves are invalid.
  *
+ * @since 1.6
  * @sa from_cirs_sky_pos(), from_tod()
  */
 Apparent Apparent::from_tod_sky_pos(const Frame& frame, const sky_pos *pos) {
@@ -385,6 +409,7 @@ Apparent Apparent::from_tod_sky_pos(const Frame& frame, const sky_pos *pos) {
  * @return        new apparent positions constructed with the parameters. It may be invalid if
  *                the input values themselves are invalid.
  *
+ * @since 1.6
  * @sa from_tod_sky_pos(), from_cirs()
  */
 Apparent Apparent::from_cirs_sky_pos(const Frame& frame, const sky_pos *pos) {
@@ -407,6 +432,8 @@ Apparent Apparent::from_cirs_sky_pos(const Frame& frame, const sky_pos *pos) {
  * position may be used inside any object that is invalid itself.
  *
  * @return    a reference to the static standard invalid coordinates.
+ *
+ * @since 1.6
  */
 const Apparent& Apparent::undefined() {
   static const Apparent _invalid = Apparent();

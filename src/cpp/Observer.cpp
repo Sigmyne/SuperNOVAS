@@ -38,6 +38,8 @@ Observer::Observer(enum novas_observer_place type, const Site& site, const Posit
  * observer, but concrete subclasses should override that to return their onw copies.
  *
  * @return  a copy of this observer class, which may be an invalid observer (default).
+ *
+ * @since 1.6
  */
 const Observer *Observer::copy() const {
   return new Observer();
@@ -48,6 +50,7 @@ const Observer *Observer::copy() const {
  *
  * @return    `true` is this observer is an instance of GeodeticObserver, otherwise `false`.
  *
+ * @since 1.6
  * @sa GeodeticObserver, is_geocentric()
  */
 bool Observer::is_geodetic() const {
@@ -59,6 +62,7 @@ bool Observer::is_geodetic() const {
  *
  * @return    `true` if this observer is an instance of GeocentricObserver, otherwise `false`.
  *
+ * @since 1.6
  * @sa GeocentricObserver, is_geodetic()
  */
 bool Observer::is_geocentric() const {
@@ -69,6 +73,8 @@ bool Observer::is_geocentric() const {
  * Returns the underlying NOVAS C `observer` data structure.
  *
  * @return    pointer to the underlying C `observer` data structure.
+ *
+ * @since 1.6
  */
 const observer * Observer::_novas_observer() const {
   return &_observer;
@@ -78,6 +84,8 @@ const observer * Observer::_novas_observer() const {
  * Returns the observer type.
  *
  * @return   the observer type constant for this observer
+ *
+ * @since 1.6
  */
 enum novas_observer_place Observer::type() const {
   return _observer.where;
@@ -95,6 +103,7 @@ enum novas_observer_place Observer::type() const {
  *                  accuracy planetary position provider was specified, or because either this
  *                  observer or the time itself were invalid.
  *
+ * @since 1.6
  * @sa reduced_accuracy_frame_at()
  * @sa set_planet_provider_hp(), novas_use_calceph(), novas_use_calceph_planets(), novas_use_cspice()
  */
@@ -117,6 +126,7 @@ Frame Observer::frame_at(const Time& time, enum novas_accuracy accuracy) const {
  * @param time      Astrometric time of observation
  * @return          A reduced accuracy observing frame for the specified time of observation.
  *
+ * @since 1.6
  * @sa frame_at()
  */
 Frame Observer::reduced_accuracy_frame_at(const Time& time) const {
@@ -135,6 +145,7 @@ Frame Observer::reduced_accuracy_frame_at(const Time& time) const {
  * @return            The ICRS geometric geocentric position vector of this observer at the
  *                    specified time.
  *
+ * @since 1.6
  * @sa gcrs_velocity_at()
  */
 Position Observer::gcrs_position_at(const Time& time, enum novas_accuracy accuracy) const {
@@ -155,6 +166,7 @@ Position Observer::gcrs_position_at(const Time& time, enum novas_accuracy accura
  * @return            The ICRS geometric geocentric velocity vector of this observer at the
  *                    specified time.
  *
+ * @since 1.6
  * @sa gcrs_position_at()
  */
 Velocity Observer::gcrs_velocity_at(const Time& time, enum novas_accuracy accuracy) const {
@@ -233,6 +245,7 @@ Velocity Observer::gcrs_velocity_at(const Time& time, enum novas_accuracy accura
  *                    time. The _u_ and _v_ directions are aligned with the local East and North
  *                    w.r.t. the coordinate system of choice (default: ICRS).
  *
+ * @since 1.6
  * @sa AstrometricPosition::to_interferometric()
  */
 Interferometric Observer::to_interferometric(const Apparent& phase_center, enum novas_reference_system system) const {
@@ -272,6 +285,8 @@ Interferometric Observer::to_interferometric(const Apparent& phase_center, enum 
  * Returns a string representation of this observer.
  *
  * @return    a new string with a brief description of this observer.
+ *
+ * @since 1.6
  */
 std::string Observer::to_string() const {
   return "Observer type " + std::to_string(_observer.where);
@@ -285,6 +300,7 @@ std::string Observer::to_string() const {
  *                obtained from the IERS bulletins or data service.
  * @return        a new observer instance for the given observing site.
  *
+ * @since 1.6
  * @sa moving_on_earth(), in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
  */
 GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
@@ -305,6 +321,7 @@ GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
  *                    observation, such as obtained from the IERS bulletins or data service.
  * @return            a new observer instance for the given moving observer.
  *
+ * @since 1.6
  * @sa on_earth(), in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
  */
 GeodeticObserver Observer::moving_on_earth(const Site& geodetic, const Velocity& itrs_vel, const EOP& eop) {
@@ -325,6 +342,7 @@ GeodeticObserver Observer::moving_on_earth(const Site& geodetic, const Velocity&
  * @param direction     azimuthal direction of motion (from North, measured to the East).
  * @param vertical      (optional) momentary vertical speed of observer (default: 0).
  *
+ * @since 1.6
  * @sa Site::enu_to_itrf()
  */
 GeodeticObserver Observer::moving_on_earth(const Site& site, const EOP& eop, const ScalarVelocity& horizontal, const Angle& direction, const ScalarVelocity& vertical) {
@@ -341,6 +359,7 @@ GeodeticObserver Observer::moving_on_earth(const Site& site, const EOP& eop, con
  * @param vel       momentary velocity of the observer relative to the geocenter.
  * @return          a new observer instance for the observer in Earth orbit.
  *
+ * @since 1.6
  * @sa on_earth(), in_solar_system(), at_geocenter(), at_ssb()
  */
 GeocentricObserver Observer::in_earth_orbit(const Position& pos, const Velocity& vel) {
@@ -355,6 +374,7 @@ GeocentricObserver Observer::in_earth_orbit(const Position& pos, const Velocity&
  *
  * @return         a new fictitious observer located at the geocenter.
  *
+ * @since 1.6
  * @sa on_earth(), in_earth_orbit(), in_solar_system(), at_ssb()
  */
 GeocentricObserver Observer::at_geocenter() {
@@ -370,6 +390,7 @@ GeocentricObserver Observer::at_geocenter() {
  *                (SSB).
  * @return        a new observer instance for the given Solar-system location.
  *
+ * @since 1.6
  * @sa at_ssb(), at_geocenter(), on_earth(), in_earth_orbit()
  */
 SolarSystemObserver Observer::in_solar_system(const Position& pos, const Velocity& vel) {
@@ -384,6 +405,7 @@ SolarSystemObserver Observer::in_solar_system(const Position& pos, const Velocit
  *
  * @return        a new fictitious observer located at the Solar-System Barycenter (SSB).
  *
+ * @since 1.6
  * @sa in_solar_system(), at_geocenter(), on_earth(), in_earth_orbit()
  */
 SolarSystemObserver Observer::at_ssb() {
@@ -394,6 +416,7 @@ SolarSystemObserver Observer::at_ssb() {
  * Returns a reference to a statically defined standard invalid observer. This invalid
  * observer may be used inside any object that is invalid itself.
  *
+ * @since 1.6
  * @return    a reference to a static standard invalid observer.
  */
 const Observer &Observer::undefined() {
@@ -404,6 +427,7 @@ const Observer &Observer::undefined() {
 /**
  * Instantiates a new observer located at the geocenter.
  *
+ * @since 1.6
  */
 GeocentricObserver::GeocentricObserver()
 : Observer(NOVAS_OBSERVER_AT_GEOCENTER) {
@@ -415,6 +439,8 @@ GeocentricObserver::GeocentricObserver()
  *
  * @param pos       momentary GCRS position of the observer relative to the geocenter.
  * @param vel       momentary GCRS velocity of the observer relative to the geocenter.
+ *
+ * @since 1.6
  */
 GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
 : Observer(NOVAS_OBSERVER_IN_EARTH_ORBIT, Site::undefined(), pos, vel) {
@@ -432,6 +458,8 @@ GeocentricObserver::GeocentricObserver(const Position& pos, const Velocity& vel)
  * Returns a pointer to a newly allocated copy of this geocentric observer instance.
  *
  * @return    pointer to new copy of this geocentric observer instance.
+ *
+ * @since 1.6
  */
 const Observer *GeocentricObserver::copy() const {
   return new GeocentricObserver(*this);
@@ -446,6 +474,7 @@ bool GeocentricObserver::is_geocentric() const {
  *
  * @return    the momentary ICRS geocentric position
  *
+ * @since 1.6
  * @sa gcrs_velocity()
  */
 Position GeocentricObserver::gcrs_position() const {
@@ -460,6 +489,7 @@ Position GeocentricObserver::gcrs_position() const {
  *
  * @return    the momentary ICRS geocentric velocity
  *
+ * @since 1.6
  * @sa gcrs_position()
  */
 Velocity GeocentricObserver::gcrs_velocity() const {
@@ -473,6 +503,8 @@ Velocity GeocentricObserver::gcrs_velocity() const {
  * Returns a string representation of this geocentric observer.
  *
  * @return    a string representation of this observer.
+ *
+ * @since 1.6
  */
 std::string GeocentricObserver::to_string() const {
   Position pos = gcrs_position();
@@ -487,6 +519,7 @@ std::string GeocentricObserver::to_string() const {
 /**
  * Instantiates a new stationary observer located at the Solar-System Barycenter (SSB).
  *
+ * @since 1.6
  */
 SolarSystemObserver::SolarSystemObserver()
 : SolarSystemObserver(Position::origin(), Velocity::stationary()) {
@@ -502,6 +535,8 @@ SolarSystemObserver::SolarSystemObserver()
  *                (SSB).
  * @param vel     momentary ICRS velocity of the observer relative to the Solar-system Barycenter
  *                (SSB).
+ *
+ * @since 1.6
  */
 SolarSystemObserver::SolarSystemObserver(const Position& pos, const Velocity& vel)
 : Observer(NOVAS_SOLAR_SYSTEM_OBSERVER, Site::undefined(), pos, vel) {
@@ -521,6 +556,8 @@ SolarSystemObserver::SolarSystemObserver(const Position& pos, const Velocity& ve
  * Returns a pointer to a newly allocated copy of this observer instance at a Solar-system location.
  *
  * @return    pointer to new copy of thus Solar-system based observer instance.
+ *
+ * @since 1.6
  */
 const Observer *SolarSystemObserver::copy() const {
   return new SolarSystemObserver(*this);
@@ -532,6 +569,7 @@ const Observer *SolarSystemObserver::copy() const {
  *
  * @return      the momentary position of the observer relative to hte SSB.
  *
+ * @since 1.6
  * @sa ssb_velocity()
  */
 Position SolarSystemObserver::ssb_position() const {
@@ -547,6 +585,7 @@ Position SolarSystemObserver::ssb_position() const {
  *
  * @return      the momentary velocity of the observer relative to hte SSB.
  *
+ * @since 1.6
  * @sa ssb_position()
  */
 Velocity SolarSystemObserver::ssb_velocity() const {
@@ -573,6 +612,8 @@ std::string SolarSystemObserver::to_string() const {
  * @param eop     Mean (preferably interpolated) Earth Orientation Parameters (EOP) appropriate
  *                around the time of observation, such as obtained from the IERS bulletins or
  *                data service.
+ *
+ * @since 1.6
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
 : Observer(NOVAS_OBSERVER_ON_EARTH, site, Position::origin(), Velocity::stationary()), _eop(eop) {
@@ -596,6 +637,7 @@ GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop)
  *                around the time of observation, such as obtained from the IERS bulletins or
  *                data service.
  *
+ * @since 1.6
  * @sa Site::enu_to_itrf()
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const EOP& eop)
@@ -626,6 +668,7 @@ GeodeticObserver::GeodeticObserver(const Site& site, const Velocity& vel, const 
  * @param direction     azimuthal direction of motion (from North, measured to the East).
  * @param vertical      (optional) momentary vertical speed of observer (default: 0).
  *
+ * @since 1.6
  * @sa Site::enu_to_itrf()
  */
 GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop, const ScalarVelocity& horizontal, const Angle& direction, const ScalarVelocity& vertical)
@@ -656,6 +699,8 @@ GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop, const Scala
  * Returns a pointer to a newly allocated copy of this geodetic (Earth-based) observer instance.
  *
  * @return    pointer to new copy of this geodetic (Earth-based) observer instance.
+ *
+ * @since 1.6
  */
 const Observer *GeodeticObserver::copy() const {
   return new GeodeticObserver(*this);
@@ -670,6 +715,7 @@ bool GeodeticObserver::is_geodetic() const {
  *
  * @return    the observing site (fixed or momentary).
  *
+ * @since 1.6
  * @sa velocity()
  */
 Site GeodeticObserver::site() const {
@@ -687,6 +733,7 @@ Site GeodeticObserver::site() const {
  *
  * @return    the momentary ITRS surface velocity vector of the moving observer.
  *
+ * @since 1.6
  * @sa enu_velocity(), Site::itrs_to_enu()
  */
 Velocity GeodeticObserver::itrs_velocity() const {
@@ -703,6 +750,7 @@ Velocity GeodeticObserver::itrs_velocity() const {
  * @return    the momentary surface velocity vector of the moving observer in the East-North-Up
  *            (ENU) directions at the current location.
  *
+ * @since 1.6
  * @sa itrs_velocity(), Site::itrs_to_enu()
  */
 Velocity GeodeticObserver::enu_velocity() const {
@@ -758,6 +806,8 @@ Velocity GeodeticObserver::gcrs_velocity_at(const Time &time, enum novas_accurac
  * @param accuracy    (ooptional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  * @return            The equivalent geocentric observer place and movement at the specified instant of
  *                    time.
+ *
+ * @since 1.6
  */
 GeocentricObserver GeodeticObserver::to_geocentric_at(const Time& time, enum novas_accuracy accuracy) const {
   GeocentricObserver gc(gcrs_position_at(time, accuracy), gcrs_velocity_at(time, accuracy));
@@ -772,6 +822,7 @@ GeocentricObserver GeodeticObserver::to_geocentric_at(const Time& time, enum nov
  * @return    the mean Earth Orientation Parameters (EOP) defined for this observer, not including
  *            libration and ocean tides.
  *
+ * @since 1.6
  * @sa eop_at()
  */
 const EOP& GeodeticObserver::mean_eop() const {
@@ -785,6 +836,7 @@ const EOP& GeodeticObserver::mean_eop() const {
  * @param time    Astrometric time for which to apply diurnal corrections
  * @return        EOP corrected for libration and ocean tides at the specified time.
  *
+ * @since 1.6
  * @sa mean_eop()
  */
 EOP GeodeticObserver::eop_at(const Time& time) const {
@@ -798,6 +850,8 @@ EOP GeodeticObserver::eop_at(const Time& time) const {
  * Returns a string representation of this Earth-based observer location.
  *
  * @return    a new string that describes this observer.
+ *
+ * @since 1.6
  */
 std::string GeodeticObserver::to_string() const {
   Velocity vel = enu_velocity();

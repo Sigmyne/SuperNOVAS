@@ -22,6 +22,8 @@ namespace supernovas {
  *
  * @param longitude_rad   [rad] longitude coordinate
  * @param latitude_rad    [rad] latitude coordinate
+ *
+ * @since 1.6
  */
 Spherical::Spherical(double longitude_rad, double latitude_rad)
 : _lon(longitude_rad), _lat(latitude_rad) {
@@ -42,6 +44,8 @@ Spherical::Spherical(double longitude_rad, double latitude_rad)
  *
  * @param longitude   longitude coordinate
  * @param latitude    latitude coordinate
+ *
+ * @since 1.6
  */
 Spherical::Spherical(const Angle& longitude, const Angle& latitude)
 : Spherical(longitude.rad(), latitude.rad()) {}
@@ -65,6 +69,7 @@ Spherical::Spherical(const Angle& longitude, const Angle& latitude)
  * @param lat         string representation of the declination coordinate as DMS or decimal
  *                    degrees.
  *
+ * @since 1.6
  * @sa novas_str_degrees() for details on string representation that can be parsed.
  * @sa novas_parse_degrees() for more managed parsing from strings.
  */
@@ -78,6 +83,8 @@ Spherical::Spherical(const std::string& lon, const std::string& lat)
  *
  * @param other   the reference spherical coordinates
  * @return        the angular distance of these coordinates to/from the argument.
+ *
+ * @since 1.6
  */
 Angle Spherical::distance_to(const Spherical& other) const {
   Angle a(novas_sep(_lon.deg(), _lat.deg(), other._lon.deg(), other._lat.deg()) * Unit::deg);
@@ -91,6 +98,7 @@ Angle Spherical::distance_to(const Spherical& other) const {
  *
  * @return    the equivalent rectanguar position vector.
  *
+ * @since 1.6
  * @sa Position::to_spherical()
  */
 Position Spherical::xyz(const Coordinate& distance) const {
@@ -112,6 +120,7 @@ Position Spherical::xyz(const Coordinate& distance) const {
  *
  * @return    the reference to the longitude coordinate stored internally.
  *
+ * @since 1.6
  * @sa latitude(), distance()
  */
 const Angle& Spherical::longitude() const {
@@ -123,6 +132,7 @@ const Angle& Spherical::longitude() const {
  *
  * @return    the reference to the latitude coordinate stored internally.
  *
+ * @since 1.6
  * @sa longitude(), distance()
  */
 const Angle& Spherical::latitude() const {
@@ -138,6 +148,8 @@ const Angle& Spherical::latitude() const {
  * @param decimals    (optional) the number of decimal places to print for the seconds
  *                    (default: 3)
  * @return    a new string with the human-readable representation of these spherical coordinates.
+ *
+ * @since 1.6
  */
 std::string Spherical::to_string(enum novas_separator_type separator, int decimals) const {
   return _lon.to_string(separator, decimals) + " " + _lat.to_string(separator, decimals);

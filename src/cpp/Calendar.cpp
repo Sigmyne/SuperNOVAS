@@ -33,6 +33,8 @@ namespace supernovas {
  *                  that precede the calendar reform, for so called proleptic Gregorian dates.
  *                  Accordingly, ISO 8601 timestamps are always expressed in the Gregorian
  *                  calendar, withour exception.
+ *
+ * @since 1.6
  */
 Calendar::Calendar(enum novas_calendar_type type) : _type(type) {
   _valid = true;
@@ -44,6 +46,8 @@ Calendar::Calendar(enum novas_calendar_type type) : _type(type) {
  *
  * @return          The type of calendar, e.g. NOVAS_GREGORIAN_CALENDAR,
  *                  NOVAS_ROMAN_CALENDAR, or NOVAS_ASTRONOMICAL calendar.
+ *
+ * @since 1.6
  */
 enum novas_calendar_type Calendar::type() const {
   return _type;
@@ -54,6 +58,7 @@ enum novas_calendar_type Calendar::type() const {
  *
  * @return    a Gregorian calendar instance
  *
+ * @since 1.6
  * @sa roman(), astronomical()
  */
 Calendar Calendar::gregorian() {
@@ -65,6 +70,7 @@ Calendar Calendar::gregorian() {
  *
  * @return    a Roman / Julian calendar instance
  *
+ * @since 1.6
  * @sa gregorian(), astronomical()
  */
 Calendar Calendar::roman() {
@@ -78,8 +84,8 @@ Calendar Calendar::roman() {
  *
  * @return    an astronomical calendar / conventional calendar of date instance.
  *
- * @sa Calendar::roman()
- * @sa Calendar::gregorian()
+ * @since 1.6
+ * @sa roman(), gregorian()
  */
 Calendar Calendar::astronomical() {
   return Calendar(NOVAS_ASTRONOMICAL_CALENDAR);
@@ -94,6 +100,7 @@ Calendar Calendar::astronomical() {
  * @param time    time of day
  * @return        a date instance for the specified date in this calendar.
  *
+ * @since 1.6
  * @sa CalendarDate::CalendarDate(), date(), parse_date()
  */
 CalendarDate Calendar::date(int year, int month, int day, const TimeAngle& time) const {
@@ -109,6 +116,7 @@ CalendarDate Calendar::date(int year, int month, int day, const TimeAngle& time)
  * @param jd    [day] Julian Day
  * @return      a new calendar date, in this calendar, corresponding to the specified Julian date.
  *
+ * @since 1.6
  * @sa CalendarDate::CalendarDate(), date(), parse_date()
  */
 CalendarDate Calendar::date(double jd) const {
@@ -125,6 +133,7 @@ CalendarDate Calendar::date(double jd) const {
  * @param nanos   [ns] sub-second time component
  * @return        a new calendar date, in this calendar, corresponding to the specified UNIX time.
  *
+ * @since 1.6
  * @sa date(), date(double)
  */
 CalendarDate Calendar::date(time_t t, long nanos) const {
@@ -138,6 +147,7 @@ CalendarDate Calendar::date(time_t t, long nanos) const {
  * @return      a new calendar date, in this calendar, corresponding to the specified astronomical
  *              time.
  *
+ * @since 1.6
  * @sa date(), parse_date()
  */
 CalendarDate Calendar::date(const struct timespec *ts) const {
@@ -160,6 +170,7 @@ CalendarDate Calendar::date(const struct timespec *ts) const {
  * @return      A new calendar date, in this calendar, or else CalendarDate::undefined() if the
  *              string date could not be parsed.
  *
+ * @since 1.6
  * @sa CalendarDate::to_string(), date()
  * @sa novas_parse_date(), novas_parse_ido_date(), novas_parse_date_format() for more managed
  *     parsing from strings.
@@ -177,6 +188,8 @@ CalendarDate Calendar::parse_date(const std::string& str, enum novas_date_format
  * Returns a string representation of this type of calendar
  *
  * @return    A string representation of the calendar, such as "Gregorian calendar".
+ *
+ * @since 1.6
  */
 std::string Calendar::to_string() const {
   switch(_type) {
@@ -198,6 +211,7 @@ std::string Calendar::to_string() const {
  * @param day         [day] calendar day-of-month [1:31]
  * @param time        time of day component.
  *
+ * @since 1.6
  * @sa Calendar::date()
  */
 CalendarDate::CalendarDate(const Calendar& calendar, int year, int month, int day, const TimeAngle& time)
@@ -215,6 +229,7 @@ CalendarDate::CalendarDate(const Calendar& calendar, int year, int month, int da
  * @param calendar     calendar, in which the date is specified.
  * @param jd           [day] Julian date (in the timescale of preference).
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 CalendarDate::CalendarDate(const Calendar& calendar, double jd)
@@ -237,6 +252,9 @@ CalendarDate::CalendarDate(const Calendar& calendar, double jd)
  *
  * @param r   the offset interval, on the righ-hand-side of the + operator.
  * @return    a new calendar date, at the specified time offset from this one.
+ *
+ * @since 1.6
+ * @sa operator-()
  */
 CalendarDate CalendarDate::operator+(const Interval& r) const {
   CalendarDate d = CalendarDate(calendar(), jd() + r.days());
@@ -251,6 +269,9 @@ CalendarDate CalendarDate::operator+(const Interval& r) const {
  *
  * @param r   the offset interval, on the righ-hand-side of the - operator.
  * @return    a new calendar date, at the specified time offset, backwards in time, from this one.
+ *
+ * @since 1.6
+ * @sa operator+()
  */
 CalendarDate CalendarDate::operator-(const Interval& r) const {
   CalendarDate d(calendar(), jd() - r.days());
@@ -265,6 +286,8 @@ CalendarDate CalendarDate::operator-(const Interval& r) const {
  *
  * @param r   the other calendar date, on the right-hand-side of the - operator.
  * @return    the time difference (interval) between this calendar date and the argument.
+ *
+ * @since 1.6
  */
 Interval CalendarDate::operator-(const CalendarDate& r) const {
   Interval dt((jd() - r.jd()) * Unit::day);
@@ -278,6 +301,9 @@ Interval CalendarDate::operator-(const CalendarDate& r) const {
  *
  * @param date    the other date to compare to this one.
  * @return        true if this date precedes the other calendar date, or else false.
+ *
+ * @since 1.6
+ * @sa operator<=(), operator>()
  */
 bool CalendarDate::operator<(const CalendarDate& date) const {
   return jd() < date.jd();
@@ -288,6 +314,9 @@ bool CalendarDate::operator<(const CalendarDate& date) const {
  *
  * @param date    the other date to compare to this one.
  * @return        true if this date is after the other calendar date, or else false.
+ *
+ * @since 1.6
+ * @sa operator>=(), operator<()
  */
 bool CalendarDate::operator>(const CalendarDate& date) const {
   return date < *this;
@@ -298,6 +327,9 @@ bool CalendarDate::operator>(const CalendarDate& date) const {
  *
  * @param date    the other date to compare to this one.
  * @return        true if this date is the same or before the other calendar date, or else false.
+ *
+ * @since 1.6
+ * @sa operator<(), operator>=()
  */
 bool CalendarDate::operator<=(const CalendarDate& date) const {
   return (jd() - date.jd()) * Unit::day < Unit::ms;
@@ -308,6 +340,9 @@ bool CalendarDate::operator<=(const CalendarDate& date) const {
  *
  * @param date    the other date to compare to this one.
  * @return        true if this date is the same or after the other calendar date, or else false.
+ *
+ * @since 1.6
+ * @sa operator>(), operator<=(),
  */
 bool CalendarDate::operator>=(const CalendarDate& date) const {
   return (date.jd() - jd()) * Unit::day < Unit::ms;
@@ -322,7 +357,8 @@ bool CalendarDate::operator>=(const CalendarDate& date) const {
  * @return          `true` if this date is the same as the other calendar date, within the
  *                  specified tolerance, or else `false`.
  *
- * @sa equals(), operator==()
+ * @since 1.6
+ * @sa operator==(), operator!=()
  */
 bool CalendarDate::equals(const CalendarDate& date, double seconds) const {
   return fabs(jd() - date.jd()) * Unit::day < fabs(seconds);
@@ -337,7 +373,8 @@ bool CalendarDate::equals(const CalendarDate& date, double seconds) const {
  * @return          `true` if this date is the same as the other calendar date, within the
  *                  specified tolerance, or else `false`.
  *
- * @sa equals(), operator==()
+ * @since 1.6
+ * @sa operator==(), operator!=()
  */
 bool CalendarDate::equals(const CalendarDate& date, const Interval& precision) const {
   return equals(date, precision.seconds());
@@ -350,6 +387,7 @@ bool CalendarDate::equals(const CalendarDate& date, const Interval& precision) c
  * @return          `true` if this date is the same as the other calendar date, within 1 ms, or
  *                  else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 bool CalendarDate::operator==(const CalendarDate& date) const {
@@ -363,6 +401,7 @@ bool CalendarDate::operator==(const CalendarDate& date) const {
  * @return          `true` if this date differs from the other calendar date, by more than 1
  *                  ms, or else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 bool CalendarDate::operator!=(const CalendarDate& date) const {
@@ -375,6 +414,7 @@ bool CalendarDate::operator!=(const CalendarDate& date) const {
  * @return    [day] the Julian Date corresponding to this calendar date. Note, that Julian dates
  *            start at noon, not midnight.
  *
+ * @since 1.6
  * @sa mjd()
  */
 double CalendarDate::jd() const {
@@ -387,6 +427,7 @@ double CalendarDate::jd() const {
  * @return    [day] the Modified Julian Day (MJD) corresponding to this calendar date. Modified
  *            Julian days start at midnight.
  *
+ * @since 1.6
  * @sa mjd()
  */
 double CalendarDate::mjd() const {
@@ -399,6 +440,7 @@ double CalendarDate::mjd() const {
  * @return    [yr] the calendar year component. For X BCE, it returns 1 - X. I.e., 45 BCE is
  *            returned as -44.
  *
+ * @since 1.6
  * @sa month(), day_of_year()
  */
 int CalendarDate::year() const {
@@ -410,6 +452,7 @@ int CalendarDate::year() const {
  *
  * @return      [month] calendar month [1:12]
  *
+ * @since 1.6
  * @sa month_name(), short_month_name(), year(), day_of_month()
  */
 int CalendarDate::month() const {
@@ -421,6 +464,7 @@ int CalendarDate::month() const {
  *
  * @return    the day of year number, starting from 1.
  *
+ * @since 1.6
  * @sa year(), day_of_month(), day_of_week()
  */
 int CalendarDate::day_of_year() const {
@@ -432,6 +476,7 @@ int CalendarDate::day_of_year() const {
  *
  * @return    [day] day of month component, starting from 1
  *
+ * @since 1.6
  * @sa month(), day_of_year(), day_of_week()
  */
 int CalendarDate::day_of_month() const {
@@ -443,6 +488,7 @@ int CalendarDate::day_of_month() const {
  *
  * @return    [day] the day of the week stating from 1 (Monday) to 7 (Sunday)
  *
+ * @since 1.6
  * @sa day_name(), short_day_name(), day_of_month(), day_of_year()
  */
 int CalendarDate::day_of_week() const {
@@ -453,6 +499,8 @@ int CalendarDate::day_of_week() const {
  * Returns the time-of-dat component of this calendar date.
  *
  * @return    reference to the the time of day component
+ *
+ * @since 1.6
  */
 const TimeAngle& CalendarDate::time_of_day() const {
   return _time_of_day;
@@ -463,6 +511,7 @@ const TimeAngle& CalendarDate::time_of_day() const {
  *
  * @return    the full name of the month, e.g. "January".
  *
+ * @since 1.6
  * @sa short_month_name(), month()
  */
 const std::string& CalendarDate::month_name() const {
@@ -483,6 +532,7 @@ const std::string& CalendarDate::month_name() const {
  *
  * @return    the full name of the month, e.g. "Jan".
  *
+ * @since 1.6
  * @sa month_name(), month()
  */
 const std::string& CalendarDate::short_month_name() const {
@@ -501,6 +551,7 @@ const std::string& CalendarDate::short_month_name() const {
  *
  * @return    the full name of the day of the week, e.g. "Wednesday".
  *
+ * @since 1.6
  * @sa short_day_name(), day_of_week()
  */
 const std::string& CalendarDate::day_name() const {
@@ -515,6 +566,7 @@ const std::string& CalendarDate::day_name() const {
  *
  * @return    the full name of the day of the week, e.g. "Wed".
  *
+ * @since 1.6
  * @sa day_name(), day_of_week()
  */
 const std::string& CalendarDate::short_day_name() const {
@@ -531,6 +583,7 @@ const std::string& CalendarDate::short_day_name() const {
  * @return            0 if successful, or else -1 if the argument is NULL (errno will be
  *                    set to EINVAL).
  *
+ * @since 1.6
  * @sa year(), month(), day_of_year(), day_of_month(), day_of_week(), time_of_day()
  */
 int CalendarDate::break_down(struct tm *tm) const {
@@ -557,6 +610,8 @@ int CalendarDate::break_down(struct tm *tm) const {
  * Returns the UNIX time for this calendar date
  *
  * @return    [s] UNIX time, that is seconds since 1 Jan 1970.
+ *
+ * @since 1.6
  */
 time_t CalendarDate::unix_time() const {
   return UNIX_UTC_J2000 + (time_t) round((_jd - NOVAS_JD_J2000) * Unit::day);
@@ -568,6 +623,7 @@ time_t CalendarDate::unix_time() const {
  * @param calendar    a calendar in which to express this date
  * @return            this date, expressed in the specified other calendar.
  *
+ * @since 1.6
  * @sa operator>>(Calendar&)
  */
 CalendarDate CalendarDate::to_calendar(const Calendar& calendar) const {
@@ -583,6 +639,7 @@ CalendarDate CalendarDate::to_calendar(const Calendar& calendar) const {
  * @param calendar    a calendar in which to express this date
  * @return            this date, expressed in the specified other calendar.
  *
+ * @since 1.6
  * @sa to_calendar(Calendar&)
  */
 CalendarDate CalendarDate::operator>>(const Calendar& calendar) const {
@@ -601,6 +658,8 @@ CalendarDate CalendarDate::operator>>(const Calendar& calendar) const {
  * @param dut1            [s] the UT1 - UTC time difference for the date
  * @param timescale       the astronomical timescale in which this calendar date is defined.
  * @return                an astronomical time instance for this date and input parameters.
+ *
+ * @since 1.6
  */
 Time CalendarDate::to_time(int leap_seconds, double dut1, novas_timescale timescale) const {
   Time t(jd(), leap_seconds, dut1, timescale);
@@ -618,6 +677,8 @@ Time CalendarDate::to_time(int leap_seconds, double dut1, novas_timescale timesc
  * @param eop             Earth Orientation Parameters (EOP) for this date.
  * @param timescale       the astronomical timescale in which this calendar date is defined.
  * @return                an astronomical time instance for this date and input parameters.
+ *
+ * @since 1.6
  */
 Time CalendarDate::to_time(const EOP& eop, novas_timescale timescale) const {
   return to_time(eop.leap_seconds(), eop.dUT1().seconds(), timescale);
@@ -629,6 +690,7 @@ Time CalendarDate::to_time(const EOP& eop, novas_timescale timescale) const {
  *
  * @return      the string representation of the date (only) in long form.
  *
+ * @since 1.6
  * @sa to_date_string(), to_string()
  */
 std::string CalendarDate::to_long_date_string() const {
@@ -645,6 +707,7 @@ std::string CalendarDate::to_long_date_string() const {
  *
  * @return      the string representation of the date (only) in the specified format.
  *
+ * @since 1.6
  * @sa to_long_date_string(), to_string()
  */
 std::string CalendarDate::to_date_string(enum novas_date_format fmt) const {
@@ -675,6 +738,7 @@ std::string CalendarDate::to_date_string(enum novas_date_format fmt) const {
  * @param decimals  (optional) Number of decimal places to print for the seconds (default: 3)
  * @return          The string representation of the date.
  *
+ * @since 1.6
  * @sa to_string(int), to_date_string(), to_long_date_string()
  */
 std::string CalendarDate::to_string(enum novas_date_format fmt, int decimals) const {
@@ -688,6 +752,7 @@ std::string CalendarDate::to_string(enum novas_date_format fmt, int decimals) co
  * @param decimals  Number of decimal places to print for the seconds.
  * @return          The string representation of the date.
  *
+ * @since 1.6
  * @sa to_date_string(), to_long_date_string()
  */
 std::string CalendarDate::to_string(int decimals) const {
@@ -698,6 +763,7 @@ std::string CalendarDate::to_string(int decimals) const {
  * Returns a reference to a statically defined standard undefined / invalid calendar date
  * instance.
  *
+ * @since 1.6
  * @return  a reference to the standard undefined calendar date instance.
  */
 const CalendarDate& CalendarDate::undefined() {

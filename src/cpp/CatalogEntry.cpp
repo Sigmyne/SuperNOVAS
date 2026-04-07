@@ -71,6 +71,7 @@ void CatalogEntry::validate(const char *loc) {
  *                  any name that is appropriate for their application.
  * @param coords    Catalog coordinates (equatorial)
  *
+ * @since 1.6
  * @sa proper_motion(), parallax(), distance(), radial_velocity(), v_lsr(), redshift(), catalog()
  */
 CatalogEntry::CatalogEntry(const std::string &name, const Equatorial& coords) : _sys(coords.system()) {
@@ -100,6 +101,7 @@ CatalogEntry::CatalogEntry(const std::string &name, const Equatorial& coords) : 
  *                  any name that is appropriate for their application.
  * @param coords    Catalog coordinates (ecliptic)
  *
+ * @since 1.6
  * @sa proper_motion(), parallax(), distance(), radial_velocity(), v_lsr(), redshift(), catalog()
  */
 CatalogEntry::CatalogEntry(const std::string &name, const Ecliptic& coords)
@@ -125,6 +127,7 @@ CatalogEntry::CatalogEntry(const std::string &name, const Ecliptic& coords)
  *                  any name that is appropriate for their application.
  * @param coords    Catalog coordinates (galactic)
  *
+ * @since 1.6
  * @sa proper_motion(), parallax(), distance(), radial_velocity(), v_lsr(), redshift(), catalog()
  */
 CatalogEntry::CatalogEntry(const std::string &name, const Galactic& coords)
@@ -143,6 +146,8 @@ CatalogEntry::CatalogEntry(const std::string &name, const Galactic& coords)
  *
  * @param e         NOVAS C `cat_entry` data structure (it is not referenced)
  * @param system    the equatorial coordinate system in which the `cat_entry` data was defined.
+ *
+ * @since 1.6
  */
 CatalogEntry::CatalogEntry(cat_entry e, const Equinox& system)
 : _entry(e), _sys(system) {
@@ -154,6 +159,7 @@ CatalogEntry::CatalogEntry(cat_entry e, const Equinox& system)
  *
  * @return    the equatorial coordinate system of this catalog entry
  *
+ * @since 1.6
  * @sa ra(), dec(), distance(), parallax(), radial_velocity(), v_lsr(), redshift()
  */
 const Equinox& CatalogEntry::system() const {
@@ -165,6 +171,8 @@ const Equinox& CatalogEntry::system() const {
  * the standard C API.
  *
  * @return    a pointer to the underlying NOVAS C `cat_entry` data structure.
+ *
+ * @since 1.6
  */
 const cat_entry* CatalogEntry::_cat_entry() const {
   return &_entry;
@@ -175,6 +183,7 @@ const cat_entry* CatalogEntry::_cat_entry() const {
  *
  * @return    the given catalog name.
  *
+ * @since 1.6
  * @sa number()
  */
 std::string CatalogEntry::name() const {
@@ -186,6 +195,7 @@ std::string CatalogEntry::name() const {
  *
  * @return    the catalog right-ascention angle as defined in the catalog system.
  *
+ * @since 1.6
  * @sa system(), equatorial()
  * @sa dec(), distance(), parallax(), radial_velocity(), v_lsr(), redshift()
  */
@@ -201,6 +211,7 @@ TimeAngle CatalogEntry::ra() const {
  *
  * @return    the catalog declination angle as defined in the catalog system.
  *
+ * @since 1.6
  * @sa system(), equatorial()
  * @sa ra(), distance(), parallax(), radial_velocity(), v_lsr(), redshift()
  */
@@ -217,6 +228,7 @@ Angle CatalogEntry::dec() const {
  * @return    the LSR velocity of the source (or the LSR velocity of the SSB if the source motion
  *            was not explicitly defined).
  *
+ * @since 1.6
  * @sa system(), radial_velocity(), redshift()
  * @sa ra(), dec(), distance(), parallax()
  */
@@ -234,9 +246,9 @@ ScalarVelocity CatalogEntry::v_lsr() const {
  * @return    the barycentric radial velocity (relative the SSB), or 0.0 if the source motion was
  *            not explicitly defined.
  *
+ * @since 1.6
  * @sa system(), v_lsr(), redshift()
  * @sa ra(), dec(), distance(), parallax()
- *
  */
 ScalarVelocity CatalogEntry::radial_velocity() const {
   ScalarVelocity v(_entry.radialvelocity * Unit::km_per_s);
@@ -252,6 +264,7 @@ ScalarVelocity CatalogEntry::radial_velocity() const {
  * @return    the nominal redshift (rel. to the SSB) of the source, or 0.0 if the source motion
  *            was not explicitly defined.
  *
+ * @since 1.6
  * @sa system(), radial_velocity(), v_lsr()
  * @sa ra(), dec(), distance(), parallax()
  */
@@ -264,6 +277,7 @@ double CatalogEntry::redshift() const {
  *
  * @return    the distance of the source, or 1 Gpc if it was not explicitly defined.
  *
+ * @since 1.6
  * @sa system(), parallax()
  * @sa ra(), dec(), radial_velocity(), v_lsr(), redshift()
  */
@@ -279,6 +293,7 @@ Coordinate CatalogEntry::distance() const {
  *
  * @return    the parallax of the source, or 1 &mu;as if not explicitly defined.
  *
+ * @since 1.6
  * @sa system(), distance()
  * @sa ra(), dec(), radial_velocity(), v_lsr(), redshift()
  */
@@ -294,6 +309,7 @@ Angle CatalogEntry::parallax() const {
  *
  * @return    the equatorial coordinates of the source in the catalog system
  *
+ * @since 1.6
  * @sa system(), ra(), dec(), distance()
  */
 Equatorial CatalogEntry::equatorial() const {
@@ -307,6 +323,8 @@ Equatorial CatalogEntry::equatorial() const {
  * Returns a new catalog source based created from this catalog entry.
  *
  * @return    a new catalog source for this entry.
+ *
+ * @since 1.6
  */
 CatalogSource CatalogEntry::to_source() const {
   CatalogSource s(*this);
@@ -323,6 +341,7 @@ CatalogSource CatalogEntry::to_source() const {
  * @param dec   [rad/s] Proper motion in the declination direction
  * @return      itself
  *
+ * @since 1.6
  * @sa parallax(), distance(), radial_velocity(), v_lsr(), redshift(), catalog()
  * @sa system()
  */
@@ -353,6 +372,7 @@ CatalogEntry& CatalogEntry::proper_motion(double ra, double dec) {
  * @param radians   [rad] Parallax angle
  * @return          itself
  *
+ * @since 1.6
  * @sa distance()
  * @sa system(), radial_velocity(), v_lsr(), redshift(), proper_motion(), catalog()
  */
@@ -383,6 +403,7 @@ CatalogEntry& CatalogEntry::parallax(double radians) {
  * @param angle     Parallax angle
  * @return          itself
  *
+ * @since 1.6
  * @sa distance()
  * @sa system(), radial_velocity(), v_lsr(), redshift(), proper_motion(), catalog()
  */
@@ -397,6 +418,7 @@ CatalogEntry& CatalogEntry::parallax(const Angle& angle) {
  * @param meters    [m] source (light-time) distance
  * @return          itself
  *
+ * @since 1.6
  * @sa parallax()
  * @sa system(),  radial_velocity(), v_lsr(), redshift(), proper_motion(), catalog()
  */
@@ -427,6 +449,7 @@ CatalogEntry& CatalogEntry::distance(double meters) {
  * @param dist      source (light-time) distance
  * @return          itself
  *
+ * @since 1.6
  * @sa parallax()
  * @sa system(), radial_velocity(), v_lsr(), redshift(), proper_motion(), catalog()
  */
@@ -441,6 +464,7 @@ CatalogEntry& CatalogEntry::distance(const Coordinate& dist) {
  * @param v_ms      [m/s] LSR velocity
  * @return          itself
  *
+ * @since 1.6
  * @sa radial_velocity(), redshift()
  * @sa system(), distance(), parallax(), proper_motion(), catalog()
  */
@@ -471,6 +495,7 @@ CatalogEntry& CatalogEntry::v_lsr(double v_ms) {
  * @param v         LSR velocity
  * @return          itself
  *
+ * @since 1.6
  * @sa radial_velocity(), redshift()
  * @sa system(), distance(), parallax(), proper_motion(), catalog()
  */
@@ -486,6 +511,7 @@ CatalogEntry& CatalogEntry::v_lsr(const ScalarVelocity& v) {
  * @param v_ms      [m/s] radial velocity with respect to the Solar System Barycenter (SSB)
  * @return          itself
  *
+ * @since 1.6
  * @sa v_lsr(), redshift()
  * @sa system(), distance(), parallax(), proper_motion(), catalog()
  */
@@ -517,6 +543,7 @@ CatalogEntry& CatalogEntry::radial_velocity(double v_ms) {
  * @param v         radial velocity with respect to the Solar System Barycenter (SSB)
  * @return          itself
  *
+ * @since 1.6
  * @sa v_lsr(), redshift()
  * @sa system(), distance(), parallax(), proper_motion(), catalog()
  */
@@ -531,6 +558,7 @@ CatalogEntry& CatalogEntry::radial_velocity(const ScalarVelocity& v) {
  * @param z         barycentric redshift measure.
  * @return          itself
  *
+ * @since 1.6
  * @sa radial_velocity(), v_lsr()
  * @sa system(), distance(), parallax(), proper_motion(), catalog()
  */
@@ -552,6 +580,8 @@ CatalogEntry& CatalogEntry::redshift(double z) {
  *
  * @param decimals    [0:16] number of decimal places to print for coordinates.
  * @return            a string describing this catalog entry.
+ *
+ * @since 1.6
  */
 std::string CatalogEntry::to_string(int decimals) const {
   return "CatalogEntry '" + name() + "': " + equatorial().to_string(NOVAS_SEP_UNITS_AND_SPACES, decimals) + ", rv "

@@ -47,6 +47,7 @@ static bool is_valid_parms(double dUT1,  enum novas_timescale timescale) {
  * @param dUT1          [s] UT1 - UTC time difference, e.g. from the IERS Bulletins or service (default: 0.0).
  * @param timescale     (optional) Astronomical timescale (default: TT).
  *
+ * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
  */
 Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
@@ -64,6 +65,7 @@ Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timesc
  * @param eop           Earth Orientation Parameters (EOP) values, e.g. obtained from IERS.
  * @param timescale     (optional) Astronomical timescale (default: TT).
  *
+ * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
  */
 Time::Time(double jd, const EOP& eop, enum novas_timescale timescale)
@@ -79,6 +81,7 @@ Time::Time(double jd, const EOP& eop, enum novas_timescale timescale)
  * @param dUT1          [s] UT1 - UTC time difference, e.g. from the IERS Bulletins or service (default: 0.0).
  * @param timescale     (optional) Astronomical timescale (default: TT).
  *
+ * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
  */
 Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
@@ -98,6 +101,7 @@ Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_times
  * @param eop           Earth Orientation Parameters (EOP) values, e.g. obtained from IERS.
  * @param timescale     (optional) Astronomical timescale (default: TT).
  *
+ * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
  */
 Time::Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale)
@@ -112,6 +116,7 @@ Time::Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale)
  *                      (default: 0.0).
  * @param timescale     (optional) Astronomical timescale (default: TT).
  *
+ * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
  * @sa novas_parse_date(), novas_parse_ido_date(), novas_parse_date_format(),
  *     novas_parse_timescale() for more managed parsing from strings.
@@ -130,6 +135,7 @@ Time::Time(const std::string& timestamp, int leap_seconds, double dUT1, enum nov
  * @param eop           Earth Orientation Parameters (EOP) values, e.g. obtained from IERS.
  * @param timescale     (optional) Astronomical timescale (default: TT).
  *
+ * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
  * @sa novas_parse_date(), novas_parse_ido_date(), novas_parse_date_format(),
  *     novas_parse_timescale() for more managed parsing from strings.
@@ -144,6 +150,7 @@ Time::Time(const std::string& timestamp, const EOP& eop, enum novas_timescale ti
  * @param leap_seconds  [s] leap seconds, that is TAI - UTC (default: 0)
  * @param dUT1          [s] UT1 - UTC time difference, e.g. from the IERS Bulletins or service (default: 0.0).
  *
+ * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
  */
 Time::Time(const struct timespec *t, int leap_seconds, double dUT1) {
@@ -161,6 +168,7 @@ Time::Time(const struct timespec *t, int leap_seconds, double dUT1) {
  * @param t             A precision POSIX standard UTC timestamp.
  * @param eop           Earth Orientation Parameters (EOP) values, e.g. obtained from IERS.
  *
+ * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
  */
 Time::Time(const struct timespec *t, const EOP& eop)
@@ -172,6 +180,7 @@ Time::Time(const struct timespec *t, const EOP& eop)
  *
  * @param t   pointer to the SuperNOVAS C astrometric time specification data structure.
  *
+ * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
  */
 Time::Time(const novas_timespec *t) {
@@ -204,7 +213,8 @@ Time::Time(const novas_timespec *t) {
  * @return            a new time that is offset from this one by the specified interval in the
  *                    reverse direction (backwards in time).
  *
- * @sa oerator+(), shifted()
+ * @since 1.6
+ * @sa operator+(), shifted()
  */
 Time Time::operator+(double seconds) const {
   Time t = shifted(seconds);
@@ -221,7 +231,8 @@ Time Time::operator+(double seconds) const {
  * @param offset    the offset interval (in backwards direction).
  * @return          a new time that is offset from this one by the specified interval.
  *
- * @sa oerator-(), shifted()
+ * @since 1.6
+ * @sa operator-(), shifted()
  */
 Time Time::operator+(const Interval& offset) const {
   Time t = *this + offset.seconds();
@@ -239,7 +250,8 @@ Time Time::operator+(const Interval& offset) const {
  * @return            a new time that is offset from this one by the specified interval in the
  *                    reverse direction (backwards in time).
  *
- * @sa oerator+(), shifted()
+ * @since 1.6
+ * @sa operator+(), shifted()
  */
 Time Time::operator-(double seconds) const {
   Time t = shifted(-seconds);
@@ -257,6 +269,7 @@ Time Time::operator-(double seconds) const {
  * @return           a new time that is offset from this one by the specified interval in the
  *                    reverse direction (backwards in time).
  *
+ * @since 1.6
  * @sa operator+(), shifted()
  */
 Time Time::operator-(const Interval& offset) const {
@@ -274,7 +287,8 @@ Time Time::operator-(const Interval& offset) const {
  * @return    the difference between this time and the argument in regular Earth-based
  *            timescales.
  *
- * offset_from()
+ * @since 1.6
+ * @sa offset_from()
  */
 Interval Time::operator-(const Time& r) const {
   Interval dt = offset_from(r);
@@ -291,6 +305,7 @@ Interval Time::operator-(const Time& r) const {
  * @return    `true` if this time instance is before the specified other time, or else
  *            `false`.
  *
+ * @since 1.6
  * @sa operator<=(), operator>(), operator>=()
  */
 bool Time::operator<(const Time& r) const {
@@ -305,6 +320,7 @@ bool Time::operator<(const Time& r) const {
  * @return    `true` if this time instance is after the specified other time, or else
  *            `false`.
  *
+ * @since 1.6
  * @sa operator>=(), operator<(), operator<=()
  */
 bool Time::operator>(const Time& r) const {
@@ -331,6 +347,7 @@ bool Time::operator<=(const Time& r) const {
  * @return    `true` if this time instance is the same as or after the specified other time, or
  *            else `false`.
  *
+ * @since 1.6
  * @sa operator<(), operator>=(), operator>()
  */
 bool Time::operator>=(const Time& r) const {
@@ -345,6 +362,7 @@ bool Time::operator>=(const Time& r) const {
  * @return            `true` if the two times are equal within the specified precision, otherwise
  *                    `false`.
  *
+ * @since 1.6
  * @sa operator==(), operator!=()
  */
 bool Time::equals(const Time& time, double precision) const {
@@ -359,6 +377,7 @@ bool Time::equals(const Time& time, double precision) const {
  * @return            `true` if the two times are equal within the specified precision, otherwise
  *                    `false`.
  *
+ * @since 1.6
  * @sa operator==(), operator!=()
  */
 bool Time::equals(const Time& time, const Interval& precision) const {
@@ -371,6 +390,7 @@ bool Time::equals(const Time& time, const Interval& precision) const {
  * @param time        the other time
  * @return            `true` if the two times are equal within 1 &mu;s, otherwise `false`.
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 bool Time::operator==(const Time& time) const {
@@ -383,6 +403,7 @@ bool Time::operator==(const Time& time) const {
  * @param time        the other time
  * @return            `true` if the two times differ by more than 1 &mu;s.
  *
+ * @since 1.6
  * @sa operator==(), operator!=()
  */
 bool Time::operator!=(const Time& time) const {
@@ -393,6 +414,8 @@ bool Time::operator!=(const Time& time) const {
  * Returns the underlying C astrometric time specification data structure.
  *
  * @return    a pointer to the underlying C time specification data structure.
+ *
+ * @since 1.6
  */
 const novas_timespec * Time::_novas_timespec() const {
   return &_ts;
@@ -404,6 +427,7 @@ const novas_timespec * Time::_novas_timespec() const {
  * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            [day] the precise Julian date in the requested timescale.
  *
+ * @since 1.6
  * @sa jd_day(), mjd()
  */
 double Time::jd(enum novas_timescale timescale) const {
@@ -419,6 +443,7 @@ double Time::jd(enum novas_timescale timescale) const {
  * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            [day] the integer Julian day in the requested timescale.
  *
+ * @since 1.6
  * @sa jd_frac(), mjd_day(), mjd(), jd()
  */
 long Time::jd_day(enum novas_timescale timescale) const {
@@ -436,6 +461,7 @@ long Time::jd_day(enum novas_timescale timescale) const {
  * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            [day] the integer Modified Julian Day (MJD) in the requested timescale.
  *
+ * @since 1.6
  * @sa jd_frac(), jd_day(), mjd(), jd()
  */
 long Time::mjd_day(enum novas_timescale timescale) const {
@@ -455,6 +481,7 @@ long Time::mjd_day(enum novas_timescale timescale) const {
  * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            [day] the fractional part of the Julian Day in the requested timescale.
  *
+ * @since 1.6
  * @sa mjd_frac(), jd_day(), jd()
  */
 double Time::jd_frac(enum novas_timescale timescale) const {
@@ -471,6 +498,7 @@ double Time::jd_frac(enum novas_timescale timescale) const {
  * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            [day] the fractional part of the Julian Day in the requested timescale.
  *
+ * @since 1.6
  * @sa jd_frac(), mjd_day(), mjd()
  */
 double Time::mjd_frac(enum novas_timescale timescale) const {
@@ -487,6 +515,7 @@ double Time::mjd_frac(enum novas_timescale timescale) const {
  * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            [day] the precise Modifie Julian Date (MJD) in the requested timescale.
  *
+ * @since 1.6
  * @sa mjd_day(), jd()
  */
 double Time::mjd(enum novas_timescale timescale) const {
@@ -503,6 +532,8 @@ double Time::mjd(enum novas_timescale timescale) const {
  * @param[out] nanos    [ns] (optional) pointer to value in which to return the sub-second
  *                      component, or NULL if not required.
  * @return              [s] the integer UNIX seconds (UTC) of this time instance.
+ *
+ * @since 1.6
  */
 time_t Time::unix_time(long *nanos) const {
   return novas_get_unix_time(&_ts, nanos);
@@ -513,6 +544,7 @@ time_t Time::unix_time(long *nanos) const {
  *
  * @return      [s] the leap seconds (TAI - UTC).
  *
+ * @since 1.6
  * @sa dUT1()
  */
 int Time::leap_seconds() const {
@@ -525,6 +557,7 @@ int Time::leap_seconds() const {
  *
  * @return      [s] The UT1 - UTC time difference.
  *
+ * @since 1.6
  * @sa leap_seconds()
  */
 Interval Time::dUT1() const {
@@ -542,6 +575,7 @@ Interval Time::dUT1() const {
  * @return            The difference in the time expressed in the specified timescale vs the
  *                    reference timescale.
  *
+ * @since 1.6
  * @sa Frame::clock_skew()
  */
 Interval Time::timescale_offset(enum novas_timescale timescale, enum novas_timescale ref_scale) const {
@@ -555,6 +589,8 @@ Interval Time::timescale_offset(enum novas_timescale timescale, enum novas_times
  * Returns the Julian coordinate epoch year of this time instance.
  *
  * @return      [yr] the Julian coordinate epoch (e.g. 2000.0 for J2000).
+ *
+ * @since 1.6
  */
 double Time::epoch() const {
   return 2000.0 + (jd() - NOVAS_JD_J2000) / NOVAS_JULIAN_YEAR_DAYS;
@@ -567,6 +603,7 @@ double Time::epoch() const {
  *                      NOVAS_REDUCED_ACCURACY (1) for &ms-level precison.
  * @return              the GST / GaST time-angle.
  *
+ * @since 1.6
  * @sa gmst(), lst(), era()
  */
 TimeAngle Time::gst(enum novas_accuracy accuracy) const {
@@ -581,6 +618,7 @@ TimeAngle Time::gst(enum novas_accuracy accuracy) const {
  *
  * @return    the GMST time-angle
  *
+ * @since 1.6
  * @sa gst(), lst()
  */
 TimeAngle Time::gmst() const {
@@ -599,6 +637,7 @@ TimeAngle Time::gmst() const {
  *                    NOVAS_REDUCED_ACCURACY (1) for &ms-level precison.
  * @return            the LST / LaST time-angle.
  *
+ * @since 1.6
  * @sa gst(), era()
  */
 TimeAngle Time::lst(const Site& site, enum novas_accuracy accuracy) const {
@@ -614,6 +653,8 @@ TimeAngle Time::lst(const Site& site, enum novas_accuracy accuracy) const {
  * convention.
  *
  * @return            The Earth Rotation Angle (ERA) as a time-angle.
+ *
+ * @since 1.6
  */
 TimeAngle Time::era() const {
   TimeAngle ta(novas_era(_ts.ijd_tt, _ts.fjd_tt - _ts.ut1_to_tt) * Unit::deg);
@@ -628,6 +669,7 @@ TimeAngle Time::era() const {
  * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            The time of day in the requested timescale.
  *
+ * @since 1.6
  * @sa jd_time_of_day()
  */
 TimeAngle Time::time_of_day(enum novas_timescale timescale) const {
@@ -643,6 +685,8 @@ TimeAngle Time::time_of_day(enum novas_timescale timescale) const {
  * @param timescale   (optional) the timescale in which to return the result (default: UTC).
  * @return            The day-of-week index [1:7] in the same timescale as the input date. 1:Monday
  *                    ... 7:Sunday, or else 0 if the input Julian Date is NAN.
+ *
+ * @since 1.6
  */
 int Time::day_of_week(enum novas_timescale timescale) const {
   int n = novas_day_of_week(jd(timescale));
@@ -659,6 +703,7 @@ int Time::day_of_week(enum novas_timescale timescale) const {
  *              90&deg;: 1st quarter, +/- 180&deg; Full Moon, -90&deg;: 3rd quarter, or NAN if the
  *              solution failed to converge (errno will be set to ECANCELED).
  *
+ * @since 1.6
  * @sa next_moon_phase()
  */
 Angle Time::moon_phase() const {
@@ -675,6 +720,7 @@ Angle Time::moon_phase() const {
  *                -90&deg;: 3rd quarter.
  * @return        The next time the Moon will be in the specified phase.
  *
+ * @since 1.6
  * @sa moon_phase()
  */
 Time Time::next_moon_phase(const Angle& phase) const {
@@ -690,6 +736,7 @@ Time Time::next_moon_phase(const Angle& phase) const {
  * @param timescale   (optional) the timescale in which to represent time (default: UTC).
  * @return            a new string containing the timestamp, or "<invalid time>".
  *
+ * @since 1.6
  * @sa to_iso_timestamp(), to_epoch_string()
  */
 std::string Time::to_string(enum novas_timescale timescale) const {
@@ -706,6 +753,7 @@ std::string Time::to_string(enum novas_timescale timescale) const {
  *
  * @return            a new string containing the ISO 8601 timestamp, or "<invalid time>".
  *
+ * @since 1.6
  * @sa to_string()
  */
 std::string Time::to_iso_string() const {
@@ -724,6 +772,8 @@ std::string Time::to_iso_string() const {
  *
  * @return        a new string representing the Julian coordinate epoch of this time with the
  *                requested precision, or "<invalid epoch>"
+ *
+ * @since 1.6
  */
 std::string Time::to_epoch_string(int decimals) const {
   if(!is_valid())
@@ -752,6 +802,7 @@ std::string Time::to_epoch_string(int decimals) const {
  * @param timescale     (optional) timescale in which MJD was specified (default: TT)
  * @return              a new astrometric time instance for the given MJD date.
  *
+ * @since 1.6
  * @sa Time(), now(), j2000(), b1950(), b1900(), hip()
  */
 Time Time::from_mjd(double mjd, int leap_seconds, double dUT1, enum novas_timescale timescale) {
@@ -770,6 +821,7 @@ Time Time::from_mjd(double mjd, int leap_seconds, double dUT1, enum novas_timesc
  * @param timescale     (optional) timescale in which MJD was specified (default: TT)
  * @return              a new astrometric time instance for the given MJD date.
  *
+ * @since 1.6
  * @sa Time(), now(), j2000(), b1950(), b1900(), hip()
  */
 Time Time::from_mjd(double mjd, const EOP& eop, enum novas_timescale timescale) {
@@ -785,6 +837,7 @@ Time Time::from_mjd(double mjd, const EOP& eop, enum novas_timescale timescale) 
  * @param eop           Earth Orientation Parameters (EOP) values, e.g. obtained from IERS.
  * @return              a new astrometric time corresponding to the current system time.
  *
+ * @since 1.6
  * @sa Time(), from_mjd(), j2000(), b1950(), b1900(), hip()
  */
 Time Time::now(const EOP& eop) {
@@ -806,7 +859,8 @@ Time Time::now(const EOP& eop) {
  * @return            the difference between this time and the argument time in the specified
  *                    timescale.
  *
- * operator-(), shifted()
+ * @since 1.6
+ * @sa operator-(), shifted()
  */
 Interval Time::offset_from(const Time& time, enum novas_timescale timescale) const {
   static const char *fn = "Time::offset_from()";
@@ -834,7 +888,8 @@ Interval Time::offset_from(const Time& time, enum novas_timescale timescale) con
  * @return           a new time that is offset from this one by the specified interval in the
  *                   specified timescale.
  *
- * @sa oerator+(), offset_from()
+ * @since 1.6
+ * @sa operator+(), offset_from()
  */
 Time Time::shifted(double seconds, enum novas_timescale timescale) const {
   if(!is_valid() || !isfinite(seconds)) {
@@ -865,7 +920,8 @@ Time Time::shifted(double seconds, enum novas_timescale timescale) const {
  * @return           a new time that is offset from this one by the specified interval in the
  *                   specified timescale
  *
- * @sa oerator+(), offset_from()
+ * @since 1.6
+ * @sa operator+(), offset_from()
  */
 Time Time::shifted(const Interval& offset, enum novas_timescale timescale) const {
   return shifted(offset.seconds(), timescale);
@@ -879,6 +935,8 @@ Time Time::shifted(const Interval& offset, enum novas_timescale timescale) const
  *                    astronomical)
  * @param timescale   (optional) timescale in which MJD was specified (default: TT)
  * @return            the calendar date in the desired calendar and timescale of choice.
+ *
+ * @since 1.6
  */
 CalendarDate Time::to_calendar_date(const Calendar& calendar, enum novas_timescale timescale) const {
  CalendarDate d = calendar.date(jd(timescale));
@@ -894,6 +952,8 @@ CalendarDate Time::to_calendar_date(const Calendar& calendar, enum novas_timesca
  *
  * @param timescale   timescale in which MJD was specified (default: TT)
  * @return            the astronomical calendar date in the timescale of choice.
+ *
+ * @since 1.6
  */
 CalendarDate Time::to_calendar_date(enum novas_timescale timescale) const {
    return to_calendar_date(Calendar::astronomical(), timescale);
@@ -904,6 +964,7 @@ CalendarDate Time::to_calendar_date(enum novas_timescale timescale) const {
  *
  * @return    the astrometric time for J2000, that is 12:00:00 TT, 1 Jan 2000.
  *
+ * @since 1.6
  * @sa b1950, b1900(), hip()
  */
 const Time& Time::j2000() {
@@ -916,6 +977,7 @@ const Time& Time::j2000() {
  *
  * @return    the astrometric time for the Hipparcos catalog epoch, that is J1991.25.
  *
+ * @since 1.6
  * @sa j2000(), b1950, b1900()
  */
 const Time& Time::hip() {
@@ -928,6 +990,7 @@ const Time& Time::hip() {
  *
  * @return    the astrometric time for B1950.
  *
+ * @since 1.6
  * @sa b1900(), j2000(), hip()
  */
 const Time& Time::b1950() {
@@ -940,6 +1003,7 @@ const Time& Time::b1950() {
  *
  * @return    the astrometric time for B1900.
  *
+ * @since 1.6
  * @sa b1950(), j2000(), hip()
  */
 const Time& Time::b1900() {
@@ -952,6 +1016,8 @@ const Time& Time::b1900() {
  * time may be used inside any object that is invalid itself.
  *
  * @return    a reference to a static standard invalid astrometric time.
+ *
+ * @since 1.6
  */
 const Time& Time::undefined() {
   static const Time _invalid = Time();

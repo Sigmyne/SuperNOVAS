@@ -19,6 +19,8 @@ namespace supernovas {
  * Returns a pointer to the NOVAS C `novas_object` data structure that stores data internally.
  *
  * @return    a pointer to the underlying NOVAS C `novas_object` data structure.
+ *
+ * @since 1.6
  */
 const struct novas_object *Source::_novas_object() const {
   return &_object;
@@ -30,6 +32,7 @@ const struct novas_object *Source::_novas_object() const {
  *
  * @return    the given source name.
  *
+ * @since 1.6
  * @sa set_case_sensitive()
  */
 std::string Source::name() const {
@@ -40,6 +43,8 @@ std::string Source::name() const {
  * Returns the type of this source
  *
  * @return    the source type constant
+ *
+ * @since 1.6
  */
 enum novas_object_type Source::type() const {
   return _object.type;
@@ -82,6 +87,7 @@ enum novas_object_type Source::type() const {
  * @return          the apparent position of the source, which may be invalid if the position
  *                  cannot be determined.
  *
+ * @since 1.6
  * @sa Planet::approx_apparent_in(), geometric_in()
  */
 Apparent Source::apparent_in(const Frame& frame) const {
@@ -138,6 +144,7 @@ Apparent Source::apparent_in(const Frame& frame) const {
  * @return          the geometric (3D) position and velocity of the source, which may be invalid
  *                  if the position cannot be determined.
  *
+ * @since 1.6
  * @sa apparent_in()
  */
 Geometric Source::geometric_in(const Frame& frame, enum novas_reference_system system) const {
@@ -171,6 +178,7 @@ Geometric Source::geometric_in(const Frame& frame, enum novas_reference_system s
  *                  observation. For observers non near Earth's surface, `Time::undefined()` will
  *                  be returned.
  *
+ * @since 1.6
  * @sa sets_below(), transits_in()
  */
 Time Source::rises_above(const Angle& el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
@@ -188,6 +196,7 @@ Time Source::rises_above(const Angle& el, const Frame &frame, RefractionModel re
  * @return          the next time the source transits after the frame's observing time, or else
  *                  `Time::undefined()` if the observer is not near Earth's surface .
  *
+ * @since 1.6
  * @sa sets_below(), transits_in()
  */
 Time Source::transits_in(const Frame &frame) const {
@@ -213,6 +222,7 @@ Time Source::transits_in(const Frame &frame) const {
  *                  observation. For observers not near Earth's surface, `Time::undefined()` will
  *                  be returned.
  *
+ * @since 1.6
  * @sa rises_above(), transits_in()
  */
 Time Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref, const Weather& weather) const {
@@ -240,6 +250,7 @@ Time Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref
  *                        location, around the time of observation, if possible, or else
  *                        `EquatorialTrack::undefined()`.
  *
+ * @since 1.6
  * @sa horizontal_track()
  */
 EquatorialTrack Source::equatorial_track(const Frame &frame, double range_seconds) const {
@@ -268,6 +279,7 @@ EquatorialTrack Source::equatorial_track(const Frame &frame, double range_second
  *                        location, around the time of observation, if possible, or else
  *                        `EquatorialTrack::undefined()`.
  *
+ * @since 1.6
  * @sa horizontal_track()
  */
 EquatorialTrack Source::equatorial_track(const Frame &frame, const Interval& range) const {
@@ -293,6 +305,7 @@ EquatorialTrack Source::equatorial_track(const Frame &frame, const Interval& ran
  *                        location, around the time of observation, if possible, or else
  *                        `HorizontalTrack::undefined()`.
  *
+ * @since 1.6
  * @sa equatorial_track()
  */
 HorizontalTrack Source::horizontal_track(const Frame &frame, RefractionModel ref, const Weather& weather) const {
@@ -321,6 +334,7 @@ HorizontalTrack Source::horizontal_track(const Frame &frame, RefractionModel ref
  * @param frame     observing frame (observer location and time of observation)
  * @return          the Sun's distance from the source.
  *
+ * @since 1.6
  * @sa moon_angle(), angle_to()
  */
 Angle Source::sun_angle(const Frame& frame) const {
@@ -334,6 +348,7 @@ Angle Source::sun_angle(const Frame& frame) const {
  * @param frame     observing frame (observer location and time of observation)
  * @return          the Moon's distance from the source.
  *
+ * @since 1.6
  * @sa sun_angle(), angle_to()
  */
 Angle Source::moon_angle(const Frame& frame) const {
@@ -348,6 +363,7 @@ Angle Source::moon_angle(const Frame& frame) const {
  * @param frame     observing frame (observer location and time of observation)
  * @return          the distance between this source and the specified other source.
  *
+ * @since 1.6
  * @sa sun_angle(), moon_angle()
  */
 Angle Source::angle_to(const Source& source, const Frame& frame) const {
@@ -362,6 +378,8 @@ Angle Source::angle_to(const Source& source, const Frame& frame) const {
  * @param value     `true` to enable case sensitive processing of name for newly defined sources
  *                  or else `false` to convert all future source names to lower-case for
  *                  case-insensitive processing.
+ *
+ * @since 1.6
  */
 void Source::set_case_sensitive(bool value) {
   novas_case_sensitive(value);
@@ -379,6 +397,8 @@ void Source::set_case_sensitive(bool value) {
  * proper ICRS coordinates.
  *
  * @param e     the catalog entry
+ *
+ * @since 1.6
  */
 CatalogSource::CatalogSource(const CatalogEntry& e)
 : Source(), _cat(e) {
@@ -398,6 +418,8 @@ CatalogSource::CatalogSource(const CatalogEntry& e)
  * Returns a pointer to a newly allocated copy of this catalog source instance
  *
  * @return    pointer to new copy of this catalog source instance.
+ *
+ * @since 1.6
  */
 const Source* CatalogSource::copy() const {
   return new CatalogSource(*this);
@@ -407,6 +429,8 @@ const Source* CatalogSource::copy() const {
  * Returns the catalog entry stored internally.
  *
  * @return    a reference to the internal catalog entry.
+ *
+ * @since 1.6
  */
 const CatalogEntry& CatalogSource::catalog_entry() const {
   return _cat;
@@ -416,6 +440,8 @@ const CatalogEntry& CatalogSource::catalog_entry() const {
  * Returns a string representation of this catalog source.
  *
  * @return    a string representation of this catalog source
+ *
+ * @since 1.6
  */
 std::string CatalogSource::to_string() const {
   const cat_entry *c = _cat._cat_entry();
@@ -433,6 +459,8 @@ std::string CatalogSource::to_string() const {
  * @return            The Solar-system barycentric geometric position and velocity of this source
  *                    at the specified time, as obtained from ephemeris lookup; or else an
  *                    undefined (invalid) object if the place ould not be determined.
+ *
+ * @since 1.6
  */
 Geometric SolarSystemSource::barycentric_at(const Time& time, enum novas_accuracy accuracy) const {
   const double tdb[2] = { time.jd(NOVAS_TDB), 0.0 };
@@ -456,6 +484,7 @@ Geometric SolarSystemSource::barycentric_at(const Time& time, enum novas_accurac
  * @return        the fraction [0.0:1.0] that appears illuminated by the Sun from the observer's
  *                point of view.
  *
+ * @since 1.6
  * @sa solar_power()
  */
 double SolarSystemSource::solar_illumination(const Frame& frame) const {
@@ -469,6 +498,7 @@ double SolarSystemSource::solar_illumination(const Frame& frame) const {
  * @param time        astrometric time of observation
  * @return            heliocentric distance of source at the specified time
  *
+ * @since 1.6
  * @sa helio_rate(), solar_power()
  */
 Coordinate SolarSystemSource::helio_distance(const Time& time) const {
@@ -484,6 +514,7 @@ Coordinate SolarSystemSource::helio_distance(const Time& time) const {
  * @param time        astrometric time of observation
  * @return            rate of recession from the Sun at the specified time
  *
+ * @since 1.6
  * @sa helio_distance()
  */
 ScalarVelocity SolarSystemSource::helio_rate(const Time& time) const {
@@ -501,6 +532,7 @@ ScalarVelocity SolarSystemSource::helio_rate(const Time& time) const {
  * @param time    astrometric time of observation.
  * @return        [W/m<sup>2</sup>] Typical incident Solar power.
  *
+ * @since 1.6
  * @sa helio_distance(), solar_illumination()
  */
 double SolarSystemSource::solar_power(const Time& time) const {
@@ -510,6 +542,7 @@ double SolarSystemSource::solar_power(const Time& time) const {
 /**
  * Instantiates an undefined / invalid planet.
  *
+ * @since 1.6
  */
 Planet::Planet() : SolarSystemSource() {
   _object.type = NOVAS_PLANET;
@@ -520,6 +553,8 @@ Planet::Planet() : SolarSystemSource() {
  * Instantiates a planet from its NOVAS ID number.
  *
  * @param number    the NOVAS ID number
+ *
+ * @since 1.6
  */
 Planet::Planet(enum novas_planet number) : SolarSystemSource() {
   // defaults...
@@ -536,6 +571,8 @@ Planet::Planet(enum novas_planet number) : SolarSystemSource() {
  * Returns a pointer to a newly allocated copy of this planet instance
  *
  * @return    pointer to new copy of this planet instance.
+ *
+ * @since 1.6
  */
 const Source *Planet::copy() const {
   return new Planet(*this);
@@ -559,6 +596,7 @@ const Source *Planet::copy() const {
  * @return        the corresponding planet, or an invalid planet if the ID does not specify a planet
  *                type body.
  *
+ * @since 1.6
  * @sa for_name(), naif_id()
  */
 Planet Planet::for_naif_id(long naif) {
@@ -589,6 +627,7 @@ Planet Planet::for_naif_id(long naif) {
  * @return        the corresponding planet, or an invalid planet if the ID does not specify a
  *                planet type body.
  *
+ * @since 1.6
  * @sa for_naif_id()
  */
 Planet Planet::for_name(const std::string& name) {
@@ -603,7 +642,9 @@ Planet Planet::for_name(const std::string& name) {
 /**
  * Returns the (Super)NOVAS ID of this planet (or planet type body in the SuperNOVAS sense).
  *
- * @return      the (Super)NOVAS ID of this planet .
+ * @return      the (Super)NOVAS ID of this planet.
+ *
+ * @since 1.6
  */
 enum novas_planet Planet::novas_id() const {
   return (enum novas_planet) _object.number;
@@ -613,6 +654,8 @@ enum novas_planet Planet::novas_id() const {
  * Returns the NAIF ID number for this planet (or planet type body in the SuperNOVAS sense).
  *
  * @return    the NAIF id number of this planet.
+ *
+ * @since 1.6
  */
 int Planet::naif_id() const {
   return novas_to_naif_planet(novas_id());
@@ -625,6 +668,8 @@ int Planet::naif_id() const {
  * of the planetary system.
  *
  * @return    The ID number of this planet in the JPL DExxx planetary ephemeris files.
+ *
+ * @since 1.6
  */
 int Planet::de_number() const {
   return novas_to_dexxx_planet(novas_id());
@@ -638,6 +683,7 @@ int Planet::de_number() const {
  *              body (such as barycenters), or else a NAN distance if this planet is itself
  *              invalid.
  *
+ * @since 1.6
  * @sa mass()
  */
 Coordinate Planet::mean_radius() const {
@@ -655,6 +701,7 @@ Coordinate Planet::mean_radius() const {
  * @return      [kg] the mass of this planet, or 0.0 this 'planet' does not denote a physical
  *              body (such as barycenters), or else NAN if this planet is itself invalid.
  *
+ * @since 1.6
  * @sa mean_radius()
  */
 double Planet::mass() const {
@@ -684,30 +731,29 @@ double Planet::mass() const {
  * initialized with `novas_make_planet_orbit()` or `novas_make_moon_orbit()`, and then calling
  * `novas_sky_pos()`, there are a few important differences to note:
  *
- * <ol>
- *  <li>This function calculates Earth and Moon positions about the Keplerian orbital position
- *  of the Earth-Moon Barycenter (EMB). In contrast, `novas_make_planet_orbit()` does not provide
- *  orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's orbital to
- *  the Earth position returned by the currently configured planet calculator function (see
- *  `set_planet_provider()`).</li>
- *  <li>This function ignores gravitational deflection. It makes little sense to bother about
- *  corrections that are orders of magnitude below the accuracy of the orbital positions
- *  obtained.</li>
- * </ol>
+ *  1. This function calculates Earth and Moon positions about the Keplerian orbital position
+ *     of the Earth-Moon Barycenter (EMB). In contrast, `novas_make_planet_orbit()` does not
+ *     provide orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's
+ *     orbital to the Earth position returned by the currently configured planet calculator
+ *     function (see `set_planet_provider()`).
+ *
+ *  2. This function ignores gravitational deflection. It makes little sense to bother about
+ *     corrections that are orders of magnitude below the accuracy of the orbital positions
+ *     obtained.
  *
  * REFERENCES:
- * <ol>
- *  <li>E.M. Standish and J.G. Williams 1992.</li>
- *  <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
- *  <li>Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
- *      vol. 124, no. 1, July 1983, p. 50-62.</li>
- * </ol>
+ *
+ *  1. E.M. Standish and J.G. Williams 1992.
+ *  2. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  3. Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  4. Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
+ *     vol. 124, no. 1, July 1983, p. 50-62.
  *
  * @param frame     The observing frame for which to calculate the apparent positions.
  * @return          approximate, orbital model based, apparent position for the given planet.
  *                  It may be invalid either if this planet or the frame argument is invalid.
  *
+ * @since 1.6
  * @sa approx_geometric_in()
  */
 Apparent Planet::approx_apparent_in(const Frame& frame) const {
@@ -737,28 +783,26 @@ Apparent Planet::approx_apparent_in(const Frame& frame) const {
  * initialized with `novas_make_planet_orbit()` or `novas_make_moon_orbit()`, and then calling
  * `novas_geom_posvel()`, with an important difference:
  *
- * <ol>
- *  <li>This function calculates Earth and Moon positions about the Keplerian orbital position
- *  of the Earth-Moon Barycenter (EMB). In contrast, `novas_make_planet_orbit()` does not provide
- *  orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's orbital to
- *  the Earth position returned by the currently configured planet calculator function (see
- *  `set_planet_provider()`).</li>
- * </ol>
+ *  - This function calculates Earth and Moon positions about the Keplerian orbital position
+ *    of the Earth-Moon Barycenter (EMB). In contrast, `novas_make_planet_orbit()` does not
+ *    provide orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's
+ *    orbital to the Earth position returned by the currently configured planet calculator
+ *    function (see `set_planet_provider()`).
  *
  * REFERENCES:
- * <ol>
- *  <li>E.M. Standish and J.G. Williams 1992.</li>
- *  <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
- *  <li>Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
- *      vol. 124, no. 1, July 1983, p. 50-62.</li>
- * </ol>
+ *
+ *  1. E.M. Standish and J.G. Williams 1992.
+ *  2. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  3. Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  4. Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
+ *     vol. 124, no. 1, July 1983, p. 50-62.
  *
  * @param frame   the observing frame for which to calculate geometric positions.
  * @return        approximate, orbital model based, geometric positions and velocities of this
  *                planet in the specified observing frame. It may be invalid either if this planet
  *                or the frame argument is invalid.
  *
+ * @since 1.6
  * @sa approx_apparent_in()
  */
 Geometric Planet::approx_geometric_in(const Frame& frame) const {
@@ -785,6 +829,8 @@ Geometric Planet::approx_geometric_in(const Frame& frame) const {
  * @param ref_time    Reference time for the Keplerian orbital parameters.
  * @return            the approximate Keplerain orbital of this planet around the specified
  *                    reference time.
+ *
+ * @since 1.6
  */
 Orbital Planet::orbit(const Time& ref_time) const {
   novas_orbital orbit = {};
@@ -801,6 +847,8 @@ std::string Planet::to_string() const {
  * Returns the static reference to the planet Mercury.
  *
  * @return    the reference to the static instance of Mercury.
+ *
+ * @since 1.6
  */
 const Planet& Planet::mercury() {
   static const Planet _mercury = Planet(NOVAS_MERCURY);
@@ -811,6 +859,8 @@ const Planet& Planet::mercury() {
  * Returns the static reference to the planet Venus.
  *
  * @return    the reference to the static instance of Venus.
+ *
+ * @since 1.6
  */
 const Planet& Planet::venus() {
   static const Planet _venus = Planet(NOVAS_VENUS);
@@ -822,6 +872,7 @@ const Planet& Planet::venus() {
  *
  * @return    the reference to the static instance of Earth.
  *
+ * @since 1.6
  * @sa emb()
  */
 const Planet& Planet::earth() {
@@ -833,6 +884,8 @@ const Planet& Planet::earth() {
  * Returns the static reference to the planet Mars.
  *
  * @return    the reference to the static instance of Mars.
+ *
+ * @since 1.6
  */
 const Planet& Planet::mars() {
   static const Planet _mars = Planet(NOVAS_MARS);
@@ -843,6 +896,8 @@ const Planet& Planet::mars() {
  * Returns the static reference to the planet Jupiter.
  *
  * @return    the reference to the static instance of Jupiter.
+ *
+ * @since 1.6
  */
 const Planet& Planet::jupiter() {
   static const Planet _jupiter = Planet(NOVAS_JUPITER);
@@ -853,6 +908,8 @@ const Planet& Planet::jupiter() {
  * Returns the static reference to the planet Saturn.
  *
  * @return    the reference to the static instance of Saturn.
+ *
+ * @since 1.6
  */
 const Planet& Planet::saturn() {
   static const Planet _saturn = Planet(NOVAS_SATURN);
@@ -863,6 +920,8 @@ const Planet& Planet::saturn() {
  * Returns the static reference to the planet Uranus.
  *
  * @return    the reference to the static instance of Uranus.
+ *
+ * @since 1.6
  */
 const Planet& Planet::uranus() {
   static const Planet _uranus = Planet(NOVAS_URANUS);
@@ -873,6 +932,8 @@ const Planet& Planet::uranus() {
  * Returns the static reference to the planet Neptune.
  *
  * @return    the reference to the static instance of Neptune.
+ *
+ * @since 1.6
  */
 const Planet& Planet::neptune() {
   static const Planet _neptune = Planet(NOVAS_NEPTUNE);
@@ -884,6 +945,7 @@ const Planet& Planet::neptune() {
  *
  * @return    the reference to the static instance of Pluto.
  *
+ * @since 1.6
  * @sa Barycenter::pluto_system()
  */
 const Planet& Planet::pluto() {
@@ -896,6 +958,7 @@ const Planet& Planet::pluto() {
  *
  * @return    the reference to the static instance of the Sun.
  *
+ * @since 1.6
  * @sa ssb()
  */
 const Planet& Planet::sun() {
@@ -908,6 +971,7 @@ const Planet& Planet::sun() {
  *
  * @return    the reference to the static instance of the Moon.
  *
+ * @since 1.6
  * @sa emb()
  */
 const Planet& Planet::moon() {
@@ -920,6 +984,7 @@ const Planet& Planet::moon() {
  *
  * @return    the reference to the static instance of the SSB.
  *
+ * @since 1.6
  * @sa sun()
  */
 const Planet& Planet::ssb() {
@@ -932,6 +997,7 @@ const Planet& Planet::ssb() {
  *
  * @return    the reference to the static instance of the EMB.
  *
+ * @since 1.6
  * @sa earth(), moon()
  */
 const Planet& Planet::emb() {
@@ -944,6 +1010,7 @@ const Planet& Planet::emb() {
  *
  * @return    the reference to the static instance of the Pluto system.
  *
+ * @since 1.6
  * @sa pluto()
  */
 const Planet& Planet::pluto_system() {
@@ -957,6 +1024,8 @@ const Planet& Planet::pluto_system() {
  * @param name      source name as defined in the ephemeris data (for name-based lookup).
  * @param number    (optional) source ID number in the ephemeris data (for id-based lookup;
  *                  default: -1).
+ *
+ * @since 1.6
  */
 EphemerisSource::EphemerisSource(const std::string &name, long number) : SolarSystemSource() {
   // defaults...
@@ -973,6 +1042,8 @@ EphemerisSource::EphemerisSource(const std::string &name, long number) : SolarSy
  * Returns a pointer to a newly allocated copy of this Solar-system ephemeris source instance
  *
  * @return    pointer to new copy of this Solar-system ephemeris source instance.
+ *
+ * @since 1.6
  */
 const Source *EphemerisSource::copy() const {
   return new EphemerisSource(*this);
@@ -983,6 +1054,7 @@ const Source *EphemerisSource::copy() const {
  *
  * @return    the source ID number (for number ID based lookup).
  *
+ * @since 1.6
  * @sa name()
  */
 long EphemerisSource::number() const {
@@ -994,6 +1066,8 @@ long EphemerisSource::number() const {
  * number designations.
  *
  * @return      a string containing the name and number designations for this source.
+ *
+ * @since 1.6
  */
 std::string EphemerisSource::to_string() const {
   return "EphemerisSource " + name() + " (nr. " + std::to_string(number()) + ")";
@@ -1005,6 +1079,8 @@ std::string EphemerisSource::to_string() const {
  *
  * @param name    source name as desired by the user.
  * @param orbit   Keplerian orbital elements.
+ *
+ * @since 1.6
  */
 OrbitalSource::OrbitalSource(const std::string& name, const Orbital& orbit) : SolarSystemSource() {
   static const char *fn = "OrbitalSource()";
@@ -1025,6 +1101,8 @@ OrbitalSource::OrbitalSource(const std::string& name, const Orbital& orbit) : So
  * Returns a pointer to a newly allocated copy of this Solar-system orbital source instance
  *
  * @return    pointer to new copy of this Solar-system orbital source instance.
+ *
+ * @since 1.6
  */
 const Source *OrbitalSource::copy() const {
   return new OrbitalSource(*this);
@@ -1034,6 +1112,8 @@ const Source *OrbitalSource::copy() const {
  * Returns the underlying C orbital elements data structure for this source.
  *
  * @return    the underlying C orbital elements data structure.
+ *
+ * @since 1.6
  */
 const novas_orbital * OrbitalSource::_novas_orbital() const {
   return &_object.orbit;
@@ -1043,6 +1123,8 @@ const novas_orbital * OrbitalSource::_novas_orbital() const {
  * Returns the Keplerian orbital parameters of this source.
  *
  * @return    the Keplerian orbital parameters.
+ *
+ * @since 1.6
  */
 Orbital OrbitalSource::orbital() const {
   Orbital orbit = Orbital::from_novas_orbit(&_object.orbit);
@@ -1051,6 +1133,13 @@ Orbital OrbitalSource::orbital() const {
   return orbit;
 }
 
+/**
+ * Returns a string representation of this orbital source.
+ *
+ * @return    a string representation of this orbital source.
+ *
+ * @since 1.6
+ */
 std::string OrbitalSource::to_string() const {
   return "OrbitalSource " + name();
 }

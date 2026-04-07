@@ -20,6 +20,8 @@ namespace supernovas {
  * Instantiates a scalar quantity with an initializing value in standard S.I. units.
  *
  * @param si_value    the initializing value in S.I. units.
+ *
+ * @since 1.6
  */
 Scalar::Scalar(double si_value)
 : _value(si_value) {
@@ -34,6 +36,8 @@ Scalar::Scalar(double si_value)
  * this.
  *
  * @return    the value in the standard S.I. units.
+ *
+ * @since 1.6
  */
 double Scalar::SI_value() const {
   return _value;
@@ -48,6 +52,8 @@ double Scalar::SI_value() const {
  * @param precision   Precision for the comparison in the same S.I. units as this quantity.
  * @return            `true` if the two scalars have the same S.I. units and values
  *                    within the specified precision, otherwise `false`.
+ *
+ * @since 1.6
  */
 bool Scalar::equals(const Scalar& other, double precision) const {
   return fabs(_value - other._value) <= precision && SI_unit() == other.SI_unit();
@@ -59,6 +65,8 @@ bool Scalar::equals(const Scalar& other, double precision) const {
  *
  * @param decimals    (optional) [0:16] Number of decimal places to print (default: 3).
  * @return            a string representation of this scalar quantity.
+ *
+ * @since 1.6
  */
 std::string Scalar::to_string(int decimals) const {
   char str[40] = {'\0'};

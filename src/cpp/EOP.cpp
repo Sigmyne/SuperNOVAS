@@ -35,6 +35,8 @@ void EOP::validate() {
  * @param dut1_sec        [s] (optional) UT1 - UTC time difference (default: 0.0)
  * @param xp_rad          [rad] (optional) IERS _x_<sub>p</sub> pole offset (default: 0.0)
  * @param yp_rad          [rad] (optional) IERS _y_<sub>p</sub> pole offset (default: 0.0)
+ *
+ * @since 1.6
  */
 EOP::EOP(int leap_seconds, double dut1_sec, double xp_rad, double yp_rad)
 : _leap(leap_seconds), _xp(xp_rad), _yp(yp_rad), _dut1(dut1_sec) {
@@ -48,6 +50,8 @@ EOP::EOP(int leap_seconds, double dut1_sec, double xp_rad, double yp_rad)
  * @param dut1            (optional) UT1 - UTC time difference (default: 0.0)
  * @param xp              (optional) IERS _x_<sub>p</sub> pole offset (default: 0.0)
  * @param yp              (optional) IERS _y_<sub>p</sub> pole offset (default: 0.0)
+ *
+ * @since 1.6
  */
 EOP::EOP(int leap_seconds, const Interval& dut1, const Angle& xp, const Angle& yp)
 : EOP(leap_seconds, dut1.seconds(), xp.rad(), yp.rad()) {
@@ -62,6 +66,7 @@ EOP::EOP(int leap_seconds, const Interval& dut1, const Angle& xp, const Angle& y
  * @return      `true` if this EOP matches the argument to 1 &mu;s / 1 &mu;as accuracy,
  *              otherwise `false`.
  *
+ * @since 1.6
  * @sa operator!=()
  */
 bool EOP::operator==(const EOP& eop) const {
@@ -84,6 +89,7 @@ bool EOP::operator==(const EOP& eop) const {
  * @return      `true` if this EOP differs from argument by more than 1 &mu;s / 1 &mu;as,
  *              otherwise `false`.
  *
+ * @since 1.6
  * @sa operator!=()
  */
 bool EOP::operator!=(const EOP& eop) const {
@@ -95,6 +101,7 @@ bool EOP::operator!=(const EOP& eop) const {
  *
  * @return    [s] the leap seconds (TAI - UTC).
  *
+ * @since 1.6
  * @sa dUT1()
  */
 int EOP::leap_seconds() const {
@@ -106,6 +113,7 @@ int EOP::leap_seconds() const {
  *
  * @return    the reference to the _x_ pole offset angle, as stored internally.
  *
+ * @since 1.6
  * @sa yp()
  */
 const Angle& EOP::xp() const {
@@ -117,6 +125,7 @@ const Angle& EOP::xp() const {
  *
  * @return    the reference to the _y_ pole offset angle, as stored internally.
  *
+ * @since 1.6
  * @sa xp()
  */
 const Angle& EOP::yp() const {
@@ -128,6 +137,7 @@ const Angle& EOP::yp() const {
  *
  * @return    a new time interval with the UT1 - UTC time difference.
  *
+ * @since 1.6
  * @sa leap_seconds()
  */
 Interval EOP::dUT1() const {
@@ -144,6 +154,7 @@ Interval EOP::dUT1() const {
  * @param to_year     [yr] the ITRF realization in which to return EOP
  * @return            the EOP values in the specified new ITRF realization.
  *
+ * @since 1.6
  * @sa Site::itrf_transformed()
  */
 EOP EOP::itrf_transformed(int from_year, int to_year) const {
@@ -160,6 +171,8 @@ EOP EOP::itrf_transformed(int from_year, int to_year) const {
  * Returns a string representation of these Earth Orientation Paramaters (EOP).
  *
  * @return    a new string with a representation of this EOP.
+ *
+ * @since 1.6
  */
 std::string EOP::to_string() const {
   char sx[20] = {'\0'}, sy[20] = {'\0'}, st[20] = {'\0'};
@@ -174,6 +187,8 @@ std::string EOP::to_string() const {
  * inside any object that is invalid itself.
  *
  * @return    a reference to a static standard EOP.
+ *
+ * @since 1.6
  */
 const EOP& EOP::undefined() {
   static const EOP _invalid = EOP();

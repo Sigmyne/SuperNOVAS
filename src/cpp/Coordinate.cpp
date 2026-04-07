@@ -173,6 +173,8 @@ std::string Coordinate::SI_unit() const {
  * figures and a best matched distance unit, e.g. "10.96 km", or 305.6 pc" etc.
  *
  * @return    A human readable string representation of the distance and a unit specifier.
+ *
+ * @since 1.6
  */
 std::string Coordinate::to_string(int decimals) const {
   char fmt[20] = {'\0'};
@@ -229,6 +231,7 @@ std::string Coordinate::to_string(int decimals) const {
  * @param parallax      The parallax angle, which defines the distance
  * @return              a distance instance corresponding to the specified parallax angle
  *
+ * @since 1.6
  * @sa parallax()
  */
 Coordinate Coordinate::from_parallax(const Angle& parallax) {
@@ -245,6 +248,8 @@ Coordinate Coordinate::from_parallax(const Angle& parallax) {
  * Returns a standard zero distance.
  *
  * @return    A reference to a persistent standard zero distance instance.
+ *
+ * @since 1.6
  */
 const Coordinate& Coordinate::zero() {
   static const Coordinate _zero = Coordinate(0.0);
@@ -257,6 +262,8 @@ const Coordinate& Coordinate::zero() {
  * static method can be used to obtain a persistent reference to a 1 Gpc instance.
  *
  * @return    A reference to a persistent standard 1 Gpc distance instance.
+ *
+ * @since 1.6
  */
 const Coordinate& Coordinate::at_Gpc() {
   static const Coordinate _at_Gpc = Coordinate(Unit::Gpc);
@@ -267,6 +274,8 @@ const Coordinate& Coordinate::at_Gpc() {
  * Returns a reference to a static instance of an undefined / invalid coordinate.
  *
  * @return    a reference to a standard instance of an undefined coordinate.
+ *
+ * @since 1.6
  */
 const Coordinate& Coordinate::undefined() {
   static const Coordinate _undefined = Coordinate();

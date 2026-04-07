@@ -38,6 +38,7 @@ static double tt_value(const Interval& interval) {
  * @param seconds     [s] time span in seconds.
  * @param timescale   (optional) timescale in which the interval was defined (default: `novas:NOVAS_TT`)
  *
+ * @since 1.6
  * @sa zero()
  */
 Interval::Interval(double seconds, enum novas_timescale timescale)
@@ -57,6 +58,8 @@ Interval::Interval(double seconds, enum novas_timescale timescale)
  *
  * @param v   speed value
  * @return    the distance travelled under this time interval at the specified speed.
+ *
+ * @since 1.6
  */
 Coordinate Interval::operator*(const ScalarVelocity& v) const {
   Coordinate x = v.travel(*this);
@@ -70,6 +73,8 @@ Coordinate Interval::operator*(const ScalarVelocity& v) const {
  *
  * @param v   speed value
  * @return    the statial vector travelled under this interval at the specified velocity.
+ *
+ * @since 1.6
  */
 Position Interval::operator*(const Velocity& v) const {
   Position p = v.travel(*this);
@@ -85,6 +90,7 @@ Position Interval::operator*(const Velocity& v) const {
  * @param r   the other time interval
  * @return    the sum of this time interval and the argument time interval.
  *
+ * @since 1.6
  * @sa operator-()
  */
 Interval Interval::operator+(const Interval& r) const {
@@ -101,6 +107,7 @@ Interval Interval::operator+(const Interval& r) const {
  * @param r   the other time interval
  * @return    the signed difference of this time interval and the argument time interval.
  *
+ * @since 1.6
  * @sa operator+()
  */
 Interval Interval::operator-(const Interval& r) const {
@@ -119,6 +126,7 @@ Interval Interval::operator-(const Interval& r) const {
  * @return            `true` if this time interval is equal to the reference time interval within
  *                    the specified precision, or else `false`.
  *
+ * @since 1.6
  * @sa operator==(), operator!=()
  */
 bool Interval::equals(const Interval& interval, double precision) const {
@@ -133,6 +141,7 @@ bool Interval::equals(const Interval& interval, double precision) const {
  * @return            `true` if this time interval is equal to the reference time interval, or
  *                    else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 bool Interval::operator==(const Interval& interval) const {
@@ -147,6 +156,7 @@ bool Interval::operator==(const Interval& interval) const {
  * @return            `true` if this time interval differs from the reference time interval, or
  *                    else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator==()
  */
 bool Interval::operator!=(const Interval& interval) const {
@@ -157,6 +167,8 @@ bool Interval::operator!=(const Interval& interval) const {
  * Returns the time scale in which this time interval was defined.
  *
  * @return      the time scale for this interval.
+ *
+ * @since 1.6
  */
 enum novas_timescale Interval::timescale() const {
   return _scale;
@@ -166,6 +178,8 @@ enum novas_timescale Interval::timescale() const {
  * Returns the inverse of this time interval ie, its negated value.
  *
  * @return    a new time interval with the same absolute value, but negated.
+ *
+ * @since 1.6
  */
 Interval Interval::inv() const {
   return Interval(-_value);
@@ -176,6 +190,7 @@ Interval Interval::inv() const {
  *
  * @return  [ms] the time interval
  *
+ * @since 1.6
  * @sa seconds(), minutes(), hours(), days(), weeks(), years(), julian_years(), julian_centuries()
  */
 double Interval::milliseconds() const {
@@ -187,9 +202,10 @@ double Interval::milliseconds() const {
  *
  * @return  [s] the time interval
  *
- *  @sa Interval::milliseconds(), Interval::minutes(), Interval::hours(), Interval::days(),
- *      Interval::weeks(), Interval::years(), Interval::julian_years(),
- *      Interval::julian_centuries()
+ * @since 1.6
+ * @sa Interval::milliseconds(), Interval::minutes(), Interval::hours(), Interval::days(),
+ *     Interval::weeks(), Interval::years(), Interval::julian_years(),
+ *     Interval::julian_centuries()
  */
 double Interval::seconds() const {
   return _value;
@@ -200,8 +216,9 @@ double Interval::seconds() const {
  *
  * @return  [min] the time interval
  *
- *  @sa milliseconds(), seconds(), hours(), days(), weeks(), years(), julian_years(),
- *      julian_centuries()
+ * @since 1.6
+ * @sa milliseconds(), seconds(), hours(), days(), weeks(), years(), julian_years(),
+ *     julian_centuries()
  */
 double Interval::minutes() const {
   return _value / Unit::min;
@@ -212,8 +229,9 @@ double Interval::minutes() const {
  *
  * @return  [h] the time interval
  *
- *  @sa milliseconds(), seconds(), minutes(), days(), weeks(), years(), julian_years(),
- *      julian_centuries()
+ * @since 1.6
+ * @sa milliseconds(), seconds(), minutes(), days(), weeks(), years(), julian_years(),
+ *     julian_centuries()
  */
 double Interval::hours() const {
   return _value / Unit::hour;
@@ -224,8 +242,9 @@ double Interval::hours() const {
  *
  * @return  [day] the time interval
  *
- *  @sa milliseconds(), seconds(), minutes(), hours(), weeks(), years(), julian_years(),
- *      julian_centuries()
+ * @since 1.6
+ * @sa milliseconds(), seconds(), minutes(), hours(), weeks(), years(), julian_years(),
+ *     julian_centuries()
  */
 double Interval::days() const {
   return _value / Unit::day;
@@ -236,8 +255,9 @@ double Interval::days() const {
  *
  * @return  [wk] the time interval
  *
- *  @sa milliseconds(), seconds(), minutes(), hours(), days(), years(), julian_years(),
- *      julian_centuries()
+ * @since 1.6
+ * @sa milliseconds(), seconds(), minutes(), hours(), days(), years(), julian_years(),
+ *     julian_centuries()
  */
 double Interval::weeks() const {
   return _value / Unit::week;
@@ -248,8 +268,9 @@ double Interval::weeks() const {
  *
  * @return  [yr] the time interval
  *
- *  @sa milliseconds(), seconds(), minutes(), hours(), days(), weeks(), julian_years(),
- *      julian_centuries()
+ * @since 1.6
+ * @sa milliseconds(), seconds(), minutes(), hours(), days(), weeks(), julian_years(),
+ *     julian_centuries()
  */
 double Interval::years() const {
   return _value / Unit::yr;
@@ -260,8 +281,9 @@ double Interval::years() const {
  *
  * @return  [yr] the time interval
  *
- *  @sa milliseconds(), seconds(), minutes(), hours(), days(), weeks(), years(),
- *      julian_centuries()
+ * @since 1.6
+ * @sa milliseconds(), seconds(), minutes(), hours(), days(), weeks(), years(),
+ *     julian_centuries()
  */
 double Interval::julian_years() const {
   return _value / Unit::julian_year;
@@ -272,7 +294,8 @@ double Interval::julian_years() const {
  *
  * @return  [cy] the time interval
  *
- *  @sa milliseconds(), seconds(), minutes(), hours(), days(), weeks(), years(), julian_years()
+ * @since 1.6
+ * @sa milliseconds(), seconds(), minutes(), hours(), days(), weeks(), years(), julian_years()
  */
 double Interval::julian_centuries() const {
   return _value / Unit::julian_century;
@@ -283,6 +306,8 @@ double Interval::julian_centuries() const {
  *
  * @param scale   the timescale of the returned equivalent interval.
  * @return        the equivalent time interval in the specified timescale
+ *
+ * @since 1.6
  */
 Interval Interval::to_timescale(enum novas_timescale scale) const {
   double dt = from_tt(tt_value(*this), scale);
@@ -295,6 +320,8 @@ Interval Interval::to_timescale(enum novas_timescale scale) const {
  * Returns a reference to the zero time interval.
  *
  * @return  a reference to a statically defined zero time interval.
+ *
+ * @since 1.6
  */
 const Interval& Interval::zero() {
   static const Interval _zero = Interval(0.0);
@@ -310,6 +337,8 @@ std::string Interval::SI_unit() const {
  * figures and a best matched time unit.
  *
  * @return    A human readable string representation of the distance and a unit specifier.
+ *
+ * @since 1.6
  */
 std::string Interval::to_string(int decimals) const {
   char fmt[20] = {'\0'};

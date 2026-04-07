@@ -24,6 +24,8 @@ namespace supernovas {
  * @param frame   observing frame (observer location and time of observation)
  * @param system  equatorial coordinate reference_system, in which position and velocity vectors
  *                are defined
+ *
+ * @since 1.6
  */
 Geometric::Geometric(const Frame& frame, const Position& p, const Velocity& v, enum novas_reference_system system)
           : _frame(frame), _pos(p), _vel(v), _system(system) {
@@ -50,6 +52,7 @@ Geometric::Geometric(const Frame& frame, const Position& p, const Velocity& v, e
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the other type of coordinate reference system.
  *
+ * @since 1.6
  * @sa to_system()
  */
 Geometric Geometric::operator>>(enum novas_reference_system system) const {
@@ -64,6 +67,7 @@ Geometric Geometric::operator>>(enum novas_reference_system system) const {
  *
  * @return    a reference to the observing frame (observer location and time of observation)
  *
+ * @since 1.6
  * @sa system()
  */
 const Frame& Geometric::frame() const {
@@ -75,6 +79,7 @@ const Frame& Geometric::frame() const {
  *
  * @return    a reference to the equatorial coordinate system stored internally.
  *
+ * @since 1.6
  * @sa position(), velocity(), equatorial()
  */
 enum novas_reference_system Geometric::system_type() const {
@@ -86,6 +91,7 @@ enum novas_reference_system Geometric::system_type() const {
  *
  * @return    the equatorial position vector.
  *
+ * @since 1.6
  * @sa astrometric_position(), equatorial(), velocity(), system()
  */
 const Position& Geometric::position() const {
@@ -97,6 +103,7 @@ const Position& Geometric::position() const {
  *
  * @return    the equatorial velocity vector.
  *
+ * @since 1.6
  * @sa position(), system()
  */
 const Velocity& Geometric::velocity() const {
@@ -107,6 +114,8 @@ const Velocity& Geometric::velocity() const {
  * Returns the geometric distance.
  *
  * @return    the geoemtric distance.
+ *
+ * @since 1.6
  */
 Coordinate Geometric::distance() const {
   return Coordinate(_pos.abs());
@@ -125,6 +134,7 @@ Coordinate Geometric::distance() const {
  *
  * @return    geometric equatorial coordinates.
  *
+ * @since 1.6
  * @sa Apparent::equatorial(), ecliptic(), galactic(), position(), velocity()
  */
 Equatorial Geometric::equatorial() const {
@@ -147,6 +157,7 @@ Equatorial Geometric::equatorial() const {
  *
  * @return    geometric ecliptic coordinates.
  *
+ * @since 1.6
  * @sa Apparent::ecliptic(), equatorial(), galactic()
  */
 Ecliptic Geometric::ecliptic() const {
@@ -169,6 +180,7 @@ Ecliptic Geometric::ecliptic() const {
  *
  * @return    geometric galactic coordinates.
  *
+ * @since 1.6
  * @sa Apparent::galactic(), equatorial(), ecliptic()
  */
 Galactic Geometric::galactic() const {
@@ -192,6 +204,7 @@ Galactic Geometric::galactic() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the other type of coordinate reference system.
  *
+ * @since 1.6
  * @sa operator>>(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_system(enum novas_reference_system system) const {
@@ -224,6 +237,7 @@ Geometric Geometric::to_system(enum novas_reference_system system) const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the ICRS.
  *
+ * @since 1.6
  * @sa to_system(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_icrs() const {
@@ -240,6 +254,7 @@ Geometric Geometric::to_icrs() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the J2000 catalog system.
  *
+ * @since 1.6
  * @sa to_system(), to_icrs(), to_mod(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_j2000() const {
@@ -256,6 +271,7 @@ Geometric Geometric::to_j2000() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the MOD system of date.
  *
+ * @since 1.6
  * @sa to_system(), to_icrs(), to_j2000(), to_tod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_mod() const {
@@ -272,6 +288,7 @@ Geometric Geometric::to_mod() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the TOD system of date.
  *
+ * @since 1.6
  * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_cirs(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_tod() const {
@@ -289,6 +306,7 @@ Geometric Geometric::to_tod() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the CIRS.
  *
+ * @since 1.6
  * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_tirs(), to_itrs()
  */
 Geometric Geometric::to_cirs() const {
@@ -306,6 +324,7 @@ Geometric Geometric::to_cirs() const {
  * @return          geometric coordinates for the same position and velocity as this, but
  *                  expressed in the TIRS.
  *
+ * @since 1.6
  * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_itrs()
  */
 Geometric Geometric::to_tirs() const {
@@ -336,6 +355,7 @@ Geometric Geometric::to_tirs() const {
  *                  expressed in the ITRS. The returned instance may be invalid if an invalid EOP
  *                  was supplied and the observer also does not define its own valid EOP.
  *
+ * @since 1.6
  * @sa to_system(), to_icrs(), to_j2000(), to_mod(), to_tod(), to_cirs(), to_tirs()
  */
 Geometric Geometric::to_itrs() const {
@@ -350,6 +370,8 @@ Geometric Geometric::to_itrs() const {
  *
  * @param decimals    (optional) Number of decimal places to print after the decimal point (default: 3).
  * @return            a string description of these geometric coordinates.
+ *
+ * @since 1.6
  */
 std::string Geometric::to_string(int decimals) const {
   return "Geometric " + Position(position()).to_string(decimals) + ", " + velocity().to_string(decimals) + " in " + _frame.to_string();
@@ -360,6 +382,8 @@ std::string Geometric::to_string(int decimals) const {
  * coordinates may be used inside any object that is invalid itself.
  *
  * @return    a reference to a static standard invalid geometric coordinates.
+ *
+ * @since 1.6
  */
 const Geometric& Geometric::undefined() {
   static const Geometric _invalid = Geometric();

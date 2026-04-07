@@ -21,6 +21,7 @@ namespace supernovas {
  *
  * @param deg_C   [C] temperature value.
  *
+ * @since 1.6
  * @sa celsius(), kelvin(), farenheit()
  */
 Temperature::Temperature(double deg_C) : Scalar(KELVIN_0C + deg_C) {
@@ -39,6 +40,7 @@ Temperature::Temperature(double deg_C) : Scalar(KELVIN_0C + deg_C) {
  *
  * @return    [C] The temperature value
  *
+ * @since 1.6
  * @sa kelvin(), farenheit()
  */
 double Temperature::celsius() const {
@@ -50,6 +52,7 @@ double Temperature::celsius() const {
  *
  * @return    [K] The temperature value
  *
+ * @since 1.6
  * @sa celsius(), farenheit()
  */
 double Temperature::kelvin() const {
@@ -61,6 +64,7 @@ double Temperature::kelvin() const {
  *
  * @return    [F] The temperature value
  *
+ * @since 1.6
  * @sa celsius(), kelvin()
  */
 double Temperature::farenheit() const {
@@ -76,6 +80,8 @@ std::string Temperature::SI_unit() const {
  *
  * @param decimals  (optional) [0:16] decimal places to print (default: 1).
  * @return          a string with the human readable representation of this temperature.
+ *
+ * @since 1.6
  */
 std::string Temperature::to_string(int decimals) const {
   char s[40] = {'\0'};
@@ -90,6 +96,7 @@ std::string Temperature::to_string(int decimals) const {
  * @param value   [C] temperature value
  * @return        A new temperature object with the specified value.
  *
+ * @since 1.6
  * @sa kelvin(), farenheit()
  */
 Temperature Temperature::celsius(double value) {
@@ -106,6 +113,7 @@ Temperature Temperature::celsius(double value) {
  * @param value   [K] temperature value
  * @return        A new temperature object with the specified value.
  *
+ * @since 1.6
  * @sa celsius(), farenheit()
  */
 Temperature Temperature::kelvin(double value) {
@@ -122,6 +130,7 @@ Temperature Temperature::kelvin(double value) {
  * @param value   [F] temperature value
  * @return        A new temperature object with the specified value.
  *
+ * @since 1.6
  * @sa celisus(), kelvin()
  */
 Temperature Temperature::farenheit(double value) {

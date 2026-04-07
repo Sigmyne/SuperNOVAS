@@ -20,6 +20,8 @@ namespace supernovas {
  * @param u           [m] Projection along the East direction
  * @param v           [m] Projection along the orthogonalized North Direction
  * @param w           [m] Projection along the line of sight
+ *
+ * @since 1.6
  */
 Interferometric::Interferometric(double u, double v, double w)
 : Vector(u, v, w) {
@@ -33,6 +35,8 @@ Interferometric::Interferometric(double u, double v, double w)
  * @param u           Projection along the East direction
  * @param v           Projection along the orthogonalized North Direction
  * @param w           Projection along the line of sight
+ *
+ * @since 1.6
  */
 Interferometric::Interferometric(const Coordinate& u, const Coordinate& v, const Coordinate& w)
 : Interferometric(u.m(), v.m(), w.m()) {}
@@ -44,6 +48,8 @@ Interferometric::Interferometric(const Coordinate& u, const Coordinate& v, const
  * @param v           Projection along the orthogonalized North Direction
  * @param geom_delay  geometric delay in the arrival time of light relative to the arrival time
  *                    at the interferometric reference place.
+ *
+ * @since 1.6
  */
 Interferometric::Interferometric(const Coordinate& u, const Coordinate& v, const Interval& geom_delay)
 : Interferometric(u.m(), v.m(), -geom_delay.seconds() * Constant::c) {}
@@ -56,6 +62,7 @@ Interferometric::Interferometric(const Coordinate& u, const Coordinate& v, const
  * @return    the station offset, relative to the interferometric reference station, in the direction of
  *            the local East from the line of sight.
  *
+ * @since 1.6
  * @sa v(), w()
  */
 Coordinate Interferometric::u() const {
@@ -69,6 +76,7 @@ Coordinate Interferometric::u() const {
  * @return    the station offset, relative to the interferometric reference station, in the direction
  *            of the local North from the line of sight.
  *
+ * @since 1.6
  * @sa u(), w()
  */
 Coordinate Interferometric::v() const {
@@ -81,6 +89,7 @@ Coordinate Interferometric::v() const {
  *
  * @return    the station offset, relative to the interferometric reference station, along the line-of-sight.
  *
+ * @since 1.6
  * @sa geometric_delay(), u(), v()
  */
 Coordinate Interferometric::w() const {
@@ -93,6 +102,7 @@ Coordinate Interferometric::w() const {
  *
  * @return    The geometric delay of this projection, relative to the interferometric reference station.
  *
+ * @since 1.6
  * @sa w()
  */
 Interval Interferometric::geometric_delay() const {
@@ -108,6 +118,7 @@ Interval Interferometric::geometric_delay() const {
  * @return            `true` if this projection equals the argument within the specified
  *                    precision, or else `false`.
  *
+ * @since 1.6
  * @sa operator==(), operator!=()
  */
 bool Interferometric::equals(const Interferometric& p, double precision) const {
@@ -122,6 +133,7 @@ bool Interferometric::equals(const Interferometric& p, double precision) const {
  * @return    `true` if this projection equals the argument to 12 significant figures or 1 nm, or
  *            else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 bool Interferometric::operator==(const Interferometric& p) const {
@@ -139,6 +151,7 @@ bool Interferometric::operator==(const Interferometric& p) const {
  * @return    `true` if this projection equals the argument to 12 significant figures or 1 nm, or
  *            else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator==()
  */
 bool Interferometric::operator!=(const Interferometric& p) const {
@@ -153,6 +166,7 @@ bool Interferometric::operator!=(const Interferometric& p) const {
  * @param r   the interferometric projection on the right hand side.
  * @return    the difference between this projection and the argument.
  *
+ * @since 1.6
  * @sa operator-()
  */
 Interferometric Interferometric::operator+(const Interferometric& r) const {
@@ -169,6 +183,7 @@ Interferometric Interferometric::operator+(const Interferometric& r) const {
  * @param r   the interferometric projection on the right hand side.
  * @return    the difference between this projection and the argument.
  *
+ * @since 1.6
  * @sa operator+()
  */
 Interferometric Interferometric::operator-(const Interferometric& r) const {
@@ -185,6 +200,8 @@ Interferometric Interferometric::operator-(const Interferometric& r) const {
  * @param decimals    (optional) [0:16] Number of decimal places to print for _u_, _v_, and the
  *                    geometric delay (default: 6).
  * @return            a string representation of this interferometric projection.
+ *
+ * @since 1.6
  */
 std::string Interferometric::to_string(int decimals) const {
   return "u = " + u().to_string(decimals) + ", v = " + v().to_string(decimals) + ", delay = " + geometric_delay().to_string(decimals);
@@ -194,6 +211,8 @@ std::string Interferometric::to_string(int decimals) const {
  * Returns a reference to a statically defined standard invalid interferometric instance.
  *
  * @return    a reference to a standard instance of invalid interferometric projection.
+ *
+ * @since 1.6
  */
 const Interferometric& Interferometric::undefined() {
   static Interferometric _undefined = Interferometric();

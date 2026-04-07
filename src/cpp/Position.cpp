@@ -22,6 +22,8 @@ namespace supernovas {
  * @param x_m   [m] _x_ component
  * @param y_m   [m] _y_ component
  * @param z_m   [m] _z_ component
+ *
+ * @since 1.6
  */
 Position::Position(double x_m, double y_m, double z_m)
 : Vector(x_m, y_m, z_m) {
@@ -34,6 +36,8 @@ Position::Position(double x_m, double y_m, double z_m)
  *
  * @param pos     position 3-vector expressed in some physical unit
  * @param unit    the physical unit, in which the components are given, such as Unit::m or Unit::au.
+ *
+ * @since 1.6
  */
 Position::Position(const double pos[3], double unit)
 : Vector(pos[0] * unit, pos[1] * unit, pos[2] * unit) {}
@@ -47,6 +51,7 @@ Position::Position(const double pos[3], double unit)
  * @return            `true` if this position equals the argument within the specified
  *                    precision, or else `false`.
  *
+ * @since 1.6
  * @sa operator==(), operator!=()
  */
 bool Position::equals(const Position& p, double precision) const {
@@ -61,6 +66,7 @@ bool Position::equals(const Position& p, double precision) const {
  * @return    `true` if this position equals the argument to 12 significant figures or 1 mm, or
  *            else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator!=()
  */
 bool Position::operator==(const Position& p) const {
@@ -78,6 +84,7 @@ bool Position::operator==(const Position& p) const {
  * @return    `true` if this position equals the argument to 12 significant figures or 1 mm, or
  *            else `false`.
  *
+ * @since 1.6
  * @sa equals(), operator==()
  */
 bool Position::operator!=(const Position& p) const {
@@ -90,6 +97,7 @@ bool Position::operator!=(const Position& p) const {
  * @param r   the other position on the right-hand side
  * @return    a new position vector with the sum of this position and the argument.
  *
+ * @since 1.6
  * @sa operator-()
  */
 Position Position::operator+(const Position& r) const {
@@ -105,6 +113,7 @@ Position Position::operator+(const Position& r) const {
  * @param r   the other position on the right-hand side
  * @return    a new position vector with the difference of this position and the argument.
  *
+ * @since 1.6
  * @sa operator+()
  */
 Position Position::operator-(const Position& r) const {
@@ -121,6 +130,7 @@ Position Position::operator-(const Position& r) const {
  * @param dt   the time interval on the right-hand-side of '/'.
  * @return     velocity <b>v</b> = <b>x</b> / dt, where <b>x</b> is this position vector.
  *
+ * @since 1.6
  * @sa Position::operator/()
  */
 Velocity Position::operator/(const Interval& dt) const {
@@ -136,6 +146,7 @@ Velocity Position::operator/(const Interval& dt) const {
  *
  * @return    the _x_ component
  *
+ * @since 1.6
  * @sa y(), z()
  */
 Coordinate Position::x() const {
@@ -147,6 +158,7 @@ Coordinate Position::x() const {
  *
  * @return    the _y_ component
  *
+ * @since 1.6
  * @sa x(), z()
  */
 Coordinate Position::y() const {
@@ -158,6 +170,7 @@ Coordinate Position::y() const {
  *
  * @return    the _z_ component
  *
+ * @since 1.6
  * @sa x(), y()
  */
 Coordinate Position::z() const {
@@ -168,6 +181,7 @@ Coordinate Position::z() const {
  * Returns the distance to the location indicated by this position (that is the absolute value of
  * this position vector).
  *
+ * @since 1.6
  * @return    the distance to the indicated position.
  */
 Coordinate Position::distance() const {
@@ -180,6 +194,7 @@ Coordinate Position::distance() const {
 /**
  * Returns a position vector with the same magnitude as this, but in the opposite direction.
  *
+ * @since 1.6
  * @return    the spatial inverse position vector of this one.
  */
 Position Position::inv() const {
@@ -193,6 +208,8 @@ Position Position::inv() const {
  * Converts this position vector to Spherical coordinates.
  *
  * @return    a new instance of spherical coordinates corresponding to this position.
+ *
+ * @since 1.6
  */
 Spherical Position::to_spherical() const {
   double longitude = atan2(_component[1], _component[0]);
@@ -210,6 +227,8 @@ Spherical Position::to_spherical() const {
  * vector).
  *
  * @return    a reference to a static null position vector.
+ *
+ * @since 1.6
  */
 const Position& Position::origin() {
   static const Position _origin = Position(0.0, 0.0, 0.0);
@@ -230,6 +249,8 @@ const Position& Position::origin() {
  * @return              the astrometric position for this observed equatorial position vector,
  *                      referenced to the time when light was emitted, and the observer location
  *                      w.r.t. the Solar-system barycenter (SSB).
+ *
+ * @since 1.6
  */
 AstrometricPosition Position::to_astrometric(const Frame& frame, enum novas_reference_system system) const {
   AstrometricPosition p = AstrometricPosition(*this, frame, system);
@@ -244,6 +265,8 @@ AstrometricPosition Position::to_astrometric(const Frame& frame, enum novas_refe
  *
  * @param decimals    (optional) decimal places to print for the components (default: 3).
  * @return            a string representation of this position vector.
+ *
+ * @since 1.6
  */
 std::string Position::to_string(int decimals) const {
   return "Position (" + Coordinate(_component[0]).to_string(decimals) + ", "
@@ -255,6 +278,8 @@ std::string Position::to_string(int decimals) const {
  * vector may be used inside any object that is invalid itself.
  *
  * @return    a reference to the static standard invalid vector.
+ *
+ * @since 1.6
  */
 const Position& Position::undefined() {
   static const Position _nan = Position();

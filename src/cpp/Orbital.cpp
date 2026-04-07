@@ -50,6 +50,8 @@ OrbitalSystem::OrbitalSystem(const novas_orbital_system *system) {
  * defines the orbital system.
  *
  * @return  a pointer to the NOVAS C structure used internally to define the orbital system.
+ *
+ * @since 1.6
  */
 const novas_orbital_system * OrbitalSystem::_novas_orbital_system() const {
   return &_system;
@@ -61,6 +63,8 @@ const novas_orbital_system * OrbitalSystem::_novas_orbital_system() const {
  *
  * @return  the Solar-system body or barycenter position around which orbits are defined in
  *          this system.
+ *
+ * @since 1.6
  */
 Planet OrbitalSystem::center() const {
   return Planet(_system.center);
@@ -72,6 +76,7 @@ Planet OrbitalSystem::center() const {
  *
  * @return    the obliquity of the orbital system relative to the reference plane.
  *
+ * @since 1.6
  * @sa ascending_node(), pole(), system_type()
  */
 Angle OrbitalSystem::obliquity() const {
@@ -86,6 +91,7 @@ Angle OrbitalSystem::obliquity() const {
  * @return    the ascending node's distance from the vernal equinox in the orbital
  *            reference plane.
  *
+ * @since 1.6
  * @sa obliquity(), pole(), system_type()
  */
 Angle OrbitalSystem::ascending_node() const {
@@ -97,6 +103,7 @@ Angle OrbitalSystem::ascending_node() const {
  *
  * @return    the coordinate reference system type used for definining this orbital system.
  *
+ * @since 1.6
  * @sa obliquity(), ascending_node(), pole(),
  */
 enum novas_reference_system OrbitalSystem::system_type() const {
@@ -109,6 +116,7 @@ enum novas_reference_system OrbitalSystem::system_type() const {
  *
  * @return    The spherical location of the orbital system pole, in the reference plane.
  *
+ * @since 1.6
  * @sa system_type(), obliquity(), ascending_node()
  */
 Spherical OrbitalSystem::pole() const {
@@ -124,6 +132,7 @@ Spherical OrbitalSystem::pole() const {
  * @param system              (optional) the definition of the equinox to assume (default: ICRS).
  * @return                    itself
  *
+ * @since 1.6
  * @sa pole(), obliquity(), ascending_node()
  */
 OrbitalSystem& OrbitalSystem::orientation(double obliquity_rad, double ascending_node_rad, const Equinox& system) {
@@ -157,6 +166,7 @@ OrbitalSystem& OrbitalSystem::orientation(double obliquity_rad, double ascending
  * @param system          (optional) the definition of the equinox to assume (default: ICRS).
  * @return                itself
  *
+ * @since 1.6
  * @sa pole(), obliquity(), ascending_node()
  */
 OrbitalSystem& OrbitalSystem::orientation(const Angle& obliquity, const Angle& ascending_node, const Equinox& system) {
@@ -172,6 +182,7 @@ OrbitalSystem& OrbitalSystem::orientation(const Angle& obliquity, const Angle& a
  * @param system          (optional) the definition of the equinox to assume (default: ICRS).
  * @return                itself
  *
+ * @since 1.6
  * @sa orientation(), obliquity(), ascending_node()
  */
 OrbitalSystem& OrbitalSystem::pole(double longitude_rad, double latitude_rad, const Equinox& system) {
@@ -192,6 +203,7 @@ OrbitalSystem& OrbitalSystem::pole(double longitude_rad, double latitude_rad, co
  * @param system      (optional) the definition of the equinox to assume (default: ICRS).
  * @return            itself
  *
+ * @since 1.6
  * @sa orientation(), obliquity(), ascending_node()
  */
 OrbitalSystem& OrbitalSystem::pole(const Angle& longitude, const Angle& latitude, const Equinox& system) {
@@ -206,6 +218,7 @@ OrbitalSystem& OrbitalSystem::pole(const Angle& longitude, const Angle& latitude
  * @param system          (optional) the definition of the equinox to assume (default: ICRS).
  * @return                itself
  *
+ * @since 1.6
  * @sa pole(), obliquity(), ascending_node()
  */
 OrbitalSystem& OrbitalSystem::pole(const Spherical& coords, const Equinox& system) {
@@ -224,6 +237,7 @@ OrbitalSystem& OrbitalSystem::pole(const Spherical& coords, const Equinox& syste
  *                          time, in the orbital system.
  * @param period_s          [s] orbital period.
  *
+ * @since 1.6
  * @sa from_mean_motion(), eccentricity(), inclination(), pole(), node_period(), node_rate()
  *     apsis_period(), apsis_rate()
  */
@@ -242,6 +256,7 @@ Orbital OrbitalSystem::orbit(double jd_tdb, double semi_major_m, double mean_ano
  *                          in the orbital system.
  * @param period            orbital period.
  *
+ * @since 1.6
  * @sa from_mean_motion(), eccentricity(), inclination(), pole(), node_period(), node_rate()
  *     apsis_period(), apsis_rate()
  */
@@ -257,6 +272,7 @@ Orbital OrbitalSystem::orbit(const Time& ref_time, const Coordinate& semi_major,
  * @param center    the major planet, Sun, Moon, or barycenter position
  * @return          a new equatorial orbital system around the specified center position.
  *
+ * @since 1.6
  * @sa ecliptic(), orientation(), pole()
  */
 OrbitalSystem OrbitalSystem::equatorial(const Planet& center) {
@@ -271,6 +287,7 @@ OrbitalSystem OrbitalSystem::equatorial(const Planet& center) {
  * @param center    the major planet, Sun, Moon, or barycenter position
  * @return          a new ecliptic orbital system around the specified center position.
  *
+ * @since 1.6
  * @sa equatorial(), orientation(), pole()
  */
 OrbitalSystem OrbitalSystem::ecliptic(const Planet& center) {
@@ -286,6 +303,7 @@ OrbitalSystem OrbitalSystem::ecliptic(const Planet& center) {
  * @param system    The NOVAS C orbital system data structure (copied)
  * @return          A new orbital system with that copies the parameters of the argument.
  *
+ * @since 1.6
  * @sa is_valid()
  */
 OrbitalSystem OrbitalSystem::from_novas_orbital_system(const novas_orbital_system *system) {
@@ -309,6 +327,8 @@ OrbitalSystem OrbitalSystem::from_novas_orbital_system(const novas_orbital_syste
  * Returns a human-readable description of this orbital system.
  *
  * @return    a string describing this orbital system.
+ *
+ * @since 1.6
  */
 std::string OrbitalSystem::to_string() const {
   return std::string(_system.plane == NOVAS_ECLIPTIC_PLANE ? "Ecliptic" : "Equatorial") + " OrbitalSystem around " + Planet(_system.center).name() +
@@ -377,6 +397,7 @@ Orbital::Orbital(const novas_orbital *orbit) : _orbit(*orbit) {
  *                          time, in the orbital system.
  * @param period_s          [s] orbital period.
  *
+ * @since 1.6
  * @sa OribtalSystem::orbit()
  * @sa from_mean_motion(), eccentricity(), inclination(), pole(), node_period(), node_rate()
  *     apsis_period(), apsis_rate()
@@ -403,6 +424,7 @@ Orbital::Orbital(const OrbitalSystem& system, double jd_tdb, double semi_major_m
  *                          in the orbital system.
  * @param period            orbital period.
  *
+ * @since 1.6
  * @sa OrbotalSystem::orbit()
  * @sa from_mean_motion(), eccentricity(), inclination(), pole(), node_period(), node_rate()
  *     apsis_period(), apsis_rate()
@@ -417,6 +439,8 @@ Orbital::Orbital(const OrbitalSystem& system, const Time& ref_time, const Coordi
  * parameters.
  *
  * @return  pointer to the NOVAS C data structure that stores the orbital parameters internally.
+ *
+ * @since 1.6
  */
 const novas_orbital * Orbital::_novas_orbital() const {
   return &_orbit;
@@ -426,6 +450,8 @@ const novas_orbital * Orbital::_novas_orbital() const {
  * Returns a new instance of the orbital system in which this orbit is defined.
  *
  * @return    a new instance of the orbital system, in which the orbit is defined.
+ *
+ * @since 1.6
  */
 OrbitalSystem Orbital::system() const {
   OrbitalSystem s = OrbitalSystem::from_novas_orbital_system(&_orbit.system);
@@ -438,6 +464,8 @@ OrbitalSystem Orbital::system() const {
  * Returns the reference time, as a Barycentric Dynamical Time (TDB) based Julian date.
  *
  * @return    [day] the TDB-based Julian date for which the orbital parameters are defined.
+ *
+ * @since 1.6
  */
 double Orbital::reference_jd_tdb() const {
   return _orbit.jd_tdb;
@@ -447,6 +475,8 @@ double Orbital::reference_jd_tdb() const {
  * Returns the semi-major axis (that is the radius for circular orbits) of this orbital.
  *
  * @return    the semi-major axis (circular) radius of this orbit.
+ *
+ * @since 1.6
  */
 Coordinate Orbital::semi_major_axis() const {
   Coordinate a(_orbit.a * Unit::au);
@@ -462,6 +492,7 @@ Coordinate Orbital::semi_major_axis() const {
  * @return    the mean anomaly (circular longitude) of the object in the orbital
  *            system at the reference time.
  *
+ * @since 1.6
  * @sa reference_jd_tdb()
  */
 Angle Orbital::reference_mean_anomaly() const {
@@ -477,6 +508,7 @@ Angle Orbital::reference_mean_anomaly() const {
  * @return    [rad/s] the mean motion (circular angular velocity) of the object on
  *            this orbit.
  *
+ * @since 1.6
  * @sa period()
  */
 double Orbital::mean_motion() const {
@@ -488,6 +520,7 @@ double Orbital::mean_motion() const {
  *
  * @return    the time it takes for the object to complete a full orbit.
  *
+ * @since 1.6
  * @sa mean_motion()
  */
 Interval Orbital::period() const {
@@ -502,6 +535,7 @@ Interval Orbital::period() const {
  *
  * @return    the eccentricity of this orbital (dimensionless).
  *
+ * @since 1.6
  * @sa periapsis()
  */
 double Orbital::eccentricity() const {
@@ -515,6 +549,7 @@ double Orbital::eccentricity() const {
  * @return    the longitude (in the orbital system) at which point the object is closest
  *            to the orbital center (on an elliptical orbit).
  *
+ * @since 1.6
  * @sa eccentricity()
  */
 Angle Orbital::periapsis() const {
@@ -529,6 +564,7 @@ Angle Orbital::periapsis() const {
  *
  * @return    the inclination of the orbit relative to the orbital system's plane.
  *
+ * @since 1.6
  * @sa ascending_node(), pole()
  */
 Angle Orbital::inclination() const {
@@ -544,6 +580,7 @@ Angle Orbital::inclination() const {
  *
  * @return      the longitude of the ascending node in the orbital system.
  *
+ * @since 1.6
  * @sa inclination(), pole()
  */
 Angle Orbital::ascending_node() const {
@@ -560,6 +597,7 @@ Angle Orbital::ascending_node() const {
  * @return    the location of the orbit's pole in the orbital system, in which the orbital is
  *            defined.
  *
+ * @since 1.6
  * @sa inclination(), ascending_node()
  */
 Spherical Orbital::pole() const {
@@ -578,6 +616,7 @@ Spherical Orbital::pole() const {
  *              orbital system, viewed from the orbital system's pole. It may be negative for
  *              retrograde (clockwise) motion.
  *
+ * @since 1.6
  * @sa apsis_rate(), eccentricity(), node_period()
  */
 Interval Orbital::apsis_period() const {
@@ -596,6 +635,7 @@ Interval Orbital::apsis_period() const {
  *              orbital system, viewed from the orbital system's pole. It may be negative for
  *              retrograde (clockwise) motion.
  *
+ * @since 1.6
  * @sa node_rate(), inclination(), apsis_period()
  */
 Interval Orbital::node_period() const {
@@ -613,6 +653,7 @@ Interval Orbital::node_period() const {
  * @return    [rad/s] the angular velocity of the apsis' rotation in the orbital system, viewed
  *            from the orbital system's pole. It may be negative for retrograde motion.
  *
+ * @since 1.6
  * @sa apsis_period(), node_rate()
  */
 double Orbital::apsis_rate() const {
@@ -628,6 +669,7 @@ double Orbital::apsis_rate() const {
  *            orbital system, viewed from the orbital system's pole. It may be negative for
  *            retrograde motion.
  *
+ * @since 1.6
  * @sa node_period(), apsis_rate()
  */
 double Orbital::node_rate() const {
@@ -652,6 +694,7 @@ double Orbital::node_rate() const {
  * @return              The rectangular equatorial position vector of the orbital object, relative
  *                      to the equinox type of the orbital system.
  *
+ * @since 1.6
  * @sa velocity()
  */
 Position Orbital::position(const Time& time, enum novas_accuracy accuracy) const {
@@ -683,6 +726,7 @@ Position Orbital::position(const Time& time, enum novas_accuracy accuracy) const
  * @return              The rectangular equatorial velocity vector of the orbital object, relative
  *                      to the equinox type of the orbital system.
  *
+ * @since 1.6
  * @sa position()
  */
 Velocity Orbital::velocity(const Time& time, enum novas_accuracy accuracy) const {
@@ -702,6 +746,8 @@ Velocity Orbital::velocity(const Time& time, enum novas_accuracy accuracy) const
  *
  * @param name      the designated source name
  * @return          a new source with this orbit and the specified designations.
+ *
+ * @since 1.6
  */
 OrbitalSource Orbital::to_source(const std::string& name) const {
   OrbitalSource s = OrbitalSource(name, *this);
@@ -719,6 +765,7 @@ OrbitalSource Orbital::to_source(const std::string& name) const {
  *                        defined.
  * @return                itself.
  *
+ * @since 1.6
  * @sa apsis_period(), apsis_rate()
  */
 Orbital& Orbital::eccentricity(double e, double periapsis_rad) {
@@ -755,6 +802,7 @@ Orbital& Orbital::eccentricity(double e, double periapsis_rad) {
  *                          defined.
  * @return                  itself.
  *
+ * @since 1.6
  * @sa apsis_period(), apsis_rate()
  */
 Orbital& Orbital::eccentricity(double e, const Angle& periapsis_angle) {
@@ -769,6 +817,7 @@ Orbital& Orbital::eccentricity(double e, const Angle& periapsis_angle) {
  *                            which the orbit is defined.
  * @return                    itself.
  *
+ * @since 1.6
  * @sa pole(), node_period(), node_rate()
  */
 Orbital& Orbital::inclination(double angle_rad, double ascending_node_rad) {
@@ -799,6 +848,7 @@ Orbital& Orbital::inclination(double angle_rad, double ascending_node_rad) {
  *                              the orbit is defined.
  * @return                      itself.
  *
+ * @since 1.6
  * @sa pole(), node_period(), node_rate()
  */
 Orbital& Orbital::inclination(const Angle& angle, const Angle& ascending_node_angle) {
@@ -812,6 +862,7 @@ Orbital& Orbital::inclination(const Angle& angle, const Angle& ascending_node_an
  * @param latitude_rad    [rad] latitude of the orbit's pole in the orbital system.
  * @return                itself
  *
+ * @since 1.6
  * @sa inclination(), node_pediod(), node_rate()
  */
 Orbital& Orbital::pole(double longitude_rad, double latitude_rad) {
@@ -830,6 +881,7 @@ Orbital& Orbital::pole(double longitude_rad, double latitude_rad) {
  * @param latitude    latitude of the orbit's pole in the orbital system.
  * @return            itself
  *
+ * @since 1.6
  * @sa inclination(), node_pediod(), node_rate()
  */
 Orbital& Orbital::pole(const Angle& longitude, const Angle& latitude) {
@@ -842,6 +894,7 @@ Orbital& Orbital::pole(const Angle& longitude, const Angle& latitude) {
  * @param coords      location of the pole in the orbital system.
  * @return            itself
  *
+ * @since 1.6
  * @sa inclination(), node_pediod(), node_rate()
  */
 Orbital& Orbital::pole(const Spherical& coords) {
@@ -856,6 +909,7 @@ Orbital& Orbital::pole(const Spherical& coords) {
  *                    clockwise (retrograde) rotation seen from the orbital system's pole.
  * @return            itself
  *
+ * @since 1.6
  * @sa apsis_rate(), periapsis(), eccentricity()
  */
 Orbital& Orbital::apsis_period(double seconds) {
@@ -883,6 +937,7 @@ Orbital& Orbital::apsis_period(double seconds) {
  *                    system's pole.
  * @return            itself
  *
+ * @since 1.6
  * @sa apsis_rate(), periapsis(), eccentricity()
  */
 Orbital& Orbital::apsis_period(const Interval& period) {
@@ -897,6 +952,7 @@ Orbital& Orbital::apsis_period(const Interval& period) {
  *                    clockwise (retrograde) rotation seen from the orbital system's pole.
  * @return            itself
  *
+ * @since 1.6
  * @sa apsis_rate(), periapsis(), eccentricity()
  */
 Orbital& Orbital::apsis_rate(double rad_per_sec) {
@@ -916,6 +972,7 @@ Orbital& Orbital::apsis_rate(double rad_per_sec) {
  *                    clockwise (retrograde) rotation seen from the orbital system's pole.
  * @return            itself
  *
+ * @since 1.6
  * @sa node_rate(), ascending_node(), inclination(), pole()
  */
 Orbital& Orbital::node_period(double seconds) {
@@ -942,6 +999,7 @@ Orbital& Orbital::node_period(double seconds) {
  *                    clockwise (retrograde) rotation seen from the orbital system's pole.
  * @return            itself
  *
+ * @since 1.6
  * @sa node_rate(), ascending_node(), inclination(), pole()
  */
 Orbital& Orbital::node_period(const Interval& period) {
@@ -956,6 +1014,7 @@ Orbital& Orbital::node_period(const Interval& period) {
  *                    for clockwise (retrograde) rotation seen from the orbital system's pole.
  * @return            itself
  *
+ * @since 1.6
  * @sa node_period(), ascending_node(), inclination(), pole()
  */
 Orbital& Orbital::node_rate(double rad_per_sec) {
@@ -971,6 +1030,8 @@ Orbital& Orbital::node_rate(double rad_per_sec) {
  * Returns a basic human-readable description of this orbital, with just the major parameters.
  *
  * @return  a basic string description of this orbital.
+ *
+ * @since 1.6
  */
 std::string Orbital::to_string() const {
   return "Orbital (a = " + semi_major_axis().to_string() + ", T = " +  period().to_string() + ", e = " + std::to_string(eccentricity()) + ") in " + system().to_string();
@@ -989,6 +1050,7 @@ std::string Orbital::to_string() const {
  *                          reference time, in the orbital system.
  * @param rad_per_sec       [rad/s] mean motion (circular angular velocity) on orbit.
  *
+ * @since 1.6
  * @sa Orbital(), eccentricity(), inclination(), pole(), node_period(), node_rate()
  *     apsis_period(), apsis_rate()
  */
@@ -1011,6 +1073,7 @@ Orbital Orbital::from_mean_motion(const OrbitalSystem& system, double jd_tdb, do
  *                          time, in the orbital system.
  * @param rad_per_sec       [rad/s] mean motion (circular angular velocity) on orbit.
  *
+ * @since 1.6
  * @sa Orbital(), eccentricity(), inclination(), pole(), node_period(), node_rate()
  *     apsis_period(), apsis_rate()
  */
@@ -1027,6 +1090,7 @@ Orbital Orbital::from_mean_motion(const OrbitalSystem& system, const Time& ref_t
  * @param orbit   The NOVAS C orbital data structure (copied)
  * @return        A new Keplerian orbital instance, with the specified parameters.
  *
+ * @since 1.6
  * @sa Orbital(), is_valid()
  */
 Orbital Orbital::from_novas_orbit(const novas_orbital *orbit) {
@@ -1059,15 +1123,16 @@ Orbital Orbital::from_novas_orbit(const novas_orbital *orbit) {
  *
  * REFERENCES:
  *
- *  - Chapront, J. et al., 2002, A&amp;A 387, 700–709
- *  - Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.
- *  - Chapront J., Francou G., 2003, A&amp;A, 404, 735
+ *  1. Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  2. Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.
+ *  3. Chapront J., Francou G., 2003, A&amp;A, 404, 735
  *
  *
  * @param time        Astrometric time for which to calculate the secular orbital parameters
  *                    of the moon.
  * @return            the Moon orbital defined with the mean orbital elements of date.
  *
+ * @since 1.6
  * @sa moon_mean_orbit_at()
  */
 Orbital Orbital::moon_orbit_at(const Time& time) {
@@ -1091,15 +1156,16 @@ Orbital Orbital::moon_orbit_at(const Time& time) {
  *
  * REFERENCES:
  *
- *  - Chapront, J. et al., 2002, A&amp;A 387, 700–709
- *  - Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.
- *  - Chapront J., Francou G., 2003, A&amp;A, 404, 735
- *  - Laskar J., 1986, A&amp;A, 157, 59
+ *  1. Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  2. Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.
+ *  3. Chapront J., Francou G., 2003, A&amp;A, 404, 735
+ *  4. Laskar J., 1986, A&amp;A, 157, 59
  *
  * @param time        Astrometric time for which to calculate the secular orbital parameters
  *                    of the moon.
  * @return            the Moon orbital defined with the mean orbital elements of date.
  *
+ * @since 1.6
  * @sa moon_orbit_at()
  */
 Orbital Orbital::moon_mean_orbit_at(const Time& time) {

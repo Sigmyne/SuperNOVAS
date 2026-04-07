@@ -27,6 +27,9 @@ namespace supernovas {
  * @param ref_pos       %Observer location relative to the Solar System Barycenter (SSB).
  * @param system        %Equatorial coordinate reference system type used for the position and
  *                      observer location (default: TOD).
+ *
+ * @since 1.6
+ * @sa Apparent::astrometric_position(), Position::to_astrometric()
  */
 AstrometricPosition::AstrometricPosition(const Position& equ_pos, const Time &time, const Position& ref_pos, enum novas_reference_system system) :
         Position(equ_pos), _emit_time(time - (equ_pos.distance().m() / Constant::c)), _obs_pos(ref_pos), _ref_sys(system) {
@@ -60,6 +63,9 @@ AstrometricPosition::AstrometricPosition(const Position& equ_pos, const Time &ti
  * @param frame         Observing frame (observer location and time of observation).
  * @param system        (optional) %Equatorial coordinate reference system type used for the
  *                      position and observer location (default: TOD).
+ *
+ * @since 1.6
+ * @sa Apparent::astrometric_position(), Position::to_astrometric()
  */
 AstrometricPosition::AstrometricPosition(const Position& equ_pos, const Frame &frame, enum novas_reference_system system) :
         AstrometricPosition(equ_pos, frame.time(), frame.observer_ssb_position(), system) {
@@ -70,6 +76,7 @@ AstrometricPosition::AstrometricPosition(const Position& equ_pos, const Frame &f
  *
  * @return    the Solar-system barycentric position that this position is referenced to.
  *
+ * @since 1.6
  */
 const Position& AstrometricPosition::reference() const {
   return _obs_pos;
@@ -81,6 +88,7 @@ const Position& AstrometricPosition::reference() const {
  *
  * @return    the reference system type for this position.
  *
+ * @since 1.6
  * @sa equatorial()
  */
 enum novas_reference_system AstrometricPosition::system_type() const {
@@ -93,6 +101,7 @@ enum novas_reference_system AstrometricPosition::system_type() const {
  *
  * @return    the time at which observed light was emitted from this position.
  *
+ * @since 1.6
  * @sa obs_time()
  */
 const Time& AstrometricPosition::emit_time() const {
@@ -105,6 +114,7 @@ const Time& AstrometricPosition::emit_time() const {
  *
  * @return    the time at which this position is defined.
  *
+ * @since 1.6
  * @sa emit_time(), reference()
  */
 Time AstrometricPosition::obs_time() const {
@@ -124,6 +134,7 @@ Time AstrometricPosition::obs_time() const {
  *                    a moving observer, nor gravitational deflection around the major
  *                    Solar-system bodies. Both of those are included in Apparent places instead.
  *
+ * @since 1.6
  * @sa Apparent::equatorial()
  */
 Equatorial AstrometricPosition::to_equatorial() const {
@@ -145,6 +156,7 @@ Equatorial AstrometricPosition::to_equatorial() const {
  *                  was defined.
  * @return          This position but referenced to the new location.
  *
+ * @since 1.6
  * @sa referenced_to_ssb()
  */
 AstrometricPosition AstrometricPosition::referenced_to(const Position& ref_pos) const {
@@ -159,6 +171,7 @@ AstrometricPosition AstrometricPosition::referenced_to(const Position& ref_pos) 
  *
  * @return      This position but referenced to the SSB.
  *
+ * @since 1.6
  * @sa referenced_to()
  */
 AstrometricPosition AstrometricPosition::referenced_to_ssb() const {
@@ -215,6 +228,7 @@ AstrometricPosition AstrometricPosition::referenced_to_ssb() const {
  *                    The _u_ and _v_ directions are aligned with the local East and Noth in
  *                    the coordinate system in which the phase center was specified.
  *
+ * @since 1.6
  * @sa Observer::to_interferometric()
  */
 Interferometric AstrometricPosition::to_interferometric(const Equatorial& phase_center, const Coordinate& distance, const Velocity& relative_motion) const {
@@ -236,6 +250,8 @@ Interferometric AstrometricPosition::to_interferometric(const Equatorial& phase_
  *
  * @param decimals    Number of decimal places to show for the position components.
  * @return            a string summary of this referenced position.
+ *
+ * @since 1.6
  */
 std::string AstrometricPosition::to_string(int decimals) const {
   return Position::to_string(decimals) + " at " + _emit_time.to_string() + " from SSB " + _obs_pos.to_string();

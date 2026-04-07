@@ -39,6 +39,8 @@ void Ecliptic::validate() {
  * @param system          (optional) the equatorial coordinate reference system that defines the
  *                        the origin of ecliptic longitude, that is the equinox of date (default:
  *                        ICRS).
+ *
+ * @since 1.6
  */
 Ecliptic::Ecliptic(double longitude_rad, double latitude_rad, const Equinox& system)
 : Spherical(longitude_rad, latitude_rad), _equator(system.equator_type()), _jd(system.jd()) {
@@ -54,6 +56,8 @@ Ecliptic::Ecliptic(double longitude_rad, double latitude_rad, const Equinox& sys
  * @param system      (optional) The equatorial coordinate reference system that defines the
  *                    origin of ecliptic longitude, that is the equinox of date (default:
  *                    ICRS).
+ *
+ * @since 1.6
  */
 Ecliptic::Ecliptic(const Angle& longitude, const Angle& latitude, const Equinox &system)
 : Ecliptic(longitude.rad(), latitude.rad(), system) {}
@@ -79,8 +83,10 @@ Ecliptic::Ecliptic(const Angle& longitude, const Angle& latitude, const Equinox 
  *                    the origin of ecliptic longitude, that is the equinox of date (default:
  *                    ICRS).
  *
+ * @since 1.6
  * @sa novas_str_degrees() for details on string representation that can be parsed.
  * @sa novas_parse_degrees() for more managed parsing from strings.
+ *
  */
 Ecliptic::Ecliptic(const std::string& longitude, const std::string& latitude, const Equinox& system)
 : Ecliptic(Angle(longitude), Angle(latitude), system) {}
@@ -92,6 +98,8 @@ Ecliptic::Ecliptic(const std::string& longitude, const std::string& latitude, co
  * @param system          (optional) the equatorial coordinate reference system that defines the
  *                        the origin of ecliptic longitude, that is the equinox of date (default:
  *                        ICRS).
+ *
+ * @since 1.6
  */
 Ecliptic::Ecliptic(const Position& pos, const Equinox& system)
 : Spherical(pos.to_spherical()), _equator(system.equator_type()), _jd(system.jd()) {
@@ -107,6 +115,7 @@ Ecliptic::Ecliptic(const Position& pos, const Equinox& system)
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Ecliptic::equals(const Ecliptic& other, double precision_rad) const {
@@ -122,6 +131,7 @@ bool Ecliptic::equals(const Ecliptic& other, double precision_rad) const {
  * @return                `true` if these coordinates are the same as the reference within the
  *                        precision, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 // cppcheck-suppress functionStatic
@@ -136,6 +146,7 @@ bool Ecliptic::equals(const Ecliptic& other, const Angle& precision) const {
  * @return                `true` if these coordinates are the same as the reference within 1 &mu;as,
  *                        or else `false`.
  *
+ * @since 1.6
  * @sa operator!=()
  */
 bool Ecliptic::operator==(const Ecliptic& other) const {
@@ -149,6 +160,7 @@ bool Ecliptic::operator==(const Ecliptic& other) const {
  * @return                `true` if these coordinates differ from the reference, by more than
  *                        1 &mu;as, or else `false`.
  *
+ * @since 1.6
  * @sa operator==()
  */
 bool Ecliptic::operator!=(const Ecliptic& other) const {
@@ -163,6 +175,7 @@ bool Ecliptic::operator!=(const Ecliptic& other) const {
  * @return          new ecliptic coordinates, which represent the same position as
  *                  this, but expressed relaive to the specified equinox.
  *
+ * @since 1.6
  * @sa to_system()
  */
 Ecliptic Ecliptic::operator>>(const Equinox& system) const {
@@ -177,6 +190,7 @@ Ecliptic Ecliptic::operator>>(const Equinox& system) const {
  *
  * @return    the type of equator that defines the origin (equinox), uch as ICRS, mean, or true.
  *
+ * @since 1.6
  * @sa Equinox::equator_type()
  */
 enum novas_equator_type Ecliptic::equator_type() const {
@@ -188,6 +202,7 @@ enum novas_equator_type Ecliptic::equator_type() const {
  *
  * @return    [day] the (TDB-based) Julian date of the epoch for which the coordinates are defined.
  *
+ * @since 1.6
  * @sa mjd()
  */
 double Ecliptic::jd() const {
@@ -199,6 +214,7 @@ double Ecliptic::jd() const {
  *
  * @return    [day] the (TDB-based) MJD of the epoch for which the coordinates are defined.
  *
+ * @since 1.6
  * @sa jd()
  */
 double Ecliptic::mjd() const {
@@ -209,6 +225,8 @@ double Ecliptic::mjd() const {
  * Returns the equinox of date relative to which these ecliptic coordinates are defined.
  *
  * @return    the equinox of date, which these ecliptic coordinates are based on.
+ *
+ * @since 1.6
  */
 Equinox Ecliptic::system() const {
   switch(_equator) {
@@ -233,6 +251,8 @@ Equinox Ecliptic::system() const {
  *
  * @param other   the reference ecliptic coordinates
  * @return        the angular distance of these coordinates to/from the argument.
+ *
+ * @since 1.6
  */
 Angle Ecliptic::distance_to(const Ecliptic& other) const {
   Angle a = Spherical::distance_to(other >> system());
@@ -250,6 +270,7 @@ Angle Ecliptic::distance_to(const Ecliptic& other) const {
  * @return          new ecliptic coordinates, which represent the same position as
  *                  this, but expressed relaive to the specified equinox.
  *
+ * @since 1.6
  * @sa operator>>(), to_icrs(), to_j2000(), to_mod(), to_tod()
  */
 Ecliptic Ecliptic::to_system(const Equinox& system, enum novas_accuracy accuracy) const {
@@ -267,6 +288,7 @@ Ecliptic Ecliptic::to_system(const Equinox& system, enum novas_accuracy accuracy
  *
  * @return    the equivalent ICRS ecliptic coordinates.
  *
+ * @since 1.6
  * @sa to_system(), to_j2000(), to_mod(), to_tod()
  */
 Ecliptic Ecliptic::to_icrs() const {
@@ -284,6 +306,7 @@ Ecliptic Ecliptic::to_icrs() const {
  *
  * @return    the equivalent J2000 ecliptic coordinates.
  *
+ * @since 1.6
  * @sa to_system(), to_icrs(), to_mod(), to_tod()
  */
 Ecliptic Ecliptic::to_j2000() const {
@@ -303,6 +326,7 @@ Ecliptic Ecliptic::to_j2000() const {
  * @param time    the astronomical time specifying the coordinate epoch.
  * @return        the equivalent MOD ecliptic coordinates at the specified date.
  *
+ * @since 1.6
  * @sa to_system(), to_mod(), to_tod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_mod(const Time& time) const {
@@ -325,6 +349,7 @@ Ecliptic Ecliptic::to_mod(const Time& time) const {
  * @param time    the astronomical time specifying the coordinate epoch.
  * @return        the equivalent TOD ecliptic coordinates at the specified date.
  *
+ * @since 1.6
  * @sa to_system(), to_tod(), to_mod(), to_icrs(), to_j2000()
  */
 Ecliptic Ecliptic::to_tod(const Time& time) const {
@@ -343,6 +368,7 @@ Ecliptic Ecliptic::to_tod(const Time& time) const {
  * @param accuracy  (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  * @return          the equivalent equatorial coordinates for the same place on sky.
  *
+ * @since 1.6
  * @sa Equatorial::to_ecliptic(), to_galactic()
  */
 Equatorial Ecliptic::to_equatorial(enum novas_accuracy accuracy) const {
@@ -361,6 +387,7 @@ Equatorial Ecliptic::to_equatorial(enum novas_accuracy accuracy) const {
  *
  * @return    the equivalent %Galactic coordinates for the same place on sky.
  *
+ * @since 1.6
  * @sa Galactic::to_ecliptic(), to_equatorial()
  */
 Galactic Ecliptic::to_galactic() const {
@@ -413,6 +440,8 @@ static std::string _sys_type(enum novas_equator_type equator, double jd_tt) {
  * @param decimals    (optional) the number of decimal places to print for the seconds
  *                    (default: 3)
  * @return  a new string with a human-readable representation of these equatorial coordinates.
+ *
+ * @since 1.6
  */
 std::string Ecliptic::to_string(enum novas_separator_type separator, int decimals) const {
   return "ECL " + Spherical::to_string(separator, decimals) + "  " + _sys_type(_equator, _jd);
@@ -423,6 +452,8 @@ std::string Ecliptic::to_string(enum novas_separator_type separator, int decimal
  * coordinates may be used inside any object that is invalid itself.
  *
  * @return    a reference to the static standard invalid coordinates.
+ *
+ * @since 1.6
  */
 const Ecliptic& Ecliptic::undefined() {
   static const Ecliptic _invalid = Ecliptic();

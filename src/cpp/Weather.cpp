@@ -37,6 +37,7 @@ void Weather::validate() {
  * @param p                 [Pa] atmospheric pressure
  * @param humidity_percent  [%] relative humidity
  *
+ * @since 1.6
  * @sa guess()
  */
 Weather::Weather(const Temperature& T, const Pressure& p, double humidity_percent)
@@ -51,6 +52,7 @@ Weather::Weather(const Temperature& T, const Pressure& p, double humidity_percen
  * @param pascal            [Pa] atmospheric pressure
  * @param humidity_percent  [%] relative humidity
  *
+ * @since 1.6
  * @sa guess()
  */
 Weather::Weather(double celsius, double pascal, double humidity_percent)
@@ -63,6 +65,7 @@ Weather::Weather(double celsius, double pascal, double humidity_percent)
  *
  * @return    [C] outside air temperature
  *
+ * @since 1.6
  * @sa pressure(), humidity(), humidity_fraction()
  */
 const Temperature& Weather::temperature() const {
@@ -74,6 +77,7 @@ const Temperature& Weather::temperature() const {
  *
  * @return    [Pa] atmospheric pressure
  *
+ * @since 1.6
  * @sa temperature(), humidity(), humidity_fraction()
  */
 const Pressure& Weather::pressure() const {
@@ -85,6 +89,7 @@ const Pressure& Weather::pressure() const {
  *
  * @return    [%] relative humidity [0:100]
  *
+ * @since 1.6
  * @sa humidity_fraction(), temperature(), pressure()
  */
 double Weather::humidity() const {
@@ -96,6 +101,7 @@ double Weather::humidity() const {
  *
  * @return    relative humidity [0.0:1.0]
  *
+ * @since 1.6
  * @sa humidity(), temperature(), pressure()
  */
 double Weather::humidity_fraction() const {
@@ -106,6 +112,8 @@ double Weather::humidity_fraction() const {
  * Returns a string representation of this weather dataset.
  *
  * @return  A human-readable string representation of this weather data.
+ *
+ * @since 1.6
  */
 std::string Weather::to_string() const {
   char sH[20] = {'\0'};
@@ -118,6 +126,8 @@ std::string Weather::to_string() const {
  * 50%).
  *
  * @return    a static reference to a site-independent standard default weather.
+ *
+ * @since 1.6
  */
 const Weather& Weather::standard() {
   static const Weather _standard(10.0, Unit::atm, 50.0);

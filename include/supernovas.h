@@ -102,6 +102,8 @@ class   EquatorialTrack;
  *
  * Note, this class cannot be instantiated or copied. You should only use its static fields.
  *
+ * @since 1.6
+ *
  * @sa Constant
  * @ingroup util
  */
@@ -194,6 +196,8 @@ public:
  *
  * Note, this class cannot be instantiated or copied. You should only use its static fields.
  *
+ * @since 1.6
+ *
  * @sa Unit
  * @ingroup util
  */
@@ -234,12 +238,15 @@ public:
 /**
  * A simple interface class handling validation checking for classes that inherit it.
  *
+ * @since 1.6
  */
 class Validating {
 protected:
   /**
    * the state variable. Constructors should set it to `true` before returning if the instance has
    * been initialized in a valid state.
+   *
+   * @since 1.6
    *
    * @sa is_valid(), operator bool()
    */
@@ -258,6 +265,8 @@ public:
    * not exceed the speed of light, etc.
    *
    * @return    `true` if the instance is in a 'valid' state, or else `false`.
+   *
+   * @since 1.6
    *
    * @sa operator bool()
    */
@@ -287,6 +296,8 @@ public:
    *
    * @return    `true` if the instance is in a 'valid' state, or else `false`.
    *
+   * @since 1.6
+   *
    * @sa is_valid()
    */
   explicit operator bool() const { return _valid; }
@@ -295,6 +306,8 @@ public:
 
 /**
  * Abstract base class for scalar quantities, expressed in standard S.I. units.
+ *
+ * @since 1.6
  *
  * @sa Angle, TimeAngle, Interval, Coordinate, ScalarVelocity, Temperature, Pressure
  */
@@ -326,6 +339,8 @@ public:
  * equinox, relative to which the right ascention and declination (RA/Dec) coordinates are defined.
  * We'll simply refer to it as %Equinox in this API. This class does not include the Earth
  * co-rotating systems (TIRS and ITRS).
+ *
+ * @since 1.6
  *
  * @sa CatalogEntry, Equatorial, Ecliptic, Apparent, Geometric
  *
@@ -412,6 +427,8 @@ public:
 /**
  * A scalar coordinate or distance between two points in space.
  *
+ * @since 1.6
+ *
  * @sa Position
  * @ingroup util
  */
@@ -460,6 +477,8 @@ public:
 
 /**
  * A signed time interval between two instants of time, in the astronomical timescale of choice.
+ *
+ * @since 1.6
  *
  * @sa Time, TimeAngle
  * @ingroup util
@@ -521,6 +540,8 @@ public:
  * A representation of a regularized angle, which can be expressed in various commonly used
  * angular units as needed. It can also be used to instantiate angles from decimal or
  * [+]DDD:MM:SS.SSS string representations of the angle in degrees.
+ *
+ * @since 1.6
  *
  * @sa TimeAngle
  * @ingroup util
@@ -586,6 +607,8 @@ public:
  * of time units, as needed.  It may also be used to instantiate time-angles from decimal or
  * from HH:MM:SS.SSS string representations of time in hours.
  *
+ * @since 1.6
+ *
  * @sa Time, Interval
  * @ingroup util
  */
@@ -631,6 +654,8 @@ public:
 
 /**
  * A generic 3D spatial vector, expressed in arbitrary units.
+ *
+ * @since 1.6
  *
  * @sa Position, Velocity
  * @ingroup util
@@ -680,6 +705,8 @@ Vector operator*(double factor, const Vector& v);
 
 /**
  * A 3D physical velocity vector in space.
+ *
+ * @since 1.6
  *
  * @sa Velocity, Geometric
  * @ingroup geometric
@@ -731,6 +758,8 @@ public:
 
 /**
  * A 3D physical position vector in space.
+ *
+ * @since 1.6
  *
  * @sa Velocity, Geometric
  * @ingroup geometric
@@ -785,6 +814,8 @@ public:
  * direction of the local East and North, as seen from the source; while _w_ is the distance
  * from the array reference location along the line of sight.
  *
+ * @since 1.6
+ *
  * @sa Observer::to_interferometric(), AstrometricPosition::to_interferometric()
  *
  * @ingroup interferometry
@@ -827,6 +858,8 @@ public:
 /**
  * A scalar velocity (if signed) or speed (unsigned).
  *
+ * @since 1.6
+ *
  * @sa Position
  * @ingroup util, spectral
  */
@@ -857,6 +890,8 @@ public:
 
   /**
    * Returns the magnitude of this speed, as a unsigned speed.
+   *
+   * @since 1.6
    *
    * @return    The absolute value of the (possibly signed) speed value represented by this instance.
    */
@@ -893,6 +928,8 @@ public:
 
 /**
  * %Spherical coordinates (longitude, latitude), representing a direction on sky.
+ *
+ * @since 1.6
  *
  * @sa Position, Equatorial, Ecliptic, Galactic, Horizontal
  * @ingroup util
@@ -934,6 +971,8 @@ public:
  * %Equatorial coordinates (RA, Dec = &alpha;, &delta;), representing the direction ob the sky,
  * for a particular type of equatorial coordinate reference system, relative to the equator and
  * equinox on that system.
+ *
+ * @since 1.6
  *
  * @ingroup equatorial
  */
@@ -1009,6 +1048,8 @@ public:
  * for a particular type of equatorial coordinate reference system, relative to the ecliptic and
  * equinox of that system.
  *
+ * @since 1.6
+ *
  * @ingroup nonequatorial
  */
 class Ecliptic : public Spherical {
@@ -1074,6 +1115,8 @@ public:
  * %Galactic coordinates (_l_, _b_), representing the direction on the sky, relative to the
  * %Galactic plane and the nominal %Galactic center location.
  *
+ * @since 1.6
+ *
  * @ingroup nonequatorial
  */
 class Galactic : public Spherical {
@@ -1116,6 +1159,8 @@ public:
  * express ambient temperatures at an observing location, but users may utilize it in any
  * other context also.
  *
+ * @since 1.6
+ *
  * @sa Weather
  * @ingroup util
  */
@@ -1146,6 +1191,8 @@ public:
  * commonly used pressure units (kPa, mbar, torr, atm, and more). Within SuperNOVAS it is
  * normally used to express atmospheric pressure at an observing location, but users may
  * utilize it in any other context also.
+ *
+ * @since 1.6
  *
  * @sa Weather
  * @ingroup util
@@ -1191,6 +1238,8 @@ public:
 /**
  * %Weather data, mainly for atmopsheric refraction correction for Earth-based (geodetic)
  * observers.
+ *
+ * @since 1.6
  *
  * @sa Horizontal::to_refracted(), Horizontal::to_unrefracted(), Site
  * @ingroup refract
@@ -1239,14 +1288,17 @@ public:
  * (ITRS) on the true rotational equator.
  *
  * NOTES:
- * <ol>
- * <li>Corrections for diurnal variations are automatically applied in the constructors of
- * Time (for dUT1) and Frame (for _x_<sub>p</sub> and _y_<sub>p</sub> for geodetic observers),
- * and in Geometric::to_itrs(), as appropriate.</li>
- * <li>For &mu;as-level precision, your EOP data should match the ITRF realization of the site
- * coordinates. IERS provides EOP data in different ITRF realizations, and SuperNOVAS provides
- * methods to convert both the EOP and/or the Site to another ITRF realization, if need be.</li>
- * </ol>
+ *
+ * 1. Corrections for diurnal variations are automatically applied in the constructors of
+ *    Time (for dUT1) and Frame (for _x_<sub>p</sub> and _y_<sub>p</sub> for geodetic observers),
+ *    and in Geometric::to_itrs(), as appropriate.
+ *
+ * 2. For &mu;as-level precision, your EOP data should match the ITRF realization of the site
+ *    coordinates. IERS provides EOP data in different ITRF realizations, and SuperNOVAS provides
+ *    methods to convert both the EOP and/or the Site to another ITRF realization, if need be.
+ *
+ *
+ * @since 1.6
  *
  * @sa Time, GeodeticObserver, Geometric::to_itrs(), Horizontal::to_apparent()
  * \ingroup earth
@@ -1296,6 +1348,8 @@ public:
  * realization used for the Eath Orientation Parameters (%EOP) obtained from IERS, for &mu;as
  * precision. (This is really only necessary for VLBI interferometry). Alternatively, one may also
  * transform the %EOP values to match the ITRF realization of the site.
+ *
+ * @since 1.6
  *
  * @sa GeodeticObserver, EOP
  * @ingroup observer
@@ -1367,6 +1421,8 @@ public:
  * An abstract observer location. Both Earth-bound (geodetic sites, airborne, or Earth-orbit), and locations elsewhere in
  * the Solar-system are supported.
  *
+ * @since 1.6
+ *
  * @sa Frame
  * @ingroup observer
  */
@@ -1437,6 +1493,8 @@ public:
  * above it (e.g. in an aircraft or balloon). The observer may be fixed at that location, or else
  * moving with some velocity over the ground.
  *
+ * @since 1.6
+ *
  * @sa GeodeticFrame, GeocentricObserver
  * @ingroup observer
  */
@@ -1485,6 +1543,8 @@ public:
  * An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit
  * sattelite, or for a virtual observer located at the geocenter itself.
  *
+ * @since 1.6
+ *
  * @sa GeodeticObserver
  * @ingroup observer
  */
@@ -1509,6 +1569,8 @@ public:
  * An observer location anywhere in the Solar System, defined by its momentary barycentric
  * position and velocity vectors.
  *
+ * @since 1.6
+ *
  * @ingroup observer
  */
 class SolarSystemObserver : public Observer {
@@ -1529,6 +1591,8 @@ public:
 
 /**
  * Type of calendar used for representing dates, such as Gregorian, Roman, or astronomical.
+ *
+ * @since 1.6
  *
  * @ingroup time
  */
@@ -1568,6 +1632,8 @@ public:
  * had in mind when constructing it. It has a lesser precision than Time, at the 100 &mu;s level,
  * limited by the double-precision representation of Julian dates. However, that level of
  * precision is still sufficient for most applications.
+ *
+ * @since 1.6
  *
  * @sa Time
  * @ingroup time
@@ -1663,6 +1729,8 @@ public:
 /**
  * Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,
  * UTC, TAI, GPS, TT, TDB, TCG, and TCB).
+ *
+ * @since 1.6
  *
  * @sa Interval, TimeAngle, Observer
  * @ingroup time
@@ -1814,6 +1882,8 @@ public:
  * (using the is_valid() method), or else use the static Frame::create() function to return an
  * optional.
  *
+ * @since 1.6
+ *
  * @sa Source
  * @ingroup frame
  */
@@ -1871,6 +1941,8 @@ public:
 /**
  * An abstract astronomical source, or target of observation.
  *
+ * @since 1.6
+ *
  * @sa CatalogSource, Planet, EphemerisSource, OrbitalSource
  * @ingroup source
  */
@@ -1885,6 +1957,8 @@ public:
 
   /**
    * Returns a pointer to a newly allocated copy of this instance
+   *
+   * @since 1.6
    *
    * @return    pointer to a newly allocated copy.
    */
@@ -1944,6 +2018,8 @@ public:
  *     needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid
  *     using the builder functions in a multi-threaded environment. The best practice is to build
  *     the catalog entry first, before using in parallel threads unmodified.
+ *
+ * @since 1.6
  *
  * @sa CatalogSource
  * @ingroup source spectral
@@ -2015,6 +2091,8 @@ public:
 /**
  * A sidereal source, defined by its catalog coordinates and other catalog parameters.
  *
+ * @since 1.6
+ *
  * @ingroup source
  */
 class CatalogSource : public Source {
@@ -2033,6 +2111,8 @@ public:
 
 /**
  * An abstract class of a source in the Solar-system.
+ *
+ * @since 1.6
  *
  * @sa Planet, EphemerisSource, OrbitalSource
  * @ingroup source
@@ -2062,6 +2142,8 @@ public:
  * calculates approximate position for the Earth and Sun only. Thus to provide ephemeris
  * positions for all planet-type osurces, you will have to configure a Solar-system ephemeris
  * provider, e.g. via `novas_use_calceph()` or `novas_use_cspice()`.
+ *
+ * @since 1.6
  *
  * @sa EphemerisSource, OrbitalSource, novas_use_calceph(), novas_use_cspice()
  * @ingroup source
@@ -2138,6 +2220,8 @@ public:
  * numbering convention. In any case, you should construct your ephemeris source to match the
  * lookup method used by the ephemeris provider function(s) or library you will be using.
  *
+ * @since 1.6
+ *
  * @sa Planet, OrbitalSource, novas_use_calceph(), novas_use_cspice(),
  *     novas_case_sensitive()
  * @ingroup source
@@ -2165,6 +2249,8 @@ public:
  *     classes. You should avoid using the builder functions in a multi-threaded environment. The
  *     best practice is to fully define the orbital first, before using it to define orbitals,
  *     or referencing it in parallel threads unmodified.
+ *
+ * @since 1.6
  *
  * @sa Orbital
  * @ingroup util
@@ -2227,6 +2313,8 @@ public:
  *     needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid
  *     using the builder functions in a multi-threaded environment. The best practice is to build
  *     the orbital first, before using in parallel threads unmodified.
+ *
+ * @since 1.6
  *
  * @sa EphemerisSource, Planet::orbit()
  * @ingroup util
@@ -2332,6 +2420,8 @@ public:
  * Keplerian orbital elements by the MPC may be the most accurate, or the only, source of
  * information.
  *
+ * @since 1.6
+ *
  * @sa EphemerisSource, Planet
  * @ingroup source
  */
@@ -2374,6 +2464,8 @@ public:
  *
  * %Apparent positions can also come directly from observations, such as from unrefracted
  * horizontal coordinates.
+ *
+ * @since 1.6
  *
  * @sa Source::apparent_in(), Horizontal::to_apparent()
  * @sa Geometric
@@ -2457,6 +2549,8 @@ public:
  * time for Solar-system bodies. Rather, geometric positions match the ephemeris positions for
  * an earlier time, when the observed light originated from the source.
  *
+ * @since 1.6
+ *
  * @sa Source::geometric_in(), Frame::geometric_planet()
  * @sa Apparent
  * @ingroup geometric
@@ -2524,6 +2618,8 @@ public:
  * local horizon and meridian, and can be used for both unrefracted (astrometric) or refracted
  * (observed) values or for converting between those two.
  *
+ * @since 1.6
+ *
  * @sa Apparent, Site, Weather
  * @ingroup nonequatorial refract
  */
@@ -2576,6 +2672,8 @@ public:
  * The astrometric 3D geometric equatorial position of an object, referenced to the Solar System
  * Barycenter (SSB) or place in the Solar-system w.r.t. the SSB, at a specific astrometric time.
  *
+ * @since 1.6
+ *
  * @sa Geometric, Apparent::astrometric_position(), Position::to_astrometric()
  *
  * @ingroup geometric
@@ -2622,6 +2720,8 @@ class AstrometricPosition : public Position {
 /**
  * The evolution of a scalar quantity in time, based on a local quadratic approximation.
  *
+ * @since 1.6
+ *
  * @sa Track
  */
 class ScalarEvolution : public Validating {
@@ -2652,6 +2752,8 @@ public:
 /**
  * Approximate trajectory of a source in spherical coordinates, using a local quadratic
  * approximation around a time instant, in some coordinate system.
+ *
+ * @since 1.6
  *
  * @sa HorizontalTrack, EquatorialTrack
  */
@@ -2723,6 +2825,8 @@ public:
  * Az/El positions, distances, spectroscopic redshifts or radial velocities, within the interval of
  * validity, at very low computational cost.
  *
+ * @since 1.6
+ *
  * @sa Apparent::horizontal(), EquatorialTrack
  * @ingroup tracking
  */
@@ -2752,6 +2856,8 @@ public:
  * R.A. and declination axes. Or, one may use the trajectory to obtain interpolated instantaneous
  * R.A./Dec positions, distances, spectroscopic redshifts or radial velocities within the interval
  * of validity, at very low computational cost.
+ *
+ * @since 1.6
  *
  * @sa Apparent::equatorial(), HorizontalTrack
  * @ingroup tracking

@@ -47,6 +47,7 @@ namespace supernovas {
  * @param time        time of observation
  * @param accuracy    (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  *
+ * @since 1.6
  * @sa Observer::frame_at(), reduced_accuracy()
  */
 Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy)
@@ -77,6 +78,8 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
  * Custom copy contructor, that points to a copy of the observer.
  *
  * @param frame   the frame to be copied.
+ *
+ * @since 1.6
  */
 Frame::Frame(const Frame& frame)
 : Validating(frame), _observer(frame._observer->copy()), _time(frame.time()), _frame(frame._frame) {}
@@ -87,6 +90,8 @@ Frame::Frame(const Frame& frame)
  *
  * @param frame   the frame to be copied.
  * @return        itself
+ *
+ * @since 1.6
  */
 Frame& Frame::operator=(const Frame& frame) {
   if(this == &frame)
@@ -106,6 +111,8 @@ Frame& Frame::operator=(const Frame& frame) {
  * frame.
  *
  * @return    pointer to the underlying NOVAS C data structure.
+ *
+ * @since 1.6
  */
 const novas_frame * Frame::_novas_frame() const {
   return &_frame;
@@ -115,6 +122,8 @@ const novas_frame * Frame::_novas_frame() const {
  * Returns the accuracy type of this bserving frame.
  *
  * @return    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1).
+ *
+ * @since 1.6
  */
 enum novas_accuracy Frame::accuracy() const {
   return _frame.accuracy;
@@ -125,6 +134,7 @@ enum novas_accuracy Frame::accuracy() const {
  *
  * @return    the observer location (and motion).
  *
+ * @since 1.6
  * @sa time()
  */
 const Observer& Frame::observer() const {
@@ -136,6 +146,7 @@ const Observer& Frame::observer() const {
  *
  * @return    the astrometric time of observation
  *
+ * @since 1.6
  * @sa jd(), observer()
  */
 const Time& Frame::time() const {
@@ -152,6 +163,7 @@ const Time& Frame::time() const {
  *            variations for libration and ocean tides; or else an undefined (invalid)
  *            EOP if the observer is not on or near Earth's surface.
  *
+ * @since 1.6
  * @sa GeodeticObserver
  */
 const EOP Frame::eop() const {
@@ -168,6 +180,7 @@ const EOP Frame::eop() const {
  * @param timescale   (optional) the timescale in which to return the result (default: TT).
  * @return            [day] the precise Julian date in the requested timescale.
  *
+ * @since 1.6
  * @sa Time::jd(), time()
  */
 double Frame::jd(enum novas_timescale timescale) const {
@@ -213,6 +226,7 @@ double Frame::jd(enum novas_timescale timescale) const {
  *                    sufficient planet position information to evaluate the local gravitational
  *                    potential with precision (errno set to EAGAIN).
  *
+ * @since 1.6
  * @sa novas_clock_skew(), Time::timescale_offset()
  */
 double Frame::clock_skew(enum novas_timescale timescale) const {
@@ -230,6 +244,8 @@ double Frame::clock_skew(enum novas_timescale timescale) const {
  * @param v       equatorial velocity vector, with respect to the observer
  * @param system  equatorial coordinate reference_system, in which position and velocity vectors
  *                are defined
+ *
+ * @since 1.6
  */
 Geometric Frame::geometric(const Position& p, const Velocity& v, enum novas_reference_system system) const {
   Geometric g(*this, p, v, system);
@@ -243,6 +259,7 @@ Geometric Frame::geometric(const Position& p, const Velocity& v, enum novas_refe
  *
  * @return      The Solar system barycentric position of the observer at the time of observation.
  *
+ * @since 1.6
  * @sa observer_ssb_velocity(), observer()
  */
 Position Frame::observer_ssb_position() const {
@@ -258,6 +275,7 @@ Position Frame::observer_ssb_position() const {
  *
  * @return      The Solar system barycentric velocity of the observer at the time of observation.
  *
+ * @since 1.6
  * @sa observer_ssb_position(), observer()
  */
 Velocity Frame::observer_ssb_velocity() const {
@@ -280,16 +298,17 @@ Velocity Frame::observer_ssb_velocity() const {
  *
  * REFERENCES:
  *
- *  - Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
- *  - Chapront, J., Francou G., 2003, A&amp;A, 404, 735
- *  - Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- *    https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
+ *  1. Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *  2. Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *  3. Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *     https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
  *
  * @param limit_term    (optional) [arcsec|km] Sum only the harmonic terms with amplitudes larger
  *                      than this limit.
  * @return              The calculated geometric geocentric position and velocity of the Moon
  *                      in the ICRS.
  *
+ * @since 1.6
  * @sa apparent_moon_elp2000()
  */
 Geometric Frame::geometric_moon_elp2000(double limit_term) const {
@@ -315,15 +334,16 @@ Geometric Frame::geometric_moon_elp2000(double limit_term) const {
  *
  * REFERENCES:
  *
- *  - Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
- *  - Chapront, J., Francou G., 2003, A&amp;A, 404, 735
- *  - Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- *    https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
+ *  1. Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *  2. Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *  3. Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *     https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
  *
  * @param limit_term    (optional) [arcsec|km] Sum only the harmonic terms with amplitudes larger
  *                      than this limit.
  * @return              The apparent place of the moon on the observer's sky.
  *
+ * @since 1.6
  * @sa geometric_moon_elp2000()
  */
 Apparent Frame::apparent_moon_elp2000(double limit_term) const {
@@ -351,6 +371,7 @@ Apparent Frame::apparent_moon_elp2000(double limit_term) const {
  * @param time      Astrometric time of observation
  * @return          A reduced accuracy observing frame for the specified time of observation.
  *
+ * @since 1.6
  * @sa Observer::reduced_accuracy_frame_at()
  */
 Frame Frame::reduced_accuracy(const Observer& obs, const Time& time) {
@@ -364,6 +385,8 @@ Frame Frame::reduced_accuracy(const Observer& obs, const Time& time) {
  * Returns a human-readable string representation of this observing frame.
  *
  * @return    a string representation of this observing frame.
+ *
+ * @since 1.6
  */
 std::string Frame::to_string() const {
   return "Frame for " + _observer->to_string() + " at " + _time.to_string();
@@ -374,6 +397,8 @@ std::string Frame::to_string() const {
  * frame may be used inside any object that is invalid itself.
  *
  * @return    a reference to a static standard invalid equatorial coordinates.
+ *
+ * @since 1.6
  */
 const Frame& Frame::undefined() {
   static const Frame _invalid = Frame();
