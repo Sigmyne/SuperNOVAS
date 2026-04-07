@@ -127,7 +127,8 @@ int main() {
 
   // Let's print the apparent position in CIRS
   // (Note, CIRS R.A. is relative to CIO, not the true equinox of date.)
-  printf(" RA = %.9f h, Dec = %.9f deg, rv = %.3f m.s\n", apparent.ra, apparent.dec, 1000.0 * apparent.rv);
+  printf("Moon:\n");
+  printf("  RA = %.9f h, Dec = %.9f deg, rv = %.3f m.s\n", apparent.ra, apparent.dec, 1000.0 * apparent.rv);
 
   // -------------------------------------------------------------------------
   // Convert the apparent position in CIRS on sky to horizontal coordinates
@@ -139,7 +140,7 @@ int main() {
   }
 
   // Let's print the calculated azimuth and elevation
-  printf(" Az = %.6f deg, El = %.6f deg\n", az, el);
+  printf("  Az = %.6f deg, El = %.6f deg\n", az, el);
 
 
   // -------------------------------------------------------------------------

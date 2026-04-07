@@ -151,7 +151,7 @@ int main() {
   // -------------------------------------------------------------------------
   // 7. Get Calendar date in specific calendar
 
-  // - Get a Broken down date, say in the Julian/Roman calendar
+  // - Get a broken down date, say in the Julian/Roman calendar
   struct tm tm = {};
   time1.to_calendar_date(Calendar::roman()).break_down(&tm);
 

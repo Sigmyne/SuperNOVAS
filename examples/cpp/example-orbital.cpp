@@ -142,7 +142,7 @@ int main() {
 
   // Let's print the apparent position
   std::cout << ceres.name() << ":\n";
-  std::cout << "  " << apparent.equatorial().to_string() << "\n";
+  std::cout << "  " << apparent.equatorial().to_string() << ", " << apparent.radial_velocity().to_string() << "\n";
 
 
   // -------------------------------------------------------------------------
@@ -198,7 +198,7 @@ int main() {
   hor = apparent.to_horizontal().to_refracted(novas_optical_refraction, weather);
 
   std::cout << callisto.name() << ":\n";
-  std::cout << "  " << apparent.equatorial().to_string() << "\n";
+  std::cout << "  " << apparent.equatorial().to_string() << ", " << apparent.radial_velocity().to_string() << "\n";
   std::cout << "  " << hor.to_string() << "\n";
   */
 

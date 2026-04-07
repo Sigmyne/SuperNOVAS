@@ -169,7 +169,8 @@ int main(int argc, const char *argv[]) {
 
   // Let's print the apparent position in CIRS
   // (Note, CIRS R.A. is relative to CIO, not the true equinox of date.)
-  printf(" RA = %.9f h, Dec = %.9f deg, rad_vel = %.6f km/s\n", apparent.ra, apparent.dec, apparent.rv);
+  printf("%s:\n", source.name);
+  printf("  RA = %.9f h, Dec = %.9f deg, rad_vel = %.6f km/s\n", apparent.ra, apparent.dec, apparent.rv);
 
 
   // -------------------------------------------------------------------------
@@ -182,7 +183,7 @@ int main(int argc, const char *argv[]) {
   }
 
   // Let's print the calculated azimuth and elevation
-  printf(" Az = %.6f deg, El = %.6f deg\n", az, el);
+  printf("  Az = %.6f deg, El = %.6f deg\n", az, el);
 
 
   // -------------------------------------------------------------------------

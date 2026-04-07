@@ -194,7 +194,7 @@
  *   velocity measures, either as a Solar-system Barycentric radial velocity, or relative to the
  *   Local Standard of Rest (LSR), or as a redshift measure (_z_). And, when you calculate
  *   apparent places in an observing frame, __SuperNOVAS__ will use that information (or the
- *   geometric velocity vecotr obtained for Solar-system bodies), to calculate the precise
+ *   geometric velocity vector obtained for Solar-system bodies), to calculate the precise
  *   spectroscopic radial velocity that the observer would measure, using the appropriate
  *   relativistic formulae to account for both the kinetic and gravitational effects, including
  *   projection effects due to gravitational bending.

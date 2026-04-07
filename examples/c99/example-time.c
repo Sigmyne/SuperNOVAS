@@ -158,18 +158,18 @@ int main() {
 
   // - Print an UTC-based ISO timestamp to a string
   novas_iso_timestamp(&time1, timestamp, sizeof(timestamp));
-  printf(" Offset time is: %s\n", timestamp);
+  printf("Offset time is: %s\n", timestamp);
 
 
   // - Print a timestamp in a specific time measure, e.g. GPS time
   novas_timestamp(&time1, NOVAS_TDB, timestamp, sizeof(timestamp));
-  printf(" in TDB        : %s\n", timestamp);
+  printf(" in TDB       : %s\n", timestamp);
 
 
   // -------------------------------------------------------------------------
   // 7. Get Calendar date in specific calendar
 
-  // - Get a Broken down date, say in the Julian/Roman calendar
+  // - Get a broken down date, say in the Julian/Roman calendar
   novas_jd_to_date(jd, NOVAS_ROMAN_CALENDAR, &year, &month, &day, &hours);
 
 

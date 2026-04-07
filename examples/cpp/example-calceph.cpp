@@ -150,7 +150,7 @@ int main(int argc, const char *argv[]) {
 
   // Let's print the apparent position
   std::cout << source.name() << ":\n";
-  std::cout << "  " << apparent.equatorial().to_string() << "\n";
+  std::cout << "  " << apparent.equatorial().to_string() << ", " << apparent.radial_velocity().to_string() << "\n";
 
   // -------------------------------------------------------------------------
   // Convert the apparent position on sky to horizontal coordinates
