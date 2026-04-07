@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['between_20equatorial_20systems_0',['Transforming between equatorial systems',['../group__equatorial.html',1,'']]]
+  ['coordinates_0',['Non-equatorial coordinates',['../group__nonequatorial.html',1,'']]]
 ];

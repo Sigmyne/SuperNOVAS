@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['frames_0',['Observing frames',['../group__frame.html',1,'']]]
+  ['geometric_20equatorial_20positions_20and_20velocities_0',['Geometric equatorial positions and velocities',['../group__geometric.html',1,'']]]
 ];

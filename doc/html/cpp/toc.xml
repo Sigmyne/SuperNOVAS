@@ -34,7 +34,7 @@
       <topic label="New functionality highlights" href="index.html#autotoc_md37"/>
       <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md38"/>
     </topic>
-    <topic label="Release schedule" href="index.html#autotoc_md41"/>
+    <topic label="Release schedule" href="index.html#autotoc_md40"/>
   </topic>
   <topic label="C99 Usage" href="md__2github_2workspace_2doc_2USAGE-C99.html">
     <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44">
@@ -792,7 +792,7 @@
       <topic label="get_nutation_lp_provider" href="group__earth.html#ga416a96426a0b3c52c1d5fc6452357366"/>
       <topic label="set_nutation_lp_provider" href="group__earth.html#ga694288eb631d6a69ecf313b7b5b4a677"/>
     </topic>
-    <topic label="Telescope tracking/// [m/s] 1 km / s" href="group__tracking.html">
+    <topic label="Telescope tracking" href="group__tracking.html">
       <topic label="supernovas::EquatorialTrack" href="classsupernovas_1_1EquatorialTrack.html">
         <topic label="EquatorialTrack" href="classsupernovas_1_1EquatorialTrack.html#ace8d716b1283373fe6f5e8a3bf686fac"/>
         <topic label="projected_at" href="classsupernovas_1_1EquatorialTrack.html#a8f41282a1f30c8ede1f28b829ae67480"/>

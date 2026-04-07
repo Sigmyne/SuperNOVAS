@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['km_20s_0',['Telescope tracking/// [m/s] 1 km / s',['../group__tracking.html',1,'']]]
+  ['non_20equatorial_20coordinates_0',['Non-equatorial coordinates',['../group__nonequatorial.html',1,'']]]
 ];
