@@ -96,7 +96,7 @@ with __SuperNOVAS__ as with __astropy__, notwithstanding a little more involved 
 __SuperNOVAS__ is currently based on NOVAS C version 3.1. We plan to rebase __SuperNOVAS__ to the latest upstream 
 release of the NOVAS C library, if possible when new releases become available.
  
-__SuperNOVAS__ is maintained by [Attila Kovács](https://github.com/attipaci) (Sigmyne, LLC), 
+__SuperNOVAS__ is maintained by [Attila Kovács](https://www.sigmyne.com/attipaci). 
 
 Outside contributions are very welcome. See
 [how you can contribute](https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html) on how you can make __SuperNOVAS__ 

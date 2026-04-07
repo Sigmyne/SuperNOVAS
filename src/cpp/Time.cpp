@@ -541,6 +541,8 @@ Interval Time::dUT1() const {
  * @param ref_scale   (optional) the reference timescale (default: TT).
  * @return            The difference in the time expressed in the specified timescale vs the
  *                    reference timescale.
+ *
+ * @sa Frame::clock_skew()
  */
 Interval Time::timescale_offset(enum novas_timescale timescale, enum novas_timescale ref_scale) const {
   Interval dt(novas_timescale_offset(&_ts, timescale, ref_scale));

@@ -213,7 +213,7 @@ double Frame::jd(enum novas_timescale timescale) const {
  *                    sufficient planet position information to evaluate the local gravitational
  *                    potential with precision (errno set to EAGAIN).
  *
- * @sa novas_clock_skew()
+ * @sa novas_clock_skew(), Time::timescale_offset()
  */
 double Frame::clock_skew(enum novas_timescale timescale) const {
   double D = novas_clock_skew(&_frame, timescale);

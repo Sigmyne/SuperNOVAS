@@ -505,28 +505,36 @@ int novas_set_str_time(enum novas_timescale timescale, const char *restrict str,
   return novas_set_time(timescale, jd, leap, dut1, time);
 }
 
+/**
+ * (_for internal use_) Returns the timescale offset from TT. This function requires valid
+ * arguments, and it does not check for errors. The caller is responsible to ensure that the
+ * time specification is not NULL, and that the timescale is within the enum range.
+ *
+ * @param ts          a non-NULL pointer to a time specification
+ * @param timescale   a valid astrometric timescale
+ * @return            [s] the offset of time expressed in the specified timescale vs.
+ *                    the TT-based time at the same instance.
+ */
 static double tt_offset(const novas_timespec *ts, enum novas_timescale timescale) {
   switch(timescale) {
-     case NOVAS_TT:
-       return 0.0;
-     case NOVAS_TCB:
-       return ts->tt2tdb - TC_TDB0 + TC_LB * ((ts->ijd_tt - TC_T0) + ts->fjd_tt) * DAY;
-     case NOVAS_TCG:
-       return TC_LG * ((ts->ijd_tt - TC_T0) + ts->fjd_tt) * DAY;
-     case NOVAS_TDB:
-       return ts->tt2tdb;
-     case NOVAS_TAI:
-       return -DTA;
-     case NOVAS_GPS:
-       return -(DTA + GPS2TAI);
-     case NOVAS_UTC:
-       return -(ts->ut1_to_tt + ts->dut1);
-     case NOVAS_UT1:
-       return -ts->ut1_to_tt;
-     default:
-       novas_set_errno(EINVAL, "tt_offset", "Invalid timescale: %d", timescale);
-       return NAN;
-   }
+    case NOVAS_TCB:
+      return ts->tt2tdb - TC_TDB0 + TC_LB * ((ts->ijd_tt - TC_T0) + ts->fjd_tt) * DAY;
+    case NOVAS_TCG:
+      return TC_LG * ((ts->ijd_tt - TC_T0) + ts->fjd_tt) * DAY;
+    case NOVAS_TDB:
+      return ts->tt2tdb;
+    case NOVAS_TAI:
+      return -DTA;
+    case NOVAS_GPS:
+      return -(DTA + GPS2TAI);
+    case NOVAS_UTC:
+      return -(ts->ut1_to_tt + ts->dut1);
+    case NOVAS_UT1:
+      return -ts->ut1_to_tt;
+    case NOVAS_TT:
+    default:
+      return 0.0; // TT (cannot be anything else...)
+  }
 }
 
 /**
@@ -574,12 +582,16 @@ static double tt_offset(const novas_timespec *ts, enum novas_timescale timescale
  */
 int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, int leap, double dut1,
         novas_timespec *restrict time) {
+  static const char *fn = "novas_set_time";
 
   long ifjd;
   double dt = 0.0;
 
   if(!time)
-    return novas_error(-1, EINVAL, "novas_set_time", "NULL output time structure");
+    return novas_error(-1, EINVAL, fn, "NULL output time structure");
+
+  if((unsigned) timescale >= NOVAS_TIMESCALES)
+    return novas_error(-1, ERANGE, fn, "timescale %d is out of range", (int) timescale);
 
   time->tt2tdb = NAN;
   time->dut1 = dut1;
@@ -590,11 +602,7 @@ int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, i
   if(timescale == NOVAS_TCB || timescale == NOVAS_TDB)
     time->tt2tdb = tt2tdb_hp(ijd + fjd);
 
-  errno = 0;
   fjd -= tt_offset(time, timescale) / DAY;
-  if(errno)
-    return novas_trace("novas_set_split_time", -1, 0);
-
   ifjd = (long) floor(fjd);
 
   time->ijd_tt = ijd + ifjd;
@@ -624,20 +632,28 @@ int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, i
  *
  * @since 1.6
  * @author Attila Kovacs
+ *
+ * @sa novas_clock_skew()
  */
 double novas_timescale_offset(const novas_timespec *ts, enum novas_timescale timescale, enum novas_timescale ref_scale) {
   static const char *fn = "novas_timescale_offset";
 
   if(!ts) {
-    novas_set_errno(EINVAL, fn, "input time specification is NULL");
+    novas_set_errno(EINVAL, fn, "time specification is NULL");
     return NAN;
   }
 
-  errno = 0;
-  double dt = tt_offset(ts, timescale) - tt_offset(ts, ref_scale);
-  if(errno)
-    novas_trace_nan(fn);
-  return dt;
+  if((unsigned) timescale >= NOVAS_TIMESCALES) {
+    novas_set_errno(ERANGE, fn, "timescale %d is out of range", (int) timescale);
+    return NAN;
+  }
+
+  if((unsigned) ref_scale >= NOVAS_TIMESCALES) {
+    novas_set_errno(ERANGE, fn, "reference timescale %d is out of range", (int) ref_scale);
+    return NAN;
+  }
+
+  return tt_offset(ts, timescale) - tt_offset(ts, ref_scale);
 }
 
 /**
@@ -741,15 +757,15 @@ double novas_get_split_time(const novas_timespec *restrict time, enum novas_time
     return NAN;
   }
 
+  if((unsigned) timescale >= NOVAS_TIMESCALES) {
+    novas_set_errno(ERANGE, fn, "timescale %d is out of range", (int) timescale);
+    return NAN;
+  }
+
   if(ijd)
     *ijd = time->ijd_tt;
 
-  f = time->fjd_tt;
-
-  errno = 0;
-  f += tt_offset(time, timescale) / DAY;
-  if(errno)
-    novas_trace_nan(fn);
+  f = time->fjd_tt + tt_offset(time, timescale) / DAY;
 
   if(f < 0.0) {
     f += 1.0;
@@ -1558,7 +1574,7 @@ static double tidal_clock_skew(const novas_frame *frame) {
  * @since 1.5
  * @author Attila Kovacs
  *
- * @sa novas_mean_clock_skew()
+ * @sa novas_mean_clock_skew(), novas_timescale_offset()
  */
 double novas_clock_skew(const novas_frame *frame, enum novas_timescale timescale) {
   static const char *fn = "novas_clock_skew";

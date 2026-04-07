@@ -6,7 +6,7 @@ file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to 
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.6.0-rc3] - 2026-03-07
 
 Upcoming feature release, introducing a proper C++ API for the first time, and bringing various other improvements.
 
@@ -46,14 +46,14 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    timescale of choice.
    
  - New `novas_timescale_offset()` for returning the time offset in two different timescale representations of a time
-   instance
+   instance.
 
 ### Changed
 
  - #256: Changes to repo layout to accommodate C++ API _in addition to_ the base C99 API.
  
  - #306: `novas_make_frame()` now uses the new `novas_site_gcrs_posvel()` when calculating SSB-based observer location 
-   and velocity in the GCRS.
+   and velocity, in the GCRS, for Earth-based observers.
    
  - #306: `geo_posvel()` changed to return an error (-1) if used for a geodetic observer and debug mode is set to
    `NOVAS_DEBUG_EXTRA`, to warn that polar offsets are not included in the calculation. 
