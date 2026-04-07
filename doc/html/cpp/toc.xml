@@ -1,5 +1,5 @@
 <toc label="SuperNOVAS C++ API" topic="index.html">
-  <topic label="User&apos;s guide" href="index.html#autotoc_md0">
+  <topic label="User&apos;s guide" href="index.html">
     <topic label="Table of Contents" href="index.html#autotoc_md1"/>
     <topic label="Introduction" href="index.html#autotoc_md3">
       <topic label="Related links" href="index.html#autotoc_md4"/>
@@ -26,15 +26,15 @@
     </topic>
     <topic label="Notes on precision" href="index.html#autotoc_md28">
       <topic label="Prerequisites to precise results" href="index.html#autotoc_md29"/>
-      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md30"/>
+      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md31"/>
     </topic>
-    <topic label="Runtime debug support" href="index.html#autotoc_md32"/>
-    <topic label="Representative benchmarks" href="index.html#autotoc_md34"/>
-    <topic label="SuperNOVAS added features" href="index.html#autotoc_md36">
-      <topic label="New functionality highlights" href="index.html#autotoc_md37"/>
-      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md38"/>
+    <topic label="Runtime debug support" href="index.html#autotoc_md33"/>
+    <topic label="Representative benchmarks" href="index.html#autotoc_md35"/>
+    <topic label="SuperNOVAS added features" href="index.html#autotoc_md37">
+      <topic label="New functionality highlights" href="index.html#autotoc_md38"/>
+      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md39"/>
     </topic>
-    <topic label="Release schedule" href="index.html#autotoc_md40"/>
+    <topic label="Release schedule" href="index.html#autotoc_md41"/>
   </topic>
   <topic label="C99 Usage" href="md__2github_2workspace_2doc_2USAGE-C99.html">
     <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44">

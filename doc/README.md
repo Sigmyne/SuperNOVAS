@@ -1,6 +1,3 @@
-<img src="logo-300x113.png" alt="SuperNOVAS logo" width="300" height="113" align="right"/>
-<br clear="all">
-
 # User's guide
 
 

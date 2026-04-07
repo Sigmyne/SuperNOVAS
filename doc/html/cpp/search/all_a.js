@@ -50,5 +50,5 @@ var searchData=
   ['grav_5fvec_47',['grav_vec',['../novas_8h.html#a08a008572e2746a70bec19739b5fb7e6',1,'grav_vec(const double *pos_src, const double *pos_obs, const double *pos_body, double rmass, double *out):&#160;grav.c'],['../grav_8c.html#a08a008572e2746a70bec19739b5fb7e6',1,'grav_vec(const double *pos_src, const double *pos_obs, const double *pos_body, double rmass, double *out):&#160;grav.c']]],
   ['gregorian_48',['gregorian',['../classsupernovas_1_1Calendar.html#a0d625010c543eed0c3db85a57777c15c',1,'supernovas::Calendar']]],
   ['gst_49',['gst',['../structnovas__frame.html#ae630c8535a6407922324073c1c4622e5',1,'novas_frame::gst'],['../classsupernovas_1_1Time.html#aa5902cfaf7c0427109a604a69511d356',1,'supernovas::Time::gst()']]],
-  ['guide_50',['User&apos;s guide',['../index.html#autotoc_md0',1,'']]]
+  ['guide_50',['User&apos;s guide',['../index.html',1,'']]]
 ];
