@@ -534,7 +534,7 @@ Details</summary>
 <div class="ttc" id="anovas_8h_html_a9d0f54c0ab00827768e61a353488b0ee"><div class="ttname"><a href="novas_8h.html#a9d0f54c0ab00827768e61a353488b0ee">planet_ephem_provider</a></div><div class="ttdeci">short planet_ephem_provider(double jd_tdb, enum novas_planet body, enum novas_origin origin, double *restrict position, double *restrict velocity)</div><div class="ttdoc">Major planet ephemeris data via the same generic ephemeris provider that is configured by set_ephem_p...</div><div class="ttdef"><b>Definition</b> solsys-ephem.c:100</div></div>
 </div><!-- fragment --><p>The above simply instructs <b>SuperNOVAS</b> to use the same ephemeris provider function for planets as what was set for <span class="tt"><a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269" title="A Solar-system body that does not fit the major planet type, and requires specific user-provided nova...">NOVAS_EPHEM_OBJECT</a></span> type objects, provided you compiled <b>SuperNOVAS</b> with <span class="tt">BUILTIN_SOLSYS_EPHEM = 1</span> (in <span class="tt">config.mk</span>), or else you link your code against <span class="tt"><a class="el" href="solsys-ephem_8c.html" title="Major planet ephemeris lookup via the function, which was configured by set_ephem_provider().">solsys-ephem.c</a></span> explicitly. Easy-peasy.</p>
 <p><a class="anchor" id="precision"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
 Notes on precision</h2>
 <ul>
 <li><a class="el" href="#accuracy-prerequisites" title="accuracy-prerequisites">Prerequisites to precise results</a></li>
@@ -551,7 +551,7 @@ Notes on precision</h2>
 </table>
 <p>Note, that some functions will not support full accuracy calculations, unless you have provided a high-precision ephemeris provider for the major planets (and any Solar-system bodies of interest), which does not come with <b>SuperNOVAS</b> out of the box. In the absence of a suitable high-precision ephemeris provider, some functions might return an error if called with <span class="tt"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660" title="Use full precision calculations to micro-arcsecond accuracy.">NOVAS_FULL_ACCURACY</a></span>. (Click on the wedges next to each component to expand the details...)</p>
 <p><a class="anchor" id="accuracy-prerequisites"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
 Prerequisites to precise results</h3>
 <p>The <b>SuperNOVAS</b> library is in principle capable of calculating positions to microarcsecond, and velocities to mm/s, precision for all types of celestial sources. However, there are certain prerequisites and practical considerations before that level of accuracy is reached. (Click on the wedge next to each heading below to expand the details.)</p>
 <details >

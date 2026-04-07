@@ -24,8 +24,8 @@
       <topic label="NAIF CSPICE toolkit integration" href="index.html#autotoc_md26"/>
       <topic label="Universal ephemeris data / service integration" href="index.html#autotoc_md27"/>
     </topic>
-    <topic label="Notes on precision" href="index.html#autotoc_md29">
-      <topic label="Prerequisites to precise results" href="index.html#autotoc_md30"/>
+    <topic label="Notes on precision" href="index.html#autotoc_md28">
+      <topic label="Prerequisites to precise results" href="index.html#autotoc_md29"/>
       <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md31"/>
     </topic>
     <topic label="Runtime debug support" href="index.html#autotoc_md33"/>

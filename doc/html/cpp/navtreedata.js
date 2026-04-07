@@ -50,8 +50,8 @@ var NAVTREE =
         [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md26", null ],
         [ "Universal ephemeris data / service integration", "index.html#autotoc_md27", null ]
       ] ],
-      [ "Notes on precision", "index.html#autotoc_md29", [
-        [ "Prerequisites to precise results", "index.html#autotoc_md30", null ],
+      [ "Notes on precision", "index.html#autotoc_md28", [
+        [ "Prerequisites to precise results", "index.html#autotoc_md29", null ],
         [ "Reduced accuracy shortcuts", "index.html#autotoc_md31", null ]
       ] ],
       [ "Runtime debug support", "index.html#autotoc_md33", null ],

@@ -19,7 +19,7 @@ var searchData=
   ['non_20equatorial_20coordinates_16',['Non-equatorial coordinates',['../group__nonequatorial.html',1,'']]],
   ['noon_17',['noon',['../classsupernovas_1_1TimeAngle.html#ae56344cb0ade09ed2c4d96919706ca86',1,'supernovas::TimeAngle']]],
   ['north_18',['north',['../classsupernovas_1_1Angle.html#acc6a8b3997225d5ac247826ba4052daa',1,'supernovas::Angle']]],
-  ['notes_20on_20precision_19',['Notes on precision',['../index.html#autotoc_md29',1,'']]],
+  ['notes_20on_20precision_19',['Notes on precision',['../index.html#autotoc_md28',1,'']]],
   ['novas_20c_203_201_20',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['novas_20c_203_201_20issues_21',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
   ['novas_20c_20api_22',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
