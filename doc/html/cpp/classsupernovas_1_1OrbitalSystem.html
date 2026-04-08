@@ -179,6 +179,7 @@ Additional Inherited Members</h2></td></tr>
 <ol type="1">
 <li>This class uses a builder pattern to populate add the parameters that define the orbital system, bit-by-bit, as needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid using the builder functions in a multi-threaded environment. The best practice is to fully define the orbital first, before using it to define orbitals, or referencing it in parallel threads unmodified.</li>
 </ol>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Orbital.html" title="Keplerian orbital elements, for example, for a comet using parameters published by the IAU Minor Plan...">Orbital</a> </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a8f6c54b83e822d28fd72fb51f6466942" name="a8f6c54b83e822d28fd72fb51f6466942"></a>
@@ -197,7 +198,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(<em>primarily for internal use</em>) Returns the underlying NOVAS C data structure, which defines the orbital system. </p>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the NOVAS C structure used internally to define the orbital system. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the NOVAS C structure used internally to define the orbital system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a8f6c54b83e822d28fd72fb51f6466942">_novas_orbital_system()</a>.</p>
 
@@ -222,6 +224,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the angle of the orbital system's ascending node relative to the vernal equinox on the reference plane (equatorial or ecliptic) relative to which the orbital system was specified. </p>
 <dl class="section return"><dt>Returns</dt><dd>the ascending node's distance from the vernal equinox in the orbital reference plane.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a29b05395e65801706fe3233f5b708572" title="Returns the obliquity of this orbital system, relative to the reference plane (equatorial or ecliptic...">obliquity()</a>, <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145" title="Returns the orbital system&#39;s pole in the reference plane (equatorial or ecliptic),...">pole()</a>, <a class="el" href="#a955770e11c4742be3c129f0af934365e" title="Returns the coordinate reference system type, in which the orbital system is defined.">system_type()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6b6dccdfd22003029d0f3a40dafd716d">ascending_node()</a>.</p>
@@ -246,7 +249,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the major planet (including the Sun, Moon, SSB, EMB, and Pluto system barycenter), which is the center of the orbits that are defined in this orbital system. </p>
-<dl class="section return"><dt>Returns</dt><dd>the Solar-system body or barycenter position around which orbits are defined in this system. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the Solar-system body or barycenter position around which orbits are defined in this system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#ad298620379b01fe4de16aedaa4d1fdb5">center()</a>.</p>
 
@@ -286,6 +290,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new ecliptic orbital system around the specified center position.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac681db544b1838b4916fe20964d6bbbd" title="Returns a new equarial orbital system around the specified major planet, Sun, Moon,...">equatorial()</a>, <a class="el" href="#a5e0fc23c7c652fa0c89bb29ce4787003" title="Defines the orientation of this orbital system relative to the reference plane (equatorial or eclipti...">orientation()</a>, <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145" title="Returns the orbital system&#39;s pole in the reference plane (equatorial or ecliptic),...">pole()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ad298620379b01fe4de16aedaa4d1fdb5">center()</a>, <a class="el" href="#a19ae018056f42ef57fc9c4b175f4eecb">ecliptic()</a>, and <a class="el" href="novas_8h.html#a9ee18ab5f8fdc009913c11f04026122fac0d0495aebd235ecd346b8932cc1943e">NOVAS_ECLIPTIC_PLANE</a>.</p>
@@ -326,6 +331,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new equatorial orbital system around the specified center position.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a19ae018056f42ef57fc9c4b175f4eecb" title="Returns a new ecliptic orbital system around the specified major planet, Sun, Moon,...">ecliptic()</a>, <a class="el" href="#a5e0fc23c7c652fa0c89bb29ce4787003" title="Defines the orientation of this orbital system relative to the reference plane (equatorial or eclipti...">orientation()</a>, <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145" title="Returns the orbital system&#39;s pole in the reference plane (equatorial or ecliptic),...">pole()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ad298620379b01fe4de16aedaa4d1fdb5">center()</a>, <a class="el" href="#ac681db544b1838b4916fe20964d6bbbd">equatorial()</a>, and <a class="el" href="novas_8h.html#a9ee18ab5f8fdc009913c11f04026122fa8ab742cbe451963ba66f7bfbdbafb05b">NOVAS_EQUATORIAL_PLANE</a>.</p>
@@ -366,6 +372,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new orbital system with that copies the parameters of the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; stae of the implementing instance.">is_valid()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a9916e95832d6e4e422479adff66a0af9">from_novas_orbital_system()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -391,6 +398,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the obliquity of this orbital system, relative to the reference plane (equatorial or ecliptic) in which this orbital system was specified. </p>
 <dl class="section return"><dt>Returns</dt><dd>the obliquity of the orbital system relative to the reference plane.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6b6dccdfd22003029d0f3a40dafd716d" title="Returns the angle of the orbital system&#39;s ascending node relative to the vernal equinox on the refere...">ascending_node()</a>, <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145" title="Returns the orbital system&#39;s pole in the reference plane (equatorial or ecliptic),...">pole()</a>, <a class="el" href="#a955770e11c4742be3c129f0af934365e" title="Returns the coordinate reference system type, in which the orbital system is defined.">system_type()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a29b05395e65801706fe3233f5b708572">obliquity()</a>.</p>
@@ -439,6 +447,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>from_mean_motion(), eccentricity(), inclination(), <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145" title="Returns the orbital system&#39;s pole in the reference plane (equatorial or ecliptic),...">pole()</a>, node_period(), node_rate() apsis_period(), apsis_rate() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff">supernovas::Coordinate::m()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="#a85faf73b6e2643bac87b323dfa45b36f">orbit()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>, and <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>.</p>
@@ -485,6 +494,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>from_mean_motion(), eccentricity(), inclination(), <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145" title="Returns the orbital system&#39;s pole in the reference plane (equatorial or ecliptic),...">pole()</a>, node_period(), node_rate() apsis_period(), apsis_rate() </dd></dl>
 
 <p class="reference">References <a class="el" href="#a85faf73b6e2643bac87b323dfa45b36f">orbit()</a>.</p>
@@ -527,6 +537,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aed822a8688e97c28af2e40b63ba1e145" title="Returns the orbital system&#39;s pole in the reference plane (equatorial or ecliptic),...">pole()</a>, <a class="el" href="#a29b05395e65801706fe3233f5b708572" title="Returns the obliquity of this orbital system, relative to the reference plane (equatorial or ecliptic...">obliquity()</a>, <a class="el" href="#a6b6dccdfd22003029d0f3a40dafd716d" title="Returns the angle of the orbital system&#39;s ascending node relative to the vernal equinox on the refere...">ascending_node()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6b6dccdfd22003029d0f3a40dafd716d">ascending_node()</a>, <a class="el" href="#a29b05395e65801706fe3233f5b708572">obliquity()</a>, and <a class="el" href="#a5e0fc23c7c652fa0c89bb29ce4787003">orientation()</a>.</p>
@@ -567,6 +578,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aed822a8688e97c28af2e40b63ba1e145" title="Returns the orbital system&#39;s pole in the reference plane (equatorial or ecliptic),...">pole()</a>, <a class="el" href="#a29b05395e65801706fe3233f5b708572" title="Returns the obliquity of this orbital system, relative to the reference plane (equatorial or ecliptic...">obliquity()</a>, <a class="el" href="#a6b6dccdfd22003029d0f3a40dafd716d" title="Returns the angle of the orbital system&#39;s ascending node relative to the vernal equinox on the refere...">ascending_node()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>, <a class="el" href="#a5e0fc23c7c652fa0c89bb29ce4787003">orientation()</a>, and <a class="el" href="classsupernovas_1_1Equinox.html#ae5f6d48cdd9a62598b5b8dc1138ffbdc">supernovas::Equinox::system_type()</a>.</p>
@@ -592,6 +604,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the orbital system's pole in the reference plane (equatorial or ecliptic), relative to which the system is specified. </p>
 <dl class="section return"><dt>Returns</dt><dd>The spherical location of the orbital system pole, in the reference plane.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a955770e11c4742be3c129f0af934365e" title="Returns the coordinate reference system type, in which the orbital system is defined.">system_type()</a>, <a class="el" href="#a29b05395e65801706fe3233f5b708572" title="Returns the obliquity of this orbital system, relative to the reference plane (equatorial or ecliptic...">obliquity()</a>, <a class="el" href="#a6b6dccdfd22003029d0f3a40dafd716d" title="Returns the angle of the orbital system&#39;s ascending node relative to the vernal equinox on the refere...">ascending_node()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Constant.html#a07126f2b68cfd91a381122935c80f80b">supernovas::Constant::half_pi</a>, and <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145">pole()</a>.</p>
@@ -634,6 +647,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a5e0fc23c7c652fa0c89bb29ce4787003" title="Defines the orientation of this orbital system relative to the reference plane (equatorial or eclipti...">orientation()</a>, <a class="el" href="#a29b05395e65801706fe3233f5b708572" title="Returns the obliquity of this orbital system, relative to the reference plane (equatorial or ecliptic...">obliquity()</a>, <a class="el" href="#a6b6dccdfd22003029d0f3a40dafd716d" title="Returns the angle of the orbital system&#39;s ascending node relative to the vernal equinox on the refere...">ascending_node()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145">pole()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
@@ -668,6 +682,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aed822a8688e97c28af2e40b63ba1e145" title="Returns the orbital system&#39;s pole in the reference plane (equatorial or ecliptic),...">pole()</a>, <a class="el" href="#a29b05395e65801706fe3233f5b708572" title="Returns the obliquity of this orbital system, relative to the reference plane (equatorial or ecliptic...">obliquity()</a>, <a class="el" href="#a6b6dccdfd22003029d0f3a40dafd716d" title="Returns the angle of the orbital system&#39;s ascending node relative to the vernal equinox on the refere...">ascending_node()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, and <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145">pole()</a>.</p>
@@ -708,6 +723,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a5e0fc23c7c652fa0c89bb29ce4787003" title="Defines the orientation of this orbital system relative to the reference plane (equatorial or eclipti...">orientation()</a>, <a class="el" href="#a29b05395e65801706fe3233f5b708572" title="Returns the obliquity of this orbital system, relative to the reference plane (equatorial or ecliptic...">obliquity()</a>, <a class="el" href="#a6b6dccdfd22003029d0f3a40dafd716d" title="Returns the angle of the orbital system&#39;s ascending node relative to the vernal equinox on the refere...">ascending_node()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Constant.html#a07126f2b68cfd91a381122935c80f80b">supernovas::Constant::half_pi</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#a5e0fc23c7c652fa0c89bb29ce4787003">orientation()</a>, and <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145">pole()</a>.</p>
@@ -731,6 +747,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the coordinate reference system type, in which the orbital system is defined. </p>
 <dl class="section return"><dt>Returns</dt><dd>the coordinate reference system type used for definining this orbital system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a29b05395e65801706fe3233f5b708572" title="Returns the obliquity of this orbital system, relative to the reference plane (equatorial or ecliptic...">obliquity()</a>, <a class="el" href="#a6b6dccdfd22003029d0f3a40dafd716d" title="Returns the angle of the orbital system&#39;s ascending node relative to the vernal equinox on the refere...">ascending_node()</a>, <a class="el" href="#aed822a8688e97c28af2e40b63ba1e145" title="Returns the orbital system&#39;s pole in the reference plane (equatorial or ecliptic),...">pole()</a>, </dd></dl>
 
 <p class="reference">References <a class="el" href="#a955770e11c4742be3c129f0af934365e">system_type()</a>.</p>
@@ -755,7 +772,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a human-readable description of this orbital system. </p>
-<dl class="section return"><dt>Returns</dt><dd>a string describing this orbital system. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string describing this orbital system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3">supernovas::Source::name()</a>, <a class="el" href="novas_8h.html#a9ee18ab5f8fdc009913c11f04026122fac0d0495aebd235ecd346b8932cc1943e">NOVAS_ECLIPTIC_PLANE</a>, and <a class="el" href="#a7a8ddda0e6889fe28e15b0115f376d3c">to_string()</a>.</p>
 

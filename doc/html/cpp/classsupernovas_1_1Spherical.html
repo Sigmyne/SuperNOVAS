@@ -165,6 +165,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Spherical coordinates (longitude, latitude), representing a direction on sky. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Position.html" title="A 3D physical position vector in space.">Position</a>, <a class="el" href="classsupernovas_1_1Equatorial.html" title="Equatorial coordinates (RA, Dec = α, δ), representing the direction ob the sky, for a particular type...">Equatorial</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html" title="Ecliptic coordinates (l, b or λ, β), representing the direction on the sky, for a particular type of ...">Ecliptic</a>, <a class="el" href="classsupernovas_1_1Galactic.html" title="Galactic coordinates (l, b), representing the direction on the sky, relative to the Galactic plane an...">Galactic</a>, <a class="el" href="classsupernovas_1_1Horizontal.html" title="Horizontal (azimuth, elevation = Az/El) sky coordinates at a geodetic observing location,...">Horizontal</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a80ca9d6552fcfc6564a519c7e289ce25" name="a80ca9d6552fcfc6564a519c7e289ce25"></a>
@@ -244,10 +245,11 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">longitude_rad</td><td>[rad] longitude coordinate </td></tr>
-    <tr><td class="paramname">latitude_rad</td><td>[rad] latitude coordinate </td></tr>
+    <tr><td class="paramname">latitude_rad</td><td>[rad] latitude coordinate</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a07126f2b68cfd91a381122935c80f80b">supernovas::Constant::half_pi</a>.</p>
 
@@ -276,10 +278,11 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="#a62d5a5d8264d0e94db83afcf55a1d285" title="Returns the longitude coordinate as an angle.">longitude</a></td><td>longitude coordinate </td></tr>
-    <tr><td class="paramname"><a class="el" href="#a377c70d3c9454c6a6b6eb05c023d2fc2" title="Returns the latitude coordinate as an angle.">latitude</a></td><td>latitude coordinate </td></tr>
+    <tr><td class="paramname"><a class="el" href="#a377c70d3c9454c6a6b6eb05c023d2fc2" title="Returns the latitude coordinate as an angle.">latitude</a></td><td>latitude coordinate</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a80ca9d6552fcfc6564a519c7e289ce25">Spherical()</a>, <a class="el" href="#a377c70d3c9454c6a6b6eb05c023d2fc2">latitude()</a>, and <a class="el" href="#a62d5a5d8264d0e94db83afcf55a1d285">longitude()</a>.</p>
 
@@ -311,8 +314,8 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// oops, looks like the angles could not be parsed...</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Spherical_html_a80ca9d6552fcfc6564a519c7e289ce25"><div class="ttname"><a href="#a80ca9d6552fcfc6564a519c7e289ce25">supernovas::Spherical::Spherical</a></div><div class="ttdeci">Spherical()</div><div class="ttdoc">Instantiates invalid spherical coordinates.</div><div class="ttdef"><b>Definition</b> supernovas.h:907</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:264</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Spherical_html_a80ca9d6552fcfc6564a519c7e289ce25"><div class="ttname"><a href="#a80ca9d6552fcfc6564a519c7e289ce25">supernovas::Spherical::Spherical</a></div><div class="ttdeci">Spherical()</div><div class="ttdoc">Instantiates invalid spherical coordinates.</div><div class="ttdef"><b>Definition</b> supernovas.h:944</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:273</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lon</td><td>string representation of the longitude coordinate in DMS or a decimnal degrees. </td></tr>
@@ -320,6 +323,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> for details on string representation that can be parsed. </dd>
 <dd>
 <a class="el" href="group__util.html#gad3d04d065e76a5921995e96f67c24c41" title="Parses an angle in degrees from a string that contains either a decimal degrees or else a broken-down...">novas_parse_degrees()</a> for more managed parsing from strings. </dd></dl>
@@ -359,7 +363,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the angular distance of these coordinates to/from the argument. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the angular distance of these coordinates to/from the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a80ca9d6552fcfc6564a519c7e289ce25">Spherical()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be">supernovas::Angle::deg()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a9f33de2b26a19a5e20827e9e918b3375">novas_sep()</a>.</p>
 
@@ -417,6 +422,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the latitude coordinate as an angle. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the latitude coordinate stored internally.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a62d5a5d8264d0e94db83afcf55a1d285" title="Returns the longitude coordinate as an angle.">longitude()</a>, distance() </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Ecliptic.html#a976996bb54def45d58528dcea073c38e">supernovas::Ecliptic::Ecliptic()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a926aee5b59a630f097bda63ee925d5a8">supernovas::Ecliptic::Ecliptic()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a9904e23a518c9d50bfd1676578b9f0cb">supernovas::Galactic::Galactic()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a3fe53146b3d4fe1c4a4faa555fa7575c">supernovas::Galactic::Galactic()</a>, <a class="el" href="#a50902496f54614a2ef3594191b6404a0">Spherical()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#aa4101d906d7943a36a1b6b5363bfb731">supernovas::Equatorial::dec()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a82ab515e78cdee62524825584e7299a4">supernovas::Horizontal::elevation()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a5eb5b3379b041c14d86f70969a7d9a83">supernovas::Orbital::pole()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#afa6e6513899b7b84fc84d7d751e974be">supernovas::OrbitalSystem::pole()</a>, <a class="el" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#acea27eeec615359be97fab4372061c65">supernovas::Ecliptic::to_equatorial()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a730750345a8ea40b0af9e5b9c60bfd99">supernovas::Galactic::to_equatorial()</a>, <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">supernovas::Equatorial::to_galactic()</a>, <a class="el" href="group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029">supernovas::Horizontal::to_refracted()</a>, <a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be">supernovas::Horizontal::to_unrefracted()</a>, and <a class="el" href="classsupernovas_1_1Horizontal.html#a41a2959b8c966369e8d71af38671093d">supernovas::Horizontal::zenith_angle()</a>.</p>
@@ -440,6 +446,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the longitude coordinate as an angle. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the longitude coordinate stored internally.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a377c70d3c9454c6a6b6eb05c023d2fc2" title="Returns the latitude coordinate as an angle.">latitude()</a>, distance() </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Ecliptic.html#a976996bb54def45d58528dcea073c38e">supernovas::Ecliptic::Ecliptic()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a926aee5b59a630f097bda63ee925d5a8">supernovas::Ecliptic::Ecliptic()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a9904e23a518c9d50bfd1676578b9f0cb">supernovas::Galactic::Galactic()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a3fe53146b3d4fe1c4a4faa555fa7575c">supernovas::Galactic::Galactic()</a>, <a class="el" href="#a50902496f54614a2ef3594191b6404a0">Spherical()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#ac808b5b7f4a4c1f09a54ab5c8e219f3a">supernovas::Horizontal::azimuth()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a5eb5b3379b041c14d86f70969a7d9a83">supernovas::Orbital::pole()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#afa6e6513899b7b84fc84d7d751e974be">supernovas::OrbitalSystem::pole()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ac1b78ee76a1f5232986ff8e863daf9fb">supernovas::Equatorial::ra()</a>, <a class="el" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#acea27eeec615359be97fab4372061c65">supernovas::Ecliptic::to_equatorial()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a730750345a8ea40b0af9e5b9c60bfd99">supernovas::Galactic::to_equatorial()</a>, <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">supernovas::Equatorial::to_galactic()</a>, <a class="el" href="group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029">supernovas::Horizontal::to_refracted()</a>, and <a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be">supernovas::Horizontal::to_unrefracted()</a>.</p>
@@ -481,7 +488,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a new string with the human-readable representation of these spherical coordinates. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new string with the human-readable representation of these spherical coordinates.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1Ecliptic.html#a6f3453f8bd380ee096834cc38985299d">supernovas::Ecliptic</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#a32bfe60a4d887c5b659720756a3b6006">supernovas::Equatorial</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a2a1d58fe6cb7610c91d11517c3b6c021">supernovas::Galactic</a>, and <a class="el" href="classsupernovas_1_1Horizontal.html#a9e2ec24c847c7f68d62659b4d5ee1021">supernovas::Horizontal</a>.</p>
 
@@ -508,6 +516,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the cartesian position vector corresponding to these spherical coordinates. </p>
 <dl class="section return"><dt>Returns</dt><dd>the equivalent rectanguar position vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Position.html#a8158b16437d04f06a8f4e5213ca82a92" title="Converts this position vector to Spherical coordinates.">Position::to_spherical()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff">supernovas::Coordinate::m()</a>.</p>

@@ -193,6 +193,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattelite, or for a virtual observer located at the geocenter itself. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a60091b8caa93724af5a5e8c976a7f1ed" name="a60091b8caa93724af5a5e8c976a7f1ed"></a>
@@ -211,6 +212,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Instantiates a new observer located at the geocenter. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a60091b8caa93724af5a5e8c976a7f1ed">GeocentricObserver()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3aca54b3a0c7d5b31d09090a1f55ff72b2">NOVAS_OBSERVER_AT_GEOCENTER</a>.</p>
 
@@ -241,10 +243,11 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pos</td><td>momentary GCRS position of the observer relative to the geocenter. </td></tr>
-    <tr><td class="paramname">vel</td><td>momentary GCRS velocity of the observer relative to the geocenter. </td></tr>
+    <tr><td class="paramname">vel</td><td>momentary GCRS velocity of the observer relative to the geocenter.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3aca418efc57ac159cf541c324c008eb27">NOVAS_OBSERVER_IN_EARTH_ORBIT</a>, and <a class="el" href="classsupernovas_1_1Observer.html#a305489d2635ff31ceda03baff28594ea">supernovas::Observer::undefined()</a>.</p>
 
@@ -275,7 +278,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to a newly allocated copy of this geocentric observer instance. </p>
-<dl class="section return"><dt>Returns</dt><dd>pointer to new copy of this geocentric observer instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to new copy of this geocentric observer instance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Observer.html#ab96ce405d6c8cbe8d90e50c8e4da2e42">supernovas::Observer</a>.</p>
 
@@ -300,6 +304,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the momentary geocentric position of this observer in the GCRS. </p>
 <dl class="section return"><dt>Returns</dt><dd>the momentary ICRS geocentric position</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a220c1019edab5f90502c3ae5141d886e" title="Returns the momentary geocentric velocity of this observer in the GCRS.">gcrs_velocity()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">supernovas::Observer::_observer</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a>.</p>
@@ -325,6 +330,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the momentary geocentric velocity of this observer in the GCRS. </p>
 <dl class="section return"><dt>Returns</dt><dd>the momentary ICRS geocentric velocity</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a293c24268408aba93899f3cf0937db5b" title="Returns the momentary geocentric position of this observer in the GCRS.">gcrs_position()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">supernovas::Observer::_observer</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#ad624dbf1279a18fc9e61873b56e4a534">supernovas::Unit::km_per_s</a>.</p>
@@ -358,6 +364,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this observer is an instance of <a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>, <a class="el" href="classsupernovas_1_1Observer.html#aa5d4f5181e308afd56b517038f1f8720" title="Checks if this observer can be cast to a GeodeticObserver.">is_geodetic()</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Observer.html#a990a78463a20d985f50b6e86ee8bf7e5">supernovas::Observer</a>.</p>
@@ -388,7 +395,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a string representation of this geocentric observer. </p>
-<dl class="section return"><dt>Returns</dt><dd>a string representation of this observer. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string representation of this observer.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Observer.html#a6976e04ac1fe70d10ac5b9966ff73c8b">supernovas::Observer</a>.</p>
 

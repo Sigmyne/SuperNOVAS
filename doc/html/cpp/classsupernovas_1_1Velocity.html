@@ -212,6 +212,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A 3D physical velocity vector in space. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Velocity.html" title="A 3D physical velocity vector in space.">Velocity</a>, <a class="el" href="classsupernovas_1_1Geometric.html" title="The geometric (3D) position and velocity of a source relative to an observer location.">Geometric</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2f26da36dd9c4dba704ec314585ebc2c" name="a2f26da36dd9c4dba704ec314585ebc2c"></a>
@@ -251,10 +252,11 @@ Additional Inherited Members</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">x_ms</td><td>[m/s] <em>x</em> component </td></tr>
     <tr><td class="paramname">y_ms</td><td>[m/s] <em>y</em> component </td></tr>
-    <tr><td class="paramname">z_ms</td><td>[m/s] <em>z</em> component </td></tr>
+    <tr><td class="paramname">z_ms</td><td>[m/s] <em>z</em> component</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">supernovas::Vector::Vector()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">supernovas::Vector::abs()</a>, and <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>.</p>
 
@@ -291,10 +293,11 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">vel</td><td>The <em>xyz</em> 3-vector defining the components </td></tr>
-    <tr><td class="paramname">unit</td><td>(optional) the physical unit (e.g. Unit::kms, or <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7" title="[m/s] 1 AU per day in m/s">Unit::AU_per_day</a>) in which the components were specified (default: <a class="el" href="classsupernovas_1_1Unit.html" title="Various physical units for converting quantities expressed in conventional units to SI,...">Unit</a>:m / <a class="el" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472" title="[s] 1 second (standard unit of time)">Unit::s</a> = 1.0). </td></tr>
+    <tr><td class="paramname">unit</td><td>(optional) the physical unit (e.g. Unit::kms, or <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7" title="[m/s] 1 AU per day in m/s">Unit::AU_per_day</a>) in which the components were specified (default: <a class="el" href="classsupernovas_1_1Unit.html" title="Various physical units for converting quantities expressed in conventional units to SI,...">Unit</a>:m / <a class="el" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472" title="[s] 1 second (standard unit of time)">Unit::s</a> = 1.0).</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">supernovas::Vector::Vector()</a>.</p>
 
@@ -329,6 +332,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this velocity equals the argument within the specified precision, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab51ed547b89f094b0bbff492eaa05a3a" title="Checks if this velocity is the same as another, within 1 mm/s.">operator==()</a>, <a class="el" href="#a6c2174cd805b548a519664879cbb0486" title="Checks if this velocity is the same as another, within 1 mm/s.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791">supernovas::Vector::equals()</a>.</p>
@@ -353,7 +357,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the velocity with the same magnitude as this, but moving in the opposite direction. </p>
-<dl class="section return"><dt>Returns</dt><dd>the velocity in the opposite direction. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the velocity in the opposite direction.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -382,6 +387,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this velocity equals the argument within 1 mm/s, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab51ed547b89f094b0bbff492eaa05a3a" title="Checks if this velocity is the same as another, within 1 mm/s.">operator==()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a45a6d8f9d412efcd6e9cb034802cba9a">equals()</a>, <a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">supernovas::Unit::mm</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
@@ -411,6 +417,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the change in position of an object travelling at this velocity in the specified time interval.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">travel()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html" title="A scalar velocity (if signed) or speed (unsigned).">ScalarVelocity</a>:<a class="el" href="#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">travel()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a1d295312687a1dc8bcecb35bc7625297">travel()</a>.</p>
@@ -441,6 +448,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the sum of this velocity and the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1eed97f4c7f762d450ad80130454a6b" title="Returns the difference of this velocity and the specified other velocity.">operator-()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -471,6 +479,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the sum of this velocity and the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae9a7ec857adc8cf0f9108f21f1d57657" title="Returns the sum of this velocity and the specified other velocity.">operator+()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -500,6 +509,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this velocity equals the argument within 1 mm/s, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a45a6d8f9d412efcd6e9cb034802cba9a" title="Checks if this velocity is the same as another, within the specified precision.">equals()</a>, <a class="el" href="#a6c2174cd805b548a519664879cbb0486" title="Checks if this velocity is the same as another, within 1 mm/s.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a45a6d8f9d412efcd6e9cb034802cba9a">equals()</a>, <a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">supernovas::Unit::mm</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">supernovas::Unit::sec</a>.</p>
@@ -522,7 +532,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the speed (absolute value) of this velocity vector. </p>
-<dl class="section return"><dt>Returns</dt><dd>the speed (absolute value) of this velocity. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the speed (absolute value) of this velocity.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">supernovas::Vector::abs()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -552,7 +563,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a reference to the statically defined zero velocity of a stationary object. </p>
-<dl class="section return"><dt>Returns</dt><dd>the static reference to a stationary object with zero velocity </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the static reference to a stationary object with zero velocity.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 </div>
 </div>
@@ -586,7 +598,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a new string with a representation of this velocity. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new string with a representation of this velocity.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f">supernovas::Vector</a>.</p>
 
@@ -619,6 +632,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the change in position of an object travelling at this velocity in the specified time interval.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3a628bca731814c5e98c77642ea2de29" title="Returns the vector travelled in the given time interval at this velocity.">operator*()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html" title="A scalar velocity (if signed) or speed (unsigned).">ScalarVelocity</a>:<a class="el" href="#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">travel()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>, and <a class="el" href="#a1d295312687a1dc8bcecb35bc7625297">travel()</a>.</p>
@@ -648,6 +662,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the change in position of an object travelling at this velocity in the specified time interval.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3a628bca731814c5e98c77642ea2de29" title="Returns the vector travelled in the given time interval at this velocity.">operator*()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html" title="A scalar velocity (if signed) or speed (unsigned).">ScalarVelocity</a>:<a class="el" href="#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">travel()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -681,7 +696,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a reference to the statically defined standard invalid velocity. </p>
 <p>This invalid velocity may be used inside any object that is invalid itself.</p>
-<dl class="section return"><dt>Returns</dt><dd>the static reference to a standard invalid velocity </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the static reference to a standard invalid velocity</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__geometric.html#gad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver::gcrs_velocity_at()</a>, <a class="el" href="group__geometric.html#ga8cd84f51fedc118c9ed6f8c14f813fbd">supernovas::Observer::gcrs_velocity_at()</a>, <a class="el" href="classsupernovas_1_1Frame.html#a69b96ff286c84d7f6f1a5f303b075253">supernovas::Frame::observer_ssb_velocity()</a>, and <a class="el" href="classsupernovas_1_1Orbital.html#aba60772bc15f18614cf091ad606a3f42">supernovas::Orbital::velocity()</a>.</p>
 
@@ -704,6 +720,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the <em>x</em> component of this velocity vector. </p>
 <dl class="section return"><dt>Returns</dt><dd>the <em>x</em> component</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1a4e51da1cf116f95f9a1bb8dd28e826" title="Returns the y component of this velocity vector.">y()</a>, <a class="el" href="#ad034a48f76943c43dd9899aa456791dd" title="Returns the z component of this velocity vector.">z()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>.</p>
@@ -727,6 +744,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the <em>y</em> component of this velocity vector. </p>
 <dl class="section return"><dt>Returns</dt><dd>the <em>y</em> component</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1f63d95df40f71b85c51cc4a6f57b8d4" title="Returns the x component of this velocity vector.">x()</a>, <a class="el" href="#ad034a48f76943c43dd9899aa456791dd" title="Returns the z component of this velocity vector.">z()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>.</p>
@@ -750,6 +768,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the <em>z</em> component of this velocity vector. </p>
 <dl class="section return"><dt>Returns</dt><dd>the <em>z</em> component</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1f63d95df40f71b85c51cc4a6f57b8d4" title="Returns the x component of this velocity vector.">x()</a>, <a class="el" href="#a1a4e51da1cf116f95f9a1bb8dd28e826" title="Returns the y component of this velocity vector.">y()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>.</p>

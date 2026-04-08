@@ -162,19 +162,15 @@ Functions</h2></td></tr>
 <p>The orbitals can provide planet positions to arcmin-level precision for the rocky inner planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical accuracies, see either of the top two references below.</p>
 <p>For accurate positions, you should use planetary ephemerides (such as the JPL ephemerides via the CALCEPH or CSPICE plugins) and <span class="tt"><a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span> instead.</p>
 <p>While this function is generally similar to creating an orbital object with an orbit initialized with <span class="tt"><a class="el" href="novas_8h.html#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> or <span class="tt"><a class="el" href="novas_8h.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a></span>, and then calling <span class="tt"><a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span>, with an important difference:</p>
-<ol>
-<li>
-This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In contrast, <span class="tt"><a class="el" href="novas_8h.html#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>). </li>
-</ol>
-<p>REFERENCES: </p><ol>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
-<li>
-Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62. </li>
+<ul>
+<li>This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In contrast, <span class="tt"><a class="el" href="novas_8h.html#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>).</li>
+</ul>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -183,6 +179,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>approximate, orbital model based, geometric positions and velocities of this planet in the specified observing frame. It may be invalid either if this planet or the frame argument is invalid.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__apparent.html#gad531705b1b07e32ead410483e109248f" title="Return an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon Barycenter (...">approx_apparent_in()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7">supernovas::Unit::AU_per_day</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Frame.html#a3a8ad7789f7e16a6a64a97aafd0e4d17">supernovas::Frame::jd()</a>, <a class="el" href="novas_8h.html#a9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric()</a>, <a class="el" href="classsupernovas_1_1Planet.html#af8a2e51ac3aacdbfcdae5367f9018b00">novas_id()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="structnovas__frame.html#a97d688f1061399fb56a93f5684efbeec">novas_frame::sun_pos</a>, and <a class="el" href="structnovas__frame.html#a5babf593c14bcc79e16c16dc1e8f23b9">novas_frame::sun_vel</a>.</p>
@@ -206,7 +203,8 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
 
 <p>Returns the projected 3D position, relative to the SSB or other Solar-System place, which gave rise to these apparent place on sky. </p>
 <p>The position is antedated to the time the observed light originated from the observed body,</p>
-<dl class="section return"><dt>Returns</dt><dd>The position referenced to the given Solar-system body or place, and antedated for light travel time for this apparent position. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The position referenced to the given Solar-system body or place, and antedated for light travel time for this apparent position.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#ga9955f022efa8e92d2c6a5e037794451e">astrometric_position()</a>, <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="novas_8h.html#ab7db8026c598e8e126a4725ac3b388bf">novas_app_to_geom()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, and <a class="el" href="classsupernovas_1_1Position.html#afb825ceba8d381d95c371802cd9a269c">supernovas::Position::undefined()</a>.</p>
 
@@ -241,7 +239,8 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The Solar-system barycentric geometric position and velocity of this source at the specified time, as obtained from ephemeris lookup; or else an undefined (invalid) object if the place ould not be determined. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The Solar-system barycentric geometric position and velocity of this source at the specified time, as obtained from ephemeris lookup; or else an undefined (invalid) object if the place ould not be determined.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a085d8cf394db6147cd785d8a86ef7856">supernovas::Source::_novas_object()</a>, <a class="el" href="classsupernovas_1_1Observer.html#a559ac67489ac1b98ff52312367e0b98f">supernovas::Observer::at_ssb()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7">supernovas::Unit::AU_per_day</a>, <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c">NOVAS_BARYCENTER</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, and <a class="el" href="classsupernovas_1_1Geometric.html#a3cfb7d613c6fba958ebbeeb1c2fcd498">supernovas::Geometric::undefined()</a>.</p>
 
@@ -283,6 +282,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The ICRS geometric geocentric position vector of this observer at the specified time.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad53631f865c62ee8cb8c535be22ed180" title="Returns the geocentric geometric velocity vector for this observer, in the GCRS, at the specified tim...">gcrs_velocity_at()</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="#gadb604ebb6581bd982943b203a89677aa">supernovas::Observer</a>.</p>
@@ -329,6 +329,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The ICRS geometric geocentric position vector of this observer at the specified time.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga8cd84f51fedc118c9ed6f8c14f813fbd" title="Returns the geocentric geometric velocity vector for this observer, in the GCRS, at the specified tim...">gcrs_velocity_at()</a> </dd></dl>
 
 <p>Reimplemented in <a class="el" href="#gaa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver</a>.</p>
@@ -375,6 +376,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The ICRS geometric geocentric velocity vector of this observer at the specified time.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaa611c71d2b1150452cb203455ffdc013" title="Returns the geocentric geometric position vector for this observer, in the GCRS, at the specified tim...">gcrs_position_at()</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="#ga8cd84f51fedc118c9ed6f8c14f813fbd">supernovas::Observer</a>.</p>
@@ -421,6 +423,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The ICRS geometric geocentric velocity vector of this observer at the specified time.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gadb604ebb6581bd982943b203a89677aa" title="Returns the geocentric geometric position vector for this observer, in the GCRS, at the specified tim...">gcrs_position_at()</a> </dd></dl>
 
 <p>Reimplemented in <a class="el" href="#gad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver</a>.</p>
@@ -457,8 +460,8 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
 <div class="line">  <span class="comment">// We could not obtain geometric positions for some reason.</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Geometric_html"><div class="ttname"><a href="classsupernovas_1_1Geometric.html">supernovas::Geometric</a></div><div class="ttdoc">The geometric (3D) position and velocity of a source relative to an observer location.</div><div class="ttdef"><b>Definition</b> supernovas.h:2464</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:264</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Geometric_html"><div class="ttname"><a href="classsupernovas_1_1Geometric.html">supernovas::Geometric</a></div><div class="ttdoc">The geometric (3D) position and velocity of a source relative to an observer location.</div><div class="ttdef"><b>Definition</b> supernovas.h:2558</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:273</div></div>
 </div><!-- fragment --><p> There are multiple reasons why we might not be able to calculate valid geometric positions, such as:</p>
 <ul>
 <li>the frame itself may be invalid.</li>
@@ -479,6 +482,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the geometric (3D) position and velocity of the source, which may be invalid if the position cannot be determined.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__apparent.html#ga30cfb5d2c48b4464e015c8429174e771" title="Returns the apparent position of a source (if possible), or else an invalid position.">apparent_in()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">_object</a>, <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7">supernovas::Unit::AU_per_day</a>, <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, and <a class="el" href="classsupernovas_1_1Geometric.html#a3cfb7d613c6fba958ebbeeb1c2fcd498">supernovas::Geometric::undefined()</a>.</p>
@@ -506,11 +510,11 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
 <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting accuracy below 1 km level (and less than 100 meter error typically for 1900 &ndash; 2100).</li>
 </ul>
 <p>REFERENCES:</p>
-<ul>
+<ol type="1">
 <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
 <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
 <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a></li>
-</ul>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">limit_term</td><td>(optional) [arcsec|km] Sum only the harmonic terms with amplitudes larger than this limit. </td></tr>
@@ -518,6 +522,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The calculated geometric geocentric position and velocity of the Moon in the ICRS.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__apparent.html#ga1c1afd88b17a269740a4d5c8b7eb36ee" title="Returns the Moon&#39;s apparent position using the ELP/MPP02 model by Chapront &amp; Francou (2003) down to t...">apparent_moon_elp2000()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7">supernovas::Unit::AU_per_day</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="novas_8h.html#a8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, and <a class="el" href="classsupernovas_1_1Geometric.html#a3cfb7d613c6fba958ebbeeb1c2fcd498">supernovas::Geometric::undefined()</a>.</p>

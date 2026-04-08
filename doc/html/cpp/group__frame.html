@@ -186,6 +186,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A valid observing frame or else <span class="tt">std::nullopt</span> if a valid observing frame could not be created with the accuracy, for example because no high accuracy planetary position provider was specified, or because either this observer or the time itself were invalid.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae636a2863ee350bd67d5d53c19a694ba" title="Returns a reduced accuracy observing frame for this observer at the specified time.">reduced_accuracy_frame_at()</a> </dd>
 <dd>
 <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>, <a class="el" href="group__solar-system.html#ga35fc86a939602ec910dbdfde180d7f31" title="Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...">novas_use_calceph()</a>, <a class="el" href="group__solar-system.html#gab86ec03898e658c86c671a8b6399e331" title="Sets the CALCEPH C library and the specified ephemeris data as the ephemeris provider for the major p...">novas_use_calceph_planets()</a>, <a class="el" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a> </dd></dl>
@@ -221,6 +222,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reduced accuracy observing frame for the specified time of observation.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gadd24c03a86837e10783af06be02a8b21" title="Returns an observing frame for this observer at the specified time and optionally with a specified ac...">frame_at()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Frame.html#ac1c71cf92a4019d1a993a9868b105173">supernovas::Frame::reduced_accuracy()</a>, and <a class="el" href="#gae636a2863ee350bd67d5d53c19a694ba">reduced_accuracy_frame_at()</a>.</p>

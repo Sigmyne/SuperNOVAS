@@ -188,6 +188,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Galactic coordinates (<em>l</em>, <em>b</em>), representing the direction on the sky, relative to the Galactic plane and the nominal Galactic center location. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a29c85315c630e50b29c218beec0c6195" name="a29c85315c630e50b29c218beec0c6195"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a29c85315c630e50b29c218beec0c6195">&#9670;&#160;</a></span>Galactic() <span class="overload">[1/4]</span></h2>
@@ -212,10 +213,11 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">longitude_rad</td><td>[rad] galactic longitude coordinate </td></tr>
-    <tr><td class="paramname">latitude_rad</td><td>[rad] galactic latitude coordinate </td></tr>
+    <tr><td class="paramname">latitude_rad</td><td>[rad] galactic latitude coordinate</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a80ca9d6552fcfc6564a519c7e289ce25">supernovas::Spherical::Spherical()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -244,10 +246,11 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285" title="Returns the longitude coordinate as an angle.">longitude</a></td><td>galactic longitude coordinate </td></tr>
-    <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2" title="Returns the latitude coordinate as an angle.">latitude</a></td><td>galactic latitude coordinate </td></tr>
+    <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2" title="Returns the latitude coordinate as an angle.">latitude</a></td><td>galactic latitude coordinate</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a80ca9d6552fcfc6564a519c7e289ce25">supernovas::Spherical::Spherical()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, and <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>.</p>
 
@@ -279,7 +282,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// oops, looks like the angles could not be parsed...</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:264</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:273</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285" title="Returns the longitude coordinate as an angle.">longitude</a></td><td>string representation of the longitude coordinate in DMS or a decimnal degrees. </td></tr>
@@ -287,6 +290,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> for details on string representation that can be parsed. </dd>
 <dd>
 <a class="el" href="group__util.html#gad3d04d065e76a5921995e96f67c24c41" title="Parses an angle in degrees from a string that contains either a decimal degrees or else a broken-down...">novas_parse_degrees()</a> for more managed parsing from strings. </dd></dl>
@@ -321,10 +325,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates new galactic coordinates with the specified cartesian position vector. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pos</td><td><em>xyz</em> position vector in the galactic coordinate system. </td></tr>
+    <tr><td class="paramname">pos</td><td><em>xyz</em> position vector in the galactic coordinate system.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a80ca9d6552fcfc6564a519c7e289ce25">supernovas::Spherical::Spherical()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -353,7 +358,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the angular distance of these coordinates to/from the argument. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the angular distance of these coordinates to/from the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a3f83a7b7c79a6f71e52fb8de35225a7c">supernovas::Spherical::distance_to()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -387,6 +393,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if these coordinates are the same as the reference within the precision, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0" title="Checks if these galactic coordinates are the same as another, within 1 μas.">operator==()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a9c84c27b2d4926fab89cfd13f8983ca4">equals()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
@@ -421,7 +428,8 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if these coordinates are the same as the reference within the precision, or else <span class="tt">false</span>.</dd></dl>
-<p><a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0" title="Checks if these galactic coordinates are the same as another, within 1 μas.">operator==()</a> </p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0" title="Checks if these galactic coordinates are the same as another, within 1 μas.">operator==()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5">supernovas::Spherical::equals()</a>.</p>
 
@@ -452,6 +460,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if these coordinates differ from the reference, by more than 1 &mu;as, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0" title="Checks if these galactic coordinates are the same as another, within 1 μas.">operator==()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a9c84c27b2d4926fab89cfd13f8983ca4">equals()</a>.</p>
@@ -481,6 +490,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if these coordinates are the same as the reference within 1 &mu;as, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#afc45bc27fb00d28df964ad23cef41bcb" title="Checks if these galactic coordinates differ from another, by more than 1 uas.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a9c84c27b2d4926fab89cfd13f8983ca4">equals()</a>.</p>
@@ -504,6 +514,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Converts these galactic coordinates to equivalent ICRS ecliptic coordinates. </p>
 <dl class="section return"><dt>Returns</dt><dd>the equivalent ICRS ecliptic coordinates.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Ecliptic.html#a6be266741f04bb666e9b04deeaca5769" title="Converts these ecliptic coordinates to equivalent Galactic coordinates.">Ecliptic::to_galactic()</a>, <a class="el" href="#a730750345a8ea40b0af9e5b9c60bfd99" title="Converts these galactic coordinates to equivalent ICRS equatorial coordinates.">to_equatorial()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">supernovas::Equatorial::to_ecliptic()</a>, and <a class="el" href="#a730750345a8ea40b0af9e5b9c60bfd99">to_equatorial()</a>.</p>
@@ -527,6 +538,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Converts these galactic coordinates to equivalent ICRS equatorial coordinates. </p>
 <dl class="section return"><dt>Returns</dt><dd>the equivalent ICRS equatorial coordinates.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526" title="Returns the equivalent galactic coordinates corresponding to these equatorial coordinates.">Equatorial::to_galactic()</a>, <a class="el" href="#a3b6d652ed174bcf1be08cae63b061b21" title="Converts these galactic coordinates to equivalent ICRS ecliptic coordinates.">to_ecliptic()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="novas_8h.html#adcce501bd3f8f70974e7f55527162f83">gal2equ()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">supernovas::Equinox::icrs()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#a0235e7c9ec219477c114ce9dadf25ce6">supernovas::Equatorial::undefined()</a>.</p>
@@ -570,7 +582,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the human-readable string representation of these Galactic coordinates. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the human-readable string representation of these Galactic coordinates.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Spherical.html#a50b5dc34240686d2eaf63c483e839277">supernovas::Spherical</a>.</p>
 
@@ -603,7 +616,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a reference to a statically defined standard invalid galactic coordinates. </p>
 <p>These invalid coordinates may be used inside any object that is invalid itself.</p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the static standard invalid coordinates. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the static standard invalid coordinates.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">supernovas::Equatorial::to_galactic()</a>.</p>
 

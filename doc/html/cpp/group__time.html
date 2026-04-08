@@ -291,6 +291,7 @@ Functions</h2></td></tr>
 
 <p>Returns the time at which the observed light was emitted from this position, that is antedated from the time of observation by the time it takes for light to travel to the observer. </p>
 <dl class="section return"><dt>Returns</dt><dd>the time at which observed light was emitted from this position.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga3c5993440d5413726a8c16abcebd9397" title="Returns the reference time at which this position was observed by an observer at the reference locati...">obs_time()</a> </dd></dl>
 
 </div>
@@ -346,6 +347,7 @@ Functions</h2></td></tr>
 
 <p>Returns the reference time at which this position was observed by an observer at the reference location. </p>
 <dl class="section return"><dt>Returns</dt><dd>the time at which this position is defined.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga0dc237a45a3138f480b47c12efd7514b" title="Returns the time at which the observed light was emitted from this position, that is antedated from t...">emit_time()</a>, <a class="el" href="classsupernovas_1_1AstrometricPosition.html#a812f65f637969fa3049ce897690d4ddb" title="Returns the Solar system barycentric (SSB) position, relative to which this position is defined.">reference()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>, <a class="el" href="classsupernovas_1_1Position.html#a578e1552f7e48d5f0029e451bfe9342c">supernovas::Position::distance()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff">supernovas::Coordinate::m()</a>.</p>
@@ -395,6 +397,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the next time the source rises above the specified elevation after the frame's observing time. It may be NAN if the source does not cross (rises above or sets below) the elevation threshold within a day of the specified time of observation. For observers non near Earth's surface, <span class="tt"><a class="el" href="classsupernovas_1_1Time.html#a20657cd4e3e19ce0987ec1b765225161" title="Returns a reference to a statically defined standard invalid astrometric time.">Time::undefined()</a></span> will be returned.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga29375c229dce898b751473f2f4f74b1d" title="Returns the time when the source sets below the specified elevation next for an observer located on o...">sets_below()</a>, <a class="el" href="#gac424e530ebbab130b1635ac0c5355101" title="Returns the time when the source transits for an observer located on or near Earth&#39;s surface,...">transits_in()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">_object</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be">supernovas::Angle::deg()</a>, <a class="el" href="classsupernovas_1_1Frame.html#aec03822a46bbd6c686285ab718cb61b3">supernovas::Frame::eop()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#aaf38f64304fa0b00c9c56cead62043f3">novas_rises_above()</a>.</p>
@@ -442,6 +445,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the next time the source sets the specified elevation after the frame's observing time. It may be NAN if the source does not cross (rises above or sets below) the elevation threshold within a day of the specified time of observation. For observers not near Earth's surface, <span class="tt"><a class="el" href="classsupernovas_1_1Time.html#a20657cd4e3e19ce0987ec1b765225161" title="Returns a reference to a statically defined standard invalid astrometric time.">Time::undefined()</a></span> will be returned.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaecda13098f9fcb4f0a5a864c68bbf697" title="Returns the time when the source rises above the specified elevation next for an observer located on ...">rises_above()</a>, <a class="el" href="#gac424e530ebbab130b1635ac0c5355101" title="Returns the time when the source transits for an observer located on or near Earth&#39;s surface,...">transits_in()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">_object</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be">supernovas::Angle::deg()</a>, <a class="el" href="classsupernovas_1_1Frame.html#aec03822a46bbd6c686285ab718cb61b3">supernovas::Frame::eop()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a23af09cd8e5ec5ef4d0b03a347a4add0">novas_sets_below()</a>.</p>
@@ -471,6 +475,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the next time the source transits after the frame's observing time, or else <span class="tt"><a class="el" href="classsupernovas_1_1Time.html#a20657cd4e3e19ce0987ec1b765225161" title="Returns a reference to a statically defined standard invalid astrometric time.">Time::undefined()</a></span> if the observer is not near Earth's surface .</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga29375c229dce898b751473f2f4f74b1d" title="Returns the time when the source sets below the specified elevation next for an observer located on o...">sets_below()</a>, <a class="el" href="#gac424e530ebbab130b1635ac0c5355101" title="Returns the time when the source transits for an observer located on or near Earth&#39;s surface,...">transits_in()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">_object</a>, <a class="el" href="classsupernovas_1_1Frame.html#aec03822a46bbd6c686285ab718cb61b3">supernovas::Frame::eop()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#ad04f1ebd7b2d39e5258b152fec231001">novas_transit_time()</a>.</p>

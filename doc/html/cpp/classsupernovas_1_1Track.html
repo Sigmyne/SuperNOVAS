@@ -181,6 +181,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class CoordType&gt;<br />
 class supernovas::Track&lt; CoordType &gt;</div><p>Approximate trajectory of a source in spherical coordinates, using a local quadratic approximation around a time instant, in some coordinate system. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1HorizontalTrack.html" title="Approximate trajectory of a source in horizontal coordinates, using a local quadratic approximation a...">HorizontalTrack</a>, <a class="el" href="classsupernovas_1_1EquatorialTrack.html" title="Approximate trajectory of a source in equatorial coordinates, using a local quadratic approximation a...">EquatorialTrack</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac1d7b0cebd8fd5741d7a3e6e8aec4c83" name="ac1d7b0cebd8fd5741d7a3e6e8aec4c83"></a>
@@ -267,10 +268,11 @@ template&lt;class CoordType&gt; </div>
     <tr><td class="paramname">lon</td><td>the time evolution of the longitude (in whatever coordinate system) </td></tr>
     <tr><td class="paramname">lat</td><td>the time evolution of the latitude (in whatever coordinate system) </td></tr>
     <tr><td class="paramname">r</td><td>the time evolution of distance (default: static 1 Gpc). </td></tr>
-    <tr><td class="paramname">z</td><td>the time evolution of redshift, including gravitational effects. If it's kinetic only, then you can leave it undefined to let the distance evolution determine it automatically. </td></tr>
+    <tr><td class="paramname">z</td><td>the time evolution of redshift, including gravitational effects. If it's kinetic only, then you can leave it undefined to let the distance evolution determine it automatically.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a97fa819bba5cfb544d4f8d4d53c7ba63">range()</a>.</p>
 
@@ -313,6 +315,7 @@ template&lt;class CoordType&gt; </div>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>HorizontalTrack(), EquatorialTrack() </dd></dl>
 
 <p class="reference">References <a class="el" href="#a97fa819bba5cfb544d4f8d4d53c7ba63">range()</a>.</p>
@@ -371,7 +374,7 @@ template&lt;class CoordType&gt; </div>
 <div class="line">  <span class="comment">// Oops, not valid</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Coordinate_html"><div class="ttname"><a href="classsupernovas_1_1Coordinate.html">supernovas::Coordinate</a></div><div class="ttdoc">A scalar coordinate or distance between two points in space.</div><div class="ttdef"><b>Definition</b> supernovas.h:418</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Coordinate_html"><div class="ttname"><a href="classsupernovas_1_1Coordinate.html">supernovas::Coordinate</a></div><div class="ttdoc">A scalar coordinate or distance between two points in space.</div><div class="ttdef"><b>Definition</b> supernovas.h:435</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>astrometric time for which we want the extrapolated value. </td></tr>
@@ -379,6 +382,7 @@ template&lt;class CoordType&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the momentary extrapolated distance (if valid), or else <span class="tt">std::nullopt</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aef365777f4bc7c5f5e8d167b506d2cb8" title="Returns the momentary extrapolated longitude angle (if valid), or else std::nullopt if the time is ou...">longitude_at()</a>, <a class="el" href="#acf7c5ba0db5ab484826f7e4e907ee5c9" title="Returns the momentary extrapolated latitude angle (if valid), or else std::nullopt if the time is out...">latitude_at()</a>, <a class="el" href="#acea5816a0208a4776dc4a664155e58a3" title="Returns the momentary extrapolated radial velocity (if valid), or else std::nullopt if the time is ou...">radial_velocity_at()</a>, <a class="el" href="#ad9fb35cb904f565fb07e22a48d343a10" title="Returns the momentary extrapolated redshift measure (if valid), or else NAN if the time is outside th...">redshift_at()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6a4ac178b2ee77396436b2c67e5ea8f2">is_valid_at()</a>, <a class="el" href="#a0af56f9880fe162463d82429300acd2c">unchecked_distance()</a>, and <a class="el" href="classsupernovas_1_1Coordinate.html#a048da7b34fa7dc40b87a3335d403cdf1">supernovas::Coordinate::undefined()</a>.</p>
@@ -404,6 +408,7 @@ template&lt;class CoordType&gt; </div>
 
 <p>Returns the time evolution of radial distance in this trajectory. </p>
 <dl class="section return"><dt>Returns</dt><dd>the time evolution of distance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2cfc60cf5b9143e975d75483a1c093b0" title="Returns the momentary extrapolated distance (if valid), or else std::nullopt if the time is outside t...">distance_at()</a>, <a class="el" href="#afb7ae9347827cf49c54204579b809120" title="Returns the redshift evolution in this trajectory.">redshift_evolution()</a>, <a class="el" href="#ae12587ebbaa36ed04f1d33ed153b8663" title="Returns the longitudinal time evolution component of this trajectory.">longitude_evolution()</a>, <a class="el" href="#a06f3fc5d58db64eae5de6c49785ef688" title="Returns the latitudinal time evolution component of this trajectory.">latitude_evolution()</a> </dd></dl>
 
 </div>
@@ -433,6 +438,7 @@ template&lt;class CoordType&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this trajectory can provide valid extrapolated position / velocity data for the given time instant, or else <span class="tt">false</span> if the time is outside the range of validity for this trajectory.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e59d1ef17ace25b321ddb3dc9c2d88b" title="Returns the astrometic time of reference, at which the (quadratic) trajectory has been defined.">reference_time()</a>, <a class="el" href="#a97fa819bba5cfb544d4f8d4d53c7ba63" title="Returns the time range of validity for this trajectory.">range()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#a2cfc60cf5b9143e975d75483a1c093b0">distance_at()</a>, <a class="el" href="#acf7c5ba0db5ab484826f7e4e907ee5c9">latitude_at()</a>, <a class="el" href="#aef365777f4bc7c5f5e8d167b506d2cb8">longitude_at()</a>, <a class="el" href="#acea5816a0208a4776dc4a664155e58a3">radial_velocity_at()</a>, and <a class="el" href="#ad9fb35cb904f565fb07e22a48d343a10">redshift_at()</a>.</p>
@@ -463,7 +469,7 @@ template&lt;class CoordType&gt; </div>
 <div class="line">  <span class="comment">// Oops, not valid</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Angle_html"><div class="ttname"><a href="classsupernovas_1_1Angle.html">supernovas::Angle</a></div><div class="ttdoc">A representation of a regularized angle, which can be expressed in various commonly used angular unit...</div><div class="ttdef"><b>Definition</b> supernovas.h:528</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Angle_html"><div class="ttname"><a href="classsupernovas_1_1Angle.html">supernovas::Angle</a></div><div class="ttdoc">A representation of a regularized angle, which can be expressed in various commonly used angular unit...</div><div class="ttdef"><b>Definition</b> supernovas.h:549</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>astrometric time for which we want the extrapolated value. </td></tr>
@@ -471,6 +477,7 @@ template&lt;class CoordType&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the momentary extrapolated latitude angle (if valid), or else <span class="tt">std::nullopt</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aef365777f4bc7c5f5e8d167b506d2cb8" title="Returns the momentary extrapolated longitude angle (if valid), or else std::nullopt if the time is ou...">longitude_at()</a>, <a class="el" href="#a2cfc60cf5b9143e975d75483a1c093b0" title="Returns the momentary extrapolated distance (if valid), or else std::nullopt if the time is outside t...">distance_at()</a>, <a class="el" href="#acea5816a0208a4776dc4a664155e58a3" title="Returns the momentary extrapolated radial velocity (if valid), or else std::nullopt if the time is ou...">radial_velocity_at()</a>, <a class="el" href="#ad9fb35cb904f565fb07e22a48d343a10" title="Returns the momentary extrapolated redshift measure (if valid), or else NAN if the time is outside th...">redshift_at()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6a4ac178b2ee77396436b2c67e5ea8f2">is_valid_at()</a>, <a class="el" href="#ad88920e8a678fc24904c0013e50ef718">unchecked_latitude()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#af3afba7d82529ef0d87c8c042c19763e">supernovas::Angle::undefined()</a>.</p>
@@ -496,6 +503,7 @@ template&lt;class CoordType&gt; </div>
 
 <p>Returns the latitudinal time evolution component of this trajectory. </p>
 <dl class="section return"><dt>Returns</dt><dd>the latitudinal time evolution component.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#acf7c5ba0db5ab484826f7e4e907ee5c9" title="Returns the momentary extrapolated latitude angle (if valid), or else std::nullopt if the time is out...">latitude_at()</a>, <a class="el" href="#ae12587ebbaa36ed04f1d33ed153b8663" title="Returns the longitudinal time evolution component of this trajectory.">longitude_evolution()</a>, <a class="el" href="#a390b32d9795db3bc6d4f19afd444085c" title="Returns the time evolution of radial distance in this trajectory.">distance_evolution()</a>, <a class="el" href="#afb7ae9347827cf49c54204579b809120" title="Returns the redshift evolution in this trajectory.">redshift_evolution()</a> </dd></dl>
 
 </div>
@@ -531,6 +539,7 @@ template&lt;class CoordType&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the momentary extrapolated longitude angle (if valid), or else <span class="tt">std::nullopt</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#acf7c5ba0db5ab484826f7e4e907ee5c9" title="Returns the momentary extrapolated latitude angle (if valid), or else std::nullopt if the time is out...">latitude_at()</a>, <a class="el" href="#a2cfc60cf5b9143e975d75483a1c093b0" title="Returns the momentary extrapolated distance (if valid), or else std::nullopt if the time is outside t...">distance_at()</a>, <a class="el" href="#acea5816a0208a4776dc4a664155e58a3" title="Returns the momentary extrapolated radial velocity (if valid), or else std::nullopt if the time is ou...">radial_velocity_at()</a>, <a class="el" href="#ad9fb35cb904f565fb07e22a48d343a10" title="Returns the momentary extrapolated redshift measure (if valid), or else NAN if the time is outside th...">redshift_at()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6a4ac178b2ee77396436b2c67e5ea8f2">is_valid_at()</a>, <a class="el" href="#a83475e973b355db67dc1f3e296be0392">unchecked_longitude()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#af3afba7d82529ef0d87c8c042c19763e">supernovas::Angle::undefined()</a>.</p>
@@ -556,6 +565,7 @@ template&lt;class CoordType&gt; </div>
 
 <p>Returns the longitudinal time evolution component of this trajectory. </p>
 <dl class="section return"><dt>Returns</dt><dd>the longitudinal time evolution component.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aef365777f4bc7c5f5e8d167b506d2cb8" title="Returns the momentary extrapolated longitude angle (if valid), or else std::nullopt if the time is ou...">longitude_at()</a>, <a class="el" href="#a06f3fc5d58db64eae5de6c49785ef688" title="Returns the latitudinal time evolution component of this trajectory.">latitude_evolution()</a>, <a class="el" href="#a390b32d9795db3bc6d4f19afd444085c" title="Returns the time evolution of radial distance in this trajectory.">distance_evolution()</a>, <a class="el" href="#afb7ae9347827cf49c54204579b809120" title="Returns the redshift evolution in this trajectory.">redshift_evolution()</a> </dd></dl>
 
 </div>
@@ -613,7 +623,7 @@ template&lt;class CoordType&gt; </div>
 <div class="line">  <span class="comment">// Oops, not valid</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1ScalarVelocity_html"><div class="ttname"><a href="classsupernovas_1_1ScalarVelocity.html">supernovas::ScalarVelocity</a></div><div class="ttdoc">A scalar velocity (if signed) or speed (unsigned).</div><div class="ttdef"><b>Definition</b> supernovas.h:833</div></div>
+<div class="ttc" id="aclasssupernovas_1_1ScalarVelocity_html"><div class="ttname"><a href="classsupernovas_1_1ScalarVelocity.html">supernovas::ScalarVelocity</a></div><div class="ttdoc">A scalar velocity (if signed) or speed (unsigned).</div><div class="ttdef"><b>Definition</b> supernovas.h:866</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>astrometric time for which we want the extrapolated value. </td></tr>
@@ -621,6 +631,7 @@ template&lt;class CoordType&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the momentary extrapolated radial velocity (if valid), or else <span class="tt">std::nullopt</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>longitude(), latitude(), distance(), <a class="el" href="#ad9fb35cb904f565fb07e22a48d343a10" title="Returns the momentary extrapolated redshift measure (if valid), or else NAN if the time is outside th...">redshift_at()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#a6a4ac178b2ee77396436b2c67e5ea8f2">is_valid_at()</a>, <a class="el" href="classsupernovas_1_1Unit.html#ad624dbf1279a18fc9e61873b56e4a534">supernovas::Unit::km_per_s</a>, <a class="el" href="novas_8h.html#a63621cea3b4985c1bfcc4514a7aa3fb1">novas_z2v()</a>, <a class="el" href="#ad8ec009e7c36909d56bb1b33ffb40d30">unchecked_redshift()</a>, and <a class="el" href="classsupernovas_1_1ScalarVelocity.html#a78f495d95f6ee5e1979bfd7b37585b90">supernovas::ScalarVelocity::undefined()</a>.</p>
@@ -647,6 +658,7 @@ template&lt;class CoordType&gt; </div>
 <p>Returns the time range of validity for this trajectory. </p>
 <p>The trajectory can only provide valid extrapolation within that time range around the reference time, for which the trajectory's paramteres have been defined.</p>
 <dl class="section return"><dt>Returns</dt><dd>the time range of validity around the reference time.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e59d1ef17ace25b321ddb3dc9c2d88b" title="Returns the astrometic time of reference, at which the (quadratic) trajectory has been defined.">reference_time()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; stae of the implementing instance.">is_valid()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#afc4b8df8b47d00b14239b462a77f4178">Track()</a>, and <a class="el" href="#ad925bc380eee618f6037de954ff9cdc9">Track()</a>.</p>
@@ -684,6 +696,7 @@ template&lt;class CoordType&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the momentary extrapolated redshift measure (if valid), or else NAN.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aef365777f4bc7c5f5e8d167b506d2cb8" title="Returns the momentary extrapolated longitude angle (if valid), or else std::nullopt if the time is ou...">longitude_at()</a>, <a class="el" href="#acf7c5ba0db5ab484826f7e4e907ee5c9" title="Returns the momentary extrapolated latitude angle (if valid), or else std::nullopt if the time is out...">latitude_at()</a>, <a class="el" href="#a2cfc60cf5b9143e975d75483a1c093b0" title="Returns the momentary extrapolated distance (if valid), or else std::nullopt if the time is outside t...">distance_at()</a>, <a class="el" href="#acea5816a0208a4776dc4a664155e58a3" title="Returns the momentary extrapolated radial velocity (if valid), or else std::nullopt if the time is ou...">radial_velocity_at()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6a4ac178b2ee77396436b2c67e5ea8f2">is_valid_at()</a>, and <a class="el" href="#ad8ec009e7c36909d56bb1b33ffb40d30">unchecked_redshift()</a>.</p>
@@ -709,6 +722,7 @@ template&lt;class CoordType&gt; </div>
 
 <p>Returns the redshift evolution in this trajectory. </p>
 <dl class="section return"><dt>Returns</dt><dd>the time evolution of redshift.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ad9fb35cb904f565fb07e22a48d343a10" title="Returns the momentary extrapolated redshift measure (if valid), or else NAN if the time is outside th...">redshift_at()</a>, <a class="el" href="#acea5816a0208a4776dc4a664155e58a3" title="Returns the momentary extrapolated radial velocity (if valid), or else std::nullopt if the time is ou...">radial_velocity_at()</a>, <a class="el" href="#ae12587ebbaa36ed04f1d33ed153b8663" title="Returns the longitudinal time evolution component of this trajectory.">longitude_evolution()</a>, <a class="el" href="#a06f3fc5d58db64eae5de6c49785ef688" title="Returns the latitudinal time evolution component of this trajectory.">latitude_evolution()</a>, <a class="el" href="#a390b32d9795db3bc6d4f19afd444085c" title="Returns the time evolution of radial distance in this trajectory.">distance_evolution()</a> </dd></dl>
 
 </div>
@@ -732,6 +746,7 @@ template&lt;class CoordType&gt; </div>
 
 <p>Returns the astrometic time of reference, at which the (quadratic) trajectory has been defined. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference time for this trajectory.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a97fa819bba5cfb544d4f8d4d53c7ba63" title="Returns the time range of validity for this trajectory.">range()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; stae of the implementing instance.">is_valid()</a> </dd></dl>
 
 </div>
@@ -769,6 +784,7 @@ template&lt;class CoordType&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the momentary extrapolated distance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ad8ec009e7c36909d56bb1b33ffb40d30" title="Returns the momentary extrapolated redshift, without checking if the requested time is inside the ran...">unchecked_redshift()</a>, <a class="el" href="#a83475e973b355db67dc1f3e296be0392" title="Returns the momentary extrapolated longitude angle, without checking if the requested time is inside ...">unchecked_longitude()</a>, <a class="el" href="#ad88920e8a678fc24904c0013e50ef718" title="Returns the momentary extrapolated latitude angle, without checking if the requested time is inside t...">unchecked_latitude()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -810,6 +826,7 @@ template&lt;class CoordType&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the momentary extrapolated latitude angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a83475e973b355db67dc1f3e296be0392" title="Returns the momentary extrapolated longitude angle, without checking if the requested time is inside ...">unchecked_longitude()</a>, <a class="el" href="#a0af56f9880fe162463d82429300acd2c" title="Returns the momentary extrapolated distance, without checking if the requested time is inside the ran...">unchecked_distance()</a>, <a class="el" href="#ad8ec009e7c36909d56bb1b33ffb40d30" title="Returns the momentary extrapolated redshift, without checking if the requested time is inside the ran...">unchecked_redshift()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -851,6 +868,7 @@ template&lt;class CoordType&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the momentary extrapolated longitude angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ad88920e8a678fc24904c0013e50ef718" title="Returns the momentary extrapolated latitude angle, without checking if the requested time is inside t...">unchecked_latitude()</a>, <a class="el" href="#a0af56f9880fe162463d82429300acd2c" title="Returns the momentary extrapolated distance, without checking if the requested time is inside the ran...">unchecked_distance()</a>, <a class="el" href="#ad8ec009e7c36909d56bb1b33ffb40d30" title="Returns the momentary extrapolated redshift, without checking if the requested time is inside the ran...">unchecked_redshift()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -892,6 +910,7 @@ template&lt;class CoordType&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the momentary extrapolated redshift.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0af56f9880fe162463d82429300acd2c" title="Returns the momentary extrapolated distance, without checking if the requested time is inside the ran...">unchecked_distance()</a>, <a class="el" href="#a83475e973b355db67dc1f3e296be0392" title="Returns the momentary extrapolated longitude angle, without checking if the requested time is inside ...">unchecked_longitude()</a>, <a class="el" href="#ad88920e8a678fc24904c0013e50ef718" title="Returns the momentary extrapolated latitude angle, without checking if the requested time is inside t...">unchecked_latitude()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#acea5816a0208a4776dc4a664155e58a3">radial_velocity_at()</a>, and <a class="el" href="#ad9fb35cb904f565fb07e22a48d343a10">redshift_at()</a>.</p>

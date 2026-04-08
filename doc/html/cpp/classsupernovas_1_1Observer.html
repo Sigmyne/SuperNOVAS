@@ -190,6 +190,7 @@ Protected Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An abstract observer location. </p>
 <p>Both Earth-bound (geodetic sites, airborne, or Earth-orbit), and locations elsewhere in the Solar-system are supported.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a65ae0b0d36341717bf7b958ac3236f8c" name="a65ae0b0d36341717bf7b958ac3236f8c"></a>
@@ -275,7 +276,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the underlying NOVAS C <span class="tt"><a class="el" href="novas_8h.html#ae7963c522d28ce6891b472e079307d03" title="Observer location.">observer</a></span> data structure. </p>
-<dl class="section return"><dt>Returns</dt><dd>pointer to the underlying C <span class="tt"><a class="el" href="novas_8h.html#ae7963c522d28ce6891b472e079307d03" title="Observer location.">observer</a></span> data structure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the underlying C <span class="tt"><a class="el" href="novas_8h.html#ae7963c522d28ce6891b472e079307d03" title="Observer location.">observer</a></span> data structure.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a06604bddb755e5070caeefb4306de037">_novas_observer()</a>, and <a class="el" href="#a5d474a28113c03ea809f617fd3f2b61b">_observer</a>.</p>
 
@@ -308,6 +310,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Returns a fictitious observer placed at the location of the geocenter. </p>
 <dl class="section return"><dt>Returns</dt><dd>a new fictitious observer located at the geocenter.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f">at_geocenter()</a>.</p>
@@ -341,6 +344,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB). </p>
 <dl class="section return"><dt>Returns</dt><dd>a new fictitious observer located at the Solar-System Barycenter (SSB).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f">at_ssb()</a>.</p>
@@ -374,7 +378,8 @@ Protected Attributes</h2></td></tr>
 
 <p>Returns a newly allocated copy of this observer. </p>
 <p>The default implementation returns an invalid observer, but concrete subclasses should override that to return their onw copies.</p>
-<dl class="section return"><dt>Returns</dt><dd>a copy of this observer class, which may be an invalid observer (default). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a copy of this observer class, which may be an invalid observer (default).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1GeocentricObserver.html#ae578757821ffde79329e535e54e45b28">supernovas::GeocentricObserver</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a2efc7112c0b475e84aa94219d77b960b">supernovas::GeodeticObserver</a>, and <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a3ba91583e539cc02241b82ced9675aab">supernovas::SolarSystemObserver</a>.</p>
 
@@ -420,6 +425,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observer instance for the observer in Earth orbit.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a968c562d9e65d4418e77b2457001d09e">in_earth_orbit()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -464,6 +470,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observer instance for the given Solar-system location.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf">in_solar_system()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -497,6 +504,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this observer is an instance of <a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit sattel...">GeocentricObserver</a>, <a class="el" href="#aa5d4f5181e308afd56b517038f1f8720" title="Checks if this observer can be cast to a GeodeticObserver.">is_geodetic()</a> </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1GeocentricObserver.html#a41440873d5710e13571ba76f316da510">supernovas::GeocentricObserver</a>.</p>
@@ -532,6 +540,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> is this observer is an instance of <a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>, <a class="el" href="#a990a78463a20d985f50b6e86ee8bf7e5" title="Checks if this observer can be cast to a GeocentricObserver.">is_geocentric()</a> </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a9f60da5e45c61acedbcd84333507c29e">supernovas::GeodeticObserver</a>.</p>
@@ -595,6 +604,7 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Site::enu_to_itrf() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#abd2f95516ccb885c0328574b7201ff6f">moving_on_earth()</a>.</p>
@@ -643,6 +653,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observer instance for the given moving observer.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#abd2f95516ccb885c0328574b7201ff6f">moving_on_earth()</a>.</p>
@@ -687,6 +698,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observer instance for the given observing site.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#abd2f95516ccb885c0328574b7201ff6f" title="Returns a new observer that is moving, at some velocitym relative to Earth&#39;s surface,...">moving_on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a4938417fca7a03c1c41ff905e489b79b">on_earth()</a>.</p>
@@ -719,7 +731,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a string representation of this observer. </p>
-<dl class="section return"><dt>Returns</dt><dd>a new string with a brief description of this observer. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new string with a brief description of this observer.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1GeocentricObserver.html#af587b52511d647b46951511b2fa3f472">supernovas::GeocentricObserver</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a33aee6eb9517ac8c0961de8f9072a61d">supernovas::GeodeticObserver</a>, and <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a000ae8621806fbf4637b2c112b50613f">supernovas::SolarSystemObserver</a>.</p>
 
@@ -745,7 +758,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the observer type. </p>
-<dl class="section return"><dt>Returns</dt><dd>the observer type constant for this observer </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the observer type constant for this observer</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a5d474a28113c03ea809f617fd3f2b61b">_observer</a>, and <a class="el" href="#a68214f28fee06df8aa28478475eccf04">type()</a>.</p>
 
@@ -778,6 +792,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Returns a reference to a statically defined standard invalid observer. </p>
 <p>This invalid observer may be used inside any object that is invalid itself.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a reference to a static standard invalid observer. </dd></dl>
 
 <p class="reference">References <a class="el" href="#a305489d2635ff31ceda03baff28594ea">undefined()</a>.</p>

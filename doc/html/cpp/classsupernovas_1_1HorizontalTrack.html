@@ -187,6 +187,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Approximate trajectory of a source in horizontal coordinates, using a local quadratic approximation around a time instant. </p>
 <p>This may be used e.g., to control telescope drive systems in horizontal mounts, by providing instantaneous positions, rate, and acceletation along the azimuth and elevation axes. Or, one may use the trajectory to obtain interpolated instantaneous Az/El positions, distances, spectroscopic redshifts or radial velocities, within the interval of validity, at very low computational cost.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Apparent::horizontal(), <a class="el" href="classsupernovas_1_1EquatorialTrack.html" title="Approximate trajectory of a source in equatorial coordinates, using a local quadratic approximation a...">EquatorialTrack</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a03a3318119a3f77db23cbd8fc0171632" name="a03a3318119a3f77db23cbd8fc0171632"></a>
@@ -240,6 +241,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a86c028bf860b9489a6a0306018d6cfbd" title="Instantiates a short-term trajectory estimate for a source in horizontal coordinates,...">from_novas_track()</a>, EquatorialTrack::EquatorialTrack() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Track.html#ac1d7b0cebd8fd5741d7a3e6e8aec4c83">supernovas::Track&lt; Horizontal &gt;::Track()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Track.html#a97fa819bba5cfb544d4f8d4d53c7ba63">supernovas::Track&lt; Horizontal &gt;::range()</a>.</p>
@@ -281,7 +283,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// Oops, the track is not valid</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1HorizontalTrack_html_a86c028bf860b9489a6a0306018d6cfbd"><div class="ttname"><a href="#a86c028bf860b9489a6a0306018d6cfbd">supernovas::HorizontalTrack::from_novas_track</a></div><div class="ttdeci">static HorizontalTrack from_novas_track(const novas_track *track, const Interval &amp;range)</div><div class="ttdoc">Instantiates a short-term trajectory estimate for a source in horizontal coordinates,...</div><div class="ttdef"><b>Definition</b> Track.cpp:463</div></div>
+<div class="ttc" id="aclasssupernovas_1_1HorizontalTrack_html_a86c028bf860b9489a6a0306018d6cfbd"><div class="ttname"><a href="#a86c028bf860b9489a6a0306018d6cfbd">supernovas::HorizontalTrack::from_novas_track</a></div><div class="ttdeci">static HorizontalTrack from_novas_track(const novas_track *track, const Interval &amp;range)</div><div class="ttdoc">Instantiates a short-term trajectory estimate for a source in horizontal coordinates,...</div><div class="ttdef"><b>Definition</b> Track.cpp:487</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">track</td><td>Pointer to the C tajectory data structure </td></tr>
@@ -289,6 +291,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1EquatorialTrack.html#a563d9ed8cd753fc4afd1adf0b99e19a1" title="Instantiates a short-term trajectory estimate for a source in equatorial coordinates,...">EquatorialTrack::from_novas_track()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Track.html#a97fa819bba5cfb544d4f8d4d53c7ba63">supernovas::Track&lt; Horizontal &gt;::range()</a>.</p>
@@ -327,7 +330,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// Oops, not valid</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Horizontal_html"><div class="ttname"><a href="classsupernovas_1_1Horizontal.html">supernovas::Horizontal</a></div><div class="ttdoc">Horizontal (azimuth, elevation = Az/El) sky coordinates at a geodetic observing location,...</div><div class="ttdef"><b>Definition</b> supernovas.h:2530</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Horizontal_html"><div class="ttname"><a href="classsupernovas_1_1Horizontal.html">supernovas::Horizontal</a></div><div class="ttdoc">Horizontal (azimuth, elevation = Az/El) sky coordinates at a geodetic observing location,...</div><div class="ttdef"><b>Definition</b> supernovas.h:2626</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>astrometric time for which we want the extrapolated value. </td></tr>
@@ -335,6 +338,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the momentary extrapolated horizontal coordinates (if valid), or else <span class="tt">std::nullopt</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1EquatorialTrack.html#a8f41282a1f30c8ede1f28b829ae67480" title="Returns the momentary extrapolated equatorial coordinates (if valid), or else Equatorial::undefined()...">EquatorialTrack::projected_at()</a> </dd></dl>
 
 <p>Implements <a class="el" href="classsupernovas_1_1Track.html#a8207b9f806097736e7d2622caa5c5bdf">supernovas::Track&lt; Horizontal &gt;</a>.</p>
@@ -367,7 +371,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a reference to a static instance of a standard undefined horizontal track. </p>
-<dl class="section return"><dt>Returns</dt><dd>the reference to a standard undefined horizontal track. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the reference to a standard undefined horizontal track.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>.</p>
 

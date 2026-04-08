@@ -218,6 +218,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A 3D physical position vector in space. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Velocity.html" title="A 3D physical velocity vector in space.">Velocity</a>, <a class="el" href="classsupernovas_1_1Geometric.html" title="The geometric (3D) position and velocity of a source relative to an observer location.">Geometric</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abac0617b150aa85cea17e9dfec1aac78" name="abac0617b150aa85cea17e9dfec1aac78"></a>
@@ -289,10 +290,11 @@ Additional Inherited Members</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">x_m</td><td>[m] <em>x</em> component </td></tr>
     <tr><td class="paramname">y_m</td><td>[m] <em>y</em> component </td></tr>
-    <tr><td class="paramname">z_m</td><td>[m] <em>z</em> component </td></tr>
+    <tr><td class="paramname">z_m</td><td>[m] <em>z</em> component</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">supernovas::Vector::Vector()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>.</p>
 
@@ -330,10 +332,11 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pos</td><td>position 3-vector expressed in some physical unit </td></tr>
-    <tr><td class="paramname">unit</td><td>the physical unit, in which the components are given, such as <a class="el" href="classsupernovas_1_1Unit.html#af95881057f4dbd4b8a907b12e866c515" title="[m] 1 meter (standard unit of distance)">Unit::m</a> or <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de" title="[m] 1 AU (lower-case)">Unit::au</a>. </td></tr>
+    <tr><td class="paramname">unit</td><td>the physical unit, in which the components are given, such as <a class="el" href="classsupernovas_1_1Unit.html#af95881057f4dbd4b8a907b12e866c515" title="[m] 1 meter (standard unit of distance)">Unit::m</a> or <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de" title="[m] 1 AU (lower-case)">Unit::au</a>.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc">supernovas::Vector::Vector()</a>.</p>
 
@@ -356,6 +359,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the distance to the location indicated by this position (that is the absolute value of this position vector). </p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>the distance to the indicated position. </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">supernovas::Vector::abs()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -392,6 +396,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this position equals the argument within the specified precision, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab28229ab97d018e87efddbb06cbf2bdb" title="Checks if this position is the same as the specified other position to 12 significant figures,...">operator==()</a>, <a class="el" href="#aa64a15de66a603ca504951c454e18216" title="Checks if this position differs from the specified other position by more than the 12th significant f...">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>, and <a class="el" href="classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791">supernovas::Vector::equals()</a>.</p>
@@ -416,6 +421,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a position vector with the same magnitude as this, but in the opposite direction. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>the spatial inverse position vector of this one. </dd></dl>
 
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -445,6 +451,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this position equals the argument to 12 significant figures or 1 mm, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af5a5f447de9406d87925400351a527a5" title="Checks if this position is the same as another, within the specified precision.">equals()</a>, <a class="el" href="#ab28229ab97d018e87efddbb06cbf2bdb" title="Checks if this position is the same as the specified other position to 12 significant figures,...">operator==()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
@@ -474,6 +481,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new position vector with the sum of this position and the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a97b9b8f521c1843f640842a4c6eb5c8c" title="Returns the difference of this position and another position.">operator-()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -503,6 +511,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new position vector with the difference of this position and the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa3e3dc3dc3da0cc3641f9c50a73b7c95" title="Returns the sum of this position and another (relative) position.">operator+()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>, <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -532,6 +541,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>velocity <b>v</b> = <b>x</b> / dt, where <b>x</b> is this position vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab424d6ee655671b37c35e678bbfc8cce" title="Returns the velocity vector that is equal to this position vector travelled under the specified time ...">Position::operator/()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>.</p>
@@ -561,6 +571,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this position equals the argument to 12 significant figures or 1 mm, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af5a5f447de9406d87925400351a527a5" title="Checks if this position is the same as another, within the specified precision.">equals()</a>, <a class="el" href="#aa64a15de66a603ca504951c454e18216" title="Checks if this position differs from the specified other position by more than the 12th significant f...">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>, <a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">supernovas::Vector::abs()</a>, <a class="el" href="#af5a5f447de9406d87925400351a527a5">equals()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">supernovas::Unit::mm</a>.</p>
@@ -591,7 +602,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a reference to the statically define position at the origin (that is a null posiution vector). </p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to a static null position vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a static null position vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
 
@@ -627,7 +639,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the astrometric position for this observed equatorial position vector, referenced to the time when light was emitted, and the observer location w.r.t. the Solar-system barycenter (SSB). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the astrometric position for this observed equatorial position vector, referenced to the time when light was emitted, and the observer location w.r.t. the Solar-system barycenter (SSB).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -649,7 +662,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts this position vector to <a class="el" href="classsupernovas_1_1Spherical.html" title="Spherical coordinates (longitude, latitude), representing a direction on sky.">Spherical</a> coordinates. </p>
-<dl class="section return"><dt>Returns</dt><dd>a new instance of spherical coordinates corresponding to this position. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new instance of spherical coordinates corresponding to this position.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -685,7 +699,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a string representation of this position vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string representation of this position vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f">supernovas::Vector</a>.</p>
 
@@ -722,7 +737,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a reference to a statically defined standard invalid position vector. </p>
 <p>This invalid vector may be used inside any object that is invalid itself.</p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the static standard invalid vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the static standard invalid vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#abac0617b150aa85cea17e9dfec1aac78">Position()</a>.</p>
 
@@ -747,6 +763,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the <em>x</em> component of this position vector. </p>
 <dl class="section return"><dt>Returns</dt><dd>the <em>x</em> component</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab4cbdca69a14093ce6bfe4f0f237a5f7" title="Returns the y component of this position vector.">y()</a>, <a class="el" href="#a0de42fa3ff4d852b9adfc6c59c0df920" title="Returns the z component of this position vector.">z()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>.</p>
@@ -770,6 +787,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the <em>y</em> component of this position vector. </p>
 <dl class="section return"><dt>Returns</dt><dd>the <em>y</em> component</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a470aaa5d33b653944778cb9e7296349b" title="Returns the x component of this position vector.">x()</a>, <a class="el" href="#a0de42fa3ff4d852b9adfc6c59c0df920" title="Returns the z component of this position vector.">z()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>.</p>
@@ -793,6 +811,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the <em>z</em> component of this position vector. </p>
 <dl class="section return"><dt>Returns</dt><dd>the <em>z</em> component</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a470aaa5d33b653944778cb9e7296349b" title="Returns the x component of this position vector.">x()</a>, <a class="el" href="#ab4cbdca69a14093ce6bfe4f0f237a5f7" title="Returns the y component of this position vector.">y()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18">supernovas::Vector::_component</a>.</p>

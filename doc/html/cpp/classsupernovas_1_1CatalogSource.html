@@ -185,6 +185,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A sidereal source, defined by its catalog coordinates and other catalog parameters. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab309ce8e3bd4d09229aa6eff97248b5e" name="ab309ce8e3bd4d09229aa6eff97248b5e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab309ce8e3bd4d09229aa6eff97248b5e">&#9670;&#160;</a></span>CatalogSource()</h2>
@@ -213,10 +214,11 @@ Additional Inherited Members</h2></td></tr>
 <p>ICRS coordinates are calculated for all catalog entries, regardless of what catalog system they were defined it. As such, it is important that for catalog entries that are not defined in ICRS or the J2000 catalog system, you set proper motion as appropriate, such that they may be 'moved' into the J2000 epoch for proper ICRS coordinates.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">e</td><td>the catalog entry </td></tr>
+    <tr><td class="paramname">e</td><td>the catalog entry</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a7e0f947b9bb8eeb40c21cec3db3d89aa">supernovas::Source::Source()</a>, <a class="el" href="classsupernovas_1_1CatalogEntry.html#ab1ba4b71acf87ebd4bfe12fbeb88855c">supernovas::CatalogEntry::_cat_entry()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a5104d7db66ce2d8c61c7ad21599fb45e">make_cat_object_sys()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a577bc493cd571f08cb8d388371cd719d">supernovas::Equinox::name()</a>, <a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fa4f9ab9cec85498c41f90c33794d032e5">NOVAS_CATALOG_OBJECT</a>, and <a class="el" href="classsupernovas_1_1CatalogEntry.html#a9e7358ee7c3f4e90550839662cedd5bf">supernovas::CatalogEntry::system()</a>.</p>
 
@@ -241,7 +243,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the catalog entry stored internally. </p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the internal catalog entry. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the internal catalog entry.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 </div>
 </div>
@@ -269,7 +272,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to a newly allocated copy of this catalog source instance. </p>
-<dl class="section return"><dt>Returns</dt><dd>pointer to new copy of this catalog source instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to new copy of this catalog source instance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Implements <a class="el" href="classsupernovas_1_1Source.html#af5a18693fc942953c44bf6a04d512060">supernovas::Source</a>.</p>
 
@@ -301,7 +305,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a string representation of this catalog source. </p>
-<dl class="section return"><dt>Returns</dt><dd>a string representation of this catalog source </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string representation of this catalog source</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Implements <a class="el" href="classsupernovas_1_1Source.html#af7ae7c88a6375c790d2477d9fe99e396">supernovas::Source</a>.</p>
 

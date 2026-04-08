@@ -157,6 +157,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Weather data, mainly for atmopsheric refraction correction for Earth-based (geodetic) observers. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029" title="Applies atmospheric refraction correction for these coordinates, returning the result.">Horizontal::to_refracted()</a>, <a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">Horizontal::to_unrefracted()</a>, <a class="el" href="classsupernovas_1_1Site.html" title="An Earth-based (geodetic) observer site location, or airborne observer location.">Site</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afa980c7de58a62254a6b0c4bd018d48e" name="afa980c7de58a62254a6b0c4bd018d48e"></a>
@@ -192,6 +193,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>guess() </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#a0395574b9c5b2bdb7b9f8e04e1342029">standard()</a>.</p>
@@ -231,6 +233,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>guess() </dd></dl>
 
 </div>
@@ -253,6 +256,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the humidity value, as a percentage, from this weather dataset. </p>
 <dl class="section return"><dt>Returns</dt><dd>[%] relative humidity [0:100]</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3add8f8e11068b133b580d503e0b7d3a" title="Returns the humidity value, as a fraction, from this weather dataset.">humidity_fraction()</a>, <a class="el" href="#a3d84bdc61aa8a1fb7c958a90df6a911c" title="Returns a reference to the temperature value in this weather dataset.">temperature()</a>, <a class="el" href="#a68fb7dadc7cd72e839c0ed730c4b1f70" title="Returns a reference to the the atmpspheric pressure value in this weather dataset.">pressure()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>, and <a class="el" href="#a0eabf3c9214f5b81cccfc681d4794713">to_string()</a>.</p>
@@ -276,6 +280,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the humidity value, as a fraction, from this weather dataset. </p>
 <dl class="section return"><dt>Returns</dt><dd>relative humidity [0.0:1.0]</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac43b7b4d8450cf8542a60ff7c0d49b44" title="Returns the humidity value, as a percentage, from this weather dataset.">humidity()</a>, <a class="el" href="#a3d84bdc61aa8a1fb7c958a90df6a911c" title="Returns a reference to the temperature value in this weather dataset.">temperature()</a>, <a class="el" href="#a68fb7dadc7cd72e839c0ed730c4b1f70" title="Returns a reference to the the atmpspheric pressure value in this weather dataset.">pressure()</a> </dd></dl>
 
 </div>
@@ -297,6 +302,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a reference to the the atmpspheric pressure value in this weather dataset. </p>
 <dl class="section return"><dt>Returns</dt><dd>[Pa] atmospheric pressure</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3d84bdc61aa8a1fb7c958a90df6a911c" title="Returns a reference to the temperature value in this weather dataset.">temperature()</a>, <a class="el" href="#ac43b7b4d8450cf8542a60ff7c0d49b44" title="Returns the humidity value, as a percentage, from this weather dataset.">humidity()</a>, <a class="el" href="#a3add8f8e11068b133b580d503e0b7d3a" title="Returns the humidity value, as a fraction, from this weather dataset.">humidity_fraction()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>.</p>
@@ -327,7 +333,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a reference to a fixed standard weather instance (T = 10deg;C, p = 1 atm, humidity = 50%). </p>
-<dl class="section return"><dt>Returns</dt><dd>a static reference to a site-independent standard default weather. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a static reference to a site-independent standard default weather.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#afa980c7de58a62254a6b0c4bd018d48e">Weather()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a3628143537380360c9b3b3dbe5a38584">supernovas::Unit::atm</a>.</p>
 
@@ -352,6 +359,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a reference to the temperature value in this weather dataset. </p>
 <dl class="section return"><dt>Returns</dt><dd>[C] outside air temperature</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a68fb7dadc7cd72e839c0ed730c4b1f70" title="Returns a reference to the the atmpspheric pressure value in this weather dataset.">pressure()</a>, <a class="el" href="#ac43b7b4d8450cf8542a60ff7c0d49b44" title="Returns the humidity value, as a percentage, from this weather dataset.">humidity()</a>, <a class="el" href="#a3add8f8e11068b133b580d503e0b7d3a" title="Returns the humidity value, as a fraction, from this weather dataset.">humidity_fraction()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>.</p>
@@ -374,7 +382,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a string representation of this weather dataset. </p>
-<dl class="section return"><dt>Returns</dt><dd>A human-readable string representation of this weather data. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A human-readable string representation of this weather data.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#ac43b7b4d8450cf8542a60ff7c0d49b44">humidity()</a>.</p>
 

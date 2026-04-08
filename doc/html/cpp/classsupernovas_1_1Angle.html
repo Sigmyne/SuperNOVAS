@@ -204,6 +204,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A representation of a regularized angle, which can be expressed in various commonly used angular units as needed. </p>
 <p>It can also be used to instantiate angles from decimal or [+]DDD:MM:SS.SSS string representations of the angle in degrees.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1TimeAngle.html" title="A representation of a regularized angle, which can also be represented as a time value in the 0 to 24...">TimeAngle</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ada81acd45becf847f82fa353523b977c" name="ada81acd45becf847f82fa353523b977c"></a>
@@ -232,13 +233,14 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates a new angle with the specified value in radians. </p>
 <p>You can use the <a class="el" href="classsupernovas_1_1Unit.html" title="Various physical units for converting quantities expressed in conventional units to SI,...">Unit</a> class to convert angles expressed in other units to radians. For example, to set 15.0 degrees, you might write:</p>
 <div class="fragment"><div class="line">Angle a(15.0 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">Unit::deg</a>);</div>
-<div class="ttc" id="aclasssupernovas_1_1Unit_html_a8bfd777ba2cae7778c1ae72e8944b175"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a></div><div class="ttdeci">static constexpr double deg</div><div class="ttdoc">[rad] 1 degree in radians</div><div class="ttdef"><b>Definition</b> supernovas.h:169</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a8bfd777ba2cae7778c1ae72e8944b175"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a></div><div class="ttdeci">static constexpr double deg</div><div class="ttdoc">[rad] 1 degree in radians</div><div class="ttdef"><b>Definition</b> supernovas.h:171</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">radians</td><td>[rad] the initializing value.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1TimeAngle.html" title="A representation of a regularized angle, which can also be represented as a time value in the 0 to 24...">TimeAngle</a>, <a class="el" href="classsupernovas_1_1Unit.html" title="Various physical units for converting quantities expressed in conventional units to SI,...">Unit</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514">supernovas::Scalar::Scalar()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -276,6 +278,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>novas:<a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be">deg()</a>, and <a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd">novas_str_degrees()</a>.</p>
@@ -300,6 +303,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the angle in arc minutes. </p>
 <dl class="section return"><dt>Returns</dt><dd>[arcmin] the angle in arc minutes, usually in the [-10800:10800) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">rad()</a>, <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">deg()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">arcsec()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b" title="Returns the angle in milliarcseconds.">mas()</a>, <a class="el" href="#a39ee92c930646bae2fa5224132ac4804" title="Returns the angle in microarcseconds.">uas()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a895d1485471da2155855d93aee1b67f2">supernovas::Unit::arcmin</a>.</p>
@@ -323,6 +327,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the angle in arc seconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>[arcsec] the angle in arc seconds, usually in the [-648000:648000) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">rad()</a>, <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">deg()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">arcmin()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b" title="Returns the angle in milliarcseconds.">mas()</a>, <a class="el" href="#a39ee92c930646bae2fa5224132ac4804" title="Returns the angle in microarcseconds.">uas()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">supernovas::Unit::arcsec</a>.</p>
@@ -348,6 +353,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the angle in degrees. </p>
 <dl class="section return"><dt>Returns</dt><dd>[degrees] the angle in degrees, usually in the [-180:180) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">rad()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">arcmin()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">arcsec()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b" title="Returns the angle in milliarcseconds.">mas()</a>, <a class="el" href="#a39ee92c930646bae2fa5224132ac4804" title="Returns the angle in microarcseconds.">uas()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>.</p>
@@ -384,6 +390,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two angles match within the specified precision, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a73d4cf5daf3c1fdaf81940b3a2ba4551" title="Checks if this angle instance equals another within the 1 μas.">operator==()</a>, <a class="el" href="#aaa4486c733e14ea4e9f4105e42285006" title="Checks if this angle instance differs from another by more than 1 μas.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
@@ -408,7 +415,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the angle as a fraction of the circle. </p>
-<dl class="section return"><dt>Returns</dt><dd>the angle as a fraction of the circle, usually in the [0:1) range. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the angle as a fraction of the circle, usually in the [0:1) range.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
 
@@ -431,6 +439,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the angle in milliarcseconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>[mas] the angle in milliarcseconds, usually in the [-6.48e8:6.48e8) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">rad()</a>, <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">deg()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">arcmin()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">arcsec()</a>, <a class="el" href="#a39ee92c930646bae2fa5224132ac4804" title="Returns the angle in microarcseconds.">uas()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">supernovas::Unit::mas</a>.</p>
@@ -460,6 +469,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two angles differ by more than 1 &mu;as, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4645972967822541c9f964a8f0393e1b" title="Checks if this angle instance equals another within the specified absolute precision.">equals()</a>, <a class="el" href="#a73d4cf5daf3c1fdaf81940b3a2ba4551" title="Checks if this angle instance equals another within the 1 μas.">operator==()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a4645972967822541c9f964a8f0393e1b">equals()</a>.</p>
@@ -497,6 +507,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the sum of this angle and the argument, as a new angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a61870ec8a57c3d67c14a5ebf508794f3" title="Returns a new angle that is the difference of this angle and the specified other angle.">operator-()</a> </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1TimeAngle.html#a9f4d90c69c95bd1af248e13441ae803f">supernovas::TimeAngle</a>.</p>
@@ -538,6 +549,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the difference of this angle and the argument, as a new angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a82e5f7cc89c1fa80ec6331b91bccd938" title="Returns a new angle that is the sum of this angle and the specified other angle.">operator+()</a> </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1TimeAngle.html#aeb1860d3186a860bf4212c34d802502b">supernovas::TimeAngle</a>.</p>
@@ -571,6 +583,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two angles match within 1 &mu;as, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4645972967822541c9f964a8f0393e1b" title="Checks if this angle instance equals another within the specified absolute precision.">equals()</a>, <a class="el" href="#aaa4486c733e14ea4e9f4105e42285006" title="Checks if this angle instance differs from another by more than 1 μas.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a4645972967822541c9f964a8f0393e1b">equals()</a>.</p>
@@ -594,6 +607,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the angle in radians. </p>
 <dl class="section return"><dt>Returns</dt><dd>[rad] the angle in radians, usually in the [-&pi;:&pi;) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">deg()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">arcmin()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">arcsec()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b" title="Returns the angle in milliarcseconds.">mas()</a>, <a class="el" href="#a39ee92c930646bae2fa5224132ac4804" title="Returns the angle in microarcseconds.">uas()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>.</p>
@@ -704,7 +718,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a string representation of this scalar quantity. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string representation of this scalar quantity.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Scalar.html#a57a227e1a36070e68e57b8debc84e9ab">supernovas::Scalar</a>.</p>
 
@@ -731,6 +746,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the angle in microarcseconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>[&mu;as] the angle in microarcseconds, usually in the [-6.48e11:6.48e11) range, although subclasses may support different ranges for the returned value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">rad()</a>, <a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">deg()</a>, <a class="el" href="#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">arcmin()</a>, <a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">arcsec()</a>, <a class="el" href="#a6f8542151ca185e23be12aaac101bd0b" title="Returns the angle in milliarcseconds.">mas()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">supernovas::Unit::uas</a>.</p>

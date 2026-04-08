@@ -248,6 +248,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB), the Earth-Moon Barycenter (EMB), and the Pluto-system barycenter. </p>
 <p><a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a> positions are usually provided by the JPL DE ephemeris files, such as DE440 or DE440s. By default SuperNOVAS calculates approximate position for the Earth and Sun only. Thus to provide ephemeris positions for all planet-type osurces, you will have to configure a Solar-system ephemeris provider, e.g. via <span class="tt"><a class="el" href="group__solar-system.html#ga35fc86a939602ec910dbdfde180d7f31" title="Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...">novas_use_calceph()</a></span> or <span class="tt"><a class="el" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a></span>.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1EphemerisSource.html" title="A Solar-system source, whose positions / velocities are provided from ephemeris data.">EphemerisSource</a>, <a class="el" href="classsupernovas_1_1OrbitalSource.html" title="A Solar-system source, whose position and velocity can be calculated using Keplerian orbital elements...">OrbitalSource</a>, <a class="el" href="group__solar-system.html#ga35fc86a939602ec910dbdfde180d7f31" title="Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...">novas_use_calceph()</a>, <a class="el" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8df7ec419bd6eb16e7e67d86bc8f17f9" name="a8df7ec419bd6eb16e7e67d86bc8f17f9"></a>
@@ -276,10 +277,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates a planet from its NOVAS ID number. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">number</td><td>the NOVAS ID number </td></tr>
+    <tr><td class="paramname">number</td><td>the NOVAS ID number</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1SolarSystemSource.html#a192c6969f37446887886c2425cf50ec1">supernovas::SolarSystemSource::SolarSystemSource()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, and <a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fad1eeaddaa96b028742a8ba424e311aa8">NOVAS_PLANET</a>.</p>
 
@@ -310,7 +312,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to a newly allocated copy of this planet instance. </p>
-<dl class="section return"><dt>Returns</dt><dd>pointer to new copy of this planet instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to new copy of this planet instance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Implements <a class="el" href="classsupernovas_1_1Source.html#af5a18693fc942953c44bf6a04d512060">supernovas::Source</a>.</p>
 
@@ -333,7 +336,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the ID number of for this planet (or planet type body in the SuperNOVAS sense) in the JPL DExxx (e.g. </p>
 <p>DE441) planetary ephemeris data files. For some planets, the DExxx files contain data for the planet's center, while for others it is for the barycenter of the planetary system.</p>
-<dl class="section return"><dt>Returns</dt><dd>The ID number of this planet in the JPL DExxx planetary ephemeris files. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The ID number of this planet in the JPL DExxx planetary ephemeris files.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#af8a2e51ac3aacdbfcdae5367f9018b00">novas_id()</a>, and <a class="el" href="novas_8h.html#ac3eb54acf22dc155879163de89c6865e">novas_to_dexxx_planet()</a>.</p>
 
@@ -364,6 +368,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the static reference to the planet Earth. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Earth.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae8738e01ac1473f218ecb18009765a84" title="Returns the static reference to the Earth-Moon Barycenter (EMB) position.">emb()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045adc941f5a3613952d6d6102281e70e5c0">NOVAS_EARTH</a>.</p>
@@ -395,6 +400,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the static reference to the Earth-Moon Barycenter (EMB) position. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of the EMB.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a36ead36de7bb93566f0c9f267b5ef63e" title="Returns the static reference to the planet Earth.">earth()</a>, <a class="el" href="#a0d65c875c7bc426241516ac37456e09f" title="Returns the static reference to the Moon.">moon()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045ad1785b619d72877c4eb78d61aedf9e1a">NOVAS_EMB</a>.</p>
@@ -431,7 +437,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// Oops there is no planet for that NAIF ID...</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Planet_html_ae4aa8a696d5def0c3cd9a97e9d1186fc"><div class="ttname"><a href="#ae4aa8a696d5def0c3cd9a97e9d1186fc">supernovas::Planet::for_naif_id</a></div><div class="ttdeci">static Planet for_naif_id(long naif)</div><div class="ttdoc">Returns a new planet corresponding to the specified NAIF ID, if possible, or else an invalid Planet i...</div><div class="ttdef"><b>Definition</b> Source.cpp:564</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Planet_html_ae4aa8a696d5def0c3cd9a97e9d1186fc"><div class="ttname"><a href="#ae4aa8a696d5def0c3cd9a97e9d1186fc">supernovas::Planet::for_naif_id</a></div><div class="ttdeci">static Planet for_naif_id(long naif)</div><div class="ttdoc">Returns a new planet corresponding to the specified NAIF ID, if possible, or else an invalid Planet i...</div><div class="ttdef"><b>Definition</b> Source.cpp:602</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">naif</td><td>the NAIF ID number of the planet </td></tr>
@@ -439,6 +445,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the corresponding planet, or an invalid planet if the ID does not specify a planet type body.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a7cec4323d92f0c576fd25fdc3633efb3" title="Returns a new planet corresponding to the specified name (case insensitive), if possible,...">for_name()</a>, <a class="el" href="#a134ad44ca935e90b63104a9c00602d6d" title="Returns the NAIF ID number for this planet (or planet type body in the SuperNOVAS sense).">naif_id()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a1c4b3f67a3b82808dd16ae43dfaf0f86">naif_to_novas_planet()</a>, and <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>.</p>
@@ -475,7 +482,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// Oops there is no planet for that name...</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Planet_html_a7cec4323d92f0c576fd25fdc3633efb3"><div class="ttname"><a href="#a7cec4323d92f0c576fd25fdc3633efb3">supernovas::Planet::for_name</a></div><div class="ttdeci">static Planet for_name(const std::string &amp;name)</div><div class="ttdoc">Returns a new planet corresponding to the specified name (case insensitive), if possible,...</div><div class="ttdef"><b>Definition</b> Source.cpp:594</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Planet_html_a7cec4323d92f0c576fd25fdc3633efb3"><div class="ttname"><a href="#a7cec4323d92f0c576fd25fdc3633efb3">supernovas::Planet::for_name</a></div><div class="ttdeci">static Planet for_name(const std::string &amp;name)</div><div class="ttdoc">Returns a new planet corresponding to the specified name (case insensitive), if possible,...</div><div class="ttdef"><b>Definition</b> Source.cpp:633</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3" title="Returns the name given to this source at instantiation.">name</a></td><td>the planet's name (includes Sun, Moon, SSB, EMB, and Pluto-Barycenter also). Case insensitive. </td></tr>
@@ -483,6 +490,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the corresponding planet, or an invalid planet if the ID does not specify a planet type body.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae4aa8a696d5def0c3cd9a97e9d1186fc" title="Returns a new planet corresponding to the specified NAIF ID, if possible, or else an invalid Planet i...">for_naif_id()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3">supernovas::Source::name()</a>, <a class="el" href="novas_8h.html#a2cf7410aa68b980112734227b40890d6">novas_planet_for_name()</a>, and <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>.</p>
@@ -513,7 +521,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the static reference to the planet Jupiter. </p>
-<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Jupiter. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Jupiter.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a994baf0c30caeaaee7b8b4d5a12921a3">NOVAS_JUPITER</a>.</p>
 
@@ -543,7 +552,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the static reference to the planet Mars. </p>
-<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Mars. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Mars.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a479f3eb097c0aeb4ac7dc3ae2e6c376e">NOVAS_MARS</a>.</p>
 
@@ -566,6 +576,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the mean radius (average of the equatorial and polar radii) of this planet (or planet type body in the SuperNOVAS sense). </p>
 <dl class="section return"><dt>Returns</dt><dd>[kg] the mass of this planet, or 0.0 this 'planet' does not denote a physical body (such as barycenters), or else NAN if this planet is itself invalid.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a8f6ff781f682b8a1e03cf486edae3e6e" title="Returns the mean radius (average of the equatorial and polar radii) of this planet (or planet type bo...">mean_radius()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Constant.html#a63b4473c34fb6d24422d98fdf0d61616">supernovas::Constant::M_sun</a>, and <a class="el" href="novas_8h.html#a5ddc7a011476a8cffaec1866beaa0095">NOVAS_RMASS_INIT</a>.</p>
@@ -589,6 +600,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the mean radius (average of the equatorial and polar radii) of this planet (or planet type body in the SuperNOVAS sense). </p>
 <dl class="section return"><dt>Returns</dt><dd>the mean radius of this planet, or 0.0 this 'planet' does not denote a physical body (such as barycenters), or else a NAN distance if this planet is itself invalid.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1e2d15acac6c3072cfa65341059c4341" title="Returns the mean radius (average of the equatorial and polar radii) of this planet (or planet type bo...">mass()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a>, and <a class="el" href="classsupernovas_1_1Coordinate.html#a048da7b34fa7dc40b87a3335d403cdf1">supernovas::Coordinate::undefined()</a>.</p>
@@ -619,7 +631,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the static reference to the planet Mercury. </p>
-<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Mercury. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Mercury.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a40678cd248bd2edca8f59ddfee20ab74">NOVAS_MERCURY</a>.</p>
 
@@ -650,6 +663,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the static reference to the Moon. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of the Moon.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae8738e01ac1473f218ecb18009765a84" title="Returns the static reference to the Earth-Moon Barycenter (EMB) position.">emb()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a9fcf58133828600a062725ced448cfcf">NOVAS_MOON</a>.</p>
@@ -672,7 +686,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the NAIF ID number for this planet (or planet type body in the SuperNOVAS sense). </p>
-<dl class="section return"><dt>Returns</dt><dd>the NAIF id number of this planet. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the NAIF id number of this planet.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#af8a2e51ac3aacdbfcdae5367f9018b00">novas_id()</a>, and <a class="el" href="novas_8h.html#ab51ac9bdf7736e1c1582e0981046daf3">novas_to_naif_planet()</a>.</p>
 
@@ -702,7 +717,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the static reference to the planet Neptune. </p>
-<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Neptune. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Neptune.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045af12d26e56aa375fd2aa0c0edfd1c9ae3">NOVAS_NEPTUNE</a>.</p>
 
@@ -724,7 +740,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the (Super)NOVAS ID of this planet (or planet type body in the SuperNOVAS sense). </p>
-<dl class="section return"><dt>Returns</dt><dd>the (Super)NOVAS ID of this planet . </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the (Super)NOVAS ID of this planet.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>.</p>
 
@@ -754,7 +771,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the approximate Keplerain orbital of this planet around the specified reference time. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the approximate Keplerain orbital of this planet around the specified reference time.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Orbital.html#a6258445d39cc07b8c4679f3deca4af13">supernovas::Orbital::from_novas_orbit()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="#af8a2e51ac3aacdbfcdae5367f9018b00">novas_id()</a>, <a class="el" href="novas_8h.html#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, and <a class="el" href="#a660d13408cb13cbc42b7263f0196c36d">orbit()</a>.</p>
 
@@ -787,6 +805,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the static reference to the planet Pluto. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Pluto.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Barycenter::pluto_system() </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a1255a982524abb49bf076014d8d6acb5">NOVAS_PLUTO</a>.</p>
@@ -818,6 +837,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the static reference to the Pluto system barycenter position. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of the Pluto system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#afa68976c6a69efbca0e3b89bf7b3e2d2" title="Returns the static reference to the planet Pluto.">pluto()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a3503bba5abad8c20c76a6ca87dccf677">NOVAS_PLUTO_BARYCENTER</a>.</p>
@@ -848,7 +868,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the static reference to the planet Saturn. </p>
-<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Saturn. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Saturn.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a03b12ea0f93a1a1045d7bcccd613c6f2">NOVAS_SATURN</a>.</p>
 
@@ -879,6 +900,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the static reference to the Solar-System Barycenter (SSB). </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of the SSB.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9647c370d0f4c27c07e7f4773802ad5a" title="Returns the static reference to the Sun.">sun()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045aaeb39686d0e998c9188b47c31ee9c6b5">NOVAS_SSB</a>.</p>
@@ -910,6 +932,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the static reference to the Sun. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of the Sun.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a791f0b724824b110b24ba0167db0d79b" title="Returns the static reference to the Solar-System Barycenter (SSB).">ssb()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a170e1c704bd29c8d46f66d4d9a03d9c2">NOVAS_SUN</a>.</p>
@@ -969,7 +992,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the static reference to the planet Uranus. </p>
-<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Uranus. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Uranus.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a71d987d5d11d3a162807cdf0c994ad28">NOVAS_URANUS</a>.</p>
 
@@ -999,7 +1023,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the static reference to the planet Venus. </p>
-<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Venus. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the reference to the static instance of Venus.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a7c452cc654265f03e78801f9aead83de">NOVAS_VENUS</a>.</p>
 

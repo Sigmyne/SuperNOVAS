@@ -193,6 +193,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An observer location anywhere in the Solar System, defined by its momentary barycentric position and velocity vectors. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af1ab79f3e321bbbe8a6343c88d8417cf" name="af1ab79f3e321bbbe8a6343c88d8417cf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af1ab79f3e321bbbe8a6343c88d8417cf">&#9670;&#160;</a></span>SolarSystemObserver() <span class="overload">[1/2]</span></h2>
@@ -210,6 +211,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Instantiates a new stationary observer located at the Solar-System Barycenter (SSB). </p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#af1ab79f3e321bbbe8a6343c88d8417cf">SolarSystemObserver()</a>, <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">supernovas::Observer::_observer</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="novas_8h.html#a9c3f1a1bc3fd9ac6d211806913d2d529">make_solar_system_observer()</a>.</p>
 
@@ -240,10 +242,11 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pos</td><td>momentary ICRS position of the observer relative to the Solar-system Barycenter (SSB). </td></tr>
-    <tr><td class="paramname">vel</td><td>momentary ICRS velocity of the observer relative to the Solar-system Barycenter (SSB). </td></tr>
+    <tr><td class="paramname">vel</td><td>momentary ICRS velocity of the observer relative to the Solar-system Barycenter (SSB).</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4">supernovas::Vector::_array()</a>, <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">supernovas::Observer::_observer</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a9c3f1a1bc3fd9ac6d211806913d2d529">make_solar_system_observer()</a>, <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3a82474207bac139bc2a8826b9d317a42c">NOVAS_SOLAR_SYSTEM_OBSERVER</a>, <a class="el" href="classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46">supernovas::Vector::scaled()</a>, and <a class="el" href="classsupernovas_1_1Observer.html#a305489d2635ff31ceda03baff28594ea">supernovas::Observer::undefined()</a>.</p>
 
@@ -274,7 +277,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to a newly allocated copy of this observer instance at a Solar-system location. </p>
-<dl class="section return"><dt>Returns</dt><dd>pointer to new copy of thus Solar-system based observer instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to new copy of thus Solar-system based observer instance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Observer.html#ab96ce405d6c8cbe8d90e50c8e4da2e42">supernovas::Observer</a>.</p>
 
@@ -299,6 +303,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the momentary location of this observer relative to the Solar-System Barycenter (SSB). </p>
 <dl class="section return"><dt>Returns</dt><dd>the momentary position of the observer relative to hte SSB.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a52b68ba98939ec3b3832d4edcfbf5324" title="Returns the momentary velocity of this observer relative to the Solar-System Barycenter (SSB).">ssb_velocity()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">supernovas::Observer::_observer</a>, <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -324,6 +329,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the momentary velocity of this observer relative to the Solar-System Barycenter (SSB). </p>
 <dl class="section return"><dt>Returns</dt><dd>the momentary velocity of the observer relative to hte SSB.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af063a24216e1d4f7ec007a524a500464" title="Returns the momentary location of this observer relative to the Solar-System Barycenter (SSB).">ssb_position()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Observer.html#a5d474a28113c03ea809f617fd3f2b61b">supernovas::Observer::_observer</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7">supernovas::Unit::AU_per_day</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -356,7 +362,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a string representation of this observer. </p>
-<dl class="section return"><dt>Returns</dt><dd>a new string with a brief description of this observer. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new string with a brief description of this observer.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Observer.html#a6976e04ac1fe70d10ac5b9966ff73c8b">supernovas::Observer</a>.</p>
 

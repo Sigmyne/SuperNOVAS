@@ -197,6 +197,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An abstract class of a source in the Solar-system. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a>, <a class="el" href="classsupernovas_1_1EphemerisSource.html" title="A Solar-system source, whose positions / velocities are provided from ephemeris data.">EphemerisSource</a>, <a class="el" href="classsupernovas_1_1OrbitalSource.html" title="A Solar-system source, whose position and velocity can be calculated using Keplerian orbital elements...">OrbitalSource</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a192c6969f37446887886c2425cf50ec1" name="a192c6969f37446887886c2425cf50ec1"></a>
@@ -250,6 +251,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>heliocentric distance of source at the specified time</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#acb725151c7561dcbb19d8e6e3b18a52f" title="Returns the heliocentric rate of recession of a Solar-system source at the specified time of observat...">helio_rate()</a>, <a class="el" href="#a882f4b33dc6ec7a17c5dbd5bc47e7a8b" title="Returns the typical incident Solar power on the illuminated side of this Solar-system object.">solar_power()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#af4fa5359b8b0167a2780baff17b164a5">novas_helio_dist()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>.</p>
@@ -279,6 +281,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>rate of recession from the Sun at the specified time</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a63fda9415eea42ffa1e87e5d85e221df" title="Returns the heliocentric distance of a Solar-system source at the specified time of observation.">helio_distance()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7">supernovas::Unit::AU_per_day</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#af4fa5359b8b0167a2780baff17b164a5">novas_helio_dist()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>.</p>
@@ -308,6 +311,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the fraction [0.0:1.0] that appears illuminated by the Sun from the observer's point of view.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a882f4b33dc6ec7a17c5dbd5bc47e7a8b" title="Returns the typical incident Solar power on the illuminated side of this Solar-system object.">solar_power()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, and <a class="el" href="novas_8h.html#ac780bd907a12957995d36ad916dd4ec1">novas_solar_illum()</a>.</p>
@@ -338,6 +342,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>[W/m<sup>2</sup>] Typical incident Solar power.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a63fda9415eea42ffa1e87e5d85e221df" title="Returns the heliocentric distance of a Solar-system source at the specified time of observation.">helio_distance()</a>, <a class="el" href="#a60c9efbfb902ea476b34734966b8c5ab" title="Returns the fraction [0.0:1.0] of the Solar-system source that appears illuminated by the Sun when vi...">solar_illumination()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#a763f9a9dd2edb4645a5db05184ca7495">novas_solar_power()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>.</p>

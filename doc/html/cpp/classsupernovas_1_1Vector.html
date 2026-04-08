@@ -178,6 +178,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic 3D spatial vector, expressed in arbitrary units. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Position.html" title="A 3D physical position vector in space.">Position</a>, <a class="el" href="classsupernovas_1_1Velocity.html" title="A 3D physical velocity vector in space.">Velocity</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afaf9b317641d3a3aaf1e5a57dc4f3dfc" name="afaf9b317641d3a3aaf1e5a57dc4f3dfc"></a>
@@ -248,10 +249,11 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">x</td><td>[arb.u.] <em>x</em> component </td></tr>
     <tr><td class="paramname">y</td><td>[arb.u.] <em>y</em> component </td></tr>
-    <tr><td class="paramname">z</td><td>[arb.u.] <em>z</em> component </td></tr>
+    <tr><td class="paramname">z</td><td>[arb.u.] <em>z</em> component</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="#aab5ce2de6a675909f520087958fe3610">abs()</a>.</p>
 
@@ -300,7 +302,8 @@ Protected Attributes</h2></td></tr>
 
 <p>Returns the underlying <span class="tt">double[3]</span> C array that stores the components of this vector internally. </p>
 <p>Such an array may be used with the SuperNOVAS C functions.</p>
-<dl class="section return"><dt>Returns</dt><dd>the uderlying <span class="tt">double[3]</span> array that stores the components of this vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the uderlying <span class="tt">double[3]</span> array that stores the components of this vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>.</p>
 
@@ -324,7 +327,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the absolute value (length / magnitude) of this vector. </p>
-<dl class="section return"><dt>Returns</dt><dd>the absolute value (length / magnitude) of this vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the absolute value (length / magnitude) of this vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>, and <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>.</p>
 
@@ -354,7 +358,8 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the dot product of this vector and the argument. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the dot product of this vector and the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector()</a>, and <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>.</p>
 
@@ -397,7 +402,8 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this vector is equal to the argument within the specified precision, or else <span class="tt">false</span>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this vector is equal to the argument within the specified precision, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector()</a>, and <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>.</p>
 
@@ -421,7 +427,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Checks if this verctor is a null vector, that is all of its components are zero. </p>
-<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this is a null vector, with all components being zero; or else <span class="tt">false</span>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this is a null vector, with all components being zero; or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>.</p>
 
@@ -452,7 +459,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new vector that is the rescaled version of this vector.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>operator/() </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a442ce772514302bdb431d74675e12c46">scaled()</a>.</p>
 
@@ -480,7 +487,8 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The component value at that index, or else NAN if the index is out of the [0:2] (errno will be set to ERANGE). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The component value at that index, or else NAN if the index is out of the [0:2] (errno will be set to ERANGE).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>.</p>
 
@@ -503,6 +511,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Returns the azumithal angle of this vector. </p>
 <dl class="section return"><dt>Returns</dt><dd>the azimuthal angle &phi;.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa5cd444d1ad1aecfae916a9a73ffceb2" title="Returns the polar angleof this vector, that is the angle from the z axis.">theta()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -531,7 +540,8 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the projection of this vector along the direction of the argument vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the projection of this vector along the direction of the argument vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector()</a>, <a class="el" href="#aab5ce2de6a675909f520087958fe3610">abs()</a>, and <a class="el" href="#a17572fd5d9e2127b813c5f0186dde2ee">dot()</a>.</p>
 
@@ -559,7 +569,8 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a new vector that is the rescaled version of this vector with the specified scaling factor. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new vector that is the rescaled version of this vector with the specified scaling factor.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector()</a>, <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -584,6 +595,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Returns the polar angleof this vector, that is the angle from the <em>z</em> axis. </p>
 <dl class="section return"><dt>Returns</dt><dd>the polar angle &theta;.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa5981c5505f8f831a68a95f28c2c284f" title="Returns the azumithal angle of this vector.">phi()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -620,7 +632,8 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string representation of this 3D vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1AstrometricPosition.html#a95a3f74fbdfb734a19e520f71ae98d0a">supernovas::AstrometricPosition</a>, <a class="el" href="classsupernovas_1_1Interferometric.html#a736e48afb83ea51f7a819e78ceeb0962">supernovas::Interferometric</a>, <a class="el" href="classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984">supernovas::Position</a>, and <a class="el" href="classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c">supernovas::Velocity</a>.</p>
 
@@ -644,7 +657,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a unit vector in the direction of this vector. </p>
-<dl class="section return"><dt>Returns</dt><dd>a new unit vector in the same direction as this vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new unit vector in the same direction as this vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector()</a>, <a class="el" href="#aab5ce2de6a675909f520087958fe3610">abs()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a442ce772514302bdb431d74675e12c46">scaled()</a>.</p>
 

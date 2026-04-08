@@ -212,7 +212,8 @@ Functions</h2></td></tr>
 
 <p>Returns a default mean annual weather for this site based on a simple global model. </p>
 <p>It is best to use actual weather parameters, but as a blind default these represent something that is 'typical' for the observing site.</p>
-<dl class="section return"><dt>Returns</dt><dd>the 'typical' mean annual weather at this site, based on a very simple global model. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the 'typical' mean annual weather at this site, based on a very simple global model.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2">novas_on_surface::humidity</a>, <a class="el" href="classsupernovas_1_1Unit.html#a09dcd47a0e4c66e14372ce96638768cf">supernovas::Unit::mbar</a>, <a class="el" href="novas_8h.html#a0fc8f315f8606e09571ab49efb13baca">novas_set_default_weather()</a>, <a class="el" href="structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab">novas_on_surface::pressure</a>, and <a class="el" href="structnovas__on__surface.html#a1fd9464e53f03ebb2cb987aa1a2dc41b">novas_on_surface::temperature</a>.</p>
 
@@ -530,6 +531,7 @@ Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.  </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>refracted horizontal coordinates.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gab44266c51e667838736e49e59008a9be" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a82ab515e78cdee62524825584e7299a4">elevation()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, and <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468a4255a64975ec93df2f228c63c38096a0">NOVAS_REFRACT_ASTROMETRIC</a>.</p>
@@ -572,6 +574,7 @@ Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.  </li>
 <dl class="section return"><dt>Returns</dt><dd>refracted horizontal coordinates. </dd>
 <dd>
 unrefracted (astrometric) horizontal coordinates.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga7720f3cd6bddf9d69ff44ac8ccae8029" title="Applies atmospheric refraction correction for these coordinates, returning the result.">to_refracted()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a82ab515e78cdee62524825584e7299a4">elevation()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, and <a class="el" href="novas_8h.html#a8c77758e10b1d3dc8dbd3ab0b694e468a29a320ab3459dafa0d18e7ebef3ae8fe">NOVAS_REFRACT_OBSERVED</a>.</p>

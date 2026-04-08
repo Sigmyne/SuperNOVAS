@@ -163,6 +163,7 @@ Protected Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract base class for scalar quantities, expressed in standard S.I. </p>
 <p>units.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Angle.html" title="A representation of a regularized angle, which can be expressed in various commonly used angular unit...">Angle</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html" title="A representation of a regularized angle, which can also be represented as a time value in the 0 to 24...">TimeAngle</a>, <a class="el" href="classsupernovas_1_1Interval.html" title="A signed time interval between two instants of time, in the astronomical timescale of choice.">Interval</a>, <a class="el" href="classsupernovas_1_1Coordinate.html" title="A scalar coordinate or distance between two points in space.">Coordinate</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html" title="A scalar velocity (if signed) or speed (unsigned).">ScalarVelocity</a>, <a class="el" href="classsupernovas_1_1Temperature.html" title="A physical temperature value, which can be instantiated, and then expressed, in different commonly us...">Temperature</a>, <a class="el" href="classsupernovas_1_1Pressure.html" title="A physical pressure value, which can be instantiated, and then expressed, in different commonly used ...">Pressure</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac2d7c237c6edb123d01a416730258514" name="ac2d7c237c6edb123d01a416730258514"></a>
@@ -223,10 +224,11 @@ Protected Attributes</h2></td></tr>
 <p>units.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">si_value</td><td>the initializing value in S.I. units. </td></tr>
+    <tr><td class="paramname">si_value</td><td>the initializing value in S.I. units.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="#a40c1eb15b68ba82627105e79b0bee85f">_value</a>.</p>
 
@@ -286,7 +288,8 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two scalars have the same S.I. units and values within the specified precision, otherwise <span class="tt">false</span>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two scalars have the same S.I. units and values within the specified precision, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#ac2d7c237c6edb123d01a416730258514">Scalar()</a>, <a class="el" href="#a40c1eb15b68ba82627105e79b0bee85f">_value</a>, and <a class="el" href="#adfdc9060344c26788490a6dcae617dea">SI_unit()</a>.</p>
 
@@ -338,7 +341,8 @@ Protected Attributes</h2></td></tr>
 
 <p>The value of this scalar quantity in S.I. </p>
 <p>units. All concrete subclasses must implement this.</p>
-<dl class="section return"><dt>Returns</dt><dd>the value in the standard S.I. units. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the value in the standard S.I. units.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a40c1eb15b68ba82627105e79b0bee85f">_value</a>.</p>
 
@@ -375,7 +379,8 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a string representation of this scalar quantity. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string representation of this scalar quantity.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classsupernovas_1_1Angle.html#aa43390f74139176aa53a3dd26d5b1818">supernovas::Angle</a>, <a class="el" href="classsupernovas_1_1Coordinate.html#af7002241f1407a01092aa9aa0b2db6a2">supernovas::Coordinate</a>, <a class="el" href="classsupernovas_1_1Interval.html#ae4795edc09b8b84b4a815f3c238bcf38">supernovas::Interval</a>, <a class="el" href="classsupernovas_1_1Pressure.html#ae759aee7c292a9206440a232c6f84f28">supernovas::Pressure</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#aa88204f78ca6e4abad63413a842970e9">supernovas::ScalarVelocity</a>, and <a class="el" href="classsupernovas_1_1Temperature.html#ae26a9c37b273842ca4abd37e260f0286">supernovas::Temperature</a>.</p>
 

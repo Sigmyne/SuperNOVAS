@@ -183,6 +183,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>The geometric (3D) position and velocity of a source relative to an observer location. </p>
 <p>It denotes spatial location and velocity of the source at the time light originated from it, prior to detection by the observer. As such, geometric positions are necessarily antedated for light travel time (for Solar-system sources) or corrected for the differential light-travel between the Solar-system barycenter and the observer location (for sidereal sources).</p>
 <p>In other words, geometric positions are not the same as ephemeris positions for the equivalent time for Solar-system bodies. Rather, geometric positions match the ephemeris positions for an earlier time, when the observed light originated from the source.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a" title="Returns the geometric position of a source (if possible) relative to the observer,...">Source::geometric_in()</a>, Frame::geometric_planet() </dd>
 <dd>
 <a class="el" href="classsupernovas_1_1Apparent.html" title="Apparent position on sky as seen by an observer at a specific time of observation.">Apparent</a> </dd></dl>
@@ -222,10 +223,11 @@ Additional Inherited Members</h2></td></tr>
     <tr><td class="paramname">p</td><td>equatorial position vector, with respect to the observer </td></tr>
     <tr><td class="paramname">v</td><td>equatorial velocity vector, with respect to the observer </td></tr>
     <tr><td class="paramname"><a class="el" href="#ae50d0c332eca559038ac15bb76a1458d" title="Returns the observing frame for which these geometric coordinates were defined.">frame</a></td><td>observing frame (observer location and time of observation) </td></tr>
-    <tr><td class="paramname">system</td><td>equatorial coordinate reference_system, in which position and velocity vectors are defined </td></tr>
+    <tr><td class="paramname">system</td><td>equatorial coordinate reference_system, in which position and velocity vectors are defined</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="#ae50d0c332eca559038ac15bb76a1458d">frame()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#ae55994629ca97e634b1bb97aafb3f49b">NOVAS_REFERENCE_SYSTEMS</a>.</p>
 
@@ -248,7 +250,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the geometric distance. </p>
-<dl class="section return"><dt>Returns</dt><dd>the geoemtric distance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the geoemtric distance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 </div>
 </div>
@@ -269,6 +272,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the observing frame for which these geometric coordinates were defined. </p>
 <dl class="section return"><dt>Returns</dt><dd>a reference to the observing frame (observer location and time of observation)</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>system() </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#aa83e4bb4c2b6536cd21176e846270432">Geometric()</a>.</p>
@@ -299,6 +303,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>geometric coordinates for the same position and velocity as this, but expressed in the other type of coordinate reference system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>to_system() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -322,6 +327,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the cartesian equatorial position vector, relative to the observer. </p>
 <dl class="section return"><dt>Returns</dt><dd>the equatorial position vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>astrometric_position(), <a class="el" href="group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257" title="Returns the geometric equatorial coordinates, in the system in which the geometric positions and velo...">equatorial()</a>, <a class="el" href="#ab84cc3daa11fcb1433ce8b0e292021d5" title="Returns the cartesian equatorial velocity vector, relative to the observer.">velocity()</a>, system() </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">supernovas::Observer::to_interferometric()</a>, and <a class="el" href="#a6240a71612a75193fe47c6a2dac106bf">to_string()</a>.</p>
@@ -345,6 +351,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the equatorial coordinate system in which these geometric coordinates are defined. </p>
 <dl class="section return"><dt>Returns</dt><dd>a reference to the equatorial coordinate system stored internally.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9dd8ae82e7bd6de2dc470c37e5cfd533" title="Returns the cartesian equatorial position vector, relative to the observer.">position()</a>, <a class="el" href="#ab84cc3daa11fcb1433ce8b0e292021d5" title="Returns the cartesian equatorial velocity vector, relative to the observer.">velocity()</a>, <a class="el" href="group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257" title="Returns the geometric equatorial coordinates, in the system in which the geometric positions and velo...">equatorial()</a> </dd></dl>
 
 </div>
@@ -366,6 +373,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns new geometric coordinates that are transformed from these into the Celestial Intermediate Reference System (CIRS), with respect to the true dynamical equator and the Celestial Intermediate Origin (CIO) of date. </p>
 <dl class="section return"><dt>Returns</dt><dd>geometric coordinates for the same position and velocity as this, but expressed in the CIRS.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>to_system(), <a class="el" href="#aa6c7a97528d32e674903d807e4e7c5c6" title="Returns new geometric coordinates that are transformed from these into the International Coordinate R...">to_icrs()</a>, <a class="el" href="#a7ad414ef7383322a2dcb9b6f5404f12d" title="Returns new geometric coordinates that are transformed from these into the J2000 mean dynamical catal...">to_j2000()</a>, <a class="el" href="#a8de79e7260f9245f91573210f4b6c6e0" title="Returns new geometric coordinates that are transformed from these into the Mean-of-Date (MOD) dynamic...">to_mod()</a>, <a class="el" href="#aa440f7072377a008bc2e206695bd9a5d" title="Returns new geometric coordinates that are transformed from these into the True-of-Date (TOD) dynamic...">to_tod()</a>, <a class="el" href="#a9f5f8019c39f23626dc4dc2a5dd713ed" title="Returns new geometric coordinates that are transformed from these into the rotating Terrestrial Inter...">to_tirs()</a>, <a class="el" href="#a2764e6a0ebbb02b419651342531bd080" title="Returns new geometric coordinates that are transformed from these into the rotating International Ter...">to_itrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>.</p>
@@ -389,6 +397,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns new geometric coordinates that are transformed from these into the International <a class="el" href="classsupernovas_1_1Coordinate.html" title="A scalar coordinate or distance between two points in space.">Coordinate</a> Reference System (ICRS). </p>
 <dl class="section return"><dt>Returns</dt><dd>geometric coordinates for the same position and velocity as this, but expressed in the ICRS.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>to_system(), <a class="el" href="#a7ad414ef7383322a2dcb9b6f5404f12d" title="Returns new geometric coordinates that are transformed from these into the J2000 mean dynamical catal...">to_j2000()</a>, <a class="el" href="#a8de79e7260f9245f91573210f4b6c6e0" title="Returns new geometric coordinates that are transformed from these into the Mean-of-Date (MOD) dynamic...">to_mod()</a>, <a class="el" href="#aa440f7072377a008bc2e206695bd9a5d" title="Returns new geometric coordinates that are transformed from these into the True-of-Date (TOD) dynamic...">to_tod()</a>, <a class="el" href="#a4eaa5ef168b723741ca2a702e9c79161" title="Returns new geometric coordinates that are transformed from these into the Celestial Intermediate Ref...">to_cirs()</a>, <a class="el" href="#a9f5f8019c39f23626dc4dc2a5dd713ed" title="Returns new geometric coordinates that are transformed from these into the rotating Terrestrial Inter...">to_tirs()</a>, <a class="el" href="#a2764e6a0ebbb02b419651342531bd080" title="Returns new geometric coordinates that are transformed from these into the rotating International Ter...">to_itrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>.</p>
@@ -419,8 +428,9 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// Oops, there was no valid EOP to calculate true ITRS values.</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Geometric_html_a2764e6a0ebbb02b419651342531bd080"><div class="ttname"><a href="#a2764e6a0ebbb02b419651342531bd080">supernovas::Geometric::to_itrs</a></div><div class="ttdeci">Geometric to_itrs() const</div><div class="ttdoc">Returns new geometric coordinates that are transformed from these into the rotating International Ter...</div><div class="ttdef"><b>Definition</b> Geometric.cpp:341</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Geometric_html_a2764e6a0ebbb02b419651342531bd080"><div class="ttname"><a href="#a2764e6a0ebbb02b419651342531bd080">supernovas::Geometric::to_itrs</a></div><div class="ttdeci">Geometric to_itrs() const</div><div class="ttdoc">Returns new geometric coordinates that are transformed from these into the rotating International Ter...</div><div class="ttdef"><b>Definition</b> Geometric.cpp:361</div></div>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>geometric coordinates for the same position and velocity as this, but expressed in the ITRS. The returned instance may be invalid if an invalid <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> was supplied and the observer also does not define its own valid <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>to_system(), <a class="el" href="#aa6c7a97528d32e674903d807e4e7c5c6" title="Returns new geometric coordinates that are transformed from these into the International Coordinate R...">to_icrs()</a>, <a class="el" href="#a7ad414ef7383322a2dcb9b6f5404f12d" title="Returns new geometric coordinates that are transformed from these into the J2000 mean dynamical catal...">to_j2000()</a>, <a class="el" href="#a8de79e7260f9245f91573210f4b6c6e0" title="Returns new geometric coordinates that are transformed from these into the Mean-of-Date (MOD) dynamic...">to_mod()</a>, <a class="el" href="#aa440f7072377a008bc2e206695bd9a5d" title="Returns new geometric coordinates that are transformed from these into the True-of-Date (TOD) dynamic...">to_tod()</a>, <a class="el" href="#a4eaa5ef168b723741ca2a702e9c79161" title="Returns new geometric coordinates that are transformed from these into the Celestial Intermediate Ref...">to_cirs()</a>, <a class="el" href="#a9f5f8019c39f23626dc4dc2a5dd713ed" title="Returns new geometric coordinates that are transformed from these into the rotating Terrestrial Inter...">to_tirs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea826bda7744c11bc1560f4db1848a17c6">NOVAS_ITRS</a>.</p>
@@ -444,6 +454,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns new geometric coordinates that are transformed from these into the J2000 mean dynamical catalog coordinate system. </p>
 <dl class="section return"><dt>Returns</dt><dd>geometric coordinates for the same position and velocity as this, but expressed in the J2000 catalog system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>to_system(), <a class="el" href="#aa6c7a97528d32e674903d807e4e7c5c6" title="Returns new geometric coordinates that are transformed from these into the International Coordinate R...">to_icrs()</a>, <a class="el" href="#a8de79e7260f9245f91573210f4b6c6e0" title="Returns new geometric coordinates that are transformed from these into the Mean-of-Date (MOD) dynamic...">to_mod()</a>, <a class="el" href="#aa440f7072377a008bc2e206695bd9a5d" title="Returns new geometric coordinates that are transformed from these into the True-of-Date (TOD) dynamic...">to_tod()</a>, <a class="el" href="#a4eaa5ef168b723741ca2a702e9c79161" title="Returns new geometric coordinates that are transformed from these into the Celestial Intermediate Ref...">to_cirs()</a>, <a class="el" href="#a9f5f8019c39f23626dc4dc2a5dd713ed" title="Returns new geometric coordinates that are transformed from these into the rotating Terrestrial Inter...">to_tirs()</a>, <a class="el" href="#a2764e6a0ebbb02b419651342531bd080" title="Returns new geometric coordinates that are transformed from these into the rotating International Ter...">to_itrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>.</p>
@@ -467,6 +478,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns new geometric coordinates that are transformed from these into the Mean-of-Date (MOD) dynamical system, with respect to the mean dynamical equator and equinox of date. </p>
 <dl class="section return"><dt>Returns</dt><dd>geometric coordinates for the same position and velocity as this, but expressed in the MOD system of date.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>to_system(), <a class="el" href="#aa6c7a97528d32e674903d807e4e7c5c6" title="Returns new geometric coordinates that are transformed from these into the International Coordinate R...">to_icrs()</a>, <a class="el" href="#a7ad414ef7383322a2dcb9b6f5404f12d" title="Returns new geometric coordinates that are transformed from these into the J2000 mean dynamical catal...">to_j2000()</a>, <a class="el" href="#aa440f7072377a008bc2e206695bd9a5d" title="Returns new geometric coordinates that are transformed from these into the True-of-Date (TOD) dynamic...">to_tod()</a>, <a class="el" href="#a4eaa5ef168b723741ca2a702e9c79161" title="Returns new geometric coordinates that are transformed from these into the Celestial Intermediate Ref...">to_cirs()</a>, <a class="el" href="#a9f5f8019c39f23626dc4dc2a5dd713ed" title="Returns new geometric coordinates that are transformed from these into the rotating Terrestrial Inter...">to_tirs()</a>, <a class="el" href="#a2764e6a0ebbb02b419651342531bd080" title="Returns new geometric coordinates that are transformed from these into the rotating International Ter...">to_itrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>.</p>
@@ -495,7 +507,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a string description of these geometric coordinates. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string description of these geometric coordinates.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a9dd8ae82e7bd6de2dc470c37e5cfd533">position()</a>, <a class="el" href="classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984">supernovas::Position::to_string()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c">supernovas::Velocity::to_string()</a>, and <a class="el" href="#ab84cc3daa11fcb1433ce8b0e292021d5">velocity()</a>.</p>
 
@@ -526,6 +539,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>geometric coordinates for the same position and velocity as this, but expressed in the other type of coordinate reference system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#abe79f9f190c9cf69a0cb83096a0d9745" title="Returns new geometric coordinates that are transformed from these into a different coordinate referen...">operator&gt;&gt;()</a>, <a class="el" href="#aa6c7a97528d32e674903d807e4e7c5c6" title="Returns new geometric coordinates that are transformed from these into the International Coordinate R...">to_icrs()</a>, <a class="el" href="#a7ad414ef7383322a2dcb9b6f5404f12d" title="Returns new geometric coordinates that are transformed from these into the J2000 mean dynamical catal...">to_j2000()</a>, <a class="el" href="#a8de79e7260f9245f91573210f4b6c6e0" title="Returns new geometric coordinates that are transformed from these into the Mean-of-Date (MOD) dynamic...">to_mod()</a>, <a class="el" href="#aa440f7072377a008bc2e206695bd9a5d" title="Returns new geometric coordinates that are transformed from these into the True-of-Date (TOD) dynamic...">to_tod()</a>, <a class="el" href="#a4eaa5ef168b723741ca2a702e9c79161" title="Returns new geometric coordinates that are transformed from these into the Celestial Intermediate Ref...">to_cirs()</a>, <a class="el" href="#a9f5f8019c39f23626dc4dc2a5dd713ed" title="Returns new geometric coordinates that are transformed from these into the rotating Terrestrial Inter...">to_tirs()</a>, <a class="el" href="#a2764e6a0ebbb02b419651342531bd080" title="Returns new geometric coordinates that are transformed from these into the rotating International Ter...">to_itrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>, <a class="el" href="novas_8h.html#aa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector()</a>, and <a class="el" href="#a3cfb7d613c6fba958ebbeeb1c2fcd498">undefined()</a>.</p>
@@ -549,6 +563,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns new geometric coordinates that are transformed from these into the rotating Terrestrial Intermediate Reference System (TIRS), with respect to the true dynamical equator and the Terrestrial Intermediate Origin (TIO) of date. </p>
 <dl class="section return"><dt>Returns</dt><dd>geometric coordinates for the same position and velocity as this, but expressed in the TIRS.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>to_system(), <a class="el" href="#aa6c7a97528d32e674903d807e4e7c5c6" title="Returns new geometric coordinates that are transformed from these into the International Coordinate R...">to_icrs()</a>, <a class="el" href="#a7ad414ef7383322a2dcb9b6f5404f12d" title="Returns new geometric coordinates that are transformed from these into the J2000 mean dynamical catal...">to_j2000()</a>, <a class="el" href="#a8de79e7260f9245f91573210f4b6c6e0" title="Returns new geometric coordinates that are transformed from these into the Mean-of-Date (MOD) dynamic...">to_mod()</a>, <a class="el" href="#aa440f7072377a008bc2e206695bd9a5d" title="Returns new geometric coordinates that are transformed from these into the True-of-Date (TOD) dynamic...">to_tod()</a>, <a class="el" href="#a4eaa5ef168b723741ca2a702e9c79161" title="Returns new geometric coordinates that are transformed from these into the Celestial Intermediate Ref...">to_cirs()</a>, <a class="el" href="#a2764e6a0ebbb02b419651342531bd080" title="Returns new geometric coordinates that are transformed from these into the rotating International Ter...">to_itrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a>.</p>
@@ -572,6 +587,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns new geometric coordinates that are transformed from these into the True-of-Date (TOD) dynamical system, with respect to the true dynamical equator and equinox of date. </p>
 <dl class="section return"><dt>Returns</dt><dd>geometric coordinates for the same position and velocity as this, but expressed in the TOD system of date.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>to_system(), <a class="el" href="#aa6c7a97528d32e674903d807e4e7c5c6" title="Returns new geometric coordinates that are transformed from these into the International Coordinate R...">to_icrs()</a>, <a class="el" href="#a7ad414ef7383322a2dcb9b6f5404f12d" title="Returns new geometric coordinates that are transformed from these into the J2000 mean dynamical catal...">to_j2000()</a>, <a class="el" href="#a8de79e7260f9245f91573210f4b6c6e0" title="Returns new geometric coordinates that are transformed from these into the Mean-of-Date (MOD) dynamic...">to_mod()</a>, <a class="el" href="#a4eaa5ef168b723741ca2a702e9c79161" title="Returns new geometric coordinates that are transformed from these into the Celestial Intermediate Ref...">to_cirs()</a>, <a class="el" href="#a9f5f8019c39f23626dc4dc2a5dd713ed" title="Returns new geometric coordinates that are transformed from these into the rotating Terrestrial Inter...">to_tirs()</a>, <a class="el" href="#a2764e6a0ebbb02b419651342531bd080" title="Returns new geometric coordinates that are transformed from these into the rotating International Ter...">to_itrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>.</p>
@@ -603,7 +619,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a reference to a statically defined standard invalid geometric coordinates. </p>
 <p>These invalid coordinates may be used inside any object that is invalid itself.</p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to a static standard invalid geometric coordinates. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a static standard invalid geometric coordinates.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__geometric.html#ga42b4fe858ef5da0ae538e676f2bb7ca8">supernovas::SolarSystemSource::barycentric_at()</a>, <a class="el" href="group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a">supernovas::Source::geometric_in()</a>, <a class="el" href="group__geometric.html#gaa71fbf15b25159c91f9563e630536a32">supernovas::Frame::geometric_moon_elp2000()</a>, and <a class="el" href="#aacb5acea25c7d83d6f0790b55ef4c1f1">to_system()</a>.</p>
 
@@ -626,6 +643,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the cartesian equatorial velocity vector, relative to the observer. </p>
 <dl class="section return"><dt>Returns</dt><dd>the equatorial velocity vector.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9dd8ae82e7bd6de2dc470c37e5cfd533" title="Returns the cartesian equatorial position vector, relative to the observer.">position()</a>, system() </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">supernovas::Observer::to_interferometric()</a>, and <a class="el" href="#a6240a71612a75193fe47c6a2dac106bf">to_string()</a>.</p>

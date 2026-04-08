@@ -202,6 +202,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A scalar velocity (if signed) or speed (unsigned). </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Position.html" title="A 3D physical position vector in space.">Position</a> , </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a08b7a8a135acb5cd5da7886f6dbace17" name="a08b7a8a135acb5cd5da7886f6dbace17"></a>
@@ -235,6 +236,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a886ceaf260f92774c9a0c344accc98f2" title="Instantiates a new speed instance from a given redshift value.">from_redshift()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514">supernovas::Scalar::Scalar()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a02b0343abd20757afcdf69acf2b11d00">m_per_s()</a>.</p>
@@ -259,9 +261,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the magnitude of this speed, as a unsigned speed. </p>
 <p>Returns the unsigned magnitude of this (possibly signed) speed.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The absolute value of the (possibly signed) speed value represented by this instance.</dd>
 <dd>
-the absolute value of this (possibly signed) speed. </dd></dl>
+the absolute value of this (possibly signed) speed.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -284,6 +288,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
 
 <p>Returns this speed in AU/day. </p>
 <dl class="section return"><dt>Returns</dt><dd>[AU/day] the speed value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s()</a>, <a class="el" href="#a0c489d63be905ec16f4af30196889a2e" title="Returns this speed in km/s.">km_per_s()</a>, <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe" title="Returns this speed (v) as β = v / c.">beta()</a>, <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c" title="Returns the relativistic boost parameter Γ for this speed (v) as Γ = &amp;radic (1 - v2 / c2).">Gamma()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141" title="Returns this speed as a redshift measure.">redshift()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>.</p>
@@ -307,6 +312,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
 
 <p>Returns this speed (<em>v</em>) as &beta; = <em>v</em> / <em>c</em>. </p>
 <dl class="section return"><dt>Returns</dt><dd>&beta; = <em>v</em> / <em>c</em></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s()</a>, <a class="el" href="#a0c489d63be905ec16f4af30196889a2e" title="Returns this speed in km/s.">km_per_s()</a>, <a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156" title="Returns this speed in AU/day.">au_per_day()</a>, <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c" title="Returns the relativistic boost parameter Γ for this speed (v) as Γ = &amp;radic (1 - v2 / c2).">Gamma()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141" title="Returns this speed as a redshift measure.">redshift()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>.</p>
@@ -343,6 +349,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this speed equals the argument within the tolerance, or else <span class="tt">false</span></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a21cc9e0039e5679ac018506afb7988db" title="Checks if this speed equals the specified other speed within 1 mm/s.">operator==()</a>, <a class="el" href="#a5ba17127abe84a0d9c675db0243d82b4" title="Checks if this speed differs from the specified other speed, by more than 1 mm/s.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a14253a267777107969d3d5e71b8aa86d">equals()</a>, and <a class="el" href="#a02b0343abd20757afcdf69acf2b11d00">m_per_s()</a>.</p>
@@ -377,6 +384,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this speed equals the argument within the tolerance, or else <span class="tt">false</span></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a21cc9e0039e5679ac018506afb7988db" title="Checks if this speed equals the specified other speed within 1 mm/s.">operator==()</a>, <a class="el" href="#a5ba17127abe84a0d9c675db0243d82b4" title="Checks if this speed differs from the specified other speed, by more than 1 mm/s.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>.</p>
@@ -415,7 +423,8 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a scalar velocity instance corresponding to the specified redshift value. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a scalar velocity instance corresponding to the specified redshift value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Unit.html#ad624dbf1279a18fc9e61873b56e4a534">supernovas::Unit::km_per_s</a>, and <a class="el" href="novas_8h.html#a63621cea3b4985c1bfcc4514a7aa3fb1">novas_z2v()</a>.</p>
 
@@ -438,6 +447,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
 
 <p>Returns the relativistic boost parameter &Gamma; for this speed (<em>v</em>) as &Gamma; = &amp;radic (1 - <em>v</em><sup>2</sup> / <em>c</em><sup>2</sup>). </p>
 <dl class="section return"><dt>Returns</dt><dd>the relativistic boost &Gamma; = &amp;radic (1 - <em>v</em><sup>2</sup> / <em>c</em><sup>2</sup>)</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s()</a>, <a class="el" href="#a0c489d63be905ec16f4af30196889a2e" title="Returns this speed in km/s.">km_per_s()</a>, <a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156" title="Returns this speed in AU/day.">au_per_day()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141" title="Returns this speed as a redshift measure.">redshift()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe">beta()</a>.</p>
@@ -466,7 +476,8 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a new velocity vector, in the specified direction and with the magnitude of this speed. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new velocity vector, in the specified direction and with the magnitude of this speed.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4">supernovas::Vector::_array()</a>, <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610">supernovas::Vector::abs()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -489,6 +500,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
 
 <p>Returns this speed in km/s. </p>
 <dl class="section return"><dt>Returns</dt><dd>[km/s] the speed value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s()</a>, <a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156" title="Returns this speed in AU/day.">au_per_day()</a>, <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe" title="Returns this speed (v) as β = v / c.">beta()</a>, <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c" title="Returns the relativistic boost parameter Γ for this speed (v) as Γ = &amp;radic (1 - v2 / c2).">Gamma()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141" title="Returns this speed as a redshift measure.">redshift()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>.</p>
@@ -514,6 +526,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
 
 <p>Returns this speed in m/s. </p>
 <dl class="section return"><dt>Returns</dt><dd>[m/s] the speed value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0c489d63be905ec16f4af30196889a2e" title="Returns this speed in km/s.">km_per_s()</a>, <a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156" title="Returns this speed in AU/day.">au_per_day()</a>, <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe" title="Returns this speed (v) as β = v / c.">beta()</a>, <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c" title="Returns the relativistic boost parameter Γ for this speed (v) as Γ = &amp;radic (1 - v2 / c2).">Gamma()</a>, <a class="el" href="#a3e9f2e43aef64460fe591c4786cce141" title="Returns this speed as a redshift measure.">redshift()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>.</p>
@@ -545,6 +558,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this speed differs from the argument by more than 1 mm/s, or else <span class="tt">false</span></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a21cc9e0039e5679ac018506afb7988db" title="Checks if this speed equals the specified other speed within 1 mm/s.">operator==()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a14253a267777107969d3d5e71b8aa86d">equals()</a>.</p>
@@ -574,6 +588,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the distance travelled</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a110e032d258bec4e4341003a736d0b5b" title="Returns the distance travelled at this speed under the specified time interval.">travel()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a110e032d258bec4e4341003a736d0b5b">travel()</a>.</p>
@@ -603,6 +618,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the relativistic sum of this speed and the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0dc464dcc90e8e2f778cb3d3d57dbdc8" title="Returns the signed scalar difference of this speed and the specified other speed, using the relativis...">operator-()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe">beta()</a>, <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -632,6 +648,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the relativistic difference of this speed and the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af5e2a24bde6d46d14fbff5aae4193410" title="Returns the signed scalar sum of this speed and the specified other speed, using the relativistic for...">operator+()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a412cc2aa831495a3372aaa09fa861cbe">beta()</a>, <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -661,6 +678,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this speed equals the argument within 1 mm/s, or else <span class="tt">false</span></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a14253a267777107969d3d5e71b8aa86d" title="Checks if this speed equals the specified other speed within the tolerance.">equals()</a>, <a class="el" href="#a5ba17127abe84a0d9c675db0243d82b4" title="Checks if this speed differs from the specified other speed, by more than 1 mm/s.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a14253a267777107969d3d5e71b8aa86d">equals()</a>.</p>
@@ -701,6 +719,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
 
 <p>Returns this speed as a redshift measure. </p>
 <dl class="section return"><dt>Returns</dt><dd>the equivalent redshift measure <em>z</em>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a02b0343abd20757afcdf69acf2b11d00" title="Returns this speed in m/s.">m_per_s()</a>, <a class="el" href="#a0c489d63be905ec16f4af30196889a2e" title="Returns this speed in km/s.">km_per_s()</a>, <a class="el" href="#a58e4061fa373cfbeb80f1f0eb98cb156" title="Returns this speed in AU/day.">au_per_day()</a>, <a class="el" href="#a0db996fac1d3f37d88b4fce0a557735c" title="Returns the relativistic boost parameter Γ for this speed (v) as Γ = &amp;radic (1 - v2 / c2).">Gamma()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a0c489d63be905ec16f4af30196889a2e">km_per_s()</a>, and <a class="el" href="novas_8h.html#aa54cd00024b294d38fa29433c017c65f">novas_v2z()</a>.</p>
@@ -758,7 +777,8 @@ the absolute value of this (possibly signed) speed. </dd></dl>
 </div><div class="memdoc">
 
 <p>Returns a reference to a statically defined zero speed of a stationary object. </p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to a static instance of zero speed. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a static instance of zero speed.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 </div>
 </div>
@@ -792,7 +812,8 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a new string containing a representation of this speed. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new string containing a representation of this speed.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Scalar.html#a57a227e1a36070e68e57b8debc84e9ab">supernovas::Scalar</a>.</p>
 
@@ -825,6 +846,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the distance travelled</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a8c8347fcd4440dd1b739b04457c6cd62" title="Returns the distance travelled at this speed under the specified time interval.">operator*()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">Velocity::travel()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>, and <a class="el" href="#a110e032d258bec4e4341003a736d0b5b">travel()</a>.</p>
@@ -854,6 +876,7 @@ the absolute value of this (possibly signed) speed. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the distance travelled</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a8c8347fcd4440dd1b739b04457c6cd62" title="Returns the distance travelled at this speed under the specified time interval.">operator*()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297" title="Returns the vector travelled in the given time interval at this velocity.">Velocity::travel()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -886,7 +909,8 @@ the absolute value of this (possibly signed) speed. </dd></dl>
 </div><div class="memdoc">
 
 <p>Returns a reference to a static instance of an undefined / invalid scalar velocity. </p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to a standard undefined scalar velocity instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a standard undefined scalar velocity instance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Track.html#acea5816a0208a4776dc4a664155e58a3">supernovas::Track&lt; CoordType &gt;::radial_velocity_at()</a>.</p>
 

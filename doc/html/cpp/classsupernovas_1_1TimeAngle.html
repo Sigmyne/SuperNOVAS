@@ -234,6 +234,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A representation of a regularized angle, which can also be represented as a time value in the 0 to 24h range. </p>
 <p>It can be expressed both in terms various commonly used angular units, or in terms of time units, as needed. It may also be used to instantiate time-angles from decimal or from HH:MM:SS.SSS string representations of time in hours.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a>, <a class="el" href="classsupernovas_1_1Interval.html" title="A signed time interval between two instants of time, in the astronomical timescale of choice.">Interval</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aefc4d47845acc009e22b368255827448" name="aefc4d47845acc009e22b368255827448"></a>
@@ -262,10 +263,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates an angle, to be represented as time on a 24 hour interval, from a canonical angle in radians. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">radians</td><td>[rad] the angle in radians </td></tr>
+    <tr><td class="paramname">radians</td><td>[rad] the angle in radians</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>.</p>
 
@@ -299,10 +301,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates an angle, to be represented as time on a 24 hour interval, from a HMS or decimal string representation of time. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">str</td><td>A decimal or HMS representation of time, using spaces, colons, and/or the letters <span class="tt">h</span>, <span class="tt">m</span> (and optionally <span class="tt">s</span>) as separators. </td></tr>
+    <tr><td class="paramname">str</td><td>A decimal or HMS representation of time, using spaces, colons, and/or the letters <span class="tt">h</span>, <span class="tt">m</span> (and optionally <span class="tt">s</span>) as separators.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a3ed26b6af870f6dbc353f651563afd4a">novas_str_hours()</a>.</p>
 
@@ -334,10 +337,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates an angle, to be represented as time on a 24 hour interval, from an angle instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">angle</td><td>an angle to initialize with. </td></tr>
+    <tr><td class="paramname">angle</td><td>an angle to initialize with.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 </div>
 </div>
@@ -359,6 +363,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns this angle as hours on a 24h interval. </p>
 <dl class="section return"><dt>Returns</dt><dd>[h] the angle as hours of time on the [0.0:24.0) interval.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a87f7f4c5821595db2a3342e8f52699b4" title="Returns this angle as minutes inside a 24h interval.">minutes()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904" title="Returns this angle as seconds on a 24h interval.">seconds()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">Angle::rad()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">Angle::deg()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">Angle::arcmin()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">Angle::arcsec()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>.</p>
@@ -399,6 +404,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new time-angle with the specified time defining the angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a87f7f4c5821595db2a3342e8f52699b4" title="Returns this angle as minutes inside a 24h interval.">minutes()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904" title="Returns this angle as seconds on a 24h interval.">seconds()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -422,6 +428,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns this angle as minutes inside a 24h interval. </p>
 <dl class="section return"><dt>Returns</dt><dd>[m] the angle as minutes of time on the [0.0:1440.0) interval.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6ed469439452805722b5954a1cfc7540" title="Returns this angle as hours on a 24h interval.">hours()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904" title="Returns this angle as seconds on a 24h interval.">seconds()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">Angle::rad()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">Angle::deg()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">Angle::arcmin()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">Angle::arcsec()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6ed469439452805722b5954a1cfc7540">hours()</a>.</p>
@@ -460,6 +467,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new time-angle with the specified time defining the angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6ed469439452805722b5954a1cfc7540" title="Returns this angle as hours on a 24h interval.">hours()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904" title="Returns this angle as seconds on a 24h interval.">seconds()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -490,7 +498,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a reference to a statically defined time angle corresponding to noon (12h). </p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the statically defined time-angle for noon (12h). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the statically defined time-angle for noon (12h).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>.</p>
 
@@ -527,6 +536,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the sum of this angle and the argument, as a new angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aeb1860d3186a860bf4212c34d802502b" title="Returns a new angle that is the difference of this angle and the specified other angle.">operator-()</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Angle.html#a82e5f7cc89c1fa80ec6331b91bccd938">supernovas::Angle</a>.</p>
@@ -558,6 +568,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the sum of this time-angle and the time interval, as a new time-angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aeb1860d3186a860bf4212c34d802502b" title="Returns a new angle that is the difference of this angle and the specified other angle.">operator-()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, <a class="el" href="classsupernovas_1_1Interval.html#a600c2bc983afb9a335acca648d7b074c">supernovas::Interval::hours()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
@@ -587,6 +598,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the sum of this time-angle and the argument, as a new time-angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aeb1860d3186a860bf4212c34d802502b" title="Returns a new angle that is the difference of this angle and the specified other angle.">operator-()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -624,6 +636,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the difference of this angle and the argument, as a new angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9f4d90c69c95bd1af248e13441ae803f" title="Returns a new angle that is the sum of this angle and the specified other angle.">operator+()</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Angle.html#a61870ec8a57c3d67c14a5ebf508794f3">supernovas::Angle</a>.</p>
@@ -655,6 +668,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the difference of this time-angle and the time interval, as a new time-angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9f4d90c69c95bd1af248e13441ae803f" title="Returns a new angle that is the sum of this angle and the specified other angle.">operator+()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, <a class="el" href="classsupernovas_1_1Interval.html#a600c2bc983afb9a335acca648d7b074c">supernovas::Interval::hours()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
@@ -684,6 +698,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the difference of this time-angle and the argument, as a new time-angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9f4d90c69c95bd1af248e13441ae803f" title="Returns a new angle that is the sum of this angle and the specified other angle.">operator+()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -707,6 +722,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns this angle as seconds on a 24h interval. </p>
 <dl class="section return"><dt>Returns</dt><dd>[s] the angle as seconds of time on the [0.0:86400.0) interval.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6ed469439452805722b5954a1cfc7540" title="Returns this angle as hours on a 24h interval.">hours()</a>, <a class="el" href="#a87f7f4c5821595db2a3342e8f52699b4" title="Returns this angle as minutes inside a 24h interval.">minutes()</a>, <a class="el" href="#ad3e673f9bf33b709f7d032a797900904" title="Returns this angle as seconds on a 24h interval.">seconds()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04" title="Returns the angle in radians.">Angle::rad()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be" title="Returns the angle in degrees.">Angle::deg()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf" title="Returns the angle in arc minutes.">Angle::arcmin()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a62d566900a6fe0052db3d82ea416b6ae" title="Returns the angle in arc seconds.">Angle::arcsec()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6ed469439452805722b5954a1cfc7540">hours()</a>.</p>
@@ -745,6 +761,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new time-angle with the specified time defining the angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6ed469439452805722b5954a1cfc7540" title="Returns this angle as hours on a 24h interval.">hours()</a>, <a class="el" href="#a87f7f4c5821595db2a3342e8f52699b4" title="Returns this angle as minutes inside a 24h interval.">minutes()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0">supernovas::Unit::hour_angle</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -786,7 +803,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the strung representation of this angle in degrees. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the strung representation of this angle in degrees.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Angle.html#ad59ac7f3877e6f1728789c300eda3bd7">supernovas::Angle</a>.</p>
 
@@ -820,7 +838,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a reference to a statically defined time-angle that represents a zero angle. </p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the statically defined zero angle. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the statically defined zero angle.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#aefc4d47845acc009e22b368255827448">TimeAngle()</a>.</p>
 

@@ -187,6 +187,7 @@ Additional Inherited Members</h2></td></tr>
 <p>&lambda;<sub>obs</sub> / &lambda;<sub>rest</sub> = ( (1.0 + <em>v</em><sub>r</sub> / <em>c</em>) / (1.0 - <em>v</em><sub>r</sub> / <em>c</em>) )<sup>1/2</sup></p>
 <p>As such it contains appropriate relativistic corrections for the observer's relative motion as well as gravitational redshift corrections for the surface of major Solar-system bodies, where light is assumed to originate, and at the observer location. It is also corrected for the slight viewing angle difference when light is gravitationally deflected around major Solar-system bodies.</p>
 <p>Apparent positions can also come directly from observations, such as from unrefracted horizontal coordinates.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__apparent.html#ga30cfb5d2c48b4464e015c8429174e771" title="Returns the apparent position of a source (if possible), or else an invalid position.">Source::apparent_in()</a>, <a class="el" href="group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae" title="Converts these horizontal coordinates to an apparent place on the sky.">Horizontal::to_apparent()</a> </dd>
 <dd>
 <a class="el" href="classsupernovas_1_1Geometric.html" title="The geometric (3D) position and velocity of a source relative to an observer location.">Geometric</a> </dd></dl>
@@ -207,7 +208,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to the underlying NOVAS C <span class="tt"><a class="el" href="novas_8h.html#a98a44d2a2c0e4f211b128a94c848ed51" title="Celestial object&#39;s place on the sky; contains the output from place().">sky_pos</a></span> data structure, which stores the data for this apparent position. </p>
-<dl class="section return"><dt>Returns</dt><dd>pointer to the NOVAS C <a class="el" href="novas_8h.html#a98a44d2a2c0e4f211b128a94c848ed51" title="Celestial object&#39;s place on the sky; contains the output from place().">sky_pos</a> data used internally. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the NOVAS C <a class="el" href="novas_8h.html#a98a44d2a2c0e4f211b128a94c848ed51" title="Celestial object&#39;s place on the sky; contains the output from place().">sky_pos</a> data used internally.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#aba4760f7cee680f4310daa5b5d83e508">_sky_pos()</a>.</p>
 
@@ -237,7 +239,8 @@ Additional Inherited Members</h2></td></tr>
 <li>aberration due to the movement of the observer, and</li>
 <li>gravitational bending around the massive Solar-system bodies.</li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>the apparent (light-time) distance of the source from the observer </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the apparent (light-time) distance of the source from the observer</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="#a2eb5b98814a1ce397341007b89d097e5">distance()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -261,7 +264,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Retuns the reference to the frame for which these apparent positions are defined. </p>
-<dl class="section return"><dt>Returns</dt><dd>the ovbserving frame (time of observation and observer location) for this apparent position. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the ovbserving frame (time of observation and observer location) for this apparent position.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a8d0bac28eca1d45a86b567a090c12973">frame()</a>.</p>
 
@@ -317,6 +321,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new apparent location on sky with the specified parameters.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aadc3caa3baa42467026600990394b43d" title="Instantiates apparent sky coordinates in the True-of-Date (TOD) system, with respect to the true dyna...">from_tod()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a8d0bac28eca1d45a86b567a090c12973">frame()</a>, <a class="el" href="#a020db512dbd175e0dbe983614405d119">from_cirs()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#a02b0343abd20757afcdf69acf2b11d00">supernovas::ScalarVelocity::m_per_s()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
@@ -371,6 +376,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new apparent location on sky with the specified parameters.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aadc3caa3baa42467026600990394b43d" title="Instantiates apparent sky coordinates in the True-of-Date (TOD) system, with respect to the true dyna...">from_tod()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a8d0bac28eca1d45a86b567a090c12973">frame()</a>, <a class="el" href="#a020db512dbd175e0dbe983614405d119">from_cirs()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>.</p>
@@ -415,6 +421,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new apparent positions constructed with the parameters. It may be invalid if the input values themselves are invalid.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae4fb352249e2eac3311b6239b1e6c5b0" title="Returns an apparent position for a NOVAS C sky_pos data structure defined with respect to the true eq...">from_tod_sky_pos()</a>, <a class="el" href="#a020db512dbd175e0dbe983614405d119" title="Instantiates apparent sky coordinates in the Celestrial Intermediate Reference System (CIRS).">from_cirs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a8d0bac28eca1d45a86b567a090c12973">frame()</a>, <a class="el" href="#aef42608a845209621584fa7bbceb15e9">from_cirs_sky_pos()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, and <a class="el" href="#a5b4a4b4e68c6dc9792990e7148a77750">undefined()</a>.</p>
@@ -471,6 +478,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new apparent location on sky with the specified parameters.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a020db512dbd175e0dbe983614405d119" title="Instantiates apparent sky coordinates in the Celestrial Intermediate Reference System (CIRS).">from_cirs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a8d0bac28eca1d45a86b567a090c12973">frame()</a>, <a class="el" href="#aadc3caa3baa42467026600990394b43d">from_tod()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#a02b0343abd20757afcdf69acf2b11d00">supernovas::ScalarVelocity::m_per_s()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
@@ -525,6 +533,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new apparent location on sky with the specified parameters.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a020db512dbd175e0dbe983614405d119" title="Instantiates apparent sky coordinates in the Celestrial Intermediate Reference System (CIRS).">from_cirs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a8d0bac28eca1d45a86b567a090c12973">frame()</a>, <a class="el" href="#aadc3caa3baa42467026600990394b43d">from_tod()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>.</p>
@@ -569,6 +578,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>new apparent positions constructed with the parameters. It may be invalid if the input values themselves are invalid.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aef42608a845209621584fa7bbceb15e9" title="Returns an apparent position for a NOVAS C sky_pos data structure defined with respect to the true eq...">from_cirs_sky_pos()</a>, <a class="el" href="#aadc3caa3baa42467026600990394b43d" title="Instantiates apparent sky coordinates in the True-of-Date (TOD) system, with respect to the true dyna...">from_tod()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a8d0bac28eca1d45a86b567a090c12973">frame()</a>, <a class="el" href="#ae4fb352249e2eac3311b6239b1e6c5b0">from_tod_sky_pos()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, and <a class="el" href="#a5b4a4b4e68c6dc9792990e7148a77750">undefined()</a>.</p>
@@ -594,6 +604,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the radial velocity. </p>
 <dl class="section return"><dt>Returns</dt><dd>the radiual velocity with respect to the observer</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a75458c5dd49ff17aea7730bb2611d8eb" title="Returns the redshift measure, calculated from the stored radial velocity.">redshift()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Unit.html#ad624dbf1279a18fc9e61873b56e4a534">supernovas::Unit::km_per_s</a>, and <a class="el" href="#a5e8560e02a442f1d9443a76385dbdbfb">radial_velocity()</a>.</p>
@@ -619,6 +630,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the redshift measure, calculated from the stored radial velocity. </p>
 <dl class="section return"><dt>Returns</dt><dd>the redshift measure with respect to the observer.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a5e8560e02a442f1d9443a76385dbdbfb" title="Returns the radial velocity.">radial_velocity()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#aa54cd00024b294d38fa29433c017c65f">novas_v2z()</a>, and <a class="el" href="#a75458c5dd49ff17aea7730bb2611d8eb">redshift()</a>.</p>
@@ -649,7 +661,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a string description of these apparent positions. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string description of these apparent positions.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="group__equatorial.html#gafc85c07b57504bce62e2f7b06947dfb8">equatorial()</a>, <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ea9bf01302bc64e585197728c074d0bbee">NOVAS_SEP_UNITS_AND_SPACES</a>, and <a class="el" href="#ab6ad132b6915699516106d9c8e836cd5">to_string()</a>.</p>
 
@@ -682,7 +695,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a reference to a statically defined standard invalid apparent position. </p>
 <p>This invalid position may be used inside any object that is invalid itself.</p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to the static standard invalid coordinates. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the static standard invalid coordinates.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a5b4a4b4e68c6dc9792990e7148a77750">undefined()</a>.</p>
 
@@ -712,7 +726,8 @@ Additional Inherited Members</h2></td></tr>
 <li>aberration due to the movement of the observer, and</li>
 <li>gravitational bending around the massive Solar-system bodies.</li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>the projected position vector of where the source appears to be from the observer's point of view. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the projected position vector of where the source appears to be from the observer's point of view.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a579b557f58e145adbfa03eaca29ead7c">xyz()</a>.</p>
 

@@ -215,6 +215,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A time specified in a specific type of calendar (Gregorian, Roman, or astronomical). </p>
 <p><a class="el" href="classsupernovas_1_1Calendar.html" title="Type of calendar used for representing dates, such as Gregorian, Roman, or astronomical.">Calendar</a> dates allow for broken-down (year, month, day-of-month, day-of-week, day-of-year, and time-of-day) representation. Unlike the related <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> class, calendar dates are not timescale aware. They may be used typically to refer to UTC dates, or else whatevertimescale the user had in mind when constructing it. It has a lesser precision than <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a>, at the 100 &mu;s level, limited by the double-precision representation of Julian dates. However, that level of precision is still sufficient for most applications.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa3e14f7515a6d40fd5e71a33e11d19e0" name="aa3e14f7515a6d40fd5e71a33e11d19e0"></a>
@@ -262,6 +263,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Calendar.html#a56e9d8501f78df551e259262ad09c782" title="Returns a new calendar date instance for the date and time specified in this calendar.">Calendar::date()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="#a7a9cd91c5663da52b39af6d985b1ecf6">calendar()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#a6ed469439452805722b5954a1cfc7540">supernovas::TimeAngle::hours()</a>, <a class="el" href="#a2f74beecedf39fcb12f82a1c82a4ba6f">month()</a>, <a class="el" href="novas_8h.html#a54eee84c46900c80ca9966857c217cc8">novas_jd_from_date()</a>, and <a class="el" href="#ae5e159bc329f7d8c9b22341090f51aec">year()</a>.</p>
@@ -295,6 +297,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2bdbcf3b94ac3b1ffd2891a4e019282d" title="Checks if this calendar date is the same as the specified other date, within the specified tolerance.">equals()</a>, <a class="el" href="#a1ab03b09dcab35b283149002a462f07b" title="Checks if this calendar date differs from the specified other date, by more than 1 ms.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="#a7a9cd91c5663da52b39af6d985b1ecf6">calendar()</a>, <a class="el" href="classsupernovas_1_1Unit.html#adce60398bc378c205599221c83ee160d">supernovas::Unit::hour</a>, <a class="el" href="#abed16fdddaf4cee40d6d751e22d5f778">jd()</a>, and <a class="el" href="novas_8h.html#a8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date()</a>.</p>
@@ -325,6 +328,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if the argument is NULL (errno will be set to EINVAL).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae5e159bc329f7d8c9b22341090f51aec" title="Returns the calendar year component of this date.">year()</a>, <a class="el" href="#a2f74beecedf39fcb12f82a1c82a4ba6f" title="Returns the calendar month component [1:12] of this date.">month()</a>, <a class="el" href="#a2572163948ba123f7714bf90f5954791" title="Returns the day of year number [1:366] of this date.">day_of_year()</a>, <a class="el" href="#a09996f4c0ed0df75b5838b8c7da69f8a" title="Returns the day of month component [1:32] of this date.">day_of_month()</a>, <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b" title="Returns the day of week number [1:7] of this date, starting from 1 (Monday) to 7 (Sunday).">day_of_week()</a>, <a class="el" href="#a9eab7d56375ff8cd2358d49955aa369c" title="Returns the time-of-dat component of this calendar date.">time_of_day()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b">day_of_week()</a>, and <a class="el" href="#a2572163948ba123f7714bf90f5954791">day_of_year()</a>.</p>
@@ -375,6 +379,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the full (English) name of the day of the week for this date. </p>
 <dl class="section return"><dt>Returns</dt><dd>the full name of the day of the week, e.g. "Wednesday".</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1ef0251a55fc74c1d3b218cacd7d576" title="Returns the short 3-letter (English) abbreviation of the day of the week for this date.">short_day_name()</a>, <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b" title="Returns the day of week number [1:7] of this date, starting from 1 (Monday) to 7 (Sunday).">day_of_week()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b">day_of_week()</a>.</p>
@@ -398,6 +403,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the day of month component [1:32] of this date. </p>
 <dl class="section return"><dt>Returns</dt><dd>[day] day of month component, starting from 1</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2f74beecedf39fcb12f82a1c82a4ba6f" title="Returns the calendar month component [1:12] of this date.">month()</a>, <a class="el" href="#a2572163948ba123f7714bf90f5954791" title="Returns the day of year number [1:366] of this date.">day_of_year()</a>, <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b" title="Returns the day of week number [1:7] of this date, starting from 1 (Monday) to 7 (Sunday).">day_of_week()</a> </dd></dl>
 
 </div>
@@ -419,6 +425,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the day of week number [1:7] of this date, starting from 1 (Monday) to 7 (Sunday). </p>
 <dl class="section return"><dt>Returns</dt><dd>[day] the day of the week stating from 1 (Monday) to 7 (Sunday)</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aac4e83e5faaafde7196a68a9aefe977d" title="Returns the full (English) name of the day of the week for this date.">day_name()</a>, <a class="el" href="#aa1ef0251a55fc74c1d3b218cacd7d576" title="Returns the short 3-letter (English) abbreviation of the day of the week for this date.">short_day_name()</a>, <a class="el" href="#a09996f4c0ed0df75b5838b8c7da69f8a" title="Returns the day of month component [1:32] of this date.">day_of_month()</a>, <a class="el" href="#a2572163948ba123f7714bf90f5954791" title="Returns the day of year number [1:366] of this date.">day_of_year()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a7ee576309aa1977e9b2a3824286f725c">novas_day_of_week()</a>.</p>
@@ -444,6 +451,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the day of year number [1:366] of this date. </p>
 <dl class="section return"><dt>Returns</dt><dd>the day of year number, starting from 1.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae5e159bc329f7d8c9b22341090f51aec" title="Returns the calendar year component of this date.">year()</a>, <a class="el" href="#a09996f4c0ed0df75b5838b8c7da69f8a" title="Returns the day of month component [1:32] of this date.">day_of_month()</a>, <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b" title="Returns the day of week number [1:7] of this date, starting from 1 (Monday) to 7 (Sunday).">day_of_week()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#ae6eaa610037b0828d473062ab8722f47">novas_day_of_year()</a>.</p>
@@ -480,7 +488,8 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this date is the same as the other calendar date, within the specified tolerance, or else <span class="tt">false</span>.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2bdbcf3b94ac3b1ffd2891a4e019282d" title="Checks if this calendar date is the same as the specified other date, within the specified tolerance.">equals()</a>, <a class="el" href="#a32257d3e22ea022b6007b33fb58deb60" title="Checks if this calendar date is the same as the specified other date, within 1 ms.">operator==()</a> </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a32257d3e22ea022b6007b33fb58deb60" title="Checks if this calendar date is the same as the specified other date, within 1 ms.">operator==()</a>, <a class="el" href="#a1ab03b09dcab35b283149002a462f07b" title="Checks if this calendar date differs from the specified other date, by more than 1 ms.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2bdbcf3b94ac3b1ffd2891a4e019282d">equals()</a>, and <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>.</p>
 
@@ -514,7 +523,8 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this date is the same as the other calendar date, within the specified tolerance, or else <span class="tt">false</span>.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2bdbcf3b94ac3b1ffd2891a4e019282d" title="Checks if this calendar date is the same as the specified other date, within the specified tolerance.">equals()</a>, <a class="el" href="#a32257d3e22ea022b6007b33fb58deb60" title="Checks if this calendar date is the same as the specified other date, within 1 ms.">operator==()</a> </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a32257d3e22ea022b6007b33fb58deb60" title="Checks if this calendar date is the same as the specified other date, within 1 ms.">operator==()</a>, <a class="el" href="#a1ab03b09dcab35b283149002a462f07b" title="Checks if this calendar date differs from the specified other date, by more than 1 ms.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, and <a class="el" href="#abed16fdddaf4cee40d6d751e22d5f778">jd()</a>.</p>
 
@@ -539,6 +549,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the Julian Day corresponding to this calendar date. </p>
 <dl class="section return"><dt>Returns</dt><dd>[day] the Julian Date corresponding to this calendar date. Note, that Julian dates start at noon, not midnight.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2e92fc09a1316855c5b3a245007e3838" title="Returns the Modified Julian Day corresponding to this calendar date.">mjd()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#a703e1a736bc2b1b00e9722fee5950af7">CalendarDate()</a>, <a class="el" href="#a2bdbcf3b94ac3b1ffd2891a4e019282d">equals()</a>, <a class="el" href="#a6fb1cb6f0b9ce70b2ec461fbb3f33131">operator+()</a>, <a class="el" href="#aa3921cce61af72ac6f0681f984c7ecbb">operator-()</a>, <a class="el" href="#aea9e6b463383877581f6e1b77ae3197d">operator-()</a>, <a class="el" href="#a635baf78a2385bd3f88f824f9c9ea921">operator&lt;()</a>, <a class="el" href="#a789d2fa6c609f53bd12645eb1eaac2bf">operator&lt;=()</a>, <a class="el" href="#a27360ef2a8581cb653955aee8bf1fdf0">operator&gt;=()</a>, and <a class="el" href="#a244dcacb5dda6dae7e674dc5a61dfa88">to_time()</a>.</p>
@@ -562,6 +573,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the Modified Julian Day corresponding to this calendar date. </p>
 <dl class="section return"><dt>Returns</dt><dd>[day] the Modified Julian Day (MJD) corresponding to this calendar date. Modified Julian days start at midnight.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2e92fc09a1316855c5b3a245007e3838" title="Returns the Modified Julian Day corresponding to this calendar date.">mjd()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="group__time.html#gac266a346b8e22946f50079897b0baefa">NOVAS_JD_MJD0</a>.</p>
@@ -585,6 +597,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the calendar month component [1:12] of this date. </p>
 <dl class="section return"><dt>Returns</dt><dd>[month] calendar month [1:12]</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac2f0d28681561bf807669721683e6efe" title="Returns the full (English) name of the month for this date.">month_name()</a>, <a class="el" href="#a91d8d22580016798a974a97cd69505fe" title="Returns the short 3-letter (English) abbreviation of the month name for this date.">short_month_name()</a>, <a class="el" href="#ae5e159bc329f7d8c9b22341090f51aec" title="Returns the calendar year component of this date.">year()</a>, <a class="el" href="#a09996f4c0ed0df75b5838b8c7da69f8a" title="Returns the day of month component [1:32] of this date.">day_of_month()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#aa3e14f7515a6d40fd5e71a33e11d19e0">CalendarDate()</a>.</p>
@@ -608,6 +621,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the full (English) name of the month for this date. </p>
 <dl class="section return"><dt>Returns</dt><dd>the full name of the month, e.g. "January".</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a91d8d22580016798a974a97cd69505fe" title="Returns the short 3-letter (English) abbreviation of the month name for this date.">short_month_name()</a>, <a class="el" href="#a2f74beecedf39fcb12f82a1c82a4ba6f" title="Returns the calendar month component [1:12] of this date.">month()</a> </dd></dl>
 
 </div>
@@ -635,6 +649,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this date differs from the other calendar date, by more than 1 ms, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2bdbcf3b94ac3b1ffd2891a4e019282d" title="Checks if this calendar date is the same as the specified other date, within the specified tolerance.">equals()</a>, <a class="el" href="#a1ab03b09dcab35b283149002a462f07b" title="Checks if this calendar date differs from the specified other date, by more than 1 ms.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2bdbcf3b94ac3b1ffd2891a4e019282d">equals()</a>.</p>
@@ -663,7 +678,9 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a new calendar date, at the specified time offset from this one. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new calendar date, at the specified time offset from this one.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aea9e6b463383877581f6e1b77ae3197d" title="Returns a new calendar date that is offset, back in time, from this calendar date by the specified ti...">operator-()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a7a9cd91c5663da52b39af6d985b1ecf6">calendar()</a>, <a class="el" href="classsupernovas_1_1Interval.html#a3eb33d55e5c5a4763b65a850d4ee124d">supernovas::Interval::days()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#abed16fdddaf4cee40d6d751e22d5f778">jd()</a>.</p>
 
@@ -691,7 +708,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the time difference (interval) between this calendar date and the argument. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the time difference (interval) between this calendar date and the argument.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#abed16fdddaf4cee40d6d751e22d5f778">jd()</a>.</p>
 
@@ -719,7 +737,9 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a new calendar date, at the specified time offset, backwards in time, from this one. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new calendar date, at the specified time offset, backwards in time, from this one.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6fb1cb6f0b9ce70b2ec461fbb3f33131" title="Returns a new calendar date that is offset from this calendar date by the specified time interval.">operator+()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a7a9cd91c5663da52b39af6d985b1ecf6">calendar()</a>, <a class="el" href="classsupernovas_1_1Interval.html#a3eb33d55e5c5a4763b65a850d4ee124d">supernovas::Interval::days()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#abed16fdddaf4cee40d6d751e22d5f778">jd()</a>.</p>
 
@@ -747,7 +767,9 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if this date precedes the other calendar date, or else false. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this date precedes the other calendar date, or else false.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a789d2fa6c609f53bd12645eb1eaac2bf" title="Checks if this calendar date is the same or before the specified other date at 1 ms resolution.">operator&lt;=()</a>, <a class="el" href="#a7e11de2612b72fa61ae96c4f142468cf" title="Checks if this calendar date is after the specified other date.">operator&gt;()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#abed16fdddaf4cee40d6d751e22d5f778">jd()</a>.</p>
 
@@ -775,7 +797,9 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if this date is the same or before the other calendar date, or else false. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this date is the same or before the other calendar date, or else false.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>operator&lt;(), operator&gt;=() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="#abed16fdddaf4cee40d6d751e22d5f778">jd()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#ac2fabcb0d1ee4f70d57818e0c91620dd">supernovas::Unit::ms</a>.</p>
 
@@ -804,6 +828,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this date is the same as the other calendar date, within 1 ms, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2bdbcf3b94ac3b1ffd2891a4e019282d" title="Checks if this calendar date is the same as the specified other date, within the specified tolerance.">equals()</a>, <a class="el" href="#a1ab03b09dcab35b283149002a462f07b" title="Checks if this calendar date differs from the specified other date, by more than 1 ms.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2bdbcf3b94ac3b1ffd2891a4e019282d">equals()</a>.</p>
@@ -832,7 +857,9 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if this date is after the other calendar date, or else false. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this date is after the other calendar date, or else false.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a27360ef2a8581cb653955aee8bf1fdf0" title="Checks if this calendar date is the same or after the specified other date at 1 ms resolution.">operator&gt;=()</a>, <a class="el" href="#a635baf78a2385bd3f88f824f9c9ea921" title="Checks if this calendar date is before the specified other date.">operator&lt;()</a> </dd></dl>
 
 </div>
 </div>
@@ -858,7 +885,9 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if this date is the same or after the other calendar date, or else false. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this date is the same or after the other calendar date, or else false.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a7e11de2612b72fa61ae96c4f142468cf" title="Checks if this calendar date is after the specified other date.">operator&gt;()</a>, <a class="el" href="#a789d2fa6c609f53bd12645eb1eaac2bf" title="Checks if this calendar date is the same or before the specified other date at 1 ms resolution.">operator&lt;=()</a>, </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="#abed16fdddaf4cee40d6d751e22d5f778">jd()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#ac2fabcb0d1ee4f70d57818e0c91620dd">supernovas::Unit::ms</a>.</p>
 
@@ -888,6 +917,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>this date, expressed in the specified other calendar.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>to_calendar(Calendar&amp;) </dd></dl>
 
 <p class="reference">References <a class="el" href="#a7a9cd91c5663da52b39af6d985b1ecf6">calendar()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a879bbc76f05f17495edf6a0db6e994b8">to_calendar()</a>.</p>
@@ -911,6 +941,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the short 3-letter (English) abbreviation of the day of the week for this date. </p>
 <dl class="section return"><dt>Returns</dt><dd>the full name of the day of the week, e.g. "Wed".</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aac4e83e5faaafde7196a68a9aefe977d" title="Returns the full (English) name of the day of the week for this date.">day_name()</a>, <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b" title="Returns the day of week number [1:7] of this date, starting from 1 (Monday) to 7 (Sunday).">day_of_week()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b">day_of_week()</a>.</p>
@@ -936,6 +967,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the short 3-letter (English) abbreviation of the month name for this date. </p>
 <dl class="section return"><dt>Returns</dt><dd>the full name of the month, e.g. "Jan".</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac2f0d28681561bf807669721683e6efe" title="Returns the full (English) name of the month for this date.">month_name()</a>, <a class="el" href="#a2f74beecedf39fcb12f82a1c82a4ba6f" title="Returns the calendar month component [1:12] of this date.">month()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#a3b9796a72c0db80b720bf8800caf51b5">to_long_date_string()</a>.</p>
@@ -958,7 +990,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the time-of-dat component of this calendar date. </p>
-<dl class="section return"><dt>Returns</dt><dd>reference to the the time of day component </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>reference to the the time of day component</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 </div>
 </div>
@@ -985,6 +1018,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>this date, expressed in the specified other calendar.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>operator&gt;&gt;(Calendar&amp;) </dd></dl>
 
 <p class="reference">References <a class="el" href="#a7a9cd91c5663da52b39af6d985b1ecf6">calendar()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -1017,6 +1051,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the string representation of the date (only) in the specified format.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3b9796a72c0db80b720bf8800caf51b5" title="Returns the date component in long-form string representation.">to_long_date_string()</a>, <a class="el" href="#a3102b8cadee180eec8a16bdfdfdc166b" title="Returns a string representation of this calendar date, given the requested date format and decimal pl...">to_string()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4a3f31b27c8e879d17b89c34395e278203">NOVAS_DMY</a>, <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab13cba930f91e5e907bfc72489ffbc61">NOVAS_MDY</a>, and <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab4320d2be90ff55e278e6171f6516bab">NOVAS_YMD</a>.</p>
@@ -1043,6 +1078,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the date component in long-form string representation. </p>
 <p>E.g. "11 November 2026", or "12 September 490 BCE".</p>
 <dl class="section return"><dt>Returns</dt><dd>the string representation of the date (only) in long form.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a24cb36d8ecbd0cce715c8df7f3cc6205" title="Returns the numerical date only representation, in the specified component order, e....">to_date_string()</a>, <a class="el" href="#a3102b8cadee180eec8a16bdfdfdc166b" title="Returns a string representation of this calendar date, given the requested date format and decimal pl...">to_string()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aa1ef0251a55fc74c1d3b218cacd7d576">short_day_name()</a>, and <a class="el" href="#a91d8d22580016798a974a97cd69505fe">short_month_name()</a>.</p>
@@ -1077,6 +1113,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The string representation of the date.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>to_string(int), <a class="el" href="#a24cb36d8ecbd0cce715c8df7f3cc6205" title="Returns the numerical date only representation, in the specified component order, e....">to_date_string()</a>, <a class="el" href="#a3b9796a72c0db80b720bf8800caf51b5" title="Returns the date component in long-form string representation.">to_long_date_string()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40ead0a359b222721a18e8c7c0260ffd7e50">NOVAS_SEP_COLONS</a>, and <a class="el" href="#a24cb36d8ecbd0cce715c8df7f3cc6205">to_date_string()</a>.</p>
@@ -1108,6 +1145,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The string representation of the date.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a24cb36d8ecbd0cce715c8df7f3cc6205" title="Returns the numerical date only representation, in the specified component order, e....">to_date_string()</a>, <a class="el" href="#a3b9796a72c0db80b720bf8800caf51b5" title="Returns the date component in long-form string representation.">to_long_date_string()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab4320d2be90ff55e278e6171f6516bab">NOVAS_YMD</a>, and <a class="el" href="#a3102b8cadee180eec8a16bdfdfdc166b">to_string()</a>.</p>
@@ -1142,7 +1180,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>an astronomical time instance for this date and input parameters. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>an astronomical time instance for this date and input parameters.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1EOP.html#a14015d01e9b377e3eebede8ae2588f81">supernovas::EOP::dUT1()</a>, <a class="el" href="classsupernovas_1_1EOP.html#a9d345a31c875164637f5763c15add341">supernovas::EOP::leap_seconds()</a>, <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>, and <a class="el" href="#a244dcacb5dda6dae7e674dc5a61dfa88">to_time()</a>.</p>
 
@@ -1182,7 +1221,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>an astronomical time instance for this date and input parameters. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>an astronomical time instance for this date and input parameters.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#abed16fdddaf4cee40d6d751e22d5f778">jd()</a>.</p>
 
@@ -1214,6 +1254,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a reference to a statically defined standard undefined / invalid calendar date instance. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>a reference to the standard undefined calendar date instance. </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Calendar.html#ad3128abe79227417392c24cbd666a61c">supernovas::Calendar::parse_date()</a>.</p>
@@ -1236,7 +1277,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the UNIX time for this calendar date. </p>
-<dl class="section return"><dt>Returns</dt><dd>[s] UNIX time, that is seconds since 1 Jan 1970. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[s] UNIX time, that is seconds since 1 Jan 1970.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, and <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>.</p>
 
@@ -1259,6 +1301,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the calendar year component of this date. </p>
 <dl class="section return"><dt>Returns</dt><dd>[yr] the calendar year component. For X BCE, it returns 1 - X. I.e., 45 BCE is returned as -44.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2f74beecedf39fcb12f82a1c82a4ba6f" title="Returns the calendar month component [1:12] of this date.">month()</a>, <a class="el" href="#a2572163948ba123f7714bf90f5954791" title="Returns the day of year number [1:366] of this date.">day_of_year()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#aa3e14f7515a6d40fd5e71a33e11d19e0">CalendarDate()</a>.</p>

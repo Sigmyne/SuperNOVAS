@@ -200,6 +200,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A Solar-system source, whose positions / velocities are provided from ephemeris data. </p>
 <p>SuperNOVAS does not support ephemeris data by itself, but can interface to other libraries (e.g. CALCEPH or CSPICE), or provide them via user-selected function(s). Depending on the external implementation that provides ephemeris data, sources may be looked up by name or ID number. Name-based lookup may be case-sensitive (in which case you may want to use <span class="tt"><a class="el" href="novas_8h.html#a8f832afe92680a11c3489aaa224ac2e2" title="Enables or disables case-sensitive processing of the object name.">novas_case_sensitive()</a></span> to enable case-sensitive source names in SuperNOVAS). ID-based lookup may use NAIF IDs, or else some other numbering convention. In any case, you should construct your ephemeris source to match the lookup method used by the ephemeris provider function(s) or library you will be using.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a>, <a class="el" href="classsupernovas_1_1OrbitalSource.html" title="A Solar-system source, whose position and velocity can be calculated using Keplerian orbital elements...">OrbitalSource</a>, <a class="el" href="group__solar-system.html#ga35fc86a939602ec910dbdfde180d7f31" title="Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...">novas_use_calceph()</a>, <a class="el" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a>, <a class="el" href="novas_8h.html#a8f832afe92680a11c3489aaa224ac2e2" title="Enables or disables case-sensitive processing of the object name.">novas_case_sensitive()</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af6eef3af2b52aaa44a8c7ef9e2bc3c2b" name="af6eef3af2b52aaa44a8c7ef9e2bc3c2b"></a>
@@ -233,10 +234,11 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3" title="Returns the name given to this source at instantiation.">name</a></td><td>source name as defined in the ephemeris data (for name-based lookup). </td></tr>
-    <tr><td class="paramname"><a class="el" href="#a78e33490ee3766c7cb7effed0e413fa0" title="Returns the number designation of this ephemeris.">number</a></td><td>(optional) source ID number in the ephemeris data (for id-based lookup; default: -1). </td></tr>
+    <tr><td class="paramname"><a class="el" href="#a78e33490ee3766c7cb7effed0e413fa0" title="Returns the number designation of this ephemeris.">number</a></td><td>(optional) source ID number in the ephemeris data (for id-based lookup; default: -1).</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1SolarSystemSource.html#a192c6969f37446887886c2425cf50ec1">supernovas::SolarSystemSource::SolarSystemSource()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2">make_ephem_object()</a>, <a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3">supernovas::Source::name()</a>, <a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269">NOVAS_EPHEM_OBJECT</a>, and <a class="el" href="#a78e33490ee3766c7cb7effed0e413fa0">number()</a>.</p>
 
@@ -269,7 +271,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to a newly allocated copy of this Solar-system ephemeris source instance. </p>
-<dl class="section return"><dt>Returns</dt><dd>pointer to new copy of this Solar-system ephemeris source instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to new copy of this Solar-system ephemeris source instance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Implements <a class="el" href="classsupernovas_1_1Source.html#af5a18693fc942953c44bf6a04d512060">supernovas::Source</a>.</p>
 
@@ -294,6 +297,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the number designation of this ephemeris. </p>
 <dl class="section return"><dt>Returns</dt><dd>the source ID number (for number ID based lookup).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3" title="Returns the name given to this source at instantiation.">name()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>.</p>
@@ -326,7 +330,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a simple string representation of this ephemeris source, with the name and number designations. </p>
-<dl class="section return"><dt>Returns</dt><dd>a string containing the name and number designations for this source. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a string containing the name and number designations for this source.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Implements <a class="el" href="classsupernovas_1_1Source.html#af7ae7c88a6375c790d2477d9fe99e396">supernovas::Source</a>.</p>
 

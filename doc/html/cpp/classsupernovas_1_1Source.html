@@ -186,6 +186,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An abstract astronomical source, or target of observation. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1CatalogSource.html" title="A sidereal source, defined by its catalog coordinates and other catalog parameters.">CatalogSource</a>, <a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a>, <a class="el" href="classsupernovas_1_1EphemerisSource.html" title="A Solar-system source, whose positions / velocities are provided from ephemeris data.">EphemerisSource</a>, <a class="el" href="classsupernovas_1_1OrbitalSource.html" title="A Solar-system source, whose position and velocity can be calculated using Keplerian orbital elements...">OrbitalSource</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7e0f947b9bb8eeb40c21cec3db3d89aa" name="a7e0f947b9bb8eeb40c21cec3db3d89aa"></a>
@@ -259,7 +260,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to the NOVAS C <span class="tt"><a class="el" href="structnovas__object.html" title="Celestial object of interest.">novas_object</a></span> data structure that stores data internally. </p>
-<dl class="section return"><dt>Returns</dt><dd>a pointer to the underlying NOVAS C <span class="tt"><a class="el" href="structnovas__object.html" title="Celestial object of interest.">novas_object</a></span> data structure. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the underlying NOVAS C <span class="tt"><a class="el" href="structnovas__object.html" title="Celestial object of interest.">novas_object</a></span> data structure.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a0a8fa35950bb58cc03ba520b1c337080">_object</a>.</p>
 
@@ -291,6 +293,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a pointer to a newly allocated copy of this instance. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>pointer to a newly allocated copy. </dd></dl>
 
 <p>Implemented in <a class="el" href="classsupernovas_1_1CatalogSource.html#a98b76a5026ad51a77796f3e8d5a79ce9">supernovas::CatalogSource</a>, <a class="el" href="classsupernovas_1_1EphemerisSource.html#a1db6c1e6e9709b75eb684b253c70c9fe">supernovas::EphemerisSource</a>, <a class="el" href="classsupernovas_1_1OrbitalSource.html#ab7d23a68a9b0af5cec3778db13cafe8b">supernovas::OrbitalSource</a>, and <a class="el" href="classsupernovas_1_1Planet.html#aa312a35f47299d8dbb58f84fc15491b4">supernovas::Planet</a>.</p>
@@ -317,6 +320,7 @@ Protected Attributes</h2></td></tr>
 <p>Returns the name given to this source at instantiation. </p>
 <p>It may be lower-case unless the <span class="tt">set_case_sensitive(true)</span> was called before instantiating the source.</p>
 <dl class="section return"><dt>Returns</dt><dd>the given source name.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a87ca9a5476a432fbee8eb04811bdc3ad" title="Enables or disabled case-sensitive treatment of source names.">set_case_sensitive()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a0a8fa35950bb58cc03ba520b1c337080">_object</a>.</p>
@@ -352,10 +356,11 @@ Protected Attributes</h2></td></tr>
 <p>It only affect sources that are instantiated after the change has been made.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td><span class="tt">true</span> to enable case sensitive processing of name for newly defined sources or else <span class="tt">false</span> to convert all future source names to lower-case for case-insensitive processing. </td></tr>
+    <tr><td class="paramname">value</td><td><span class="tt">true</span> to enable case sensitive processing of name for newly defined sources or else <span class="tt">false</span> to convert all future source names to lower-case for case-insensitive processing.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a8f832afe92680a11c3489aaa224ac2e2">novas_case_sensitive()</a>.</p>
 
@@ -404,7 +409,8 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the type of this source. </p>
-<dl class="section return"><dt>Returns</dt><dd>the source type constant </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the source type constant</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a0a8fa35950bb58cc03ba520b1c337080">_object</a>.</p>
 

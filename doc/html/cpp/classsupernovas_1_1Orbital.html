@@ -226,6 +226,7 @@ Additional Inherited Members</h2></td></tr>
 <ol type="1">
 <li>This class uses a builder pattern to populate the orbital parameters, bit-by-bit, as needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid using the builder functions in a multi-threaded environment. The best practice is to build the orbital first, before using in parallel threads unmodified.</li>
 </ol>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1EphemerisSource.html" title="A Solar-system source, whose positions / velocities are provided from ephemeris data.">EphemerisSource</a>, <a class="el" href="classsupernovas_1_1Planet.html#a660d13408cb13cbc42b7263f0196c36d" title="Returns the approximate Keplerian orbital parameters for this planet, calculated for the specified ti...">Planet::orbit()</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab8c1931ad982232857d5033d1776ed87" name="ab8c1931ad982232857d5033d1776ed87"></a>
@@ -274,6 +275,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>OribtalSystem::orbit() </dd>
 <dd>
 <a class="el" href="#a01968b29405deb9f71ad534e62bcd7f4" title="Return a new instance of a new Keplerian orbital in the specified orbital system and the basic circul...">from_mean_motion()</a>, <a class="el" href="#ac078aba671301f7fe77923007a9fd6ad" title="Returns the eccentricity of this orbital.">eccentricity()</a>, <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a>, <a class="el" href="#a1e8611ace299ad61fb2135e04490311b" title="Returns the rotation period (due to precession) of the orbit&#39;s ascending node in the orbital system,...">node_period()</a>, <a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a> <a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e" title="Returns the rotation period of the apsis location in the orbital system, in which the orbital was def...">apsis_period()</a>, <a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a> </dd></dl>
@@ -328,6 +330,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>OrbotalSystem::orbit() </dd>
 <dd>
 <a class="el" href="#a01968b29405deb9f71ad534e62bcd7f4" title="Return a new instance of a new Keplerian orbital in the specified orbital system and the basic circul...">from_mean_motion()</a>, <a class="el" href="#ac078aba671301f7fe77923007a9fd6ad" title="Returns the eccentricity of this orbital.">eccentricity()</a>, <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a>, <a class="el" href="#a1e8611ace299ad61fb2135e04490311b" title="Returns the rotation period (due to precession) of the orbit&#39;s ascending node in the orbital system,...">node_period()</a>, <a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a> <a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e" title="Returns the rotation period of the apsis location in the orbital system, in which the orbital was def...">apsis_period()</a>, <a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a> </dd></dl>
@@ -353,7 +356,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(<em>for internal use</em>) Returns the underlying NOVAS C data structure containing the orbital parameters. </p>
-<dl class="section return"><dt>Returns</dt><dd>pointer to the NOVAS C data structure that stores the orbital parameters internally. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to the NOVAS C data structure that stores the orbital parameters internally.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1OrbitalSource.html#afbc443cc9f0ab8ce57fff78040f929ff">supernovas::OrbitalSource::OrbitalSource()</a>.</p>
 
@@ -376,6 +380,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the rotation period of the apsis location in the orbital system, in which the orbital was defined (positive for counter-clockwise rotation, or negative for clockwise rotation, when viewed from the orbital system's pole.). </p>
 <dl class="section return"><dt>Returns</dt><dd>the time it takes for the apsis to make a full counter-clockwise rotation in the orbital system, viewed from the orbital system's pole. It may be negative for retrograde (clockwise) motion.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a>, <a class="el" href="#ac078aba671301f7fe77923007a9fd6ad" title="Returns the eccentricity of this orbital.">eccentricity()</a>, <a class="el" href="#a1e8611ace299ad61fb2135e04490311b" title="Returns the rotation period (due to precession) of the orbit&#39;s ascending node in the orbital system,...">node_period()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -407,6 +412,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a>, <a class="el" href="#a8d9df381faf1e5981641a9bdcfbcdf66" title="Returns the periapsis angle of this orbit, in the orbital system, in which the orbit was defined.">periapsis()</a>, <a class="el" href="#ac078aba671301f7fe77923007a9fd6ad" title="Returns the eccentricity of this orbital.">eccentricity()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e">apsis_period()</a>, and <a class="el" href="#aae185fccc7fb024dcae3384002c511b7">period()</a>.</p>
@@ -436,6 +442,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a>, <a class="el" href="#a8d9df381faf1e5981641a9bdcfbcdf66" title="Returns the periapsis angle of this orbit, in the orbital system, in which the orbit was defined.">periapsis()</a>, <a class="el" href="#ac078aba671301f7fe77923007a9fd6ad" title="Returns the eccentricity of this orbital.">eccentricity()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>.</p>
@@ -459,6 +466,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clockwise rotation, or negative for clockwise rotation, when viewed from the orbital system's pole.). </p>
 <dl class="section return"><dt>Returns</dt><dd>[rad/s] the angular velocity of the apsis' rotation in the orbital system, viewed from the orbital system's pole. It may be negative for retrograde motion.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e" title="Returns the rotation period of the apsis location in the orbital system, in which the orbital was def...">apsis_period()</a>, <a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e">apsis_period()</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
@@ -488,6 +496,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a>, <a class="el" href="#a8d9df381faf1e5981641a9bdcfbcdf66" title="Returns the periapsis angle of this orbit, in the orbital system, in which the orbit was defined.">periapsis()</a>, <a class="el" href="#ac078aba671301f7fe77923007a9fd6ad" title="Returns the eccentricity of this orbital.">eccentricity()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e">apsis_period()</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
@@ -511,6 +520,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the longitude of the ascending node of this orbit in the orbital system, in which the orbital was defined. </p>
 <dl class="section return"><dt>Returns</dt><dd>the longitude of the ascending node in the orbital system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -534,6 +544,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the eccentricity of this orbital. </p>
 <dl class="section return"><dt>Returns</dt><dd>the eccentricity of this orbital (dimensionless).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a8d9df381faf1e5981641a9bdcfbcdf66" title="Returns the periapsis angle of this orbit, in the orbital system, in which the orbit was defined.">periapsis()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#a784fbc6a317a2385fd19f4cdb2f663c4">eccentricity()</a>, and <a class="el" href="#a970b21b88d6311105067aaede175696b">to_string()</a>.</p>
@@ -568,6 +579,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e" title="Returns the rotation period of the apsis location in the orbital system, in which the orbital was def...">apsis_period()</a>, <a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ac078aba671301f7fe77923007a9fd6ad">eccentricity()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
@@ -602,6 +614,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e" title="Returns the rotation period of the apsis location in the orbital system, in which the orbital was def...">apsis_period()</a>, <a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>.</p>
@@ -662,6 +675,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Orbital(), <a class="el" href="#ac078aba671301f7fe77923007a9fd6ad" title="Returns the eccentricity of this orbital.">eccentricity()</a>, <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a>, <a class="el" href="#a1e8611ace299ad61fb2135e04490311b" title="Returns the rotation period (due to precession) of the orbit&#39;s ascending node in the orbital system,...">node_period()</a>, <a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a> <a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e" title="Returns the rotation period of the apsis location in the orbital system, in which the orbital was def...">apsis_period()</a>, <a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a01968b29405deb9f71ad534e62bcd7f4">from_mean_motion()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff">supernovas::Coordinate::m()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>, and <a class="el" href="#a0f2cf24da6d3c36177e1a6ff6f1e9b9b">system()</a>.</p>
@@ -722,6 +736,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Orbital(), <a class="el" href="#ac078aba671301f7fe77923007a9fd6ad" title="Returns the eccentricity of this orbital.">eccentricity()</a>, <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a>, <a class="el" href="#a1e8611ace299ad61fb2135e04490311b" title="Returns the rotation period (due to precession) of the orbit&#39;s ascending node in the orbital system,...">node_period()</a>, <a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a> <a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e" title="Returns the rotation period of the apsis location in the orbital system, in which the orbital was def...">apsis_period()</a>, <a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#a0f2cf24da6d3c36177e1a6ff6f1e9b9b">system()</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
@@ -762,6 +777,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new Keplerian orbital instance, with the specified parameters.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Orbital(), <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; stae of the implementing instance.">is_valid()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -787,6 +803,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the inclination angle of this orbit, relative to the orbital system's plane. </p>
 <dl class="section return"><dt>Returns</dt><dd>the inclination of the orbit relative to the orbital system's plane.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a921ab9f20d2e0d5df2519c1bd3f5cc3d" title="Returns the longitude of the ascending node of this orbit in the orbital system, in which the orbital...">ascending_node()</a>, <a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -823,6 +840,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a>, <a class="el" href="#a1e8611ace299ad61fb2135e04490311b" title="Returns the rotation period (due to precession) of the orbit&#39;s ascending node in the orbital system,...">node_period()</a>, <a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47">inclination()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
@@ -857,6 +875,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a>, <a class="el" href="#a1e8611ace299ad61fb2135e04490311b" title="Returns the rotation period (due to precession) of the orbit&#39;s ascending node in the orbital system,...">node_period()</a>, <a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>.</p>
@@ -880,6 +899,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the mean motion (circular angular velocity) of the object in this orbit. </p>
 <dl class="section return"><dt>Returns</dt><dd>[rad/s] the mean motion (circular angular velocity) of the object on this orbit.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aae185fccc7fb024dcae3384002c511b7" title="Returns the period of the object on this orbit.">period()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>.</p>
@@ -915,12 +935,12 @@ Additional Inherited Members</h2></td></tr>
 <p>It is based on the secular parameters of the ELP2000-85 model, but does not include the harmonic series and the perturbation terms. As such it has accuracy at the few degrees level only, however it is 'valid' for long-term projections (i.e. for years around the orbit's reference epoch) at that coarse level.</p>
 <p>For the short-term , <span class="tt"><a class="el" href="#a56592ba52eaba57d16138abbb9153a48" title="Returns an approximation of the current Keplerian orbital of the Moon relative to the geocenter for t...">Orbital::moon_orbit_at()</a></span> can provide somewhat more accurate predictions for up to a day or so around the reference epoch of the orbit.</p>
 <p>REFERENCES:</p>
-<ul>
+<ol type="1">
 <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
 <li>Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.</li>
 <li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
 <li>Laskar J., 1986, A&amp;A, 157, 59</li>
-</ul>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time for which to calculate the secular orbital parameters of the moon. </td></tr>
@@ -928,6 +948,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the Moon orbital defined with the mean orbital elements of date.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a56592ba52eaba57d16138abbb9153a48" title="Returns an approximation of the current Keplerian orbital of the Moon relative to the geocenter for t...">moon_orbit_at()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6258445d39cc07b8c4679f3deca4af13">from_novas_orbit()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#ac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>.</p>
@@ -961,11 +982,11 @@ Additional Inherited Members</h2></td></tr>
 <p>The orbit includes the most dominant Solar perturbation terms to produce results with an accuracy at the ~10 arcmin level near (+- 0.5 days) the reference time argument of the orbit. The perturbed orbit is based on the ELP/MPP02 model.</p>
 <p>While, the ELP/MPP02 model itself can be highly precise, the Moon's orbit is strongly non-Keplerian, and so any attempt to describe it in purely Keplerian terms is inherently flawed, which is the reason for the generally poor accuracy of this model.</p>
 <p>REFERENCES:</p>
-<ul>
+<ol type="1">
 <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
 <li>Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.</li>
 <li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
-</ul>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Astrometric time for which to calculate the secular orbital parameters of the moon. </td></tr>
@@ -973,6 +994,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the Moon orbital defined with the mean orbital elements of date.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a54a6508c863a590f42309ae413e113c7" title="Returns the mean Keplerian orbital for the Moon relative to the geocenter for the specified epoch of ...">moon_mean_orbit_at()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6258445d39cc07b8c4679f3deca4af13">from_novas_orbit()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>.</p>
@@ -996,6 +1018,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the rotation period (due to precession) of the orbit's ascending node in the orbital system, in which the orbital was defined (positive for counter-clockwise rotation, or negative for clockwise rotation, when viewed from the orbital system's pole.). </p>
 <dl class="section return"><dt>Returns</dt><dd>the time it takes for the ascending to make a full counter-clockwise rotation in the orbital system, viewed from the orbital system's pole. It may be negative for retrograde (clockwise) motion.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a>, <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e" title="Returns the rotation period of the apsis location in the orbital system, in which the orbital was def...">apsis_period()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -1027,6 +1050,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a>, <a class="el" href="#a921ab9f20d2e0d5df2519c1bd3f5cc3d" title="Returns the longitude of the ascending node of this orbit in the orbital system, in which the orbital...">ascending_node()</a>, <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a1e8611ace299ad61fb2135e04490311b">node_period()</a>, and <a class="el" href="#aae185fccc7fb024dcae3384002c511b7">period()</a>.</p>
@@ -1056,6 +1080,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a>, <a class="el" href="#a921ab9f20d2e0d5df2519c1bd3f5cc3d" title="Returns the longitude of the ascending node of this orbit in the orbital system, in which the orbital...">ascending_node()</a>, <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>.</p>
@@ -1079,6 +1104,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (positive for counter-clockwise rotation, or negative for clockwise rotation, when viewed from the orbital system's pole.). </p>
 <dl class="section return"><dt>Returns</dt><dd>[rad/s] the angular velocity of the ascending node rotation (precession) in the orbital system, viewed from the orbital system's pole. It may be negative for retrograde motion.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1e8611ace299ad61fb2135e04490311b" title="Returns the rotation period (due to precession) of the orbit&#39;s ascending node in the orbital system,...">node_period()</a>, <a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a1e8611ace299ad61fb2135e04490311b">node_period()</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
@@ -1108,6 +1134,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1e8611ace299ad61fb2135e04490311b" title="Returns the rotation period (due to precession) of the orbit&#39;s ascending node in the orbital system,...">node_period()</a>, <a class="el" href="#a921ab9f20d2e0d5df2519c1bd3f5cc3d" title="Returns the longitude of the ascending node of this orbit in the orbital system, in which the orbital...">ascending_node()</a>, <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a1e8611ace299ad61fb2135e04490311b">node_period()</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
@@ -1131,6 +1158,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the periapsis angle of this orbit, in the orbital system, in which the orbit was defined. </p>
 <dl class="section return"><dt>Returns</dt><dd>the longitude (in the orbital system) at which point the object is closest to the orbital center (on an elliptical orbit).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac078aba671301f7fe77923007a9fd6ad" title="Returns the eccentricity of this orbital.">eccentricity()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -1154,6 +1182,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the period of the object on this orbit. </p>
 <dl class="section return"><dt>Returns</dt><dd>the time it takes for the object to complete a full orbit.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af06c617f685020ebe5faf7a38a56f407" title="Returns the mean motion (circular angular velocity) of the object in this orbit.">mean_motion()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#af06c617f685020ebe5faf7a38a56f407">mean_motion()</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
@@ -1179,6 +1208,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the spherical coordinates of the orbit's pole in the orbital system, in which the orbital was defined. </p>
 <dl class="section return"><dt>Returns</dt><dd>the location of the orbit's pole in the orbital system, in which the orbital is defined.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#a921ab9f20d2e0d5df2519c1bd3f5cc3d" title="Returns the longitude of the ascending node of this orbit in the orbital system, in which the orbital...">ascending_node()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="classsupernovas_1_1Constant.html#a07126f2b68cfd91a381122935c80f80b">supernovas::Constant::half_pi</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -1215,6 +1245,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, node_pediod(), <a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ab3888018d097a68762e0900c01266e65">pole()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
@@ -1244,6 +1275,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, node_pediod(), <a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, and <a class="el" href="#ab3888018d097a68762e0900c01266e65">pole()</a>.</p>
@@ -1278,6 +1310,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>itself</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, node_pediod(), <a class="el" href="#afaf0000a33c68b01b1257cacbd655331" title="Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (posi...">node_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Constant.html#a07126f2b68cfd91a381122935c80f80b">supernovas::Constant::half_pi</a>, and <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47">inclination()</a>.</p>
@@ -1304,17 +1337,13 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Calculates a rectangular equatorial position vector for this Keplerian orbital for the specified time of observation. </p>
-<p>REFERENCES: </p><ol>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
-<li>
-<a href="https://en.wikipedia.org/wiki/Orbital_elements">https://en.wikipedia.org/wiki/Orbital_elements</a> </li>
-<li>
-<a href="https://orbitalofficial.com/">https://orbitalofficial.com/</a> </li>
-<li>
-<a href="https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf">https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Orbital_elements">https://en.wikipedia.org/wiki/Orbital_elements</a></li>
+<li><a href="https://orbitalofficial.com/">https://orbitalofficial.com/</a></li>
+<li><a href="https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf">https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1324,6 +1353,7 @@ E.M. Standish and J.G. Williams 1992. </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The rectangular equatorial position vector of the orbital object, relative to the equinox type of the orbital system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aba60772bc15f18614cf091ad606a3f42" title="Calculates a rectangular equatorial velocity vector for this Keplerian orbital for the specified time...">velocity()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#a4510a3235a693f122899983901211c30">novas_orbit_posvel()</a>, and <a class="el" href="classsupernovas_1_1Position.html#afb825ceba8d381d95c371802cd9a269c">supernovas::Position::undefined()</a>.</p>
@@ -1346,7 +1376,8 @@ E.M. Standish and J.G. Williams 1992. </li>
 </div><div class="memdoc">
 
 <p>Returns the reference time, as a Barycentric Dynamical <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> (TDB) based Julian date. </p>
-<dl class="section return"><dt>Returns</dt><dd>[day] the TDB-based Julian date for which the orbital parameters are defined. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[day] the TDB-based Julian date for which the orbital parameters are defined.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 </div>
 </div>
@@ -1367,6 +1398,7 @@ E.M. Standish and J.G. Williams 1992. </li>
 
 <p>Returns the mean anomaly (or longitude for circular orbits) of the object at the reference time, in the orbital system in which the orbit was defined. </p>
 <dl class="section return"><dt>Returns</dt><dd>the mean anomaly (circular longitude) of the object in the orbital system at the reference time.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a8f0409c92f2e7650a28c28a8f05083fa" title="Returns the reference time, as a Barycentric Dynamical Time (TDB) based Julian date.">reference_jd_tdb()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
@@ -1389,7 +1421,8 @@ E.M. Standish and J.G. Williams 1992. </li>
 </div><div class="memdoc">
 
 <p>Returns the semi-major axis (that is the radius for circular orbits) of this orbital. </p>
-<dl class="section return"><dt>Returns</dt><dd>the semi-major axis (circular) radius of this orbit. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the semi-major axis (circular) radius of this orbit.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -1413,7 +1446,8 @@ E.M. Standish and J.G. Williams 1992. </li>
 </div><div class="memdoc">
 
 <p>Returns a new instance of the orbital system in which this orbit is defined. </p>
-<dl class="section return"><dt>Returns</dt><dd>a new instance of the orbital system, in which the orbit is defined. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new instance of the orbital system, in which the orbit is defined.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1OrbitalSystem.html#a9916e95832d6e4e422479adff66a0af9">supernovas::OrbitalSystem::from_novas_orbital_system()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -1437,7 +1471,8 @@ E.M. Standish and J.G. Williams 1992. </li>
 </div><div class="memdoc">
 
 <p>Returns a basic human-readable description of this orbital, with just the major parameters. </p>
-<dl class="section return"><dt>Returns</dt><dd>a basic string description of this orbital. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a basic string description of this orbital.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#ac078aba671301f7fe77923007a9fd6ad">eccentricity()</a>, <a class="el" href="#aae185fccc7fb024dcae3384002c511b7">period()</a>, <a class="el" href="#afdfffb7bc52d616fc89e0556e9069022">semi_major_axis()</a>, <a class="el" href="#a0f2cf24da6d3c36177e1a6ff6f1e9b9b">system()</a>, <a class="el" href="classsupernovas_1_1Coordinate.html#af7002241f1407a01092aa9aa0b2db6a2">supernovas::Coordinate::to_string()</a>, <a class="el" href="classsupernovas_1_1Interval.html#ae4795edc09b8b84b4a815f3c238bcf38">supernovas::Interval::to_string()</a>, and <a class="el" href="classsupernovas_1_1OrbitalSystem.html#a7a8ddda0e6889fe28e15b0115f376d3c">supernovas::OrbitalSystem::to_string()</a>.</p>
 
@@ -1463,17 +1498,13 @@ E.M. Standish and J.G. Williams 1992. </li>
 </div><div class="memdoc">
 
 <p>Calculates a rectangular equatorial velocity vector for this Keplerian orbital for the specified time of observation. </p>
-<p>REFERENCES: </p><ol>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
-<li>
-<a href="https://en.wikipedia.org/wiki/Orbital_elements">https://en.wikipedia.org/wiki/Orbital_elements</a> </li>
-<li>
-<a href="https://orbitalofficial.com/">https://orbitalofficial.com/</a> </li>
-<li>
-<a href="https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf">https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Orbital_elements">https://en.wikipedia.org/wiki/Orbital_elements</a></li>
+<li><a href="https://orbitalofficial.com/">https://orbitalofficial.com/</a></li>
+<li><a href="https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf">https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1483,6 +1514,7 @@ E.M. Standish and J.G. Williams 1992. </li>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The rectangular equatorial velocity vector of the orbital object, relative to the equinox type of the orbital system.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab9e6f5d8f38a363e8df0d3d6490692d1" title="Calculates a rectangular equatorial position vector for this Keplerian orbital for the specified time...">position()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7">supernovas::Unit::AU_per_day</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="novas_8h.html#a4510a3235a693f122899983901211c30">novas_orbit_posvel()</a>, and <a class="el" href="classsupernovas_1_1Velocity.html#a807883f5d42e5b1bef89249a0377c762">supernovas::Velocity::undefined()</a>.</p>

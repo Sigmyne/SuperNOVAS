@@ -217,6 +217,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the distance between this source and the specified other source.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga837b7cc8012af33b66b577bfed9597d9" title="Returns the angular separation of this source from the Sun, for the given observer location and time ...">sun_angle()</a>, <a class="el" href="#ga4d8c425044b5594fa8251812db25f0d7" title="Returns the angular separation of this source from the Moon, for the given observer location and time...">moon_angle()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#a7e0f947b9bb8eeb40c21cec3db3d89aa">Source()</a>, <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">_object</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="novas_8h.html#afa5f3a823a895bed01876df6b2a00370">novas_object_sep()</a>.</p>
@@ -245,8 +246,8 @@ Variables</h2></td></tr>
 <div class="line">  <span class="comment">// We could not obtain apparent coordinates for some reason.</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Apparent_html"><div class="ttname"><a href="classsupernovas_1_1Apparent.html">supernovas::Apparent</a></div><div class="ttdoc">Apparent position on sky as seen by an observer at a specific time of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:2383</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:264</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Apparent_html"><div class="ttname"><a href="classsupernovas_1_1Apparent.html">supernovas::Apparent</a></div><div class="ttdoc">Apparent position on sky as seen by an observer at a specific time of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:2475</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:273</div></div>
 </div><!-- fragment --><p>There are multiple reasons why we might not be able to calculate valid apparent positions, such as:</p>
 <ul>
 <li>the frame itself may be invalid.</li>
@@ -266,6 +267,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the apparent position of the source, which may be invalid if the position cannot be determined.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad531705b1b07e32ead410483e109248f" title="Return an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon Barycenter (...">Planet::approx_apparent_in()</a>, <a class="el" href="group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a" title="Returns the geometric position of a source (if possible) relative to the observer,...">geometric_in()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">_object</a>, <a class="el" href="classsupernovas_1_1Apparent.html#ae4fb352249e2eac3311b6239b1e6c5b0">supernovas::Apparent::from_tod_sky_pos()</a>, <a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, and <a class="el" href="classsupernovas_1_1Apparent.html#a5b4a4b4e68c6dc9792990e7148a77750">supernovas::Apparent::undefined()</a>.</p>
@@ -293,11 +295,11 @@ Variables</h2></td></tr>
 <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting accuracy below 1 km level (and less than 100 meter error typically for 1900 &ndash; 2100).</li>
 </ul>
 <p>REFERENCES:</p>
-<ul>
+<ol type="1">
 <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
 <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
 <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a></li>
-</ul>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">limit_term</td><td>(optional) [arcsec|km] Sum only the harmonic terms with amplitudes larger than this limit. </td></tr>
@@ -305,6 +307,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The apparent place of the moon on the observer's sky.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__geometric.html#gaa71fbf15b25159c91f9563e630536a32" title="Returns the Moon&#39;s geometric position using the ELP/MPP02 model by Chapront &amp; Francou (2003),...">geometric_moon_elp2000()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Apparent.html#ae4fb352249e2eac3311b6239b1e6c5b0">supernovas::Apparent::from_tod_sky_pos()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, and <a class="el" href="classsupernovas_1_1Apparent.html#a5b4a4b4e68c6dc9792990e7148a77750">supernovas::Apparent::undefined()</a>.</p>
@@ -331,21 +334,16 @@ Variables</h2></td></tr>
 <p>The orbitals can provide planet positions to arcmin-level precision for the rocky inner planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical accuracies, see either of the top two references below.</p>
 <p>For accurate positions, you should use planetary ephemerides (such as the JPL ephemerides via the CALCEPH or CSPICE plugins) and <span class="tt"><a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span> instead.</p>
 <p>While this function is generally similar to creating an orbital object with an orbit initialized with <span class="tt"><a class="el" href="novas_8h.html#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> or <span class="tt"><a class="el" href="novas_8h.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a></span>, and then calling <span class="tt"><a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, there are a few important differences to note:</p>
-<ol>
-<li>
-This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In contrast, <span class="tt"><a class="el" href="novas_8h.html#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>). </li>
-<li>
-This function ignores gravitational deflection. It makes little sense to bother about corrections that are orders of magnitude below the accuracy of the orbital positions obtained. </li>
+<ol type="1">
+<li>This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In contrast, <span class="tt"><a class="el" href="novas_8h.html#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>).</li>
+<li>This function ignores gravitational deflection. It makes little sense to bother about corrections that are orders of magnitude below the accuracy of the orbital positions obtained.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
-<li>
-Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -354,6 +352,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>approximate, orbital model based, apparent position for the given planet. It may be invalid either if this planet or the frame argument is invalid.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__geometric.html#gaf83481c3e551cd9fbfc949257567b468" title="Returns approximate eometric posiitions and velocities for a major planet, Sun, Moon,...">approx_geometric_in()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Apparent.html#ae4fb352249e2eac3311b6239b1e6c5b0">supernovas::Apparent::from_tod_sky_pos()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a>, <a class="el" href="classsupernovas_1_1Planet.html#af8a2e51ac3aacdbfcdae5367f9018b00">novas_id()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>.</p>
@@ -383,6 +382,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the Moon's distance from the source.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga837b7cc8012af33b66b577bfed9597d9" title="Returns the angular separation of this source from the Sun, for the given observer location and time ...">sun_angle()</a>, <a class="el" href="#ga600eddf89ef347be4838130f327da6df" title="Returns the angular separation of this source from another source, for the given observer location an...">angle_to()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">_object</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="novas_8h.html#a121940d7f0ef41297d28fab8e6df5998">novas_moon_angle()</a>.</p>
@@ -412,6 +412,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the Sun's distance from the source.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga4d8c425044b5594fa8251812db25f0d7" title="Returns the angular separation of this source from the Moon, for the given observer location and time...">moon_angle()</a>, <a class="el" href="#ga600eddf89ef347be4838130f327da6df" title="Returns the angular separation of this source from another source, for the given observer location an...">angle_to()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">_object</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="novas_8h.html#a2d1ef3bc6d99aa473511e45c6e0481e9">novas_sun_angle()</a>.</p>
@@ -450,7 +451,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
 <div class="line">  <span class="comment">// Oops, could not calculate valid apparent positions.</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__apparent_html_gac3fce1b4c732817ba50a19edecc544ae"><div class="ttname"><a href="#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent</a></div><div class="ttdeci">Apparent to_apparent(const Frame &amp;frame, double rv=0.0, double distance=Unit::Gpc) const</div><div class="ttdoc">Converts these horizontal coordinates to an apparent place on the sky.</div><div class="ttdef"><b>Definition</b> Horizontal.cpp:248</div></div>
+<div class="ttc" id="agroup__apparent_html_gac3fce1b4c732817ba50a19edecc544ae"><div class="ttname"><a href="#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent</a></div><div class="ttdeci">Apparent to_apparent(const Frame &amp;frame, double rv=0.0, double distance=Unit::Gpc) const</div><div class="ttdoc">Converts these horizontal coordinates to an apparent place on the sky.</div><div class="ttdef"><b>Definition</b> Horizontal.cpp:264</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>an Earth-based observing frame, defining the time of observation and the observer location, above (or slightly below) Earth's surface. </td></tr>
@@ -460,6 +461,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the apparent equatorial place corresponding to these astrometric horizontal coordinates on the sky, or Apparent::udefined() if the observing frame is not Earth surface based.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a>, <a class="el" href="group__nonequatorial.html#ga39a5c71512aa41496371b99fd2a892d4" title="Returns the apparent unrefracted horizontal coordinates for this position for a geodetic observer loc...">Apparent::to_horizontal()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff">supernovas::Coordinate::m()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#a02b0343abd20757afcdf69acf2b11d00">supernovas::ScalarVelocity::m_per_s()</a>, and <a class="el" href="#gac3fce1b4c732817ba50a19edecc544ae">to_apparent()</a>.</p>
@@ -507,6 +509,7 @@ Chapront-Touze, M., and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the apparent equatorial place corresponding to these astrometric horizontal coordinates on the sky, or <a class="el" href="classsupernovas_1_1Apparent.html#a5b4a4b4e68c6dc9792990e7148a77750" title="Returns a reference to a statically defined standard invalid apparent position.">Apparent::undefined()</a> if the observing frame is not Earth surface based.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a>, <a class="el" href="group__nonequatorial.html#ga39a5c71512aa41496371b99fd2a892d4" title="Returns the apparent unrefracted horizontal coordinates for this position for a geodetic observer loc...">Apparent::to_horizontal()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7">supernovas::Unit::AU_per_day</a>, <a class="el" href="structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f">novas_sky_pos::dec</a>, <a class="el" href="structnovas__sky__pos.html#a3c45d500db3a793b89d234d950886e4d">novas_sky_pos::dis</a>, <a class="el" href="classsupernovas_1_1Apparent.html#ae4fb352249e2eac3311b6239b1e6c5b0">supernovas::Apparent::from_tod_sky_pos()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, <a class="el" href="novas_8h.html#aa57cbcae2001fece2ee4a2babfbc5f89">novas_hor_to_app()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, <a class="el" href="structnovas__sky__pos.html#aa76dc5a1222e5696e88c986b6c6c3e55">novas_sky_pos::r_hat</a>, <a class="el" href="structnovas__sky__pos.html#a7d5aa9cc738e19f0891bff94ad148741">novas_sky_pos::ra</a>, <a class="el" href="novas_8h.html#ae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>, <a class="el" href="structnovas__sky__pos.html#ae98432478d2c3a8e5eb1a1674394499f">novas_sky_pos::rv</a>, and <a class="el" href="classsupernovas_1_1Apparent.html#a5b4a4b4e68c6dc9792990e7148a77750">supernovas::Apparent::undefined()</a>.</p>

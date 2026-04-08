@@ -191,6 +191,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A scalar coordinate or distance between two points in space. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Position.html" title="A 3D physical position vector in space.">Position</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad96930867483ebfe5e849fb0c9da7a59" name="ad96930867483ebfe5e849fb0c9da7a59"></a>
@@ -219,7 +220,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates a distance (signed scalar separation along some direction) with the specified value in meters. </p>
 <p>You may use <a class="el" href="classsupernovas_1_1Unit.html" title="Various physical units for converting quantities expressed in conventional units to SI,...">Unit</a> to convert other distance measures to meters. For example, to set a distance of 12.4 parsecs, you might simply write:</p>
 <div class="fragment"><div class="line">Coordinate d(12.4 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a5dafa1612f232d6a64461635cb0f211a">Unit::pc</a>);</div>
-<div class="ttc" id="aclasssupernovas_1_1Unit_html_a5dafa1612f232d6a64461635cb0f211a"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a5dafa1612f232d6a64461635cb0f211a">supernovas::Unit::pc</a></div><div class="ttdeci">static constexpr double pc</div><div class="ttdoc">[m] 1 parsec in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:132</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a5dafa1612f232d6a64461635cb0f211a"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a5dafa1612f232d6a64461635cb0f211a">supernovas::Unit::pc</a></div><div class="ttdeci">static constexpr double pc</div><div class="ttdoc">[m] 1 parsec in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:134</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">meters</td><td>[m] The initializing value.</td></tr>
@@ -280,7 +281,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a standard distance of 1 Gpc. </p>
 <p>Historically NOVAS placed sidereal source at 1 Gpc distance if the distance was not specified otherwise. SuperNOVAS follows that, and so this static method can be used to obtain a persistent reference to a 1 Gpc instance.</p>
-<dl class="section return"><dt>Returns</dt><dd>A reference to a persistent standard 1 Gpc distance instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to a persistent standard 1 Gpc distance instance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a3c85a1a9786a6d60fe6959c817bf25bb">supernovas::Unit::Gpc</a>.</p>
 
@@ -342,6 +344,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a distance instance corresponding to the specified parallax angle</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af862edb5c1eddd4451e1639e256cf1c1" title="Returns the parallax angle that corresponds to this distance instance.">parallax()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#af862edb5c1eddd4451e1639e256cf1c1">parallax()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a5dafa1612f232d6a64461635cb0f211a">supernovas::Unit::pc</a>.</p>
@@ -627,7 +630,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a string representation of this distance using the specified number of significant figures and a best matched distance unit, e.g. </p>
 <p>"10.96 km", or 305.6 pc" etc.</p>
-<dl class="section return"><dt>Returns</dt><dd>A human readable string representation of the distance and a unit specifier. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A human readable string representation of the distance and a unit specifier.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Scalar.html#a57a227e1a36070e68e57b8debc84e9ab">supernovas::Scalar</a>.</p>
 
@@ -661,7 +665,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a reference to a static instance of an undefined / invalid coordinate. </p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to a standard instance of an undefined coordinate. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a standard instance of an undefined coordinate.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Track.html#a2cfc60cf5b9143e975d75483a1c093b0">supernovas::Track&lt; CoordType &gt;::distance_at()</a>, and <a class="el" href="classsupernovas_1_1Planet.html#a8f6ff781f682b8a1e03cf486edae3e6e">supernovas::Planet::mean_radius()</a>.</p>
 
@@ -691,7 +696,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a standard zero distance. </p>
-<dl class="section return"><dt>Returns</dt><dd>A reference to a persistent standard zero distance instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to a persistent standard zero distance instance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 </div>
 </div>

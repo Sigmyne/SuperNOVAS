@@ -153,6 +153,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The evolution of a scalar quantity in time, based on a local quadratic approximation. </p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Track.html" title="Approximate trajectory of a source in spherical coordinates, using a local quadratic approximation ar...">Track</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0862991291dc7b1bf375806fdd1e369d" name="a0862991291dc7b1bf375806fdd1e369d"></a>
@@ -192,10 +193,11 @@ Additional Inherited Members</h2></td></tr>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="#af4f7a15acc9dd930335dce034175e1fa" title="Returns an extrapolated momentary value of the evolving quantity at an offset time,...">value</a></td><td>[?] momentary value </td></tr>
     <tr><td class="paramname"><a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1" title="Returns an extrapolated momentary rate of change for the evolving quantity at an offset time,...">rate</a></td><td>[?/s] (optional) momentary rate of change in value (default: 0). </td></tr>
-    <tr><td class="paramname">accel</td><td>[?/s<sup>2</sup>] (optional) momentary acceleration of value (default: 0). </td></tr>
+    <tr><td class="paramname">accel</td><td>[?/s<sup>2</sup>] (optional) momentary acceleration of value (default: 0).</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1">rate()</a>, and <a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value()</a>.</p>
 
@@ -219,6 +221,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns the defined (constant) acceleration value. </p>
 <dl class="section return"><dt>Returns</dt><dd>the acceleration that was defined.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af4f7a15acc9dd930335dce034175e1fa" title="Returns an extrapolated momentary value of the evolving quantity at an offset time,...">value()</a>, <a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1" title="Returns an extrapolated momentary rate of change for the evolving quantity at an offset time,...">rate()</a> </dd></dl>
 
 </div>
@@ -246,6 +249,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the extrapolated momentary rate of change at the offset time.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af4f7a15acc9dd930335dce034175e1fa" title="Returns an extrapolated momentary value of the evolving quantity at an offset time,...">value()</a>, <a class="el" href="#af4a7ebb8e64e194ad08e0321a52425c4" title="Returns the defined (constant) acceleration value.">acceleration()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>.</p>
@@ -284,7 +288,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a non-evolving scalar evolution instance with the specified stationary value. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a non-evolving scalar evolution instance with the specified stationary value.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#af4f7a15acc9dd930335dce034175e1fa">value()</a>.</p>
 
@@ -314,7 +319,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a reference to a statically allocated undefined scalar evolution instance. </p>
-<dl class="section return"><dt>Returns</dt><dd>a reference to a static undefined scalar evolution instance. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to a static undefined scalar evolution instance.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 </div>
 </div>
@@ -341,6 +347,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the extrapolated momentary scalar value at the offset time.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af1136a7264eea6e0395bcf8e72fc5eb1" title="Returns an extrapolated momentary rate of change for the evolving quantity at an offset time,...">rate()</a>, <a class="el" href="#af4a7ebb8e64e194ad08e0321a52425c4" title="Returns the defined (constant) acceleration value.">acceleration()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>.</p>

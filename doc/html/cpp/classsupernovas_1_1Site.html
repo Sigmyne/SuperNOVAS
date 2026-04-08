@@ -193,6 +193,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>An Earth-based (geodetic) observer site location, or airborne observer location. </p>
 <p>Positions may be defined as GPS / WGS84 or else as ITRF / GRS80 geodetic locations, or as Cartesian geocentric <em>xyz</em> positions in the International Terrestrial Reference <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> (ITRF).</p>
 <p>The class provides the means to convert between ITRF realizations, e.g. to match the ITRF realization used for the Eath Orientation Parameters (EOP) obtained from IERS, for &mu;as precision. (This is really only necessary for VLBI interferometry). Alternatively, one may also transform the EOP values to match the ITRF realization of the site.</p>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>, <a class="el" href="classsupernovas_1_1EOP.html" title="Mean (interpolated) IERS Earth Orientation Parameters (EOP), without diurnal variations.">EOP</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aefc52a24735924b2912317cc5a975958" name="aefc52a24735924b2912317cc5a975958"></a>
@@ -234,6 +235,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>from_xyz(), <a class="el" href="#a2c1ec896f1601fdcbf74a24527f082f2" title="Returns an observing site for its geodetic GPS location.">from_GPS()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="classsupernovas_1_1Constant.html#a07126f2b68cfd91a381122935c80f80b">supernovas::Constant::half_pi</a>, <a class="el" href="novas_8h.html#a236750f494f3dcd943e71ba24aa2a55b">make_itrf_site()</a>, <a class="el" href="novas_8h.html#adcd71f60a1f042af1eb7103134fad8c4">novas_geodetic_transform_site()</a>, <a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118">NOVAS_GRS80_ELLIPSOID</a>, and <a class="el" href="novas_8h.html#a6c1720e0a1b983521e0be99d98eb8bc5">NOVAS_REFERENCE_ELLIPSOIDS</a>.</p>
@@ -279,6 +281,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>from_xyz(), <a class="el" href="#a2c1ec896f1601fdcbf74a24527f082f2" title="Returns an observing site for its geodetic GPS location.">Site::from_GPS()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a443da3a82bde66f22240b3d6e91fa577">altitude()</a>, <a class="el" href="#a569bae637ba0bebc68630db108fefd52">latitude()</a>, and <a class="el" href="#a30ba1028c2b2608eeeaa017f5fb041a6">longitude()</a>.</p>
@@ -324,6 +327,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>from_xyz(), <a class="el" href="#a2c1ec896f1601fdcbf74a24527f082f2" title="Returns an observing site for its geodetic GPS location.">Site::from_GPS()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a443da3a82bde66f22240b3d6e91fa577">altitude()</a>, <a class="el" href="#a569bae637ba0bebc68630db108fefd52">latitude()</a>, and <a class="el" href="#a30ba1028c2b2608eeeaa017f5fb041a6">longitude()</a>.</p>
@@ -356,10 +360,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates a new observing site with the specified geocentric position vector. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="#ae384db5f193b48235789a1ad48720d3e" title="Returns the geocentric position of this site in ITRS rectangular coordinates.">xyz</a></td><td>Observers geocentric position vector in rectangular coordinates. </td></tr>
+    <tr><td class="paramname"><a class="el" href="#ae384db5f193b48235789a1ad48720d3e" title="Returns the geocentric position of this site in ITRS rectangular coordinates.">xyz</a></td><td>Observers geocentric position vector in rectangular coordinates.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="novas_8h.html#a7479134485c298faa858d73ee0513a11">novas_cartesian_to_geodetic()</a>, <a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118">NOVAS_GRS80_ELLIPSOID</a>, and <a class="el" href="#ae384db5f193b48235789a1ad48720d3e">xyz()</a>.</p>
 
@@ -383,6 +388,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a pointer to the the NOVAS C <span class="tt"><a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a></span> data structure stored in this site data. </p>
 <dl class="section return"><dt>Returns</dt><dd>The pointer to the NOVAS C <span class="tt"><a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a></span> data structure.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae384db5f193b48235789a1ad48720d3e" title="Returns the geocentric position of this site in ITRS rectangular coordinates.">xyz()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Observer.html#a65ae0b0d36341717bf7b958ac3236f8c">supernovas::Observer::Observer()</a>.</p>
@@ -406,9 +412,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a new distance containing the altitude of this site above the GRS80 reference ellipsoid (ie, above sea level). </p>
 <dl class="section return"><dt>Returns</dt><dd>The altitude above sea level (GRS80 reference ellipsoid).</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a30ba1028c2b2608eeeaa017f5fb041a6" title="Returns a new angle containing the geodetic longitude of this site on the GRS80 reference ellipsoid.">longitude()</a> </dd>
-<dd>
-<a class="el" href="#a569bae637ba0bebc68630db108fefd52" title="Returns a new angle containing the geodetic latitude of this site on the GRS80 reference ellipsoid.">latitude()</a> </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a30ba1028c2b2608eeeaa017f5fb041a6" title="Returns a new angle containing the geodetic longitude of this site on the GRS80 reference ellipsoid.">longitude()</a>, <a class="el" href="#a569bae637ba0bebc68630db108fefd52" title="Returns a new angle containing the geodetic latitude of this site on the GRS80 reference ellipsoid.">latitude()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#af95881057f4dbd4b8a907b12e866c515">supernovas::Unit::m</a>.</p>
 
@@ -439,6 +444,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the same position vector in ITRF.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>itrf_to_enu() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4">supernovas::Vector::_array()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a2bfff0a80ee078a45bc4301cd1ad8299">novas_enu_to_itrs()</a>.</p>
@@ -468,6 +474,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the same position vector in ITRF.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>itrf_to_enu() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4">supernovas::Vector::_array()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a2bfff0a80ee078a45bc4301cd1ad8299">novas_enu_to_itrs()</a>.</p>
@@ -502,6 +509,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two sites are equal within the tolerance, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa0e8ec8112a675b0b1ac71ebdccafcbe" title="Checks if this site is the same as another site, within 1 mm.">operator==()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6e08ef28664d6802688bbf8cbd04c46d">equals()</a>, and <a class="el" href="classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff">supernovas::Coordinate::m()</a>.</p>
@@ -536,6 +544,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two sites are equal within the tolerance, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa0e8ec8112a675b0b1ac71ebdccafcbe" title="Checks if this site is the same as another site, within 1 mm.">operator==()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Position.html#af5a5f447de9406d87925400351a527a5">supernovas::Position::equals()</a>, and <a class="el" href="#ae384db5f193b48235789a1ad48720d3e">xyz()</a>.</p>
@@ -586,6 +595,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observing site at the specified GSP location.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Site(), from_xyz() </dd></dl>
 
 <p class="reference">References <a class="el" href="#a443da3a82bde66f22240b3d6e91fa577">altitude()</a>, <a class="el" href="#a2c1ec896f1601fdcbf74a24527f082f2">from_GPS()</a>, <a class="el" href="#a569bae637ba0bebc68630db108fefd52">latitude()</a>, and <a class="el" href="#a30ba1028c2b2608eeeaa017f5fb041a6">longitude()</a>.</p>
@@ -634,6 +644,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observing site at the specified GSP location.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Site(), from_xyz(), Angle() </dd></dl>
 
 <p class="reference">References <a class="el" href="#a443da3a82bde66f22240b3d6e91fa577">altitude()</a>, <a class="el" href="#a2c1ec896f1601fdcbf74a24527f082f2">from_GPS()</a>, <a class="el" href="#a569bae637ba0bebc68630db108fefd52">latitude()</a>, and <a class="el" href="#a30ba1028c2b2608eeeaa017f5fb041a6">longitude()</a>.</p>
@@ -682,6 +693,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observing site at the specified GSP location.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Site(), from_xyz() </dd></dl>
 
 <p class="reference">References <a class="el" href="#a443da3a82bde66f22240b3d6e91fa577">altitude()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#a569bae637ba0bebc68630db108fefd52">latitude()</a>, <a class="el" href="#a30ba1028c2b2608eeeaa017f5fb041a6">longitude()</a>, and <a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a3f73d5ac6ed2f2ed81b4e7b7fdbf1e85">NOVAS_WGS84_ELLIPSOID</a>.</p>
@@ -719,6 +731,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observing site after transforming between ITRF realizations.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1EOP.html#a723f90ae1a32ae318dc23c67c9c289e2" title="Transforms these Earth Orientation Parameters (EOP) to a different ITRF realization.">EOP::itrf_transformed()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="structnovas__on__surface.html#ae88d1b0111ef62d14083ec38995d8ea9">novas_on_surface::height</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="structnovas__on__surface.html#a77f70abeb6c896623a85b1bdf8861151">novas_on_surface::latitude</a>, <a class="el" href="structnovas__on__surface.html#af62107483c0a9ded0168993c1cfd933f">novas_on_surface::longitude</a>, <a class="el" href="classsupernovas_1_1Unit.html#af95881057f4dbd4b8a907b12e866c515">supernovas::Unit::m</a>, and <a class="el" href="novas_8h.html#ad252294c7d4b3e62609c21f7550e2d09">novas_itrf_transform_site()</a>.</p>
@@ -748,6 +761,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the same vector in East-North-Up (ENU) directions at the site.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>enu_to_itrf() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4">supernovas::Vector::_array()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a8e7cb3d7902bbecdb9329bf584950367">novas_itrs_to_enu()</a>.</p>
@@ -777,6 +791,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the same vector in East-North-Up (ENU) directions at the site.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>enu_to_itrf() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4">supernovas::Vector::_array()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a8e7cb3d7902bbecdb9329bf584950367">novas_itrs_to_enu()</a>.</p>
@@ -800,9 +815,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a new angle containing the geodetic latitude of this site on the GRS80 reference ellipsoid. </p>
 <dl class="section return"><dt>Returns</dt><dd>The geodetic longitude on the GRS80 reference ellipsoid.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a30ba1028c2b2608eeeaa017f5fb041a6" title="Returns a new angle containing the geodetic longitude of this site on the GRS80 reference ellipsoid.">longitude()</a> </dd>
-<dd>
-<a class="el" href="#a443da3a82bde66f22240b3d6e91fa577" title="Returns a new distance containing the altitude of this site above the GRS80 reference ellipsoid (ie,...">altitude()</a> </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a30ba1028c2b2608eeeaa017f5fb041a6" title="Returns a new angle containing the geodetic longitude of this site on the GRS80 reference ellipsoid.">longitude()</a>, <a class="el" href="#a443da3a82bde66f22240b3d6e91fa577" title="Returns a new distance containing the altitude of this site above the GRS80 reference ellipsoid (ie,...">altitude()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -827,9 +841,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a new angle containing the geodetic longitude of this site on the GRS80 reference ellipsoid. </p>
 <dl class="section return"><dt>Returns</dt><dd>The geodetic longitude on the GRS80 reference ellipsoid.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a569bae637ba0bebc68630db108fefd52" title="Returns a new angle containing the geodetic latitude of this site on the GRS80 reference ellipsoid.">latitude()</a> </dd>
-<dd>
-<a class="el" href="#a443da3a82bde66f22240b3d6e91fa577" title="Returns a new distance containing the altitude of this site above the GRS80 reference ellipsoid (ie,...">altitude()</a> </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a569bae637ba0bebc68630db108fefd52" title="Returns a new angle containing the geodetic latitude of this site on the GRS80 reference ellipsoid.">latitude()</a>, <a class="el" href="#a443da3a82bde66f22240b3d6e91fa577" title="Returns a new distance containing the altitude of this site above the GRS80 reference ellipsoid (ie,...">altitude()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -860,6 +873,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two sites differ by more than 1 mm, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa0e8ec8112a675b0b1ac71ebdccafcbe" title="Checks if this site is the same as another site, within 1 mm.">operator==()</a> </dd></dl>
 
 </div>
@@ -887,6 +901,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two sites are equal within 1 mm, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6e08ef28664d6802688bbf8cbd04c46d" title="Checks if this site is the same as another site, within the specified precision.">equals()</a>, <a class="el" href="#a2a5ac016d86fc7764e88ba77666548e8" title="Checks if this site differs from another site, by more than 1 mm.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6e08ef28664d6802688bbf8cbd04c46d">equals()</a>.</p>
@@ -916,6 +931,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A geodetic observer location for this site.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Observer.html#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">Observer::on_earth()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Observer.html#a4938417fca7a03c1c41ff905e489b79b">supernovas::Observer::on_earth()</a>.</p>
@@ -949,7 +965,8 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a new string representation of this observing site. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new string representation of this observing site.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, and <a class="el" href="classsupernovas_1_1Angle.html#aa43390f74139176aa53a3dd26d5b1818">supernovas::Angle::to_string()</a>.</p>
 
@@ -981,7 +998,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a reference to a statically allocated undefined observing site instance. </p>
-<dl class="section return"><dt>Returns</dt><dd>a static reference to an undefined observing site. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a static reference to an undefined observing site.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 </div>
 </div>
@@ -1001,7 +1019,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the geocentric position of this site in ITRS rectangular coordinates. </p>
-<dl class="section return"><dt>Returns</dt><dd>a new position with the geocentric rectangular coordinates of the site. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new position with the geocentric rectangular coordinates of the site.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#ab07d86d425d68a62e94e965dd36b7a32">novas_geodetic_to_cartesian()</a>, and <a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118">NOVAS_GRS80_ELLIPSOID</a>.</p>
 
