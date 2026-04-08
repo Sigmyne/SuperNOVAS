@@ -16,7 +16,7 @@
  *  http://www.usno.navy.mil/USNO/astronomical-applications</a>
  *
  * @author G. Kaplan and Attila Kovacs
- * @version 1.5.0
+ * @version 1.6.0
  */
 
 #ifndef _NOVAS_
@@ -76,7 +76,7 @@
 #define SUPERNOVAS_PATCHLEVEL     0
 
 /// Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.
-#define SUPERNOVAS_RELEASE_STRING "-devel"
+#define SUPERNOVAS_RELEASE_STRING "-rc3"
 
 /// \cond PRIVATE
 
@@ -1420,7 +1420,7 @@ typedef struct novas_orbital {
   double apsis_period;                ///< [day] Precession period of the apsis, if known.
   double node_period;                 ///< [day] Precession period of the ascending node, if known.
 
-  // TODO Add tidal perturbation terms for orbits in potential gradients, e.g. for improved Moon orbital model.
+  // TODO [v2] Add tidal perturbation terms for orbits in potential gradients, e.g. for improved Moon orbital model.
   // double tide_angle;               ///< [deg] Tidal direction, measured from ascending node.
   // double elongation;               ///< Tidal elongation as fraction of major axis.
 } novas_orbital;
