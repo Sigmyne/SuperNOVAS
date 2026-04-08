@@ -6,7 +6,7 @@ file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to 
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.6.0-rc3] - 2026-03-07
+## [1.6.0-rc3] - 2026-03-08
 
 Upcoming feature release, introducing a proper C++ API for the first time, and bringing various other improvements.
 
@@ -58,7 +58,9 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  - #306: `geo_posvel()` changed to return an error (-1) if used for a geodetic observer and debug mode is set to
    `NOVAS_DEBUG_EXTRA`, to warn that polar offsets are not included in the calculation. 
 
- - Use more precise matrix from Liu et al. (2011) for equatorial / galactic conversions. 
+ - Use more precise matrix from Liu et al. (2011) for equatorial / galactic conversions.
+ 
+ - Improved and updated documentation.
 
 
 ## [1.5.1] - 2026-01-02
