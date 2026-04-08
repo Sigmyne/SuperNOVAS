@@ -205,17 +205,17 @@ double Frame::jd(enum novas_timescale timescale) const {
  * of the Sun and Earth alone may be accounted for.
  *
  * NOTES:
- * <ol>
- * <li>Based on the IERS Conventions 2010, Chapter 10, Eqa. 10.6 / 10.8 but also including the
- * near-Earth tidal effects, and modified for relativistic observer motion.</li>
- * <li>The potential for an observer inside 0.9 planet radii of a major Solar-system body's center
- * will not include the term for that body in the calculation.</li>
- * </ol>
+ *
+ *  1. Based on the IERS Conventions 2010, Chapter 10, Eqa. 10.6 / 10.8 but also including the
+ *     near-Earth tidal effects, and modified for relativistic observer motion.
+ *
+ *  2. The potential for an observer inside 0.9 planet radii of a major Solar-system body's center
+ *     will not include the term for that body in the calculation.
+ *
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 10, see at https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 10, see at https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf
  *
  * @param timescale   Reference timescale for the comparison. All timescales except `NOVAS_UT1`
  *                    are supported. (UT1 advances at an irregular rate).

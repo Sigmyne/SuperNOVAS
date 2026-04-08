@@ -681,13 +681,12 @@ double Orbital::node_rate() const {
  * specified time of observation.
  *
  * REFERENCES:
- * <ol>
- * <li>E.M. Standish and J.G. Williams 1992.</li>
- * <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- * <li>https://en.wikipedia.org/wiki/Orbital_elements</li>
- * <li>https://orbitalofficial.com/</li>
- * <li>https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf</li>
- * </ol>
+ *
+ *  1. E.M. Standish and J.G. Williams 1992.
+ *  2. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  3. https://en.wikipedia.org/wiki/Orbital_elements
+ *  4. https://orbitalofficial.com/
+ *  5. https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf
  *
  * @param time          Astrometric time of observation
  * @param accuracy      NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1).
@@ -713,13 +712,12 @@ Position Orbital::position(const Time& time, enum novas_accuracy accuracy) const
  * specified time of observation.
  *
  * REFERENCES:
- * <ol>
- * <li>E.M. Standish and J.G. Williams 1992.</li>
- * <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- * <li>https://en.wikipedia.org/wiki/Orbital_elements</li>
- * <li>https://orbitalofficial.com/</li>
- * <li>https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf</li>
- * </ol>
+ *
+ *  1. E.M. Standish and J.G. Williams 1992.
+ *  2. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  3. https://en.wikipedia.org/wiki/Orbital_elements
+ *  4. https://orbitalofficial.com/
+ *  5. https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf
  *
  * @param time          Astrometric time of observation
  * @param accuracy      NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1).
