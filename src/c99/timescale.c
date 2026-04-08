@@ -45,9 +45,8 @@
  * Terrestrial Time (TT).
  *
  * REFERENCES:
- * <ol>
- * <li>Ryan S. Park et al. 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414</li>
- * </ol>
+ *
+ *  1. Ryan S. Park et al. 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414
  */
 #define TC_LB          1.550519768e-8
 
@@ -56,13 +55,12 @@
  * Terrestrial Time (TT).
  *
  * NOTES:
- * <ol>
- * <li>Updated to DE440 value (Park et al. 2021) in v1.4</li>
- * </ol>
+ *
+ *  1. Updated to DE440 value (Park et al. 2021) in v1.4
+ *
  * REFERENCES:
- * <ol>
- * <li>Ryan S. Park et al. 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414</li>
- * </ol>
+ *
+ *  1. Ryan S. Park et al. 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414
  */
 #define TC_LG          6.969290134e-10
 
@@ -102,16 +100,14 @@ static const double R[] = NOVAS_PLANET_RADII_INIT; ///< [m]
  * ```
  *
  * NOTES:
- * <ol>
- * <li>This function caches the results of the last calculation in case it may be re-used at
- * no extra computational cost for the next call.</li>
- * </ol>
+ *
+ *  1. This function caches the results of the last calculation in case it may be re-used at
+ *     no extra computational cost for the next call.
  *
  * REFERENCES:
- * <ol>
- * <li>Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.</li>
- * <li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
- * </ol>
+ *
+ *  1. Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.
+ *  2. Kaplan, G. (2005), US Naval Observatory Circular 179.
  *
  * @param jd_tdb         [day] Barycentric Dynamic Time (TDB) based Julian date.
  * @param[out] jd_tt     [day] Terrestrial Time (TT) based Julian date. (It may be NULL
@@ -150,11 +146,10 @@ int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff) {
  * error of 10 &mu;s for dates between 1600 and 2200.
  *
  * REFERENCES
- * <ol>
- * <li>Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.</li>
- * <li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
- * <li>Moyer, T.D. (1981), Celestial mechanics, Volume 23, Issue 1, pp. 57-68<.li>
- * </ol>
+ *
+ *  1. Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.
+ *  2. Kaplan, G. (2005), US Naval Observatory Circular 179.
+ *  3. Moyer, T.D. (1981), Celestial mechanics, Volume 23, Issue 1, pp. 57-68
  *
  * @param jd_tt     [day] Terrestrial Time (TT) based Julian date, but Barycentric Dynamical Time
  *                  (TDB) can also be used here without any loss of precision on the result.
@@ -178,9 +173,8 @@ double tt2tdb(double jd_tt) {
  * limiting amplitude.
  *
  * REFERENCES:
- * <ol>
- * <li>Fairhead, L., &amp; Bretagnon, P. (1990) A&amp;A, 229, 240</li>
- * </ol>
+ *
+ *  1. Fairhead, L., &amp; Bretagnon, P. (1990) A&amp;A, 229, 240
  *
  * @param jd_tt   [day] Terrestrial Time (TT) based Julian date, but Barycentric Dynamical Time (TDB)
  * @param limit   [us] Amplitude of limiting term to include in series. 0 or negative values will
@@ -365,14 +359,12 @@ double tt2tdb_fp(double jd_tt, double limit) {
  * series expansion by Fairhead &amp; Bretagnon 1990, resulting in an accuracy below 100 ns.
  *
  * NOTES:
- * <ol>
- * <li>This function caches the result of the last calculation.</li>
- * </ol>
+ *
+ *  1. This function caches the result of the last calculation.
  *
  * REFERENCES:
- * <ol>
- * <li>Fairhead, L., &amp; Bretagnon, P. (1990) A&amp;A, 229, 240</li>
- * </ol>
+ *
+ *  1. Fairhead, L., &amp; Bretagnon, P. (1990) A&amp;A, 229, 240
  *
  * @param jd_tt   [day] Terrestrial Time (TT) based Julian date, but Barycentric Dynamical Time (TDB)
  * @return        [s] TDB - TT time difference.
@@ -413,12 +405,10 @@ double get_utc_to_tt(int leap_seconds) {
  * difference as measured and published by IERS.
  *
  * NOTES:
- * <ol>
- * <li>The current UT1 - UTC time difference, and polar offsets, historical data and near-term
- * projections are published in the
- <a href="https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html>IERS Bulletins</a>
- * </li>
- * </ol>
+ *
+ *  1. The current UT1 - UTC time difference, and polar offsets, historical data and near-term
+ *     projections are published in the
+ *     [IERS Bulletins](https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html)
  *
  * @param leap_seconds  [s] Leap seconds at the time of observations
  * @param dut1          [s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A
@@ -548,17 +538,14 @@ static double tt_offset(const novas_timespec *ts, enum novas_timescale timescale
  *
  *
  * REFERENCES:
- * <ol>
- * <li>IAU 1991, RECOMMENDATION III. XXIst General Assembly of the
- * International Astronomical Union. Retrieved 6 June 2019.</li>
- * <li>IAU 2006 resolution 3, see Recommendation and footnotes, note 3.</li>
- * <li>Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.</li>
- * <li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
- * <li><a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html#The%20Relationship%20between%20TT%20and%20TDB">
- * https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html</a></li>
- * <li><a href="https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems">
- * https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems</a></li>
- * </ol>
+ *
+ *  1. IAU 1991, RECOMMENDATION III. XXIst General Assembly of the
+ *     International Astronomical Union. Retrieved 6 June 2019.
+ *  2. IAU 2006 resolution 3, see Recommendation and footnotes, note 3.
+ *  3. Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.
+ *  4. Kaplan, G. (2005), US Naval Observatory Circular 179.
+ *  5. https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html
+ *  6. https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems
  *
  * @param timescale     The astronomical time scale in which the Julian Date is given
  * @param ijd           [day] integer part of the Julian day in the specified timescale
@@ -721,17 +708,14 @@ double novas_get_time(const novas_timespec *restrict time, enum novas_timescale 
  * limited by the precision of the `tbd2tt()` implemenation, to around 10 &mu;s.
  *
  * REFERENCES:
- * <ol>
- * <li>IAU 1991, RECOMMENDATION III. XXIst General Assembly of the
- * International Astronomical Union. Retrieved 6 June 2019.</li>
- * <li>IAU 2006 resolution 3, see Recommendation and footnotes, note 3.</li>
- * <li>Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.</li>
- * <li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
- * <li><a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html#The%20Relationship%20between%20TT%20and%20TDB">
- * https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html</a></li>
- * <li><a href="https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems">
- * https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems</a></li>
- * </ol>
+ *
+ *  1. IAU 1991, RECOMMENDATION III. XXIst General Assembly of the
+ *     International Astronomical Union. Retrieved 6 June 2019.
+ *  2. IAU 2006 resolution 3, see Recommendation and footnotes, note 3.
+ *  3. Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.
+ *  4. Kaplan, G. (2005), US Naval Observatory Circular 179.
+ *  5. https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html
+ *  6. https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems
  *
  * @param time        Pointer to the astronomical time specification data structure.
  * @param timescale   The astronomical time scale in which the returned Julian Date is to be
@@ -937,12 +921,10 @@ int novas_set_unix_time(time_t unix_time, long nanos, int leap, double dut1, nov
  * system clock is. You should generally make sure the sytem clock is synchronized to a time reference
  * e.g. via ntp, preferably to a local time reference.
  *
- * NOTE:
+ * NOTES:
  *
- * <ol>
- * <li>With MSC, this function uses the C11 standard `timespec_get()` function, which is
- * portable. For older C standard, the POSIX only `clock_gettime()` function is used.</li>
- * </ol>
+ *  1. With MSC, this function uses the C11 standard `timespec_get()` function, which is
+ *     portable. For older C standard, the POSIX only `clock_gettime()` function is used.
  *
  * @param leap        [s] Leap seconds, e.g. as published by IERS Bulletin C.
  * @param dut1        [s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A
@@ -1114,18 +1096,17 @@ static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *b
 /**
  * Prints a UTC-based ISO timestamp to millisecond precision to the specified string buffer. E.g.:
  *
- * <pre>
+ * ```
  *  2025-01-26T21:32:49.701Z
- * </pre>
+ * ```
  *
  * NOTES:
- * <ol>
- * <li>As per the ISO 8601 specification, the timestamp uses the Gregorian date, even for dates
- * prior to the Gregorian calendar reform of 15 October 1582 (i.e. proleptic Gregorian dates).</li>
  *
- * <li>B.C. dates are indicated with years &lt;=0 according to the astronomical
- * and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
- * </ol>
+ *  1. As per the ISO 8601 specification, the timestamp uses the Gregorian date, even for dates
+ *     prior to the Gregorian calendar reform of 15 October 1582 (i.e. proleptic Gregorian dates).
+ *
+ *  2. B.C. dates are indicated with years &lt;=0 according to the astronomical
+ *     and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.
  *
  * @param time      Pointer to the astronomical time specification data structure.
  * @param[out] dst  Output string buffer. At least 25 bytes are required for a complete timestamp
@@ -1182,20 +1163,19 @@ int novas_iso_timestamp(const novas_timespec *restrict time, char *restrict dst,
  * specified string buffer. It differs from ISO 8601 timestamps for dates prior to the Gregorian
  * calendar reform of 1582 October 15 (otherwise two are identical). E.g.:
  *
- * <pre>
+ * ```
  *  2025-01-26T21:32:49.701 TAI
- * </pre>
+ * ```
  *
  * NOTES:
- * <ol>
- * <li>The timestamp uses the astronomical date. That is Gregorian dates after the Gregorian
- * calendar reform of 15 October 1582, and Julian/Roman dates prior to that. This is in contrast
- * to ISO 8601 timestamps, which use Gregorian dates even for dates the precede the calendar
- * reform that introduced them.</li>
  *
- * <li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601
- * convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
- * </ol>
+ *  1. The timestamp uses the astronomical date. That is Gregorian dates after the Gregorian
+ *     calendar reform of 15 October 1582, and Julian/Roman dates prior to that. This is in contrast
+ *     to ISO 8601 timestamps, which use Gregorian dates even for dates the precede the calendar
+ *     reform that introduced them.
+ *
+ *  2. B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601
+ *     convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.
  *
  * @param time      Pointer to the astronomical time specification data structure.
  * @param scale     The timescale to use.
@@ -1548,17 +1528,15 @@ static double tidal_clock_skew(const novas_frame *frame) {
  * of the Sun and Earth alone may be accounted for.
  *
  * NOTES:
- * <ol>
- * <li>Based on the IERS Conventions 2010, Chapter 10, Eqa. 10.6 / 10.8 but also including the
- * near-Earth tidal effects, and modified for relativistic observer motion.</li>
- * <li>The potential for an observer inside 0.9 planet radii of a major Solar-system body's center
- * will not include the term for that body in the calculation.</li>
- * </ol>
+ *
+ *  1. Based on the IERS Conventions 2010, Chapter 10, Eqa. 10.6 / 10.8 but also including the
+ *     near-Earth tidal effects, and modified for relativistic observer motion.
+ *  2. The potential for an observer inside 0.9 planet radii of a major Solar-system body's center
+ *     will not include the term for that body in the calculation.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 10, see at https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 10, see at https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf
  *
  * @param frame       The observing frame, defining the observer position as well as the positions
  *                    of the major solar-system bodies at the time of observation.
@@ -1652,17 +1630,15 @@ double novas_clock_skew(const novas_frame *frame, enum novas_timescale timescale
  * of the Sun and Earth alone may be accounted for.
  *
  * NOTES:
- * <ol>
- * <li>Based on the IERS Conventions 2010, Chapter 10, Eqs. 10.6 / 10.8, but modified for
- * relativistic observer motion.</li>
- * <li>The potential for an observer inside 0.9 planet radii of a major Solar-system body's
- * center will not include the term for that body in the calculation.</li>
- * </ol>
+ *
+ *  1. Based on the IERS Conventions 2010, Chapter 10, Eqs. 10.6 / 10.8, but modified for
+ *     relativistic observer motion.
+ *  2. The potential for an observer inside 0.9 planet radii of a major Solar-system body's
+ *     center will not include the term for that body in the calculation.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 10, see at https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 10, see at https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf
  *
  * @param frame       The observing frame, defining the observer position as well as the positions
  *                    of the major solar-system bodies at the time of observation.

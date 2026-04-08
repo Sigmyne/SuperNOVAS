@@ -370,10 +370,9 @@ void novas_case_sensitive(int value) {
  * however enable case-sensitive processing by calling novas_case_sensitive() before.
  *
  * NOTES:
- * <ol>
- * <li>This call does not initialize the `orbit` field (added in v1.2) with zeroes to remain ABI
- * compatible with versions &lt;1.2.</li>
- * </ol>
+ *
+ *  1. This call does not initialize the `orbit` field (added in v1.2) with zeroes to remain ABI
+ *     compatible with versions &lt;1.2.
  *
  * @param type          The type of object. NOVAS_PLANET (0), NOVAS_EPHEM_OBJECT (1) or
  *                      NOVAS_CATALOG_OBJECT (2), or NOVAS_ORBITAL_OBJECT (3).
@@ -712,15 +711,13 @@ int make_orbital_object(const char *name, long num, const novas_orbital *orbit, 
  * Converts angular quantities for stars to vectors.
  *
  * NOTES:
- * <ol>
- * <li>The velocity returned should not be used for deriving spectroscopic radial velocity. It is
- * a measure of the perceived change of the stars position, not a true physical velocity.</li>
- * </ol>
+ *
+ *  1. The velocity returned should not be used for deriving spectroscopic radial velocity. It is
+ *     a measure of the perceived change of the stars position, not a true physical velocity.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
  *
  * @param star         Pointer to catalog entry structure containing ICRS catalog
  * @param[out] pos     [AU] Position vector, equatorial rectangular coordinates, It may be NULL if
@@ -1035,9 +1032,8 @@ int transform_hip(const cat_entry *hipparcos, cat_entry *hip_2000) {
  * Applies proper motion, including foreshortening effects, to a star's position.
  *
  * REFERENCES:
- * <ol>
- *  <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
  *
  * @param jd_tdb_in  [day] Barycentric Dynamical Time (TDB) based Julian date of the first epoch.
  * @param pos        [AU] Position vector at first epoch.

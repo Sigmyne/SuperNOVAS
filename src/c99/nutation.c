@@ -11,8 +11,7 @@
  *  U. S. Naval Observatory<br>
  *  Astronomical Applications Dept.<br>
  *  Washington, DC<br>
- *  <a href="http://www.usno.navy.mil/USNO/astronomical-applications">
- *  http://www.usno.navy.mil/USNO/astronomical-applications</a>
+ *  http://www.usno.navy.mil/USNO/astronomical-applications
  *
  * @author Attila Kovacs and G. Kaplan
  *
@@ -55,12 +54,11 @@ typedef struct {
  * the iau2000b() by default.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
- * <li>Capitaine, N., P.T. Wallace and J. Chapront (2005), “Improvement of the IAU 2000 precession
- *     model.” Astronomy &amp; Astrophysics, Vol. 432, pp. 355–67.</li>
- * <li>Coppola, V., Seago, G.H., &amp; Vallado, D.A. (2009), AAS 09-159</li>
- * </ol>
+ *
+ *  1. Kaplan, G. (2005), US Naval Observatory Circular 179.
+ *  2. Capitaine, N., P.T. Wallace and J. Chapront (2005), “Improvement of the IAU 2000 precession
+ *     model.” Astronomy &amp; Astrophysics, Vol. 432, pp. 355–67.
+ *  3. Coppola, V., Seago, G.H., &amp; Vallado, D.A. (2009), AAS 09-159
  *
  * @param t           [cy] TDB time in Julian centuries since J2000.0
  * @param accuracy    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
@@ -167,21 +165,19 @@ static int iau2006_fp(double jd_tt_high, double jd_tt_low, int nA0, int nA1, int
  * accuracy. It is rather expensive computationally.
  *
  * NOTES:
- * <ol>
- * <li>As of SuperNOVAS v1.4.2, this function has been modified to replace the original IAU2000A
- * model coefficients with the IAU2006 (a.k.a. IAU2000A R06) model coefficients, to provide an
- * updated nutation model, which is dynamically consistent with the IAU2006 (P03) precesion model
- * of Capitaine et al. 2003. This is now the same model with respect to which the IERS Earth
- * orinetation parameters are computed and published.
- * </ol>
+ *
+ *  1. As of SuperNOVAS v1.4.2, this function has been modified to replace the original IAU2000A
+ *     model coefficients with the IAU2006 (a.k.a. IAU2000A R06) model coefficients, to provide an
+ *     updated nutation model, which is dynamically consistent with the IAU2006 (P03) precesion model
+ *     of Capitaine et al. 2003. This is now the same model with respect to which the IERS Earth
+ *     orinetation parameters are computed and published.
  *
  * REFERENCES:
- * <ol>
- *  <li>IERS Conventions (2003), Chapter 5.</li>
- *  <li>Simon et al. (1994) Astronomy and Astrophysics 282, 663-683, esp. Sections 3.4-3.5.</li>
- *  <li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
- *  <li>https://hpiers.obspm.fr/eop-pc/models/nutations/nut.html</li>
- * </ol>
+ *
+ *  1. IERS Conventions (2003), Chapter 5.
+ *  2. Simon et al. (1994) Astronomy and Astrophysics 282, 663-683, esp. Sections 3.4-3.5.
+ *  3. Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.
+ *  4. https://hpiers.obspm.fr/eop-pc/models/nutations/nut.html
  *
  * @param jd_tt_high  [day] High-order part of the Terrestrial Time (TT) based Julian date.
  *                    Typically it may be the integer part of a split date for the highest
@@ -208,26 +204,24 @@ int iau2000a(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double 
  * being about 15x faster than `iau2000a()`.
  *
  * NOTES
- * <ol>
- * <li>Originally this was the IAU2000B series of McCarthy &amp; Luzum (2003), consistent with the
- * original IAU2000 precession model</li>
  *
- * <li>As of SuperNOVAS v1.4.2, this function has been modified to use a truncated series for the
- * IAU2006 (a.k.a. IAU 2000A R06) nutation model, whereby terms with amplitudes larger than 100
- * &mu;as are omitted, resulting in 102 terms for the longitude and 57 terms the obliquity. This
- * results in similar, or slightly better, precision than the original IAU2000B series of McCarthy
- * &amp; Luzum (2003), and it is now dynamically consistent with the IAU2006 (P03) precession
- * model (Capitaine et al. 2005).</li>
- * </ol>
+ *  1. Originally this was the IAU2000B series of McCarthy &amp; Luzum (2003), consistent with the
+ *     original IAU2000 precession model
+ *
+ *  2. As of SuperNOVAS v1.4.2, this function has been modified to use a truncated series for the
+ *     IAU2006 (a.k.a. IAU 2000A R06) nutation model, whereby terms with amplitudes larger than 100
+ *     &mu;as are omitted, resulting in 102 terms for the longitude and 57 terms the obliquity. This
+ *     results in similar, or slightly better, precision than the original IAU2000B series of McCarthy
+ *     &amp; Luzum (2003), and it is now dynamically consistent with the IAU2006 (P03) precession
+ *     model (Capitaine et al. 2005).
  *
  * REFERENCES:
- * <ol>
- * <li>McCarthy, D. and Luzum, B. (2003). "An Abridged Model of the
+ *
+ *  1. McCarthy, D. and Luzum, B. (2003). "An Abridged Model of the
  *     Precession &amp; Nutation of the Celestial Pole," Celestial
  *     Mechanics and Dynamical Astronomy, Volume 85, Issue 1,
- *     Jan. 2003, p. 37. (IAU 2000B) IERS Conventions (2003), Chapter 5.</li>
- * <li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
- * </ol>
+ *     Jan. 2003, p. 37. (IAU 2000B) IERS Conventions (2003), Chapter 5.
+ *  2. Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.
  *
  * @param jd_tt_high  [day] High-order part of the Terrestrial Time (TT) based Julian date.
  *                    Typically it may be the integer part of a split date for the highest
@@ -261,21 +255,18 @@ int iau2000b(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double 
  * NU2000K was developed by G. Kaplan (USNO) in March 2004
  *
  * NOTES:
- * <ol>
- * <li>As of SuperNOVAS v1.4.2, this function has been modified to include a rescaling of the
- * original IAU2000 nutation compatible values to 'IAU2006' (i.e. IAU2000A R06) compatible values,
- * according to Coppola, Seago, and Vallado (2009). The rescaling makes this model more
- * dynamically consistent with the IAU2006 (P03) precession model of Capitaine et al. (2003).
- * </li>
- * </ol>
+ *
+ *  1. As of SuperNOVAS v1.4.2, this function has been modified to include a rescaling of the
+ *     original IAU2000 nutation compatible values to 'IAU2006' (i.e. IAU2000A R06) compatible values,
+ *     according to Coppola, Seago, and Vallado (2009). The rescaling makes this model more
+ *     dynamically consistent with the IAU2006 (P03) precession model of Capitaine et al. (2003).
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions (2003), Chapter 5.</li>
- * <li>Simon et al. (1994) Astronomy and Astrophysics 282, 663-683, esp. Sections 3.4-3.5.</li>
- * <li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
- * <li>Coppola, V., Seago, G.H., &amp; Vallado, D.A. (2009), AAS 09-159</li>
- * </ol>
+ *
+ *  1. IERS Conventions (2003), Chapter 5.
+ *  2. Simon et al. (1994) Astronomy and Astrophysics 282, 663-683, esp. Sections 3.4-3.5.
+ *  3. Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.
+ *  4. Coppola, V., Seago, G.H., &amp; Vallado, D.A. (2009), AAS 09-159
  *
  * @param jd_tt_high  [day] High-order part of the Terrestrial Time (TT) based Julian date.
  *                    Typically it may be the integer part of a split date for the highest

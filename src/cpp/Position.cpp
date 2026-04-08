@@ -128,7 +128,7 @@ Position Position::operator-(const Position& r) const {
  * time interval.
  *
  * @param dt   the time interval on the right-hand-side of '/'.
- * @return     velocity <b>v</b> = <b>x</b> / dt, where <b>x</b> is this position vector.
+ * @return     velocity __v__ = __x__ / dt, where __x__ is this position vector.
  *
  * @since 1.6
  * @sa Position::operator/()

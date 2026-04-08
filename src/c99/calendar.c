@@ -25,19 +25,17 @@
  * and for the Julian (Roman) calendar (introduced in 45 B.C.) for dates prior to that.
  *
  * NOTES:
- * <ol>
- * <li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601
- * convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
  *
- * <li>Added argument range checking in v1.3.0, returning NAN if the month or day are out of the
- * normal range (for a leap year).</li>
- * </ol>
+ *  1. B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601
+ *     convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.
+ *
+ *  2. Added argument range checking in v1.3.0, returning NAN if the month or day are out of the
+ *     normal range (for a leap year).
  *
  * REFERENCES:
- * <ol>
- *  <li>Fliegel, H. &amp; Van Flandern, T.  Comm. of the ACM, Vol. 11, No. 10, October 1968, p.
- *  657.</li>
- * </ol>
+ *
+ *  1. Fliegel, H. &amp; Van Flandern, T.  Comm. of the ACM, Vol. 11, No. 10, October 1968, p.
+ *     657.
  *
  * @param calendar  The type of calendar to use: NOVAS_ASTRONOMICAL_CALENDAR,
  *                  NOVAS_GREGORIAN_CALENDAR, or NOVAS_ROMAN_CALENDAR.
@@ -94,16 +92,14 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
  * TT, etc.) - output time value will have same basis.
  *
  * NOTES:
- * <ol>
- *  <li>B.C. dates are indicated with years &lt;=0 according to the astronomical
- * and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
- * </ol>
+ *
+ *  1. B.C. dates are indicated with years &lt;=0 according to the astronomical
+ *     and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.
  *
  * REFERENCES:
- * <ol>
- *  <li>Fliegel, H. &amp; Van Flandern, T.  Comm. of the ACM, Vol. 11, No. 10, October 1968,
- *  p. 657.</li>
- * </ol>
+ *
+ *  1. Fliegel, H. &amp; Van Flandern, T.  Comm. of the ACM, Vol. 11, No. 10, October 1968,
+ *     p. 657.
  *
  * @param tjd          [day] Julian day.
  * @param calendar     The type of calendar to use: NOVAS_ASTRONOMICAL_CALENDAR,
@@ -189,23 +185,21 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
  * on any UT-like time scale (UTC, UT1, TT, etc.) - output Julian day will have the same basis.
  *
  * NOTES:
- * <ol>
- * <li>The Gregorian calendar was introduced on 1582 October 15 only. Prior to that, astronomical
- * dates are Julian/Roman dates, so the day before the reform was 1582 October 4. You can also
- * use `novas_jd_from_date()` to convert dates with more flexibility.</li>
  *
- * <li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601
- * convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
+ *  1. The Gregorian calendar was introduced on 1582 October 15 only. Prior to that, astronomical
+ *     dates are Julian/Roman dates, so the day before the reform was 1582 October 4. You can also
+ *     use `novas_jd_from_date()` to convert dates with more flexibility.
  *
- * <li>Added argument range checking in v1.3.0, returning NAN if the month or day are out of the
- * normal range (for a leap year).</li>
- * </ol>
+ *  2. B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601
+ *     convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.
+ *
+ *  3. Added argument range checking in v1.3.0, returning NAN if the month or day are out of the
+ *     normal range (for a leap year).
  *
  * REFERENCES:
- * <ol>
- *  <li>Fliegel, H. &amp; Van Flandern, T.  Comm. of the ACM, Vol. 11, No. 10, October 1968, p.
- *  657.</li>
- * </ol>
+ *
+ *  1. Fliegel, H. &amp; Van Flandern, T.  Comm. of the ACM, Vol. 11, No. 10, October 1968, p.
+ *     657.
  *
  * @param year    [yr] Astronomical calendar year. B.C. years can be simply represented as &lt;=0,
  *                e.g. 1 B.C. as 0, and _X_ B.C. as (1 - _X_).
@@ -231,21 +225,19 @@ double julian_date(short year, short month, short day, double hour) {
  * time value will have same basis.
  *
  * NOTES:
- * <ol>
- * <li>The Gregorian calendar was introduced on 15 October 1582 only (corresponding to 5
- * October of the previously used Julian calendar). Prior to it this function returns Julian /
- * Roman calendar dates, e.g. the day before the reform is 1582 October 4. You can use
- * `novas_jd_to_date()` instead to convert JD days to dates in specific calendars.</li>
  *
- * <li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601
- * convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
- * </ol>
+ *  1. The Gregorian calendar was introduced on 15 October 1582 only (corresponding to 5
+ *     October of the previously used Julian calendar). Prior to it this function returns Julian /
+ *     Roman calendar dates, e.g. the day before the reform is 1582 October 4. You can use
+ *     `novas_jd_to_date()` instead to convert JD days to dates in specific calendars.
+ *
+ *  2. B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601
+ *     convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.
  *
  * REFERENCES:
- * <ol>
- *  <li>Fliegel, H. &amp; Van Flandern, T.  Comm. of the ACM, Vol. 11, No. 10, October 1968,
- *  p. 657.</li>
- * </ol>
+ *
+ *  1. Fliegel, H. &amp; Van Flandern, T.  Comm. of the ACM, Vol. 11, No. 10, October 1968,
+ *     p. 657.
  *
  * @param tjd          [day] Julian date
  * @param[out] year    [yr] Astronomical calendar year. It may be NULL if not required. B.C. years

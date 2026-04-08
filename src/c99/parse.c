@@ -128,13 +128,13 @@ double novas_epoch(const char *restrict system) {
  *
  * For example, all of the lines below are valid specifications:
  *
- * <pre>
+ * ```
  *  23:59:59.999
  *  23h 59m 59.999
  *  23h59'59.999
  *  23 59 59.999
  *  23 59
- * </pre>
+ * ```
  *
  * At least the leading two components (hours and minutes) are required. If the seconds are
  * ommitted, they will be assumed zero, i.e. `23:59` is the same as `23:59:00.000`.
@@ -213,25 +213,24 @@ double novas_parse_hms(const char *restrict hms, char **restrict tail) {
  *
  * For example, all of the lines below specify the same time:
  *
- * <pre>
+ * ```
  *  23:59:59.999
  *  23h 59m 59.999s
  *  23h59'59.999
  *  23 59 59.999
  *  23 59
  *  23h
- * </pre>
+ * ```
  *
  * At least the leading two components (hours and minutes) are required. If the seconds are
  * ommitted, they will be assumed zero, i.e. `23:59` is the same as `23:59:00.000`.
  *
  * NOTES:
- * <ol>
- * <li> To see if the string was fully parsed when returning a valid (non-NAN) value, you can
- * check `errno`: it should be zero (0) if all non-whitespace characters have been parsed from
- * the input string, or else `EINVAL` if the parsed value used only the leading part of the
- * string.</li>
- * </ol>
+ *
+ *  1. To see if the string was fully parsed when returning a valid (non-NAN) value, you can
+ *     check `errno`: it should be zero (0) if all non-whitespace characters have been parsed from
+ *     the input string, or else `EINVAL` if the parsed value used only the leading part of the
+ *     string.
  *
  * @param hms     String specifying hours, minutes, and seconds, which correspond to
  *                a time between 0 and 24 h. Time in any range is permitted, but the minutes and
@@ -310,7 +309,7 @@ static int parse_compass(const char *restrict str, int *n) {
  *
  * For example, all of the lines below are valid specifications:
  *
- * <pre>
+ * ```
  *  -179:59:59.999
  *  -179d 59m 59.999s
  *  -179 59' 59.999
@@ -321,7 +320,7 @@ static int parse_compass(const char *restrict str, int *n) {
  *  179 59 S
  *  W 179 59 59
  *  North 179d 59m
- * </pre>
+ * ```
  *
  * At least the leading two components (degrees and arcminutes) are required. If the arcseconds
  * are ommitted, they will be assumed zero, i.e. `179:59` is the same as `179:59:00.000`.
@@ -420,7 +419,7 @@ double novas_parse_dms(const char *restrict dms, char **restrict tail) {
  *
  * For example, all of the lines below are valid specifications:
  *
- * <pre>
+ * ```
  *  -179:59:59.999
  *  -179d 59m 59.999s
  *  -179 59' 59.999
@@ -430,18 +429,17 @@ double novas_parse_dms(const char *restrict dms, char **restrict tail) {
  *  179_59_59.999__S
  *  W 179 59 59
  *  North 179d 59m
- * </pre>
+ * ```
  *
  * At least the leading two components (degrees and arcminutes) are required. If the arcseconds
  * are ommitted, they will be assumed zero, i.e. `179:59` is the same as `179:59:00.000`.
  *
  * NOTES:
- * <ol>
- * <li> To see if the string was fully parsed when returning a valid (non-NAN) value, you can
- * check `errno`: it should be zero (0) if all non-whitespace characters have been parsed from the
- * input string, or else `EINVAL` if the parsed value used only the leading part of the
- * string.</li>
- * </ol>
+ *
+ *  1. To see if the string was fully parsed when returning a valid (non-NAN) value, you can
+ *     check `errno`: it should be zero (0) if all non-whitespace characters have been parsed from the
+ *     input string, or else `EINVAL` if the parsed value used only the leading part of the
+ *     string.
  *
  * @param dms     String specifying degrees, minutes, and seconds, which correspond to
  *                an angle. Angles in any range are permitted, but the minutes and
@@ -487,7 +485,7 @@ double novas_dms_degrees(const char *restrict dms) {
  *
  * A few examples of angles that may be parsed:
  *
- * <pre>
+ * ```
  *  -179:59:59.999
  *  -179d 59m 59.999s
  *  179 59' 59.999" S
@@ -500,7 +498,7 @@ double novas_dms_degrees(const char *restrict dms) {
  *  W 179.99999d
  *  North 179d 59m
  *  east 179.99 degrees
- * </pre>
+ * ```
  *
  * @param str         The input string that specified an angle either as decimal degrees
  *                    or as a broken down DMS speficication. The decimal value may be
@@ -620,7 +618,7 @@ double novas_parse_degrees(const char *restrict str, char **restrict tail) {
  *
  * A few examples of angles that may be parsed:
  *
- * <pre>
+ * ```
  *  23:59:59.999
  *  23h 59m 59.999s
  *  23h59'59.999
@@ -628,7 +626,7 @@ double novas_parse_degrees(const char *restrict str, char **restrict tail) {
  *  23.999999h
  *  23.999999 hours
  *  23.999999
- * </pre>
+ * ```
  *
  *
  * @param str         The input string that specified an angle either as decimal hours
@@ -859,7 +857,7 @@ static int parse_zone(const char *str, char **tail) {
  *
  * For example, for `format` NOVAS_YMD, all of the following strings may specify the date:
  *
- * <pre>
+ * ```
  *  2025-01-26
  *  2025 January 26
  *  2025_Jan_26
@@ -869,7 +867,7 @@ static int parse_zone(const char *str, char **tail) {
  *  2025/1/26 19:33:28+02
  *  2025-01-26T19:33:28-0600
  *  2025 Jan 26 19:33:28+05:30
- * </pre>
+ * ```
  *
  * are all valid dates that can be parsed.
  *
@@ -878,10 +876,9 @@ static int parse_zone(const char *str, char **tail) {
  * those.
  *
  * NOTES:
- * <ol>
- *  <li>B.C. dates are indicated with years &lt;=0 according to the astronomical
- * and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
- * </oL>
+ *
+ *  1. B.C. dates are indicated with years &lt;=0 according to the astronomical
+ *     and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.
  *
  * @param calendar    The type of calendar to use: NOVAS_ASTRONOMICAL_CALENDAR,
  *                    NOVAS_GREGORIAN_CALENDAR, or NOVAS_ROMAN_CALENDAR.
@@ -1025,7 +1022,7 @@ double novas_parse_date_format(enum novas_calendar_type calendar, enum novas_dat
  *
  * For example:
  *
- * <pre>
+ * ```
  *  2025-01-26
  *  2025 January 26
  *  2025_Jan_26
@@ -1035,21 +1032,20 @@ double novas_parse_date_format(enum novas_calendar_type calendar, enum novas_dat
  *  2025/1/26 19:33:28+02
  *  2025-01-26T19:33:28-0600
  *  2025 Jan 26 19:33:28+05:30
- * </pre>
+ * ```
  *
  * are all valid dates that can be parsed.
  *
  * NOTES:
- * <ol>
- * <li>This function assumes Gregorian dates after their introduction on 1582 October 15, and
- * Julian/Roman dates before that, as was the convention of the time. I.e., the day before of the
- * introduction of the Gregorian calendar reform is 1582 October 4. I.e., you should not use
- * this function with ISO 8601 timestamps containing dates prior to 1582 October 15 (for such
- * date you may use `novas_parse_iso_date()` instead).</li>
  *
- * <li>B.C. dates are indicated with years &lt;=0 according to the astronomical
- * and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
- * </oL>
+ *  1. This function assumes Gregorian dates after their introduction on 1582 October 15, and
+ *     Julian/Roman dates before that, as was the convention of the time. I.e., the day before of the
+ *     introduction of the Gregorian calendar reform is 1582 October 4. I.e., you should not use
+ *     this function with ISO 8601 timestamps containing dates prior to 1582 October 15 (for such
+ *     date you may use `novas_parse_iso_date()` instead).
+ *
+ *  2. B.C. dates are indicated with years &lt;=0 according to the astronomical
+ *     and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.
  *
  * @param date        The astronomical date specification, possibly including time and timezone,
  *                    in a standard format. The date is assumed to be in the astronomical calendar
@@ -1084,10 +1080,9 @@ double novas_parse_date(const char *restrict date, char **restrict tail) {
  * used before the calendar reform.
  *
  * NOTES:
- * <ol>
- * <li>B.C. dates are indicated with years &lt;=0 according to the astronomical
- * and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
- * </oL>
+ *
+ *  1. B.C. dates are indicated with years &lt;=0 according to the astronomical
+ *     and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.
  *
  * @param date        The ISO 8601 date specification, possibly including time and timezone, in a
  *                    standard format.

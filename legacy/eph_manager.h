@@ -8,8 +8,7 @@
  *  U. S. Naval Observatory<br>
  *  Astronomical Applications Dept.<br>
  *  Washington, DC<br>
- *  <a href="http://www.usno.navy.mil/USNO/astronomical-applications">
- *  http://www.usno.navy.mil/USNO/astronomical-applications</a>
+ *  http://www.usno.navy.mil/USNO/astronomical-applications
  *
  * @author G. Kaplan and Attila Kovacs
  *
@@ -68,63 +67,63 @@ enum de_planet {
 /// \cond PRIVATE
 // External variables ------------------------------>
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern short KM;
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern int IPT[3][12];
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern int LPT[3];
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern long NRL;
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern long NP;
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern long NV;
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern long RECORD_LENGTH;
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern double SS[3];
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern double JPLAU;
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern double PC[18];
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern double VC[18];
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern double TWOT;
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern double EM_RATIO;
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern double *BUFFER;
 
-/// @deprecated (<i>for internal use</i>) This variable should never have been exposed to users.
+/// @deprecated (_for internal use_) This variable should never have been exposed to users.
 ///             But since NOVAS C did, we follow.
 extern FILE *EPHFILE;
 

@@ -12,8 +12,7 @@
  *  U. S. Naval Observatory<br>
  *  Astronomical Applications Dept.<br>
  *  Washington, DC<br>
- *  <a href="http://www.usno.navy.mil/USNO/astronomical-applications">
- *  http://www.usno.navy.mil/USNO/astronomical-applications</a>
+ *  http://www.usno.navy.mil/USNO/astronomical-applications
  *
  * @author G. Kaplan and Attila Kovacs
  * @version 1.6.0
@@ -76,7 +75,7 @@
 #define SUPERNOVAS_PATCHLEVEL     0
 
 /// Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.
-#define SUPERNOVAS_RELEASE_STRING "-rc3"
+#define SUPERNOVAS_RELEASE_STRING "-devel"
 
 /// \cond PRIVATE
 
@@ -329,7 +328,7 @@
 #define NOVAS_KMS                 (NOVAS_KM)
 
 /// [m] Astronomical unit (AU). IAU definition.
-/// See <a href="https://www.iau.org/static/resolutions/IAU2012_English.pdf">IAU 2012 Resolution B2</a>.
+/// See [IAU 2012 Resolution B2](https://www.iau.org/static/resolutions/IAU2012_English.pdf).
 /// @sa DE405_AU
 /// @c_source
 #define NOVAS_AU                  1.495978707e+11
@@ -655,17 +654,12 @@ enum novas_planet {
  * ```
  *
  * REFERENCES:
- * <ol>
- * <li>https://orbital-mechanics.space/reference/planetary-parameters.html, Table 3.</li>
- * <li>B. A. Archinal, et al.,
- * Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:
- * 2015. Celestial Mechanics and Dynamical Astronomy, 130(3):22, March 2018.
- * doi:10.1007/s10569-017-9805-5.</li>
- * <li>B. A. Archinal, et al.,
- * Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:
- * 2015. Celestial Mechanics and Dynamical Astronomy, 130(3):22, March 2018.
- * doi:10.1007/s10569-017-9805-5.
- * </ol>
+ *
+ *  1. https://orbital-mechanics.space/reference/planetary-parameters.html, Table 3.
+ *  2. B. A. Archinal, et al.,
+ *     Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:
+ *     2015. Celestial Mechanics and Dynamical Astronomy, 130(3):22, March 2018.
+ *     doi:10.1007/s10569-017-9805-5.
  *
  * @hideinitializer
  * @since 1.5
@@ -688,15 +682,13 @@ enum novas_planet {
  * Barycentric reciprocal masses (index 12, 13) are not set.
  *
  * NOTES:
- * <ol>
- * <li>The values have been updated to used DE440 data (Park et al. 2021) in 1.4.
- * </ol>
+ *
+ *  1. The values have been updated to used DE440 data (Park et al. 2021) in 1.4.
  *
  * REFERENCES:
- * <ol>
- * <li>Ryan S. Park et al 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414</li>
- * <li>IERS Conventions, Chapter 3, Table 3.1</li>
- * </ol>
+ *
+ *  1. Ryan S. Park et al 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414
+ *  2. IERS Conventions, Chapter 3, Table 3.1
  *
  * @hideinitializer
  * @since 1.2
@@ -784,7 +776,7 @@ extern int grav_bodies_full_accuracy;
 
 /**
  * Solar-system body IDs to use as object.number with ephemeris source types. JPL ephemerides
- * use <a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html">NAIF IDs</a>
+ * use [NAIF IDs](https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/naif_ids.html)
  * to identify objects in the Solar-system, which is thus the most widely adopted convention for
  * numbering Solar-system bodies. But other numbering systems also exists, for example the
  * CALCEPH library uses its own convention for the numbering of asteroids.
@@ -1391,13 +1383,12 @@ typedef struct novas_orbital_system {
  * the most up-to-date positions and velocities.
  *
  * REFERENCES:
- * <ol>
- * <li>Up-to-date orbital elements for asteroids, comets, etc from the Minor Planet Center (MPC):
- * https://minorplanetcenter.net/data</li>
- * <li>Mean elements for planetary satellites from JPL Horizons: https://ssd.jpl.nasa.gov/sats/elem/</li>
- * <li>Low accuracy mean elements for planets from JPL Horizons:
- * https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- * </ol>
+ *
+ *  1. Up-to-date orbital elements for asteroids, comets, etc from the Minor Planet Center (MPC):
+ *     https://minorplanetcenter.net/data
+ *  2. Mean elements for planetary satellites from JPL Horizons: https://ssd.jpl.nasa.gov/sats/elem/
+ *  3. Low accuracy mean elements for planets from JPL Horizons:
+ *     https://ssd.jpl.nasa.gov/planets/approx_pos.html
  *
  * @author Attila Kovacs
  * @since 1.2

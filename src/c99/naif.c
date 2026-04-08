@@ -25,8 +25,8 @@
 /**
  * Converts a NAIF ID to a NOVAS major planet ID. It account for the different IDs used for Sun,
  * Moon, SSB, EMB and the Pluto system. Otherwise NAIF planet barycenters are mapped to the
- * corresponding bodies. NAIF body centers <i>n</i>99 (e.g. 399 for Earth) are mapped to the
- * corresponding NOVAS planet number <i>n</i>. All other NAIF IDs will return -1, indicating no
+ * corresponding bodies. NAIF body centers _n_99 (e.g. 399 for Earth) are mapped to the
+ * corresponding NOVAS planet number _n_. All other NAIF IDs will return -1, indicating no
  * match to a NOVAS planet ID.
  *
  *

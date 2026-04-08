@@ -46,7 +46,7 @@ OrbitalSystem::OrbitalSystem(const novas_orbital_system *system) {
 }
 
 /**
- * (<i>primarily for internal use</i>) Returns the underlying NOVAS C data structure, which
+ * (_primarily for internal use_) Returns the underlying NOVAS C data structure, which
  * defines the orbital system.
  *
  * @return  a pointer to the NOVAS C structure used internally to define the orbital system.
@@ -295,7 +295,7 @@ OrbitalSystem OrbitalSystem::ecliptic(const Planet& center) {
 }
 
 /**
- * (<i>primarily for internal use</i>) Constructs a new orbital system by copying the specified
+ * (_primarily for internal use_) Constructs a new orbital system by copying the specified
  * NOVAS C orbital system data structure. The returned orbital system may be invalid if the
  * argument is NULL or if the C orbital system is ill-defined. It's best practice to call
  * `is_valid()` on the returned orbital system instance after this call to check that the supplied
@@ -436,7 +436,7 @@ Orbital::Orbital(const OrbitalSystem& system, const Time& ref_time, const Coordi
 
 
 /**
- * (<i>for internal use</i>) Returns the underlying NOVAS C data structure containing the orbital
+ * (_for internal use_) Returns the underlying NOVAS C data structure containing the orbital
  * parameters.
  *
  * @return  pointer to the NOVAS C data structure that stores the orbital parameters internally.
@@ -1081,7 +1081,7 @@ Orbital Orbital::from_mean_motion(const OrbitalSystem& system, const Time& ref_t
 }
 
 /**
- * (<i>for internal use</i>) Returns a new instance of a Keplerian orbital, using a copy of a
+ * (_for internal use_) Returns a new instance of a Keplerian orbital, using a copy of a
  * NOVAS C orbital data structure. The returned orbital may be invalid if the argument is NULL or
  * if the input C orbital is ill-defined. It's best practice to call `is_valid()` on the returned
  * orbital after this call to check that the supplied parameters do in fact define a valid

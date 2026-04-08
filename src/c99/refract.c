@@ -36,10 +36,9 @@ static double lambda = NOVAS_DEFAULT_WAVELENGTH;      ///< [&mu;m] Observing wav
  * precise positioning.
  *
  * REFERENCES:
- * <ol>
- * <li>Explanatory Supplement to the Astronomical Almanac, p. 144.</li>
- * <li>Bennett, G. (1982), Journal of Navigation (Royal Institute) 35, pp. 255-259.</li>
- * </ol>
+ *
+ *  1. Explanatory Supplement to the Astronomical Almanac, p. 144.
+ *  2. Bennett, G. (1982), Journal of Navigation (Royal Institute) 35, pp. 255-259.
  *
  * @param location      Pointer to structure containing observer's location. It may also
  *                      contains weather data (optional) for the observer's location.
@@ -92,17 +91,15 @@ double refract_astro(const on_surface *restrict location, enum novas_refraction_
  * precise positioning.
  *
  * NOTES:
- * <ol>
- * <li>The standard temeperature model includes a very rough estimate of the mean annual
- * temeprature for the ovserver's latitude and elevation, rather than the 10 C everywhere
- * assumption in NOVAS C 3.1.<.li>
- * </ol>
+ *
+ *  1. The standard temeperature model includes a very rough estimate of the mean annual
+ *     temperature for the ovserver's latitude and elevation, rather than the 10 C everywhere
+ *     assumption in NOVAS C 3.1.
  *
  * REFERENCES:
- * <ol>
- * <li>Explanatory Supplement to the Astronomical Almanac, p. 144.</li>
- * <li>Bennett, G. (1982), Journal of Navigation (Royal Institute) 35, pp. 255-259.</li>
- * </ol>
+ *
+ *  1. Explanatory Supplement to the Astronomical Almanac, p. 144.
+ *  2. Bennett, G. (1982), Journal of Navigation (Royal Institute) 35, pp. 255-259.
  *
  * @param location      Pointer to structure containing observer's location. It may also
  *                      contains weather data (optional) for the observer's location.
@@ -302,9 +299,8 @@ double novas_optical_refraction(double jd_tt, const on_surface *loc, enum novas_
  * Adapted from FORTAN code provided by Berman &amp; Rockwell 1976.
  *
  * REFERENCES:
- * <ol>
- * <li>Berman, Allan L., and Rockwell, Stephen T. (1976), NASA JPL Technical Report 32-1601</li>
- * </ol>
+ *
+ *  1. Berman, Allan L., and Rockwell, Stephen T. (1976), NASA JPL Technical Report 32-1601
  *
  * @param jd_tt     [day] Terrestrial Time (TT) based Julian data of observation (unused in this
  *                  implementation of RefractionModel)
@@ -418,13 +414,11 @@ int novas_refract_wavelength(double microns) {
  * implementation is not provided nor it is endorsed by SOFA. The original function has been
  * modified slightly, such as:
  *
- * <ol>
- * <li>Out-of-range weather parameters will return with an error (`errno` set to `EINVAL`), unlike
- * the SOFA implementation, which sets minimal or maximal allowed values for these.</li>
- * <li>The algorithm has been simplified to use fewer variables and simpler logic.</li>
- * <li>The SOFA function this implementation is based on returns A/B coefficients, whereas this
- * implementation returns the refraction correction angle.</li>
- * </ol>
+ * 1. Out-of-range weather parameters will return with an error (`errno` set to `EINVAL`), unlike
+ *    the SOFA implementation, which sets minimal or maximal allowed values for these.
+ * 2. The algorithm has been simplified to use fewer variables and simpler logic.
+ * 3. The SOFA function this implementation is based on returns A/B coefficients, whereas this
+ *    implementation returns the refraction correction angle.
  *
  * The refraction is calculated for the observing wavelenth previously set via
  * `novas_refract_wavelength()`, or for visible light at 550 nm by default.
@@ -445,45 +439,26 @@ int novas_refract_wavelength(double microns) {
  *
  *
  * NOTES:
- * <ol>
- * <li>
- * From the SOFA documentation: "The model balances speed and accuracy to give good results in
- * applications where performance at low altitudes is not paramount. Performance is maintained
- * across a range of conditions, and applies to both optical/IR and radio."
- * </li>
- * <li>The model is divergent in the observed direction of the horizon. As such, it should not be
- * used for calculating refraction at or below the horizon itself.</li>
- * </ol>
+ *
+ *  1. From the SOFA documentation: "The model balances speed and accuracy to give good results in
+ *     applications where performance at low altitudes is not paramount. Performance is maintained
+ *     across a range of conditions, and applies to both optical/IR and radio."
+ *
+ *  2. The model is divergent in the observed direction of the horizon. As such, it should not be
+ *     used for calculating refraction at or below the horizon itself.
  *
  * REFERENCES:
- * <ol>
- * <li>
- *     Crane, R.K., Meeks, M.L. (ed), "Refraction Effects in the Neutral
- *     Atmosphere", Methods of Experimental Physics: Astrophysics 12B,
- *     Academic Press, 1976.
- * </li>
- * <li>
- *     Gill, Adrian E., "Atmosphere-Ocean Dynamics", Academic Press,
- *     1982.
- * </li>
- * <li>
- *     Green, R.M., "Spherical Astronomy", Cambridge University Press,
- *     1987.
- * </li>
- * <li>
- *     Hohenkerk, C.Y., &amp; Sinclair, A.T., NAO Technical Note No. 63,
- *     1985.
- * </li>
- * <li>
- *     Rueger, J.M., "Refractive Index Formulae for Electronic Distance
+ *
+ *  1. Crane, R.K., Meeks, M.L. (ed), "Refraction Effects in the Neutral Atmosphere", Methods of
+ *     Experimental Physics: Astrophysics 12B, Academic Press, 1976.
+ *  2. Gill, Adrian E., "Atmosphere-Ocean Dynamics", Academic Press, 1982.
+ *  3. Green, R.M., "Spherical Astronomy", Cambridge University Press, 1987.
+ *  4. Hohenkerk, C.Y., &amp; Sinclair, A.T., NAO Technical Note No. 63, 1985.
+ *  5. Rueger, J.M., "Refractive Index Formulae for Electronic Distance
  *     Measurement with Radio and Millimetre Waves", in Unisurv Report
  *     S-68, School of Surveying and Spatial Information Systems,
  *     University of New South Wales, Sydney, Australia, 2002.
- * </li>
- * <li>
- *     Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.
- * </li>
- * </ol>
+ *  6. Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.
  *
  * @param jd_tt     [day] Terrestrial Time (TT) based Julian data of observation (unused in this
  *                  implementation of RefractionModel)

@@ -244,13 +244,12 @@ static int novas_orbital_plane_pos(double M, double e, double *restrict E, doubl
  * defined (e.g. ecliptic for heliocentric orbitals).
  *
  * REFERENCES:
- * <ol>
- * <li>E.M. Standish and J.G. Williams 1992.</li>
- * <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- * <li>https://en.wikipedia.org/wiki/Orbital_elements</li>
- * <li>https://orbitalofficial.com/</li>
- * <li>https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf</li>
- * </ol>
+ *
+ *  1. E.M. Standish and J.G. Williams 1992.
+ *  2. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  3. https://en.wikipedia.org/wiki/Orbital_elements
+ *  4. https://orbitalofficial.com/
+ *  5. https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf
  *
  * @param jd_tdb    [day] Barycentric Dynamic Time (TDB) based Julian date
  * @param orbit     Orbital parameters
@@ -341,13 +340,12 @@ int novas_orbit_native_posvel(double jd_tdb, const novas_orbital *restrict orbit
  * for the specified time of observation.
  *
  * REFERENCES:
- * <ol>
- * <li>E.M. Standish and J.G. Williams 1992.</li>
- * <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- * <li>https://en.wikipedia.org/wiki/Orbital_elements</li>
- * <li>https://orbitalofficial.com/</li>
- * <li>https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf</li>
- * </ol>
+ *
+ *  1. E.M. Standish and J.G. Williams 1992.
+ *  2. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  3. https://en.wikipedia.org/wiki/Orbital_elements
+ *  4. https://orbitalofficial.com/
+ *  5. https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf
  *
  * @param jd_tdb    [day] Barycentric Dynamic Time (TDB) based Julian date
  * @param orbit     Orbital parameters
@@ -393,11 +391,10 @@ int novas_orbit_posvel(double jd_tdb, const novas_orbital *restrict orbit, enum 
  * (90&deg; + `ra`).
  *
  * NOTES:
- * <ol>
- * <li>You should not expect much precision from the long-range orbital approximations for
- * planetary satellites. For applications that require precision at any level, you should rely
- * on appropriate ephemerides, or else on up-to-date short-term orbital elements.</li>
- * </ol>
+ *
+ *  1. You should not expect much precision from the long-range orbital approximations for
+ *     planetary satellites. For applications that require precision at any level, you should rely
+ *     on appropriate ephemerides, or else on up-to-date short-term orbital elements.
  *
  * @param type  Coordinate reference system in which `ra` and `dec` are defined (e.g. NOVAS_GCRS).
  * @param ra    [h] the R.A. of the pole of the orbital reference plane.

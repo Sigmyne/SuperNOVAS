@@ -45,10 +45,9 @@
  *  ID is set to -1, then name-based lookup will be used instead.
  *
  *  REFERENCES:
- *  <ol>
- *  <li>The NAIF CSPICE Toolkit: https://naif.jpl.nasa.gov/naif/toolkit.html</li>
- *  <li>the Sigmyne/cspice-sharedlib repository: https://github.com/Sigmyne/cspice-sharedlib</li>
- *  </ol>
+ *
+ *   1. The NAIF CSPICE Toolkit: https://naif.jpl.nasa.gov/naif/toolkit.html
+ *   2. the Sigmyne/cspice-sharedlib repository: https://github.com/Sigmyne/cspice-sharedlib
  *
  * @author Attila Kovacs
  * @since 1.2
@@ -154,10 +153,9 @@ int novas_cspice_is_thread_safe() {
  * CSPICE errors gracefully ourselves.
  *
  * REFERENCES:
- * <ol>
- * <li>https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/erract_c.html</li>
- * <li>https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/errprt_c.html</li>
- * </ol>
+ *
+ *  1. https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/erract_c.html
+ *  2. https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/errprt_c.html
  *
  * @return 0
  */
@@ -189,9 +187,8 @@ static int get_cspice_error(char *msg, int len) {
  * same effect.
  *
  * REFERENCES:
- * <ol>
- * <li>https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/furnsh_c.html</li>
- * </ol>
+ *
+ *  1. https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/furnsh_c.html
  *
  * @param filename      The fully qualified path to the ephemeris kernel data (e.g.
  *                      "/data/ephem/de440s.bsp")
@@ -235,9 +232,8 @@ int cspice_add_kernel(const char *filename) {
  * `unload_c()` directly to the same effect.
  *
  * REFERENCES:
- * <ol>
- * <li>https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/unload_c.html</li>
- * </ol>
+ *
+ *  1. https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/unload_c.html
  *
  * @param filename      The fully qualified path to the ephemeris kernel data (e.g.
  *                      "/data/ephem/de440s.bsp")
@@ -318,13 +314,12 @@ int cspice_clear_kernels() {
  * to the call (see cspice_add_kernel(), or the CSPICE furnsh_c() functions)
  *
  * REFERENCES:
- * <ol>
- *  <li>NAIF CSPICE: https://naif.jpl.nasa.gov/naif/toolkit.html</li>
- *  <li>https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/spkez_c.html</li>
- *  <li>Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
- *  Subroutines"; USNO internal document dated 20 Oct 1988;
- *  revised 15 Mar 1990.</li>
- * </ol>
+ *
+ *  1. NAIF CSPICE: https://naif.jpl.nasa.gov/naif/toolkit.html
+ *  2. https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/spkez_c.html
+ *  3. Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
+ *     Subroutines"; USNO internal document dated 20 Oct 1988;
+ *     revised 15 Mar 1990.
  *
  * @param jd_tdb         [day] Two-element array containing the Julian date, which may be
  *                       split any way (although the first element is usually the
@@ -424,12 +419,11 @@ static short planet_cspice_hp(const double jd_tdb[restrict 2], enum novas_planet
  * to the call (see cspice_add_kernel(), or the CSPICE furnsh_c() functions)
  *
  * REFERENCES:
- * <ol>
- *  <li>NAIF CSPICE: https://naif.jpl.nasa.gov/naif/toolkit.html</li>
- *  <li>Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
- *  Subroutines"; USNO internal document dated 20 Oct 1988;
- *  revised 15 Mar 1990.</li>
- * </ol>
+ *
+ *  1. NAIF CSPICE: https://naif.jpl.nasa.gov/naif/toolkit.html
+ *  2. Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
+ *     Subroutines"; USNO internal document dated 20 Oct 1988;
+ *     revised 15 Mar 1990.
  *
  * @param jd_tdb         [day] Two-element array containing the Julian date, which may be
  *                       split any way (although the first element is usually the
@@ -466,9 +460,8 @@ static short planet_cspice(double jd_tdb, enum novas_planet body, enum novas_ori
  * to the call (see furnsh_c() function)
  *
  * REFERENCES:
- * <ol>
- * <li>https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/spkez_c.html</li>
- * </ol>
+ *
+ *  1. https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/spkez_c.html
  *
  * @param name          The name of the solar-system body. It is important only if the 'id' is
  *                      -1.

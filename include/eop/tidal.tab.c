@@ -11,9 +11,8 @@
  * Tables 8.2a and 8.2b.
  *
  * REFERENCES:
- * <ol>
- * <li>https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</li>
- * </ol>
+ *
+ *  1. https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf
  *
  * @since 1.5
  */
@@ -96,9 +95,8 @@ static const novas_eop_terms polar_tidal_terms[69] = { //
  * Tables 8.3a and 8.3b.
  *
  * REFERENCES:
- * <ol>
- * <li>https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</li>
- * </ol>
+ *
+ *  1. https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf
  *
  * @since 1.5
  */

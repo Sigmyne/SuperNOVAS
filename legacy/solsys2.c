@@ -23,8 +23,7 @@
  *  U. S. Naval Observatory<br>
  *  Astronomical Applications Dept.<br>
  *  Washington, DC<br>
- *  <a href="http://www.usno.navy.mil/USNO/astronomical-applications">
- *  http://www.usno.navy.mil/USNO/astronomical-applications</a>
+ *  http://www.usno.navy.mil/USNO/astronomical-applications
  *
  * @author G. Kaplan and Attila Kovacs
  * @version 1.5.0
@@ -68,12 +67,11 @@ extern void jplihp_(const double *jd_tdb, long *targ, long *cent, double *posvel
  * activate dynamically with set_planet_provider().
  *
  * REFERENCES:
- * <ol>
- * <li>JPL. 2007, JPL Planetary and Lunar Ephemerides: Export Information,
- *     (Pasadena, CA: JPL) http://ssd.jpl.nasa.gov/?planet_eph_export.</li>
- * <li>Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
- *     Subroutines"; USNO internal document dated 20 Oct 1988; revised 15 Mar 1990.</li>
- * </ol>
+ *
+ *  1. JPL. 2007, JPL Planetary and Lunar Ephemerides: Export Information,
+ *     (Pasadena, CA: JPL) http://ssd.jpl.nasa.gov/?planet_eph_export.
+ *  2. Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
+ *     Subroutines"; USNO internal document dated 20 Oct 1988; revised 15 Mar 1990.
  *
  * @param jd_tdb         [day] Two-element array containing the Julian date, which may be
  *                       split any way (although the first element is usually the
@@ -164,12 +162,11 @@ short planet_jplint(double jd_tdb, enum novas_planet body, enum novas_origin ori
  * activate dynamically with set_planet_provider().
  *
  * REFERENCES:
- * <ol>
- * <li>JPL. 2007, JPL Planetary and Lunar Ephemerides: Export Information,
- *     (Pasadena, CA: JPL) http://ssd.jpl.nasa.gov/?planet_eph_export.</li>
- * <li>Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
- *     Subroutines"; USNO internal document dated 20 Oct 1988; revised 15 Mar 1990.</li>
- * </ol>
+ *
+ *  1. JPL. 2007, JPL Planetary and Lunar Ephemerides: Export Information,
+ *     (Pasadena, CA: JPL) http://ssd.jpl.nasa.gov/?planet_eph_export.
+ *  2. Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
+ *     Subroutines"; USNO internal document dated 20 Oct 1988; revised 15 Mar 1990.
  *
  * @param jd_tdb         [day] Two-element array containing the Julian date, which may be
  *                       split any way (although the first element is usually the

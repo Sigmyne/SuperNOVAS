@@ -53,7 +53,7 @@ int novas_snprintf(char *buf, size_t len, const char *fmt, ...) {
 #endif
 
 /**
- * (<i>for internal use</i>) Propagates an error (if any) with an offset. If the error is
+ * (_for internal use_) Propagates an error (if any) with an offset. If the error is
  * non-zero, it returns with the offset error value. Otherwise it keeps going as if it weren't
  * even there...
  *
@@ -76,7 +76,7 @@ int novas_trace(const char *restrict loc, int n, int offset) {
 }
 
 /**
- * (<i>for internal use</i>) Traces an error before returning NAN.
+ * (_for internal use_) Traces an error before returning NAN.
  *
  * @param loc    function [:location] where error was produced.
  * @return       NAN
@@ -92,7 +92,7 @@ double novas_trace_nan(const char *restrict loc) {
 }
 
 /**
- * (<i>for internal use</i>) Traces invalid data.
+ * (_for internal use_) Traces invalid data.
  *
  * @param loc    function [:location] where error was produced.
  *
@@ -108,7 +108,7 @@ void novas_trace_invalid(const char *restrict loc) {
 
 
 /**
- * (<i>for internal use</i>) Checks a floating point value for NAN, before returning it.
+ * (_for internal use_) Checks a floating point value for NAN, before returning it.
  * If it is NAN the error is traced.
  *
  * @param loc   function [:location] where error was produced.
@@ -125,7 +125,7 @@ double novas_check_nan(const char *loc, double x) {
 }
 
 /**
- * (<i>for internal use</i>) Sets an errno and report errors to the standard error, depending
+ * (_for internal use_) Sets an errno and report errors to the standard error, depending
  * on the current debug mode.
  *
  * @param en    {int} UNIX error number (see errno.h)
@@ -152,7 +152,7 @@ void novas_set_errno(int en, const char *restrict from, const char *restrict des
 }
 
 /**
- * (<i>for internal use</i>) Sets errno and reports errors to the standard error, depending
+ * (_for internal use_) Sets errno and reports errors to the standard error, depending
  * on the current debug mode, before returning the supplied return code.
  *
  * @param ret   return value
@@ -181,7 +181,7 @@ int novas_error(int ret, int en, const char *restrict from, const char *restrict
 }
 
 /**
- * (<i>for internal use only</i>) Calculates the distance-swuared between two 3-vectors.
+ * (_for internal use only_) Calculates the distance-swuared between two 3-vectors.
  *
  * @param v1    Pointer to a 3-component (x, y, z) vector. The argument cannot be NULL
  * @param v2    Pointer to another 3-component (x, y, z) vector. The argument cannot
@@ -204,7 +204,7 @@ double novas_vdist2(const double *v1, const double *v2) {
 }
 
 /**
- * (<i>for internal use only</i>) Calculates the distance between two 3-vectors.
+ * (_for internal use only_) Calculates the distance between two 3-vectors.
  *
  * @param v1    Pointer to a 3-component (x, y, z) vector. The argument cannot be NULL
  * @param v2    Pointer to another 3-component (x, y, z) vector. The argument cannot
@@ -221,7 +221,7 @@ double novas_vdist(const double *v1, const double *v2) {
 }
 
 /**
- * (<i>for internal use only</i>) Calculates the dot product between two 3-vectors.
+ * (_for internal use only_) Calculates the dot product between two 3-vectors.
  *
  * @param v1    Pointer to a 3-component (x, y, z) vector. The argument cannot be NULL
  * @param v2    Pointer to another 3-component (x, y, z) vector. The argument cannot
@@ -238,7 +238,7 @@ double novas_vdot(const double *v1, const double *v2) {
 }
 
 /**
- * (<i>for internal use only</i>) Checks if two Julian dates are equal with regard to the
+ * (_for internal use only_) Checks if two Julian dates are equal with regard to the
  * dynamic equator. The two dates are considered equal if they agree within 10<sup>-7</sup>
  * days (or about 10 ms).
  *
@@ -261,7 +261,7 @@ int novas_time_equals(double jd1, double jd2) {
 }
 
 /**
- * (<i>for internal use only</i>) Checks if two Julian dates are precisely equal with regard to
+ * (_for internal use only_) Checks if two Julian dates are precisely equal with regard to
  * the dynamic equator. The two dates are considered equal if they agree within 10<sup>-7</sup>
  * days (or about 10 ms) of each other in reduced accuracy or if they agree within 10<sup>-9</sup>
  * days (or about 100 us), corresponding to double-precision limits, in full accuracy mode.
@@ -489,7 +489,7 @@ double novas_norm_ang(double angle) {
 }
 
 /**
- * (<i>for internal use only</i>) Calculates the length of a 3-vector
+ * (_for internal use only_) Calculates the length of a 3-vector
  *
  * @param v     Pointer to a 3-component (x, y, z) vector. The argument cannot be NULL
  * @return      the length of the vector
@@ -508,9 +508,8 @@ double novas_vlen(const double *restrict v) {
  * about the z-axis.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
  *
  * @param angle   [deg] Angle of coordinate system rotation, positive counterclockwise when
  *                viewed from +z, in degrees.
@@ -562,9 +561,8 @@ int spin(double angle, const double *in, double *out) {
  * coordinates.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
  *
  * @param pos       Position 3-vector, equatorial rectangular coordinates.
  * @param[out] ra   [h] Right ascension in hours [0:24] or NAN if the position vector is NULL or a
@@ -646,9 +644,9 @@ int radec2vector(double ra, double dec, double dist, double *restrict pos) {
 
 /**
  * Returns the difference in light-time, for a star, between the barycenter of the solar system
- * and the observer (or the geocenter) (<i>Usage A</i>).
+ * and the observer (or the geocenter) (_Usage A_).
  *
- * Alternatively (<i>Usage B</i>), this function returns the light-time from the observer (or the
+ * Alternatively (_Usage B_), this function returns the light-time from the observer (or the
  * geocenter) to a point on a light ray that is closest to a specific solar system body.  For this
  * purpose, 'pos_src' is the position vector toward observed object, with respect to origin at
  * observer (or the geocenter); 'pos_body' is the position vector of solar system body, with
@@ -658,18 +656,17 @@ int radec2vector(double ra, double dec, double dist, double *restrict pos) {
  * 'pos_src').
  *
  * NOTES:
- * <ol>
- * <li>This function is called by `novas_geom_posvel()`, novas_sky_pos(), or `place()`</li>
- * </ol>
+ *
+ *  1. This function is called by `novas_geom_posvel()`, novas_sky_pos(), or `place()`
  *
  * @param pos_src   Position vector towards observed object, with respect to the SSB
- *                  (<i>Usage A</i>), or relative to the observer / geocenter (<i>Usage B</i>).
- * @param pos_body  [AU] Position of observer relative to SSB (<i>Usage A</i>), or position of
+ *                  (_Usage A_), or relative to the observer / geocenter (_Usage B_).
+ * @param pos_body  [AU] Position of observer relative to SSB (_Usage A_), or position of
  *                  intermediate solar-system body with respect to the observer / geocenter
- *                  (<i>Usage B</i>).
+ *                  (_Usage B_).
  * @return          [day] Difference in light time to observer, either relative to SSB
- *                  (<i>Usage A</i>) or relative intermediate solar-system body
- *                  (<i>Usage B</i>); or else NAN if either of the input arguments is NULL.
+ *                  (_Usage A_) or relative intermediate solar-system body
+ *                  (_Usage B_); or else NAN if either of the input arguments is NULL.
  *
  * @sa novas_sky_pos(), novas_geom_posvel()
  */
@@ -693,22 +690,20 @@ double d_light(const double *pos_src, const double *pos_body) {
  * accurate results across all locations on the sphere.
  *
  * NOTES:
- * <ol>
- * <li>Prior to version 1.5, this function used the law of cosines, which is imprecise for
- * nearby locations</li>
- * <li>In version 1.5, this function used the haversine formula, albeit with an error in the
- * implementation. The haversine formula is accurate for nearby locations, but has rounding
- * errors for antipodal locations.</li>
- * <li>From version 1.5.1, this function uses the Vincenty formula, which is accurate for all
- * locations on the sphere.</li>
- * </ol>
+ *
+ *  1. Prior to version 1.5, this function used the law of cosines, which is imprecise for
+ *     nearby locations
+ *  2. In version 1.5, this function used the haversine formula, albeit with an error in the
+ *     implementation. The haversine formula is accurate for nearby locations, but has rounding
+ *     errors for antipodal locations.
+ *  3. From version 1.5.1, this function uses the Vincenty formula, which is accurate for all
+ *     locations on the sphere.
  *
  * REFERENCES:
- * <ol>
- * <li> Vincenty, Thaddeus. "Direct and Inverse Solutions of Geodesics on the Ellipsoid with
- * Application of Nested Equations", Survey Review. 23 (176), Directorate of Overseas Surveys,
- * doi:10.1179/sre.1975.23.176.88.</li>
- * </ol>
+ *
+ *  1. Vincenty, Thaddeus. "Direct and Inverse Solutions of Geodesics on the Ellipsoid with
+ *     Application of Nested Equations", Survey Review. 23 (176), Directorate of Overseas Surveys,
+ *     doi:10.1179/sre.1975.23.176.88.
  *
  * @param lon1    [deg] longitude of first location
  * @param lat1    [deg] latitude of first location

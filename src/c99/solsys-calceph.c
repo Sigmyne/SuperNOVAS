@@ -44,10 +44,9 @@
  * using CALCEPH IDs by calling `novas_calceph_use_ids(NOVAS_ID_CALCEPH)`.
  *
  * REFERENCES:
- * <ol>
- *  <li>CALCEPH is at https://calceph.imcce.fr</li>
- *  <li>CALCEPH source code is at https://gitlab.obspm.fr/imcce_calceph/calceph</li>
- * </ol>
+ *
+ *  1. CALCEPH is at https://calceph.imcce.fr
+ *  2. CALCEPH source code is at https://gitlab.obspm.fr/imcce_calceph/calceph
  *
  * @author Attila Kovacs
  * @since 1.2
@@ -198,12 +197,11 @@ int novas_calceph_use_ids(enum novas_id_type idtype) {
  * necessary, the ephemeris access will be mutexed to ensure sequential access under the hood.
  *
  * REFERENCES:
- * <ol>
- *  <li>The CALCEPH C library; https://calceph.imcce.fr</li>
- *  <li>Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
- *  Subroutines"; USNO internal document dated 20 Oct 1988;
- *  revised 15 Mar 1990.</li>
- * </ol>
+ *
+ *  1. The CALCEPH C library; https://calceph.imcce.fr
+ *  2. Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
+ *     Subroutines"; USNO internal document dated 20 Oct 1988;
+ *     revised 15 Mar 1990.
  *
  * @param jd_tdb         [day] Two-element array containing the Julian date, which may be split
  *                       any way (although the first element is usually the "integer" part, and
@@ -306,12 +304,11 @@ static short planet_calceph_hp(const double jd_tdb[restrict 2], enum novas_plane
  * necessary, the ephemeris access will be mutexed to ensure sequential access under the hood.
  *
  * REFERENCES:
- * <ol>
- *  <li>The CALCEPH C library; https://calceph.imcce.fr</li>
- *  <li>Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
- *  Subroutines"; USNO internal document dated 20 Oct 1988;
- *  revised 15 Mar 1990.</li>
- * </ol>
+ *
+ *  1. The CALCEPH C library; https://calceph.imcce.fr
+ *  2. Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
+ *     Subroutines"; USNO internal document dated 20 Oct 1988;
+ *     revised 15 Mar 1990.
  *
  * @param jd_tdb         [day] Two-element array containing the Julian date, which may be split
  *                       any way (although the first element is usually the "integer" part, and

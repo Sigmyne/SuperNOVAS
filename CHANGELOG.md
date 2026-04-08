@@ -6,7 +6,7 @@ file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to 
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.6.0-rc3] - 2026-03-08
+## [Unreleased]
 
 Upcoming feature release, introducing a proper C++ API for the first time, and bringing various other improvements.
 
@@ -16,8 +16,6 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    observer coordinates relative to the geocenter.
    
  - #296: Possible buffer overflow in `novas_print_dms()`. (thanks to aleberti)
- 
- - #299: Fix memory leak in `Frame`. (thanks to aleberti)
 
  - #305: `novas_geom_posvel()` returned velocities were referenced to SSB, not the observer.
 
@@ -42,11 +40,11 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    coordinates and ITRS. ENU is a natural local cartesian coordinate system of an observer at or near the Earth's 
    surface.
 
- - New `novas_diff_time_scale()` for obtaining time difference between two astrometric times in the specified 
+ - Added `novas_diff_time_scale()` for obtaining time difference between two astrometric times in the specified 
    timescale of choice.
    
- - New `novas_timescale_offset()` for returning the time offset in two different timescale representations of a time
-   instance.
+ - Added `novas_timescale_offset()` for returning the time offset in two different timescale representations of a 
+   time instance.
 
 ### Changed
 

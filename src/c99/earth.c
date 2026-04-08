@@ -61,9 +61,8 @@ typedef struct {
  * to the precession and nutation of the Earth's axis is not accounted for here.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
  *
  * @param location    ITRF / GRS80 geodetic location of observer in Earth's rotating frame.
  * @param gast        [h] Greenwich apparent sidereal time (GAST). If set to 0, it returns
@@ -145,11 +144,10 @@ int terra(const on_surface *restrict location, double gast, double *restrict pos
  * Capitaine et al. (2003).
  *
  * REFERENCES:
- * <ol>
- * <li>Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).</li>
- * <li>IERS Conventions 2010, Chapter 5, Eq. 5.32, see at
- * https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</li>
- * </ol>
+ *
+ *  1. Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).
+ *  2. IERS Conventions 2010, Chapter 5, Eq. 5.32, see at
+ *     https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf
  *
  * @param jd_ut1      [day] UT1-based Julian Date.
  * @param ut1_to_tt   [s] UT1 - UTC time difference.
@@ -170,18 +168,16 @@ double novas_gmst(double jd_ut1, double ut1_to_tt) {
  * Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.
  *
  * NOTES:
- * <ol>
- * <li>This function caches the result of the last calculation.</li>
- * </ol>
+ *
+ *  1. This function caches the result of the last calculation.
  *
  * REFERENCES:
- * <ol>
- * <li>Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).</li>
- * <li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
- * <li>IERS Conventions 2010, Chapter 5, Eq. 5.30 and Table 5.2e, see at
- * https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf and
- * https://iers-conventions.obspm.fr/content/chapter5/additional_info/tab5.2e.txt</li>
- * </ol>
+ *
+ *  1. Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).
+ *  2. Kaplan, G. (2005), US Naval Observatory Circular 179.
+ *  3. IERS Conventions 2010, Chapter 5, Eq. 5.30 and Table 5.2e, see at
+ *     https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf and
+ *     https://iers-conventions.obspm.fr/content/chapter5/additional_info/tab5.2e.txt
  *
  * @param jd_ut1      [day] UT1-based Julian Date.
  * @param ut1_to_tt   [s] UT1 - UTC time difference.
@@ -223,20 +219,17 @@ double novas_gast(double jd_ut1, double ut1_to_tt, enum novas_accuracy accuracy)
  * part.
  *
  * NOTES:
- * <ol>
- * <li>Contains fix for known <a href="https://aa.usno.navy.mil/software/novas_faq">sidereal time
- * units bug.</a></li>
- * <li>As of version 1.5.0, the function uses Eq 42 of Capitaine et al. (2003) exclusively. In prior
- * versions, including NOVAS C the same method was provided twice, with the only difference being
- * an unnecessary change of coordinate basis to GCRS. This latter, mor roundabout way of getting
- * the same answer has been eliminated.<.li>
- * </ol>
+ *
+ *  1. Contains fix for known [sidereal time units bug](https://aa.usno.navy.mil/software/novas_faq)
+ *  2. As of version 1.5.0, the function uses Eq 42 of Capitaine et al. (2003) exclusively. In prior
+ *     versions, including NOVAS C the same method was provided twice, with the only difference being
+ *     an unnecessary change of coordinate basis to GCRS. This latter, mor roundabout way of getting
+ *     the same answer has been eliminated.
  *
  * REFERENCES:
- * <ol>
- * <li>Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).</li>
- * <li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
- * </ol>
+ *
+ *  1. Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).
+ *  2. Kaplan, G. (2005), US Naval Observatory Circular 179.
  *
  * @param jd_ut1_high [day] High-order part of UT1 Julian date.
  * @param jd_ut1_low  [day] Low-order part of UT1 Julian date. (You can leave it at zero if
@@ -287,11 +280,10 @@ short sidereal_time(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enu
  * routine `iau_era00`).
  *
  * REFERENCES:
- * <ol>
- *  <li>IERS Conventions 2010, Chapter 5, Eq. 5.15</li>
- *  <li>IAU Resolution B1.8, adopted at the 2000 IAU General Assembly, Manchester, UK.</li>
- *  <li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 5, Eq. 5.15
+ *  2. IAU Resolution B1.8, adopted at the 2000 IAU General Assembly, Manchester, UK.
+ *  3. Kaplan, G. (2005), US Naval Observatory Circular 179.
  *
  * @param jd_ut1_high   [day] High-order part of UT1 Julian date.
  * @param jd_ut1_low    [day] Low-order part of UT1 Julian date.
@@ -363,10 +355,9 @@ static void sum_eop_terms(const novas_eop_terms *terms, int n, double gmst, cons
  * `novas_diurnal_eop()` or `novas_diurnal_eop_at_time()` is more directly suited.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 5, Tablea 5.1a and 5.1b, see
- * https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 5, Tablea 5.1a and 5.1b, see
+ *     https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf
  *
  * @param gmst        [h] Greenwich Mean Sidereal Time of observation, e.g. as obtained by
  *                    `novas_gmst()`.
@@ -403,10 +394,9 @@ int novas_diurnal_libration(double gmst, const novas_delaunay_args *restrict del
  * `novas_diurnal_eop()` or `novas_diurnal_eop_at_time()` is more directly suited.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 8, Tables 8.2a, 8.2b, 8.3a, and 8.3b, see
- * https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 8, Tables 8.2a, 8.2b, 8.3a, and 8.3b, see
+ *     https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf
  *
  * @param gmst        [h] Greenwich Mean Sidereal Time of observation, e.g. as obtained by
  *                    `novas_gmst()`.
@@ -441,10 +431,9 @@ int novas_diurnal_ocean_tides(double gmst, const novas_delaunay_args *restrict d
  * the highest precision astrometry only, when converting between ITRS and TIRS frames.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 5, https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</li>
- * <li>IERS Conventions 2010, Chapter 8, https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 5, https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf
+ *  2. IERS Conventions 2010, Chapter 8, https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf
  *
  * @param gmst           [h] Greenwich Mean Sidereal Time of observation, e.g. as obtained by
  *                       `novas_gmst()`.
@@ -499,18 +488,16 @@ static int add_diurnal_eop(double gmst, const novas_delaunay_args *restrict dela
  * for the highest precision astrometry only, when converting between ITRS and TIRS frames.
  *
  * NOTES:
- * <ol>
- * <li>These diurnal corrections are automatically added to the mean Earth Orinetation parameters
- * used when defining astronomical times and observing frames. I.e., you should pass mean values
- * to the likes of `novas_set_time()` and `novas_make_frame()`, which will then add the diurnal
- * corrections as appropriate automatically.</li>
- * </ol>
+ *
+ *  1. These diurnal corrections are automatically added to the mean Earth Orinetation parameters
+ *     used when defining astronomical times and observing frames. I.e., you should pass mean values
+ *     to the likes of `novas_set_time()` and `novas_make_frame()`, which will then add the diurnal
+ *     corrections as appropriate automatically.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 5, https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</li>
- * <li>IERS Conventions 2010, Chapter 8, https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 5, https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf
+ *  2. IERS Conventions 2010, Chapter 8, https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf
  *
  * @param gmst         [h] Greenwich Mean Sidereal Time of observation, e.g. as obtained by
  *                     `novas_gmst()`.
@@ -548,19 +535,17 @@ int novas_diurnal_eop(double gmst, const novas_delaunay_args *restrict delaunay,
  * the IERS Conventions.
  *
  * NOTES:
- * <ol>
- * <li>These diurnal corrections are automatically added to the mean Earth Orinetation parameters
- * used when defining astronomical times and observing frames. I.e., you should pass mean values
- * to the likes of `novas_set_time()` and `novas_make_frame()`, which will then add the diurnal
- * corrections as appropriate automatically.</li>
- * <li>This function caches the result of the last calculation.</li>
- * </ol>
+ *
+ *  1. These diurnal corrections are automatically added to the mean Earth Orinetation parameters
+ *     used when defining astronomical times and observing frames. I.e., you should pass mean values
+ *     to the likes of `novas_set_time()` and `novas_make_frame()`, which will then add the diurnal
+ *     corrections as appropriate automatically.
+ *  2. This function caches the result of the last calculation.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 5, https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</li>
- * <li>IERS Conventions 2010, Chapter 8, https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 5, https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf
+ *  2. IERS Conventions 2010, Chapter 8, https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf
  *
  * @param time    Astrometric time specification
  * @param dxp     [arcsec] x-pole correction for libration and ocean tides, or NULL if not
@@ -611,35 +596,29 @@ int novas_diurnal_eop_at_time(const novas_timespec *restrict time, double *restr
  * referred to _z_ and _x_ axes toward the CIP and TIO, respectively.
  *
  * NOTES:
- * <ol>
- * <li>
- *  You may obtain Earth orientation parameters from the IERS site and Bulletins. For sub-mas
- *  accuracy you should augment the (interpolated) published values for diurnal and semi-diurnal
- *  librations and the effect of ocean tides, e.g. by using `novas_diurnal_eop()` or
- *  `novas_diurnal_eop_at_time()`.
- * </li>
- * <li>
- *  Generally, this function should not be called if global pole offsets were set via
- *  `cel_pole()` and then used via `place()` or one of its variants to calculate Earth orientation
- *  corrected (TOD or CIRS) apparent coordinates. In such cases, calling `wobble()` would apply
- *  duplicate corrections. It is generally best to forgo using `cel_pole()` going forward, and
- *  instead apply Earth orinetation corrections with `wobble()` only when converting vectors
- *  between the Earth-fixed ITRS and TIRS frames.
- * </li>
- * <li>
- *  The Earth orientation parameters xp, yp should be provided in the same ITRF realization as
- *  the observer location for an Earth-based observer. You can use `novas_itrf_transform_eop()` to
- *  convert the EOP values as necessary.
- * </li>
- * </ol>
+ *
+ *  1. You may obtain Earth orientation parameters from the IERS site and Bulletins. For sub-mas
+ *     accuracy you should augment the (interpolated) published values for diurnal and semi-diurnal
+ *     librations and the effect of ocean tides, e.g. by using `novas_diurnal_eop()` or
+ *     `novas_diurnal_eop_at_time()`.
+ *
+ *  2. Generally, this function should not be called if global pole offsets were set via
+ *     `cel_pole()` and then used via `place()` or one of its variants to calculate Earth orientation
+ *     corrected (TOD or CIRS) apparent coordinates. In such cases, calling `wobble()` would apply
+ *     duplicate corrections. It is generally best to forgo using `cel_pole()` going forward, and
+ *     instead apply Earth orinetation corrections with `wobble()` only when converting vectors
+ *     between the Earth-fixed ITRS and TIRS frames.
+ *
+ *  3. The Earth orientation parameters xp, yp should be provided in the same ITRF realization as
+ *     the observer location for an Earth-based observer. You can use `novas_itrf_transform_eop()` to
+ *     convert the EOP values as necessary.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * <li>Lambert &amp; Bizouard (2002), Astronomy and Astrophysics 394, 317-321.</li>
- * <li>IERS Conventions 2010, Chapter 5, https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</li>
- * <li>IERS Conventions 2010, Chapter 8, https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Lambert &amp; Bizouard (2002), Astronomy and Astrophysics 394, 317-321.
+ *  3. IERS Conventions 2010, Chapter 5, https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf
+ *  4. IERS Conventions 2010, Chapter 8, https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf
  *
  * @param jd_tt         [day] Terrestrial Time (TT) based Julian date.
  * @param direction     WOBBLE_ITRS_TO_TIRS (0) or WOBBLE_TIRS_TO_ITRS (1) to include corrections

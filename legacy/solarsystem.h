@@ -17,7 +17,7 @@
 
 #ifndef _EXCLUDE_DEPRECATED
 /**
- * @deprecated (<i>legacy function</i>) Use `set_planet_provider()` instead to specify what
+ * @deprecated (legacy function</i>) Use `set_planet_provider()` instead to specify what
  *             function should be used to calculate ephemeris positions for major planets.
  *
  * Legacy NOVAS C function for obtaining planet position / velocity data.  This function can be
@@ -54,7 +54,7 @@ short solarsystem(double jd_tdb, short body, short origin, double *restrict posi
 
 #ifndef _EXCLUDE_DEPRECATED
 /**
- * @deprecated (<i>legacy function</i>) Use `set_planet_provider_hp()` instead to specify what
+ * @deprecated (_legacy function_) Use `set_planet_provider_hp()` instead to specify what
  *             function should be used to calculate high-precision ephemeris positions for major
  *             planets.
  *

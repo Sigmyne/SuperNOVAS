@@ -15,8 +15,7 @@
  *  U. S. Naval Observatory<br>
  *  Astronomical Applications Dept.<br>
  *  Washington, DC<br>
- *  <a href="http://www.usno.navy.mil/USNO/astronomical-applications">
- *  http://www.usno.navy.mil/USNO/astronomical-applications</a>
+ *  http://www.usno.navy.mil/USNO/astronomical-applications
  *
  * @author G. Kaplan and Attila Kovacs
  *
@@ -72,12 +71,11 @@ void enable_earth_sun_hp(int value) {
  * position and velocity of the Sun.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
+ *
+ *  1. Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
  *     Subroutines"; USNO internal document dated 20 Oct 1988;
- *     revised 15 Mar 1990.</li>
- * <li>Explanatory Supplement to The Astronomical Almanac (1992).</li>
- * </ol>
+ *     revised 15 Mar 1990.
+ *  2. Explanatory Supplement to The Astronomical Almanac (1992).
  *
  * @param jd_tdb        [day] Barycentric Dynamical Time (TDB) based Julian date
  * @param body          NOVAS_EARTH (3) or NOVAS_SUN (10) only.
@@ -262,14 +260,11 @@ short earth_sun_calc(double jd_tdb, enum novas_planet body, enum novas_origin or
  * implementation.
  *
  * NOTES:
- * <ol>
- * <li>This implementation will always propulate the output position and velocity vectors
- * with the low-precision result, regardless of the return error code, in order to reduce
- * the chance of unpredictable behavior, even if the user does not check the returned error
- * status (which of course they should).
- * </li>
- * </ol>
  *
+ *  1. This implementation will always propulate the output position and velocity vectors
+ *     with the low-precision result, regardless of the return error code, in order to reduce
+ *     the chance of unpredictable behavior, even if the user does not check the returned error
+ *     status (which of course they should).
  *
  * @param jd_tdb        [day] Barycentric Dynamical Time (TDB) based Julian date
  * @param body          NOVAS_EARTH (3) or NOVAS_SUN (10) only.
@@ -320,11 +315,10 @@ short earth_sun_calc_hp(const double jd_tdb[restrict 2], enum novas_planet body,
  * "new" (IAU 2006) precession.  The difference, new - old, is -0.3004 arcsec/cy.
  *
  * REFERENCES:
- * <ol>
- * <li>Bretagnon, P. and Simon, J.L. (1986).  Planetary Programs and
- * Tables from -4000 to + 2800. (Richmond, VA: Willmann-Bell).</li>
- * <li>Kaplan, G.H. (2005). US Naval Observatory Circular 179.</li>
- * </ol>
+ *
+ *  1. Bretagnon, P. and Simon, J.L. (1986).  Planetary Programs and
+ *     Tables from -4000 to + 2800. (Richmond, VA: Willmann-Bell).
+ *  2. Kaplan, G.H. (2005). US Naval Observatory Circular 179.
  *
  * @param jd           [day] jd (double) Julian date on TDT or ET time scale.
  * @param[out] ra      [h] Right ascension referred to mean equator and equinox of date (hours).

@@ -18,8 +18,7 @@
  *  U. S. Naval Observatory<br>
  *  Astronomical Applications Dept.<br>
  *  Washington, DC<br>
- *  <a href="http://www.usno.navy.mil/USNO/astronomical-applications">
- *  http://www.usno.navy.mil/USNO/astronomical-applications</a>
+ *  http://www.usno.navy.mil/USNO/astronomical-applications
  *
  *  @author G. Kaplan and Attila Kovacs
  *  @version 1.5.0
@@ -51,23 +50,23 @@
 short KM;           ///< Flag that defines physical units of the output states.
 
 // IPT and LPT defined as int to support 64 bit systems.
-int IPT[3][12];     ///< (<i>for internal use</i>)
-int LPT[3];         ///< (<i>for internal use</i>)
+int IPT[3][12];     ///< (_for internal use_)
+int LPT[3];         ///< (_for internal use_)
 
-long NRL;           ///< (<i>for internal use</i>) Current record number buffered
-long NP;            ///< (<i>for internal use</i>)
-long NV;            ///< (<i>for internal use</i>)
-long RECORD_LENGTH; ///< (<i>for internal use</i>)
+long NRL;           ///< (_for internal use_) Current record number buffered
+long NP;            ///< (_for internal use_)
+long NV;            ///< (_for internal use_)
+long RECORD_LENGTH; ///< (_for internal use_)
 
-double SS[3];       ///< (<i>for internal use</i>)
-double JPLAU;       ///< (<i>for internal use</i>)
-double PC[18];      ///< (<i>for internal use</i>)
-double VC[18];      ///< (<i>for internal use</i>)
-double TWOT;        ///< (<i>for internal use</i>)
-double EM_RATIO;    ///< (<i>for internal use</i>)
-double *BUFFER;     ///< (<i>for internal use</i>) Array containing Chebyshev coefficients of position.
+double SS[3];       ///< (_for internal use_)
+double JPLAU;       ///< (_for internal use_)
+double PC[18];      ///< (_for internal use_)
+double VC[18];      ///< (_for internal use_)
+double TWOT;        ///< (_for internal use_)
+double EM_RATIO;    ///< (_for internal use_)
+double *BUFFER;     ///< (_for internal use_) Array containing Chebyshev coefficients of position.
 
-FILE *EPHFILE = NULL;     ///< (<i>for internal use</i>) The currently open JPL DE planetary ephemeris file
+FILE *EPHFILE = NULL;     ///< (_for internal use_) The currently open JPL DE planetary ephemeris file
 
 /// \endcond
 
@@ -81,10 +80,9 @@ FILE *EPHFILE = NULL;     ///< (<i>for internal use</i>) The currently open JPL 
  * be called prior to calls to the other JPL ephemeris functions.
  *
  * REFERENCES:
- * <ol>
- * <li>Standish, E.M. and Newhall, X X (1988). "The JPL Export Planetary Ephemeris"; JPL document
- * dated 17 June 1988.</li>
- * </ol>
+ *
+ *  1. Standish, E.M. and Newhall, X X (1988). "The JPL Export Planetary Ephemeris"; JPL document
+ * dated 17 June 1988.
  *
  * @param ephem_name      Name/path of the direct-access ephemeris file.
  * @param[out] jd_begin   [day] Beginning Julian date of the ephemeris file. It may be NULL if not
@@ -226,16 +224,14 @@ short ephem_open(const char *ephem_name, double *jd_begin, double *jd_end, short
  *
  * Closes a JPL planetary ephemeris file and frees the memory.
  *
- * REFERENCES:
- * <ol>
- * <li>Standish, E.M. and Newhall, X X (1988). "The JPL Export
- *     Planetary Ephemeris"; JPL document dated 17 June 1988.</li>
- * </ol>
- *
  * NOTES:
- * <ol>
- * <li>Includes fix for the known resource leak issue in NOVAS C 3.1.
- * </ol>
+ *
+ *  1. Includes fix for the known resource leak issue in NOVAS C 3.1.
+ *
+ * REFERENCES:
+ *
+ *  1. Standish, E.M. and Newhall, X X (1988). "The JPL Export Planetary Ephemeris"; JPL document
+ *     dated 17 June 1988.
  *
  * @return  0 if the file successfully closed or was closed already, or else EOF.
  *
@@ -262,10 +258,9 @@ short ephem_close(void) {
  * (If nutations are desired, set 'target' = 13; 'center' will be ignored on that call.)
  *
  * REFERENCES:
- * <ol>
- * <li>Standish, E.M. and Newhall, X X (1988). "The JPL Export
- *     Planetary Ephemeris"; JPL document dated 17 June 1988.</li>
- * </ol>
+ *
+ *  1. Standish, E.M. and Newhall, X X (1988). "The JPL Export Planetary Ephemeris"; JPL document
+ *     dated 17 June 1988.
  *
  * @param tjd       [day] Two-element array containing the Julian date, which may be split any way
  *                  (although the first element is usually the "integer" part, and the second
@@ -417,7 +412,7 @@ short planet_ephemeris(const double tjd[2], enum de_planet target, enum de_plane
 /// \cond PROTECTED
 
 /**
- * @deprecated (<i>for internal use</i>) This function should never have been exposed to users.
+ * @deprecated (_for internal use_) This function should never have been exposed to users.
  *             But since NOVAS C did, we follow.
  *
  * Reads and interpolates the JPL planetary ephemeris file.
@@ -429,10 +424,9 @@ short planet_ephemeris(const double tjd[2], enum de_planet target, enum de_plane
  * as start of the integration and jed[1] = elapsed interval between then and epoch.
  *
  * REFERENCES:
- * <ol>
- * <li>Standish, E.M. and Newhall, X X (1988). "The JPL Export
- *     Planetary Ephemeris"; JPL document dated 17 June 1988.</li>
- * </ol>
+ *
+ *  1. Standish, E.M. and Newhall, X X (1988). "The JPL Export Planetary Ephemeris"; JPL document
+ *     dated 17 June 1988.
  *
  * @param jed         [day] 2-element Julian date (TDB) at which interpolation is wanted. Any
  *                    combination of jed[0]+jed[1] which falls within the time span on the file is
@@ -507,16 +501,15 @@ short state(const double *jed, enum de_planet target, double *target_pos, double
 }
 
 /**
- * @deprecated (<i>for internal use</i>) This function should never have been exposed to users.
+ * @deprecated (_for internal use_) This function should never have been exposed to users.
  *             But since NOVAS C did, we follow.
  *
  * Differentiates and interpolates a set of Chebyshev coefficients to give position and velocity.
  *
  * REFERENCES:
- * <ol>
- * <li>Standish, E.M. and Newhall, X X (1988). "The JPL Export
- *     Planetary Ephemeris"; JPL document dated 17 June 1988.</li>
- * </ol>
+ *
+ *  1. Standish, E.M. and Newhall, X X (1988). "The JPL Export Planetary Ephemeris"; JPL document
+ *     dated 17 June 1988.
  *
  * @param buf           Array of Chebyshev coefficients of position.
  * @param t             t[0] is fractional time interval covered by coefficients at which
@@ -600,7 +593,7 @@ int interpolate(const double *buf, const double *t, long ncf, long na, double *p
 }
 
 /**
- * @deprecated (<i>for internal use</i>) This function should never have been exposed to users.
+ * @deprecated (_for internal use_) This function should never have been exposed to users.
  *             But since NOVAS C did, we follow.
  *
  * Breaks up a double number into a double integer part and a fractional part.

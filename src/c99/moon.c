@@ -14,12 +14,11 @@
  *  further to obtain less precises results faster if needed.
  *
  *  REFERENCES:
- *  <ol>
- *   <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- *   <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
- *   <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- *       https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
- *  </ol>
+ *
+ *   1. Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *   2. Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *   3. Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *       https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
  *
  *  @sa solsys-calceph.c, solsys-cspice.c, ephemeris.c
  */
@@ -147,7 +146,7 @@ static void get_PQ(double t, double *P, double *Q) {
  */
 static void elp_args(double t, elp_mean_args *restrict elp, novas_delaunay_args *restrict delaunay) {
   // From Chapront, J., & Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
-  // https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
+  // https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
   elp->W1      = elp_arg(0, t);
   elp->W2      = elp_arg(1, t);
   elp->W3      = elp_arg(2, t);
@@ -273,20 +272,17 @@ static double elp_pert(double t, const novas_delaunay_args *restrict args, const
  * to the specified limiting term amplitude.
  *
  * NOTES:
- * <ol>
- * <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *
+ *  1. The initial implementation (in v1.6) truncates the full series, keeping only terms with
  * amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
  * accuracy below 1 km level (and less than 100 meter error typically for 1900 -- 2100).
- * </li>
- * </ol>
  *
  * REFERENCES:
- * <ol>
- * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
- * </ol>
+ *
+ *  1. Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *  2. Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *  3. Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *     https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
  *
  * @param jd_tdb    [day] Barycentric Dynamical Time (TDB) based Julian date.
  * @param limit     [arcsec|km] Sum only the harmonic terms with amplitudes larger than this
@@ -395,19 +391,16 @@ int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
  * to the specified limiting term amplitude.
  *
  * NOTES:
- * <ol>
- * <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with
- * amplitudes larger than 1 mas (around 3400 harmonic terms in total).
- * </li>
- * </ol>
+ *
+ *  1. The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *     amplitudes larger than 1 mas (around 3400 harmonic terms in total).
  *
  * REFERENCES:
- * <ol>
- * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
- * </ol>
+ *
+ *  1. Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *  2. Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *  3. Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *     https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
  *
  * @param jd_tdb    [day] Barycentric Dynamical Time (TDB) based Julian date.
  * @param limit     [arcsec|km] Sum only the harmonic terms with amplitudes larger than this
@@ -480,17 +473,16 @@ static int check_frame(const novas_frame *frame) {
  *
  * NOTES:
  *
- * - The initial implementation (in v1.6) truncates the full series, keeping only terms with
- *   amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- *   accuracy below the 1 km level (and less than 100 m error typically for 1900 -- 2100).
+ *  1. The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *     amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
+ *     accuracy below the 1 km level (and less than 100 m error typically for 1900 -- 2100).
  *
  * REFERENCES:
- * <ol>
- * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
- * </ol>
+ *
+ *  1. Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *  2. Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *  3. Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *     https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
  *
  * @param frame     Earth-based observing frame
  * @param limit     [arcsec|km] Sum only terms with amplitudes larger than this limit. The
@@ -565,17 +557,16 @@ int novas_moon_elp_posvel_fp(const novas_frame *restrict frame, double limit,
  *
  * NOTES:
  *
- * - The initial implementation (in v1.6) truncates the full series, keeping only terms with
- *   amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- *   accuracy below the 1 km level (and less than 100 m error typically for 1900 -- 2100).
+ *  1. The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *     amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
+ *     accuracy below the 1 km level (and less than 100 m error typically for 1900 -- 2100).
  *
  * REFERENCES:
- * <ol>
- * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
- * </ol>
+ *
+ *  1. Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *  2. Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *  3. Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *     https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
  *
  * @param frame     Earth-based observing frame
  * @param sys       The celestial coordinate reference system in which to return the result. (It
@@ -608,18 +599,17 @@ int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_referenc
  *
  * NOTES:
  *
- * - The initial implementation (in v1.6) truncates the full series, keeping only terms with
- *   amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- *   accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for
- *   1900 -- 2100).
+ *  1. The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *     amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
+ *     accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for
+ *     1900 -- 2100).
  *
  * REFERENCES:
- * <ol>
- * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
- * </ol>
+ *
+ *  1. Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *  2. Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *  3. Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *     https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
  *
  * @param frame     Earth-based observing frame
  * @param limit     [arcsec|km] Sum only terms with amplitudes larger than this limit. The
@@ -680,18 +670,17 @@ int novas_moon_elp_sky_pos_fp(const novas_frame *restrict frame, double limit, e
  *
  * NOTES:
  *
- * - The initial implementation (in v1.6) truncates the full series, keeping only terms with
- *   amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
- *   accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for
- *   1900 -- 2100).
+ *  1. The initial implementation (in v1.6) truncates the full series, keeping only terms with
+ *     amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting
+ *     accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for
+ *     1900 -- 2100).
  *
  * REFERENCES:
- * <ol>
- * <li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
- * <li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
- * <li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
- * https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</li>
- * </ol>
+ *
+ *  1. Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)
+ *  2. Chapront, J., Francou G., 2003, A&amp;A, 404, 735
+ *  3. Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002),
+ *     https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/
  *
  * @param frame     Earth-based observing frame.
  * @param sys       The celestial coordinate reference system in which to return the result. (It
@@ -725,20 +714,19 @@ int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_referen
  *
  * NOTES:
  *
- *  - The Moon's orbit is strongly non Keplerian due to the tidal distortions (esp. by the Sun),
- *    hence any attempt to describe it it purely Keplerian terms is inherently flawed. If you
- *    want to calculate the Moon's position (and/or velocity) with some precision, without using
- *    ephemerides, you should probably use the ELP2000/MPP02 model provided by
- *    `novas_moon_elp_posvel()` and `novas_moon_elp_sky_pos()`.
+ *  1. The Moon's orbit is strongly non Keplerian due to the tidal distortions (esp. by the Sun),
+ *     hence any attempt to describe it it purely Keplerian terms is inherently flawed. If you
+ *     want to calculate the Moon's position (and/or velocity) with some precision, without using
+ *     ephemerides, you should probably use the ELP2000/MPP02 model provided by
+ *     `novas_moon_elp_posvel()` and `novas_moon_elp_sky_pos()`.
  *
  * REFERENCES:
- * <ol>
- *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
- *  <li>Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics,
- *      vol. 190, p. 342-352.</li>
- *  <li>Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735</li>
- *  <li>Laskar J., 1986, A&amp;A, 157, 59</li>
- * </ol>
+ *
+ *  1. Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  2. Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics,
+ *      vol. 190, p. 342-352.
+ *  3. Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735
+ *  4. Laskar J., 1986, A&amp;A, 157, 59
  *
  * @param jd_tdb      [day] Barycentric Dynamical Time (TDB) based Julian Date.
  * @param[out] orbit  Orbital elements data structure to populate.
@@ -836,11 +824,10 @@ int novas_make_moon_mean_orbit(double jd_tdb, novas_orbital *restrict orbit) {
  * which is the reason for the generally poor accuracy of this model.
  *
  * REFERENCES:
- * <ol>
- *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
- *  <li>Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.</li>
- *  <li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
- * </ol>
+ *
+ *  1. Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  2. Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.
+ *  3. Chapront J., Francou G., 2003, A&amp;A, 404, 735
  *
  * @param jd_tdb      [day] Barycentric Dynamical Time (TDB) based Julian Date.
  * @param[out] orbit  Orbital elements data structure to populate.
@@ -1066,32 +1053,26 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
  * &amp; Francou, 2002, 2003), and takes into account the slightly eccentric nature of both orbits.
  *
  * NOTES:
- * <ol>
- * <li>The Moon's phase here follows the definition by the Astronomical Almanac, as the excess
- * ecliptic longitude of the Moon over that of the Sun seen from the geocenter.</li>
- * <li>There are other definitions of the phase too, depending on which you might find slightly
- * different answers, but regardless of the details most phase calculations should match to within
- * a few degrees.</li>
- * <li>As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the
- * Moon by Chapront &amp; Francou (2003).</li>
- * </ol>
  *
- * NOTES:
- * <ol>
- * <li>This function caches the result of the last calculation.</li>
- * </ol>
+ *  1. The Moon's phase here follows the definition by the Astronomical Almanac, as the excess
+ *     ecliptic longitude of the Moon over that of the Sun seen from the geocenter.
+ *  2. There are other definitions of the phase too, depending on which you might find slightly
+ *     different answers, but regardless of the details most phase calculations should match to within
+ *     a few degrees.
+ *  3. As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the
+ *     Moon by Chapront &amp; Francou (2003).
+ *  4. This function caches the result of the last calculation.
  *
  * REFERENCES:
- * <ol>
- *  <li>The Explanatory Supplement to the Astronomical Almanac, University Science Books, 3rd ed.,
- *      p. 507</li>
- *  <li>E.M. Standish and J.G. Williams 1992.</li>
- *  <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
- *  <li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
- *      vol. 124, no. 1, July 1983, p. 50-62.</li>
- *  <li>Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735</li>
- * </ol>
+ *
+ *  1. The Explanatory Supplement to the Astronomical Almanac, University Science Books, 3rd ed.,
+ *     p. 507
+ *  2. E.M. Standish and J.G. Williams 1992.
+ *  3. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  4. Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  5. Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
+ *     vol. 124, no. 1, July 1983, p. 50-62.
+ *  6. Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735<
  *
  * @param jd_tdb      [day] Barycentric Dynamical Time (TDB) based Julian Date.
  * @return            [deg] The Moon's phase, or more precisely the ecliptic longitude difference
@@ -1142,26 +1123,24 @@ double novas_moon_phase(double jd_tdb) {
  * takes into account the slightly eccentric nature of both orbits.
  *
  * NOTES:
- * <ol>
- * <li>The Moon's phase here follows the definition by the Astronomical Almanac, as the excess
- * ecliptic longitude of the Moon over that of the Sun seen from the geocenter.</li>
- * <li>There are other definitions of the phase too, depending on which you might find slightly
- * different answers, but regardless of the details most phase calculations should match give or
- * take a few hours.</li>
- * <li>As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the
- * Moon by Chapront &amp; Francou (2003).</li>
- * </ol>
+ *
+ *  1. The Moon's phase here follows the definition by the Astronomical Almanac, as the excess
+ *     ecliptic longitude of the Moon over that of the Sun seen from the geocenter.
+ *  2. There are other definitions of the phase too, depending on which you might find slightly
+ *     different answers, but regardless of the details most phase calculations should match give or
+ *     take a few hours.
+ *  3. As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the
+ *     Moon by Chapront &amp; Francou (2003).
  *
  * REFERENCES:
- * <ol>
- *  <li>The Explanatory Supplement to the Astronomical Almanac, University Science Books, 3rd ed.,
- *      p. 507</li>
- *  <li>E.M. Standish and J.G. Williams 1992.</li>
- *  <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- *  <li>Chapront, J., &amp; Francou, G., 2002, A&amp;A 387, 700–709</li>
- *  <li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
- *      vol. 124, no. 1, July 1983, p. 50-62.</li>
- * </ol>
+ *
+ *  1. The Explanatory Supplement to the Astronomical Almanac, University Science Books, 3rd ed.,
+ *     p. 507
+ *  2. E.M. Standish and J.G. Williams 1992.
+ *  3. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  4. Chapront, J., &amp; Francou, G., 2002, A&amp;A 387, 700–709
+ *  5. Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
+ *     vol. 124, no. 1, July 1983, p. 50-62.
  *
  * @param phase   [deg] The Moon's phase, or more precisely the ecliptic longitude difference
  *                between the Sun and the Moon, as seen from the geocenter. 0: New Moon, 90: 1st

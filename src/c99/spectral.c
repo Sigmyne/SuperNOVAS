@@ -50,9 +50,9 @@ double novas_add_vel(double v1, double v2) {
 /**
  * Converts a redshift value (z = &Delta;&lambda; / &lambda;<sub>rest</sub>) to a radial velocity
  * (i.e. rate) of recession. It is based on the relativistic formula:
- * <pre>
+ *
  *  1 + z = sqrt((1 + &beta;) / (1 - &beta;))
- * </pre>
+ *
  * where &beta; = _v_<sub>rad</sub> / _c_.
  *
  * @param z   the redshift value (z = &Delta;&lambda; / &lambda;<sub>rest</sub>).
@@ -77,9 +77,9 @@ double novas_z2v(double z) {
 /**
  * Converts a radial recession velocity to a redshift value (z = &Delta;&lambda; /
  * &lambda;<sub>rest</sub>). It is based on the relativistic formula:
- * <pre>
+ *
  *  1 + z = sqrt((1 + &beta;) / (1 - &beta;))
- * </pre>
+ *
  * where &beta; = _v_<sub>rad</sub> / _c_.
  *
  * @param vel   [km/s] velocity (i.e. rate) of recession.
@@ -219,11 +219,10 @@ static int convert_lsr_ssb_vel(const double *vLSR, int sign, double *vSSB) {
  * (Shoenrich et al. 2010).
  *
  * REFERENCES:
- * <ol>
- * <li>Ralph Schoenrich, James Binney, Walter Dehnen, Monthly Notices of the Royal Astronomical
- * Society, Volume 403, Issue 4, April 2010, Pages 1829–1833,
- * https://doi.org/10.1111/j.1365-2966.2010.16253.x</li>
- * </ol>
+ *
+ *  1. Ralph Schoenrich, James Binney, Walter Dehnen, Monthly Notices of the Royal Astronomical
+ *     Society, Volume 403, Issue 4, April 2010, Pages 1829–1833,
+ *     https://doi.org/10.1111/j.1365-2966.2010.16253.x
  *
  * @param epoch     [yr] Coordinate epoch in which the coordinates and velocities are defined.
  *                  E.g. 2000.0.
@@ -266,11 +265,10 @@ double novas_lsr_to_ssb_vel(double epoch, double ra, double dec, double vLSR) {
  * (Shoenrich et al. 2010).
  *
  * REFERENCES:
- * <ol>
- * <li>Ralph Schoenrich, James Binney, Walter Dehnen, Monthly Notices of the Royal Astronomical
- * Society, Volume 403, Issue 4, April 2010, Pages 1829–1833,
- * https://doi.org/10.1111/j.1365-2966.2010.16253.x</li>
- * </ol>
+ *
+ *  1. Ralph Schoenrich, James Binney, Walter Dehnen, Monthly Notices of the Royal Astronomical
+ *     Society, Volume 403, Issue 4, April 2010, Pages 1829–1833,
+ *     https://doi.org/10.1111/j.1365-2966.2010.16253.x
  *
  * @param epoch     [yr] Coordinate epoch in which the coordinates and velocities are defined.
  *                  E.g. 2000.0.
@@ -346,24 +344,22 @@ double novas_ssb_to_lsr_vel(double epoch, double ra, double dec, double vLSR) {
  * used only for solar system objects.
  *
  * NOTES:
- * <ol>
- * <li>This function does not accont for the gravitational deflection of Solar-system sources.
- * For that purpose, the rad_vel2() function, introduced in v1.1, is more appropriate.</li>
- * <li>The NOVAS C implementation did not include relatistic corrections for a moving observer
- * if both `d_obs_geo` and `d_obs_sun` were zero. As of SuperNOVAS v1.1, the relatistic
- * corrections for a moving observer will be included in the radial velocity measure always.</li>
- * <li>In a departure from the original NOVAS C, the radial velocity for major planets (and Sun
- * and Moon) includes gravitational redshift corrections for light originating at the surface,
- * assuming it's observed from near Earth or else from a large distance away.</li>
- * </ol>
+ *
+ *  1. This function does not accont for the gravitational deflection of Solar-system sources.
+ *     For that purpose, the rad_vel2() function, introduced in v1.1, is more appropriate.
+ *  2. The NOVAS C implementation did not include relatistic corrections for a moving observer
+ *     if both `d_obs_geo` and `d_obs_sun` were zero. As of SuperNOVAS v1.1, the relatistic
+ *     corrections for a moving observer will be included in the radial velocity measure always.
+ *  3. In a departure from the original NOVAS C, the radial velocity for major planets (and Sun
+ *     and Moon) includes gravitational redshift corrections for light originating at the surface,
+ *     assuming it's observed from near Earth or else from a large distance away.
  *
  * REFERENCES:
- * <ol>
- * <li>Lindegren &amp; Dravins (2003), Astronomy &amp; Astrophysics 401, 1185-1201.</li>
- * <li>Unlike NOVAS C, this function will return a radial velocity for the Sun that is
- * gravitationally referenced to the Sun's photosphere. (NOVAS C returns the radial velocity for a
- * massless Sun)</li>
- * </ol>
+ *
+ *  1. Lindegren &amp; Dravins (2003), Astronomy &amp; Astrophysics 401, 1185-1201.
+ *  2. Unlike NOVAS C, this function will return a radial velocity for the Sun that is
+ *     gravitationally referenced to the Sun's photosphere. (NOVAS C returns the radial velocity for a
+ *     massless Sun)
  *
  * @param source        Celestial object observed
  * @param pos_src       [AU|*] Geometric position vector of object with respect to observer.
@@ -450,18 +446,16 @@ int rad_vel(const object *restrict source, const double *restrict pos_src, const
  * used only for solar system objects.
  *
  * NOTES:
- * <ol>
- * <li>This function is called by `novas_sky_pos()` and `place()` to calculate radial velocities
- * along with the apparent position of the source.</li>
- * <li>For major planets (and Sun and Moon), the radial velocity includes gravitational redshift
- * corrections for light originating at the surface, assuming it's observed from near Earth or
- * else from a large distance away.</li>
- * </ol>
+ *
+ *  1. This function is called by `novas_sky_pos()` and `place()` to calculate radial velocities
+ *     along with the apparent position of the source.
+ *  2. For major planets (and Sun and Moon), the radial velocity includes gravitational redshift
+ *     corrections for light originating at the surface, assuming it's observed from near Earth or
+ *     else from a large distance away.
  *
  * REFERENCES:
- * <ol>
- * <li>Lindegren &amp; Dravins (2003), Astronomy &amp; Astrophysics 401, 1185-1201.</li>
- * </ol>
+ *
+ *  1. Lindegren &amp; Dravins (2003), Astronomy &amp; Astrophysics 401, 1185-1201.
  *
  * @param source        Celestial object observed
  * @param pos_emit      [AU|*] position vector of object with respect to observer in the

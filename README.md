@@ -70,11 +70,11 @@ __SuperNOVAS__ is a fork of the The Naval Observatory Vector Astrometry Software
 The primary goal of __SuperNOVAS__ is to improve on the original NOVAS C library via:
 
  - Fixing [outstanding issues](#fixed-issues).
+ - Adding a high-level [C++11 API](USAGE-CPP.md).
  - Improved [C99 API documentation](https://sigmyne.github.io/SuperNOVAS/doc/html/files.html).
  - [Faster calculations](#benchmarks).
  - [New features](#added-functionality).
  - [Refined C99 API](#api-changes) to promote best programming practices.
- - New, high-level, [C++11 API](USAGE-CPP.md).
  - [Thread-safe calculations](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#multi-threading-c99).
  - [Debug mode](#debug-support) with informative error tracing.
  - [Regression testing](https://codecov.io/gh/Sigmyne/SuperNOVAS) and continuous integration on GitHub.

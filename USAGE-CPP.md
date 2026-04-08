@@ -506,7 +506,9 @@ Earth based observer (otherwise, you'll get an invalid result):
  // Convert the apparent position to unrefracted horizontal coordinates
  Horizontal hor = app.to_horizontal()
  
- // ... or apply atmospheric refraction with the model and weather of choice
+ // ...and you might further apply atmospheric refraction with the refraction model and 
+ // weather parameters of choice...
+ 
  // Lets define the weather parameters explicitly as 12.0C, 895 mbar, and 47% humidity:
  Weather weather = Weather(Temperature::celsius(12.0), Pressure::mbar(895.0), 47.0);
  

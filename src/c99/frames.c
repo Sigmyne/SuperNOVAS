@@ -486,13 +486,12 @@ int novas_frame_is_initialized(const novas_frame *frame) {
  * ephemeris() call.
  *
  * NOTES:
- * <ol>
- * <li>This function expects the Earth polar wobble parameters to be defined on a per-frame basis
- * and will not use the legacy global (undated) orientation parameters set via cel_pole().</li>
- * <li>The Earth orientation parameters xp, yp should be provided in the same ITRF realization as
- * the observer location for an Earth-based observer. You can use `novas_itrf_transform_eop()` to
- * convert the EOP values as necessary.</li>
- * </ol>
+ *
+ *  1. This function expects the Earth polar wobble parameters to be defined on a per-frame basis
+ *     and will not use the legacy global (undated) orientation parameters set via cel_pole().
+ *  2. The Earth orientation parameters xp, yp should be provided in the same ITRF realization as
+ *     the observer location for an Earth-based observer. You can use `novas_itrf_transform_eop()` to
+ *     convert the EOP values as necessary.
  *
  * @param accuracy    Accuracy requirement, NOVAS_FULL_ACCURACY (0) for the utmost precision or
  *                    NOVAS_REDUCED_ACCURACY (1) if ~1 mas accuracy is sufficient.
@@ -693,11 +692,10 @@ static int icrs_to_sys(const novas_frame *restrict frame, double *restrict pos, 
  * cost. See `place()` for references.
  *
  * NOTES:
- * <ol>
- * <li>As of SuperNOVAS v1.3, the returned velocity vector is a proper observer-based
- * velocity measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
- * pseudo LSR-based measures being returned for catalog sources.</li>
- * </ol>
+ *
+ *  1. As of SuperNOVAS v1.3, the returned velocity vector is a proper observer-based
+ *     velocity measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
+ *     pseudo LSR-based measures being returned for catalog sources.
  *
  * @param source        Pointer to a celestial source data structure that is observed. Catalog
  *                      sources should have coordinates and properties in ICRS. You can use
@@ -816,11 +814,10 @@ int novas_geom_posvel(const object *restrict source, const novas_frame *restrict
  * aberration or deflection in any system).
  *
  * NOTES:
- * <ol>
- * <li>As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based
- * spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
- * LSR-based measures being returned for catalog sources.</li>
- * </ol>
+ *
+ *  1. As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based
+ *     spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
+ *     LSR-based measures being returned for catalog sources.
  *
  * @param object        Pointer to a celestial object data structure that is observed. Catalog
  *                      sources should have coordinates and properties in ICRS. You can use
@@ -1546,10 +1543,9 @@ static double calc_lha(double el, double dec, double lat) {
  * the source (for Solar-system objects), and optionally for atmospheric refraction also.
  *
  * NOTES:
- * <ol>
- * <li>The current implementation is not suitable for calculating nearest successive rise/set
- * times for near-Earth objects, at or within the geostationary orbit.</li>
- * </ol>
+ *
+ *  1. The current implementation is not suitable for calculating nearest successive rise/set
+ *     times for near-Earth objects, at or within the geostationary orbit.
  *
  * @param el          [deg] Elevation angle (not used for transit times).
  * @param sign        1 for rise time, or -1 for setting time, or 0 for transit.
@@ -1635,10 +1631,9 @@ static double novas_cross_el_date(double el, int sign, const object *source, con
  * account for the (slow) motion of Solar-system bodies.
  *
  * NOTES:
- * <ol>
- * <li>The current implementation is not suitable for calculating the nearest successive transit
- * times for near-Earth objects, at or within the geostationary orbit.</li>
- * </ol>
+ *
+ *  1. The current implementation is not suitable for calculating the nearest successive transit
+ * times for near-Earth objects, at or within the geostationary orbit.
  *
  * @param source      Observed source
  * @param frame       Observing frame, defining the observer location and astronomical time of
@@ -1664,13 +1659,12 @@ double novas_transit_time(const object *restrict source, const novas_frame *rest
  * optionally for atmospheric refraction also.
  *
  * NOTES:
- * <ol>
- * <li>The current implementation is not suitable for calculating the nearest successive rise
- * times for near-Earth objects, at or within the geostationary orbit.</li>
- * <li>This function calculates the time when the center (not the limb!) of the source rises
- * above the specified elevation threshold. Something to keep in mind for calculating Sun/Moon
- * rise times.</li>
- * </ol>
+ *
+ *  1. The current implementation is not suitable for calculating the nearest successive rise
+ *     times for near-Earth objects, at or within the geostationary orbit.
+ *  2. This function calculates the time when the center (not the limb!) of the source rises
+ *     above the specified elevation threshold. Something to keep in mind for calculating Sun/Moon
+ *     rise times.
  *
  * @param el          [deg] Elevation angle.
  * @param source      Observed source
@@ -1704,13 +1698,12 @@ double novas_rises_above(double el, const object *restrict source, const novas_f
  * optionally for atmopsheric refraction also.
  *
  * NOTES:
- * <ol>
- * <li>The current implementation is not suitable for calculating the nearest successive set
- * times for near-Earth objects, at or within the geostationary orbit.</li>
- * <li>This function calculates the time when the center (not the limb!) of the source sets below
- * the specified elevation threshold. Something to keep in mind for calculating Sun/Moon rise
- * times.</li>
- * </ol>
+ *
+ *  1. The current implementation is not suitable for calculating the nearest successive set
+ *     times for near-Earth objects, at or within the geostationary orbit.
+ *  2. This function calculates the time when the center (not the limb!) of the source sets below
+ *     the specified elevation threshold. Something to keep in mind for calculating Sun/Moon rise
+ *     times.
  *
  * @param el          [deg] Elevation angle.
  * @param source      Observed source

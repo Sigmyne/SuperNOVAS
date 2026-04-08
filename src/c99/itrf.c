@@ -6,9 +6,8 @@
  *  (longitude, latitude, altitude) coordinates w.r.t. the reference ellipsoid.
  *
  *  REFERENCES:
- *  <ol>
- *  <li>ITRS Conventions Chapter 4, see https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</li>
- *  </ol>
+ *
+ *   1. ITRS Conventions Chapter 4, see https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf
  *
  * @date Created  on Aug 26, 2025
  * @author Attila Kovacs
@@ -155,9 +154,8 @@ static void get_diff_terms(const itrf_terms *a, const itrf_terms *b, itrf_terms 
  * ITRF frame.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions, Chapter 4, Eq. 4.3, see https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</li>
- * </ol>
+ *
+ *  1. IERS Conventions, Chapter 4, Eq. 4.3, see https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf
  *
  * @param[in] in      Input 3-vector
  * @param R           [rad] Small angle rotation angles R1, R2, R3
@@ -198,10 +196,9 @@ static void itrf_rotation(const double *in, const double *R, double *out) {
  * ```
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions, Chapter 4, Eq. 4.13 and Table 4.1. See
- * https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</li>
- * </ol>
+ *
+ *  1. IERS Conventions, Chapter 4, Eq. 4.13 and Table 4.1. See
+ *     https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf
  *
  * @param from_year       [yr] ITRF realization year of input coordinates / rates. E.g. 1992 for
  *                        ITRF92.
@@ -277,11 +274,9 @@ int novas_itrf_transform(int from_year, const double *restrict from_coords, cons
  * either the site location or the EOP between different realizations to match.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions, Chapter 4, Eq. 4.14 and Table 4.1. See
- * https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</li>
- * </ol>
  *
+ *  1. IERS Conventions, Chapter 4, Eq. 4.14 and Table 4.1. See
+ *     https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf
  *
  * @param from_year       [yr] ITRF realization year of input coordinates / rates. E.g. 1992 for
  *                        ITRF92.
@@ -419,9 +414,8 @@ int novas_geodetic_transform_site(enum novas_reference_ellipsoid from_ellipsoid,
  * Returns the equatorial radius and flattening for the given Earth reference ellipsoid model.
  *
  * REFERENCES:
- * <ol>
- * <li>https://en.wikipedia.org/wiki/Earth_ellipsoid</li>
- * </ol>
+ *
+ *  1. https://en.wikipedia.org/wiki/Earth_ellipsoid
  *
  * @param ellipsoid   The reference ellipsoid model
  * @param[out] a      [m] Equatorial radius
@@ -507,24 +501,17 @@ int novas_geodetic_to_cartesian(double lon, double lat, double alt, enum novas_r
  * ellipsoid.
  *
  * NOTES:
- * <ol>
- * <li>Adapted from the IERS `GCONV2.F` source code, see
- * https://iers-conventions.obspm.fr/content/chapter4/software/GCONV2.F.
- * </li>
- * </ol>
+ *
+ *  1. Adapted from the IERS `GCONV2.F` source code, see
+ *     https://iers-conventions.obspm.fr/content/chapter4/software/GCONV2.F.
  *
  * REFERENCES:
- * <ol>
- * <li>
- *     Fukushima, T., "Transformation from Cartesian to geodetic
+ *
+ *  1. Fukushima, T., "Transformation from Cartesian to geodetic
  *     coordinates accelerated by Halley's method", J. Geodesy (2006),
  *     79(12): 689-693
- * </li>
- * <li>
- *     Petit, G. and Luzum, B. (eds.), IERS Conventions (2010),
+ *  2. Petit, G. and Luzum, B. (eds.), IERS Conventions (2010),
  *     IERS Technical Note No. 36, BKG (2010)
- * </li>
- * </ol>
  *
  * @param[in] xyz     [m] Input geocentric Cartesian coordinates (x, y, z) 3-vector.
  * @param ellipsoid   Reference ellipsoid to use. For ITRF use `NOVAS_GRS80_ELLIPSOID`, for GPS

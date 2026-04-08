@@ -30,9 +30,8 @@
  * and equinox of J2000, with high order terms omitted (Simon et al. 1994, 5.8.1-5.8.8).
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions Chapter 5, Eq. 5.44.</li>
- * </ol>
+ *
+ *  1. IERS Conventions Chapter 5, Eq. 5.44.
  *
  * @param t       [cy] Julian centuries since J2000
  * @param planet  Novas planet id, e.g. NOVAS_MARS.
@@ -78,17 +77,15 @@ double planet_lon(double t, enum novas_planet planet) {
  * accuracies, see either of the references below.
  *
  * NOTES:
- * <ol>
- *  <li>The Earth-Moon system is treated as a single orbital of the Earth-Moon Barycenter (EMB).
- *      That is, the EMB orbital is returned for both Earth and the Moon also.</li>
- *  <li>For Pluto, the Pluto system barycenter orbit is returned.</li>
- * </ol>
+ *
+ *  1. The Earth-Moon system is treated as a single orbital of the Earth-Moon Barycenter (EMB).
+ *     That is, the EMB orbital is returned for both Earth and the Moon also.
+ *  2. For Pluto, the Pluto system barycenter orbit is returned.
  *
  * REFERENCES:
- * <ol>
- *  <li>E.M. Standish and J.G. Williams 1992.</li>
- *  <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- * </ol>
+ *
+ *  1. E.M. Standish and J.G. Williams 1992.
+ *  2. https://ssd.jpl.nasa.gov/planets/approx_pos.html
  *
  * @param id          NOVAS major planet ID. All major planets, except Earth, are supported. The
  *                    Earth-Moon Barycenter (EMB), and Pluto system Barycenter are supported also.
@@ -289,33 +286,30 @@ int novas_make_planet_orbit(enum novas_planet id, double jd_tdb, novas_orbital *
  * initialized with `novas_make_planet_orbit()` or `novas_make_moon_orbit()`, and then calling
  * `novas_geom_posvel()`, there are a few important differences:
  *
- * <ol>
- *  <li>This function returns geometric positions referenced to the Sun (i.e., heliocentric),
- *  whereas `novas_geom_posvel()` references the calculated positions to the Solar-system
- *  Barycenter (SSB).</li>
- *  <li>This function calculates Earth and Moon positions about the Keplerian orbital position
- *  of the Earth-Moon Barycenter (EMB). In constrast, `novas_make_planet_orbit()` does not provide
- *  orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's orbital to
- *  the Earth position returned by the currently configured planet calculator function (see
- *  `set_planet_provider()`).</li>
- * </ol>
+ * - This function returns geometric positions referenced to the Sun (i.e., heliocentric),
+ *   whereas `novas_geom_posvel()` references the calculated positions to the Solar-system
+ *   Barycenter (SSB).
+ *
+ * - This function calculates Earth and Moon positions about the Keplerian orbital position
+ *   of the Earth-Moon Barycenter (EMB). In constrast, `novas_make_planet_orbit()` does not provide
+ *   orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's orbital to
+ *   the Earth position returned by the currently configured planet calculator function (see
+ *   `set_planet_provider()`).
  *
  *
  * NOTES:
- * <ol>
- *  <li>The Sun's position w.r.t. the Solar-system Barycenter is calculated using
- *  `earth_sun_calc()`. All other orbitals are also referenced to the Sun's position calculated
- *  that way.</li>
- * </ol>
+ *
+ *  1. The Sun's position w.r.t. the Solar-system Barycenter is calculated using
+ *     `earth_sun_calc()`. All other orbitals are also referenced to the Sun's position calculated
+ *     that way.
  *
  * REFERENCES:
- * <ol>
- *  <li>E.M. Standish and J.G. Williams 1992.</li>
- *  <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
- *  <li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
- *      vol. 124, no. 1, July 1983, p. 50-62.</li>
- * </ol>
+ *
+ *  1. E.M. Standish and J.G. Williams 1992.
+ *  2. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  3. Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  4. Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
+ *     vol. 124, no. 1, July 1983, p. 50-62.
  *
  * @param id        NOVAS major planet ID. All major planets, plus the Sun, Moon, Earth-Moon
  *                  Barycenter (EMB), and Pluto system Barycenter are supported. (For Pluto, the
@@ -403,25 +397,23 @@ int novas_approx_heliocentric(enum novas_planet id, double jd_tdb, double *restr
  * initialized with `novas_make_planet_orbit()` or `novas_make_moon_orbit()`, and then calling
  * `novas_sky_pos()`, there are a few important differences to note:
  *
- * <ol>
- *  <li>This function calculates Earth and Moon positions about the Keplerian orbital position
- *  of the Earth-Moon Barycenter (EMB). In constrast, `novas_make_planet_orbit()` does not provide
- *  orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's orbital to
- *  the Earth position returned by the currently configured planet calculator function (see
- *  `set_planet_provider()`).</li>
- *  <li>This function ignores gravitational deflection. It makes little sense to bother about
- *  corrections that are orders of magnitude below the accuracy of the orbital positions
- *  obtained.</li>
- * </ol>
+ * - This function calculates Earth and Moon positions about the Keplerian orbital position
+ *   of the Earth-Moon Barycenter (EMB). In constrast, `novas_make_planet_orbit()` does not provide
+ *   orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's orbital to
+ *   the Earth position returned by the currently configured planet calculator function (see
+ *   `set_planet_provider()`).
+ *
+ * - This function ignores gravitational deflection. It makes little sense to bother about
+ *   corrections that are orders of magnitude below the accuracy of the orbital positions
+ *   obtained.
  *
  * REFERENCES:
- * <ol>
- *  <li>E.M. Standish and J.G. Williams 1992.</li>
- *  <li>https://ssd.jpl.nasa.gov/planets/approx_pos.html</li>
- *  <li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
- *  <li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
- *      vol. 124, no. 1, July 1983, p. 50-62.</li>
- * </ol>
+ *
+ *  1. E.M. Standish and J.G. Williams 1992.
+ *  2. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  3. Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  4. Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
+ *     vol. 124, no. 1, July 1983, p. 50-62.
  *
  * @param id            NOVAS major planet ID. All major planets, plus the Sun, Moon, Earth-Moon
  *                      Barycenter (EMB), and Pluto system Barycenter are supported. (For Pluto,

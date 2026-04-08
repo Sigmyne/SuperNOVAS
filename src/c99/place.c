@@ -104,22 +104,20 @@
  * and ut1_to_tt includes the DUT1 component).
  *
  * NOTES:
- * <ol>
- * <li>This version fixes a NOVAS C 3.1 issue that velocities and solar-system distances were not
- * antedated for light-travel time.</li>
- * <li>In a departure from the original NOVAS C, the radial velocity for major planets (and Sun and
- * Moon) includes gravitational redshift corrections for light originating at the surface, assuming
- * it's observed from near Earth or else from a large distance away.</li>
- * <li>As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based
- * spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
- * pseudo LSR-based measures being returned for catalog sources.</li>
- * </ol>
+ *
+ *  1. This version fixes a NOVAS C 3.1 issue that velocities and solar-system distances were not
+ *     antedated for light-travel time.
+ *  2. In a departure from the original NOVAS C, the radial velocity for major planets (and Sun and
+ *     Moon) includes gravitational redshift corrections for light originating at the surface, assuming
+ *     it's observed from near Earth or else from a large distance away.
+ *  3. As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based
+ *     spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
+ *     pseudo LSR-based measures being returned for catalog sources.
  *
  * REFERENCES:
- * <ol>
- *     <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *     <li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Klioner, S. (2003), Astronomical Journal 125, 1580-1597.
  *
  * @param jd_tt         [day] Terrestrial Time (TT) based Julian date.
  * @param source        Pointer to a celestrial object data structure. Catalog objects musy have
@@ -351,10 +349,9 @@ short place(double jd_tt, const object *restrict source, const observer *restric
  * are available via a novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- *     <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *     <li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.
  *
  * @param jd_tt     [day] Terrestrial Time (TT) based Julian date.
  * @param star      Pointer to catalog entry structure containing catalog data for the object in
@@ -403,10 +400,9 @@ int place_star(double jd_tt, const cat_entry *restrict star, const observer *res
  * are available via a novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * <li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.
  *
  * @param jd_tt     [day] Terrestrial Time (TT) based Julian date.
  * @param star      Pointer to catalog entry structure containing catalog data for the object
@@ -471,10 +467,9 @@ int radec_star(double jd_tt, const cat_entry *restrict star, const observer *res
  * are available via a novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- *     <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *     <li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.
  *
  * @param jd_tt     [day] Terretrial Time (TT) based Julian date.
  * @param ss_body   Pointer to structure containing the body designation for the solar
@@ -562,10 +557,9 @@ int radec_planet(double jd_tt, const object *restrict ss_body, const observer *r
  * novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- *     <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *     <li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.
  *
  * @param jd_tt     [day] Terretrial Time (TT) based Julian date.
  * @param star      Pointer to catalog entry structure containing catalog data for the object in
@@ -609,10 +603,9 @@ short app_star(double jd_tt, const cat_entry *restrict star, enum novas_accuracy
  * novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * <li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.
  *
  * @param jd_tt     [day] Terrestrial Time (TT) based Julian date.
  * @param star      Pointer to catalog entry structure containing catalog data for the object in
@@ -649,10 +642,9 @@ short virtual_star(double jd_tt, const cat_entry *restrict star, enum novas_accu
  * specifies the star.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * <li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.
  *
  * @param jd_tt     [day] Terrestrial Time (TT) based Julian date.
  * @param star      Pointer to catalog entry structure containing catalog data for the object in
@@ -692,10 +684,9 @@ short astro_star(double jd_tt, const cat_entry *restrict star, enum novas_accura
  * novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- *     <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *     <li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.
  *
  * @param jd_tt     [day] Terretrial Time (TT) based Julian date.
  * @param ss_body   Pointer to structure containing the body designation for the solar system body.
@@ -735,10 +726,9 @@ short app_planet(double jd_tt, const object *restrict ss_body, enum novas_accura
  * novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- *     <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *     <li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.
  *
  * @param jd_tt     [day] Terretrial Time (TT) based Julian date.
  * @param ss_body   Pointer to structure containing the body designation for the solar system body.
@@ -773,10 +763,9 @@ short virtual_planet(double jd_tt, const object *restrict ss_body, enum novas_ac
  * different set of return values used.
  *
  * REFERENCES:
- * <ol>
- *     <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *     <li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.
  *
  * @param jd_tt     [day] Terretrial Time (TT) based Julian date.
  * @param ss_body   Pointer to structure containing the body designation for the solar system body.
@@ -821,10 +810,9 @@ short astro_planet(double jd_tt, const object *restrict ss_body, enum novas_accu
  * novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * <li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.
  *
  * @param jd_tt     [day] Terrestrial Time (TT) based Julian date.
  * @param ut1_to_tt [s] Difference TT-UT1 at 'jd_tt', in seconds of time.
@@ -871,10 +859,9 @@ short topo_star(double jd_tt, double ut1_to_tt, const cat_entry *restrict star, 
  * novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * <li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.
  *
  * @param jd_tt     [day] Terrestrial Time (TT) based Julian date.
  * @param ut1_to_tt [s] Difference TT-UT1 at 'jd_tt', in seconds of time.
@@ -919,10 +906,9 @@ short local_star(double jd_tt, double ut1_to_tt, const cat_entry *restrict star,
  * novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- *     <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *     <li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.
  *
  * @param jd_tt     [day] Terretrial Time (TT) based Julian date.
  * @param ss_body   Pointer to structure containing the body designation for the solar system body.
@@ -969,10 +955,9 @@ short topo_planet(double jd_tt, const object *restrict ss_body, double ut1_to_tt
  * novas_planet_provider function.
  *
  * REFERENCES:
- * <ol>
- *     <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *     <li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.
  *
  * @param jd_tt     [day] Terrestrial Time (TT) based Julian date.
  * @param ss_body   Pointer to structure containing the body designation for the solar
@@ -1018,10 +1003,9 @@ short local_planet(double jd_tt, const object *restrict ss_body, double ut1_to_t
  * the apparent RA/Dec may be specified in any reference system.
  *
  * REFERENCES:
- * <ol>
- *     <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *     <li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.
  *
  * @param jd_tt         [day] Terrestrial Time (TT) based Julian date.
  * @param[in] tra       [h] Geocentric apparent (TOD) right ascension, referred to true equator

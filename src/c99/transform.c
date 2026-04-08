@@ -35,10 +35,9 @@
  * the existing framework of related functions.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 5, especially Section 5.9</li>
- * <li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 5, especially Section 5.9
+ *  2. Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.
  *
  * @date Created  on Mar 6, 2025
  * @author Attila Kovacs and G. Kaplan
@@ -131,11 +130,10 @@ short gcrs2equ(double jd_tt, enum novas_dynamical_type sys, enum novas_accuracy 
  * If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.
  *
  * REFERENCES:
- *  <ol>
- *   <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *   <li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV
- *   Joint Discussion 16.</li>
- *  </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV
+ *     Joint Discussion 16.
  *
  * @param jd_ut1_high   [day] High-order part of UT1 Julian date.
  * @param jd_ut1_low    [day] Low-order part of UT1 Julian date.
@@ -238,11 +236,10 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
  * If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.
  *
  * REFERENCES:
- *  <ol>
- *   <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *   <li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV
- *   Joint Discussion 16.</li>
- *  </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV
+ *     Joint Discussion 16.
  *
  * @param jd_ut1_high   [day] High-order part of UT1 Julian date.
  * @param jd_ut1_low    [day] Low-order part of UT1 Julian date.
@@ -341,16 +338,14 @@ short cel2ter(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
  * system and the GCRS.
  *
  * NOTES:
- * <ol>
- * <li>More efficient 3D rotation implementation for small angles by A. Kovacs</li>
- * </ol>
+ *
+ *  1. More efficient 3D rotation implementation for small angles by A. Kovacs
  *
  * REFERENCES:
- *  <ol>
- *   <li>Hilton, J. and Hohenkerk, C. (2004), Astronomy and Astrophysics 413, 765-770, eq. (6)
- *   and (8).</li>
- *   <li>IERS (2003) Conventions, Chapter 5.</li>
- *  </ol>
+ *
+ *  1. Hilton, J. and Hohenkerk, C. (2004), Astronomy and Astrophysics 413, 765-770, eq. (6)
+ *     and (8).
+ *  2. IERS (2003) Conventions, Chapter 5.
  *
  * @param in          Position vector, equatorial rectangular coordinates.
  * @param direction   <0 for for dynamical to ICRS transformation, or else &gt;=0 for ICRS to
@@ -585,10 +580,9 @@ int tod_to_gcrs(double jd_tdb, enum novas_accuracy accuracy, const double *in, d
  * equation of origins.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 5, especially Section 5.9</li>
- * <li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 5, especially Section 5.9
+ *  2. Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.
  *
  * @param jd_tdb    [day] Barycentric Dynamical Time (TDB) based Julian date that defines the
  *                  output epoch. Typically it does not require much precision, and Julian dates
@@ -628,10 +622,9 @@ int gcrs_to_cirs(double jd_tdb, enum novas_accuracy accuracy, const double *in, 
  * correcting for the frame bias to arrive at GCRS.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 5, especially Section 5.9</li>
- * <li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 5, especially Section 5.9
+ *  2. Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.
  *
  * @param jd_tdb    [day] Barycentric Dynamical Time (TDB) based Julian date that defines the
  *                  output epoch. Typically it does not require much precision, and Julian dates
@@ -730,11 +723,10 @@ double app_to_cirs_ra(double jd_tt, enum novas_accuracy accuracy, double ra) {
  * UTC-based Julian date the same way.for arcsec-level precision also.
  *
  * REFERENCES:
- *  <ol>
- *   <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *   <li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
- *   XXV Joint Discussion 16.</li>
- *  </ol>
+ *
+ * 1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ * 2. Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
+ *    XXV Joint Discussion 16.
  *
  * @param jd_tt_high    [day] High-order part of Terrestrial Time (TT) based Julian date.
  * @param jd_tt_low     [day] Low-order part of Terrestrial Time (TT) based Julian date.
@@ -775,11 +767,10 @@ int itrs_to_cirs(double jd_tt_high, double jd_tt_low, double ut1_to_tt, enum nov
  * UTC-based Julian date the same way.for arcsec-level precision also.
  *
  * REFERENCES:
- *  <ol>
- *   <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *   <li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
- *   XXV Joint Discussion 16.</li>
- *  </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
+ *     XXV Joint Discussion 16.
  *
  * @param jd_tt_high    [day] High-order part of Terrestrial Time (TT) based Julian date.
  * @param jd_tt_low     [day] Low-order part of Terrestrial Time (TT) based Julian date.
@@ -820,11 +811,10 @@ int itrs_to_tod(double jd_tt_high, double jd_tt_low, double ut1_to_tt, enum nova
  *
  *
  * REFERENCES:
- *  <ol>
- *   <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *   <li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV
- *   Joint Discussion 16.</li>
- *  </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV
+ *     Joint Discussion 16.
  *
  * @param jd_tt_high    [day] High-order part of Terrestrial Time (TT) based Julian date.
  * @param jd_tt_low     [day] Low-order part of Terrestrial Time (TT) based Julian date.
@@ -866,11 +856,10 @@ int cirs_to_itrs(double jd_tt_high, double jd_tt_low, double ut1_to_tt, enum nov
  * UTC-based Julian date the same way.for arcsec-level precision also.
  *
  * REFERENCES:
- *  <ol>
- *   <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- *   <li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV
- *   Joint Discussion 16.</li>
- *  </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  2. Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV
+ *     Joint Discussion 16.
  *
  * @param jd_tt_high    [day] High-order part of Terrestrial Time (TT) based Julian date.
  * @param jd_tt_low     [day] Low-order part of Terrestrial Time (TT) based Julian date.

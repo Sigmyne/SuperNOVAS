@@ -148,16 +148,15 @@ int make_observer_at_geocenter(observer *restrict obs) {
  * this call.
  *
  * NOTES:
- * <ol>
- * <li>You can convert coordinates among ITRF realization using `novas_itrf_transform()`,
- * possibly after `novas_geodetic_to_cartesian()` with `NOVAS_GRS80_ELLIPSOID` as necessary for
- * polar ITRF coordinates.</li>
- * <li>You can convert ITRF Cartesian _xyz_ locations to geodetic locations by using
- * `novas_cartesian_to_geodetic()` with `NOVAS_GRS80_ELLIPSOID` as the reference ellipsoid
- * parameter.</li>
- * <li>If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want
- * to use make_gps_observer() intead</li>
- * </ol>
+ *
+ *  1. You can convert coordinates among ITRF realization using `novas_itrf_transform()`,
+ *     possibly after `novas_geodetic_to_cartesian()` with `NOVAS_GRS80_ELLIPSOID` as necessary for
+ *     polar ITRF coordinates.
+ *  2. You can convert ITRF Cartesian _xyz_ locations to geodetic locations by using
+ *     `novas_cartesian_to_geodetic()` with `NOVAS_GRS80_ELLIPSOID` as the reference ellipsoid
+ *     parameter.
+ *  3. If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want
+ *     to use make_gps_observer() intead
  *
  * @param latitude      [deg] Geodetic (ITRF / GRS80) latitude; north positive.
  * @param longitude     [deg] Geodetic (ITRF / GRS80) longitude; east positive.
@@ -320,23 +319,21 @@ int make_observer_in_space(const double *sc_pos, const double *sc_vel, observer 
  * annual value for the location. To set an actual humidity, set the output structure's field
  * after calling this funcion.
  *
- * NOTES
- * <ol>
- * <li>This implementation breaks strict v1.0 ABI compatibility since it writes to (initializes)
- * a field (`humidity`) that was not yet part of the `on_surface` structure in v1.0. As such,
- * linking SuperNOVAS v1.1 or later with application code compiled for SuperNOVAS v1.0 can result
- * in memory corruption or segmentation fault when this function is called. To be safe, make sure
- * your application has been (re)compiled against SuperNOVAS v1.1 or later.</li>
- * <li>You can convert coordinates among ITRF realization using `novas_itrf_transform()`,
- * possibly after `novas_geodetic_to_cartesian()` with `NOVAS_GRS80_ELLIPSOID` as necessary for
- * polar ITRF coordinates.</li>
- * <li>You can convert Cartesian _xyz_ locations to geodetic locations by using
- * `novas_cartesian_to_geodetic()` with `NOVAS_GRS80_ELLIPSOID` as the reference
- * ellipsoid parameter.</li>
- * <li>If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want
- * to use `make_gps_site()` instead, and then set weather parameters afterwards as necessary.
- * </li>
- * </ol>
+ * NOTES:
+ *
+ *  1. This implementation breaks strict v1.0 ABI compatibility since it writes to (initializes)
+ *     a field (`humidity`) that was not yet part of the `on_surface` structure in v1.0. As such,
+ *     linking SuperNOVAS v1.1 or later with application code compiled for SuperNOVAS v1.0 can result
+ *     in memory corruption or segmentation fault when this function is called. To be safe, make sure
+ *     your application has been (re)compiled against SuperNOVAS v1.1 or later.
+ *  2. You can convert coordinates among ITRF realization using `novas_itrf_transform()`,
+ *     possibly after `novas_geodetic_to_cartesian()` with `NOVAS_GRS80_ELLIPSOID` as necessary for
+ *     polar ITRF coordinates.
+ *  3. You can convert Cartesian _xyz_ locations to geodetic locations by using
+ *     `novas_cartesian_to_geodetic()` with `NOVAS_GRS80_ELLIPSOID` as the reference
+ *     ellipsoid parameter.
+ *  4. If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want
+ *     to use `make_gps_site()` instead, and then set weather parameters afterwards as necessary.
  *
  * @param latitude      [deg] Geodetic (ITRF / GRS80) latitude; north positive.
  * @param longitude     [deg] Geodetic (ITRF / GRS80) longitude; east positive.
@@ -706,16 +703,14 @@ short geo_posvel(double jd_tt, double ut1_to_tt, enum novas_accuracy accuracy, c
  * Corrects position vector for aberration of light.  Algorithm includes relativistic terms.
  *
  * NOTES:
- * <ol>
- * <li>This function is called by `place()` to account for aberration when calculating the
- * position of the source.</li>
- * </ol>
+ *
+ *  1. This function is called by `place()` to account for aberration when calculating the
+ * position of the source.
  *
  * REFERENCES:
- * <ol>
- * <li>Murray, C. A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.</li>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * </ol>
+ *
+ *  1. Murray, C. A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.
+ *  2. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
  *
  * @param pos         [AU]  Position vector of source relative to observer
  * @param vobs        [AU/day]  Velocity vector of observer, relative to the solar system
@@ -770,9 +765,9 @@ int aberration(const double *pos, const double *vobs, double lighttime, double *
  *
  * NOTES:
  *
- *  - This implementation does not take polar wobble corrections into account for Earth-based
- *    (ITRS) observing locations. For those, it provides position vectors at the tens of meters
- *    level only.
+ *  1. This implementation does not take polar wobble corrections into account for Earth-based
+ *     (ITRS) observing locations. For those, it provides position vectors at the tens of meters
+ *     level only.
  *
  * @param jd_tdb        [day] Barycentric Dynamical Time (TDB) based Julian date.
  * @param ut1_to_tt     [s] TT - UT1 time difference. Used only when 'location->where' is
@@ -876,8 +871,8 @@ int obs_posvel(double jd_tdb, double ut1_to_tt, enum novas_accuracy accuracy, co
  *
  * NOTES:
  *
- *  - unlike the original NOVAS `geo_posvel()`, this implementation takes the polar offsets into
- *    account.
+ *  1. unlike the original NOVAS `geo_posvel()`, this implementation takes the polar offsets into
+ *     account.
  *
  * @param ts        Astrometric time of oservation
  * @param site      ITRF / GRS80 geodetic location on Earth
@@ -953,9 +948,8 @@ int novas_site_gcrs_posvel(const novas_timespec *restrict ts, const on_surface *
  * annual).
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
  *
  * @param pos             [AU] Position vector, referred to origin at solar system barycenter.
  * @param pos_obs         [AU] Position vector of observer (or the geocenter), with respect to
@@ -1089,11 +1083,10 @@ int obs_planets(double jd_tdb, enum novas_accuracy accuracy, const double *restr
  * this returns the antedated source velocity vector also.
  *
  * NOTES:
- * <ol>
- * <li>This function is called by `novas_geom_posvel()` or `place()` to calculate observed
- * positions, radial velocity, and distance for the time when the observed light originated
- * from the source.</li>
- * </ol>
+ *
+ *  1. This function is called by `novas_geom_posvel()` or `place()` to calculate observed
+ *     positions, radial velocity, and distance for the time when the observed light originated
+ *     from the source.
  *
  * @param jd_tdb          [day] Barycentric Dynamical Time (TDB) based Julian date
  * @param body            Pointer to structure containing the designation for the solar system
@@ -1213,12 +1206,10 @@ short light_time(double jd_tdb, const object *restrict body, const double *pos_o
  * a best guess default model of sorts.
  *
  * REFERENCES:
- * <ol>
- * <li>Feulner, G., Rahmstorf, S., Levermann, A., and Volkwardt, S. (2013), Journal of Climate 26, 7136</li>
- * <li>Mendez-Astudillo, J., et al. (2021), Urban Heat Island (UHI) Mitigation (pp.43-59),
- * DOI:10.1007/978-981-33-4050-3_3
- * </li>
- * </ol>
+ *
+ *  1. Feulner, G., Rahmstorf, S., Levermann, A., and Volkwardt, S. (2013), Journal of Climate 26, 7136
+ *  2. Mendez-Astudillo, J., et al. (2021), Urban Heat Island (UHI) Mitigation (pp.43-59),
+ *     DOI:10.1007/978-981-33-4050-3_3
  *
  * @param[in, out] site       Site containing geodetic loation as input, and poulated with typical
  *                            mean weather parameters for the output.
@@ -1344,13 +1335,13 @@ int novas_uvw(const double *restrict station_pos, const double *restrict station
  *
  * NOTES:
  *
- * - This method supports down to nanometer precision for sites on Earth or in Low Earth Orbit
- *   (LEO), and sub-micron (&lt;&mu;m) precision even at the distance of the Moon. However,
- *   because its calculations are based on geocentric positions, the precision degrades with
- *   increasing distance from Earth, and may not be suitable for interferometers far from Earth.
- *   When precision is a concern, you might use the more generic `novas_uvw()` instead, with
- *   positions (and velocities) of the stations defined relative to the array center -- enabling
- *   higher precision projections than this function.
+ *  1. This method supports down to nanometer precision for sites on Earth or in Low Earth Orbit
+ *     (LEO), and sub-micron (&lt;&mu;m) precision even at the distance of the Moon. However,
+ *     because its calculations are based on geocentric positions, the precision degrades with
+ *     increasing distance from Earth, and may not be suitable for interferometers far from Earth.
+ *     When precision is a concern, you might use the more generic `novas_uvw()` instead, with
+ *     positions (and velocities) of the stations defined relative to the array center -- enabling
+ *     higher precision projections than this function.
  *
  * @param ts                  Astrometric time of observation.
  * @param station             Interferometric station site.

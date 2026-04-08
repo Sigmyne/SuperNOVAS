@@ -26,7 +26,7 @@ int grav_bodies_reduced_accuracy = DEFAULT_GRAV_BODIES_REDUCED_ACCURACY;
 int grav_bodies_full_accuracy = DEFAULT_GRAV_BODIES_FULL_ACCURACY;
 
 /**
- * (<i>primarily for internal use</i>) Computes the total gravitational deflection of light for
+ * (_primarily for internal use_) Computes the total gravitational deflection of light for
  * the observed object due to the major gravitating bodies in the solar system.  This function
  * valid for an observed body within the solar system as well as for a star.
  *
@@ -39,18 +39,15 @@ int grav_bodies_full_accuracy = DEFAULT_GRAV_BODIES_FULL_ACCURACY;
  * `grav_bodies_reduced_accuracy`, and `grav_bodies_full_accuracy` lobal variables.
  *
  * NOTES:
- * <ol>
- * <li>This function is called by `novas_sky_pos()`, `novas_app_to_geom()`, `novas_geom_to_app()`
- * and `place()` to calculate gravitational deflections as appropriate for positioning sources
- * precisely. The gravitational deflection due to planets requires a planet calculator function to
- * be configured, e.g. via set_planet_provider_hp().
- * </li>
- * </ol>
+ *
+ *  1. This function is called by `novas_sky_pos()`, `novas_app_to_geom()`, `novas_geom_to_app()`
+ *     and `place()` to calculate gravitational deflections as appropriate for positioning sources
+ *     precisely. The gravitational deflection due to planets requires a planet calculator function to
+ *     be configured, e.g. via set_planet_provider_hp().
  *
  * REFERENCES:
- * <ol>
- * <li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
- * </ol>
+ *
+ *  1. Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.
  *
  * @param jd_tdb      [day] Barycentric Dynamical Time (TDB) based Julian date
  * @param unused      The type of observer frame (no longer used)
@@ -94,23 +91,20 @@ short grav_def(double jd_tdb, enum novas_observer_place unused, enum novas_accur
 }
 
 /**
- * (<i>primarily for internal use</i>) Corrects position vector for the deflection of light in the
+ * (_primarily for internal use_) Corrects position vector for the deflection of light in the
  * gravitational field of anarbitrary body.  This function valid for an observed body within the
  * solar system as well as for a star.
  *
  * NOTES:
- * <ol>
- * <li>This function is called by grav_def() to calculate appropriate gravitational deflections
+ *
+ *  1. This function is called by grav_def() to calculate appropriate gravitational deflections
  * around the massive Solar-system objects.
- * </li>
- * </ol>
  *
  * REFERENCES:
- * <ol>
- * <li>Murray, C.A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.</li>
- * <li>See also formulae in Section B of the Astronomical Almanac, or</li>
- * <li>Kaplan, G. et al. (1989) Astronomical Journal 97, 1197-1210, section iii f.</li>
- * </ol>
+ *
+ *  1. Murray, C.A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.
+ *  2. See also formulae in Section B of the Astronomical Almanac, or
+ *  3. Kaplan, G. et al. (1989) Astronomical Journal 97, 1197-1210, section iii f.
  *
  * @param pos_src   [AU] Position 3-vector of observed object, with respect to origin at
  *                  observer (or the geocenter), components in AU.
@@ -185,13 +179,12 @@ int grav_vec(const double *pos_src, const double *pos_obs, const double *pos_bod
 }
 
 /**
- * (<i>primarily for internal use</i>) Computes the gravitationally undeflected position of an
+ * (_primarily for internal use_) Computes the gravitationally undeflected position of an
  * observed source position due to the specified Solar-system bodies.
  *
  * REFERENCES:
- * <ol>
- * <li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
- * </ol>
+ *
+ *  1. Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.
  *
  * @param pos_app     [AU] Apparent position 3-vector of observed object, with respect to origin at
  *                    observer (or the geocenter), referred to ICRS axes, components
@@ -257,7 +250,7 @@ int grav_undo_planets(const double *pos_app, const double *pos_obs, const novas_
 }
 
 /**
- * (<i>primarily for internal use</i>) Computes the gravitationally undeflected position of an
+ * (_primarily for internal use_) Computes the gravitationally undeflected position of an
  * observed source position due to the major gravitating bodies in the solar system. This
  * function is valid for an observed body within the solar system as well as for a star.
  *
@@ -270,9 +263,8 @@ int grav_undo_planets(const double *pos_app, const double *pos_obs, const novas_
  * `grav_bodies_reduced_accuracy`, and `grav_bodies_full_accuracy` global variables.
  *
  * REFERENCES:
- * <ol>
- * <li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
- * </ol>
+ *
+ *  1. Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.
  *
  * @param jd_tdb      [day] Barycentric Dynamical Time (TDB) based Julian date
  * @param accuracy    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
@@ -312,20 +304,18 @@ int grav_undef(double jd_tdb, enum novas_accuracy accuracy, const double *pos_ap
 }
 
 /**
- * (<i>primarily for internal use</i>) Computes the total gravitational deflection of light for
+ * (_primarily for internal use_) Computes the total gravitational deflection of light for
  * the observed object due to the specified gravitating bodies in the solar system. This function
  * is valid for an observed body within the solar system as well as for a star.
  *
  * NOTES:
- * <ol>
- * <li>The gravitational deflection due to planets requires a planet calculator function to be
- * configured, e.g. via set_planet_provider_hp().</li>
- * </ol>
+ *
+ *  1. The gravitational deflection due to planets requires a planet calculator function to be
+ *     configured, e.g. via set_planet_provider_hp().
  *
  * REFERENCES:
- * <ol>
- * <li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
- * </ol>
+ *
+ *  1. Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.
  *
  * @param pos_src     [AU] Position 3-vector of observed object, with respect to origin at
  *                    observer (or the geocenter), referred to ICRS axes, components

@@ -31,10 +31,9 @@
  * the existing framework of related functions.
  *
  * REFERENCES:
- * <ol>
- * <li>IERS Conventions 2010, Chapter 5, especially Section 5.9</li>
- * <li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
- * </ol>
+ *
+ *  1. IERS Conventions 2010, Chapter 5, especially Section 5.9
+ *  2. Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.
  *
  * @date Created  on Mar 6, 2025
  * @author G. Kaplan and Attila Kovacs
@@ -65,9 +64,8 @@
  * value ofira_equinox() for the true equator of date.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. (2005), US Naval Observatory Circular 179.
  *
  * @param jd_tt       [day] Terrestrial Time (TT) based Julian date
  * @param accuracy    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
@@ -104,7 +102,7 @@ short cio_ra(double jd_tt, enum novas_accuracy accuracy, double *restrict ra_cio
  * It used to set the CIO interpolaton data file to use to interpolate CIO locations vs the GCRS.
  * As of version 1.5, this call does exactly nothing. It simply returns 0.
  *
- * @param filename    (<i>unused</i>) Used to be the path (preferably absolute path) `CIO_RA.TXT`
+ * @param filename    (_unused_) Used to be the path (preferably absolute path) `CIO_RA.TXT`
  *                    or else to the binary `cio_ra.bin` data, or NULL to disable using a CIO
  *                    locator file altogether.
  * @return            0
@@ -131,21 +129,16 @@ int set_cio_locator_file(const char *restrict filename) {
  * equator (= intermediate equator) of date.
  *
  * NOTES:
- * <ol>
- * <li>
- *   Unlike the NOVAS C version of this function, this version will always return a CIO
- *   location as long as the pointer arguments are not NULL.
- * </li>
- * <li>
- *  This function caches the results of the last calculation in case it may be re-used at no extra
- *  computational cost for the next call.
- * </li>
- * <li>
- *  As of version 1.5, this function always returns the CIO location w.r.t. the true equinox of
- *  date, on the true equator of date, i.e. the R.A. of the CIO on the true equator of date, meaured
- *  from the true equinox of date.
- * </li>
- * </ol>
+ *
+ *  1. Unlike the NOVAS C version of this function, this version will always return a CIO
+ *     location as long as the pointer arguments are not NULL.
+ *
+ *  2. This function caches the results of the last calculation in case it may be re-used at no extra
+ *     computational cost for the next call.
+ *
+ *  3. As of version 1.5, this function always returns the CIO location w.r.t. the true equinox of
+ *     date, on the true equator of date, i.e. the R.A. of the CIO on the true equator of date, meaured
+ *     from the true equinox of date.
  *
  * @param jd_tdb           [day] Barycentric Dynamic Time (TDB) based Julian date
  * @param accuracy         NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
@@ -208,15 +201,13 @@ short cio_location(double jd_tdb, enum novas_accuracy accuracy, double *restrict
  * reference.
  *
  * NOTES:
- * <ol>
- * <li>This function caches the results of the last calculation in case it may be re-used at
- * no extra computational cost for the next call.</li>
- * </ol>
+ *
+ *  1. This function caches the results of the last calculation in case it may be re-used at
+ *     no extra computational cost for the next call.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
- * </ol>
+ *
+ *  1. Kaplan, G. (2005), US Naval Observatory Circular 179.
  *
  * @param jd_tdb      [day] Barycentric Dynamic Time (TDB) based Julian date
  * @param ra_cio      [h] Right ascension of the CIO at epoch (hours).
@@ -342,23 +333,18 @@ double novas_cio_gcrs_ra(double jd_tdb) {
  * intermediate origin (CIO).  The range of dates is centered on the requested date.
  *
  * NOTES:
- * <ol>
- * <li>
- *   This function has been completely re-written by A. Kovacs to provide much more efficient
- *   caching and I/O.
- * </li>
- * <li>
- *  The CIO locator file that is bundled was prepared with the original IAU2000A nutation model,
- *  not with the newer R06 (a.k.a. IAU2006) nutation model, resulting in an error up to the few
- *  tens of micro-arcseconds level for dates between 1900 and 2100, and larger errors further away
- *  from the current epoch.
- * </li>
  *
- * <li>
- *  Prior to version 1.5, this function relied on a CIO locator file (`CIO_RA.TXT` or
- *  `cio_ra.bin`). The current version no longer does, and instead generates the requested data on
- *  the fly.
- * </ol>
+ *  1. This function has been completely re-written by A. Kovacs to provide much more efficient
+ *     caching and I/O.
+ *
+ *  2. The CIO locator file that is bundled was prepared with the original IAU2000A nutation model,
+ *     not with the newer R06 (a.k.a. IAU2006) nutation model, resulting in an error up to the few
+ *     tens of micro-arcseconds level for dates between 1900 and 2100, and larger errors further away
+ *     from the current epoch.
+ *
+ *  3. Prior to version 1.5, this function relied on a CIO locator file (`CIO_RA.TXT` or
+ *     `cio_ra.bin`). The current version no longer does, and instead generates the requested data on
+ *     the fly.
  *
  * @param jd_tdb    [day] Barycentric Dynamic Time (TDB) based Julian date
  * @param n_pts     Number of Julian dates and right ascension values requested (not less than 2

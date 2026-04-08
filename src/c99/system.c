@@ -90,10 +90,9 @@ int ecl2equ(double jd_tt, enum novas_equator_type coord_sys, enum novas_accuracy
  * Converts galactic longitude and latitude to ICRS right ascension and declination.
  *
  * REFERENCES:
- * <ol>
- * <li>J.-C. Liu, Z. Zhu, and H. Zhang, A&amp;A, 526, A16 (2011), Eq. 18</li>
- * <li>Hipparcos and Tycho Catalogues, Vol. 1, Section 1.5.3.</li>
- * </ol>
+ *
+ *  1. J.-C. Liu, Z. Zhu, and H. Zhang, A&amp;A, 526, A16 (2011), Eq. 18
+ *  2. Hipparcos and Tycho Catalogues, Vol. 1, Section 1.5.3.
  *
  * @param glon        [deg] Galactic longitude in degrees.
  * @param glat        [deg] Galactic latitude in degrees.
@@ -294,10 +293,9 @@ int hor_to_itrs(const on_surface *restrict location, double az, double za, doubl
  * Converts ICRS right ascension and declination to galactic longitude and latitude.
  *
  * REFERENCES:
- * <ol>
- * <li>J.-C. Liu, Z. Zhu, and H. Zhang, A&amp;A, 526, A16 (2011), Eq. 18</li>
- * <li>Hipparcos and Tycho Catalogues, Vol. 1, Section 1.5.3.</li>
- * </ol>
+ *
+ *  1. J.-C. Liu, Z. Zhu, and H. Zhang, A&amp;A, 526, A16 (2011), Eq. 18
+ *  2. Hipparcos and Tycho Catalogues, Vol. 1, Section 1.5.3.
  *
  * @param ra          [h] ICRS right ascension in hours.
  * @param dec         [deg] ICRS declination in degrees.
@@ -579,18 +577,16 @@ short ecl2equ_vec(double jd_tt, enum novas_equator_type coord_sys, enum novas_ac
  * refraction.
  *
  * NOTES:
- * <ul>
- *  <li>'xp' and 'yp' can be set to zero if sub-arcsecond accuracy is not needed.</li>
- *  <li> The directions 'zd'= 0 (zenith) and 'az'= 0 (north) are here considered fixed in
- *  the terrestrial system. Specifically, the zenith is along the geodetic normal, and north
- *  is toward the ITRS pole.</li>
- *  <li>If 'ref_option' is NOVAS_STANDARD_ATMOSPHERE (1), then 'rar'='ra' and 'decr'='dec'.
- * </ul>
+ *
+ *  1. 'xp' and 'yp' can be set to zero if sub-arcsecond accuracy is not needed.
+ *  2. The directions 'zd'= 0 (zenith) and 'az'= 0 (north) are here considered fixed in
+ *     the terrestrial system. Specifically, the zenith is along the geodetic normal, and north
+ *     is toward the ITRS pole.
+ *  3. If 'ref_option' is NOVAS_STANDARD_ATMOSPHERE (1), then 'rar'='ra' and 'decr'='dec'.
  *
  * REFERENCES:
- * <ol>
- * <li>Kaplan, G. (2008). USNO/AA Technical Note of 28 Apr 2008, "Refraction as a Vector."</li>
- * </ol>
+ *
+ *  1. Kaplan, G. (2008). USNO/AA Technical Note of 28 Apr 2008, "Refraction as a Vector."
  *
  * @param jd_ut1      [day] UT1 based Julian date
  * @param ut1_to_tt   [s] TT - UT1 Time difference in seconds
@@ -1085,9 +1081,8 @@ double novas_epa(double ha, double dec, double lat) {
  * projection.
  *
  * REFERENCES:
- * <ol>
- * <li>Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395, 1077-1122.</li>
- * </ol>
+ *
+ *  1. Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395, 1077-1122.
  *
  * @param daz         [arcsec] Projected offset position in the azimuth direction. The projected
  *                    offset between two azimuth positions at the same reference elevation is
@@ -1127,9 +1122,8 @@ int novas_h2e_offset(double daz, double del, double pa, double *restrict dra, do
  * projection.
  *
  * REFERENCES:
- * <ol>
- * <li>Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395, 1077-1122.</li>
- * </ol>
+ *
+ *  1. Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395, 1077-1122.
  *
  * @param dra         [arcsec] Projected ffset position in the apparent true-of-date R.A.
  *                    direction. E.g. The projected offset between two RA coordinates at a same
