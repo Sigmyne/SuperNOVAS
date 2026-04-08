@@ -164,9 +164,9 @@ Geometric Source::geometric_in(const Frame& frame, enum novas_reference_system s
 
 /**
  * Returns the time when the source rises above the specified elevation next for an observer
- * located on or near Earth's surface, or else `std::nullopt` if the observer is not near Earth's
- * surface. The returned value may also be NAN if the source does not cross the specified
- * elevation theshold within a day of the specified time of observation.
+ * located on or near Earth's surface, or else an undefined (invalid) time if the observer is not
+ * near Earth's surface. The returned value may also be NAN if the source does not cross the
+ * specified elevation theshold within a day of the specified time of observation.
  *
  * @param el        elevation threshold angle
  * @param frame     observing frame (observer location and the lower bound for the returned time).
@@ -190,7 +190,7 @@ Time Source::rises_above(const Angle& el, const Frame &frame, RefractionModel re
 
 /**
  * Returns the time when the source transits for an observer located on or near Earth's surface,
- * or else `std::nullopt` if the observer is not near Earth's surface.
+ * or else an undefined (invalid) time if the observer is not near Earth's surface.
  *
  * @param frame     observing frame (observer location and the lower bound for the returned time).
  * @return          the next time the source transits after the frame's observing time, or else
@@ -208,9 +208,9 @@ Time Source::transits_in(const Frame &frame) const {
 
 /**
  * Returns the time when the source sets below the specified elevation next for an observer
- * located on or near Earth's surface, or else `std::nullopt` if the observer is not near Earth's
- * surface. The returned value may also be NAN if the source does not cross the specified
- * elevation theshold within a day of the specified time of observation.
+ * located on or near Earth's surface, or else an undefined (invalid) time if the observer is not
+ * near Earth's surface. The returned value may also be NAN if the source does not cross the
+ * specified elevation theshold within a day of the specified time of observation.
  *
  * @param el        elevation threshold angle
  * @param frame     observing frame (observer location and the lower bound for the returned time).
@@ -234,18 +234,19 @@ Time Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref
 
 
 /**
- * Returns the short-term equatorial trajectory of this source on the observer's sky, which can be used for
- * extrapolating its apparent position in the near-term to avoid the repeated full-fledged position
- * calculation, which may be expensive. The equatorial trajectory may also be used to provide telescope
- * motor control parameters (position, tracking velocity, and acceleration) for equatorial telescope drive
- * systems.
+ * Returns the short-term equatorial trajectory of this source on the observer's sky, which can be
+ * used for extrapolating its apparent position in the near-term to avoid the repeated
+ * full-fledged position calculation, which may be expensive. The equatorial trajectory may also
+ * be used to provide telescope motor control parameters (position, tracking velocity, and
+ * acceleration) for equatorial telescope drive systems.
  *
- * In case positions cannot be calculated for this source (e.g. because you do not have an ephemeris provider
- * configured, or there is no ephemeris data available), then `std::nullopt` is returned instead.
+ * In case positions cannot be calculated for this source (e.g. because you do not have an
+ * ephemeris provider configured, or there is no ephemeris data available), then an undefined
+ * (invalid) trajectory is returned instead.
  *
  * @param frame           observing frame (observer location and time of observation)
- * @param range_seconds   [s] time range for which to fit a quadratic time evolution to the R.A., Dec,
- *                        distance, and radial velocity coordinates.
+ * @param range_seconds   [s] time range for which to fit a quadratic time evolution to the R.A.,
+ *                        Dec, distance, and radial velocity coordinates.
  * @return                a new near-term equatorial trajectory for this source, for the observing
  *                        location, around the time of observation, if possible, or else
  *                        `EquatorialTrack::undefined()`.
@@ -270,14 +271,15 @@ EquatorialTrack Source::equatorial_track(const Frame &frame, double range_second
 }
 
 /**
- * Returns the short-term equatorial trajectory of this source on the observer's sky, which can be used for
- * extrapolating its apparent position in the near-term to avoid the repeated full-fledged position
- * calculation, which may be expensive. The equatorial trajectory may also be used to provide telescope
- * motor control parameters (position, tracking velocity, and acceleration) for equatorial telescope drive
- * systems.
+ * Returns the short-term equatorial trajectory of this source on the observer's sky, which can be
+ * used for extrapolating its apparent position in the near-term to avoid the repeated
+ * full-fledged position calculation, which may be expensive. The equatorial trajectory may also
+ * be used to provide telescope motor control parameters (position, tracking velocity, and
+ * acceleration) for equatorial telescope drive systems.
  *
- * In case positions cannot be calculated for this source (e.g. because you do not have an ephemeris provider
- * configured, or there is no ephemeris data available), then `std::nullopt` is returned instead.
+ * In case positions cannot be calculated for this source (e.g. because you do not have an
+ * ephemeris provider configured, or there is no ephemeris data available), then an undefined
+ * (invalid) trajectory will be returned instead..
  *
  * @param frame           observing frame (observer location and time of observation)
  * @param range           time range for which to fit a quadratic time evolution to the R.A., Dec,
@@ -294,23 +296,30 @@ EquatorialTrack Source::equatorial_track(const Frame &frame, const Interval& ran
 }
 
 /**
- * Returns the short-term horizontal trajectory of this source on the observer's sky, which can be used for
- * extrapolating its apparent position in the near-term to avoid the repeated full-fledged position
- * calculation, which may be expensive. The horizontal trajectory may also be used to provide telescope
- * motor control parameters (position, tracking velocity, and acceleration) for horizontal telescope drive
- * systems.
+ * Returns a 1-minute horizontal trajectory of this source on the observer's sky, which can be
+ * used for extrapolating its apparent position for within a 1-minute interval to avoid the
+ * repeated full-fledged position calculation at higher rates, which may be expensive. The
+ * horizontal trajectory may also be used to provide telescope motor control parameters (position,
+ * tracking velocity, and acceleration) for horizontal telescope drive systems.
  *
- * If the observer is not located on or near Earth's surface, horizontal coordinates are not defined, and
- * so `std::nullopt` will be retuirned instead. Also, in case positions cannot be calculated for this source
- * (e.g. because you do not have an ephemeris provider configured, or there is no ephemeris data available),
- * then `std::nullopt` will be returned also.
+ * If the observer is not located on or near Earth's surface, horizontal coordinates are not
+ * defined, and so an undefined (invalid) trajectory will be returned instead. Also, in case
+ * positions cannot be calculated for this source (e.g. because you do not have an ephemeris
+ * provider configured, or there is no ephemeris data available), then an undefined (invalid)
+ * trajectory will be returned also.
+ *
+ * NOTES:
+ *
+ *  1. The returned horizontal track is valid for a maximum of 1-minute around the observing time
+ *     of the supplied observer frame. It will provide invalid horizontal coordinates outside of
+ *     the fixed interval of validity.
  *
  * @param frame           observing frame (observer location and time of observation)
  * @param ref             atmospheric refraction model to use for refraction correction.
  * @param weather         local weather parameters for the refraction calculation.
- * @return                a new near-term horizontal trajectory for this source, for the observing
- *                        location, around the time of observation, if possible, or else
- *                        `HorizontalTrack::undefined()`.
+ * @return                a new near-term horizontal trajectory for this source, valid for a
+ *                        1-minute period, for the observing, location, around the time of
+ *                        observation, if possible, or else `HorizontalTrack::undefined()`.
  *
  * @since 1.6
  * @sa equatorial_track()

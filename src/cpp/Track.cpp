@@ -254,9 +254,9 @@ template<class CoordType> double Track<CoordType>::unchecked_redshift(const Time
 }
 
 /**
- * Returns the momentary extrapolated longitude angle (if valid), or else `std::nullopt` if
- * the time is outside the range of validity. It is best practice to check on its validity before
- * use, e.g. as:
+ * Returns the momentary extrapolated longitude angle (if valid), which may be invalid if the time
+ * is outside the range of validity. It is best practice to check on its validity before use, e.g.
+ * as:
  *
  * ```c++
  *   Angle a = track.longitude_at(...);
@@ -267,7 +267,8 @@ template<class CoordType> double Track<CoordType>::unchecked_redshift(const Time
  * ```
  *
  * @param time      astrometric time for which we want the extrapolated value.
- * @return          the momentary extrapolated longitude angle (if valid), or else `std::nullopt`.
+ * @return          the momentary extrapolated longitude angle (if valid), or else an undefined
+ *                  (invalid) angle.
  *
  * @since 1.6
  * @sa latitude_at(), distance_at(), radial_velocity_at(), redshift_at()
@@ -280,9 +281,9 @@ template<class CoordType> Angle Track<CoordType>::longitude_at(const Time& time)
 }
 
 /**
- * Returns the momentary extrapolated latitude angle (if valid), or else `std::nullopt` if
- * the time is outside the range of validity. It is best practice to check on its validity before
- * use, e.g. as:
+ * Returns the momentary extrapolated latitude angle (if valid), which may be invalid if the time
+ * is outside the range of validity. It is best practice to check on its validity before use, e.g.
+ * as:
  *
  * ```c++
  *   Angle a = track.latitude_at(...);
@@ -293,7 +294,8 @@ template<class CoordType> Angle Track<CoordType>::longitude_at(const Time& time)
  * ```
  *
  * @param time      astrometric time for which we want the extrapolated value.
- * @return          the momentary extrapolated latitude angle (if valid), or else `std::nullopt`.
+ * @return          the momentary extrapolated latitude angle (if valid), or else an undefined
+ *                  (invalid) angle.
  *
  * @since 1.6
  * @sa longitude_at(), distance_at(), radial_velocity_at(), redshift_at()
@@ -332,9 +334,9 @@ template<class CoordType> double Track<CoordType>::redshift_at(const Time& time)
 }
 
 /**
- * Returns the momentary extrapolated distance (if valid), or else `std::nullopt` if
- * the time is outside the range of validity. It is best practice to check on its validity before
- * use, e.g. as:
+ * Returns the momentary extrapolated distance (if valid), which may be invalid if the time is
+ * outside the range of validity. It is best practice to check on its validity before use, e.g.
+ * as:
  *
  * ```c++
  *   Coordinate d = track.distance_at(...);
@@ -345,7 +347,8 @@ template<class CoordType> double Track<CoordType>::redshift_at(const Time& time)
  * ```
  *
  * @param time      astrometric time for which we want the extrapolated value.
- * @return          the momentary extrapolated distance (if valid), or else `std::nullopt`.
+ * @return          the momentary extrapolated distance (if valid), or else an undefined
+ *                  (invalid) coordinate.
  *
  * @since 1.6
  * @sa longitude_at(), latitude_at(), radial_velocity_at(), redshift_at()
@@ -358,9 +361,9 @@ template<class CoordType> Coordinate Track<CoordType>::distance_at(const Time& t
 }
 
 /**
- * Returns the momentary extrapolated radial velocity (if valid), or else `std::nullopt` if
- * the time is outside the range of validity. It is best practice to check on its validity before
- * use, e.g. as:
+ * Returns the momentary extrapolated radial velocity (if valid), which may be invalid if the time
+ * is outside the range of validity. It is best practice to check on its validity before use, e.g.
+ * as:
  *
  * ```c++
  *   ScalarVelocity rv = track.radial_velocity_at(...);
@@ -371,7 +374,8 @@ template<class CoordType> Coordinate Track<CoordType>::distance_at(const Time& t
  * ```
  *
  * @param time      astrometric time for which we want the extrapolated value.
- * @return          the momentary extrapolated radial velocity (if valid), or else `std::nullopt`.
+ * @return          the momentary extrapolated radial velocity (if valid), or else an undefined
+ *                  (invalid) scalar velocity instance.
  *
  * @since 1.6
  * @sa longitude(), latitude(), distance(), redshift_at()
@@ -446,7 +450,7 @@ HorizontalTrack::HorizontalTrack(const Time& ref_time, const Interval& range,
  *
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated horizontal coordinates (if valid), or else
- *                  `std::nullopt`.
+ *                  undefined (invalid) horizontal coordinates.
  *
  * @since 1.6
  * @sa EquatorialTrack::projected_at()
@@ -528,7 +532,7 @@ const HorizontalTrack& HorizontalTrack::undefined() {
  *
  * @param time      astrometric time for which we want the extrapolated value.
  * @return          the momentary extrapolated equatorial coordinates (if valid), or else
- *                  `std::nullopt`.
+ *                  undefined (invalid) equatorial coordinates.
  *
  * @since 1.6
  * @sa HorizontalTrack::projected_at()

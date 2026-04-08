@@ -296,9 +296,10 @@ OrbitalSystem OrbitalSystem::ecliptic(const Planet& center) {
 
 /**
  * (<i>primarily for internal use</i>) Constructs a new orbital system by copying the specified
- * NOVAS C orbital system data structure, or `std::nullopt` if the argument is NULL. It's best
- * practice to call `is_valid()` after to check that the supplied parameters do in fact define a
- * valid orbital system.
+ * NOVAS C orbital system data structure. The returned orbital system may be invalid if the
+ * argument is NULL or if the C orbital system is ill-defined. It's best practice to call
+ * `is_valid()` on the returned orbital system instance after this call to check that the supplied
+ * parameters do in fact define a valid orbital system.
  *
  * @param system    The NOVAS C orbital system data structure (copied)
  * @return          A new orbital system with that copies the parameters of the argument.
@@ -1081,9 +1082,10 @@ Orbital Orbital::from_mean_motion(const OrbitalSystem& system, const Time& ref_t
 
 /**
  * (<i>for internal use</i>) Returns a new instance of a Keplerian orbital, using a copy of a
- * NOVAS C orbital data structure, or `std::nullopt` if the argument is NULL. It's best practice
- * to call `is_valid()` after to check that the supplied parameters do in fact define a valid
- * orbital system.
+ * NOVAS C orbital data structure. The returned orbital may be invalid if the argument is NULL or
+ * if the input C orbital is ill-defined. It's best practice to call `is_valid()` on the returned
+ * orbital after this call to check that the supplied parameters do in fact define a valid
+ * orbital.
  *
  * @param orbit   The NOVAS C orbital data structure (copied)
  * @return        A new Keplerian orbital instance, with the specified parameters.

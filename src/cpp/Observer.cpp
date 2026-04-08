@@ -98,10 +98,11 @@ enum novas_observer_place Observer::type() const {
  *
  * @param time      Astrometric time of observation
  * @param accuracy  NOVAS_FULL_ACCYRACY (default) or NOVAS_REDUCED_ACCURACY
- * @return          A valid observing frame or else `std::nullopt` if a valid observing frame
+ * @return          An observing frame, which may be invaliud if a valid observing frame
  *                  could not be created with the accuracy, for example because no high
  *                  accuracy planetary position provider was specified, or because either this
- *                  observer or the time itself were invalid.
+ *                  observer or the time itself were invalid. The caller should typically
+ *                  check for validity after the call.
  *
  * @since 1.6
  * @sa reduced_accuracy_frame_at()

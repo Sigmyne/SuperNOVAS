@@ -160,7 +160,7 @@ CalendarDate Calendar::date(const struct timespec *ts) const {
 
 /**
  * Returns a new calendar date instance, in this calendar, for the specified string date / time
- * representation, if possible, or else std::nullopt.
+ * representation, if possible, or else an undefined (invalid) date.
  *
  * @param str   The string date / time specification. There is a lot of flexibility on what
  *              dates/times may be parsed. See novas_parse_date_format() for details.
