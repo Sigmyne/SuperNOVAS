@@ -2879,6 +2879,8 @@ public:
   Equatorial projected_at(const Time& time) const override;
 
   static EquatorialTrack from_novas_track(const Equinox& system, const novas_track *track, const Interval& range);
+
+  static const EquatorialTrack& undefined();
 };
 
 

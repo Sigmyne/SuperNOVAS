@@ -502,7 +502,7 @@ HorizontalTrack HorizontalTrack::from_novas_track(const novas_track *track, cons
 }
 
 /**
- * Returns a reference to a static instance of a standard undefined horizontal track.
+ * Returns a reference to a static instance of a standard undefined horizontal source trajectory.
  *
  * @return    the reference to a standard undefined horizontal track.
  *
@@ -645,6 +645,18 @@ EquatorialTrack EquatorialTrack::from_novas_track(const Equinox& system, const n
 
   novas_trace_invalid(fn);
   return EquatorialTrack();
+}
+
+/**
+ * Returns a reference to a static instance of a standard undefined equatorial source trajectory.
+ *
+ * @return    the reference to a standard undefined equatorial track.
+ *
+ * @since 1.6
+ */
+const EquatorialTrack& EquatorialTrack::undefined() {
+  static EquatorialTrack _undefined = EquatorialTrack();
+  return _undefined;
 }
 
 

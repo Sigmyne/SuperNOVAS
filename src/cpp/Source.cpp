@@ -254,11 +254,18 @@ Time Source::sets_below(const Angle& el, const Frame &frame, RefractionModel ref
  * @sa horizontal_track()
  */
 EquatorialTrack Source::equatorial_track(const Frame &frame, double range_seconds) const {
+  static const char *fn = "Source::equatorial_track()";
+
+  if(!frame.is_valid()) {
+    novas_set_errno(EINVAL, fn, "input frame is invalid");
+    return EquatorialTrack::undefined();
+  }
+
   novas_track track = {};
   novas_equ_track(_novas_object(), frame._novas_frame(), range_seconds, &track);
   EquatorialTrack et = EquatorialTrack::from_novas_track(Equinox::tod(frame.time()), &track, Interval(range_seconds));
   if(!et.is_valid())
-    novas_trace_invalid("Source::equatorial_track()");
+    novas_trace_invalid(fn);
   return et;
 }
 
@@ -309,8 +316,15 @@ EquatorialTrack Source::equatorial_track(const Frame &frame, const Interval& ran
  * @sa equatorial_track()
  */
 HorizontalTrack Source::horizontal_track(const Frame &frame, RefractionModel ref, const Weather& weather) const {
+  static const char *fn = "Source::horizontal_track()";
+
+  if(!frame.is_valid()) {
+    novas_set_errno(EINVAL, fn, "input frame is invalid");
+    return HorizontalTrack::undefined();
+  }
+
   if(!frame.observer().is_geodetic()) {
-    novas_set_errno(EINVAL, "Source::horizontal_track()", "input frame is not a geodetic observing frame");
+    novas_set_errno(EINVAL, fn, "input frame is not a geodetic observing frame");
     return HorizontalTrack::undefined();
   }
 

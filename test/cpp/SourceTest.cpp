@@ -119,12 +119,16 @@ int main() {
 
   if(!test.check("equatorial_track(frame invalid)", !c.equatorial_track(Frame::undefined(), Interval(Unit::hour)).is_valid())) n++;
 
-  EquatorialTrack et = c.equatorial_track(frame, Interval(Unit::hour));
+  Interval dt = Interval(Unit::day);
+  EquatorialTrack et = c.equatorial_track(frame, dt);
   if(!test.check("equatorial_track()", et.is_valid())) n++;
+  if(!test.check("equatorial_track(time invalid)", !c.equatorial_track(gfx, dt).is_valid())) n++;
+  if(!test.check("equatorial_track(interval invalid)", !c.equatorial_track(frame, Interval(NAN)).is_valid())) n++;
+
 
   novas_track tr = {};
-  novas_equ_track(c._novas_object(), frame._novas_frame(), 10.0, &tr);
-  if(!test.equals("equatorial_track().range()", et.range().hours(), 1.0, 1e-12)) n++;
+  novas_equ_track(c._novas_object(), frame._novas_frame(), dt.seconds(), &tr);
+  if(!test.equals("equatorial_track().range()", et.range().seconds(), dt.seconds(), 1e-10)) n++;
   if(!test.equals("equatorial_track().lon(0)", et.longitude_evolution().value(), tr.pos.lon * Unit::deg, 1e-12)) n++;
   if(!test.equals("equatorial_track().lon(1) ", et.longitude_evolution().rate(), tr.rate.lon * Unit::deg, 1e-10)) n++;
   if(!test.equals("equatorial_track().lon(2)", et.longitude_evolution().acceleration(), tr.accel.lon * Unit::deg, 1e-12)) n++;
@@ -132,15 +136,12 @@ int main() {
   if(!test.equals("equatorial_track().lat(1) ", et.latitude_evolution().rate(), tr.rate.lat * Unit::deg, 1e-12)) n++;
   if(!test.equals("equatorial_track().lat(2)", et.latitude_evolution().acceleration(), tr.accel.lat * Unit::deg, 1e-12)) n++;
   if(!test.equals("equatorial_track().dis(0)", et.distance_evolution().value(), tr.pos.dist * Unit::AU, 1e-3)) n++;
-  // FIXME
-  //if(!test.equals("equatorial_track().dis(1) ", et.distance_evolution().rate(), tr.rate.dist * Unit::AU, 1e-3)) n++;
-  //if(!test.equals("equatorial_track().dis(2)", et.distance_evolution().acceleration(), tr.accel.dist * Unit::AU, 1e-3)) n++;
+  if(!test.equals("equatorial_track().dis(1) ", et.distance_evolution().rate(), tr.rate.dist * Unit::AU, 1e-3)) n++;
+  if(!test.equals("equatorial_track().dis(2)", et.distance_evolution().acceleration(), tr.accel.dist * Unit::AU, 1e-3)) n++;
 
 
   if(!test.check("horizontal_track(gc)", !c.horizontal_track(gc).is_valid())) n++;
-
-  // FIXME
-  //if(!test.check("horizontal_track(time invalid)", !c.horizontal_track(gfx).is_valid())) n++;
+  if(!test.check("horizontal_track(time invalid)", !c.horizontal_track(gfx).is_valid())) n++;
 
   HorizontalTrack ht = c.horizontal_track(frame, NULL);
   if(!test.check("horizontal_track()", ht.is_valid())) n++;
