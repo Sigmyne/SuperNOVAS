@@ -540,11 +540,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts ICRS right ascension and declination to galactic longitude and latitude. </p>
-<p>REFERENCES: </p><ol>
-<li>
-J.-C. Liu, Z. Zhu, and H. Zhang, A&amp;A, 526, A16 (2011), Eq. 18 </li>
-<li>
-Hipparcos and Tycho Catalogues, Vol. 1, Section 1.5.3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>J.-C. Liu, Z. Zhu, and H. Zhang, A&amp;A, 526, A16 (2011), Eq. 18</li>
+<li>Hipparcos and Tycho Catalogues, Vol. 1, Section 1.5.3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -590,11 +589,10 @@ Hipparcos and Tycho Catalogues, Vol. 1, Section 1.5.3. </li>
 </div><div class="memdoc">
 
 <p>Converts galactic longitude and latitude to ICRS right ascension and declination. </p>
-<p>REFERENCES: </p><ol>
-<li>
-J.-C. Liu, Z. Zhu, and H. Zhang, A&amp;A, 526, A16 (2011), Eq. 18 </li>
-<li>
-Hipparcos and Tycho Catalogues, Vol. 1, Section 1.5.3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>J.-C. Liu, Z. Zhu, and H. Zhang, A&amp;A, 526, A16 (2011), Eq. 18</li>
+<li>Hipparcos and Tycho Catalogues, Vol. 1, Section 1.5.3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -744,9 +742,9 @@ Hipparcos and Tycho Catalogues, Vol. 1, Section 1.5.3. </li>
 
 <p>Converts coordinate offsets, from the local equatorial system to local horizontal offsets. </p>
 <p>Converting between local flat projections and spherical coordinates usually requires a WCS projection.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395, 1077-1122. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395, 1077-1122.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -845,9 +843,9 @@ Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395
 
 <p>Converts coordinate offsets, from the local horizontal system to local equatorial offsets. </p>
 <p>Converting between local flat projections and spherical coordinates usually requires a WCS projection.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395, 1077-1122. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395, 1077-1122.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1005,17 +1003,15 @@ Calabretta, M.R., &amp; Greisen, E.W., (2002), Astronomy &amp; Astrophysics, 395
 
 <p>Calculates the Moon's geocentric position using the ELP/MPP02 model by Chapront &amp; Francou (2003), in the ELP2000 reference plane (i.e. </p>
 <p>the inertial ecliptic and equinox of J2000), down to the specified limiting term amplitude.</p>
-<p>NOTES: </p><ol>
-<li>
-The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting accuracy below 1 km level (and less than 100 meter error typically for 1900 &ndash; 2100).  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting accuracy below 1 km level (and less than 100 meter error typically for 1900 &ndash; 2100).</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988) </li>
-<li>
-Chapront, J., Francou G., 2003, A&amp;A, 404, 735 </li>
-<li>
-Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
+<li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+<li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1079,23 +1075,18 @@ Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (Octobe
 
 <p>Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the longitude origin (by a tiny amount) to the Terrestrial Intermediate Origin (TIO). </p>
 <p>The ITRS vector is thereby transformed to the Terrestrial Intermediate Reference System (TIRS), or equivalently the Pseudo Earth Fixed (PEF), based on the true (rotational) equator and TIO; or vice versa. Because the true equator is the plane orthogonal to the direction of the Celestial Intermediate Pole (CIP), the components of the output vector are referred to <em>z</em> and <em>x</em> axes toward the CIP and TIO, respectively.</p>
-<p>NOTES: </p><ol>
-<li>
-You may obtain Earth orientation parameters from the IERS site and Bulletins. For sub-mas accuracy you should augment the (interpolated) published values for diurnal and semi-diurnal librations and the effect of ocean tides, e.g. by using <span class="tt"><a class="el" href="group__earth.html#ga9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a></span> or <span class="tt"><a class="el" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop_at_time()</a></span>.  </li>
-<li>
-Generally, this function should not be called if global pole offsets were set via <span class="tt"><a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> and then used via <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> or one of its variants to calculate Earth orientation corrected (TOD or CIRS) apparent coordinates. In such cases, calling <span class="tt"><a class="el" href="#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span> would apply duplicate corrections. It is generally best to forgo using <span class="tt"><a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> going forward, and instead apply Earth orinetation corrections with <span class="tt"><a class="el" href="#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span> only when converting vectors between the Earth-fixed ITRS and TIRS frames.  </li>
-<li>
-The Earth orientation parameters xp, yp should be provided in the same ITRF realization as the observer location for an Earth-based observer. You can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to convert the EOP values as necessary.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>You may obtain Earth orientation parameters from the IERS site and Bulletins. For sub-mas accuracy you should augment the (interpolated) published values for diurnal and semi-diurnal librations and the effect of ocean tides, e.g. by using <span class="tt"><a class="el" href="group__earth.html#ga9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a></span> or <span class="tt"><a class="el" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop_at_time()</a></span>.</li>
+<li>Generally, this function should not be called if global pole offsets were set via <span class="tt"><a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> and then used via <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> or one of its variants to calculate Earth orientation corrected (TOD or CIRS) apparent coordinates. In such cases, calling <span class="tt"><a class="el" href="#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span> would apply duplicate corrections. It is generally best to forgo using <span class="tt"><a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> going forward, and instead apply Earth orinetation corrections with <span class="tt"><a class="el" href="#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span> only when converting vectors between the Earth-fixed ITRS and TIRS frames.</li>
+<li>The Earth orientation parameters xp, yp should be provided in the same ITRF realization as the observer location for an Earth-based observer. You can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to convert the EOP values as necessary.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Lambert &amp; Bizouard (2002), Astronomy and Astrophysics 394, 317-321. </li>
-<li>
-IERS Conventions 2010, Chapter 5, <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a> </li>
-<li>
-IERS Conventions 2010, Chapter 8, <a href="https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf">https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Lambert &amp; Bizouard (2002), Astronomy and Astrophysics 394, 317-321.</li>
+<li>IERS Conventions 2010, Chapter 5, <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a></li>
+<li>IERS Conventions 2010, Chapter 8, <a href="https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf">https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

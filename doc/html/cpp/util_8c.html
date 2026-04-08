@@ -165,9 +165,9 @@ Variables</h2></td></tr>
 
 <p>Returns the difference in light-time, for a star, between the barycenter of the solar system and the observer (or the geocenter) (<em>Usage A</em>). </p>
 <p>Alternatively (<em>Usage B</em>), this function returns the light-time from the observer (or the geocenter) to a point on a light ray that is closest to a specific solar system body. For this purpose, 'pos_src' is the position vector toward observed object, with respect to origin at observer (or the geocenter); 'pos_body' is the position vector of solar system body, with respect to origin at observer (or the geocenter), components in AU; and the returned value is the light time to point on line defined by 'pos' that is closest to solar system body (positive if light passes body before hitting observer, i.e., if 'pos_body' is within 90 degrees of 'pos_src').</p>
-<p>NOTES: </p><ol>
-<li>
-This function is called by <span class="tt"><a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span>, <a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, or <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function is called by <span class="tt"><a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span>, <a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, or <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -413,18 +413,16 @@ This function is called by <span class="tt"><a class="el" href="novas_8h.html#ac
 
 <p>Returns the angular separation of two locations on a sphere. </p>
 <p>It uses the Vincenty formula for accurate results across all locations on the sphere.</p>
-<p>NOTES: </p><ol>
-<li>
-Prior to version 1.5, this function used the law of cosines, which is imprecise for nearby locations </li>
-<li>
-In version 1.5, this function used the haversine formula, albeit with an error in the implementation. The haversine formula is accurate for nearby locations, but has rounding errors for antipodal locations. </li>
-<li>
-From version 1.5.1, this function uses the Vincenty formula, which is accurate for all locations on the sphere. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Prior to version 1.5, this function used the law of cosines, which is imprecise for nearby locations</li>
+<li>In version 1.5, this function used the haversine formula, albeit with an error in the implementation. The haversine formula is accurate for nearby locations, but has rounding errors for antipodal locations.</li>
+<li>From version 1.5.1, this function uses the Vincenty formula, which is accurate for all locations on the sphere.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Vincenty, Thaddeus. "Direct and Inverse Solutions of Geodesics on the Ellipsoid with
-Application of Nested Equations", Survey Review. 23 (176), Directorate of Overseas Surveys, doi:10.1179/sre.1975.23.176.88. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Vincenty, Thaddeus. "Direct and Inverse Solutions of Geodesics on the Ellipsoid with
+    Application of Nested Equations", Survey Review. 23 (176), Directorate of Overseas Surveys, doi:10.1179/sre.1975.23.176.88.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -546,9 +544,9 @@ Application of Nested Equations", Survey Review. 23 (176), Directorate of Overse
 </div><div class="memdoc">
 
 <p>Transforms a vector from one coordinate system to another with same origin and axes rotated about the z-axis. </p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -591,9 +589,9 @@ Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
 </div><div class="memdoc">
 
 <p>Converts an vector in equatorial rectangular coordinates to equatorial spherical coordinates. </p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

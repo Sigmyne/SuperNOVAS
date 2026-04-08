@@ -627,7 +627,7 @@ Functions</h2></td></tr>
 <p>String array initializer for Major planet names, matching the enum <a class="el" href="#ga219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a>. </p>
 <p>E.g.</p>
 <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span> *planet_names[] = <a class="code hl_define" href="#gabbd19f57e31db2ac91cbe22f9a95f390">NOVAS_PLANET_NAMES_INIT</a>;</div>
-<div class="ttc" id="agroup__source_html_gabbd19f57e31db2ac91cbe22f9a95f390"><div class="ttname"><a href="#gabbd19f57e31db2ac91cbe22f9a95f390">NOVAS_PLANET_NAMES_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_NAMES_INIT</div><div class="ttdoc">String array initializer for Major planet names, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:646</div></div>
+<div class="ttc" id="agroup__source_html_gabbd19f57e31db2ac91cbe22f9a95f390"><div class="ttname"><a href="#gabbd19f57e31db2ac91cbe22f9a95f390">NOVAS_PLANET_NAMES_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_NAMES_INIT</div><div class="ttdoc">String array initializer for Major planet names, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:645</div></div>
 </div><!-- fragment --><dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>enum <a class="el" href="#ga219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a> </dd></dl>
@@ -989,13 +989,11 @@ Functions</h2></td></tr>
 <p>Keplerian orbital elements for <span class="tt"><a class="el" href="#gga1eecb357eeea0de4759e9c8d55af238fa17562d2cd1b0b56d59d31f6ca51c759a" title="Any Solar-system body, whose position is determined by a set of orbital elements.">NOVAS_ORBITAL_OBJECT</a></span> type. </p>
 <p>Orbital elements can be used to provide approximate positions for various Solar-system bodies. JPL publishes orbital elements (and their evolution) for the major planets and their satellites. However, these are suitable only for very approximate calculations, with up to degree scale errors for the gas giants for the time range between 1850 AD and 2050 AD. Accurate positions and velocities for planets and their satellites should generally require the use of precise ephemeris data instead, such as obtained from the JPL Horizons system.</p>
 <p>Orbital elements describe motion from a purely Keplerian perspective. However, for short periods, for which the perturbing bodies can be ignored, this description can be quite accurate provided that an up-to-date set of values are used. The Minor Planet Center (MPC) thus regularly publishes orbital elements for all known asteroids and comets. For such objects, orbital elements can offer precise, and the most up-to-date positions and velocities.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Up-to-date orbital elements for asteroids, comets, etc from the Minor Planet Center (MPC): <a href="https://minorplanetcenter.net/data">https://minorplanetcenter.net/data</a> </li>
-<li>
-Mean elements for planetary satellites from JPL Horizons: <a href="https://ssd.jpl.nasa.gov/sats/elem/">https://ssd.jpl.nasa.gov/sats/elem/</a> </li>
-<li>
-Low accuracy mean elements for planets from JPL Horizons: <a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Up-to-date orbital elements for asteroids, comets, etc from the Minor Planet Center (MPC): <a href="https://minorplanetcenter.net/data">https://minorplanetcenter.net/data</a></li>
+<li>Mean elements for planetary satellites from JPL Horizons: <a href="https://ssd.jpl.nasa.gov/sats/elem/">https://ssd.jpl.nasa.gov/sats/elem/</a></li>
+<li>Low accuracy mean elements for planets from JPL Horizons: <a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
 </ol>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>
@@ -1687,7 +1685,7 @@ Low accuracy mean elements for planets from JPL Horizons: <a href="https://ssd.j
 </div><div class="memdoc">
 
 <p>Converts a NAIF ID to a NOVAS major planet ID. </p>
-<p>It account for the different IDs used for Sun, Moon, SSB, EMB and the Pluto system. Otherwise NAIF planet barycenters are mapped to the corresponding bodies. NAIF body centers <em>n</em>99 (e.g. 399 for Earth) are mapped to the corresponding NOVAS planet number <em>n</em>. All other NAIF IDs will return -1, indicating no match to a NOVAS planet ID.</p>
+<p>It account for the different IDs used for Sun, Moon, SSB, EMB and the Pluto system. Otherwise NAIF planet barycenters are mapped to the corresponding bodies. NAIF body centers <em>n_99 (e.g. 399 for Earth) are mapped to the corresponding NOVAS planet number _n</em>. All other NAIF IDs will return -1, indicating no match to a NOVAS planet ID.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>The NAIF ID of the major planet of interest </td></tr>
@@ -1832,18 +1830,15 @@ Low accuracy mean elements for planets from JPL Horizons: <a href="https://ssd.j
 <p>It is based on the secular parameters of the ELP2000-85 model, not including the harmonic series the perturbation terms. As such it has accuracy at the few degrees level only, however it is 'valid' for long-term projections (i.e. for years around the orbit's reference epoch) at that coarse level.</p>
 <p>For the short-term , <span class="tt"><a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a></span> can provide somewhat more accurate predictions for up to a day or so around the reference epoch of the orbit.</p>
 <p>NOTES:</p>
-<ul>
+<ol type="1">
 <li>The Moon's orbit is strongly non Keplerian due to the tidal distortions (esp. by the Sun), hence any attempt to describe it it purely Keplerian terms is inherently flawed. If you want to calculate the Moon's position (and/or velocity) with some precision, without using ephemerides, you should probably use the ELP2000/MPP02 model provided by <span class="tt"><a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a></span> and <span class="tt"><a class="el" href="group__apparent.html#ga03aca2626e38d04bcdf94fae14c6d11c" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos()</a></span>.</li>
-</ul>
-<p>REFERENCES: </p><ol>
-<li>
-Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352. </li>
-<li>
-Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735 </li>
-<li>
-Laskar J., 1986, A&amp;A, 157, 59 </li>
+</ol>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.</li>
+<li>Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735</li>
+<li>Laskar J., 1986, A&amp;A, 157, 59</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1887,13 +1882,11 @@ Laskar J., 1986, A&amp;A, 157, 59 </li>
 <p>Gets an approximation of the <span class="tt">current</span> Keplerian orbital elements for the Moon relative to the geocenter for the specified epoch of observation. </p>
 <p>The orbit includes the most dominant Solar perturbation terms to produce results with an accuracy at the few arcmin level near (+- 0.5 days) the reference time argument of the orbit. The perturbed orbit is based on the ELP/MPP02 model.</p>
 <p>While, the ELP/MPP02 model itself can be highly precise, the Moon's orbit is strongly non-Keplerian, and so any attempt to describe it in purely Keplerian terms is inherently flawed, which is the reason for the generally poor accuracy of this model.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352. </li>
-<li>
-Chapront J., Francou G., 2003, A&amp;A, 404, 735 </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M, and Chapront, J. 1988, Astronomy and Astrophysics, vol. 190, p. 342-352.</li>
+<li>Chapront J., Francou G., 2003, A&amp;A, 404, 735</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1942,17 +1935,15 @@ Chapront J., Francou G., 2003, A&amp;A, 404, 735 </li>
 <p>Get approximate current heliocentric orbital elements for the major planets. </p>
 <p>These orbital elements are not suitable for precise position velocity calculations, but they may be useful to obtain approximate positions for the major planets, e.g. to estimate rise or set times, or apparent elevation angles from an observing site.</p>
 <p>These orbitals can provide planet positions to arcmin-level precision for the rocky inner planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical accuracies, see either of the references below.</p>
-<p>NOTES: </p><ol>
-<li>
-The Earth-Moon system is treated as a single orbital of the Earth-Moon Barycenter (EMB). That is, the EMB orbital is returned for both Earth and the Moon also. </li>
-<li>
-For Pluto, the Pluto system barycenter orbit is returned. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The Earth-Moon system is treated as a single orbital of the Earth-Moon Barycenter (EMB). That is, the EMB orbital is returned for both Earth and the Moon also.</li>
+<li>For Pluto, the Pluto system barycenter orbit is returned.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2013,17 +2004,13 @@ E.M. Standish and J.G. Williams 1992. </li>
 </div><div class="memdoc">
 
 <p>Calculates a rectangular equatorial position and velocity vector for the given orbital elements for the specified time of observation. </p>
-<p>REFERENCES: </p><ol>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
-<li>
-<a href="https://en.wikipedia.org/wiki/Orbital_elements">https://en.wikipedia.org/wiki/Orbital_elements</a> </li>
-<li>
-<a href="https://orbitalofficial.com/">https://orbitalofficial.com/</a> </li>
-<li>
-<a href="https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf">https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Orbital_elements">https://en.wikipedia.org/wiki/Orbital_elements</a></li>
+<li><a href="https://orbitalofficial.com/">https://orbitalofficial.com/</a></li>
+<li><a href="https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf">https://downloads.rene-schwarz.com/download/M001-Keplerian_Orbit_Elements_to_Cartesian_State_Vectors.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2233,9 +2220,9 @@ E.M. Standish and J.G. Williams 1992. </li>
 <p>Sets the orientation of an orbital system using the RA and DEC coordinates of the pole of the Laplace (or else equatorial) plane relative to which the orbital elements are defined. </p>
 <p>Orbital parameters of planetary satellites normally include the R.A. and declination of the pole of the local Laplace plane in which the Keplerian orbital elements are referenced.</p>
 <p>The system will become referenced to the equatorial plane, the relative obliquity is set to (90&deg; - <span class="tt">dec</span>), while the argument of the ascending node ('Omega') is set to (90&deg; + <span class="tt">ra</span>).</p>
-<p>NOTES: </p><ol>
-<li>
-You should not expect much precision from the long-range orbital approximations for planetary satellites. For applications that require precision at any level, you should rely on appropriate ephemerides, or else on up-to-date short-term orbital elements. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>You should not expect much precision from the long-range orbital approximations for planetary satellites. For applications that require precision at any level, you should rely on appropriate ephemerides, or else on up-to-date short-term orbital elements.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2513,9 +2500,9 @@ You should not expect much precision from the long-range orbital approximations 
 </div><div class="memdoc">
 
 <p>Applies proper motion, including foreshortening effects, to a star's position. </p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2559,13 +2546,13 @@ Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
 </div><div class="memdoc">
 
 <p>Converts angular quantities for stars to vectors. </p>
-<p>NOTES: </p><ol>
-<li>
-The velocity returned should not be used for deriving spectroscopic radial velocity. It is a measure of the perceived change of the stars position, not a true physical velocity. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The velocity returned should not be used for deriving spectroscopic radial velocity. It is a measure of the perceived change of the stars position, not a true physical velocity.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

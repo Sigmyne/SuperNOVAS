@@ -207,15 +207,14 @@ Functions</h2></td></tr>
 
 <p>Corrects position vector for aberration of light. </p>
 <p>Algorithm includes relativistic terms.</p>
-<p>NOTES: </p><ol>
-<li>
-This function is called by <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to account for aberration when calculating the position of the source. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function is called by <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to account for aberration when calculating the position of the source.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Murray, C. A. (1981) Mon. Notices Royal Ast. Society 195, 639-648. </li>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Murray, C. A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.</li>
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -265,9 +264,9 @@ Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
 </div><div class="memdoc">
 
 <p>Moves the origin of coordinates from the barycenter of the solar system to the observer (or the geocenter); i.e., this function accounts for parallax (annual+geocentric or just annual). </p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -466,9 +465,9 @@ Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
 
 <p>Computes the geocentric position and velocity of a solar system body, as antedated for light-time. </p>
 <p>It is effectively the same as the original NOVAS C <a class="el" href="#afb2cc37c7bdcd34c5c167afe092aed68" title="Computes the geocentric position of a solar system body, as antedated for light-time.">light_time()</a>, except that this returns the antedated source velocity vector also.</p>
-<p>NOTES: </p><ol>
-<li>
-This function is called by <span class="tt"><a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span> or <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to calculate observed positions, radial velocity, and distance for the time when the observed light originated from the source. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function is called by <span class="tt"><a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span> or <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to calculate observed positions, radial velocity, and distance for the time when the observed light originated from the source.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1000,13 +999,11 @@ This function is called by <span class="tt"><a class="el" href="novas_8h.html#ac
 </div><div class="memdoc">
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000009">Deprecated</a></b></dt><dd>This old NOVAS C function has a few too many caveats. It is recommended that you use <span class="tt"><a class="el" href="#ad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a></span>, <span class="tt"><a class="el" href="#aa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a></span>, or <span class="tt"><a class="el" href="#aa82db32ce7b115db4f0a077ca899589b" title="Initializes an observer data structure for a ground-based observer at the specified observing site,...">make_observer_at_site()</a></span> instead (all of which set default mean annual weather parameters for approximate refraction correction), and optionally set actual weather data afterwards, based on the measurements available. This function will be available for the foreseeable future also.</dd></dl>
 <p>Initializes an observer data structure with the specified ITRF / GRS80 location, and he specified local pressure and temperature. This old NOVAS C function does not set humidity. Thus, if humidity is needed for refraction correction, then you should set it explicitly after this call.</p>
-<p>NOTES: </p><ol>
-<li>
-You can convert coordinates among ITRF realization using <span class="tt"><a class="el" href="novas_8h.html#afd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a></span>, possibly after <span class="tt"><a class="el" href="novas_8h.html#ab07d86d425d68a62e94e965dd36b7a32" title="Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference...">novas_geodetic_to_cartesian()</a></span> with <span class="tt"><a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as necessary for polar ITRF coordinates. </li>
-<li>
-You can convert ITRF Cartesian <em>xyz</em> locations to geodetic locations by using <span class="tt"><a class="el" href="novas_8h.html#a7479134485c298faa858d73ee0513a11" title="Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipso...">novas_cartesian_to_geodetic()</a></span> with <span class="tt"><a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as the reference ellipsoid parameter. </li>
-<li>
-If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want to use <a class="el" href="#aa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a> intead </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>You can convert coordinates among ITRF realization using <span class="tt"><a class="el" href="novas_8h.html#afd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a></span>, possibly after <span class="tt"><a class="el" href="novas_8h.html#ab07d86d425d68a62e94e965dd36b7a32" title="Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference...">novas_geodetic_to_cartesian()</a></span> with <span class="tt"><a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as necessary for polar ITRF coordinates.</li>
+<li>You can convert ITRF Cartesian <em>xyz</em> locations to geodetic locations by using <span class="tt"><a class="el" href="novas_8h.html#a7479134485c298faa858d73ee0513a11" title="Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipso...">novas_cartesian_to_geodetic()</a></span> with <span class="tt"><a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as the reference ellipsoid parameter.</li>
+<li>If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want to use <a class="el" href="#aa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a> intead</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1069,15 +1066,12 @@ novas_set_weather(), <a class="el" href="novas_8h.html#a7479134485c298faa858d73e
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000010">Deprecated</a></b></dt><dd>This old NOVAS C function has a few too many caveats. It is recommended that you use <span class="tt"><a class="el" href="#a236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a></span> or <span class="tt"><a class="el" href="#ab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span> instead (both of which set default mean annual weather parameters for approximate refraction correction), and optionally set actual weather data afterwards, based on the measurements available. This function will be available for the foreseeable future also.</dd></dl>
 <p>Populates an '<a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a>' data structure, for an observer on the surface of the Earth, with the given parameters.</p>
 <p>Note, that because this is an original NOVAS C routine, it does not have an argument to set a humidity value (e.g. for radio refraction). As such, the humidity is set to a a default mean annual value for the location. To set an actual humidity, set the output structure's field after calling this funcion.</p>
-<p>NOTES </p><ol>
-<li>
-This implementation breaks strict v1.0 ABI compatibility since it writes to (initializes) a field (<span class="tt">humidity</span>) that was not yet part of the <span class="tt"><a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a></span> structure in v1.0. As such, linking SuperNOVAS v1.1 or later with application code compiled for SuperNOVAS v1.0 can result in memory corruption or segmentation fault when this function is called. To be safe, make sure your application has been (re)compiled against SuperNOVAS v1.1 or later. </li>
-<li>
-You can convert coordinates among ITRF realization using <span class="tt"><a class="el" href="novas_8h.html#afd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a></span>, possibly after <span class="tt"><a class="el" href="novas_8h.html#ab07d86d425d68a62e94e965dd36b7a32" title="Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference...">novas_geodetic_to_cartesian()</a></span> with <span class="tt"><a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as necessary for polar ITRF coordinates. </li>
-<li>
-You can convert Cartesian <em>xyz</em> locations to geodetic locations by using <span class="tt"><a class="el" href="novas_8h.html#a7479134485c298faa858d73ee0513a11" title="Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipso...">novas_cartesian_to_geodetic()</a></span> with <span class="tt"><a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as the reference ellipsoid parameter. </li>
-<li>
-If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want to use <span class="tt"><a class="el" href="#ab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span> instead, and then set weather parameters afterwards as necessary.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This implementation breaks strict v1.0 ABI compatibility since it writes to (initializes) a field (<span class="tt">humidity</span>) that was not yet part of the <span class="tt"><a class="el" href="novas_8h.html#ab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a></span> structure in v1.0. As such, linking SuperNOVAS v1.1 or later with application code compiled for SuperNOVAS v1.0 can result in memory corruption or segmentation fault when this function is called. To be safe, make sure your application has been (re)compiled against SuperNOVAS v1.1 or later.</li>
+<li>You can convert coordinates among ITRF realization using <span class="tt"><a class="el" href="novas_8h.html#afd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a></span>, possibly after <span class="tt"><a class="el" href="novas_8h.html#ab07d86d425d68a62e94e965dd36b7a32" title="Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference...">novas_geodetic_to_cartesian()</a></span> with <span class="tt"><a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as necessary for polar ITRF coordinates.</li>
+<li>You can convert Cartesian <em>xyz</em> locations to geodetic locations by using <span class="tt"><a class="el" href="novas_8h.html#a7479134485c298faa858d73ee0513a11" title="Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipso...">novas_cartesian_to_geodetic()</a></span> with <span class="tt"><a class="el" href="novas_8h.html#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as the reference ellipsoid parameter.</li>
+<li>If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want to use <span class="tt"><a class="el" href="#ab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span> instead, and then set weather parameters afterwards as necessary.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1206,11 +1200,10 @@ If you have longitude, latitude, and height defined as GPS (WGS84) values, you m
 <p>(2013), and scaling relations with altitude (up to 12 km).</p>
 <p>Humidity is set to 70% at sea level (which is a typical value globally), and adjusted to decrease with altitude linearly at a rate of 7.5% per km up to 8000 meters. Above that a quadratic model is assumed, peaking at 45% at 14 km &ndash; based on the measured distribution by Mendez-Astudillo et al. (2021). Finally above 20.8 km, zero humidity is assumed.</p>
 <p>These parameters are all very approximate, but in the absence of measured data, they represent a best guess default model of sorts.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Feulner, G., Rahmstorf, S., Levermann, A., and Volkwardt, S. (2013), Journal of Climate 26, 7136 </li>
-<li>
-Mendez-Astudillo, J., et al. (2021), Urban Heat Island (UHI) Mitigation (pp.43-59), DOI:10.1007/978-981-33-4050-3_3  </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Feulner, G., Rahmstorf, S., Levermann, A., and Volkwardt, S. (2013), Journal of Climate 26, 7136</li>
+<li>Mendez-Astudillo, J., et al. (2021), Urban Heat Island (UHI) Mitigation (pp.43-59), DOI:10.1007/978-981-33-4050-3_3</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1280,9 +1273,9 @@ Mendez-Astudillo, J., et al. (2021), Urban Heat Island (UHI) Mitigation (pp.43-5
 
 <p>Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth's surface. </p>
 <p>NOTES:</p>
-<ul>
+<ol type="1">
 <li>unlike the original NOVAS <span class="tt"><a class="el" href="#ada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a></span>, this implementation takes the polar offsets into account.</li>
-</ul>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">ts</td><td>Astrometric time of oservation </td></tr>
@@ -1355,9 +1348,9 @@ Mendez-Astudillo, J., et al. (2021), Urban Heat Island (UHI) Mitigation (pp.43-5
 <p>That is, it returns <em>u</em>,<em>v</em>,<em>w</em> coordinates, for a geodetic station, relative to the geocenter, for a given apparent line-of-sight on the sky, observed at the specified time. The <em>u</em> and <em>v</em> coordinates are the projections of the site in the GCRS direction of the local East and North respectively, as seen from the source, relative to the geocenter, while <em>w</em> is the distance (inverse delay) from the geocenter along the line of sight.</p>
 <p>For interferometers, each station is its own specific site, and the array is usually referenced to one of the stations, or to some other reference location (a virtual site). As such, one is typically interested in <em>uvw</em> coordinates relative to the reference position, which can be obtained from the geocentric <em>uvw</em> provided by this method, via simple vector differencing.</p>
 <p>NOTES:</p>
-<ul>
+<ol type="1">
 <li>This method supports down to nanometer precision for sites on Earth or in Low Earth Orbit (LEO), and sub-micron (&lt;&mu;m) precision even at the distance of the Moon. However, because its calculations are based on geocentric positions, the precision degrades with increasing distance from Earth, and may not be suitable for interferometers far from Earth. When precision is a concern, you might use the more generic <span class="tt"><a class="el" href="#a81f4b147c3f132a1498cdd833042d804" title="Returns u,v,w coordinates for a space-based interferometer station.">novas_uvw()</a></span> instead, with positions (and velocities) of the stations defined relative to the array center &ndash; enabling higher precision projections than this function.</li>
-</ul>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">ts</td><td>Astrometric time of observation. </td></tr>
@@ -1539,9 +1532,9 @@ Mendez-Astudillo, J., et al. (2021), Urban Heat Island (UHI) Mitigation (pp.43-5
 
 <p>Calculates the ICRS position and velocity of the observer relative to the Solar System Barycenter (SSB). </p>
 <p>NOTES:</p>
-<ul>
+<ol type="1">
 <li>This implementation does not take polar wobble corrections into account for Earth-based (ITRS) observing locations. For those, it provides position vectors at the tens of meters level only.</li>
-</ul>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">jd_tdb</td><td>[day] Barycentric Dynamical Time (TDB) based Julian date. </td></tr>

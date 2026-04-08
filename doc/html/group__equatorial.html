@@ -349,9 +349,9 @@ Functions</h2></td></tr>
 
 <p>Computes the true right ascension of the celestial intermediate origin (CIO) vs the equinox of date on the true equator of date for a given TT Julian date. </p>
 <p>This is simply the negated return value ofira_equinox() for the true equator of date.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -445,11 +445,10 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <p>Transforms a rectangular equatorial (x, y, z) vector from the Celestial Intermediate Reference System (CIRS) frame at the given epoch to the ICRS / GCRS. </p>
 <p>(We treat ICRS and GCRS the same, since they only define the orientation of the equator, and not the origin. The origin is defined by the observer location separately.)</p>
 <p>This function uses Method 2 of the IERS Conventions 2010 (Chapter 5, Section 5.9), converting CIRS to TOD first via a rotation by the equation of origins, then using the IAU 2006 precession-nutation model (P03; Capitaine et al. 2003) to convert to J2000, and finally correcting for the frame bias to arrive at GCRS.</p>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 5, especially Section 5.9 </li>
-<li>
-Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 5, especially Section 5.9</li>
+<li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -523,11 +522,10 @@ Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
 <p>Rotates a position vector from the dynamical CIRS frame of date to the Earth-fixed ITRS frame (IAU 2000 standard method). </p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
 <p>If extreme (sub-microarcsecond) accuracy is not required, you can use UT1-based Julian date instead of the TT-based Julian date and set the 'ut1_to_tt' argument to 0.0. and you can use UTC-based Julian date the same way.for arcsec-level precision also.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -628,15 +626,14 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
 <p>Transforms a vector from the dynamical reference system to the International Celestial Reference System (ICRS), or vice versa. </p>
 <p>The dynamical reference system is based on the dynamical mean equator and equinox of J2000.0. The ICRS is based on the space-fixed ICRS axes defined by the radio catalog positions of several hundred extragalactic objects.</p>
 <p>For geocentric coordinates, the same transformation is used between the dynamical reference system and the GCRS.</p>
-<p>NOTES: </p><ol>
-<li>
-More efficient 3D rotation implementation for small angles by A. Kovacs </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>More efficient 3D rotation implementation for small angles by A. Kovacs</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Hilton, J. and Hohenkerk, C. (2004), Astronomy and Astrophysics 413, 765-770, eq. (6) and (8). </li>
-<li>
-IERS (2003) Conventions, Chapter 5. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Hilton, J. and Hohenkerk, C. (2004), Astronomy and Astrophysics 413, 765-770, eq. (6) and (8).</li>
+<li>IERS (2003) Conventions, Chapter 5.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -750,11 +747,10 @@ IERS (2003) Conventions, Chapter 5. </li>
 <p>Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Celestial Intermediate Reference System (CIRS) frame at the given epoch. </p>
 <p>(We treat ICRS and GCRS the same, since they only define the orientation of the equator, and not the origin. The origin is defined by the observer location separately.)</p>
 <p>This function uses Method 2 of the IERS Conventions 2010 (Chapter 5, Section 5.9), first applying the frame bias to convert GCRS to J2000, then using the IAU 2006 precession-nutation model (P03; Capitaine et al. 2003) to convert to TOD, and finally to CIRS via a rotation by the equation of origins.</p>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 5, especially Section 5.9 </li>
-<li>
-Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 5, especially Section 5.9</li>
+<li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -937,13 +933,13 @@ Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
 
 <p>Compute the intermediate right ascension of the equinox at the input Julian date, using an analytical expression for the accumulated precession in right ascension. </p>
 <p>For the true equinox, the result is the equation of the origins.</p>
-<p>NOTES: </p><ol>
-<li>
-Fixes bug in NOVAS C 3.1, which returned the value for the wrong 'equinox' if 'equinox = 1' was requested for the same 'jd_tbd' and 'accuracy' as a the preceding call with 'equinox = 0'. As a result, the caller ended up with the mean instead of the expected true equinox R.A. value. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Fixes bug in NOVAS C 3.1, which returned the value for the wrong 'equinox' if 'equinox = 1' was requested for the same 'jd_tbd' and 'accuracy' as a the preceding call with 'equinox = 0'. As a result, the caller ended up with the mean instead of the expected true equinox R.A. value.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42). </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1016,11 +1012,10 @@ Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42). 
 <p>Rotates a position vector from the Earth-fixed ITRS frame to the dynamical CIRS frame of date (IAU 2000 standard method). </p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
 <p>If extreme (sub-microarcsecond) accuracy is not required, you can use UT1-based Julian date instead of the TT-based Julian date and set the 'ut1_to_tt' argument to 0.0. and you can use UTC-based Julian date the same way.for arcsec-level precision also.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1096,11 +1091,10 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
 <p>Rotates a position vector from the Earth-fixed ITRS frame to the dynamical True of Date (TOD) frame of date (pre IAU 2000 method). </p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
 <p>If extreme (sub-microarcsecond) accuracy is not required, you can use UT1-based Julian date instead of the TT-based Julian date and set the 'ut1_to_tt' argument to 0.0. and you can use UTC-based Julian date the same way.for arcsec-level precision also.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1409,11 +1403,10 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
 <p>Rotates a position vector from the dynamical True of Date (TOD) frame of date the Earth-fixed ITRS frame (pre IAU 2000 method). </p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
 <p>If extreme (sub-microarcsecond) accuracy is not required, you can use UT1-based Julian date instead of the TT-based Julian date and set the 'ut1_to_tt' argument to 0.0. and you can use UTC-based Julian date the same way.for arcsec-level precision also.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

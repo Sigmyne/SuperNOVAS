@@ -341,11 +341,10 @@ Variables</h2></td></tr>
  </p>
 <p>Computes the True-of-Date (TOD) apparent place of a solar system body as would be seen by an observer at the geocenter. This is the same as calling <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a> for the body with NOVAS_TOD as the system and a geocentric observer, except the different set of return values used.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -408,11 +407,10 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 <p>Computes the True-of-Date (TOD) apparent place of a star, as would be seen by an observer at the geocenter, referenced to the dynamical equator of date, given its catalog mean place, proper motion, parallax, and radial velocity.</p>
 <p>Notwithstanding the different set of return values, this is the same as calling <a class="el" href="place_8c.html#a1504058672e6e3cf24ce6b7189ede005" title="Computes the apparent place of a star at the specified date, given its catalog mean place,...">place_star()</a> with a NULL observer location and NOVAS_TOD as the system for an object that specifies the star.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -648,21 +646,16 @@ Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
 <p>The orbitals can provide planet positions to arcmin-level precision for the rocky inner planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical accuracies, see either of the top two references below.</p>
 <p>For accurate positions, you should use planetary ephemerides (such as the JPL ephemerides via the CALCEPH or CSPICE plugins) and <span class="tt"><a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span> instead.</p>
 <p>While this function is generally similar to creating an orbital object with an orbit initialized with <span class="tt"><a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> or <span class="tt"><a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a></span>, and then calling <span class="tt"><a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, there are a few important differences to note:</p>
-<ol>
-<li>
-This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In constrast, <span class="tt"><a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>). </li>
-<li>
-This function ignores gravitational deflection. It makes little sense to bother about corrections that are orders of magnitude below the accuracy of the orbital positions obtained. </li>
-</ol>
-<p>REFERENCES: </p><ol>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
-<li>
-Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62. </li>
+<ul>
+<li>This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In constrast, <span class="tt"><a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>).</li>
+<li>This function ignores gravitational deflection. It makes little sense to bother about corrections that are orders of magnitude below the accuracy of the orbital positions obtained.</li>
+</ul>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -796,16 +789,14 @@ Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-
 
 <p>Returns the Moon's apparent place, relative to an Earth-based observer (or the geocenter), using the ELP/MPP02 model by Chapront &amp; Francou (2003). </p>
 <p>NOTES:</p>
-<ul>
+<ol type="1">
 <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for 1900 &ndash; 2100).</li>
-</ul>
-<p>REFERENCES: </p><ol>
-<li>
-Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988) </li>
-<li>
-Chapront, J., Francou G., 2003, A&amp;A, 404, 735 </li>
-<li>
-Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a> </li>
+</ol>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
+<li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+<li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -862,16 +853,14 @@ Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (Octobe
 <p>Returns the Moon's apparent place, relative to an Earth-based observer (or the geocenter), using the ELP/MPP02 model by Chapront &amp; Francou (2003). </p>
 <p>Only terms larger than the specified limit are used to provide a result with the desired precision.</p>
 <p>NOTES:</p>
-<ul>
+<ol type="1">
 <li>The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total), resulting in a limiting accuracy below the 1 arcsec level (and less than 0.1 arcsec or 100 m error typically for 1900 &ndash; 2100).</li>
-</ul>
-<p>REFERENCES: </p><ol>
-<li>
-Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988) </li>
-<li>
-Chapront, J., Francou G., 2003, A&amp;A, 404, 735 </li>
-<li>
-Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a> </li>
+</ol>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
+<li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+<li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -916,31 +905,21 @@ Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (Octobe
 
 <p>Calculates the Moon's phase at a given time. </p>
 <p>It uses orbital models for Earth (E.M. Standish and J.G. Williams 1992), and the ELP2000/MPP02 semi-analytical model for the Moon (Chapront &amp; Francou, 2002, 2003), and takes into account the slightly eccentric nature of both orbits.</p>
-<p>NOTES: </p><ol>
-<li>
-The Moon's phase here follows the definition by the Astronomical Almanac, as the excess ecliptic longitude of the Moon over that of the Sun seen from the geocenter. </li>
-<li>
-There are other definitions of the phase too, depending on which you might find slightly different answers, but regardless of the details most phase calculations should match to within a few degrees. </li>
-<li>
-As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the Moon by Chapront &amp; Francou (2003). </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The Moon's phase here follows the definition by the Astronomical Almanac, as the excess ecliptic longitude of the Moon over that of the Sun seen from the geocenter.</li>
+<li>There are other definitions of the phase too, depending on which you might find slightly different answers, but regardless of the details most phase calculations should match to within a few degrees.</li>
+<li>As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the Moon by Chapront &amp; Francou (2003).</li>
+<li>This function caches the result of the last calculation.</li>
 </ol>
-<p>NOTES: </p><ol>
-<li>
-This function caches the result of the last calculation. </li>
-</ol>
-<p>REFERENCES: </p><ol>
-<li>
-The Explanatory Supplement to the Astronomical Almanac, University Science Books, 3rd ed., p. 507 </li>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
-<li>
-Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62. </li>
-<li>
-Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735 </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>The Explanatory Supplement to the Astronomical Almanac, University Science Books, 3rd ed., p. 507</li>
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62.</li>
+<li>Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735&lt;</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1035,18 +1014,16 @@ Chapront J., &amp; Francou G., 2003, A&amp;A, 404, 735 </li>
 
 <p>Returns the angular separation of two locations on a sphere. </p>
 <p>It uses the Vincenty formula for accurate results across all locations on the sphere.</p>
-<p>NOTES: </p><ol>
-<li>
-Prior to version 1.5, this function used the law of cosines, which is imprecise for nearby locations </li>
-<li>
-In version 1.5, this function used the haversine formula, albeit with an error in the implementation. The haversine formula is accurate for nearby locations, but has rounding errors for antipodal locations. </li>
-<li>
-From version 1.5.1, this function uses the Vincenty formula, which is accurate for all locations on the sphere. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Prior to version 1.5, this function used the law of cosines, which is imprecise for nearby locations</li>
+<li>In version 1.5, this function used the haversine formula, albeit with an error in the implementation. The haversine formula is accurate for nearby locations, but has rounding errors for antipodal locations.</li>
+<li>From version 1.5.1, this function uses the Vincenty formula, which is accurate for all locations on the sphere.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Vincenty, Thaddeus. "Direct and Inverse Solutions of Geodesics on the Ellipsoid with
-Application of Nested Equations", Survey Review. 23 (176), Directorate of Overseas Surveys, doi:10.1179/sre.1975.23.176.88. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Vincenty, Thaddeus. "Direct and Inverse Solutions of Geodesics on the Ellipsoid with
+    Application of Nested Equations", Survey Review. 23 (176), Directorate of Overseas Surveys, doi:10.1179/sre.1975.23.176.88.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1101,9 +1078,9 @@ Application of Nested Equations", Survey Review. 23 (176), Directorate of Overse
 <p>And if you want geometric positions instead (not corrected for aberration or gravitational deflection), you may want to use <a class="el" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a> instead.</p>
 <p>The approximate 'inverse' of this function is <a class="el" href="#gab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a>.</p>
 <p>This function implements the same aberration and gravitational deflection corrections as <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, but at reduced computational cost. See <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> for references. Unlike <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, however, the output always reports the distance calculated from the parallax for sidereal sources. Note also, that while <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> does not apply aberration and gravitational deflection corrections when <span class="tt">sys</span> is NOVAS_ICRS (3), this routine will apply those corrections consistently for all coordinate systems (and you can use <a class="el" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a> instead to get positions without aberration or deflection in any system).</p>
-<p>NOTES: </p><ol>
-<li>
-As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with LSR-based measures being returned for catalog sources. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with LSR-based measures being returned for catalog sources.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1623,11 +1600,10 @@ As of SuperNOVAS v1.3, the returned radial velocity component is a proper observ
  </p>
 <p>Computes the virtual place of a solar system body, as would be seen by an observer at the geocenter, referenced to the GCRS. This is the same as calling <a class="el" href="#gaea583f6f785fa42f46710288e8a4e083" title="reference_system: ICRS/GCRS   observer location: geocenter   position_type: apparent">place_gcrs()</a> for the body, except the different set of return values used.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1690,11 +1666,10 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 <p>Computes the virtual place of a star, as would be seen by an observer at the geocenter, referenced to GCRS, at date 'jd_tt', given its catalog mean place, proper motion, parallax, and radial velocity.</p>
 <p>Notwithstanding the different set of return values, this is the same as calling <a class="el" href="place_8c.html#a1504058672e6e3cf24ce6b7189ede005" title="Computes the apparent place of a star at the specified date, given its catalog mean place,...">place_star()</a> with a NULL observer location and NOVAS_GCRS as the system, or <a class="el" href="#gaea583f6f785fa42f46710288e8a4e083" title="reference_system: ICRS/GCRS   observer location: geocenter   position_type: apparent">place_gcrs()</a> for an object that specifies the star.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

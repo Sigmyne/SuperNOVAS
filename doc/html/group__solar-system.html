@@ -400,9 +400,9 @@ Functions</h2></td></tr>
 
 <p>Adds a SPICE kernel to the currently managed open kernels. </p>
 <p>Subsequent ephemeris lookups through CSPICE will use the added kernel. It's simply a wrapper around the CSPICE <span class="tt">furnsh_c()</span> routine, with graceful error handling. You can of course add kernels using <span class="tt">furnsh_c()</span> directly to the same effect.</p>
-<p>REFERENCES: </p><ol>
-<li>
-<a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/furnsh_c.html">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/furnsh_c.html</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li><a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/furnsh_c.html">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/furnsh_c.html</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -458,9 +458,9 @@ Functions</h2></td></tr>
 
 <p>Removes a SPICE kernel from the currently managed open kernels. </p>
 <p>Subsequent ephemeris lookups through CSPICE will not use the removed kernel data. It's simply a wrapper around the CSPICE <span class="tt">unload_c()</span> routine, with graceful error handling. You can of course remove kernels using <span class="tt">unload_c()</span> directly to the same effect.</p>
-<p>REFERENCES: </p><ol>
-<li>
-<a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/unload_c.html">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/unload_c.html</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li><a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/unload_c.html">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/cspice/unload_c.html</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -511,12 +511,11 @@ Functions</h2></td></tr>
 
 <p>Provides the position and velocity of the Earth and Sun only at epoch 'jd_tdb' by evaluating a closed-form theory without reference to an external file. </p>
 <p>This function can also provide the position and velocity of the Sun.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
-    Subroutines"; USNO internal document dated 20 Oct 1988; revised 15 Mar 1990. </li>
-<li>
-Explanatory Supplement to The Astronomical Almanac (1992). </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. "NOVAS: Naval Observatory Vector Astrometry
+    Subroutines"; USNO internal document dated 20 Oct 1988; revised 15 Mar 1990.</li>
+<li>Explanatory Supplement to The Astronomical Almanac (1992).</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -573,9 +572,9 @@ Explanatory Supplement to The Astronomical Almanac (1992). </li>
 
 <p>It may provide the position and velocity of the Earth and Sun, the same as <a class="el" href="#ga580f5949c8a29cdd7bf4787aee891f2b" title="Provides the position and velocity of the Earth and Sun only at epoch &#39;jd_tdb&#39; by evaluating a closed...">earth_sun_calc()</a>, if <a class="el" href="#ga279bca0519117cee9a3bd4382f38e7ad" title="Specify whether the high-precision call is allowed to return a low-precision result.">enable_earth_sun_hp()</a> is set to true (non-zero). </p>
 <p>Otherwise, it will return with an error code of 3, indicating that high-precision calculations are not provided by this implementation.</p>
-<p>NOTES: </p><ol>
-<li>
-This implementation will always propulate the output position and velocity vectors with the low-precision result, regardless of the return error code, in order to reduce the chance of unpredictable behavior, even if the user does not check the returned error status (which of course they should).  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This implementation will always propulate the output position and velocity vectors with the low-precision result, regardless of the return error code, in order to reduce the chance of unpredictable behavior, even if the user does not check the returned error status (which of course they should).</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

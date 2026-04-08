@@ -159,25 +159,20 @@ Functions</h2></td></tr>
 <p>The orbitals can provide planet positions to arcmin-level precision for the rocky inner planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical accuracies, see either of the top two references below.</p>
 <p>For accurate positions, you should use planetary ephemerides (such as the JPL ephemerides via the CALCEPH or CSPICE plugins) and <span class="tt"><a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span> instead.</p>
 <p>While this function is generally similar to creating an orbital object with an orbit initialized with <span class="tt"><a class="el" href="#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> or <span class="tt"><a class="el" href="novas_8h.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a></span>, and then calling <span class="tt"><a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span>, there are a few important differences:</p>
-<ol>
-<li>
-This function returns geometric positions referenced to the Sun (i.e., heliocentric), whereas <span class="tt"><a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span> references the calculated positions to the Solar-system Barycenter (SSB). </li>
-<li>
-This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In constrast, <span class="tt"><a class="el" href="#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>). </li>
+<ul>
+<li>This function returns geometric positions referenced to the Sun (i.e., heliocentric), whereas <span class="tt"><a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span> references the calculated positions to the Solar-system Barycenter (SSB).</li>
+<li>This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In constrast, <span class="tt"><a class="el" href="#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>).</li>
+</ul>
+<p>NOTES:</p>
+<ol type="1">
+<li>The Sun's position w.r.t. the Solar-system Barycenter is calculated using <span class="tt"><a class="el" href="novas_8h.html#a580f5949c8a29cdd7bf4787aee891f2b" title="Provides the position and velocity of the Earth and Sun only at epoch &#39;jd_tdb&#39; by evaluating a closed...">earth_sun_calc()</a></span>. All other orbitals are also referenced to the Sun's position calculated that way.</li>
 </ol>
-<p>NOTES: </p><ol>
-<li>
-The Sun's position w.r.t. the Solar-system Barycenter is calculated using <span class="tt"><a class="el" href="novas_8h.html#a580f5949c8a29cdd7bf4787aee891f2b" title="Provides the position and velocity of the Earth and Sun only at epoch &#39;jd_tdb&#39; by evaluating a closed...">earth_sun_calc()</a></span>. All other orbitals are also referenced to the Sun's position calculated that way. </li>
-</ol>
-<p>REFERENCES: </p><ol>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
-<li>
-Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -235,21 +230,16 @@ Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-
 <p>The orbitals can provide planet positions to arcmin-level precision for the rocky inner planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical accuracies, see either of the top two references below.</p>
 <p>For accurate positions, you should use planetary ephemerides (such as the JPL ephemerides via the CALCEPH or CSPICE plugins) and <span class="tt"><a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span> instead.</p>
 <p>While this function is generally similar to creating an orbital object with an orbit initialized with <span class="tt"><a class="el" href="#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> or <span class="tt"><a class="el" href="novas_8h.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a></span>, and then calling <span class="tt"><a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, there are a few important differences to note:</p>
-<ol>
-<li>
-This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In constrast, <span class="tt"><a class="el" href="#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>). </li>
-<li>
-This function ignores gravitational deflection. It makes little sense to bother about corrections that are orders of magnitude below the accuracy of the orbital positions obtained. </li>
-</ol>
-<p>REFERENCES: </p><ol>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
-<li>
-Chapront, J. et al., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62. </li>
+<ul>
+<li>This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In constrast, <span class="tt"><a class="el" href="#a63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>).</li>
+<li>This function ignores gravitational deflection. It makes little sense to bother about corrections that are orders of magnitude below the accuracy of the orbital positions obtained.</li>
+</ul>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -300,17 +290,15 @@ Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-
 <p>Get approximate current heliocentric orbital elements for the major planets. </p>
 <p>These orbital elements are not suitable for precise position velocity calculations, but they may be useful to obtain approximate positions for the major planets, e.g. to estimate rise or set times, or apparent elevation angles from an observing site.</p>
 <p>These orbitals can provide planet positions to arcmin-level precision for the rocky inner planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical accuracies, see either of the references below.</p>
-<p>NOTES: </p><ol>
-<li>
-The Earth-Moon system is treated as a single orbital of the Earth-Moon Barycenter (EMB). That is, the EMB orbital is returned for both Earth and the Moon also. </li>
-<li>
-For Pluto, the Pluto system barycenter orbit is returned. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The Earth-Moon system is treated as a single orbital of the Earth-Moon Barycenter (EMB). That is, the EMB orbital is returned for both Earth and the Moon also.</li>
+<li>For Pluto, the Pluto system barycenter orbit is returned.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -357,9 +345,9 @@ E.M. Standish and J.G. Williams 1992. </li>
 
 <p>Returns the planetary longitude, for Mercury through Neptune, w.r.t. </p>
 <p>mean dynamical ecliptic and equinox of J2000, with high order terms omitted (Simon et al. 1994, 5.8.1-5.8.8).</p>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions Chapter 5, Eq. 5.44. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions Chapter 5, Eq. 5.44.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

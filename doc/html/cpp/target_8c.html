@@ -418,9 +418,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000016">Deprecated</a></b></dt><dd>More functionality and more readable, code results from using one of the specific alternatives: <span class="tt"><a class="el" href="#ab9b7a622486f2904615ceed1ba94cd8f" title="Populates and object data structure with the data for a catalog source.">make_cat_object()</a></span>, <span class="tt"><a class="el" href="#ae579a49d84696a913fd0d9f348bb5b11" title="Populates a celestial object data structure with the ICRS astrometric parameters for a redhifted cata...">make_redshifted_object()</a></span>, <span class="tt"><a class="el" href="#a4c7846be95299769f4d0377bf127bcf5" title="Sets a celestial object to be a major planet, or the Sun, Moon, Solar-system Barycenter,...">make_planet()</a></span>, <span class="tt"><a class="el" href="#aa22303f98df2d63edf6d8452ff3a43b2" title="Sets a celestial object to be a Solar-system ephemeris body.">make_ephem_object()</a></span>, or <span class="tt"><a class="el" href="#a3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a></span>.</dd></dl>
 <p>Populates an object data structure using the parameters provided. By default (for compatibility with NOVAS C) source names are converted to upper-case internally. You can however enable case-sensitive processing by calling <a class="el" href="#a8f832afe92680a11c3489aaa224ac2e2" title="Enables or disables case-sensitive processing of the object name.">novas_case_sensitive()</a> before.</p>
-<p>NOTES: </p><ol>
-<li>
-This call does not initialize the <span class="tt">orbit</span> field (added in v1.2) with zeroes to remain ABI compatible with versions &lt;1.2. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This call does not initialize the <span class="tt">orbit</span> field (added in v1.2) with zeroes to remain ABI compatible with versions &lt;1.2.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1263,9 +1263,9 @@ This call does not initialize the <span class="tt">orbit</span> field (added in 
 </div><div class="memdoc">
 
 <p>Applies proper motion, including foreshortening effects, to a star's position. </p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1309,13 +1309,13 @@ Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
 </div><div class="memdoc">
 
 <p>Converts angular quantities for stars to vectors. </p>
-<p>NOTES: </p><ol>
-<li>
-The velocity returned should not be used for deriving spectroscopic radial velocity. It is a measure of the perceived change of the stars position, not a true physical velocity. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The velocity returned should not be used for deriving spectroscopic radial velocity. It is a measure of the perceived change of the stars position, not a true physical velocity.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

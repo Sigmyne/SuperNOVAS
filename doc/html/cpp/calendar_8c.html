@@ -164,17 +164,14 @@ Functions</h2></td></tr>
 
 <p>This function will compute a broken down date on the astronomical calendar given the Julian day input. </p>
 <p>Input Julian day can be based on any UT-like time scale (UTC, UT1, TT, etc.) - output time value will have same basis.</p>
-<p>NOTES: </p><ol>
-<li>
-<p class="startli">The Gregorian calendar was introduced on 15 October 1582 only (corresponding to 5 October of the previously used Julian calendar). Prior to it this function returns Julian / Roman calendar dates, e.g. the day before the reform is 1582 October 4. You can use <span class="tt"><a class="el" href="#a8ed2fb55bcf86d9f1f434a2f832356a2" title="This function will compute a broken down date on the specified calendar for given the Julian day inpu...">novas_jd_to_date()</a></span> instead to convert JD days to dates in specific calendars.</p>
-<p class="endli"></p>
-</li>
-<li>
-B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The Gregorian calendar was introduced on 15 October 1582 only (corresponding to 5 October of the previously used Julian calendar). Prior to it this function returns Julian / Roman calendar dates, e.g. the day before the reform is 1582 October 4. You can use <span class="tt"><a class="el" href="#a8ed2fb55bcf86d9f1f434a2f832356a2" title="This function will compute a broken down date on the specified calendar for given the Julian day inpu...">novas_jd_to_date()</a></span> instead to convert JD days to dates in specific calendars.</li>
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -226,21 +223,15 @@ Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 19
 
 <p>Returns the Julian day for a given astronomical calendar date. </p>
 <p>Input time value can be based on any UT-like time scale (UTC, UT1, TT, etc.) - output Julian day will have the same basis.</p>
-<p>NOTES: </p><ol>
-<li>
-<p class="startli">The Gregorian calendar was introduced on 1582 October 15 only. Prior to that, astronomical dates are Julian/Roman dates, so the day before the reform was 1582 October 4. You can also use <span class="tt"><a class="el" href="#a54eee84c46900c80ca9966857c217cc8" title="Returns the Julian day for a given calendar date.">novas_jd_from_date()</a></span> to convert dates with more flexibility.</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli">B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</p>
-<p class="endli"></p>
-</li>
-<li>
-Added argument range checking in v1.3.0, returning NAN if the month or day are out of the normal range (for a leap year). </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The Gregorian calendar was introduced on 1582 October 15 only. Prior to that, astronomical dates are Julian/Roman dates, so the day before the reform was 1582 October 4. You can also use <span class="tt"><a class="el" href="#a54eee84c46900c80ca9966857c217cc8" title="Returns the Julian day for a given calendar date.">novas_jd_from_date()</a></span> to convert dates with more flexibility.</li>
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
+<li>Added argument range checking in v1.3.0, returning NAN if the month or day are out of the normal range (for a leap year).</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -377,17 +368,14 @@ Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 19
 <p>The input date is the conventional calendar date, affected by the Gregorian calendar reform of</p><ol type="1">
 <li>Thus, the input date is for the Gregorian calendar for dates starting 15 October 1582, and for the Julian (Roman) calendar (introduced in 45 B.C.) for dates prior to that.</li>
 </ol>
-<p>NOTES: </p><ol>
-<li>
-<p class="startli">B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</p>
-<p class="endli"></p>
-</li>
-<li>
-Added argument range checking in v1.3.0, returning NAN if the month or day are out of the normal range (for a leap year). </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
+<li>Added argument range checking in v1.3.0, returning NAN if the month or day are out of the normal range (for a leap year).</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -451,13 +439,13 @@ Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 19
 
 <p>This function will compute a broken down date on the specified calendar for given the Julian day input. </p>
 <p>Input Julian day can be based on any astronomical time scale (UTC, UT1, TT, etc.) - output time value will have same basis.</p>
-<p>NOTES: </p><ol>
-<li>
-B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

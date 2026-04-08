@@ -148,15 +148,14 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Then use CSPICE as your SuperNOVAS ephemeris provider</span></div>
 <div class="line">novas_use_cspice();</div>
-<div class="ttc" id="agroup__solar-system_html_gae02d26964099f56c375dc78172ad135b"><div class="ttname"><a href="group__solar-system.html#gae02d26964099f56c375dc78172ad135b">cspice_add_kernel</a></div><div class="ttdeci">int cspice_add_kernel(const char *filename)</div><div class="ttdoc">Adds a SPICE kernel to the currently managed open kernels.</div><div class="ttdef"><b>Definition</b> solsys-cspice.c:206</div></div>
+<div class="ttc" id="agroup__solar-system_html_gae02d26964099f56c375dc78172ad135b"><div class="ttname"><a href="group__solar-system.html#gae02d26964099f56c375dc78172ad135b">cspice_add_kernel</a></div><div class="ttdeci">int cspice_add_kernel(const char *filename)</div><div class="ttdoc">Adds a SPICE kernel to the currently managed open kernels.</div><div class="ttdef"><b>Definition</b> solsys-cspice.c:203</div></div>
 <div class="ttc" id="anovas-cspice_8h_html"><div class="ttname"><a href="novas-cspice_8h.html">novas-cspice.h</a></div><div class="ttdoc">SuperNOVAS functions interfacing with the NAIF CSPICE Toolkit.</div></div>
 <div class="ttc" id="anovas_8h_html"><div class="ttname"><a href="novas_8h.html">novas.h</a></div><div class="ttdoc">SuperNOVAS types, definitions, and function prototypes.</div></div>
 </div><!-- fragment --><p>The CSPICE plugin will use the ID numbers stored in the object structure. For planets, it will automatically translate NOVAS planet IDs to NAIF IDs, while for other Solar-system bodies, you should set the NAIF ID when defining the object via <span class="tt"><a class="el" href="group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2" title="Sets a celestial object to be a Solar-system ephemeris body.">make_ephem_object()</a></span>. If the ID is set to -1, then name-based lookup will be used instead.</p>
-<p>REFERENCES: </p><ol>
-<li>
-The NAIF CSPICE Toolkit: <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">https://naif.jpl.nasa.gov/naif/toolkit.html</a> </li>
-<li>
-the Sigmyne/cspice-sharedlib repository: <a href="https://github.com/Sigmyne/cspice-sharedlib">https://github.com/Sigmyne/cspice-sharedlib</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>The NAIF CSPICE Toolkit: <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">https://naif.jpl.nasa.gov/naif/toolkit.html</a></li>
+<li>the Sigmyne/cspice-sharedlib repository: <a href="https://github.com/Sigmyne/cspice-sharedlib">https://github.com/Sigmyne/cspice-sharedlib</a></li>
 </ol>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>

@@ -125,9 +125,9 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Transformations of station coordinates, velocities, and Earth orinetation parameters (EOP) between various ITRF realizations, and conversion between Cartesian (x, y, z) and geodetic (longitude, latitude, altitude) coordinates w.r.t. </p>
 <p>the reference ellipsoid.</p>
-<p>REFERENCES: </p><ol>
-<li>
-ITRS Conventions Chapter 4, see <a href="https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf">https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>ITRS Conventions Chapter 4, see <a href="https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf">https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</a></li>
 </ol>
 <dl class="section date"><dt>Date</dt><dd>Created on Aug 26, 2025 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
@@ -169,16 +169,15 @@ ITRS Conventions Chapter 4, see <a href="https://iers-conventions.obspm.fr/conte
 </div><div class="memdoc">
 
 <p>Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipsoid. </p>
-<p>NOTES: </p><ol>
-<li>
-Adapted from the IERS <span class="tt">GCONV2.F</span> source code, see <a href="https://iers-conventions.obspm.fr/content/chapter4/software/GCONV2.F">https://iers-conventions.obspm.fr/content/chapter4/software/GCONV2.F</a>.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Adapted from the IERS <span class="tt">GCONV2.F</span> source code, see <a href="https://iers-conventions.obspm.fr/content/chapter4/software/GCONV2.F">https://iers-conventions.obspm.fr/content/chapter4/software/GCONV2.F</a>.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fukushima, T., "Transformation from Cartesian to geodetic
-    coordinates accelerated by Halley's method", J. Geodesy (2006), 79(12): 689-693  </li>
-<li>
-Petit, G. and Luzum, B. (eds.), IERS Conventions (2010), IERS Technical Note No. 36, BKG (2010)  </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fukushima, T., "Transformation from Cartesian to geodetic
+    coordinates accelerated by Halley's method", J. Geodesy (2006), 79(12): 689-693</li>
+<li>Petit, G. and Luzum, B. (eds.), IERS Conventions (2010), IERS Technical Note No. 36, BKG (2010)</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -359,7 +358,7 @@ Petit, G. and Luzum, B. (eds.), IERS Conventions (2010), IERS Technical Note No.
 <div class="line"> </div>
 <div class="line"><span class="comment">// Convert ITRF88 coordinates to ITRF2000</span></div>
 <div class="line"><a class="code hl_function" href="novas_8h.html#afd98ed01148f1291018809d77785527f">novas_itrf_transform</a>(1988, from_coords, from_rates, 2000, ...);</div>
-<div class="ttc" id="anovas_8h_html_afd98ed01148f1291018809d77785527f"><div class="ttname"><a href="novas_8h.html#afd98ed01148f1291018809d77785527f">novas_itrf_transform</a></div><div class="ttdeci">int novas_itrf_transform(int from_year, const double *restrict from_coords, const double *restrict from_rates, int to_year, double *to_coords, double *to_rates)</div><div class="ttdoc">Converts ITRF coordinates between different realizations of the ITRF coordinate system.</div><div class="ttdef"><b>Definition</b> itrf.c:226</div></div>
+<div class="ttc" id="anovas_8h_html_afd98ed01148f1291018809d77785527f"><div class="ttname"><a href="novas_8h.html#afd98ed01148f1291018809d77785527f">novas_itrf_transform</a></div><div class="ttdeci">int novas_itrf_transform(int from_year, const double *restrict from_coords, const double *restrict from_rates, int to_year, double *to_coords, double *to_rates)</div><div class="ttdoc">Converts ITRF coordinates between different realizations of the ITRF coordinate system.</div><div class="ttdef"><b>Definition</b> itrf.c:223</div></div>
 </div><!-- fragment --><p>or equivalently, after the transformation to ITRF2000, as:</p>
 <div class="fragment"><div class="line"><span class="comment">// Convert ITRF88 coordinates to ITRF2000</span></div>
 <div class="line"><a class="code hl_function" href="novas_8h.html#afd98ed01148f1291018809d77785527f">novas_itrf_transform</a>(1988, from_coords, from_rates, 2000, to_coords, to_rates);</div>
@@ -367,9 +366,9 @@ Petit, G. and Luzum, B. (eds.), IERS Conventions (2010), IERS Technical Note No.
 <div class="line"><span class="comment">// Apply station motion in ITRF2000</span></div>
 <div class="line"><span class="keywordflow">for</span>(i = 0; i &lt; 3; i++)</div>
 <div class="line">  to_coords[i] += to_rates[i] * (2006.78 - 1994.36)</div>
-</div><!-- fragment --><p>REFERENCES: </p><ol>
-<li>
-IERS Conventions, Chapter 4, Eq. 4.13 and Table 4.1. See <a href="https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf">https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</a> </li>
+</div><!-- fragment --><p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions, Chapter 4, Eq. 4.13 and Table 4.1. See <a href="https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf">https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -444,9 +443,9 @@ IERS Conventions, Chapter 4, Eq. 4.13 and Table 4.1. See <a href="https://iers-c
 
 <p>Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another. </p>
 <p>For the highest precision applications, observing sites should be defined in the same ITRF realization as the IERS Earth orientation parameters (EOP). To reconcile you may transform either the site location or the EOP between different realizations to match.</p>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions, Chapter 4, Eq. 4.14 and Table 4.1. See <a href="https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf">https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions, Chapter 4, Eq. 4.14 and Table 4.1. See <a href="https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf">https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

@@ -403,9 +403,9 @@ Functions</h2></td></tr>
 <p>Atmospheric refraction model for radio wavelengths (Berman &amp; Rockwell 1976). </p>
 <p>It uses the weather parameters defined for the location, including humidity. As such, make sure the weather data is fully defined, and that the humidity was explicitly set after calling e.g. <span class="tt"><a class="el" href="group__observer.html#gab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span>, <span class="tt"><a class="el" href="group__observer.html#ga236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a></span>, <span class="tt"><a class="el" href="group__observer.html#ga9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a></span>, or similar call that initializes the observing site.</p>
 <p>Adapted from FORTAN code provided by Berman &amp; Rockwell 1976.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Berman, Allan L., and Rockwell, Stephen T. (1976), NASA JPL Technical Report 32-1601 </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Berman, Allan L., and Rockwell, Stephen T. (1976), NASA JPL Technical Report 32-1601</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -535,13 +535,10 @@ Berman, Allan L., and Rockwell, Stephen T. (1976), NASA JPL Technical Report 32-
 
 <p>The wavelength-dependent IAU atmospheric refraction model, based on the SOFA <span class="tt">iauRefco()</span> function, in compliance to the 'SOFA Software License' terms of the original source. </p>
 <p>Our implementation is not provided nor it is endorsed by SOFA. The original function has been modified slightly, such as:</p>
-<ol>
-<li>
-Out-of-range weather parameters will return with an error (<span class="tt">errno</span> set to <span class="tt">EINVAL</span>), unlike the SOFA implementation, which sets minimal or maximal allowed values for these. </li>
-<li>
-The algorithm has been simplified to use fewer variables and simpler logic. </li>
-<li>
-The SOFA function this implementation is based on returns A/B coefficients, whereas this implementation returns the refraction correction angle. </li>
+<ol type="1">
+<li>Out-of-range weather parameters will return with an error (<span class="tt">errno</span> set to <span class="tt">EINVAL</span>), unlike the SOFA implementation, which sets minimal or maximal allowed values for these.</li>
+<li>The algorithm has been simplified to use fewer variables and simpler logic.</li>
+<li>The SOFA function this implementation is based on returns A/B coefficients, whereas this implementation returns the refraction correction angle.</li>
 </ol>
 <p>The refraction is calculated for the observing wavelenth previously set via <span class="tt"><a class="el" href="#gac673c4fef94847b796dc2aa2f4d0807d" title="Sets the observing wavelength for which refraction is to be calculated when using a wavelength-depene...">novas_refract_wavelength()</a></span>, or for visible light at 550 nm by default.</p>
 <p>The function uses the weather parameters defined for the location, including humidity. As such, make sure the weather data is fully defined, and that the humidity was explicitly set after calling e.g. <span class="tt"><a class="el" href="group__observer.html#gab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span>, <span class="tt"><a class="el" href="group__observer.html#ga236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a></span>, <span class="tt"><a class="el" href="group__observer.html#ga9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a></span>, or similar call that initializes the observing site.</p>
@@ -554,29 +551,22 @@ The SOFA function this implementation is based on returns A/B coefficients, wher
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">radio  </td><td class="markdownTableBodyCenter">319 mas  </td><td class="markdownTableBodyCenter">49 mas  </td></tr>
 </table>
-<p>NOTES: </p><ol>
-<li>
-From the SOFA documentation: "The model balances speed and accuracy to give good results in
-applications where performance at low altitudes is not paramount. Performance is maintained
-across a range of conditions, and applies to both optical/IR and radio."  </li>
-<li>
-The model is divergent in the observed direction of the horizon. As such, it should not be used for calculating refraction at or below the horizon itself. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>From the SOFA documentation: "The model balances speed and accuracy to give good results in
+    applications where performance at low altitudes is not paramount. Performance is maintained
+    across a range of conditions, and applies to both optical/IR and radio."</li>
+<li>The model is divergent in the observed direction of the horizon. As such, it should not be used for calculating refraction at or below the horizon itself.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Crane, R.K., Meeks, M.L. (ed), "Refraction Effects in the Neutral
-    Atmosphere", Methods of Experimental Physics: Astrophysics 12B, Academic Press, 1976.  </li>
-<li>
-Gill, Adrian E., "Atmosphere-Ocean Dynamics", Academic Press, 1982.  </li>
-<li>
-Green, R.M., "Spherical Astronomy", Cambridge University Press, 1987.  </li>
-<li>
-Hohenkerk, C.Y., &amp; Sinclair, A.T., NAO Technical Note No. 63, 1985.  </li>
-<li>
-Rueger, J.M., "Refractive Index Formulae for Electronic Distance
-    Measurement with Radio and Millimetre Waves", in Unisurv Report S-68, School of Surveying and Spatial Information Systems, University of New South Wales, Sydney, Australia, 2002.  </li>
-<li>
-Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.  </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Crane, R.K., Meeks, M.L. (ed), "Refraction Effects in the Neutral Atmosphere", Methods of Experimental Physics: Astrophysics 12B, Academic Press, 1976.</li>
+<li>Gill, Adrian E., "Atmosphere-Ocean Dynamics", Academic Press, 1982.</li>
+<li>Green, R.M., "Spherical Astronomy", Cambridge University Press, 1987.</li>
+<li>Hohenkerk, C.Y., &amp; Sinclair, A.T., NAO Technical Note No. 63, 1985.</li>
+<li>Rueger, J.M., "Refractive Index Formulae for Electronic Distance
+    Measurement with Radio and Millimetre Waves", in Unisurv Report S-68, School of Surveying and Spatial Information Systems, University of New South Wales, Sydney, Australia, 2002.</li>
+<li>Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -627,15 +617,14 @@ Stone, Ronald C., P.A.S.P. 108, 1051-1058, 1996.  </li>
 <p>Computes atmospheric optical refraction for an observed (already refracted!) zenith distance through the atmosphere. </p>
 <p>In other words this is suitable to convert refracted zenith angles to astrometric (unrefracted) zenith angles. For the reverse, see <a class="el" href="#gafe1d4e96dd66676f5567a279e83e88d9" title="Computes atmospheric optical refraction for a source at an astrometric zenith distance (e....">refract_astro()</a>.</p>
 <p>The returned value is the approximate refraction for optical wavelengths. This function can be used for planning observations or telescope pointing, but should not be used for precise positioning.</p>
-<p>NOTES: </p><ol>
-<li>
-The standard temeperature model includes a very rough estimate of the mean annual temeprature for the ovserver's latitude and elevation, rather than the 10 C everywhere assumption in NOVAS C 3.1.&lt;.li&gt; </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The standard temeperature model includes a very rough estimate of the mean annual temperature for the ovserver's latitude and elevation, rather than the 10 C everywhere assumption in NOVAS C 3.1.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Explanatory Supplement to the Astronomical Almanac, p. 144. </li>
-<li>
-Bennett, G. (1982), Journal of Navigation (Royal Institute) 35, pp. 255-259. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Explanatory Supplement to the Astronomical Almanac, p. 144.</li>
+<li>Bennett, G. (1982), Journal of Navigation (Royal Institute) 35, pp. 255-259.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -681,11 +670,10 @@ Bennett, G. (1982), Journal of Navigation (Royal Institute) 35, pp. 255-259. </l
 <p>Computes atmospheric optical refraction for a source at an astrometric zenith distance (e.g. </p>
 <p>calculated without accounting for an atmosphere). This is suitable for converting astrometric (unrefracted) zenith angles to observed (refracted) zenith angles. See <a class="el" href="#gac7ed2a1a5fb5aea3063d116d3d980eeb" title="Computes atmospheric optical refraction for an observed (already refracted!) zenith distance through ...">refract()</a> for the reverse correction.</p>
 <p>The returned value is the approximate refraction for optical wavelengths. This function can be used for planning observations or telescope pointing, but should not be used for precise positioning.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Explanatory Supplement to the Astronomical Almanac, p. 144. </li>
-<li>
-Bennett, G. (1982), Journal of Navigation (Royal Institute) 35, pp. 255-259. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Explanatory Supplement to the Astronomical Almanac, p. 144.</li>
+<li>Bennett, G. (1982), Journal of Navigation (Royal Institute) 35, pp. 255-259.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

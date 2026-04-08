@@ -158,13 +158,11 @@ Functions</h2></td></tr>
 <p>Returns the value of the Earth Rotation Angle (&theta;) for a given UT1 Julian date. </p>
 <p>The expression used is taken from the note to IAU Resolution B1.8 of 2000. The input Julian date can be split into an into high and low order parts (e.g. integer and fractional parts) for improved accuracy, or else one of the components (e.g. the low part) can be set to zero if no split is desired.</p>
 <p>The algorithm used here is equivalent to the canonical &theta; = 0.7790572732640 + 1.00273781191135448 * t, where t is the time in days from J2000 (t = jd_high + jd_low - JD_J2000), but it avoids many two-PI 'wraps' that decrease precision (adopted from SOFA Fortran routine <span class="tt">iau_era00</span>).</p>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 5, Eq. 5.15 </li>
-<li>
-IAU Resolution B1.8, adopted at the 2000 IAU General Assembly, Manchester, UK. </li>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 5, Eq. 5.15</li>
+<li>IAU Resolution B1.8, adopted at the 2000 IAU General Assembly, Manchester, UK.</li>
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -265,15 +263,14 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <p>Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidiurnal) libration and the ocean tides. </p>
 <p>See Chapters 5 and 8 of the IERS Conventions. This one is faster than <span class="tt"><a class="el" href="#a087d587e90b4e2138c0dba12d727696e" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop_at_time()</a></span> if the GMST and/or fundamental arguments are readily avaialbe, e.g. from a previous calculation.</p>
 <p>These corrections are typically at the sub-milliarcsecond level in polar offsets <em>x</em> and <em>y</em> and sub-millisecond level in UT1. Thus, these diurnal and semi-diurnal variations are important for the highest precision astrometry only, when converting between ITRS and TIRS frames.</p>
-<p>NOTES: </p><ol>
-<li>
-These diurnal corrections are automatically added to the mean Earth Orinetation parameters used when defining astronomical times and observing frames. I.e., you should pass mean values to the likes of <span class="tt"><a class="el" href="novas_8h.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span>, which will then add the diurnal corrections as appropriate automatically. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>These diurnal corrections are automatically added to the mean Earth Orinetation parameters used when defining astronomical times and observing frames. I.e., you should pass mean values to the likes of <span class="tt"><a class="el" href="novas_8h.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span>, which will then add the diurnal corrections as appropriate automatically.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 5, <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a> </li>
-<li>
-IERS Conventions 2010, Chapter 8, <a href="https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf">https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 5, <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a></li>
+<li>IERS Conventions 2010, Chapter 8, <a href="https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf">https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -327,17 +324,15 @@ novas_diurnal_librations(), <a class="el" href="#a90862cafeee0a3534e9e52055a0472
 
 <p>Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidiurnal) libration and the ocean tides at a given astromtric time. </p>
 <p>See Chapters 5 and 8 of the IERS Conventions.</p>
-<p>NOTES: </p><ol>
-<li>
-These diurnal corrections are automatically added to the mean Earth Orinetation parameters used when defining astronomical times and observing frames. I.e., you should pass mean values to the likes of <span class="tt"><a class="el" href="novas_8h.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span>, which will then add the diurnal corrections as appropriate automatically. </li>
-<li>
-This function caches the result of the last calculation. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>These diurnal corrections are automatically added to the mean Earth Orinetation parameters used when defining astronomical times and observing frames. I.e., you should pass mean values to the likes of <span class="tt"><a class="el" href="novas_8h.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span>, which will then add the diurnal corrections as appropriate automatically.</li>
+<li>This function caches the result of the last calculation.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 5, <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a> </li>
-<li>
-IERS Conventions 2010, Chapter 8, <a href="https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf">https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 5, <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a></li>
+<li>IERS Conventions 2010, Chapter 8, <a href="https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf">https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -396,9 +391,9 @@ IERS Conventions 2010, Chapter 8, <a href="https://iers-conventions.obspm.fr/con
 <p>Calculate diurnal and semi-diurnal libration corrections to the Earth orientation parameters (EOP) for the non-rigid Earth. </p>
 <p>Only terms with periods less than 2 days are considered, since the longer period terms are included in the IAU2000A nutation model. See Chapter 5 of the IERS Conventions 2010. The typical amplitude of librations is tens of micro-arcseconds (&mu;as) in polar offsets <em>x</em> and <em>y</em> and tens of micro-seconds in UT1.</p>
 <p>Normally, you would need the combined effect from librations and ocean tides together to apply diurnal corrections to the Earth orientation parameters (EOP) published by IERS. For that, <span class="tt"><a class="el" href="#a3fe699281044873f4137344b28884cea" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a></span> or <span class="tt"><a class="el" href="#a087d587e90b4e2138c0dba12d727696e" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop_at_time()</a></span> is more directly suited.</p>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 5, Tablea 5.1a and 5.1b, see <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 5, Tablea 5.1a and 5.1b, see <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -454,9 +449,9 @@ IERS Conventions 2010, Chapter 5, Tablea 5.1a and 5.1b, see <a href="https://ier
 <p>Calculate corrections to the Earth orientation parameters (EOP) due to the ocean tides. </p>
 <p>See Chapter 8 of the IERS Conventions 2010. Ocean tides manifest at the sub-milliarcsecond level in polar offsets <em>x</em> and <em>y</em> and sub-millisecond level in UT1.</p>
 <p>Normally, you would need the combined effect from librations and ocean tides together to apply diurnal corrections to the Earth orientation parameters (EOP) published by IERS. For that, <span class="tt"><a class="el" href="#a3fe699281044873f4137344b28884cea" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a></span> or <span class="tt"><a class="el" href="#a087d587e90b4e2138c0dba12d727696e" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop_at_time()</a></span> is more directly suited.</p>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 8, Tables 8.2a, 8.2b, 8.3a, and 8.3b, see <a href="https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf">https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 8, Tables 8.2a, 8.2b, 8.3a, and 8.3b, see <a href="https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf">https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -500,17 +495,15 @@ IERS Conventions 2010, Chapter 8, Tables 8.2a, 8.2b, 8.3a, and 8.3b, see <a href
 </div><div class="memdoc">
 
 <p>Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date. </p>
-<p>NOTES: </p><ol>
-<li>
-This function caches the result of the last calculation. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function caches the result of the last calculation.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42). </li>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
-<li>
-IERS Conventions 2010, Chapter 5, Eq. 5.30 and Table 5.2e, see at <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a> and <a href="https://iers-conventions.obspm.fr/content/chapter5/additional_info/tab5.2e.txt">https://iers-conventions.obspm.fr/content/chapter5/additional_info/tab5.2e.txt</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).</li>
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
+<li>IERS Conventions 2010, Chapter 5, Eq. 5.30 and Table 5.2e, see at <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a> and <a href="https://iers-conventions.obspm.fr/content/chapter5/additional_info/tab5.2e.txt">https://iers-conventions.obspm.fr/content/chapter5/additional_info/tab5.2e.txt</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -552,11 +545,10 @@ IERS Conventions 2010, Chapter 5, Eq. 5.30 and Table 5.2e, see at <a href="https
 
 <p>Returns the Greenwich Mean Sidereal Time (GMST) for a given UT1 date, using eq. </p>
 <p>42 from Capitaine et al. (2003).</p>
-<p>REFERENCES: </p><ol>
-<li>
-Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42). </li>
-<li>
-IERS Conventions 2010, Chapter 5, Eq. 5.32, see at <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).</li>
+<li>IERS Conventions 2010, Chapter 5, Eq. 5.32, see at <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -621,17 +613,15 @@ IERS Conventions 2010, Chapter 5, Eq. 5.32, see at <a href="https://iers-convent
 </div><div class="memdoc">
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated</a></b></dt><dd>Use <a class="el" href="#a231f535f73e846d3867dbd914054d47b" title="Returns the Greenwich Mean Sidereal Time (GMST) for a given UT1 date, using eq.">novas_gmst()</a> or <a class="el" href="#a348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a> instead to get the same results simpler.</dd></dl>
 <p>Computes the Greenwich sidereal time, either mean or apparent, at the specified Julian date. The Julian date can be broken into two parts if convenient, but for the highest precision, set 'jd_high' to be the integral part of the Julian date, and set 'jd_low' to be the fractional part.</p>
-<p>NOTES: </p><ol>
-<li>
-Contains fix for known <a href="https://aa.usno.navy.mil/software/novas_faq">sidereal time units bug.</a> </li>
-<li>
-As of version 1.5.0, the function uses Eq 42 of Capitaine et al. (2003) exclusively. In prior versions, including NOVAS C the same method was provided twice, with the only difference being an unnecessary change of coordinate basis to GCRS. This latter, mor roundabout way of getting the same answer has been eliminated.&lt;.li&gt; </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Contains fix for known <a href="https://aa.usno.navy.mil/software/novas_faq">sidereal time units bug</a></li>
+<li>As of version 1.5.0, the function uses Eq 42 of Capitaine et al. (2003) exclusively. In prior versions, including NOVAS C the same method was provided twice, with the only difference being an unnecessary change of coordinate basis to GCRS. This latter, mor roundabout way of getting the same answer has been eliminated.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42). </li>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).</li>
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -682,13 +672,13 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated</a></b></dt><dd>This NOVAS C function does not account for polar wobble, so the geodetic ITRS / GRS80 locations on Earth are not converted into a proper equatorial system, such as a true-of-date (TOD) coordinate system. Use <span class="tt"><a class="el" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth&#39;s surface.">novas_site_gcrs_posvel()</a></span> instead, which you can follow by a coordinate transformation, such as <span class="tt"><a class="el" href="novas_8h.html#a6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a></span> if you need geocentric observer coordinates in e.g. the true-of-date (TOD) equatorial system.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated</a></b></dt><dd>This NOVAS C function does not account for polar wobble, so the geodetic ITRS / GRS80 locations on Earth are not converted into a proper equatorial system, such as a true-of-date (TOD) coordinate system. Use <span class="tt"><a class="el" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth&#39;s surface.">novas_site_gcrs_posvel()</a></span> instead, which you can follow by a coordinate transformation, such as <span class="tt"><a class="el" href="novas_8h.html#a6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a></span> if you need geocentric observer coordinates in e.g. the true-of-date (TOD) equatorial system.</dd></dl>
 <p>Computes the position and velocity vectors of a terrestrial observer with respect to the center of the Earth, based on the GRS80 reference ellipsoid, used for the International Terrestrial Reference Frame (ITRF) and its realizations.</p>
 <p>This function ignores polar motion, unless the observer's longitude and latitude have been corrected for it, and variation in the length of day (angular velocity of earth).</p>
 <p>The true equator and equinox of date do not form an inertial system. Therefore, with respect to an inertial system, the very small velocity component (several meters/day) due to the precession and nutation of the Earth's axis is not accounted for here.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -751,23 +741,18 @@ Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
 
 <p>Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the longitude origin (by a tiny amount) to the Terrestrial Intermediate Origin (TIO). </p>
 <p>The ITRS vector is thereby transformed to the Terrestrial Intermediate Reference System (TIRS), or equivalently the Pseudo Earth Fixed (PEF), based on the true (rotational) equator and TIO; or vice versa. Because the true equator is the plane orthogonal to the direction of the Celestial Intermediate Pole (CIP), the components of the output vector are referred to <em>z</em> and <em>x</em> axes toward the CIP and TIO, respectively.</p>
-<p>NOTES: </p><ol>
-<li>
-You may obtain Earth orientation parameters from the IERS site and Bulletins. For sub-mas accuracy you should augment the (interpolated) published values for diurnal and semi-diurnal librations and the effect of ocean tides, e.g. by using <span class="tt"><a class="el" href="#a3fe699281044873f4137344b28884cea" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a></span> or <span class="tt"><a class="el" href="#a087d587e90b4e2138c0dba12d727696e" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop_at_time()</a></span>.  </li>
-<li>
-Generally, this function should not be called if global pole offsets were set via <span class="tt"><a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> and then used via <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> or one of its variants to calculate Earth orientation corrected (TOD or CIRS) apparent coordinates. In such cases, calling <span class="tt"><a class="el" href="#aead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span> would apply duplicate corrections. It is generally best to forgo using <span class="tt"><a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> going forward, and instead apply Earth orinetation corrections with <span class="tt"><a class="el" href="#aead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span> only when converting vectors between the Earth-fixed ITRS and TIRS frames.  </li>
-<li>
-The Earth orientation parameters xp, yp should be provided in the same ITRF realization as the observer location for an Earth-based observer. You can use <span class="tt"><a class="el" href="novas_8h.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to convert the EOP values as necessary.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>You may obtain Earth orientation parameters from the IERS site and Bulletins. For sub-mas accuracy you should augment the (interpolated) published values for diurnal and semi-diurnal librations and the effect of ocean tides, e.g. by using <span class="tt"><a class="el" href="#a3fe699281044873f4137344b28884cea" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a></span> or <span class="tt"><a class="el" href="#a087d587e90b4e2138c0dba12d727696e" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop_at_time()</a></span>.</li>
+<li>Generally, this function should not be called if global pole offsets were set via <span class="tt"><a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> and then used via <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> or one of its variants to calculate Earth orientation corrected (TOD or CIRS) apparent coordinates. In such cases, calling <span class="tt"><a class="el" href="#aead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span> would apply duplicate corrections. It is generally best to forgo using <span class="tt"><a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> going forward, and instead apply Earth orinetation corrections with <span class="tt"><a class="el" href="#aead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span> only when converting vectors between the Earth-fixed ITRS and TIRS frames.</li>
+<li>The Earth orientation parameters xp, yp should be provided in the same ITRF realization as the observer location for an Earth-based observer. You can use <span class="tt"><a class="el" href="novas_8h.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to convert the EOP values as necessary.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Lambert &amp; Bizouard (2002), Astronomy and Astrophysics 394, 317-321. </li>
-<li>
-IERS Conventions 2010, Chapter 5, <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a> </li>
-<li>
-IERS Conventions 2010, Chapter 8, <a href="https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf">https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Lambert &amp; Bizouard (2002), Astronomy and Astrophysics 394, 317-321.</li>
+<li>IERS Conventions 2010, Chapter 5, <a href="https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf">https://iers-conventions.obspm.fr/content/chapter5/icc5.pdf</a></li>
+<li>IERS Conventions 2010, Chapter 8, <a href="https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf">https://iers-conventions.obspm.fr/content/chapter8/icc8.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

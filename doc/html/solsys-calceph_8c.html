@@ -138,7 +138,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="keywordflow">if</span>(status &lt; 0) {</div>
 <div class="line">  <span class="comment">// Oops something went wrong...</span></div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__solar-system_html_ga35fc86a939602ec910dbdfde180d7f31"><div class="ttname"><a href="group__solar-system.html#ga35fc86a939602ec910dbdfde180d7f31">novas_use_calceph</a></div><div class="ttdeci">int novas_use_calceph(t_calcephbin *eph)</div><div class="ttdoc">Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...</div><div class="ttdef"><b>Definition</b> solsys-calceph.c:452</div></div>
+<div class="ttc" id="agroup__solar-system_html_ga35fc86a939602ec910dbdfde180d7f31"><div class="ttname"><a href="group__solar-system.html#ga35fc86a939602ec910dbdfde180d7f31">novas_use_calceph</a></div><div class="ttdeci">int novas_use_calceph(t_calcephbin *eph)</div><div class="ttdoc">Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...</div><div class="ttdef"><b>Definition</b> solsys-calceph.c:449</div></div>
 <div class="ttc" id="anovas-calceph_8h_html"><div class="ttname"><a href="novas-calceph_8h.html">novas-calceph.h</a></div><div class="ttdoc">SuperNOVAS functions interfacing with the CALCEPH C library.</div></div>
 <div class="ttc" id="anovas_8h_html"><div class="ttname"><a href="novas_8h.html">novas.h</a></div><div class="ttdoc">SuperNOVAS types, definitions, and function prototypes.</div></div>
 </div><!-- fragment --><p>Optionally, you may use a separate ephemeris dataset for major planets (or if planet ephemeris was included in 'eph' above, you don't have to):</p>
@@ -147,13 +147,12 @@ Variables</h2></td></tr>
 <div class="line"><span class="keywordflow">if</span>(status &lt; 0) {</div>
 <div class="line">  <span class="comment">// Oops something went wrong...</span></div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__solar-system_html_gab86ec03898e658c86c671a8b6399e331"><div class="ttname"><a href="group__solar-system.html#gab86ec03898e658c86c671a8b6399e331">novas_use_calceph_planets</a></div><div class="ttdeci">int novas_use_calceph_planets(t_calcephbin *eph)</div><div class="ttdoc">Sets the CALCEPH C library and the specified ephemeris data as the ephemeris provider for the major p...</div><div class="ttdef"><b>Definition</b> solsys-calceph.c:495</div></div>
+<div class="ttc" id="agroup__solar-system_html_gab86ec03898e658c86c671a8b6399e331"><div class="ttname"><a href="group__solar-system.html#gab86ec03898e658c86c671a8b6399e331">novas_use_calceph_planets</a></div><div class="ttdeci">int novas_use_calceph_planets(t_calcephbin *eph)</div><div class="ttdoc">Sets the CALCEPH C library and the specified ephemeris data as the ephemeris provider for the major p...</div><div class="ttdef"><b>Definition</b> solsys-calceph.c:492</div></div>
 </div><!-- fragment --><p>By default the CALCEPH plugin will use NAIF ID numbers for the lookup (for planets the NOVAS IDs will be mapped to NAIF IDs automatically). You can enable name-based lookup by setting the object's ID number to -1 (e.g. in <span class="tt"><a class="el" href="group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2" title="Sets a celestial object to be a Solar-system ephemeris body.">make_ephem_object()</a></span>), or else switch to using CALCEPH IDs by calling <span class="tt">novas_calceph_use_ids(NOVAS_ID_CALCEPH)</span>.</p>
-<p>REFERENCES: </p><ol>
-<li>
-CALCEPH is at <a href="https://calceph.imcce.fr">https://calceph.imcce.fr</a> </li>
-<li>
-CALCEPH source code is at <a href="https://gitlab.obspm.fr/imcce_calceph/calceph">https://gitlab.obspm.fr/imcce_calceph/calceph</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>CALCEPH is at <a href="https://calceph.imcce.fr">https://calceph.imcce.fr</a></li>
+<li>CALCEPH source code is at <a href="https://gitlab.obspm.fr/imcce_calceph/calceph">https://gitlab.obspm.fr/imcce_calceph/calceph</a></li>
 </ol>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2</dd></dl>

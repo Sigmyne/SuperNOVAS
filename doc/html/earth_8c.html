@@ -181,17 +181,15 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated</a></b></dt><dd>Use <a class="el" href="group__earth.html#ga231f535f73e846d3867dbd914054d47b" title="Returns the Greenwich Mean Sidereal Time (GMST) for a given UT1 date, using eq.">novas_gmst()</a> or <a class="el" href="group__earth.html#ga348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a> instead to get the same results simpler.</dd></dl>
 <p>Computes the Greenwich sidereal time, either mean or apparent, at the specified Julian date. The Julian date can be broken into two parts if convenient, but for the highest precision, set 'jd_high' to be the integral part of the Julian date, and set 'jd_low' to be the fractional part.</p>
-<p>NOTES: </p><ol>
-<li>
-Contains fix for known <a href="https://aa.usno.navy.mil/software/novas_faq">sidereal time units bug.</a> </li>
-<li>
-As of version 1.5.0, the function uses Eq 42 of Capitaine et al. (2003) exclusively. In prior versions, including NOVAS C the same method was provided twice, with the only difference being an unnecessary change of coordinate basis to GCRS. This latter, mor roundabout way of getting the same answer has been eliminated.&lt;.li&gt; </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Contains fix for known <a href="https://aa.usno.navy.mil/software/novas_faq">sidereal time units bug</a></li>
+<li>As of version 1.5.0, the function uses Eq 42 of Capitaine et al. (2003) exclusively. In prior versions, including NOVAS C the same method was provided twice, with the only difference being an unnecessary change of coordinate basis to GCRS. This latter, mor roundabout way of getting the same answer has been eliminated.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42). </li>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).</li>
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

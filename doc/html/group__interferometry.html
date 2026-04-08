@@ -221,9 +221,9 @@ Functions</h2></td></tr>
 <p>That is, it returns <em>u</em>,<em>v</em>,<em>w</em> coordinates, for a geodetic station, relative to the geocenter, for a given apparent line-of-sight on the sky, observed at the specified time. The <em>u</em> and <em>v</em> coordinates are the projections of the site in the GCRS direction of the local East and North respectively, as seen from the source, relative to the geocenter, while <em>w</em> is the distance (inverse delay) from the geocenter along the line of sight.</p>
 <p>For interferometers, each station is its own specific site, and the array is usually referenced to one of the stations, or to some other reference location (a virtual site). As such, one is typically interested in <em>uvw</em> coordinates relative to the reference position, which can be obtained from the geocentric <em>uvw</em> provided by this method, via simple vector differencing.</p>
 <p>NOTES:</p>
-<ul>
+<ol type="1">
 <li>This method supports down to nanometer precision for sites on Earth or in Low Earth Orbit (LEO), and sub-micron (&lt;&mu;m) precision even at the distance of the Moon. However, because its calculations are based on geocentric positions, the precision degrades with increasing distance from Earth, and may not be suitable for interferometers far from Earth. When precision is a concern, you might use the more generic <span class="tt"><a class="el" href="#ga81f4b147c3f132a1498cdd833042d804" title="Returns u,v,w coordinates for a space-based interferometer station.">novas_uvw()</a></span> instead, with positions (and velocities) of the stations defined relative to the array center &ndash; enabling higher precision projections than this function.</li>
-</ul>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">ts</td><td>Astrometric time of observation. </td></tr>

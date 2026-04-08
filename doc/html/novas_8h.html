@@ -380,7 +380,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
 <tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
-<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-rc3&quot;</td></tr>
+<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-devel&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
 <tr class="memitem:a44de9d1672290d153a1dfb0685886208" id="r_a44de9d1672290d153a1dfb0685886208"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a44de9d1672290d153a1dfb0685886208">SUPERNOVAS_VERSION_STRING</a></td></tr>
 <tr class="memdesc:a44de9d1672290d153a1dfb0685886208"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version string for this library.  <br /></td></tr>
@@ -1656,18 +1656,12 @@ Variables</h2></td></tr>
 <p>Array initializer for mean planet radii in meters, matching the enum <a class="el" href="group__source.html#ga219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a>. </p>
 <p>E.g.</p>
 <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">double</span> *planet_radii[] = <a class="code hl_define" href="#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a>;</div>
-<div class="ttc" id="anovas_8h_html_ae48a8495c1ddf3960784aba5189d178e"><div class="ttname"><a href="#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_RADII_INIT</div><div class="ttdoc">Array initializer for mean planet radii in meters, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:676</div></div>
-</div><!-- fragment --><p>REFERENCES: </p><ol>
-<li>
-<a href="https://orbital-mechanics.space/reference/planetary-parameters.html">https://orbital-mechanics.space/reference/planetary-parameters.html</a>, Table 3. </li>
-<li>
-B. A. Archinal, et al., Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:<ol type="1">
+<div class="ttc" id="anovas_8h_html_ae48a8495c1ddf3960784aba5189d178e"><div class="ttname"><a href="#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_RADII_INIT</div><div class="ttdoc">Array initializer for mean planet radii in meters, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:670</div></div>
+</div><!-- fragment --><p>REFERENCES:</p>
+<ol type="1">
+<li><a href="https://orbital-mechanics.space/reference/planetary-parameters.html">https://orbital-mechanics.space/reference/planetary-parameters.html</a>, Table 3.</li>
+<li>B. A. Archinal, et al., Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:<ol type="a">
 <li>Celestial Mechanics and Dynamical Astronomy, 130(3):22, March 2018. doi:10.1007/s10569-017-9805-5.</li>
-</ol>
-</li>
-<li>
-B. A. Archinal, et al., Report of the IAU Working Group on Cartographic Coordinates and Rotational Elements:<ol type="1">
-<li>Celestial Mechanics and Dynamical Astronomy, 130(3):22, March 2018. doi:10.1007/s10569-017-9805-5. </li>
 </ol>
 </li>
 </ol>
@@ -1766,15 +1760,14 @@ B. A. Archinal, et al., Report of the IAU Working Group on Cartographic Coordina
 <p>Reciprocal masses of solar system bodies, from DE-405 (Sun mass / body mass). </p>
 <p>[0]: Earth/Moon barycenter (legacy from NOVAS C), MASS[1] = Mercury, ...,</p>
 <p>Barycentric reciprocal masses (index 12, 13) are not set.</p>
-<p>NOTES: </p><ol>
-<li>
-The values have been updated to used DE440 data (Park et al. 2021) in 1.4. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The values have been updated to used DE440 data (Park et al. 2021) in 1.4.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Ryan S. Park et al 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414 </li>
-<li>
-IERS Conventions, Chapter 3, Table 3.1 </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Ryan S. Park et al 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414</li>
+<li>IERS Conventions, Chapter 3, Table 3.1</li>
 </ol>
 <dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
@@ -1984,7 +1977,7 @@ IERS Conventions, Chapter 3, Table 3.1 </li>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-rc3&quot;</td>
+          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-devel&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2222,15 +2215,14 @@ IERS Conventions, Chapter 3, Table 3.1 </li>
 
 <p>Corrects position vector for aberration of light. </p>
 <p>Algorithm includes relativistic terms.</p>
-<p>NOTES: </p><ol>
-<li>
-This function is called by <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to account for aberration when calculating the position of the source. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function is called by <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to account for aberration when calculating the position of the source.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Murray, C. A. (1981) Mon. Notices Royal Ast. Society 195, 639-648. </li>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Murray, C. A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.</li>
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2280,9 +2272,9 @@ Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
 </div><div class="memdoc">
 
 <p>Moves the origin of coordinates from the barycenter of the solar system to the observer (or the geocenter); i.e., this function accounts for parallax (annual+geocentric or just annual). </p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2364,11 +2356,10 @@ Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
 <p>Rotates a vector from the celestial to the terrestrial system. Specifically, it transforms a vector in the GCRS, or the dynamical (CIRS or TOD) frames to the ITRS (a rotating Earth-fixed system) by applying rotations for the GCRS-to-dynamical frame tie, precession, nutation, Earth rotation, and polar motion.</p>
 <p>If 'system' is NOVAS_CIRS then method EROT_ERA must be used. Similarly, if 'system' is NOVAS_TOD then method must be EROT_ERA. Otherwise an error 3 is returned.</p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2425,23 +2416,18 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000007">Deprecated</a></b></dt><dd>This old way of incorporating Earth orientation parameters into the true equator and equinox is now disfavored. Instead, the pole offsets should be used only to convert between the Terrestrial Intermediate Reference System (TIRS) / Pseudo Earth Fixed (PEF) and the International Terrestrial Reference System (ITRS) going forward, e.g. via <span class="tt"><a class="el" href="group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a></span> / <span class="tt"><a class="el" href="group__nonequatorial.html#gaa57cbcae2001fece2ee4a2babfbc5f89" title="Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...">novas_hor_to_app()</a></span> or else <span class="tt"><a class="el" href="group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span>.</dd></dl>
 <p>Specifies the unmodeled celestial pole offsets for high-precision applications to be applied to the True of Date (TOD) equator, in the old, pre IAU 2006 methodology. Nonetheless, these offsets should be specified relative to the IAU2006 precession / nutation model to provide a correction to the modeled (precessed and nutated) position of Earth's pole, such those derived from observations and published by IERS.</p>
 <p>The call sets the global variables <span class="tt">PSI_COR</span> and <span class="tt">EPS_COR</span>, for subsequent calls to <span class="tt"><a class="el" href="group__earth.html#gab75165e2d69231da10c67de025ee05d8" title="(primarily for internal use) Computes quantities related to the orientation of the Earth&#39;s rotation a...">e_tilt()</a></span>. As such, it should be called to specify pole offsets prior to legacy NOVAS C equinox-specific calls. The global values of <span class="tt">PSI_COR</span> and <span class="tt">EPS_COR</span> specified via this function will be effective until explicitly changed again.</p>
-<p>NOTES: </p><ol>
-<li>
-The pole offsets et this way will affect all future TOD-based calculations, until the pole is changed or reset again. Hence, you should be extremely careful using it (if at all), as it may become an unpredictable source of inaccuracy if implicitly applied without intent to do so.  </li>
-<li>
-The current UT1 - UTC time difference, and polar offsets, historical data and near-term projections are published in the &lt;a href="<a href="https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html">https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html</a>&gt;IERS Bulletins  </li>
-<li>
-If &Delta;&delta;&psi;, &Delta;&delta;d&epsilon; offsets are specified, these must be the residual corrections relative to the IAU 2006 precession/nutation model (not the Lieske et al. 1977 model!). As such, they are just a rotated version of the newer <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub> offsets published by IERS.  </li>
-<li>
-The equivalent IAU 2006 standard method, which is preferred, is to apply <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub> pole offsets only for converting between TIRS and ITRS, e.g. via <span class="tt"><a class="el" href="group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a>, </span><a class="el" href="group__nonequatorial.html#gaa57cbcae2001fece2ee4a2babfbc5f89" title="Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...">novas_hor_to_app()</a>, or <span class="tt"><a class="el" href="group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span>).  </li>
-<li>
-There is no need to define pole offsets this way when using the newer frame-based approach introduced in SuperNOVAS. If the pole offsets are specified on a per-frame basis during the initialization of each observing frame (see <span class="tt"><a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span>, the offsets will be applied for the TIRS / ITRS conversion only, and not to the TOD equator per se.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The pole offsets et this way will affect all future TOD-based calculations, until the pole is changed or reset again. Hence, you should be extremely careful using it (if at all), as it may become an unpredictable source of inaccuracy if implicitly applied without intent to do so.</li>
+<li>The current UT1 - UTC time difference, and polar offsets, historical data and near-term projections are published in the <a href="https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html">IERS Bulletins</a></li>
+<li>If &Delta;&delta;&psi;, &Delta;&delta;d&epsilon; offsets are specified, these must be the residual corrections relative to the IAU 2006 precession/nutation model (not the Lieske et al. 1977 model!). As such, they are just a rotated version of the newer <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub> offsets published by IERS.</li>
+<li>The equivalent IAU 2006 standard method, which is preferred, is to apply <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub> pole offsets only for converting between TIRS and ITRS, e.g. via <span class="tt"><a class="el" href="group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a>, </span><a class="el" href="group__nonequatorial.html#gaa57cbcae2001fece2ee4a2babfbc5f89" title="Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...">novas_hor_to_app()</a>, or <span class="tt"><a class="el" href="group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span>).</li>
+<li>There is no need to define pole offsets this way when using the newer frame-based approach introduced in SuperNOVAS. If the pole offsets are specified on a per-frame basis during the initialization of each observing frame (see <span class="tt"><a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span>, the offsets will be applied for the TIRS / ITRS conversion only, and not to the TOD equator per se.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
-<li>
-Kaplan, G. (2003), USNO/AA Technical Note 2003-03. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
+<li>Kaplan, G. (2003), USNO/AA Technical Note 2003-03.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2484,15 +2470,11 @@ Kaplan, G. (2003), USNO/AA Technical Note 2003-03. </li>
 </div><div class="memdoc">
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated</a></b></dt><dd>This function is no longer used within SuperNOVAS. It is still provided, however, in order to retain 100% API compatibility with NOVAS C.</dd></dl>
 <p>Given an input TDB Julian date and the number of data points desired, this function returns a set of Julian dates and corresponding values of the GCRS right ascension of the celestial intermediate origin (CIO). The range of dates is centered on the requested date.</p>
-<p>NOTES: </p><ol>
-<li>
-This function has been completely re-written by A. Kovacs to provide much more efficient caching and I/O.  </li>
-<li>
-<p class="startli">The CIO locator file that is bundled was prepared with the original IAU2000A nutation model, not with the newer R06 (a.k.a. IAU2006) nutation model, resulting in an error up to the few tens of micro-arcseconds level for dates between 1900 and 2100, and larger errors further away from the current epoch. </p>
-<p class="endli"></p>
-</li>
-<li>
-Prior to version 1.5, this function relied on a CIO locator file (<span class="tt">CIO_RA.TXT</span> or <span class="tt">cio_ra.bin</span>). The current version no longer does, and instead generates the requested data on the fly. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function has been completely re-written by A. Kovacs to provide much more efficient caching and I/O.</li>
+<li>The CIO locator file that is bundled was prepared with the original IAU2000A nutation model, not with the newer R06 (a.k.a. IAU2006) nutation model, resulting in an error up to the few tens of micro-arcseconds level for dates between 1900 and 2100, and larger errors further away from the current epoch.</li>
+<li>Prior to version 1.5, this function relied on a CIO locator file (<span class="tt">CIO_RA.TXT</span> or <span class="tt">cio_ra.bin</span>). The current version no longer does, and instead generates the requested data on the fly.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2552,16 +2534,16 @@ Prior to version 1.5, this function relied on a CIO locator file (<span class="t
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated</a></b></dt><dd>This function is no longer used internally in the library, and users are recommended against using it themselves, since SuperNOVAS provides better ways to convert between GCRS and CIRS using frames or via <a class="el" href="group__equatorial.html#ga51ea4a016336dd3cf7783061c14d165c" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Celestial Intermedia...">gcrs_to_cirs()</a> / <a class="el" href="group__equatorial.html#gac0ba048cd1732d0d0398397396d158bc" title="Transforms a rectangular equatorial (x, y, z) vector from the Celestial Intermediate Reference System...">cirs_to_gcrs()</a> or <a class="el" href="group__frame.html#ga98c96461c56c17948f6ba1cc746f85eb" title="A transformation between two astronomical coordinate systems for the same observer location and time.">novas_transform()</a> functions.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated</a></b></dt><dd>This function is no longer used internally in the library, and users are recommended against using it themselves, since SuperNOVAS provides better ways to convert between GCRS and CIRS using frames or via <a class="el" href="group__equatorial.html#ga51ea4a016336dd3cf7783061c14d165c" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Celestial Intermedia...">gcrs_to_cirs()</a> / <a class="el" href="group__equatorial.html#gac0ba048cd1732d0d0398397396d158bc" title="Transforms a rectangular equatorial (x, y, z) vector from the Celestial Intermediate Reference System...">cirs_to_gcrs()</a> or <a class="el" href="group__frame.html#ga98c96461c56c17948f6ba1cc746f85eb" title="A transformation between two astronomical coordinate systems for the same observer location and time.">novas_transform()</a> functions.</dd></dl>
 <p>Computes the CIRS basis vectors, with respect to the GCRS (geocentric ICRS), of the celestial intermediate system defined by the celestial intermediate pole (CIP) (in the z direction) and the celestial intermediate origin (CIO) (in the x direction).</p>
 <p>This function effectively constructs the CIRS to GCRS transformation matrix C in eq. (3) of the reference.</p>
-<p>NOTES: </p><ol>
-<li>
-This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2612,13 +2594,11 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 </div><div class="memdoc">
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated</a></b></dt><dd>This function is no longer used internally in the library. Given that the CIO is defined on the dynamical equator of date, it is not normally meaningful to provide an R.A. coordinate for it in GCRS. Instead, you might use <span class="tt"><a class="el" href="group__equatorial.html#gacc331c69187b3077b98280bfb57f6670" title="Computes the true right ascension of the celestial intermediate origin (CIO) vs the equinox of date o...">cio_ra()</a></span> to get the CIO location w.r.t. the equinox of date (on the same dynamical equator), or equivalently <span class="tt"><a class="el" href="group__equatorial.html#gaea0e1028baf14d16d9de800e36a17086" title="Compute the intermediate right ascension of the equinox at the input Julian date, using an analytical...">ira_equinox()</a></span> to return the negated value of the same.</dd></dl>
 <p>Returns the location of the celestial intermediate origin (CIO) for a given Julian date, as a right ascension with respect to the true equinox of date. The CIO is always located on the true equator (= intermediate equator) of date.</p>
-<p>NOTES: </p><ol>
-<li>
-Unlike the NOVAS C version of this function, this version will always return a CIO location as long as the pointer arguments are not NULL.  </li>
-<li>
-This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.  </li>
-<li>
-As of version 1.5, this function always returns the CIO location w.r.t. the true equinox of date, on the true equator of date, i.e. the R.A. of the CIO on the true equator of date, meaured from the true equinox of date.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Unlike the NOVAS C version of this function, this version will always return a CIO location as long as the pointer arguments are not NULL.</li>
+<li>This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.</li>
+<li>As of version 1.5, this function always returns the CIO location w.r.t. the true equinox of date, on the true equator of date, i.e. the R.A. of the CIO on the true equator of date, meaured from the true equinox of date.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2657,9 +2637,9 @@ As of version 1.5, this function always returns the CIO location w.r.t. the true
 
 <p>Returns the difference in light-time, for a star, between the barycenter of the solar system and the observer (or the geocenter) (<em>Usage A</em>). </p>
 <p>Alternatively (<em>Usage B</em>), this function returns the light-time from the observer (or the geocenter) to a point on a light ray that is closest to a specific solar system body. For this purpose, 'pos_src' is the position vector toward observed object, with respect to origin at observer (or the geocenter); 'pos_body' is the position vector of solar system body, with respect to origin at observer (or the geocenter), components in AU; and the returned value is the light time to point on line defined by 'pos' that is closest to solar system body (positive if light passes body before hitting observer, i.e., if 'pos_body' is within 90 degrees of 'pos_src').</p>
-<p>NOTES: </p><ol>
-<li>
-This function is called by <span class="tt"><a class="el" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span>, <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, or <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function is called by <span class="tt"><a class="el" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a></span>, <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, or <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2750,20 +2730,18 @@ This function is called by <span class="tt"><a class="el" href="group__geometric
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000015">Deprecated</a></b></dt><dd>You should use the frame-based <span class="tt"><a class="el" href="group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a></span> instead, or else the more explicit (less ambiguous) <span class="tt"><a class="el" href="group__equatorial.html#ga4551e2ac083e34c1b2b61b3805efb9a3" title="Rotates a position vector from the dynamical True of Date (TOD) frame of date the Earth-fixed ITRS fr...">tod_to_itrs()</a></span> followed by <span class="tt"><a class="el" href="group__nonequatorial.html#gaef3c1f8e4c443e51e65003018449768a" title="Converts a position vector in the Earth-fixed ITRS frame to astrometric (unrefracted) azimuth and zen...">itrs_to_hor()</a></span>, and possibly following it with an atmospheric refraction correction if appropriate.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000016">Deprecated</a></b></dt><dd>You should use the frame-based <span class="tt"><a class="el" href="group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a></span> instead, or else the more explicit (less ambiguous) <span class="tt"><a class="el" href="group__equatorial.html#ga4551e2ac083e34c1b2b61b3805efb9a3" title="Rotates a position vector from the dynamical True of Date (TOD) frame of date the Earth-fixed ITRS fr...">tod_to_itrs()</a></span> followed by <span class="tt"><a class="el" href="group__nonequatorial.html#gaef3c1f8e4c443e51e65003018449768a" title="Converts a position vector in the Earth-fixed ITRS frame to astrometric (unrefracted) azimuth and zen...">itrs_to_hor()</a></span>, and possibly following it with an atmospheric refraction correction if appropriate.</dd></dl>
 <p>Transforms topocentric (TOD) apparent right ascension and declination to zenith distance and azimuth. This method should not be used to convert CIRS apparent coordinates (IAU 2000 standard) &ndash; for those you should use <a class="el" href="group__equatorial.html#gaa2768d89d499a7155f90a6fd8c176d8d" title="Rotates a position vector from the dynamical CIRS frame of date to the Earth-fixed ITRS frame (IAU 20...">cirs_to_itrs()</a> followed by <a class="el" href="group__nonequatorial.html#gaef3c1f8e4c443e51e65003018449768a" title="Converts a position vector in the Earth-fixed ITRS frame to astrometric (unrefracted) azimuth and zen...">itrs_to_hor()</a> instead.</p>
 <p>It uses a method that properly accounts for polar motion, which is significant at the sub-arcsecond level. This function can also adjust coordinates for atmospheric refraction.</p>
-<p>NOTES: </p><ul>
-<li>
-'xp' and 'yp' can be set to zero if sub-arcsecond accuracy is not needed. </li>
-<li>
-The directions 'zd'= 0 (zenith) and 'az'= 0 (north) are here considered fixed in the terrestrial system. Specifically, the zenith is along the geodetic normal, and north is toward the ITRS pole. </li>
-<li>
-If 'ref_option' is NOVAS_STANDARD_ATMOSPHERE (1), then 'rar'='ra' and 'decr'='dec'. </li>
-</ul>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. (2008). USNO/AA Technical Note of 28 Apr 2008, "Refraction as a Vector." </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>'xp' and 'yp' can be set to zero if sub-arcsecond accuracy is not needed.</li>
+<li>The directions 'zd'= 0 (zenith) and 'az'= 0 (north) are here considered fixed in the terrestrial system. Specifically, the zenith is along the geodetic normal, and north is toward the ITRS pole.</li>
+<li>If 'ref_option' is NOVAS_STANDARD_ATMOSPHERE (1), then 'rar'='ra' and 'decr'='dec'.</li>
+</ol>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. (2008). USNO/AA Technical Note of 28 Apr 2008, "Refraction as a Vector."</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2833,13 +2811,13 @@ Kaplan, G. (2008). USNO/AA Technical Note of 28 Apr 2008, "Refraction as a Vecto
 <p>This function valid for an observed body within the solar system as well as for a star.</p>
 <p>If 'accuracy' is NOVAS_FULL_ACCURACY (0), the deflections due to the Sun, Jupiter, Saturn, and Earth are calculated. Otherwise, only the deflection due to the Sun is calculated. In either case, deflection for a given body is ignored if the observer is within ~1500 km of the center of the gravitating body.</p>
 <p>The number of bodies used at full and reduced accuracy can be set by changing the <span class="tt"><a class="el" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24" title="Current set of gravitating bodies to use for deflection calculations in reduced accuracy mode.">grav_bodies_reduced_accuracy</a></span>, and <span class="tt"><a class="el" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a" title="Current set of gravitating bodies to use for deflection calculations in full accuracy mode.">grav_bodies_full_accuracy</a></span> lobal variables.</p>
-<p>NOTES: </p><ol>
-<li>
-This function is called by <span class="tt"><a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, <span class="tt"><a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a></span>, <span class="tt"><a class="el" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c" title="Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate correc...">novas_geom_to_app()</a></span> and <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to calculate gravitational deflections as appropriate for positioning sources precisely. The gravitational deflection due to planets requires a planet calculator function to be configured, e.g. via <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function is called by <span class="tt"><a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, <span class="tt"><a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a></span>, <span class="tt"><a class="el" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c" title="Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate correc...">novas_geom_to_app()</a></span> and <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to calculate gravitational deflections as appropriate for positioning sources precisely. The gravitational deflection due to planets requires a planet calculator function to be configured, e.g. via <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2892,13 +2870,13 @@ Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
 
 <p>(<em>primarily for internal use</em>) Computes the total gravitational deflection of light for the observed object due to the specified gravitating bodies in the solar system. </p>
 <p>This function is valid for an observed body within the solar system as well as for a star.</p>
-<p>NOTES: </p><ol>
-<li>
-The gravitational deflection due to planets requires a planet calculator function to be configured, e.g. via <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The gravitational deflection due to planets requires a planet calculator function to be configured, e.g. via <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2960,9 +2938,9 @@ Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
 <p>This function is valid for an observed body within the solar system as well as for a star.</p>
 <p>If 'accuracy' is set to zero (full accuracy), three bodies (Sun, Jupiter, and Saturn) are used in the calculation. If the reduced-accuracy option is set, only the Sun is used in the calculation. In both cases, if the observer is not at the geocenter, the deflection due to the Earth is included.</p>
 <p>he number of bodies used at full and reduced accuracy can be set by changing the <span class="tt"><a class="el" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24" title="Current set of gravitating bodies to use for deflection calculations in reduced accuracy mode.">grav_bodies_reduced_accuracy</a></span>, and <span class="tt"><a class="el" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a" title="Current set of gravitating bodies to use for deflection calculations in full accuracy mode.">grav_bodies_full_accuracy</a></span> global variables.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3015,9 +2993,9 @@ Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
 </div><div class="memdoc">
 
 <p>(<em>primarily for internal use</em>) Computes the gravitationally undeflected position of an observed source position due to the specified Solar-system bodies. </p>
-<p>REFERENCES: </p><ol>
-<li>
-Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3077,17 +3055,15 @@ Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
 
 <p>(<em>primarily for internal use</em>) Corrects position vector for the deflection of light in the gravitational field of anarbitrary body. </p>
 <p>This function valid for an observed body within the solar system as well as for a star.</p>
-<p>NOTES: </p><ol>
-<li>
-This function is called by <a class="el" href="grav_8c.html#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a> to calculate appropriate gravitational deflections around the massive Solar-system objects.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function is called by <a class="el" href="grav_8c.html#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a> to calculate appropriate gravitational deflections around the massive Solar-system objects.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Murray, C.A. (1981) Mon. Notices Royal Ast. Society 195, 639-648. </li>
-<li>
-See also formulae in Section B of the Astronomical Almanac, or </li>
-<li>
-Kaplan, G. et al. (1989) Astronomical Journal 97, 1197-1210, section iii f. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Murray, C.A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.</li>
+<li>See also formulae in Section B of the Astronomical Almanac, or</li>
+<li>Kaplan, G. et al. (1989) Astronomical Journal 97, 1197-1210, section iii f.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3164,11 +3140,10 @@ Kaplan, G. et al. (1989) Astronomical Journal 97, 1197-1210, section iii f. </li
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000014">Deprecated</a></b></dt><dd>Using the frame-based <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> with NOVAS_ICRS or NOVARS_GCRS as the reference system is now preferred for the equivalent calculations.</dd></dl>
 <p>Computes the local apparent place of a solar system body, in the GCRS. This is the same as calling <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a> for the body for the same observer location and NOVAS_GCRS as the reference system, except the different set of return values used.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3244,11 +3219,10 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 <p>Computes the local apparent place of a star at date 'jd_tt', in the GCRS, given its catalog mean place, proper motion, parallax, and radial velocity.</p>
 <p>Notwithstanding the different set of return values, this is the same as calling <a class="el" href="place_8c.html#a1504058672e6e3cf24ce6b7189ede005" title="Computes the apparent place of a star at the specified date, given its catalog mean place,...">place_star()</a> with the same observer location NOVAS_GCRS for an object that specifies the star.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3304,11 +3278,11 @@ Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000016">Deprecated</a></b></dt><dd>More functionality and more readable, code results from using one of the specific alternatives: <span class="tt"><a class="el" href="group__source.html#gab9b7a622486f2904615ceed1ba94cd8f" title="Populates and object data structure with the data for a catalog source.">make_cat_object()</a></span>, <span class="tt"><a class="el" href="group__source.html#gae579a49d84696a913fd0d9f348bb5b11" title="Populates a celestial object data structure with the ICRS astrometric parameters for a redhifted cata...">make_redshifted_object()</a></span>, <span class="tt"><a class="el" href="group__source.html#ga4c7846be95299769f4d0377bf127bcf5" title="Sets a celestial object to be a major planet, or the Sun, Moon, Solar-system Barycenter,...">make_planet()</a></span>, <span class="tt"><a class="el" href="group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2" title="Sets a celestial object to be a Solar-system ephemeris body.">make_ephem_object()</a></span>, or <span class="tt"><a class="el" href="group__source.html#ga3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a></span>.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000015">Deprecated</a></b></dt><dd>More functionality and more readable, code results from using one of the specific alternatives: <span class="tt"><a class="el" href="group__source.html#gab9b7a622486f2904615ceed1ba94cd8f" title="Populates and object data structure with the data for a catalog source.">make_cat_object()</a></span>, <span class="tt"><a class="el" href="group__source.html#gae579a49d84696a913fd0d9f348bb5b11" title="Populates a celestial object data structure with the ICRS astrometric parameters for a redhifted cata...">make_redshifted_object()</a></span>, <span class="tt"><a class="el" href="group__source.html#ga4c7846be95299769f4d0377bf127bcf5" title="Sets a celestial object to be a major planet, or the Sun, Moon, Solar-system Barycenter,...">make_planet()</a></span>, <span class="tt"><a class="el" href="group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2" title="Sets a celestial object to be a Solar-system ephemeris body.">make_ephem_object()</a></span>, or <span class="tt"><a class="el" href="group__source.html#ga3c5e215babeeba078ca7b3e9be42e555" title="Sets a celestial object to be a Solar-system orbital body.">make_orbital_object()</a></span>.</dd></dl>
 <p>Populates an object data structure using the parameters provided. By default (for compatibility with NOVAS C) source names are converted to upper-case internally. You can however enable case-sensitive processing by calling <a class="el" href="group__source.html#ga8f832afe92680a11c3489aaa224ac2e2" title="Enables or disables case-sensitive processing of the object name.">novas_case_sensitive()</a> before.</p>
-<p>NOTES: </p><ol>
-<li>
-This call does not initialize the <span class="tt">orbit</span> field (added in v1.2) with zeroes to remain ABI compatible with versions &lt;1.2. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This call does not initialize the <span class="tt">orbit</span> field (added in v1.2) with zeroes to remain ABI compatible with versions &lt;1.2.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3420,15 +3394,12 @@ This call does not initialize the <span class="tt">orbit</span> field (added in 
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000010">Deprecated</a></b></dt><dd>This old NOVAS C function has a few too many caveats. It is recommended that you use <span class="tt"><a class="el" href="group__observer.html#ga236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a></span> or <span class="tt"><a class="el" href="group__observer.html#gab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span> instead (both of which set default mean annual weather parameters for approximate refraction correction), and optionally set actual weather data afterwards, based on the measurements available. This function will be available for the foreseeable future also.</dd></dl>
 <p>Populates an '<a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a>' data structure, for an observer on the surface of the Earth, with the given parameters.</p>
 <p>Note, that because this is an original NOVAS C routine, it does not have an argument to set a humidity value (e.g. for radio refraction). As such, the humidity is set to a a default mean annual value for the location. To set an actual humidity, set the output structure's field after calling this funcion.</p>
-<p>NOTES </p><ol>
-<li>
-This implementation breaks strict v1.0 ABI compatibility since it writes to (initializes) a field (<span class="tt">humidity</span>) that was not yet part of the <span class="tt"><a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a></span> structure in v1.0. As such, linking SuperNOVAS v1.1 or later with application code compiled for SuperNOVAS v1.0 can result in memory corruption or segmentation fault when this function is called. To be safe, make sure your application has been (re)compiled against SuperNOVAS v1.1 or later. </li>
-<li>
-You can convert coordinates among ITRF realization using <span class="tt"><a class="el" href="group__observer.html#gafd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a></span>, possibly after <span class="tt"><a class="el" href="group__observer.html#gab07d86d425d68a62e94e965dd36b7a32" title="Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference...">novas_geodetic_to_cartesian()</a></span> with <span class="tt"><a class="el" href="group__observer.html#gga5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as necessary for polar ITRF coordinates. </li>
-<li>
-You can convert Cartesian <em>xyz</em> locations to geodetic locations by using <span class="tt"><a class="el" href="group__observer.html#ga7479134485c298faa858d73ee0513a11" title="Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipso...">novas_cartesian_to_geodetic()</a></span> with <span class="tt"><a class="el" href="group__observer.html#gga5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as the reference ellipsoid parameter. </li>
-<li>
-If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want to use <span class="tt"><a class="el" href="group__observer.html#gab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span> instead, and then set weather parameters afterwards as necessary.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This implementation breaks strict v1.0 ABI compatibility since it writes to (initializes) a field (<span class="tt">humidity</span>) that was not yet part of the <span class="tt"><a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a></span> structure in v1.0. As such, linking SuperNOVAS v1.1 or later with application code compiled for SuperNOVAS v1.0 can result in memory corruption or segmentation fault when this function is called. To be safe, make sure your application has been (re)compiled against SuperNOVAS v1.1 or later.</li>
+<li>You can convert coordinates among ITRF realization using <span class="tt"><a class="el" href="group__observer.html#gafd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a></span>, possibly after <span class="tt"><a class="el" href="group__observer.html#gab07d86d425d68a62e94e965dd36b7a32" title="Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference...">novas_geodetic_to_cartesian()</a></span> with <span class="tt"><a class="el" href="group__observer.html#gga5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as necessary for polar ITRF coordinates.</li>
+<li>You can convert Cartesian <em>xyz</em> locations to geodetic locations by using <span class="tt"><a class="el" href="group__observer.html#ga7479134485c298faa858d73ee0513a11" title="Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipso...">novas_cartesian_to_geodetic()</a></span> with <span class="tt"><a class="el" href="group__observer.html#gga5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as the reference ellipsoid parameter.</li>
+<li>If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want to use <span class="tt"><a class="el" href="group__observer.html#gab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a></span> instead, and then set weather parameters afterwards as necessary.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3497,11 +3468,10 @@ If you have longitude, latitude, and height defined as GPS (WGS84) values, you m
  </p>
 <p>Computes the barycentric ICRS position of a star, given its True of Date (TOD) apparent place, as seen by an observer at the geocenter, at date 'jd_tt'. Proper motion, parallax and radial velocity are assumed to be zero.</p>
 <p>Equivalently, in the new frame-based approach, you might use <span class="tt"><a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a></span> with NOVAS_TOD as the reference system, and distance set to 0, and then convert the geometric position to the output <span class="tt">ira</span>, <span class="tt">idec</span> coordinates using <span class="tt"><a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9" title="Converts an vector in equatorial rectangular coordinates to equatorial spherical coordinates.">vector2radec()</a></span>. The advantage of using <span class="tt"><a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a></span> is that you are not restricted to using TOD input coordinates, but rather the apparent RA/Dec may be specified in any reference system.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3547,17 +3517,15 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 
 <p>Calculates the Moon's geocentric velocity using the ELP/MPP02 model by Chapront &amp; Francou (2003), in the ELP2000 reference plane (i.e. </p>
 <p>the inertial ecliptic and equinox of J2000), down to the specified limiting term amplitude.</p>
-<p>NOTES: </p><ol>
-<li>
-The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total).  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total).</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988) </li>
-<li>
-Chapront, J., Francou G., 2003, A&amp;A, 404, 735 </li>
-<li>
-Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
+<li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+<li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3628,19 +3596,16 @@ Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (Octobe
 <p>While <span class="tt">coord_sys</span> defines the coordinate referfence system, it is <span class="tt">location-&gt;where</span> sets the origin of the reference place relative to which positions and velocities are reported.</p>
 <p>For all but ICRS coordinate outputs, the calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
 <p>In case of a dynamical equatorial system (such as CIRS or TOD) and an Earth-based observer, the polar wobble parameters set via a prior call to <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> together with he ut1_to_tt argument decide whether the resulting 'topocentric' output frame is Pseudo Earth Fixed (PEF; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was not set and DUT1 is 0) or ITRS (actual rotating Earth; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was set and ut1_to_tt includes the DUT1 component).</p>
-<p>NOTES: </p><ol>
-<li>
-This version fixes a NOVAS C 3.1 issue that velocities and solar-system distances were not antedated for light-travel time. </li>
-<li>
-In a departure from the original NOVAS C, the radial velocity for major planets (and Sun and Moon) includes gravitational redshift corrections for light originating at the surface, assuming it's observed from near Earth or else from a large distance away. </li>
-<li>
-As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with pseudo LSR-based measures being returned for catalog sources. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This version fixes a NOVAS C 3.1 issue that velocities and solar-system distances were not antedated for light-travel time.</li>
+<li>In a departure from the original NOVAS C, the radial velocity for major planets (and Sun and Moon) includes gravitational redshift corrections for light originating at the surface, assuming it's observed from near Earth or else from a large distance away.</li>
+<li>As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with pseudo LSR-based measures being returned for catalog sources.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Klioner, S. (2003), Astronomical Journal 125, 1580-1597. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3776,11 +3741,10 @@ Klioner, S. (2003), Astronomical Journal 125, 1580-1597. </li>
 <p>See <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> for more information.</p>
 <p>It is effectively the same as calling <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a>, except for the <span class="tt"><a class="el" href="group__source.html#ga8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a></span> type target argument.</p>
 <p>For all but ICRS coordinate outputs, the calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3826,9 +3790,9 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 
 <p>Returns the planetary longitude, for Mercury through Neptune, w.r.t. </p>
 <p>mean dynamical ecliptic and equinox of J2000, with high order terms omitted (Simon et al. 1994, 5.8.1-5.8.8).</p>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions Chapter 5, Eq. 5.44. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions Chapter 5, Eq. 5.44.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -3911,11 +3875,10 @@ IERS Conventions Chapter 5, Eq. 5.44. </li>
 <p>This is the same as calling <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a> with the same arguments, except the different set of return values used.</p>
 <p>Notwithstanding the different set of return values, this is the same as calling place_planet() with the same arguments.</p>
 <p>For all but ICRS coordinate outputs, the calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -4002,11 +3965,10 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 <p>Computes the place of a star at date 'jd_tt', for an observer in the specified coordinate system, given the star's ICRS catalog place, proper motion, parallax, and radial velocity. </p>
 <p>Notwithstanding the different set of return values, this is the same as calling <a class="el" href="place_8c.html#a1504058672e6e3cf24ce6b7189ede005" title="Computes the apparent place of a star at the specified date, given its catalog mean place,...">place_star()</a> with the same arguments.</p>
 <p>For all but ICRS coordinate outputs, the calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -4157,17 +4119,15 @@ Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
 </div><div class="memdoc">
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated</a></b></dt><dd>Use <a class="el" href="group__earth.html#ga231f535f73e846d3867dbd914054d47b" title="Returns the Greenwich Mean Sidereal Time (GMST) for a given UT1 date, using eq.">novas_gmst()</a> or <a class="el" href="group__earth.html#ga348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a> instead to get the same results simpler.</dd></dl>
 <p>Computes the Greenwich sidereal time, either mean or apparent, at the specified Julian date. The Julian date can be broken into two parts if convenient, but for the highest precision, set 'jd_high' to be the integral part of the Julian date, and set 'jd_low' to be the fractional part.</p>
-<p>NOTES: </p><ol>
-<li>
-Contains fix for known <a href="https://aa.usno.navy.mil/software/novas_faq">sidereal time units bug.</a> </li>
-<li>
-As of version 1.5.0, the function uses Eq 42 of Capitaine et al. (2003) exclusively. In prior versions, including NOVAS C the same method was provided twice, with the only difference being an unnecessary change of coordinate basis to GCRS. This latter, mor roundabout way of getting the same answer has been eliminated.&lt;.li&gt; </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Contains fix for known <a href="https://aa.usno.navy.mil/software/novas_faq">sidereal time units bug</a></li>
+<li>As of version 1.5.0, the function uses Eq 42 of Capitaine et al. (2003) exclusively. In prior versions, including NOVAS C the same method was provided twice, with the only difference being an unnecessary change of coordinate basis to GCRS. This latter, mor roundabout way of getting the same answer has been eliminated.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42). </li>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).</li>
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -4252,11 +4212,10 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 <p>Rotates a vector from the terrestrial to the celestial system. Specifically, it transforms a vector in the ITRS (rotating earth-fixed system) to the True of Date (TOD), CIRS, or GCRS (a local space-fixed system) by applying rotations for polar motion, Earth rotation (for TOD); and nutation, precession, and the dynamical-to-GCRS frame tie (for GCRS).</p>
 <p>If 'system' is NOVAS_CIRS then method EROT_ERA must be used. Similarly, if 'system' is NOVAS_TOD then method must be EROT_ERA. Otherwise an error 3 is returned.</p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -4338,11 +4297,10 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000013">Deprecated</a></b></dt><dd>Using the frame-based <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> with NOVAS_TOD as the reference system is now preferred for topocentric calculations.</dd></dl>
 <p>Computes the topocentric apparent place of a solar system body at the specified time. This is the same as calling <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a> for the body for the same observer location and NOVAS_TOD as the reference system, except the different set of return values used.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -4418,11 +4376,10 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 <p>Computes the topocentric (True of Date; TOD) apparent place of a star at date 'jd_tt', given its ICRS catalog place, proper motion, parallax, and radial velocity.</p>
 <p>Notwithstanding the different set of return values, this is the same as calling <a class="el" href="place_8c.html#a1504058672e6e3cf24ce6b7189ede005" title="Computes the apparent place of a star at the specified date, given its catalog mean place,...">place_star()</a> with the same observer location and NOVAS_TOD for an object that specifies the star.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

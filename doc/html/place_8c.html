@@ -303,11 +303,10 @@ Functions</h2></td></tr>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000014">Deprecated</a></b></dt><dd>Using the frame-based <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> with NOVAS_ICRS or NOVARS_GCRS as the reference system is now preferred for the equivalent calculations.</dd></dl>
 <p>Computes the local apparent place of a solar system body, in the GCRS. This is the same as calling <a class="el" href="#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a> for the body for the same observer location and NOVAS_GCRS as the reference system, except the different set of return values used.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -383,11 +382,10 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 <p>Computes the local apparent place of a star at date 'jd_tt', in the GCRS, given its catalog mean place, proper motion, parallax, and radial velocity.</p>
 <p>Notwithstanding the different set of return values, this is the same as calling <a class="el" href="#a1504058672e6e3cf24ce6b7189ede005" title="Computes the apparent place of a star at the specified date, given its catalog mean place,...">place_star()</a> with the same observer location NOVAS_GCRS for an object that specifies the star.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -455,11 +453,10 @@ Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
  </p>
 <p>Computes the barycentric ICRS position of a star, given its True of Date (TOD) apparent place, as seen by an observer at the geocenter, at date 'jd_tt'. Proper motion, parallax and radial velocity are assumed to be zero.</p>
 <p>Equivalently, in the new frame-based approach, you might use <span class="tt"><a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a></span> with NOVAS_TOD as the reference system, and distance set to 0, and then convert the geometric position to the output <span class="tt">ira</span>, <span class="tt">idec</span> coordinates using <span class="tt"><a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9" title="Converts an vector in equatorial rectangular coordinates to equatorial spherical coordinates.">vector2radec()</a></span>. The advantage of using <span class="tt"><a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a></span> is that you are not restricted to using TOD input coordinates, but rather the apparent RA/Dec may be specified in any reference system.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -527,19 +524,16 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 <p>While <span class="tt">coord_sys</span> defines the coordinate referfence system, it is <span class="tt">location-&gt;where</span> sets the origin of the reference place relative to which positions and velocities are reported.</p>
 <p>For all but ICRS coordinate outputs, the calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
 <p>In case of a dynamical equatorial system (such as CIRS or TOD) and an Earth-based observer, the polar wobble parameters set via a prior call to <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> together with he ut1_to_tt argument decide whether the resulting 'topocentric' output frame is Pseudo Earth Fixed (PEF; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was not set and DUT1 is 0) or ITRS (actual rotating Earth; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was set and ut1_to_tt includes the DUT1 component).</p>
-<p>NOTES: </p><ol>
-<li>
-This version fixes a NOVAS C 3.1 issue that velocities and solar-system distances were not antedated for light-travel time. </li>
-<li>
-In a departure from the original NOVAS C, the radial velocity for major planets (and Sun and Moon) includes gravitational redshift corrections for light originating at the surface, assuming it's observed from near Earth or else from a large distance away. </li>
-<li>
-As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with pseudo LSR-based measures being returned for catalog sources. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This version fixes a NOVAS C 3.1 issue that velocities and solar-system distances were not antedated for light-travel time.</li>
+<li>In a departure from the original NOVAS C, the radial velocity for major planets (and Sun and Moon) includes gravitational redshift corrections for light originating at the surface, assuming it's observed from near Earth or else from a large distance away.</li>
+<li>As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with pseudo LSR-based measures being returned for catalog sources.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Klioner, S. (2003), Astronomical Journal 125, 1580-1597. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -675,11 +669,10 @@ Klioner, S. (2003), Astronomical Journal 125, 1580-1597. </li>
 <p>See <span class="tt"><a class="el" href="#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> for more information.</p>
 <p>It is effectively the same as calling <a class="el" href="#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a>, except for the <span class="tt"><a class="el" href="group__source.html#ga8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a></span> type target argument.</p>
 <p>For all but ICRS coordinate outputs, the calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -767,11 +760,10 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 <p>This is the same as calling <a class="el" href="#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a> with the same arguments, except the different set of return values used.</p>
 <p>Notwithstanding the different set of return values, this is the same as calling place_planet() with the same arguments.</p>
 <p>For all but ICRS coordinate outputs, the calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -858,11 +850,10 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 <p>Computes the place of a star at date 'jd_tt', for an observer in the specified coordinate system, given the star's ICRS catalog place, proper motion, parallax, and radial velocity. </p>
 <p>Notwithstanding the different set of return values, this is the same as calling <a class="el" href="#a1504058672e6e3cf24ce6b7189ede005" title="Computes the apparent place of a star at the specified date, given its catalog mean place,...">place_star()</a> with the same arguments.</p>
 <p>For all but ICRS coordinate outputs, the calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -947,11 +938,10 @@ Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000013">Deprecated</a></b></dt><dd>Using the frame-based <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> with NOVAS_TOD as the reference system is now preferred for topocentric calculations.</dd></dl>
 <p>Computes the topocentric apparent place of a solar system body at the specified time. This is the same as calling <a class="el" href="#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a> for the body for the same observer location and NOVAS_TOD as the reference system, except the different set of return values used.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1027,11 +1017,10 @@ Explanatory Supplement to the Astronomical Almanac (1992),Chapter 3. </li>
 <p>Computes the topocentric (True of Date; TOD) apparent place of a star at date 'jd_tt', given its ICRS catalog place, proper motion, parallax, and radial velocity.</p>
 <p>Notwithstanding the different set of return values, this is the same as calling <a class="el" href="#a1504058672e6e3cf24ce6b7189ede005" title="Computes the apparent place of a star at the specified date, given its catalog mean place,...">place_star()</a> with the same observer location and NOVAS_TOD for an object that specifies the star.</p>
 <p>The calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Explanatory Supplement to the Astronomical Almanac (1992), Chapter 3.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

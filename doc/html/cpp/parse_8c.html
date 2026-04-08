@@ -163,20 +163,19 @@ Functions</h2></td></tr>
 <p>The degree, (arc)minute, and (arc)second components may be separated by spaces, tabs, colons <span class="tt">:</span>, or a combination thereof. Additionally, the degree and minutes may be separated by the letter <span class="tt">d</span>, and the minutes and seconds may be separated by <span class="tt">m</span> or a single quote <span class="tt">'</span>. The seconds may be followed by 's' or double quote <span class="tt">"</span>. Finally, the leading or trailing component may additionally be a standalone upper-case letter 'N', 'E', 'S', or 'W' or the words 'North', 'East', 'South', or 'West' (case insensitive), signifying a compass direction.</p>
 <p>There is no enforcement on the range of angles that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range, such as +- 90 degrees N/S.</p>
 <p>For example, all of the lines below are valid specifications:</p>
-<pre>
- -179:59:59.999
- -179d 59m 59.999s
- -179 59' 59.999
- 179:59:59.999S
- 179 59 59.999 W
- 179 59 59.999 west
- 179_59_59.999__S
- W 179 59 59
- North 179d 59m
-</pre><p>At least the leading two components (degrees and arcminutes) are required. If the arcseconds are ommitted, they will be assumed zero, i.e. <span class="tt">179:59</span> is the same as <span class="tt">179:59:00.000</span>.</p>
-<p>NOTES: </p><ol>
-<li>
-To see if the string was fully parsed when returning a valid (non-NAN) value, you can check <span class="tt">errno</span>: it should be zero (0) if all non-whitespace characters have been parsed from the input string, or else <span class="tt">EINVAL</span> if the parsed value used only the leading part of the string. </li>
+<div class="fragment"><div class="line">-179:59:59.999</div>
+<div class="line">-179d 59m 59.999s</div>
+<div class="line">-179 59&#39; 59.999</div>
+<div class="line">179:59:59.999S</div>
+<div class="line">179 59 59.999 W</div>
+<div class="line">179 59 59.999 west</div>
+<div class="line">179_59_59.999__S</div>
+<div class="line">W 179 59 59</div>
+<div class="line">North 179d 59m</div>
+</div><!-- fragment --><p>At least the leading two components (degrees and arcminutes) are required. If the arcseconds are ommitted, they will be assumed zero, i.e. <span class="tt">179:59</span> is the same as <span class="tt">179:59:00.000</span>.</p>
+<p>NOTES:</p>
+<ol type="1">
+<li>To see if the string was fully parsed when returning a valid (non-NAN) value, you can check <span class="tt">errno</span>: it should be zero (0) if all non-whitespace characters have been parsed from the input string, or else <span class="tt">EINVAL</span> if the parsed value used only the leading part of the string.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -247,17 +246,16 @@ To see if the string was fully parsed when returning a valid (non-NAN) value, yo
 <p>The hour, minute, and second components may be separated by spaces, tabs, colons <span class="tt">:</span>, or a combination thereof. Additionally, the hours and minutes may be separated by the letter <span class="tt">h</span>, and the minutes and seconds may be separated by <span class="tt">m</span> or a single quote <span class="tt">'</span>. The seconds may be followed by 's' or double quote <span class="tt">"</span>.</p>
 <p>There is no enforcement on the range of hours that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range of 0-24h.</p>
 <p>For example, all of the lines below specify the same time:</p>
-<pre>
- 23:59:59.999
- 23h 59m 59.999s
- 23h59'59.999
- 23 59 59.999
- 23 59
- 23h
-</pre><p>At least the leading two components (hours and minutes) are required. If the seconds are ommitted, they will be assumed zero, i.e. <span class="tt">23:59</span> is the same as <span class="tt">23:59:00.000</span>.</p>
-<p>NOTES: </p><ol>
-<li>
-To see if the string was fully parsed when returning a valid (non-NAN) value, you can check <span class="tt">errno</span>: it should be zero (0) if all non-whitespace characters have been parsed from the input string, or else <span class="tt">EINVAL</span> if the parsed value used only the leading part of the string. </li>
+<div class="fragment"><div class="line">23:59:59.999</div>
+<div class="line">23h 59m 59.999s</div>
+<div class="line">23h59<span class="stringliteral">&#39;59.999</span></div>
+<div class="line"><span class="stringliteral">23 59 59.999</span></div>
+<div class="line"><span class="stringliteral">23 59</span></div>
+<div class="line"><span class="stringliteral">23h</span></div>
+</div><!-- fragment --><p>At least the leading two components (hours and minutes) are required. If the seconds are ommitted, they will be assumed zero, i.e. <span class="tt">23:59</span> is the same as <span class="tt">23:59:00.000</span>.</p>
+<p>NOTES:</p>
+<ol type="1">
+<li>To see if the string was fully parsed when returning a valid (non-NAN) value, you can check <span class="tt">errno</span>: it should be zero (0) if all non-whitespace characters have been parsed from the input string, or else <span class="tt">EINVAL</span> if the parsed value used only the leading part of the string.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

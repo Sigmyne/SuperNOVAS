@@ -178,13 +178,13 @@ Variables</h2></td></tr>
 <p>This function valid for an observed body within the solar system as well as for a star.</p>
 <p>If 'accuracy' is NOVAS_FULL_ACCURACY (0), the deflections due to the Sun, Jupiter, Saturn, and Earth are calculated. Otherwise, only the deflection due to the Sun is calculated. In either case, deflection for a given body is ignored if the observer is within ~1500 km of the center of the gravitating body.</p>
 <p>The number of bodies used at full and reduced accuracy can be set by changing the <span class="tt"><a class="el" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24" title="Current set of gravitating bodies to use for deflection calculations in reduced accuracy mode.">grav_bodies_reduced_accuracy</a></span>, and <span class="tt"><a class="el" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a" title="Current set of gravitating bodies to use for deflection calculations in full accuracy mode.">grav_bodies_full_accuracy</a></span> lobal variables.</p>
-<p>NOTES: </p><ol>
-<li>
-This function is called by <span class="tt"><a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#ab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a4817703c9357f702a27812584c91f87c" title="Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate correc...">novas_geom_to_app()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to calculate gravitational deflections as appropriate for positioning sources precisely. The gravitational deflection due to planets requires a planet calculator function to be configured, e.g. via <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function is called by <span class="tt"><a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#ab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a4817703c9357f702a27812584c91f87c" title="Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate correc...">novas_geom_to_app()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to calculate gravitational deflections as appropriate for positioning sources precisely. The gravitational deflection due to planets requires a planet calculator function to be configured, e.g. via <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -237,13 +237,13 @@ Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
 
 <p>(<em>primarily for internal use</em>) Computes the total gravitational deflection of light for the observed object due to the specified gravitating bodies in the solar system. </p>
 <p>This function is valid for an observed body within the solar system as well as for a star.</p>
-<p>NOTES: </p><ol>
-<li>
-The gravitational deflection due to planets requires a planet calculator function to be configured, e.g. via <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The gravitational deflection due to planets requires a planet calculator function to be configured, e.g. via <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -339,9 +339,9 @@ Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
 <p>This function is valid for an observed body within the solar system as well as for a star.</p>
 <p>If 'accuracy' is set to zero (full accuracy), three bodies (Sun, Jupiter, and Saturn) are used in the calculation. If the reduced-accuracy option is set, only the Sun is used in the calculation. In both cases, if the observer is not at the geocenter, the deflection due to the Earth is included.</p>
 <p>he number of bodies used at full and reduced accuracy can be set by changing the <span class="tt"><a class="el" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24" title="Current set of gravitating bodies to use for deflection calculations in reduced accuracy mode.">grav_bodies_reduced_accuracy</a></span>, and <span class="tt"><a class="el" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a" title="Current set of gravitating bodies to use for deflection calculations in full accuracy mode.">grav_bodies_full_accuracy</a></span> global variables.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -394,9 +394,9 @@ Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
 </div><div class="memdoc">
 
 <p>(<em>primarily for internal use</em>) Computes the gravitationally undeflected position of an observed source position due to the specified Solar-system bodies. </p>
-<p>REFERENCES: </p><ol>
-<li>
-Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -456,17 +456,15 @@ Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6. </li>
 
 <p>(<em>primarily for internal use</em>) Corrects position vector for the deflection of light in the gravitational field of anarbitrary body. </p>
 <p>This function valid for an observed body within the solar system as well as for a star.</p>
-<p>NOTES: </p><ol>
-<li>
-This function is called by <a class="el" href="#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a> to calculate appropriate gravitational deflections around the massive Solar-system objects.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function is called by <a class="el" href="#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a> to calculate appropriate gravitational deflections around the massive Solar-system objects.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Murray, C.A. (1981) Mon. Notices Royal Ast. Society 195, 639-648. </li>
-<li>
-See also formulae in Section B of the Astronomical Almanac, or </li>
-<li>
-Kaplan, G. et al. (1989) Astronomical Journal 97, 1197-1210, section iii f. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Murray, C.A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.</li>
+<li>See also formulae in Section B of the Astronomical Almanac, or</li>
+<li>Kaplan, G. et al. (1989) Astronomical Journal 97, 1197-1210, section iii f.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

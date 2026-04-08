@@ -649,17 +649,14 @@ Functions</h2></td></tr>
 
 <p>This function will compute a broken down date on the astronomical calendar given the Julian day input. </p>
 <p>Input Julian day can be based on any UT-like time scale (UTC, UT1, TT, etc.) - output time value will have same basis.</p>
-<p>NOTES: </p><ol>
-<li>
-<p class="startli">The Gregorian calendar was introduced on 15 October 1582 only (corresponding to 5 October of the previously used Julian calendar). Prior to it this function returns Julian / Roman calendar dates, e.g. the day before the reform is 1582 October 4. You can use <span class="tt"><a class="el" href="#ga8ed2fb55bcf86d9f1f434a2f832356a2" title="This function will compute a broken down date on the specified calendar for given the Julian day inpu...">novas_jd_to_date()</a></span> instead to convert JD days to dates in specific calendars.</p>
-<p class="endli"></p>
-</li>
-<li>
-B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The Gregorian calendar was introduced on 15 October 1582 only (corresponding to 5 October of the previously used Julian calendar). Prior to it this function returns Julian / Roman calendar dates, e.g. the day before the reform is 1582 October 4. You can use <span class="tt"><a class="el" href="#ga8ed2fb55bcf86d9f1f434a2f832356a2" title="This function will compute a broken down date on the specified calendar for given the Julian day inpu...">novas_jd_to_date()</a></span> instead to convert JD days to dates in specific calendars.</li>
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -700,9 +697,9 @@ Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 19
 </div><div class="memdoc">
 
 <p>Returns the TT - UT1 time difference given the leap seconds and the actual UT1 - UTC time difference as measured and published by IERS. </p>
-<p>NOTES: </p><ol>
-<li>
-The current UT1 - UTC time difference, and polar offsets, historical data and near-term projections are published in the &lt;a href="<a href="https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html">https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html</a>&gt;IERS Bulletins  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The current UT1 - UTC time difference, and polar offsets, historical data and near-term projections are published in the <a href="https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html">IERS Bulletins</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -784,21 +781,15 @@ The current UT1 - UTC time difference, and polar offsets, historical data and ne
 
 <p>Returns the Julian day for a given astronomical calendar date. </p>
 <p>Input time value can be based on any UT-like time scale (UTC, UT1, TT, etc.) - output Julian day will have the same basis.</p>
-<p>NOTES: </p><ol>
-<li>
-<p class="startli">The Gregorian calendar was introduced on 1582 October 15 only. Prior to that, astronomical dates are Julian/Roman dates, so the day before the reform was 1582 October 4. You can also use <span class="tt"><a class="el" href="#ga54eee84c46900c80ca9966857c217cc8" title="Returns the Julian day for a given calendar date.">novas_jd_from_date()</a></span> to convert dates with more flexibility.</p>
-<p class="endli"></p>
-</li>
-<li>
-<p class="startli">B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</p>
-<p class="endli"></p>
-</li>
-<li>
-Added argument range checking in v1.3.0, returning NAN if the month or day are out of the normal range (for a leap year). </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The Gregorian calendar was introduced on 1582 October 15 only. Prior to that, astronomical dates are Julian/Roman dates, so the day before the reform was 1582 October 4. You can also use <span class="tt"><a class="el" href="#ga54eee84c46900c80ca9966857c217cc8" title="Returns the Julian day for a given calendar date.">novas_jd_from_date()</a></span> to convert dates with more flexibility.</li>
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
+<li>Added argument range checking in v1.3.0, returning NAN if the month or day are out of the normal range (for a leap year).</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -842,15 +833,14 @@ Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 19
 <p>d&tau;<sub>obs</sub> / dt<sub>timescale</sub> = (1 + <em>D</em>)</p>
 <p>The instantaneous difference in clock rate includes tiny diurnal or orbital variationd for Earth-bound observers as the they cycle through the tidal potential around the geocenter (mainly due to the Sun and Moon). For a closer match to Earth-based timescales (TCG, TT, TAI, GPS, or UTC) you may want to exclude the periodic tidal effects and calculate the averaged observer clock rate over the geocentric cycle (see Eqs. 10.6 and 10.8 of the IERS Conventions 2010), which is provided by <span class="tt"><a class="el" href="#gad2d5ef17b41a30ebca91e4c70e636acf" title="Returns the averaged incremental rate at which the observer&#39;s clock (i.e.">novas_mean_clock_skew()</a></span> instead.</p>
 <p>For reduced accuracy frames, the result will be approximate, because the gravitational effect of the Sun and Earth alone may be accounted for.</p>
-<p>NOTES: </p><ol>
-<li>
-Based on the IERS Conventions 2010, Chapter 10, Eqa. 10.6 / 10.8 but also including the near-Earth tidal effects, and modified for relativistic observer motion. </li>
-<li>
-The potential for an observer inside 0.9 planet radii of a major Solar-system body's center will not include the term for that body in the calculation. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Based on the IERS Conventions 2010, Chapter 10, Eqa. 10.6 / 10.8 but also including the near-Earth tidal effects, and modified for relativistic observer motion.</li>
+<li>The potential for an observer inside 0.9 planet radii of a major Solar-system body's center will not include the term for that body in the calculation.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf">https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf">https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1258,19 +1248,14 @@ IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obsp
 <p>Returns the fractional Julian date of an astronomical time in the specified timescale, as an integer and fractional part. </p>
 <p>The two-component split of the time allows for absolute precisions at the picosecond level, as opposed to <span class="tt"><a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a></span>, whose precision is limited to a few microseconds typically.</p>
 <p>The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is limited by the precision of the <span class="tt">tbd2tt()</span> implemenation, to around 10 &mu;s.</p>
-<p>REFERENCES: </p><ol>
-<li>
-IAU 1991, RECOMMENDATION III. XXIst General Assembly of the International Astronomical Union. Retrieved 6 June 2019. </li>
-<li>
-IAU 2006 resolution 3, see Recommendation and footnotes, note 3. </li>
-<li>
-Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240. </li>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
-<li>
-<a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html#The%20Relationship%20between%20TT%20and%20TDB">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html</a> </li>
-<li>
-<a href="https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems">https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IAU 1991, RECOMMENDATION III. XXIst General Assembly of the International Astronomical Union. Retrieved 6 June 2019.</li>
+<li>IAU 2006 resolution 3, see Recommendation and footnotes, note 3.</li>
+<li>Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.</li>
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
+<li><a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html</a></li>
+<li><a href="https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems">https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1392,15 +1377,11 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 
 <p>Prints a UTC-based ISO timestamp to millisecond precision to the specified string buffer. </p>
 <p>E.g.:</p>
-<pre>
- 2025-01-26T21:32:49.701Z
-</pre><p>NOTES: </p><ol>
-<li>
-<p class="startli">As per the ISO 8601 specification, the timestamp uses the Gregorian date, even for dates prior to the Gregorian calendar reform of 15 October 1582 (i.e. proleptic Gregorian dates).</p>
-<p class="endli"></p>
-</li>
-<li>
-B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+<div class="fragment"><div class="line">2025-01-26T21:32:49.701Z</div>
+</div><!-- fragment --><p>NOTES:</p>
+<ol type="1">
+<li>As per the ISO 8601 specification, the timestamp uses the Gregorian date, even for dates prior to the Gregorian calendar reform of 15 October 1582 (i.e. proleptic Gregorian dates).</li>
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1458,17 +1439,14 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 <p>The input date is the conventional calendar date, affected by the Gregorian calendar reform of</p><ol type="1">
 <li>Thus, the input date is for the Gregorian calendar for dates starting 15 October 1582, and for the Julian (Roman) calendar (introduced in 45 B.C.) for dates prior to that.</li>
 </ol>
-<p>NOTES: </p><ol>
-<li>
-<p class="startli">B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</p>
-<p class="endli"></p>
-</li>
-<li>
-Added argument range checking in v1.3.0, returning NAN if the month or day are out of the normal range (for a leap year). </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
+<li>Added argument range checking in v1.3.0, returning NAN if the month or day are out of the normal range (for a leap year).</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1532,13 +1510,13 @@ Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 19
 
 <p>This function will compute a broken down date on the specified calendar for given the Julian day input. </p>
 <p>Input Julian day can be based on any astronomical time scale (UTC, UT1, TT, etc.) - output time value will have same basis.</p>
-<p>NOTES: </p><ol>
-<li>
-B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 1968, p. 657.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1586,15 +1564,14 @@ Fliegel, H. &amp; Van Flandern, T. Comm. of the ACM, Vol. 11, No. 10, October 19
 <p>d&tau;<sub>obs</sub> / dt<sub>timescale</sub> = (1 + <em>D</em>)</p>
 <p>For a non-Earth-bound observer, this is the same as the instantaneous rate returned by <span class="tt"><a class="el" href="#ga9061a46b13dfca669c327283f7357586" title="Returns the instantaneous incremental rate at which the observer&#39;s clock (i.e.">novas_clock_skew()</a></span>. For an Earth-bound observer however, this function returns the averaged value over the observer's rotation around the geocenter. As such it filters out the tiny diurnal or orbital tidal variations as the observer moves through the tidal potential around the geocenter (mainly due to the Sun and Moon). Thus, for Earth-bound observers it returns Eqs. 10.6 and 10.8 of the IERS Conventions.</p>
 <p>For reduced accuracy frames, the result will be approximate, because the gravitational effect of the Sun and Earth alone may be accounted for.</p>
-<p>NOTES: </p><ol>
-<li>
-Based on the IERS Conventions 2010, Chapter 10, Eqs. 10.6 / 10.8, but modified for relativistic observer motion. </li>
-<li>
-The potential for an observer inside 0.9 planet radii of a major Solar-system body's center will not include the term for that body in the calculation. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Based on the IERS Conventions 2010, Chapter 10, Eqs. 10.6 / 10.8, but modified for relativistic observer motion.</li>
+<li>The potential for an observer inside 0.9 planet radii of a major Solar-system body's center will not include the term for that body in the calculation.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf">https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf">https://iers-conventions.obspm.fr/content/chapter10/tn36_c10.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1633,25 +1610,19 @@ IERS Conventions 2010, Chapter 10, see at <a href="https://iers-conventions.obsp
 
 <p>Calculates the date / time at which the Moon will reach the specified phase next, <em>after</em> the specified time. </p>
 <p>It uses orbital models for Earth (E.M. Standish and J.G. Williams 1992), and the ELP2000/MPP02 semi-analytical model for the Moon (Chapront &amp; Francou, 2002, 2003), and takes into account the slightly eccentric nature of both orbits.</p>
-<p>NOTES: </p><ol>
-<li>
-The Moon's phase here follows the definition by the Astronomical Almanac, as the excess ecliptic longitude of the Moon over that of the Sun seen from the geocenter. </li>
-<li>
-There are other definitions of the phase too, depending on which you might find slightly different answers, but regardless of the details most phase calculations should match give or take a few hours. </li>
-<li>
-As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the Moon by Chapront &amp; Francou (2003). </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The Moon's phase here follows the definition by the Astronomical Almanac, as the excess ecliptic longitude of the Moon over that of the Sun seen from the geocenter.</li>
+<li>There are other definitions of the phase too, depending on which you might find slightly different answers, but regardless of the details most phase calculations should match give or take a few hours.</li>
+<li>As of version 1.6, this function relies on the ELP2000/MM02 semi-analytical model of the Moon by Chapront &amp; Francou (2003).</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-The Explanatory Supplement to the Astronomical Almanac, University Science Books, 3rd ed., p. 507 </li>
-<li>
-E.M. Standish and J.G. Williams 1992. </li>
-<li>
-<a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a> </li>
-<li>
-Chapront, J., &amp; Francou, G., 2002, A&amp;A 387, 700–709 </li>
-<li>
-Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>The Explanatory Supplement to the Astronomical Almanac, University Science Books, 3rd ed., p. 507</li>
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li>Chapront, J., &amp; Francou, G., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1781,11 +1752,10 @@ Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-
 
 <p>Returns the UTC date at which a distant source appears to rise above the specified elevation angle. </p>
 <p>The calculated time will account for the (slow) motion for Solar-system bodies, and optionally for atmospheric refraction also.</p>
-<p>NOTES: </p><ol>
-<li>
-The current implementation is not suitable for calculating the nearest successive rise times for near-Earth objects, at or within the geostationary orbit. </li>
-<li>
-This function calculates the time when the center (not the limb!) of the source rises above the specified elevation threshold. Something to keep in mind for calculating Sun/Moon rise times. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The current implementation is not suitable for calculating the nearest successive rise times for near-Earth objects, at or within the geostationary orbit.</li>
+<li>This function calculates the time when the center (not the limb!) of the source rises above the specified elevation threshold. Something to keep in mind for calculating Sun/Moon rise times.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1829,10 +1799,9 @@ This function calculates the time when the center (not the limb!) of the source 
 
 <p>Sets the time eith the UNIX time obtained from the system clock. </p>
 <p>This is only as precise as the system clock is. You should generally make sure the sytem clock is synchronized to a time reference e.g. via ntp, preferably to a local time reference.</p>
-<p>NOTE:</p>
-<ol>
-<li>
-With MSC, this function uses the C11 standard <span class="tt">timespec_get()</span> function, which is portable. For older C standard, the POSIX only <span class="tt">clock_gettime()</span> function is used. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>With MSC, this function uses the C11 standard <span class="tt">timespec_get()</span> function, which is portable. For older C standard, the POSIX only <span class="tt">clock_gettime()</span> function is used.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1893,19 +1862,14 @@ With MSC, this function uses the C11 standard <span class="tt">timespec_get()</s
 <p>Sets an astronomical time to the split Julian Date value, defined in the specified timescale. </p>
 <p>The split into the integer and fractional parts can be done in any convenient way. The highest precision is reached if the fractional part is &le; 1 day. In that case, the time may be specified to picosecond accuracy, if needed.</p>
 <p>The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is limited by the precision of <span class="tt">tbd2tt()</span> implementation, to around 10 &mu;s.</p>
-<p>REFERENCES: </p><ol>
-<li>
-IAU 1991, RECOMMENDATION III. XXIst General Assembly of the International Astronomical Union. Retrieved 6 June 2019. </li>
-<li>
-IAU 2006 resolution 3, see Recommendation and footnotes, note 3. </li>
-<li>
-Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240. </li>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
-<li>
-<a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html#The%20Relationship%20between%20TT%20and%20TDB">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html</a> </li>
-<li>
-<a href="https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems">https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IAU 1991, RECOMMENDATION III. XXIst General Assembly of the International Astronomical Union. Retrieved 6 June 2019.</li>
+<li>IAU 2006 resolution 3, see Recommendation and footnotes, note 3.</li>
+<li>Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.</li>
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
+<li><a href="https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html">https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/FORTRAN/req/time.html</a></li>
+<li><a href="https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems">https://gssc.esa.int/navipedia/index.php/Transformations_between_Time_Systems</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2129,11 +2093,10 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 
 <p>Returns the UTC date at which a distant source appears to set below the specified elevation angle. </p>
 <p>The calculated time will account for the (slow) motion of Solar-system bodies, and optionally for atmopsheric refraction also.</p>
-<p>NOTES: </p><ol>
-<li>
-The current implementation is not suitable for calculating the nearest successive set times for near-Earth objects, at or within the geostationary orbit. </li>
-<li>
-This function calculates the time when the center (not the limb!) of the source sets below the specified elevation threshold. Something to keep in mind for calculating Sun/Moon rise times. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The current implementation is not suitable for calculating the nearest successive set times for near-Earth objects, at or within the geostationary orbit.</li>
+<li>This function calculates the time when the center (not the limb!) of the source sets below the specified elevation threshold. Something to keep in mind for calculating Sun/Moon rise times.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2330,15 +2293,11 @@ This function calculates the time when the center (not the limb!) of the source 
 
 <p>Prints an astronomical timestamp to millisecond precision in the specified timescale to the specified string buffer. </p>
 <p>It differs from ISO 8601 timestamps for dates prior to the Gregorian calendar reform of 1582 October 15 (otherwise two are identical). E.g.:</p>
-<pre>
- 2025-01-26T21:32:49.701 TAI
-</pre><p>NOTES: </p><ol>
-<li>
-<p class="startli">The timestamp uses the astronomical date. That is Gregorian dates after the Gregorian calendar reform of 15 October 1582, and Julian/Roman dates prior to that. This is in contrast to ISO 8601 timestamps, which use Gregorian dates even for dates the precede the calendar reform that introduced them.</p>
-<p class="endli"></p>
-</li>
-<li>
-B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+<div class="fragment"><div class="line">2025-01-26T21:32:49.701 TAI</div>
+</div><!-- fragment --><p>NOTES:</p>
+<ol type="1">
+<li>The timestamp uses the astronomical date. That is Gregorian dates after the Gregorian calendar reform of 15 October 1582, and Julian/Roman dates prior to that. This is in contrast to ISO 8601 timestamps, which use Gregorian dates even for dates the precede the calendar reform that introduced them.</li>
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2379,9 +2338,9 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 
 <p>Returns the UTC date at which a source transits the local meridian. </p>
 <p>The calculated time will account for the (slow) motion of Solar-system bodies.</p>
-<p>NOTES: </p><ol>
-<li>
-The current implementation is not suitable for calculating the nearest successive transit times for near-Earth objects, at or within the geostationary orbit. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The current implementation is not suitable for calculating the nearest successive transit times for near-Earth objects, at or within the geostationary orbit.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2425,21 +2384,20 @@ The current implementation is not suitable for calculating the nearest successiv
 <p>It has a maximum error of 10 &mu;s between for dates 1600 and 2200.</p>
 <p>This function is wrapped by <span class="tt"><a class="el" href="#ga129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a></span>, which is typically a lot easier to use as it returns the time difference directly, which can then be used to convert time in both directions with greater ease. For exable to convert a TT-based date to a TDB-based date:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> TDB = TT + <a class="code hl_function" href="#ga129acca41760da486e1179c93cb9e86d">tt2tdb</a>(TT) / 86400.0;</div>
-<div class="ttc" id="agroup__time_html_ga129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="#ga129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:168</div></div>
+<div class="ttc" id="agroup__time_html_ga129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="#ga129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:163</div></div>
 </div><!-- fragment --><p>is equivalent to:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> dt;</div>
 <div class="line"><a class="code hl_function" href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt</a>(TT, NULL, &amp;dt);   <span class="comment">// Uses TT input so don&#39;t attempt to calculate TT here...</span></div>
 <div class="line"><span class="keywordtype">double</span> TDB = TT + dt / 86400.0;</div>
-<div class="ttc" id="agroup__time_html_ga90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:125</div></div>
-</div><!-- fragment --><p>NOTES: </p><ol>
-<li>
-This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call. </li>
+<div class="ttc" id="agroup__time_html_ga90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:121</div></div>
+</div><!-- fragment --><p>NOTES:</p>
+<ol type="1">
+<li>This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240. </li>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.</li>
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2474,13 +2432,11 @@ Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
 </div><div class="memdoc">
 
 <p>Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 10 &mu;s for dates between 1600 and 2200. </p>
-<p>REFERENCES </p><ol>
-<li>
-Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240. </li>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
-<li>
-Moyer, T.D. (1981), Celestial mechanics, Volume 23, Issue 1, pp. 57-68&lt;.li&gt; </li>
+<p>REFERENCES</p>
+<ol type="1">
+<li>Fairhead, L. &amp; Bretagnon, P. (1990) Astron. &amp; Astrophys. 229, 240.</li>
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
+<li>Moyer, T.D. (1981), Celestial mechanics, Volume 23, Issue 1, pp. 57-68</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2520,9 +2476,9 @@ Moyer, T.D. (1981), Celestial mechanics, Volume 23, Issue 1, pp. 57-68&lt;.li&gt
 
 <p>Returns the TDB-TT time difference with flexible precision. </p>
 <p>This implementation uses the series expansion by Fairhead &amp; Bretagnon 1990, terminating the terms at or below the specified limiting amplitude.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Fairhead, L., &amp; Bretagnon, P. (1990) A&amp;A, 229, 240 </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fairhead, L., &amp; Bretagnon, P. (1990) A&amp;A, 229, 240</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -2559,13 +2515,13 @@ Fairhead, L., &amp; Bretagnon, P. (1990) A&amp;A, 229, 240 </li>
 
 <p>Returns the TDB-TT time difference with high precision. </p>
 <p>This implementation uses the full series expansion by Fairhead &amp; Bretagnon 1990, resulting in an accuracy below 100 ns.</p>
-<p>NOTES: </p><ol>
-<li>
-This function caches the result of the last calculation. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function caches the result of the last calculation.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fairhead, L., &amp; Bretagnon, P. (1990) A&amp;A, 229, 240 </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fairhead, L., &amp; Bretagnon, P. (1990) A&amp;A, 229, 240</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

@@ -397,20 +397,19 @@ Functions</h2></td></tr>
 <p>The degree, (arc)minute, and (arc)second components may be separated by spaces, tabs, colons <span class="tt">:</span>, or a combination thereof. Additionally, the degree and minutes may be separated by the letter <span class="tt">d</span>, and the minutes and seconds may be separated by <span class="tt">m</span> or a single quote <span class="tt">'</span>. The seconds may be followed by 's' or double quote <span class="tt">"</span>. Finally, the leading or trailing component may additionally be a standalone upper-case letter 'N', 'E', 'S', or 'W' or the words 'North', 'East', 'South', or 'West' (case insensitive), signifying a compass direction.</p>
 <p>There is no enforcement on the range of angles that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range, such as +- 90 degrees N/S.</p>
 <p>For example, all of the lines below are valid specifications:</p>
-<pre>
- -179:59:59.999
- -179d 59m 59.999s
- -179 59' 59.999
- 179:59:59.999S
- 179 59 59.999 W
- 179 59 59.999 west
- 179_59_59.999__S
- W 179 59 59
- North 179d 59m
-</pre><p>At least the leading two components (degrees and arcminutes) are required. If the arcseconds are ommitted, they will be assumed zero, i.e. <span class="tt">179:59</span> is the same as <span class="tt">179:59:00.000</span>.</p>
-<p>NOTES: </p><ol>
-<li>
-To see if the string was fully parsed when returning a valid (non-NAN) value, you can check <span class="tt">errno</span>: it should be zero (0) if all non-whitespace characters have been parsed from the input string, or else <span class="tt">EINVAL</span> if the parsed value used only the leading part of the string. </li>
+<div class="fragment"><div class="line">-179:59:59.999</div>
+<div class="line">-179d 59m 59.999s</div>
+<div class="line">-179 59&#39; 59.999</div>
+<div class="line">179:59:59.999S</div>
+<div class="line">179 59 59.999 W</div>
+<div class="line">179 59 59.999 west</div>
+<div class="line">179_59_59.999__S</div>
+<div class="line">W 179 59 59</div>
+<div class="line">North 179d 59m</div>
+</div><!-- fragment --><p>At least the leading two components (degrees and arcminutes) are required. If the arcseconds are ommitted, they will be assumed zero, i.e. <span class="tt">179:59</span> is the same as <span class="tt">179:59:00.000</span>.</p>
+<p>NOTES:</p>
+<ol type="1">
+<li>To see if the string was fully parsed when returning a valid (non-NAN) value, you can check <span class="tt">errno</span>: it should be zero (0) if all non-whitespace characters have been parsed from the input string, or else <span class="tt">EINVAL</span> if the parsed value used only the leading part of the string.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -471,17 +470,16 @@ To see if the string was fully parsed when returning a valid (non-NAN) value, yo
 <p>The hour, minute, and second components may be separated by spaces, tabs, colons <span class="tt">:</span>, or a combination thereof. Additionally, the hours and minutes may be separated by the letter <span class="tt">h</span>, and the minutes and seconds may be separated by <span class="tt">m</span> or a single quote <span class="tt">'</span>. The seconds may be followed by 's' or double quote <span class="tt">"</span>.</p>
 <p>There is no enforcement on the range of hours that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range of 0-24h.</p>
 <p>For example, all of the lines below specify the same time:</p>
-<pre>
- 23:59:59.999
- 23h 59m 59.999s
- 23h59'59.999
- 23 59 59.999
- 23 59
- 23h
-</pre><p>At least the leading two components (hours and minutes) are required. If the seconds are ommitted, they will be assumed zero, i.e. <span class="tt">23:59</span> is the same as <span class="tt">23:59:00.000</span>.</p>
-<p>NOTES: </p><ol>
-<li>
-To see if the string was fully parsed when returning a valid (non-NAN) value, you can check <span class="tt">errno</span>: it should be zero (0) if all non-whitespace characters have been parsed from the input string, or else <span class="tt">EINVAL</span> if the parsed value used only the leading part of the string. </li>
+<div class="fragment"><div class="line">23:59:59.999</div>
+<div class="line">23h 59m 59.999s</div>
+<div class="line">23h59<span class="stringliteral">&#39;59.999</span></div>
+<div class="line"><span class="stringliteral">23 59 59.999</span></div>
+<div class="line"><span class="stringliteral">23 59</span></div>
+<div class="line"><span class="stringliteral">23h</span></div>
+</div><!-- fragment --><p>At least the leading two components (hours and minutes) are required. If the seconds are ommitted, they will be assumed zero, i.e. <span class="tt">23:59</span> is the same as <span class="tt">23:59:00.000</span>.</p>
+<p>NOTES:</p>
+<ol type="1">
+<li>To see if the string was fully parsed when returning a valid (non-NAN) value, you can check <span class="tt">errno</span>: it should be zero (0) if all non-whitespace characters have been parsed from the input string, or else <span class="tt">EINVAL</span> if the parsed value used only the leading part of the string.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -552,24 +550,20 @@ To see if the string was fully parsed when returning a valid (non-NAN) value, yo
 <p>Parses an astronomical date/time string into a Julian date specification. </p>
 <p>The date must be YMD-type with full year, followed the month (numerical or name or 3-letter abbreviation), and the day. The components may be separated by dash <span class="tt">-</span>, underscore <span class="tt">_</span>, dot <span class="tt">.</span>, slash '/', or spaces/tabs, or any combination thereof. The date may be followed by a time specification in HMS format, separated from the date by the letter <span class="tt">T</span> or <span class="tt">t</span>, or spaces, comma <span class="tt">,</span>, or semicolon <span class="tt">;</span>, or underscore <span class="tt">_</span> or a combination thereof. Finally, the time may be followed by the letter <span class="tt">Z</span>, or <span class="tt">z</span> (for UTC) or else {+/-}HH[:[MM]] time zone specification.</p>
 <p>For example:</p>
-<pre>
- 2025-01-26
- 2025 January 26
- 2025_Jan_26
- 2025-01-26T19:33:08Z
- 2025.01.26T19:33:08
- 2025 1 26 19h33m28.113
- 2025/1/26 19:33:28+02
- 2025-01-26T19:33:28-0600
- 2025 Jan 26 19:33:28+05:30
-</pre><p>are all valid dates that can be parsed.</p>
-<p>NOTES: </p><ol>
-<li>
-<p class="startli">This function assumes Gregorian dates after their introduction on 1582 October 15, and Julian/Roman dates before that, as was the convention of the time. I.e., the day before of the introduction of the Gregorian calendar reform is 1582 October 4. I.e., you should not use this function with ISO 8601 timestamps containing dates prior to 1582 October 15 (for such date you may use <span class="tt"><a class="el" href="#gad53b3be5b92ea244cfb0347feb3bec9f" title="Parses an ISO 8601 timestamp, converting it to a Julian day.">novas_parse_iso_date()</a></span> instead).</p>
-<p class="endli"></p>
-</li>
-<li>
-B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+<div class="fragment"><div class="line">2025-01-26</div>
+<div class="line">2025 January 26</div>
+<div class="line">2025_Jan_26</div>
+<div class="line">2025-01-26T19:33:08Z</div>
+<div class="line">2025.01.26T19:33:08</div>
+<div class="line">2025 1 26 19h33m28.113</div>
+<div class="line">2025/1/26 19:33:28+02</div>
+<div class="line">2025-01-26T19:33:28-0600</div>
+<div class="line">2025 Jan 26 19:33:28+05:30</div>
+</div><!-- fragment --><p>are all valid dates that can be parsed.</p>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function assumes Gregorian dates after their introduction on 1582 October 15, and Julian/Roman dates before that, as was the convention of the time. I.e., the day before of the introduction of the Gregorian calendar reform is 1582 October 4. I.e., you should not use this function with ISO 8601 timestamps containing dates prior to 1582 October 15 (for such date you may use <span class="tt"><a class="el" href="#gad53b3be5b92ea244cfb0347feb3bec9f" title="Parses an ISO 8601 timestamp, converting it to a Julian day.">novas_parse_iso_date()</a></span> instead).</li>
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -622,21 +616,20 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 <p>The date must be composed of a full year (e.g. 2025), a month (numerical or name or 3-letter abbreviation, e.g. "01", "1", "January", or "Jan"), and a day (e.g. "08" or "8"). The components may be separated by dash <span class="tt">-</span>, underscore <span class="tt">_</span>, dot <span class="tt">.</span>, slash '/', or spaces/tabs, or any combination thereof. The components will be parsed in the specified order.</p>
 <p>The date may be followed by a time specification in HMS format, separated from the date by the letter <span class="tt">T</span> or <span class="tt">t</span>, or spaces, comma <span class="tt">,</span>, or semicolon <span class="tt">;</span> or underscore '_', or a combination thereof. Finally, the time may be followed by the letter <span class="tt">Z</span>, or <span class="tt">z</span> (for UTC) or else by a {+/-}HH[:[MM]] time zone specification.</p>
 <p>For example, for <span class="tt">format</span> NOVAS_YMD, all of the following strings may specify the date:</p>
-<pre>
- 2025-01-26
- 2025 January 26
- 2025_Jan_26
- 2025-01-26T19:33:08Z
- 2025.01.26T19:33:08
- 2025 1 26 19h33m28.113
- 2025/1/26 19:33:28+02
- 2025-01-26T19:33:28-0600
- 2025 Jan 26 19:33:28+05:30
-</pre><p>are all valid dates that can be parsed.</p>
+<div class="fragment"><div class="line">2025-01-26</div>
+<div class="line">2025 January 26</div>
+<div class="line">2025_Jan_26</div>
+<div class="line">2025-01-26T19:33:08Z</div>
+<div class="line">2025.01.26T19:33:08</div>
+<div class="line">2025 1 26 19h33m28.113</div>
+<div class="line">2025/1/26 19:33:28+02</div>
+<div class="line">2025-01-26T19:33:28-0600</div>
+<div class="line">2025 Jan 26 19:33:28+05:30</div>
+</div><!-- fragment --><p>are all valid dates that can be parsed.</p>
 <p>If your date format cannot be parsed with this function, you may parse it with your own function into year, month, day, and decimal hour-of-day components, and use <a class="el" href="group__time.html#ga7cd85bc0a0248f84d399cbbce9fe9546" title="Returns the Julian day for a given astronomical calendar date.">julian_date()</a> with those.</p>
-<p>NOTES: </p><ol>
-<li>
-B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -682,20 +675,19 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 <p>Both DMS and decimal values may start or end with a compass direction: such as an upper-case letter <span class="tt">N</span>, <span class="tt">E</span>, <span class="tt">S</span>, or <span class="tt">W</span>, or else the case-insensitive words 'North', 'East', 'South' or 'West'.</p>
 <p>There is no enforcement on the range of angles that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range, such as +- 90 degrees N/S.</p>
 <p>A few examples of angles that may be parsed:</p>
-<pre>
- -179:59:59.999
- -179d 59m 59.999s
- 179 59' 59.999" S
- 179 59 S
- -179.99999d
- -179.99999
- 179.99999W
- 179.99999 West
- 179.99999 deg S
- W 179.99999d
- North 179d 59m
- east 179.99 degrees
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="fragment"><div class="line">-179:59:59.999</div>
+<div class="line">-179d 59m 59.999s</div>
+<div class="line">179 59&#39; 59.999<span class="stringliteral">&quot; S</span></div>
+<div class="line"><span class="stringliteral">179 59 S</span></div>
+<div class="line"><span class="stringliteral">-179.99999d</span></div>
+<div class="line"><span class="stringliteral">-179.99999</span></div>
+<div class="line"><span class="stringliteral">179.99999W</span></div>
+<div class="line"><span class="stringliteral">179.99999 West</span></div>
+<div class="line"><span class="stringliteral">179.99999 deg S</span></div>
+<div class="line"><span class="stringliteral">W 179.99999d</span></div>
+<div class="line"><span class="stringliteral">North 179d 59m</span></div>
+<div class="line"><span class="stringliteral">east 179.99 degrees</span></div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">str</td><td>The input string that specified an angle either as decimal degrees or as a broken down DMS speficication. The decimal value may be followed by the letter <span class="tt">d</span> immediately. And both the decimal and DMS representation may be ended with a compass direction marker, <span class="tt">N</span>, <span class="tt">E</span>, <span class="tt">S</span>, or <span class="tt">W</span>. See more in <span class="tt"><a class="el" href="#gaa8d11652c5deb9e2ad78fd70ccac3378" title="Parses the decimal degrees for a DMS string specification.">novas_parse_dms()</a></span> on acceptable DMS specifications. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">tail</td><td>(optional) If not NULL it will be set to the next character in the string after the parsed angle. </td></tr>
@@ -736,18 +728,17 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 <p>The degree, (arc)minute, and (arc)second components may be separated by spaces, tabs, colons <span class="tt">:</span>, underscore <span class="tt">_</span>, or a combination thereof. Additionally, the degree and minutes may be separated by the letter <span class="tt">d</span>, and the minutes and seconds may be separated by <span class="tt">m</span> or a single quote <span class="tt">'</span>. The seconds may be followed by <span class="tt">s</span> or a double quote <span class="tt">"</span>. Finally, the leading or trailing component may additionally be a standalone upper-case letter 'N', 'E', 'S', or 'W' or the words 'North', 'East', 'South', or 'West' (case insensitive), signifying a compass direction.</p>
 <p>There is no enforcement on the range of angles that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range, such as +- 90 degrees N/S.</p>
 <p>For example, all of the lines below are valid specifications:</p>
-<pre>
- -179:59:59.999
- -179d 59m 59.999s
- -179 59' 59.999
- 179:59:59.999S
- 179:59:59.999 W
- 179:59:59.999 West
- 179_59_59.999__S
- 179 59 S
- W 179 59 59
- North 179d 59m
-</pre><p>At least the leading two components (degrees and arcminutes) are required. If the arcseconds are ommitted, they will be assumed zero, i.e. <span class="tt">179:59</span> is the same as <span class="tt">179:59:00.000</span>.</p>
+<div class="fragment"><div class="line">-179:59:59.999</div>
+<div class="line">-179d 59m 59.999s</div>
+<div class="line">-179 59&#39; 59.999</div>
+<div class="line">179:59:59.999S</div>
+<div class="line">179:59:59.999 W</div>
+<div class="line">179:59:59.999 West</div>
+<div class="line">179_59_59.999__S</div>
+<div class="line">179 59 S</div>
+<div class="line">W 179 59 59</div>
+<div class="line">North 179d 59m</div>
+</div><!-- fragment --><p>At least the leading two components (degrees and arcminutes) are required. If the arcseconds are ommitted, they will be assumed zero, i.e. <span class="tt">179:59</span> is the same as <span class="tt">179:59:00.000</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">dms</td><td>String specifying degrees, minutes, and seconds, which correspond to an angle. Angles in any range are permitted, but the minutes and seconds must be &gt;=0 and &lt;60. </td></tr>
@@ -787,13 +778,12 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 <p>The hour, minute, and second components may be separated by spaces, tabs, colons <span class="tt">:</span>, underscore <span class="tt">_</span>, or a combination thereof. Additionally, the hours and minutes may be separated by the letter <span class="tt">h</span>, and the minutes and seconds may be separated by <span class="tt">m</span> or a single quote <span class="tt">'</span>. The seconds may be followed by 's' or double quote <span class="tt">"</span>.</p>
 <p>There is no enforcement on the range of hours that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range of 0-24h.</p>
 <p>For example, all of the lines below are valid specifications:</p>
-<pre>
- 23:59:59.999
- 23h 59m 59.999
- 23h59'59.999
- 23 59 59.999
- 23 59
-</pre><p>At least the leading two components (hours and minutes) are required. If the seconds are ommitted, they will be assumed zero, i.e. <span class="tt">23:59</span> is the same as <span class="tt">23:59:00.000</span>.</p>
+<div class="fragment"><div class="line">23:59:59.999</div>
+<div class="line">23h 59m 59.999</div>
+<div class="line">23h59<span class="stringliteral">&#39;59.999</span></div>
+<div class="line"><span class="stringliteral">23 59 59.999</span></div>
+<div class="line"><span class="stringliteral">23 59</span></div>
+</div><!-- fragment --><p>At least the leading two components (hours and minutes) are required. If the seconds are ommitted, they will be assumed zero, i.e. <span class="tt">23:59</span> is the same as <span class="tt">23:59:00.000</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">hms</td><td>String specifying hours, minutes, and seconds, which correspond to a time between 0 and 24 h. Time in any range is permitted, but the minutes and seconds must be &gt;=0 and &lt;60. </td></tr>
@@ -833,15 +823,14 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 <p>The decimal representation may be followed by a unit designator: "h", "hr", "hrs", "hour", or "hours", which will be parsed case-insensitively also, if present.</p>
 <p>There is no enforcement on the range of hours that can be represented in this way. Any finite angle is parseable, even if it is outside its conventional range of 0-24h.</p>
 <p>A few examples of angles that may be parsed:</p>
-<pre>
- 23:59:59.999
- 23h 59m 59.999s
- 23h59'59.999
- 23 59 59.999
- 23.999999h
- 23.999999 hours
- 23.999999
-</pre><dl class="params"><dt>Parameters</dt><dd>
+<div class="fragment"><div class="line">23:59:59.999</div>
+<div class="line">23h 59m 59.999s</div>
+<div class="line">23h59<span class="stringliteral">&#39;59.999</span></div>
+<div class="line"><span class="stringliteral">23 59 59.999</span></div>
+<div class="line"><span class="stringliteral">23.999999h</span></div>
+<div class="line"><span class="stringliteral">23.999999 hours</span></div>
+<div class="line"><span class="stringliteral">23.999999</span></div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">str</td><td>The input string that specified an angle either as decimal hours or as a broken down HMS speficication. The decimal value may be immediately followed by a letter 'h'. See more in <span class="tt"><a class="el" href="#ga22e1bcf36379e0244b665c3e22d5fcba" title="Parses the decimal hours for a HMS string specification.">novas_parse_hms()</a></span> on acceptable HMS input specifications. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">tail</td><td>(optional) If not NULL it will be set to the next character in the string after the parsed angle. </td></tr>
@@ -880,9 +869,9 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 
 <p>Parses an ISO 8601 timestamp, converting it to a Julian day. </p>
 <p>It is equivalent to <span class="tt"><a class="el" href="#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a></span> for dates after the Gregorian calendar reform of 1582. For earlier dates, ISO timestamps continue to assume the Gregorian calendar (i.e. proleptic Gregorian dates), whereas <span class="tt">novas_parse_timestamp()</span> will assume Roman/Julian dates, which were conventionally used before the calendar reform.</p>
-<p>NOTES: </p><ol>
-<li>
-B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO 8601 convention, i.e., X B.C. as (1-X), so 45 B.C. as -44.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1187,9 +1176,9 @@ B.C. dates are indicated with years &lt;=0 according to the astronomical and ISO
 </div><div class="memdoc">
 
 <p>Transforms a vector from one coordinate system to another with same origin and axes rotated about the z-axis. </p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1232,9 +1221,9 @@ Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
 </div><div class="memdoc">
 
 <p>Converts an vector in equatorial rectangular coordinates to equatorial spherical coordinates. </p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

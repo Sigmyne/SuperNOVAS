@@ -166,11 +166,10 @@ Figure 1. Reference systems and transformations</div></div>
 <li><b>Method 2</b> is more roundabout, transforming GCRS to J2000 first, then using the IAU 2006 (P03) precession-nutation model to calculate True-of-Date coordinates, which are then transformed to CIRS by a simple rotation with the CIO's position relative to the true-equinox of date. The IAU2006 nutation series uses 2414 lunisolar and planetary terms (IERS Conventions 2010, Tables <a href="https://iers-conventions.obspm.fr/content/chapter5/additional_info/tab5.3a.txt">5.3a</a> and <a href="https://iers-conventions.obspm.fr/content/chapter5/additional_info/tab5.3b.txt">5.3b</a>).</li>
 </ul>
 <p>The two methods are equivalent both in terms of accuracy, down to the &mu;as level, and in terms of computational cost. Neither is 'superior' to the other in any measurable way. In SuperNOVAS we choose to follow Method 2, since its implementation is more readily given with the existing framework of related functions.</p>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 5, especially Section 5.9 </li>
-<li>
-Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 5, especially Section 5.9</li>
+<li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
 </ol>
 <dl class="section date"><dt>Date</dt><dd>Created on Mar 6, 2025 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs and G. Kaplan</dd></dl>
@@ -238,11 +237,10 @@ Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
 <p>Rotates a vector from the celestial to the terrestrial system. Specifically, it transforms a vector in the GCRS, or the dynamical (CIRS or TOD) frames to the ITRS (a rotating Earth-fixed system) by applying rotations for the GCRS-to-dynamical frame tie, precession, nutation, Earth rotation, and polar motion.</p>
 <p>If 'system' is NOVAS_CIRS then method EROT_ERA must be used. Similarly, if 'system' is NOVAS_TOD then method must be EROT_ERA. Otherwise an error 3 is returned.</p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -330,11 +328,10 @@ Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU
 <p>Rotates a vector from the terrestrial to the celestial system. Specifically, it transforms a vector in the ITRS (rotating earth-fixed system) to the True of Date (TOD), CIRS, or GCRS (a local space-fixed system) by applying rotations for polar motion, Earth rotation (for TOD); and nutation, precession, and the dynamical-to-GCRS frame tie (for GCRS).</p>
 <p>If 'system' is NOVAS_CIRS then method EROT_ERA must be used. Similarly, if 'system' is NOVAS_TOD then method must be EROT_ERA. Otherwise an error 3 is returned.</p>
 <p>If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210. </li>
-<li>
-Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Kaplan, G. H. (2003), 'Another Look at Non-Rotating Origins', Proceedings of IAU XXV Joint Discussion 16.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

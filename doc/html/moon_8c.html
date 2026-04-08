@@ -132,13 +132,11 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <p>This module implements self-contained calculations for the Moon's position, such as via Keplerian orbital approximation, and through a semi-analytical model by Chapront-Touze &amp; Chapront 1988 / Chapront &amp; Francou 2002, 2003.</p>
 <p>In principle, the latter can predict the Moon's position to the 10-m level precision, but is quite expensive to calculate with around 35,000 sinusoidal terms. In SuperNOVAS we offer only a truncated version, with 100-m level precision (typically), using up to 3408 terms. And, one may opt to truncate further to obtain less precises results faster if needed.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988) </li>
-<li>
-Chapront, J., Francou G., 2003, A&amp;A, 404, 735 </li>
-<li>
-Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
+<li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+<li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a></li>
 </ol>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="solsys-calceph_8c.html" title="Solar-system ephemeris lookup via the CALCEPH C library.">solsys-calceph.c</a>, <a class="el" href="solsys-cspice_8c.html" title="Solar-system ephemeris lookup via the NAIF CSPICE library.">solsys-cspice.c</a>, <a class="el" href="ephemeris_8c.html" title="Functions that allow to define or access Solar-system ephemeris data.">ephemeris.c</a> </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
@@ -168,17 +166,15 @@ Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (Octobe
 
 <p>Calculates the Moon's geocentric velocity using the ELP/MPP02 model by Chapront &amp; Francou (2003), in the ELP2000 reference plane (i.e. </p>
 <p>the inertial ecliptic and equinox of J2000), down to the specified limiting term amplitude.</p>
-<p>NOTES: </p><ol>
-<li>
-The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total).  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The initial implementation (in v1.6) truncates the full series, keeping only terms with amplitudes larger than 1 mas (around 3400 harmonic terms in total).</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988) </li>
-<li>
-Chapront, J., Francou G., 2003, A&amp;A, 404, 735 </li>
-<li>
-Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a> </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Chapront-Touze, M., &amp; Chapront, J., A&amp;A, 190, 342 (1988)</li>
+<li>Chapront, J., Francou G., 2003, A&amp;A, 404, 735</li>
+<li>Chapront, J., &amp; Francou, G., "LUNAR SOLUTION ELP version ELP/MPP02", (October 2002), <a href="https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/">https://cyrano-se.obspm.fr/pub/2_lunar_solutions/2_elpmpp02/</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

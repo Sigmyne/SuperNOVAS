@@ -139,11 +139,11 @@ Introduction</h1>
 <p>The primary goal of <b>SuperNOVAS</b> is to improve on the original NOVAS C library via:</p>
 <ul>
 <li>Fixing <a class="el" href="#fixed-issues" title="fixed-issues">outstanding issues</a>.</li>
+<li>Adding a high-level <a class="el" href="md__2github_2workspace_2doc_2USAGE-CPP.html" title="C++ Usage">C++11 API</a>.</li>
 <li>Improved <a href="https://sigmyne.github.io/SuperNOVAS/doc/html/files.html">C99 API documentation</a>.</li>
 <li><a class="el" href="#benchmarks" title="benchmarks">Faster calculations</a>.</li>
 <li><a class="el" href="#added-functionality" title="added-functionality">New features</a>.</li>
 <li><a class="el" href="#api-changes" title="api-changes">Refined C99 API</a> to promote best programming practices.</li>
-<li>New, high-level, <a class="el" href="md__2github_2workspace_2doc_2USAGE-CPP.html" title="C++ Usage">C++11 API</a>.</li>
 <li><a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#multi-threading-c99">Thread-safe calculations</a>.</li>
 <li><a class="el" href="#debug-support" title="debug-support">Debug mode</a> with informative error tracing.</li>
 <li><a href="https://codecov.io/gh/Sigmyne/SuperNOVAS">Regression testing</a> and continuous integration on GitHub.</li>
@@ -406,7 +406,7 @@ Recommendation: set up an ephemeris provider</h2>
 <div class="line"><span class="keywordflow">if</span>(status &lt; 0) {</div>
 <div class="line">  <span class="comment">// Oops something went wrong...</span></div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__solar-system_html_gab86ec03898e658c86c671a8b6399e331"><div class="ttname"><a href="group__solar-system.html#gab86ec03898e658c86c671a8b6399e331">novas_use_calceph_planets</a></div><div class="ttdeci">int novas_use_calceph_planets(t_calcephbin *eph)</div><div class="ttdoc">Sets the CALCEPH C library and the specified ephemeris data as the ephemeris provider for the major p...</div><div class="ttdef"><b>Definition</b> solsys-calceph.c:495</div></div>
+<div class="ttc" id="agroup__solar-system_html_gab86ec03898e658c86c671a8b6399e331"><div class="ttname"><a href="group__solar-system.html#gab86ec03898e658c86c671a8b6399e331">novas_use_calceph_planets</a></div><div class="ttdeci">int novas_use_calceph_planets(t_calcephbin *eph)</div><div class="ttdoc">Sets the CALCEPH C library and the specified ephemeris data as the ephemeris provider for the major p...</div><div class="ttdef"><b>Definition</b> solsys-calceph.c:492</div></div>
 <div class="ttc" id="anovas-calceph_8h_html"><div class="ttname"><a href="novas-calceph_8h.html">novas-calceph.h</a></div><div class="ttdoc">SuperNOVAS functions interfacing with the CALCEPH C library.</div></div>
 </div><!-- fragment --><p>Don't forget to link with <span class="tt">-lsolsys-calceph</span> and <span class="tt">-lcalceph</span> flags added you yor build. With that, you have now unlocked a lot of the high-precision capabilities of <b>SuperNOVAS</b>. Have fun with it!</p>
 <p>For more details on using CALCEPH or integrating other ways for providing ephemeris data to <b>SuperNOVAS</b> look at the <a class="el" href="#solarsystem" title="solarsystem">section below</a>.</p>
@@ -459,7 +459,7 @@ Details</summary>
 <div class="line"><span class="keywordflow">if</span>(status &lt; 0) {</div>
 <div class="line">  <span class="comment">// Oops something went wrong...</span></div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__solar-system_html_ga35fc86a939602ec910dbdfde180d7f31"><div class="ttname"><a href="group__solar-system.html#ga35fc86a939602ec910dbdfde180d7f31">novas_use_calceph</a></div><div class="ttdeci">int novas_use_calceph(t_calcephbin *eph)</div><div class="ttdoc">Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...</div><div class="ttdef"><b>Definition</b> solsys-calceph.c:452</div></div>
+<div class="ttc" id="agroup__solar-system_html_ga35fc86a939602ec910dbdfde180d7f31"><div class="ttname"><a href="group__solar-system.html#ga35fc86a939602ec910dbdfde180d7f31">novas_use_calceph</a></div><div class="ttdeci">int novas_use_calceph(t_calcephbin *eph)</div><div class="ttdoc">Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...</div><div class="ttdef"><b>Definition</b> solsys-calceph.c:449</div></div>
 </div><!-- fragment --><p>All modern JPL (SPK) ephemeris files should work with the <span class="tt">solsys-calceph</span> plugin. When linking your application, add <span class="tt">-lsolsys-calceph</span> to your link flags (or else link with <span class="tt">solsys-calceph.o</span>), and link against the CALCEPH library also (<span class="tt">-lcalceph</span>). That's all there is to it.</p>
 <p>When using CALCEPH, ephemeris objects are referenced by their ID numbers (<span class="tt"><a class="el" href="structnovas__object.html#a5661908bdaa0ce7b53762fb9bc0f46bc" title="enum novas_planet, or minor planet ID (e.g. NAIF), or star catalog ID.">object.number</a></span>), unless it is set to -1, in which case name-based lookup will be used instead. ID numbers are assumed to be NAIF by default, but <span class="tt"><a class="el" href="group__solar-system.html#ga5531b937a5bb5491cb475d2536346ad8" title="Sets the type of Solar-system body IDs to use as object.number with NOVAS_EPHEM_OBJECT types.">novas_calceph_use_ids()</a></span> can select between NAIF or CALCEPH numbering systems, if necessary.</p>
 <p></p>
@@ -493,8 +493,8 @@ Details</summary>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Then use CSPICE as your SuperNOVAS ephemeris provider</span></div>
 <div class="line"><a class="code hl_function" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4">novas_use_cspice</a>();</div>
-<div class="ttc" id="agroup__solar-system_html_ga9b44218bca5fce1e9e5103494c15dde4"><div class="ttname"><a href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4">novas_use_cspice</a></div><div class="ttdeci">int novas_use_cspice()</div><div class="ttdoc">Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...</div><div class="ttdef"><b>Definition</b> solsys-cspice.c:665</div></div>
-<div class="ttc" id="agroup__solar-system_html_gae02d26964099f56c375dc78172ad135b"><div class="ttname"><a href="group__solar-system.html#gae02d26964099f56c375dc78172ad135b">cspice_add_kernel</a></div><div class="ttdeci">int cspice_add_kernel(const char *filename)</div><div class="ttdoc">Adds a SPICE kernel to the currently managed open kernels.</div><div class="ttdef"><b>Definition</b> solsys-cspice.c:206</div></div>
+<div class="ttc" id="agroup__solar-system_html_ga9b44218bca5fce1e9e5103494c15dde4"><div class="ttname"><a href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4">novas_use_cspice</a></div><div class="ttdeci">int novas_use_cspice()</div><div class="ttdoc">Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...</div><div class="ttdef"><b>Definition</b> solsys-cspice.c:658</div></div>
+<div class="ttc" id="agroup__solar-system_html_gae02d26964099f56c375dc78172ad135b"><div class="ttname"><a href="group__solar-system.html#gae02d26964099f56c375dc78172ad135b">cspice_add_kernel</a></div><div class="ttdeci">int cspice_add_kernel(const char *filename)</div><div class="ttdoc">Adds a SPICE kernel to the currently managed open kernels.</div><div class="ttdef"><b>Definition</b> solsys-cspice.c:203</div></div>
 <div class="ttc" id="anovas-cspice_8h_html"><div class="ttname"><a href="novas-cspice_8h.html">novas-cspice.h</a></div><div class="ttdoc">SuperNOVAS functions interfacing with the NAIF CSPICE Toolkit.</div></div>
 </div><!-- fragment --><p>All JPL ephemeris data will work with the <span class="tt">solsys-cspice</span> plugin. When linking your application, add <span class="tt">-lsolsys-cspice</span> to your link flags (or else link with <span class="tt">solsys-cspice.o</span>), and of course the CSPICE library also. That's all there is to it.</p>
 <p>When using CSPICE, ephemeris objects are referenced by their NAIF ID numbers (<span class="tt"><a class="el" href="structnovas__object.html#a5661908bdaa0ce7b53762fb9bc0f46bc" title="enum novas_planet, or minor planet ID (e.g. NAIF), or star catalog ID.">object.number</a></span>), unless that number is set to -1, in which case name-based lookup will be used instead.</p>
@@ -514,7 +514,7 @@ Details</summary>
 <div class="line">  <span class="comment">// Your custom ephemeris reader implementation here</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="anovas_8h_html_a208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1092</div></div>
+<div class="ttc" id="anovas_8h_html_a208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1084</div></div>
 </div><!-- fragment --><p>which takes an object ID number (such as a NAIF), an object name, and a split TDB date (for precision) as it inputs, and returns the type of origin with corresponding ICRS position and velocity vectors in the supplied pointer locations. The function can use either the ID number or the name to identify the object or file (whatever is the most appropriate for the implementation and for the supplied parameters). The positions and velocities may be returned either relative to the SSB or relative to the heliocenter, and accordingly, your function should set the value pointed at by origin to <span class="tt"><a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c" title="Origin at the Solar-system baricenter (i.e. BCRS).">NOVAS_BARYCENTER</a></span> or <span class="tt"><a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27bea13c0711a025b9aebd4186ab9127cbd7b" title="Origin at the center of the Sun.">NOVAS_HELIOCENTER</a></span> accordingly. Positions and velocities are rectangular ICRS <em>x,y,z</em> vectors in units of AU and AU/day respectively.</p>
 <p>This way you can easily integrate current ephemeris data, e.g. for the Minor Planet Center (MPC), or whatever other ephemeris service you prefer.</p>
 <p></p>
@@ -629,8 +629,8 @@ Runtime debug support</h1>
 <div class="line"> </div>
 <div class="line">novas_debug(<a class="code hl_enumvalue" href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a>);</div>
 <div class="ttc" id="agroup__util_html_ga5f35633b872751df4dacd2fb2cbe4ac3"><div class="ttname"><a href="group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug</a></div><div class="ttdeci">void novas_debug(enum novas_debug_mode mode)</div><div class="ttdoc">Enables or disables reporting errors and traces to the standard error stream.</div><div class="ttdef"><b>Definition</b> util.c:451</div></div>
-<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a></div><div class="ttdeci">@ NOVAS_DEBUG_OFF</div><div class="ttdoc">Do not print errors and traces to the standard error (default).</div><div class="ttdef"><b>Definition</b> novas.h:556</div></div>
-<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65">NOVAS_DEBUG_ON</a></div><div class="ttdeci">@ NOVAS_DEBUG_ON</div><div class="ttdoc">Print errors and traces to the standard error.</div><div class="ttdef"><b>Definition</b> novas.h:557</div></div>
+<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a></div><div class="ttdeci">@ NOVAS_DEBUG_OFF</div><div class="ttdoc">Do not print errors and traces to the standard error (default).</div><div class="ttdef"><b>Definition</b> novas.h:555</div></div>
+<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65">NOVAS_DEBUG_ON</a></div><div class="ttdeci">@ NOVAS_DEBUG_ON</div><div class="ttdoc">Print errors and traces to the standard error.</div><div class="ttdef"><b>Definition</b> novas.h:556</div></div>
 </div><!-- fragment --><hr  />
 <p><a class="anchor" id="benchmarks"></a> </p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
@@ -693,14 +693,14 @@ Details</summary>
 <p>The above benchmarks are all for single-threaded performance. Since <b>SuperNOVAS</b> is generally thread-safe, you can expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single core performance, you could calculate up to 32 million precise positions per second, if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in under one minute.</p>
 <hr  />
 <p><a class="anchor" id="supernovas-features"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
 SuperNOVAS added features</h1>
 <ul>
 <li><a class="el" href="#added-functionality" title="added-functionality">Newly functionality highlights</a></li>
 <li><a class="el" href="#api-changes" title="api-changes">Refinements to the NOVAS C API</a></li>
 </ul>
 <p><a class="anchor" id="added-functionality"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 New functionality highlights</h2>
 <p>Below is a non-exhaustive overview new features added by <b>SuperNOVAS</b> on top of the existing NOVAS C API. See <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/CHANGELOG.md"><span class="tt">CHANGELOG.md</span></a> for more details.</p>
 <details >
@@ -799,7 +799,7 @@ New in v1.6</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="api-changes"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
 Refinements to the NOVAS C API</h2>
 <p>Many <b>SuperNOVAS</b> changes are focused on improving the usability and promote best coding practices so that both the library and your application will be safer, and less prone to nagging errors. Below is a detailed listing of the principal ways <b>SuperNOVAS</b> has improved on the original NOVAS C library in these respects.</p>
 <details >

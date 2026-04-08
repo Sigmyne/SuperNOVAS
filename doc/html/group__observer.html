@@ -998,13 +998,11 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000009">Deprecated</a></b></dt><dd>This old NOVAS C function has a few too many caveats. It is recommended that you use <span class="tt"><a class="el" href="#gad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a></span>, <span class="tt"><a class="el" href="#gaa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a></span>, or <span class="tt"><a class="el" href="#gaa82db32ce7b115db4f0a077ca899589b" title="Initializes an observer data structure for a ground-based observer at the specified observing site,...">make_observer_at_site()</a></span> instead (all of which set default mean annual weather parameters for approximate refraction correction), and optionally set actual weather data afterwards, based on the measurements available. This function will be available for the foreseeable future also.</dd></dl>
 <p>Initializes an observer data structure with the specified ITRF / GRS80 location, and he specified local pressure and temperature. This old NOVAS C function does not set humidity. Thus, if humidity is needed for refraction correction, then you should set it explicitly after this call.</p>
-<p>NOTES: </p><ol>
-<li>
-You can convert coordinates among ITRF realization using <span class="tt"><a class="el" href="#gafd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a></span>, possibly after <span class="tt"><a class="el" href="#gab07d86d425d68a62e94e965dd36b7a32" title="Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference...">novas_geodetic_to_cartesian()</a></span> with <span class="tt"><a class="el" href="#gga5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as necessary for polar ITRF coordinates. </li>
-<li>
-You can convert ITRF Cartesian <em>xyz</em> locations to geodetic locations by using <span class="tt"><a class="el" href="#ga7479134485c298faa858d73ee0513a11" title="Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipso...">novas_cartesian_to_geodetic()</a></span> with <span class="tt"><a class="el" href="#gga5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as the reference ellipsoid parameter. </li>
-<li>
-If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want to use <a class="el" href="#gaa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a> intead </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>You can convert coordinates among ITRF realization using <span class="tt"><a class="el" href="#gafd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a></span>, possibly after <span class="tt"><a class="el" href="#gab07d86d425d68a62e94e965dd36b7a32" title="Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference...">novas_geodetic_to_cartesian()</a></span> with <span class="tt"><a class="el" href="#gga5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as necessary for polar ITRF coordinates.</li>
+<li>You can convert ITRF Cartesian <em>xyz</em> locations to geodetic locations by using <span class="tt"><a class="el" href="#ga7479134485c298faa858d73ee0513a11" title="Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipso...">novas_cartesian_to_geodetic()</a></span> with <span class="tt"><a class="el" href="#gga5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118" title="GRS80 reference ellipsoid, used for the International Terrestrial Reference System (ITRS).">NOVAS_GRS80_ELLIPSOID</a></span> as the reference ellipsoid parameter.</li>
+<li>If you have longitude, latitude, and height defined as GPS (WGS84) values, you might want to use <a class="el" href="#gaa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a> intead</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1145,16 +1143,15 @@ novas_set_weather(), <a class="el" href="#ga7479134485c298faa858d73ee0513a11" ti
 </div><div class="memdoc">
 
 <p>Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipsoid. </p>
-<p>NOTES: </p><ol>
-<li>
-Adapted from the IERS <span class="tt">GCONV2.F</span> source code, see <a href="https://iers-conventions.obspm.fr/content/chapter4/software/GCONV2.F">https://iers-conventions.obspm.fr/content/chapter4/software/GCONV2.F</a>.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Adapted from the IERS <span class="tt">GCONV2.F</span> source code, see <a href="https://iers-conventions.obspm.fr/content/chapter4/software/GCONV2.F">https://iers-conventions.obspm.fr/content/chapter4/software/GCONV2.F</a>.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Fukushima, T., "Transformation from Cartesian to geodetic
-    coordinates accelerated by Halley's method", J. Geodesy (2006), 79(12): 689-693  </li>
-<li>
-Petit, G. and Luzum, B. (eds.), IERS Conventions (2010), IERS Technical Note No. 36, BKG (2010)  </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Fukushima, T., "Transformation from Cartesian to geodetic
+    coordinates accelerated by Halley's method", J. Geodesy (2006), 79(12): 689-693</li>
+<li>Petit, G. and Luzum, B. (eds.), IERS Conventions (2010), IERS Technical Note No. 36, BKG (2010)</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1379,7 +1376,7 @@ Petit, G. and Luzum, B. (eds.), IERS Conventions (2010), IERS Technical Note No.
 <div class="line"> </div>
 <div class="line"><span class="comment">// Convert ITRF88 coordinates to ITRF2000</span></div>
 <div class="line"><a class="code hl_function" href="#gafd98ed01148f1291018809d77785527f">novas_itrf_transform</a>(1988, from_coords, from_rates, 2000, ...);</div>
-<div class="ttc" id="agroup__observer_html_gafd98ed01148f1291018809d77785527f"><div class="ttname"><a href="#gafd98ed01148f1291018809d77785527f">novas_itrf_transform</a></div><div class="ttdeci">int novas_itrf_transform(int from_year, const double *restrict from_coords, const double *restrict from_rates, int to_year, double *to_coords, double *to_rates)</div><div class="ttdoc">Converts ITRF coordinates between different realizations of the ITRF coordinate system.</div><div class="ttdef"><b>Definition</b> itrf.c:226</div></div>
+<div class="ttc" id="agroup__observer_html_gafd98ed01148f1291018809d77785527f"><div class="ttname"><a href="#gafd98ed01148f1291018809d77785527f">novas_itrf_transform</a></div><div class="ttdeci">int novas_itrf_transform(int from_year, const double *restrict from_coords, const double *restrict from_rates, int to_year, double *to_coords, double *to_rates)</div><div class="ttdoc">Converts ITRF coordinates between different realizations of the ITRF coordinate system.</div><div class="ttdef"><b>Definition</b> itrf.c:223</div></div>
 </div><!-- fragment --><p>or equivalently, after the transformation to ITRF2000, as:</p>
 <div class="fragment"><div class="line"><span class="comment">// Convert ITRF88 coordinates to ITRF2000</span></div>
 <div class="line"><a class="code hl_function" href="#gafd98ed01148f1291018809d77785527f">novas_itrf_transform</a>(1988, from_coords, from_rates, 2000, to_coords, to_rates);</div>
@@ -1387,9 +1384,9 @@ Petit, G. and Luzum, B. (eds.), IERS Conventions (2010), IERS Technical Note No.
 <div class="line"><span class="comment">// Apply station motion in ITRF2000</span></div>
 <div class="line"><span class="keywordflow">for</span>(i = 0; i &lt; 3; i++)</div>
 <div class="line">  to_coords[i] += to_rates[i] * (2006.78 - 1994.36)</div>
-</div><!-- fragment --><p>REFERENCES: </p><ol>
-<li>
-IERS Conventions, Chapter 4, Eq. 4.13 and Table 4.1. See <a href="https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf">https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</a> </li>
+</div><!-- fragment --><p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions, Chapter 4, Eq. 4.13 and Table 4.1. See <a href="https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf">https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf</a></li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1529,11 +1526,10 @@ novas_transform_ellipsoid() </dd></dl>
 <p>(2013), and scaling relations with altitude (up to 12 km).</p>
 <p>Humidity is set to 70% at sea level (which is a typical value globally), and adjusted to decrease with altitude linearly at a rate of 7.5% per km up to 8000 meters. Above that a quadratic model is assumed, peaking at 45% at 14 km &ndash; based on the measured distribution by Mendez-Astudillo et al. (2021). Finally above 20.8 km, zero humidity is assumed.</p>
 <p>These parameters are all very approximate, but in the absence of measured data, they represent a best guess default model of sorts.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Feulner, G., Rahmstorf, S., Levermann, A., and Volkwardt, S. (2013), Journal of Climate 26, 7136 </li>
-<li>
-Mendez-Astudillo, J., et al. (2021), Urban Heat Island (UHI) Mitigation (pp.43-59), DOI:10.1007/978-981-33-4050-3_3  </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Feulner, G., Rahmstorf, S., Levermann, A., and Volkwardt, S. (2013), Journal of Climate 26, 7136</li>
+<li>Mendez-Astudillo, J., et al. (2021), Urban Heat Island (UHI) Mitigation (pp.43-59), DOI:10.1007/978-981-33-4050-3_3</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1603,9 +1599,9 @@ Mendez-Astudillo, J., et al. (2021), Urban Heat Island (UHI) Mitigation (pp.43-5
 
 <p>Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth's surface. </p>
 <p>NOTES:</p>
-<ul>
+<ol type="1">
 <li>unlike the original NOVAS <span class="tt"><a class="el" href="group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a></span>, this implementation takes the polar offsets into account.</li>
-</ul>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">ts</td><td>Astrometric time of oservation </td></tr>

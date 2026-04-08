@@ -196,23 +196,18 @@ Functions</h2></td></tr>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000007">Deprecated</a></b></dt><dd>This old way of incorporating Earth orientation parameters into the true equator and equinox is now disfavored. Instead, the pole offsets should be used only to convert between the Terrestrial Intermediate Reference System (TIRS) / Pseudo Earth Fixed (PEF) and the International Terrestrial Reference System (ITRS) going forward, e.g. via <span class="tt"><a class="el" href="novas_8h.html#a3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a></span> / <span class="tt"><a class="el" href="novas_8h.html#aa57cbcae2001fece2ee4a2babfbc5f89" title="Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...">novas_hor_to_app()</a></span> or else <span class="tt"><a class="el" href="novas_8h.html#aead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span>.</dd></dl>
 <p>Specifies the unmodeled celestial pole offsets for high-precision applications to be applied to the True of Date (TOD) equator, in the old, pre IAU 2006 methodology. Nonetheless, these offsets should be specified relative to the IAU2006 precession / nutation model to provide a correction to the modeled (precessed and nutated) position of Earth's pole, such those derived from observations and published by IERS.</p>
 <p>The call sets the global variables <span class="tt">PSI_COR</span> and <span class="tt">EPS_COR</span>, for subsequent calls to <span class="tt"><a class="el" href="#ab75165e2d69231da10c67de025ee05d8" title="(primarily for internal use) Computes quantities related to the orientation of the Earth&#39;s rotation a...">e_tilt()</a></span>. As such, it should be called to specify pole offsets prior to legacy NOVAS C equinox-specific calls. The global values of <span class="tt">PSI_COR</span> and <span class="tt">EPS_COR</span> specified via this function will be effective until explicitly changed again.</p>
-<p>NOTES: </p><ol>
-<li>
-The pole offsets et this way will affect all future TOD-based calculations, until the pole is changed or reset again. Hence, you should be extremely careful using it (if at all), as it may become an unpredictable source of inaccuracy if implicitly applied without intent to do so.  </li>
-<li>
-The current UT1 - UTC time difference, and polar offsets, historical data and near-term projections are published in the &lt;a href="<a href="https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html">https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html</a>&gt;IERS Bulletins  </li>
-<li>
-If &Delta;&delta;&psi;, &Delta;&delta;d&epsilon; offsets are specified, these must be the residual corrections relative to the IAU 2006 precession/nutation model (not the Lieske et al. 1977 model!). As such, they are just a rotated version of the newer <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub> offsets published by IERS.  </li>
-<li>
-The equivalent IAU 2006 standard method, which is preferred, is to apply <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub> pole offsets only for converting between TIRS and ITRS, e.g. via <span class="tt"><a class="el" href="novas_8h.html#a3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a>, </span><a class="el" href="novas_8h.html#aa57cbcae2001fece2ee4a2babfbc5f89" title="Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...">novas_hor_to_app()</a>, or <span class="tt"><a class="el" href="novas_8h.html#aead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span>).  </li>
-<li>
-There is no need to define pole offsets this way when using the newer frame-based approach introduced in SuperNOVAS. If the pole offsets are specified on a per-frame basis during the initialization of each observing frame (see <span class="tt"><a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span>, the offsets will be applied for the TIRS / ITRS conversion only, and not to the TOD equator per se.  </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>The pole offsets et this way will affect all future TOD-based calculations, until the pole is changed or reset again. Hence, you should be extremely careful using it (if at all), as it may become an unpredictable source of inaccuracy if implicitly applied without intent to do so.</li>
+<li>The current UT1 - UTC time difference, and polar offsets, historical data and near-term projections are published in the <a href="https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html">IERS Bulletins</a></li>
+<li>If &Delta;&delta;&psi;, &Delta;&delta;d&epsilon; offsets are specified, these must be the residual corrections relative to the IAU 2006 precession/nutation model (not the Lieske et al. 1977 model!). As such, they are just a rotated version of the newer <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub> offsets published by IERS.</li>
+<li>The equivalent IAU 2006 standard method, which is preferred, is to apply <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub> pole offsets only for converting between TIRS and ITRS, e.g. via <span class="tt"><a class="el" href="novas_8h.html#a3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a>, </span><a class="el" href="novas_8h.html#aa57cbcae2001fece2ee4a2babfbc5f89" title="Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...">novas_hor_to_app()</a>, or <span class="tt"><a class="el" href="novas_8h.html#aead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span>).</li>
+<li>There is no need to define pole offsets this way when using the newer frame-based approach introduced in SuperNOVAS. If the pole offsets are specified on a per-frame basis during the initialization of each observing frame (see <span class="tt"><a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span>, the offsets will be applied for the TIRS / ITRS conversion only, and not to the TOD equator per se.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Kaplan, G. (2005), US Naval Observatory Circular 179. </li>
-<li>
-Kaplan, G. (2003), USNO/AA Technical Note 2003-03. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Kaplan, G. (2005), US Naval Observatory Circular 179.</li>
+<li>Kaplan, G. (2003), USNO/AA Technical Note 2003-03.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -274,9 +269,9 @@ Kaplan, G. (2003), USNO/AA Technical Note 2003-03. </li>
 
 <p>(<em>primarily for internal use</em>) Computes quantities related to the orientation of the Earth's rotation axis at the specified Julian date. </p>
 <p>In the pre-IAU2000 method, unmodelled corrections to earth orientation can be defined via <span class="tt"><a class="el" href="#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> prior to this call. However, we strongly recommend against that approach, and suggest you apply Earth orientation corrections only in <span class="tt"><a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span> or <span class="tt"><a class="el" href="novas_8h.html#aead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span>.</p>
-<p>NOTES: </p><ol>
-<li>
-This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -320,11 +315,10 @@ This function caches the results of the last calculation in case it may be re-us
 
 <p>Compute the fundamental (a.k.a. </p>
 <p>Delaunay) arguments (mean elements) of the Sun and Moon.</p>
-<p>REFERENCES: </p><ol>
-<li>
-IERS Conventions 2010, Chapter 5, Eq. 5.43. </li>
-<li>
-Simon et al. (1994) Astronomy and Astrophysics 282, 663-683, esp. Sections 3.4-3.5. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>IERS Conventions 2010, Chapter 5, Eq. 5.43.</li>
+<li>Simon et al. (1994) Astronomy and Astrophysics 282, 663-683, esp. Sections 3.4-3.5.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -368,13 +362,13 @@ Simon et al. (1994) Astronomy and Astrophysics 282, 663-683, esp. Sections 3.4-3
 
 <p>Compute the intermediate right ascension of the equinox at the input Julian date, using an analytical expression for the accumulated precession in right ascension. </p>
 <p>For the true equinox, the result is the equation of the origins.</p>
-<p>NOTES: </p><ol>
-<li>
-Fixes bug in NOVAS C 3.1, which returned the value for the wrong 'equinox' if 'equinox = 1' was requested for the same 'jd_tbd' and 'accuracy' as a the preceding call with 'equinox = 0'. As a result, the caller ended up with the mean instead of the expected true equinox R.A. value. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Fixes bug in NOVAS C 3.1, which returned the value for the wrong 'equinox' if 'equinox = 1' was requested for the same 'jd_tbd' and 'accuracy' as a the preceding call with 'equinox = 0'. As a result, the caller ended up with the mean instead of the expected true equinox R.A. value.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42). </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -411,9 +405,9 @@ Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42). 
 </div><div class="memdoc">
 
 <p>Computes the mean obliquity of the ecliptic. </p>
-<p>REFERENCES: </p><ol>
-<li>
-Capitaine et al. (2003), Astronomy and Astrophysics 412, 567-586. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Capitaine et al. (2003), Astronomy and Astrophysics 412, 567-586.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -465,9 +459,9 @@ Capitaine et al. (2003), Astronomy and Astrophysics 412, 567-586. </li>
 <p>Nutates equatorial rectangular coordinates from mean equator and equinox of epoch to true equator and equinox of epoch. </p>
 <p>Inverse transformation may be applied by setting flag 'direction'.</p>
 <p>This is the old (pre IAU 2006) method of nutation calculation. If you follow the now standard IAU 2000 / 2006 methodology you will want to use <a class="el" href="novas_8h.html#a6e9ced7b0aec544ad7b057b58f777ec4" title="Returns the IAU2000 / 2006 values for nutation in longitude and nutation in obliquity for a given TDB...">nutation_angles()</a> instead.</p>
-<p>REFERENCES: </p><ol>
-<li>
-Explanatory Supplement To The Astronomical Almanac, pp. 114-115. </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Explanatory Supplement To The Astronomical Almanac, pp. 114-115.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -521,25 +515,17 @@ Explanatory Supplement To The Astronomical Almanac, pp. 114-115. </li>
 
 <p>Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) precession model of Capitaine et al. </p>
 <p>2003.</p>
-<p>NOTE: </p><ol>
-<li>
-<p class="startli">Unlike the original NOVAS C 3.1 version, this one does not require that one of the time arguments must be J2000. You can precess from any date to any other date, and the intermediate epoch of J2000 will be handled internally as needed.</p>
-<p class="endli"></p>
-</li>
-<li>
-This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call. </li>
+<p>NOTES:</p>
+<ol type="1">
+<li>Unlike the original NOVAS C 3.1 version, this one does not require that one of the time arguments must be J2000. You can precess from any date to any other date, and the intermediate epoch of J2000 will be handled internally as needed.</li>
+<li>This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.</li>
 </ol>
-<p>REFERENCES: </p><ol>
-<li>
-Explanatory Supplement To The Astronomical Almanac, pp. 103-104. </li>
-<li>
-Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586. </li>
-<li>
-Hilton, J. L. et al. (2006), IAU WG report, Celest. Mech., 94, pp. 351-367. </li>
-<li>
-Capitaine, N., P.T. Wallace and J. Chapront (2005), “Improvement of the IAU 2000 precession model.” Astronomy &amp; Astrophysics, Vol. 432, pp. 355–67. </li>
-<li>
-Liu, J.-C., &amp; Capitaine, N. (2017), A&amp;A 597, A83 </li>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Explanatory Supplement To The Astronomical Almanac, pp. 103-104.</li>
+<li>Capitaine, N. et al. (2003), Astronomy And Astrophysics 412, pp. 567-586.</li>
+<li>Hilton, J. L. et al. (2006), IAU WG report, Celest. Mech., 94, pp. 351-367.</li>
+<li>Capitaine, N., P.T. Wallace and J. Chapront (2005), “Improvement of the IAU 2000 precession model.” Astronomy &amp; Astrophysics, Vol. 432, pp. 355–67. 5.Liu, J.-C., &amp; Capitaine, N. (2017), A&amp;A 597, A83.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
