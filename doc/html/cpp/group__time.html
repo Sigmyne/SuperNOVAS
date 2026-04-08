@@ -152,11 +152,11 @@ Functions</h2></td></tr>
 <tr class="memitem:ga3c5993440d5413726a8c16abcebd9397" id="r_ga3c5993440d5413726a8c16abcebd9397"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga3c5993440d5413726a8c16abcebd9397">supernovas::AstrometricPosition::obs_time</a> () const</td></tr>
 <tr class="memdesc:ga3c5993440d5413726a8c16abcebd9397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the reference time at which this position was observed by an observer at the reference location.  <br /></td></tr>
 <tr class="memitem:gaecda13098f9fcb4f0a5a864c68bbf697" id="r_gaecda13098f9fcb4f0a5a864c68bbf697"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="#gaecda13098f9fcb4f0a5a864c68bbf697">supernovas::Source::rises_above</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;el, const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref=NULL, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0395574b9c5b2bdb7b9f8e04e1342029">Weather::standard</a>()) const</td></tr>
-<tr class="memdesc:gaecda13098f9fcb4f0a5a864c68bbf697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time when the source rises above the specified elevation next for an observer located on or near Earth's surface, or else <span class="tt">std::nullopt</span> if the observer is not near Earth's surface.  <br /></td></tr>
+<tr class="memdesc:gaecda13098f9fcb4f0a5a864c68bbf697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time when the source rises above the specified elevation next for an observer located on or near Earth's surface, or else an undefined (invalid) time if the observer is not near Earth's surface.  <br /></td></tr>
 <tr class="memitem:ga29375c229dce898b751473f2f4f74b1d" id="r_ga29375c229dce898b751473f2f4f74b1d"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga29375c229dce898b751473f2f4f74b1d">supernovas::Source::sets_below</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;el, const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref=NULL, const <a class="el" href="classsupernovas_1_1Weather.html">Weather</a> &amp;weather=<a class="el" href="classsupernovas_1_1Weather.html#a0395574b9c5b2bdb7b9f8e04e1342029">Weather::standard</a>()) const</td></tr>
-<tr class="memdesc:ga29375c229dce898b751473f2f4f74b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time when the source sets below the specified elevation next for an observer located on or near Earth's surface, or else <span class="tt">std::nullopt</span> if the observer is not near Earth's surface.  <br /></td></tr>
+<tr class="memdesc:ga29375c229dce898b751473f2f4f74b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time when the source sets below the specified elevation next for an observer located on or near Earth's surface, or else an undefined (invalid) time if the observer is not near Earth's surface.  <br /></td></tr>
 <tr class="memitem:gac424e530ebbab130b1635ac0c5355101" id="r_gac424e530ebbab130b1635ac0c5355101"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="#gac424e530ebbab130b1635ac0c5355101">supernovas::Source::transits_in</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame) const</td></tr>
-<tr class="memdesc:gac424e530ebbab130b1635ac0c5355101"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time when the source transits for an observer located on or near Earth's surface, or else <span class="tt">std::nullopt</span> if the observer is not near Earth's surface.  <br /></td></tr>
+<tr class="memdesc:gac424e530ebbab130b1635ac0c5355101"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time when the source transits for an observer located on or near Earth's surface, or else an undefined (invalid) time if the observer is not near Earth's surface.  <br /></td></tr>
 <tr class="memitem:gad301a9c74bfbdb8b55513cd005787b22" id="r_gad301a9c74bfbdb8b55513cd005787b22"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gad301a9c74bfbdb8b55513cd005787b22">tt2tdb_fp</a> (double jd_tt, double limit)</td></tr>
 <tr class="memdesc:gad301a9c74bfbdb8b55513cd005787b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the TDB-TT time difference with flexible precision.  <br /></td></tr>
 </table>
@@ -385,7 +385,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the time when the source rises above the specified elevation next for an observer located on or near Earth's surface, or else <span class="tt">std::nullopt</span> if the observer is not near Earth's surface. </p>
+<p>Returns the time when the source rises above the specified elevation next for an observer located on or near Earth's surface, or else an undefined (invalid) time if the observer is not near Earth's surface. </p>
 <p>The returned value may also be NAN if the source does not cross the specified elevation theshold within a day of the specified time of observation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -433,7 +433,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the time when the source sets below the specified elevation next for an observer located on or near Earth's surface, or else <span class="tt">std::nullopt</span> if the observer is not near Earth's surface. </p>
+<p>Returns the time when the source sets below the specified elevation next for an observer located on or near Earth's surface, or else an undefined (invalid) time if the observer is not near Earth's surface. </p>
 <p>The returned value may also be NAN if the source does not cross the specified elevation theshold within a day of the specified time of observation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -467,7 +467,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the time when the source transits for an observer located on or near Earth's surface, or else <span class="tt">std::nullopt</span> if the observer is not near Earth's surface. </p>
+<p>Returns the time when the source transits for an observer located on or near Earth's surface, or else an undefined (invalid) time if the observer is not near Earth's surface. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>observing frame (observer location and the lower bound for the returned time). </td></tr>

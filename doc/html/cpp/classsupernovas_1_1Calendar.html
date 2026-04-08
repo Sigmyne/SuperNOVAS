@@ -130,7 +130,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a865a6d0e1029718a8330a3905fe2a587" id="r_a865a6d0e1029718a8330a3905fe2a587"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a865a6d0e1029718a8330a3905fe2a587">date</a> (time_t t, long nanos=0) const</td></tr>
 <tr class="memdesc:a865a6d0e1029718a8330a3905fe2a587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance, in this calendar, for the specified UNIX time.  <br /></td></tr>
 <tr class="memitem:ad3128abe79227417392c24cbd666a61c" id="r_ad3128abe79227417392c24cbd666a61c"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad3128abe79227417392c24cbd666a61c">parse_date</a> (const std::string &amp;str, enum <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4">novas_date_format</a> fmt=<a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab4320d2be90ff55e278e6171f6516bab">NOVAS_YMD</a>) const</td></tr>
-<tr class="memdesc:ad3128abe79227417392c24cbd666a61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance, in this calendar, for the specified string date / time representation, if possible, or else std::nullopt.  <br /></td></tr>
+<tr class="memdesc:ad3128abe79227417392c24cbd666a61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance, in this calendar, for the specified string date / time representation, if possible, or else an undefined (invalid) date.  <br /></td></tr>
 <tr class="memitem:ac269d4a72c2ff1d8f50b7ee5cd9fa511" id="r_ac269d4a72c2ff1d8f50b7ee5cd9fa511"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ac269d4a72c2ff1d8f50b7ee5cd9fa511">to_string</a> () const</td></tr>
 <tr class="memdesc:ac269d4a72c2ff1d8f50b7ee5cd9fa511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of this type of calendar.  <br /></td></tr>
 <tr class="memitem:addaf24058f2aefb62c936b047f1a1a75" id="r_addaf24058f2aefb62c936b047f1a1a75"><td class="memItemLeft">enum <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a>&#160;</td><td class="memItemRight"><a class="el" href="#addaf24058f2aefb62c936b047f1a1a75">type</a> () const</td></tr>
@@ -395,7 +395,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns a new calendar date instance, in this calendar, for the specified string date / time representation, if possible, or else std::nullopt. </p>
+<p>Returns a new calendar date instance, in this calendar, for the specified string date / time representation, if possible, or else an undefined (invalid) date. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>The string date / time specification. There is a lot of flexibility on what dates/times may be parsed. See <a class="el" href="group__util.html#ga5ec9d054b7d363b3db1d065507a1ba41" title="Parses a calendar date/time string, expressed in the specified type of calendar, into a Julian day (J...">novas_parse_date_format()</a> for details. </td></tr>

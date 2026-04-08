@@ -185,7 +185,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A valid observing frame or else <span class="tt">std::nullopt</span> if a valid observing frame could not be created with the accuracy, for example because no high accuracy planetary position provider was specified, or because either this observer or the time itself were invalid.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>An observing frame, which may be invaliud if a valid observing frame could not be created with the accuracy, for example because no high accuracy planetary position provider was specified, or because either this observer or the time itself were invalid. The caller should typically check for validity after the call.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae636a2863ee350bd67d5d53c19a694ba" title="Returns a reduced accuracy observing frame for this observer at the specified time.">reduced_accuracy_frame_at()</a> </dd>
 <dd>

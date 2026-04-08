@@ -162,7 +162,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ac681db544b1838b4916fe20964d6bbbd" id="r_ac681db544b1838b4916fe20964d6bbbd"><td class="memItemLeft">static OrbitalSystem&#160;</td><td class="memItemRight"><a class="el" href="#ac681db544b1838b4916fe20964d6bbbd">equatorial</a> (const <a class="el" href="classsupernovas_1_1Planet.html">Planet</a> &amp;<a class="el" href="#ad298620379b01fe4de16aedaa4d1fdb5">center</a>=<a class="el" href="classsupernovas_1_1Planet.html#a9647c370d0f4c27c07e7f4773802ad5a">Planet::sun</a>())</td></tr>
 <tr class="memdesc:ac681db544b1838b4916fe20964d6bbbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new equarial orbital system around the specified major planet, Sun, Moon, or barycenter position.  <br /></td></tr>
 <tr class="memitem:a9916e95832d6e4e422479adff66a0af9" id="r_a9916e95832d6e4e422479adff66a0af9"><td class="memItemLeft">static OrbitalSystem&#160;</td><td class="memItemRight"><a class="el" href="#a9916e95832d6e4e422479adff66a0af9">from_novas_orbital_system</a> (const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *system)</td></tr>
-<tr class="memdesc:a9916e95832d6e4e422479adff66a0af9"><td class="mdescLeft">&#160;</td><td class="mdescRight">(<em>primarily for internal use</em>) Constructs a new orbital system by copying the specified NOVAS C orbital system data structure, or <span class="tt">std::nullopt</span> if the argument is NULL.  <br /></td></tr>
+<tr class="memdesc:a9916e95832d6e4e422479adff66a0af9"><td class="mdescLeft">&#160;</td><td class="mdescRight">(<em>primarily for internal use</em>) Constructs a new orbital system by copying the specified NOVAS C orbital system data structure.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -363,8 +363,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>(<em>primarily for internal use</em>) Constructs a new orbital system by copying the specified NOVAS C orbital system data structure, or <span class="tt">std::nullopt</span> if the argument is NULL. </p>
-<p>It's best practice to call <span class="tt"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; stae of the implementing instance.">is_valid()</a></span> after to check that the supplied parameters do in fact define a valid orbital system.</p>
+<p>(<em>primarily for internal use</em>) Constructs a new orbital system by copying the specified NOVAS C orbital system data structure. </p>
+<p>The returned orbital system may be invalid if the argument is NULL or if the C orbital system is ill-defined. It's best practice to call <span class="tt"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; stae of the implementing instance.">is_valid()</a></span> on the returned orbital system instance after this call to check that the supplied parameters do in fact define a valid orbital system.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">system</td><td>The NOVAS C orbital system data structure (copied) </td></tr>
