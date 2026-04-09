@@ -22,10 +22,7 @@ foreach(BENCHMARK ${BENCHMARK_PROGRAMS})
         add_executable(${BENCHMARK} ${BENCHMARK_SOURCE})
 
         # Link against the supernovas library
-        target_link_libraries(${BENCHMARK} PRIVATE
-            supernovas::core
-            ${MATH}
-        )
+        target_link_libraries(${BENCHMARK} PRIVATE core)
     else()
         message(WARNING "Source file ${BENCHMARK_SOURCE} not found - ${BENCHMARK} will not be built")
     endif()

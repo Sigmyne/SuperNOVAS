@@ -23,9 +23,7 @@ target_include_directories(core PUBLIC
 )
 
 # Link with math libs as necessary
-if(MATH_LIB)
-    target_link_libraries(core PUBLIC ${MATH})
-endif()
+target_link_libraries(core PUBLIC ${MATHLIB})
 
 # ----------------------------------------------------------------------------
 # Plugins
@@ -52,9 +50,8 @@ function(solsys_plugin EPHEM_LIB_NAME)
     find_library(EPHEM_LIBRARY ${EPHEM_LIB_NAME} REQUIRED)
     
     target_link_libraries(solsys-${EPHEM_LIB_NAME} PUBLIC
-        supernovas::core
+        core
         ${EPHEM_LIBRARY}
-        ${MATH}
         Threads::Threads
     )
 endfunction()

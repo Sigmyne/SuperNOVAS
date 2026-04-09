@@ -88,13 +88,13 @@ if(WIN32)
 endif()
 
 if(WIN32)
-    set(MATH "")
+    set(MATHLIB "")
 else()
     find_library(MATH_LIBRARY m REQUIRED)
-    set(MATH m)
+    set(MATHLIB m)
     
     # [.pc] Link applications against math lib...
-    string(APPEND PC_LIBS_PRIVATE -l${MATH} " ")
+    string(APPEND PC_LIBS_PRIVATE -l${MATHLIB} " ")
 endif()
 
 if(ENABLE_CALCEPH OR ENABLE_CSPICE)

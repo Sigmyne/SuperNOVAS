@@ -124,19 +124,19 @@ int main(int argc, const char *argv[]) {
   // Set the astrometric time of observation...
 
   // Set the time of observation to the current UTC-based UNIX time
+  /*
   if(novas_set_current_time(LEAP_SECONDS, DUT1, &obs_time) != 0) {
     fprintf(stderr, "ERROR! failed to set time of observation.\n");
     return 1;
   }
+  */
 
   // ... Or you could set a time explicily in any known timescale.
-  /*
   // Let's set a TDB-based time for the start of the J2000 epoch exactly...
   if(novas_set_time(NOVAS_TDB, NOVAS_JD_J2000, 32, 0.0, &obs_time) != 0) {
     fprintf(stderr, "ERROR! failed to set time of observation.\n");
     return 1;
   }
-  */
 
 
   // -------------------------------------------------------------------------

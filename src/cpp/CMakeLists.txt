@@ -40,6 +40,6 @@ if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
 endif()
 
 # Link with math libs and core SuperNOVAS as necessary
-target_link_libraries(cpp PUBLIC supernovas::core ${MATH})
+target_link_libraries(cpp PUBLIC core)
 
 

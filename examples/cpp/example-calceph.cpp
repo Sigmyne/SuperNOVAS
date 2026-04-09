@@ -113,7 +113,7 @@ int main(int argc, const char *argv[]) {
   // Set the astrometric time of observation...
 
   // Set the time of observation to the current UTC-based UNIX time
-  Time t = Time::now(eop);
+  //Time t = Time::now(eop);
 
   // ... Or you could set a time from a string calendar date
   /*
@@ -126,7 +126,7 @@ int main(int argc, const char *argv[]) {
    */
 
   // ... Or you could set a time as a Julian date any known timescale.
-  //Time t(NOVAS_JD_J2000, 32, 0.0);
+  Time t(NOVAS_JD_J2000, 32, 0.0);
 
   // ... Or you could set a time via a POSIX timespec.
   //struct timespec ts = ...;     // the POSIX time specification

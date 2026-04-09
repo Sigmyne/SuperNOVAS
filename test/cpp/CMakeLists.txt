@@ -18,16 +18,10 @@ foreach(TEST ${TEST_PROGRAMS})
 
     add_executable(${TEST} ${TEST_SOURCE})
               
-    target_include_directories(${TEST} PRIVATE
-        ${PROJECT_SOURCE_DIR}/include
-    )
+    target_include_directories(${TEST} PRIVATE ${PROJECT_SOURCE_DIR}/include)
         
     # Link against the supernovas library
-    target_link_libraries(${TEST} PRIVATE
-        supernovas::cpp
-        supernovas::core
-        ${MATH}
-    )
+    target_link_libraries(${TEST} PRIVATE cpp)
 
     add_test(NAME ${TEST} COMMAND ${TEST})
 endforeach()

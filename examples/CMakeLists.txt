@@ -8,10 +8,8 @@
 # Author: Attila Kovacs
 
 # ----------------------------------------------------------------------------
-# Generate derivative documentation
+# Generate example programs
 
-
-    
 if(ENABLE_CPP)
     add_subdirectory(cpp)
 else()

@@ -41,14 +41,16 @@ set(EXAMPLE_PROGRAMS
     example-moon
 )
 
-if(supernovas_solsys-calceph_FOUND)
+if(supernovas_solsys-calceph_FOUND OR ENABLE_CALCEPH)
     list(APPEND EXAMPLE_PROGRAMS example-calceph)
 endif()
 
-if(supernovas_solsys-cspice_FOUND)
+if(supernovas_solsys-cspice_FOUND OR ENABLE_CSPICE)
     list(APPEND EXAMPLE_PROGRAMS example-cspice)
 endif()
 
+# The ephemeris data to use for CALCEPH / CSPICE testing
+set(EPHEM ${PROJECT_SOURCE_DIR}/test/ephem/de440s-j2000.bsp)
 
 # Test programs, matching the test sources
 list(TRANSFORM EXAMPLE_PROGRAMS REPLACE "[.]cpp$" "")
@@ -63,10 +65,29 @@ foreach(EXAMPLE ${EXAMPLE_PROGRAMS})
 
     # Link against the supernovas library
     target_link_libraries(${EXAMPLE} PRIVATE
-       supernovas::core
-       supernovas::cpp
-       ${MATH}
+ 	supernovas::cpp
+ 	supernovas::core
+        ${MATHLIB}
     )
+    
+    # Special handling for CALCEPH example
+    if(${EXAMPLE} STREQUAL "example-calceph")
+        find_library(CALCEPH_LIB calceph REQUIRED)
+        target_link_libraries(${EXAMPLE} PRIVATE supernovas::solsys-calceph)
+        if(ENABLE_CALCEPH)
+            add_test(NAME ${EXAMPLE} COMMAND ${EXAMPLE} ${EPHEM})
+        endif()
 
-    add_test(NAME ${EXAMPLE} COMMAND ${EXAMPLE})
+    # Special handling for CSPICE example
+    elseif(${EXAMPLE} STREQUAL "example-cspice")
+        find_dependency(cspice) 
+        target_link_libraries(${EXAMPLE} PRIVATE supernovas::solsys-cspice)
+        if(ENABLE_CSPICE)
+            add_test(NAME ${EXAMPLE} COMMAND ${EXAMPLE} ${EPHEM})
+        endif()
+    
+    # All other examples...
+    else()
+   	add_test(NAME ${EXAMPLE} COMMAND ${EXAMPLE})
+    endif()
 endforeach()
