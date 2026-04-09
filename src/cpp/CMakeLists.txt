@@ -39,7 +39,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
     target_compile_options(cpp PRIVATE -x c++)
 endif()
 
-# Link with math libs as necessary
-target_link_libraries(cpp PRIVATE ${MATH} supernovas::core)
+# Link with math libs and core SuperNOVAS as necessary
+target_link_libraries(cpp PUBLIC supernovas::core ${MATH})
 
 

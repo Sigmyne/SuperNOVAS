@@ -17,7 +17,7 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    
  - #296: Possible buffer overflow in `novas_print_dms()`. (thanks to aleberti)
 
- - #305: `novas_geom_posvel()` returned velocities were referenced to SSB, not the observer.
+ - #305: `novas_geom_posvel()` returned velocities referenced to SSB, not to the observer.
 
 ### Added
 
@@ -63,6 +63,8 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  - Use more precise matrix from Liu et al. (2011) for equatorial / galactic conversions.
  
  - Consolidated equatorial vector transformations, eliminating duplicated code.
+ 
+ - CMake config updated to link libraries against dependent libraries with `PUBLIC` scope.
  
  - Improved and updated documentation.
 
