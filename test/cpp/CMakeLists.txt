@@ -24,8 +24,8 @@ foreach(TEST ${TEST_PROGRAMS})
         
     # Link against the supernovas library
     target_link_libraries(${TEST} PRIVATE
-        supernovas::core
         supernovas::cpp
+        supernovas::core
         ${MATH}
     )
 
