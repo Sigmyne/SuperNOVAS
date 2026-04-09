@@ -660,7 +660,6 @@ static int icrs_to_sys(const novas_frame *restrict frame, double *restrict pos, 
     case NOVAS_J2000:
     case NOVAS_MOD:
     case NOVAS_TOD:
-      //gcrs_to_j2000(pos, pos);
       matrix_transform(pos, &frame->icrs_to_j2000, pos);
       if(sys == NOVAS_J2000) return 0;
 

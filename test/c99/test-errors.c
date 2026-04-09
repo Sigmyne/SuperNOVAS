@@ -2697,6 +2697,33 @@ static int test_timescale_offset() {
   return n;
 }
 
+static int test_gcrs_to_sys() {
+  int n = 0;
+  double p[3] = {0.0};
+
+  if(check("gcrs_to_sys:in:null", -1, novas_icrs_to_sys(NULL, NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, NOVAS_J2000, p))) n++;
+  if(check("gcrs_to_sys:out:null", -1, novas_icrs_to_sys(p, NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, NOVAS_J2000, NULL))) n++;
+  if(check("gcrs_to_sys:sys:-1", -1, novas_icrs_to_sys(p, NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, (enum novas_reference_system) -1, p))) n++;
+  if(check("gcrs_to_sys:tirs", -1, novas_icrs_to_sys(p, NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, NOVAS_TIRS, p))) n++;
+  if(check("gcrs_to_sys:itrs", -1, novas_icrs_to_sys(p, NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, NOVAS_ITRS, p))) n++;
+
+  return n;
+}
+
+static int test_sys_to_gcrs() {
+  int n = 0;
+  double p[3] = {0.0};
+
+  if(check("sys_to_gcrs:in:null", -1, novas_sys_to_icrs(NOVAS_J2000, NULL, NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, p))) n++;
+  if(check("sys_to_gcrs:out:null", -1, novas_sys_to_icrs(NOVAS_J2000, p, NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, NULL))) n++;
+  if(check("sys_to_gcrs:sys:-1", -1, novas_sys_to_icrs((enum novas_reference_system) -1, p, NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, p))) n++;
+  if(check("sys_to_gcrs:tirs", -1, novas_sys_to_icrs(NOVAS_TIRS, p, NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, p))) n++;
+  if(check("sys_to_gcrs:itrs", -1, novas_sys_to_icrs(NOVAS_ITRS, p, NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, p))) n++;
+
+  return n;
+}
+
+
 int main(int argc, const char *argv[]) {
   int n = 0;
 
@@ -2928,6 +2955,8 @@ int main(int argc, const char *argv[]) {
   if(test_site_uvw()) n++;
   if(test_site_gcrs_posvel()) n++;
   if(test_timescale_offset()) n++;
+  if(test_gcrs_to_sys()) n++;
+  if(test_sys_to_gcrs()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");

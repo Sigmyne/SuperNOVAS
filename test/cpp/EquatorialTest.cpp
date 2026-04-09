@@ -122,11 +122,21 @@ int main() {
   Equatorial d1 =  d.to_icrs().to_tod(Time::b1900());
   if(!test.equals("to_icrs().to_tod().longitude()", d1.longitude().deg(), d.longitude().deg(), 1e-12)) n++;
   if(!test.equals("to_icrs().to_tod().latitude()", d1.latitude().deg(), d.latitude().deg(), 1e-12)) n++;
-  if(!test.equals("reference_system(TOD)", d.system_type(), NOVAS_TRUE_EQUATOR)) n++;
-  if(!test.equals("jd(B1900)", d.system().jd(), NOVAS_JD_B1900)) n++;
-  if(!test.check("to_tod(B1900)", d.to_tod(Time::b1900()) == d)) n++;
+  if(!test.equals("reference_system(TOD)", d.system_type(), NOVAS_TOD)) n++;
+  if(!test.equals("jd(TOD B1900)", d.system().jd(), NOVAS_JD_B1900)) n++;
+  if(!test.check("to_tod(TOD B1900)", d.to_tod(Time::b1900()) == d)) n++;
   if(!test.check("to_tod(time invalid)", !d.to_tod(Time::undefined()).is_valid())) n++;
   if(!test.equals("to_string(TOD B1900)", d.to_string(NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  TOD J1900.001")) n++;
+
+  Equatorial cirs = Equatorial(Angle(45.0 * Unit::deg), Angle(30.0 * Unit::deg), Equinox::cirs(Time::b1900()));
+  Equatorial cirs1 =  cirs.to_icrs().to_cirs(Time::b1900());
+  if(!test.equals("to_icrs().to_cirs().longitude()", cirs1.longitude().deg(), cirs.longitude().deg(), 1e-12)) n++;
+  if(!test.equals("to_icrs().to_cirs().latitude()", cirs1.latitude().deg(), cirs.latitude().deg(), 1e-12)) n++;
+  if(!test.equals("reference_system(CIRS)", cirs.system_type(), NOVAS_CIRS)) n++;
+  if(!test.equals("jd(CIRS B1900)", cirs.system().jd(), NOVAS_JD_B1900)) n++;
+  if(!test.check("to_cirs(CIRS B1900)", cirs.to_cirs(Time::b1900()) == cirs)) n++;
+  if(!test.check("to_cirs(time invalid)", !cirs.to_cirs(Time::undefined()).is_valid())) n++;
+  if(!test.equals("to_string(CIRS TOD B1900)", cirs.to_string(NOVAS_SEP_COLONS), "EQU 03:00:00.0000    30:00:00.000  CIRS J1900.001")) n++;
 
   Equatorial e = Equatorial(Angle(20.0 * Unit::deg), Angle(15.0 * Unit::deg), Equinox::icrs());
   if(!test.equals("distance_to()", e.distance_to(a).deg(),

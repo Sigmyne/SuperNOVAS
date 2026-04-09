@@ -292,37 +292,13 @@ short place(double jd_tt, const object *restrict source, const observer *restric
   // ---------------------------------------------------------------------
   // Transform, if necessary, to output coordinate system.
   // ---------------------------------------------------------------------
-  switch(coord_sys) {
-    case NOVAS_J2000: {
-      // Transform to equator and equinox of date.
-      gcrs_to_j2000(pos, pos);
-      break;
-    }
-
-    case NOVAS_MOD: {
-      // Transform to equator and equinox of date.
-      gcrs_to_mod(jd_tdb, pos, pos);
-      break;
-    }
-
-    case NOVAS_TOD: {
-      // Transform to equator and equinox of date.
-      gcrs_to_tod(jd_tdb, accuracy, pos, pos);
-      break;
-    }
-
-    case NOVAS_CIRS:
-    case NOVAS_TIRS: {
-      // Transform to equator and CIO of date.
-      prop_error(fn, gcrs_to_cirs(jd_tdb, accuracy, pos, pos), 80);
-      if(coord_sys == NOVAS_TIRS)
-        spin(era(jd_tt, -ut1_to_tt / DAY), pos, pos);
-      break;
-    }
-
-    default:
-      // Nothing else to do.
-      ;
+  if(coord_sys == NOVAS_TIRS) {
+    // Transform to equator and CIO of date.
+    prop_error(fn, gcrs_to_cirs(jd_tdb, accuracy, pos, pos), 80);
+    spin(era(jd_tt, -ut1_to_tt / DAY), pos, pos);
+  }
+  else {
+    novas_icrs_to_sys(pos, jd_tdb, accuracy, coord_sys, pos);
   }
 
   // ---------------------------------------------------------------------

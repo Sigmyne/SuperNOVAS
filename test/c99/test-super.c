@@ -5176,6 +5176,24 @@ static int test_timescale_offset() {
   return n;
 }
 
+static int test_gcrs_to_sys() {
+  double in[3] = {1.0, -2.0, 3.0}, out[3] = {0.0};
+
+  if(!is_ok("gcrs_to_sys:gcrs:out!=in", novas_icrs_to_sys(in, 0, NOVAS_FULL_ACCURACY, NOVAS_ICRS, out))) return 1;
+  if(!is_ok("gcrs_to_sys:gcrs:out!=in:check", check_equal_pos(out, in, 1e-15))) return 1;
+
+  return 0;
+}
+
+static int test_sys_to_gcrs() {
+  double in[3] = {1.0, -2.0, 3.0}, out[3] = {0.0};
+
+  if(!is_ok("sys_to_gcrs:gcrs:out!=in", novas_sys_to_icrs(NOVAS_ICRS, in, 0, NOVAS_FULL_ACCURACY, out))) return 1;
+  if(!is_ok("sys_to_gcrs:gcrs:out!=in:check", check_equal_pos(out, in, 1e-15))) return 1;
+
+  return 0;
+}
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -5345,6 +5363,8 @@ int main(int argc, char *argv[]) {
   if(test_uvw()) n++;
   if(test_site_uvw()) n++;
   if(test_timescale_offset()) n++;
+  if(test_gcrs_to_sys()) n++;
+  if(test_sys_to_gcrs()) n++;
 
   n += test_dates();
 

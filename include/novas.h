@@ -3377,6 +3377,13 @@ int novas_site_uvw(const novas_timespec *restrict ts, const on_surface *restrict
 int novas_site_gcrs_posvel(const novas_timespec *restrict ts, const on_surface *restrict site, const double *restrict v_itrs,
         double xp, double yp, enum novas_accuracy accuracy, double *restrict pos, double *restrict vel);
 
+// in transform.c
+/// @c_equatorial
+int novas_icrs_to_sys(const double *in, double jd_tdb, enum novas_accuracy accuracy, enum novas_reference_system sys, double *out);
+
+/// @c_equatorial
+int novas_sys_to_icrs(enum novas_reference_system sys, const double *in, double jd_tdb, enum novas_accuracy accuracy, double *out);
+
 
 // <================= END of SuperNOVAS API =====================>
 

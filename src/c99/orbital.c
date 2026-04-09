@@ -104,40 +104,6 @@ static int change_pole(const double *in, double obl, double Omega, double *out) 
 }
 
 /**
- * Converts equatorial coordinates of a given type to GCRS equatorial coordinates
- *
- * @param jd_tdb    [day] Barycentric Dynamical Time (TDB) based Julian Date
- * @param sys       The type of equatorial system assumed for the input (ICRS / GCRS, J2000, TOD,
- *                  MOD, or CIRS). It must be an inertial celestial system, i.e. it cannot be a
- *                  reference system which co-rotates with Earth (like ITRS to TIRS).
- * @param[in, out] vec  vector to change to GCRS.
- * @return          0 if successful, or else -1 (errno set to EINVAL) if the 'sys' argument is
- *                  invalid or unsupported.
- *
- * @author Attila Kovacs
- * @since 1.2
- */
-static int equ2gcrs(double jd_tdb, enum novas_reference_system sys, double *vec) {
-  static const char *fn = "equ2gcrs";
-
-  switch(sys) {
-    case NOVAS_GCRS:
-    case NOVAS_ICRS:
-      return 0;
-    case NOVAS_CIRS:
-      return cirs_to_gcrs(jd_tdb, NOVAS_REDUCED_ACCURACY, vec, vec);
-    case NOVAS_J2000:
-      return j2000_to_gcrs(vec, vec);
-    case NOVAS_TOD:
-      return tod_to_gcrs(jd_tdb, NOVAS_REDUCED_ACCURACY, vec, vec);
-    case NOVAS_MOD:
-      return mod_to_gcrs(jd_tdb, vec, vec);
-    default:
-      return novas_error(-1, EINVAL, fn, "invalid orbital system type: %d", sys);
-  }
-}
-
-/**
  * Convert coordinates in an orbital system to GCRS equatorial coordinates. For orbits defined w.r.t.
  * the ecliptic of date, but for a reference system based in J2000, the conversion includes transforming
  * the mean ecliptic of date to the mean ecliptic of J2000, using Laskar 1986.
@@ -190,7 +156,7 @@ static int orbit2gcrs(double jd_tdb, const novas_orbital_system *sys, enum novas
   else if(sys->plane != NOVAS_EQUATORIAL_PLANE)
     return novas_error(-1, EINVAL, fn, "invalid orbital system reference plane type: %d", sys->type);
 
-  prop_error(fn, equ2gcrs(jd_tdb, sys->type, vec), 0);
+  prop_error(fn, novas_sys_to_icrs(sys->type, vec, jd_tdb, NOVAS_REDUCED_ACCURACY, vec), 0);
 
   return 0;
 }

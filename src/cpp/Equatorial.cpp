@@ -243,48 +243,15 @@ Equatorial Equatorial::to_system(const Equinox& system, enum novas_accuracy accu
   double p[3] = {'\0'};
   radec2vector(ra().hours(), dec().deg(), 1.0, p);
 
-  // Convert to ICRS...
-  switch(_sys.system_type()) {
-    case NOVAS_GCRS:
-    case NOVAS_ICRS:
-      break;
-    case NOVAS_J2000:
-      j2000_to_gcrs(p, p);
-      break;
-    case NOVAS_MOD:
-      mod_to_gcrs(_sys.jd(), p, p);
-      break;
-    case NOVAS_CIRS:
-      cirs_to_gcrs(_sys.jd(), accuracy, p, p);
-      break;
-    case NOVAS_TOD:
-      tod_to_gcrs(_sys.jd(), accuracy, p, p);
-      break;
-    default:
-      novas_set_errno(ERANGE, fn, "invalid equatorial with system type %d", _sys.system_type());
-      return Equatorial::undefined();
+  // Convert via GCRS
+  if(novas_sys_to_icrs(_sys.system_type(), p, _sys.jd(), accuracy, p) != 0) {
+    novas_trace_invalid(fn);
+    return Equatorial::undefined();
   }
 
-  // Convert from ICRS to output system...
-  switch(system.system_type()) {
-    case NOVAS_GCRS:
-    case NOVAS_ICRS:
-      break;
-    case NOVAS_J2000:
-      gcrs_to_j2000(p, p);
-      break;
-    case NOVAS_MOD:
-      gcrs_to_mod(system.jd(), p, p);
-      break;
-    case NOVAS_TOD:
-      gcrs_to_tod(system.jd(), accuracy, p, p);
-      break;
-    case NOVAS_CIRS:
-      gcrs_to_cirs(system.jd(), accuracy, p, p);
-      break;
-    default:
-      novas_set_errno(ERANGE, fn, "invalid output system type %d", system.system_type());
-      return Equatorial::undefined();
+  if(novas_icrs_to_sys(p, system.jd(), accuracy, system.system_type(), p) != 0) {
+    novas_trace_invalid(fn);
+    return Equatorial::undefined();
   }
 
   double r = 0.0, d = 0.0;

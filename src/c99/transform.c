@@ -452,7 +452,7 @@ int tod_to_j2000(double jd_tdb, enum novas_accuracy accuracy, const double *in, 
  * @since 1.0
  * @author Attila Kovacs
  *
- * @sa j2000_to_gcrs(), tod_to_j2000()
+ * @sa j2000_to_gcrs(), tod_to_j2000(), novas_icrs_to_sys()
  */
 int gcrs_to_j2000(const double *in, double *out) {
   prop_error("gcrs_to_j2000", frame_tie(in, ICRS_TO_J2000, out), 0);
@@ -476,7 +476,7 @@ int gcrs_to_j2000(const double *in, double *out) {
  * @since 1.2
  * @author Attila Kovacs
  *
- * @sa mod_to_gcrs(), gcrs_to_tod()
+ * @sa mod_to_gcrs(), gcrs_to_tod(), novas_icrs_to_sys()
  */
 int gcrs_to_mod(double jd_tdb, const double *in, double *out) {
   static const char *fn = "gcrs_to_tod [internal]";
@@ -503,7 +503,7 @@ int gcrs_to_mod(double jd_tdb, const double *in, double *out) {
  * @since 1.2
  * @author Attila Kovacs
  *
- * @sa gcrs_to_mod(), tod_to_gcrs()
+ * @sa gcrs_to_mod(), tod_to_gcrs(), novas_sys_to_icrs()
  */
 int mod_to_gcrs(double jd_tdb, const double *in, double *out) {
   static const char *fn = "tod_to_gcrs [internal]";
@@ -531,7 +531,7 @@ int mod_to_gcrs(double jd_tdb, const double *in, double *out) {
  * @since 1.2
  * @author Attila Kovacs
  *
- * @sa gcrs_to_cirs(), tod_to_gcrs(), j2000_to_tod()
+ * @sa gcrs_to_cirs(), tod_to_gcrs(), j2000_to_tod(), novas_icrs_to_sys()
  */
 int gcrs_to_tod(double jd_tdb, enum novas_accuracy accuracy, const double *in, double *out) {
   static const char *fn = "gcrs_to_tod";
@@ -559,7 +559,7 @@ int gcrs_to_tod(double jd_tdb, enum novas_accuracy accuracy, const double *in, d
  * @since 1.2
  * @author Attila Kovacs
  *
- * @sa j2000_to_tod(), tod_to_cirs(), tod_to_j2000(), tod_to_itrs()
+ * @sa j2000_to_tod(), tod_to_cirs(), tod_to_j2000(), tod_to_itrs(), novas_sys_to_icrs()
  */
 int tod_to_gcrs(double jd_tdb, enum novas_accuracy accuracy, const double *in, double *out) {
   static const char *fn = "tod_to_gcrs";
@@ -597,7 +597,7 @@ int tod_to_gcrs(double jd_tdb, enum novas_accuracy accuracy, const double *in, d
  * @since 1.0
  * @author Attila Kovacs
  *
- * @sa gcrs_to_j2000(), cirs_to_gcrs()
+ * @sa gcrs_to_j2000(), cirs_to_gcrs(), novas_icrs_to_sys()
  */
 int gcrs_to_cirs(double jd_tdb, enum novas_accuracy accuracy, const double *in, double *out) {
   static const char *fn = "gcrs_to_cirs";
@@ -639,7 +639,7 @@ int gcrs_to_cirs(double jd_tdb, enum novas_accuracy accuracy, const double *in, 
  * @since 1.0
  * @author Attila Kovacs
  *
- * @sa tod_to_gcrs(), gcrs_to_cirs(), cirs_to_itrs(), cirs_to_tod()
+ * @sa tod_to_gcrs(), gcrs_to_cirs(), cirs_to_itrs(), cirs_to_tod(), novas_sys_to_icrs()
  */
 int cirs_to_gcrs(double jd_tdb, enum novas_accuracy accuracy, const double *in, double *out) {
   static const char *fn = "cirs_to_gcrs";
@@ -902,7 +902,7 @@ int tod_to_itrs(double jd_tt_high, double jd_tt_low, double ut1_to_tt, enum nova
  * @since 1.0
  * @author Attila Kovacs
  *
- * @sa j2000_to_tod(), gcrs_to_j2000()
+ * @sa j2000_to_tod(), gcrs_to_j2000(), novas_sys_to_icrs()
  */
 int j2000_to_gcrs(const double *in, double *out) {
   prop_error("j2000_to_gcrs", frame_tie(in, J2000_TO_ICRS, out), 0);
@@ -974,3 +974,139 @@ int tod_to_cirs(double jd_tt, enum novas_accuracy accuracy, const double *in, do
 
   return 0;
 }
+
+/**
+ * Converts a rectangular equatorial vector from the International Coordinate Reference System
+ * (ICRS) or equivalent, such as GCRS, to the desired output equatorial coordinate reference
+ * system of choice. Note, that this function does not support conversion to an Earth rotating
+ * system, such as TIRS or ITRS.
+ *
+ * @param in          Input ICRS / GCRS vector (`double[3]`).
+ * @param jd_tdb      Barycentric Dynamical Time (TDB) based Julian Date. (Unused if output system
+ *                    is ICRS / GCRS or J2000). TT-based Julian Dates may be used also without
+ *                    loss of precision.
+ * @param accuracy    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1).
+ * @param sys         Iutput coordinate system. It cannot be NOVAS_TIRS or NOVAS_ITRS, or else
+ *                    the function will return an error (-1 / ENOSYS).
+ * @param[out] out    Output vector (`double[3]`) to be populated. It may be the same vector as
+ *                    the input.
+ * @return            0 if successful or else -1 if any of the vectors is NULL
+ *                    or (errno set to EINVAL), or the coordinate system is unsupported
+ *                    (errno set to ENOSYS) or out of range (errno set to ERANGE).
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_sys_to_icrs()
+ */
+int novas_icrs_to_sys(const double *in, double jd_tdb, enum novas_accuracy accuracy, enum novas_reference_system sys, double *out) {
+  static const char *fn = "gcrs_to_sys";
+
+  if(!in)
+    return novas_error(-1, EINVAL, fn, "input vector is NULL");
+  if(!out)
+    return novas_error(-1, EINVAL, fn, "output vector is NULL");
+
+  if(out != in)
+    out[0] = out[1] = out[2] = NAN;
+
+  switch(sys) {
+    case NOVAS_ICRS:
+    case NOVAS_GCRS:
+      if(out != in)
+        memcpy(out, in, XYZ_VECTOR_SIZE);
+      return 0;
+
+    case NOVAS_CIRS:
+      prop_error(fn, gcrs_to_cirs(jd_tdb, accuracy, in, out), 0);
+      return 0;
+
+    case NOVAS_TIRS:
+    case NOVAS_ITRS:
+      return novas_error(-1, ENOSYS, fn, "TIRS / ITRS not supported.");
+
+    case NOVAS_J2000:
+      prop_error(fn, gcrs_to_j2000(in, out), 0);
+      return 0;
+
+    case NOVAS_MOD:
+      prop_error(fn, gcrs_to_mod(jd_tdb, in, out), 0);
+      return 0;
+
+    case NOVAS_TOD:
+      prop_error(fn, gcrs_to_tod(jd_tdb, accuracy, in, out), 0);
+      return 0;
+
+    default:
+      return novas_error(-1, ERANGE, fn, "output system %d is out of range", (int) sys);
+  }
+}
+
+/**
+ * Converts a rectangular equatorial vector from the specified equatorial coordinate reference
+ * system of choice to the International Coordinate Reference System  (ICRS) or equivalent, such
+ * as GCRS. Note, that this function does not support conversion from an Earth rotating system,
+ * such as TIRS or ITRS.
+ *
+ * @param sys         Input coordinate system. It cannot be NOVAS_TIRS or NOVAS_ITRS, or else
+ *                    the function will return an error (-1 / ENOSYS).
+ * @param in          Input vector in system (`double[3]`).
+ * @param jd_tdb      Barycentric Dynamical Time (TDB) based Julian Date. (Unused if input system
+ *                    is ICRS / GCRS or J2000). TT-based Julian Dates may be used also without
+ *                    loss of precision.
+ * @param accuracy    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1).
+ * @param out         Output ICRS / GCRS vector (`double[3]`) to be populated. It may be the same
+ *                    vector as the input.
+ * @return            0 if successful or else -1 if any of the vectors is NULL
+ *                    or (errno set to EINVAL), or the coordinate system is unsupported
+ *                    (errno set to ENOSYS) or out of range (errno set to ERANGE).
+ *
+ * @since 1.6
+ * @author Attila Kovacs
+ *
+ * @sa novas_icrs_to_sys()
+ */
+int novas_sys_to_icrs(enum novas_reference_system sys, const double *in, double jd_tdb, enum novas_accuracy accuracy, double *out) {
+  static const char *fn = "sys_to_gcrs";
+
+  if(!in)
+    return novas_error(-1, EINVAL, fn, "input vector is NULL");
+  if(!out)
+    return novas_error(-1, EINVAL, fn, "output vector is NULL");
+
+  if(out != in)
+    out[0] = out[1] = out[2] = NAN;
+
+  switch(sys) {
+      case NOVAS_ICRS:
+      case NOVAS_GCRS:
+        if(out != in)
+          memcpy(out, in, XYZ_VECTOR_SIZE);
+        return 0;
+
+      case NOVAS_CIRS:
+        prop_error(fn, cirs_to_gcrs(jd_tdb, accuracy, in, out), 0);
+        return 0;
+
+      case NOVAS_TIRS:
+      case NOVAS_ITRS:
+        return novas_error(-1, ENOSYS, fn, "TIRS / ITRS not supported.");
+
+      case NOVAS_J2000:
+        prop_error(fn, j2000_to_gcrs(in, out), 0);
+        return 0;
+
+      case NOVAS_MOD:
+        prop_error(fn, mod_to_gcrs(jd_tdb, in, out), 0);
+        return 0;
+
+      case NOVAS_TOD:
+        prop_error(fn, tod_to_gcrs(jd_tdb, accuracy, in, out), 0);
+        return 0;
+
+      default:
+        return novas_error(-1, ERANGE, fn, "input system %d is out of range", (int) sys);
+    }
+
+}
+
