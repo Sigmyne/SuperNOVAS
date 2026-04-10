@@ -58,53 +58,14 @@
 #include <errno.h>
 
 /// \cond PRIVATE
-#if defined(SUPERNOVAS_USE_PTHREAD) || defined(__unix__) || defined(__unix) || defined(__APPLE__)
-#  include <pthread.h>
-
-#  define init_lock           pthread_mutex_init
-#  define ephem_lock          pthread_mutex_lock
-#  define ephem_unlock        pthread_mutex_unlock
-#  define THREAD_SAFE         1
-
-typedef pthread_mutex_t       lock_type;
-
-#elif __STDC_VERSION__ >= 201112L
-#  include <threads.h>
-
-#  define init_lock           mtx_init
-#  define ephem_lock          mtx_lock
-#  define ephem_unlock        mtx_unlock
-
-#  define THREAD_SAFE         1
-
-typedef mtx_t                 lock_type;
-
-#elif defined(WIN32)
-#include <windows.h>
-
-#  define init_lock(x, t)     InitializeSRWLock(x)
-#  define ephem_lock          AcquireSRWLockExclusive
-#  define ephem_unlock        ReleaseSRWLockExclusive
-#  define THREAD_SAFE         1
-
-typedef SRWLOCK               lock_type;
-
-#else
-#  define ephem_lock(x)
-#  define ephem_unlock(x)
-#  define THREAD_SAFE         0
-typedef int                   lock_type;
-
-#endif
 
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
-/// \endcond
 
 #include "novas.h"
 #include "novas-calceph.h"
+#include "novas-mutex.h"
 
 
-/// \cond PRIVATE
 #define CALCEPH_MOON                10  ///< Moon in CALCEPH
 #define CALCEPH_SUN                 11  ///< Sun in CALCEPH
 #define CALCEPH_SSB                 12  ///< Solar-system Barycenter in CALCEPH
@@ -262,22 +223,22 @@ static short planet_calceph_hp(const double jd_tdb[restrict 2], enum novas_plane
       return novas_error(2, EINVAL, fn, "Invalid origin type: %d", origin);
   }
 
-  ephem_lock(&planet_mutex);
+  novas_lock(&planet_mutex);
   ephem = planets;
 
   parallel = !serialized_calceph_queries && calceph_isthreadsafe(ephem);
   if(parallel)
-    ephem_unlock(&planet_mutex);      // If CALCEPH itself is thread-safe we can release the lock here...
+    novas_unlock(&planet_mutex);      // If CALCEPH itself is thread-safe we can release the lock here...
   else if(ephem == bodies)
-    ephem_lock(&bodies_mutex);        // Otherwise, we might need to get exclusive on the bodies also....
+    novas_lock(&bodies_mutex);        // Otherwise, we might need to get exclusive on the bodies also....
 
   success = calceph_compute_unit(ephem, jd_tdb[0], jd_tdb[1], target, center, CALCEPH_UNITS, pv);
 
   // If CALCEPH is not thread-safe on its own, release the lock after the ephemeris access...
   if(!parallel) {
     if(ephem == bodies)
-      ephem_unlock(&bodies_mutex);    // If no separate planet ephemeris, then release the lock on the bodies also.
-    ephem_unlock(&planet_mutex);      // release the lock on planet ephemeris access.
+      novas_unlock(&bodies_mutex);    // If no separate planet ephemeris, then release the lock on the bodies also.
+    novas_unlock(&planet_mutex);      // release the lock on planet ephemeris access.
   }
 
   if(!success)
@@ -400,19 +361,19 @@ static int novas_calceph(const char *name, long id, double jd_tdb_high, double j
 
   center = (compute_flags & CALCEPH_USE_NAIFID) ? NAIF_SSB : CALCEPH_SSB;
 
-  ephem_lock(&bodies_mutex);
+  novas_lock(&bodies_mutex);
   ephem = bodies;
 
   // If CALCEPH itself is thread-safe we can release the lock here...
   parallel = !serialized_calceph_queries && calceph_isthreadsafe(ephem);
   if(parallel)
-    ephem_unlock(&bodies_mutex);
+    novas_unlock(&bodies_mutex);
 
   success = calceph_compute_unit(ephem, jd_tdb_high, jd_tdb_low, id, center, (compute_flags | CALCEPH_UNITS), pv);
 
   // If CALCEPH is not thread-safe on its own, release the lock after the ephemeris access...
   if(!parallel)
-    ephem_unlock(&bodies_mutex);
+    novas_unlock(&bodies_mutex);
 
   if(!success)
     return novas_error(3, EAGAIN, fn, "calceph_compute() failure (name='%s', NAIF=%ld)", name ? name : "<null>", id);
@@ -453,7 +414,7 @@ int novas_use_calceph(t_calcephbin *eph) {
   static int initialized = 0;
 
   if(!initialized) {
-    init_lock(&bodies_mutex, 0);
+    novas_init_lock(&bodies_mutex, 0);
     initialized = 1;
   }
 #endif
@@ -461,9 +422,9 @@ int novas_use_calceph(t_calcephbin *eph) {
   prop_error(fn, prep_ephem(eph), 0);
 
   // Make sure we don't change the ephemeris provider while using it
-  ephem_lock(&bodies_mutex);
+  novas_lock(&bodies_mutex);
   bodies = eph;
-  ephem_unlock(&bodies_mutex);
+  novas_unlock(&bodies_mutex);
 
   // Use CALCEPH as the default minor body ephemeris provider
   set_ephem_provider(novas_calceph);
@@ -496,7 +457,7 @@ int novas_use_calceph_planets(t_calcephbin *eph) {
   static int initialized = 0;
 
   if(!initialized) {
-    init_lock(&planet_mutex, 0);
+    novas_init_lock(&planet_mutex, 0);
     initialized = 1;
   }
 #endif
@@ -504,9 +465,9 @@ int novas_use_calceph_planets(t_calcephbin *eph) {
   prop_error(fn, prep_ephem(eph), 0);
 
   // Make sure we don't change the ephemeris provider while using it
-  ephem_lock(&planet_mutex);
+  novas_lock(&planet_mutex);
   planets = eph;
-  ephem_unlock(&planet_mutex);
+  novas_unlock(&planet_mutex);
 
   // Use calceph as the default NOVAS planet provider
   set_planet_provider_hp(planet_calceph_hp);

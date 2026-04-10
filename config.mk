@@ -13,7 +13,7 @@ BIN ?= bin
 CC ?= gcc
 
 # Default compiler options (if not defined externally)
-CFLAGS ?= -g -Os -Wall
+CFLAGS ?= -g -O2 -Wall
 
 # Specific Doxygen to use if not the default one
 #DOXYGEN ?= /opt/bin/doxygen

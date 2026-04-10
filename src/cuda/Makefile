@@ -1,27 +1,28 @@
 # Part of SuperNOVAS
 #
-# Build supernovas++ shared of static C++ library
+# Build supernovas-cuda shared of static C++ library
 #
 # Author: Attila Kovacs
 
-CC := $(CXX)
+NVCC = nvcc
+CC := $(NVCC)
+CFLAGS ?= -g -O2
 OBJ := obj
 LANGUAGE := c++
 CHECK_DIR := .
 
 LIB ?= ../../lib
-NAME = supernovas++
-
-ifeq ($(CXX),clang++)
-  # Treat .c sources as C++, and use C++11
-  CXXFLAGS += -x c++ -std=c++11
-endif
+NAME := supernovas-cuda
 
 # Use the definitions project definitions
 include ../../config.mk
 
-CPP_SOURCES := $(wildcard *.cpp)
-CPP_OBJECTS := $(addprefix $(OBJ)/, $(subst .cpp,.o,$(CPP_SOURCES)))
+# Flags for NVCC to create shared libs
+SHARED_FLAGS := -shared -Xcompiler -fPIC
+SONAME_FLAG := -Xlinker -soname,
+
+CUDA_SOURCES := $(wildcard *.cu)
+CUDA_OBJECTS := $(addprefix $(OBJ)/, $(subst .cu,.o,$(CUDA_SOURCES)))
 
 CPPFLAGS += -I../../include
 
@@ -44,12 +45,12 @@ all: shared static
 
 $(LIB)/lib$(NAME).$(SOEXT): $(LIB)/lib$(NAME).$(SOEXT).$(SO_VERSION)
 
-$(LIB)/lib$(NAME).$(SOEXT).$(SO_VERSION): $(CPP_SOURCES) | $(LIB)/libsupernovas.$(SOEXT)
+$(LIB)/lib$(NAME).$(SOEXT).$(SO_VERSION): $(CUDA_SOURCES) | $(LIB)/libsupernovas.$(SOEXT)
 
-$(LIB)/lib$(NAME).a: $(CPP_OBJECTS) | $(LIB)/libsupernovas.a
+$(LIB)/lib$(NAME).a: $(CUDA_OBJECTS) | $(LIB)/libsupernovas.a
 
-$(OBJ)/%.o: %.cpp $(OBJ) Makefile
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
+$(OBJ)/%.o: %.cu $(OBJ) Makefile
+	$(NVCC) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
 
 $(LIB)/libsupernovas.a:
 	$(MAKE) -C ../c99 static
@@ -89,3 +90,4 @@ Makefile: ../../config.mk ../../build.mk
 # ===============================================================================
 
 include ../../build.mk
+

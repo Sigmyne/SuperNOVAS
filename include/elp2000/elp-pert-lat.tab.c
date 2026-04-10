@@ -3,8 +3,12 @@
 //
 // @author: Attila Kovacs
 
+#include "novas-elp.h"
+
+#define ELP_N_PLAT_0      446
+
 // @formatter:off
-static const elp_pert_term elp_plat0[446] = { //
+NOVAS_TABLE elp_pert_term elp_plat0[ELP_N_PLAT_0] = { //
   {   8.0450400, -179.99929, {   0,   0,   0,   0 }, {   0,   0,   0,   0,   0,},   1 }, //
   {   1.5102092,  -83.31993, {   1,   0,   0,   0 }, {   0,   1,   0,   0,   0,},   0 }, //
   {   0.6305204,   26.54413, {   0,   1,  -1,   0 }, {  18, -16,   0,   0,   0,},   0 }, //
@@ -453,7 +457,9 @@ static const elp_pert_term elp_plat0[446] = { //
   {   0.0010013,  153.45733, {   0,   1,  -1,   0 }, { -18,  16,   0,   0,   0,},   0 }  //
 };
 
-static const elp_pert_term elp_plat1[35] = { //
+#define ELP_N_PLAT_1      35
+
+NOVAS_TABLE elp_pert_term elp_plat1[ELP_N_PLAT_1] = { //
   {   0.0743000,  180.00000, {   2,  -1,   0,  -1 }, {   0,   0,   0,   0,   0,},   0 }, //
   {   0.0304300,    0.00000, {   2,  -1,   0,   1 }, {   0,   0,   0,   0,   0,},   0 }, //
   {   0.0222900,  180.00000, {   2,   1,  -1,  -1 }, {   0,   0,   0,   0,   0,},   0 }, //
@@ -492,7 +498,7 @@ static const elp_pert_term elp_plat1[35] = { //
 };
 // @formatter:on
 
-static const elp_pert_term *elp_plat[] = { elp_plat0, elp_plat1 };
+NOVAS_TABLE elp_pert_term *elp_plat[] = { elp_plat0, elp_plat1 };
 
-static int elp_n_plat[] = { 446, 35, 0 };
+#define ELP_N_PLAT_INIT       { ELP_N_PLAT_0, ELP_N_PLAT_1, 0 }
 

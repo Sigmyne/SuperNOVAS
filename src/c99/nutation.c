@@ -18,28 +18,22 @@
  * @sa equator.c, earth.c, frames.c
  */
 
-#include <stdint.h>
 #include <errno.h>
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
 #include "novas.h"
+#include "nutation/novas-nut.h"
+
+#define NOVAS_TABLE static const  ///< keywords for declaring coefficient tables.
 /// \endcond
 
 /// \cond PRIVATE
 #define T0        NOVAS_JD_J2000
 
-/**
- * Data structure to contain coefficients for a single periodic nutation term.
- *
- */
-typedef struct {
-  int32_t A;         ///< [10 nas] Sine term coefficient
-  int32_t B;         ///< [10 nas] Cosine term coefficient
-  int8_t n[14];      ///< multiples (5 fund args + 8 planets [Mercury -- Neptune] + accumulated precession)
-  int8_t from;       ///< index of first non-zero multiple in n[].
-  int8_t to;         ///< index after the last non-zero multiple in n[].
-} nutation_terms;
+nutation_function user_iau2000a;
+nutation_function user_iau2000b;
+
 
 #include "nutation/iau2006a.tab.c"
 #include "nutation/iau2006b.tab.c"
@@ -194,7 +188,14 @@ static int iau2006_fp(double jd_tt_high, double jd_tt_low, int nA0, int nA1, int
  * @sa iau2000b(), nu2000k(), nutation_angles(), nutation()
  */
 int iau2000a(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double *restrict deps) {
-  prop_error("iau200a", iau2006_fp(jd_tt_high, jd_tt_low, 1320, 38, 1037, 19, dpsi, deps), 0);
+  static const char *fn = "iau2000a";
+
+  if(user_iau2000a) {
+    prop_error(fn, user_iau2000a(jd_tt_high, jd_tt_low, dpsi, deps), 0);
+  }
+  else {
+    prop_error(fn, iau2006_fp(jd_tt_high, jd_tt_low, 1320, 38, 1037, 19, dpsi, deps), 0);
+  }
   return 0;
 }
 
@@ -238,7 +239,14 @@ int iau2000a(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double 
  * @sa iau2000a(), nu2000k(), nutation_angles(), set_nutation_lp_provider(), nutation()
  */
 int iau2000b(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double *restrict deps) {
-  prop_error("iau2000b", iau2006_fp(jd_tt_high, jd_tt_low, 98, 4, 55, 2, dpsi, deps), 0);
+  static const char *fn = "iau2000b";
+
+  if(user_iau2000b) {
+    prop_error(fn, user_iau2000b(jd_tt_high, jd_tt_low, dpsi, deps), 0);
+  }
+  else {
+    prop_error("iau2000b", iau2006_fp(jd_tt_high, jd_tt_low, 98, 4, 55, 2, dpsi, deps), 0);
+  }
   return 0;
 }
 

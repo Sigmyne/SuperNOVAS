@@ -124,28 +124,21 @@ else
 	@echo "WARNING! Skipping libs install: needs 'shared' and/or 'static'"
 endif
 
-.PHONY: install-calceph-headers
-install-calceph-headers:
-ifeq ($(CALCEPH_SUPPORT),1)
-	$(INSTALL_DATA) include/novas-calceph.h $(DESTDIR)$(includedir)/
-endif
-
-.PHONY: install-cspice-headers
-install-cspice-headers:
-ifeq ($(CSPICE_SUPPORT),1) 
-	$(INSTALL_DATA) include/novas-cspice.h $(DESTDIR)$(includedir)/
-endif
 
 .PHONY: install-headers
 install-headers:
 	@echo "installing headers to $(DESTDIR)$(includedir)"
 	install -d $(DESTDIR)$(includedir)
-	$(INSTALL_DATA) include/novas.h $(DESTDIR)$(includedir)/
+	$(INSTALL_DATA) include/novas.h $(DESTDIR)$(includedir)
+ifeq ($(CALCEPH_SUPPORT),1)
+	$(INSTALL_DATA) include/novas-calceph.h $(DESTDIR)$(includedir)/
+endif
+ifeq ($(CSPICE_SUPPORT),1) 
+	$(INSTALL_DATA) include/novas-cspice.h $(DESTDIR)$(includedir)/
+endif
 ifeq ($(ENABLE_CPP),1)
 	$(INSTALL_DATA) include/supernovas.h $(DESTDIR)$(includedir)/
 endif
-	@$(MAKE) install-calceph-headers
-	@$(MAKE) install-cspice-headers
 
 .PHONY: install-docs
 install-docs: install-markdown install-html install-examples install-legacy

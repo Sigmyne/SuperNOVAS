@@ -3,8 +3,12 @@
 //
 // @author: Attila Kovacs
 
+#include "novas-elp.h"
+
+#define ELP_N_PLON_0      1015
+
 // @formatter:off
-static const elp_pert_term elp_plon0[1015] = { //
+NOVAS_TABLE elp_pert_term elp_plon0[ELP_N_PLON_0] = { //
   {  14.2514576,  153.45585, {   0,   0,   1,   0 }, { -18,  16,   0,   0,   0,},   0 }, //
   {   7.0629900,  179.99906, {   0,   1,   0,   0 }, {   0,   0,   0,   0,   0,},  -1 }, //
   {   1.1429948, -179.88145, {   2,   0,  -1,   0 }, {   0,   2,   0,  -2,   0,},   0 }, //
@@ -1022,7 +1026,10 @@ static const elp_pert_term elp_plon0[1015] = { //
   {   0.0010003,    1.11114, {   2,   0,   1,   0 }, {   0,   2,  -2,   0,   0,},   0 }  //
 };
 
-static const elp_pert_term elp_plon1[76] = { //
+
+#define ELP_N_PLON_1      76
+
+NOVAS_TABLE elp_pert_term elp_plon1[ELP_N_PLON_1] = { //
   {   1.6768000,    0.00000, {   0,   0,   0,   1 }, {   0,   0,   0,   0,   0,},   0 }, //
   {   0.5164200,  180.00000, {   2,   0,  -1,  -1 }, {   0,   0,   0,   0,   0,},   0 }, //
   {   0.4138300,  180.00000, {   2,   0,   0,  -1 }, {   0,   0,   0,   0,   0,},   0 }, //
@@ -1101,7 +1108,9 @@ static const elp_pert_term elp_plon1[76] = { //
   {   0.0010175, -175.61375, {   2,   0,   0,   0 }, {   0,  -4,   8,  -3,   0,},   0 }  //
 };
 
-static const elp_pert_term elp_plon2[5] = { //
+#define ELP_N_PLON_2      5
+
+NOVAS_TABLE elp_pert_term elp_plon2[ELP_N_PLON_2] = { //
   {   0.0048700,    0.00000, {   0,   0,   0,   1 }, {   0,   0,   0,   0,   0,},   0 }, //
   {   0.0022800,  -23.55918, {   0,   0,   1,   0 }, { -18,  16,   0,   0,   0,},   0 }, //
   {   0.0015000,  180.00000, {   2,   0,  -1,  -1 }, {   0,   0,   0,   0,   0,},   0 }, //
@@ -1110,6 +1119,6 @@ static const elp_pert_term elp_plon2[5] = { //
 };
 // @formatter:on
 
-static const elp_pert_term *elp_plon[] = { elp_plon0, elp_plon1, elp_plon2 };
+NOVAS_TABLE elp_pert_term *elp_plon[] = { elp_plon0, elp_plon1, elp_plon2 };
 
-static int elp_n_plon[] = { 1015, 76, 5, 0 };
+#define ELP_N_PLON_INIT     { ELP_N_PLON_0, ELP_N_PLON_1, ELP_N_PLON_2, 0 }

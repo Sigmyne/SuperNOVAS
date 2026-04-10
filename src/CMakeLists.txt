@@ -41,3 +41,7 @@ add_subdirectory(c99)
 if(ENABLE_CPP)
     add_subdirectory(cpp)
 endif()
+
+if(ENABLE_CUDA)
+    add_subdirectory(cuda)
+endif()

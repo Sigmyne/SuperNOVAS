@@ -27,10 +27,11 @@
 #include <errno.h>
 
 /// \cond PRIVATE
-#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+#define __NOVAS_INTERNAL_API__        ///< Use definitions meant for internal use by SuperNOVAS only
 #include "novas.h"
 
-#define T0        NOVAS_JD_J2000
+#define NOVAS_TABLE   static const    ///< keywords for declaring coefficient tables.
+#define T0            NOVAS_JD_J2000
 /// \endcond
 
 // Additional local function prototypes
@@ -328,65 +329,7 @@ short earth_sun_calc_hp(const double jd_tdb[restrict 2], enum novas_planet body,
  * @sa earth_sun_calc()
  */
 int sun_eph(double jd, double *restrict ra, double *restrict dec, double *restrict dis) {
-  struct sun_con {
-    int l;
-    int r;
-    double alpha;
-    double nu;
-  };
-
-  static const struct sun_con con[50] = { //
-          { 403406, 0, 4.721964, 1.621043 }, //
-          { 195207, -97597, 5.937458, 62830.348067 }, //
-          { 119433, -59715, 1.115589, 62830.821524 }, //
-          { 112392, -56188, 5.781616, 62829.634302 }, //
-          { 3891, -1556, 5.5474, 125660.5691 }, //
-          { 2819, -1126, 1.5120, 125660.9845 }, //
-          { 1721, -861, 4.1897, 62832.4766 }, //
-          { 0, 941, 1.163, 0.813 }, //
-          { 660, -264, 5.415, 125659.310 }, //
-          { 350, -163, 4.315, 57533.850 }, //
-          { 334, 0, 4.553, -33.931 }, //
-          { 314, 309, 5.198, 777137.715 }, //
-          { 268, -158, 5.989, 78604.191 }, //
-          { 242, 0, 2.911, 5.412 }, //
-          { 234, -54, 1.423, 39302.098 }, //
-          { 158, 0, 0.061, -34.861 }, //
-          { 132, -93, 2.317, 115067.698 }, //
-          { 129, -20, 3.193, 15774.337 }, //
-          { 114, 0, 2.828, 5296.670 }, //
-          { 99, -47, 0.52, 58849.27 }, //
-          { 93, 0, 4.65, 5296.11 }, //
-          { 86, 0, 4.35, -3980.70 }, //
-          { 78, -33, 2.75, 52237.69 }, //
-          { 72, -32, 4.50, 55076.47 }, //
-          { 68, 0, 3.23, 261.08 }, //
-          { 64, -10, 1.22, 15773.85 }, //
-          { 46, -16, 0.14, 188491.03 }, //
-          { 38, 0, 3.44, -7756.55 }, //
-          { 37, 0, 4.37, 264.89 }, //
-          { 32, -24, 1.14, 117906.27 }, //
-          { 29, -13, 2.84, 55075.75 }, //
-          { 28, 0, 5.96, -7961.39 }, //
-          { 27, -9, 5.09, 188489.81 }, //
-          { 27, 0, 1.72, 2132.19 }, //
-          { 25, -17, 2.56, 109771.03 }, //
-          { 24, -11, 1.92, 54868.56 }, //
-          { 21, 0, 0.09, 25443.93 }, //
-          { 21, 31, 5.98, -55731.43 }, //
-          { 20, -10, 4.03, 60697.74 }, //
-          { 18, 0, 4.27, 2132.79 }, //
-          { 17, -12, 0.79, 109771.63 }, //
-          { 14, 0, 4.24, -7752.82 }, //
-          { 13, -5, 2.01, 188491.91 }, //
-          { 13, 0, 2.65, 207.81 }, //
-          { 13, 0, 4.98, 29424.63 }, //
-          { 12, 0, 0.93, -7.99 }, //
-          { 10, 0, 2.21, 46941.14 }, //
-          { 10, 0, 3.59, -68.29 }, //
-          { 10, 0, 1.50, 21463.25 }, //
-          { 10, -9, 2.55, 157208.40 } //
-  };
+#include "tables/sun.tab.c"
 
   double sum_lon = 0.0;
   double sum_r = 0.0;
@@ -403,7 +346,7 @@ int sun_eph(double jd, double *restrict ra, double *restrict dec, double *restri
   t = u * 100.0;
 
   // Compute longitude and distance terms from the series.
-  for(i = 50; --i >= 0;) {
+  for(i = SOLSYS3_SUN_N_TERMS; --i >= 0;) {
     const struct sun_con *c = &con[i];
     const double arg = c->alpha + c->nu * u;
     sum_lon += c->l * sin(arg);

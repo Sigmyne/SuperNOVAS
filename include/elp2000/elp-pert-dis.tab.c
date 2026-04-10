@@ -3,8 +3,12 @@
 //
 // @author: Attila Kovacs
 
+#include "novas-elp.h"
+
+#define ELP_N_PDIS_0     753
+
 // @formatter:off
-static const elp_pert_term elp_pdis0[753] = { //
+NOVAS_TABLE elp_pert_term elp_pdis0[ELP_N_PDIS_0] = { //
   {   1.0586190,   90.11851, {   2,   0,  -1,   0 }, {   0,   2,   0,  -2,   0,},   0 }, //
   {   0.7280520,   63.45594, {   0,   0,   2,   0 }, { -18,  16,   0,   0,   0,},   0 }, //
   {   0.6828088,  -63.45506, {   0,   0,   0,   0 }, {  18, -16,   0,   0,   0,},   0 }, //
@@ -760,7 +764,9 @@ static const elp_pert_term elp_pdis0[753] = { //
   {   0.0010021,  109.77255, {   2,   0,  -1,   0 }, {   0,   3,   0,  -5,   0,},   0 }  //
 };
 
-static const elp_pert_term elp_pdis1[53] = { //
+#define ELP_N_PDIS_1    53
+
+NOVAS_TABLE elp_pert_term elp_pdis1[ELP_N_PDIS_1] = { //
   {   0.5139500,   90.00000, {   2,   0,   0,  -1 }, {   0,   0,   0,   0,   0,},   0 }, //
   {   0.3824500,   90.00000, {   2,   0,  -1,  -1 }, {   0,   0,   0,   0,   0,},   0 }, //
   {   0.3265400,   90.00000, {   0,   0,   1,  -1 }, {   0,   0,   0,   0,   0,},   0 }, //
@@ -816,12 +822,14 @@ static const elp_pert_term elp_pdis1[53] = { //
   {   0.0010600,   90.00000, {   0,   0,   3,  -1 }, {   0,   0,   0,   0,   0,},   0 }  //
 };
 
-static const elp_pert_term elp_pdis2[2] = { //
+#define ELP_N_PDIS_2    2
+
+NOVAS_TABLE elp_pert_term elp_pdis2[ELP_N_PDIS_2] = { //
   {   0.0014900,   90.00000, {   2,   0,   0,  -1 }, {   0,   0,   0,   0,   0,},   0 }, //
   {   0.0011100,   90.00000, {   2,   0,  -1,  -1 }, {   0,   0,   0,   0,   0,},   0 }  //
 };
 // @formatter:on
 
-static const elp_pert_term *elp_pdis[] = { elp_pdis0, elp_pdis1, elp_pdis2 };
+NOVAS_TABLE elp_pert_term *elp_pdis[] = { elp_pdis0, elp_pdis1, elp_pdis2 };
 
-static int elp_n_pdis[] = { 753, 53, 2, 0 };
+#define ELP_N_PDIS_INIT     { ELP_N_PDIS_0, ELP_N_PDIS_1, ELP_N_PDIS_2, 0 }

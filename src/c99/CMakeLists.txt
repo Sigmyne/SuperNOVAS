@@ -58,14 +58,29 @@ endfunction()
 
 # Process plugin options...
 if(ENABLE_CALCEPH)
+    find_package(calceph COMPONENTS Development REQUIRED CONFIG)
+    set_package_properties(calceph PROPERTIES
+        URL "https://calceph.imcce.fr"
+        DESCRIPTION  "is designed to access the binary planetary ephemeris files"
+        TYPE REQUIRED
+        PURPOSE "Provides ephemeris support for supernovas"
+    )
+
     solsys_plugin(calceph)
     find_path(CALCEPH_INCLUDE_DIR "calceph.h" REQUIRED)
     target_include_directories(solsys-calceph PRIVATE "${CALCEPH_INCLUDE_DIR}")
+    string(APPEND PC_LIBS "-lsolsys-calceph ")
+    string(APPEND PC_LIBS_PRIVATE "-lcalceph ")
 endif()
 
 if(ENABLE_CSPICE)
+    find_library(cspice cspice REGISTRY_VIEW TARGET REQUIRED)
+
+
     solsys_plugin(cspice)
     find_path(CSPICE_INCLUDE_DIR "cspice/SpiceUsr.h" REQUIRED)
     target_include_directories(solsys-cspice PRIVATE "${CSPICE_INCLUDE_DIR}")
+    string(APPEND PC_LIBS "-lsolsys-cspice ")
+    string(APPEND PC_LIBS_PRIVATE "-lcspice ")
 endif()
 

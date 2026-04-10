@@ -41,6 +41,7 @@ option(BUILD_TESTING "Build regression test suite" ON)
 option(BUILD_EXAMPLES "Build example programs" OFF)
 option(BUILD_BENCHMARK "Build benchmark programs" OFF)
 option(ENABLE_CPP "Enable C++ library build (supernovas++ library)" OFF)
+option(ENABLE_CUDA "Enable CUDA accelerator plugins (supernovas-cuda library)" OFF)
 option(ENABLE_CALCEPH "Enable CALCEPH support (solsys-calceph plugin)" OFF)
 option(ENABLE_CSPICE "Enable CSPICE support (solsys-cspice plugin)" OFF)
 
@@ -53,6 +54,7 @@ add_feature_info(Examples BUILD_EXAMPLES "Build and test example programs")
 add_feature_info(Benchmarks BUILD_BENCHMARK "Build benchmarking programs")
 
 add_feature_info(C++-Libs ENABLE_CPP "Build C++ library also (supernovas++)")
+add_feature_info(CUDA-Libs ENABLE_CUDA "Build CUDA plugin library also (supernovas-cuda)")
 add_feature_info(Calceph-Plugin ENABLE_CALCEPH "Optional ephemeris support via CALCEPH (solsys-calceph)")
 add_feature_info(CSPICE-Plugin ENABLE_CSPICE "Optional ephemeris support via CSPICE (solsys-cspice)")
 
@@ -107,35 +109,16 @@ if(ENABLE_CALCEPH OR ENABLE_CSPICE)
 endif()
 
 # ----------------------------------------------------------------------------
-# Extenal plugin configuration
-
-# CALCEPH plugin
-if(ENABLE_CALCEPH)
-    find_package(calceph COMPONENTS Development REQUIRED CONFIG)
-    set_package_properties(calceph PROPERTIES
-        URL "https://calceph.imcce.fr"
-        DESCRIPTION  "is designed to access the binary planetary ephemeris files"
-        TYPE REQUIRED
-        PURPOSE "Provides ephemeris support for supernovas"
-    )
-    string(APPEND PC_LIBS "-lsolsys-calceph ")
-    string(APPEND PC_LIBS_PRIVATE "-lcalceph ")
-endif()
-
-# CSPICE plugin
-if(ENABLE_CSPICE)
-    find_library(cspice cspice REGISTRY_VIEW TARGET REQUIRED)
-    string(APPEND PC_LIBS "-lsolsys-cspice ")
-    string(APPEND PC_LIBS_PRIVATE "-lcspice ")
-endif()
-
-# ----------------------------------------------------------------------------
 # Link applications against the C++ library also, if enabled
 
 if(ENABLE_CPP)
     enable_language(CXX)
-    string(APPEND PC_LIBS "-lsupernovas++ ")
 endif()
+
+if(ENABLE_CUDA)
+    enable_language(CUDA)
+endif()
+
 
 # ----------------------------------------------------------------------------
 # Build libraries from source
@@ -213,6 +196,13 @@ endif()
 
 if(ENABLE_CPP)
     install(FILES include/supernovas.h
+        TYPE INCLUDE
+        COMPONENT Development
+    )
+endif()
+
+if(ENABLE_CUDA)
+    install(FILES include/novas-cuda.h
         TYPE INCLUDE
         COMPONENT Development
     )

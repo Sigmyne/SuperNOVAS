@@ -59,57 +59,16 @@
 #include <errno.h>
 
 /// \cond PRIVATE
-#if defined(SUPERNOVAS_USE_THREAD) || defined(__unix__) || defined(__unix) || defined(__APPLE__)
-#  include <pthread.h>
-
-#  define init_lock           pthread_mutex_init
-#  define ephem_lock          pthread_mutex_lock
-#  define ephem_unlock        pthread_mutex_unlock
-#  define THREAD_SAFE         1
-
-typedef pthread_mutex_t       lock_type;
-
-#elif __STDC_VERSION__ >= 201112L
-#  include <threads.h>
-
-#  define init_lock           mtx_init
-#  define ephem_lock          mtx_lock
-#  define ephem_unlock        mtx_unlock
-
-#  define THREAD_SAFE         1
-
-typedef mtx_t                 lock_type;
-
-#elif defined(WIN32)
-#include <windows.h>
-
-#  define init_lock(x, t)     InitializeSRWLock(x)
-#  define ephem_lock          AcquireSRWLockExclusive
-#  define ephem_unlock        ReleaseSRWLockExclusive
-#  define THREAD_SAFE         1
-
-typedef SRWLOCK               lock_type;
-
-#else
-#  define ephem_lock(x)
-#  define ephem_unlock(x)
-#  define THREAD_SAFE         0
-
-typedef int                   lock_type;
-
-#endif
-
-
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
-/// \endcond
 
 #include "novas.h"
 #include "novas-cspice.h"
+#include "novas-mutex.h"
 
 #include "cspice/SpiceUsr.h"
 #include "cspice/SpiceZpr.h"        // for reset_c
 
-/// \cond PRIVATE
+
 /// Multiplicative normalization for the positions returned by km to AU
 #define NORM_POS                    (NOVAS_KM / NOVAS_AU)
 
@@ -125,15 +84,15 @@ static void mutex_lock() {
   static int initialized;
 
   if(!initialized) {
-    init_lock(&mutex, 0);
+    novas_init_lock(&mutex, 0);
     initialized = 1;
   }
 
-  ephem_lock(&mutex);
+  novas_lock(&mutex);
 }
 
 static void mutex_unlock() {
-  ephem_unlock(&mutex);
+  novas_unlock(&mutex);
 }
 #endif
 
@@ -474,38 +433,6 @@ static short planet_cspice(double jd_tdb, enum novas_planet body, enum novas_ori
  *                      calculations, or else the entire Julian date for reduced precision.
  * @param jd_tdb_low    [day] The low-order part of Barycentric Dynamical Time (TDB) based
  *                      Julian date for which to find #if defined(_PTHREAD_) || defined(__unix__) || defined(__unix) || defined(__APPLE__)
-#  include <pthread.h>
-
-#  define mutex_init      pthread_mutex_init
-#  define mutex_lock      pthread_mutex_lock
-#  define mutex_unlock    pthread_mutex_unlock
-#  define THREAD_SAFE     1
-
-typedef pthread_mutex_t   mtx_t;
-
-#elif __STDC_VERSION__ >= 201112L
-#  include <threads.h>
-#  define mutex_init      mtx_init
-#  define mutex_lock      mtx_lock
-#  define mutex_unlock    mtx_unlock
-
-#  define THREAD_SAFE     1
-
-#elif defined(WIN32)
-#include <windows.h>
-#  define mutex_init      InitializeSRWLock
-#  define mutex_lock      AcquireSRWLockExclusive
-#  define mutex_unlock    ReleaseSRWLockExclusive
-#  define THREAD_SAFE     1
-
-#else
-#  define mtx_lock        (void)
-#  define mtx_unlock      (void)
-#  define THREAD_SAFE     0
-
-typedef int               mtx_t;
-
-#endif
  *                      the position and velocity. Typically
  *                      this may be the fractional part of the Julian date for high-precision
  *                      calculations, or else 0.0 if the date is defined entirely by the

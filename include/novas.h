@@ -3505,8 +3505,6 @@ int novas_error(int ret, int en, const char *restrict from, const char *restrict
         } \
 }
 
-
-
 double novas_norm_ang(double angle);
 int novas_time_equals(double jd1, double jd2);
 int novas_time_equals_hp(double jd1, double jd2);
