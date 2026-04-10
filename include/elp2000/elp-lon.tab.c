@@ -4,10 +4,12 @@
 //
 // @author: Attila Kovacs
 
-static const int elp_n_lon = 371;
+#include "novas-elp.h"
+
+#define ELP_N_LON       371       ///< Number of harmonic terms in longitude
 
 // @formatter:off
-static const elp_main_term elp_lon[371] = { //
+NOVAS_TABLE elp_main_term elp_lon[ELP_N_LON] = { //
   {  22639.58566,  0,  0,  1,  0 }, //
   {   4586.43828,  2,  0, -1,  0 }, //
   {   2369.91393,  2,  0,  0,  0 }, //

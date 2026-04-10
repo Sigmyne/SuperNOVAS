@@ -4,10 +4,12 @@
 //
 // @author: Attila Kovacs
 
-static const int elp_n_dis = 313;
+#include "novas-elp.h"
+
+#define ELP_N_DIS      313      ///< Number of harmonic terms in distance
 
 // @formatter:off
-static const elp_main_term elp_dis[313] = { //
+NOVAS_TABLE elp_main_term elp_dis[ELP_N_DIS] = { //
   { 385000.52906,  0,  0,  0,  0 }, //
   { -20905.35494,  0,  0,  1,  0 }, //
   {  -3699.11090,  2,  0, -1,  0 }, //

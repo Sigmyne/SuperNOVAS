@@ -6,9 +6,9 @@
  * @version IERS Conventions v1.0.0
  */
 
-  // Luni-Solar argument multipliers:
-  // L     L'    F     D     Om
-  static const int8_t nals_t[323][5] = { //
+// Luni-Solar argument multipliers:
+// L     L'    F     D     Om
+NOVAS_TABLE int8_t nals_t[323][5] = { //
           { 0, 0, 0, 0, 1 }, //
           { 0, 0, 2, -2, 2 }, //
           { 0, 0, 2, 0, 2 }, //
@@ -334,12 +334,12 @@
           { 0, 0, 1, 0, 0 } //
   };
 
-  // Luni-Solar nutation coefficients, unit 1e-7 arcsec:
-  // longitude (sin, t*sin, cos), obliquity (cos, t*cos, sin)
+// Luni-Solar nutation coefficients, unit 1e-7 arcsec:
+// longitude (sin, t*sin, cos), obliquity (cos, t*cos, sin)
 
-  // Each row of coefficients in 'cls_t' belongs with the corresponding
-  // row of fundamental-argument multipliers in 'nals_t'.
-  static const int32_t cls_t[323][6] = { //
+// Each row of coefficients in 'cls_t' belongs with the corresponding
+// row of fundamental-argument multipliers in 'nals_t'.
+NOVAS_TABLE int32_t cls_t[323][6] = { //
           { -172064161, -174666, 33386, 92052331, 9086, 15377 }, //
           { -13170906, -1675, -13696, 5730336, -3015, -4587 }, //
           { -2276413, -234, 2796, 978459, -485, 1374 }, //
@@ -665,9 +665,9 @@
           { 0, 0, 75, 0, 0, 0 } //
   };
 
-  // Planetary argument multipliers:
-  // L   L'  F   D   Om  Me  Ve  E  Ma  Ju  Sa  Ur  Ne  pre
-  static const int8_t napl_t[165][14] = { //
+// Planetary argument multipliers:
+// L   L'  F   D   Om  Me  Ve  E  Ma  Ju  Sa  Ur  Ne  pre
+NOVAS_TABLE int8_t napl_t[165][14] = { //
           { 0, 0, 0, 0, 0, 0, 0, 8, -16, 4, 5, 0, 0, 0 }, //
           { 0, 0, 0, 0, 0, 0, 0, -8, 16, -4, -5, 0, 0, 2 }, //
           { 0, 0, 0, 0, 0, 0, 0, 8, -16, 4, 5, 0, 0, 2 }, //
@@ -835,12 +835,12 @@
           { -1, 0, 2, 0, 2, 0, 0, -4, 8, -3, 0, 0, 0, 0 } //
   };
 
-  // Planetary nutation coefficients, unit 1e-7 arcsec:
-  // longitude (sin, cos), obliquity (sin, cos)
+// Planetary nutation coefficients, unit 1e-7 arcsec:
+// longitude (sin, cos), obliquity (sin, cos)
 
-  // Each row of coefficients in 'cpl_t' belongs with the corresponding
-  // row of fundamental-argument multipliers in 'napl_t'.
-  static const int16_t cpl_t[165][4] = { //
+// Each row of coefficients in 'cpl_t' belongs with the corresponding
+// row of fundamental-argument multipliers in 'napl_t'.
+NOVAS_TABLE int16_t cpl_t[165][4] = { //
           { 1440, 0, 0, 0 }, //
           { 56, -117, -42, -40 }, //
           { 125, -43, 0, -54 }, //

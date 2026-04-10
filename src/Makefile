@@ -13,8 +13,12 @@ all shared static analyze:
 ifeq ($(ENABLE_CPP),1)
 	$(MAKE) -C cpp $@
 endif
+ifeq ($(ENABLE_CUDA),1)
+	$(MAKE) -C cuda $@
+endif
 
 .PHONY: clean distclean
 clean distclean:
 	$(MAKE) -s -C c99 $@
 	$(MAKE) -s -C cpp $@
+	$(MAKE) -s -C cuda $@

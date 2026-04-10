@@ -10,7 +10,11 @@
  * @version IERS Conventions v1.3.0
  */
 
-static const nutation_terms B0[1037] = { //
+#include "nutation/novas-nut.h"
+
+#define IAU2000A_N_TERMS_B0   1037
+
+NOVAS_TABLE nutation_terms B0[IAU2000A_N_TERMS_B0] = { //
         {      153770,   920523310, {   0,   0,   0,   0,   1,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  4,  5 }, //
         {      -45870,    57303360, {   0,   0,   2,  -2,   2,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  2,  5 }, //
         {       13740,     9784610, {   0,   0,   2,   0,   2,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  2,  5 }, //
@@ -1050,7 +1054,9 @@ static const nutation_terms B0[1037] = { //
         {           0,         -10, {   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   2 }, 13, 14 }  //
 };
 
-static const nutation_terms B1[19] = { //
+#define IAU2000A_N_TERMS_B1   19
+
+NOVAS_TABLE nutation_terms B1[IAU2000A_N_TERMS_B1] = { //
         {          20,       88303, {   0,   0,   0,   0,   1,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  4,  5 }, //
         {         -30,      -30309, {   0,   0,   2,  -2,   2,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  2,  5 }, //
         {           0,       -6770, {   0,   1,   2,  -2,   2,   0,   0,   0,   0,   0,   0,   0,   0,   0 },  1,  5 }, //

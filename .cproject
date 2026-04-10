@@ -11,10 +11,11 @@
 					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
 					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.nvidia.cuda.toolchain.nvccErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration buildProperties="" description="" id="cdt.managedbuild.toolchain.gnu.base.2126916097" name="Default" parent="org.eclipse.cdt.build.core.emptycfg">
+				<configuration artifactName="${ProjName}" buildProperties="" description="" id="cdt.managedbuild.toolchain.gnu.base.2126916097" name="Default" optionalBuildProperties="org.eclipse.cdt.docker.launcher.containerbuild.property.dockerdpath=,org.eclipse.cdt.docker.launcher.containerbuild.property.selectedvolumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.volumes=" parent="org.eclipse.cdt.build.core.emptycfg">
 					<folderInfo id="cdt.managedbuild.toolchain.gnu.base.2126916097.1241896343" name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.base.1979776327" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.base">
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.GNU_ELF" id="cdt.managedbuild.target.gnu.platform.base.1322169932" name="Debug Platform" osList="linux,hpux,aix,qnx" superClass="cdt.managedbuild.target.gnu.platform.base"/>
@@ -52,6 +53,32 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/include}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1601317039" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="cdt.managedbuild.toolchain.gnu.base.2126916097.1583911783" name="/" resourcePath="include/cuda">
+						<toolChain id="com.nvidia.cuda.toolchain.linuxToolchain.1114647155" name="CUDA Linux toolchain" superClass="com.nvidia.cuda.toolchain.linuxToolchain">
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.nvidia.cuda.toolchain.targetLinuxPlatform" isAbstract="false" osList="linux" superClass="com.nvidia.cuda.toolchain.targetLinuxPlatform"/>
+							<tool id="nvcc.linker.305681557" name="NVCC linker" superClass="nvcc.linker"/>
+							<tool id="nvcc.archiver.1022361515" name="NVCC archiver" superClass="nvcc.archiver"/>
+							<tool id="nvcc.compiler.933582393" name="NVCC Compiler" superClass="nvcc.compiler">
+								<option id="nvcc.compiler.pic.1192432638" name="Position Independent Code (-fPIC)" superClass="nvcc.compiler.pic"/>
+								<inputType id="com.nvidia.cuda.toolchain.input.c.306784568" name="C" superClass="com.nvidia.cuda.toolchain.input.c"/>
+								<inputType id="com.nvidia.cuda.toolchain.input.cu.1311799940" name="CUDA" superClass="com.nvidia.cuda.toolchain.input.cu"/>
+								<inputType id="com.nvidia.cuda.toolchain.input.cpp.2037119877" name="C++" superClass="com.nvidia.cuda.toolchain.input.cpp"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<folderInfo id="cdt.managedbuild.toolchain.gnu.base.2126916097.855450775" name="/" resourcePath="src/cuda">
+						<toolChain id="com.nvidia.cuda.toolchain.linuxToolchain.562822615" name="CUDA Linux toolchain" superClass="com.nvidia.cuda.toolchain.linuxToolchain">
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.nvidia.cuda.toolchain.targetLinuxPlatform" isAbstract="false" osList="linux" superClass="com.nvidia.cuda.toolchain.targetLinuxPlatform"/>
+							<tool id="nvcc.linker.306845542" name="NVCC linker" superClass="nvcc.linker"/>
+							<tool id="nvcc.archiver.2082039182" name="NVCC archiver" superClass="nvcc.archiver"/>
+							<tool id="nvcc.compiler.265435448" name="NVCC Compiler" superClass="nvcc.compiler">
+								<option id="nvcc.compiler.pic.1068588306" name="Position Independent Code (-fPIC)" superClass="nvcc.compiler.pic"/>
+								<inputType id="com.nvidia.cuda.toolchain.input.c.446510525" name="C" superClass="com.nvidia.cuda.toolchain.input.c"/>
+								<inputType id="com.nvidia.cuda.toolchain.input.cu.1379524006" name="CUDA" superClass="com.nvidia.cuda.toolchain.input.cu"/>
+								<inputType id="com.nvidia.cuda.toolchain.input.cpp.7995648" name="C++" superClass="com.nvidia.cuda.toolchain.input.cpp"/>
 							</tool>
 						</toolChain>
 					</folderInfo>

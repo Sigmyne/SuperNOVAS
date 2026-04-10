@@ -4,10 +4,12 @@
 //
 // @author: Attila Kovacs
 
-static const int elp_n_lat = 339;
+#include "novas-elp.h"
+
+#define ELP_N_LAT      339       ///< Number of harmonic terms in latitude
 
 // @formatter:off
-static const elp_main_term elp_lat[339] = { //
+NOVAS_TABLE elp_main_term elp_lat[ELP_N_LAT] = { //
   {  18461.24038,  0,  1,  0,  0 }, //
   {   1010.16716,  0,  1,  1,  0 }, //
   {    999.69366,  0, -1,  1,  0 }, //

@@ -32,4 +32,4 @@ endif()
 # Link with math libs and core SuperNOVAS as necessary
 target_link_libraries(cpp PUBLIC core)
 
-
+ string(APPEND PC_LIBS "-lsupernovas-cuda ")

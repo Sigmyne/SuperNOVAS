@@ -13,11 +13,12 @@
 #include <errno.h>
 
 /// \cond PRIVATE
-#define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
+#define __NOVAS_INTERNAL_API__        ///< Use definitions meant for internal use by SuperNOVAS only
 /// \endcond
 
 #include "novas.h"
 
+#define NOVAS_TABLE   static const    ///< keywords for declaring coefficient tables.
 /// \cond PRIVATE
 
 /**
@@ -424,55 +425,7 @@ double ee_ct(double jd_tt_high, double jd_tt_low, enum novas_accuracy accuracy) 
   static THREAD_LOCAL double last_tt = NAN, last_ee;
   static THREAD_LOCAL enum novas_accuracy last_acc = (enum novas_accuracy) -1;
 
-  // @formatter:off
-
-  // Argument multiples and coefficients for time-independent terms.
-  typedef struct {
-    float A;        // Sine coefficient
-    float B;        // Cosie coefficient
-    int8_t n[14];   // argument multiples
-    int8_t from;    // index of first non-zero multiple
-    int8_t to;      // index after last non-zero multiple
-  } ee_terms;
-
-  static const ee_terms terms[33] =  { //
-          //          A         B     0   1   2   3   4   5   6   7  #8  #9 #10 #11 #12  13   frm  to
-          {  2640.96e-6, -0.39e-6, {  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  4,  5 }, //
-          {    63.52e-6, -0.02e-6, {  0,  0,  0,  0,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  4,  5 }, //
-          {    11.75e-6,  0.01e-6, {  0,  0,  2, -2,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  5 }, //
-          {    11.21e-6,  0.01e-6, {  0,  0,  2, -2,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  5 }, //
-          {    -4.55e-6,  0.0    , {  0,  0,  2, -2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  5 }, //
-          {     2.02e-6,  0.0    , {  0,  0,  2,  0,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  5 }, //
-          {     1.98e-6,  0.0    , {  0,  0,  2,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  5 }, //
-          {    -1.72e-6,  0.0    , {  0,  0,  0,  0,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  4,  5 }, //
-          {    -1.41e-6, -0.01e-6, {  0,  1,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  1,  5 }, //
-          {    -1.26e-6, -0.01e-6, {  0,  1,  0,  0, -1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  1,  5 }, //
-          {    -0.63e-6,  0.0    , {  1,  0,  0,  0, -1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  0,  5 }, //
-          {    -0.63e-6,  0.0    , {  1,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  0,  5 }, //
-          {     0.46e-6,  0.0    , {  0,  1,  2, -2,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  1,  5 }, //
-          {     0.45e-6,  0.0    , {  0,  1,  2, -2,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  1,  5 }, //
-          {     0.36e-6,  0.0    , {  0,  0,  4, -4,  4,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  5 }, //
-          {    -0.24e-6, -0.12e-6, {  0,  0,  1, -1,  1,  0, -8, 12,  0,  0,  0,  0,  0,  0 },  2,  8 }, //
-          {     0.32e-6,  0.0    , {  0,  0,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  3 }, //
-          {     0.28e-6,  0.0    , {  0,  0,  2,  0,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  5 }, //
-          {     0.27e-6,  0.0    , {  1,  0,  2,  0,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  0,  5 }, //
-          {     0.26e-6,  0.0    , {  1,  0,  2,  0,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  0,  5 }, //
-          {    -0.21e-6,  0.0    , {  0,  0,  2, -2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  4 }, //
-          {     0.19e-6,  0.0    , {  0,  1, -2,  2, -3,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  1,  5 }, //
-          {     0.18e-6,  0.0    , {  0,  1, -2,  2, -1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  1,  5 }, //
-          {    -0.10e-6,  0.05e-6, {  0,  0,  0,  0,  0,  0,  8,-13,  0,  0,  0,  0,  0, -1 },  6, 14 }, //
-          {     0.15e-6,  0.0    , {  0,  0,  0,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  3,  4 }, //
-          {    -0.14e-6,  0.0    , {  2,  0, -2,  0, -1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  0,  5 }, //
-          {     0.14e-6,  0.0    , {  1,  0,  0, -2,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  0,  5 }, //
-          {    -0.14e-6,  0.0    , {  0,  1,  2, -2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  1,  5 }, //
-          {     0.14e-6,  0.0    , {  1,  0,  0, -2, -1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  0,  5 }, //
-          {     0.13e-6,  0.0    , {  0,  0,  4, -2,  4,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  5 }, //
-          {    -0.11e-6,  0.0    , {  0,  0,  2, -2,  4,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  2,  5 }, //
-          {     0.11e-6,  0.0    , {  1,  0, -2,  0, -3,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  0,  5 }, //
-          {     0.11e-6,  0.0    , {  1,  0, -2,  0, -1,  0,  0,  0,  0,  0,  0,  0,  0,  0 },  0,  5 }  //
-  };
-
-  // @formatter:on
+#include "tables/ee.tab.c"
 
   if(accuracy != NOVAS_FULL_ACCURACY)
     accuracy = NOVAS_REDUCED_ACCURACY;
@@ -482,7 +435,7 @@ double ee_ct(double jd_tt_high, double jd_tt_low, enum novas_accuracy accuracy) 
     const double t = ((jd_tt_high - JD_J2000) + jd_tt_low) / JULIAN_CENTURY_DAYS;
     double a[14] = {0.0};
     double sum = 0.0;
-    int i, Nt = 33; // Number of terms to sum...
+    int i, Nt = EE_N_TERMS; // Number of terms to sum...
 
     // Fill the 5 Earth-Sun-Moon fundamental args
     fund_args(t, (novas_delaunay_args*) a);

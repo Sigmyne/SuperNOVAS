@@ -29,38 +29,11 @@
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
-#define ELP_DELTA       0.01      ///< [day] for cord estimate
-
 #include "novas.h"
+#include "elp2000/novas-elp.h"
 
-typedef struct {
-  double A;             ///< [arcsec|km] amplitude
-  int8_t D;             ///< Mulitple for D
-  int8_t F;             ///< Multiple for F
-  int8_t l;             ///< Multiple for l
-  int8_t l1;            ///< Multiple for l1
-} elp_main_term;
-
-typedef struct {
-  float A;              ///< [arcsec|km] amplitude
-  float phi;            ///< [deg] phase
-  struct {
-    int8_t D;           ///< Multiple for D
-    int8_t F;           ///< Multiple for F
-    int8_t l;           ///< Multiple for l
-    int8_t l1;          ///< Multiple for l1
-  } delaunay;
-  int8_t planets[5];    ///< Multiples for Venus -> Saturn
-  int8_t zeta;          ///< Multiple for &zeta;
-} elp_pert_term;
-
-typedef struct {
-  double W1;            /// [rad] Moon mean ecliptic longitude (ELP2000)
-  double W2;            /// [rad] Mean ecliptic longitude of Moon's periapsis (ELP2000)
-  double W3;            /// [rad] Mean longitude of Moon's ascending node (ELP2000)
-  double T;             /// [rad] Mean ecliptic longitude of Earth
-  double omega1;        /// [rad] Mean ecliptic longitude of Earth perihelion (ELP2000)
-} elp_mean_args;
+#define ELP_DELTA       0.01      ///< [day] for cord estimate
+#define NOVAS_TABLE static const  ///< keywords for declaring coefficient tables.
 
 // @formatter:off
 /**
@@ -331,13 +304,18 @@ int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
   // Delaunay args of ELP2000 (Chapront & Francou 2003).
   elp_args(t, &elp, &args);
 
-  lon = elp.W1 + elp_sin(&args, elp_lon, elp_n_lon, limit) * ARCSEC;
-  lat = elp_sin(&args, elp_lat, elp_n_lat, limit) * ARCSEC;
-  dis = elp_cos(&args, elp_dis, elp_n_dis, limit) * NOVAS_KM / NOVAS_AU;
+  lon = elp.W1 + elp_sin(&args, elp_lon, ELP_N_LON, limit) * ARCSEC;
+  lat = elp_sin(&args, elp_lat, ELP_N_LAT, limit) * ARCSEC;
+  dis = elp_cos(&args, elp_dis, ELP_N_DIS, limit) * NOVAS_KM / NOVAS_AU;
 
   if(fabs(leading->A) > limit) {
     double planets[NOVAS_NEPTUNE + 1] = {0.0};
     double zeta = elp.W1 + (5029.0966 - 0.29965) * ARCSEC * t;
+
+    const int elp_n_plon[] = ELP_N_PLON_INIT;
+    const int elp_n_plat[] = ELP_N_PLAT_INIT;
+    const int elp_n_pdis[] = ELP_N_PDIS_INIT;
+
     int i;
 
     // Perturbation only for Venus through Saturn.

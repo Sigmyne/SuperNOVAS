@@ -7,6 +7,10 @@
  *  included in the IAU2000A nutation model).
  */
 
+#include "eop/novas-eop.h"
+
+#define EOP_N_POLAR_LIBRATION_TERMS   10
+
 /**
  * Polar migration due to librations. From IERS Conventions Chapter 5, Table 5.1a.
  *
@@ -16,7 +20,7 @@
  *
  * @since 1.5
  */
-static const novas_eop_terms polar_libration_terms[10] = { //
+NOVAS_TABLE novas_eop_terms polar_libration_terms[EOP_N_POLAR_LIBRATION_TERMS] = { //
         //                                         xp               yp
         //                                    sin     cos      sin      cos
         { {   1,  -1,   0,  -2,   0,  -1 },  -0.40,   0.30,  -0.30,  -0.40 }, //
@@ -31,6 +35,9 @@ static const novas_eop_terms polar_libration_terms[10] = { //
         { {   1,   1,   0,   0,   0,   0 },   0.80,  -0.40,   0.40,   0.80 }  //
 };
 
+
+#define EOP_N_DUT_LIBRATION_TERMS  11
+
 /**
  * UT1 variations due to librations. From IERS Conventions Chapter 5, Table 5.1b.
  *
@@ -40,7 +47,7 @@ static const novas_eop_terms polar_libration_terms[10] = { //
  *
  * @since 1.5
  */
-static const novas_eop_terms dut1_libration_terms[11] = {
+NOVAS_TABLE novas_eop_terms dut1_libration_terms[EOP_N_DUT_LIBRATION_TERMS] = {
         //                                         UT1             LOD
         //                                    sin     cos      sin     cos
         { {   2,  -2,   0,  -2,   0,  -2 },   0.05,  -0.03,  -0.30,  -0.60 }, //
