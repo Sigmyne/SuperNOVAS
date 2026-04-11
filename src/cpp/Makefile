@@ -10,17 +10,18 @@ LANGUAGE := c++
 CHECK_DIR := .
 
 LIB ?= ../../lib
+NAME = supernovas++
 
 ifeq ($(CXX),clang++)
-  # Treat .c sources as C++, and use C++17
-  CXXFLAGS += -x c++ -std=c++17
+  # Treat .c sources as C++, and use C++11
+  CXXFLAGS += -x c++ -std=c++11
 endif
 
 # Use the definitions project definitions
 include ../../config.mk
 
 CPP_SOURCES := $(wildcard *.cpp)
-CPP_OBJECTS := $(addprefix $(OBJ)/, $(subst .cpp,.opp,$(CPP_SOURCES)))
+CPP_OBJECTS := $(addprefix $(OBJ)/, $(subst .cpp,.o,$(CPP_SOURCES)))
 
 CPPFLAGS += -I../../include
 
@@ -33,24 +34,21 @@ endif
 LDFLAGS += -lm -L$(LIB) -lsupernovas
 
 .PHONY: shared
-shared: $(LIB)/libsupernovas++.$(SOEXT)
+shared: $(LIB)/lib$(NAME).$(SOEXT)
 
 .PHONY: static
-static: $(LIB)/libsupernovas++.a
+static: $(LIB)/lib$(NAME).a
 
 .PHONY: all
 all: shared static
 
-$(LIB)/libsupernovas++.$(SOEXT): $(LIB)/libsupernovas++.$(SOEXT).$(SO_VERSION)
+$(LIB)/lib$(NAME).$(SOEXT): $(LIB)/lib$(NAME).$(SOEXT).$(SO_VERSION)
 
-$(LIB)/libsupernovas++.$(SOEXT).$(SO_VERSION): $(CPP_SOURCES) | $(LIB)/libsupernovas.$(SOEXT)
+$(LIB)/lib$(NAME).$(SOEXT).$(SO_VERSION): $(CPP_SOURCES) | $(LIB)/libsupernovas.$(SOEXT)
 
-$(LIB)/libsupernovas++.a: $(CPP_OBJECTS) | $(LIB)/libsupernovas.a
+$(LIB)/lib$(NAME).a: $(CPP_OBJECTS) | $(LIB)/libsupernovas.a
 
-$(OBJ)/%.opp: %.cpp $(OBJ) Makefile
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
-
-$(OBJ)/%.o: ../src/%.c $(OBJ) Makefile
+$(OBJ)/%.o: %.cpp $(OBJ) Makefile
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) $<
 
 $(LIB)/libsupernovas.a:
@@ -65,7 +63,7 @@ clean:
 
 .PHONY: distclean
 distclean: clean
-	@rm -rf $(LIB)/libsupernovas++.*
+	@rm -rf $(LIB)/lib$(NAME).*
 
 
 # Built-in help screen for `make help`
@@ -76,8 +74,8 @@ help:
 	@echo
 	@echo "The following targets are available:"
 	@echo
-	@echo "  shared        (default) builds libsupernovas++ shared library."
-	@echo "  static        builds libsupernovas++.a static libary."
+	@echo "  shared        (default) builds lib$(NAME) shared library."
+	@echo "  static        builds lib$(NAME).a static libary."
 	@echo "  all           all of the above."
 	@echo "  clean         Removes intermediate products."
 	@echo "  distclean     Deletes all generated files."
@@ -91,5 +89,3 @@ Makefile: ../../config.mk ../../build.mk
 # ===============================================================================
 
 include ../../build.mk
-
-vpath %.c ../c99
