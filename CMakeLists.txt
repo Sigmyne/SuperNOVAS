@@ -24,7 +24,7 @@ project(supernovas
     VERSION 1.6.0
     DESCRIPTION "SuperNOVAS C/C++ astrometry library"
     HOMEPAGE_URL "https://sigmyne.github.io/SuperNOVAS/"
-    LANGUAGES C CXX
+    LANGUAGES C
 )
 
 # Include required modules
@@ -133,6 +133,7 @@ endif()
 # Link applications against the C++ library also, if enabled
 
 if(ENABLE_CPP)
+    enable_language(CXX)
     string(APPEND PC_LIBS "-lsupernovas++ ")
 endif()
 

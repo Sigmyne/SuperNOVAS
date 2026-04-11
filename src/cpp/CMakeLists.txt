@@ -17,8 +17,6 @@ function(list_prepend var prefix)
     set(${var} "${temp}" PARENT_SCOPE)
 endfunction()
 
-list_prepend(C_SOURCES "../c99/")
-
 add_library(cpp ${CPP_SOURCES})
 add_library(supernovas::cpp ALIAS cpp)
 
