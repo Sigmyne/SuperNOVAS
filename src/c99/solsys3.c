@@ -336,7 +336,8 @@ int sun_eph(double jd, double *restrict ra, double *restrict dec, double *restri
     double nu;
   };
 
-  static const struct sun_con con[50] = { { 403406, 0, 4.721964, 1.621043 }, //
+  static const struct sun_con con[50] = { //
+          { 403406, 0, 4.721964, 1.621043 }, //
           { 195207, -97597, 5.937458, 62830.348067 }, //
           { 119433, -59715, 1.115589, 62830.821524 }, //
           { 112392, -56188, 5.781616, 62829.634302 }, //
@@ -368,7 +369,8 @@ int sun_eph(double jd, double *restrict ra, double *restrict dec, double *restri
           { 32, -24, 1.14, 117906.27 }, //
           { 29, -13, 2.84, 55075.75 }, //
           { 28, 0, 5.96, -7961.39 }, //
-          { 27, -9, 5.09, 188489.81 }, { 27, 0, 1.72, 2132.19 }, //
+          { 27, -9, 5.09, 188489.81 }, //
+          { 27, 0, 1.72, 2132.19 }, //
           { 25, -17, 2.56, 109771.03 }, //
           { 24, -11, 1.92, 54868.56 }, //
           { 21, 0, 0.09, 25443.93 }, //
@@ -384,14 +386,14 @@ int sun_eph(double jd, double *restrict ra, double *restrict dec, double *restri
           { 10, 0, 2.21, 46941.14 }, //
           { 10, 0, 3.59, -68.29 }, //
           { 10, 0, 1.50, 21463.25 }, //
-          { 10, -9, 2.55, 157208.40 } };
+          { 10, -9, 2.55, 157208.40 } //
+  };
 
   double sum_lon = 0.0;
   double sum_r = 0.0;
   double u, lon, t, emean, sin_lon;
 
   int i;
-
 
   if(!ra || !dec || !dis)
     return novas_error(-1, EINVAL, "sun_eph", "NULL output pointer: ra=%p, dec=%p, dis=%p", ra, dec, dis);
