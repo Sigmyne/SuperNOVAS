@@ -426,7 +426,7 @@ const Angle& Equatorial::dec() const {
  * @sa Ecliptic::to_equatorial(), to_galactic()
  */
 Ecliptic Equatorial::to_ecliptic(enum novas_accuracy accuracy) const {
-  double lon, lat;
+  double lon = NAN, lat = NAN;
 
   if(!is_valid()) {
     novas_set_errno(ERANGE, "Equatorial::to_ecliptic()", "invalid Equatorial instance");
