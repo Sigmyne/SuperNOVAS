@@ -115,7 +115,7 @@ $(function(){initNavTree('index.html','',''); });
 <p><b>SuperNOVAS</b> is easy to use and it is very fast, with 3&ndash;5 orders of magnitude faster position calculations than <a href="https://www.astropy.org/">astropy</a> 7.0.0 in a single thread (see the <a class="el" href="#benchmarks" title="benchmarks">benchmarks</a>), and its performance will scale further with the number of CPUs when calculations are performed in parallel threads.</p>
 <p><b>SuperNOVAS</b> is and it is available through the <a href="https://github.com/Sigmyne/SuperNOVAS">Sigmyne/SuperNOVAS</a> repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports the IAU 2000/2006 conventions for microarcsecond-level position calculations.</p>
 <p>This document has been updated for the <span class="tt">v1.6</span> and later releases.</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
 Table of Contents</h1>
 <ul>
 <li><a class="el" href="#introduction" title="introduction">Introduction</a></li>
@@ -133,7 +133,7 @@ Table of Contents</h1>
 </ul>
 <hr  />
 <p><a class="anchor" id="introduction"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
 Introduction</h1>
 <p><b>SuperNOVAS</b> is a fork of the The Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>). (It is not related to the separate NOVA / libnova library.)</p>
 <p>The primary goal of <b>SuperNOVAS</b> is to improve on the original NOVAS C library via:</p>
@@ -153,7 +153,7 @@ Introduction</h1>
 <p><b>SuperNOVAS</b> is currently based on NOVAS C version 3.1. We plan to rebase <b>SuperNOVAS</b> to the latest upstream release of the NOVAS C library, if possible when new releases become available.</p>
 <p><b>SuperNOVAS</b> is maintained by <a href="https://www.sigmyne.com/attipaci">Attila Kovács</a>.</p>
 <p>Outside contributions are very welcome. See <a href="https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html">how you can contribute</a> on how you can make <b>SuperNOVAS</b> even better.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md50"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
 Related links</h2>
 <ul>
 <li><a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a> home page at the US Naval Observatory.</li>
@@ -165,7 +165,7 @@ Related links</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="fixed-issues"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md54"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
 Fixed NOVAS C 3.1 issues</h1>
 <p><b>SuperNOVAS</b> fixes a number of outstanding issues with NOVAS C 3.1:</p>
 <details >
@@ -194,7 +194,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="compatibility"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md63"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
 Compatibility with NOVAS C 3.1</h1>
 <p><b>SuperNOVAS</b> strives to maintain API compatibility with the upstream NOVAS C 3.1 library, but not binary (ABI) compatibility.</p>
 <p>If you have code that was written for NOVAS C 3.1, it should work with <b>SuperNOVAS</b> as is, without modifications. Simply (re)build your application against <b>SuperNOVAS</b>, and you are good to go.</p>
@@ -202,7 +202,7 @@ Compatibility with NOVAS C 3.1</h1>
 <p>This is because some function signatures have changed, e.g. to use an <span class="tt">enum</span> argument instead of the nondescript <span class="tt">short int</span> option arguments used in NOVAS C 3.1, or because we added a return value to a function that was declared <span class="tt">void</span> in NOVAS C 3.1. We also changed the <span class="tt"><a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> structure to contain a <span class="tt">long</span> ID number instead of <span class="tt">short</span> to accommodate JPL NAIF codes, for which 16-bit storage is insufficient.</p>
 <hr  />
 <p><a class="anchor" id="installation"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md68"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
 Building and installation</h1>
 <ul>
 <li><a class="el" href="#gnu-build" title="gnu-build">Build SuperNOVAS using GNU make</a></li>
@@ -213,7 +213,7 @@ Building and installation</h1>
 <li><a class="el" href="#nix" title="nix">Nix package</a></li>
 </ul>
 <p><a class="anchor" id="gnu-build"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md70"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 Build SuperNOVAS using GNU make</h2>
 <p>The <b>SuperNOVAS</b> distribution contains a GNU <span class="tt">Makefile</span>, which is suitable for compiling the library (as well as local documentation, and tests, etc.) on POSIX systems such as Linux, Mac OS X, BSD, Cygwin or WSL &ndash; using <a href="https://www.gnu.org/software/make/">GNU <span class="tt">make</span></a>.</p>
 <details >
@@ -254,7 +254,7 @@ Details</summary>
 <dl class="section remark"><dt>Remarks</dt><dd>On BSD, you will need to use <span class="tt">gmake</span> instead of <span class="tt">make</span>.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>if you want to build <b>SuperNOVAS</b> for with your old NOVAS C applications you might want to further customize the build. See section on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99">legacy application</a> in the <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">C99 User's guide</a>.</dd></dl>
 <p><a class="anchor" id="cmake-build"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md78"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
 Build SuperNOVAS using CMake</h2>
 <p>As of v1.5, <b>SuperNOVAS</b> can be built using <a href="https://cmake.org/">CMake</a> (many thanks to Kiran Shila). CMake allows for greater portability than the regular GNU <span class="tt">Makefile</span>. Note, however, that the CMake configuration does not support all of the build options of the GNU <span class="tt">Makefile</span>, such as automatic CALCEPH and CSPICE integration on Linux, supporting legacy NOVAS C style builds, and code coverage tracking.</p>
 <details >
@@ -288,7 +288,7 @@ Details</summary>
 <div class="fragment"><div class="line">$ cmake --install build --component Runtime --prefix /usr/local</div>
 </div><!-- fragment --> </details>
 <p><a class="anchor" id="vcpkg-port"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
 Install SuperNOVAS via <span class="tt">vcpkg</span></h2>
 <p>As of version 1.5, <b>SuperNOVAS</b> is available through the <a href="https://vcpkg.io/en/">vcpkg</a> registry. The <span class="tt">vcpkg</span> port supports a wide range of platforms, including Linux, Windows, MacOS, and Android &ndash; for both <span class="tt">arm64</span> and <span class="tt">x64</span> architectures (and in case of Windows also <span class="tt">x86</span>). It is effectively the same as the CMake build (above), only with more simplicity, convenience, and dependency resolution.</p>
 <details >
@@ -303,7 +303,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="linux-packages"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
 Linux packages</h2>
 <p><b>SuperNOVAS</b> is packaged for Debian, Fedora / EPEL, and NixOS Linux distributions, and derivatives based on these (Ubuntu, Mint, RHEL, CentOS Stream, Alma Linux, Rocky Linux, Oracle Linux etc.).</p>
 <details >
@@ -319,7 +319,7 @@ Details</summary>
 </details>
 <dl class="section note"><dt>Note</dt><dd>The turnaround time for Debian packages is quite slow, and typically follows the 6-month Debian release cycle, whereas the Fedora / EPEL packages are usually fully up-to-date (i.e. in <span class="tt">stable</span>) within a week of a new SuperNOVAS release. Somewhat newer Debian versions may be found in <span class="tt">testing</span>, but even that tends to lag behind the <span class="tt">stable</span> Fedora / EPEL updates.</dd></dl>
 <p><a class="anchor" id="homebrew"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
 Homebrew package</h2>
 <p>As of version 1.5, there is also a <a href="https://brew.sh/">Homebrew</a> package through the maintainer's own Tap, which includes the <span class="tt">solsys-calceph</span> plugin by default. And, as of the 1.6 release it includes the C++11 API library also.</p>
 <details >
@@ -331,7 +331,7 @@ Details</summary>
 </div><!-- fragment --><p></p>
 </details>
 <p><a class="anchor" id="nix"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
 Nix package</h2>
 <p>As of version 1.5, there is also a <a href="https://nixos.org/">Nix</a> <a href="https://search.nixos.org/packages?channel=unstable&amp;show=supernovas&amp;query=supernovas">package</a>. This declarative and determinstic package manager can be used on every linux distribution as well as MacOS. The default package includes the <span class="tt">solsys-calceph</span> plugin, but can be overriden by changing <span class="tt">withCalceph</span>.</p>
 <details >
@@ -346,7 +346,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="methodologies"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md90"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
 Celestial coordinate systems (old vs. new)</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -386,14 +386,14 @@ Celestial coordinate systems (old vs. new)</h1>
 <dl class="section note"><dt>Note</dt><dd>WGS84 has been superseded by ITRS for higher accuracy definitions of Earth-based locations. WGS84 matches ITRS to the 10m level globally, but it does not account for continental drifts and crustal motion. In (Super)NOVAS all Earth-base locations are presumed ITRS. ITRS longitude, latitude, and altitude coordinates are referenced to the GRS80 ellipsoid, whereas GPS locations are referenced to the WGS84 ellipsoid. <b>SuperNOVAS</b> offers ways to convert between the two if needed.</dd></dl>
 <hr  />
 <p><a class="anchor" id="examples"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md99"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md62"></a>
 Example use cases</h1>
 <ul>
 <li><a class="el" href="#recommendation" title="recommendation">Recommendation: set up an ephemeris provider</a></li>
 <li><a class="el" href="#usage-flavors" title="usage-flavors">Pick you flavor (C or C++)</a></li>
 </ul>
 <p><a class="anchor" id="recommendation"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md101"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md64"></a>
 Recommendation: set up an ephemeris provider</h2>
 <p><b>SuperNOVAS</b> can do a lot of things on its own. What it cannot do alone is provide precise positions for Solar-system bodies. For that, you need ephemeris data and a helping hand from an external tool to access them. Even if you don't particularly care to obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).</p>
 <p>Therefore, it is strongly recommended that you download <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/">planetary ephemeris files from NASA / JPL</a> (such as the DE440, or the smaller DE440s, or the long-term DE441), and install <a href="https://calceph.imcce.fr/">CALCEPH</a> or the <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">CSPICE Toolkit</a> for accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and it is also more modern, and actively maintained.</p>
@@ -411,7 +411,7 @@ Recommendation: set up an ephemeris provider</h2>
 </div><!-- fragment --><p>Don't forget to link with <span class="tt">-lsolsys-calceph</span> and <span class="tt">-lcalceph</span> flags added you yor build. With that, you have now unlocked a lot of the high-precision capabilities of <b>SuperNOVAS</b>. Have fun with it!</p>
 <p>For more details on using CALCEPH or integrating other ways for providing ephemeris data to <b>SuperNOVAS</b> look at the <a class="el" href="#solarsystem" title="solarsystem">section below</a>.</p>
 <p><a class="anchor" id="usage-flavors"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md102"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md69"></a>
 Pick your flavor (C or C++)</h2>
 <p>As of v1.6 <b>SuperNOVAS</b> comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which one you intend to use, choose the appropriate link to an external document below for further information:</p>
 <ul>
@@ -420,7 +420,7 @@ Pick your flavor (C or C++)</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="solarsystem"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md104"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md71"></a>
 Incorporating Solar-system ephemeris data or services</h1>
 <p>If you want to use <b>SuperNOVAS</b> to calculate positions for a range of Solar-system objects, and/or to do it with precision, you will have to interface it to a suitable provider of ephemeris data. The preferred ways to do that in <b>SuperNOVAS</b> enumerated below. (The legacy NOVAS C ways are not covered here, since they require specialized builds of <b>SuperNOVAS</b>, which are covered <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application">separately</a>.)</p>
 <p>NASA/JPL provides <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/">generic ephemerides</a> for the major planets, satellites thereof, the 300 largest asteroids, the Lagrange points, and some Earth orbiting stations. For example, <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de440.bsp">DE440</a> covers the major planets, and the Sun, Moon, and barycenters for times between 1550 AD and 2650 AD. Or, you can use the <a href="https://ssd.jpl.nasa.gov/horizons/">JPL HORIZONS</a> system (via the command-line / telnet or API interfaces) to generate custom ephemerides (SPK/BSP) for just about all known solar systems bodies, down to the tiniest rocks.</p>
@@ -430,7 +430,7 @@ Incorporating Solar-system ephemeris data or services</h1>
 <li><a class="el" href="#universal-ephemerides" title="universal-ephemerides">Universal ephemeris data / service integration</a></li>
 </ul>
 <p><a class="anchor" id="calceph-integration"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md105"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md73"></a>
 CALCEPH integration</h2>
 <p>The <a href="https://www.imcce.fr/recherche/equipes/asd/calceph/">CALCEPH</a> library provides easy-to-use access to JPL and INPOP ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing <b>SuperNOVAS</b> with the the CALCEPH C library for handling Solar-system objects.</p>
 <details  open="true">
@@ -465,7 +465,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="cspice-integration"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md106"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
 NAIF CSPICE toolkit integration</h2>
 <p>The <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">NAIF CSPICE Toolkit</a> is the canonical standard library for JPL ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing <b>SuperNOVAS</b> with CSPICE for handling Solar-system objects.</p>
 <details >
@@ -501,7 +501,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="universal-ephemerides"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md107"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
 Universal ephemeris data / service integration</h2>
 <p>Possibly the most universal way to integrate ephemeris data with <b>SuperNOVAS</b> is to write your own <span class="tt"><a class="el" href="group__solar-system.html#gaebb3d71006e8d93de242df61510374ad" title="Function to obtain ephemeris data for minor planets, which are not handled by the solarsystem() type ...">novas_ephem_provider</a></span> function.</p>
 <details >
@@ -531,7 +531,7 @@ Details</summary>
 <div class="ttc" id="agroup__solar-system_html_ga9d0f54c0ab00827768e61a353488b0ee"><div class="ttname"><a href="group__solar-system.html#ga9d0f54c0ab00827768e61a353488b0ee">planet_ephem_provider</a></div><div class="ttdeci">short planet_ephem_provider(double jd_tdb, enum novas_planet body, enum novas_origin origin, double *restrict position, double *restrict velocity)</div><div class="ttdoc">Major planet ephemeris data via the same generic ephemeris provider that is configured by set_ephem_p...</div><div class="ttdef"><b>Definition</b> solsys-ephem.c:100</div></div>
 </div><!-- fragment --><p>The above simply instructs <b>SuperNOVAS</b> to use the same ephemeris provider function for planets as what was set for <span class="tt"><a class="el" href="group__source.html#gga1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269" title="A Solar-system body that does not fit the major planet type, and requires specific user-provided nova...">NOVAS_EPHEM_OBJECT</a></span> type objects, provided you compiled <b>SuperNOVAS</b> with <span class="tt">BUILTIN_SOLSYS_EPHEM = 1</span> (in <span class="tt">config.mk</span>), or else you link your code against <span class="tt"><a class="el" href="solsys-ephem_8c.html" title="Major planet ephemeris lookup via the function, which was configured by set_ephem_provider().">solsys-ephem.c</a></span> explicitly. Easy-peasy.</p>
 <p><a class="anchor" id="precision"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md108"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
 Notes on precision</h1>
 <ul>
 <li><a class="el" href="#accuracy-prerequisites" title="accuracy-prerequisites">Prerequisites to precise results</a></li>
@@ -548,7 +548,7 @@ Notes on precision</h1>
 </table>
 <p>Note, that some functions will not support full accuracy calculations, unless you have provided a high-precision ephemeris provider for the major planets (and any Solar-system bodies of interest), which does not come with <b>SuperNOVAS</b> out of the box. In the absence of a suitable high-precision ephemeris provider, some functions might return an error if called with <span class="tt"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660" title="Use full precision calculations to micro-arcsecond accuracy.">NOVAS_FULL_ACCURACY</a></span>. (Click on the wedges next to each component to expand the details...)</p>
 <p><a class="anchor" id="accuracy-prerequisites"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md109"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md96"></a>
 Prerequisites to precise results</h2>
 <p>The <b>SuperNOVAS</b> library is in principle capable of calculating positions to microarcsecond, and velocities to mm/s, precision for all types of celestial sources. However, there are certain prerequisites and practical considerations before that level of accuracy is reached. (Click on the wedge next to each heading below to expand the details.)</p>
 <details >
@@ -588,7 +588,7 @@ Atmospheric refraction model</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="reduced-accuracy"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md110"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md104"></a>
 Reduced accuracy shortcuts</h2>
 <p>When one does not need positions at the microarcsecond level, some shortcuts can be made to the recipe above:</p>
 <ul>
@@ -600,7 +600,7 @@ Reduced accuracy shortcuts</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="debug-support"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md112"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md107"></a>
 Runtime debug support</h1>
 <p>You can enable or disable debugging output to <span class="tt">stderr</span> with <span class="tt"><a class="el" href="group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug(enum novas_debug_mode)</a></span>, where the argument is one of the defined constants from <span class="tt"><a class="el" href="novas_8h.html" title="SuperNOVAS types, definitions, and function prototypes.">novas.h</a></span>:</p>
 <table class="markdownTable">
@@ -633,7 +633,7 @@ Runtime debug support</h1>
 <div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65">NOVAS_DEBUG_ON</a></div><div class="ttdeci">@ NOVAS_DEBUG_ON</div><div class="ttdoc">Print errors and traces to the standard error.</div><div class="ttdef"><b>Definition</b> novas.h:556</div></div>
 </div><!-- fragment --><hr  />
 <p><a class="anchor" id="benchmarks"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md114"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md112"></a>
 Representative benchmarks</h1>
 <p>To get an idea of the speed of <b>SuperNOVAS</b>, you can use <span class="tt">make benchmark</span> on your machine. Figure 2 below summarizes the single-threaded results obtained with v1.5.0 on an AMD Ryzen 5 PRO 6650U laptop. While this is clearly not the state of the art for today's server class machines, it nevertheless gives you a ballpark idea for how a typical, not so new, run-of-the-mill PC might perform.</p>
 <table class="markdownTable">

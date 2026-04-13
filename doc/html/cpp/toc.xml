@@ -15,38 +15,38 @@
       <topic label="Nix package" href="index.html#autotoc_md16"/>
     </topic>
     <topic label="Celestial coordinate systems (old vs. new)" href="index.html#autotoc_md18"/>
-    <topic label="Example use cases" href="index.html#autotoc_md20">
-      <topic label="Recommendation: set up an ephemeris provider" href="index.html#autotoc_md21"/>
-      <topic label="Pick your flavor (C or C++)" href="index.html#autotoc_md22"/>
+    <topic label="Example use cases" href="index.html#autotoc_md21">
+      <topic label="Recommendation: set up an ephemeris provider" href="index.html#autotoc_md22"/>
+      <topic label="Pick your flavor (C or C++)" href="index.html#autotoc_md23"/>
     </topic>
-    <topic label="Incorporating Solar-system ephemeris data or services" href="index.html#autotoc_md24">
-      <topic label="CALCEPH integration" href="index.html#autotoc_md25"/>
-      <topic label="NAIF CSPICE toolkit integration" href="index.html#autotoc_md26"/>
-      <topic label="Universal ephemeris data / service integration" href="index.html#autotoc_md27"/>
+    <topic label="Incorporating Solar-system ephemeris data or services" href="index.html#autotoc_md25">
+      <topic label="CALCEPH integration" href="index.html#autotoc_md26"/>
+      <topic label="NAIF CSPICE toolkit integration" href="index.html#autotoc_md27"/>
+      <topic label="Universal ephemeris data / service integration" href="index.html#autotoc_md28"/>
     </topic>
-    <topic label="Notes on precision" href="index.html#autotoc_md28">
-      <topic label="Prerequisites to precise results" href="index.html#autotoc_md29"/>
-      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md30"/>
+    <topic label="Notes on precision" href="index.html#autotoc_md29">
+      <topic label="Prerequisites to precise results" href="index.html#autotoc_md30"/>
+      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md31"/>
     </topic>
-    <topic label="Runtime debug support" href="index.html#autotoc_md32"/>
-    <topic label="Representative benchmarks" href="index.html#autotoc_md34"/>
-    <topic label="SuperNOVAS added features" href="index.html#autotoc_md36">
-      <topic label="New functionality highlights" href="index.html#autotoc_md37"/>
-      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md38"/>
+    <topic label="Runtime debug support" href="index.html#autotoc_md33"/>
+    <topic label="Representative benchmarks" href="index.html#autotoc_md35"/>
+    <topic label="SuperNOVAS added features" href="index.html#autotoc_md37">
+      <topic label="New functionality highlights" href="index.html#autotoc_md38"/>
+      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md39"/>
     </topic>
-    <topic label="Release schedule" href="index.html#autotoc_md40"/>
+    <topic label="Release schedule" href="index.html#autotoc_md50"/>
   </topic>
   <topic label="C99 Usage" href="md__2github_2workspace_2doc_2USAGE-C99.html">
-    <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44">
-      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45"/>
-      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md46"/>
-      <topic label="Deprecated API" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47"/>
-      <topic label="Legacy linking solarsystem() / solarsystem_hp() and readeph() modules" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48"/>
-      <topic label="Legacy modules: a better way" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49"/>
+    <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md41">
+      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md42"/>
+      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md43"/>
+      <topic label="Deprecated API" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44"/>
+      <topic label="Legacy linking solarsystem() / solarsystem_hp() and readeph() modules" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45"/>
+      <topic label="Legacy modules: a better way" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md46"/>
     </topic>
-    <topic label="Example C99 usage" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51">
-      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52">
-        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53"/>
+    <topic label="Example C99 usage" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48">
+      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51">
+        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52"/>
         <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54"/>
         <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55"/>
         <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56"/>

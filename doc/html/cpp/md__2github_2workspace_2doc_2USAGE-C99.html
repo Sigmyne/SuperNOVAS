@@ -103,7 +103,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-C99.html','',''); }
   <div class="headertitle"><div class="title">C99 Usage </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md42"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md19"></a></p>
 <p>This guide is specifically for using <b>SuperNOVAS</b> as a C99 library. There is a separate guide for <a class="el" href="md__2github_2workspace_2doc_2USAGE-CPP.html" title="C++ Usage">using the C++11 API</a>. The links below let you jump to the relevant sections:</p>
 <ul>
 <li><a class="el" href="#integration-c99" title="integration-c99">Building your application with SuperNOVAS (C99)</a></li>
@@ -118,7 +118,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-C99.html','',''); }
 </ul>
 <hr  />
 <p><a class="anchor" id="integration-c99"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
 Building your application with SuperNOVAS (C99)</h1>
 <p>There are a number of ways you can build your application with <b>SuperNOVAS</b>. See which of the options suits your needs best:</p>
 <ul>
@@ -129,7 +129,7 @@ Building your application with SuperNOVAS (C99)</h1>
 <li><a class="el" href="#preferred-legacy-application-c99" title="preferred-legacy-application-c99">Legacy modules: a better way</a></li>
 </ul>
 <p><a class="anchor" id="makefile-application-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md42"></a>
 Using a GNU <span class="tt">Makefile</span></h2>
 <details >
 <summary >
@@ -147,7 +147,7 @@ Details</summary>
 </div><!-- fragment --><p></p>
 </details>
 <p><a class="anchor" id="cmake-application-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
 Using CMake</h2>
 <details >
 <summary >
@@ -160,7 +160,7 @@ Details</summary>
 </div><!-- fragment --><p></p>
 </details>
 <p><a class="anchor" id="deprecations-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md47"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
 Deprecated API</h2>
 <p><b>SuperNOVAS</b> began deprecating some NOVAS C functions, either because they are no longer needed; or are not easy to use and have better alternatives around; or are internals that should never have been exposed to end-users. The deprecations are marked in the inline and HTML API documentations, suggesting also alternatives.</p>
 <p>That said, the deprecated parts of the API are NOT removed, nor we plan on removing them for the foreseeable future. Instead, they serve as a gentle reminder to users that perhaps they should stay away from these features for their own good.</p>
@@ -171,7 +171,7 @@ Deprecated API</h2>
 <div class="ttc" id="anovas_8h_html"><div class="ttname"><a href="novas_8h.html">novas.h</a></div><div class="ttdoc">SuperNOVAS types, definitions, and function prototypes.</div></div>
 </div><!-- fragment --><p>After that, your compiler will complain if your source code references any of the deprecated entities, so you may change that part of your code to use the recommended alternatives instead.</p>
 <p><a class="anchor" id="legacy-application-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md48"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
 Legacy linking <span class="tt">solarsystem()</span> / <span class="tt">solarsystem_hp()</span> and <span class="tt">readeph()</span> modules</h2>
 <p>The NOVAS C way to handle planet or other ephemeris functions was to link particular modules to provide the <span class="tt">solarsystem()</span> / <span class="tt">solarsystem_hp()</span> and <span class="tt">readeph()</span> functions. This approach is discouraged in <b>SuperNOVAS</b>, with preference for selecting implementations at runtime. The old, deprecated way, of incorporating Solar-system data is supported, nevertheless, for legacy applications with some caveats.</p>
 <details >
@@ -184,7 +184,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="preferred-legacy-application-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md49"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
 Legacy modules: a better way</h2>
 <p>A better way to recycle your old planet and ephemeris calculator modules may be to rename <span class="tt">solarsystem()</span> / <span class="tt">solarsystem_hp()</span> functions therein to e.g. <span class="tt">my_planet_calculator()</span> / <span class="tt">my_planet_calculator_hp()</span> and then in your application can specify these functions as the provider at runtime.</p>
 <details >
@@ -207,7 +207,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="examples-c99"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md51"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md48"></a>
 Example C99 usage</h1>
 <ul>
 <li><a class="el" href="#sidereal-example-c99" title="sidereal-example-c99">Calculating positions for a sidereal source</a></li>
@@ -219,7 +219,7 @@ Example C99 usage</h1>
 <p><b>SuperNOVAS v1.1</b> has introduced a new, more intuitive, more elegant, and more efficient approach for calculating astrometric positions of celestial objects. The guide below is geared towards this new method. However, the original NOVAS C approach remains viable also (albeit often less efficient).</p>
 <dl class="section note"><dt>Note</dt><dd>You may find an equivalent legacy example showcasing the original NOVAS method in <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/NOVAS-legacy.md"><span class="tt">NOVAS-legacy.md</span></a>.</dd></dl>
 <p><a class="anchor" id="sidereal-example-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md52"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md51"></a>
 Calculating positions for a sidereal source</h2>
 <p>A sidereal source may be anything beyond the Solar system with 'fixed' catalog coordinates. It may be a star, or a galactic molecular cloud, or a distant quasar.</p>
 <ul>
@@ -231,7 +231,7 @@ Calculating positions for a sidereal source</h2>
 <li><a class="el" href="#horizontal-place-c99" title="horizontal-place-c99">Calculate azimuth and elevation angles at the observing location</a></li>
 </ul>
 <p><a class="anchor" id="specify-object-c99"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md53"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md52"></a>
 Specify the object of interest</h3>
 <p>First, you must provide the astrometric parameters (coordinates, and optionally radial velocity or redshift, proper motion, and/or parallax or distance also). Let's assume we pick a star for which we have B1950 (i.e. FK4) coordinates. We begin with the assigned name and the R.A. / Dec coordinates.</p>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> star; <span class="comment">// Structure to contain information on sidereal source </span></div>
