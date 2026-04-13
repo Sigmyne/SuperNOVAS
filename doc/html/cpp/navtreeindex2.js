@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classsupernovas_1_1Position.html#a578e1552f7e48d5f0029e451bfe9342c":[6,5,2,3],
 "classsupernovas_1_1Position.html#a8158b16437d04f06a8f4e5213ca82a92":[6,5,2,12],
 "classsupernovas_1_1Position.html#a8506cf525711b3bdbac8adc9c153c984":[6,5,2,13],
 "classsupernovas_1_1Position.html#a97b9b8f521c1843f640842a4c6eb5c8c":[6,5,2,8],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "classsupernovas_1_1Track.html#acea5816a0208a4776dc4a664155e58a3":[7,0,0,42,12],
 "classsupernovas_1_1Track.html#acea5816a0208a4776dc4a664155e58a3":[8,0,0,42,12],
 "classsupernovas_1_1Track.html#acf7c5ba0db5ab484826f7e4e907ee5c9":[7,0,0,42,7],
-"classsupernovas_1_1Track.html#acf7c5ba0db5ab484826f7e4e907ee5c9":[8,0,0,42,7],
-"classsupernovas_1_1Track.html#ad855778035b6f474a30d1536971839f2":[7,0,0,42,3]
+"classsupernovas_1_1Track.html#acf7c5ba0db5ab484826f7e4e907ee5c9":[8,0,0,42,7]
 };

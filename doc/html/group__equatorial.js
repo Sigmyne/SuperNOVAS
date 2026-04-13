@@ -37,6 +37,8 @@ var group__equatorial =
     [ "j2000_to_gcrs", "group__equatorial.html#ga9d51ca5c972013024755c644c96d0586", null ],
     [ "j2000_to_tod", "group__equatorial.html#ga02fa1ee652c20160055cbd2c7bd9ca63", null ],
     [ "mod_to_gcrs", "group__equatorial.html#gad9cc07f0e6af9339096e15a440b113e5", null ],
+    [ "novas_icrs_to_sys", "group__equatorial.html#gae92d75584fbd612dd966d5a0e98eac7a", null ],
+    [ "novas_sys_to_icrs", "group__equatorial.html#ga6642ce6aff84056cb62e61786e04dda7", null ],
     [ "tod_to_cirs", "group__equatorial.html#gadb48b2acaf76cc3a1e3a1412cc42c232", null ],
     [ "tod_to_gcrs", "group__equatorial.html#ga6871e7fecde44084c7b4e1b8dda5ac70", null ],
     [ "tod_to_itrs", "group__equatorial.html#ga4551e2ac083e34c1b2b61b3805efb9a3", null ],

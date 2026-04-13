@@ -34,7 +34,7 @@
       <topic label="New functionality highlights" href="index.html#autotoc_md37"/>
       <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md38"/>
     </topic>
-    <topic label="Release schedule" href="index.html#autotoc_md41"/>
+    <topic label="Release schedule" href="index.html#autotoc_md40"/>
   </topic>
   <topic label="C99 Usage" href="md__2github_2workspace_2doc_2USAGE-C99.html">
     <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44">
@@ -71,37 +71,37 @@
     </topic>
   </topic>
   <topic label="C++ Usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html">
-    <topic label="Building your application with SuperNOVAS (C++)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80">
-      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81"/>
-      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82"/>
+    <topic label="Building your application with SuperNOVAS (C++)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md76">
+      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md77"/>
+      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md78"/>
     </topic>
-    <topic label="C++ Fundamentals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84">
-      <topic label="Namespace" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85"/>
-      <topic label="Validation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86"/>
-      <topic label="Thread safety" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87"/>
-      <topic label="Operator overloading" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88"/>
+    <topic label="C++ Fundamentals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80">
+      <topic label="Namespace" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81"/>
+      <topic label="Validation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82"/>
+      <topic label="Thread safety" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83"/>
+      <topic label="Operator overloading" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84"/>
     </topic>
-    <topic label="Example C++ usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90">
-      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91">
-        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92"/>
-        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93">
-          <topic label="A. Earth-based observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94"/>
-          <topic label="B. other observer locations" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95"/>
+    <topic label="Example C++ usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86">
+      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87">
+        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88"/>
+        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89">
+          <topic label="A. Earth-based observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90"/>
+          <topic label="B. other observer locations" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91"/>
         </topic>
-        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96"/>
-        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97"/>
-        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98"/>
-        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99"/>
+        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92"/>
+        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93"/>
+        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94"/>
+        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95"/>
       </topic>
-      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100">
-        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101"/>
-        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102"/>
-        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103"/>
-        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104"/>
+      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96">
+        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97"/>
+        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98"/>
+        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99"/>
+        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100"/>
       </topic>
-      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105"/>
-      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106"/>
-      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107"/>
+      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101"/>
+      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102"/>
+      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104"/>
     </topic>
   </topic>
   <topic label="SuperNOVAS C++ vs. astropy" href="md_SuperNOVAS_09_09__vs__astropy.html"/>
@@ -405,6 +405,7 @@
       <topic label="supernovas::Frame" href="classsupernovas_1_1Frame.html">
         <topic label="Frame" href="classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6"/>
         <topic label="Frame" href="classsupernovas_1_1Frame.html#a074fa6f8c669da6f40f7a885d39af88e"/>
+        <topic label="~Frame" href="classsupernovas_1_1Frame.html#a4f1ae334ec980c176ffa2ecc30a61180"/>
         <topic label="_novas_frame" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98"/>
         <topic label="accuracy" href="classsupernovas_1_1Frame.html#a662b8d1698620c98076d66c08d5ce00f"/>
         <topic label="apparent_moon_elp2000" href="group__apparent.html#ga1c1afd88b17a269740a4d5c8b7eb36ee"/>
@@ -661,10 +662,9 @@
         <topic label="zenith_angle" href="classsupernovas_1_1Horizontal.html#a41a2959b8c966369e8d71af38671093d"/>
       </topic>
       <topic label="supernovas::Weather" href="classsupernovas_1_1Weather.html">
-        <topic label="Weather" href="classsupernovas_1_1Weather.html#afa980c7de58a62254a6b0c4bd018d48e"/>
+        <topic label="Weather" href="classsupernovas_1_1Weather.html#a2603dbc8cb783a611197af1d943472aa"/>
         <topic label="Weather" href="classsupernovas_1_1Weather.html#a9c0d3b17f35e0ee62d8868831a1e6d7d"/>
         <topic label="humidity" href="classsupernovas_1_1Weather.html#ac43b7b4d8450cf8542a60ff7c0d49b44"/>
-        <topic label="humidity_fraction" href="classsupernovas_1_1Weather.html#a3add8f8e11068b133b580d503e0b7d3a"/>
         <topic label="pressure" href="classsupernovas_1_1Weather.html#a68fb7dadc7cd72e839c0ed730c4b1f70"/>
         <topic label="temperature" href="classsupernovas_1_1Weather.html#a3d84bdc61aa8a1fb7c958a90df6a911c"/>
         <topic label="to_string" href="classsupernovas_1_1Weather.html#a0eabf3c9214f5b81cccfc681d4794713"/>
@@ -1303,6 +1303,7 @@
         <topic label="Frame" href="classsupernovas_1_1Frame.html">
           <topic label="Frame" href="classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6"/>
           <topic label="Frame" href="classsupernovas_1_1Frame.html#a074fa6f8c669da6f40f7a885d39af88e"/>
+          <topic label="~Frame" href="classsupernovas_1_1Frame.html#a4f1ae334ec980c176ffa2ecc30a61180"/>
           <topic label="_novas_frame" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98"/>
           <topic label="accuracy" href="classsupernovas_1_1Frame.html#a662b8d1698620c98076d66c08d5ce00f"/>
           <topic label="apparent_moon_elp2000" href="group__apparent.html#ga1c1afd88b17a269740a4d5c8b7eb36ee"/>
@@ -1814,10 +1815,9 @@
           <topic label="z" href="classsupernovas_1_1Velocity.html#ad034a48f76943c43dd9899aa456791dd"/>
         </topic>
         <topic label="Weather" href="classsupernovas_1_1Weather.html">
-          <topic label="Weather" href="classsupernovas_1_1Weather.html#afa980c7de58a62254a6b0c4bd018d48e"/>
+          <topic label="Weather" href="classsupernovas_1_1Weather.html#a2603dbc8cb783a611197af1d943472aa"/>
           <topic label="Weather" href="classsupernovas_1_1Weather.html#a9c0d3b17f35e0ee62d8868831a1e6d7d"/>
           <topic label="humidity" href="classsupernovas_1_1Weather.html#ac43b7b4d8450cf8542a60ff7c0d49b44"/>
-          <topic label="humidity_fraction" href="classsupernovas_1_1Weather.html#a3add8f8e11068b133b580d503e0b7d3a"/>
           <topic label="pressure" href="classsupernovas_1_1Weather.html#a68fb7dadc7cd72e839c0ed730c4b1f70"/>
           <topic label="temperature" href="classsupernovas_1_1Weather.html#a3d84bdc61aa8a1fb7c958a90df6a911c"/>
           <topic label="to_string" href="classsupernovas_1_1Weather.html#a0eabf3c9214f5b81cccfc681d4794713"/>
@@ -2071,6 +2071,7 @@
         <topic label="Frame" href="classsupernovas_1_1Frame.html">
           <topic label="Frame" href="classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6"/>
           <topic label="Frame" href="classsupernovas_1_1Frame.html#a074fa6f8c669da6f40f7a885d39af88e"/>
+          <topic label="~Frame" href="classsupernovas_1_1Frame.html#a4f1ae334ec980c176ffa2ecc30a61180"/>
           <topic label="_novas_frame" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98"/>
           <topic label="accuracy" href="classsupernovas_1_1Frame.html#a662b8d1698620c98076d66c08d5ce00f"/>
           <topic label="apparent_moon_elp2000" href="group__apparent.html#ga1c1afd88b17a269740a4d5c8b7eb36ee"/>
@@ -2582,10 +2583,9 @@
           <topic label="z" href="classsupernovas_1_1Velocity.html#ad034a48f76943c43dd9899aa456791dd"/>
         </topic>
         <topic label="Weather" href="classsupernovas_1_1Weather.html">
-          <topic label="Weather" href="classsupernovas_1_1Weather.html#afa980c7de58a62254a6b0c4bd018d48e"/>
+          <topic label="Weather" href="classsupernovas_1_1Weather.html#a2603dbc8cb783a611197af1d943472aa"/>
           <topic label="Weather" href="classsupernovas_1_1Weather.html#a9c0d3b17f35e0ee62d8868831a1e6d7d"/>
           <topic label="humidity" href="classsupernovas_1_1Weather.html#ac43b7b4d8450cf8542a60ff7c0d49b44"/>
-          <topic label="humidity_fraction" href="classsupernovas_1_1Weather.html#a3add8f8e11068b133b580d503e0b7d3a"/>
           <topic label="pressure" href="classsupernovas_1_1Weather.html#a68fb7dadc7cd72e839c0ed730c4b1f70"/>
           <topic label="temperature" href="classsupernovas_1_1Weather.html#a3d84bdc61aa8a1fb7c958a90df6a911c"/>
           <topic label="to_string" href="classsupernovas_1_1Weather.html#a0eabf3c9214f5b81cccfc681d4794713"/>
@@ -3422,6 +3422,7 @@
           <topic label="novas_hor_to_app" href="novas_8h.html#aa57cbcae2001fece2ee4a2babfbc5f89"/>
           <topic label="novas_hor_track" href="novas_8h.html#a1f29810393108d15fd8312a2a95158dc"/>
           <topic label="novas_hpa" href="group__nonequatorial.html#ga73fcb54e47b2be0aa92810b5f55f7a3c"/>
+          <topic label="novas_icrs_to_sys" href="novas_8h.html#ae92d75584fbd612dd966d5a0e98eac7a"/>
           <topic label="novas_init_cat_entry" href="novas_8h.html#af0137aa791dd29278904e53498fb9515"/>
           <topic label="novas_inv_refract" href="novas_8h.html#a81da80ae3ab1d0a444f39bde2af3a732"/>
           <topic label="novas_invert_transform" href="novas_8h.html#ad2081e123024609d3071b33b183502b7"/>
@@ -3496,6 +3497,7 @@
           <topic label="novas_str_degrees" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd"/>
           <topic label="novas_str_hours" href="novas_8h.html#a3ed26b6af870f6dbc353f651563afd4a"/>
           <topic label="novas_sun_angle" href="novas_8h.html#a2d1ef3bc6d99aa473511e45c6e0481e9"/>
+          <topic label="novas_sys_to_icrs" href="novas_8h.html#a6642ce6aff84056cb62e61786e04dda7"/>
           <topic label="novas_time_gst" href="novas_8h.html#aaf53fcad3fade814381cef3d06779a8c"/>
           <topic label="novas_time_leap" href="novas_8h.html#a28a5e4ae2b4d6c0069400a6ac5a600cf"/>
           <topic label="novas_time_lst" href="novas_8h.html#a9e99ea879ba0ddc1d9fbefc4b32b1ef1"/>
@@ -3961,6 +3963,8 @@
             <topic label="j2000_to_gcrs" href="transform_8c.html#a9d51ca5c972013024755c644c96d0586"/>
             <topic label="j2000_to_tod" href="transform_8c.html#a02fa1ee652c20160055cbd2c7bd9ca63"/>
             <topic label="mod_to_gcrs" href="transform_8c.html#ad9cc07f0e6af9339096e15a440b113e5"/>
+            <topic label="novas_icrs_to_sys" href="transform_8c.html#ae92d75584fbd612dd966d5a0e98eac7a"/>
+            <topic label="novas_sys_to_icrs" href="transform_8c.html#a6642ce6aff84056cb62e61786e04dda7"/>
             <topic label="ter2cel" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31"/>
             <topic label="tod_to_cirs" href="transform_8c.html#adb48b2acaf76cc3a1e3a1412cc42c232"/>
             <topic label="tod_to_gcrs" href="transform_8c.html#a6871e7fecde44084c7b4e1b8dda5ac70"/>

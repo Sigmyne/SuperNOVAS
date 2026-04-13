@@ -17,6 +17,8 @@ var transform_8c =
     [ "j2000_to_gcrs", "transform_8c.html#a9d51ca5c972013024755c644c96d0586", null ],
     [ "j2000_to_tod", "transform_8c.html#a02fa1ee652c20160055cbd2c7bd9ca63", null ],
     [ "mod_to_gcrs", "transform_8c.html#ad9cc07f0e6af9339096e15a440b113e5", null ],
+    [ "novas_icrs_to_sys", "transform_8c.html#ae92d75584fbd612dd966d5a0e98eac7a", null ],
+    [ "novas_sys_to_icrs", "transform_8c.html#a6642ce6aff84056cb62e61786e04dda7", null ],
     [ "ter2cel", "transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31", null ],
     [ "tod_to_cirs", "transform_8c.html#adb48b2acaf76cc3a1e3a1412cc42c232", null ],
     [ "tod_to_gcrs", "transform_8c.html#a6871e7fecde44084c7b4e1b8dda5ac70", null ],

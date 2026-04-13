@@ -2,6 +2,7 @@ var classsupernovas_1_1Frame =
 [
     [ "Frame", "classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6", null ],
     [ "Frame", "classsupernovas_1_1Frame.html#a074fa6f8c669da6f40f7a885d39af88e", null ],
+    [ "~Frame", "classsupernovas_1_1Frame.html#a4f1ae334ec980c176ffa2ecc30a61180", null ],
     [ "_novas_frame", "classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98", null ],
     [ "accuracy", "classsupernovas_1_1Frame.html#a662b8d1698620c98076d66c08d5ce00f", null ],
     [ "apparent_moon_elp2000", "group__apparent.html#ga1c1afd88b17a269740a4d5c8b7eb36ee", null ],

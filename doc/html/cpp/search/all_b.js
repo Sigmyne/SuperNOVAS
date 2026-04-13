@@ -17,6 +17,5 @@ var searchData=
   ['hour_5fangle_14',['hour_angle',['../classsupernovas_1_1Unit.html#a92bc22099e4ab5f102102da7321457c0',1,'supernovas::Unit']]],
   ['hours_15',['hours',['../classsupernovas_1_1Interval.html#a600c2bc983afb9a335acca648d7b074c',1,'supernovas::Interval::hours()'],['../classsupernovas_1_1TimeAngle.html#a6ed469439452805722b5954a1cfc7540',1,'supernovas::TimeAngle::hours() const'],['../classsupernovas_1_1TimeAngle.html#ac74d73454dd7c7391f6e3fdb9e0d5968',1,'supernovas::TimeAngle::hours(double value)']]],
   ['hpa_16',['hPa',['../classsupernovas_1_1Unit.html#a29e1134ae56b5b0266fa649f0b910c2a',1,'supernovas::Unit::hPa'],['../classsupernovas_1_1Pressure.html#aca8c999522c852fb20631f2733116254',1,'supernovas::Pressure::hPa() const'],['../classsupernovas_1_1Pressure.html#a19df0a0c9426a9941339456705045a44',1,'supernovas::Pressure::hPa(double value)']]],
-  ['humidity_17',['humidity',['../structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2',1,'novas_on_surface::humidity'],['../classsupernovas_1_1Weather.html#ac43b7b4d8450cf8542a60ff7c0d49b44',1,'supernovas::Weather::humidity() const']]],
-  ['humidity_5ffraction_18',['humidity_fraction',['../classsupernovas_1_1Weather.html#a3add8f8e11068b133b580d503e0b7d3a',1,'supernovas::Weather']]]
+  ['humidity_17',['humidity',['../structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2',1,'novas_on_surface::humidity'],['../classsupernovas_1_1Weather.html#ac43b7b4d8450cf8542a60ff7c0d49b44',1,'supernovas::Weather::humidity()']]]
 ];

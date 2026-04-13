@@ -17,7 +17,7 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    
  - #296: Possible buffer overflow in `novas_print_dms()`. (thanks to aleberti)
 
- - #305: `novas_geom_posvel()` returned velocities were referenced to SSB, not the observer.
+ - #305: `novas_geom_posvel()` returned velocities referenced to SSB, not to the observer.
 
 ### Added
 
@@ -45,6 +45,10 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    
  - Added `novas_timescale_offset()` for returning the time offset in two different timescale representations of a 
    time instance.
+   
+ - Added `novas_icrs_to_sys()` and `novas_sys_to_icrs()` for more flexible conversion of equatorial vectors between 
+   ICRS/GCRS and other coordinate reference systems.
+   
 
 ### Changed
 
@@ -57,6 +61,11 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    `NOVAS_DEBUG_EXTRA`, to warn that polar offsets are not included in the calculation. 
 
  - Use more precise matrix from Liu et al. (2011) for equatorial / galactic conversions.
+ 
+ - Consolidated equatorial vector transformations, eliminating duplicated code.
+ 
+ - CMake config updated to link libraries against dependent libraries with `PUBLIC` scope, and other configuration 
+   tweaks.
  
  - Improved and updated documentation.
 

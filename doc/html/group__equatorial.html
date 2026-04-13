@@ -170,6 +170,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga02fa1ee652c20160055cbd2c7bd9ca63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a rectangular equatorial (x, y, z) vector from J2000 coordinates to the True of Date (TOD) reference frame at the given epoch.  <br /></td></tr>
 <tr class="memitem:gad9cc07f0e6af9339096e15a440b113e5" id="r_gad9cc07f0e6af9339096e15a440b113e5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gad9cc07f0e6af9339096e15a440b113e5">mod_to_gcrs</a> (double jd_tdb, const double *in, double *out)</td></tr>
 <tr class="memdesc:gad9cc07f0e6af9339096e15a440b113e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a rectangular equatorial (x, y, z) vector from Mean of Date (MOD) reference frame at the given epoch to the ICRS / GCRS.  <br /></td></tr>
+<tr class="memitem:gae92d75584fbd612dd966d5a0e98eac7a" id="r_gae92d75584fbd612dd966d5a0e98eac7a"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gae92d75584fbd612dd966d5a0e98eac7a">novas_icrs_to_sys</a> (const double *in, double jd_tdb, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, enum <a class="el" href="#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> sys, double *out)</td></tr>
+<tr class="memdesc:gae92d75584fbd612dd966d5a0e98eac7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a rectangular equatorial vector from the International Coordinate Reference System (ICRS) or equivalent, such as GCRS, to the desired output equatorial coordinate reference system of choice.  <br /></td></tr>
+<tr class="memitem:ga6642ce6aff84056cb62e61786e04dda7" id="r_ga6642ce6aff84056cb62e61786e04dda7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga6642ce6aff84056cb62e61786e04dda7">novas_sys_to_icrs</a> (enum <a class="el" href="#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> sys, const double *in, double jd_tdb, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, double *out)</td></tr>
+<tr class="memdesc:ga6642ce6aff84056cb62e61786e04dda7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a rectangular equatorial vector from the specified equatorial coordinate reference system of choice to the International Coordinate Reference System (ICRS) or equivalent, such as GCRS.  <br /></td></tr>
 <tr class="memitem:gadb48b2acaf76cc3a1e3a1412cc42c232" id="r_gadb48b2acaf76cc3a1e3a1412cc42c232"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gadb48b2acaf76cc3a1e3a1412cc42c232">tod_to_cirs</a> (double jd_tt, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, const double *in, double *out)</td></tr>
 <tr class="memdesc:gadb48b2acaf76cc3a1e3a1412cc42c232"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a rectangular equatorial (x, y, z) vector from the True of Date (TOD) reference system to the Celestial Intermediate Reference System (CIRS) at the given epoch to the .  <br /></td></tr>
 <tr class="memitem:ga6871e7fecde44084c7b4e1b8dda5ac70" id="r_ga6871e7fecde44084c7b4e1b8dda5ac70"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga6871e7fecde44084c7b4e1b8dda5ac70">tod_to_gcrs</a> (double jd_tdb, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, const double *in, double *out)</td></tr>
@@ -462,11 +466,11 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if either of the vector arguments is NULL or the accuracy is invalid, or else 10 + the error from <a class="el" href="cio_8c.html#a51bfbe9b491f50851326b2522dc2a29f">cio_basis()</a>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a>, <a class="el" href="#ga51ea4a016336dd3cf7783061c14d165c" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Celestial Intermedia...">gcrs_to_cirs()</a>, <a class="el" href="#gaa2768d89d499a7155f90a6fd8c176d8d" title="Rotates a position vector from the dynamical CIRS frame of date to the Earth-fixed ITRS frame (IAU 20...">cirs_to_itrs()</a>, <a class="el" href="#ga9cac4f3a18d4c14939519e7123b4d504" title="Transforms a rectangular equatorial (x, y, z) vector from the Celestial Intermediate Reference System...">cirs_to_tod()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a>, <a class="el" href="#ga51ea4a016336dd3cf7783061c14d165c" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Celestial Intermedia...">gcrs_to_cirs()</a>, <a class="el" href="#gaa2768d89d499a7155f90a6fd8c176d8d" title="Rotates a position vector from the dynamical CIRS frame of date to the Earth-fixed ITRS frame (IAU 20...">cirs_to_itrs()</a>, <a class="el" href="#ga9cac4f3a18d4c14939519e7123b4d504" title="Transforms a rectangular equatorial (x, y, z) vector from the Celestial Intermediate Reference System...">cirs_to_tod()</a>, <a class="el" href="#ga6642ce6aff84056cb62e61786e04dda7" title="Converts a rectangular equatorial vector from the specified equatorial coordinate reference system of...">novas_sys_to_icrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ga9cac4f3a18d4c14939519e7123b4d504">cirs_to_tod()</a>, and <a class="el" href="#ga6871e7fecde44084c7b4e1b8dda5ac70">tod_to_gcrs()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#ga6642ce6aff84056cb62e61786e04dda7">novas_sys_to_icrs()</a>, and <a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>.</p>
 
 </div>
 </div>
@@ -764,11 +768,11 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if either of the vector arguments is NULL or the accuracy is invalid, or else 10 + the error from <a class="el" href="cio_8c.html#a51bfbe9b491f50851326b2522dc2a29f">cio_basis()</a>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaeea4b5085c7267714492fae6108fb975" title="Changes ICRS / GCRS coordinates to J2000 coordinates.">gcrs_to_j2000()</a>, <a class="el" href="#gac0ba048cd1732d0d0398397396d158bc" title="Transforms a rectangular equatorial (x, y, z) vector from the Celestial Intermediate Reference System...">cirs_to_gcrs()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaeea4b5085c7267714492fae6108fb975" title="Changes ICRS / GCRS coordinates to J2000 coordinates.">gcrs_to_j2000()</a>, <a class="el" href="#gac0ba048cd1732d0d0398397396d158bc" title="Transforms a rectangular equatorial (x, y, z) vector from the Celestial Intermediate Reference System...">cirs_to_gcrs()</a>, <a class="el" href="#gae92d75584fbd612dd966d5a0e98eac7a" title="Converts a rectangular equatorial vector from the International Coordinate Reference System (ICRS) or...">novas_icrs_to_sys()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ga9c900b81a718a184281a8a0b733b4db7">gcrs_to_tod()</a>, and <a class="el" href="#gadb48b2acaf76cc3a1e3a1412cc42c232">tod_to_cirs()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="#gabd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, and <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="#gabd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="#gae92d75584fbd612dd966d5a0e98eac7a">novas_icrs_to_sys()</a>, and <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
 
 </div>
 </div>
@@ -803,11 +807,11 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else an error from <a class="el" href="#gaa11d2253a44261370af8d0c32f0715e9" title="Transforms a vector from the dynamical reference system to the International Celestial Reference Syst...">frame_tie()</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9d51ca5c972013024755c644c96d0586" title="Change J2000 coordinates to ICRS / GCRS coordinates.">j2000_to_gcrs()</a>, <a class="el" href="#ga6205edb1361e56cc0c7aed0f088f7437" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_j2000()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9d51ca5c972013024755c644c96d0586" title="Change J2000 coordinates to ICRS / GCRS coordinates.">j2000_to_gcrs()</a>, <a class="el" href="#ga6205edb1361e56cc0c7aed0f088f7437" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_j2000()</a>, <a class="el" href="#gae92d75584fbd612dd966d5a0e98eac7a" title="Converts a rectangular equatorial vector from the International Coordinate Reference System (ICRS) or...">novas_icrs_to_sys()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#gaa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, and <a class="el" href="#ggae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#gae92d75584fbd612dd966d5a0e98eac7a">novas_icrs_to_sys()</a>.</p>
 
 </div>
 </div>
@@ -848,11 +852,11 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if either of the vector arguments is NULL.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad9cc07f0e6af9339096e15a440b113e5" title="Transforms a rectangular equatorial (x, y, z) vector from Mean of Date (MOD) reference frame at the g...">mod_to_gcrs()</a>, <a class="el" href="#ga9c900b81a718a184281a8a0b733b4db7" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the True of Date (TOD) r...">gcrs_to_tod()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad9cc07f0e6af9339096e15a440b113e5" title="Transforms a rectangular equatorial (x, y, z) vector from Mean of Date (MOD) reference frame at the g...">mod_to_gcrs()</a>, <a class="el" href="#ga9c900b81a718a184281a8a0b733b4db7" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the True of Date (TOD) r...">gcrs_to_tod()</a>, <a class="el" href="#gae92d75584fbd612dd966d5a0e98eac7a" title="Converts a rectangular equatorial vector from the International Coordinate Reference System (ICRS) or...">novas_icrs_to_sys()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#gaa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="#ggae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, and <a class="el" href="group__earth.html#ga9178358732325399f3a5e3582080ced3">precession()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#gabd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, and <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#gabd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, and <a class="el" href="#gae92d75584fbd612dd966d5a0e98eac7a">novas_icrs_to_sys()</a>.</p>
 
 </div>
 </div>
@@ -899,11 +903,11 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if either of the vector arguments is NULL, or if the accuracy argument is invalid.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga51ea4a016336dd3cf7783061c14d165c" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Celestial Intermedia...">gcrs_to_cirs()</a>, <a class="el" href="#ga6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a>, <a class="el" href="#ga02fa1ee652c20160055cbd2c7bd9ca63" title="Transforms a rectangular equatorial (x, y, z) vector from J2000 coordinates to the True of Date (TOD)...">j2000_to_tod()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga51ea4a016336dd3cf7783061c14d165c" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Celestial Intermedia...">gcrs_to_cirs()</a>, <a class="el" href="#ga6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a>, <a class="el" href="#ga02fa1ee652c20160055cbd2c7bd9ca63" title="Transforms a rectangular equatorial (x, y, z) vector from J2000 coordinates to the True of Date (TOD)...">j2000_to_tod()</a>, <a class="el" href="#gae92d75584fbd612dd966d5a0e98eac7a" title="Converts a rectangular equatorial vector from the International Coordinate Reference System (ICRS) or...">novas_icrs_to_sys()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#gaa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="#ggae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>, and <a class="el" href="#ga02fa1ee652c20160055cbd2c7bd9ca63">j2000_to_tod()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="#gabd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="#ga51ea4a016336dd3cf7783061c14d165c">gcrs_to_cirs()</a>, and <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="#gabd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="#ga51ea4a016336dd3cf7783061c14d165c">gcrs_to_cirs()</a>, and <a class="el" href="#gae92d75584fbd612dd966d5a0e98eac7a">novas_icrs_to_sys()</a>.</p>
 
 </div>
 </div>
@@ -1151,9 +1155,11 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else an error from <a class="el" href="#gaa11d2253a44261370af8d0c32f0715e9" title="Transforms a vector from the dynamical reference system to the International Celestial Reference Syst...">frame_tie()</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga02fa1ee652c20160055cbd2c7bd9ca63" title="Transforms a rectangular equatorial (x, y, z) vector from J2000 coordinates to the True of Date (TOD)...">j2000_to_tod()</a>, <a class="el" href="#gaeea4b5085c7267714492fae6108fb975" title="Changes ICRS / GCRS coordinates to J2000 coordinates.">gcrs_to_j2000()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga02fa1ee652c20160055cbd2c7bd9ca63" title="Transforms a rectangular equatorial (x, y, z) vector from J2000 coordinates to the True of Date (TOD)...">j2000_to_tod()</a>, <a class="el" href="#gaeea4b5085c7267714492fae6108fb975" title="Changes ICRS / GCRS coordinates to J2000 coordinates.">gcrs_to_j2000()</a>, <a class="el" href="#ga6642ce6aff84056cb62e61786e04dda7" title="Converts a rectangular equatorial vector from the specified equatorial coordinate reference system of...">novas_sys_to_icrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#gaa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, and <a class="el" href="#ggae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga6642ce6aff84056cb62e61786e04dda7">novas_sys_to_icrs()</a>.</p>
 
 </div>
 </div>
@@ -1244,9 +1250,123 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if either of the vector arguments is NULL.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga75de6cca190c5fbc3056db726f317c7f" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Mean of Date (MOD) r...">gcrs_to_mod()</a>, <a class="el" href="#ga6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga75de6cca190c5fbc3056db726f317c7f" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Mean of Date (MOD) r...">gcrs_to_mod()</a>, <a class="el" href="#ga6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a>, <a class="el" href="#ga6642ce6aff84056cb62e61786e04dda7" title="Converts a rectangular equatorial vector from the specified equatorial coordinate reference system of...">novas_sys_to_icrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#gaa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="#ggae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, and <a class="el" href="group__earth.html#ga9178358732325399f3a5e3582080ced3">precession()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga6642ce6aff84056cb62e61786e04dda7">novas_sys_to_icrs()</a>.</p>
+
+</div>
+</div>
+<a id="gae92d75584fbd612dd966d5a0e98eac7a" name="gae92d75584fbd612dd966d5a0e98eac7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae92d75584fbd612dd966d5a0e98eac7a">&#9670;&#160;</a></span>novas_icrs_to_sys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_icrs_to_sys </td>
+          <td>(</td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>jd_tdb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a></td>          <td class="paramname"><span class="paramname"><em>accuracy</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a></td>          <td class="paramname"><span class="paramname"><em>sys</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts a rectangular equatorial vector from the International Coordinate Reference System (ICRS) or equivalent, such as GCRS, to the desired output equatorial coordinate reference system of choice. </p>
+<p>Note, that this function does not support conversion to an Earth rotating system, such as TIRS or ITRS.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">in</td><td>Input ICRS / GCRS vector (<span class="tt">double[3]</span>). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">jd_tdb</td><td>Barycentric Dynamical Time (TDB) based Julian Date. (Unused if output system is ICRS / GCRS or J2000). TT-based Julian Dates may be used also without loss of precision. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">sys</td><td>Iutput coordinate system. It cannot be NOVAS_TIRS or NOVAS_ITRS, or else the function will return an error (-1 / ENOSYS). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Output vector (<span class="tt">double[3]</span>) to be populated. It may be the same vector as the input. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful or else -1 if any of the vectors is NULL or (errno set to EINVAL), or the coordinate system is unsupported (errno set to ENOSYS) or out of range (errno set to ERANGE).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga6642ce6aff84056cb62e61786e04dda7" title="Converts a rectangular equatorial vector from the specified equatorial coordinate reference system of...">novas_sys_to_icrs()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ga51ea4a016336dd3cf7783061c14d165c">gcrs_to_cirs()</a>, <a class="el" href="#gaeea4b5085c7267714492fae6108fb975">gcrs_to_j2000()</a>, <a class="el" href="#ga75de6cca190c5fbc3056db726f317c7f">gcrs_to_mod()</a>, <a class="el" href="#ga9c900b81a718a184281a8a0b733b4db7">gcrs_to_tod()</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea8c3e21e3d68b39b0b0ca28f99b8cacf4">NOVAS_GCRS</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea826bda7744c11bc1560f4db1848a17c6">NOVAS_ITRS</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a>, and <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
+
+</div>
+</div>
+<a id="ga6642ce6aff84056cb62e61786e04dda7" name="ga6642ce6aff84056cb62e61786e04dda7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6642ce6aff84056cb62e61786e04dda7">&#9670;&#160;</a></span>novas_sys_to_icrs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_sys_to_icrs </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a></td>          <td class="paramname"><span class="paramname"><em>sys</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>in</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>jd_tdb</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a></td>          <td class="paramname"><span class="paramname"><em>accuracy</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts a rectangular equatorial vector from the specified equatorial coordinate reference system of choice to the International Coordinate Reference System (ICRS) or equivalent, such as GCRS. </p>
+<p>Note, that this function does not support conversion from an Earth rotating system, such as TIRS or ITRS.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sys</td><td>Input coordinate system. It cannot be NOVAS_TIRS or NOVAS_ITRS, or else the function will return an error (-1 / ENOSYS). </td></tr>
+    <tr><td class="paramname">in</td><td>Input vector in system (<span class="tt">double[3]</span>). </td></tr>
+    <tr><td class="paramname">jd_tdb</td><td>Barycentric Dynamical Time (TDB) based Julian Date. (Unused if input system is ICRS / GCRS or J2000). TT-based Julian Dates may be used also without loss of precision. </td></tr>
+    <tr><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1). </td></tr>
+    <tr><td class="paramname">out</td><td>Output ICRS / GCRS vector (<span class="tt">double[3]</span>) to be populated. It may be the same vector as the input. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful or else -1 if any of the vectors is NULL or (errno set to EINVAL), or the coordinate system is unsupported (errno set to ENOSYS) or out of range (errno set to ERANGE).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae92d75584fbd612dd966d5a0e98eac7a" title="Converts a rectangular equatorial vector from the International Coordinate Reference System (ICRS) or...">novas_icrs_to_sys()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#gac0ba048cd1732d0d0398397396d158bc">cirs_to_gcrs()</a>, <a class="el" href="#ga9d51ca5c972013024755c644c96d0586">j2000_to_gcrs()</a>, <a class="el" href="#gad9cc07f0e6af9339096e15a440b113e5">mod_to_gcrs()</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea8c3e21e3d68b39b0b0ca28f99b8cacf4">NOVAS_GCRS</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea826bda7744c11bc1560f4db1848a17c6">NOVAS_ITRS</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a>, <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, and <a class="el" href="#ga6871e7fecde44084c7b4e1b8dda5ac70">tod_to_gcrs()</a>.</p>
 
 </div>
 </div>
@@ -1343,11 +1463,11 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if either of the vector arguments is NULL.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga02fa1ee652c20160055cbd2c7bd9ca63" title="Transforms a rectangular equatorial (x, y, z) vector from J2000 coordinates to the True of Date (TOD)...">j2000_to_tod()</a>, <a class="el" href="#gadb48b2acaf76cc3a1e3a1412cc42c232" title="Transforms a rectangular equatorial (x, y, z) vector from the True of Date (TOD) reference system to ...">tod_to_cirs()</a>, <a class="el" href="#ga6205edb1361e56cc0c7aed0f088f7437" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_j2000()</a>, <a class="el" href="#ga4551e2ac083e34c1b2b61b3805efb9a3" title="Rotates a position vector from the dynamical True of Date (TOD) frame of date the Earth-fixed ITRS fr...">tod_to_itrs()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga02fa1ee652c20160055cbd2c7bd9ca63" title="Transforms a rectangular equatorial (x, y, z) vector from J2000 coordinates to the True of Date (TOD)...">j2000_to_tod()</a>, <a class="el" href="#gadb48b2acaf76cc3a1e3a1412cc42c232" title="Transforms a rectangular equatorial (x, y, z) vector from the True of Date (TOD) reference system to ...">tod_to_cirs()</a>, <a class="el" href="#ga6205edb1361e56cc0c7aed0f088f7437" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_j2000()</a>, <a class="el" href="#ga4551e2ac083e34c1b2b61b3805efb9a3" title="Rotates a position vector from the dynamical True of Date (TOD) frame of date the Earth-fixed ITRS fr...">tod_to_itrs()</a>, <a class="el" href="#ga6642ce6aff84056cb62e61786e04dda7" title="Converts a rectangular equatorial vector from the specified equatorial coordinate reference system of...">novas_sys_to_icrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#gaa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="#ggae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>, and <a class="el" href="#ga6205edb1361e56cc0c7aed0f088f7437">tod_to_j2000()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="cio_8c.html#a51bfbe9b491f50851326b2522dc2a29f">cio_basis()</a>, <a class="el" href="#gac0ba048cd1732d0d0398397396d158bc">cirs_to_gcrs()</a>, <a class="el" href="group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, <a class="el" href="group__geometric.html#ga65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="group__interferometry.html#gaa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw()</a>, and <a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="cio_8c.html#a51bfbe9b491f50851326b2522dc2a29f">cio_basis()</a>, <a class="el" href="#gac0ba048cd1732d0d0398397396d158bc">cirs_to_gcrs()</a>, <a class="el" href="group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, <a class="el" href="group__geometric.html#ga65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="group__interferometry.html#gaa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw()</a>, <a class="el" href="#ga6642ce6aff84056cb62e61786e04dda7">novas_sys_to_icrs()</a>, and <a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>.</p>
 
 </div>
 </div>
