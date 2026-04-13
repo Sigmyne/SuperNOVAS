@@ -6,6 +6,6 @@ var searchData=
   ['links_3',['Related links',['../index.html#autotoc_md4',1,'']]],
   ['linux_20packages_4',['Linux packages',['../index.html#autotoc_md14',1,'']]],
   ['list_5',['Deprecated List',['../deprecated.html',1,'']]],
-  ['location_6',['location',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90',1,'A. Earth-based observer location'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54',1,'Specify the observer location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89',1,'Specify the observer location']]],
-  ['locations_7',['B. other observer locations',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91',1,'']]]
+  ['location_6',['location',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94',1,'A. Earth-based observer location'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54',1,'Specify the observer location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93',1,'Specify the observer location']]],
+  ['locations_7',['B. other observer locations',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95',1,'']]]
 ];

@@ -1,107 +1,107 @@
 <toc label="SuperNOVAS C API" topic="index.html">
   <topic label="User&apos;s guide" href="index.html">
-    <topic label="Table of Contents" href="index.html#autotoc_md20"/>
-    <topic label="Introduction" href="index.html#autotoc_md22">
-      <topic label="Related links" href="index.html#autotoc_md23"/>
+    <topic label="Table of Contents" href="index.html#autotoc_md81"/>
+    <topic label="Introduction" href="index.html#autotoc_md83">
+      <topic label="Related links" href="index.html#autotoc_md84"/>
     </topic>
-    <topic label="Fixed NOVAS C 3.1 issues" href="index.html#autotoc_md25"/>
-    <topic label="Compatibility with NOVAS C 3.1" href="index.html#autotoc_md27"/>
-    <topic label="Building and installation" href="index.html#autotoc_md29">
-      <topic label="Build SuperNOVAS using GNU make" href="index.html#autotoc_md30"/>
-      <topic label="Build SuperNOVAS using CMake" href="index.html#autotoc_md31"/>
-      <topic label="Install SuperNOVAS via vcpkg" href="index.html#autotoc_md32"/>
-      <topic label="Linux packages" href="index.html#autotoc_md33"/>
-      <topic label="Homebrew package" href="index.html#autotoc_md34"/>
-      <topic label="Nix package" href="index.html#autotoc_md35"/>
+    <topic label="Fixed NOVAS C 3.1 issues" href="index.html#autotoc_md86"/>
+    <topic label="Compatibility with NOVAS C 3.1" href="index.html#autotoc_md88"/>
+    <topic label="Building and installation" href="index.html#autotoc_md90">
+      <topic label="Build SuperNOVAS using GNU make" href="index.html#autotoc_md91"/>
+      <topic label="Build SuperNOVAS using CMake" href="index.html#autotoc_md92"/>
+      <topic label="Install SuperNOVAS via vcpkg" href="index.html#autotoc_md93"/>
+      <topic label="Linux packages" href="index.html#autotoc_md94"/>
+      <topic label="Homebrew package" href="index.html#autotoc_md95"/>
+      <topic label="Nix package" href="index.html#autotoc_md96"/>
     </topic>
-    <topic label="Celestial coordinate systems (old vs. new)" href="index.html#autotoc_md37"/>
-    <topic label="Example use cases" href="index.html#autotoc_md39">
-      <topic label="Recommendation: set up an ephemeris provider" href="index.html#autotoc_md41"/>
-      <topic label="Pick your flavor (C or C++)" href="index.html#autotoc_md44"/>
+    <topic label="Celestial coordinate systems (old vs. new)" href="index.html#autotoc_md98"/>
+    <topic label="Example use cases" href="index.html#autotoc_md100">
+      <topic label="Recommendation: set up an ephemeris provider" href="index.html#autotoc_md101"/>
+      <topic label="Pick your flavor (C or C++)" href="index.html#autotoc_md102"/>
     </topic>
-    <topic label="Incorporating Solar-system ephemeris data or services" href="index.html#autotoc_md47">
-      <topic label="CALCEPH integration" href="index.html#autotoc_md50"/>
-      <topic label="NAIF CSPICE toolkit integration" href="index.html#autotoc_md57"/>
-      <topic label="Universal ephemeris data / service integration" href="index.html#autotoc_md65"/>
+    <topic label="Incorporating Solar-system ephemeris data or services" href="index.html#autotoc_md104">
+      <topic label="CALCEPH integration" href="index.html#autotoc_md105"/>
+      <topic label="NAIF CSPICE toolkit integration" href="index.html#autotoc_md106"/>
+      <topic label="Universal ephemeris data / service integration" href="index.html#autotoc_md107"/>
     </topic>
-    <topic label="Notes on precision" href="index.html#autotoc_md68">
-      <topic label="Prerequisites to precise results" href="index.html#autotoc_md71"/>
-      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md78"/>
+    <topic label="Notes on precision" href="index.html#autotoc_md108">
+      <topic label="Prerequisites to precise results" href="index.html#autotoc_md109"/>
+      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md110"/>
     </topic>
-    <topic label="Runtime debug support" href="index.html#autotoc_md83"/>
-    <topic label="Representative benchmarks" href="index.html#autotoc_md91"/>
-    <topic label="SuperNOVAS added features" href="index.html#autotoc_md107">
-      <topic label="New functionality highlights" href="index.html#autotoc_md110"/>
+    <topic label="Runtime debug support" href="index.html#autotoc_md112"/>
+    <topic label="Representative benchmarks" href="index.html#autotoc_md114"/>
+    <topic label="SuperNOVAS added features" href="index.html#autotoc_md116">
+      <topic label="New functionality highlights" href="index.html#autotoc_md117"/>
       <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md118"/>
     </topic>
     <topic label="Release schedule" href="index.html#autotoc_md120"/>
   </topic>
   <topic label="C99 Usage" href="md__2github_2workspace_2doc_2USAGE-C99.html">
-    <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md42">
-      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md43"/>
-      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45"/>
-      <topic label="Deprecated API" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48"/>
-      <topic label="Legacy linking solarsystem() / solarsystem_hp() and readeph() modules" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49"/>
-      <topic label="Legacy modules: a better way" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51"/>
+    <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md24">
+      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md26"/>
+      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md31"/>
+      <topic label="Deprecated API" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md32"/>
+      <topic label="Legacy linking solarsystem() / solarsystem_hp() and readeph() modules" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md33"/>
+      <topic label="Legacy modules: a better way" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md35"/>
     </topic>
-    <topic label="Example C99 usage" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55">
-      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59">
-        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63"/>
-        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md67"/>
-        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70"/>
-        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md72"/>
-        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md77"/>
-        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md79"/>
+    <topic label="Example C99 usage" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md38">
+      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md39">
+        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md40"/>
+        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45"/>
+        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48"/>
+        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51"/>
+        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54"/>
+        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56"/>
       </topic>
-      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md84">
-        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md85"/>
-        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md89"/>
-        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md92"/>
-        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md94"/>
+      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59">
+        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md60"/>
+        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62"/>
+        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64"/>
+        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md67"/>
       </topic>
-      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md95"/>
-      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md98"/>
-      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md100"/>
+      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68"/>
+      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70"/>
+      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md72"/>
     </topic>
-    <topic label="Tips and tricks (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md102">
-      <topic label="Multi-threaded calculations" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md104"/>
-      <topic label="Physical units" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md108"/>
-      <topic label="String times and angles" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md112"/>
-      <topic label="String dates" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md114"/>
+    <topic label="Tips and tricks (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md74">
+      <topic label="Multi-threaded calculations" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md75"/>
+      <topic label="Physical units" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md77"/>
+      <topic label="String times and angles" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md78"/>
+      <topic label="String dates" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md79"/>
     </topic>
   </topic>
   <topic label="C++ Usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html">
-    <topic label="Building your application with SuperNOVAS (C++)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md53">
-      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md56"/>
-      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md58"/>
+    <topic label="Building your application with SuperNOVAS (C++)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md21">
+      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md22"/>
+      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md25"/>
     </topic>
-    <topic label="C++ Fundamentals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md61">
-      <topic label="Namespace" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md62"/>
-      <topic label="Validation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md64"/>
-      <topic label="Thread safety" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md66"/>
-      <topic label="Operator overloading" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md69"/>
+    <topic label="C++ Fundamentals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md28">
+      <topic label="Namespace" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md29"/>
+      <topic label="Validation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md30"/>
+      <topic label="Thread safety" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md34"/>
+      <topic label="Operator overloading" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md36"/>
     </topic>
-    <topic label="Example C++ usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md74">
-      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md75">
-        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md76"/>
-        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80">
-          <topic label="A. Earth-based observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81"/>
-          <topic label="B. other observer locations" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86"/>
+    <topic label="Example C++ usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md42">
+      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md43">
+        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md44"/>
+        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md46">
+          <topic label="A. Earth-based observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md47"/>
+          <topic label="B. other observer locations" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md49"/>
         </topic>
-        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87"/>
-        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88"/>
-        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93"/>
-        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96"/>
+        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md50"/>
+        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md52"/>
+        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md53"/>
+        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md55"/>
       </topic>
-      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97">
-        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99"/>
-        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103"/>
-        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105"/>
-        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md109"/>
+      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md57">
+        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md58"/>
+        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md61"/>
+        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md63"/>
+        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md65"/>
       </topic>
-      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md111"/>
-      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md113"/>
-      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md115"/>
+      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md66"/>
+      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md69"/>
+      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md71"/>
     </topic>
   </topic>
   <topic label="SuperNOVAS C99 vs. astropy" href="md_SuperNOVAS__vs__astropy.html"/>

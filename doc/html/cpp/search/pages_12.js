@@ -9,7 +9,7 @@ var searchData=
   ['releasesrwlockexclusive_6',['define mutex_unlock ReleaseSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md121',1,'']]],
   ['representative_20benchmarks_7',['Representative benchmarks',['../index.html#autotoc_md34',1,'']]],
   ['results_8',['Prerequisites to precise results',['../index.html#autotoc_md29',1,'']]],
-  ['reverse_9',['reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101',1,'Going in reverse...']]],
-  ['rise_20set_20and_20transit_20times_10',['rise set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102',1,'Calculate rise, set, and transit times']]],
+  ['reverse_9',['reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105',1,'Going in reverse...']]],
+  ['rise_20set_20and_20transit_20times_10',['rise set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106',1,'Calculate rise, set, and transit times']]],
   ['runtime_20debug_20support_11',['Runtime debug support',['../index.html#autotoc_md32',1,'']]]
 ];

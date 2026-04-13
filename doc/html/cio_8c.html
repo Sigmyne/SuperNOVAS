@@ -157,7 +157,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated</a></b></dt><dd>This function is no longer used within SuperNOVAS. It is still provided, however, in order to retain 100% API compatibility with NOVAS C.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated</a></b></dt><dd>This function is no longer used within SuperNOVAS. It is still provided, however, in order to retain 100% API compatibility with NOVAS C.</dd></dl>
 <p>Given an input TDB Julian date and the number of data points desired, this function returns a set of Julian dates and corresponding values of the GCRS right ascension of the celestial intermediate origin (CIO). The range of dates is centered on the requested date.</p>
 <p>NOTES:</p>
 <ol type="1">
@@ -223,7 +223,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated</a></b></dt><dd>This function is no longer used internally in the library, and users are recommended against using it themselves, since SuperNOVAS provides better ways to convert between GCRS and CIRS using frames or via <a class="el" href="group__equatorial.html#ga51ea4a016336dd3cf7783061c14d165c" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Celestial Intermedia...">gcrs_to_cirs()</a> / <a class="el" href="group__equatorial.html#gac0ba048cd1732d0d0398397396d158bc" title="Transforms a rectangular equatorial (x, y, z) vector from the Celestial Intermediate Reference System...">cirs_to_gcrs()</a> or <a class="el" href="group__frame.html#ga98c96461c56c17948f6ba1cc746f85eb" title="A transformation between two astronomical coordinate systems for the same observer location and time.">novas_transform()</a> functions.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated</a></b></dt><dd>This function is no longer used internally in the library, and users are recommended against using it themselves, since SuperNOVAS provides better ways to convert between GCRS and CIRS using frames or via <a class="el" href="group__equatorial.html#ga51ea4a016336dd3cf7783061c14d165c" title="Transforms a rectangular equatorial (x, y, z) vector from the ICRS / GCRS to the Celestial Intermedia...">gcrs_to_cirs()</a> / <a class="el" href="group__equatorial.html#gac0ba048cd1732d0d0398397396d158bc" title="Transforms a rectangular equatorial (x, y, z) vector from the Celestial Intermediate Reference System...">cirs_to_gcrs()</a> or <a class="el" href="group__frame.html#ga98c96461c56c17948f6ba1cc746f85eb" title="A transformation between two astronomical coordinate systems for the same observer location and time.">novas_transform()</a> functions.</dd></dl>
 <p>Computes the CIRS basis vectors, with respect to the GCRS (geocentric ICRS), of the celestial intermediate system defined by the celestial intermediate pole (CIP) (in the z direction) and the celestial intermediate origin (CIO) (in the x direction).</p>
 <p>This function effectively constructs the CIRS to GCRS transformation matrix C in eq. (3) of the reference.</p>
 <p>NOTES:</p>
@@ -319,7 +319,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated</a></b></dt><dd>SuperNOVAS no longer uses a NOVAS-type CIO locator file, or accesses one in any way. This function is now a dummy.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated</a></b></dt><dd>SuperNOVAS no longer uses a NOVAS-type CIO locator file, or accesses one in any way. This function is now a dummy.</dd></dl>
 <p>It used to set the CIO interpolaton data file to use to interpolate CIO locations vs the GCRS. As of version 1.5, this call does exactly nothing. It simply returns 0.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
