@@ -31,10 +31,10 @@ void Weather::validate() {
 }
 
 /**
- * Instantiates a weather dataset with the specified parameters. E.g:
+ * Instantiates a weather dataset with the specified parameters. E.g.:
  *
  * ```c
- *  Weather w(Temperature::celsius(12.0), Pressure::mbar(984.3), 33.2 * Unit::percent);
+ *  Weather weather(Temperature::celsius(12.0), Pressure::mbar(984.3), 33.2 * Unit::percent);
  * ```
  *
  * @param T                 [C] outside air temperature
@@ -42,7 +42,7 @@ void Weather::validate() {
  * @param humidity_fraction [0:1] relative humidity
  *
  * @since 1.6
- * @sa guess()
+ * @sa Site::average_weather()
  */
 Weather::Weather(const Temperature& T, const Pressure& p, double humidity_fraction)
 : _temperature(T), _pressure(p), _humidity(humidity_fraction) {
@@ -50,14 +50,19 @@ Weather::Weather(const Temperature& T, const Pressure& p, double humidity_fracti
 }
 
 /**
- * Instantiates a weather dataset with the specified parameters.
+ * Instantiates a weather dataset with the specified parameters. E.g.:
+ *
+ * ```c
+ *  // 12 C, 983.3 mbar, 33.2% humidity
+ *  Weather weather(12.0, 984.3 * Unit::mbar, 33.2 * Unit::percent);
+ * ```
  *
  * @param celsius           [C] ambient air temperature
  * @param pascal            [Pa] atmospheric pressure
  * @param humidity_fraction  [0:1] relative humidity
  *
  * @since 1.6
- * @sa guess()
+ * @sa Site::average_weather()
  */
 Weather::Weather(double celsius, double pascal, double humidity_fraction)
 : _temperature(Temperature::celsius(celsius)), _pressure(Pressure::Pa(pascal)), _humidity(humidity_fraction) {
