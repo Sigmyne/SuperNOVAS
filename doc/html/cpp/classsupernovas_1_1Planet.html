@@ -123,8 +123,8 @@ $(function(){initNavTree('classsupernovas_1_1Planet.html','','classsupernovas_1_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8df7ec419bd6eb16e7e67d86bc8f17f9" id="r_a8df7ec419bd6eb16e7e67d86bc8f17f9"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8df7ec419bd6eb16e7e67d86bc8f17f9">Planet</a> (enum <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045">novas_planet</a> number)</td></tr>
-<tr class="memdesc:a8df7ec419bd6eb16e7e67d86bc8f17f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a planet from its NOVAS ID number.  <br /></td></tr>
+<tr class="memitem:a5eab02d5a9e923909b7c959fba5100b3" id="r_a5eab02d5a9e923909b7c959fba5100b3"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5eab02d5a9e923909b7c959fba5100b3">Planet</a> (enum <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045">novas_planet</a> number, const std::string &amp;<a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3">name</a>=&quot;&quot;)</td></tr>
+<tr class="memdesc:a5eab02d5a9e923909b7c959fba5100b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a planet from its NOVAS ID number.  <br /></td></tr>
 <tr class="memitem:gad531705b1b07e32ead410483e109248f" id="r_gad531705b1b07e32ead410483e109248f"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Apparent.html">Apparent</a>&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#gad531705b1b07e32ead410483e109248f">approx_apparent_in</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame) const</td></tr>
 <tr class="memdesc:gad531705b1b07e32ead410483e109248f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon Barycenter (EMB) &ndash; typically to arcmin level accuracy &ndash; using Keplerian orbital elements.  <br /></td></tr>
 <tr class="memitem:gaf83481c3e551cd9fbfc949257567b468" id="r_gaf83481c3e551cd9fbfc949257567b468"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Geometric.html">Geometric</a>&#160;</td><td class="memItemRight"><a class="el" href="group__geometric.html#gaf83481c3e551cd9fbfc949257567b468">approx_geometric_in</a> (const <a class="el" href="classsupernovas_1_1Frame.html">Frame</a> &amp;frame) const</td></tr>
@@ -197,8 +197,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a36ead36de7bb93566f0c9f267b5ef63e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the static reference to the planet Earth.  <br /></td></tr>
 <tr class="memitem:ae8738e01ac1473f218ecb18009765a84" id="r_ae8738e01ac1473f218ecb18009765a84"><td class="memItemLeft">static const Planet &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ae8738e01ac1473f218ecb18009765a84">emb</a> ()</td></tr>
 <tr class="memdesc:ae8738e01ac1473f218ecb18009765a84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the static reference to the Earth-Moon Barycenter (EMB) position.  <br /></td></tr>
-<tr class="memitem:ae4aa8a696d5def0c3cd9a97e9d1186fc" id="r_ae4aa8a696d5def0c3cd9a97e9d1186fc"><td class="memItemLeft">static Planet&#160;</td><td class="memItemRight"><a class="el" href="#ae4aa8a696d5def0c3cd9a97e9d1186fc">for_naif_id</a> (long naif)</td></tr>
-<tr class="memdesc:ae4aa8a696d5def0c3cd9a97e9d1186fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new planet corresponding to the specified NAIF ID, if possible, or else an invalid <a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a> if the NAIF id does not belong to a major planet in the SuperNOVAS definition (which includes the Sun, Moon, SSB, EMB, and Pluto system barycenter also).  <br /></td></tr>
+<tr class="memitem:a2b4669db5152477ea09b9bf66c809aa3" id="r_a2b4669db5152477ea09b9bf66c809aa3"><td class="memItemLeft">static Planet&#160;</td><td class="memItemRight"><a class="el" href="#a2b4669db5152477ea09b9bf66c809aa3">for_naif_id</a> (long naif, const std::string &amp;<a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3">name</a>=&quot;&quot;)</td></tr>
+<tr class="memdesc:a2b4669db5152477ea09b9bf66c809aa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new planet corresponding to the specified NAIF ID, if possible, or else an invalid <a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a> if the NAIF id does not belong to a major planet in the SuperNOVAS definition (which includes the Sun, Moon, SSB, EMB, and Pluto system barycenter also).  <br /></td></tr>
 <tr class="memitem:a7cec4323d92f0c576fd25fdc3633efb3" id="r_a7cec4323d92f0c576fd25fdc3633efb3"><td class="memItemLeft">static Planet&#160;</td><td class="memItemRight"><a class="el" href="#a7cec4323d92f0c576fd25fdc3633efb3">for_name</a> (const std::string &amp;<a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3">name</a>)</td></tr>
 <tr class="memdesc:a7cec4323d92f0c576fd25fdc3633efb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new planet corresponding to the specified name (case insensitive), if possible, or else an invalid <a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a> if the name does not correspond to a major planet in the SuperNOVAS definition (which includes the Sun, Moon, SSB, EMB, and Pluto system barycenter also).  <br /></td></tr>
 <tr class="memitem:a6d1655afe4d3b588cd4eaf22774c1dba" id="r_a6d1655afe4d3b588cd4eaf22774c1dba"><td class="memItemLeft">static const Planet &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a6d1655afe4d3b588cd4eaf22774c1dba">jupiter</a> ()</td></tr>
@@ -251,8 +251,8 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1EphemerisSource.html" title="A Solar-system source, whose positions / velocities are provided from ephemeris data.">EphemerisSource</a>, <a class="el" href="classsupernovas_1_1OrbitalSource.html" title="A Solar-system source, whose position and velocity can be calculated using Keplerian orbital elements...">OrbitalSource</a>, <a class="el" href="group__solar-system.html#ga35fc86a939602ec910dbdfde180d7f31" title="Sets a ephemeris provider for Solar-system objects using the CALCEPH C library and the specified set ...">novas_use_calceph()</a>, <a class="el" href="group__solar-system.html#ga9b44218bca5fce1e9e5103494c15dde4" title="Sets CSPICE as the default ephemeris provider for all types of Solar-system objects (both NOVAS_PLANE...">novas_use_cspice()</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a8df7ec419bd6eb16e7e67d86bc8f17f9" name="a8df7ec419bd6eb16e7e67d86bc8f17f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8df7ec419bd6eb16e7e67d86bc8f17f9">&#9670;&#160;</a></span>Planet()</h2>
+<a id="a5eab02d5a9e923909b7c959fba5100b3" name="a5eab02d5a9e923909b7c959fba5100b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eab02d5a9e923909b7c959fba5100b3">&#9670;&#160;</a></span>Planet()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -263,8 +263,12 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">supernovas::Planet::Planet </td>
           <td>(</td>
-          <td class="paramtype">enum <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045">novas_planet</a></td>          <td class="paramname"><span class="paramname"><em>number</em></span></td><td>)</td>
+          <td class="paramtype">enum <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045">novas_planet</a></td>          <td class="paramname"><span class="paramname"><em>number</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -277,13 +281,14 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates a planet from its NOVAS ID number. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">number</td><td>the NOVAS ID number</td></tr>
+    <tr><td class="paramname">number</td><td>the NOVAS ID number </td></tr>
+    <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3" title="Returns the name given to this source at instantiation.">name</a></td><td>(optional) Use your own name for the planet (default: standard name in English, e.g. "Jupiter"). If your planet provider function uses names, make sure the name matches what is expected by that adapter function.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1SolarSystemSource.html#a192c6969f37446887886c2425cf50ec1">supernovas::SolarSystemSource::SolarSystemSource()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, and <a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fad1eeaddaa96b028742a8ba424e311aa8">NOVAS_PLANET</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1SolarSystemSource.html#a192c6969f37446887886c2425cf50ec1">supernovas::SolarSystemSource::SolarSystemSource()</a>, <a class="el" href="classsupernovas_1_1Source.html#a0a8fa35950bb58cc03ba520b1c337080">supernovas::Source::_object</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3">supernovas::Source::name()</a>, <a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fad1eeaddaa96b028742a8ba424e311aa8">NOVAS_PLANET</a>, and <a class="el" href="group__source.html#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>.</p>
 
 </div>
 </div>
@@ -407,8 +412,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="ae4aa8a696d5def0c3cd9a97e9d1186fc" name="ae4aa8a696d5def0c3cd9a97e9d1186fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4aa8a696d5def0c3cd9a97e9d1186fc">&#9670;&#160;</a></span>for_naif_id()</h2>
+<a id="a2b4669db5152477ea09b9bf66c809aa3" name="a2b4669db5152477ea09b9bf66c809aa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b4669db5152477ea09b9bf66c809aa3">&#9670;&#160;</a></span>for_naif_id()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -419,8 +424,12 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">Planet supernovas::Planet::for_naif_id </td>
           <td>(</td>
-          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>naif</em></span></td><td>)</td>
+          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>naif</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -432,15 +441,16 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns a new planet corresponding to the specified NAIF ID, if possible, or else an invalid <a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a> if the NAIF id does not belong to a major planet in the SuperNOVAS definition (which includes the Sun, Moon, SSB, EMB, and Pluto system barycenter also). </p>
 <p>As such, you should typically check the result, e.g. as:</p>
-<div class="fragment"><div class="line">Planet p = <a class="code hl_function" href="#ae4aa8a696d5def0c3cd9a97e9d1186fc">Planet::for_naif_id</a>(num);</div>
+<div class="fragment"><div class="line">Planet p = <a class="code hl_function" href="#a2b4669db5152477ea09b9bf66c809aa3">Planet::for_naif_id</a>(num);</div>
 <div class="line"><span class="keywordflow">if</span>(!p) {</div>
 <div class="line">  <span class="comment">// Oops there is no planet for that NAIF ID...</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Planet_html_ae4aa8a696d5def0c3cd9a97e9d1186fc"><div class="ttname"><a href="#ae4aa8a696d5def0c3cd9a97e9d1186fc">supernovas::Planet::for_naif_id</a></div><div class="ttdeci">static Planet for_naif_id(long naif)</div><div class="ttdoc">Returns a new planet corresponding to the specified NAIF ID, if possible, or else an invalid Planet i...</div><div class="ttdef"><b>Definition</b> Source.cpp:625</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Planet_html_a2b4669db5152477ea09b9bf66c809aa3"><div class="ttname"><a href="#a2b4669db5152477ea09b9bf66c809aa3">supernovas::Planet::for_naif_id</a></div><div class="ttdeci">static Planet for_naif_id(long naif, const std::string &amp;name=&quot;&quot;)</div><div class="ttdoc">Returns a new planet corresponding to the specified NAIF ID, if possible, or else an invalid Planet i...</div><div class="ttdef"><b>Definition</b> Source.cpp:644</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">naif</td><td>the NAIF ID number of the planet </td></tr>
+    <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3" title="Returns the name given to this source at instantiation.">name</a></td><td>(optional) Use your own name for the planet (default: standard name in English, e.g. "Jupiter"). If your planet provider function uses names, make sure the name matches what is expected by that adapter function. </td></tr>
   </table>
   </dd>
 </dl>
@@ -448,7 +458,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a7cec4323d92f0c576fd25fdc3633efb3" title="Returns a new planet corresponding to the specified name (case insensitive), if possible,...">for_name()</a>, <a class="el" href="#a134ad44ca935e90b63104a9c00602d6d" title="Returns the NAIF ID number for this planet (or planet type body in the SuperNOVAS sense).">naif_id()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="novas_8h.html#a1c4b3f67a3b82808dd16ae43dfaf0f86">naif_to_novas_planet()</a>, and <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>.</p>
+<p class="reference">References <a class="el" href="novas_8h.html#a1c4b3f67a3b82808dd16ae43dfaf0f86">naif_to_novas_planet()</a>, <a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3">supernovas::Source::name()</a>, and <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>.</p>
 
 </div>
 </div>
@@ -482,7 +492,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// Oops there is no planet for that name...</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Planet_html_a7cec4323d92f0c576fd25fdc3633efb3"><div class="ttname"><a href="#a7cec4323d92f0c576fd25fdc3633efb3">supernovas::Planet::for_name</a></div><div class="ttdeci">static Planet for_name(const std::string &amp;name)</div><div class="ttdoc">Returns a new planet corresponding to the specified name (case insensitive), if possible,...</div><div class="ttdef"><b>Definition</b> Source.cpp:656</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Planet_html_a7cec4323d92f0c576fd25fdc3633efb3"><div class="ttname"><a href="#a7cec4323d92f0c576fd25fdc3633efb3">supernovas::Planet::for_name</a></div><div class="ttdeci">static Planet for_name(const std::string &amp;name)</div><div class="ttdoc">Returns a new planet corresponding to the specified name (case insensitive), if possible,...</div><div class="ttdef"><b>Definition</b> Source.cpp:675</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3" title="Returns the name given to this source at instantiation.">name</a></td><td>the planet's name (includes Sun, Moon, SSB, EMB, and Pluto-Barycenter also). Case insensitive. </td></tr>
@@ -491,7 +501,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the corresponding planet, or an invalid planet if the ID does not specify a planet type body.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae4aa8a696d5def0c3cd9a97e9d1186fc" title="Returns a new planet corresponding to the specified NAIF ID, if possible, or else an invalid Planet i...">for_naif_id()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2b4669db5152477ea09b9bf66c809aa3" title="Returns a new planet corresponding to the specified NAIF ID, if possible, or else an invalid Planet i...">for_naif_id()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Source.html#ae16d5d04d593b9b14d6b5390bb8a07e3">supernovas::Source::name()</a>, <a class="el" href="novas_8h.html#a2cf7410aa68b980112734227b40890d6">novas_planet_for_name()</a>, and <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>.</p>
 

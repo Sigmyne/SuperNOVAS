@@ -1,6 +1,6 @@
 var classsupernovas_1_1Planet =
 [
-    [ "Planet", "classsupernovas_1_1Planet.html#a8df7ec419bd6eb16e7e67d86bc8f17f9", null ],
+    [ "Planet", "classsupernovas_1_1Planet.html#a5eab02d5a9e923909b7c959fba5100b3", null ],
     [ "approx_apparent_in", "group__apparent.html#gad531705b1b07e32ead410483e109248f", null ],
     [ "approx_geometric_in", "group__geometric.html#gaf83481c3e551cd9fbfc949257567b468", null ],
     [ "copy", "classsupernovas_1_1Planet.html#aa312a35f47299d8dbb58f84fc15491b4", null ],

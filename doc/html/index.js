@@ -1,14 +1,14 @@
 var index =
 [
-    [ "Table of Contents", "index.html#autotoc_md81", null ],
-    [ "Introduction", "index.html#autotoc_md83", [
-      [ "Related links", "index.html#autotoc_md84", null ]
+    [ "Table of Contents", "index.html#autotoc_md67", null ],
+    [ "Introduction", "index.html#autotoc_md69", [
+      [ "Related links", "index.html#autotoc_md73", null ]
     ] ],
-    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md86", null ],
-    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md88", null ],
-    [ "Building and installation", "index.html#autotoc_md90", [
-      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md91", null ],
-      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md92", null ],
+    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md76", null ],
+    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md82", null ],
+    [ "Building and installation", "index.html#autotoc_md85", [
+      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md86", null ],
+      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md91", null ],
       [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md93", null ],
       [ "Linux packages", "index.html#autotoc_md94", null ],
       [ "Homebrew package", "index.html#autotoc_md95", null ],

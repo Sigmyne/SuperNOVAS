@@ -2,17 +2,17 @@ var searchData=
 [
   ['f_0',['F',['../structnovas__delaunay__args.html#ab2d0e2b9731d4a0b737e359e8d35ba73',1,'novas_delaunay_args']]],
   ['features_1',['SuperNOVAS added features',['../index.html#autotoc_md116',1,'']]],
-  ['fixed_20novas_20c_203_201_20issues_2',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md86',1,'']]],
+  ['fixed_20novas_20c_203_201_20issues_2',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md76',1,'']]],
   ['fjd_5ftt_3',['fjd_tt',['../structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c',1,'novas_timespec']]],
   ['flavor_20c_20or_20c_4',['Pick your flavor (C or C++)',['../index.html#autotoc_md102',1,'']]],
-  ['for_20a_20sidereal_20source_5',['for a sidereal source',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md43',1,'Calculating positions for a sidereal source'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md39',1,'Calculating positions for a sidereal source']]],
-  ['for_20a_20solar_20system_20source_6',['for a Solar system source',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md57',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59',1,'Calculating positions for a Solar-system source']]],
-  ['frame_7',['frame',['../structnovas__transform.html#a292690830561c2c367027eec8a7942bb',1,'novas_transform::frame'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md52',1,'Set up the observing frame'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'Set up the observing frame']]],
+  ['for_20a_20sidereal_20source_5',['for a sidereal source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md29',1,'Calculating positions for a sidereal source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md62',1,'Calculating positions for a sidereal source']]],
+  ['for_20a_20solar_20system_20source_6',['for a Solar system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md36',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md78',1,'Calculating positions for a Solar-system source']]],
+  ['frame_7',['frame',['../structnovas__transform.html#a292690830561c2c367027eec8a7942bb',1,'novas_transform::frame'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md33',1,'Set up the observing frame'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md72',1,'Set up the observing frame']]],
   ['frame_5ftie_8',['frame_tie',['../group__equatorial.html#gaa11d2253a44261370af8d0c32f0715e9',1,'frame_tie(const double *in, enum novas_frametie_direction direction, double *out):&#160;transform.c'],['../group__equatorial.html#gaa11d2253a44261370af8d0c32f0715e9',1,'frame_tie(const double *in, enum novas_frametie_direction direction, double *out):&#160;transform.c']]],
   ['frames_9',['Observing frames',['../group__frame.html',1,'']]],
   ['frames_2ec_10',['frames.c',['../frames_8c.html',1,'']]],
   ['from_5fsystem_11',['from_system',['../structnovas__transform.html#a7e91e608116338264484f1a6ca80a770',1,'novas_transform']]],
   ['functionality_20highlights_12',['New functionality highlights',['../index.html#autotoc_md117',1,'']]],
   ['fund_5fargs_13',['fund_args',['../group__earth.html#ga312b5ab1a004b179d80463a07ca7da8f',1,'fund_args(double t, novas_delaunay_args *restrict a):&#160;equator.c'],['../group__earth.html#ga312b5ab1a004b179d80463a07ca7da8f',1,'fund_args(double t, novas_delaunay_args *restrict a):&#160;equator.c']]],
-  ['fundamentals_14',['C++ Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md28',1,'']]]
+  ['fundamentals_14',['C++ Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md49',1,'']]]
 ];
