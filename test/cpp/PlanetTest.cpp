@@ -55,6 +55,18 @@ int main() {
     if(!test.check("to_string(catalog)", memcmp(p1->_novas_object(), pl._novas_object(), sizeof(object)) == 0)) n++;
   }
 
+  char lstr[SIZE_OF_OBJ_NAME + 1];
+  memset(lstr, 'x', SIZE_OF_OBJ_NAME);
+  if(!test.check("!is_valid(long name)", !Planet(NOVAS_MARS, lstr).is_valid())) n++;
+
+  Planet a = Planet(NOVAS_MERCURY, "Merkur");
+  if(!test.check("is_valid(named)", a.is_valid())) n++;
+  if(!test.equals("name(named)", a.name(), "Merkur")) n++;
+
+  a = Planet::for_naif_id(399, "Terra");
+  if(!test.check("is_valid(named NAIF)", a.is_valid())) n++;
+  if(!test.equals("name(named NAIF)", a.name(), "Terra")) n++;
+
 
 
   std::string names[] = NOVAS_PLANET_NAMES_INIT;

@@ -2158,7 +2158,7 @@ private:
   Planet();
 
 public:
-  explicit Planet(enum novas_planet number);
+  explicit Planet(enum novas_planet number, const std::string& name = "");
 
   const Source* copy() const override;
 
@@ -2182,7 +2182,7 @@ public:
 
   std::string to_string() const override;
 
-  static Planet for_naif_id(long naif);
+  static Planet for_naif_id(long naif, const std::string& name = "");
 
   static Planet for_name(const std::string& name);
 

@@ -9,6 +9,8 @@
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
 /// \endcond
 
+#include <string.h>
+
 #include "supernovas.h"
 
 
@@ -576,18 +578,32 @@ Planet::Planet() : SolarSystemSource() {
  * Instantiates a planet from its NOVAS ID number.
  *
  * @param number    the NOVAS ID number
+ * @param name      (optional) Use your own name for the planet (default: standard name in English,
+ *                  e.g. "Jupiter"). If your planet provider function uses names, make sure the
+ *                  name matches what is expected by that adapter function.
  *
  * @since 1.6
  */
-Planet::Planet(enum novas_planet number) : SolarSystemSource() {
+Planet::Planet(enum novas_planet number, const std::string& name) : SolarSystemSource() {
+  static const char *fn = "Planet()";
+
   // defaults...
   _object.type = NOVAS_PLANET;
   _object.number = number;
 
   if(make_planet(number, &_object) != 0)
-    novas_set_errno(EINVAL, "Planet::for_novas_id()", "no planet for NOVAS id number: %d", number);
+    novas_set_errno(EINVAL, fn, "no planet for NOVAS id number: %d", number);
   else
     _valid = true;
+
+  if(name.length() >= SIZE_OF_OBJ_NAME) {
+    novas_set_errno(EINVAL, fn, "Given name is too long: %ld bytes", (long) name.length());
+    _valid = false;
+  }
+
+  if(name.length() > 1) {
+    strncpy(_object.name, name.c_str(), sizeof(_object.name) - 1);
+  }
 }
 
 /**
@@ -616,19 +632,22 @@ const Source *Planet::copy() const {
  * ```
  *
  * @param naif    the NAIF ID number of the planet
+ * @param name    (optional) Use your own name for the planet (default: standard name in English,
+ *                e.g. "Jupiter"). If your planet provider function uses names, make sure the
+ *                name matches what is expected by that adapter function.
  * @return        the corresponding planet, or an invalid planet if the ID does not specify a planet
  *                type body.
  *
  * @since 1.6
  * @sa for_name(), naif_id()
  */
-Planet Planet::for_naif_id(long naif) {
+Planet Planet::for_naif_id(long naif, const std::string& name) {
   enum novas_planet num = naif_to_novas_planet(naif);
   if((unsigned) num >= NOVAS_PLANETS) {
     novas_set_errno(EINVAL, "Planet::for_naif_id()", "no planet with NAIF %d", naif);
     return Planet();
   }
-  return Planet(num);
+  return Planet(num, name);
 }
 
 /**
