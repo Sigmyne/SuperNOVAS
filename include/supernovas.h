@@ -183,6 +183,9 @@ public:
   static constexpr double MPa = 1e6;                      ///< [Pa] 1 megapascal in pascals
   static constexpr double torr = 133.3223684211;          ///< [Pa] 1 torr (mm of Hg) in pascals
   static constexpr double atm = 101325.0;                 ///< [Pa] 1 atmosphere in pascals
+
+  // Other common units
+  static constexpr double percent = 0.01;                 ///< [u] 1 percent as a fraction.
 };
 
 /**
@@ -1248,12 +1251,12 @@ class Weather : public Validating {
 private:
   Temperature _temperature;   ///< stored temperature value
   Pressure _pressure;         ///< stored pressure value
-  double _humidity;           ///< [%] stored humidity value
+  double _humidity;           ///< stored humidity fraction
 
   void validate();
 
 public:
-  Weather(const Temperature& T, const Pressure& p, double humidity_percent);
+  Weather(const Temperature& T, const Pressure& p, double humidity_fraction);
 
   Weather(double celsius, double pascal, double humidity_percent);
 
@@ -1262,8 +1265,6 @@ public:
   const Pressure& pressure() const;
 
   double humidity() const;
-
-  double humidity_fraction() const;
 
   std::string to_string() const;
 

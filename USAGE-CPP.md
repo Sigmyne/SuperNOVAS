@@ -365,8 +365,9 @@ returns).
 
 ##### B. other observer locations
 
-Alternatively, you can also specify airborne observers, or observers in Earth orbit, in heliocentric orbit, at the 
-geocenter, or at the Solar-system barycenter. See the static methods of the `supernovas::Observer` class. E.g.:
+Alternatively, you can also specify airborne observers, or observers in Earth orbit, in heliocentric orbit, or a 
+virtual observer at the geocenter, or at the Solar-system barycenter. See the static methods of the 
+`supernovas::Observer` class. E.g.:
 
 ```cpp
   auto obs = Observer::at_geocenter();
@@ -475,8 +476,10 @@ equinoxes just like we did for the equatorial:
 ```
 
 Above the `>>` operator is used as a shorthand for the `.to_system()` method. It's the same as writing 
-`.to_system(NOVAS_J2000)` or `.to_j2000()`. For spectroscopic applications, you can get a spectroscopic radial 
-velocity or redshift (including gravitational effects) as:
+`.to_system(NOVAS_J2000)` or `.to_j2000()`. 
+
+For spectroscopic applications, you can get a spectroscopic radial velocity or redshift (including gravitational 
+effects) as:
 
 ```cpp
  ScalarVelocity rv = app.radial_velocity();
@@ -510,9 +513,9 @@ Earth based observer (otherwise, you'll get an invalid result):
  // weather parameters of choice...
  
  // Lets define the weather parameters explicitly as 12.0C, 895 mbar, and 47% humidity:
- Weather weather = Weather(Temperature::celsius(12.0), Pressure::mbar(895.0), 47.0);
+ Weather weather = Weather(Temperature::celsius(12.0), Pressure::mbar(895.0), 47.0 * Unit::percent);
  
- // Obrtain refraction cofrrected horizontal coordinates
+ // Obtain refraction cofrrected horizontal coordinates
  hor = hor.to_refracted(novas_optical_refraction, weather);
 ```
 

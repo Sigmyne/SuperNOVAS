@@ -18,7 +18,7 @@ namespace supernovas {
 static void use_weather(const Weather& weather, on_surface *s) {
   s->temperature = weather.temperature().celsius();
   s->pressure = weather.pressure().mbar();
-  s->humidity = weather.humidity();
+  s->humidity = weather.humidity() / Unit::percent;
 }
 
 /**

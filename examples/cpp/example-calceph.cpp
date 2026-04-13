@@ -156,7 +156,7 @@ int main(int argc, const char *argv[]) {
   // Convert the apparent position on sky to horizontal coordinates
   // We'll use an optical refraction model with local weather parameters...
   // (6 C deg, 985 mbar, 74% humidity)
-  Weather weather(Temperature::celsius(6.0), Pressure::mbar(985.0), 74.0);
+  Weather weather(Temperature::celsius(6.0), Pressure::mbar(985.0), 74.0 * Unit::percent);
 
   Horizontal hor = apparent.to_horizontal().to_refracted(novas_optical_refraction, weather);
   if(!hor) {

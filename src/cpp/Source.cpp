@@ -342,7 +342,7 @@ HorizontalTrack Source::horizontal_track(const Frame &frame, RefractionModel ref
 
   s->temperature = weather.temperature().celsius();
   s->pressure = weather.pressure().mbar();
-  s->humidity = weather.humidity();
+  s->humidity = weather.humidity() / Unit::percent;
 
   novas_track track = {};
   novas_hor_track(_novas_object(), frame._novas_frame(), ref, &track);

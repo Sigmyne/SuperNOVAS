@@ -149,7 +149,7 @@ int main() {
   // Define local weather (for refraction correction)
   // We'll use an optical refraction model with local weather parameters...
   // (6 C deg, 985 mbar, 74% humidity)
-  Weather weather(Temperature::celsius(6.0), Pressure::mbar(985.0), 74.0);
+  Weather weather(Temperature::celsius(6.0), Pressure::mbar(985.0), 74.0 * Unit::percent);
 
 
   // -------------------------------------------------------------------------
