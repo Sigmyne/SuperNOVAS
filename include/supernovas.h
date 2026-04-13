@@ -1903,6 +1903,10 @@ public:
 
   Frame(const Frame& frame);
 
+  ~Frame() {
+    delete _observer;
+  }
+
   Frame& operator=(const Frame& frame);
 
   const novas_frame* _novas_frame() const;

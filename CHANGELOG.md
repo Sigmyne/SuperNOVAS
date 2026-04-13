@@ -64,7 +64,8 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  
  - Consolidated equatorial vector transformations, eliminating duplicated code.
  
- - CMake config updated to link libraries against dependent libraries with `PUBLIC` scope.
+ - CMake config updated to link libraries against dependent libraries with `PUBLIC` scope, and other configuration 
+   tweaks.
  
  - Improved and updated documentation.
 
