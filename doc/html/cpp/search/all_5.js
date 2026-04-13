@@ -1,21 +1,21 @@
 var searchData=
 [
-  ['b_20other_20observer_20locations_0',['B. other observer locations',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91',1,'']]],
+  ['b_20other_20observer_20locations_0',['B. other observer locations',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95',1,'']]],
   ['b1900_1',['b1900',['../classsupernovas_1_1Equinox.html#ae1217cb47b24b0d887a805ce70f01d96',1,'supernovas::Equinox::b1900()'],['../classsupernovas_1_1Time.html#afb95cc52b6bd739843bca41a2b6cc18f',1,'supernovas::Time::b1900()']]],
   ['b1950_2',['b1950',['../classsupernovas_1_1Equinox.html#ac8a0a1ea6d912d4a81ddaa7afd34b030',1,'supernovas::Equinox::b1950()'],['../classsupernovas_1_1Time.html#a88061d30b8941199b51e0d7fc1f5063b',1,'supernovas::Time::b1950()']]],
   ['bar_3',['bar',['../classsupernovas_1_1Unit.html#a301e71f1a3ec6047adfa2d00f915edaf',1,'supernovas::Unit::bar'],['../classsupernovas_1_1Pressure.html#ab799a59ae7b317d7908848bb90f42a3d',1,'supernovas::Pressure::bar() const'],['../classsupernovas_1_1Pressure.html#a880f0d8183ca4bcd07a766917b8b4fd7',1,'supernovas::Pressure::bar(double value)']]],
   ['bary2obs_4',['bary2obs',['../novas_8h.html#a1d58fd371e7604f75df315365672941e',1,'bary2obs(const double *pos, const double *pos_obs, double *out, double *restrict lighttime):&#160;observer.c'],['../observer_8c.html#a1d58fd371e7604f75df315365672941e',1,'bary2obs(const double *pos, const double *pos_obs, double *out, double *restrict lighttime):&#160;observer.c']]],
   ['barycentric_5fat_5',['barycentric_at',['../group__geometric.html#ga42b4fe858ef5da0ae538e676f2bb7ca8',1,'supernovas::SolarSystemSource']]],
-  ['based_20observer_20location_6',['A. Earth-based observer location',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90',1,'']]],
-  ['benchmarks_7',['Representative benchmarks',['../index.html#autotoc_md66',1,'']]],
+  ['based_20observer_20location_6',['A. Earth-based observer location',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94',1,'']]],
+  ['benchmarks_7',['Representative benchmarks',['../index.html#autotoc_md34',1,'']]],
   ['besselian_5fyear_8',['besselian_year',['../classsupernovas_1_1Unit.html#a6b55a87df7e91da16615566a61dca3cb',1,'supernovas::Unit']]],
   ['beta_9',['beta',['../structnovas__frame.html#a60d37b6267a03c4b3080154001dbdca6',1,'novas_frame::beta'],['../classsupernovas_1_1ScalarVelocity.html#a412cc2aa831495a3372aaa09fa861cbe',1,'supernovas::ScalarVelocity::beta()']]],
-  ['better_20way_10',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md8',1,'']]],
+  ['better_20way_10',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49',1,'']]],
   ['between_20equatorial_20systems_11',['Transforming between equatorial systems',['../group__equatorial.html',1,'']]],
   ['break_5fdown_12',['break_down',['../classsupernovas_1_1CalendarDate.html#a403e15a5dd70a6b983797f08e6705770',1,'supernovas::CalendarDate']]],
-  ['build_20supernovas_20using_20cmake_13',['Build SuperNOVAS using CMake',['../index.html#autotoc_md44',1,'']]],
-  ['build_20supernovas_20using_20gnu_20make_14',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md43',1,'']]],
-  ['building_20and_20installation_15',['Building and installation',['../index.html#autotoc_md42',1,'']]],
-  ['building_20your_20application_20with_20supernovas_20c_16',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md76',1,'']]],
-  ['building_20your_20application_20with_20supernovas_20c99_17',['Building your application with SuperNOVAS (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md3',1,'']]]
+  ['build_20supernovas_20using_20cmake_13',['Build SuperNOVAS using CMake',['../index.html#autotoc_md12',1,'']]],
+  ['build_20supernovas_20using_20gnu_20make_14',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md11',1,'']]],
+  ['building_20and_20installation_15',['Building and installation',['../index.html#autotoc_md10',1,'']]],
+  ['building_20your_20application_20with_20supernovas_20c_16',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80',1,'']]],
+  ['building_20your_20application_20with_20supernovas_20c99_17',['Building your application with SuperNOVAS (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44',1,'']]]
 ];
