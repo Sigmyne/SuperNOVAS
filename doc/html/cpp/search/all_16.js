@@ -35,7 +35,7 @@ var searchData=
   ['timescale_5foffset_32',['timescale_offset',['../classsupernovas_1_1Time.html#af33279ca2f6544f78f8715c4ae984063',1,'supernovas::Time']]],
   ['timescales_33',['Time of observation and astronomical timescales',['../group__time.html',1,'']]],
   ['tips_20and_20tricks_20c99_34',['Tips and tricks (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68',1,'']]],
-  ['to_20precise_20results_35',['Prerequisites to precise results',['../index.html#autotoc_md29',1,'']]],
+  ['to_20precise_20results_35',['Prerequisites to precise results',['../index.html#autotoc_md30',1,'']]],
   ['to_20the_20novas_20c_20api_36',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
   ['to_5fapparent_37',['to_apparent',['../group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae',1,'supernovas::Horizontal::to_apparent(const Frame &amp;frame, double rv=0.0, double distance=Unit::Gpc) const'],['../group__apparent.html#ga02abf3d9fe725653e8220619a000fc8d',1,'supernovas::Horizontal::to_apparent(const Frame &amp;frame, const ScalarVelocity &amp;rv=ScalarVelocity::stationary(), const Coordinate &amp;distance=Coordinate::at_Gpc()) const']]],
   ['to_5fastrometric_38',['to_astrometric',['../classsupernovas_1_1Position.html#ad9ca593b0c5ce9fe51f2334f41274183',1,'supernovas::Position']]],

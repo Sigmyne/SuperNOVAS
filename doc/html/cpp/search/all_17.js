@@ -11,7 +11,7 @@ var searchData=
   ['unit_8',['Unit',['../classsupernovas_1_1Unit.html',1,'supernovas']]],
   ['unit_5fvector_9',['unit_vector',['../classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52',1,'supernovas::Vector']]],
   ['units_10',['Physical units',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'']]],
-  ['universal_20ephemeris_20data_20service_20integration_11',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
+  ['universal_20ephemeris_20data_20service_20integration_11',['Universal ephemeris data / service integration',['../index.html#autotoc_md28',1,'']]],
   ['unix_5ftime_12',['unix_time',['../classsupernovas_1_1CalendarDate.html#a776056f48ef548d8bb613932fe2647d8',1,'supernovas::CalendarDate::unix_time()'],['../classsupernovas_1_1Time.html#ace3fcc7e22d7880f53fd72237598183a',1,'supernovas::Time::unix_time()']]],
   ['unredshift_5fvrad_13',['unredshift_vrad',['../novas_8h.html#aea89203030ca831260dec18f83081d23',1,'unredshift_vrad(double vrad, double z):&#160;spectral.c'],['../spectral_8c.html#aea89203030ca831260dec18f83081d23',1,'unredshift_vrad(double vrad, double z):&#160;spectral.c']]],
   ['up_20an_20ephemeris_20provider_14',['Recommendation: set up an ephemeris provider',['../index.html#autotoc_md21',1,'']]],

@@ -35,7 +35,7 @@ var searchData=
   ['old_20vs_20new_32',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md18',1,'']]],
   ['omega_33',['Omega',['../structnovas__delaunay__args.html#af6987ccf8afceedd1cd2394a7bdf10b0',1,'novas_delaunay_args::Omega'],['../structnovas__orbital__system.html#a1ac88e32247a155866b20e606f78eb2b',1,'novas_orbital_system::Omega'],['../structnovas__orbital.html#a8985163e8cadadf0f3394823f6cdf094',1,'novas_orbital::Omega']]],
   ['omega_34',['omega',['../structnovas__orbital.html#aaa2670b33c2146fc304f29748b1680f9',1,'novas_orbital']]],
-  ['on_20precision_35',['Notes on precision',['../index.html#autotoc_md28',1,'']]],
+  ['on_20precision_35',['Notes on precision',['../index.html#autotoc_md29',1,'']]],
   ['on_20sky_36',['on sky',['../group__apparent.html',1,'Apparent equatorial positions on sky'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98',1,'Calculate an apparent place on sky']]],
   ['on_5fearth_37',['on_earth',['../classsupernovas_1_1Observer.html#a4938417fca7a03c1c41ff905e489b79b',1,'supernovas::Observer']]],
   ['on_5fsurf_38',['on_surf',['../structnovas__observer.html#a836c3e0f5d8c99e16e0d04d1519e9e27',1,'novas_observer']]],
