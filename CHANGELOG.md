@@ -6,7 +6,8 @@ file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to 
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+
+## [1.6.0-rc4] - 2026-04-14
 
 Upcoming feature release, introducing a proper C++ API for the first time, and bringing various other improvements.
 
@@ -37,7 +38,7 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    when polar wobble offsets are known.
 
  - Added `novas_enu_to_itrs()` and `novas_itrs_to_enu()` functions to help convert between local East-North-Up (ENU)
-   coordinates and ITRS. ENU is a natural local cartesian coordinate system of an observer at or near the Earth's 
+   coordinates and ITRS. ENU is a natural local Cartesian coordinate system of an observer at or near the Earth's 
    surface.
 
  - Added `novas_diff_time_scale()` for obtaining time difference between two astrometric times in the specified 
