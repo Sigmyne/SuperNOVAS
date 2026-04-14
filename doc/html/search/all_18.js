@@ -2,8 +2,8 @@ var searchData=
 [
   ['way_0',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md29',1,'']]],
   ['where_1',['where',['../structnovas__observer.html#afc58c314cdec95813c00a0e0ffa636d0',1,'novas_observer']]],
-  ['with_20keplerian_20orbital_20parameters_2',['with Keplerian orbital parameters',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md71',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Solar-system objects with Keplerian orbital parameters']]],
-  ['with_20novas_20c_203_201_3',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md84',1,'']]],
+  ['with_20keplerian_20orbital_20parameters_2',['with Keplerian orbital parameters',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md68',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59',1,'Solar-system objects with Keplerian orbital parameters']]],
+  ['with_20novas_20c_203_201_3',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md85',1,'']]],
   ['with_20supernovas_20c_4',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md27',1,'']]],
   ['with_20supernovas_20c99_5',['Building your application with SuperNOVAS (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md21',1,'']]],
   ['wobble_6',['wobble',['../group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652',1,'wobble(double jd_tt, enum novas_wobble_direction direction, double xp, double yp, const double *in, double *out):&#160;earth.c'],['../group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652',1,'wobble(double jd_tt, enum novas_wobble_direction direction, double xp, double yp, const double *in, double *out):&#160;earth.c']]],

@@ -2,7 +2,7 @@ var searchData=
 [
   ['data_20or_20services_0',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md104',1,'']]],
   ['data_20service_20integration_1',['Universal ephemeris data / service integration',['../index.html#autotoc_md107',1,'']]],
-  ['dates_2',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md85',1,'']]],
+  ['dates_2',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md88',1,'']]],
   ['debug_20support_3',['Runtime debug support',['../index.html#autotoc_md112',1,'']]],
   ['define_20mtx_5flock_20void_4',['define mtx_lock (void)',['../solsys-cspice_8c.html#autotoc_md14',1,'']]],
   ['define_20mtx_5funlock_20void_5',['define mtx_unlock (void)',['../solsys-cspice_8c.html#autotoc_md15',1,'']]],

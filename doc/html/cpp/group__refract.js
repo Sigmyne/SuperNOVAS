@@ -20,7 +20,7 @@ var group__refract =
     ] ],
     [ "supernovas::Weather", "classsupernovas_1_1Weather.html", [
       [ "Weather", "classsupernovas_1_1Weather.html#a2603dbc8cb783a611197af1d943472aa", null ],
-      [ "Weather", "classsupernovas_1_1Weather.html#a9c0d3b17f35e0ee62d8868831a1e6d7d", null ],
+      [ "Weather", "classsupernovas_1_1Weather.html#a4f0b8c3c347f6ab66d131f8a54754265", null ],
       [ "humidity", "classsupernovas_1_1Weather.html#ac43b7b4d8450cf8542a60ff7c0d49b44", null ],
       [ "pressure", "classsupernovas_1_1Weather.html#a68fb7dadc7cd72e839c0ed730c4b1f70", null ],
       [ "temperature", "classsupernovas_1_1Weather.html#a3d84bdc61aa8a1fb7c958a90df6a911c", null ],

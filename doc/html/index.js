@@ -1,12 +1,12 @@
 var index =
 [
-    [ "Table of Contents", "index.html#autotoc_md60", null ],
-    [ "Introduction", "index.html#autotoc_md64", [
+    [ "Table of Contents", "index.html#autotoc_md58", null ],
+    [ "Introduction", "index.html#autotoc_md62", [
       [ "Related links", "index.html#autotoc_md69", null ]
     ] ],
-    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md74", null ],
-    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md84", null ],
-    [ "Building and installation", "index.html#autotoc_md88", [
+    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md73", null ],
+    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md85", null ],
+    [ "Building and installation", "index.html#autotoc_md87", [
       [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md89", null ],
       [ "Build SuperNOVAS using CMake", "index.html#autotoc_md92", null ],
       [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md93", null ],
