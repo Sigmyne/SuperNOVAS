@@ -672,7 +672,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Pointer to a celestial source data structure that is observed. Catalog sources should have coordinates and properties in ICRS. You can use <span class="tt"><a class="el" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a></span> to convert catalog entries to ICRS as necessary. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observer frame, defining the location and time of observation </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observer frame, defining the location and time of observation </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The coordinate system in which to return positions and velocities. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] Calculated geometric position vector of the source relative to the observer location, in the designated coordinate system. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">vel</td><td>[AU/day] The calculated velocity vector of the source relative to the observer in the designated coordinate system. It must be distinct from the pos output vector, and may be NULL if not required. </td></tr>
@@ -725,7 +725,7 @@ Functions</h2></td></tr>
 <p>Unlike <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> the output reports the distance calculated from the parallax for sidereal sources. The radial velocity of the output is set to NAN (if needed use <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> instead).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos</td><td>[AU] Geometric position of source in ICRS coordinates </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The coordinate system in which to return the apparent sky location </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to the data structure which is populated with the calculated apparent location in the designated coordinate system. It may be the same pounter as the input position. </td></tr>
@@ -787,7 +787,7 @@ Functions</h2></td></tr>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The celestial coordinate reference system in which to return the result. (It may not be Earth-based TIRS or ITRS). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] The Moon's position vector relative to the observer (or geocenter), in the specified coordinate reference system, or NULL if not required. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">vel</td><td>[AU/day] The Moon's ICRS velocity vector relative to the observer (or geocenter), in the specified coordinate reference system, or NULL if not required. </td></tr>
@@ -857,7 +857,7 @@ Functions</h2></td></tr>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">limit</td><td>[arcsec|km] Sum only terms with amplitudes larger than this limit. The resulting accuracy is typically an order-of-magnitude above the set limiting amplitude. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The celestial coordinate reference system in which to return the result. (It may not be Earth-based TIRS or ITRS). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] The Moon's position vector relative to the observer (or geocenter), in the specified coordinate reference system, or NULL if not required. </td></tr>

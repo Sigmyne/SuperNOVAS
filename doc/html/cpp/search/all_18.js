@@ -4,7 +4,7 @@ var searchData=
   ['v_5flsr_1',['v_lsr',['../classsupernovas_1_1CatalogEntry.html#a23c9875e4a6e480d214c9288f9debe7b',1,'supernovas::CatalogEntry::v_lsr() const'],['../classsupernovas_1_1CatalogEntry.html#a5abe557f04d1f2ed2dccdaac1e2c0b4b',1,'supernovas::CatalogEntry::v_lsr(double v_ms)'],['../classsupernovas_1_1CatalogEntry.html#a74120ab096b8a9db05ebb87e6dce8f84',1,'supernovas::CatalogEntry::v_lsr(const ScalarVelocity &amp;v)']]],
   ['v_5fobs_2',['v_obs',['../structnovas__frame.html#a2dd2191a88584012b9947cb4e998f598',1,'novas_frame']]],
   ['validating_3',['Validating',['../classsupernovas_1_1Validating.html',1,'supernovas::Validating'],['../classsupernovas_1_1Validating.html#aeabd2d0135eafd2a6a55447054ff81f7',1,'supernovas::Validating::Validating()']]],
-  ['validation_4',['Validation',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'']]],
+  ['validation_4',['Validation',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86',1,'']]],
   ['value_5',['value',['../classsupernovas_1_1ScalarEvolution.html#af4f7a15acc9dd930335dce034175e1fa',1,'supernovas::ScalarEvolution']]],
   ['vcpkg_6',['Install SuperNOVAS via &lt;span class=&quot;tt&quot;&gt;vcpkg&lt;/span&gt;',['../index.html#autotoc_md13',1,'']]],
   ['vector_7',['Vector',['../classsupernovas_1_1Vector.html',1,'supernovas::Vector'],['../classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc',1,'supernovas::Vector::Vector()'],['../classsupernovas_1_1Vector.html#a67f0cc38bb4f768c9f52a2c8227b89eb',1,'supernovas::Vector::Vector(double x, double y, double z)']]],

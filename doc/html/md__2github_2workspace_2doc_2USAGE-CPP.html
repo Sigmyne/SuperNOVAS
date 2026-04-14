@@ -118,7 +118,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-CPP.html','',''); }
 </ul>
 <hr  />
 <p><a class="anchor" id="integration-cpp"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md54"></a>
 Building your application with SuperNOVAS (C++)</h1>
 <p>There are a number of ways you can build your application with <b>SuperNOVAS</b>. See which of the options suits your needs best:</p>
 <ul>
@@ -126,7 +126,7 @@ Building your application with SuperNOVAS (C++)</h1>
 <li><a class="el" href="#cmake-application-cpp" title="cmake-application-cpp">Using CMake</a></li>
 </ul>
 <p><a class="anchor" id="makefile-application-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md55"></a>
 Using a GNU <span class="tt">Makefile</span></h2>
 <details >
 <summary >
@@ -141,7 +141,7 @@ Details</summary>
 </div><!-- fragment --><p></p>
 </details>
 <p><a class="anchor" id="cmake-application-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
 Using CMake</h2>
 <details >
 <summary >
@@ -155,7 +155,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="fundamentals-cpp"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md62"></a>
 C++ Fundamentals</h1>
 <ul>
 <li><a class="el" href="#namespace-cpp" title="namespace-cpp">Namespace</a></li>
@@ -165,7 +165,7 @@ C++ Fundamentals</h1>
 </ul>
 <p>Before we dive into specific examples for using the <b>SuperNOVAS</b> C++ API, you should know of the generic features and design principles that underly the C++ implementation.</p>
 <p><a class="anchor" id="namespace-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md42"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md64"></a>
 Namespace</h2>
 <p>To allow using simple class names, while being cognizant of potential namespace conflicts, the <b>SuperNOVAS</b> classes all live under the <span class="tt">supernovas</span> namespace. Thus, the class <span class="tt">Angle</span>, for example, has a full name <span class="tt">supernovas::Angle</span> that can be used in any context. But, when convenient you can make one of more namespaces default in your source code, e.g.:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;supernovas.h&gt;</span></div>
@@ -184,7 +184,7 @@ Namespace</h2>
 <div class="line">  ...</div>
 <div class="line">}</div>
 </div><!-- fragment --><p><a class="anchor" id="validation-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md66"></a>
 Validation</h2>
 <p>C++ does not have runtime exceptions the same way as Python or Java, which can be caught. While C++17 introduced <span class="tt">std::optional</span> types that can be used to return with or without valid data, <b>SuperNOVAS</b> does not use these, because <em>(a)</em> the optionals are not supported on Apple and Windows (in 2026), and <em>(b)</em> they don't do anything for constructors.</p>
 <p>Instead all <b>SuperNOVAS</b> classes are based on a <span class="tt">supernovas::Validating</span> base class, providing an <span class="tt">is_valid()</span> method. All subclasses (that is all <b>SuperNOVAS</b> classes) sanity check their data as part of their constructor. And, mutable classes sanity check every time they are modified as well. The checks typically include flagging NaNs and infinite values (unless they are explicitly allowed), enum values outside of their normal range (yes the compiler checks for these, but those checks can be easily bypassed), and whatever else is necessary to ensure that the objects contain fully usable data.</p>
@@ -202,14 +202,14 @@ Validation</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>And if in doubt as to why your object is invalid, you can always turn on debugging with <span class="tt">novas_debug(NOVAS_DEBUG_ON)</span>, at least in the relevant section of your code. <b>SuperNOVAS</b> will provide error descriptions and call traces every time an invalid class instance is created, and when methods create invalid objects themselves.</p>
 <p><a class="anchor" id="thread-safety-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md71"></a>
 Thread safety</h2>
 <p>It is easy to use the C++ API safely in a multi-threaded environment, even without explicit mutexing. The best practice is to always declare your shared (among threads) class variables as <span class="tt">const</span> so they will never get accidentally modified by one thread while another thread accesses them concurrently. While most <b>SuperNOVAS</b> classes do not have explicitly declared methods that can modify them, their contents can nevertheless get overwritten easily with the implicit copy-assignment operator &ndash; but not when the variable was declared as <span class="tt">const</span>. For example:</p>
 <div class="fragment"><div class="line"><span class="comment">// Declaring &#39;frame&#39; as const will make it safe to use in threads.</span></div>
 <div class="line"><span class="keyword">const</span> Frame frame = ...;</div>
 </div><!-- fragment --><p>To further support thread safety, the <b>SuperNOVAS</b> classes are designed never to store references to external objects internally. Instead, they always store copies of the parameters that were supplied by their constructors or update methods. While the copying may result in a small overhead, it guarantess that the internal data cannot vanish or change unexpectedly.</p>
 <p><a class="anchor" id="operators-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md48"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md75"></a>
 Operator overloading</h2>
 <p>Several <b>SuperNOVAS</b> classes override arithmetic operators (often <span class="tt">+</span> and <span class="tt">-</span>, and sometimes <span class="tt">*</span> and <span class="tt">/</span>), but only when this is physically meaningful. For example, you can add and difference position or velocity vectors: for <span class="tt">supernovas::Position</span>, <b>a</b> and <b>b</b>, <b>a</b> + <b>b</b> is the two positions superimposed, <b>a</b> - <b>b</b> is the difference vector of the same type. For <span class="tt">supernovas::Velocity</span>, the addition and subtraction follows the relativistic formulae, e.g. for velocity vectors <span class="tt">v1</span> and <span class="tt">v2</span>:</p>
 <div class="fragment"><div class="line">Velocity dv = v2 - v1;  <span class="comment">// Relativistic difference of two velocity vectors.</span></div>
@@ -244,7 +244,7 @@ Operator overloading</h2>
 <p>It is up to you whether your coding style prefers using the overloaded operators or the equivalent methods. Do what works best for you.</p>
 <hr  />
 <p><a class="anchor" id="examples-cpp"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md54"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
 Example C++ usage</h1>
 <ul>
 <li><a class="el" href="#sidereal-example-cpp" title="sidereal-example-cpp">Calculating positions for a sidereal source</a></li>
@@ -254,7 +254,7 @@ Example C++ usage</h1>
 <li><a class="el" href="#transforms-cpp" title="transforms-cpp">Coordinate and velocity transforms (change of coordinate system)</a></li>
 </ul>
 <p><a class="anchor" id="sidereal-example-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md56"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
 Calculating positions for a sidereal source</h2>
 <p>A sidereal source may be anything beyond the Solar system with 'fixed' catalog coordinates. It may be a star, or a galactic molecular cloud, or a distant quasar.</p>
 <ul>
@@ -266,7 +266,7 @@ Calculating positions for a sidereal source</h2>
 <li><a class="el" href="#horizontal-place-cpp" title="horizontal-place-cpp">Calculate azimuth and elevation angles at the observing location</a></li>
 </ul>
 <p><a class="anchor" id="specify-object-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md57"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
 Specify the object of interest</h3>
 <p>First, you must provide the astrometric parameters (coordinates, and optionally radial velocity or redshift, proper motion, and/or parallax or distance also). Let's assume we pick a star for which we have B1950 (i.e. FK4) coordinates. We begin with the assigned name and the R.A. / Dec coordinates, and then populate any other astrometric parameters we may have:</p>
 <div class="fragment"><div class="line"><span class="comment">// Let&#39;s assume we have B1950 (FK4) coordinates</span></div>
@@ -280,9 +280,9 @@ Unit::hour_angle</span>, <span class="tt">-26.323094 * Unit::deg</span>), or <sp
 <div class="fragment"><div class="line"><span class="keyword">auto</span> source = entry.to_source();</div>
 </div><!-- fragment --><p>The <span class="tt">supernovas::Source</span> class can represent different astronomical objects, and accordingly has different subclasses. Specifically, <span class="tt">entry.to_source()</span> above returns a <span class="tt">supernovas::CatalogSource</span>, but thanks to the <span class="tt">auto</span> keyword, we don't really need to know what subclass of <span class="tt">Source</span> is actually being created here.</p>
 <p><a class="anchor" id="specify-observer-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md61"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
 Specify the observer location</h3>
-<h4 class="doxsection"><a class="anchor" id="autotoc_md62"></a>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md90"></a>
 A. Earth-based observer location</h4>
 <p>Next, we define the location where we observe from. Let's assume we have a GPS location, such as 50.7374 deg N, 7.0982 deg E, 60m elevation:</p>
 <div class="fragment"><div class="line"><span class="comment">// Specify the location we are observing from, e.g. a GPS / WGS84 location</span></div>
@@ -297,12 +297,12 @@ A. Earth-based observer location</h4>
 <div class="line"><span class="comment">// Now create an observer for that site</span></div>
 <div class="line"><span class="keyword">auto</span> obs = site::to_observer(eop);</div>
 </div><!-- fragment --><p>Again, <span class="tt">supernovas::Observer</span> has many subclasses of specific flavors, so here we use the <span class="tt">auto</span> keyword again if we are lazy (otherwise we could have specified <span class="tt">supernovas::GeodeticObserver</span>, which is what <span class="tt">site.to_observer()</span> returns).</p>
-<h4 class="doxsection"><a class="anchor" id="autotoc_md65"></a>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md92"></a>
 B. other observer locations</h4>
 <p>Alternatively, you can also specify airborne observers, or observers in Earth orbit, in heliocentric orbit, or a virtual observer at the geocenter, or at the Solar-system barycenter. See the static methods of the <span class="tt">supernovas::Observer</span> class. E.g.:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> obs = Observer::at_geocenter();</div>
 </div><!-- fragment --><p><a class="anchor" id="specify-time-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md66"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md94"></a>
 Specify the time of observation</h3>
 <p>Then we can set the time of observation, for example, using the current UNIX time:</p>
 <div class="fragment"><div class="line"><span class="comment">// Set the time of observation to the precise UTC-based UNIX time</span></div>
@@ -321,7 +321,7 @@ Specify the time of observation</h3>
 </div><!-- fragment --><p>Or, you might use string dates, such as an ISO timestamp:</p>
 <div class="fragment"><div class="line">Time obs_time = Time(<span class="stringliteral">&quot;2025-01-26T22:05:14.234+0200&quot;</span>, eop);</div>
 </div><!-- fragment --><p><a class="anchor" id="observing-frame-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md68"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md96"></a>
 Set up the observing frame</h3>
 <p>Next, we set up an observing frame, which is defined for a unique combination of the observer location and the time of observation:</p>
 <div class="fragment"><div class="line"><span class="comment">// Initialize the observing frame for the observer at the time of observation.</span></div>
@@ -336,7 +336,7 @@ Set up the observing frame</h3>
 <dl class="section important"><dt>Important</dt><dd>Without a proper ephemeris provider for the major planets, you are invariably restricted to working with reduced accuracy frames, providing milliarcsecond precision at most. Attempting to construct high-accuracy frames without an appropriate high-precision ephemeris provider will result in an error from the requisite <span class="tt"><a class="el" href="group__geometric.html#ga713982e1f2bae0a72b39d03007f00d23" title="Retrieves the position and velocity of a solar system body using the currently configured plugins tha...">ephemeris()</a></span> calls.</dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd>Full accuracy (&mu;as-level) frames require a high-precision ephemeris provider for the major planets, e.g. to account for the gravitational deflections. Without it, &mu;as accuracy cannot be ensured, in general. See section on <a class="el" href="index.html#solarsystem" title="solarsystem">Incorporating Solar-system ephemeris data or services</a> further below.</dd></dl>
 <p><a class="anchor" id="apparent-place-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md69"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md98"></a>
 Calculate an apparent place on sky</h3>
 <p>Now we can calculate the apparent R.A. and declination for our source, which includes proper motion (for sidereal sources) or light-time correction (for Solar-system bodies), and also aberration corrections for the moving observer and gravitational deflection around the major Solar System bodies (in full accuracy mode). You can calculate an apparent location in the:</p>
 <div class="fragment"><div class="line"><span class="comment">// Precise apparent positions and spectroscopic velocities (in TOD).</span></div>
@@ -363,7 +363,7 @@ Calculate an apparent place on sky</h3>
 <div class="fragment"><div class="line">Coordinate d = app.distance();</div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>If you want geometric positions and/or velocities instead, without aberration and gravitational deflection, you might use <span class="tt">supernovas::Source::geometric_in(Frame&amp;)</span> instead of <span class="tt">supernovas::Source::apparent_in(Frame&amp;)</span>.</dd></dl>
 <p><a class="anchor" id="horizontal-place-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md74"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md99"></a>
 Calculate azimuth and elevation angles at the observing location</h3>
 <p>If your ultimate goal is to calculate the azimuth and elevation angles of the source at the specified observing location, you can proceed from the <span class="tt">Apparent</span> positions you obtained above, provided they are calculated for an Earth based observer (otherwise, you'll get an invalid result):</p>
 <div class="fragment"><div class="line"><span class="comment">// Convert the apparent position to unrefracted horizontal coordinates</span></div>
@@ -379,7 +379,7 @@ Calculate azimuth and elevation angles at the observing location</h3>
 <div class="line">hor = hor.to_refracted(<a class="code hl_function" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a>, weather);</div>
 <div class="ttc" id="agroup__refract_html_gae4511a80a1defbb1e1fdc29c289e7de4"><div class="ttname"><a href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a></div><div class="ttdeci">double novas_optical_refraction(double jd_tt, const on_surface *loc, enum novas_refraction_type type, double el)</div><div class="ttdoc">Returns an optical refraction correction using the weather parameters defined for the observer locati...</div><div class="ttdef"><b>Definition</b> refract.c:281</div></div>
 </div><!-- fragment --><p><a class="anchor" id="solsys-example-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md75"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md101"></a>
 Calculating positions for a Solar-system source</h2>
 <ul>
 <li><a class="el" href="#ephemeris-sources-cpp" title="ephemeris-sources-cpp">Planets and/or ephemeris type objects</a></li>
@@ -389,7 +389,7 @@ Calculating positions for a Solar-system source</h2>
 </ul>
 <p>Solar-system sources work similarly to the above with a few important differences at the start.</p>
 <p><a class="anchor" id="ephemeris-sources-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md76"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md103"></a>
 Planets and/or ephemeris type objects</h3>
 <p>Historically, NOVAS divided Solar-system objects into two categories: (1) major planets (including also the Sun, the Moon, and the Solar-system Barycenter); and (2) 'ephemeris' type objects, which are all other Solar-system objects. The main difference is the numbering convention. NOVAS major planets have definitive ID numbers (see <span class="tt">enum <a class="el" href="group__source.html#ga219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a></span>), whereas 'ephemeris' objects have user-defined IDs. They are also handled by two separate adapter functions (although <b>SuperNOVAS</b> has the option of using the same ephemeris provider for both types of objects also).</p>
 <p>Thus, you define your <span class="tt">Source</span> as a <span class="tt">supernovas::Planet</span> or <span class="tt">supernovas::EphemerisSource</span> type object with the name or ID number that is used by the ephemeris service you provided. For major planets you might want to use <span class="tt">Planet</span>, if they use a <span class="tt"><a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a></span> function to access ephemeris data with their NOVAS IDs, or else <span class="tt">supernovas::EphemerisSource</span> for more generic ephemeris handling via a user-provided <span class="tt"><a class="el" href="group__solar-system.html#gaebb3d71006e8d93de242df61510374ad" title="Function to obtain ephemeris data for minor planets, which are not handled by the solarsystem() type ...">novas_ephem_provider</a></span>. E.g.:</p>
@@ -412,7 +412,7 @@ Planets and/or ephemeris type objects</h3>
 <div class="line"><span class="comment">// 3D geometric velocity of Ceres, antedated for when observed light originated</span></div>
 <div class="line">Velocity vel = geom.velocity();</div>
 </div><!-- fragment --><p><a class="anchor" id="orbital-sources-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md78"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md106"></a>
 Solar-system objects with Keplerian orbital parameters</h3>
 <p>You can also define solar system sources with Keplerian orbital elements (such as the most up-to-date ones provided by the <a href="https://minorplanetcenter.net/data">Minor Planet Center</a> for asteroids, comets, etc.):</p>
 <div class="fragment"><div class="line"><span class="comment">// e.g. a Near-Earth Asteroid in </span></div>
@@ -435,7 +435,7 @@ Solar-system objects with Keplerian orbital parameters</h3>
 </div><!-- fragment --><p>or</p>
 <div class="fragment"><div class="line">Geometric geom = nea.geometric_in(frame);</div>
 </div><!-- fragment --><p><a class="anchor" id="planet-orbitals-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md107"></a>
 Approximate planet orbitals</h3>
 <p>Finally, you might generate approximate (arcmin-level) orbitals for the major planets (but not Earth!), the Moon, and the Earth-Moon Barycenter (EMB) also. E.g.:</p>
 <div class="fragment"><div class="line"><span class="comment">// The current Keplerian orbital of Venus...</span></div>
@@ -448,7 +448,7 @@ Approximate planet orbitals</h3>
 <div class="line">Geometric geom = Planet::neptune().approx_geometric_in(frame);</div>
 </div><!-- fragment --><p>Keep in mind that the planet and Moon orbitals are not suitable for precision applications.</p>
 <p><a class="anchor" id="moon-cpp"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md108"></a>
 Moon's position and phase</h3>
 <p><b>SuperNOVAS</b> can calculate positions and velocities for the Moon to arcsecond (or km) level, or better, accuracy using the ELP2000 / MPP02 semi-analytical model by Chapront &amp; Francou (2003). This means that you can calculate astrometric quantities for the Moon with reasonable accuracy even without an ephemeris provider configured.</p>
 <p>For example, you can calculate the apparent place of the Moon in an observing frame as:</p>
@@ -468,7 +468,7 @@ Moon's position and phase</h3>
 <div class="line"><span class="comment">// Astrometric time of next full moon (phase = 180 deg).</span></div>
 <div class="line">Time t_full = t_obs.next_moon_phase(Angle(180.0 * Unit::deg));</div>
 </div><!-- fragment --><p><a class="anchor" id="reverse-place-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md111"></a>
 Going in reverse...</h2>
 <p>Of course, <b>SuperNOVAS</b> allows you to go in reverse, for example from an observed Az/El position all the way to proper ICRS R.A./Dec coordinates, or a geometric place.</p>
 <p>E.g., let's assume you start with horizontal coorinates that measured at your observing location:</p>
@@ -488,7 +488,7 @@ Going in reverse...</h2>
 </div><!-- fragment --><p>And finally, you can calculate nominal SSB-based ICRS coordinates as:</p>
 <div class="fragment"><div class="line">Equatorial icrs = ssb_pos.as_equatorial().to_icrs();</div>
 </div><!-- fragment --><p><a class="anchor" id="rise-set-transit-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md112"></a>
 Calculate rise, set, and transit times</h2>
 <p>You may be interested to know when sources rise above or set below some specific elevation angle, or at what time they appear to transit at the observer location. <b>SuperNOVAS</b> has routines to help you with that too.</p>
 <p>Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are effectively tied to an observer frame. Let's assume you have defined a source and an observing frame:</p>
@@ -504,7 +504,7 @@ Calculate rise, set, and transit times</h2>
 <div class="fragment"><div class="line">Time t_set = source.sets_below(30.0 * Unit::deg, frame);</div>
 </div><!-- fragment --><p>Note, that in the current implementation these calls are not well suited sources that are at or within the geostationary orbit, such as such as Low Earth Orbit satellites (LEOs), geostationary satellites (which never really rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set multiple times per day. For the latter, the above calls may still return a valid time, only without the guarantee that it is the time of the first such event after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for updates.</p>
 <p><a class="anchor" id="transforms-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md113"></a>
 Coordinate and velocity transforms (change of coordinate system)</h2>
 <p>Equatorial coordinates are inherently linked to a choice of equator orientation (w.r.t. distant quasars), and the location of the equinox, the intersection of the equator of choice with the and ecliptic of date. The choice of equator is commonly referred as the <em>coordinate reference system</em> (e.g. ICRS, CIRS, TOD, J200, B1950). A such, equatorial coordinates (<span class="tt">supernovas::Equatorial</span> class) and ecliptic coordinates (<span class="tt">supernovas::Ecliptic</span> class) are always defined w.r.t. an equator and equinox, a.k.a. a reference system, of choice (<span class="tt">supernovas::Equinox</span> class).</p>
 <p>However, after such coordinates are instantiated for one choice of reference system, you can easily convert them to another, even if the other system is defined for a different date:</p>

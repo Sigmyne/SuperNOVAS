@@ -8496,7 +8496,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <p>Converts an observed apparent sky position of a source to an ICRS geometric position, by undoing the gravitational deflection and aberration corrections. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The reference system in which the observed position is specified. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[h] Observed ICRS right-ascension of the source </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] Observed ICRS declination of the source </td></tr>
@@ -8566,7 +8566,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <p>The observer must be located on the surface of Earth, or else the call will return with an error. The caller may optionally supply a refraction model of choice to calculate an appropriate elevation angle that includes a refraction correction for Earth's atmosphere. If no such model is provided the calculated elevation will be the astrometric elevation without a refraction correction.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observer frame, defining the time and place of observation (on Earth). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observer frame, defining the time and place of observation (on Earth). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>Astronomical coordinate system in which the observed position is given. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[h] Observed apparent right ascension (R.A.) coordinate </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] Observed apparent declination coordinate </td></tr>
@@ -8708,7 +8708,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">id</td><td>NOVAS major planet ID. All major planets, plus the Sun, Moon, Earth-Moon Barycenter (EMB), and Pluto system Barycenter are supported. (For Pluto, the Pluto System Barycenter values are returned.) </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The coordinate system in which to return the apparent sky location. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to the data structure which is populated with the calculated approximate apparent location in the designated coordinate system. </td></tr>
   </table>
@@ -8905,7 +8905,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>The observing frame, defining the observer position as well as the positions of the major solar-system bodies at the time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>The observing frame, defining the observer position as well as the positions of the major solar-system bodies at the time of observation. </td></tr>
     <tr><td class="paramname">timescale</td><td>Reference timescale for the comparison. All timescales except <span class="tt"><a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baa6fc4520426c4c9cbe497ab87f2ad583" title="UT1 earth rotation time, based on the measured Earth orientation parameters published in IERS Bulleti...">NOVAS_UT1</a></span> are supported. (UT1 advances at an irregular rate). </td></tr>
   </table>
   </dd>
@@ -9683,7 +9683,7 @@ novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Observed source </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dt</td><td>[s] Time step used for calculating derivatives. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">track</td><td>Output tracking parameters to populate </td></tr>
   </table>
@@ -9718,7 +9718,7 @@ novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534
 <p>Returns the Local (apparent) Sidereal Time for an observing frame of an Earth-bound observer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observer frame, defining the location and time of observation </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observer frame, defining the location and time of observation </td></tr>
   </table>
   </dd>
 </dl>
@@ -9940,7 +9940,7 @@ novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Pointer to a celestial source data structure that is observed. Catalog sources should have coordinates and properties in ICRS. You can use <span class="tt"><a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a></span> to convert catalog entries to ICRS as necessary. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observer frame, defining the location and time of observation </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observer frame, defining the location and time of observation </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The coordinate system in which to return positions and velocities. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] Calculated geometric position vector of the source relative to the observer location, in the designated coordinate system. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">vel</td><td>[AU/day] The calculated velocity vector of the source relative to the observer in the designated coordinate system. It must be distinct from the pos output vector, and may be NULL if not required. </td></tr>
@@ -9993,7 +9993,7 @@ novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534
 <p>Unlike <span class="tt"><a class="el" href="#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> the output reports the distance calculated from the parallax for sidereal sources. The radial velocity of the output is set to NAN (if needed use <a class="el" href="frames_8c.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> instead).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos</td><td>[AU] Geometric position of source in ICRS coordinates </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The coordinate system in which to return the apparent sky location </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to the data structure which is populated with the calculated apparent location in the designated coordinate system. It may be the same pounter as the input position. </td></tr>
@@ -10327,7 +10327,7 @@ novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534
 <p>The observer must be located on the surface of Earth, or else the call will return with an error. The caller may optionally supply a refraction model of choice to calculate an appropriate elevation angle that includes a refraction correction for Earth's atmosphere. If no such model is provided, the provided elevation value will be assumed to be an astrometric elevation without a refraction correction.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observer frame, defining the time and place of observation (on Earth). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observer frame, defining the time and place of observation (on Earth). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">az</td><td>[deg] Observed azimuth angle. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">el</td><td>[deg] Observed elevation angle. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ref_model</td><td>An appropriate refraction model, or NULL to assume unrefracted elevation. Depending on the refraction model, you might want to make sure that the weather parameters were set when the observing frame was defined. </td></tr>
@@ -10384,7 +10384,7 @@ novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Observed source </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ref_model</td><td>Refraction model to use, or NULL for an unrefracted track. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">track</td><td>Output tracking parameters to populate </td></tr>
   </table>
@@ -11242,7 +11242,7 @@ novas_transform_ellipsoid() </dd></dl>
     <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Time of observation </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">xp</td><td>[mas] Earth orientation parameter, mean polar offset in <em>x</em>, e.g. from the IERS Bulletins, without diurnal libration and ocean tides. (The global, undated, value set by <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> is not not used here.) You can use 0.0 if sub-arcsecond accuracy is not required. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">yp</td><td>[mas] Earth orientation parameter, mean polar offset in <em>y</em>, e.g. from the IERS Bulletins, without diurnal libration and ocean tides. (The global, undated, value set by <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> is not not used here.) You can use 0.0 if sub-arcsecond accuracy is not required. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Pointer to the observing frame to configure. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Pointer to the observing frame to configure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -11453,7 +11453,7 @@ novas_transform_ellipsoid() </dd></dl>
 <p>Calculates a transformation matrix that can be used to convert positions and velocities from one coordinate reference system to another. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observer frame, defining the location and time of observation </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observer frame, defining the location and time of observation </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">from_system</td><td>Original coordinate reference system </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">to_system</td><td>New coordinate reference system </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">transform</td><td>Pointer to the transform data structure to populate. </td></tr>
@@ -11508,7 +11508,7 @@ novas_transform_ellipsoid() </dd></dl>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>The observing frame, defining the observer position as well as the positions of the major solar-system bodies at the time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>The observing frame, defining the observer position as well as the positions of the major solar-system bodies at the time of observation. </td></tr>
     <tr><td class="paramname">timescale</td><td>Reference timescale for the comparison. All timescales are supported, except <span class="tt"><a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baa6fc4520426c4c9cbe497ab87f2ad583" title="UT1 earth rotation time, based on the measured Earth orientation parameters published in IERS Bulleti...">NOVAS_UT1</a></span> (since UT1 advances at an irregular rate). </td></tr>
   </table>
   </dd>
@@ -11545,7 +11545,7 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>An observed source </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -11716,7 +11716,7 @@ novas_transform_ellipsoid() </dd></dl>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The celestial coordinate reference system in which to return the result. (It may not be Earth-based TIRS or ITRS). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] The Moon's position vector relative to the observer (or geocenter), in the specified coordinate reference system, or NULL if not required. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">vel</td><td>[AU/day] The Moon's ICRS velocity vector relative to the observer (or geocenter), in the specified coordinate reference system, or NULL if not required. </td></tr>
@@ -11786,7 +11786,7 @@ novas_transform_ellipsoid() </dd></dl>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">limit</td><td>[arcsec|km] Sum only terms with amplitudes larger than this limit. The resulting accuracy is typically an order-of-magnitude above the set limiting amplitude. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The celestial coordinate reference system in which to return the result. (It may not be Earth-based TIRS or ITRS). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] The Moon's position vector relative to the observer (or geocenter), in the specified coordinate reference system, or NULL if not required. </td></tr>
@@ -11848,7 +11848,7 @@ novas_transform_ellipsoid() </dd></dl>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Earth-based observing frame. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Earth-based observing frame. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The celestial coordinate reference system in which to return the result. (It may not be Earth-based TIRS or ITRS). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>The Moon's position, relative to the true equator and equinox of date. </td></tr>
   </table>
@@ -11912,7 +11912,7 @@ novas_transform_ellipsoid() </dd></dl>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">limit</td><td>[arcsec|km] Sum only terms with amplitudes larger than this limit. The resulting accuracy is typically an order-of-magnitude above the set limiting amplitude. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The celestial coordinate reference system in which to return the result. (It may not be Earth-based TIRS or ITRS). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>The Moon's position, relative to the true equator and equinox of date. </td></tr>
@@ -12101,7 +12101,7 @@ novas_transform_ellipsoid() </dd></dl>
   <table class="params">
     <tr><td class="paramname">source1</td><td>An observed source </td></tr>
     <tr><td class="paramname">source2</td><td>Another observed source </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -12507,7 +12507,7 @@ novas_transform_ellipsoid() </dd></dl>
   <table class="params">
     <tr><td class="paramname">el</td><td>[deg] Elevation angle. </td></tr>
     <tr><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Observed source </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
     <tr><td class="paramname">ref_model</td><td>Refraction model, or NULL to calculate unrefracted rise time. </td></tr>
   </table>
   </dd>
@@ -13296,7 +13296,7 @@ novas_transform_ellipsoid() </dd></dl>
   <table class="params">
     <tr><td class="paramname">el</td><td>[deg] Elevation angle. </td></tr>
     <tr><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Observed source </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
     <tr><td class="paramname">ref_model</td><td>Refraction model, or NULL to calculate unrefracted setting time. </td></tr>
   </table>
   </dd>
@@ -13502,7 +13502,7 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></td><td>Pointer to a celestial object data structure that is observed. Catalog sources should have coordinates and properties in ICRS. You can use <span class="tt"><a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a></span> to convert catalog entries to ICRS as necessary. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The coordinate system in which to return the apparent sky location. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to the data structure which is populated with the calculated apparent location in the designated coordinate system. </td></tr>
   </table>
@@ -13542,7 +13542,7 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Observed source. Usually a Solar-system source. (For other source types, 1.0 is returned by default.) </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -13746,7 +13746,7 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>An observed source </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -14279,7 +14279,7 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Observed source </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -16457,7 +16457,7 @@ solarsystem_hp() </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated</a></b></dt><dd>This NOVAS C function does not account for polar wobble, so the geodetic ITRS / GRS80 locations on Earth are not converted into a proper equatorial system, such as a true-of-date (TOD) coordinate system. Use <span class="tt"><a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth&#39;s surface.">novas_site_gcrs_posvel()</a></span> instead, which you can follow by a coordinate transformation, such as <span class="tt"><a class="el" href="#a6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a></span> if you need geocentric observer coordinates in e.g. the true-of-date (TOD) equatorial system.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated</a></b></dt><dd>This NOVAS C function does not account for polar wobble, so the geodetic ITRS / GRS80 locations on Earth are not converted into a proper equatorial system, such as a true-of-date (TOD) coordinate system. Use <span class="tt"><a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth&#39;s surface.">novas_site_gcrs_posvel()</a></span> instead, which you can follow by a coordinate transformation, such as <span class="tt"><a class="el" href="#a6871e7fecde44084c7b4e1b8dda5ac70" title="Transforms a rectangular equatorial (x, y, z) vector from True of Date (TOD) reference frame at the g...">tod_to_gcrs()</a></span> if you need geocentric observer coordinates in e.g. the true-of-date (TOD) equatorial system.</dd></dl>
 <p>Computes the position and velocity vectors of a terrestrial observer with respect to the center of the Earth, based on the GRS80 reference ellipsoid, used for the International Terrestrial Reference Frame (ITRF) and its realizations.</p>
 <p>This function ignores polar motion, unless the observer's longitude and latitude have been corrected for it, and variation in the length of day (angular velocity of earth).</p>
 <p>The true equator and equinox of date do not form an inertial system. Therefore, with respect to an inertial system, the very small velocity component (several meters/day) due to the precession and nutation of the Earth's axis is not accounted for here.</p>

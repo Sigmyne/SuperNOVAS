@@ -914,7 +914,7 @@ Functions</h2></td></tr>
 <p>The observer must be located on the surface of Earth, or else the call will return with an error. The caller may optionally supply a refraction model of choice to calculate an appropriate elevation angle that includes a refraction correction for Earth's atmosphere. If no such model is provided, the provided elevation value will be assumed to be an astrometric elevation without a refraction correction.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and an specific time of observation.">Observing frames</a></td><td>Observer frame, defining the time and place of observation (on Earth). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observer frame, defining the time and place of observation (on Earth). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">az</td><td>[deg] Observed azimuth angle. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">el</td><td>[deg] Observed elevation angle. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ref_model</td><td>An appropriate refraction model, or NULL to assume unrefracted elevation. Depending on the refraction model, you might want to make sure that the weather parameters were set when the observing frame was defined. </td></tr>
