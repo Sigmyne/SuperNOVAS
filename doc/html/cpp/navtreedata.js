@@ -27,19 +27,19 @@ var NAVTREE =
   [ "SuperNOVAS C++ API", "index.html", [
     [ "User's guide", "index.html", "index" ],
     [ "C99 Usage", "md__2github_2workspace_2doc_2USAGE-C99.html", [
-      [ "Building your application with SuperNOVAS (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44", [
-        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45", null ],
-        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md46", null ],
-        [ "Deprecated API", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47", null ],
-        [ "Legacy linking <span class=\"tt\">solarsystem()</span> / <span class=\"tt\">solarsystem_hp()</span> and <span class=\"tt\">readeph()</span> modules", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48", null ],
-        [ "Legacy modules: a better way", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49", null ]
+      [ "Building your application with SuperNOVAS (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md40", [
+        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md41", null ],
+        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md42", null ],
+        [ "Deprecated API", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md43", null ],
+        [ "Legacy linking <span class=\"tt\">solarsystem()</span> / <span class=\"tt\">solarsystem_hp()</span> and <span class=\"tt\">readeph()</span> modules", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44", null ],
+        [ "Legacy modules: a better way", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45", null ]
       ] ],
-      [ "Example C99 usage", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51", [
-        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52", [
-          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53", null ],
-          [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54", null ],
-          [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55", null ],
-          [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56", null ],
+      [ "Example C99 usage", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48", [
+        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49", [
+          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md50", null ],
+          [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51", null ],
+          [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52", null ],
+          [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55", null ],
           [ "Calculate an apparent place on sky", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57", null ],
           [ "Calculate azimuth and elevation angles at the observing location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58", null ]
         ] ],
@@ -61,25 +61,25 @@ var NAVTREE =
       ] ]
     ] ],
     [ "C++ Usage", "md__2github_2workspace_2doc_2USAGE-CPP.html", [
-      [ "Building your application with SuperNOVAS (C++)", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80", [
-        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81", null ],
-        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82", null ]
+      [ "Building your application with SuperNOVAS (C++)", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md78", [
+        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79", null ],
+        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80", null ]
       ] ],
-      [ "C++ Fundamentals", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84", [
-        [ "Namespace", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85", null ],
-        [ "Validation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86", null ],
-        [ "Thread safety", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87", null ],
-        [ "Operator overloading", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88", null ]
+      [ "C++ Fundamentals", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82", [
+        [ "Namespace", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83", null ],
+        [ "Validation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84", null ],
+        [ "Thread safety", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85", null ],
+        [ "Operator overloading", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86", null ]
       ] ],
-      [ "Example C++ usage", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90", [
-        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91", [
-          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92", null ],
-          [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93", [
-            [ "A. Earth-based observer location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94", null ],
-            [ "B. other observer locations", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95", null ]
+      [ "Example C++ usage", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88", [
+        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89", [
+          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90", null ],
+          [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92", [
+            [ "A. Earth-based observer location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93", null ],
+            [ "B. other observer locations", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94", null ]
           ] ],
-          [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96", null ],
-          [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97", null ],
+          [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95", null ],
+          [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96", null ],
           [ "Calculate an apparent place on sky", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98", null ],
           [ "Calculate azimuth and elevation angles at the observing location", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99", null ]
         ] ],
@@ -133,14 +133,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Angle_8cpp.html",
-"classsupernovas_1_1Equatorial.html#a084ea74c4e83b73ef43a43e273770270",
-"classsupernovas_1_1Position.html#a578e1552f7e48d5f0029e451bfe9342c",
-"classsupernovas_1_1Track.html#ad855778035b6f474a30d1536971839f2",
-"group__apparent.html#gaec64bf67d5a03b2b4fb2583e5918f1de",
-"novas_8h.html#a0408e0c92b505e9914753930ea3f047f",
-"novas_8h.html#a98a44d2a2c0e4f211b128a94c848ed51",
-"parse_8c.html#ac69c17c646ddf3a5447557338a8490b4",
-"transform_8c.html#a02fa1ee652c20160055cbd2c7bd9ca63"
+"classsupernovas_1_1Equatorial.html#a0b32b0a522a5cb60c447f7d80ca571e9",
+"classsupernovas_1_1OrbitalSystem.html#aed822a8688e97c28af2e40b63ba1e145",
+"classsupernovas_1_1Track.html#ad88920e8a678fc24904c0013e50ef718",
+"group__earth.html#ga416a96426a0b3c52c1d5fc6452357366",
+"novas_8h.html#a035047336b16951b8b850066e74210a9",
+"novas_8h.html#a9c3f1a1bc3fd9ac6d211806913d2d529",
+"place_8c.html#a1ea9b377426b1800535e85fab47bfc1b",
+"transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

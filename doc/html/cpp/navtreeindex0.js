@@ -241,7 +241,6 @@ var NAVTREEINDEX0 =
 "classsupernovas_1_1Ecliptic.html#ac468f153f58b25ca2e305fa607997dc3":[6,7,0,20],
 "classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8":[6,7,0,13],
 "classsupernovas_1_1Ecliptic.html#ace0e8080c665a757e28fc8feb3526a8e":[6,7,0,3],
-"classsupernovas_1_1Ecliptic.html#acea27eeec615359be97fab4372061c65":[6,7,0,14],
 "classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582":[6,7,0,17],
 "classsupernovas_1_1EphemerisSource.html":[6,0,2],
 "classsupernovas_1_1EphemerisSource.html#a1db6c1e6e9709b75eb684b253c70c9fe":[6,0,2,1],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "classsupernovas_1_1EphemerisSource.html#abcd51283f8e155b21ada7389b3a083fc":[6,0,2,3],
 "classsupernovas_1_1EphemerisSource.html#af6eef3af2b52aaa44a8c7ef9e2bc3c2b":[6,0,2,0],
 "classsupernovas_1_1Equatorial.html":[6,6,0],
-"classsupernovas_1_1Equatorial.html#a0529a5acdb0015a4c195858da3524c76":[6,6,0,21]
+"classsupernovas_1_1Equatorial.html#a0529a5acdb0015a4c195858da3524c76":[6,6,0,21],
+"classsupernovas_1_1Equatorial.html#a084ea74c4e83b73ef43a43e273770270":[6,6,0,17]
 };

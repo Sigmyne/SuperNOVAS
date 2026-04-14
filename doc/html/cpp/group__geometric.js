@@ -73,10 +73,6 @@ var group__geometric =
     [ "supernovas::Planet::approx_geometric_in", "group__geometric.html#gaf83481c3e551cd9fbfc949257567b468", null ],
     [ "supernovas::Apparent::astrometric_position", "group__geometric.html#ga9955f022efa8e92d2c6a5e037794451e", null ],
     [ "supernovas::SolarSystemSource::barycentric_at", "group__geometric.html#ga42b4fe858ef5da0ae538e676f2bb7ca8", null ],
-    [ "supernovas::GeodeticObserver::gcrs_position_at", "group__geometric.html#gaa611c71d2b1150452cb203455ffdc013", null ],
-    [ "supernovas::Observer::gcrs_position_at", "group__geometric.html#gadb604ebb6581bd982943b203a89677aa", null ],
-    [ "supernovas::GeodeticObserver::gcrs_velocity_at", "group__geometric.html#gad53631f865c62ee8cb8c535be22ed180", null ],
-    [ "supernovas::Observer::gcrs_velocity_at", "group__geometric.html#ga8cd84f51fedc118c9ed6f8c14f813fbd", null ],
     [ "supernovas::Source::geometric_in", "group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a", null ],
     [ "supernovas::Frame::geometric_moon_elp2000", "group__geometric.html#gaa71fbf15b25159c91f9563e630536a32", null ]
 ];

@@ -14,7 +14,7 @@ var classsupernovas_1_1Ecliptic =
     [ "operator==", "classsupernovas_1_1Ecliptic.html#aa30d882659dad848f4c0be01f0f08a68", null ],
     [ "operator>>", "classsupernovas_1_1Ecliptic.html#ab34beaf9d178f058ec6b813240cafd48", null ],
     [ "system", "classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8", null ],
-    [ "to_equatorial", "classsupernovas_1_1Ecliptic.html#acea27eeec615359be97fab4372061c65", null ],
+    [ "to_equatorial", "group__equatorial.html#gacea27eeec615359be97fab4372061c65", null ],
     [ "to_galactic", "classsupernovas_1_1Ecliptic.html#a6be266741f04bb666e9b04deeaca5769", null ],
     [ "to_icrs", "classsupernovas_1_1Ecliptic.html#a6a0cfeb643b055e65c48a57c2c624227", null ],
     [ "to_j2000", "classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582", null ],

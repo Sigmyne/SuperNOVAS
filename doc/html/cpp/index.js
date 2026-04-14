@@ -15,13 +15,13 @@ var index =
       [ "Nix package", "index.html#autotoc_md16", null ]
     ] ],
     [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md18", null ],
-    [ "Example use cases", "index.html#autotoc_md20", [
-      [ "Recommendation: set up an ephemeris provider", "index.html#autotoc_md21", null ],
-      [ "Pick your flavor (C or C++)", "index.html#autotoc_md22", null ]
+    [ "Example use cases", "index.html#autotoc_md21", [
+      [ "Recommendation: set up an ephemeris provider", "index.html#autotoc_md22", null ],
+      [ "Pick your flavor (C or C++)", "index.html#autotoc_md23", null ]
     ] ],
-    [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md24", [
-      [ "CALCEPH integration", "index.html#autotoc_md25", null ],
-      [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md26", null ],
+    [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md25", [
+      [ "CALCEPH integration", "index.html#autotoc_md26", null ],
+      [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md27", null ],
       [ "Universal ephemeris data / service integration", "index.html#autotoc_md28", null ]
     ] ],
     [ "Notes on precision", "index.html#autotoc_md29", [
@@ -32,7 +32,7 @@ var index =
     [ "Representative benchmarks", "index.html#autotoc_md35", null ],
     [ "SuperNOVAS added features", "index.html#autotoc_md37", [
       [ "New functionality highlights", "index.html#autotoc_md38", null ],
-      [ "Refinements to the NOVAS C API", "index.html#autotoc_md39", null ]
+      [ "Refinements to the NOVAS C API", "index.html#autotoc_md46", null ]
     ] ],
-    [ "Release schedule", "index.html#autotoc_md41", null ]
+    [ "Release schedule", "index.html#autotoc_md54", null ]
 ];

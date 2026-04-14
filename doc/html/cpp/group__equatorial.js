@@ -19,18 +19,44 @@ var group__equatorial =
       [ "to_ecliptic", "group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b", null ],
       [ "to_galactic", "group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526", null ],
       [ "to_hip", "classsupernovas_1_1Equatorial.html#a084ea74c4e83b73ef43a43e273770270", null ],
-      [ "to_icrs", "group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864", null ],
+      [ "to_icrs", "classsupernovas_1_1Equatorial.html#a6229ff3b612cd28c44e866f946d37864", null ],
       [ "to_j2000", "classsupernovas_1_1Equatorial.html#a2d1aac72884524e74ee29322b23cb916", null ],
       [ "to_mod", "classsupernovas_1_1Equatorial.html#ad8484d48ecc0922a602c23f8fd4a9092", null ],
       [ "to_mod_at_besselian_epoch", "classsupernovas_1_1Equatorial.html#a0529a5acdb0015a4c195858da3524c76", null ],
       [ "to_string", "classsupernovas_1_1Equatorial.html#a32bfe60a4d887c5b659720756a3b6006", null ],
-      [ "to_system", "group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0", null ],
+      [ "to_system", "classsupernovas_1_1Equatorial.html#ac7e00f3f7cc4afdcb89bd66a508591b0", null ],
       [ "to_tod", "classsupernovas_1_1Equatorial.html#ab5c1c9d9c14fe35a6cf7e542ce87343b", null ]
+    ] ],
+    [ "supernovas::Equinox", "classsupernovas_1_1Equinox.html", [
+      [ "epoch", "classsupernovas_1_1Equinox.html#a656b256555c06a140bd8bf612778e3ff", null ],
+      [ "equals", "classsupernovas_1_1Equinox.html#acd7826d03b520482903fa5a2b32b279b", null ],
+      [ "equals", "classsupernovas_1_1Equinox.html#ae20a57c64f104c2a3e3f5d5e3ac4a2d5", null ],
+      [ "equator_type", "classsupernovas_1_1Equinox.html#a90eeed9f56a8745c672f7478c8651a16", null ],
+      [ "is_icrs", "classsupernovas_1_1Equinox.html#a743c49038d065575d019d6d0b453123f", null ],
+      [ "is_mod", "classsupernovas_1_1Equinox.html#ae0d6aa396cad9b1ead8608454cff76e3", null ],
+      [ "is_true", "classsupernovas_1_1Equinox.html#a9f6679da353e38bb841cf94701480cc9", null ],
+      [ "jd", "classsupernovas_1_1Equinox.html#a927799dca13ad8ba6952c64e8a0e5c39", null ],
+      [ "mjd", "classsupernovas_1_1Equinox.html#a0cca81abe9fb1b74f20175c62c776923", null ],
+      [ "name", "classsupernovas_1_1Equinox.html#a577bc493cd571f08cb8d388371cd719d", null ],
+      [ "operator!=", "classsupernovas_1_1Equinox.html#a587f5427953387f2507038875bfcecee", null ],
+      [ "operator==", "classsupernovas_1_1Equinox.html#a47f0bb720809f39507de1fbd579c3af1", null ],
+      [ "system_type", "classsupernovas_1_1Equinox.html#ae5f6d48cdd9a62598b5b8dc1138ffbdc", null ],
+      [ "to_string", "classsupernovas_1_1Equinox.html#ad9bac4e35258914c073e99dc33638ff8", null ]
+    ] ],
+    [ "novas_reference_system", "group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e", [
+      [ "NOVAS_GCRS", "group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea8c3e21e3d68b39b0b0ca28f99b8cacf4", null ],
+      [ "NOVAS_TOD", "group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3", null ],
+      [ "NOVAS_CIRS", "group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044", null ],
+      [ "NOVAS_ICRS", "group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10", null ],
+      [ "NOVAS_J2000", "group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9", null ],
+      [ "NOVAS_MOD", "group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd", null ],
+      [ "NOVAS_TIRS", "group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f", null ],
+      [ "NOVAS_ITRS", "group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea826bda7744c11bc1560f4db1848a17c6", null ]
     ] ],
     [ "supernovas::Apparent::cirs", "group__equatorial.html#gac950452210e4912eac9cef2953f8faf1", null ],
     [ "supernovas::Apparent::equatorial", "group__equatorial.html#gafc85c07b57504bce62e2f7b06947dfb8", null ],
     [ "supernovas::Geometric::equatorial", "group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257", null ],
     [ "supernovas::AstrometricPosition::to_equatorial", "group__equatorial.html#ga0e8a6330b443d3f9eaaeee7016d59777", null ],
-    [ "supernovas::Equatorial::to_icrs", "group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864", null ],
-    [ "supernovas::Equatorial::to_system", "group__equatorial.html#gac7e00f3f7cc4afdcb89bd66a508591b0", null ]
+    [ "supernovas::Ecliptic::to_equatorial", "group__equatorial.html#gacea27eeec615359be97fab4372061c65", null ],
+    [ "supernovas::Galactic::to_equatorial", "group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99", null ]
 ];

@@ -1,12 +1,5 @@
 var NAVTREEINDEX7 =
 {
-"parse_8c.html#ac69c17c646ddf3a5447557338a8490b4":[9,0,1,0,13,12],
-"parse_8c.html#aca89d2a0f49afad45dbddffc09c3adae":[9,0,1,0,13,0],
-"parse_8c.html#af4e18885b7d173eb3fe5f18b06f0b4d4":[9,0,1,0,13,1],
-"place_8c.html":[9,0,1,0,14],
-"place_8c.html#a0dc172d82eec79f78c2d218c1a7b9cbe":[9,0,1,0,14,19],
-"place_8c.html#a0f307c2a37d594a68e99c5c8af6d50c9":[9,0,1,0,14,16],
-"place_8c.html#a1504058672e6e3cf24ce6b7189ede005":[9,0,1,0,14,13],
 "place_8c.html#a1ea9b377426b1800535e85fab47bfc1b":[9,0,1,0,14,11],
 "place_8c.html#a49bd2b398f7eab3e98823cb1a7403ed5":[9,0,1,0,14,8],
 "place_8c.html#a86e4f52e832879a33aefc28803e2690f":[9,0,1,0,14,18],
@@ -173,8 +166,8 @@ var NAVTREEINDEX7 =
 "structnovas__transform.html#a854e45563dcf436359f53e6a99b87788":[8,0,16,3],
 "structnovas__transform.html#abce5e2fe6c3ef9f7507d7debe0c44897":[8,0,16,2],
 "supernovas_8h.html":[9,0,0,3],
-"supernovas_8h.html#a844b2b8a0eb6cf2b1b76f505cfc87887":[9,0,0,3,4],
-"supernovas_8h.html#abbbb70f69d5541cbf07464d853b3173a":[9,0,0,3,5],
+"supernovas_8h.html#a844b2b8a0eb6cf2b1b76f505cfc87887":[9,0,0,3,5],
+"supernovas_8h.html#abbbb70f69d5541cbf07464d853b3173a":[9,0,0,3,6],
 "system_8c.html":[9,0,1,0,22],
 "system_8c.html#a035047336b16951b8b850066e74210a9":[9,0,1,0,22,2],
 "system_8c.html#a14deb6fdce80ba213e1f1d5238306e17":[9,0,1,0,22,17],
@@ -249,5 +242,12 @@ var NAVTREEINDEX7 =
 "timescale_8c.html#af4a1a5180905a7d8f76aeafe3f9a8ebb":[9,0,1,0,24,19],
 "timescale_8c.html#afa1a1d804ca70050418429f971c2045a":[9,0,1,0,24,11],
 "topics.html":[6],
-"transform_8c.html":[9,0,1,0,25]
+"transform_8c.html":[9,0,1,0,25],
+"transform_8c.html#a02fa1ee652c20160055cbd2c7bd9ca63":[9,0,1,0,25,15],
+"transform_8c.html#a12953f66c0f774284f0700ae785784d0":[9,0,1,0,25,12],
+"transform_8c.html#a3f6ae564cfac3766a21e0754905e5f7c":[9,0,1,0,25,13],
+"transform_8c.html#a3fa57a154f2f423612736e5e3a5addbf":[9,0,1,0,25,0],
+"transform_8c.html#a4551e2ac083e34c1b2b61b3805efb9a3":[9,0,1,0,25,22],
+"transform_8c.html#a51ea4a016336dd3cf7783061c14d165c":[9,0,1,0,25,8],
+"transform_8c.html#a6205edb1361e56cc0c7aed0f088f7437":[9,0,1,0,25,23]
 };

@@ -100,7 +100,7 @@ $(function(){initNavTree('classsupernovas_1_1Equinox.html','','classsupernovas_1
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">supernovas::Equinox Class Reference<div class="ingroups"><a class="el" href="group__util.html">Helpers and utilities</a></div></div></div>
+  <div class="headertitle"><div class="title">supernovas::Equinox Class Reference<div class="ingroups"><a class="el" href="group__equatorial.html">Transforming between equatorial systems</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -130,7 +130,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a90eeed9f56a8745c672f7478c8651a16" id="r_a90eeed9f56a8745c672f7478c8651a16"><td class="memItemLeft">enum <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014">novas_equator_type</a>&#160;</td><td class="memItemRight"><a class="el" href="#a90eeed9f56a8745c672f7478c8651a16">equator_type</a> () const</td></tr>
 <tr class="memdesc:a90eeed9f56a8745c672f7478c8651a16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of equator used in this equatorial coordinate system.  <br /></td></tr>
 <tr class="memitem:a743c49038d065575d019d6d0b453123f" id="r_a743c49038d065575d019d6d0b453123f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a743c49038d065575d019d6d0b453123f">is_icrs</a> () const</td></tr>
-<tr class="memdesc:a743c49038d065575d019d6d0b453123f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this equatorial system is the International Celestial Reference System (ICRS).  <br /></td></tr>
+<tr class="memdesc:a743c49038d065575d019d6d0b453123f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this equatorial system is the International Celestial Reference System (ICRS) or one of its variants, such as GCRS, BCRS, HCRS.  <br /></td></tr>
 <tr class="memitem:ae0d6aa396cad9b1ead8608454cff76e3" id="r_ae0d6aa396cad9b1ead8608454cff76e3"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae0d6aa396cad9b1ead8608454cff76e3">is_mod</a> () const</td></tr>
 <tr class="memdesc:ae0d6aa396cad9b1ead8608454cff76e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this equatorial system is a Mean-of-Date (MOD) system.  <br /></td></tr>
 <tr class="memitem:a9f6679da353e38bb841cf94701480cc9" id="r_a9f6679da353e38bb841cf94701480cc9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9f6679da353e38bb841cf94701480cc9">is_true</a> () const</td></tr>
@@ -145,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a587f5427953387f2507038875bfcecee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this equatorial system differs from the equatorial system as the right-hand side.  <br /></td></tr>
 <tr class="memitem:a47f0bb720809f39507de1fbd579c3af1" id="r_a47f0bb720809f39507de1fbd579c3af1"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a47f0bb720809f39507de1fbd579c3af1">operator==</a> (const Equinox &amp;system) const</td></tr>
 <tr class="memdesc:a47f0bb720809f39507de1fbd579c3af1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this equatorial system equals the equatorial system as the right-hand side, with the epochs also matching to within 1 second.  <br /></td></tr>
-<tr class="memitem:ae5f6d48cdd9a62598b5b8dc1138ffbdc" id="r_ae5f6d48cdd9a62598b5b8dc1138ffbdc"><td class="memItemLeft">enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a>&#160;</td><td class="memItemRight"><a class="el" href="#ae5f6d48cdd9a62598b5b8dc1138ffbdc">system_type</a> () const</td></tr>
+<tr class="memitem:ae5f6d48cdd9a62598b5b8dc1138ffbdc" id="r_ae5f6d48cdd9a62598b5b8dc1138ffbdc"><td class="memItemLeft">enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a>&#160;</td><td class="memItemRight"><a class="el" href="#ae5f6d48cdd9a62598b5b8dc1138ffbdc">system_type</a> () const</td></tr>
 <tr class="memdesc:ae5f6d48cdd9a62598b5b8dc1138ffbdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the coordinate reference system type for this equatorial system.  <br /></td></tr>
 <tr class="memitem:ad9bac4e35258914c073e99dc33638ff8" id="r_ad9bac4e35258914c073e99dc33638ff8"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ad9bac4e35258914c073e99dc33638ff8">to_string</a> () const</td></tr>
 <tr class="memdesc:ad9bac4e35258914c073e99dc33638ff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a string representation of this system.  <br /></td></tr>
@@ -167,9 +167,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa1b28e4b358c30737e8bcb503eceb984"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a Celestial Intermediate Reference System (CIRS) equatorial system for the given (TT-based) Julian date.  <br /></td></tr>
 <tr class="memitem:a1e093e32feee83e7d589f51783ce2912" id="r_a1e093e32feee83e7d589f51783ce2912"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#a1e093e32feee83e7d589f51783ce2912">from_string</a> (const std::string &amp;<a class="el" href="#a577bc493cd571f08cb8d388371cd719d">name</a>)</td></tr>
 <tr class="memdesc:a1e093e32feee83e7d589f51783ce2912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new equinox instance from a string, such as 'ICRS', 'J2000', 'FK5', B1950', or 'HIP'; or else <span class="tt">{}</span>.  <br /></td></tr>
-<tr class="memitem:a8dba3e5f00032f05b18ee1782a41a2da" id="r_a8dba3e5f00032f05b18ee1782a41a2da"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#a8dba3e5f00032f05b18ee1782a41a2da">from_system_type</a> (enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> system, const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time)</td></tr>
+<tr class="memitem:a8dba3e5f00032f05b18ee1782a41a2da" id="r_a8dba3e5f00032f05b18ee1782a41a2da"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#a8dba3e5f00032f05b18ee1782a41a2da">from_system_type</a> (enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> system, const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time)</td></tr>
 <tr class="memdesc:a8dba3e5f00032f05b18ee1782a41a2da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new equinox instance given a coordinate reference system type and a time.  <br /></td></tr>
-<tr class="memitem:a1939d9369448feac66a3b09cd1aa9d6a" id="r_a1939d9369448feac66a3b09cd1aa9d6a"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#a1939d9369448feac66a3b09cd1aa9d6a">from_system_type</a> (enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> system, double jd_tt=<a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>)</td></tr>
+<tr class="memitem:a1939d9369448feac66a3b09cd1aa9d6a" id="r_a1939d9369448feac66a3b09cd1aa9d6a"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#a1939d9369448feac66a3b09cd1aa9d6a">from_system_type</a> (enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> system, double jd_tt=<a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>)</td></tr>
 <tr class="memdesc:a1939d9369448feac66a3b09cd1aa9d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new equinox instance given a coordinate reference system type and a date.  <br /></td></tr>
 <tr class="memitem:ace7e30fcac219145415fcdd8d9555c40" id="r_ace7e30fcac219145415fcdd8d9555c40"><td class="memItemLeft">static const Equinox &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ace7e30fcac219145415fcdd8d9555c40">hip</a> ()</td></tr>
 <tr class="memdesc:ace7e30fcac219145415fcdd8d9555c40"><td class="mdescLeft">&#160;</td><td class="mdescRight">The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal mean epoch of the Hipparcos catalog.  <br /></td></tr>
@@ -350,7 +350,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a16cb36d215fbb4bc394b0942db30b88b" title="Returns a True-of-Date (TOD) equatorial system for the given (TT-based) Julian date.">tod()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#aa1b28e4b358c30737e8bcb503eceb984">cirs()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>.</p>
+<p class="reference">References <a class="el" href="#aa1b28e4b358c30737e8bcb503eceb984">cirs()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__equatorial.html#gac950452210e4912eac9cef2953f8faf1">supernovas::Apparent::cirs()</a>, <a class="el" href="#aee1a45536be9fdf26a410ef3a8322479">cirs()</a>, <a class="el" href="#aa1b28e4b358c30737e8bcb503eceb984">cirs()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#ad946e6985b8d089e6e9d017631617d14">supernovas::Equatorial::to_cirs()</a>.</p>
 
@@ -474,7 +474,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>the type of equator used in this equatorial system.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
-<p class="reference">References <a class="el" href="#a90eeed9f56a8745c672f7478c8651a16">equator_type()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea8c3e21e3d68b39b0b0ca28f99b8cacf4">NOVAS_GCRS</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66">NOVAS_GCRS_EQUATOR</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f">NOVAS_TRUE_EQUATOR</a>, and <a class="el" href="#ae5f6d48cdd9a62598b5b8dc1138ffbdc">system_type()</a>.</p>
+<p class="reference">References <a class="el" href="#a90eeed9f56a8745c672f7478c8651a16">equator_type()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea8c3e21e3d68b39b0b0ca28f99b8cacf4">NOVAS_GCRS</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66">NOVAS_GCRS_EQUATOR</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, <a class="el" href="novas_8h.html#a2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f">NOVAS_TRUE_EQUATOR</a>, and <a class="el" href="#ae5f6d48cdd9a62598b5b8dc1138ffbdc">system_type()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a90eeed9f56a8745c672f7478c8651a16">equator_type()</a>.</p>
 
@@ -517,7 +517,7 @@ Additional Inherited Members</h2></td></tr>
 <dd>
 <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; stae of the implementing instance.">is_valid()</a>, <a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#a8f74265a182736c65f358d3535b4cfb4" title="The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000).">j2000()</a>, <a class="el" href="#ac8a0a1ea6d912d4a81ddaa7afd34b030" title="The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950).">b1950()</a>, <a class="el" href="#ae1217cb47b24b0d887a805ce70f01d96" title="The system of the dynamical equator at the B1900 epoch (0 UTC, 1 January 1900).">b1900()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="#a1e093e32feee83e7d589f51783ce2912">from_string()</a>, <a class="el" href="#a577bc493cd571f08cb8d388371cd719d">name()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, <a class="el" href="novas_8h.html#af4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="novas_8h.html#a3785083ae52bbbc1e749dbedd7e5d85e">NOVAS_JD_B1950</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, <a class="el" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">supernovas::Unit::s</a>, and <a class="el" href="#a7e1791e187c321b135a422a3e34ec9b6">undefined()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="#a1e093e32feee83e7d589f51783ce2912">from_string()</a>, <a class="el" href="#a577bc493cd571f08cb8d388371cd719d">name()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, <a class="el" href="novas_8h.html#af4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="novas_8h.html#a3785083ae52bbbc1e749dbedd7e5d85e">NOVAS_JD_B1950</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, <a class="el" href="classsupernovas_1_1Unit.html#aa9d1ed769eb7bf5348b1d4a10e378472">supernovas::Unit::s</a>, and <a class="el" href="#a7e1791e187c321b135a422a3e34ec9b6">undefined()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a1e093e32feee83e7d589f51783ce2912">from_string()</a>.</p>
 
@@ -535,7 +535,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">Equinox supernovas::Equinox::from_system_type </td>
           <td>(</td>
-          <td class="paramtype">enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a></td>          <td class="paramname"><span class="paramname"><em>system</em></span>, </td>
+          <td class="paramtype">enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a></td>          <td class="paramname"><span class="paramname"><em>system</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -578,7 +578,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">Equinox supernovas::Equinox::from_system_type </td>
           <td>(</td>
-          <td class="paramtype">enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a></td>          <td class="paramname"><span class="paramname"><em>system</em></span>, </td>
+          <td class="paramtype">enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a></td>          <td class="paramname"><span class="paramname"><em>system</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -605,7 +605,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1e093e32feee83e7d589f51783ce2912" title="Returns a new equinox instance from a string, such as &#39;ICRS&#39;, &#39;J2000&#39;, &#39;FK5&#39;, B1950&#39;,...">from_string()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a1939d9369448feac66a3b09cd1aa9d6a">from_system_type()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea826bda7744c11bc1560f4db1848a17c6">NOVAS_ITRS</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a>, and <a class="el" href="#a7e1791e187c321b135a422a3e34ec9b6">undefined()</a>.</p>
+<p class="reference">References <a class="el" href="#a1939d9369448feac66a3b09cd1aa9d6a">from_system_type()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea826bda7744c11bc1560f4db1848a17c6">NOVAS_ITRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a>, and <a class="el" href="#a7e1791e187c321b135a422a3e34ec9b6">undefined()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__equatorial.html#gabdfb9d5feffb5bf406db24a271aeb257">supernovas::Geometric::equatorial()</a>, <a class="el" href="#a8dba3e5f00032f05b18ee1782a41a2da">from_system_type()</a>, <a class="el" href="#a1939d9369448feac66a3b09cd1aa9d6a">from_system_type()</a>, <a class="el" href="group__equatorial.html#ga0e8a6330b443d3f9eaaeee7016d59777">supernovas::AstrometricPosition::to_equatorial()</a>, <a class="el" href="group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36">supernovas::AstrometricPosition::to_interferometric()</a>, and <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">supernovas::Observer::to_interferometric()</a>.</p>
 
@@ -640,7 +640,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch.">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#a82ddf5c0b7bc2109f18bb2209f8901f2" title="Returns the astrometric time for the Hipparcos catalog epoch (which is J1991.25).">Time::hip()</a> <a class="el" href="novas_8h.html#a4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a>, <a class="el" href="novas_8h.html#a773bb459e1ec420cd7d93d064e70eb7f" title="The Hipparcos dataset coordinate system as a string.">NOVAS_SYSTEM_HIP</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ace7e30fcac219145415fcdd8d9555c40">hip()</a>, <a class="el" href="novas_8h.html#a4100ecc5d9badfa07301024baffe9ded">NOVAS_JD_HIP</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>.</p>
+<p class="reference">References <a class="el" href="#ace7e30fcac219145415fcdd8d9555c40">hip()</a>, <a class="el" href="novas_8h.html#a4100ecc5d9badfa07301024baffe9ded">NOVAS_JD_HIP</a>, and <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ace7e30fcac219145415fcdd8d9555c40">hip()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#a084ea74c4e83b73ef43a43e273770270">supernovas::Equatorial::to_hip()</a>.</p>
 
@@ -674,11 +674,11 @@ Additional Inherited Members</h2></td></tr>
 <p>ICRS is also the system used for the 6th Catalog of Fundamental Stars (FK6).</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to a reusable statically allocated ICRS system instance.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10" title="International Celestial Reference system.">NOVAS_ICRS</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea8c3e21e3d68b39b0b0ca28f99b8cacf4" title="Geocentric Celestial Reference system.">NOVAS_GCRS</a>, <a class="el" href="novas_8h.html#a9d170036a074eff7634bdb23e54871b0" title="The ICRS system as a string.">NOVAS_SYSTEM_ICRS</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10" title="International Celestial Reference system.">NOVAS_ICRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea8c3e21e3d68b39b0b0ca28f99b8cacf4" title="Geocentric Celestial Reference system.">NOVAS_GCRS</a>, <a class="el" href="novas_8h.html#a9d170036a074eff7634bdb23e54871b0" title="The ICRS system as a string.">NOVAS_SYSTEM_ICRS</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a94d2f811f21d992feabef754d64f6bb2">icrs()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, and <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>.</p>
+<p class="reference">References <a class="el" href="#a94d2f811f21d992feabef754d64f6bb2">icrs()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, and <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a94d2f811f21d992feabef754d64f6bb2">icrs()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8">supernovas::Ecliptic::system()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a730750345a8ea40b0af9e5b9c60bfd99">supernovas::Galactic::to_equatorial()</a>, and <a class="el" href="group__equatorial.html#ga6229ff3b612cd28c44e866f946d37864">supernovas::Equatorial::to_icrs()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a94d2f811f21d992feabef754d64f6bb2">icrs()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8">supernovas::Ecliptic::system()</a>, <a class="el" href="group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99">supernovas::Galactic::to_equatorial()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#a6229ff3b612cd28c44e866f946d37864">supernovas::Equatorial::to_icrs()</a>.</p>
 
 </div>
 </div>
@@ -697,13 +697,14 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if this equatorial system is the International Celestial Reference System (ICRS). </p>
-<p>ICRS is the standard catalog system in the IAU 2000 convention.</p>
+<p>Checks if this equatorial system is the International Celestial Reference System (ICRS) or one of its variants, such as GCRS, BCRS, HCRS. </p>
+<p>ICRS is the standard catalog system in the IAU 2000 convention. It has variants, depending on the specific location of the origin, such as the geocdentric GCRS, the barycentric BCRS. And while ICRS is defined against the distant quasars, a specific and generally equivalent realization of it (HCRS) is defined against the Hipparcos catalog.</p>
+<p>In SuperNOVAS, they are all treated as equivalent, since in SuperNOVAS the coordinate system defines only the direction of the equatorial <em>x, y, z</em> axes, while the origin is defined separately by the observer location.</p>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this equatorial system is the ICRS, or else <span class="tt">false</span>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae0d6aa396cad9b1ead8608454cff76e3" title="Checks if this equatorial system is a Mean-of-Date (MOD) system.">is_mod()</a>, <a class="el" href="#a9f6679da353e38bb841cf94701480cc9" title="Checks if this equatorial system is based on the true dynamical equator of date.">is_true()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a743c49038d065575d019d6d0b453123f">is_icrs()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>.</p>
+<p class="reference">References <a class="el" href="#a743c49038d065575d019d6d0b453123f">is_icrs()</a>, and <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a743c49038d065575d019d6d0b453123f">is_icrs()</a>.</p>
 
@@ -728,9 +729,9 @@ Additional Inherited Members</h2></td></tr>
 <p>MODs include precession, but not nutation, and have been commonly used for catalogs (e.g. J2000, B1950, FK4, or HIP) prior to the IAU 2000 convention, when ICRS became the new standard catalog system.</p>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this equatorial system is a Mean-of-Date (MOD) catalog system, or else <span class="tt">false</span>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a743c49038d065575d019d6d0b453123f" title="Checks if this equatorial system is the International Celestial Reference System (ICRS).">is_icrs()</a>, <a class="el" href="#a9f6679da353e38bb841cf94701480cc9" title="Checks if this equatorial system is based on the true dynamical equator of date.">is_true()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a743c49038d065575d019d6d0b453123f" title="Checks if this equatorial system is the International Celestial Reference System (ICRS) or one of its...">is_icrs()</a>, <a class="el" href="#a9f6679da353e38bb841cf94701480cc9" title="Checks if this equatorial system is based on the true dynamical equator of date.">is_true()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ae0d6aa396cad9b1ead8608454cff76e3">is_mod()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>.</p>
+<p class="reference">References <a class="el" href="#ae0d6aa396cad9b1ead8608454cff76e3">is_mod()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, and <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ae20a57c64f104c2a3e3f5d5e3ac4a2d5">equals()</a>, and <a class="el" href="#ae0d6aa396cad9b1ead8608454cff76e3">is_mod()</a>.</p>
 
@@ -755,9 +756,9 @@ Additional Inherited Members</h2></td></tr>
 <p>If <span class="tt">true</span>, it may be a True-of-Date (TOD) system with the origin at the true equinox of date, or else the Celestial Intermediate Reference System (CIRS) with its origin at the Celestial Intermediate Origin (CIO).</p>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this equatorial system is defined on the true dynamical equator of date, or else <span class="tt">false</span>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a743c49038d065575d019d6d0b453123f" title="Checks if this equatorial system is the International Celestial Reference System (ICRS).">is_icrs()</a>, <a class="el" href="#ae0d6aa396cad9b1ead8608454cff76e3" title="Checks if this equatorial system is a Mean-of-Date (MOD) system.">is_mod()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a743c49038d065575d019d6d0b453123f" title="Checks if this equatorial system is the International Celestial Reference System (ICRS) or one of its...">is_icrs()</a>, <a class="el" href="#ae0d6aa396cad9b1ead8608454cff76e3" title="Checks if this equatorial system is a Mean-of-Date (MOD) system.">is_mod()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a9f6679da353e38bb841cf94701480cc9">is_true()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>.</p>
+<p class="reference">References <a class="el" href="#a9f6679da353e38bb841cf94701480cc9">is_true()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, and <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a9f6679da353e38bb841cf94701480cc9">is_true()</a>.</p>
 
@@ -792,7 +793,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch.">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#a2a483b407997ca602f9a79fb134468e9" title="Returns the astrometric time for the J2000 epoch.">Time::j2000()</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#ae67fecc99f46afc9b4f12fc27b4fbe6c" title="The J2000 coordinate syste, as a string.">NOVAS_SYSTEM_J2000</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a8f74265a182736c65f358d3535b4cfb4">j2000()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, and <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>.</p>
+<p class="reference">References <a class="el" href="#a8f74265a182736c65f358d3535b4cfb4">j2000()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, and <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a8f74265a182736c65f358d3535b4cfb4">j2000()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8">supernovas::Ecliptic::system()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#a2d1aac72884524e74ee29322b23cb916">supernovas::Equatorial::to_j2000()</a>.</p>
 
@@ -926,7 +927,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>mod_at_besselial_epoch(), <a class="el" href="#a8f74265a182736c65f358d3535b4cfb4" title="The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000).">j2000()</a>, <a class="el" href="#ace7e30fcac219145415fcdd8d9555c40" title="The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal mean ...">hip()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef">mod()</a>, and <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef">mod()</a>, and <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#aacad3ee3ea5fa096d555333fdbfd09f9">mod()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef">mod()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8">supernovas::Ecliptic::system()</a>, and <a class="el" href="classsupernovas_1_1Equatorial.html#ad8484d48ecc0922a602c23f8fd4a9092">supernovas::Equatorial::to_mod()</a>.</p>
 
@@ -1069,7 +1070,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> supernovas::Equinox::system_type </td>
+          <td class="memname">enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> supernovas::Equinox::system_type </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -1187,7 +1188,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa1b28e4b358c30737e8bcb503eceb984" title="Returns a Celestial Intermediate Reference System (CIRS) equatorial system for the given (TT-based) J...">cirs()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, and <a class="el" href="#a16cb36d215fbb4bc394b0942db30b88b">tod()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, and <a class="el" href="#a16cb36d215fbb4bc394b0942db30b88b">tod()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__equatorial.html#gafc85c07b57504bce62e2f7b06947dfb8">supernovas::Apparent::equatorial()</a>, <a class="el" href="group__tracking.html#ga1da60cae52d719260947c000891cfa87">supernovas::Source::equatorial_track()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8">supernovas::Ecliptic::system()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ab5c1c9d9c14fe35a6cf7e542ce87343b">supernovas::Equatorial::to_tod()</a>, <a class="el" href="#aa7e8bf68ef10dcbd7598390bd8513178">tod()</a>, and <a class="el" href="#a16cb36d215fbb4bc394b0942db30b88b">tod()</a>.</p>
 

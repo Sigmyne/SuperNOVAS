@@ -386,14 +386,14 @@ Celestial coordinate systems (old vs. new)</h1>
 <dl class="section note"><dt>Note</dt><dd>WGS84 has been superseded by ITRS for higher accuracy definitions of Earth-based locations. WGS84 matches ITRS to the 10m level globally, but it does not account for continental drifts and crustal motion. In (Super)NOVAS all Earth-base locations are presumed ITRS. ITRS longitude, latitude, and altitude coordinates are referenced to the GRS80 ellipsoid, whereas GPS locations are referenced to the WGS84 ellipsoid. <b>SuperNOVAS</b> offers ways to convert between the two if needed.</dd></dl>
 <hr  />
 <p><a class="anchor" id="examples"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 Example use cases</h1>
 <ul>
 <li><a class="el" href="#recommendation" title="recommendation">Recommendation: set up an ephemeris provider</a></li>
 <li><a class="el" href="#usage-flavors" title="usage-flavors">Pick you flavor (C or C++)</a></li>
 </ul>
 <p><a class="anchor" id="recommendation"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
 Recommendation: set up an ephemeris provider</h2>
 <p><b>SuperNOVAS</b> can do a lot of things on its own. What it cannot do alone is provide precise positions for Solar-system bodies. For that, you need ephemeris data and a helping hand from an external tool to access them. Even if you don't particularly care to obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).</p>
 <p>Therefore, it is strongly recommended that you download <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/">planetary ephemeris files from NASA / JPL</a> (such as the DE440, or the smaller DE440s, or the long-term DE441), and install <a href="https://calceph.imcce.fr/">CALCEPH</a> or the <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">CSPICE Toolkit</a> for accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and it is also more modern, and actively maintained.</p>
@@ -411,7 +411,7 @@ Recommendation: set up an ephemeris provider</h2>
 </div><!-- fragment --><p>Don't forget to link with <span class="tt">-lsolsys-calceph</span> and <span class="tt">-lcalceph</span> flags added you yor build. With that, you have now unlocked a lot of the high-precision capabilities of <b>SuperNOVAS</b>. Have fun with it!</p>
 <p>For more details on using CALCEPH or integrating other ways for providing ephemeris data to <b>SuperNOVAS</b> look at the <a class="el" href="#solarsystem" title="solarsystem">section below</a>.</p>
 <p><a class="anchor" id="usage-flavors"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
 Pick your flavor (C or C++)</h2>
 <p>As of v1.6 <b>SuperNOVAS</b> comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which one you intend to use, choose the appropriate link to an external document below for further information:</p>
 <ul>
@@ -420,7 +420,7 @@ Pick your flavor (C or C++)</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="solarsystem"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
 Incorporating Solar-system ephemeris data or services</h1>
 <p>If you want to use <b>SuperNOVAS</b> to calculate positions for a range of Solar-system objects, and/or to do it with precision, you will have to interface it to a suitable provider of ephemeris data. The preferred ways to do that in <b>SuperNOVAS</b> enumerated below. (The legacy NOVAS C ways are not covered here, since they require specialized builds of <b>SuperNOVAS</b>, which are covered <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application">separately</a>.)</p>
 <p>NASA/JPL provides <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/">generic ephemerides</a> for the major planets, satellites thereof, the 300 largest asteroids, the Lagrange points, and some Earth orbiting stations. For example, <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de440.bsp">DE440</a> covers the major planets, and the Sun, Moon, and barycenters for times between 1550 AD and 2650 AD. Or, you can use the <a href="https://ssd.jpl.nasa.gov/horizons/">JPL HORIZONS</a> system (via the command-line / telnet or API interfaces) to generate custom ephemerides (SPK/BSP) for just about all known solar systems bodies, down to the tiniest rocks.</p>
@@ -430,7 +430,7 @@ Incorporating Solar-system ephemeris data or services</h1>
 <li><a class="el" href="#universal-ephemerides" title="universal-ephemerides">Universal ephemeris data / service integration</a></li>
 </ul>
 <p><a class="anchor" id="calceph-integration"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
 CALCEPH integration</h2>
 <p>The <a href="https://www.imcce.fr/recherche/equipes/asd/calceph/">CALCEPH</a> library provides easy-to-use access to JPL and INPOP ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing <b>SuperNOVAS</b> with the the CALCEPH C library for handling Solar-system objects.</p>
 <details  open="true">
@@ -465,7 +465,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="cspice-integration"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
 NAIF CSPICE toolkit integration</h2>
 <p>The <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">NAIF CSPICE Toolkit</a> is the canonical standard library for JPL ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing <b>SuperNOVAS</b> with CSPICE for handling Solar-system objects.</p>
 <details >
@@ -726,7 +726,7 @@ New in v1.1</summary>
 <ul>
 <li>New observing-frame based approach for calculations (<span class="tt"><a class="el" href="frames_8c.html" title="High-level and efficient astrometric calculations using observing frames.">frames.c</a></span>). A <span class="tt"><a class="el" href="structnovas__frame.html" title="A set of parameters that uniquely define the place and time of observation.">novas_frame</a></span> object uniquely defines both the place and time of observation, with a set of precalculated transformations and constants. Once the frame is defined it can be used very efficiently to calculate positions for multiple celestial objects with minimum additional computational cost. The frames API is also more elegant and more versatile than the low-level NOVAS C approach for performing the same kind of calculations. And, frames are inherently thread-safe since post-creation their internal state is never modified during the calculations.</li>
 <li>New <span class="tt"><a class="el" href="structnovas__timespec.html" title="A structure, which defines a precise instant of time that can be extpressed in any of the astronomica...">novas_timespec</a></span> structure for the self-contained definition of precise astronomical time (<span class="tt"><a class="el" href="timescale_8c.html" title="Functions to define and use different astronomical timescales and to convert among them.">timescale.c</a></span>). You can set the time to a JD date in the timescale of choice (UTC, UT1, GPS, TAI, TT, TCG, TDB, or TCB), or to a UNIX time. Once set, you can obtain an expression of that time in any timescale of choice. And, you can create a new time specification by incrementing an existing one, or measure precise time differences.</li>
-<li>New coordinate reference systems <span class="tt"><a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd" title="Mean of date: dynamical system of the &#39;mean&#39; equator, with its origin at the &#39;mean&#39; equinox (pre IAU ...">NOVAS_MOD</a></span> (Mean of Date) which includes precession but not nutation and <span class="tt"><a class="el" href="novas_8h.html#a7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9" title="The J2000 dynamical reference system.">NOVAS_J2000</a></span> for the J2000 dynamical reference system.</li>
+<li>New coordinate reference systems <span class="tt"><a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd" title="Mean of date: dynamical system of the &#39;mean&#39; equator, with its origin at the &#39;mean&#39; equinox (pre IAU ...">NOVAS_MOD</a></span> (Mean of Date) which includes precession but not nutation and <span class="tt"><a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9" title="The J2000 dynamical reference system.">NOVAS_J2000</a></span> for the J2000 dynamical reference system.</li>
 <li>New observer locations <span class="tt"><a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3a1665bf146ca1a4d11380bf4d7d9d7058" title="Observer airborne, moving relative to the surface of Earth.">NOVAS_AIRBORNE_OBSERVER</a></span> and <span class="tt"><a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3a82474207bac139bc2a8826b9d317a42c" title="Observer is orbiting the Sun.">NOVAS_SOLAR_SYSTEM_OBSERVER</a></span>, and corresponding <span class="tt"><a class="el" href="novas_8h.html#aa423a88cd3f434642fc89d47390184f4" title="Populates an &#39;observer&#39; data structure for an observer moving relative to the surface of Earth,...">make_airborne_observer()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#a9c3f1a1bc3fd9ac6d211806913d2d529" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_solar_system_observer()</a></span> functions. Airborne observers have an Earth-fixed momentary location, defined by longitude, latitude, and altitude, the same way as for a stationary observer on Earth, but are moving relative to the surface, such as in an aircraft or balloon based observatory. Solar-system observers are similar to observers in Earth-orbit but their momentary position and velocity is defined relative to the Solar System Barycenter (SSB), instead of the geocenter.</li>
 <li>New set of built-in refraction models to use with the frame-based functions, including a radio refraction model based on the formulae by Berman &amp; Rockwell 1976. Users may supply their own custom refraction model also, and may make use of the generic reversal function <span class="tt"><a class="el" href="novas_8h.html#a81da80ae3ab1d0a444f39bde2af3a732" title="Computes the reverse atmospheric refraction for a given refraction model.">novas_inv_refract()</a></span> to calculate refraction in the reverse direction (observed vs astrometric elevations as the input) as needed.</li>
 </ul>
@@ -799,7 +799,7 @@ New in v1.6</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="api-changes"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
 Refinements to the NOVAS C API</h2>
 <p>Many <b>SuperNOVAS</b> changes are focused on improving the usability and promote best coding practices so that both the library and your application will be safer, and less prone to nagging errors. Below is a detailed listing of the principal ways <b>SuperNOVAS</b> has improved on the original NOVAS C library in these respects.</p>
 <details >
@@ -838,7 +838,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="release-schedule"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md54"></a>
 Release schedule</h1>
 <p>A predictable release schedule and process can help manage expectations and reduce stress on adopters and developers alike.</p>
 <p><b>SuperNOVAS</b> will try to follow a quarterly release schedule. You may expect upcoming releases to be published around <b>February 1</b>, <b>May 1</b>, <b>August 1</b>, and/or <b>November 1</b> each year, on an as-needed basis. That means that if there are outstanding bugs, or new pull requests (PRs), you may expect a release that addresses these in the upcoming quarter. The dates are placeholders only, with no guarantee that a new release will actually be available every quarter. If nothing of note comes up, a potential release date may pass without a release being published.</p>
