@@ -347,7 +347,7 @@ public:
  *
  * @sa CatalogEntry, Equatorial, Ecliptic, Apparent, Geometric
  *
- * @ingroup util
+ * @ingroup equatorial
  */
 class Equinox : public Validating {
 private:
@@ -863,8 +863,8 @@ public:
  *
  * @since 1.6
  *
- * @sa Position
- * @ingroup util, spectral
+ * @sa Velocity
+ * @ingroup spectral
  */
 class ScalarVelocity : public Scalar {
 private:
@@ -1017,10 +1017,8 @@ public:
 
   Angle distance_to(const Equatorial& other) const;
 
-  /// @ingroup equatorial
   Equatorial to_system(const Equinox& system, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
-  /// @ingroup equatorial
   Equatorial to_icrs() const;
 
   Equatorial to_j2000() const;
@@ -1105,6 +1103,7 @@ public:
 
   Ecliptic to_tod(const Time& time) const;
 
+  /// @ingroup equatorial
   Equatorial to_equatorial(enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   Galactic to_galactic() const;
@@ -1147,6 +1146,7 @@ public:
 
   Angle distance_to(const Galactic& other) const;
 
+  /// @ingroup equatorial
   Equatorial to_equatorial() const;
 
   Ecliptic to_ecliptic() const;
@@ -1438,10 +1438,8 @@ protected:
   explicit Observer(enum novas_observer_place type, const Site& site = Site::undefined(), const Position& pos = Position::origin(),
           const Velocity& vel = Velocity::stationary());
 
-  /// @ingroup geometric
   virtual Position gcrs_position_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
-  /// @ingroup geometric
   virtual Velocity gcrs_velocity_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
 
@@ -1506,10 +1504,8 @@ private:
   void diurnal_correct();
 
 protected:
-  /// @ingroup geometric
   Position gcrs_position_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const override;
 
-  /// @ingroup geometric
   Velocity gcrs_velocity_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const override;
 
 public:
@@ -2258,7 +2254,6 @@ public:
  * @since 1.6
  *
  * @sa Orbital
- * @ingroup util
  */
 class OrbitalSystem : public Validating {
 private:
@@ -2322,7 +2317,7 @@ public:
  * @since 1.6
  *
  * @sa EphemerisSource, Planet::orbit()
- * @ingroup util
+ * @ingroup source
  */
 class Orbital : public Validating {
 private:

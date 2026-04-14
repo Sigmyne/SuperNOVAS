@@ -139,7 +139,7 @@
  *
  * \defgroup frame            Observing frames
  *
- *   Observing frames are a combination of an observer place, and an specific time of observation.
+ *   Observing frames are a combination of an observer place, and a specific time of observation.
  *
  *   __SuperNOVAS__ _observing frames_ are not to be confused with _coordinate reference frames_,
  *   even if the two do have aspects in common. Here, a frame provides a topological snapshot of
@@ -856,7 +856,7 @@ enum novas_observer_place {
  * @sa novas_sky_pos(), novas_geom_posvel(), novas_geom_to_app(), novas_app_to_geom(), novas_app_to_hor(),
  *     novas_hor_to_app(), novas_make_transform()
  *
- * @c_equatorial
+ * @ingroup equatorial
  */
 enum novas_reference_system {
   /// Geocentric Celestial Reference system. Essentially the same as ICRS but includes

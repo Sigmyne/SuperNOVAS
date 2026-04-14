@@ -156,8 +156,16 @@ bool Equinox::operator!=(const Equinox& system) const {
 
 
 /**
- * Checks if this equatorial system is the International Celestial Reference System (ICRS).
- * ICRS is the standard catalog system in the IAU 2000 convention.
+ * Checks if this equatorial system is the International Celestial Reference System (ICRS) or
+ * one of its variants, such as GCRS, BCRS, HCRS. ICRS is the standard catalog system in the IAU
+ * 2000 convention. It has variants, depending on the specific location of the origin, such as
+ * the geocdentric GCRS, the barycentric BCRS. And while ICRS is defined against the distant
+ * quasars, a specific and generally equivalent realization of it (HCRS) is defined against the
+ * Hipparcos catalog.
+ *
+ * In SuperNOVAS, they are all treated as equivalent, since in SuperNOVAS the coordinate system
+ * defines only the direction of the equatorial _x, y, z_ axes, while the origin is defined
+ * separately by the observer location.
  *
  * @return    `true` if this equatorial system is the ICRS, or else `false`.
  *

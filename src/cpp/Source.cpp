@@ -353,8 +353,8 @@ HorizontalTrack Source::horizontal_track(const Frame &frame, RefractionModel ref
 }
 
 /**
- * Returns the angular separation of this source from the Sun, for the given observer location and
- * time of observation.
+ * Returns the pparent angular separation of this source from the Sun, for the given observer
+ * location and time of observation.
  *
  * @param frame     observing frame (observer location and time of observation)
  * @return          the Sun's distance from the source.
@@ -367,8 +367,8 @@ Angle Source::sun_angle(const Frame& frame) const {
 }
 
 /**
- * Returns the angular separation of this source from the Moon, for the given observer location and
- * time of observation.
+ * Returns the apparent angular separation of this source from the Moon, for the given observer
+ * location and time of observation.
  *
  * @param frame     observing frame (observer location and time of observation)
  * @return          the Moon's distance from the source.
@@ -381,8 +381,8 @@ Angle Source::moon_angle(const Frame& frame) const {
 }
 
 /**
- * Returns the angular separation of this source from another source, for the given observer
- * location and  time of observation.
+ * Returns the apparent angular separation of this source from another source, for the given
+ * observer location and  time of observation.
  *
  * @param source    the other source.
  * @param frame     observing frame (observer location and time of observation)
