@@ -22,19 +22,19 @@
     <topic label="Incorporating Solar-system ephemeris data or services" href="index.html#autotoc_md24">
       <topic label="CALCEPH integration" href="index.html#autotoc_md25"/>
       <topic label="NAIF CSPICE toolkit integration" href="index.html#autotoc_md26"/>
-      <topic label="Universal ephemeris data / service integration" href="index.html#autotoc_md27"/>
+      <topic label="Universal ephemeris data / service integration" href="index.html#autotoc_md28"/>
     </topic>
-    <topic label="Notes on precision" href="index.html#autotoc_md28">
-      <topic label="Prerequisites to precise results" href="index.html#autotoc_md29"/>
-      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md30"/>
+    <topic label="Notes on precision" href="index.html#autotoc_md29">
+      <topic label="Prerequisites to precise results" href="index.html#autotoc_md30"/>
+      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md31"/>
     </topic>
-    <topic label="Runtime debug support" href="index.html#autotoc_md32"/>
-    <topic label="Representative benchmarks" href="index.html#autotoc_md34"/>
-    <topic label="SuperNOVAS added features" href="index.html#autotoc_md36">
-      <topic label="New functionality highlights" href="index.html#autotoc_md37"/>
-      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md38"/>
+    <topic label="Runtime debug support" href="index.html#autotoc_md33"/>
+    <topic label="Representative benchmarks" href="index.html#autotoc_md35"/>
+    <topic label="SuperNOVAS added features" href="index.html#autotoc_md37">
+      <topic label="New functionality highlights" href="index.html#autotoc_md38"/>
+      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md39"/>
     </topic>
-    <topic label="Release schedule" href="index.html#autotoc_md40"/>
+    <topic label="Release schedule" href="index.html#autotoc_md41"/>
   </topic>
   <topic label="C99 Usage" href="md__2github_2workspace_2doc_2USAGE-C99.html">
     <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44">
@@ -663,7 +663,7 @@
       </topic>
       <topic label="supernovas::Weather" href="classsupernovas_1_1Weather.html">
         <topic label="Weather" href="classsupernovas_1_1Weather.html#a2603dbc8cb783a611197af1d943472aa"/>
-        <topic label="Weather" href="classsupernovas_1_1Weather.html#a4f0b8c3c347f6ab66d131f8a54754265"/>
+        <topic label="Weather" href="classsupernovas_1_1Weather.html#abf265d9104e86e49be0f6134dd19009f"/>
         <topic label="humidity" href="classsupernovas_1_1Weather.html#ac43b7b4d8450cf8542a60ff7c0d49b44"/>
         <topic label="pressure" href="classsupernovas_1_1Weather.html#a68fb7dadc7cd72e839c0ed730c4b1f70"/>
         <topic label="temperature" href="classsupernovas_1_1Weather.html#a3d84bdc61aa8a1fb7c958a90df6a911c"/>
@@ -1816,7 +1816,7 @@
         </topic>
         <topic label="Weather" href="classsupernovas_1_1Weather.html">
           <topic label="Weather" href="classsupernovas_1_1Weather.html#a2603dbc8cb783a611197af1d943472aa"/>
-          <topic label="Weather" href="classsupernovas_1_1Weather.html#a4f0b8c3c347f6ab66d131f8a54754265"/>
+          <topic label="Weather" href="classsupernovas_1_1Weather.html#abf265d9104e86e49be0f6134dd19009f"/>
           <topic label="humidity" href="classsupernovas_1_1Weather.html#ac43b7b4d8450cf8542a60ff7c0d49b44"/>
           <topic label="pressure" href="classsupernovas_1_1Weather.html#a68fb7dadc7cd72e839c0ed730c4b1f70"/>
           <topic label="temperature" href="classsupernovas_1_1Weather.html#a3d84bdc61aa8a1fb7c958a90df6a911c"/>
@@ -2584,7 +2584,7 @@
         </topic>
         <topic label="Weather" href="classsupernovas_1_1Weather.html">
           <topic label="Weather" href="classsupernovas_1_1Weather.html#a2603dbc8cb783a611197af1d943472aa"/>
-          <topic label="Weather" href="classsupernovas_1_1Weather.html#a4f0b8c3c347f6ab66d131f8a54754265"/>
+          <topic label="Weather" href="classsupernovas_1_1Weather.html#abf265d9104e86e49be0f6134dd19009f"/>
           <topic label="humidity" href="classsupernovas_1_1Weather.html#ac43b7b4d8450cf8542a60ff7c0d49b44"/>
           <topic label="pressure" href="classsupernovas_1_1Weather.html#a68fb7dadc7cd72e839c0ed730c4b1f70"/>
           <topic label="temperature" href="classsupernovas_1_1Weather.html#a3d84bdc61aa8a1fb7c958a90df6a911c"/>

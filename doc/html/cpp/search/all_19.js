@@ -2,7 +2,7 @@ var searchData=
 [
   ['w_0',['w',['../classsupernovas_1_1Interferometric.html#a1b71f65844129ff291699c759dcb2a1e',1,'supernovas::Interferometric']]],
   ['way_1',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49',1,'']]],
-  ['weather_2',['Weather',['../classsupernovas_1_1Weather.html',1,'supernovas::Weather'],['../classsupernovas_1_1Weather.html#a2603dbc8cb783a611197af1d943472aa',1,'supernovas::Weather::Weather(const Temperature &amp;T, const Pressure &amp;p, double humidity_fraction)'],['../classsupernovas_1_1Weather.html#a4f0b8c3c347f6ab66d131f8a54754265',1,'supernovas::Weather::Weather(double celsius, double pascal, double humidity_faction)']]],
+  ['weather_2',['Weather',['../classsupernovas_1_1Weather.html',1,'supernovas::Weather'],['../classsupernovas_1_1Weather.html#a2603dbc8cb783a611197af1d943472aa',1,'supernovas::Weather::Weather(const Temperature &amp;T, const Pressure &amp;p, double humidity_fraction)'],['../classsupernovas_1_1Weather.html#abf265d9104e86e49be0f6134dd19009f',1,'supernovas::Weather::Weather(double celsius, double pascal, double humidity_fraction)']]],
   ['weather_2ecpp_3',['Weather.cpp',['../Weather_8cpp.html',1,'']]],
   ['week_4',['week',['../classsupernovas_1_1Unit.html#aaffb0bf8f1ae28b371a1f0269b612c7e',1,'supernovas::Unit']]],
   ['weeks_5',['weeks',['../classsupernovas_1_1Interval.html#a110c6b6fbed14d27791b4c3379491547',1,'supernovas::Interval']]],
