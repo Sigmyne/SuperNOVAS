@@ -59,7 +59,7 @@ Weather::Weather(const Temperature& T, const Pressure& p, double humidity_fracti
  *
  * @param celsius           [C] ambient air temperature
  * @param pascal            [Pa] atmospheric pressure
- * @param humidity_fraction  [0:1] relative humidity
+ * @param humidity_fraction [0:1] relative humidity
  *
  * @since 1.6
  * @sa Site::average_weather()
@@ -124,8 +124,7 @@ std::string Weather::to_string() const {
 }
 
 /**
- * Returns a reference to a fixed standard weather instance (T = 10%deg;C, p = 1 atm, humidity =
- * 50%).
+ * Returns a reference to a fixed standard weather instance (10&deg;C, 1 atm, 50% humidity).
  *
  * @return    a static reference to a site-independent standard default weather.
  *

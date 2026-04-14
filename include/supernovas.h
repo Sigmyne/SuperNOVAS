@@ -1258,7 +1258,7 @@ private:
 public:
   Weather(const Temperature& T, const Pressure& p, double humidity_fraction);
 
-  Weather(double celsius, double pascal, double humidity_percent);
+  Weather(double celsius, double pascal, double humidity_fraction);
 
   const Temperature& temperature() const;
 
