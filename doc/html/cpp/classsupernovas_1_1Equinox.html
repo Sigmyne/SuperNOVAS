@@ -100,11 +100,11 @@ $(function(){initNavTree('classsupernovas_1_1Equinox.html','','classsupernovas_1
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">supernovas::Equinox Class Reference<div class="ingroups"><a class="el" href="group__equatorial.html">Transforming between equatorial systems</a></div></div></div>
+  <div class="headertitle"><div class="title">supernovas::Equinox Class Reference<div class="ingroups"><a class="el" href="group__equatorial.html">Equatorial coordinate systems</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Equatorial coordinate system, defining the orientation of the equator and the location of the equinox, relative to which the right ascention and declination (RA/Dec) coordinates are defined.  
+<p>An equatorial coordinate system, defined by the orientation of the equator and its origin (such as the Vernal Equinox or else the Celestial Intermediate Origin), relative to which the right ascention and declination (RA/Dec) coordinates are measured.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;supernovas.h&gt;</code></p>
@@ -200,10 +200,11 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a4aa2e66ea6acca6705d87457a08ac2d6 inherit pro_attribs_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">the state variable.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Equatorial coordinate system, defining the orientation of the equator and the location of the equinox, relative to which the right ascention and declination (RA/Dec) coordinates are defined. </p>
+<div class="textblock"><p>An equatorial coordinate system, defined by the orientation of the equator and its origin (such as the Vernal Equinox or else the Celestial Intermediate Origin), relative to which the right ascention and declination (RA/Dec) coordinates are measured. </p>
 <p>We'll simply refer to it as Equinox in this API. This class does not include the Earth co-rotating systems (TIRS and ITRS).</p>
+<p>The class name Equinox was chosen because it is less generic than say 'System' (which could refer to many things, and also more likely to have different meanings in other namespaces). Also, some equatorial-based coordinate systems rotate with Earth (such as TIRS and ITRS), and the point is to distinguish that this class specifically refers to a coordinate system that is fixed with respect to the distant quasars on the celestial sphere, with well-defined R.A. and declination coordinates. All celestial (non-rotating) equatorial systems are referenced to a choice of the equator, and most have their origin at the Vernal Equinox (except CIRS, whose origin is at the CIO). Thus, 'Equinox' is perhaps the most descriptive simple name for expressing "the choice of equator and fixed (non-rotating) equatorial point of origin", in general.</p>
 <dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1CatalogEntry.html" title="Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud,...">CatalogEntry</a>, <a class="el" href="classsupernovas_1_1Equatorial.html" title="Equatorial coordinates (RA, Dec = α, δ), representing the direction ob the sky, for a particular type...">Equatorial</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html" title="Ecliptic coordinates (l, b or λ, β), representing the direction on the sky, for a particular type of ...">Ecliptic</a>, <a class="el" href="classsupernovas_1_1Apparent.html" title="Apparent position on sky as seen by an observer at a specific time of observation.">Apparent</a>, <a class="el" href="classsupernovas_1_1Geometric.html" title="The geometric (3D) position and velocity of a source relative to an observer location.">Geometric</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1CatalogEntry.html" title="Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud,...">CatalogEntry</a>, <a class="el" href="classsupernovas_1_1Equatorial.html" title="Equatorial coordinates (RA, Dec / α, δ), representing the direction on the sky, for a particular type...">Equatorial</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html" title="Ecliptic coordinates (l, b or λ, β), representing the direction on the sky, for a particular type of ...">Ecliptic</a>, <a class="el" href="classsupernovas_1_1Apparent.html" title="Apparent position on sky as seen by an observer at a specific time of observation.">Apparent</a>, <a class="el" href="classsupernovas_1_1Geometric.html" title="The geometric (3D) position and velocity of a source relative to an observer location.">Geometric</a> </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="ae1217cb47b24b0d887a805ce70f01d96" name="ae1217cb47b24b0d887a805ce70f01d96"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1217cb47b24b0d887a805ce70f01d96">&#9670;&#160;</a></span>b1900()</h2>
@@ -635,7 +636,6 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal mean epoch of the Hipparcos catalog. </p>
-<p>J2000 is also the system used for the 5th Catalog of Fundamental Stars (FK5).</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to a reusable statically allocated Hipparcos coordinate system instance.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch.">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#a82ddf5c0b7bc2109f18bb2209f8901f2" title="Returns the astrometric time for the Hipparcos catalog epoch (which is J1991.25).">Time::hip()</a> <a class="el" href="novas_8h.html#a4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a>, <a class="el" href="novas_8h.html#a773bb459e1ec420cd7d93d064e70eb7f" title="The Hipparcos dataset coordinate system as a string.">NOVAS_SYSTEM_HIP</a> </dd></dl>

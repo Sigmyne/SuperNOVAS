@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['geometric_20equatorial_20positions_20and_20velocities_0',['Geometric equatorial positions and velocities',['../group__geometric.html',1,'']]]
+  ['helpers_20and_20utilities_0',['Helpers and utilities',['../group__util.html',1,'']]]
 ];

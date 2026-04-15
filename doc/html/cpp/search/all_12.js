@@ -71,6 +71,7 @@ var searchData=
   ['orbitalsystem_68',['OrbitalSystem',['../classsupernovas_1_1OrbitalSystem.html',1,'supernovas']]],
   ['orientation_69',['orientation',['../group__earth.html',1,'Earth orientation'],['../classsupernovas_1_1OrbitalSystem.html#a5e0fc23c7c652fa0c89bb29ce4787003',1,'supernovas::OrbitalSystem::orientation(double obliquity_rad, double node_rad, const Equinox &amp;system=Equinox::icrs())'],['../classsupernovas_1_1OrbitalSystem.html#a1e172d2a439dcf69eea5e234febf9f8d',1,'supernovas::OrbitalSystem::orientation(const Angle &amp;obliquity, const Angle &amp;node, const Equinox &amp;system=Equinox::icrs())']]],
   ['origin_70',['origin',['../classsupernovas_1_1Position.html#a19205d6b0c798f0266dbcec14c2651a1',1,'supernovas::Position']]],
-  ['other_20observer_20locations_71',['B. other observer locations',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95',1,'']]],
-  ['overloading_72',['Operator overloading',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88',1,'']]]
+  ['other_20coordinate_20systems_71',['Other coordinate systems',['../group__nonequatorial.html',1,'']]],
+  ['other_20observer_20locations_72',['B. other observer locations',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95',1,'']]],
+  ['overloading_73',['Operator overloading',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88',1,'']]]
 ];

@@ -177,7 +177,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p><a class="el" href="classsupernovas_1_1Orbital.html" title="Keplerian orbital elements, for example, for a comet using parameters published by the IAU Minor Plan...">Orbital</a> system for Keplerian orbitals, defining the orbital plane and orientation, and the central body (such as the Sun or a planet), around which the Keplerian orbital is to be defined. </p>
 <p>NOTES:</p>
 <ol type="1">
-<li>This class uses a builder pattern to populate add the parameters that define the orbital system, bit-by-bit, as needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid using the builder functions in a multi-threaded environment. The best practice is to fully define the orbital first, before using it to define orbitals, or referencing it in parallel threads unmodified.</li>
+<li>This class uses a builder pattern to populate add the parameters that define the orbital system, bit-by-bit, as needed. As such, the best practice is to fully define the orbital first, before using it to define orbitals, or an immutable <span class="tt">const</span> copy of it for referencing in parallel threads.</li>
 </ol>
 <dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Orbital.html" title="Keplerian orbital elements, for example, for a comet using parameters published by the IAU Minor Plan...">Orbital</a> </dd></dl>

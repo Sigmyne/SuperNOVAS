@@ -92,7 +92,7 @@ var searchData=
   ['sun_5fpos_89',['sun_pos',['../structnovas__frame.html#a97d688f1061399fb56a93f5684efbeec',1,'novas_frame']]],
   ['sun_5fvel_90',['sun_vel',['../structnovas__frame.html#a5babf593c14bcc79e16c16dc1e8f23b9',1,'novas_frame']]],
   ['supernovas_91',['supernovas',['../namespacesupernovas.html',1,'']]],
-  ['supernovas_20added_20features_92',['SuperNOVAS added features',['../index.html#autotoc_md36',1,'']]],
+  ['supernovas_20added_20features_92',['SuperNOVAS added features',['../index.html#autotoc_md37',1,'']]],
   ['supernovas_20c_93',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80',1,'']]],
   ['supernovas_20c_20vs_20astropy_94',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
   ['supernovas_20c_20vs_20c99_95',['SuperNOVAS C++ vs. C99',['../md_SuperNOVAS_09_09__vs__C99.html',1,'']]],
@@ -116,6 +116,6 @@ var searchData=
   ['system_20source_113',['system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculating positions for a Solar-system source']]],
   ['system_2ec_114',['system.c',['../system_8c.html',1,'']]],
   ['system_5ftype_115',['system_type',['../classsupernovas_1_1Equinox.html#ae5f6d48cdd9a62598b5b8dc1138ffbdc',1,'supernovas::Equinox::system_type()'],['../classsupernovas_1_1Equatorial.html#a0ed912a979ffb625f8766694e6d0bdc1',1,'supernovas::Equatorial::system_type()'],['../classsupernovas_1_1OrbitalSystem.html#a955770e11c4742be3c129f0af934365e',1,'supernovas::OrbitalSystem::system_type()'],['../classsupernovas_1_1Geometric.html#a1ae884c6a1cc126e645fcfe8d2d6e935',1,'supernovas::Geometric::system_type()'],['../classsupernovas_1_1AstrometricPosition.html#afc7f5368a8fcdeea835db2c1617b2022',1,'supernovas::AstrometricPosition::system_type()']]],
-  ['systems_116',['Transforming between equatorial systems',['../group__equatorial.html',1,'']]],
+  ['systems_116',['systems',['../group__equatorial.html',1,'Equatorial coordinate systems'],['../group__nonequatorial.html',1,'Other coordinate systems']]],
   ['systems_20old_20vs_20new_117',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md18',1,'']]]
 ];

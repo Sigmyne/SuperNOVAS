@@ -297,9 +297,9 @@ Details</summary>
 <p></p>
 <p>You can install the complete SuperNOVAS library with <span class="tt">vcpkg</span> as:</p>
 <div class="fragment"><div class="line">$ vcpkg install supernovas</div>
-</div><!-- fragment --><p>Or, a set of selected component, such as the core C99 library, the C++11 library, and the <span class="tt">solsys-calceph</span> plugin library as:</p>
-<div class="fragment"><div class="line">$ vcpkg install supernovas[core,cpp,solsys-calceph]</div>
-</div><!-- fragment --><p>The latter will also install the <span class="tt">calceph</span> library dependency, as needed.</p>
+</div><!-- fragment --><p>Or, a set of selected components, such as the core C99 library, the C++11 library, and the <span class="tt">solsys-calceph</span> plugin library as:</p>
+<div class="fragment"><div class="line">$ vcpkg install supernovas[core,c++,solsys-calceph]</div>
+</div><!-- fragment --><p>And, <span class="tt">vcpkg</span> will automatically install the <span class="tt">calceph</span> library dependency, as needed, also.</p>
 <p></p>
 </details>
 <p><a class="anchor" id="linux-packages"></a> </p>
@@ -321,14 +321,22 @@ Details</summary>
 <p><a class="anchor" id="homebrew"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
 Homebrew package</h2>
-<p>As of version 1.5, there is also a <a href="https://brew.sh/">Homebrew</a> package through the maintainer's own Tap, which includes the <span class="tt">solsys-calceph</span> plugin by default. And, as of the 1.6 release it includes the C++11 API library also.</p>
+<p>As of version 1.5, there is also a <a href="https://brew.sh/">Homebrew</a> package through the maintainer's own Tap.</p>
 <details >
 <summary >
 Details</summary>
 <p></p>
+<p>To install SuperNOVAS via Homebrew, in the recommended default configuration:</p>
 <div class="fragment"><div class="line">$ brew tap attipaci/pub</div>
 <div class="line">$ brew install supernovas</div>
-</div><!-- fragment --><p></p>
+</div><!-- fragment --><p>The above will build and install SuperNOVAS with the C++ API and the calceph plugin support. However, you may add options to customize your build as needed:</p>
+<ul>
+<li><span class="tt">--with-cspice</span> &ndash; Build with NAIF CSPICE support (and dependency).</li>
+<li><span class="tt">--with-doxygen</span> &ndash; Build with local HTML documentation.</li>
+<li><span class="tt">--without-c++</span> &ndash; Build without the C++ API and runtime.</li>
+<li><span class="tt">--without-calceph</span> &ndash; Build without CALCEPH support (and dependency).</li>
+</ul>
+<p></p>
 </details>
 <p><a class="anchor" id="nix"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
@@ -514,7 +522,7 @@ Details</summary>
 <div class="line">  <span class="comment">// Your custom ephemeris reader implementation here</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="anovas_8h_html_a208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1084</div></div>
+<div class="ttc" id="anovas_8h_html_a208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1081</div></div>
 </div><!-- fragment --><p>which takes an object ID number (such as a NAIF), an object name, and a split TDB date (for precision) as it inputs, and returns the type of origin with corresponding ICRS position and velocity vectors in the supplied pointer locations. The function can use either the ID number or the name to identify the object or file (whatever is the most appropriate for the implementation and for the supplied parameters). The positions and velocities may be returned either relative to the SSB or relative to the heliocenter, and accordingly, your function should set the value pointed at by origin to <span class="tt"><a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c" title="Origin at the Solar-system baricenter (i.e. BCRS).">NOVAS_BARYCENTER</a></span> or <span class="tt"><a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27bea13c0711a025b9aebd4186ab9127cbd7b" title="Origin at the center of the Sun.">NOVAS_HELIOCENTER</a></span> accordingly. Positions and velocities are rectangular ICRS <em>x,y,z</em> vectors in units of AU and AU/day respectively.</p>
 <p>This way you can easily integrate current ephemeris data, e.g. for the Minor Planet Center (MPC), or whatever other ephemeris service you prefer.</p>
 <p></p>
@@ -629,11 +637,11 @@ Runtime debug support</h1>
 <div class="line"> </div>
 <div class="line">novas_debug(<a class="code hl_enumvalue" href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a>);</div>
 <div class="ttc" id="agroup__util_html_ga5f35633b872751df4dacd2fb2cbe4ac3"><div class="ttname"><a href="group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3">novas_debug</a></div><div class="ttdeci">void novas_debug(enum novas_debug_mode mode)</div><div class="ttdoc">Enables or disables reporting errors and traces to the standard error stream.</div><div class="ttdef"><b>Definition</b> util.c:451</div></div>
-<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a></div><div class="ttdeci">@ NOVAS_DEBUG_OFF</div><div class="ttdoc">Do not print errors and traces to the standard error (default).</div><div class="ttdef"><b>Definition</b> novas.h:555</div></div>
-<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65">NOVAS_DEBUG_ON</a></div><div class="ttdeci">@ NOVAS_DEBUG_ON</div><div class="ttdoc">Print errors and traces to the standard error.</div><div class="ttdef"><b>Definition</b> novas.h:556</div></div>
+<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a></div><div class="ttdeci">@ NOVAS_DEBUG_OFF</div><div class="ttdoc">Do not print errors and traces to the standard error (default).</div><div class="ttdef"><b>Definition</b> novas.h:552</div></div>
+<div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65">NOVAS_DEBUG_ON</a></div><div class="ttdeci">@ NOVAS_DEBUG_ON</div><div class="ttdoc">Print errors and traces to the standard error.</div><div class="ttdef"><b>Definition</b> novas.h:553</div></div>
 </div><!-- fragment --><hr  />
 <p><a class="anchor" id="benchmarks"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
 Representative benchmarks</h1>
 <p>To get an idea of the speed of <b>SuperNOVAS</b>, you can use <span class="tt">make benchmark</span> on your machine. Figure 2 below summarizes the single-threaded results obtained with v1.5.0 on an AMD Ryzen 5 PRO 6650U laptop. While this is clearly not the state of the art for today's server class machines, it nevertheless gives you a ballpark idea for how a typical, not so new, run-of-the-mill PC might perform.</p>
 <table class="markdownTable">
@@ -693,14 +701,14 @@ Details</summary>
 <p>The above benchmarks are all for single-threaded performance. Since <b>SuperNOVAS</b> is generally thread-safe, you can expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single core performance, you could calculate up to 32 million precise positions per second, if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in under one minute.</p>
 <hr  />
 <p><a class="anchor" id="supernovas-features"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 SuperNOVAS added features</h1>
 <ul>
 <li><a class="el" href="#added-functionality" title="added-functionality">Newly functionality highlights</a></li>
 <li><a class="el" href="#api-changes" title="api-changes">Refinements to the NOVAS C API</a></li>
 </ul>
 <p><a class="anchor" id="added-functionality"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
 New functionality highlights</h2>
 <p>Below is a non-exhaustive overview new features added by <b>SuperNOVAS</b> on top of the existing NOVAS C API. See <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/CHANGELOG.md"><span class="tt">CHANGELOG.md</span></a> for more details.</p>
 <details >

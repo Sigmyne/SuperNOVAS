@@ -224,7 +224,7 @@ Additional Inherited Members</h2></td></tr>
 <p>While Keplerian orbitals cannot provide accurate positions or velocities for Solar-system bodies over the long term (for that you need ephemeris data), they can be sufficiently accurate on the short term. And, in case of recently discovered objects, such as Near-Earth Objects (NEOs), orbital elements may be the only source of up-to-date positional data.</p>
 <p>NOTES:</p>
 <ol type="1">
-<li>This class uses a builder pattern to populate the orbital parameters, bit-by-bit, as needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid using the builder functions in a multi-threaded environment. The best practice is to build the orbital first, before using in parallel threads unmodified.</li>
+<li>This class uses a builder pattern to populate the orbital parameters, bit-by-bit, as needed. As such, the best practice is to build the orbital first, before using an immutable <span class="tt">const</span> copy of it in parallel threads.</li>
 </ol>
 <dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1EphemerisSource.html" title="A Solar-system source, whose positions / velocities are provided from ephemeris data.">EphemerisSource</a>, <a class="el" href="classsupernovas_1_1Planet.html#a660d13408cb13cbc42b7263f0196c36d" title="Returns the approximate Keplerian orbital parameters for this planet, calculated for the specified ti...">Planet::orbit()</a> </dd></dl>

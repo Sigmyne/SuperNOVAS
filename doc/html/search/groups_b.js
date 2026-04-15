@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['positions_20and_20velocities_0',['Geometric equatorial positions and velocities',['../group__geometric.html',1,'']]],
-  ['positions_20on_20sky_1',['Apparent equatorial positions on sky',['../group__apparent.html',1,'']]],
-  ['providers_2',['Solar-system ephemeris providers',['../group__solar-system.html',1,'']]]
+  ['sky_0',['Apparent equatorial positions on sky',['../group__apparent.html',1,'']]],
+  ['solar_20system_20ephemeris_20providers_1',['Solar-system ephemeris providers',['../group__solar-system.html',1,'']]],
+  ['spectroscopic_20applications_2',['Spectroscopic applications',['../group__spectral.html',1,'']]],
+  ['system_20ephemeris_20providers_3',['Solar-system ephemeris providers',['../group__solar-system.html',1,'']]],
+  ['systems_4',['systems',['../group__equatorial.html',1,'Equatorial coordinate systems'],['../group__nonequatorial.html',1,'Other coordinate systems']]]
 ];

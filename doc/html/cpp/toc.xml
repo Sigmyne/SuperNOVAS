@@ -29,9 +29,9 @@
       <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md30"/>
     </topic>
     <topic label="Runtime debug support" href="index.html#autotoc_md32"/>
-    <topic label="Representative benchmarks" href="index.html#autotoc_md34"/>
-    <topic label="SuperNOVAS added features" href="index.html#autotoc_md36">
-      <topic label="New functionality highlights" href="index.html#autotoc_md37"/>
+    <topic label="Representative benchmarks" href="index.html#autotoc_md35"/>
+    <topic label="SuperNOVAS added features" href="index.html#autotoc_md37">
+      <topic label="New functionality highlights" href="index.html#autotoc_md38"/>
       <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md39"/>
     </topic>
     <topic label="Release schedule" href="index.html#autotoc_md41"/>
@@ -571,7 +571,7 @@
       <topic label="supernovas::Source::geometric_in" href="group__geometric.html#ga5d45ffe8479b2b0945e66ef1a0c7cc0a"/>
       <topic label="supernovas::Frame::geometric_moon_elp2000" href="group__geometric.html#gaa71fbf15b25159c91f9563e630536a32"/>
     </topic>
-    <topic label="Transforming between equatorial systems" href="group__equatorial.html">
+    <topic label="Equatorial coordinate systems" href="group__equatorial.html">
       <topic label="supernovas::Equatorial" href="classsupernovas_1_1Equatorial.html">
         <topic label="Equatorial" href="classsupernovas_1_1Equatorial.html#a730712bceb09af0bcf451c875f282a18"/>
         <topic label="Equatorial" href="classsupernovas_1_1Equatorial.html#afd0a59b75217a945d560dfc528333d26"/>
@@ -632,7 +632,7 @@
       <topic label="supernovas::Ecliptic::to_equatorial" href="group__equatorial.html#gacea27eeec615359be97fab4372061c65"/>
       <topic label="supernovas::Galactic::to_equatorial" href="group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99"/>
     </topic>
-    <topic label="Non-equatorial coordinates" href="group__nonequatorial.html">
+    <topic label="Other coordinate systems" href="group__nonequatorial.html">
       <topic label="supernovas::Ecliptic" href="classsupernovas_1_1Ecliptic.html">
         <topic label="Ecliptic" href="classsupernovas_1_1Ecliptic.html#a822af8b9e6bb24c7f0c83ca740dc439d"/>
         <topic label="Ecliptic" href="classsupernovas_1_1Ecliptic.html#a976996bb54def45d58528dcea073c38e"/>

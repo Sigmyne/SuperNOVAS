@@ -388,14 +388,14 @@ You can install the complete SuperNOVAS library with `vcpkg` as:
   $ vcpkg install supernovas
 ```
 
-Or, a set of selected component, such as the core C99 library, the C++11 library, and the `solsys-calceph` plugin 
+Or, a set of selected components, such as the core C99 library, the C++11 library, and the `solsys-calceph` plugin 
 library as:
 
 ```bash
-  $ vcpkg install supernovas[core,cpp,solsys-calceph]
+  $ vcpkg install supernovas[core,c++,solsys-calceph]
 ```
 
-The latter will also install the `calceph` library dependency, as needed.
+And, `vcpkg` will automatically install the `calceph` library dependency, as needed, also.
 
 
 
@@ -434,14 +434,24 @@ __NOTE__
 <a name="homebrew"></a>
 ### Homebrew package
 
-As of version 1.5, there is also a [Homebrew](https://brew.sh/) package through the maintainer's own Tap, which 
-includes the `solsys-calceph` plugin by default. And, as of the 1.6 release it includes the C++11 API library also.
+As of version 1.5, there is also a [Homebrew](https://brew.sh/) package through the maintainer's own Tap.
 
+
+To install SuperNOVAS via Homebrew, in the recommended default configuration:
 
 ```bash
   $ brew tap attipaci/pub
   $ brew install supernovas
 ```
+
+The above will build and install SuperNOVAS with the C++ API and the calceph plugin support. However, you may add 
+options to customize your build as needed:
+
+ - `--with-cspice` -- Build with NAIF CSPICE support (and dependency).
+ - `--with-doxygen` -- Build with local HTML documentation.
+ - `--without-c++` -- Build without the C++ API and runtime.
+ - `--without-calceph` -- Build without CALCEPH support (and dependency).
+
 
 
 <a name="nix"></a>

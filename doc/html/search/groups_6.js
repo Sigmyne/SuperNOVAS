@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['helpers_20and_20utilities_0',['Helpers and utilities',['../group__util.html',1,'']]]
+  ['interest_0',['Astronomical object of interest',['../group__source.html',1,'']]],
+  ['interferometric_20applications_1',['Interferometric applications',['../group__interferometry.html',1,'']]]
 ];
