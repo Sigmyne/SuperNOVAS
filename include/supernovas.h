@@ -338,10 +338,22 @@ public:
 
 
 /**
- * %Equatorial coordinate system, defining the orientation of the equator and the location of the
- * equinox, relative to which the right ascention and declination (RA/Dec) coordinates are defined.
- * We'll simply refer to it as %Equinox in this API. This class does not include the Earth
- * co-rotating systems (TIRS and ITRS).
+ * An equatorial coordinate system, defined by the orientation of the equator and its origin (such
+ * as the Vernal %Equinox or else the Celestial Intermediate Origin), relative to which the right
+ * ascention and declination (RA/Dec) coordinates are measured. We'll simply refer to it as
+ * %Equinox in this API. This class does not include the Earth co-rotating systems (TIRS and
+ * ITRS).
+ *
+ * The class name %Equinox was chosen because it is less generic than say 'System' (which could
+ * refer to many things, and also more likely to have different meanings in other namespaces).
+ * Also, some equatorial-based coordinate systems rotate with Earth (such as TIRS and ITRS), and
+ * the point is to distinguish that this class specifically refers to a coordinate system that is
+ * fixed with respect to the distant quasars on the celestial sphere, with well-defined R.A. and
+ * declination coordinates. All celestial (non-rotating) equatorial systems are referenced to a
+ * choice of the equator, and most have their origin at the Vernal %Equinox (except CIRS, whose
+ * origin is at the CIO). Thus, '%Equinox' is perhaps the most descriptive simple name for
+ * expressing "the choice of equator and fixed (non-rotating) equatorial point of origin", in
+ * general.
  *
  * @since 1.6
  *
@@ -354,7 +366,7 @@ private:
   std::string _name;    ///< name of the catalog system, e.g. 'ICRS' or 'J2000'
   enum novas_reference_system _system; ///< Coordinate reference system.
   double _jd;           ///< [day] TT-based Julian date of the dynamical equator (or closest to it) that
-  ///< matches the system
+                        ///< matches the system
 
   /// Instantiates an undefined equinox
   Equinox() : _name("invalid"), _system((enum novas_reference_system) -1), _jd(NAN) {}
@@ -660,7 +672,7 @@ public:
  *
  * @since 1.6
  *
- * @sa Position, Velocity
+ * @sa Position, Velocity, Interferometric
  * @ingroup util
  */
 class Vector : public Validating {
@@ -711,7 +723,7 @@ Vector operator*(double factor, const Vector& v);
  *
  * @since 1.6
  *
- * @sa Velocity, Geometric
+ * @sa ScalarVelocity, Geometric
  * @ingroup geometric
  */
 class Velocity : public Vector {
@@ -764,7 +776,7 @@ public:
  *
  * @since 1.6
  *
- * @sa Velocity, Geometric
+ * @sa AstrometricPosition, Interferometric, Geometric, Velocity
  * @ingroup geometric
  */
 class Position : public Vector {
@@ -971,9 +983,9 @@ public:
 };
 
 /**
- * %Equatorial coordinates (RA, Dec = &alpha;, &delta;), representing the direction ob the sky,
+ * %Equatorial coordinates (RA, Dec / &alpha;, &delta;), representing the direction on the sky,
  * for a particular type of equatorial coordinate reference system, relative to the equator and
- * equinox on that system.
+ * equatorial origin (such as the Vernal %Equinox or CIO) in that system.
  *
  * @since 1.6
  *
@@ -1272,11 +1284,10 @@ public:
 };
 
 /**
- * Mean (interpolated) IERS Earth Orientation Parameters (%EOP), without diurnal variations. IERS
- * publishes daily values, short-term and medium term forecasts, and historical data for the
- * measured, unmodelled (by the IAU 2006 precession-nutation model), _x_<sub>p</sub>,
- * _y_<sub>p</sub> pole offsets, leap-seconds (UTC - TAI difference), and the current UT1 - UTC
- * time difference for various ITRF realizations.
+ * IERS Earth Orientation Parameters (%EOP). IERS publishes daily values, short-term and
+ * medium-term forecasts, and historical data for the measured, unmodelled (by the IAU 2006
+ * precession-nutation model), _x_<sub>p</sub>, _y_<sub>p</sub> pole offsets, leap-seconds (UTC -
+ * TAI difference), and the current UT1 - UTC time difference for various ITRF realizations.
  *
  * The _x_<sub>p</sub>, _y_<sub>p</sub> pole offsets define the true rotational pole of Earth vs
  * the dynamical equator of date, while the leap_seconds and UT1 - UTC time difference trace the
@@ -1292,7 +1303,8 @@ public:
  *
  * 1. Corrections for diurnal variations are automatically applied in the constructors of
  *    Time (for dUT1) and Frame (for _x_<sub>p</sub> and _y_<sub>p</sub> for geodetic observers),
- *    and in Geometric::to_itrs(), as appropriate.
+ *    and in Geometric::to_itrs(), as appropriate. Thus users should supply only mean
+ *    (interpolated) data.
  *
  * 2. For &mu;as-level precision, your EOP data should match the ITRF realization of the site
  *    coordinates. IERS provides EOP data in different ITRF realizations, and SuperNOVAS provides
@@ -1419,8 +1431,8 @@ public:
 };
 
 /**
- * An abstract observer location. Both Earth-bound (geodetic sites, airborne, or Earth-orbit), and locations elsewhere in
- * the Solar-system are supported.
+ * An abstract observer location. Both Earth-bound (geodetic sites, airborne, or Earth-orbit), and
+ * locations elsewhere in the Solar-system are supported.
  *
  * @since 1.6
  *
@@ -1538,7 +1550,7 @@ public:
 
 /**
  * An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit
- * sattelite, or for a virtual observer located at the geocenter itself.
+ * satellite, or for a virtual observer located at the geocenter itself.
  *
  * @since 1.6
  *
@@ -1866,22 +1878,22 @@ public:
 
 /**
  * An observing frame, defined by an observer location and precise time of observation. Frames can
- * be created with full (default) and reduced accuracy, supporting calculations with mas, or &mu;as
- * precisions typically. However note that full accuracy frames require SuperNOVAS to be configured
- * with an appropriate high-precision planet ephemeris provider (see e.g. `novas_use_calceph()` or
- * `novas_use_cspice()`), or else the resulting full-accuracy frame will be invalid.
+ * be created with full (default) and reduced accuracy, supporting calculations with mas, or
+ * &mu;as precisions typically. However, note that full accuracy frames require SuperNOVAS to be
+ * configured with an appropriate high-precision planet ephemeris provider (see e.g.
+ * `novas_use_calceph()` or `novas_use_cspice()`), or else the resulting full-accuracy frame will
+ * be invalid.
  *
  * Reduced accuracy frames may also be invalid if the low precision planet ephemeris provider (
  * which, by default, calculates approximate positions for the Earth and Sun only) cannot provide
- * position for the Earth, Sun, the observer.
+ * position for the Earth, Sun, or the observer.
  *
  * Therefore, one is strongly advised to check the validity of an observing frame after instantiation
- * (using the is_valid() method), or else use the static Frame::create() function to return an
- * optional.
+ * (using the is_valid() method).
  *
  * @since 1.6
  *
- * @sa Source
+ * @sa Source, @ref solar-system
  * @ingroup frame
  */
 class Frame : public Validating {
@@ -1940,7 +1952,7 @@ public:
 };
 
 /**
- * An abstract astronomical source, or target of observation.
+ * An abstract supercalss for an astronomical source or target of observation.
  *
  * @since 1.6
  *
@@ -2016,9 +2028,9 @@ public:
  * NOTES:
  *
  *  1. This class uses a builder pattern to populate the astrometric parameters, bit-by-bit, as
- *     needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid
- *     using the builder functions in a multi-threaded environment. The best practice is to build
- *     the catalog entry first, before using in parallel threads unmodified.
+ *     needed. You should avoid using the builder functions in a multi-threaded environment. The
+ *     best practice is to build the catalog entry first, before using an unmodifiable `const`
+ *     copy of it in parallel threads.
  *
  * @since 1.6
  *
@@ -2090,7 +2102,8 @@ public:
 };
 
 /**
- * A sidereal source, defined by its catalog coordinates and other catalog parameters.
+ * A sidereal source, defined by its catalog coordinates and various other available catalog
+ * parameters.
  *
  * @since 1.6
  *
@@ -2139,14 +2152,14 @@ public:
 /**
  * A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),
  * the Earth-Moon Barycenter (EMB), and the Pluto-system barycenter. Planet positions are usually
- * provided by the JPL DE ephemeris files, such as DE440 or DE440s. By default SuperNOVAS
+ * provided by the JPL DE ephemeris files, such as DE440, DE441, or DE440s. By default SuperNOVAS
  * calculates approximate position for the Earth and Sun only. Thus to provide ephemeris
- * positions for all planet-type osurces, you will have to configure a Solar-system ephemeris
+ * positions for all planet-type sources, you will have to configure a Solar-system ephemeris
  * provider, e.g. via `novas_use_calceph()` or `novas_use_cspice()`.
  *
  * @since 1.6
  *
- * @sa EphemerisSource, OrbitalSource, novas_use_calceph(), novas_use_cspice()
+ * @sa EphemerisSource, OrbitalSource, @ref solar-system
  * @ingroup source
  */
 class Planet : public SolarSystemSource {
@@ -2223,8 +2236,7 @@ public:
  *
  * @since 1.6
  *
- * @sa Planet, OrbitalSource, novas_use_calceph(), novas_use_cspice(),
- *     novas_case_sensitive()
+ * @sa Planet, OrbitalSource, @ref solar-system
  * @ingroup source
  */
 class EphemerisSource : public SolarSystemSource {
@@ -2246,10 +2258,9 @@ public:
  * NOTES:
  *
  *  1. This class uses a builder pattern to populate add the parameters that define the orbital
- *     system, bit-by-bit, as needed. As such, this class is mutable, unlike most SuperNOVAS
- *     classes. You should avoid using the builder functions in a multi-threaded environment. The
- *     best practice is to fully define the orbital first, before using it to define orbitals,
- *     or referencing it in parallel threads unmodified.
+ *     system, bit-by-bit, as needed. As such, the best practice is to fully define the orbital
+ *     first, before using it to define orbitals, or an immutable `const` copy of it for
+ *     referencing in parallel threads.
  *
  * @since 1.6
  *
@@ -2310,9 +2321,8 @@ public:
  * NOTES:
  *
  *  1. This class uses a builder pattern to populate the orbital parameters, bit-by-bit, as
- *     needed. As such, this class is mutable, unlike most SuperNOVAS classes. You should avoid
- *     using the builder functions in a multi-threaded environment. The best practice is to build
- *     the orbital first, before using in parallel threads unmodified.
+ *     needed. As such, the best practice is to build the orbital first, before using an
+ *     immutable `const` copy of it in parallel threads.
  *
  * @since 1.6
  *
@@ -2422,7 +2432,7 @@ public:
  *
  * @since 1.6
  *
- * @sa EphemerisSource, Planet
+ * @sa EphemerisSource, Planet, @ref solar-system
  * @ingroup source
  */
 class OrbitalSource : public SolarSystemSource {
@@ -2445,18 +2455,16 @@ public:
  *
  * The apparent position of a source is where it appears to the observer on the celestial sphere.
  * As such it is mainly a direction on sky, which is corrected for light-travel time (i.e. where
- * the source was at the time light originated from the Solar-system body, or the differential
- * light-travel time between the Solar-system barycenter and the observer location for sidereal
- * sources).
+ * the source was at the time light originated from the source.
  *
  * Unlike geometric positions, the apparent location is also corrected for the observer's motion
- * (aberration), as well as gravitational deflection around the major Solar-system bodies. Also,
- * the radial valocity _v_<sub>r</sub> is calculated to reflect a spectroscopic measure, defined
+ * (aberration), as well as gravitational deflection around the major Solar-system bodies. The
+ * radial velocity _v_<sub>r</sub> is calculated to reflect a spectroscopic measure, defined
  * by the relation:
  *
  * &lambda;<sub>obs</sub> / &lambda;<sub>rest</sub> = ( (1.0 + _v_<sub>r</sub> / _c_) / (1.0 - _v_<sub>r</sub> / _c_) )<sup>1/2</sup>
  *
- * As such it contains appropriate relativistic corrections for the observer's relative motion
+ * As such, it contains appropriate relativistic corrections for the observer's relative motion
  * as well as gravitational redshift corrections for the surface of major Solar-system bodies,
  * where light is assumed to originate, and at the observer location. It is also corrected for
  * the slight viewing angle difference when light is gravitationally deflected around major
@@ -2542,12 +2550,11 @@ public:
  * The geometric (3D) position and velocity of a source relative to an observer location. It
  * denotes spatial location and velocity of the source at the time light originated from it, prior
  * to detection by the observer. As such, geometric positions are necessarily antedated for light
- * travel time (for Solar-system sources) or corrected for the differential light-travel between
- * the Solar-system barycenter and the observer location (for sidereal sources).
+ * travel time.
  *
- * In other words, geometric positions are not the same as ephemeris positions for the equivalent
- * time for Solar-system bodies. Rather, geometric positions match the ephemeris positions for
- * an earlier time, when the observed light originated from the source.
+ * I.e., for Solar-system bodies, geometric positions are not the same as ephemeris positions for
+ * the equivalent time. Rather, geometric positions match the ephemeris positions for an earlier
+ * time, when the observed light originated from the source.
  *
  * @since 1.6
  *
@@ -2669,8 +2676,8 @@ public:
 };
 
 /**
- * The astrometric 3D geometric equatorial position of an object, referenced to the Solar System
- * Barycenter (SSB) or place in the Solar-system w.r.t. the SSB, at a specific astrometric time.
+ * The 3D geometric equatorial position of an object, relative to a Solar-system location and a
+ * specific instant of time, in the coordinate system of choice.
  *
  * @since 1.6
  *

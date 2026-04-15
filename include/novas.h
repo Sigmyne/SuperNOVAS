@@ -142,12 +142,10 @@
  *   Observing frames are a combination of an observer place, and a specific time of observation.
  *
  *   __SuperNOVAS__ _observing frames_ are not to be confused with _coordinate reference frames_,
- *   even if the two do have aspects in common. Here, a frame provides a topological snapshot of
- *   apparent places of all sources on the sky, as well as their geometric locations and
- *   velocities in 3D space -- without imposing a particular coordinate system on them. So, while
- *   a _coordinate reference frame_ (such as ICRF) implies a particular choice of a coordinate
- *   system, a __SuperNOVAS__ _observing frame_ is essentially coordinate-system independent in
- *   nature.
+ *   even if the two do have aspects in common. Both are referenced to an observer location and
+ *   a specific time of observation. But, a _coordinate reference frame_ (such as ICRF) also
+ *   implies a particular choice of a coordinate system, whereas a __SuperNOVAS__ _observing
+ *   frame_ does not.
  *
  *   The power of observing frames is that they make it easy to express locations on the celestial
  *   sphere in any coordinate system, and allow to convert apparent places and geometric coordinates
@@ -165,16 +163,15 @@
  * \defgroup geometric        Geometric equatorial positions and velocities
  *
  *   Geometric locations are 3D positions and velocities relative to an observer location. They
- *   are corrected for light travel time to the observer, so they reflect the position of sources
- *   either for when light originated from the source (for Solar-system bodies), or for when light
- *   reaches the Solar-system barycenter (for sidereal sources).
+ *   are corrected for light travel time to the observer, so they reflect the position and motion
+ *   of a source when the observed light originated from the source.
  *
- * \defgroup equatorial       Transforming between equatorial systems
+ * \defgroup equatorial       Equatorial coordinate systems
  *
  *   Expressing coordinates in the equatorial coordinate systems of choice, such as ICRS/GCRS,
  *   J2000, B1950, Mean of Date (MOD), True-of-Date (TOD), or CIRS of date.
  *
- * \defgroup nonequatorial    Non-equatorial coordinates
+ * \defgroup nonequatorial    Other coordinate systems
  *
  *   Expressing coordinates in non-equatorial systems, such as ecliptic, galactic, or local
  *   horizontal (for geodetic observer) coordinate systems.

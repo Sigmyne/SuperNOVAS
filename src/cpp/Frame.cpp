@@ -48,7 +48,7 @@ namespace supernovas {
  * @param accuracy    (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  *
  * @since 1.6
- * @sa Observer::frame_at(), reduced_accuracy()
+ * @sa Observer::frame_at(), reduced_accuracy(), @ref solar-system
  */
 Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy)
 : _observer(obs.copy()), _time(time) {

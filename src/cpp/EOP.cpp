@@ -29,12 +29,15 @@ void EOP::validate() {
 }
 
 /**
- * Instantiates new Earth Orientation Parameters (EOP) with the specified values.
+ * Instantiates new Earth Orientation Parameters (EOP) with the specified mean (interpolated)
+ * values.
  *
  * @param leap_seconds    [s] Leap seconds (TAI - UTC).
  * @param dut1_sec        [s] (optional) UT1 - UTC time difference (default: 0.0)
- * @param xp_rad          [rad] (optional) IERS _x_<sub>p</sub> pole offset (default: 0.0)
- * @param yp_rad          [rad] (optional) IERS _y_<sub>p</sub> pole offset (default: 0.0)
+ * @param xp_rad          [rad] (optional) IERS _x_<sub>p</sub> mean (interpolated) pole offset
+ *                        in the ITRS _x_ direction. (default: 0.0)
+ * @param yp_rad          [rad] (optional) IERS _y_<sub>p</sub> mean (interpolated) pole offset
+ *                        in the ITRS _y_ direction. (default: 0.0)
  *
  * @since 1.6
  */
@@ -44,12 +47,15 @@ EOP::EOP(int leap_seconds, double dut1_sec, double xp_rad, double yp_rad)
 }
 
 /**
- * Instantiates new Earth Orientation Parameters (EOP) with the specified values.
+ * Instantiates new Earth Orientation Parameters (EOP) with the specified mean (interpolated)
+ * values.
  *
  * @param leap_seconds    [s] Leap seconds (TAI - UTC).
  * @param dut1            (optional) UT1 - UTC time difference (default: 0.0)
- * @param xp              (optional) IERS _x_<sub>p</sub> pole offset (default: 0.0)
- * @param yp              (optional) IERS _y_<sub>p</sub> pole offset (default: 0.0)
+ * @param xp              (optional) IERS _x_<sub>p</sub> mean (interpolated) pole offset
+ *                        in the ITRS _X_ direction (default: 0.0)
+ * @param yp              (optional) IERS _y_<sub>p</sub> mean (interpolated) pole offset
+ *                        in the ITRS _y_ direction (default: 0.0)
  *
  * @since 1.6
  */

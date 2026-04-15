@@ -185,10 +185,11 @@ AstrometricPosition AstrometricPosition::referenced_to_ssb() const {
  * Returns _u_,_v_,_w_ coordinates for a space-based interferometer station represented by this
  * astrometric position. That is, it returns the _u_,_v_,_w_ coordinates of this astrometric place
  * (of a station), measured relative to the reference point (array reference location), for a
- * given apparent line-of-sight on the sky (source) at the time as when the station location is
- * defined. The _u_ and _v_ coordinates are the orthogonal projections of the site, relative to
- * the array reference, in the direction of the local East and North respectively, as seen from
- * the source; while _w_ is the distance from the array reference along the line of sight.
+ * given apparent reference line-of-sight on the sky (source) at the time as when the station
+ * location is defined. The _u_ and _v_ coordinates are the orthogonal projections of the site,
+ * relative to the array reference, in the direction of the local East and North respectively, as
+ * seen from the source; while _w_ is the distance from the array reference along the line of
+ * sight.
  *
  * You could also use `Observer::to_interferometric()` instead. However, using relative astrometric
  * positions can overcome numerical precision issues for interferometers located far from the

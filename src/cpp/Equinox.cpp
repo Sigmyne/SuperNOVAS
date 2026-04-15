@@ -569,6 +569,20 @@ const Equinox& Equinox::icrs() {
 }
 
 /**
+ * The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal
+ * mean epoch of the Hipparcos catalog.
+ *
+ * @return A reference to a reusable statically allocated Hipparcos coordinate system instance.
+ *
+ * @since 1.6
+ * @sa icrs(), mod(), Time::hip() NOVAS_JD_HIP, NOVAS_SYSTEM_HIP
+ */
+const Equinox& Equinox::hip() {
+  static const Equinox _hip = Equinox(NOVAS_MOD, NOVAS_JD_HIP);
+  return _hip;
+}
+
+/**
  * The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000). This was a
  * commonly used catalog coordinate system before the advent of the IAU 2000 standard ICRS system.
  * It is also known as FK5, since the 5th realization of the fundamental catalog of stars used
@@ -582,23 +596,6 @@ const Equinox& Equinox::icrs() {
 const Equinox& Equinox::j2000() {
   static const Equinox _j2000 = Equinox(NOVAS_J2000, NOVAS_JD_J2000);
   return _j2000;
-}
-
-
-/**
- * The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal
- * mean epoch of the Hipparcos catalog.
- *
- * J2000 is also the system used for the 5th Catalog of Fundamental Stars (FK5).
- *
- * @return A reference to a reusable statically allocated Hipparcos coordinate system instance.
- *
- * @since 1.6
- * @sa icrs(), mod(), Time::hip() NOVAS_JD_HIP, NOVAS_SYSTEM_HIP
- */
-const Equinox& Equinox::hip() {
-  static const Equinox _hip = Equinox(NOVAS_MOD, NOVAS_JD_HIP);
-  return _hip;
 }
 
 /**
