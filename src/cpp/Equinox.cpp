@@ -5,10 +5,9 @@
  * @author Attila Kovacs
  */
 
-
-#include <string.h>
 #include <cstring>
-#include <ctype.h>
+#include <cctype>
+
 #ifndef _MSC_VER
 #  include <strings.h>            // strcasecmp() / strncasecmp() -- POSIX.1-2001 / 4.4BSD
 #endif

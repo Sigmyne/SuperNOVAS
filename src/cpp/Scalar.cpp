@@ -19,12 +19,12 @@ namespace supernovas {
 /**
  * Instantiates a scalar quantity with an initializing value in standard S.I. units.
  *
- * @param si_value    the initializing value in S.I. units.
+ * @param SI_value    the initializing value in S.I. units.
  *
  * @since 1.6
  */
-Scalar::Scalar(double si_value)
-: _value(si_value) {
+Scalar::Scalar(double SI_value)
+: _value(SI_value) {
   if(isfinite(_value))
     _valid = true;
   else

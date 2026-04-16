@@ -7,7 +7,7 @@
 #
 # Author: Attila Kovacs
 
-cmake_minimum_required(VERSION 3.20...4.2)
+cmake_minimum_required(VERSION 3.20...4.3)
 
 # Configuration in case this is a standalone project....
 if(NOT PROJECT_NAME)

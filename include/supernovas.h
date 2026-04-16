@@ -13,8 +13,8 @@
 
 #include <string>
 #include <optional>
-#include <time.h>
-#include <errno.h>
+#include <ctime>
+#include <cerrno>
 
 extern "C" {
 
@@ -321,7 +321,7 @@ protected:
   /// Instantiates a standard undefined (invalid) scalar quantity with NAN value.
   Scalar() : _value(NAN) {}
 
-  Scalar(double si_value);
+  Scalar(double SI_value);
 
 public:
 
@@ -1501,7 +1501,7 @@ public:
 
 /**
  * An observer location at a geodetic (longitude, latitude, altitude) location at the surface or
- * above it (e.g. in an aircraft or balloon). The observer may be fixed at that location, or else
+ * above it (such as in an aircraft or balloon). The observer may be fixed at that location, or else
  * moving with some velocity over the ground.
  *
  * @since 1.6

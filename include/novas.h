@@ -137,7 +137,7 @@
  *   Defining the precise time of observation, and support for all relevant astronomical
  *   timescales, such as UT1, UTC, TAI, GPS, TT, TDB, TCG, TCB.
  *
- * \defgroup frame            Observing frames
+ * \defgroup frame            Observing frame
  *
  *   Observing frames are a combination of an observer place, and a specific time of observation.
  *
@@ -151,7 +151,7 @@
  *   sphere in any coordinate system, and allow to convert apparent places and geometric coordinates
  *   between different coordinate systems with superior efficiency.
  *
- * \defgroup apparent         Apparent equatorial positions on sky
+ * \defgroup apparent         Apparent positions on sky
  *
  *   %Apparent places, defined on the local sky of an observer. They are mainly a direction on the
  *   (e.g. R.A./Dec) on the sky and a spectroscopic radial velocity measure, from the observer's
@@ -160,13 +160,13 @@
  *   gravitating solar-system bodies as light transits the Solar-system from the source to the
  *   observer.
  *
- * \defgroup geometric        Geometric equatorial positions and velocities
+ * \defgroup geometric        Geometric positions and velocities
  *
  *   Geometric locations are 3D positions and velocities relative to an observer location. They
  *   are corrected for light travel time to the observer, so they reflect the position and motion
  *   of a source when the observed light originated from the source.
  *
- * \defgroup equatorial       Equatorial coordinate systems
+ * \defgroup equatorial       Equatorial coordinates and systems
  *
  *   Expressing coordinates in the equatorial coordinate systems of choice, such as ICRS/GCRS,
  *   J2000, B1950, Mean of Date (MOD), True-of-Date (TOD), or CIRS of date.
@@ -251,7 +251,7 @@
 #define NOVAS_JD_J2000            2451545.0
 
 /// [day] Julian date at which the Modified Julian Date (MJD) is zero
-/// @ingroup time
+/// @c_time
 #define NOVAS_JD_MJD0             2400000.5
 
 /// [day] Julian date at B1950 (NASA / NAIF SPICE definition)
@@ -432,16 +432,16 @@
 #define NOVAS_EARTH_ANGVEL        7.2921150e-5
 
 /// [s] TAI - GPS time offset
-/// @ingroup time
+/// @c_time
 #define NOVAS_GPS_TO_TAI          19.0
 
 /// [s] TT - TAI time offset
-/// @ingroup time
+/// @c_time
 #define NOVAS_TAI_TO_TT           32.184
 
 /// [day] The Julian day the Gregorian calendar was introduced in 15 October 1582.
 /// The day prior to that was 4 October 1582 in the Julian Calendar.
-/// @ingroup time
+/// @c_time
 #define NOVAS_JD_START_GREGORIAN  2299160.5
 
 /// The ICRS system as a string
@@ -844,10 +844,12 @@ enum novas_observer_place {
 #define NOVAS_OBSERVER_PLACES     (NOVAS_SOLAR_SYSTEM_OBSERVER + 1)
 
 /**
- * The basic types of positional coordinate reference systems supported by NOVAS. These
- * determine only how the celestial pole is to be located, but not how velocities are to be
- * referenced. specific pos-vel coordinates are referenced to an 'astro_frame', which must
- * specify one of the values defined here.
+ * The basic types of positional coordinate reference systems supported by SuperNOVAS. These
+ * determine only the type of equator and origin to use without specifying an actual realization
+ * for a specific time. These constants also do not imply an observer location, nor Cartresian
+ * place of origin for _xyz_ coordinates. As such they cannot, by themselves, reference
+ * specific coordinates or velocities. Rather, positions and velocities are typically referenced
+ * to an @ref frame.
  *
  * @sa novas_frame, NOVAS_REFERENCE_SYSTEMS
  * @sa novas_sky_pos(), novas_geom_posvel(), novas_geom_to_app(), novas_app_to_geom(), novas_app_to_hor(),
@@ -914,8 +916,8 @@ enum novas_reference_system {
  */
 enum novas_equator_type {
   NOVAS_MEAN_EQUATOR = 0, ///< Mean celestial equator of date without nutation (pre IAU 2006 system).
-  NOVAS_TRUE_EQUATOR,     ///< True celestial equator of date (pre IAU 2006 system).
-  NOVAS_GCRS_EQUATOR      ///< Geocentric Celestial Reference System (GCRS) equator.
+  NOVAS_TRUE_EQUATOR,     ///< True celestial equator of date.
+  NOVAS_GCRS_EQUATOR      ///< International / Geocentric Celestial Reference System (ICRS / GCRS) equator.
 };
 
 /**

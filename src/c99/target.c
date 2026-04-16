@@ -400,7 +400,7 @@ short make_object(enum novas_object_type type, long number, const char *name, co
   if(!source)
     return novas_error(-1, EINVAL, fn, "NULL input source");
 
-  // FIXME [v2] will not need special case in v2.x
+  // FIXME [v2] will not need special case in v2
   memset(source, 0, offsetof(object, orbit));
 
   // Set the object type.

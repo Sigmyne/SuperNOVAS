@@ -112,7 +112,7 @@ const Time& AstrometricPosition::emit_time() const {
  * Returns the reference time at which this position was observed by an observer at the reference
  * location.
  *
- * @return    the time at which this position is defined.
+ * @return    the time at which this position is observed.
  *
  * @since 1.6
  * @sa emit_time(), reference()
@@ -126,7 +126,7 @@ Time AstrometricPosition::obs_time() const {
 
 /**
  * Returns the equatorial coordinates place of this position, as would be seen by a stationary
- * (w.r.t. the SSB) observer located at the reference place.
+ * (relative to the SSB) observer located at the reference place.
  *
  * @return            the nominal equatorial place of this position, in the reference system in
  *                    which this position was defined, at the time it is observed at the reference

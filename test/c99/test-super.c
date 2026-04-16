@@ -695,7 +695,6 @@ static int test_transform_cirs_itrs() {
   novas_frame frame = NOVAS_FRAME_INIT;
   double pos1[3] = {1.0}, pos2[3] = {2.0};
 
-  // TODO wobble x,y
   if(!is_ok("transform:cirs_itrs:set_time", novas_set_time(NOVAS_TDB, tdb, 32, 0.0, &ts))) return 1;
   if(!is_ok("transform:cirs_itrs:make_observer", make_observer_at_geocenter(&obs))) return 1;
   if(!is_ok("transform:cirs_itrs:make_frame", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 20.0, 30.0, &frame))) return 1;
@@ -717,7 +716,6 @@ static int test_transform_tirs_itrs() {
   novas_frame frame = NOVAS_FRAME_INIT;
   double pos1[3] = {1.0}, pos2[3] = {2.0};
 
-  // TODO wobble x,y
   if(!is_ok("transform:tirs_itrs:set_time", novas_set_time(NOVAS_TDB, tdb, 32, 0.0, &ts))) return 1;
   if(!is_ok("transform:tirs_itrs:make_observer", make_observer_at_geocenter(&obs))) return 1;
   if(!is_ok("transform:tirs_itrs:make_frame", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 200.0, 300.0, &frame))) return 1;

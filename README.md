@@ -404,7 +404,7 @@ more simplicity, convenience, and dependency resolution.
 
 <details>
 
-You can install the complete SuperNOVAS library with `vcpkg` as:
+You can install the core C99 library of SuperNOVAS library with `vcpkg` as:
 
 ```bash
   $ vcpkg install supernovas
@@ -414,7 +414,7 @@ Or, a set of selected components, such as the core C99 library, the C++11 librar
 library as:
 
 ```bash
-  $ vcpkg install supernovas[core,c++,solsys-calceph]
+  $ vcpkg install supernovas[core,cpp,solsys-calceph]
 ```
 
 And, `vcpkg` will automatically install the `calceph` library dependency, as needed, also.
