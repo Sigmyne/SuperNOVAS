@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SuperNOVAS C API: Equatorial coordinate systems</title>
+<title>SuperNOVAS C API: Equatorial coordinates and systems</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -100,7 +100,7 @@ $(function(){initNavTree('group__equatorial.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Equatorial coordinate systems </div></div>
+  <div class="headertitle"><div class="title">Equatorial coordinates and systems </div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -130,7 +130,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#gga7ba038ea34eb901ccfb8f785708c651ea826bda7744c11bc1560f4db1848a17c6">NOVAS_ITRS</a>
 <br />
  }</td></tr>
-<tr class="memdesc:ga7ba038ea34eb901ccfb8f785708c651e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The basic types of positional coordinate reference systems supported by NOVAS.  <a href="#ga7ba038ea34eb901ccfb8f785708c651e">More...</a><br /></td></tr>
+<tr class="memdesc:ga7ba038ea34eb901ccfb8f785708c651e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The basic types of positional coordinate reference systems supported by SuperNOVAS.  <a href="#ga7ba038ea34eb901ccfb8f785708c651e">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -252,8 +252,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The basic types of positional coordinate reference systems supported by NOVAS. </p>
-<p>These determine only how the celestial pole is to be located, but not how velocities are to be referenced. specific pos-vel coordinates are referenced to an 'astro_frame', which must specify one of the values defined here.</p>
+<p>The basic types of positional coordinate reference systems supported by SuperNOVAS. </p>
+<p>These determine only the type of equator and origin to use without specifying an actual realization for a specific time. These constants also do not imply an observer location, nor Cartresian place of origin for <em>xyz</em> coordinates. As such they cannot, by themselves, reference specific coordinates or velocities. Rather, positions and velocities are typically referenced to an <a class="el" href="group__frame.html" title="Observing frame">Observing frame</a>.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structnovas__frame.html" title="A set of parameters that uniquely define the place and time of observation.">novas_frame</a>, <a class="el" href="novas_8h.html#ae55994629ca97e634b1bb97aafb3f49b" title="The number of basic coordinate reference systems in NOVAS.">NOVAS_REFERENCE_SYSTEMS</a> </dd>
 <dd>
 <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, <a class="el" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a>, <a class="el" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c" title="Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate correc...">novas_geom_to_app()</a>, <a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a>, <a class="el" href="group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a>, <a class="el" href="group__nonequatorial.html#gaa57cbcae2001fece2ee4a2babfbc5f89" title="Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...">novas_hor_to_app()</a>, <a class="el" href="group__frame.html#ga4d179c8573319fc25c775ce56ba055dc" title="Calculates a transformation matrix that can be used to convert positions and velocities from one coor...">novas_make_transform()</a> </dd></dl>

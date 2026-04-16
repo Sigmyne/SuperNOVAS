@@ -7,7 +7,7 @@ var searchData=
   ['bary2obs_4',['bary2obs',['../novas_8h.html#a1d58fd371e7604f75df315365672941e',1,'bary2obs(const double *pos, const double *pos_obs, double *out, double *restrict lighttime):&#160;observer.c'],['../observer_8c.html#a1d58fd371e7604f75df315365672941e',1,'bary2obs(const double *pos, const double *pos_obs, double *out, double *restrict lighttime):&#160;observer.c']]],
   ['barycentric_5fat_5',['barycentric_at',['../group__geometric.html#ga42b4fe858ef5da0ae538e676f2bb7ca8',1,'supernovas::SolarSystemSource']]],
   ['based_20observer_20location_6',['A. Earth-based observer location',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94',1,'']]],
-  ['benchmarks_7',['Representative benchmarks',['../index.html#autotoc_md35',1,'']]],
+  ['benchmarks_7',['Representative benchmarks',['../index.html#autotoc_md34',1,'']]],
   ['besselian_5fyear_8',['besselian_year',['../classsupernovas_1_1Unit.html#a6b55a87df7e91da16615566a61dca3cb',1,'supernovas::Unit']]],
   ['beta_9',['beta',['../structnovas__frame.html#a60d37b6267a03c4b3080154001dbdca6',1,'novas_frame::beta'],['../classsupernovas_1_1ScalarVelocity.html#a412cc2aa831495a3372aaa09fa861cbe',1,'supernovas::ScalarVelocity::beta()']]],
   ['better_20way_10',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49',1,'']]],

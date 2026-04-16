@@ -137,8 +137,8 @@ var NAVTREEINDEX =
 "classsupernovas_1_1OrbitalSystem.html#aed822a8688e97c28af2e40b63ba1e145",
 "classsupernovas_1_1Track.html#ad88920e8a678fc24904c0013e50ef718",
 "group__earth.html#ga416a96426a0b3c52c1d5fc6452357366",
-"novas_8h.html#a035047336b16951b8b850066e74210a9",
-"novas_8h.html#a9c3f1a1bc3fd9ac6d211806913d2d529",
+"novas_8h.html#a04f3d0ec70f0f20526f18e94188b98bf",
+"novas_8h.html#a9c900b81a718a184281a8a0b733b4db7",
 "place_8c.html#a1ea9b377426b1800535e85fab47bfc1b",
 "transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc"
 ];

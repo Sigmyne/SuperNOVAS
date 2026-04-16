@@ -204,9 +204,9 @@ Functions</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040" name="gga2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040"></a>NOVAS_MEAN_EQUATOR&#160;</td><td class="fielddoc"><p>Mean celestial equator of date without nutation (pre IAU 2006 system). </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f" name="gga2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f"></a>NOVAS_TRUE_EQUATOR&#160;</td><td class="fielddoc"><p>True celestial equator of date (pre IAU 2006 system). </p>
+<tr><td class="fieldname"><a id="gga2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f" name="gga2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f"></a>NOVAS_TRUE_EQUATOR&#160;</td><td class="fielddoc"><p>True celestial equator of date. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" name="gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66"></a>NOVAS_GCRS_EQUATOR&#160;</td><td class="fielddoc"><p>Geocentric Celestial Reference System (GCRS) equator. </p>
+<tr><td class="fieldname"><a id="gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" name="gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66"></a>NOVAS_GCRS_EQUATOR&#160;</td><td class="fielddoc"><p>International / Geocentric Celestial Reference System (ICRS / GCRS) equator. </p>
 </td></tr>
 </table>
 
@@ -313,11 +313,11 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Convert ecliptic longitude and latitude to right ascension and declination. </p>
-<p>To convert GCRS ecliptic coordinates (mean ecliptic and equinox of J2000.0), set 'coord_sys' to <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="Geocentric Celestial Reference System (GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>; in this case the value of 'jd_tt' can be set to anything, since J2000.0 is assumed. Otherwise, all input coordinates are dynamical at'jd_tt'.</p>
+<p>To convert GCRS ecliptic coordinates (mean ecliptic and equinox of J2000.0), set 'coord_sys' to <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="International / Geocentric Celestial Reference System (ICRS / GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>; in this case the value of 'jd_tt' can be set to anything, since J2000.0 is assumed. Otherwise, all input coordinates are dynamical at'jd_tt'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">jd_tt</td><td>[day] Terrestrial Time (TT) based Julian date. (Unused if 'coord_sys' is NOVAS_GCRS_EQUATOR[2]) </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">coord_sys</td><td>The astrometric reference system of the coordinates. If 'coord_sys' is <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="Geocentric Celestial Reference System (GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>, the input GCRS coordinates are converted to J2000 ecliptic coordinates. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">coord_sys</td><td>The astrometric reference system of the coordinates. If 'coord_sys' is <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="International / Geocentric Celestial Reference System (ICRS / GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>, the input GCRS coordinates are converted to J2000 ecliptic coordinates. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">elon</td><td>[deg] Ecliptic longitude in degrees, referred to the specified ecliptic and equinox of date. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">elat</td><td>[deg] Ecliptic latitude in degrees, referred to the specified ecliptic and equinox of date. </td></tr>
@@ -370,7 +370,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts an ecliptic position vector to an equatorial position vector. </p>
-<p>To convert ecliptic coordinates (mean ecliptic and equinox of J2000.0) to GCRS RA and dec to, set 'coord_sys' to <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="Geocentric Celestial Reference System (GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>; in this case the value of 'jd_tt' can be set to anything, since J2000.0 is assumed. Otherwise, all input coordinates are dynamical at 'jd_tt'.</p>
+<p>To convert ecliptic coordinates (mean ecliptic and equinox of J2000.0) to GCRS RA and dec to, set 'coord_sys' to <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="International / Geocentric Celestial Reference System (ICRS / GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>; in this case the value of 'jd_tt' can be set to anything, since J2000.0 is assumed. Otherwise, all input coordinates are dynamical at 'jd_tt'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">jd_tt</td><td>[day] Terrestrial Time (TT) based Julian date. (Unused if 'coord_sys' is NOVAS_GCRS_EQUATOR[2]) </td></tr>
@@ -435,11 +435,11 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Convert right ascension and declination to ecliptic longitude and latitude. </p>
-<p>To convert GCRS RA and dec to ecliptic coordinates (mean ecliptic and equinox of J2000.0), set 'coord_sys' to <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="Geocentric Celestial Reference System (GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>; in this case the value of 'jd_tt' can be set to anything, since J2000.0 is assumed. Otherwise, all input coordinates are dynamical at 'jd_tt'.</p>
+<p>To convert GCRS RA and dec to ecliptic coordinates (mean ecliptic and equinox of J2000.0), set 'coord_sys' to <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="International / Geocentric Celestial Reference System (ICRS / GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>; in this case the value of 'jd_tt' can be set to anything, since J2000.0 is assumed. Otherwise, all input coordinates are dynamical at 'jd_tt'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">jd_tt</td><td>[day] Terrestrial Time (TT) based Julian date. (Unused if 'coord_sys' is NOVAS_GCRS_EQUATOR[2]) </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">coord_sys</td><td>The astrometric reference system of the coordinates. If 'coord_sys' is <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="Geocentric Celestial Reference System (GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>, the input GCRS coordinates are converted to J2000 ecliptic coordinates. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">coord_sys</td><td>The astrometric reference system of the coordinates. If 'coord_sys' is <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="International / Geocentric Celestial Reference System (ICRS / GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>, the input GCRS coordinates are converted to J2000 ecliptic coordinates. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[h] Right ascension in hours, referred to the specified equator and equinox of date. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] Declination in degrees, referred to the specified equator and equinox of date. </td></tr>
@@ -490,14 +490,14 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts an equatorial position vector to an ecliptic position vector. </p>
-<p>To convert ICRS RA and dec to ecliptic coordinates (mean ecliptic and equinox of J2000.0), set 'coord_sys' to <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="Geocentric Celestial Reference System (GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>; in this case the value of 'jd_tt' can be set to anything, since J2000.0 is assumed. Otherwise, all input coordinates are dynamical at 'jd_tt'.</p>
+<p>To convert ICRS RA and dec to ecliptic coordinates (mean ecliptic and equinox of J2000.0), set 'coord_sys' to <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="International / Geocentric Celestial Reference System (ICRS / GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>; in this case the value of 'jd_tt' can be set to anything, since J2000.0 is assumed. Otherwise, all input coordinates are dynamical at 'jd_tt'.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">jd_tt</td><td>[day] Terrestrial Time (TT) based Julian date. (Unused if 'coord_sys' is NOVAS_GCRS_EQUATOR[2]) </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">coord_sys</td><td>The astrometric reference system type of the coordinates. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">in</td><td>Position vector, referred to the specified equator and equinox of date. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Position vector, referred to the specified ecliptic and equinox of date. It can be the same vector as the input. If 'coord_sys' is <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="Geocentric Celestial Reference System (GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>, the input GCRS coordinates are converted to J2000 ecliptic coordinates. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Position vector, referred to the specified ecliptic and equinox of date. It can be the same vector as the input. If 'coord_sys' is <a class="el" href="#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66" title="International / Geocentric Celestial Reference System (ICRS / GCRS) equator.">NOVAS_GCRS_EQUATOR(2)</a>, the input GCRS coordinates are converted to J2000 ecliptic coordinates. </td></tr>
   </table>
   </dd>
 </dl>
@@ -914,7 +914,7 @@ Functions</h2></td></tr>
 <p>The observer must be located on the surface of Earth, or else the call will return with an error. The caller may optionally supply a refraction model of choice to calculate an appropriate elevation angle that includes a refraction correction for Earth's atmosphere. If no such model is provided, the provided elevation value will be assumed to be an astrometric elevation without a refraction correction.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observer frame, defining the time and place of observation (on Earth). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Observer frame, defining the time and place of observation (on Earth). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">az</td><td>[deg] Observed azimuth angle. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">el</td><td>[deg] Observed elevation angle. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ref_model</td><td>An appropriate refraction model, or NULL to assume unrefracted elevation. Depending on the refraction model, you might want to make sure that the weather parameters were set when the observing frame was defined. </td></tr>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SuperNOVAS C API: Apparent equatorial positions on sky</title>
+<title>SuperNOVAS C API: Apparent positions on sky</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -100,7 +100,7 @@ $(function(){initNavTree('group__apparent.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Apparent equatorial positions on sky </div></div>
+  <div class="headertitle"><div class="title">Apparent positions on sky </div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -521,7 +521,7 @@ Variables</h2></td></tr>
 <p>Converts an observed apparent sky position of a source to an ICRS geometric position, by undoing the gravitational deflection and aberration corrections. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>The observer frame, defining the location and time of observation </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The reference system in which the observed position is specified. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[h] Observed ICRS right-ascension of the source </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] Observed ICRS declination of the source </td></tr>
@@ -589,7 +589,7 @@ Variables</h2></td></tr>
 <p>The observer must be located on the surface of Earth, or else the call will return with an error. The caller may optionally supply a refraction model of choice to calculate an appropriate elevation angle that includes a refraction correction for Earth's atmosphere. If no such model is provided the calculated elevation will be the astrometric elevation without a refraction correction.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observer frame, defining the time and place of observation (on Earth). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Observer frame, defining the time and place of observation (on Earth). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>Astronomical coordinate system in which the observed position is given. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[h] Observed apparent right ascension (R.A.) coordinate </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] Observed apparent declination coordinate </td></tr>
@@ -660,7 +660,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">id</td><td>NOVAS major planet ID. All major planets, plus the Sun, Moon, Earth-Moon Barycenter (EMB), and Pluto system Barycenter are supported. (For Pluto, the Pluto System Barycenter values are returned.) </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>The observer frame, defining the location and time of observation. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The coordinate system in which to return the apparent sky location. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to the data structure which is populated with the calculated approximate apparent location in the designated coordinate system. </td></tr>
   </table>
@@ -750,7 +750,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>An observed source </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -800,7 +800,7 @@ Variables</h2></td></tr>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Earth-based observing frame. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Earth-based observing frame. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The celestial coordinate reference system in which to return the result. (It may not be Earth-based TIRS or ITRS). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>The Moon's position, relative to the true equator and equinox of date. </td></tr>
   </table>
@@ -864,7 +864,7 @@ Variables</h2></td></tr>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Earth-based observing frame </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Earth-based observing frame </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">limit</td><td>[arcsec|km] Sum only terms with amplitudes larger than this limit. The resulting accuracy is typically an order-of-magnitude above the set limiting amplitude. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The celestial coordinate reference system in which to return the result. (It may not be Earth-based TIRS or ITRS). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>The Moon's position, relative to the true equator and equinox of date. </td></tr>
@@ -968,7 +968,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">source1</td><td>An observed source </td></tr>
     <tr><td class="paramname">source2</td><td>Another observed source </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1085,7 +1085,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></td><td>Pointer to a celestial object data structure that is observed. Catalog sources should have coordinates and properties in ICRS. You can use <span class="tt"><a class="el" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a></span> to convert catalog entries to ICRS as necessary. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>The observer frame, defining the location and time of observation. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>The observer frame, defining the location and time of observation. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The coordinate system in which to return the apparent sky location. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Pointer to the data structure which is populated with the calculated apparent location in the designated coordinate system. </td></tr>
   </table>
@@ -1125,7 +1125,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Observed source. Usually a Solar-system source. (For other source types, 1.0 is returned by default.) </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1161,7 +1161,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>An observed source </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Observing frame, defining the observer location and astronomical time of observation. </td></tr>
   </table>
   </dd>
 </dl>

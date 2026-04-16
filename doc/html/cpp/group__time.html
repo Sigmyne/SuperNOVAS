@@ -116,17 +116,6 @@ Classes</h2></td></tr>
 <tr class="memitem:supernovas_3A_3ATime" id="r_supernovas_3A_3ATime"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Time.html">supernovas::Time</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precise astronomical time specification, supporting all relevant astronomical timescales (UT1, UTC, TAI, GPS, TT, TDB, TCG, and TCB).  <a href="classsupernovas_1_1Time.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:ga6355388ff4a44836eda6eb1e97da60cd" id="r_ga6355388ff4a44836eda6eb1e97da60cd"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga6355388ff4a44836eda6eb1e97da60cd">NOVAS_GPS_TO_TAI</a>&#160;&#160;&#160;19.0</td></tr>
-<tr class="memdesc:ga6355388ff4a44836eda6eb1e97da60cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">[s] TAI - GPS time offset  <br /></td></tr>
-<tr class="memitem:gac266a346b8e22946f50079897b0baefa" id="r_gac266a346b8e22946f50079897b0baefa"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#gac266a346b8e22946f50079897b0baefa">NOVAS_JD_MJD0</a>&#160;&#160;&#160;2400000.5</td></tr>
-<tr class="memdesc:gac266a346b8e22946f50079897b0baefa"><td class="mdescLeft">&#160;</td><td class="mdescRight">[day] Julian date at which the Modified Julian Date (MJD) is zero  <br /></td></tr>
-<tr class="memitem:ga509afe7095f4d597125e9bfd6d0399ad" id="r_ga509afe7095f4d597125e9bfd6d0399ad"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga509afe7095f4d597125e9bfd6d0399ad">NOVAS_JD_START_GREGORIAN</a>&#160;&#160;&#160;2299160.5</td></tr>
-<tr class="memdesc:ga509afe7095f4d597125e9bfd6d0399ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">[day] The Julian day the Gregorian calendar was introduced in 15 October 1582.  <br /></td></tr>
-<tr class="memitem:ga68aa01f6e3e0f40bbe1b5ccab3144fda" id="r_ga68aa01f6e3e0f40bbe1b5ccab3144fda"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga68aa01f6e3e0f40bbe1b5ccab3144fda">NOVAS_TAI_TO_TT</a>&#160;&#160;&#160;32.184</td></tr>
-<tr class="memdesc:ga68aa01f6e3e0f40bbe1b5ccab3144fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">[s] TT - TAI time offset  <br /></td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:gaa642c4ccc7195dc62fd0dc56567ebd0b" id="r_gaa642c4ccc7195dc62fd0dc56567ebd0b"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> { <br />
@@ -162,79 +151,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defining the precise time of observation, and support for all relevant astronomical timescales, such as UT1, UTC, TAI, GPS, TT, TDB, TCG, TCB. </p>
-</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
-<a id="ga6355388ff4a44836eda6eb1e97da60cd" name="ga6355388ff4a44836eda6eb1e97da60cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6355388ff4a44836eda6eb1e97da60cd">&#9670;&#160;</a></span>NOVAS_GPS_TO_TAI</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NOVAS_GPS_TO_TAI&#160;&#160;&#160;19.0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>[s] TAI - GPS time offset </p>
-
-</div>
-</div>
-<a id="gac266a346b8e22946f50079897b0baefa" name="gac266a346b8e22946f50079897b0baefa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac266a346b8e22946f50079897b0baefa">&#9670;&#160;</a></span>NOVAS_JD_MJD0</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NOVAS_JD_MJD0&#160;&#160;&#160;2400000.5</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>[day] Julian date at which the Modified Julian Date (MJD) is zero </p>
-
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a312b167a2ea16dd21a20e0ebc8e5d80c">supernovas::Time::from_mjd()</a>, <a class="el" href="classsupernovas_1_1CalendarDate.html#a2e92fc09a1316855c5b3a245007e3838">supernovas::CalendarDate::mjd()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a4fe1ee28ce9c07ee116cad3e765d1416">supernovas::Ecliptic::mjd()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a0cca81abe9fb1b74f20175c62c776923">supernovas::Equinox::mjd()</a>, and <a class="el" href="classsupernovas_1_1Time.html#aa00bd10a56e82fdb411f67b5b3a2beb9">supernovas::Time::mjd()</a>.</p>
-
-</div>
-</div>
-<a id="ga509afe7095f4d597125e9bfd6d0399ad" name="ga509afe7095f4d597125e9bfd6d0399ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga509afe7095f4d597125e9bfd6d0399ad">&#9670;&#160;</a></span>NOVAS_JD_START_GREGORIAN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NOVAS_JD_START_GREGORIAN&#160;&#160;&#160;2299160.5</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>[day] The Julian day the Gregorian calendar was introduced in 15 October 1582. </p>
-<p>The day prior to that was 4 October 1582 in the Julian Calendar. </p>
-
-<p class="reference">Referenced by <a class="el" href="novas_8h.html#ae6eaa610037b0828d473062ab8722f47">novas_day_of_year()</a>, <a class="el" href="novas_8h.html#a54eee84c46900c80ca9966857c217cc8">novas_jd_from_date()</a>, and <a class="el" href="novas_8h.html#a8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date()</a>.</p>
-
-</div>
-</div>
-<a id="ga68aa01f6e3e0f40bbe1b5ccab3144fda" name="ga68aa01f6e3e0f40bbe1b5ccab3144fda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga68aa01f6e3e0f40bbe1b5ccab3144fda">&#9670;&#160;</a></span>NOVAS_TAI_TO_TT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NOVAS_TAI_TO_TT&#160;&#160;&#160;32.184</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>[s] TT - TAI time offset </p>
-
-<p class="reference">Referenced by <a class="el" href="novas_8h.html#ab7611704bab9ce717744a8b5575c5378">get_utc_to_tt()</a>.</p>
-
-</div>
-</div>
-<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
 <a id="gaa642c4ccc7195dc62fd0dc56567ebd0b" name="gaa642c4ccc7195dc62fd0dc56567ebd0b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaa642c4ccc7195dc62fd0dc56567ebd0b">&#9670;&#160;</a></span>novas_timescale</h2>
 
@@ -346,7 +263,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the reference time at which this position was observed by an observer at the reference location. </p>
-<dl class="section return"><dt>Returns</dt><dd>the time at which this position is defined.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the time at which this position is observed.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga0dc237a45a3138f480b47c12efd7514b" title="Returns the time at which the observed light was emitted from this position, that is antedated from t...">emit_time()</a>, <a class="el" href="classsupernovas_1_1AstrometricPosition.html#a812f65f637969fa3049ce897690d4ddb" title="Returns the Solar system barycentric (SSB) position, relative to which this position is defined.">reference()</a> </dd></dl>
 
@@ -390,7 +307,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">el</td><td>elevation threshold angle </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>observing frame (observer location and the lower bound for the returned time). </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>observing frame (observer location and the lower bound for the returned time). </td></tr>
     <tr><td class="paramname">ref</td><td>atmospheric refraction model to assume </td></tr>
     <tr><td class="paramname">weather</td><td>local weather parameters for the refraction calculation </td></tr>
   </table>
@@ -438,7 +355,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">el</td><td>elevation threshold angle </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>observing frame (observer location and the lower bound for the returned time). </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>observing frame (observer location and the lower bound for the returned time). </td></tr>
     <tr><td class="paramname">ref</td><td>atmospheric refraction model to assume </td></tr>
     <tr><td class="paramname">weather</td><td>local weather parameters for the refraction calculation </td></tr>
   </table>
@@ -470,7 +387,7 @@ Functions</h2></td></tr>
 <p>Returns the time when the source transits for an observer located on or near Earth's surface, or else an undefined (invalid) time if the observer is not near Earth's surface. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>observing frame (observer location and the lower bound for the returned time). </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>observing frame (observer location and the lower bound for the returned time). </td></tr>
   </table>
   </dd>
 </dl>

@@ -295,10 +295,10 @@ Install SuperNOVAS via <span class="tt">vcpkg</span></h2>
 <summary >
 Details</summary>
 <p></p>
-<p>You can install the complete SuperNOVAS library with <span class="tt">vcpkg</span> as:</p>
+<p>You can install the core C99 library of SuperNOVAS library with <span class="tt">vcpkg</span> as:</p>
 <div class="fragment"><div class="line">$ vcpkg install supernovas</div>
 </div><!-- fragment --><p>Or, a set of selected components, such as the core C99 library, the C++11 library, and the <span class="tt">solsys-calceph</span> plugin library as:</p>
-<div class="fragment"><div class="line">$ vcpkg install supernovas[core,c++,solsys-calceph]</div>
+<div class="fragment"><div class="line">$ vcpkg install supernovas[core,cpp,solsys-calceph]</div>
 </div><!-- fragment --><p>And, <span class="tt">vcpkg</span> will automatically install the <span class="tt">calceph</span> library dependency, as needed, also.</p>
 <p></p>
 </details>
@@ -522,7 +522,7 @@ Details</summary>
 <div class="line">  <span class="comment">// Your custom ephemeris reader implementation here</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="anovas_8h_html_a208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1081</div></div>
+<div class="ttc" id="anovas_8h_html_a208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1083</div></div>
 </div><!-- fragment --><p>which takes an object ID number (such as a NAIF), an object name, and a split TDB date (for precision) as it inputs, and returns the type of origin with corresponding ICRS position and velocity vectors in the supplied pointer locations. The function can use either the ID number or the name to identify the object or file (whatever is the most appropriate for the implementation and for the supplied parameters). The positions and velocities may be returned either relative to the SSB or relative to the heliocenter, and accordingly, your function should set the value pointed at by origin to <span class="tt"><a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c" title="Origin at the Solar-system baricenter (i.e. BCRS).">NOVAS_BARYCENTER</a></span> or <span class="tt"><a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27bea13c0711a025b9aebd4186ab9127cbd7b" title="Origin at the center of the Sun.">NOVAS_HELIOCENTER</a></span> accordingly. Positions and velocities are rectangular ICRS <em>x,y,z</em> vectors in units of AU and AU/day respectively.</p>
 <p>This way you can easily integrate current ephemeris data, e.g. for the Minor Planet Center (MPC), or whatever other ephemeris service you prefer.</p>
 <p></p>
@@ -641,7 +641,7 @@ Runtime debug support</h1>
 <div class="ttc" id="agroup__util_html_gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65"><div class="ttname"><a href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65">NOVAS_DEBUG_ON</a></div><div class="ttdeci">@ NOVAS_DEBUG_ON</div><div class="ttdoc">Print errors and traces to the standard error.</div><div class="ttdef"><b>Definition</b> novas.h:553</div></div>
 </div><!-- fragment --><hr  />
 <p><a class="anchor" id="benchmarks"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
 Representative benchmarks</h1>
 <p>To get an idea of the speed of <b>SuperNOVAS</b>, you can use <span class="tt">make benchmark</span> on your machine. Figure 2 below summarizes the single-threaded results obtained with v1.5.0 on an AMD Ryzen 5 PRO 6650U laptop. While this is clearly not the state of the art for today's server class machines, it nevertheless gives you a ballpark idea for how a typical, not so new, run-of-the-mill PC might perform.</p>
 <table class="markdownTable">

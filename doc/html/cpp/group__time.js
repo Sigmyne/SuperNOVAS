@@ -100,10 +100,6 @@ var group__time =
       [ "to_string", "classsupernovas_1_1Time.html#ad264205edb887d1ebdf3ff875595c1d3", null ],
       [ "unix_time", "classsupernovas_1_1Time.html#ace3fcc7e22d7880f53fd72237598183a", null ]
     ] ],
-    [ "NOVAS_GPS_TO_TAI", "group__time.html#ga6355388ff4a44836eda6eb1e97da60cd", null ],
-    [ "NOVAS_JD_MJD0", "group__time.html#gac266a346b8e22946f50079897b0baefa", null ],
-    [ "NOVAS_JD_START_GREGORIAN", "group__time.html#ga509afe7095f4d597125e9bfd6d0399ad", null ],
-    [ "NOVAS_TAI_TO_TT", "group__time.html#ga68aa01f6e3e0f40bbe1b5ccab3144fda", null ],
     [ "novas_timescale", "group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b", [
       [ "NOVAS_TCB", "group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4", null ],
       [ "NOVAS_TDB", "group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d", null ],

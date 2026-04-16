@@ -1,7 +1,7 @@
 var searchData=
 [
   ['saturn_0',['saturn',['../classsupernovas_1_1Planet.html#a4a0d3e73e1219c61752c126cf3d63f3c',1,'supernovas::Planet']]],
-  ['scalar_1',['Scalar',['../classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514',1,'supernovas::Scalar::Scalar()'],['../classsupernovas_1_1Scalar.html#a5c317ff1c67f0312b8c6023ca3f3def0',1,'supernovas::Scalar::Scalar(double si_value)']]],
+  ['scalar_1',['Scalar',['../classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514',1,'supernovas::Scalar::Scalar()'],['../classsupernovas_1_1Scalar.html#a8a6de769a64ca3093a9b4576e990fb44',1,'supernovas::Scalar::Scalar(double SI_value)']]],
   ['scalarevolution_2',['ScalarEvolution',['../classsupernovas_1_1ScalarEvolution.html#a0862991291dc7b1bf375806fdd1e369d',1,'supernovas::ScalarEvolution']]],
   ['scalarvelocity_3',['ScalarVelocity',['../classsupernovas_1_1ScalarVelocity.html#a08b7a8a135acb5cd5da7886f6dbace17',1,'supernovas::ScalarVelocity']]],
   ['scaled_4',['scaled',['../classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46',1,'supernovas::Vector']]],

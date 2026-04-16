@@ -7,7 +7,7 @@ var searchData=
   ['saturn_4',['saturn',['../classsupernovas_1_1Planet.html#a4a0d3e73e1219c61752c126cf3d63f3c',1,'supernovas::Planet']]],
   ['sc_5fpos_5',['sc_pos',['../structnovas__in__space.html#a437105d9ff690d4d5b51fae9076c9d0a',1,'novas_in_space']]],
   ['sc_5fvel_6',['sc_vel',['../structnovas__in__space.html#ab4a55b14aa16bcbc5ca3bdc1a6d078af',1,'novas_in_space']]],
-  ['scalar_7',['Scalar',['../classsupernovas_1_1Scalar.html',1,'supernovas::Scalar'],['../classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514',1,'supernovas::Scalar::Scalar()'],['../classsupernovas_1_1Scalar.html#a5c317ff1c67f0312b8c6023ca3f3def0',1,'supernovas::Scalar::Scalar(double si_value)']]],
+  ['scalar_7',['Scalar',['../classsupernovas_1_1Scalar.html',1,'supernovas::Scalar'],['../classsupernovas_1_1Scalar.html#ac2d7c237c6edb123d01a416730258514',1,'supernovas::Scalar::Scalar()'],['../classsupernovas_1_1Scalar.html#a8a6de769a64ca3093a9b4576e990fb44',1,'supernovas::Scalar::Scalar(double SI_value)']]],
   ['scalar_2ecpp_8',['Scalar.cpp',['../Scalar_8cpp.html',1,'']]],
   ['scalarevolution_9',['ScalarEvolution',['../classsupernovas_1_1ScalarEvolution.html',1,'supernovas::ScalarEvolution'],['../classsupernovas_1_1ScalarEvolution.html#a0862991291dc7b1bf375806fdd1e369d',1,'supernovas::ScalarEvolution::ScalarEvolution()']]],
   ['scalarevolution_2ecpp_10',['ScalarEvolution.cpp',['../ScalarEvolution_8cpp.html',1,'']]],
@@ -44,7 +44,7 @@ var searchData=
   ['site_2ecpp_41',['Site.cpp',['../Site_8cpp.html',1,'']]],
   ['size_5fof_5fcat_5fname_42',['SIZE_OF_CAT_NAME',['../group__source.html#gaf32c72297e36b77bead56044d23082f7',1,'novas.h']]],
   ['size_5fof_5fobj_5fname_43',['SIZE_OF_OBJ_NAME',['../group__source.html#ga977a43db51d544f728ea8a22b4a53783',1,'novas.h']]],
-  ['sky_44',['sky',['../group__apparent.html',1,'Apparent equatorial positions on sky'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98',1,'Calculate an apparent place on sky']]],
+  ['sky_44',['sky',['../group__apparent.html',1,'Apparent positions on sky'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98',1,'Calculate an apparent place on sky']]],
   ['sky_5fpos_45',['sky_pos',['../novas_8h.html#a98a44d2a2c0e4f211b128a94c848ed51',1,'novas.h']]],
   ['sky_5fpos_5finit_46',['SKY_POS_INIT',['../novas_8h.html#a462bdac0f370f0c5b421ae5b3f3e35f2',1,'novas.h']]],
   ['solar_20system_20ephemeris_20data_20or_20services_47',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
@@ -116,6 +116,6 @@ var searchData=
   ['system_20source_113',['system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculating positions for a Solar-system source']]],
   ['system_2ec_114',['system.c',['../system_8c.html',1,'']]],
   ['system_5ftype_115',['system_type',['../classsupernovas_1_1Equinox.html#ae5f6d48cdd9a62598b5b8dc1138ffbdc',1,'supernovas::Equinox::system_type()'],['../classsupernovas_1_1Equatorial.html#a0ed912a979ffb625f8766694e6d0bdc1',1,'supernovas::Equatorial::system_type()'],['../classsupernovas_1_1OrbitalSystem.html#a955770e11c4742be3c129f0af934365e',1,'supernovas::OrbitalSystem::system_type()'],['../classsupernovas_1_1Geometric.html#a1ae884c6a1cc126e645fcfe8d2d6e935',1,'supernovas::Geometric::system_type()'],['../classsupernovas_1_1AstrometricPosition.html#afc7f5368a8fcdeea835db2c1617b2022',1,'supernovas::AstrometricPosition::system_type()']]],
-  ['systems_116',['systems',['../group__equatorial.html',1,'Equatorial coordinate systems'],['../group__nonequatorial.html',1,'Other coordinate systems']]],
+  ['systems_116',['systems',['../group__equatorial.html',1,'Equatorial coordinates and systems'],['../group__nonequatorial.html',1,'Other coordinate systems']]],
   ['systems_20old_20vs_20new_117',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md18',1,'']]]
 ];

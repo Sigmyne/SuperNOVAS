@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SuperNOVAS C API: Observing frames</title>
+<title>SuperNOVAS C API: Observing frame</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -100,7 +100,7 @@ $(function(){initNavTree('group__frame.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Observing frames </div></div>
+  <div class="headertitle"><div class="title">Observing frame </div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -416,7 +416,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Time of observation </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">xp</td><td>[mas] Earth orientation parameter, mean polar offset in <em>x</em>, e.g. from the IERS Bulletins, without diurnal libration and ocean tides. (The global, undated, value set by <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> is not not used here.) You can use 0.0 if sub-arcsecond accuracy is not required. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">yp</td><td>[mas] Earth orientation parameter, mean polar offset in <em>y</em>, e.g. from the IERS Bulletins, without diurnal libration and ocean tides. (The global, undated, value set by <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> is not not used here.) You can use 0.0 if sub-arcsecond accuracy is not required. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Pointer to the observing frame to configure. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Pointer to the observing frame to configure. </td></tr>
   </table>
   </dd>
 </dl>
@@ -465,7 +465,7 @@ Functions</h2></td></tr>
 <p>Calculates a transformation matrix that can be used to convert positions and velocities from one coordinate reference system to another. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observer frame, defining the location and time of observation </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Observer frame, defining the location and time of observation </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">from_system</td><td>Original coordinate reference system </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">to_system</td><td>New coordinate reference system </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">transform</td><td>Pointer to the transform data structure to populate. </td></tr>

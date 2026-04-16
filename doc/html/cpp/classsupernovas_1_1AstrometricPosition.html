@@ -100,7 +100,7 @@ $(function(){initNavTree('classsupernovas_1_1AstrometricPosition.html','','class
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">supernovas::AstrometricPosition Class Reference<div class="ingroups"><a class="el" href="group__geometric.html">Geometric equatorial positions and velocities</a></div></div></div>
+  <div class="headertitle"><div class="title">supernovas::AstrometricPosition Class Reference<div class="ingroups"><a class="el" href="group__geometric.html">Geometric positions and velocities</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -138,7 +138,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afc7f5368a8fcdeea835db2c1617b2022" id="r_afc7f5368a8fcdeea835db2c1617b2022"><td class="memItemLeft">enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a>&#160;</td><td class="memItemRight"><a class="el" href="#afc7f5368a8fcdeea835db2c1617b2022">system_type</a> () const</td></tr>
 <tr class="memdesc:afc7f5368a8fcdeea835db2c1617b2022"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equatorial coordinate reference system type in which this astrometric position was defined.  <br /></td></tr>
 <tr class="memitem:ga0e8a6330b443d3f9eaaeee7016d59777" id="r_ga0e8a6330b443d3f9eaaeee7016d59777"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Equatorial.html">Equatorial</a>&#160;</td><td class="memItemRight"><a class="el" href="group__equatorial.html#ga0e8a6330b443d3f9eaaeee7016d59777">to_equatorial</a> () const</td></tr>
-<tr class="memdesc:ga0e8a6330b443d3f9eaaeee7016d59777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equatorial coordinates place of this position, as would be seen by a stationary (w.r.t.  <br /></td></tr>
+<tr class="memdesc:ga0e8a6330b443d3f9eaaeee7016d59777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equatorial coordinates place of this position, as would be seen by a stationary (relative to the SSB) observer located at the reference place.  <br /></td></tr>
 <tr class="memitem:ga3b6180b88e387076c74333dd3726ec36" id="r_ga3b6180b88e387076c74333dd3726ec36"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Interferometric.html">Interferometric</a>&#160;</td><td class="memItemRight"><a class="el" href="group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36">to_interferometric</a> (const <a class="el" href="classsupernovas_1_1Equatorial.html">Equatorial</a> &amp;phase_center, const <a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a> &amp;<a class="el" href="classsupernovas_1_1Position.html#a578e1552f7e48d5f0029e451bfe9342c">distance</a>=<a class="el" href="classsupernovas_1_1Coordinate.html#ab5da5ad902470545b35e915f5f9ba783">Coordinate::at_Gpc</a>(), const <a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a> &amp;relative_motion=<a class="el" href="classsupernovas_1_1Velocity.html#a2944f9bdb4beabe0c0b91a46ffd8e3fb">Velocity::stationary</a>()) const</td></tr>
 <tr class="memdesc:ga3b6180b88e387076c74333dd3726ec36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <em>u</em>,<em>v</em>,<em>w</em> coordinates for a space-based interferometer station represented by this astrometric position.  <br /></td></tr>
 <tr class="memitem:a95a3f74fbdfb734a19e520f71ae98d0a" id="r_a95a3f74fbdfb734a19e520f71ae98d0a"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a95a3f74fbdfb734a19e520f71ae98d0a">to_string</a> (int decimals=3) const override</td></tr>
@@ -264,7 +264,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">equ_pos</td><td>Equatorial rectangual position vector defined relative to the reference place. </td></tr>
-    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frames</a></td><td>Observing frame (observer location and time of observation). </td></tr>
+    <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>Observing frame (observer location and time of observation). </td></tr>
     <tr><td class="paramname">system</td><td>(optional) Equatorial coordinate reference system type used for the position and observer location (default: TOD).</td></tr>
   </table>
   </dd>
@@ -374,7 +374,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the equatorial coordinate reference system type in which this astrometric position was defined. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference system type for this position.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__equatorial.html" title="Expressing coordinates in the equatorial coordinate systems of choice, such as ICRS/GCRS,...">Equatorial coordinate systems</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__equatorial.html" title="Expressing coordinates in the equatorial coordinate systems of choice, such as ICRS/GCRS,...">Equatorial coordinates and systems</a> </dd></dl>
 
 </div>
 </div>
