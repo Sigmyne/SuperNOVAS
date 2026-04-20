@@ -242,7 +242,7 @@ with the default precision, or it's negated form, respectively.
 
 `supernovas::Time` and `supernovas::CalendarDate` also have comparison operators defined: `<`, `>`, `<=`, and `>=`. 
 The `<` and `>` always evaluate at the full precision, whereas `<=` and `>=` follow the default precision of `==`. 
-This makes `<=` fully consistent with `<` _or_ `==`, and `>=` with `>` _or_ `==`. So for two times instances `t1` and 
+This makes `<=` fully consistent with `<` _or_ `==`, and `>=` with `>` _or_ `==`. So for two `Time` instances `t1` and 
 `t2`, you could check, e.g.:
 
 ```cpp

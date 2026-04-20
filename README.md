@@ -404,20 +404,24 @@ more simplicity, convenience, and dependency resolution.
 
 <details>
 
-You can install the core C99 library of SuperNOVAS library with `vcpkg` as:
+The `vcpkg` port has optional add-on components, which may be installed along with the `core` library as needed. The 
+following components are available:
+
+ - `core` -- The core C99 library (this is installed by default if no components are specified).
+ - `cpp` -- The C++11 runtime and development files.
+ - `solsys-calceph` -- CALCEPH plugin runtime and development files. (It also installs the `calceph` dependency as needed).
+
+You can install just the core C99 library of SuperNOVAS (without the C++ API and CALCEPH support) with `vcpkg` as:
 
 ```bash
   $ vcpkg install supernovas
 ```
 
-Or, a set of selected components, such as the core C99 library, the C++11 library, and the `solsys-calceph` plugin 
-library as:
+Or, a set of selected components library as, such as all the complete installation as:
 
 ```bash
   $ vcpkg install supernovas[core,cpp,solsys-calceph]
 ```
-
-And, `vcpkg` will automatically install the `calceph` library dependency, as needed, also.
 
 </details>
 
@@ -469,14 +473,13 @@ To install SuperNOVAS via Homebrew, in the recommended default configuration:
   $ brew install supernovas
 ```
 
-The above will build and install SuperNOVAS with the C++ API and the calceph plugin support. However, you may add 
-options to customize your build as needed:
+The above will build and install SuperNOVAS with the C++ API and the CALCEPH plugin support (including the `calceph`
+dependency, as needed). However, you may add further options to customize your build:
 
  - `--with-cspice` -- Build with NAIF CSPICE support (and dependency).
  - `--with-doxygen` -- Build with local HTML documentation.
  - `--without-c++` -- Build without the C++ API and runtime.
  - `--without-calceph` -- Build without CALCEPH support (and dependency).
-
 
 </details>
 

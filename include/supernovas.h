@@ -4,6 +4,8 @@
  * @date Created  on Sep 29, 2025
  * @author Attila Kovacs
  * @since 1.6
+ *
+ *  The high-level C++ API of SuperNOVAS.
  */
 
 #ifndef SUPERNOVAS_H_
@@ -85,7 +87,7 @@ class   EquatorialTrack;
  * can be useful for converting quantities in other units to SI, or to convert return values from
  * SI to conventional units.
  *
- * For example, if you have distance in AU, then you can use Unit::au to convert it to an SI
+ * For example, if you have distance in AU, then you can use Unit::AU to convert it to an SI
  * distance (i.e. meters) as:
  *
  * ```c
@@ -336,23 +338,22 @@ public:
   virtual std::string to_string(int decimals = 3) const;
 };
 
-
 /**
- * An equatorial coordinate system, defined by the orientation of the equator and its origin (such
- * as the Vernal %Equinox or else the Celestial Intermediate Origin), relative to which the right
- * ascention and declination (RA/Dec) coordinates are measured. We'll simply refer to it as
- * %Equinox in this API. This class does not include the Earth co-rotating systems (TIRS and
- * ITRS).
+ * An inertial equatorial coordinate system, defined by the orientation of the equator and its
+ * origin (such as the Vernal %Equinox or else the Celestial Intermediate Origin), relative to
+ * which the right ascention and declination (RA/Dec) coordinates are measured. We'll simply
+ * refer to it as %Equinox in this API. This class does not support (noninertial) Earth-rotating
+ * systems (TIRS and ITRS).
  *
  * The class name %Equinox was chosen because it is less generic than say 'System' (which could
  * refer to many things, and also more likely to have different meanings in other namespaces).
  * Also, some equatorial-based coordinate systems rotate with Earth (such as TIRS and ITRS), and
- * the point is to distinguish that this class specifically refers to a coordinate system that is
- * fixed with respect to the distant quasars on the celestial sphere, with well-defined R.A. and
- * declination coordinates. All celestial (non-rotating) equatorial systems are referenced to a
- * choice of the equator, and most have their origin at the Vernal %Equinox (except CIRS, whose
- * origin is at the CIO). Thus, '%Equinox' is perhaps the most descriptive simple name for
- * expressing "the choice of equator and fixed (non-rotating) equatorial point of origin", in
+ * the point is to distinguish that this class specifically refers to an equatorial coordinate
+ * system that is fixed with respect to the distant quasars on the celestial sphere, providing
+ * well-defined R.A. and declination coordinates. All equatorial systems are referenced to a
+ * choice of the equator, and most inertial ones have their origin at the Vernal %Equinox (except
+ * CIRS, whose origin is at the CIO). Thus, '%Equinox' is perhaps the most descriptive simple name
+ * to convey "the choice of equator and fixed (non-rotating) equatorial point of origin", in
  * general.
  *
  * @since 1.6
@@ -364,7 +365,7 @@ public:
 class Equinox : public Validating {
 private:
   std::string _name;    ///< name of the catalog system, e.g. 'ICRS' or 'J2000'
-  enum novas_reference_system _system; ///< Coordinate reference system.
+  enum novas_reference_system _system; ///< Coordinate reference system type.
   double _jd;           ///< [day] TT-based Julian date of the dynamical equator (or closest to it) that
                         ///< matches the system
 
@@ -618,8 +619,8 @@ public:
 
 /**
  * A representation of a regularized angle, which can also be represented as a time value in the 0
- * to 24h range. It can be expressed both in terms various commonly used angular units, or in terms
- * of time units, as needed.  It may also be used to instantiate time-angles from decimal or
+ * to 24 hour range. It can be expressed both in terms various commonly used angular units, or in
+ * terms of time units, as needed.  It may also be used to instantiate time-angles from decimal or
  * from HH:MM:SS.SSS string representations of time in hours.
  *
  * @since 1.6
@@ -871,7 +872,7 @@ public:
 };
 
 /**
- * A scalar velocity (if signed) or speed (unsigned).
+ * A scalar velocity (if signed) or speed (if unsigned).
  *
  * @since 1.6
  *
@@ -1306,9 +1307,9 @@ public:
  *    and in Geometric::to_itrs(), as appropriate. Thus users should supply only mean
  *    (interpolated) data.
  *
- * 2. For &mu;as-level precision, your EOP data should match the ITRF realization of the site
- *    coordinates. IERS provides EOP data in different ITRF realizations, and SuperNOVAS provides
- *    methods to convert both the EOP and/or the Site to another ITRF realization, if need be.
+ * 2. For &mu;as-level precision, your %EOP data should match the ITRF realization of the site
+ *    coordinates. IERS provides %EOP data in different ITRF realizations, and SuperNOVAS provides
+ *    methods to convert both the %EOP and/or the Site to another ITRF realization, if need be.
  *
  *
  * @since 1.6
@@ -1431,8 +1432,9 @@ public:
 };
 
 /**
- * An abstract observer location. Both Earth-bound (geodetic sites, airborne, or Earth-orbit), and
- * locations elsewhere in the Solar-system are supported.
+ * An abstract observer location. Both Earth-bound (geodetic sites, airborne, or Earth-orbit)
+ * locations, and locations elsewhere in the Solar-system are supported. See the static methods of
+ * this class for instantiating different subclasses as appropriate.
  *
  * @since 1.6
  *
@@ -1501,8 +1503,8 @@ public:
 
 /**
  * An observer location at a geodetic (longitude, latitude, altitude) location at the surface or
- * above it (such as in an aircraft or balloon). The observer may be fixed at that location, or else
- * moving with some velocity over the ground.
+ * above it (such as in an aircraft or on balloon). The observer may be fixed at that location, or
+ * else moving with some velocity over the ground.
  *
  * @since 1.6
  *
@@ -1737,7 +1739,8 @@ public:
 
 /**
  * Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,
- * UTC, TAI, GPS, TT, TDB, TCG, and TCB).
+ * UTC, TAI, GPS, TT, TDB, TCG, and TCB). Depending on how this class is instantiated, it can
+ * support down to the nanosecond precision.
  *
  * @since 1.6
  *
@@ -1880,9 +1883,8 @@ public:
  * An observing frame, defined by an observer location and precise time of observation. Frames can
  * be created with full (default) and reduced accuracy, supporting calculations with mas, or
  * &mu;as precisions typically. However, note that full accuracy frames require SuperNOVAS to be
- * configured with an appropriate high-precision planet ephemeris provider (see e.g.
- * `novas_use_calceph()` or `novas_use_cspice()`), or else the resulting full-accuracy frame will
- * be invalid.
+ * configured with an appropriate high-precision planet ephemeris provider (see @ref solar-system),
+ * or else the resulting full-accuracy frame will be invalid.
  *
  * Reduced accuracy frames may also be invalid if the low precision planet ephemeris provider (
  * which, by default, calculates approximate positions for the Earth and Sun only) cannot provide
@@ -1952,7 +1954,7 @@ public:
 };
 
 /**
- * An abstract supercalss for an astronomical source or target of observation.
+ * An abstract superclass for an astronomical source or target of observation.
  *
  * @since 1.6
  *
@@ -2124,7 +2126,7 @@ public:
 };
 
 /**
- * An abstract class of a source in the Solar-system.
+ * An abstract class of an astronomical source within the Solar-system.
  *
  * @since 1.6
  *
@@ -2150,8 +2152,8 @@ public:
 };
 
 /**
- * A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),
- * the Earth-Moon Barycenter (EMB), and the Pluto-system barycenter. Planet positions are usually
+ * A major planet (including Pluto), or the Sun, the Moon, the Solar-System Barycenter (SSB), the
+ * Earth-Moon Barycenter (EMB), or the Pluto-system barycenter. Planet positions are usually
  * provided by the JPL DE ephemeris files, such as DE440, DE441, or DE440s. By default SuperNOVAS
  * calculates approximate position for the Earth and Sun only. Thus to provide ephemeris
  * positions for all planet-type sources, you will have to configure a Solar-system ephemeris
@@ -2314,7 +2316,7 @@ public:
  * Keplerian orbital elements, for example, for a comet using parameters published by the IAU
  * Minor Planet Center. While Keplerian orbitals cannot provide accurate positions or velocities
  * for Solar-system bodies over the long term (for that you need ephemeris data), they can be
- * sufficiently accurate on the short term. And, in case of recently discovered objects, such
+ * sufficiently accurate in the short term. And, in case of recently discovered objects, such
  * as Near-Earth Objects (NEOs), orbital elements may be the only source of up-to-date
  * positional data.
  *
@@ -2449,13 +2451,13 @@ public:
 };
 
 /**
- * %Apparent position on sky as seen by an observer at a specific time of observation. Apparent
+ * %Apparent position on sky as seen by an observer at a specific time of observation. %Apparent
  * positions are corrected for aberration for a movig observer, and gravitational deflection
  * around the major Solar-system bodies along the path of visibility.
  *
  * The apparent position of a source is where it appears to the observer on the celestial sphere.
  * As such it is mainly a direction on sky, which is corrected for light-travel time (i.e. where
- * the source was at the time light originated from the source.
+ * the source was at the time light originated from it).
  *
  * Unlike geometric positions, the apparent location is also corrected for the observer's motion
  * (aberration), as well as gravitational deflection around the major Solar-system bodies. The
@@ -2676,8 +2678,8 @@ public:
 };
 
 /**
- * The 3D geometric equatorial position of an object, relative to a Solar-system location and a
- * specific instant of time, in the coordinate system of choice.
+ * The 3D geometric equatorial position of an object, relative to a reference Solar-system
+ * location and a specific instant of time, in the coordinate system of choice.
  *
  * @since 1.6
  *
