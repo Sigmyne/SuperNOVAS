@@ -46,6 +46,6 @@ var searchData=
   ['rise_20set_20and_20transit_20times_43',['rise set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106',1,'Calculate rise, set, and transit times']]],
   ['rises_5fabove_44',['rises_above',['../group__time.html#gaecda13098f9fcb4f0a5a864c68bbf697',1,'supernovas::Source']]],
   ['roman_45',['roman',['../classsupernovas_1_1Calendar.html#a927c915e21f2fce2c186b9e1f258fc34',1,'supernovas::Calendar']]],
-  ['runtime_20debug_20support_46',['Runtime debug support',['../index.html#autotoc_md32',1,'']]],
+  ['runtime_20debug_20support_46',['Runtime debug support',['../index.html#autotoc_md33',1,'']]],
   ['rv_47',['rv',['../structnovas__sky__pos.html#ae98432478d2c3a8e5eb1a1674394499f',1,'novas_sky_pos']]]
 ];

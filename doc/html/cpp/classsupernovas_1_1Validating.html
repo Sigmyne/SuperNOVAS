@@ -122,7 +122,7 @@ $(function(){initNavTree('classsupernovas_1_1Validating.html','','classsupernova
 <area href="classsupernovas_1_1CalendarDate.html" title="A time specified in a specific type of calendar (Gregorian, Roman, or astronomical)." alt="supernovas::CalendarDate" shape="rect" coords="213,280,416,304"/>
 <area href="classsupernovas_1_1CatalogEntry.html" title="Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud,..." alt="supernovas::CatalogEntry" shape="rect" coords="213,336,416,360"/>
 <area href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP)." alt="supernovas::EOP" shape="rect" coords="213,392,416,416"/>
-<area href="classsupernovas_1_1Equinox.html" title="An equatorial coordinate system, defined by the orientation of the equator and its origin (such as th..." alt="supernovas::Equinox" shape="rect" coords="213,448,416,472"/>
+<area href="classsupernovas_1_1Equinox.html" title="An inertial equatorial coordinate system, defined by the orientation of the equator and its origin (s..." alt="supernovas::Equinox" shape="rect" coords="213,448,416,472"/>
 <area href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation." alt="supernovas::Frame" shape="rect" coords="213,504,416,528"/>
 <area href="classsupernovas_1_1Geometric.html" title="The geometric (3D) position and velocity of a source relative to an observer location." alt="supernovas::Geometric" shape="rect" coords="213,560,416,584"/>
 <area href="classsupernovas_1_1Observer.html" title="An abstract observer location." alt="supernovas::Observer" shape="rect" coords="213,616,416,640"/>
@@ -131,7 +131,7 @@ $(function(){initNavTree('classsupernovas_1_1Validating.html','','classsupernova
 <area href="classsupernovas_1_1Scalar.html" title="Abstract base class for scalar quantities, expressed in standard S.I." alt="supernovas::Scalar" shape="rect" coords="213,784,416,808"/>
 <area href="classsupernovas_1_1ScalarEvolution.html" title="The evolution of a scalar quantity in time, based on a local quadratic approximation." alt="supernovas::ScalarEvolution" shape="rect" coords="213,840,416,864"/>
 <area href="classsupernovas_1_1Site.html" title="An Earth-based (geodetic) observer site location, or airborne observer location." alt="supernovas::Site" shape="rect" coords="213,896,416,920"/>
-<area href="classsupernovas_1_1Source.html" title="An abstract supercalss for an astronomical source or target of observation." alt="supernovas::Source" shape="rect" coords="213,952,416,976"/>
+<area href="classsupernovas_1_1Source.html" title="An abstract superclass for an astronomical source or target of observation." alt="supernovas::Source" shape="rect" coords="213,952,416,976"/>
 <area href="classsupernovas_1_1Spherical.html" title="Spherical coordinates (longitude, latitude), representing a direction on sky." alt="supernovas::Spherical" shape="rect" coords="213,1008,416,1032"/>
 <area href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,..." alt="supernovas::Time" shape="rect" coords="213,1064,416,1088"/>
 <area href="classsupernovas_1_1Track.html" title="Approximate trajectory of a source in spherical coordinates, using a local quadratic approximation ar..." alt="supernovas::Track&lt; CoordType &gt;" shape="rect" coords="213,1120,416,1144"/>
@@ -256,14 +256,14 @@ Protected Attributes</h2></td></tr>
 <div class="line"><span class="keywordflow">if</span>(o) {</div>
 <div class="line">  <span class="comment">// o is valid...</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Validating_html_aeabd2d0135eafd2a6a55447054ff81f7"><div class="ttname"><a href="#aeabd2d0135eafd2a6a55447054ff81f7">supernovas::Validating::Validating</a></div><div class="ttdeci">Validating()</div><div class="ttdoc">dummy constructor;</div><div class="ttdef"><b>Definition</b> supernovas.h:259</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aeabd2d0135eafd2a6a55447054ff81f7"><div class="ttname"><a href="#aeabd2d0135eafd2a6a55447054ff81f7">supernovas::Validating::Validating</a></div><div class="ttdeci">Validating()</div><div class="ttdoc">dummy constructor;</div><div class="ttdef"><b>Definition</b> supernovas.h:261</div></div>
 </div><!-- fragment --><p>is the same as the more verbose:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#aeabd2d0135eafd2a6a55447054ff81f7">Validating</a> o = ...;</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span>(o.<a class="code hl_function" href="#aa3695f10056563de6ba2f0863cabda53">is_valid</a>()) {</div>
 <div class="line">  <span class="comment">// o is valid...</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:276</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; stae of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:278</div></div>
 </div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the instance is in a 'valid' state, or else <span class="tt">false</span>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; stae of the implementing instance.">is_valid()</a> </dd></dl>

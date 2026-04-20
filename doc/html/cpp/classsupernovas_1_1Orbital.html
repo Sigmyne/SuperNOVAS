@@ -104,7 +104,7 @@ $(function(){initNavTree('classsupernovas_1_1Orbital.html','','classsupernovas_1
 </div><!--header-->
 <div class="contents">
 
-<p>Keplerian orbital elements, for example, for a comet using parameters published by the IAU Minor <a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a> Center.  
+<p>Keplerian orbital elements, for example, for a comet using parameters published by the IAU Minor <a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun, the Moon, the Solar-System Barycenter (SSB),...">Planet</a> Center.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;supernovas.h&gt;</code></p>
@@ -220,8 +220,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a4aa2e66ea6acca6705d87457a08ac2d6 inherit pro_attribs_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">the state variable.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Keplerian orbital elements, for example, for a comet using parameters published by the IAU Minor <a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a> Center. </p>
-<p>While Keplerian orbitals cannot provide accurate positions or velocities for Solar-system bodies over the long term (for that you need ephemeris data), they can be sufficiently accurate on the short term. And, in case of recently discovered objects, such as Near-Earth Objects (NEOs), orbital elements may be the only source of up-to-date positional data.</p>
+<div class="textblock"><p>Keplerian orbital elements, for example, for a comet using parameters published by the IAU Minor <a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun, the Moon, the Solar-System Barycenter (SSB),...">Planet</a> Center. </p>
+<p>While Keplerian orbitals cannot provide accurate positions or velocities for Solar-system bodies over the long term (for that you need ephemeris data), they can be sufficiently accurate in the short term. And, in case of recently discovered objects, such as Near-Earth Objects (NEOs), orbital elements may be the only source of up-to-date positional data.</p>
 <p>NOTES:</p>
 <ol type="1">
 <li>This class uses a builder pattern to populate the orbital parameters, bit-by-bit, as needed. As such, the best practice is to build the orbital first, before using an immutable <span class="tt">const</span> copy of it in parallel threads.</li>

@@ -31,7 +31,7 @@ var searchData=
   ['supernovas_20using_20cmake_28',['Build SuperNOVAS using CMake',['../index.html#autotoc_md12',1,'']]],
   ['supernovas_20using_20gnu_20make_29',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md11',1,'']]],
   ['supernovas_20via_20vcpkg_30',['Install SuperNOVAS via &lt;span class=&quot;tt&quot;&gt;vcpkg&lt;/span&gt;',['../index.html#autotoc_md13',1,'']]],
-  ['support_31',['Runtime debug support',['../index.html#autotoc_md32',1,'']]],
+  ['support_31',['Runtime debug support',['../index.html#autotoc_md33',1,'']]],
   ['system_32',['system',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md66',1,'Coordinate and velocity transforms (change of coordinate system)'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107',1,'Coordinate and velocity transforms (change of coordinate system)']]],
   ['system_20ephemeris_20data_20or_20services_33',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
   ['system_20objects_20with_20keplerian_20orbital_20parameters_34',['system objects with Keplerian orbital parameters',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102',1,'Solar-system objects with Keplerian orbital parameters']]],

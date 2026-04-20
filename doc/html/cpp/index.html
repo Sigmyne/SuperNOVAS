@@ -295,12 +295,17 @@ Install SuperNOVAS via <span class="tt">vcpkg</span></h2>
 <summary >
 Details</summary>
 <p></p>
-<p>You can install the core C99 library of SuperNOVAS library with <span class="tt">vcpkg</span> as:</p>
+<p>The <span class="tt">vcpkg</span> port has optional add-on components, which may be installed along with the <span class="tt">core</span> library as needed. The following components are available:</p>
+<ul>
+<li><span class="tt">core</span> &ndash; The core C99 library (this is installed by default if no components are specified).</li>
+<li><span class="tt">cpp</span> &ndash; The C++11 runtime and development files.</li>
+<li><span class="tt">solsys-calceph</span> &ndash; CALCEPH plugin runtime and development files. (It also installs the <span class="tt">calceph</span> dependency as needed).</li>
+</ul>
+<p>You can install just the core C99 library of SuperNOVAS (without the C++ API and CALCEPH support) with <span class="tt">vcpkg</span> as:</p>
 <div class="fragment"><div class="line">$ vcpkg install supernovas</div>
-</div><!-- fragment --><p>Or, a set of selected components, such as the core C99 library, the C++11 library, and the <span class="tt">solsys-calceph</span> plugin library as:</p>
+</div><!-- fragment --><p>Or, a set of selected components library as, such as all the complete installation as:</p>
 <div class="fragment"><div class="line">$ vcpkg install supernovas[core,cpp,solsys-calceph]</div>
-</div><!-- fragment --><p>And, <span class="tt">vcpkg</span> will automatically install the <span class="tt">calceph</span> library dependency, as needed, also.</p>
-<p></p>
+</div><!-- fragment --><p></p>
 </details>
 <p><a class="anchor" id="linux-packages"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
@@ -329,7 +334,7 @@ Details</summary>
 <p>To install SuperNOVAS via Homebrew, in the recommended default configuration:</p>
 <div class="fragment"><div class="line">$ brew tap attipaci/pub</div>
 <div class="line">$ brew install supernovas</div>
-</div><!-- fragment --><p>The above will build and install SuperNOVAS with the C++ API and the calceph plugin support. However, you may add options to customize your build as needed:</p>
+</div><!-- fragment --><p>The above will build and install SuperNOVAS with the C++ API and the CALCEPH plugin support (including the <span class="tt">calceph</span> dependency, as needed). However, you may add further options to customize your build:</p>
 <ul>
 <li><span class="tt">--with-cspice</span> &ndash; Build with NAIF CSPICE support (and dependency).</li>
 <li><span class="tt">--with-doxygen</span> &ndash; Build with local HTML documentation.</li>
@@ -608,7 +613,7 @@ Reduced accuracy shortcuts</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="debug-support"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
 Runtime debug support</h1>
 <p>You can enable or disable debugging output to <span class="tt">stderr</span> with <span class="tt"><a class="el" href="group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug(enum novas_debug_mode)</a></span>, where the argument is one of the defined constants from <span class="tt"><a class="el" href="novas_8h.html" title="SuperNOVAS types, definitions, and function prototypes.">novas.h</a></span>:</p>
 <table class="markdownTable">

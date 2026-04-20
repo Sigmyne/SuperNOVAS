@@ -213,14 +213,14 @@ Static Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Various physical units for converting quantities expressed in conventional units to SI, and vice versa. </p>
 <p>The SuperNOVAS C++ API uses SI quantities consistently for inputs, so these units can be useful for converting quantities in other units to SI, or to convert return values from SI to conventional units.</p>
-<p>For example, if you have distance in AU, then you can use <a class="el" href="#afe0d2d901c66e59c39d5a5acb26547de" title="[m] 1 AU (lower-case)">Unit::au</a> to convert it to an SI distance (i.e. meters) as:</p>
+<p>For example, if you have distance in AU, then you can use <a class="el" href="#a595105395ceead45ee25d8093a92a231" title="[m] 1 Astronomical Unit in meters.">Unit::AU</a> to convert it to an SI distance (i.e. meters) as:</p>
 <div class="fragment"><div class="line"><span class="comment">// Standard S.I. distance, defined in astronomical units (AUs)</span></div>
 <div class="line"><span class="keywordtype">double</span> d = 2.4103 * <a class="code hl_variable" href="#a595105395ceead45ee25d8093a92a231">Unit::AU</a>;</div>
-<div class="ttc" id="aclasssupernovas_1_1Unit_html_a595105395ceead45ee25d8093a92a231"><div class="ttname"><a href="#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a></div><div class="ttdeci">static constexpr double AU</div><div class="ttdoc">[m] 1 Astronomical Unit in meters.</div><div class="ttdef"><b>Definition</b> supernovas.h:124</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a595105395ceead45ee25d8093a92a231"><div class="ttname"><a href="#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a></div><div class="ttdeci">static constexpr double AU</div><div class="ttdoc">[m] 1 Astronomical Unit in meters.</div><div class="ttdef"><b>Definition</b> supernovas.h:126</div></div>
 </div><!-- fragment --><p>Conversely, you can cast a quantity in S.I. units to S.I. units as:</p>
 <div class="fragment"><div class="line"><span class="comment">// standard S.I. distance cast into units of &#39;km&#39;.</span></div>
 <div class="line"><span class="keywordtype">double</span> d_km = d / <a class="code hl_variable" href="#a06a5719176ea23f07378bfb5f04a84a2">Unit::km</a>;</div>
-<div class="ttc" id="aclasssupernovas_1_1Unit_html_a06a5719176ea23f07378bfb5f04a84a2"><div class="ttname"><a href="#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a></div><div class="ttdeci">static constexpr double km</div><div class="ttdoc">[m] 1 kilometer in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:133</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Unit_html_a06a5719176ea23f07378bfb5f04a84a2"><div class="ttname"><a href="#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a></div><div class="ttdeci">static constexpr double km</div><div class="ttdoc">[m] 1 kilometer in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:135</div></div>
 </div><!-- fragment --><p>Note, this class cannot be instantiated or copied. You should only use its static fields.</p>
 <dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Constant.html" title="Various physical constants that SuperNOVAS uses for astrometric calculations, all expressed in terms ...">Constant</a> </dd></dl>

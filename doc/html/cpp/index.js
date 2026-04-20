@@ -28,7 +28,7 @@ var index =
       [ "Prerequisites to precise results", "index.html#autotoc_md29", null ],
       [ "Reduced accuracy shortcuts", "index.html#autotoc_md30", null ]
     ] ],
-    [ "Runtime debug support", "index.html#autotoc_md32", null ],
+    [ "Runtime debug support", "index.html#autotoc_md33", null ],
     [ "Representative benchmarks", "index.html#autotoc_md35", null ],
     [ "SuperNOVAS added features", "index.html#autotoc_md37", [
       [ "New functionality highlights", "index.html#autotoc_md38", null ],

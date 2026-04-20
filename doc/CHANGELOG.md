@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [1.6.0-rc5] - 2026-04-20
 
 Upcoming feature release, introducing a proper C++ API for the first time, and bringing various other improvements.
 

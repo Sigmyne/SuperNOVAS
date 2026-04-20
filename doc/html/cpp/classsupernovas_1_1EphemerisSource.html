@@ -115,8 +115,8 @@ $(function(){initNavTree('classsupernovas_1_1EphemerisSource.html','','classsupe
  <div class="center">
   <img src="classsupernovas_1_1EphemerisSource.png" usemap="#supernovas_3A_3AEphemerisSource_map" alt=""/>
   <map id="supernovas_3A_3AEphemerisSource_map" name="supernovas_3A_3AEphemerisSource_map">
-<area href="classsupernovas_1_1SolarSystemSource.html" title="An abstract class of a source in the Solar-system." alt="supernovas::SolarSystemSource" shape="rect" coords="0,112,195,136"/>
-<area href="classsupernovas_1_1Source.html" title="An abstract supercalss for an astronomical source or target of observation." alt="supernovas::Source" shape="rect" coords="0,56,195,80"/>
+<area href="classsupernovas_1_1SolarSystemSource.html" title="An abstract class of an astronomical source within the Solar-system." alt="supernovas::SolarSystemSource" shape="rect" coords="0,112,195,136"/>
+<area href="classsupernovas_1_1Source.html" title="An abstract superclass for an astronomical source or target of observation." alt="supernovas::Source" shape="rect" coords="0,56,195,80"/>
 <area href="classsupernovas_1_1Validating.html" title="A simple interface class handling validation checking for classes that inherit it." alt="supernovas::Validating" shape="rect" coords="0,0,195,24"/>
   </map>
 </div></div>
@@ -201,7 +201,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>A Solar-system source, whose positions / velocities are provided from ephemeris data. </p>
 <p>SuperNOVAS does not support ephemeris data by itself, but can interface to other libraries (e.g. CALCEPH or CSPICE), or provide them via user-selected function(s). Depending on the external implementation that provides ephemeris data, sources may be looked up by name or ID number. Name-based lookup may be case-sensitive (in which case you may want to use <span class="tt"><a class="el" href="novas_8h.html#a8f832afe92680a11c3489aaa224ac2e2" title="Enables or disables case-sensitive processing of the object name.">novas_case_sensitive()</a></span> to enable case-sensitive source names in SuperNOVAS). ID-based lookup may use NAIF IDs, or else some other numbering convention. In any case, you should construct your ephemeris source to match the lookup method used by the ephemeris provider function(s) or library you will be using.</p>
 <dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun and the Moon, the Solar-System Barycenter (SSB),...">Planet</a>, <a class="el" href="classsupernovas_1_1OrbitalSource.html" title="A Solar-system source, whose position and velocity can be calculated using Keplerian orbital elements...">OrbitalSource</a>, <a class="el" href="group__solar-system.html" title="Solar-system ephemeris providers">Solar-system ephemeris providers</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Planet.html" title="A major planet (including Pluto), or the Sun, the Moon, the Solar-System Barycenter (SSB),...">Planet</a>, <a class="el" href="classsupernovas_1_1OrbitalSource.html" title="A Solar-system source, whose position and velocity can be calculated using Keplerian orbital elements...">OrbitalSource</a>, <a class="el" href="group__solar-system.html" title="Solar-system ephemeris providers">Solar-system ephemeris providers</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af6eef3af2b52aaa44a8c7ef9e2bc3c2b" name="af6eef3af2b52aaa44a8c7ef9e2bc3c2b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af6eef3af2b52aaa44a8c7ef9e2bc3c2b">&#9670;&#160;</a></span>EphemerisSource()</h2>
