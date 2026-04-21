@@ -103,7 +103,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-C99.html','',''); }
   <div class="headertitle"><div class="title">C99 Usage </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md18"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md17"></a></p>
 <p>This guide is specifically for using <b>SuperNOVAS</b> as a C99 library. There is a separate guide for <a class="el" href="md__2github_2workspace_2doc_2USAGE-CPP.html" title="C++ Usage">using the C++11 API</a>. The links below let you jump to the relevant sections:</p>
 <ul>
 <li><a class="el" href="#integration-c99" title="integration-c99">Building your application with SuperNOVAS (C99)</a></li>
@@ -420,7 +420,7 @@ Planets and/or ephemeris type objects</h3>
 <div class="line">}</div>
 <div class="ttc" id="agroup__equatorial_html_gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3"><div class="ttname"><a href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a></div><div class="ttdeci">@ NOVAS_TOD</div><div class="ttdoc">True equinox Of Date: dynamical system of the &#39;true&#39; equator, with its origin at the &#39;true&#39; equinox (...</div><div class="ttdef"><b>Definition</b> novas.h:867</div></div>
 </div><!-- fragment --><p><a class="anchor" id="orbital-sources-c99"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
 Solar-system objects with Keplerian orbital parameters</h3>
 <p>As of version <b>1.2</b> you can also define solar system sources with Keplerian orbital elements (such as the most up-to-date ones provided by the <a href="https://minorplanetcenter.net/data">Minor Planet Center</a> for asteroids, comets, etc.):</p>
 <div class="fragment"><div class="line"><span class="keywordtype">object</span> NEA;        <span class="comment">// e.g. a Near-Earth Asteroid</span></div>
@@ -438,7 +438,7 @@ Solar-system objects with Keplerian orbital parameters</h3>
 <div class="ttc" id="astructnovas__orbital_html_a70b91b91315e8c7adcf394cafbd11ecb"><div class="ttname"><a href="structnovas__orbital.html#a70b91b91315e8c7adcf394cafbd11ecb">novas_orbital::a</a></div><div class="ttdeci">double a</div><div class="ttdoc">[AU] semi-major axis</div><div class="ttdef"><b>Definition</b> novas.h:1401</div></div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Even with orbital elements, you will, in general, still require an ephemeris provider also, to obtain precise positions for the Sun, an Earth-based observer, or the planet, around which the orbit is defined.</dd></dl>
 <p><a class="anchor" id="planet-orbitals-c99"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md48"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
 Approximate planet orbitals</h3>
 <p>Finally, as of version <b>1.4</b>, you might generate approximate (arcmin-level) orbitals for the major planets (but not Earth!), the Moon, and the Earth-Moon Barycenter (EMB) also. E.g.:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> jd_tdb = ... <span class="comment">// Time (epoch) for which to calculate orbital parameters  </span></div>
@@ -451,10 +451,10 @@ Approximate planet orbitals</h3>
 <div class="line"><a class="code hl_struct" href="structnovas__orbital.html">novas_orbital</a> moon_orbit = <a class="code hl_define" href="group__source.html#ga85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>;</div>
 <div class="line"><a class="code hl_function" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a>(jd_tdb, &amp;moon_orbit);</div>
 <div class="ttc" id="agroup__source_html_ga63b094e813d8b752a6f3344419e80031"><div class="ttname"><a href="group__source.html#ga63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit</a></div><div class="ttdeci">int novas_make_planet_orbit(enum novas_planet id, double jd_tdb, novas_orbital *restrict orbit)</div><div class="ttdoc">Get approximate current heliocentric orbital elements for the major planets.</div><div class="ttdef"><b>Definition</b> planets.c:103</div></div>
-<div class="ttc" id="agroup__source_html_gad6e6c7f6dc2745030e3fd4d407e982bd"><div class="ttname"><a href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a></div><div class="ttdeci">int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit)</div><div class="ttdoc">Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...</div><div class="ttdef"><b>Definition</b> moon.c:842</div></div>
+<div class="ttc" id="agroup__source_html_gad6e6c7f6dc2745030e3fd4d407e982bd"><div class="ttname"><a href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit</a></div><div class="ttdeci">int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit)</div><div class="ttdoc">Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...</div><div class="ttdef"><b>Definition</b> moon.c:834</div></div>
 </div><!-- fragment --><p>While the planet and Moon orbitals are not suitable for precision applications, they can be useful for determining approximate positions (e.g. via the <span class="tt"><a class="el" href="group__geometric.html#ga9ead627eed7fabd8583f1353e89f42e7" title="Returns the approximate geometric heliocentric orbital positions and velocities for the major planets...">novas_approx_heliocentric()</a></span> and <span class="tt"><a class="el" href="group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62" title="Calculates an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon Barycent...">novas_approx_sky_pos()</a></span> functions), and for rise/set time calculations.</p>
 <p><a class="anchor" id="moon-c99"></a> </p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md51"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
 Moon's position and phase</h3>
 <p><b>SuperNOVAS</b> can calculate positions and velocities for the Moon to arcsecond (or km) level, or better, accuracy using the ELP2000 / MPP02 semi-analytical model by Chapront &amp; Francou (2003). This means that you can calculate astrometric quantities for the Moon with reasonable accuracy even without an ephemeris provider configured.</p>
 <p>For example, you can calculate the apparent place of the Moon in an observing frame as:</p>
@@ -466,20 +466,20 @@ Moon's position and phase</h3>
 <div class="line">  <span class="comment">// Oops something went wrong...</span></div>
 <div class="line">  <span class="keywordflow">return</span> -1;</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__apparent_html_ga03aca2626e38d04bcdf94fae14c6d11c"><div class="ttname"><a href="group__apparent.html#ga03aca2626e38d04bcdf94fae14c6d11c">novas_moon_elp_sky_pos</a></div><div class="ttdeci">int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_reference_system sys, sky_pos *restrict pos)</div><div class="ttdoc">Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...</div><div class="ttdef"><b>Definition</b> moon.c:700</div></div>
+<div class="ttc" id="agroup__apparent_html_ga03aca2626e38d04bcdf94fae14c6d11c"><div class="ttname"><a href="group__apparent.html#ga03aca2626e38d04bcdf94fae14c6d11c">novas_moon_elp_sky_pos</a></div><div class="ttdeci">int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_reference_system sys, sky_pos *restrict pos)</div><div class="ttdoc">Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...</div><div class="ttdef"><b>Definition</b> moon.c:692</div></div>
 </div><!-- fragment --><p>Alternatively, you can obtain geometric positions and velocities of the Moon, relative to the observer using <span class="tt"><a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a></span> instead.</p>
 <p>You can also obtain the current phase of the Moon, for the time of observation:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> jd_tdb = ...;  <span class="comment">// TDB-based Julian Date of observation</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// [deg] Moon&#39;s phase at the specified time (0 is new moon).</span></div>
 <div class="line"><span class="keywordtype">double</span> phase = <a class="code hl_function" href="group__apparent.html#ga2dbdafd6b07f079815ae52d00e142861">novas_moon_phase</a>(jd_tdb);</div>
-<div class="ttc" id="agroup__apparent_html_ga2dbdafd6b07f079815ae52d00e142861"><div class="ttname"><a href="group__apparent.html#ga2dbdafd6b07f079815ae52d00e142861">novas_moon_phase</a></div><div class="ttdeci">double novas_moon_phase(double jd_tdb)</div><div class="ttdoc">Calculates the Moon&#39;s phase at a given time.</div><div class="ttdef"><b>Definition</b> moon.c:1089</div></div>
+<div class="ttc" id="agroup__apparent_html_ga2dbdafd6b07f079815ae52d00e142861"><div class="ttname"><a href="group__apparent.html#ga2dbdafd6b07f079815ae52d00e142861">novas_moon_phase</a></div><div class="ttdeci">double novas_moon_phase(double jd_tdb)</div><div class="ttdoc">Calculates the Moon&#39;s phase at a given time.</div><div class="ttdef"><b>Definition</b> moon.c:1081</div></div>
 </div><!-- fragment --><p>or, calculate when the Moon will reach a particular phase next:</p>
 <div class="fragment"><div class="line"><span class="comment">// TDB-based Julian Date of the next full moon (phase = 180 deg), after TDB-based date</span></div>
 <div class="line"><span class="keywordtype">double</span> jd_tdb_full = <a class="code hl_function" href="group__time.html#gad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase</a>(180.0, jd_tdb);</div>
-<div class="ttc" id="agroup__time_html_gad0bd6e212af549309b0fcb792ed8cb79"><div class="ttname"><a href="group__time.html#gad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase</a></div><div class="ttdeci">double novas_next_moon_phase(double phase, double jd_tdb)</div><div class="ttdoc">Calculates the date / time at which the Moon will reach the specified phase next, after the specified...</div><div class="ttdef"><b>Definition</b> moon.c:1159</div></div>
+<div class="ttc" id="agroup__time_html_gad0bd6e212af549309b0fcb792ed8cb79"><div class="ttname"><a href="group__time.html#gad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase</a></div><div class="ttdeci">double novas_next_moon_phase(double phase, double jd_tdb)</div><div class="ttdoc">Calculates the date / time at which the Moon will reach the specified phase next, after the specified...</div><div class="ttdef"><b>Definition</b> moon.c:1151</div></div>
 </div><!-- fragment --><p><a class="anchor" id="reverse-place-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md52"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md49"></a>
 Going in reverse...</h2>
 <p>Of course, <b>SuperNOVAS</b> allows you to go in reverse, for example from an observed Az/El position all the way to proper ICRS R.A./Dec coordinates.</p>
 <p>E.g.:</p>
@@ -496,7 +496,7 @@ Going in reverse...</h2>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Convert ICRS rectangular equatorial to R.A. and Dec</span></div>
 <div class="line"><a class="code hl_function" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec</a>(pos, &amp;ra, &amp;dec);</div>
-<div class="ttc" id="agroup__apparent_html_gab7db8026c598e8e126a4725ac3b388bf"><div class="ttname"><a href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf">novas_app_to_geom</a></div><div class="ttdeci">int novas_app_to_geom(const novas_frame *restrict frame, enum novas_reference_system sys, double ra, double dec, double dist, double *restrict geom_icrs)</div><div class="ttdoc">Converts an observed apparent sky position of a source to an ICRS geometric position,...</div><div class="ttdef"><b>Definition</b> frames.c:1192</div></div>
+<div class="ttc" id="agroup__apparent_html_gab7db8026c598e8e126a4725ac3b388bf"><div class="ttname"><a href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf">novas_app_to_geom</a></div><div class="ttdeci">int novas_app_to_geom(const novas_frame *restrict frame, enum novas_reference_system sys, double ra, double dec, double dist, double *restrict geom_icrs)</div><div class="ttdoc">Converts an observed apparent sky position of a source to an ICRS geometric position,...</div><div class="ttdef"><b>Definition</b> frames.c:1191</div></div>
 <div class="ttc" id="agroup__nonequatorial_html_gaa57cbcae2001fece2ee4a2babfbc5f89"><div class="ttname"><a href="group__nonequatorial.html#gaa57cbcae2001fece2ee4a2babfbc5f89">novas_hor_to_app</a></div><div class="ttdeci">int novas_hor_to_app(const novas_frame *restrict frame, double az, double el, RefractionModel ref_model, enum novas_reference_system sys, double *restrict ra, double *restrict dec)</div><div class="ttdoc">Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...</div><div class="ttdef"><b>Definition</b> frames.c:1102</div></div>
 <div class="ttc" id="agroup__util_html_ga84f672dc1c37e3af374198f29cbcfba9"><div class="ttname"><a href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec</a></div><div class="ttdeci">short vector2radec(const double *restrict pos, double *restrict ra, double *restrict dec)</div><div class="ttdoc">Converts an vector in equatorial rectangular coordinates to equatorial spherical coordinates.</div><div class="ttdef"><b>Definition</b> util.c:578</div></div>
 </div><!-- fragment --><p>Voila! And, of course you might want the coordinates in some other reference systems, such as B1950. For that you can simply add a transformation before <span class="tt"><a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9" title="Converts an vector in equatorial rectangular coordinates to equatorial spherical coordinates.">vector2radec()</a></span> above, e.g. as:</p>
@@ -508,7 +508,7 @@ Going in reverse...</h2>
 <div class="line"><a class="code hl_function" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec</a>(pos, &amp;ra, &amp;dec);</div>
 <div class="ttc" id="agroup__time_html_ga3785083ae52bbbc1e749dbedd7e5d85e"><div class="ttname"><a href="group__time.html#ga3785083ae52bbbc1e749dbedd7e5d85e">NOVAS_JD_B1950</a></div><div class="ttdeci">#define NOVAS_JD_B1950</div><div class="ttdoc">[day] Julian date at B1950 (NASA / NAIF SPICE definition) precession(), transform_cat()</div><div class="ttdef"><b>Definition</b> novas.h:260</div></div>
 </div><!-- fragment --><p><a class="anchor" id="rise-set-transit-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md55"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md50"></a>
 Calculate rise, set, and transit times</h2>
 <p>You may be interested to know when sources rise above or set below some specific elevation angle, or at what time they appear to transit at the observer location. <b>SuperNOVAS</b> has routines to help you with that too.</p>
 <p>Given that rise, set, or transit times are dependent on the day of observation, and observer location, they are effectively tied to an observer frame.</p>
@@ -525,12 +525,12 @@ Calculate rise, set, and transit times</h2>
 <div class="line"><span class="comment">// UTC-based Julian day *after* observer frame, when source sets below 30 degrees of elevation </span></div>
 <div class="line"><span class="comment">// next, not accounting for refraction.</span></div>
 <div class="line"><span class="keywordtype">double</span> jd_set = <a class="code hl_function" href="group__time.html#ga23af09cd8e5ec5ef4d0b03a347a4add0">novas_sets_below</a>(30.0, &amp;source, &amp;frame, NULL);</div>
-<div class="ttc" id="agroup__time_html_ga23af09cd8e5ec5ef4d0b03a347a4add0"><div class="ttname"><a href="group__time.html#ga23af09cd8e5ec5ef4d0b03a347a4add0">novas_sets_below</a></div><div class="ttdeci">double novas_sets_below(double el, const object *restrict source, const novas_frame *restrict frame, RefractionModel ref_model)</div><div class="ttdoc">Returns the UTC date at which a distant source appears to set below the specified elevation angle.</div><div class="ttdef"><b>Definition</b> frames.c:1721</div></div>
-<div class="ttc" id="agroup__time_html_gaaf38f64304fa0b00c9c56cead62043f3"><div class="ttname"><a href="group__time.html#gaaf38f64304fa0b00c9c56cead62043f3">novas_rises_above</a></div><div class="ttdeci">double novas_rises_above(double el, const object *restrict source, const novas_frame *restrict frame, RefractionModel ref_model)</div><div class="ttdoc">Returns the UTC date at which a distant source appears to rise above the specified elevation angle.</div><div class="ttdef"><b>Definition</b> frames.c:1682</div></div>
-<div class="ttc" id="agroup__time_html_gad04f1ebd7b2d39e5258b152fec231001"><div class="ttname"><a href="group__time.html#gad04f1ebd7b2d39e5258b152fec231001">novas_transit_time</a></div><div class="ttdeci">double novas_transit_time(const object *restrict source, const novas_frame *restrict frame)</div><div class="ttdoc">Returns the UTC date at which a source transits the local meridian.</div><div class="ttdef"><b>Definition</b> frames.c:1648</div></div>
+<div class="ttc" id="agroup__time_html_ga23af09cd8e5ec5ef4d0b03a347a4add0"><div class="ttname"><a href="group__time.html#ga23af09cd8e5ec5ef4d0b03a347a4add0">novas_sets_below</a></div><div class="ttdeci">double novas_sets_below(double el, const object *restrict source, const novas_frame *restrict frame, RefractionModel ref_model)</div><div class="ttdoc">Returns the UTC date at which a distant source appears to set below the specified elevation angle.</div><div class="ttdef"><b>Definition</b> frames.c:1720</div></div>
+<div class="ttc" id="agroup__time_html_gaaf38f64304fa0b00c9c56cead62043f3"><div class="ttname"><a href="group__time.html#gaaf38f64304fa0b00c9c56cead62043f3">novas_rises_above</a></div><div class="ttdeci">double novas_rises_above(double el, const object *restrict source, const novas_frame *restrict frame, RefractionModel ref_model)</div><div class="ttdoc">Returns the UTC date at which a distant source appears to rise above the specified elevation angle.</div><div class="ttdef"><b>Definition</b> frames.c:1681</div></div>
+<div class="ttc" id="agroup__time_html_gad04f1ebd7b2d39e5258b152fec231001"><div class="ttname"><a href="group__time.html#gad04f1ebd7b2d39e5258b152fec231001">novas_transit_time</a></div><div class="ttdeci">double novas_transit_time(const object *restrict source, const novas_frame *restrict frame)</div><div class="ttdoc">Returns the UTC date at which a source transits the local meridian.</div><div class="ttdef"><b>Definition</b> frames.c:1647</div></div>
 </div><!-- fragment --><p>Note, that in the current implementation these calls are not well suited sources that are at or within the geostationary orbit, such as such as Low Earth Orbit satellites (LEOs), geostationary satellites (which never really rise, set, or transit), or some Near Earth Objects (NEOs), which will rise set multiple times per day. For the latter, the above calls may still return a valid time, only without the guarantee that it is the time of the first such event after the specified frame instant. A future implementation may address near-Earth orbits better, so stay tuned for updates.</p>
 <p><a class="anchor" id="transforms-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md52"></a>
 Coordinate and velocity transforms (change of coordinate system)</h2>
 <p><b>SuperNOVAS</b> introduces matrix transforms (correctly since version <b>1.4</b>), which can take a position or velocity vector (geometric or apparent), obtained for an observer frame, from one coordinate system to another efficiently. E.g.:</p>
 <div class="fragment"><div class="line"><a class="code hl_struct" href="structnovas__frame.html">novas_frame</a> frame = ...       <span class="comment">// The observer frame (time and location)</span></div>
@@ -546,8 +546,8 @@ Coordinate and velocity transforms (change of coordinate system)</h2>
 <div class="line"><a class="code hl_function" href="group__geometric.html#gaa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector</a>(j2000_vec, &amp;T, tirs_vec);</div>
 <div class="ttc" id="agroup__equatorial_html_gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f"><div class="ttname"><a href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a></div><div class="ttdeci">@ NOVAS_TIRS</div><div class="ttdoc">Terrestrial Intermediate Reference System.</div><div class="ttdef"><b>Definition</b> novas.h:891</div></div>
 <div class="ttc" id="agroup__equatorial_html_gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9"><div class="ttname"><a href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a></div><div class="ttdeci">@ NOVAS_J2000</div><div class="ttdoc">The J2000 dynamical reference system.</div><div class="ttdef"><b>Definition</b> novas.h:879</div></div>
-<div class="ttc" id="agroup__frame_html_ga4d179c8573319fc25c775ce56ba055dc"><div class="ttname"><a href="group__frame.html#ga4d179c8573319fc25c775ce56ba055dc">novas_make_transform</a></div><div class="ttdeci">int novas_make_transform(const novas_frame *frame, enum novas_reference_system from_system, enum novas_reference_system to_system, novas_transform *transform)</div><div class="ttdoc">Calculates a transformation matrix that can be used to convert positions and velocities from one coor...</div><div class="ttdef"><b>Definition</b> frames.c:1265</div></div>
-<div class="ttc" id="agroup__geometric_html_gaa77895c891e9eeb4b1541f03acfd154e"><div class="ttname"><a href="group__geometric.html#gaa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector</a></div><div class="ttdeci">int novas_transform_vector(const double *in, const novas_transform *restrict transform, double *out)</div><div class="ttdoc">Transforms a position or velocity 3-vector from one coordinate reference system to another.</div><div class="ttdef"><b>Definition</b> frames.c:1442</div></div>
+<div class="ttc" id="agroup__frame_html_ga4d179c8573319fc25c775ce56ba055dc"><div class="ttname"><a href="group__frame.html#ga4d179c8573319fc25c775ce56ba055dc">novas_make_transform</a></div><div class="ttdeci">int novas_make_transform(const novas_frame *frame, enum novas_reference_system from_system, enum novas_reference_system to_system, novas_transform *transform)</div><div class="ttdoc">Calculates a transformation matrix that can be used to convert positions and velocities from one coor...</div><div class="ttdef"><b>Definition</b> frames.c:1264</div></div>
+<div class="ttc" id="agroup__geometric_html_gaa77895c891e9eeb4b1541f03acfd154e"><div class="ttname"><a href="group__geometric.html#gaa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector</a></div><div class="ttdeci">int novas_transform_vector(const double *in, const novas_transform *restrict transform, double *out)</div><div class="ttdoc">Transforms a position or velocity 3-vector from one coordinate reference system to another.</div><div class="ttdef"><b>Definition</b> frames.c:1441</div></div>
 <div class="ttc" id="astructnovas__transform_html"><div class="ttname"><a href="structnovas__transform.html">novas_transform</a></div><div class="ttdoc">A transformation between two astronomical coordinate systems for the same observer location and time.</div><div class="ttdef"><b>Definition</b> novas.h:1958</div></div>
 </div><!-- fragment --><p>Transformations support all <b>SupeNOVAS</b> reference systems, that is ICRS/GCRS, J2000, TOD, MOD, CIRS, TIRS, and ITRS. The same transform can also be used to convert apparent positions in a <span class="tt"><a class="el" href="group__apparent.html#ga98a44d2a2c0e4f211b128a94c848ed51" title="Celestial object&#39;s place on the sky; contains the output from place().">sky_pos</a></span> structure also, e.g.:</p>
 <div class="fragment"><div class="line">...</div>
@@ -557,10 +557,10 @@ Coordinate and velocity transforms (change of coordinate system)</h2>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Transform the J2000 apparent positions to TIRS....</span></div>
 <div class="line"><a class="code hl_function" href="group__apparent.html#gacfcfb90637cd1fdb25ef9afd1bda8e30">novas_transform_sky_pos</a>(&amp;j2000_pos, &amp;T, &amp;tirs_pos);</div>
-<div class="ttc" id="agroup__apparent_html_gacfcfb90637cd1fdb25ef9afd1bda8e30"><div class="ttname"><a href="group__apparent.html#gacfcfb90637cd1fdb25ef9afd1bda8e30">novas_transform_sky_pos</a></div><div class="ttdeci">int novas_transform_sky_pos(const sky_pos *in, const novas_transform *restrict transform, sky_pos *out)</div><div class="ttdoc">Transforms a position or velocity 3-vector from one coordinate reference system to another.</div><div class="ttdef"><b>Definition</b> frames.c:1468</div></div>
+<div class="ttc" id="agroup__apparent_html_gacfcfb90637cd1fdb25ef9afd1bda8e30"><div class="ttname"><a href="group__apparent.html#gacfcfb90637cd1fdb25ef9afd1bda8e30">novas_transform_sky_pos</a></div><div class="ttdeci">int novas_transform_sky_pos(const sky_pos *in, const novas_transform *restrict transform, sky_pos *out)</div><div class="ttdoc">Transforms a position or velocity 3-vector from one coordinate reference system to another.</div><div class="ttdef"><b>Definition</b> frames.c:1467</div></div>
 </div><!-- fragment --><hr  />
 <p><a class="anchor" id="tips-c99"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md61"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md55"></a>
 Tips and tricks (C99)</h1>
 <ul>
 <li><a class="el" href="#multi-threading-c99" title="multi-threading-c99">Multi-threaded calculations</a></li>
@@ -569,7 +569,7 @@ Tips and tricks (C99)</h1>
 <li><a class="el" href="#string-dates-c99" title="string-dates-c99">String dates</a></li>
 </ul>
 <p><a class="anchor" id="multi-threading-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md62"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md56"></a>
 Multi-threaded calculations</h2>
 <p>Some of the calculations involved can be expensive from a computational perspective. For the most typical use case however, NOVAS (and <b>SuperNOVAS</b>) has a trick up its sleeve: it caches the last result of intensive calculations so they may be re-used if the call is made with the same environmental parameters again (such as JD time and accuracy).</p>
 <p>A direct consequence of the caching of results is that calculations are generally not thread-safe as implemented by the original NOVAS C 3.1 library. One thread may be in the process of returning cached values for one set of input parameters while, at the same time, another thread is saving cached values for a different set of parameters. Thus, when running calculations in more than one thread, the NOVAS C results returned may at times be incorrect, or more precisely they may not correspond to the requested input parameters.</p>
@@ -580,7 +580,7 @@ Multi-threaded calculations</h2>
 <li>or else, set the appropriate non-standard keyword to use for declaring thread-local variables for your compiler in <span class="tt">config.mk</span> or in your equivalent build setup.</li>
 </ul>
 <p><a class="anchor" id="physical-units-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md63"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
 Physical units</h2>
 <p>The NOVAS API has been using conventional units (e.g. AU, km, day, deg, h) typically for its parameters and return values alike. Hence, <b>SuperNOVAS</b> follows the same conventions for its added functions and data structures also. However, when interfacing <b>SuperNOVAS</b> with other programs, libraries, or data files, it is often necessary to use quantities that are expressed in different units, such as SI or CGS. To facilitate such conversions, <span class="tt"><a class="el" href="novas_8h.html" title="SuperNOVAS types, definitions, and function prototypes.">novas.h</a></span> provides a set of unit constants, which can be used for converting to/from SI units (and radians).</p>
 <p>For example, <span class="tt"><a class="el" href="novas_8h.html" title="SuperNOVAS types, definitions, and function prototypes.">novas.h</a></span> contains the following definitions:</p>
@@ -616,7 +616,7 @@ Physical units</h2>
 <div class="ttc" id="agroup__source_html_ga7822b81ad3f75b448f446ed4da774e75"><div class="ttname"><a href="group__source.html#ga7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a></div><div class="ttdeci">#define NOVAS_KMS</div><div class="ttdoc">[m] One km/s in m/s.</div><div class="ttdef"><b>Definition</b> novas.h:325</div></div>
 <div class="ttc" id="agroup__source_html_gabc8f275a2d431e59a1ec9e276abaca1a"><div class="ttname"><a href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a></div><div class="ttdeci">#define NOVAS_AU</div><div class="ttdoc">[m] Astronomical unit (AU).</div><div class="ttdef"><b>Definition</b> novas.h:331</div></div>
 </div><!-- fragment --><p><a class="anchor" id="string-times-and-angles-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md70"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md62"></a>
 String times and angles</h2>
 <p><b>SuperNOVAS</b> functions typically input and output times and angles as decimal values (hours and degrees, but also as days and hour-angles), but that is not how these are represented in many cases. Time and right-ascention are often given as string values indicating hours, minutes, and seconds (e.g. "11:32:31.595", or "11h 32m 31.595s"). Similarly angles, are commonly represented as degrees, arc-minutes, and arc-seconds (e.g. "+53 60 19.9"). For that reason, <b>SuperNOVAS</b> provides a set of functions to convert string values expressed in decimal or broken-down format to floating point representation. E.g.,</p>
 <div class="fragment"><div class="line"><span class="comment">// Right ascention from string</span></div>
@@ -631,7 +631,7 @@ String times and angles</h2>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> ra_h = <a class="code hl_function" href="group__util.html#ga3ed26b6af870f6dbc353f651563afd4a">novas_str_hours</a>(<span class="stringliteral">&quot;9.31363&quot;</span>);</div>
 <div class="line"><span class="keywordtype">double</span> dec_d = <a class="code hl_function" href="group__util.html#ga6d6ada07aab7ce09fb8ea7b12660ebcd">novas_str_degrees</a>(<span class="stringliteral">&quot;53.16870278d South&quot;</span>);</div>
 </div><!-- fragment --><p><a class="anchor" id="string-dates-c99"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md73"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md64"></a>
 String dates</h2>
 <p>Dates are typically represented broken down into year, month, and day (e.g. "2025-02-16", or "16.02.2025", or "2/16/2025"), with or without a time marker, which itself may or may not include a time zone specification. In astronomy, the most commonly used string representation of dates is with ISO 8601 timestamps. The following are all valid ISO date specifications:</p>
 <div class="fragment"><div class="line">2025-02-16         # Date only (0 UTC)</div>

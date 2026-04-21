@@ -533,9 +533,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else an error from grav_undef2(), or -1 (errno will indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c" title="Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate correc...">novas_geom_to_app()</a> </dd>
-<dd>
-<a class="el" href="group__nonequatorial.html#gaa57cbcae2001fece2ee4a2babfbc5f89" title="Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...">novas_hor_to_app()</a>, novas_geom_to_hor(), <a class="el" href="group__geometric.html#gaa77895c891e9eeb4b1541f03acfd154e" title="Transforms a position or velocity 3-vector from one coordinate reference system to another.">novas_transform_vector()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c" title="Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate correc...">novas_geom_to_app()</a>, <a class="el" href="#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a>, <a class="el" href="group__geometric.html#gaa77895c891e9eeb4b1541f03acfd154e" title="Transforms a position or velocity 3-vector from one coordinate reference system to another.">novas_transform_vector()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="grav_8c.html#a1b107a24b9fadc79cc5df8c6f5505d16">grav_undo_planets()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea826bda7744c11bc1560f4db1848a17c6">NOVAS_ITRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>, <a class="el" href="novas_8h.html#ae55994629ca97e634b1bb97aafb3f49b">NOVAS_REFERENCE_SYSTEMS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, <a class="el" href="group__util.html#gae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>, <a class="el" href="group__util.html#gaf4090e519d7ce7ab1fcdb24b10126eb4">spin()</a>, <a class="el" href="group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652">wobble()</a>, and <a class="el" href="group__nonequatorial.html#ggaab27106a2d5c2c7fa64b2f208deff7f5a88d1bc6832a20ed34c4dab5753864851">WOBBLE_ITRS_TO_TIRS</a>.</p>
 
@@ -809,13 +807,9 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will indicate the type of error.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga59509eb558c0125e9c5081e712f7c3c7" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos_fp()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga59509eb558c0125e9c5081e712f7c3c7" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
 <dd>
-<a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
-<dd>
-<a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a> </dd>
-<dd>
-<a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> </dd></dl>
+<a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a>, <a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ga59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>.</p>
 
@@ -874,13 +868,9 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will indicate the type of error.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga59509eb558c0125e9c5081e712f7c3c7" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos_fp()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga03aca2626e38d04bcdf94fae14c6d11c" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos()</a>, <a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
 <dd>
-<a class="el" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
-<dd>
-<a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a> </dd>
-<dd>
-<a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> </dd></dl>
+<a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a>, <a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="observer_8c.html#a033f1bf4b01e0e21a0e05e13c19c02f6">aberration()</a>, <a class="el" href="group__spectral.html#gaddc432c55434789acee7bc2beacd7d69">NOVAS_AU_PER_DAY</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="group__source.html#ga7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="group__frame.html#ga4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>, <a class="el" href="group__geometric.html#ga8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="group__geometric.html#gaa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector()</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec()</a>.</p>
 
@@ -1716,7 +1706,7 @@ Variables</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.1</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a>, <a class="el" href="novas_8h.html#ae36bc31e1dad8a68f94f7a6414f0519f" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_planets()</a>, <a class="el" href="#ga4cb74da554b236c835302480688cfaac" title="Bitwise mask defining a default set of gravitating bodies to use for deflection calculations in full ...">DEFAULT_GRAV_BODIES_FULL_ACCURACY</a> </dd>
 <dd>
-set_ephem_provider_hp() </dd></dl>
+<a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="grav_8c.html#a48f90ac20950507fad9b880a7f7f2383">grav_def()</a>, <a class="el" href="grav_8c.html#aaae33249717912663bbb00be4fa4e6c3">grav_undef()</a>, <a class="el" href="group__frame.html#ga2972b3eafa2d7f6c29cff34bad9fcf0d">novas_change_observer()</a>, and <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
 
@@ -1747,7 +1737,7 @@ set_ephem_provider_hp() </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a>, <a class="el" href="novas_8h.html#ae36bc31e1dad8a68f94f7a6414f0519f" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_planets()</a>, <a class="el" href="#gaec64bf67d5a03b2b4fb2583e5918f1de" title="Bitwise mask defining a sefault set of gravitating bodies to use for deflection calculations in reduc...">DEFAULT_GRAV_BODIES_REDUCED_ACCURACY</a> </dd>
 <dd>
-<a class="el" href="group__solar-system.html#ga6097083c438a8d1872c2e00a66360030" title="Sets the function to use for obtaining position / velocity information for minor planets,...">set_ephem_provider()</a> </dd></dl>
+<a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="grav_8c.html#a48f90ac20950507fad9b880a7f7f2383">grav_def()</a>, <a class="el" href="grav_8c.html#aaae33249717912663bbb00be4fa4e6c3">grav_undef()</a>, <a class="el" href="group__frame.html#ga2972b3eafa2d7f6c29cff34bad9fcf0d">novas_change_observer()</a>, and <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
 

@@ -55,7 +55,7 @@ app = source.transform_to(frame);
 using namespace supernovas;
 
 // IERS Earth Orientation Parameters...
-EOP eop = EOP(37, 62.56 * Unit::ms, 
+EOP eop(37, 62.56 * Unit::ms, 
      103.4 * Unit::mas, 396.2 * Unit::mas);
 
 // Define ICRS coordinates

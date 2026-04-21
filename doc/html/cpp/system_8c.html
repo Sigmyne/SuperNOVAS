@@ -129,7 +129,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga13cd0b80eaa7bc682013f7e8ffbdbd6f" id="r_ga13cd0b80eaa7bc682013f7e8ffbdbd6f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga13cd0b80eaa7bc682013f7e8ffbdbd6f">novas_e2h_offset</a> (double dra, double ddec, double pa, double *restrict daz, double *restrict del)</td></tr>
 <tr class="memdesc:ga13cd0b80eaa7bc682013f7e8ffbdbd6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts coordinate offsets, from the local equatorial system to local horizontal offsets.  <br /></td></tr>
 <tr class="memitem:a2bfff0a80ee078a45bc4301cd1ad8299" id="r_a2bfff0a80ee078a45bc4301cd1ad8299"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a2bfff0a80ee078a45bc4301cd1ad8299">novas_enu_to_itrs</a> (const double *enu, double lon, double lat, double *itrf)</td></tr>
-<tr class="memdesc:a2bfff0a80ee078a45bc4301cd1ad8299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an East-North-Up (ENU) vector at the specified site to an ITRF vector.  <br /></td></tr>
+<tr class="memdesc:a2bfff0a80ee078a45bc4301cd1ad8299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.  <br /></td></tr>
 <tr class="memitem:ga095ba0ee644dc00c11dcdc5616bc96b0" id="r_ga095ba0ee644dc00c11dcdc5616bc96b0"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga095ba0ee644dc00c11dcdc5616bc96b0">novas_epa</a> (double ha, double dec, double lat)</td></tr>
 <tr class="memdesc:ga095ba0ee644dc00c11dcdc5616bc96b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Parallactic Angle (PA) calculated for an RA/Dec location of the sky at a given sidereal time.  <br /></td></tr>
 <tr class="memitem:ga7977de3e3edf8120b50cbd026c155f47" id="r_ga7977de3e3edf8120b50cbd026c155f47"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga7977de3e3edf8120b50cbd026c155f47">novas_h2e_offset</a> (double daz, double del, double pa, double *restrict dra, double *restrict ddec)</td></tr>
@@ -137,7 +137,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga73fcb54e47b2be0aa92810b5f55f7a3c" id="r_ga73fcb54e47b2be0aa92810b5f55f7a3c"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga73fcb54e47b2be0aa92810b5f55f7a3c">novas_hpa</a> (double az, double el, double lat)</td></tr>
 <tr class="memdesc:ga73fcb54e47b2be0aa92810b5f55f7a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Parallactic Angle (PA) calculated for a horizontal Az/El location of the sky.  <br /></td></tr>
 <tr class="memitem:a8e7cb3d7902bbecdb9329bf584950367" id="r_a8e7cb3d7902bbecdb9329bf584950367"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a8e7cb3d7902bbecdb9329bf584950367">novas_itrs_to_enu</a> (const double *itrf, double lon, double lat, double *enu)</td></tr>
-<tr class="memdesc:a8e7cb3d7902bbecdb9329bf584950367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ITRF position vector to a local East-North-Up (ENU) vector at the specified site.  <br /></td></tr>
+<tr class="memdesc:a8e7cb3d7902bbecdb9329bf584950367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site.  <br /></td></tr>
 <tr class="memitem:a601d246673742cf72a5dbe1449c97560" id="r_a601d246673742cf72a5dbe1449c97560"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a601d246673742cf72a5dbe1449c97560">novas_los_to_xyz</a> (const double *los, double lon, double lat, double *xyz)</td></tr>
 <tr class="memdesc:a601d246673742cf72a5dbe1449c97560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a 3D line-of-sight vector (&delta;&phi;, &delta;&theta;, &delta;r) to a rectangular equatorial (&delta;x, &delta;y, &delta;z) vector.  <br /></td></tr>
 <tr class="memitem:a16c920eee105431247e9a1d9bf1c3021" id="r_a16c920eee105431247e9a1d9bf1c3021"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a16c920eee105431247e9a1d9bf1c3021">novas_uvw_to_xyz</a> (const double *uvw, double ha, double dec, double *xyz)</td></tr>
@@ -741,20 +741,20 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Converts an East-North-Up (ENU) vector at the specified site to an ITRF vector. </p>
+<p>Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">enu</td><td>input East-North-Up (ENU) vector. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRF longitude of site. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRF latitude of site. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">itrf</td><td>output ITRF vector. It may be the same vector as the input. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRS longitude of site. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRS latitude of site. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">itrf</td><td>output ITRS vector. It may be the same vector as the input. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if either pointer argument is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>novas_itrf_to_enu() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a8e7cb3d7902bbecdb9329bf584950367" title="Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site.">novas_itrs_to_enu()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="classsupernovas_1_1Site.html#a73daad5121d46a112c0e73377f851073">supernovas::Site::enu_to_itrs()</a>, and <a class="el" href="classsupernovas_1_1Site.html#a9601544186a4f015da31840d2a3dcc8d">supernovas::Site::enu_to_itrs()</a>.</p>
 
@@ -789,12 +789,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Converts an ITRF position vector to a local East-North-Up (ENU) vector at the specified site. </p>
+<p>Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">itrf</td><td><em>xyz</em> position vector in ITRF. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRF longitude of site. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRF latitude of site. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">itrf</td><td><em>xyz</em> position vector in ITRS. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRS longitude of site. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRS latitude of site. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">enu</td><td>output East-North-Up (ENU) vector. It may be the same vector as the input. </td></tr>
   </table>
   </dd>
@@ -802,7 +802,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if either pointer argument is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>novas_enu_to_itrf() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2bfff0a80ee078a45bc4301cd1ad8299" title="Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.">novas_enu_to_itrs()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a9a65457117d1ae66096805c92e66767b">supernovas::GeodeticObserver::enu_velocity()</a>, <a class="el" href="classsupernovas_1_1Site.html#af93fe5e61e5816b66a9ba251820f11ac">supernovas::Site::itrs_to_enu()</a>, and <a class="el" href="classsupernovas_1_1Site.html#ae66a488b0b971cf9f2c65e844a1e37bc">supernovas::Site::itrs_to_enu()</a>.</p>
 

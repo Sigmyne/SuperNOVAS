@@ -1,20 +1,20 @@
 var index =
 [
-    [ "Table of Contents", "index.html#autotoc_md41", null ],
-    [ "Introduction", "index.html#autotoc_md47", [
-      [ "Related links", "index.html#autotoc_md53", null ]
+    [ "Table of Contents", "index.html#autotoc_md81", null ],
+    [ "Introduction", "index.html#autotoc_md83", [
+      [ "Related links", "index.html#autotoc_md84", null ]
     ] ],
-    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md57", null ],
-    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md68", null ],
-    [ "Building and installation", "index.html#autotoc_md72", [
-      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md74", null ],
-      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md82", null ],
-      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md86", null ],
-      [ "Linux packages", "index.html#autotoc_md87", null ],
-      [ "Homebrew package", "index.html#autotoc_md89", null ],
-      [ "Nix package", "index.html#autotoc_md92", null ]
+    [ "Fixed NOVAS C 3.1 issues", "index.html#autotoc_md86", null ],
+    [ "Compatibility with NOVAS C 3.1", "index.html#autotoc_md88", null ],
+    [ "Building and installation", "index.html#autotoc_md90", [
+      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md91", null ],
+      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md92", null ],
+      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md93", null ],
+      [ "Linux packages", "index.html#autotoc_md94", null ],
+      [ "Homebrew package", "index.html#autotoc_md95", null ],
+      [ "Nix package", "index.html#autotoc_md96", null ]
     ] ],
-    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md94", null ],
+    [ "Celestial coordinate systems (old vs. new)", "index.html#autotoc_md98", null ],
     [ "Example use cases", "index.html#autotoc_md100", [
       [ "Recommendation: set up an ephemeris provider", "index.html#autotoc_md101", null ],
       [ "Pick your flavor (C or C++)", "index.html#autotoc_md102", null ]
@@ -34,5 +34,5 @@ var index =
       [ "New functionality highlights", "index.html#autotoc_md117", null ],
       [ "Refinements to the NOVAS C API", "index.html#autotoc_md118", null ]
     ] ],
-    [ "Release schedule", "index.html#autotoc_md120", null ]
+    [ "Release schedule", "index.html#autotoc_md121", null ]
 ];

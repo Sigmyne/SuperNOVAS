@@ -3,7 +3,7 @@ var searchData=
   ['d_0',['D',['../structnovas__delaunay__args.html#af49414d0a8f73222730f65384706f633',1,'novas_delaunay_args']]],
   ['d_5flight_1',['d_light',['../novas_8h.html#ad799864f637c483fb49491bde5a93e25',1,'d_light(const double *pos_src, const double *pos_body):&#160;util.c'],['../util_8c.html#ad799864f637c483fb49491bde5a93e25',1,'d_light(const double *pos_src, const double *pos_body):&#160;util.c']]],
   ['data_20or_20services_2',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
-  ['data_20service_20integration_3',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
+  ['data_20service_20integration_3',['Universal ephemeris data / service integration',['../index.html#autotoc_md28',1,'']]],
   ['date_4',['date',['../classsupernovas_1_1Calendar.html#a56e9d8501f78df551e259262ad09c782',1,'supernovas::Calendar::date(int year, int month, int day, const TimeAngle &amp;time=TimeAngle::zero()) const'],['../classsupernovas_1_1Calendar.html#a88971d72debee624be8bc10945140714',1,'supernovas::Calendar::date(double jd) const'],['../classsupernovas_1_1Calendar.html#a865a6d0e1029718a8330a3905fe2a587',1,'supernovas::Calendar::date(time_t t, long nanos=0) const'],['../classsupernovas_1_1Calendar.html#ad750d9ed55b36342d226a273004643cd',1,'supernovas::Calendar::date(const struct timespec *ts) const']]],
   ['dates_5',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md72',1,'']]],
   ['day_6',['day',['../classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b',1,'supernovas::Unit']]],

@@ -380,7 +380,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
 <tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
-<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-rc5&quot;</td></tr>
+<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-devel&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
 <tr class="memitem:a44de9d1672290d153a1dfb0685886208" id="r_a44de9d1672290d153a1dfb0685886208"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a44de9d1672290d153a1dfb0685886208">SUPERNOVAS_VERSION_STRING</a></td></tr>
 <tr class="memdesc:a44de9d1672290d153a1dfb0685886208"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version string for this library.  <br /></td></tr>
@@ -859,7 +859,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga13cd0b80eaa7bc682013f7e8ffbdbd6f" id="r_ga13cd0b80eaa7bc682013f7e8ffbdbd6f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga13cd0b80eaa7bc682013f7e8ffbdbd6f">novas_e2h_offset</a> (double dra, double ddec, double pa, double *restrict daz, double *restrict del)</td></tr>
 <tr class="memdesc:ga13cd0b80eaa7bc682013f7e8ffbdbd6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts coordinate offsets, from the local equatorial system to local horizontal offsets.  <br /></td></tr>
 <tr class="memitem:ga2bfff0a80ee078a45bc4301cd1ad8299" id="r_ga2bfff0a80ee078a45bc4301cd1ad8299"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#ga2bfff0a80ee078a45bc4301cd1ad8299">novas_enu_to_itrs</a> (const double *enu, double lon, double lat, double *itrf)</td></tr>
-<tr class="memdesc:ga2bfff0a80ee078a45bc4301cd1ad8299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an East-North-Up (ENU) vector at the specified site to an ITRF vector.  <br /></td></tr>
+<tr class="memdesc:ga2bfff0a80ee078a45bc4301cd1ad8299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.  <br /></td></tr>
 <tr class="memitem:ga095ba0ee644dc00c11dcdc5616bc96b0" id="r_ga095ba0ee644dc00c11dcdc5616bc96b0"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga095ba0ee644dc00c11dcdc5616bc96b0">novas_epa</a> (double ha, double dec, double lat)</td></tr>
 <tr class="memdesc:ga095ba0ee644dc00c11dcdc5616bc96b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Parallactic Angle (PA) calculated for an RA/Dec location of the sky at a given sidereal time.  <br /></td></tr>
 <tr class="memitem:gaf4e18885b7d173eb3fe5f18b06f0b4d4" id="r_gaf4e18885b7d173eb3fe5f18b06f0b4d4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gaf4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch</a> (const char *restrict system)</td></tr>
@@ -919,7 +919,7 @@ Functions</h2></td></tr>
 <tr class="memitem:gad252294c7d4b3e62609c21f7550e2d09" id="r_gad252294c7d4b3e62609c21f7550e2d09"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#gad252294c7d4b3e62609c21f7550e2d09">novas_itrf_transform_site</a> (int from_year, const <a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *in, int to_year, <a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *out)</td></tr>
 <tr class="memdesc:gad252294c7d4b3e62609c21f7550e2d09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a geodetic location between two International Terrestrial Reference Frame (ITRF) realizations.  <br /></td></tr>
 <tr class="memitem:ga8e7cb3d7902bbecdb9329bf584950367" id="r_ga8e7cb3d7902bbecdb9329bf584950367"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#ga8e7cb3d7902bbecdb9329bf584950367">novas_itrs_to_enu</a> (const double *itrf, double lon, double lat, double *enu)</td></tr>
-<tr class="memdesc:ga8e7cb3d7902bbecdb9329bf584950367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ITRF position vector to a local East-North-Up (ENU) vector at the specified site.  <br /></td></tr>
+<tr class="memdesc:ga8e7cb3d7902bbecdb9329bf584950367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site.  <br /></td></tr>
 <tr class="memitem:ga54eee84c46900c80ca9966857c217cc8" id="r_ga54eee84c46900c80ca9966857c217cc8"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga54eee84c46900c80ca9966857c217cc8">novas_jd_from_date</a> (enum <a class="el" href="group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, int year, int month, int day, double hour)</td></tr>
 <tr class="memdesc:ga54eee84c46900c80ca9966857c217cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Julian day for a given calendar date.  <br /></td></tr>
 <tr class="memitem:ga8ed2fb55bcf86d9f1f434a2f832356a2" id="r_ga8ed2fb55bcf86d9f1f434a2f832356a2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date</a> (double tjd, enum <a class="el" href="group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, int *restrict year, int *restrict month, int *restrict day, double *restrict hour)</td></tr>
@@ -1981,7 +1981,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-rc5&quot;</td>
+          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-devel&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">

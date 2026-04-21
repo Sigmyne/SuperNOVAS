@@ -189,7 +189,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga7479134485c298faa858d73ee0513a11" id="r_ga7479134485c298faa858d73ee0513a11"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga7479134485c298faa858d73ee0513a11">novas_cartesian_to_geodetic</a> (const double *restrict xyz, enum <a class="el" href="#ga5928ca4a09c2883b58e951a4582255b3">novas_reference_ellipsoid</a> ellipsoid, double *restrict lon, double *restrict lat, double *restrict alt)</td></tr>
 <tr class="memdesc:ga7479134485c298faa858d73ee0513a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipsoid.  <br /></td></tr>
 <tr class="memitem:ga2bfff0a80ee078a45bc4301cd1ad8299" id="r_ga2bfff0a80ee078a45bc4301cd1ad8299"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga2bfff0a80ee078a45bc4301cd1ad8299">novas_enu_to_itrs</a> (const double *enu, double lon, double lat, double *itrf)</td></tr>
-<tr class="memdesc:ga2bfff0a80ee078a45bc4301cd1ad8299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an East-North-Up (ENU) vector at the specified site to an ITRF vector.  <br /></td></tr>
+<tr class="memdesc:ga2bfff0a80ee078a45bc4301cd1ad8299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.  <br /></td></tr>
 <tr class="memitem:gab07d86d425d68a62e94e965dd36b7a32" id="r_gab07d86d425d68a62e94e965dd36b7a32"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gab07d86d425d68a62e94e965dd36b7a32">novas_geodetic_to_cartesian</a> (double lon, double lat, double alt, enum <a class="el" href="#ga5928ca4a09c2883b58e951a4582255b3">novas_reference_ellipsoid</a> ellipsoid, double *xyz)</td></tr>
 <tr class="memdesc:gab07d86d425d68a62e94e965dd36b7a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference ellipsoid.  <br /></td></tr>
 <tr class="memitem:gadcd71f60a1f042af1eb7103134fad8c4" id="r_gadcd71f60a1f042af1eb7103134fad8c4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gadcd71f60a1f042af1eb7103134fad8c4">novas_geodetic_transform_site</a> (enum <a class="el" href="#ga5928ca4a09c2883b58e951a4582255b3">novas_reference_ellipsoid</a> from_ellipsoid, const <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *in, enum <a class="el" href="#ga5928ca4a09c2883b58e951a4582255b3">novas_reference_ellipsoid</a> to_ellipsoid, <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *out)</td></tr>
@@ -199,7 +199,7 @@ Functions</h2></td></tr>
 <tr class="memitem:gad252294c7d4b3e62609c21f7550e2d09" id="r_gad252294c7d4b3e62609c21f7550e2d09"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gad252294c7d4b3e62609c21f7550e2d09">novas_itrf_transform_site</a> (int from_year, const <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *in, int to_year, <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *out)</td></tr>
 <tr class="memdesc:gad252294c7d4b3e62609c21f7550e2d09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a geodetic location between two International Terrestrial Reference Frame (ITRF) realizations.  <br /></td></tr>
 <tr class="memitem:ga8e7cb3d7902bbecdb9329bf584950367" id="r_ga8e7cb3d7902bbecdb9329bf584950367"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga8e7cb3d7902bbecdb9329bf584950367">novas_itrs_to_enu</a> (const double *itrf, double lon, double lat, double *enu)</td></tr>
-<tr class="memdesc:ga8e7cb3d7902bbecdb9329bf584950367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ITRF position vector to a local East-North-Up (ENU) vector at the specified site.  <br /></td></tr>
+<tr class="memdesc:ga8e7cb3d7902bbecdb9329bf584950367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site.  <br /></td></tr>
 <tr class="memitem:ga0fc8f315f8606e09571ab49efb13baca" id="r_ga0fc8f315f8606e09571ab49efb13baca"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga0fc8f315f8606e09571ab49efb13baca">novas_set_default_weather</a> (<a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *site)</td></tr>
 <tr class="memdesc:ga0fc8f315f8606e09571ab49efb13baca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets default weather parameters based on an approximate global model to the mean annualized temperatures, based on Feulner et al.  <br /></td></tr>
 <tr class="memitem:ga65df4b49c0c33285ef5ddcf6814384dc" id="r_ga65df4b49c0c33285ef5ddcf6814384dc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict ts, const <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict site, const double *restrict v_itrs, double xp, double yp, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, double *restrict pos, double *restrict vel)</td></tr>
@@ -581,10 +581,10 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if the output argument is NULL.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="#gab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a>, <a class="el" href="#ga9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a> </dd>
 <dd>
-<a class="el" href="#gaa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a>, <a class="el" href="#gad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a>, <a class="el" href="#gaa82db32ce7b115db4f0a077ca899589b" title="Initializes an observer data structure for a ground-based observer at the specified observing site,...">make_observer_at_site()</a>, <a class="el" href="#ga6c146e4d10152d5e1ffb978f2fc962be" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_observer_in_space()</a>, <a class="el" href="#ga9c3f1a1bc3fd9ac6d211806913d2d529" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_solar_system_observer()</a>, make_observer_at geocenter(), <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></dd></dl>
+<a class="el" href="#gaa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a>, <a class="el" href="#gad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a>, <a class="el" href="#gaa82db32ce7b115db4f0a077ca899589b" title="Initializes an observer data structure for a ground-based observer at the specified observing site,...">make_observer_at_site()</a>, <a class="el" href="#ga6c146e4d10152d5e1ffb978f2fc962be" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_observer_in_space()</a>, <a class="el" href="#ga9c3f1a1bc3fd9ac6d211806913d2d529" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_solar_system_observer()</a>, <a class="el" href="#gaabb3ab0d99aa6e487cdcf6b454949b75" title="Populates an &#39;observer&#39; data structure for a hypothetical observer located at Earth&#39;s geocenter.">make_observer_at_geocenter()</a>, <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga2bfff0a80ee078a45bc4301cd1ad8299" title="Converts an East-North-Up (ENU) vector at the specified site to an ITRF vector.">novas_enu_to_itrs()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga2bfff0a80ee078a45bc4301cd1ad8299" title="Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.">novas_enu_to_itrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ga406038a5cbe32b7e0e7233f6145e4cf5">IN_SPACE_INIT</a>, <a class="el" href="observer_8c.html#a0f2096c7954b583fe749553b956ff9d2">make_observer()</a>, <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3a1665bf146ca1a4d11380bf4d7d9d7058">NOVAS_AIRBORNE_OBSERVER</a>, and <a class="el" href="structnovas__in__space.html#ab4a55b14aa16bcbc5ca3bdc1a6d078af">novas_in_space::sc_vel</a>.</p>
 
@@ -1205,20 +1205,20 @@ novas_set_weather(), <a class="el" href="#ga7479134485c298faa858d73ee0513a11" ti
       </table>
 </div><div class="memdoc">
 
-<p>Converts an East-North-Up (ENU) vector at the specified site to an ITRF vector. </p>
+<p>Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">enu</td><td>input East-North-Up (ENU) vector. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRF longitude of site. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRF latitude of site. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">itrf</td><td>output ITRF vector. It may be the same vector as the input. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRS longitude of site. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRS latitude of site. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">itrf</td><td>output ITRS vector. It may be the same vector as the input. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if either pointer argument is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>novas_itrf_to_enu() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga8e7cb3d7902bbecdb9329bf584950367" title="Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site.">novas_itrs_to_enu()</a> </dd></dl>
 
 </div>
 </div>
@@ -1453,9 +1453,7 @@ novas_set_weather(), <a class="el" href="#ga7479134485c298faa858d73ee0513a11" ti
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if either site pointer is NULL (errno set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a>, <a class="el" href="#gafd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a>, <a class="el" href="#ga236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="#gad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a> </dd>
-<dd>
-novas_transform_ellipsoid() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gadcd71f60a1f042af1eb7103134fad8c4" title="Transforms a geodetic location from one reference ellipsoid to another.">novas_geodetic_transform_site()</a>, <a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a>, <a class="el" href="#gafd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a>, <a class="el" href="#ga236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="#gad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="structnovas__on__surface.html#ae88d1b0111ef62d14083ec38995d8ea9">novas_on_surface::height</a>, <a class="el" href="structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2">novas_on_surface::humidity</a>, <a class="el" href="structnovas__on__surface.html#a77f70abeb6c896623a85b1bdf8861151">novas_on_surface::latitude</a>, <a class="el" href="structnovas__on__surface.html#af62107483c0a9ded0168993c1cfd933f">novas_on_surface::longitude</a>, <a class="el" href="#ga7479134485c298faa858d73ee0513a11">novas_cartesian_to_geodetic()</a>, <a class="el" href="#gab07d86d425d68a62e94e965dd36b7a32">novas_geodetic_to_cartesian()</a>, <a class="el" href="#gga5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118">NOVAS_GRS80_ELLIPSOID</a>, <a class="el" href="#gafd98ed01148f1291018809d77785527f">novas_itrf_transform()</a>, <a class="el" href="structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab">novas_on_surface::pressure</a>, and <a class="el" href="structnovas__on__surface.html#a1fd9464e53f03ebb2cb987aa1a2dc41b">novas_on_surface::temperature</a>.</p>
 
@@ -1490,12 +1488,12 @@ novas_transform_ellipsoid() </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Converts an ITRF position vector to a local East-North-Up (ENU) vector at the specified site. </p>
+<p>Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">itrf</td><td><em>xyz</em> position vector in ITRF. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRF longitude of site. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRF latitude of site. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">itrf</td><td><em>xyz</em> position vector in ITRS. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRS longitude of site. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRS latitude of site. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">enu</td><td>output East-North-Up (ENU) vector. It may be the same vector as the input. </td></tr>
   </table>
   </dd>
@@ -1503,7 +1501,7 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if either pointer argument is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>novas_enu_to_itrf() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga2bfff0a80ee078a45bc4301cd1ad8299" title="Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.">novas_enu_to_itrs()</a> </dd></dl>
 
 </div>
 </div>

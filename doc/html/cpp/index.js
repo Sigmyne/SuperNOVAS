@@ -22,11 +22,11 @@ var index =
     [ "Incorporating Solar-system ephemeris data or services", "index.html#autotoc_md24", [
       [ "CALCEPH integration", "index.html#autotoc_md25", null ],
       [ "NAIF CSPICE toolkit integration", "index.html#autotoc_md26", null ],
-      [ "Universal ephemeris data / service integration", "index.html#autotoc_md27", null ]
+      [ "Universal ephemeris data / service integration", "index.html#autotoc_md28", null ]
     ] ],
-    [ "Notes on precision", "index.html#autotoc_md28", [
-      [ "Prerequisites to precise results", "index.html#autotoc_md29", null ],
-      [ "Reduced accuracy shortcuts", "index.html#autotoc_md30", null ]
+    [ "Notes on precision", "index.html#autotoc_md29", [
+      [ "Prerequisites to precise results", "index.html#autotoc_md30", null ],
+      [ "Reduced accuracy shortcuts", "index.html#autotoc_md31", null ]
     ] ],
     [ "Runtime debug support", "index.html#autotoc_md33", null ],
     [ "Representative benchmarks", "index.html#autotoc_md35", null ],

@@ -374,7 +374,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
 <tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
-<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-rc5&quot;</td></tr>
+<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-devel&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
 <tr class="memitem:a44de9d1672290d153a1dfb0685886208" id="r_a44de9d1672290d153a1dfb0685886208"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a44de9d1672290d153a1dfb0685886208">SUPERNOVAS_VERSION_STRING</a></td></tr>
 <tr class="memdesc:a44de9d1672290d153a1dfb0685886208"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version string for this library.  <br /></td></tr>
@@ -820,7 +820,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga13cd0b80eaa7bc682013f7e8ffbdbd6f" id="r_ga13cd0b80eaa7bc682013f7e8ffbdbd6f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga13cd0b80eaa7bc682013f7e8ffbdbd6f">novas_e2h_offset</a> (double dra, double ddec, double pa, double *restrict daz, double *restrict del)</td></tr>
 <tr class="memdesc:ga13cd0b80eaa7bc682013f7e8ffbdbd6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts coordinate offsets, from the local equatorial system to local horizontal offsets.  <br /></td></tr>
 <tr class="memitem:a2bfff0a80ee078a45bc4301cd1ad8299" id="r_a2bfff0a80ee078a45bc4301cd1ad8299"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a2bfff0a80ee078a45bc4301cd1ad8299">novas_enu_to_itrs</a> (const double *enu, double lon, double lat, double *itrf)</td></tr>
-<tr class="memdesc:a2bfff0a80ee078a45bc4301cd1ad8299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an East-North-Up (ENU) vector at the specified site to an ITRF vector.  <br /></td></tr>
+<tr class="memdesc:a2bfff0a80ee078a45bc4301cd1ad8299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.  <br /></td></tr>
 <tr class="memitem:ga095ba0ee644dc00c11dcdc5616bc96b0" id="r_ga095ba0ee644dc00c11dcdc5616bc96b0"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga095ba0ee644dc00c11dcdc5616bc96b0">novas_epa</a> (double ha, double dec, double lat)</td></tr>
 <tr class="memdesc:ga095ba0ee644dc00c11dcdc5616bc96b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Parallactic Angle (PA) calculated for an RA/Dec location of the sky at a given sidereal time.  <br /></td></tr>
 <tr class="memitem:af4e18885b7d173eb3fe5f18b06f0b4d4" id="r_af4e18885b7d173eb3fe5f18b06f0b4d4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch</a> (const char *restrict system)</td></tr>
@@ -880,7 +880,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ad252294c7d4b3e62609c21f7550e2d09" id="r_ad252294c7d4b3e62609c21f7550e2d09"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad252294c7d4b3e62609c21f7550e2d09">novas_itrf_transform_site</a> (int from_year, const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *in, int to_year, <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *out)</td></tr>
 <tr class="memdesc:ad252294c7d4b3e62609c21f7550e2d09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a geodetic location between two International Terrestrial Reference Frame (ITRF) realizations.  <br /></td></tr>
 <tr class="memitem:a8e7cb3d7902bbecdb9329bf584950367" id="r_a8e7cb3d7902bbecdb9329bf584950367"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a8e7cb3d7902bbecdb9329bf584950367">novas_itrs_to_enu</a> (const double *itrf, double lon, double lat, double *enu)</td></tr>
-<tr class="memdesc:a8e7cb3d7902bbecdb9329bf584950367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ITRF position vector to a local East-North-Up (ENU) vector at the specified site.  <br /></td></tr>
+<tr class="memdesc:a8e7cb3d7902bbecdb9329bf584950367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site.  <br /></td></tr>
 <tr class="memitem:a54eee84c46900c80ca9966857c217cc8" id="r_a54eee84c46900c80ca9966857c217cc8"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a54eee84c46900c80ca9966857c217cc8">novas_jd_from_date</a> (enum <a class="el" href="#aa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, int year, int month, int day, double hour)</td></tr>
 <tr class="memdesc:a54eee84c46900c80ca9966857c217cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Julian day for a given calendar date.  <br /></td></tr>
 <tr class="memitem:a8ed2fb55bcf86d9f1f434a2f832356a2" id="r_a8ed2fb55bcf86d9f1f434a2f832356a2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date</a> (double tjd, enum <a class="el" href="#aa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, int *restrict year, int *restrict month, int *restrict day, double *restrict hour)</td></tr>
@@ -3276,7 +3276,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-rc5&quot;</td>
+          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-devel&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3795,7 +3795,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Direction constant to use for <a class="el" href="#aa11d2253a44261370af8d0c32f0715e9" title="Transforms a vector from the dynamical reference system to the International Celestial Reference Syst...">frame_tie()</a>, to determine the direction of transformation between J2000 and ICRS coordinates. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa11d2253a44261370af8d0c32f0715e9" title="Transforms a vector from the dynamical reference system to the International Celestial Reference Syst...">frame_tie()</a>, gsrs_to_j2000(), <a class="el" href="#a9d51ca5c972013024755c644c96d0586" title="Change J2000 coordinates to ICRS / GCRS coordinates.">j2000_to_gcrs()</a>, <a class="el" href="#ae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f" title="Change coordinates from ICRS to the J2000 (dynamical) frame.">J2000_TO_ICRS</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa11d2253a44261370af8d0c32f0715e9" title="Transforms a vector from the dynamical reference system to the International Celestial Reference Syst...">frame_tie()</a>, <a class="el" href="#aeea4b5085c7267714492fae6108fb975" title="Changes ICRS / GCRS coordinates to J2000 coordinates.">gcrs_to_j2000()</a>, <a class="el" href="#a9d51ca5c972013024755c644c96d0586" title="Change J2000 coordinates to ICRS / GCRS coordinates.">j2000_to_gcrs()</a>, <a class="el" href="#ae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f" title="Change coordinates from ICRS to the J2000 (dynamical) frame.">J2000_TO_ICRS</a> </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f" name="ae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f"></a>J2000_TO_ICRS&#160;</td><td class="fielddoc"><p>Change coordinates from ICRS to the J2000 (dynamical) frame. </p>
 <p>(You can also use any negative value for the same effect). </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9d51ca5c972013024755c644c96d0586" title="Change J2000 coordinates to ICRS / GCRS coordinates.">j2000_to_gcrs()</a> </dd></dl>
@@ -5193,9 +5193,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if there is a required function is not provided (errno set to ENOSYS), or if one of the output pointer arguments is NULL (errno set to EINVAL). 1 if the input Julian date ('tjd') is out of range, 2 if 'body' is invalid, or 3 if the high-precision orbital data cannot be produced (default return value).</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="solsys3_8c.html#a279bca0519117cee9a3bd4382f38e7ad" title="Specify whether the high-precision call is allowed to return a low-precision result.">enable_earth_sun_hp()</a>, <a class="el" href="solsys3_8c.html#a580f5949c8a29cdd7bf4787aee891f2b" title="Provides the position and velocity of the Earth and Sun only at epoch &#39;jd_tdb&#39; by evaluating a closed...">earth_sun_calc()</a>, <a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a> </dd>
-<dd>
-solarsystem_hp() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="solsys3_8c.html#a279bca0519117cee9a3bd4382f38e7ad" title="Specify whether the high-precision call is allowed to return a low-precision result.">enable_earth_sun_hp()</a>, <a class="el" href="solsys3_8c.html#a580f5949c8a29cdd7bf4787aee891f2b" title="Provides the position and velocity of the Earth and Sun only at epoch &#39;jd_tdb&#39; by evaluating a closed...">earth_sun_calc()</a>, <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="solsys3_8c.html#a580f5949c8a29cdd7bf4787aee891f2b">earth_sun_calc()</a>.</p>
 
@@ -7321,10 +7319,10 @@ solarsystem_hp() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if the output argument is NULL.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="observer_8c.html#a236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="observer_8c.html#ab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a>, <a class="el" href="observer_8c.html#a9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a> </dd>
 <dd>
-<a class="el" href="observer_8c.html#aa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a>, <a class="el" href="observer_8c.html#ad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a>, <a class="el" href="observer_8c.html#aa82db32ce7b115db4f0a077ca899589b" title="Initializes an observer data structure for a ground-based observer at the specified observing site,...">make_observer_at_site()</a>, <a class="el" href="observer_8c.html#a6c146e4d10152d5e1ffb978f2fc962be" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_observer_in_space()</a>, <a class="el" href="observer_8c.html#a9c3f1a1bc3fd9ac6d211806913d2d529" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_solar_system_observer()</a>, make_observer_at geocenter(), <a class="el" href="#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></dd></dl>
+<a class="el" href="observer_8c.html#aa2f9fc986f99c1ec7092330dbf233fef" title="Initializes an observer data structure for a ground-based observer with the specified GPS / WGS84 loc...">make_gps_observer()</a>, <a class="el" href="observer_8c.html#ad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a>, <a class="el" href="observer_8c.html#aa82db32ce7b115db4f0a077ca899589b" title="Initializes an observer data structure for a ground-based observer at the specified observing site,...">make_observer_at_site()</a>, <a class="el" href="observer_8c.html#a6c146e4d10152d5e1ffb978f2fc962be" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_observer_in_space()</a>, <a class="el" href="observer_8c.html#a9c3f1a1bc3fd9ac6d211806913d2d529" title="Populates an &#39;observer&#39; data structure, for an observer situated on a near-Earth spacecraft,...">make_solar_system_observer()</a>, <a class="el" href="observer_8c.html#aabb3ab0d99aa6e487cdcf6b454949b75" title="Populates an &#39;observer&#39; data structure for a hypothetical observer located at Earth&#39;s geocenter.">make_observer_at_geocenter()</a>, <a class="el" href="#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2bfff0a80ee078a45bc4301cd1ad8299" title="Converts an East-North-Up (ENU) vector at the specified site to an ITRF vector.">novas_enu_to_itrs()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2bfff0a80ee078a45bc4301cd1ad8299" title="Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.">novas_enu_to_itrs()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a406038a5cbe32b7e0e7233f6145e4cf5">IN_SPACE_INIT</a>, <a class="el" href="observer_8c.html#a0f2096c7954b583fe749553b956ff9d2">make_observer()</a>, <a class="el" href="#a6140c39d1526b137f827e2091ecc36b3a1665bf146ca1a4d11380bf4d7d9d7058">NOVAS_AIRBORNE_OBSERVER</a>, and <a class="el" href="structnovas__in__space.html#ab4a55b14aa16bcbc5ca3bdc1a6d078af">novas_in_space::sc_vel</a>.</p>
 
@@ -8579,9 +8577,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else an error from grav_undef2(), or -1 (errno will indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="frames_8c.html#a4817703c9357f702a27812584c91f87c" title="Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate correc...">novas_geom_to_app()</a> </dd>
-<dd>
-<a class="el" href="frames_8c.html#aa57cbcae2001fece2ee4a2babfbc5f89" title="Converts an observed azimuth and elevation coordinate to right ascension (R.A.) and declination coord...">novas_hor_to_app()</a>, novas_geom_to_hor(), <a class="el" href="frames_8c.html#aa77895c891e9eeb4b1541f03acfd154e" title="Transforms a position or velocity 3-vector from one coordinate reference system to another.">novas_transform_vector()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="frames_8c.html#a4817703c9357f702a27812584c91f87c" title="Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate correc...">novas_geom_to_app()</a>, <a class="el" href="frames_8c.html#a3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a>, <a class="el" href="frames_8c.html#aa77895c891e9eeb4b1541f03acfd154e" title="Transforms a position or velocity 3-vector from one coordinate reference system to another.">novas_transform_vector()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a1b107a24b9fadc79cc5df8c6f5505d16">grav_undo_planets()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea826bda7744c11bc1560f4db1848a17c6">NOVAS_ITRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>, <a class="el" href="#ae55994629ca97e634b1bb97aafb3f49b">NOVAS_REFERENCE_SYSTEMS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, <a class="el" href="#ae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>, <a class="el" href="#af4090e519d7ce7ab1fcdb24b10126eb4">spin()</a>, <a class="el" href="#aead87744eeb3029ce7d5ffb1801ee652">wobble()</a>, and <a class="el" href="#aab27106a2d5c2c7fa64b2f208deff7f5a88d1bc6832a20ed34c4dab5753864851">WOBBLE_ITRS_TO_TIRS</a>.</p>
 
@@ -9207,7 +9203,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section return"><dt>Returns</dt><dd>[s] Precise TCG time difference (t1-t2), or NAN if one of the inputs was NULL (errno will be set to EINVAL)</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#a8f50ed7773f874ed8b844e048a77c66e" title="Returns the UT1 based time difference (t1 - t2) in days between two astronomical time specifications.">novas_diff_time_scale()</a>, novas_diff_tdb(), <a class="el" href="timescale_8c.html#abdcc8e194d79787838d1ffc064449932" title="Returns the Terrestrial Time (TT) based time difference (t1 - t2) in days between two astronomical ti...">novas_diff_time()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#a8f50ed7773f874ed8b844e048a77c66e" title="Returns the UT1 based time difference (t1 - t2) in days between two astronomical time specifications.">novas_diff_time_scale()</a>, <a class="el" href="timescale_8c.html#a4818ab9be2f0891091c719db01bcfa98" title="Returns the Barycentric Coordinate Time (TCB) based time difference (t1 - t2) in days between two ast...">novas_diff_tcb()</a>, <a class="el" href="timescale_8c.html#abdcc8e194d79787838d1ffc064449932" title="Returns the Terrestrial Time (TT) based time difference (t1 - t2) in days between two astronomical ti...">novas_diff_time()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="timescale_8c.html#abdcc8e194d79787838d1ffc064449932">novas_diff_time()</a>.</p>
 
@@ -9356,7 +9352,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="earth_8c.html#a087d587e90b4e2138c0dba12d727696e" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop_at_time()</a> </dd>
 <dd>
-novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534e9e52055a047286" title="Calculate corrections to the Earth orientation parameters (EOP) due to the ocean tides.">novas_diurnal_ocean_tides()</a> </dd></dl>
+<a class="el" href="earth_8c.html#a9ab448b9d09b5656cf74fe10ab855fd4" title="Calculate diurnal and semi-diurnal libration corrections to the Earth orientation parameters (EOP) fo...">novas_diurnal_libration()</a>, <a class="el" href="earth_8c.html#a90862cafeee0a3534e9e52055a047286" title="Calculate corrections to the Earth orientation parameters (EOP) due to the ocean tides.">novas_diurnal_ocean_tides()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>.</p>
 
@@ -9535,7 +9531,7 @@ novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if the delaunay arguments are NULL (errno set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="earth_8c.html#a3fe699281044873f4137344b28884cea" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a>, novas_diurnal_librations() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="earth_8c.html#a3fe699281044873f4137344b28884cea" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a>, <a class="el" href="earth_8c.html#a9ab448b9d09b5656cf74fe10ab855fd4" title="Calculate diurnal and semi-diurnal libration corrections to the Earth orientation parameters (EOP) fo...">novas_diurnal_libration()</a> </dd></dl>
 
 </div>
 </div>
@@ -9616,20 +9612,20 @@ novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534
       </table>
 </div><div class="memdoc">
 
-<p>Converts an East-North-Up (ENU) vector at the specified site to an ITRF vector. </p>
+<p>Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">enu</td><td>input East-North-Up (ENU) vector. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRF longitude of site. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRF latitude of site. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">itrf</td><td>output ITRF vector. It may be the same vector as the input. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRS longitude of site. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRS latitude of site. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">itrf</td><td>output ITRS vector. It may be the same vector as the input. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if either pointer argument is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>novas_itrf_to_enu() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="system_8c.html#a8e7cb3d7902bbecdb9329bf584950367" title="Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site.">novas_itrs_to_enu()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="classsupernovas_1_1Site.html#a73daad5121d46a112c0e73377f851073">supernovas::Site::enu_to_itrs()</a>, and <a class="el" href="classsupernovas_1_1Site.html#a9601544186a4f015da31840d2a3dcc8d">supernovas::Site::enu_to_itrs()</a>.</p>
 
@@ -10596,7 +10592,7 @@ novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 in the source is NULL (errno set to EINVAL) or 1 if the name is too long (errno is set to ERANGE).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#a45f7fdc15580138517ce452a236674d7" title="Sets a radial velocity for a catalog source, defined w.r.t.">novas_set_ssb_vel()</a>, <a class="el" href="target_8c.html#a4aa0c52a1d4838feb4255974486462a7" title="Sets a radial velocity for a catalog source, defined w.r.t.">novas_set_lsr_vel()</a>, <a class="el" href="target_8c.html#a4efac9e50efec20489d47726217e9c7e" title="Sets a redhift for a catalog source, as a relativistic measure of velocity.">novas_set_redshift()</a>, <a class="el" href="target_8c.html#a8ac3513c266181baf92a6b3c22818c99" title="Sets the proper-motion for a (Galactic) catalog source.">novas_set_proper_motion()</a>, <a class="el" href="target_8c.html#a69274f4ac2631335e1e901142d31f541" title="Sets the parallax (a measure of distance) for a catalog source.">novas_set_parallax()</a>, <a class="el" href="target_8c.html#aa076ebd4c967fb9afa24bd85feb84f63" title="Sets the distance for a catalog source.">novas_set_distance()</a>, <a class="el" href="target_8c.html#a5e92f920835111db719e880a61248045" title="Sets the optional catalog information for a sidereal source.">novas_set_catalog()</a>, novas_make_cat_entry() </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#a45f7fdc15580138517ce452a236674d7" title="Sets a radial velocity for a catalog source, defined w.r.t.">novas_set_ssb_vel()</a>, <a class="el" href="target_8c.html#a4aa0c52a1d4838feb4255974486462a7" title="Sets a radial velocity for a catalog source, defined w.r.t.">novas_set_lsr_vel()</a>, <a class="el" href="target_8c.html#a4efac9e50efec20489d47726217e9c7e" title="Sets a redhift for a catalog source, as a relativistic measure of velocity.">novas_set_redshift()</a>, <a class="el" href="target_8c.html#a8ac3513c266181baf92a6b3c22818c99" title="Sets the proper-motion for a (Galactic) catalog source.">novas_set_proper_motion()</a>, <a class="el" href="target_8c.html#a69274f4ac2631335e1e901142d31f541" title="Sets the parallax (a measure of distance) for a catalog source.">novas_set_parallax()</a>, <a class="el" href="target_8c.html#aa076ebd4c967fb9afa24bd85feb84f63" title="Sets the distance for a catalog source.">novas_set_distance()</a>, <a class="el" href="target_8c.html#a5e92f920835111db719e880a61248045" title="Sets the optional catalog information for a sidereal source.">novas_set_catalog()</a>, <a class="el" href="target_8c.html#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
 <dd>
 <a class="el" href="#a3ed26b6af870f6dbc353f651563afd4a" title="Returns a time or time-like angleparsed from a string that contains either a decimal hours or else a ...">novas_str_hours()</a>, <a class="el" href="#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> </dd></dl>
 
@@ -10955,9 +10951,7 @@ novas_diurnal_librations(), <a class="el" href="earth_8c.html#a90862cafeee0a3534
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if either site pointer is NULL (errno set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="itrf_8c.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a>, <a class="el" href="itrf_8c.html#afd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a>, <a class="el" href="#a236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="#ad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a> </dd>
-<dd>
-novas_transform_ellipsoid() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="itrf_8c.html#adcd71f60a1f042af1eb7103134fad8c4" title="Transforms a geodetic location from one reference ellipsoid to another.">novas_geodetic_transform_site()</a>, <a class="el" href="itrf_8c.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a>, <a class="el" href="itrf_8c.html#afd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a>, <a class="el" href="#a236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="#ad8b2d2e6ca9570f09a0ca1f82957ed48" title="Initializes an observer data structure for a ground-based observer with the specified International T...">make_itrf_observer()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="structnovas__on__surface.html#ae88d1b0111ef62d14083ec38995d8ea9">novas_on_surface::height</a>, <a class="el" href="structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2">novas_on_surface::humidity</a>, <a class="el" href="structnovas__on__surface.html#a77f70abeb6c896623a85b1bdf8861151">novas_on_surface::latitude</a>, <a class="el" href="structnovas__on__surface.html#af62107483c0a9ded0168993c1cfd933f">novas_on_surface::longitude</a>, <a class="el" href="itrf_8c.html#a7479134485c298faa858d73ee0513a11">novas_cartesian_to_geodetic()</a>, <a class="el" href="itrf_8c.html#ab07d86d425d68a62e94e965dd36b7a32">novas_geodetic_to_cartesian()</a>, <a class="el" href="#a5928ca4a09c2883b58e951a4582255b3a4080d8e188d2d352b0f63c759ffee118">NOVAS_GRS80_ELLIPSOID</a>, <a class="el" href="itrf_8c.html#afd98ed01148f1291018809d77785527f">novas_itrf_transform()</a>, <a class="el" href="structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab">novas_on_surface::pressure</a>, and <a class="el" href="structnovas__on__surface.html#a1fd9464e53f03ebb2cb987aa1a2dc41b">novas_on_surface::temperature</a>.</p>
 
@@ -10994,12 +10988,12 @@ novas_transform_ellipsoid() </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Converts an ITRF position vector to a local East-North-Up (ENU) vector at the specified site. </p>
+<p>Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">itrf</td><td><em>xyz</em> position vector in ITRF. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRF longitude of site. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRF latitude of site. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">itrf</td><td><em>xyz</em> position vector in ITRS. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] ITRS longitude of site. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] ITRS latitude of site. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">enu</td><td>output East-North-Up (ENU) vector. It may be the same vector as the input. </td></tr>
   </table>
   </dd>
@@ -11007,7 +11001,7 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if either pointer argument is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>novas_enu_to_itrf() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="system_8c.html#a2bfff0a80ee078a45bc4301cd1ad8299" title="Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.">novas_enu_to_itrs()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a9a65457117d1ae66096805c92e66767b">supernovas::GeodeticObserver::enu_velocity()</a>, <a class="el" href="classsupernovas_1_1Site.html#af93fe5e61e5816b66a9ba251820f11ac">supernovas::Site::itrs_to_enu()</a>, and <a class="el" href="classsupernovas_1_1Site.html#ae66a488b0b971cf9f2c65e844a1e37bc">supernovas::Site::itrs_to_enu()</a>.</p>
 
@@ -11797,13 +11791,9 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="moon_8c.html#a8b6d81b2cb348dbd6dc157a9724962e0" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel_fp()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="moon_8c.html#a8b6d81b2cb348dbd6dc157a9724962e0" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel_fp()</a>, <a class="el" href="moon_8c.html#a03aca2626e38d04bcdf94fae14c6d11c" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos()</a> </dd>
 <dd>
-<a class="el" href="moon_8c.html#a03aca2626e38d04bcdf94fae14c6d11c" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos()</a> </dd>
-<dd>
-<a class="el" href="moon_8c.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a> </dd>
-<dd>
-<a class="el" href="#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a> </dd></dl>
+<a class="el" href="moon_8c.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a>, <a class="el" href="#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="moon_8c.html#a8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>.</p>
 
@@ -11868,13 +11858,9 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will indicate the type of error.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="moon_8c.html#a504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="moon_8c.html#a504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a>, <a class="el" href="moon_8c.html#a59509eb558c0125e9c5081e712f7c3c7" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos_fp()</a> </dd>
 <dd>
-<a class="el" href="moon_8c.html#a59509eb558c0125e9c5081e712f7c3c7" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos_fp()</a> </dd>
-<dd>
-<a class="el" href="moon_8c.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a> </dd>
-<dd>
-<a class="el" href="#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a> </dd></dl>
+<a class="el" href="moon_8c.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a>, <a class="el" href="#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a6fa1eada41005ac70290d0bb5df1ec26">ecl2equ_vec()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, <a class="el" href="#ae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, <a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="#a4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>, <a class="el" href="#a2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a>, <a class="el" href="moon_8c.html#a7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="moon_8c.html#a873ac52b14e599237dc75b4abb4f126f">novas_moon_elp_ecl_vel()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846">NOVAS_REDUCED_ACCURACY</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, and <a class="el" href="#aa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector()</a>.</p>
 
@@ -11928,13 +11914,9 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will indicate the type of error.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="moon_8c.html#a59509eb558c0125e9c5081e712f7c3c7" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos_fp()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="moon_8c.html#a59509eb558c0125e9c5081e712f7c3c7" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="moon_8c.html#a504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
 <dd>
-<a class="el" href="moon_8c.html#a504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
-<dd>
-<a class="el" href="moon_8c.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a> </dd>
-<dd>
-<a class="el" href="#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> </dd></dl>
+<a class="el" href="moon_8c.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a>, <a class="el" href="#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="moon_8c.html#a59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>.</p>
 
@@ -11993,13 +11975,9 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will indicate the type of error.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="moon_8c.html#a59509eb558c0125e9c5081e712f7c3c7" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos_fp()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="moon_8c.html#a03aca2626e38d04bcdf94fae14c6d11c" title="Returns the Moon&#39;s apparent place, relative to an Earth-based observer (or the geocenter),...">novas_moon_elp_sky_pos()</a>, <a class="el" href="moon_8c.html#a504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
 <dd>
-<a class="el" href="moon_8c.html#a504a8665bac877f6d06afb24fcf0a68f" title="Returns the Moon&#39;s geometric position and velocity, relative to an Earth-based observer (or the geoce...">novas_moon_elp_posvel()</a> </dd>
-<dd>
-<a class="el" href="moon_8c.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a> </dd>
-<dd>
-<a class="el" href="#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> </dd></dl>
+<a class="el" href="moon_8c.html#ad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a>, <a class="el" href="#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a033f1bf4b01e0e21a0e05e13c19c02f6">aberration()</a>, <a class="el" href="#addc432c55434789acee7bc2beacd7d69">NOVAS_AU_PER_DAY</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="#a7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="#a4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>, <a class="el" href="moon_8c.html#a8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="#aa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector()</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="#a84f672dc1c37e3af374198f29cbcfba9">vector2radec()</a>.</p>
 
@@ -14316,7 +14294,7 @@ novas_transform_ellipsoid() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="frames_8c.html#a4d179c8573319fc25c775ce56ba055dc" title="Calculates a transformation matrix that can be used to convert positions and velocities from one coor...">novas_make_transform()</a>, novas_transform_skypos() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="frames_8c.html#a4d179c8573319fc25c775ce56ba055dc" title="Calculates a transformation matrix that can be used to convert positions and velocities from one coor...">novas_make_transform()</a>, <a class="el" href="frames_8c.html#acfcfb90637cd1fdb25ef9afd1bda8e30" title="Transforms a position or velocity 3-vector from one coordinate reference system to another.">novas_transform_sky_pos()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#a8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="#a59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, and <a class="el" href="classsupernovas_1_1Geometric.html#aacb5acea25c7d83d6f0790b55ef4c1f1">supernovas::Geometric::to_system()</a>.</p>
 
@@ -16842,7 +16820,7 @@ solarsystem_hp() </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if either vector argument is NULL or if the 'option' is invalid, or else 2 if 'out_id' is too long.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#af2c03d540de7a8bfafaed27eb9a753c1" title="Convert Hipparcos catalog data at epoch J1991.25 to epoch J2000.0, for use within NOVAS.">transform_hip()</a>, make_object_sys(), <a class="el" href="target_8c.html#a5e92f920835111db719e880a61248045" title="Sets the optional catalog information for a sidereal source.">novas_set_catalog()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#af2c03d540de7a8bfafaed27eb9a753c1" title="Convert Hipparcos catalog data at epoch J1991.25 to epoch J2000.0, for use within NOVAS.">transform_hip()</a>, <a class="el" href="target_8c.html#a5104d7db66ce2d8c61c7ad21599fb45e" title="Populates and object data structure with the data for a catalog source for a given system of catalog ...">make_cat_object_sys()</a>, <a class="el" href="target_8c.html#a5e92f920835111db719e880a61248045" title="Sets the optional catalog information for a sidereal source.">novas_set_catalog()</a> </dd>
 <dd>
 <a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4" title="Returns the Julian day corresponding to an astronomical coordinate epoch.">novas_epoch()</a>, <a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="#a3785083ae52bbbc1e749dbedd7e5d85e" title="[day] Julian date at B1950 (NASA / NAIF SPICE definition) precession(), transform_cat()">NOVAS_JD_B1950</a>, <a class="el" href="#a4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a> </dd></dl>
 
@@ -17249,7 +17227,7 @@ solarsystem_hp() </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if the direction is invalid output vector argument is NULL.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="earth_8c.html#a3fe699281044873f4137344b28884cea" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a>, <a class="el" href="earth_8c.html#a087d587e90b4e2138c0dba12d727696e" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop_at_time()</a>, novas_itrf_transfor_eop() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="earth_8c.html#a3fe699281044873f4137344b28884cea" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a>, <a class="el" href="earth_8c.html#a087d587e90b4e2138c0dba12d727696e" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop_at_time()</a>, <a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a3903b6d439f4a25a6482fd073996d9ec">NOVAS_WOBBLE_DIRECTIONS</a>, <a class="el" href="#aab27106a2d5c2c7fa64b2f208deff7f5ac1fc144f868517a2268a56343cc218a9">WOBBLE_ITRS_TO_PEF</a>, <a class="el" href="#aab27106a2d5c2c7fa64b2f208deff7f5a88d1bc6832a20ed34c4dab5753864851">WOBBLE_ITRS_TO_TIRS</a>, and <a class="el" href="#aab27106a2d5c2c7fa64b2f208deff7f5a4b792b9dcf18048019f1a4fb486b7c97">WOBBLE_TIRS_TO_ITRS</a>.</p>
 

@@ -47,7 +47,7 @@ This document has been updated for the `v1.6` and later releases.
 <a name="introduction"></a>
 ## Introduction
 
-__SuperNOVAS__ is a fork of the The Naval Observatory Vector Astrometry Software 
+__SuperNOVAS__ is a supercharged fork of the The Naval Observatory Vector Astrometry Software 
 ([NOVAS](https://aa.usno.navy.mil/software/novas_info)). (It is not related to the separate NOVA / libnova library.)
 
 The primary goal of __SuperNOVAS__ is to improve on the original NOVAS C library via:
@@ -386,7 +386,7 @@ The `vcpkg` port has optional add-on components, which may be installed along wi
 following components are available:
 
  - `core` -- The core C99 library (this is installed by default if no components are specified).
- - `cpp` -- The C++11 runtime and development files.
+ - `cpp` -- The C++11 extension runtime and development files.
  - `solsys-calceph` -- CALCEPH plugin runtime and development files. (It also installs the `calceph` dependency as needed).
 
 You can install just the core C99 library of SuperNOVAS (without the C++ API and CALCEPH support) with `vcpkg` as:
@@ -448,20 +448,20 @@ To install SuperNOVAS via Homebrew, in the recommended default configuration:
   $ brew install supernovas
 ```
 
-The above will build and install SuperNOVAS with the C++ API and the CALCEPH plugin support (including the `calceph`
-dependency, as needed). However, you may add further options to customize your build:
+The above will build and install SuperNOVAS with the C++ API extension and the CALCEPH plugin support (including the 
+`calceph` dependency, as needed). However, you may add further options to customize your build:
 
- - `--with-cspice` -- Build with NAIF CSPICE support (and dependency).
- - `--with-doxygen` -- Build with local HTML documentation.
- - `--without-c++` -- Build without the C++ API and runtime.
- - `--without-calceph` -- Build without CALCEPH support (and dependency).
+ - `--with-cspice` -- Install with NAIF CSPICE support (and dependency).
+ - `--with-doxygen` -- Install with local HTML documentation.
+ - `--without-c++` -- Install without the C++ API extension and runtime.
+ - `--without-calceph` -- Install without CALCEPH support (and dependency).
 
 
 <a name="nix"></a>
 ### Nix package
 
 As of version 1.5, there is also a [Nix](https://nixos.org/) [package](https://search.nixos.org/packages?channel=unstable&show=supernovas&query=supernovas).
-This declarative and determinstic package manager can be used on every linux distribution as well as MacOS.
+This declarative and determinstic package manager can be used on every Linux distribution as well as MacOS.
 The default package includes the `solsys-calceph` plugin, but can be overriden by changing `withCalceph`.
 
 

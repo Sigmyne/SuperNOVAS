@@ -242,9 +242,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if there is a required function is not provided (errno set to ENOSYS), or if one of the output pointer arguments is NULL (errno set to EINVAL). 1 if the input Julian date ('tjd') is out of range, 2 if 'body' is invalid, or 3 if the high-precision orbital data cannot be produced (default return value).</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a279bca0519117cee9a3bd4382f38e7ad" title="Specify whether the high-precision call is allowed to return a low-precision result.">enable_earth_sun_hp()</a>, <a class="el" href="#a580f5949c8a29cdd7bf4787aee891f2b" title="Provides the position and velocity of the Earth and Sun only at epoch &#39;jd_tdb&#39; by evaluating a closed...">earth_sun_calc()</a>, <a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a> </dd>
-<dd>
-solarsystem_hp() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a279bca0519117cee9a3bd4382f38e7ad" title="Specify whether the high-precision call is allowed to return a low-precision result.">enable_earth_sun_hp()</a>, <a class="el" href="#a580f5949c8a29cdd7bf4787aee891f2b" title="Provides the position and velocity of the Earth and Sun only at epoch &#39;jd_tdb&#39; by evaluating a closed...">earth_sun_calc()</a>, <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a580f5949c8a29cdd7bf4787aee891f2b">earth_sun_calc()</a>.</p>
 

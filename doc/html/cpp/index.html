@@ -135,7 +135,7 @@ Table of Contents</h1>
 <p><a class="anchor" id="introduction"></a> </p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Introduction</h1>
-<p><b>SuperNOVAS</b> is a fork of the The Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>). (It is not related to the separate NOVA / libnova library.)</p>
+<p><b>SuperNOVAS</b> is a supercharged fork of the The Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>). (It is not related to the separate NOVA / libnova library.)</p>
 <p>The primary goal of <b>SuperNOVAS</b> is to improve on the original NOVAS C library via:</p>
 <ul>
 <li>Fixing <a class="el" href="#fixed-issues" title="fixed-issues">outstanding issues</a>.</li>
@@ -298,7 +298,7 @@ Details</summary>
 <p>The <span class="tt">vcpkg</span> port has optional add-on components, which may be installed along with the <span class="tt">core</span> library as needed. The following components are available:</p>
 <ul>
 <li><span class="tt">core</span> &ndash; The core C99 library (this is installed by default if no components are specified).</li>
-<li><span class="tt">cpp</span> &ndash; The C++11 runtime and development files.</li>
+<li><span class="tt">cpp</span> &ndash; The C++11 extension runtime and development files.</li>
 <li><span class="tt">solsys-calceph</span> &ndash; CALCEPH plugin runtime and development files. (It also installs the <span class="tt">calceph</span> dependency as needed).</li>
 </ul>
 <p>You can install just the core C99 library of SuperNOVAS (without the C++ API and CALCEPH support) with <span class="tt">vcpkg</span> as:</p>
@@ -334,19 +334,19 @@ Details</summary>
 <p>To install SuperNOVAS via Homebrew, in the recommended default configuration:</p>
 <div class="fragment"><div class="line">$ brew tap attipaci/pub</div>
 <div class="line">$ brew install supernovas</div>
-</div><!-- fragment --><p>The above will build and install SuperNOVAS with the C++ API and the CALCEPH plugin support (including the <span class="tt">calceph</span> dependency, as needed). However, you may add further options to customize your build:</p>
+</div><!-- fragment --><p>The above will build and install SuperNOVAS with the C++ API extension and the CALCEPH plugin support (including the <span class="tt">calceph</span> dependency, as needed). However, you may add further options to customize your build:</p>
 <ul>
-<li><span class="tt">--with-cspice</span> &ndash; Build with NAIF CSPICE support (and dependency).</li>
-<li><span class="tt">--with-doxygen</span> &ndash; Build with local HTML documentation.</li>
-<li><span class="tt">--without-c++</span> &ndash; Build without the C++ API and runtime.</li>
-<li><span class="tt">--without-calceph</span> &ndash; Build without CALCEPH support (and dependency).</li>
+<li><span class="tt">--with-cspice</span> &ndash; Install with NAIF CSPICE support (and dependency).</li>
+<li><span class="tt">--with-doxygen</span> &ndash; Install with local HTML documentation.</li>
+<li><span class="tt">--without-c++</span> &ndash; Install without the C++ API extension and runtime.</li>
+<li><span class="tt">--without-calceph</span> &ndash; Install without CALCEPH support (and dependency).</li>
 </ul>
 <p></p>
 </details>
 <p><a class="anchor" id="nix"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
 Nix package</h2>
-<p>As of version 1.5, there is also a <a href="https://nixos.org/">Nix</a> <a href="https://search.nixos.org/packages?channel=unstable&amp;show=supernovas&amp;query=supernovas">package</a>. This declarative and determinstic package manager can be used on every linux distribution as well as MacOS. The default package includes the <span class="tt">solsys-calceph</span> plugin, but can be overriden by changing <span class="tt">withCalceph</span>.</p>
+<p>As of version 1.5, there is also a <a href="https://nixos.org/">Nix</a> <a href="https://search.nixos.org/packages?channel=unstable&amp;show=supernovas&amp;query=supernovas">package</a>. This declarative and determinstic package manager can be used on every Linux distribution as well as MacOS. The default package includes the <span class="tt">solsys-calceph</span> plugin, but can be overriden by changing <span class="tt">withCalceph</span>.</p>
 <details >
 <summary >
 Details</summary>
@@ -514,7 +514,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="universal-ephemerides"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
 Universal ephemeris data / service integration</h2>
 <p>Possibly the most universal way to integrate ephemeris data with <b>SuperNOVAS</b> is to write your own <span class="tt"><a class="el" href="group__solar-system.html#gaebb3d71006e8d93de242df61510374ad" title="Function to obtain ephemeris data for minor planets, which are not handled by the solarsystem() type ...">novas_ephem_provider</a></span> function.</p>
 <details >
@@ -544,7 +544,7 @@ Details</summary>
 <div class="ttc" id="anovas_8h_html_a9d0f54c0ab00827768e61a353488b0ee"><div class="ttname"><a href="novas_8h.html#a9d0f54c0ab00827768e61a353488b0ee">planet_ephem_provider</a></div><div class="ttdeci">short planet_ephem_provider(double jd_tdb, enum novas_planet body, enum novas_origin origin, double *restrict position, double *restrict velocity)</div><div class="ttdoc">Major planet ephemeris data via the same generic ephemeris provider that is configured by set_ephem_p...</div><div class="ttdef"><b>Definition</b> solsys-ephem.c:100</div></div>
 </div><!-- fragment --><p>The above simply instructs <b>SuperNOVAS</b> to use the same ephemeris provider function for planets as what was set for <span class="tt"><a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269" title="A Solar-system body that does not fit the major planet type, and requires specific user-provided nova...">NOVAS_EPHEM_OBJECT</a></span> type objects, provided you compiled <b>SuperNOVAS</b> with <span class="tt">BUILTIN_SOLSYS_EPHEM = 1</span> (in <span class="tt">config.mk</span>), or else you link your code against <span class="tt"><a class="el" href="solsys-ephem_8c.html" title="Major planet ephemeris lookup via the function, which was configured by set_ephem_provider().">solsys-ephem.c</a></span> explicitly. Easy-peasy.</p>
 <p><a class="anchor" id="precision"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
 Notes on precision</h1>
 <ul>
 <li><a class="el" href="#accuracy-prerequisites" title="accuracy-prerequisites">Prerequisites to precise results</a></li>
@@ -561,7 +561,7 @@ Notes on precision</h1>
 </table>
 <p>Note, that some functions will not support full accuracy calculations, unless you have provided a high-precision ephemeris provider for the major planets (and any Solar-system bodies of interest), which does not come with <b>SuperNOVAS</b> out of the box. In the absence of a suitable high-precision ephemeris provider, some functions might return an error if called with <span class="tt"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660" title="Use full precision calculations to micro-arcsecond accuracy.">NOVAS_FULL_ACCURACY</a></span>. (Click on the wedges next to each component to expand the details...)</p>
 <p><a class="anchor" id="accuracy-prerequisites"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 Prerequisites to precise results</h2>
 <p>The <b>SuperNOVAS</b> library is in principle capable of calculating positions to microarcsecond, and velocities to mm/s, precision for all types of celestial sources. However, there are certain prerequisites and practical considerations before that level of accuracy is reached. (Click on the wedge next to each heading below to expand the details.)</p>
 <details >
@@ -601,7 +601,7 @@ Atmospheric refraction model</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="reduced-accuracy"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
 Reduced accuracy shortcuts</h2>
 <p>When one does not need positions at the microarcsecond level, some shortcuts can be made to the recipe above:</p>
 <ul>
