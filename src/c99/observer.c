@@ -526,7 +526,7 @@ int make_in_space(const double *sc_pos, const double *sc_vel, in_space *loc) {
  *
  * @sa make_itrf_site(), make_gps_site(), make_xyz_site()
  * @sa make_gps_observer(), make_itrf_observer(), make_observer_at_site(), make_observer_in_space(),
- *     make_solar_system_observer(), make_observer_at geocenter(), novas_make_frame()
+ *     make_solar_system_observer(), make_observer_at_geocenter(), novas_make_frame()
  *
  * @since 1.1
  * @author Attila Kovacs

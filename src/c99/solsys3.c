@@ -284,8 +284,7 @@ short earth_sun_calc(double jd_tdb, enum novas_planet body, enum novas_origin or
  *                      out of range, 2 if 'body' is invalid, or 3 if the high-precision
  *                      orbital data cannot be produced (default return value).
  *
- * @sa enable_earth_sun_hp(), earth_sun_calc(), set_planet_provider()
- * @sa solarsystem_hp()
+ * @sa enable_earth_sun_hp(), earth_sun_calc(), set_planet_provider_hp()
  */
 short earth_sun_calc_hp(const double jd_tdb[restrict 2], enum novas_planet body, enum novas_origin origin,
         double *restrict position, double *restrict velocity) {

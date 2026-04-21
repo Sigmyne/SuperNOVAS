@@ -410,7 +410,7 @@ int novas_diurnal_libration(double gmst, const novas_delaunay_args *restrict del
  * @since 1.5
  * @author Attila Kovacs
  *
- * @sa novas_diurnal_eop(), novas_diurnal_librations()
+ * @sa novas_diurnal_eop(), novas_diurnal_libration()
  */
 int novas_diurnal_ocean_tides(double gmst, const novas_delaunay_args *restrict delaunay, double *restrict dxp, double *restrict dyp,
         double *restrict dut1) {
@@ -514,7 +514,7 @@ static int add_diurnal_eop(double gmst, const novas_delaunay_args *restrict dela
  * @author Attila Kovacs
  *
  * @sa novas_diurnal_eop_at_time()
- * @sa novas_diurnal_librations(), novas_diurnal_ocean_tides()
+ * @sa novas_diurnal_libration(), novas_diurnal_ocean_tides()
  */
 int novas_diurnal_eop(double gmst, const novas_delaunay_args *restrict delaunay, double *restrict dxp, double *restrict dyp,
         double *restrict dut1) {
@@ -644,7 +644,7 @@ int novas_diurnal_eop_at_time(const novas_timespec *restrict time, double *restr
  *
  * @return              0 if successful, or -1 if the direction is invalid output vector argument is NULL.
  *
- * @sa novas_diurnal_eop(), novas_diurnal_eop_at_time(), novas_itrf_transfor_eop()
+ * @sa novas_diurnal_eop(), novas_diurnal_eop_at_time(), novas_itrf_transform_eop()
  */
 int wobble(double jd_tt, enum novas_wobble_direction direction, double xp, double yp, const double *in, double *out) {
   static const char *fn = "wobble";

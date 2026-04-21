@@ -1186,8 +1186,7 @@ int novas_hor_to_app(const novas_frame *restrict frame, double az, double el, Re
  * @since 1.1
  * @author Attila Kovacs
  *
- * @sa novas_geom_to_app()
- * @sa novas_hor_to_app(), novas_geom_to_hor(), novas_transform_vector()
+ * @sa novas_geom_to_app(), novas_app_to_hor(), novas_transform_vector()
  */
 int novas_app_to_geom(const novas_frame *restrict frame, enum novas_reference_system sys, double ra, double dec,
         double dist, double *restrict geom_icrs) {
@@ -1437,7 +1436,7 @@ int novas_invert_transform(const novas_transform *transform, novas_transform *in
  * @since 1.1
  * @author Attila Kovacs
  *
- * @sa novas_make_transform(), novas_transform_skypos()
+ * @sa novas_make_transform(), novas_transform_sky_pos()
  */
 int novas_transform_vector(const double *in, const novas_transform *restrict transform, double *out) {
   static const char *fn = "novas_matrix_transform";

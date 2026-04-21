@@ -501,10 +501,8 @@ static int check_frame(const novas_frame *frame) {
  * @since 1.6
  * @author Attila Kovacs
  *
- * @sa novas_moon_elp_posvel()
- * @sa novas_moon_elp_sky_pos_fp()
- * @sa novas_make_moon_orbit()
- * @sa novas_geom_posvel()
+ * @sa novas_moon_elp_posvel(), novas_moon_elp_sky_pos_fp()
+ * @sa novas_make_moon_orbit(), novas_geom_posvel()
  */
 int novas_moon_elp_posvel_fp(const novas_frame *restrict frame, double limit,
         enum novas_reference_system sys, double *restrict pos, double *restrict vel) {
@@ -582,10 +580,8 @@ int novas_moon_elp_posvel_fp(const novas_frame *restrict frame, double limit,
  * @since 1.6
  * @author Attila Kovacs
  *
- * @sa novas_moon_elp_posvel_fp()
- * @sa novas_moon_elp_sky_pos()
- * @sa novas_make_moon_orbit()
- * @sa novas_geom_posvel()
+ * @sa novas_moon_elp_posvel_fp(), novas_moon_elp_sky_pos()
+ * @sa novas_make_moon_orbit(), novas_geom_posvel()
  */
 int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_reference_system sys, double *restrict pos, double *restrict vel) {
   prop_error("novas_moon_elp_posvel", novas_moon_elp_posvel_fp(frame, 0.0, sys, pos, vel), 0);
@@ -624,10 +620,8 @@ int novas_moon_elp_posvel(const novas_frame *restrict frame, enum novas_referenc
  * @since 1.6
  * @author Attila Kovacs
  *
- * @sa novas_moon_elp_sky_pos_fp()
- * @sa novas_moon_elp_posvel()
- * @sa novas_make_moon_orbit()
- * @sa novas_sky_pos()
+ * @sa novas_moon_elp_sky_pos(), novas_moon_elp_posvel()
+ * @sa novas_make_moon_orbit(), novas_sky_pos()
  */
 int novas_moon_elp_sky_pos_fp(const novas_frame *restrict frame, double limit, enum novas_reference_system sys, sky_pos *restrict pos) {
   static const char *fn = "novas_moon_elp_skypos_fp";
@@ -692,10 +686,8 @@ int novas_moon_elp_sky_pos_fp(const novas_frame *restrict frame, double limit, e
  * @since 1.6
  * @author Attila Kovacs
  *
- * @sa novas_moon_elp_sky_pos_fp()
- * @sa novas_moon_elp_posvel()
- * @sa novas_make_moon_orbit()
- * @sa novas_sky_pos()
+ * @sa novas_moon_elp_sky_pos_fp(), novas_moon_elp_posvel()
+ * @sa novas_make_moon_orbit(), novas_sky_pos()
  */
 int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_reference_system sys, sky_pos *restrict pos) {
   prop_error("novas_moon_elp_skypos", novas_moon_elp_sky_pos_fp(frame, 0.0, sys, pos), 0);

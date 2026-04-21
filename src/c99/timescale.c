@@ -864,7 +864,7 @@ double novas_diff_tcb(const novas_timespec *t1, const novas_timespec *t2) {
  * @since 1.1
  * @author Attila Kovacs
  *
- * @sa novas_diff_time_scale(), novas_diff_tdb(), novas_diff_time()
+ * @sa novas_diff_time_scale(), novas_diff_tcb(), novas_diff_time()
  */
 double novas_diff_tcg(const novas_timespec *t1, const novas_timespec *t2) {
   double dt = novas_diff_time(t1, t2) * (1.0 + TC_LG);

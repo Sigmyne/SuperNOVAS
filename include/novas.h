@@ -75,7 +75,7 @@
 #define SUPERNOVAS_PATCHLEVEL     0
 
 /// Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.
-#define SUPERNOVAS_RELEASE_STRING "-rc5"
+#define SUPERNOVAS_RELEASE_STRING "-devel"
 
 /// \cond PRIVATE
 
@@ -750,7 +750,7 @@ enum novas_planet {
  * @since 1.1
  *
  * @sa grav_def(), grav_planets(), DEFAULT_GRAV_BODIES_REDUCED_ACCURACY
- * @sa set_ephem_provider()
+ * @sa set_planet_provider()
  * @ingroup apparent
  */
 extern int grav_bodies_reduced_accuracy;
@@ -765,7 +765,7 @@ extern int grav_bodies_reduced_accuracy;
  * @since 1.1
  *
  * @sa grav_def(), grav_planets(), DEFAULT_GRAV_BODIES_FULL_ACCURACY
- * @sa set_ephem_provider_hp()
+ * @sa set_planet_provider_hp()
  * @ingroup apparent
  */
 extern int grav_bodies_full_accuracy;
@@ -1185,7 +1185,7 @@ enum novas_wobble_direction {
  * Direction constant to use for frame_tie(), to determine the direction of transformation
  * between J2000 and ICRS coordinates.
  *
- * @sa frame_tie(), gsrs_to_j2000(), j2000_to_gcrs(), J2000_TO_ICRS
+ * @sa frame_tie(), gcrs_to_j2000(), j2000_to_gcrs(), J2000_TO_ICRS
  *
  * @c_equatorial
  */
@@ -2128,7 +2128,7 @@ enum novas_reference_ellipsoid {
  * @param[out] deps   [rad] &delta;&epsilon; Nutation (luni-solar + planetary) in obliquity, in radians.
  * @return            0 if successful, or else -1 (errno should be set to indicate the type of error).
  *
- * @sa nutation(), nutation_angles(), iau2000a(), iau2000b(), iau2000k()
+ * @sa nutation(), nutation_angles(), iau2000a(), iau2000b(), nu2000k()
  *
  * @author Attila Kovacs
  * @since 1.0
@@ -2162,7 +2162,7 @@ typedef int (*novas_nutation_provider)(double jd_tt_high, double jd_tt_low, doub
  *                      range, 2 if 'body' is invalid, or 3 if the ephemeris data cannot be
  *                      produced for other reasons.
  *
- * @sa set_planet_provider(), ephemeris(), novas_solarsystem_hp_func
+ * @sa set_planet_provider(), ephemeris(), novas_planet_provider_hp
  * @sa make_planet(), novas_sky_pos(), novas_geom_posvel()
  *
  * @since 1.0
@@ -2201,7 +2201,7 @@ typedef short (*novas_planet_provider)(double jd_tdb, enum novas_planet body, en
  *                      range, 2 if 'body' is invalid, or 3 if the ephemeris data cannot be
  *                      produced for other reasons.
  *
- * @sa set_planet_provider_hp(), novas_solarsystem_func, ephemeris()
+ * @sa set_planet_provider_hp(), novas_planet_provider, ephemeris()
  * @sa make_planet(), novas_sky_pos(), novas_geom_posvel(), grav_planets(), grav_undo_planets()
  * @since 1.0
  * @author Attila Kovacs

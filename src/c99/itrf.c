@@ -345,8 +345,8 @@ int novas_itrf_transform_eop(int from_year, double from_xp, double from_yp, doub
  * @since 1.5
  * @author Attila Kovacs
  *
- * @sa novas_itrf_transform_eop(), novas_itrf_transform(), make_itrf_site(), make_itrf_observer()
- * @sa novas_transform_ellipsoid()
+ * @sa novas_geodetic_transform_site(), novas_itrf_transform_eop(), novas_itrf_transform(),
+ *     make_itrf_site(), make_itrf_observer()
  */
 int novas_itrf_transform_site(int from_year, const on_surface *in, int to_year, on_surface *out) {
   static const char *fn = "novas_itrf_transform_site";

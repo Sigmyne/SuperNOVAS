@@ -218,7 +218,7 @@ novas_planet_provider get_planet_provider() {
  * @author Attila Kovacs
  * @since 1.0
  *
- * @sa get_planet_provider_hp(), set_planet_provider(), solarsystem_hp(), NOVAS_FULL_ACCURACY
+ * @sa get_planet_provider_hp(), set_planet_provider(), NOVAS_FULL_ACCURACY
  * @sa novas_use_calceph(), novas_use_cspice()
  */
 int set_planet_provider_hp(novas_planet_provider_hp func) {

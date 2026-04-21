@@ -920,12 +920,12 @@ int novas_uvw_to_xyz(const double *uvw, double ha, double dec, double *xyz) {
 }
 
 /**
- * Converts an ITRF position vector to a local East-North-Up (ENU) vector at the
+ * Converts an ITRS position vector to a local East-North-Up (ENU) vector at the
  * specified site.
  *
- * @param itrf        _xyz_ position vector in ITRF.
- * @param lon         [deg] ITRF longitude of site.
- * @param lat         [deg] ITRF latitude of site.
+ * @param itrf        _xyz_ position vector in ITRS.
+ * @param lon         [deg] ITRS longitude of site.
+ * @param lat         [deg] ITRS latitude of site.
  * @param[out] enu    output East-North-Up (ENU) vector. It may be the same vector as the input.
  * @return            0 if successful, or else -1 if either pointer argument is NULL (errno will be
  *                    set to EINVAL).
@@ -933,7 +933,7 @@ int novas_uvw_to_xyz(const double *uvw, double ha, double dec, double *xyz) {
  * @since 1.6
  * @author Attila Kovacs
  *
- * @sa novas_enu_to_itrf()
+ * @sa novas_enu_to_itrs()
  */
 int novas_itrs_to_enu(const double *itrf, double lon, double lat, double *enu) {
   static const char *fn = "novas_itrs_to_enu";
@@ -963,19 +963,19 @@ int novas_itrs_to_enu(const double *itrf, double lon, double lat, double *enu) {
 }
 
 /**
- * Converts an  East-North-Up (ENU) vector at the specified site to an ITRF vector.
+ * Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.
  *
  * @param enu         input East-North-Up (ENU) vector.
- * @param lon         [deg] ITRF longitude of site.
- * @param lat         [deg] ITRF latitude of site.
- * @param[out] itrf   output ITRF vector. It may be the same vector as the input.
+ * @param lon         [deg] ITRS longitude of site.
+ * @param lat         [deg] ITRS latitude of site.
+ * @param[out] itrf   output ITRS vector. It may be the same vector as the input.
  * @return            0 if successful, or else -1 if either pointer argument is NULL (errno will be
  *                    set to EINVAL).
  *
  * @since 1.6
  * @author Attila Kovacs
  *
- * @sa novas_itrf_to_enu()
+ * @sa novas_itrs_to_enu()
  */
 int novas_enu_to_itrs(const double *enu, double lon, double lat, double *itrf) {
   static const char *fn = "novas_itrs_to_enu";

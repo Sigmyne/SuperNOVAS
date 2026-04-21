@@ -102,7 +102,7 @@ static int is_case_sensitive = 0; ///< (boolean) whether object names are case-s
  * @author Attila Kovacs
  *
  * @sa novas_set_ssb_vel(), novas_set_lsr_vel(), novas_set_redshift(), novas_set_proper_motion(),
- *     novas_set_parallax(), novas_set_distance(), novas_set_catalog(), novas_make_cat_entry()
+ *     novas_set_parallax(), novas_set_distance(), novas_set_catalog(), make_cat_entry()
  * @sa novas_str_hours(), novas_str_degrees()
  */
 int novas_init_cat_entry(cat_entry *restrict source, const char *restrict name, double ra, double dec) {
@@ -858,7 +858,7 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
  * @return            0 if successful, -1 if either vector argument is NULL or if the 'option' is
  *                    invalid, or else 2 if 'out_id' is too long.
  *
- * @sa transform_hip(), make_object_sys(), novas_set_catalog()
+ * @sa transform_hip(), make_cat_object_sys(), novas_set_catalog()
  * @sa novas_epoch(), NOVAS_JD_J2000, NOVAS_JD_B1950, NOVAS_JD_HIP
  */
 short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat_entry *in, double jd_tt_out, const char *out_id,
