@@ -6,7 +6,7 @@
 
 CC ?= gcc
 
-# Doxygen documentation (HTML and man pages) under docs/
+# Doxygen documentation (HTML and man pages)
 .PHONY: all
 all: README.md
 	@$(MAKE) -C c99 all
@@ -23,13 +23,13 @@ README.md README-undecorated.md: ../README.md docedit
 
 .PHONY: clean
 clean:
-	rm -f docedit src/docedit.o
+	@rm -f docedit src/docedit.o
 	@$(MAKE) -C c99 clean
 	@$(MAKE) -C cpp clean
 
 .PHONY: distclean
 distclean: clean
-	rm -rf README*.md
+	@rm -rf README*.md
 	@$(MAKE) -C c99 distclean
 	@$(MAKE) -C cpp distclean
 

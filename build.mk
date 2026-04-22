@@ -26,7 +26,7 @@ $(LIB)/%.a:
 	ranlib $@
 
 # Create sub-directories for build targets
-$(OBJ) $(LIB) $(BIN) apidoc:
+$(OBJ) $(LIB) $(BIN):
 	mkdir -p $@
 
 # Remove intermediate files locally

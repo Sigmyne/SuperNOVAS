@@ -46,8 +46,8 @@ option(ENABLE_CSPICE "Enable CSPICE support (solsys-cspice plugin)" OFF)
 # Set feature descriptions for summary
 add_feature_info(SharedLibs BUILD_SHARED_LIBS "Build as shared libraries")
 add_feature_info(Documentation BUILD_DOC "Developer documentation (HTML)")
-add_feature_info(Examples BUILD_EXAMPLES "Build and test example programs")
 add_feature_info(Testing BUILD_TESTING "Run regression testing")
+add_feature_info(Examples BUILD_EXAMPLES "Build and test example programs")
 add_feature_info(Benchmarks BUILD_BENCHMARK "Build benchmarking programs")
 
 add_feature_info(C++-Libs ENABLE_CPP "Build C++ library also (supernovas++)")

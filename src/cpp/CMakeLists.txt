@@ -9,14 +9,6 @@
 
 FILE(GLOB CPP_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
 
-function(list_prepend var prefix)
-    set(temp "")
-    foreach(f ${${var}})
-        list(APPEND temp "${prefix}${f}")
-    endforeach()
-    set(${var} "${temp}" PARENT_SCOPE)
-endfunction()
-
 add_library(cpp ${CPP_SOURCES})
 add_library(supernovas::cpp ALIAS cpp)
 

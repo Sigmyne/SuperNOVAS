@@ -148,10 +148,8 @@ endif
 # On Linux autodetect calceph / cspice libraties with ldconfig
 ifeq ($(PLATFORM),Linux)
   AUTO_DETECT_LIBS := 1
-  MISSING_SYMBOLS_OK := 1
 else 
   AUTO_DETECT_LIBS := 0
-  MISSING_SYMBOLS_OK := 0
 endif 
 
 ifeq ($(AUTO_DETECT_LIBS),1)
