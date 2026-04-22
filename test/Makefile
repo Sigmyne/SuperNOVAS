@@ -4,11 +4,9 @@
 #
 # Author: Attila Kovacs
 
-EXCLUDE_COV = 'test-*'
 ifeq ($(ENABLE_CPP), 1)
 	EXCLUDE_COV += '*/include/*' '*Test'
 endif
-
 
 .PHONY: run
 run:
@@ -27,7 +25,6 @@ cov: lcov.info
 lcov.info:
 	geninfo . -o $@
 	lcov --remove $@ $(EXCLUDE_COV) -o $@
-
 
 # Static code analysis using 'cppcheck'
 .PHONY: analyze
@@ -59,7 +56,6 @@ distclean: clean clean-data
 	$(MAKE) -s -C cpp distclean
 	rm -f lcov.info
 	rm -rf cov
-
 
 .PHONY: help
 help:

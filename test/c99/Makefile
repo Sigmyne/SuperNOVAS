@@ -9,8 +9,8 @@ include ../../config.mk
 # Flags for measuring test coverage
 # Our own include directory
 CPPFLAGS += -I../../include
-CFLAGS += -I../../include -I../../legacy -pg -Wall -fprofile-arcs -ftest-coverage
-LDFLAGS += -fprofile-arcs -ftest-coverage -lm
+CFLAGS += -I../../include -I../../legacy -pg -Wall
+LDFLAGS += -lm -fprofile-arcs -ftest-coverage
 
 # cppcheck options for 'check' target. You can add additional options by
 # setting the CHECKEXTRA variable (e.g. in shell) prior to invoking 'make'.
@@ -18,7 +18,7 @@ CHECKOPTS = --enable=performance,warning,portability --language=c \
             --error-exitcode=1 --std=c99 --inline-suppr $(CHECKEXTRA)
 
 OBJECTS := $(subst $(OBJ)/,,$(OBJECTS))
-COVFILES := $(subst .o,.c.gcov,$(OBJECTS))
+COVFILES := $(subst .c,.c.gcov,$(SOURCES))
 
 TESTS := test-compat test-super test-errors
 
@@ -71,7 +71,7 @@ test-%.o: test-%.c | Makefile
 	$(CC) -c -o $@ $(CPPFLAGS) $(CFLAGS) $<
 
 %.o: %.c | Makefile
-	$(CC) -c -o $@ $(CPPFLAGS) $(CFLAGS) $<
+	$(CC) -c -o $@ $(CPPFLAGS) $(CFLAGS) -fprofile-arcs -ftest-coverage $<
 
 test-calceph: LDFLAGS += -lcalceph
 
