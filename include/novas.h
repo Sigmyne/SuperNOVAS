@@ -3436,7 +3436,7 @@ int novas_sys_to_icrs(enum novas_reference_system sys, const double *in, double 
 #define NAIF_EMB        3
 
 /// NAIF ID for the barycenter of the Pluto system
-#define NAIF_PLUTO_BARYCENTER   9
+#define NAIF_PLUTO_BARYCENTER     9
 
 
 /**
@@ -3447,24 +3447,24 @@ int novas_sys_to_icrs(enum novas_reference_system sys, const double *in, double 
 #define NOVAS_DEFAULT_MAX_ITER    100
 
 // On some older platform NAN may not be defined, so define it here if need be
-#  ifndef NAN
-#    define NAN               (0.0/0.0)
-#  endif
+#ifndef NAN
+#  define NAN                     (0.0/0.0)     ///< Define NAN (if not in `math.h`)
+#endif
 
 
-#  ifndef THREAD_LOCAL
-#    if __STDC_VERSION__ >= 202311L
-#      define THREAD_LOCAL thread_local           ///< C23 standard for thread-local variables
-#    elif __STDC_VERSION__ >= 201112L
-#      define THREAD_LOCAL _Thread_local          ///< C11 standard for thread-local variables
-#    elif __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 3)
-#      define THREAD_LOCAL __thread               ///< pre C11 gcc >= 3.3 standard for thread-local variables
-#    elif defined _MSVC_VER
-#      define THREAD_LOCAL __declspec( thread )   ///< Microsoft Visual C thread local declaration
-#    else
-#      define THREAD_LOCAL                        ///< no thread-local variables
-#    endif
+#ifndef THREAD_LOCAL
+#  if __STDC_VERSION__ >= 202311L
+#    define THREAD_LOCAL thread_local           ///< C23 standard for thread-local variables
+#  elif __STDC_VERSION__ >= 201112L
+#    define THREAD_LOCAL _Thread_local          ///< C11 standard for thread-local variables
+#  elif __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 3)
+#    define THREAD_LOCAL __thread               ///< pre C11 gcc >= 3.3 standard for thread-local variables
+#  elif defined _MSVC_VER
+#    define THREAD_LOCAL __declspec( thread )   ///< Microsoft Visual C thread local declaration
+#  else
+#    define THREAD_LOCAL                        ///< no thread-local variables
 #  endif
+#endif
 
 
 int novas_trace(const char *restrict loc, int n, int offset);

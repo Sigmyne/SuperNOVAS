@@ -18,15 +18,14 @@ if(NOT PROJECT_NAME)
         LANGUAGES C
     )
     
+    include(CheckLibraryExists)
     include(GNUInstallDirs)
         
     find_package(supernovas)
 
-    if(WIN32)
-        set(MATH "")
-    else()
-        find_library(MATH_LIBRARY m REQUIRED)
-        set(MATH m)
+    check_library_exists(m exp "" HAS_MATHLIB)
+    if(HAS_MATHLIB)
+        set(MATHLIB m)
     endif()
 endif()
 
