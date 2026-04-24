@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.6.0-rc5] - 2026-04-20
+## [1.1.6-rc6] -- 2026-04-24
 
 Upcoming feature release, introducing a proper C++ API for the first time, and bringing various other improvements.
 
@@ -60,6 +60,8 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
    
  - #306: `geo_posvel()` changed to return an error (-1) if used for a geodetic observer and debug mode is set to
    `NOVAS_DEBUG_EXTRA`, to warn that polar offsets are not included in the calculation. 
+
+ - #310: Change how CMake detects the need for linking against	`libm`.
 
  - Use more precise matrix from Liu et al. (2011) for equatorial / galactic conversions.
  

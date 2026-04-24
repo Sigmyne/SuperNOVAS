@@ -10,7 +10,7 @@ var searchData=
   ['c_20usage_7',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90',1,'']]],
   ['c_20vs_20astropy_8',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
   ['c_20vs_20c99_9',['SuperNOVAS C++ vs. C99',['../md_SuperNOVAS_09_09__vs__C99.html',1,'']]],
-  ['c99_10',['C99',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md43',1,'Building your application with SuperNOVAS (C99)'],['../md_SuperNOVAS_09_09__vs__C99.html',1,'SuperNOVAS C++ vs. C99'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68',1,'Tips and tricks (C99)']]],
+  ['c99_10',['C99',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44',1,'Building your application with SuperNOVAS (C99)'],['../md_SuperNOVAS_09_09__vs__C99.html',1,'SuperNOVAS C++ vs. C99'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68',1,'Tips and tricks (C99)']]],
   ['c99_20usage_11',['C99 Usage',['../md__2github_2workspace_2doc_2USAGE-C99.html',1,'']]],
   ['c99_20usage_12',['Example C99 usage',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'']]],
   ['calceph_20integration_13',['CALCEPH integration',['../index.html#autotoc_md25',1,'']]],

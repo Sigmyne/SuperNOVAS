@@ -18,7 +18,7 @@ var searchData=
   ['node_5frate_15',['node_rate',['../classsupernovas_1_1Orbital.html#afaf0000a33c68b01b1257cacbd655331',1,'supernovas::Orbital::node_rate() const'],['../classsupernovas_1_1Orbital.html#a05d61ea153f256ed7fafd87370f4fa77',1,'supernovas::Orbital::node_rate(double rad_per_sec)']]],
   ['noon_16',['noon',['../classsupernovas_1_1TimeAngle.html#ae56344cb0ade09ed2c4d96919706ca86',1,'supernovas::TimeAngle']]],
   ['north_17',['north',['../classsupernovas_1_1Angle.html#acc6a8b3997225d5ac247826ba4052daa',1,'supernovas::Angle']]],
-  ['notes_20on_20precision_18',['Notes on precision',['../index.html#autotoc_md29',1,'']]],
+  ['notes_20on_20precision_18',['Notes on precision',['../index.html#autotoc_md28',1,'']]],
   ['novas_20c_203_201_19',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['novas_20c_203_201_20issues_20',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
   ['novas_20c_20api_21',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],

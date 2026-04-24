@@ -11,7 +11,7 @@ var searchData=
   ['c_20usage_8',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90',1,'']]],
   ['c_20vs_20astropy_9',['SuperNOVAS C++ vs. astropy',['../md_SuperNOVAS_09_09__vs__astropy.html',1,'']]],
   ['c_20vs_20c99_10',['SuperNOVAS C++ vs. C99',['../md_SuperNOVAS_09_09__vs__C99.html',1,'']]],
-  ['c99_11',['C99',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md43',1,'Building your application with SuperNOVAS (C99)'],['../md_SuperNOVAS_09_09__vs__C99.html',1,'SuperNOVAS C++ vs. C99'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68',1,'Tips and tricks (C99)']]],
+  ['c99_11',['C99',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44',1,'Building your application with SuperNOVAS (C99)'],['../md_SuperNOVAS_09_09__vs__C99.html',1,'SuperNOVAS C++ vs. C99'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68',1,'Tips and tricks (C99)']]],
   ['c99_20usage_12',['C99 Usage',['../md__2github_2workspace_2doc_2USAGE-C99.html',1,'']]],
   ['c99_20usage_13',['Example C99 usage',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'']]],
   ['cal_5fdate_14',['cal_date',['../novas_8h.html#a044f1359abcf0a039ac6452a95729b5a',1,'cal_date(double tjd, short *restrict year, short *restrict month, short *restrict day, double *restrict hour):&#160;calendar.c'],['../calendar_8c.html#a044f1359abcf0a039ac6452a95729b5a',1,'cal_date(double tjd, short *restrict year, short *restrict month, short *restrict day, double *restrict hour):&#160;calendar.c']]],
