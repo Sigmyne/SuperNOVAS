@@ -232,8 +232,8 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/examples/c99
     DESTINATION ${CMAKE_INSTALL_DOCDIR}/examples
 )
 
-install(CODE "message(STATUS \"Installing: <prefix>/${CMAKE_INSTALL_DOCDIR}/examples/cpp\")")
 if(ENABLE_CPP)
+    install(CODE "message(STATUS \"Installing: <prefix>/${CMAKE_INSTALL_DOCDIR}/examples/cpp\")")
     install(DIRECTORY ${PROJECT_SOURCE_DIR}/examples/cpp
         MESSAGE_NEVER
         COMPONENT Development
