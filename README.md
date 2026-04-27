@@ -476,7 +476,6 @@ To install SuperNOVAS via Homebrew, in the recommended default configuration:
 The above will build and install SuperNOVAS with the C++ API extension and the CALCEPH plugin support (including the 
 `calceph` dependency, as needed). However, you may add further options to customize your build:
 
- - `--with-cspice` -- Install with NAIF CSPICE support (and dependency).
  - `--with-doxygen` -- Install with local HTML documentation.
  - `--without-c++` -- Install without the C++ API extension and runtime.
  - `--without-calceph` -- Install without CALCEPH support (and dependency).
