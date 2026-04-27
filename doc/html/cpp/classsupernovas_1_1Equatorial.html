@@ -153,7 +153,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad946e6985b8d089e6e9d017631617d14" id="r_ad946e6985b8d089e6e9d017631617d14"><td class="memItemLeft">Equatorial&#160;</td><td class="memItemRight"><a class="el" href="#ad946e6985b8d089e6e9d017631617d14">to_cirs</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time) const</td></tr>
 <tr class="memdesc:ad946e6985b8d089e6e9d017631617d14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts these equatorial coordinates to the Celestial Intermediate Reference System (CIRS) coordinate system, at the specified coordinate epoch.  <br /></td></tr>
 <tr class="memitem:gaf2f5da6694e72211d5f3daf79b60d72b" id="r_gaf2f5da6694e72211d5f3daf79b60d72b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Ecliptic.html">Ecliptic</a>&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">to_ecliptic</a> (enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a>=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
-<tr class="memdesc:gaf2f5da6694e72211d5f3daf79b60d72b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates.  <br /></td></tr>
+<tr class="memdesc:gaf2f5da6694e72211d5f3daf79b60d72b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates, with respect to the same equator and equinox of date as these equatorial coordinates.  <br /></td></tr>
 <tr class="memitem:ga8461f5b54d570ab2c2f306ae4a4b6526" id="r_ga8461f5b54d570ab2c2f306ae4a4b6526"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Galactic.html">Galactic</a>&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">to_galactic</a> () const</td></tr>
 <tr class="memdesc:ga8461f5b54d570ab2c2f306ae4a4b6526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equivalent galactic coordinates corresponding to these equatorial coordinates.  <br /></td></tr>
 <tr class="memitem:a084ea74c4e83b73ef43a43e273770270" id="r_a084ea74c4e83b73ef43a43e273770270"><td class="memItemLeft">Equatorial&#160;</td><td class="memItemRight"><a class="el" href="#a084ea74c4e83b73ef43a43e273770270">to_hip</a> () const</td></tr>
@@ -798,6 +798,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts these equatorial coordinates to the Mean-of-Date (MOD) catalog coordinate system, at the specified coordinate epoch. </p>
+<p>MOD coordinates are expressed with respect to the mean dynamical equator and equinox of date, accounting for precession but not nutation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>[day] the astronomical time specification for the coordinate epoch. </td></tr>
@@ -830,6 +831,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts these equatorial coordinates to the Mean-of-Date (MOD) catalog coordinate system, at the specified Besselian coordinate epoch. </p>
+<p>MOD coordinates are expressed with respect to the mean dynamical equator and equinox of date, accounting for precession but not nutation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">year</td><td>[yr] Besselian year for the coordinate epoch (e.g. 1950.0 for B1950). </td></tr>

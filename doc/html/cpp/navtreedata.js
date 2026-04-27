@@ -27,20 +27,20 @@ var NAVTREE =
   [ "SuperNOVAS C++ API", "index.html", [
     [ "User's guide", "index.html", "index" ],
     [ "C99 Usage", "md__2github_2workspace_2doc_2USAGE-C99.html", [
-      [ "Building your application with SuperNOVAS (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44", [
-        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45", null ],
-        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md46", null ],
-        [ "Deprecated API", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47", null ],
-        [ "Legacy linking <span class=\"tt\">solarsystem()</span> / <span class=\"tt\">solarsystem_hp()</span> and <span class=\"tt\">readeph()</span> modules", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48", null ],
-        [ "Legacy modules: a better way", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49", null ]
+      [ "Building your application with SuperNOVAS (C99)", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md40", [
+        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md41", null ],
+        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md42", null ],
+        [ "Deprecated API", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md43", null ],
+        [ "Legacy linking <span class=\"tt\">solarsystem()</span> / <span class=\"tt\">solarsystem_hp()</span> and <span class=\"tt\">readeph()</span> modules", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md44", null ],
+        [ "Legacy modules: a better way", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45", null ]
       ] ],
-      [ "Example C99 usage", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51", [
-        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52", [
-          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53", null ],
-          [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54", null ],
-          [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55", null ],
-          [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56", null ],
-          [ "Calculate an apparent place on sky", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57", null ],
+      [ "Example C99 usage", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47", [
+        [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48", [
+          [ "Specify the object of interest", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49", null ],
+          [ "Specify the observer location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51", null ],
+          [ "Specify the time of observation", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52", null ],
+          [ "Set up the observing frame", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53", null ],
+          [ "Calculate an apparent place on sky", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56", null ],
           [ "Calculate azimuth and elevation angles at the observing location", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58", null ]
         ] ],
         [ "Calculating positions for a Solar-system source", "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59", [
@@ -61,15 +61,15 @@ var NAVTREE =
       ] ]
     ] ],
     [ "C++ Usage", "md__2github_2workspace_2doc_2USAGE-CPP.html", [
-      [ "Building your application with SuperNOVAS (C++)", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80", [
-        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81", null ],
-        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82", null ]
+      [ "Building your application with SuperNOVAS (C++)", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md78", [
+        [ "Using a GNU <span class=\"tt\">Makefile</span>", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md79", null ],
+        [ "Using CMake", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md80", null ]
       ] ],
-      [ "C++ Fundamentals", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84", [
-        [ "Namespace", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85", null ],
-        [ "Validation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86", null ],
-        [ "Thread safety", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87", null ],
-        [ "Operator overloading", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88", null ]
+      [ "C++ Fundamentals", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82", [
+        [ "Namespace", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83", null ],
+        [ "Validation", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84", null ],
+        [ "Thread safety", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86", null ],
+        [ "Operator overloading", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87", null ]
       ] ],
       [ "Example C++ usage", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90", [
         [ "Calculating positions for a sidereal source", "md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91", [

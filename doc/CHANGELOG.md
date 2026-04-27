@@ -7,9 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.1.6-rc6] -- 2026-04-24
+## [1.6.0] - 2026-04-27
 
-Upcoming feature release, introducing a proper C++ API for the first time, and bringing various other improvements.
+Feature release, introducing a proper C++ API for the first time, adding the self-contained semi-analytic ELP2000 / 
+MPP02 model of the Moon, and bringing various other improvements.
 
 ### Fixed
 
@@ -50,7 +51,6 @@ Upcoming feature release, introducing a proper C++ API for the first time, and b
  - Added `novas_icrs_to_sys()` and `novas_sys_to_icrs()` for more flexible conversion of equatorial vectors between 
    ICRS/GCRS and other coordinate reference systems.
    
-
 ### Changed
 
  - #256: Changes to repo layout to accommodate C++ API _in addition to_ the base C99 API.

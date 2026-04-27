@@ -178,15 +178,15 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a8f74265a182736c65f358d3535b4cfb4" id="r_a8f74265a182736c65f358d3535b4cfb4"><td class="memItemLeft">static const Equinox &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a8f74265a182736c65f358d3535b4cfb4">j2000</a> ()</td></tr>
 <tr class="memdesc:a8f74265a182736c65f358d3535b4cfb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000).  <br /></td></tr>
 <tr class="memitem:aacad3ee3ea5fa096d555333fdbfd09f9" id="r_aacad3ee3ea5fa096d555333fdbfd09f9"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#aacad3ee3ea5fa096d555333fdbfd09f9">mod</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time)</td></tr>
-<tr class="memdesc:aacad3ee3ea5fa096d555333fdbfd09f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch.  <br /></td></tr>
+<tr class="memdesc:aacad3ee3ea5fa096d555333fdbfd09f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and equinox at the specified Julian epoch.  <br /></td></tr>
 <tr class="memitem:adfef9ebd870cdb45547b91afb34dd7ef" id="r_adfef9ebd870cdb45547b91afb34dd7ef"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef">mod</a> (double jd_tt)</td></tr>
-<tr class="memdesc:adfef9ebd870cdb45547b91afb34dd7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch.  <br /></td></tr>
+<tr class="memdesc:adfef9ebd870cdb45547b91afb34dd7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and equinox at the specified Julian epoch.  <br /></td></tr>
 <tr class="memitem:adcf12113ffc8c7ccd8776d33adcb0c36" id="r_adcf12113ffc8c7ccd8776d33adcb0c36"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#adcf12113ffc8c7ccd8776d33adcb0c36">mod_at_besselian_epoch</a> (double year)</td></tr>
-<tr class="memdesc:adcf12113ffc8c7ccd8776d33adcb0c36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean-of-date (MOD) dynamical coordinate system, at the specified Besselian epoch.  <br /></td></tr>
+<tr class="memdesc:adcf12113ffc8c7ccd8776d33adcb0c36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and equinox at the specified Besselian epoch.  <br /></td></tr>
 <tr class="memitem:aa7e8bf68ef10dcbd7598390bd8513178" id="r_aa7e8bf68ef10dcbd7598390bd8513178"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#aa7e8bf68ef10dcbd7598390bd8513178">tod</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time)</td></tr>
 <tr class="memdesc:aa7e8bf68ef10dcbd7598390bd8513178"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a True-of-Date (TOD) equatorial system for the given (TT-based) Julian date.  <br /></td></tr>
 <tr class="memitem:a16cb36d215fbb4bc394b0942db30b88b" id="r_a16cb36d215fbb4bc394b0942db30b88b"><td class="memItemLeft">static Equinox&#160;</td><td class="memItemRight"><a class="el" href="#a16cb36d215fbb4bc394b0942db30b88b">tod</a> (double jd_tt)</td></tr>
-<tr class="memdesc:a16cb36d215fbb4bc394b0942db30b88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a True-of-Date (TOD) equatorial system for the given (TT-based) Julian date.  <br /></td></tr>
+<tr class="memdesc:a16cb36d215fbb4bc394b0942db30b88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a True-of-Date (TOD) equatorial system for equinox at the given (TT-based) Julian date.  <br /></td></tr>
 <tr class="memitem:a7e1791e187c321b135a422a3e34ec9b6" id="r_a7e1791e187c321b135a422a3e34ec9b6"><td class="memItemLeft">static const Equinox &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a7e1791e187c321b135a422a3e34ec9b6">undefined</a> ()</td></tr>
 <tr class="memdesc:a7e1791e187c321b135a422a3e34ec9b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined standard invalid equatorial system.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -233,7 +233,7 @@ Additional Inherited Members</h2></td></tr>
 <p>This was a commonly used catalog coordinate system of old.</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to a reusable statically allocated B1900 coordinate system instance.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch.">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#afb95cc52b6bd739843bca41a2b6cc18f" title="Returns the astrometric time for the B1900 epoch.">Time::b1900()</a>, <a class="el" href="novas_8h.html#af03a1f0412f23cd6edb323297646eb30" title="[day] Julian date at B1900 (NASA / NAIF SPICE definition) precession(), transform_cat()">NOVAS_JD_B1900</a>, NOVAS_SYSTEM_B1900 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and equino...">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#afb95cc52b6bd739843bca41a2b6cc18f" title="Returns the astrometric time for the B1900 epoch.">Time::b1900()</a>, <a class="el" href="novas_8h.html#af03a1f0412f23cd6edb323297646eb30" title="[day] Julian date at B1900 (NASA / NAIF SPICE definition) precession(), transform_cat()">NOVAS_JD_B1900</a>, NOVAS_SYSTEM_B1900 </dd></dl>
 
 <p class="reference">References <a class="el" href="#ae1217cb47b24b0d887a805ce70f01d96">b1900()</a>, and <a class="el" href="#adcf12113ffc8c7ccd8776d33adcb0c36">mod_at_besselian_epoch()</a>.</p>
 
@@ -269,7 +269,7 @@ Additional Inherited Members</h2></td></tr>
 <p>B1950 is also the system used for the 4th Catalog of Fundamental Stars (FK4).</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to a reusable statically allocated B1950 coordinate system instance.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch.">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#a88061d30b8941199b51e0d7fc1f5063b" title="Returns the astrometric time for the B1950 epoch.">Time::b1950()</a>, <a class="el" href="novas_8h.html#a3785083ae52bbbc1e749dbedd7e5d85e" title="[day] Julian date at B1950 (NASA / NAIF SPICE definition) precession(), transform_cat()">NOVAS_JD_B1950</a>, <a class="el" href="novas_8h.html#aaf00ed93616e93d09df832d485a0e115" title="The B1950 coordiante system as a string.">NOVAS_SYSTEM_B1950</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and equino...">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#a88061d30b8941199b51e0d7fc1f5063b" title="Returns the astrometric time for the B1950 epoch.">Time::b1950()</a>, <a class="el" href="novas_8h.html#a3785083ae52bbbc1e749dbedd7e5d85e" title="[day] Julian date at B1950 (NASA / NAIF SPICE definition) precession(), transform_cat()">NOVAS_JD_B1950</a>, <a class="el" href="novas_8h.html#aaf00ed93616e93d09df832d485a0e115" title="The B1950 coordiante system as a string.">NOVAS_SYSTEM_B1950</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ac8a0a1ea6d912d4a81ddaa7afd34b030">b1950()</a>, and <a class="el" href="#adcf12113ffc8c7ccd8776d33adcb0c36">mod_at_besselian_epoch()</a>.</p>
 
@@ -310,7 +310,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the equatorial coordinate system based on the true dynamical equator, with its origin at the CIO</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a16cb36d215fbb4bc394b0942db30b88b" title="Returns a True-of-Date (TOD) equatorial system for the given (TT-based) Julian date.">tod()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a16cb36d215fbb4bc394b0942db30b88b" title="Returns a True-of-Date (TOD) equatorial system for equinox at the given (TT-based) Julian date.">tod()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aa1b28e4b358c30737e8bcb503eceb984">cirs()</a>, and <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>.</p>
 
@@ -349,7 +349,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the equatorial coordinate system based on the true dynamical equator, with its origin at the CIO</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a16cb36d215fbb4bc394b0942db30b88b" title="Returns a True-of-Date (TOD) equatorial system for the given (TT-based) Julian date.">tod()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a16cb36d215fbb4bc394b0942db30b88b" title="Returns a True-of-Date (TOD) equatorial system for equinox at the given (TT-based) Julian date.">tod()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aa1b28e4b358c30737e8bcb503eceb984">cirs()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eacbee2de517939c156e61fb5f9631e044">NOVAS_CIRS</a>.</p>
 
@@ -638,7 +638,7 @@ Additional Inherited Members</h2></td></tr>
 <p>The system of the mean dynamical equator at the J1991.25 epoch, which is adopted as the nominal mean epoch of the Hipparcos catalog. </p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to a reusable statically allocated Hipparcos coordinate system instance.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch.">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#a82ddf5c0b7bc2109f18bb2209f8901f2" title="Returns the astrometric time for the Hipparcos catalog epoch (which is J1991.25).">Time::hip()</a> <a class="el" href="novas_8h.html#a4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a>, <a class="el" href="novas_8h.html#a773bb459e1ec420cd7d93d064e70eb7f" title="The Hipparcos dataset coordinate system as a string.">NOVAS_SYSTEM_HIP</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and equino...">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#a82ddf5c0b7bc2109f18bb2209f8901f2" title="Returns the astrometric time for the Hipparcos catalog epoch (which is J1991.25).">Time::hip()</a> <a class="el" href="novas_8h.html#a4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a>, <a class="el" href="novas_8h.html#a773bb459e1ec420cd7d93d064e70eb7f" title="The Hipparcos dataset coordinate system as a string.">NOVAS_SYSTEM_HIP</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ace7e30fcac219145415fcdd8d9555c40">hip()</a>, <a class="el" href="novas_8h.html#a4100ecc5d9badfa07301024baffe9ded">NOVAS_JD_HIP</a>, and <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd">NOVAS_MOD</a>.</p>
 
@@ -791,7 +791,7 @@ Additional Inherited Members</h2></td></tr>
 <p>This was a commonly used catalog coordinate system before the advent of the IAU 2000 standard ICRS system. It is also known as FK5, since the 5th realization of the fundamental catalog of stars used J2000 also.</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to a reusable statically allocated J2000 coordinate system instance.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch.">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#a2a483b407997ca602f9a79fb134468e9" title="Returns the astrometric time for the J2000 epoch.">Time::j2000()</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#ae67fecc99f46afc9b4f12fc27b4fbe6c" title="The J2000 coordinate syste, as a string.">NOVAS_SYSTEM_J2000</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a94d2f811f21d992feabef754d64f6bb2" title="International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.">icrs()</a>, <a class="el" href="#adfef9ebd870cdb45547b91afb34dd7ef" title="Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and equino...">mod()</a>, <a class="el" href="classsupernovas_1_1Time.html#a2a483b407997ca602f9a79fb134468e9" title="Returns the astrometric time for the J2000 epoch.">Time::j2000()</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#ae67fecc99f46afc9b4f12fc27b4fbe6c" title="The J2000 coordinate syste, as a string.">NOVAS_SYSTEM_J2000</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a8f74265a182736c65f358d3535b4cfb4">j2000()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a>, and <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>.</p>
 
@@ -876,7 +876,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch. </p>
+<p>Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and equinox at the specified Julian epoch. </p>
 <p>MOD coordinates take into account Earth's slow precession but not nutation. Julian-date based MODs were commonly used for catalogs, such as J2000, or HIP.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -915,7 +915,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch. </p>
+<p>Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and equinox at the specified Julian epoch. </p>
 <p>MOD coordinates take into account Earth's slow precession but not nutation. Julian-date based MODs were commonly used for catalogs, such as J2000, or HIP.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -956,7 +956,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Mean-of-date (MOD) dynamical coordinate system, at the specified Besselian epoch. </p>
+<p>Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and equinox at the specified Besselian epoch. </p>
 <p>MOD coordinates take into account Earth's precession but not nutation. Besselian-date based MODs, now a historical relic, were once commonly used for catalog systems, such as B1900, or B1950.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1176,7 +1176,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a True-of-Date (TOD) equatorial system for the given (TT-based) Julian date. </p>
+<p>Returns a True-of-Date (TOD) equatorial system for equinox at the given (TT-based) Julian date. </p>
 <p>It is the system on the true dynamical equator of date, with its origin at the true equinox of date.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

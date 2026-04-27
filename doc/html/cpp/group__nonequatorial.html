@@ -135,7 +135,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga73fcb54e47b2be0aa92810b5f55f7a3c" id="r_ga73fcb54e47b2be0aa92810b5f55f7a3c"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga73fcb54e47b2be0aa92810b5f55f7a3c">novas_hpa</a> (double az, double el, double lat)</td></tr>
 <tr class="memdesc:ga73fcb54e47b2be0aa92810b5f55f7a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Parallactic Angle (PA) calculated for a horizontal Az/El location of the sky.  <br /></td></tr>
 <tr class="memitem:gaf2f5da6694e72211d5f3daf79b60d72b" id="r_gaf2f5da6694e72211d5f3daf79b60d72b"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Ecliptic.html">Ecliptic</a>&#160;</td><td class="memItemRight"><a class="el" href="#gaf2f5da6694e72211d5f3daf79b60d72b">supernovas::Equatorial::to_ecliptic</a> (enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a>=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
-<tr class="memdesc:gaf2f5da6694e72211d5f3daf79b60d72b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates.  <br /></td></tr>
+<tr class="memdesc:gaf2f5da6694e72211d5f3daf79b60d72b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates, with respect to the same equator and equinox of date as these equatorial coordinates.  <br /></td></tr>
 <tr class="memitem:ga8461f5b54d570ab2c2f306ae4a4b6526" id="r_ga8461f5b54d570ab2c2f306ae4a4b6526"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Galactic.html">Galactic</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga8461f5b54d570ab2c2f306ae4a4b6526">supernovas::Equatorial::to_galactic</a> () const</td></tr>
 <tr class="memdesc:ga8461f5b54d570ab2c2f306ae4a4b6526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equivalent galactic coordinates corresponding to these equatorial coordinates.  <br /></td></tr>
 <tr class="memitem:ga39a5c71512aa41496371b99fd2a892d4" id="r_ga39a5c71512aa41496371b99fd2a892d4"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Horizontal.html">Horizontal</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga39a5c71512aa41496371b99fd2a892d4">supernovas::Apparent::to_horizontal</a> () const</td></tr>
@@ -164,7 +164,7 @@ Functions</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__equatorial.html#gafc85c07b57504bce62e2f7b06947dfb8" title="Returns the apparent equatorial coordinates on the sky, with respect to the true equator and equinox ...">equatorial()</a>, <a class="el" href="#ga1555f0127468d5283a3f7afbdf5b7df2" title="Returns the apparent galactic coordinates on the sky.">galactic()</a>, <a class="el" href="#ga39a5c71512aa41496371b99fd2a892d4" title="Returns the apparent unrefracted horizontal coordinates for this position for a geodetic observer loc...">to_horizontal()</a> </dd>
 <dd>
-<a class="el" href="#gaf2f5da6694e72211d5f3daf79b60d72b" title="Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates.">Equatorial::to_ecliptic()</a> </dd></dl>
+<a class="el" href="#gaf2f5da6694e72211d5f3daf79b60d72b" title="Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates,...">Equatorial::to_ecliptic()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#gafa2abe3d408721348c0bbb9971507cfb">ecliptic()</a>, <a class="el" href="group__equatorial.html#gafc85c07b57504bce62e2f7b06947dfb8">equatorial()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -477,7 +477,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates. </p>
+<p>Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates, with respect to the same equator and equinox of date as these equatorial coordinates. </p>
+<p>CIRS coordinates will returns ecliptic coordinates w.r.t. the true equinox of date, effectively by converting CIRS to TOD before rotating into the equatorial system.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">accuracy</td><td>(optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY. </td></tr>
@@ -512,7 +513,7 @@ Functions</h2></td></tr>
 <p>Returns the equivalent galactic coordinates corresponding to these equatorial coordinates. </p>
 <dl class="section return"><dt>Returns</dt><dd>the galactic coordinates that represent the same position on sky as these equariorial coordinates.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99" title="Converts these galactic coordinates to equivalent ICRS equatorial coordinates.">Galactic::to_equatorial()</a>, <a class="el" href="#gaf2f5da6694e72211d5f3daf79b60d72b" title="Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates.">to_ecliptic()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__equatorial.html#ga730750345a8ea40b0af9e5b9c60bfd99" title="Converts these galactic coordinates to equivalent ICRS equatorial coordinates.">Galactic::to_equatorial()</a>, <a class="el" href="#gaf2f5da6694e72211d5f3daf79b60d72b" title="Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates,...">to_ecliptic()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Equatorial.html#aa4101d906d7943a36a1b6b5363bfb731">dec()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be">supernovas::Angle::deg()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="novas_8h.html#a288b49c03bc29704c8dd5acf8baca80e">equ2gal()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#a6ed469439452805722b5954a1cfc7540">supernovas::TimeAngle::hours()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ac1b78ee76a1f5232986ff8e863daf9fb">ra()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#a6229ff3b612cd28c44e866f946d37864">to_icrs()</a>, and <a class="el" href="classsupernovas_1_1Galactic.html#a89c2957acd5e69edea704e8c7559d77d">supernovas::Galactic::undefined()</a>.</p>
 

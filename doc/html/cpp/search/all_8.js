@@ -30,9 +30,9 @@ var searchData=
   ['eop_2ecpp_27',['EOP.cpp',['../EOP_8cpp.html',1,'']]],
   ['eop_5fat_28',['eop_at',['../classsupernovas_1_1GeodeticObserver.html#a66c8d9adc7dad77300f861899866e3cf',1,'supernovas::GeodeticObserver']]],
   ['ephemeris_29',['ephemeris',['../novas_8h.html#a713982e1f2bae0a72b39d03007f00d23',1,'ephemeris(const double *restrict jd_tdb, const object *restrict body, enum novas_origin origin, enum novas_accuracy accuracy, double *restrict pos, double *restrict vel):&#160;ephemeris.c'],['../ephemeris_8c.html#a713982e1f2bae0a72b39d03007f00d23',1,'ephemeris(const double *restrict jd_tdb, const object *restrict body, enum novas_origin origin, enum novas_accuracy accuracy, double *restrict pos, double *restrict vel):&#160;ephemeris.c']]],
-  ['ephemeris_20data_20or_20services_30',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md24',1,'']]],
-  ['ephemeris_20data_20service_20integration_31',['Universal ephemeris data / service integration',['../index.html#autotoc_md27',1,'']]],
-  ['ephemeris_20provider_32',['Recommendation: set up an ephemeris provider',['../index.html#autotoc_md21',1,'']]],
+  ['ephemeris_20data_20or_20services_30',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md25',1,'']]],
+  ['ephemeris_20data_20service_20integration_31',['Universal ephemeris data / service integration',['../index.html#autotoc_md28',1,'']]],
+  ['ephemeris_20provider_32',['Recommendation: set up an ephemeris provider',['../index.html#autotoc_md22',1,'']]],
   ['ephemeris_20providers_33',['Solar-system ephemeris providers',['../group__solar-system.html',1,'']]],
   ['ephemeris_20type_20objects_34',['ephemeris type objects',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md60',1,'Planets and/or ephemeris type objects'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101',1,'Planets and/or ephemeris type objects']]],
   ['ephemeris_2ec_35',['ephemeris.c',['../ephemeris_8c.html',1,'']]],
@@ -55,6 +55,6 @@ var searchData=
   ['equinox_2ecpp_52',['Equinox.cpp',['../Equinox_8cpp.html',1,'']]],
   ['era_53',['era',['../structnovas__frame.html#affab4fcc1c7378b396e5411f9c2eea71',1,'novas_frame::era'],['../classsupernovas_1_1Time.html#aef268b7bbb4f82eb0127b15ba5090a01',1,'supernovas::Time::era()'],['../novas_8h.html#aef1f8daaad470353648de90576aefc66',1,'era(double jd_ut1_high, double jd_ut1_low):&#160;earth.c'],['../earth_8c.html#aef1f8daaad470353648de90576aefc66',1,'era(double jd_ut1_high, double jd_ut1_low):&#160;earth.c']]],
   ['example_20c_20usage_54',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md90',1,'']]],
-  ['example_20c99_20usage_55',['Example C99 usage',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'']]],
-  ['example_20use_20cases_56',['Example use cases',['../index.html#autotoc_md20',1,'']]]
+  ['example_20c99_20usage_55',['Example C99 usage',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md47',1,'']]],
+  ['example_20use_20cases_56',['Example use cases',['../index.html#autotoc_md21',1,'']]]
 ];

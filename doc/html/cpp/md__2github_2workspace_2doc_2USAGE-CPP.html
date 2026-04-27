@@ -103,7 +103,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-CPP.html','',''); }
   <div class="headertitle"><div class="title">C++ Usage </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md76"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md74"></a></p>
 <p>This guide is specifically for using <b>SuperNOVAS</b> primarily as a C++11 library. There is a separate guide for <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">using the C99 API</a>. The links below let you jump to the relevant sections:</p>
 <ul>
 <li><a class="el" href="#integration-cpp" title="integration-cpp">Building your application with SuperNOVAS (C++)</a></li>
@@ -118,7 +118,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-CPP.html','',''); }
 </ul>
 <hr  />
 <p><a class="anchor" id="integration-cpp"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md78"></a>
 Building your application with SuperNOVAS (C++)</h1>
 <p>There are a number of ways you can build your application with <b>SuperNOVAS</b>. See which of the options suits your needs best:</p>
 <ul>
@@ -126,7 +126,7 @@ Building your application with SuperNOVAS (C++)</h1>
 <li><a class="el" href="#cmake-application-cpp" title="cmake-application-cpp">Using CMake</a></li>
 </ul>
 <p><a class="anchor" id="makefile-application-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md79"></a>
 Using a GNU <span class="tt">Makefile</span></h2>
 <details >
 <summary >
@@ -141,7 +141,7 @@ Details</summary>
 </div><!-- fragment --><p></p>
 </details>
 <p><a class="anchor" id="cmake-application-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
 Using CMake</h2>
 <details >
 <summary >
@@ -155,7 +155,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="fundamentals-cpp"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
 C++ Fundamentals</h1>
 <ul>
 <li><a class="el" href="#namespace-cpp" title="namespace-cpp">Namespace</a></li>
@@ -165,7 +165,7 @@ C++ Fundamentals</h1>
 </ul>
 <p>Before we dive into specific examples for using the <b>SuperNOVAS</b> C++ API, you should know of the generic features and design principles that underly the C++ implementation.</p>
 <p><a class="anchor" id="namespace-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
 Namespace</h2>
 <p>To allow using simple class names, while being cognizant of potential namespace conflicts, the <b>SuperNOVAS</b> classes all live under the <span class="tt"><a class="el" href="namespacesupernovas.html">supernovas</a></span> namespace. Thus, the class <span class="tt">Angle</span>, for example, has a full name <span class="tt"><a class="el" href="classsupernovas_1_1Angle.html" title="A representation of a regularized angle, which can be expressed in various commonly used angular unit...">supernovas::Angle</a></span> that can be used in any context. But, when convenient you can make one of more namespaces default in your source code, e.g.:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="supernovas_8h.html">supernovas.h</a>&gt;</span></div>
@@ -187,7 +187,7 @@ Namespace</h2>
 <div class="line">  ...</div>
 <div class="line">}</div>
 </div><!-- fragment --><p><a class="anchor" id="validation-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
 Validation</h2>
 <p>C++ does not have runtime exceptions the same way as Python or Java, which can be caught. While C++17 introduced <span class="tt">std::optional</span> types that can be used to return with or without valid data, <b>SuperNOVAS</b> does not use these, because <em>(a)</em> the optionals are not supported on Apple and Windows (in 2026), and <em>(b)</em> they don't do anything for constructors.</p>
 <p>Instead all <b>SuperNOVAS</b> classes are based on a <span class="tt"><a class="el" href="classsupernovas_1_1Validating.html" title="A simple interface class handling validation checking for classes that inherit it.">supernovas::Validating</a></span> base class, providing an <span class="tt">is_valid()</span> method. All subclasses (that is all <b>SuperNOVAS</b> classes) sanity check their data as part of their constructor. And, mutable classes sanity check every time they are modified as well. The checks typically include flagging NaNs and infinite values (unless they are explicitly allowed), enum values outside of their normal range (yes the compiler checks for these, but those checks can be easily bypassed), and whatever else is necessary to ensure that the objects contain fully usable data.</p>
@@ -207,14 +207,14 @@ Validation</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>And if in doubt as to why your object is invalid, you can always turn on debugging with <span class="tt">novas_debug(NOVAS_DEBUG_ON)</span>, at least in the relevant section of your code. <b>SuperNOVAS</b> will provide error descriptions and call traces every time an invalid class instance is created, and when methods create invalid objects themselves.</p>
 <p><a class="anchor" id="thread-safety-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
 Thread safety</h2>
 <p>It is easy to use the C++ API safely in a multi-threaded environment, even without explicit mutexing. The best practice is to always declare your shared (among threads) class variables as <span class="tt">const</span> so they will never get accidentally modified by one thread while another thread accesses them concurrently. While most <b>SuperNOVAS</b> classes do not have explicitly declared methods that can modify them, their contents can nevertheless get overwritten easily with the implicit copy-assignment operator &ndash; but not when the variable was declared as <span class="tt">const</span>. For example:</p>
 <div class="fragment"><div class="line"><span class="comment">// Declaring &#39;frame&#39; as const will make it safe to use in threads.</span></div>
 <div class="line"><span class="keyword">const</span> Frame frame = ...;</div>
 </div><!-- fragment --><p>To further support thread safety, the <b>SuperNOVAS</b> classes are designed never to store references to external objects internally. Instead, they always store copies of the parameters that were supplied by their constructors or update methods. While the copying may result in a small overhead, it guarantess that the internal data cannot vanish or change unexpectedly.</p>
 <p><a class="anchor" id="operators-cpp"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
 Operator overloading</h2>
 <p>Several <b>SuperNOVAS</b> classes override arithmetic operators (often <span class="tt">+</span> and <span class="tt">-</span>, and sometimes <span class="tt">*</span> and <span class="tt">/</span>), but only when this is physically meaningful. For example, you can add and difference position or velocity vectors: for <span class="tt"><a class="el" href="classsupernovas_1_1Position.html" title="A 3D physical position vector in space.">supernovas::Position</a></span>, <b>a</b> and <b>b</b>, <b>a</b> + <b>b</b> is the two positions superimposed, <b>a</b> - <b>b</b> is the difference vector of the same type. For <span class="tt"><a class="el" href="classsupernovas_1_1Velocity.html" title="A 3D physical velocity vector in space.">supernovas::Velocity</a></span>, the addition and subtraction follows the relativistic formulae, e.g. for velocity vectors <span class="tt">v1</span> and <span class="tt">v2</span>:</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Velocity.html">Velocity</a> dv = v2 - v1;  <span class="comment">// Relativistic difference of two velocity vectors.</span></div>
@@ -246,7 +246,7 @@ Operator overloading</h2>
 </div><!-- fragment --><p>Celestial coordinates, which can be expressed in different reference systems, can be transformed to another system with the <span class="tt">&gt;&gt;</span> operator, which is just a shorthand for the <span class="tt">.to_system()</span> method. E.g., if you have <span class="tt"><a class="el" href="classsupernovas_1_1Equatorial.html" title="Equatorial coordinates (RA, Dec / α, δ), representing the direction on the sky, for a particular type...">supernovas::Equatorial</a></span> coordinates <span class="tt">eq</span> in some reference system, and want it to be converted to ICRS, you might write:</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classsupernovas_1_1Equatorial.html">Equatorial</a> icrs = eq &gt;&gt; <a class="code hl_function" href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">Equinox::icrs</a>();  <span class="comment">// ICRS coordinates</span></div>
 <div class="ttc" id="aclasssupernovas_1_1Equatorial_html"><div class="ttname"><a href="classsupernovas_1_1Equatorial.html">supernovas::Equatorial</a></div><div class="ttdoc">Equatorial coordinates (RA, Dec / α, δ), representing the direction on the sky, for a particular type...</div><div class="ttdef"><b>Definition</b> supernovas.h:995</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Equinox_html_a94d2f811f21d992feabef754d64f6bb2"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">supernovas::Equinox::icrs</a></div><div class="ttdeci">static const Equinox &amp; icrs()</div><div class="ttdoc">International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.</div><div class="ttdef"><b>Definition</b> Equinox.cpp:565</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Equinox_html_a94d2f811f21d992feabef754d64f6bb2"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">supernovas::Equinox::icrs</a></div><div class="ttdeci">static const Equinox &amp; icrs()</div><div class="ttdoc">International Celestial Reference System (ICRS) is the IAU standard catalog coordinate system.</div><div class="ttdef"><b>Definition</b> Equinox.cpp:567</div></div>
 </div><!-- fragment --><p>which is the same as <span class="tt">eq.to_system(Equinox::icrs())</span> or <span class="tt">eq.to_icrs()</span>.</p>
 <p>Many classes also define <span class="tt">==</span> and <span class="tt">!=</span> to check for equality. This is the same as calling their <span class="tt">.equals()</span> method with the default precision, or it's negated form, respectively.</p>
 <p><span class="tt"><a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">supernovas::Time</a></span> and <span class="tt"><a class="el" href="classsupernovas_1_1CalendarDate.html" title="A time specified in a specific type of calendar (Gregorian, Roman, or astronomical).">supernovas::CalendarDate</a></span> also have comparison operators defined: <span class="tt">&lt;</span>, <span class="tt">&gt;</span>, <span class="tt">&lt;=</span>, and <span class="tt">&gt;=</span>. The <span class="tt">&lt;</span> and <span class="tt">&gt;</span> always evaluate at the full precision, whereas <span class="tt">&lt;=</span> and <span class="tt">&gt;=</span> follow the default precision of <span class="tt">==</span>. This makes <span class="tt">&lt;=</span> fully consistent with <span class="tt">&lt;</span> <em>or</em> <span class="tt">==</span>, and <span class="tt">&gt;=</span> with <span class="tt">&gt;</span> <em>or</em> <span class="tt">==</span>. So for two <span class="tt">Time</span> instances <span class="tt">t1</span> and <span class="tt">t2</span>, you could check, e.g.:</p>
@@ -293,7 +293,7 @@ Specify the object of interest</h3>
 <div class="ttc" id="aclasssupernovas_1_1CatalogEntry_html"><div class="ttname"><a href="classsupernovas_1_1CatalogEntry.html">supernovas::CatalogEntry</a></div><div class="ttdoc">Defines the astrometric parameters of a sidereal source, such as a star, a Galactic cloud,...</div><div class="ttdef"><b>Definition</b> supernovas.h:2042</div></div>
 <div class="ttc" id="aclasssupernovas_1_1CatalogEntry_html_a9561e1d23eb50de3b85352ac06792055"><div class="ttname"><a href="classsupernovas_1_1CatalogEntry.html#a9561e1d23eb50de3b85352ac06792055">supernovas::CatalogEntry::proper_motion</a></div><div class="ttdeci">CatalogEntry &amp; proper_motion(double ra, double dec)</div><div class="ttdoc">Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...</div><div class="ttdef"><b>Definition</b> CatalogEntry.cpp:348</div></div>
 <div class="ttc" id="aclasssupernovas_1_1CatalogEntry_html_aa416d2c477d74c3eccd9ca0546289d6a"><div class="ttname"><a href="classsupernovas_1_1CatalogEntry.html#aa416d2c477d74c3eccd9ca0546289d6a">supernovas::CatalogEntry::parallax</a></div><div class="ttdeci">Angle parallax() const</div><div class="ttdoc">Returns the parallax of the source.</div><div class="ttdef"><b>Definition</b> CatalogEntry.cpp:300</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Equinox_html_ac8a0a1ea6d912d4a81ddaa7afd34b030"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#ac8a0a1ea6d912d4a81ddaa7afd34b030">supernovas::Equinox::b1950</a></div><div class="ttdeci">static const Equinox &amp; b1950()</div><div class="ttdoc">The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950).</div><div class="ttdef"><b>Definition</b> Equinox.cpp:612</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Equinox_html_ac8a0a1ea6d912d4a81ddaa7afd34b030"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#ac8a0a1ea6d912d4a81ddaa7afd34b030">supernovas::Equinox::b1950</a></div><div class="ttdeci">static const Equinox &amp; b1950()</div><div class="ttdoc">The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950).</div><div class="ttdef"><b>Definition</b> Equinox.cpp:614</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html"><div class="ttname"><a href="classsupernovas_1_1Unit.html">supernovas::Unit</a></div><div class="ttdoc">Various physical units for converting quantities expressed in conventional units to SI,...</div><div class="ttdef"><b>Definition</b> supernovas.h:112</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_a9e80b032a29bd9c9e4baace09f2f859c"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">supernovas::Unit::mas</a></div><div class="ttdeci">static constexpr double mas</div><div class="ttdoc">[rad] 1 millisecond of arc in radians</div><div class="ttdef"><b>Definition</b> supernovas.h:176</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_aaa277e4f817f823e433caf74e367fe52"><div class="ttname"><a href="classsupernovas_1_1Unit.html#aaa277e4f817f823e433caf74e367fe52">supernovas::Unit::yr</a></div><div class="ttdeci">static constexpr double yr</div><div class="ttdoc">[s] 1 tropical calendar year in seconds (at J2000)</div><div class="ttdef"><b>Definition</b> supernovas.h:160</div></div>
@@ -586,7 +586,7 @@ Coordinate and velocity transforms (change of coordinate system)</h2>
 <div class="line"> </div>
 <div class="line"><span class="comment">// or convert to B1950 coordinates</span></div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Equatorial.html">Equatorial</a> b1950 = icrs.to_b1950();</div>
-<div class="ttc" id="aclasssupernovas_1_1Equinox_html_aa1b28e4b358c30737e8bcb503eceb984"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#aa1b28e4b358c30737e8bcb503eceb984">supernovas::Equinox::cirs</a></div><div class="ttdeci">static Equinox cirs(double jd_tt)</div><div class="ttdoc">Returns a Celestial Intermediate Reference System (CIRS) equatorial system for the given (TT-based) J...</div><div class="ttdef"><b>Definition</b> Equinox.cpp:526</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Equinox_html_aa1b28e4b358c30737e8bcb503eceb984"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#aa1b28e4b358c30737e8bcb503eceb984">supernovas::Equinox::cirs</a></div><div class="ttdeci">static Equinox cirs(double jd_tt)</div><div class="ttdoc">Returns a Celestial Intermediate Reference System (CIRS) equatorial system for the given (TT-based) J...</div><div class="ttdef"><b>Definition</b> Equinox.cpp:528</div></div>
 </div><!-- fragment --><p>The astrometric time definition for 'now' needs Earth Orientation Parameters (EOP), which are defined by the <span class="tt"><a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">supernovas::EOP</a></span> class. The operator <span class="tt">&gt;&gt;</span> is a shorthand for <span class="tt">.to_system()</span>, and we could have used <span class="tt">.to_cirs(Time&amp;)</span> as well. Similarly, the <span class="tt">.to_b1950()</span> is a shorthand for <span class="tt">.to_system(Equinox::b1950())</span>. These methods and operators can be used interchangeably.</p>
 <p>The same goes for ecliptic coordinates:</p>
 <div class="fragment"><div class="line"><span class="comment">// define ecliptic coordinates in some reference system</span></div>
@@ -598,7 +598,7 @@ Coordinate and velocity transforms (change of coordinate system)</h2>
 <div class="line"><span class="comment">// convert to J2000</span></div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Ecliptic.html">Ecliptic</a> ec_j2000 = ec &gt;&gt; <a class="code hl_function" href="classsupernovas_1_1Equinox.html#a8f74265a182736c65f358d3535b4cfb4">Equinox::j2000</a>();</div>
 <div class="ttc" id="aclasssupernovas_1_1Ecliptic_html_a6a0cfeb643b055e65c48a57c2c624227"><div class="ttname"><a href="classsupernovas_1_1Ecliptic.html#a6a0cfeb643b055e65c48a57c2c624227">supernovas::Ecliptic::to_icrs</a></div><div class="ttdeci">Ecliptic to_icrs() const</div><div class="ttdoc">Converts these ecliptic coordinates to ICRS ecliptic coordinates.</div><div class="ttdef"><b>Definition</b> Ecliptic.cpp:294</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Equinox_html_a8f74265a182736c65f358d3535b4cfb4"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#a8f74265a182736c65f358d3535b4cfb4">supernovas::Equinox::j2000</a></div><div class="ttdeci">static const Equinox &amp; j2000()</div><div class="ttdoc">The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000).</div><div class="ttdef"><b>Definition</b> Equinox.cpp:595</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Equinox_html_a8f74265a182736c65f358d3535b4cfb4"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#a8f74265a182736c65f358d3535b4cfb4">supernovas::Equinox::j2000</a></div><div class="ttdeci">static const Equinox &amp; j2000()</div><div class="ttdoc">The system of the dynamical equator at the J2000 epoch (12 TT, 1 January 2000).</div><div class="ttdef"><b>Definition</b> Equinox.cpp:597</div></div>
 </div><!-- fragment --><p>You can also easily convert between equatorial, ecliptic, and galactic coordinates (<span class="tt"><a class="el" href="classsupernovas_1_1Galactic.html" title="Galactic coordinates (l, b), representing the direction on the sky, relative to the Galactic plane an...">supernovas::Galactic</a></span> class), e.g.:</p>
 <div class="fragment"><div class="line"><span class="comment">// say you start with equatorial</span></div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Equatorial.html">Equatorial</a> eq = ...;  </div>

@@ -758,13 +758,14 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch. </p>
+<p>MOD ecliptic coordinates have their origin at the mean dynamical equinox of date, accounting for precession but not nutation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>the astronomical time specifying the coordinate epoch. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the equivalent MOD ecliptic coordinates at the specified date.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the equivalent MOD ecliptic coordinates at the specified date, with the lontigude coordinate originating at the mean dynamical equinox of date.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac468f153f58b25ca2e305fa607997dc3" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a>, <a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227" title="Converts these ecliptic coordinates to ICRS ecliptic coordinates.">to_icrs()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582" title="Converts these ecliptic coordinates to J2000 ecliptic coordinates.">to_j2000()</a> </dd></dl>
 
@@ -869,13 +870,14 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch. </p>
+<p>TOD ecliptic coordinates have their origin at the true dynamical equinox of date, accounting for both precession and nutation of Earth's pole / equator.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>the astronomical time specifying the coordinate epoch. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the equivalent TOD ecliptic coordinates at the specified date.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the equivalent TOD ecliptic coordinates at the specified date, with the lontigude coordinate originating at the mean dynamical equinox of date.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac468f153f58b25ca2e305fa607997dc3" title="Converts these ecliptic coordinates to the ecliptic coordinate system with respect to the specified e...">to_system()</a>, <a class="el" href="#a04ee64b71415e5d39a045be7523fa86d" title="Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the specified epch.">to_tod()</a>, <a class="el" href="#a27fdb2ae4ac178709197a635ca5c3d47" title="Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the specified epch.">to_mod()</a>, <a class="el" href="#a6a0cfeb643b055e65c48a57c2c624227" title="Converts these ecliptic coordinates to ICRS ecliptic coordinates.">to_icrs()</a>, <a class="el" href="#ae4a7d476d5e137f909f6e50b91ac6582" title="Converts these ecliptic coordinates to J2000 ecliptic coordinates.">to_j2000()</a> </dd></dl>
 
