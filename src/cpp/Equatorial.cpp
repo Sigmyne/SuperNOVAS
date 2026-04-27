@@ -313,7 +313,8 @@ Equatorial Equatorial::to_hip() const {
 
 /**
  * Converts these equatorial coordinates to the Mean-of-Date (MOD) catalog coordinate system, at
- * the specified coordinate epoch.
+ * the specified coordinate epoch. MOD coordinates are expressed with respect to the mean
+ * dynamical equator and equinox of date, accounting for precession but not nutation.
  *
  * @param time      [day] the astronomical time specification for the coordinate epoch.
  * @return          new equatorial coordinates, which represent the same equatorial position as
@@ -331,7 +332,8 @@ Equatorial Equatorial::to_mod(const Time& time) const {
 
 /**
  * Converts these equatorial coordinates to the Mean-of-Date (MOD) catalog coordinate system, at
- * the specified Besselian coordinate epoch.
+ * the specified Besselian coordinate epoch. MOD coordinates are expressed with respect to the
+ * mean dynamical equator and equinox of date, accounting for precession but not nutation.
  *
  * @param year      [yr] Besselian year for the coordinate epoch (e.g. 1950.0 for B1950).
  * @return          new equatorial coordinates, which represent the same equatorial position as
@@ -416,7 +418,10 @@ const Angle& Equatorial::dec() const {
 }
 
 /**
- * Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates.
+ * Returns the equivalent ecliptic coordinates corresponding to these equatorial coordinates,
+ * with respect to the same equator and equinox of date as these equatorial coordinates.
+ * CIRS coordinates will returns ecliptic coordinates w.r.t. the true equinox of date,
+ * effectively by converting CIRS to TOD before rotating into the equatorial system.
  *
  * @param accuracy  (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
  * @return          the ecliptic coordinates that represent the same position on sky as these

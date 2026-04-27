@@ -418,9 +418,10 @@ Equinox Equinox::from_system_type(enum novas_reference_system system, const Time
 }
 
 /**
- * Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch. MOD coordinates
- * take into account Earth's slow precession but not nutation. Julian-date based MODs were
- * commonly used for catalogs, such as J2000, or HIP.
+ * Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and
+ * equinox at the specified Julian epoch. MOD coordinates take into account Earth's slow
+ * precession but not nutation. Julian-date based MODs were commonly used for catalogs, such as
+ * J2000, or HIP.
  *
  * @param jd_tt     [day] TT-based Julian day.  TDB-based days may be used here also without
  *                  affecting precision of coordinate transformations at the micro-arcsecond
@@ -439,9 +440,10 @@ Equinox Equinox::mod(double jd_tt) {
 }
 
 /**
- * Mean-of-date (MOD) dynamical coordinate system, at the specified Julian epoch. MOD coordinates
- * take into account Earth's slow precession but not nutation. Julian-date based MODs were
- * commonly used for catalogs, such as J2000, or HIP.
+ * Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and
+ * equinox at the specified Julian epoch. MOD coordinates take into account Earth's slow
+ * precession but not nutation. Julian-date based MODs were commonly used for catalogs, such as
+ * J2000, or HIP.
  *
  * @param time      astrometric time specifying the coordinate epoch.
  * @return          A reference system with the mean dynamical equator of date, with origin at
@@ -455,10 +457,10 @@ Equinox Equinox::mod(const Time& time) {
 }
 
 /**
- * Mean-of-date (MOD) dynamical coordinate system, at the specified Besselian epoch. MOD
- * coordinates take into account Earth's precession but not nutation. Besselian-date based MODs,
- * now a historical relic, were once commonly used for catalog systems, such as B1900, or B1950.
- *
+ * Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and
+ * equinox at the specified Besselian epoch. MOD coordinates take into account Earth's
+ * precession but not nutation. Besselian-date based MODs, now a historical relic, were once
+ * commonly used for catalog systems, such as B1900, or B1950.
  *
  * @param year      [yr] UTC-based decimal calendar year.
  * @return          A reference system with the mean dynamical equator of date, with origin at
@@ -475,8 +477,8 @@ Equinox Equinox::mod_at_besselian_epoch(double year) {
 }
 
 /**
- * Returns a True-of-Date (TOD) equatorial system for the given (TT-based) Julian date. It is
- * the system on the true dynamical equator of date, with its origin at the true equinox of
+ * Returns a True-of-Date (TOD) equatorial system for equinox at the given (TT-based) Julian date.
+ * It is the system on the true dynamical equator of date, with its origin at the true equinox of
  * date.
  *
  * @param jd_tt     [day] The (TT-based) Julian date for when of the true dynamical equator and

@@ -321,10 +321,12 @@ Ecliptic Ecliptic::to_j2000() const {
 
 /**
  * Converts these ecliptic coordinates to Mean-of-Date (MOD) ecliptic coordinates at the
- * specified epch.
+ * specified epch. MOD ecliptic coordinates have their origin at the mean dynamical equinox of
+ * date, accounting for precession but not nutation.
  *
  * @param time    the astronomical time specifying the coordinate epoch.
- * @return        the equivalent MOD ecliptic coordinates at the specified date.
+ * @return        the equivalent MOD ecliptic coordinates at the specified date, with the
+ *                lontigude coordinate originating at the mean dynamical equinox of date.
  *
  * @since 1.6
  * @sa to_system(), to_mod(), to_tod(), to_icrs(), to_j2000()
@@ -344,10 +346,12 @@ Ecliptic Ecliptic::to_mod(const Time& time) const {
 
 /**
  * Converts these ecliptic coordinates to True-of-Date (TOD) ecliptic coordinates at the
- * specified epch.
+ * specified epch. TOD ecliptic coordinates have their origin at the true dynamical equinox of
+ * date, accounting for both precession and nutation of Earth's pole / equator.
  *
  * @param time    the astronomical time specifying the coordinate epoch.
- * @return        the equivalent TOD ecliptic coordinates at the specified date.
+ * @return        the equivalent TOD ecliptic coordinates at the specified date, with the
+ *                lontigude coordinate originating at the mean dynamical equinox of date.
  *
  * @since 1.6
  * @sa to_system(), to_tod(), to_mod(), to_icrs(), to_j2000()
@@ -366,7 +370,9 @@ Ecliptic Ecliptic::to_tod(const Time& time) const {
  * Converts these ecliptic coordinates to equivalent equatorial coordinates.
  *
  * @param accuracy  (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
- * @return          the equivalent equatorial coordinates for the same place on sky.
+ * @return          the equivalent equatorial coordinates for the same place on sky,
+ *                  with respect to the same equator and equinox of date as these
+ *                  ecliptic coordinates.
  *
  * @since 1.6
  * @sa Equatorial::to_ecliptic(), to_galactic()
