@@ -96,7 +96,6 @@ For more customized installations, you can add the following options also:
 
  | Option                 | Description                                                                    |
  |:---------------------- |:------------------------------------------------------------------------------ |
- | `--with-cspice`        | Install CSPICE adapter library (and the `cspice` dependency, as needed) also   |
  | `--with-doxygen`       | Install local HTML documentation, compiled with Doxygen, also                  |
  | `--without-c++`        | Install without the C++11 API extension                                        |
  | `--without-calceph`    | Install wihout the CALCEPH adapter library                                     |
