@@ -1,7 +1,7 @@
 var searchData=
 [
   ['n_0',['n',['../structnovas__orbital.html#a32fff80f9d06ec882016f89f575547de',1,'novas_orbital']]],
-  ['naif_20cspice_20toolkit_20integration_1',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md26',1,'']]],
+  ['naif_20cspice_20toolkit_20integration_1',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md27',1,'']]],
   ['naif_2ec_2',['naif.c',['../naif_8c.html',1,'']]],
   ['naif_5fid_3',['naif_id',['../classsupernovas_1_1Planet.html#a134ad44ca935e90b63104a9c00602d6d',1,'supernovas::Planet']]],
   ['naif_5fto_5fnovas_5fplanet_4',['naif_to_novas_planet',['../novas_8h.html#a1c4b3f67a3b82808dd16ae43dfaf0f86',1,'naif_to_novas_planet(long id):&#160;naif.c'],['../naif_8c.html#a1c4b3f67a3b82808dd16ae43dfaf0f86',1,'naif_to_novas_planet(long id):&#160;naif.c']]],
@@ -18,10 +18,10 @@ var searchData=
   ['node_5frate_15',['node_rate',['../classsupernovas_1_1Orbital.html#afaf0000a33c68b01b1257cacbd655331',1,'supernovas::Orbital::node_rate() const'],['../classsupernovas_1_1Orbital.html#a05d61ea153f256ed7fafd87370f4fa77',1,'supernovas::Orbital::node_rate(double rad_per_sec)']]],
   ['noon_16',['noon',['../classsupernovas_1_1TimeAngle.html#ae56344cb0ade09ed2c4d96919706ca86',1,'supernovas::TimeAngle']]],
   ['north_17',['north',['../classsupernovas_1_1Angle.html#acc6a8b3997225d5ac247826ba4052daa',1,'supernovas::Angle']]],
-  ['notes_20on_20precision_18',['Notes on precision',['../index.html#autotoc_md28',1,'']]],
+  ['notes_20on_20precision_18',['Notes on precision',['../index.html#autotoc_md29',1,'']]],
   ['novas_20c_203_201_19',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['novas_20c_203_201_20issues_20',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
-  ['novas_20c_20api_21',['Refinements to the NOVAS C API',['../index.html#autotoc_md39',1,'']]],
+  ['novas_20c_20api_21',['Refinements to the NOVAS C API',['../index.html#autotoc_md45',1,'']]],
   ['novas_2dcalceph_2eh_22',['novas-calceph.h',['../novas-calceph_8h.html',1,'']]],
   ['novas_2dcspice_2eh_23',['novas-cspice.h',['../novas-cspice_8h.html',1,'']]],
   ['novas_2eh_24',['novas.h',['../novas_8h.html',1,'']]],

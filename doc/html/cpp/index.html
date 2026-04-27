@@ -336,7 +336,6 @@ Details</summary>
 <div class="line">$ brew install supernovas</div>
 </div><!-- fragment --><p>The above will build and install SuperNOVAS with the C++ API extension and the CALCEPH plugin support (including the <span class="tt">calceph</span> dependency, as needed). However, you may add further options to customize your build:</p>
 <ul>
-<li><span class="tt">--with-cspice</span> &ndash; Install with NAIF CSPICE support (and dependency).</li>
 <li><span class="tt">--with-doxygen</span> &ndash; Install with local HTML documentation.</li>
 <li><span class="tt">--without-c++</span> &ndash; Install without the C++ API extension and runtime.</li>
 <li><span class="tt">--without-calceph</span> &ndash; Install without CALCEPH support (and dependency).</li>
@@ -399,14 +398,14 @@ Celestial coordinate systems (old vs. new)</h1>
 <dl class="section note"><dt>Note</dt><dd>WGS84 has been superseded by ITRS for higher accuracy definitions of Earth-based locations. WGS84 matches ITRS to the 10m level globally, but it does not account for continental drifts and crustal motion. In (Super)NOVAS all Earth-base locations are presumed ITRS. ITRS longitude, latitude, and altitude coordinates are referenced to the GRS80 ellipsoid, whereas GPS locations are referenced to the WGS84 ellipsoid. <b>SuperNOVAS</b> offers ways to convert between the two if needed.</dd></dl>
 <hr  />
 <p><a class="anchor" id="examples"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 Example use cases</h1>
 <ul>
 <li><a class="el" href="#recommendation" title="recommendation">Recommendation: set up an ephemeris provider</a></li>
 <li><a class="el" href="#usage-flavors" title="usage-flavors">Pick you flavor (C or C++)</a></li>
 </ul>
 <p><a class="anchor" id="recommendation"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
 Recommendation: set up an ephemeris provider</h2>
 <p><b>SuperNOVAS</b> can do a lot of things on its own. What it cannot do alone is provide precise positions for Solar-system bodies. For that, you need ephemeris data and a helping hand from an external tool to access them. Even if you don't particularly care to obtain precise planet positions per se, they are needed for a range of high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational deflections in full-precision observing frames).</p>
 <p>Therefore, it is strongly recommended that you download <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/">planetary ephemeris files from NASA / JPL</a> (such as the DE440, or the smaller DE440s, or the long-term DE441), and install <a href="https://calceph.imcce.fr/">CALCEPH</a> or the <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">CSPICE Toolkit</a> for accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and it is also more modern, and actively maintained.</p>
@@ -424,7 +423,7 @@ Recommendation: set up an ephemeris provider</h2>
 </div><!-- fragment --><p>Don't forget to link with <span class="tt">-lsolsys-calceph</span> and <span class="tt">-lcalceph</span> flags added you yor build. With that, you have now unlocked a lot of the high-precision capabilities of <b>SuperNOVAS</b>. Have fun with it!</p>
 <p>For more details on using CALCEPH or integrating other ways for providing ephemeris data to <b>SuperNOVAS</b> look at the <a class="el" href="#solarsystem" title="solarsystem">section below</a>.</p>
 <p><a class="anchor" id="usage-flavors"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
 Pick your flavor (C or C++)</h2>
 <p>As of v1.6 <b>SuperNOVAS</b> comes in two flavors, the original C99 API, and a higher-level C++11 API. Depending on which one you intend to use, choose the appropriate link to an external document below for further information:</p>
 <ul>
@@ -433,7 +432,7 @@ Pick your flavor (C or C++)</h2>
 </ul>
 <hr  />
 <p><a class="anchor" id="solarsystem"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
 Incorporating Solar-system ephemeris data or services</h1>
 <p>If you want to use <b>SuperNOVAS</b> to calculate positions for a range of Solar-system objects, and/or to do it with precision, you will have to interface it to a suitable provider of ephemeris data. The preferred ways to do that in <b>SuperNOVAS</b> enumerated below. (The legacy NOVAS C ways are not covered here, since they require specialized builds of <b>SuperNOVAS</b>, which are covered <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application">separately</a>.)</p>
 <p>NASA/JPL provides <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/">generic ephemerides</a> for the major planets, satellites thereof, the 300 largest asteroids, the Lagrange points, and some Earth orbiting stations. For example, <a href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de440.bsp">DE440</a> covers the major planets, and the Sun, Moon, and barycenters for times between 1550 AD and 2650 AD. Or, you can use the <a href="https://ssd.jpl.nasa.gov/horizons/">JPL HORIZONS</a> system (via the command-line / telnet or API interfaces) to generate custom ephemerides (SPK/BSP) for just about all known solar systems bodies, down to the tiniest rocks.</p>
@@ -443,7 +442,7 @@ Incorporating Solar-system ephemeris data or services</h1>
 <li><a class="el" href="#universal-ephemerides" title="universal-ephemerides">Universal ephemeris data / service integration</a></li>
 </ul>
 <p><a class="anchor" id="calceph-integration"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
 CALCEPH integration</h2>
 <p>The <a href="https://www.imcce.fr/recherche/equipes/asd/calceph/">CALCEPH</a> library provides easy-to-use access to JPL and INPOP ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing <b>SuperNOVAS</b> with the the CALCEPH C library for handling Solar-system objects.</p>
 <details  open="true">
@@ -478,7 +477,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="cspice-integration"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
 NAIF CSPICE toolkit integration</h2>
 <p>The <a href="https://naif.jpl.nasa.gov/naif/toolkit.html">NAIF CSPICE Toolkit</a> is the canonical standard library for JPL ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing <b>SuperNOVAS</b> with CSPICE for handling Solar-system objects.</p>
 <details >
@@ -514,7 +513,7 @@ Details</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="universal-ephemerides"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
 Universal ephemeris data / service integration</h2>
 <p>Possibly the most universal way to integrate ephemeris data with <b>SuperNOVAS</b> is to write your own <span class="tt"><a class="el" href="group__solar-system.html#gaebb3d71006e8d93de242df61510374ad" title="Function to obtain ephemeris data for minor planets, which are not handled by the solarsystem() type ...">novas_ephem_provider</a></span> function.</p>
 <details >
@@ -544,7 +543,7 @@ Details</summary>
 <div class="ttc" id="anovas_8h_html_a9d0f54c0ab00827768e61a353488b0ee"><div class="ttname"><a href="novas_8h.html#a9d0f54c0ab00827768e61a353488b0ee">planet_ephem_provider</a></div><div class="ttdeci">short planet_ephem_provider(double jd_tdb, enum novas_planet body, enum novas_origin origin, double *restrict position, double *restrict velocity)</div><div class="ttdoc">Major planet ephemeris data via the same generic ephemeris provider that is configured by set_ephem_p...</div><div class="ttdef"><b>Definition</b> solsys-ephem.c:100</div></div>
 </div><!-- fragment --><p>The above simply instructs <b>SuperNOVAS</b> to use the same ephemeris provider function for planets as what was set for <span class="tt"><a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269" title="A Solar-system body that does not fit the major planet type, and requires specific user-provided nova...">NOVAS_EPHEM_OBJECT</a></span> type objects, provided you compiled <b>SuperNOVAS</b> with <span class="tt">BUILTIN_SOLSYS_EPHEM = 1</span> (in <span class="tt">config.mk</span>), or else you link your code against <span class="tt"><a class="el" href="solsys-ephem_8c.html" title="Major planet ephemeris lookup via the function, which was configured by set_ephem_provider().">solsys-ephem.c</a></span> explicitly. Easy-peasy.</p>
 <p><a class="anchor" id="precision"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
 Notes on precision</h1>
 <ul>
 <li><a class="el" href="#accuracy-prerequisites" title="accuracy-prerequisites">Prerequisites to precise results</a></li>
@@ -561,7 +560,7 @@ Notes on precision</h1>
 </table>
 <p>Note, that some functions will not support full accuracy calculations, unless you have provided a high-precision ephemeris provider for the major planets (and any Solar-system bodies of interest), which does not come with <b>SuperNOVAS</b> out of the box. In the absence of a suitable high-precision ephemeris provider, some functions might return an error if called with <span class="tt"><a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660" title="Use full precision calculations to micro-arcsecond accuracy.">NOVAS_FULL_ACCURACY</a></span>. (Click on the wedges next to each component to expand the details...)</p>
 <p><a class="anchor" id="accuracy-prerequisites"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 Prerequisites to precise results</h2>
 <p>The <b>SuperNOVAS</b> library is in principle capable of calculating positions to microarcsecond, and velocities to mm/s, precision for all types of celestial sources. However, there are certain prerequisites and practical considerations before that level of accuracy is reached. (Click on the wedge next to each heading below to expand the details.)</p>
 <details >
@@ -812,7 +811,7 @@ New in v1.6</summary>
 <p></p>
 </details>
 <p><a class="anchor" id="api-changes"></a> </p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
 Refinements to the NOVAS C API</h2>
 <p>Many <b>SuperNOVAS</b> changes are focused on improving the usability and promote best coding practices so that both the library and your application will be safer, and less prone to nagging errors. Below is a detailed listing of the principal ways <b>SuperNOVAS</b> has improved on the original NOVAS C library in these respects.</p>
 <details >
@@ -851,7 +850,7 @@ Details</summary>
 </details>
 <hr  />
 <p><a class="anchor" id="release-schedule"></a> </p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md54"></a>
 Release schedule</h1>
 <p>A predictable release schedule and process can help manage expectations and reduce stress on adopters and developers alike.</p>
 <p><b>SuperNOVAS</b> will try to follow a quarterly release schedule. You may expect upcoming releases to be published around <b>February 1</b>, <b>May 1</b>, <b>August 1</b>, and/or <b>November 1</b> each year, on an as-needed basis. That means that if there are outstanding bugs, or new pull requests (PRs), you may expect a release that addresses these in the upcoming quarter. The dates are placeholders only, with no guarantee that a new release will actually be available every quarter. If nothing of note comes up, a potential release date may pass without a release being published.</p>
