@@ -225,12 +225,21 @@ install(FILES CHANGELOG.md CONTRIBUTING.md
 )
 
 # For examples/ dir, list just the directory, not the individual files installed.
-install(CODE "message(STATUS \"Installing: <prefix>/${CMAKE_INSTALL_DOCDIR}/examples/\")")
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/examples
-    TYPE DOC
+install(CODE "message(STATUS \"Installing: <prefix>/${CMAKE_INSTALL_DOCDIR}/examples/c99\")")
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/examples/c99
     MESSAGE_NEVER
     COMPONENT Development
+    DESTINATION ${CMAKE_INSTALL_DOCDIR}/examples
 )
+
+install(CODE "message(STATUS \"Installing: <prefix>/${CMAKE_INSTALL_DOCDIR}/examples/cpp\")")
+if(ENABLE_CPP)
+    install(DIRECTORY ${PROJECT_SOURCE_DIR}/examples/cpp
+        MESSAGE_NEVER
+        COMPONENT Development
+        DESTINATION ${CMAKE_INSTALL_DOCDIR}/examples
+    )
+endif()
 
 # For legacy/ dir, list just the directory, not the individual files installed.
 install(CODE "message(STATUS \"Installing: <prefix>/${CMAKE_INSTALL_DOCDIR}/legacy/*\")")

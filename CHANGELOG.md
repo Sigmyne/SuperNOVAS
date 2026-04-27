@@ -7,6 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [Unreleased]
+
+### Changed
+
+ - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
+
+
 ## [1.6.0] - 2026-04-27
 
 Feature release, introducing a proper C++ API for the first time, adding the self-contained semi-analytic ELP2000 / 
