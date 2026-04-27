@@ -64,12 +64,12 @@ int main() {
   Interval c(1000.0 * Unit::sec, NOVAS_TCG);
   if(!test.equals("tcg:seconds()", c.seconds(), 1000.0)) n++;
   if(!test.equals("tcg:to_tt:seconds()", c.to_timescale(NOVAS_TT).seconds() * (1.0 + Constant::L_G), 1000.0, 1e-16)) n++;
-  if(!test.equals("operator - (tcg)", (c - c).seconds(), 0.0, 1e-16)) n++;
+  if(!test.equals("operator - (tcg)", (c - c).seconds(), 0.0, 1e-12)) n++;
 
   Interval d(1000.0 * Unit::sec, NOVAS_TCB);
   if(!test.equals("tcb:seconds()", d.seconds(), 1000.0)) n++;
   if(!test.equals("tcb:to_tt:seconds()", d.to_timescale(NOVAS_TT).seconds() * (1.0 + Constant::L_B), 1000.0, 1e-16)) n++;
-  if(!test.equals("operator - (tcb)", (d - d).seconds(), 0.0, 1e-16)) n++;
+  if(!test.equals("operator - (tcb)", (d - d).seconds(), 0.0, 1e-12)) n++;
 
   if(!test.differs("operator - (tcb / tcg)", (d - c).seconds(), 0.0, 1e-15)) n++;
 

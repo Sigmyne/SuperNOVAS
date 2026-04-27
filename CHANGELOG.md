@@ -13,6 +13,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
  - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
 
+ - Adjust C++ testing precision on tests that can trip up, depending on the platform.
+ 
 
 ## [1.6.0] - 2026-04-27
 

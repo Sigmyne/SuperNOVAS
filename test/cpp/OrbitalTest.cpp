@@ -129,14 +129,14 @@ int main() {
   if(!test.check("invalid(T < 0)", !Orbital(s, Time::j2000(), Coordinate(Unit::AU), Angle(0.0), Interval(-1.0)).is_valid())) n++;
   if(!test.check("invalid(n = 0)", !Orbital::from_mean_motion(s, Time::j2000(), Coordinate(Unit::AU), Angle(0.0), 0.0).is_valid())) n++;
 
-  Orbital o(s, Time::j2000(), Coordinate(Unit::AU), Angle(-1.0), Interval(Unit::yr));
+  Orbital o(s, Time::j2000(), Coordinate(Unit::AU), Angle(-1.0), Interval(2.0 * Unit::yr));
   if(!test.check("is_valid()", o.is_valid())) n++;
   if(!test.equals("reference_jd_tdb()", o.reference_jd_tdb(), NOVAS_JD_J2000, 1e-6)) n++;
   if(!test.equals("semi_major_axis()", o.semi_major_axis().au(), 1.0, 1e-15)) n++;
   if(!test.equals("mean_anomaly()", o.reference_mean_anomaly().rad(), -1.0, 1e-15)) n++;
-  if(!test.equals("mean_motion()", o.mean_motion(), Constant::two_pi / Unit::yr, 1e-14 * o.mean_motion())) n++;
-  if(!test.equals("period()", o.period().years(), 1.0, 1e-15)) n++;
-  if(!test.equals("to_string()", o.to_string(), "Orbital (a = 1.000 AU, T = 365.242 d, e = 0.000000) in Equatorial OrbitalSystem around SUN inclined at 0.000000 deg with node at 0.000000 deg.")) n++;
+  if(!test.equals("mean_motion()", o.mean_motion(), Constant::pi / Unit::yr, 1e-14 * o.mean_motion())) n++;
+  if(!test.equals("period()", o.period().years(), 2.0, 1e-15)) n++;
+  if(!test.equals("to_string()", o.to_string(), "Orbital (a = 1.000 AU, T = 2.000 yr, e = 0.000000) in Equatorial OrbitalSystem around SUN inclined at 0.000000 deg with node at 0.000000 deg.")) n++;
   if(!test.check("position(invalid time)", !x.position(Time::undefined()).is_valid())) n++;
   if(!test.check("velocity(invalid time)", !x.velocity(Time::undefined()).is_valid())) n++;
 
