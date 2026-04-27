@@ -15,8 +15,8 @@ excerpt: SuperNOVAS is a light-weight, high-precision astrometry C/C++ library, 
 __SuperNOVAS__ is a C/C++ astronomy software library, providing high-precision astrometry such as one might need for 
 running an observatory, a precise planetarium program, or for analyzing astronomical datasets. It started as a fork of 
 the Naval Observatory Vector Astrometry Software ([NOVAS](https://aa.usno.navy.mil/software/novas_info)) C version 
-3.1, but since then it has grown into its own, providing bug fixes, tons of new features, and a much improved API 
-compared to the original NOVAS.
+3.1, but since then it has grown into its own, providing bug fixes, tons of new features, and a much improved and 
+expanded API compared to the original NOVAS.
 
 __SuperNOVAS__ is easy to use and it is very fast, providing 3--5 orders of magnitude faster position calculations than 
 [astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
@@ -58,37 +58,59 @@ case(s):
  | __Fedora / EPEL RPM__                 |  __Debian package__                          |
  |---------------------------------------|----------------------------------------------|
  | `supernovas`                          | `libsupernovas1`                             |
+ | `supernovas-c++`                      | `libsupernovas++1`                           |
  | `supernovas-solsys-calceph`           | `libsolsys-calceph1`                         |
  | `supernovas-devel`                    | `libsupernovas-dev`                          |
  | `supernovas-doc`                      | `libsupernovas-doc`                          |
  
 
-The differences in package naming are due to the different naming policies for RedHat/Fedora vs Debian. Otherwise, the 
+The differences in package names are due to the different naming policies for RedHat/Fedora vs Debian. Otherwise, the 
 RPM and Debian packages provide identical contents and features.
  
 
 __vcpkg Registry__
 
-You can install the core SuperNOVAS library with `vcpkg` on Linux, MacOS, Windows, and Android as:
+You can also install the core SuperNOVAS library with `vcpkg` on Linux, MacOS, Windows, and Android as:
 
 ```bash
   $ vcpkg install supernovas
 ```
 
-Or, just the `core` library component without the `solsys-calceph` plugin as:
+Or, with the optional `cpp` (C++17 API extension) and `solsys-calceph` (CALCEPH adapter) components as:
 
 ```bash
-  $ vcpkg install supernovas[core]
+  $ vcpkg install supernovas[core,cpp,solsys-calceph]
 ```
 
 __Homebrew__ 
 
 Or, install via the Homebrew package manager (MacOS and Linux) through the maintainer's own Tap, including the 
-`solsys-calceph` plugin:
+C++ API extension and the CALCEPH adapter library (and the `calceph` dependency, as needed):
 
 ```bash
   $ brew tap attipaci/pub
   $ brew install supernovas
 ```
 
+For more customized installations, you can add the following options also:
 
+ | Option                 | Description                                                                    |
+ |:---------------------- |:------------------------------------------------------------------------------ |
+ | `--with-cspice`        | Install CSPICE adapter library (and the `cspice` dependency, as needed) also   |
+ | `--with-doxygen`       | Install local HTML documentation, compiled with Doxygen, also                  |
+ | `--without-c++`        | Install without the C++17 API extension                                        |
+ | `--without-calceph`    | Install wihout the CALCEPH adapter library                                     |
+
+
+__Nix package__
+
+Nix is a declarative and determinstic package manager can be used on every Linux distribution as well as MacOS.
+The default package includes the `solsys-calceph` plugin, but can be overriden by changing `withCalceph`.
+
+Install to your profile with
+
+```bash
+  $ nix profile add nixpkgs#supernovas
+```
+
+</details>
