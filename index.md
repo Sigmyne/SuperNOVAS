@@ -100,6 +100,7 @@ For more customized installations, you can add the following options also:
  | `--without-c++`        | Install without the C++11 API extension                                        |
  | `--without-calceph`    | Install wihout the CALCEPH adapter library                                     |
 
+.
 
 __Nix package__
 
@@ -112,4 +113,3 @@ Install to your profile with
   $ nix profile add nixpkgs#supernovas
 ```
 
-</details>
