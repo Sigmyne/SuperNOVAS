@@ -61,7 +61,7 @@ case(s):
  | `supernovas-c++`                      | `libsupernovas++1`                           |
  | `supernovas-solsys-calceph`           | `libsolsys-calceph1`                         |
  | `supernovas-devel`                    | `libsupernovas-dev`                          |
- | `supernovas-doc`                      | `libsupernovas-doc`                          |
+ | `supernovas-doc`                      | `libsupernovas-doc`, `libsupernovas++-doc`   |
  
 
 The differences in package names are due to the different naming policies for RedHat/Fedora vs Debian. Otherwise, the 
