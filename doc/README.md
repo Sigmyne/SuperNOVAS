@@ -413,7 +413,7 @@ __SuperNOVAS__ is packaged for Debian, Fedora / EPEL, and NixOS Linux distributi
 On Debian-based platforms you might install all components via:
 
 ```bash
-  $ sudo apt-get install libsupernovas1 libsupernovas++1 libsolsys-calceph1 libsupernovas-doc libsupernovas-dev
+  $ sudo apt-get install libsupernovas1 libsupernovas++1 libsolsys-calceph1 libsupernovas-doc libsupernovas++-doc libsupernovas-dev
 ```
 
 And or Fedora / EPEL based distributions as:
