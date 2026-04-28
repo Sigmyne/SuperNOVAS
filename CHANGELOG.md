@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+Upcoming maintenance release, possibly around 1 August 2026.
+
 ### Changed
 
  - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
@@ -16,6 +18,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
  - Adjust C++ testing precision on tests that can trip up, depending on the platform.
  
  - Disable parallel Doxygen builds -- they are non-reproducible.
+ 
+ - CMake export build-dir targets for dependent builds.
  
 
 ## [1.6.0] - 2026-04-27

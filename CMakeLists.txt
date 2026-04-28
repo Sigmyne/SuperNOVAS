@@ -308,7 +308,7 @@ endif()
 # Export the package for use from the build-tree
 # (this registers the build-tree with a global CMake-registry)
 export(PACKAGE supernovas)
-
+export(EXPORT supernovasTargets NAMESPACE supernovas:: FILE supernovasTargets.cmake)
 
 # ----------------------------------------------------------------------------
 # Summary
