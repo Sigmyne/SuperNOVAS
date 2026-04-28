@@ -310,16 +310,16 @@ Details</summary>
 <p><a class="anchor" id="linux-packages"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
 Linux packages</h2>
-<p><b>SuperNOVAS</b> is packaged for Debian, Fedora / EPEL, and NixOS Linux distributions, and derivatives based on these (Ubuntu, Mint, RHEL, CentOS Stream, Alma Linux, Rocky Linux, Oracle Linux etc.).</p>
+<p><b>SuperNOVAS</b> is packaged for Fedora / EPEL and Debian Linux distributions, and derivatives based on these (Ubuntu, Mint, RHEL, CentOS Stream, Alma Linux, Rocky Linux, Oracle Linux etc.).</p>
 <details >
 <summary >
 Details</summary>
 <p></p>
-<p>On Debian-based platforms you might install all components via:</p>
-<div class="fragment"><div class="line">$ sudo apt-get install libsupernovas1 libsupernovas++1 libsolsys-calceph1 libsupernovas-doc libsupernovas++-doc libsupernovas-dev</div>
-</div><!-- fragment --><p>And or Fedora / EPEL based distributions as:</p>
+<p>On Fedora / EPEL based distributions you might install all components via:</p>
 <div class="fragment"><div class="line">$ sudo dnf install supernovas supernovas-c++ supernovas-solsys-calceph supernovas-doc supernovas-devel</div>
-</div><!-- fragment --><p>In both cases the first package is the runtime library, the second is the C++11 runtime library, the third is the runtime for the <span class="tt">solsys-calceph</span> plugin, the fourth is documentation, and the last one is the files needed for application development.</p>
+</div><!-- fragment --><p>And, on Debian-based platforms (such as Ubuntu or Mint) as:</p>
+<div class="fragment"><div class="line">$ sudo apt-get install libsupernovas1 libsupernovas++1 libsolsys-calceph1 libsupernovas-doc libsupernovas++-doc libsupernovas-dev</div>
+</div><!-- fragment --><p>In both cases the first package is the runtime library, the second is the C++11 runtime library, the third is the runtime for the <span class="tt">solsys-calceph</span> plugin, then documentation, and finally the files needed for application development.</p>
 <p></p>
 </details>
 <dl class="section note"><dt>Note</dt><dd>The turnaround time for Debian packages is quite slow, and typically follows the 6-month Debian release cycle, whereas the Fedora / EPEL packages are usually fully up-to-date (i.e. in <span class="tt">stable</span>) within a week of a new SuperNOVAS release. Somewhat newer Debian versions may be found in <span class="tt">testing</span>, but even that tends to lag behind the <span class="tt">stable</span> Fedora / EPEL updates.</dd></dl>

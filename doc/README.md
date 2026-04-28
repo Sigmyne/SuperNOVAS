@@ -406,25 +406,25 @@ Or, a set of selected components library as, such as all the complete installati
 <a name="linux-packages"></a>
 ### Linux packages
 
-__SuperNOVAS__ is packaged for Debian, Fedora / EPEL, and NixOS Linux distributions, and derivatives based on these 
+__SuperNOVAS__ is packaged for Fedora / EPEL and Debian Linux distributions, and derivatives based on these 
 (Ubuntu, Mint, RHEL, CentOS Stream, Alma Linux, Rocky Linux, Oracle Linux etc.).
 
 
-On Debian-based platforms you might install all components via:
-
-```bash
-  $ sudo apt-get install libsupernovas1 libsupernovas++1 libsolsys-calceph1 libsupernovas-doc libsupernovas++-doc libsupernovas-dev
-```
-
-And or Fedora / EPEL based distributions as:
+On Fedora / EPEL based distributions you might install all components via:
 
 ```bash
   $ sudo dnf install supernovas supernovas-c++ supernovas-solsys-calceph supernovas-doc supernovas-devel
 ```
 
+And, on Debian-based platforms (such as Ubuntu or Mint) as:
+
+```bash
+  $ sudo apt-get install libsupernovas1 libsupernovas++1 libsolsys-calceph1 libsupernovas-doc libsupernovas++-doc libsupernovas-dev
+```
+
+
 In both cases the first package is the runtime library, the second is the C++11 runtime library, the third is the 
-runtime for the `solsys-calceph` plugin, the fourth is documentation, and the last one is the files needed for 
-application development.
+runtime for the `solsys-calceph` plugin, then documentation, and finally the files needed for application development.
 
 
 __NOTE__
