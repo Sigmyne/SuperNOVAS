@@ -62,7 +62,7 @@
 #if defined(SUPERNOVAS_USE_THREAD) || defined(__unix__) || defined(__unix) || defined(__APPLE__)
 #  include <pthread.h>
 
-#  define init_lock           pthread_mutex_init
+#  define init_lock(x)        pthread_mutex_init(x, (void *) 0)
 #  define ephem_lock          pthread_mutex_lock
 #  define ephem_unlock        pthread_mutex_unlock
 #  define THREAD_SAFE         1
@@ -72,7 +72,7 @@ typedef pthread_mutex_t       lock_type;
 #elif __STDC_VERSION__ >= 201112L
 #  include <threads.h>
 
-#  define init_lock           mtx_init
+#  define init_lock(x)        mtx_init(x, mtx_plain)
 #  define ephem_lock          mtx_lock
 #  define ephem_unlock        mtx_unlock
 
@@ -83,7 +83,7 @@ typedef mtx_t                 lock_type;
 #elif defined(WIN32)
 #include <windows.h>
 
-#  define init_lock(x, t)     InitializeSRWLock(x)
+#  define init_lock(x)        InitializeSRWLock(x)
 #  define ephem_lock          AcquireSRWLockExclusive
 #  define ephem_unlock        ReleaseSRWLockExclusive
 #  define THREAD_SAFE         1
@@ -125,7 +125,7 @@ static void mutex_lock() {
   static int initialized;
 
   if(!initialized) {
-    init_lock(&mutex, 0);
+    init_lock(&mutex);
     initialized = 1;
   }
 
