@@ -23,6 +23,8 @@ Upcoming maintenance release, possibly around 1 August 2026.
  
  - Tweak portable mutex macros in ephemeris plugins.
  
+ - `examples/Makefile` to work standalone, without `config.mk`.
+ 
 
 ## [1.6.0] - 2026-04-27
 
