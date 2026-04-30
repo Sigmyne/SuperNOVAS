@@ -4,8 +4,6 @@
 #
 # Author: Attila Kovacs
 
-include ../config.mk
-
 .PHONY: all analyze 
 all analyze:
 	@$(MAKE) -C c99 $@

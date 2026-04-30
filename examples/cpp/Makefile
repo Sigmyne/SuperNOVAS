@@ -4,9 +4,6 @@
 #
 # Author: Attila Kovacs
 
-# Use the definitions project definitions
-include ../../config.mk
-
 EXAMPLES = example-star example-high-z example-orbital example-time example-rise-set example-moon
 
 LIB ?= ../../lib
