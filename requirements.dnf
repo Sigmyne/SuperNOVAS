@@ -1,0 +1,4 @@
+# sudo dnf install $(grep -v ^# requirements.dnf)
+libcurl-devel
+
+

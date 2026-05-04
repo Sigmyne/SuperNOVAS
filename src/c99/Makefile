@@ -18,7 +18,7 @@ LIB ?= ../../lib
 CPPFLAGS += -I../../include
 
 # We'll need math functions to link
-LDFLAGS += -lm -lcurl
+LDFLAGS += -lm
 
 SOLSYS_TARGETS :=
 SHARED_TARGETS := $(LIB)/libsupernovas.$(SOEXT) $(LIB)/libnovas.$(SOEXT)
@@ -33,6 +33,12 @@ ifeq ($(CSPICE_SUPPORT), 1)
   CPPFLAGS += -DUSE_CSPICE=1
   SOLSYS_TARGETS += $(OBJ)/solsys-cspice.o
   SHARED_TARGETS += $(LIB)/libsolsys-cspice.$(SOEXT)
+endif
+
+ifeq ($(CURL_SUPPORT), 0)
+  CPPFLAGS += -DWITHOUT_CURL=1
+else
+  LDFLAGS += -lcurl
 endif
 
 # Shared libraries (versioned and unversioned)

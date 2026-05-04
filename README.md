@@ -224,16 +224,48 @@ accommodate JPL NAIF codes, for which 16-bit storage is insufficient.
 <a name="dependencies"></a>
 ### Dependencies
 
-Required build dependencies:
+Required dependencies:
 
- - `libcurl`
+ - `libcurl` -- for fetching Earth Orientation data from IERS. (If `libcurl` is not available, and you do not need
+   the EOP ftching functionality, you can disable the dependency by setting `CURL_SUPPORT=0` in your environment prior 
+   to the build.
  
-Oprional build dependencies:
+Optional dependencies:
 
  - `calceph` -- if building with CALCEPH support enabled.
  - `cspice` -- if building with CSPICE support enabled.
  - `doxygen` -- if compiling HTML documentation.
  
+#### Installing dependencies on Linux
+
+On Fedora / EPEL Linux and derivatives, you may install all packaged (build + runtime) dependencies as:
+
+```bash
+  sudo dnf install libcurl-devel calceph-devel doxygen
+```
+
+And on Debian and derivatives (e.g. Ubuntu, Mint, Alpine), you may do the same with:
+
+```bash
+  sudo apt-get install libcurl4-openssl-dev calceph-dev doxygen
+```
+
+#### Installing dependencies on MacOS
+
+On MacOS you may install the dependencies with Homebrew:
+
+```bash
+  brew install curl calceph doxygen
+```
+
+#### Installing dependencies on BSD
+
+On BSD (e.g. FreeBSD, OpenBSD) you might install `curl` and `calceph`. And you will also need additional packages for 
+building __SuperNOVAS__, such as and `cmake` and/or `gmake`, and `pkgconf`:
+
+```bash
+  pkg install -y curl calceph cmake gmake devel/pkgconf
+```
 
 <a name="gnu-build"></a>
 ### Build SuperNOVAS using GNU make
@@ -291,6 +323,9 @@ Additionally, you may set number of environment variables to futher customize th
 
  - `CHECKEXTRA`: Extra options to pass to `cppcheck` for the `make check` target
  
+ - `CURL_SUPPORT`: Setting to 0 disables building against `libcurl` (default: 1). If disabled, the EOP fetching 
+   functions and methods will return an error or invalid EOP, with `errno` set to `ENOSYS`.
+ 
  - `DOXYGEN`: Specify the `doxygen` executable to use for generating documentation. If not set (default), `make` will
    use `doxygen` in your `PATH` (if any). You can also set it to `none` to disable document generation and the
    checking for a usable `doxygen` version entirely.
@@ -328,10 +363,25 @@ Or, to stage the installation (to `/usr`) under a 'build root':
   $ make DESTDIR="/tmp/stage" install
 ```
 
-</details>
+#### GNU make on BSD
 
-> [!TIP]
-> On BSD, you will need to use `gmake` instead of `make`.
+On BSD, you will need to use `gmake` instead of `make` (see section on dependencies above). You will also need 
+`pkgconf` s.t. `gcc` may locate the dependencies (headers and libraries). In practice, it means setting 
+`CPPFLAGS` and `LDFLAGS` to contain the appropriate include and library paths and libraries prior to calling
+`gmake`. E.g., to build against both `libcurl` and `calceph`: 
+
+```bash
+  export CPPFLAGS=`pkg-config --cflags libcurl calceph`
+  export LDFLAGS=`pkg-config --libs libcurl calceph`
+```
+
+Now you can build __SuperNOVAS__, for example as a shared library, with:
+
+```bash
+  gmake shared
+```
+
+</details>
 
 > [!NOTE]
 > if you want to build __SuperNOVAS__ for with your old NOVAS C applications you might want to further customize the 

@@ -62,6 +62,10 @@ CFLAGS ?= -g -Os -Wall
 # option to CPPFLAGS prior to calling make).
 #CSPICE_SUPPORT = 1
 
+# Build with cURL support for obtaining EOP data from IERS. If you don't
+# have access to curl, and do not need the functionality, you may disable
+# it by setting it to 0.
+CURL_SUPPORT = 1
 
 # cppcheck options for 'check' target. You can add additional options by
 # setting the CHECKEXTRA variable (e.g. in shell) prior to invoking 'make'.
