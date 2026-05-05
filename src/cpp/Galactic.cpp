@@ -150,12 +150,51 @@ bool Galactic::operator!=(const Galactic& other) const {
  * @return        the angular distance of these coordinates to/from the argument.
  *
  * @since 1.6
+ *
+ * @sa offset_by()
  */
 Angle Galactic::distance_to(const Galactic& other) const {
   Angle a = Spherical::distance_to(other);
   if(!a.is_valid())
     novas_trace_invalid("Galactic::distance_to()");
   return a;
+}
+
+/**
+ * Returns galactic coordinates for an offset position from these along the great circle that
+ * crosses these coordinates in the speciifed direction.
+ *
+ * @param direction_rad   [rad] offset direction, measured East of the local galactic North.
+ * @param distance_rad    [rad] offset great circle distance.
+ * @return                The galactic coordinates of the offset position
+ *
+ * @since 1.7
+ *
+ * @sa distance_to(), Equatorial::offset(), Ecliptic::offset(), Horizontal::offset()
+ */
+Galactic Galactic::offset(double direction_rad, double distance_rad) const {
+  double lon = NAN, lat = NAN;
+  novas_offset_by(longitude().deg(), latitude().deg(), direction_rad / Unit::deg, distance_rad / Unit::deg, &lon, &lat);
+  Galactic g(lon * Unit::deg, lat * Unit::deg);
+  if(!g.is_valid())
+    novas_trace_invalid("Galactic::offset()");
+  return g;
+}
+
+/**
+ * Returns galactic coordinates for an offset position from these along the great circle that
+ * crosses these coordinates in the speciifed direction.
+ *
+ * @param direction   offset direction, measured East of the local galactic North.
+ * @param distance    offset great circle distance.
+ * @return            The galactic coordinates of the offset position
+ *
+ * @since 1.7
+ *
+ * @sa distance_to(), Equatorial::offset(), Ecliptic::offset(), Horizontal::offset()
+ */
+Galactic Galactic::offset(const Angle& direction, const Angle& distance) const {
+  return offset(distance.rad(), direction.rad());
 }
 
 /**

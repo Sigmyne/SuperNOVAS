@@ -3384,6 +3384,16 @@ int novas_icrs_to_sys(const double *in, double jd_tdb, enum novas_accuracy accur
 int novas_sys_to_icrs(enum novas_reference_system sys, const double *in, double jd_tdb, enum novas_accuracy accuracy, double *out);
 
 
+// ---------------------- Added in 1.6.0 -------------------------
+
+// in util.c
+/// @c_util
+int novas_offset_by(double lon, double lat, double direction, double distance, double *restrict out_lon, double *restrict out_lat);
+
+/// @c_util
+int novas_equ_offset_by(double ra, double dec, double direction, double distance, double *restrict out_ra, double *restrict out_dec);
+
+
 // <================= END of SuperNOVAS API =====================>
 
 

@@ -715,6 +715,7 @@ double d_light(const double *pos_src, const double *pos_body) {
  * @author Attila Kovacs
  *
  * @sa novas_equ_sep(), novas_sun_angle(), novas_moon_angle()
+ * @sa novas_offset_by()
  */
 double novas_sep(double lon1, double lat1, double lon2, double lat2) {
   const double cp1 = cos(lat1 * DEGREE);
@@ -742,6 +743,7 @@ double novas_sep(double lon1, double lat1, double lon2, double lat2) {
  * @author Attila Kovacs
  *
  * @sa novas_sep(), novas_sun_angle(), novas_moon_angle()
+ * @sa novas_equ_offset_by()
  */
 double novas_equ_sep(double ra1, double dec1, double ra2, double dec2) {
   return novas_sep(15.0 * ra1, dec1, 15.0 * ra2, dec2);
@@ -971,3 +973,118 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
   return strlen(buf);
 }
 
+/**
+ * Calculates offset spherical coordinates at some distance away from the input coordinates along
+ * a great circle which crosses the input position at the specified direction. Based on the
+ * __astropy__ `offset_by()` implementation.
+ *
+ * @param lon             [deg] reference point longitude
+ * @param lat             [deg] reference point latitude
+ * @param direction       [deg] direction (measured East of North).
+ * @param distance        [deg] offset distance on great circle
+ * @param[out] out_lon    [deg] longitude at offset position in [-&pi:&pi;) range. It may be NULL
+ *                        if not needed.
+ * @param[out] out_lat    [deg] latitude at offset position in [-&pi/2:&pi;/2] range. It may be
+ *                        NULL if not needed.
+ * @return                0 if successful, or else -1 if very close to the pole, and longitude at
+ *                        the offset position is requested, or if the input latitude is outside of
+ *                        the [-90:90] range.
+ *
+ * @since 1.7
+ * @sa Attila Kovacs
+ *
+ * @sa novas_equ_offset_by(), novas_sep()
+ * @sa https://docs.astropy.org/en/stable/_modules/astropy/coordinates/angles/utils.html#offset_at
+ */
+int novas_offset_by(double lon, double lat, double direction, double distance, double *restrict out_lon, double *restrict out_lat) {
+  static const char *fn = "novas_offset_by";
+
+  double clat, slat, cD, sD_clat, cb;
+
+  if(fabs(lat) > 90.0)
+    return novas_error(-1, EINVAL, fn, "latitude is outside of the [-90:90] range.");
+
+  if(distance == 0.0) {
+    // not offset at all...
+    if(out_lon)
+      *out_lon = lon;
+    if(out_lat)
+      *out_lat = lat;
+    return 0;
+  }
+
+  clat = cos(lat * DEGREE);
+
+  if(fabs(clat) < 1e-12) {
+    // Very close to the pole, longitude is undefined, but latitude can be determined
+    // assuming that we start exactly from the pole.
+    if(out_lat) {
+      *out_lat = remainder(distance, DEG360);
+
+      // wrap as needed...
+      if(*out_lat > 90.0)
+        *out_lat = 180.0 - lat;
+      else if(*out_lat < -90.0)
+        *out_lat = -180.0 - lat;
+    }
+
+    if(out_lon) {
+      *out_lon = NAN;
+      return novas_error(-1, EDOM, fn, "longitude is undefined at the poles");
+    }
+
+    return 0;
+  }
+
+  slat = sin(lat * DEGREE);
+  cD = cos(distance * DEGREE);
+  sD_clat = sin(distance * DEGREE) * clat;
+  cb = slat * cD + sD_clat * cos(direction * DEGREE);
+
+  if(out_lon) {
+    double dlon = atan2(sD_clat * sin(direction * DEGREE), cD - cb * slat) / DEGREE;
+    *out_lon = remainder(lon + dlon, DEG360);
+  }
+
+  if(out_lat)
+    *out_lat = asin(cb) / DEGREE;
+
+  return 0;
+}
+
+/**
+ * Calculates offset equatorial coordinates at some distance away from the input coordinates along
+ * a great circle which crosses the input position at the specified position angle.
+ *
+ * @param ra              [deg] reference point right ascention (R.A.)
+ * @param dec             [deg] reference point declination
+ * @param direction       [deg] direction (measured East of North).
+ * @param distance        [deg] offset distance on great circle
+ * @param[out] out_ra     [deg] right ascention (R.A.) at offset position in [0:24) range. It may
+ *                        be NULL if not needed.
+ * @param[out] out_dec    [deg] declination at offset position in [-&pi/2:&pi;/2] range. It may be
+ *                        NULL if not needed.
+ * @return                0 if successful, or else -1 if very close to the pole, and right
+ *                        ascention (R.A.) at the offset position is requested, or if the
+ *                        input declination is outside of the [-90:90] range.
+ *
+ * @since 1.7
+ * @sa Attila Kovacs
+ *
+ * @sa novas_offset_by(), novas_equ_sep()
+ */
+int novas_equ_offset_by(double ra, double dec, double direction, double distance, double *restrict out_ra, double *restrict out_dec) {
+  double out_lon = NAN;
+
+  int status = novas_offset_by(15.0 * ra, dec, direction, distance, &out_lon, out_dec);
+
+  if(out_lon < 0.0)
+    out_lon += DEG360;
+
+  if(out_ra)
+    *out_ra = out_lon / 15.0;
+
+  prop_error("novas_equ_offset", status, 0);
+
+  return 0;
+}

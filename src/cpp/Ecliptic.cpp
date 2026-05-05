@@ -253,12 +253,51 @@ Equinox Ecliptic::system() const {
  * @return        the angular distance of these coordinates to/from the argument.
  *
  * @since 1.6
+ *
+ * @sa offset_by()
  */
 Angle Ecliptic::distance_to(const Ecliptic& other) const {
   Angle a = Spherical::distance_to(other >> system());
   if(!a.is_valid())
     novas_trace_invalid("Ecliptic::distance_to()");
   return a;
+}
+
+/**
+ * Returns ecliptic coordinates for an offset position from these along the great circle that
+ * crosses these coordinates in the speciifed direction.
+ *
+ * @param direction_rad   [rad] offset direction, measured East of the local ecliptic North.
+ * @param distance_rad    [rad] offset great circle distance.
+ * @return                The ecliptic coordinates of the offset position
+ *
+ * @since 1.7
+ *
+ * @sa distance_to(), Equatorial::offset(), Galactic::offset(), Horizontal::offset()
+ */
+Ecliptic Ecliptic::offset(double direction_rad, double distance_rad) const {
+  double lon = NAN, lat = NAN;
+  novas_offset_by(longitude().deg(), latitude().deg(), direction_rad / Unit::deg, distance_rad / Unit::deg, &lon, &lat);
+  Ecliptic e(lon * Unit::deg, lat * Unit::deg, system());
+  if(!e.is_valid())
+    novas_trace_invalid("Ecliptic::offset()");
+  return e;
+}
+
+/**
+ * Returns ecliptic coordinates for an offset position from these along the great circle that
+ * crosses these coordinates in the speciifed direction.
+ *
+ * @param direction   offset direction, measured East of the local ecliptic North.
+ * @param distance    offset great circle distance.
+ * @return            The ecliptic coordinates of the offset position
+ *
+ * @since 1.7
+ *
+ * @sa distance_to(), Equatorial::offset(), Galactic::offset(), Horizontal::offset()
+ */
+Ecliptic Ecliptic::offset(const Angle& direction, const Angle& distance) const {
+  return offset(distance.rad(), direction.rad());
 }
 
 /**

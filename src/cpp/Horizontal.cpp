@@ -178,12 +178,51 @@ bool Horizontal::operator!=(const Horizontal& other) const {
  * @return        the angular distance of these coordinates to/from the argument.
  *
  * @since 1.6
+ *
+ * @sa offset_by()
  */
 Angle Horizontal::distance_to(const Horizontal& other) const {
   Angle a = Spherical::distance_to(other);
   if(!a.is_valid())
     novas_trace_invalid("Horizontal::distance_to()");
   return a;
+}
+
+/**
+ * Returns horizontal coordinates for an offset position from these along the great circle that
+ * crosses these coordinates in the speciifed direction.
+ *
+ * @param direction_rad   [rad] offset direction, measured East of the local North.
+ * @param distance_rad    [rad] offset great circle distance.
+ * @return                The horizontal coordinates of the offset position
+ *
+ * @since 1.7
+ *
+ * @sa ditance_to(), Equatorial::offset(), Galactic::offset(), Ecliptic::offset()
+ */
+Horizontal Horizontal::offset(double direction_rad, double distance_rad) const {
+  double lon = NAN, lat = NAN;
+  novas_offset_by(longitude().deg(), latitude().deg(), direction_rad / Unit::deg, distance_rad / Unit::deg, &lon, &lat);
+  Horizontal h(lon * Unit::deg, lat * Unit::deg);
+  if(!h.is_valid())
+    novas_trace_invalid("Horizontal::offset()");
+  return h;
+}
+
+/**
+ * Returns horizontal coordinates for an offset position from these along the great circle that
+ * crosses these coordinates in the speciifed direction.
+ *
+ * @param direction   offset direction, measured East of the local North.
+ * @param distance    offset great circle distance.
+ * @return            The horizontal coordinates of the offset position
+ *
+ * @since 1.7
+ *
+ * @sa distance_to(), Equatorial::offset(), Galactic::offset(), Ecliptic::offset()
+ */
+Horizontal Horizontal::offset(const Angle& direction, const Angle& distance) const {
+  return offset(distance.rad(), direction.rad());
 }
 
 /**
