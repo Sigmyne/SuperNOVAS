@@ -27,6 +27,11 @@ static int novas_equals_double(double a, double b, double tol) {
   return fabs(a - b) <= fabs(tol);
 }
 
+static int novas_equals_deg(double a, double b) {
+  return fabs(remainder(a - b, DEG360)) <= fabs(CMP_DEG);
+}
+
+
 /**
  * Checks if two 3D vectors are effectively the same, within the specified absolute tolerance. Two
  * vectors are equal if the distance between them is less than or equal to the magnitude of the
@@ -130,7 +135,7 @@ int novas_equals_on_surface(const on_surface *a, const on_surface *b) {
   if(!a || !b)
     return 0;
 
-  if(!novas_equals_double(remainder(a->longitude, DEG360), remainder(b->longitude, DEG360), CMP_DEG))
+  if(!novas_equals_deg(a->longitude, b->longitude))
     return 0;
   if(!novas_equals_double(a->latitude, b->latitude, CMP_DEG))
     return 0;
@@ -205,9 +210,9 @@ int novas_equals_ssb_posvel(const in_space *a, const in_space *b) {
   if(!a || !b)
     return 0;
 
-  if(!novas_equals_vector(a->sc_pos, b->sc_pos,  1.0 / NOVAS_AU))          // [m]
+  if(!novas_equals_vector(a->sc_pos, b->sc_pos, 1.0 / NOVAS_AU))          // [m]
     return 0;
-  if(!novas_equals_vector(a->sc_vel, b->sc_vel,  10.0 / NOVAS_AU))         // [~mm/s] 1e-4 km/s * 1e5 s / AU[m]
+  if(!novas_equals_vector(a->sc_vel, b->sc_vel, 10.0 / NOVAS_AU))         // [~mm/s] 1e-4 km/s * 1e5 s / AU[m]
     return 0;
 
   return 1;
@@ -266,7 +271,7 @@ int novas_equals_observer(const observer *a, const observer *b) {
  *  - numerical IDs
  *  - coordinates within 1 &mu;as.
  *  - proper motions to within 1 &mu;as / century.
- *  - parallaxes to within 10<sup>-4</sup> % of their geometric mean.
+ *  - parallaxes to within 1 ppm of their geometric mean.
  *  - radial velocities to withing 1 mm/s.
  *
  * NOTES:
@@ -296,7 +301,7 @@ int novas_equals_cat_entry(const cat_entry *a, const cat_entry *b) {
     return 0;
   if(a->starnumber != b->starnumber)
     return 0;
-  if(!novas_equals_double(remainder(a->ra, 24.0), remainder(b->ra, 24.0), CMP_DEG / 15.0))
+  if(!novas_equals_deg(15.0 * a->ra, 15.0 * b->ra))
     return 0;
   if(!novas_equals_double(a->dec, b->dec, CMP_DEG))
     return 0;
@@ -304,7 +309,7 @@ int novas_equals_cat_entry(const cat_entry *a, const cat_entry *b) {
     return 0;
   if(!novas_equals_double(a->promodec, b->promodec, 1e-6))  // [uas / cy]
     return 0;
-  if(!novas_equals_double(a->parallax, b->parallax, 1e-5 * sqrt(fabs(a->parallax * b->parallax))))  // [0.1 %]
+  if(!novas_equals_double(a->parallax, b->parallax, 1e-6 * sqrt(fabs(a->parallax * b->parallax))))  // 1 ppm
     return 0;
   if(!novas_equals_double(a->radialvelocity, b->radialvelocity, 1e-6))  // [mm/s]
     return 0;
@@ -345,9 +350,9 @@ int novas_equals_orbsys(const novas_orbital_system *a, const novas_orbital_syste
     return 0;
   if(a->type != b->type)
     return 0;
-  if(!novas_equals_double(remainder(a->obl, DEG360), remainder(b->obl, DEG360), CMP_DEG))
+  if(!novas_equals_deg(a->obl, b->obl))
     return 0;
-  if(sqrt(fabs(a->obl * b->obl)) > CMP_DEG && !novas_equals_double(remainder(a->Omega, DEG360), remainder(b->Omega, DEG360), CMP_DEG))
+  if(sqrt(fabs(a->obl * b->obl)) > CMP_DEG && !novas_equals_deg(a->Omega, b->Omega))
     return 0;
 
   return 1;
@@ -392,17 +397,17 @@ int novas_equals_orbital(const novas_orbital *a, const novas_orbital *b) {
     return 0;
   if(!novas_equals_double(a->a, b->a, 1.0 / NOVAS_AU))    // [m]
     return 0;
-  if(!novas_equals_double(remainder(a->M0, DEG360), remainder(b->M0, DEG360), CMP_DEG))
+  if(!novas_equals_deg(a->M0, b->M0))
     return 0;
   if(!novas_equals_double(a->n, b->n, 1e-3 * CMP_DEG))    // [< uas/yr]
     return 0;
   if(!novas_equals_double(a->e, b->e, 1e-12 * sqrt(a->a * b->a)))
     return 0;
-  if(sqrt(fabs(a->e * b->e)) > 1e-6 && !novas_equals_double(a->omega, b->omega, CMP_DEG))
+  if(sqrt(fabs(a->e * b->e)) > 1e-12 && !novas_equals_deg(a->omega, b->omega))
     return 0;
-  if(!novas_equals_double(remainder(a->i, DEG360), remainder(b->i, DEG360), CMP_DEG))
+  if(!novas_equals_deg(a->i, b->i))
     return 0;
-  if(sqrt(fabs(a->i * b->i)) > CMP_DEG && !novas_equals_double(remainder(a->Omega, DEG360), remainder(b->Omega, DEG360), CMP_DEG))
+  if(sqrt(fabs(a->i * b->i)) > CMP_DEG && !novas_equals_deg(a->Omega, b->Omega))
     return 0;
   if(!novas_time_equals(a->apsis_period, b->apsis_period))
     return 0;
@@ -460,4 +465,49 @@ int novas_equals_object(const object *a, const object *b) {
   return 1;
 }
 
+/* TODO
+int novas_equals_planet_bundle(const novas_planet_bundle *a, const novas_planet_bundle *b) {
+  int i;
 
+  if(!a || !b)
+    return 0;
+
+  for(i = 0; i < NOVAS_PLANETS; i++) {
+    if((a->mask & (1 << i)) != (b->mask & (1 << i)))
+      return 0;
+  }
+
+  for(i = 0; i < NOVAS_PLANETS; i++)
+    if(a->mask & (1 << i)) {
+      if(!novas_equals_vector(&a->pos[i][0], &b->pos[i][0], 1.0 / NOVAS_AU))     // [m]
+        return 0;
+      if(!novas_equals_vector(&a->vel[i][0], &b->vel[i][0], 10.0 / NOVAS_AU))    // [~mm/s] 1e-4 km/s * 1e5 s / AU[m]
+        return 0;
+    }
+
+  return 1;
+}
+
+int novas_equals_sky_pos(const sky_pos *a, const sky_pos *b) {
+  if(!a || !b)
+    return 0;
+
+  if(!novas_equals_deg(15.0 * a->ra, 15.0 * b->ra))
+    return 0;
+  if(!novas_equals_double(a->dec, b->dec, CMP_DEG))
+    return 0;
+  if(!novas_equals_double(a->dis, b->dis, 1e-6 * sqrt(fabs(a->dis * b->dis))))  // [1 ppm]
+    return 0;
+  if(!novas_equals_double(a->rv, b->rv, 1e-6))  // [1 mm/s]
+    return 0;
+  if(!novas_equals_vector(a->r_hat, b->r_hat, 1e-12))  // [~1 &mu;as]
+    return 0;
+
+  return 1;
+}
+
+int novas_equals_frame(const novas_frame *a, const novas_frame *b) {
+  // TODO
+  return 1;
+}
+*/

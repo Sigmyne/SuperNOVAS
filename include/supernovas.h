@@ -1483,7 +1483,7 @@ public:
 
   virtual bool is_geocentric() const;
 
-  bool equals(const Observer& other) const;
+  virtual bool equals(const Observer& other) const;
 
   bool operator==(const Observer& other) const;
 
@@ -1552,6 +1552,8 @@ public:
   const Observer *copy() const override;
 
   bool is_geodetic() const override;
+
+  bool equals(const Observer& other) const override;
 
   Site site() const;
 

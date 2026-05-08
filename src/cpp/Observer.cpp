@@ -760,6 +760,20 @@ bool GeodeticObserver::is_geodetic() const {
   return true;
 }
 
+bool GeodeticObserver::equals(const Observer& other) const {
+  if(!other.is_geodetic())
+    return 0;
+
+  const GeodeticObserver& go = dynamic_cast<const GeodeticObserver&>(other);
+
+  if(fabs(_eop.xp().uas() - go._eop.xp().uas()) > 1.0)
+    return false;
+  if(fabs(_eop.yp().uas() - go._eop.yp().uas()) > 1.0)
+    return false;
+
+  return Observer::equals(other);
+}
+
 /**
  * Returns the fixed or momentary observing site for this observer.
  *

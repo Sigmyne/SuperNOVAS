@@ -108,7 +108,11 @@ Frame& Frame::operator=(const Frame& frame) {
 
 /**
  * Checks if this observing frame is essentially the same as another, given typical tolerances. See
- * `Observer::equals()` and `Time::equals()` for details.
+ * `Observer::equals()` and `Time::equals()` for details. Beyond the matching the bbservers and
+ * times, mathing frames must also:
+ *
+ *  - match accuracy
+ *  - polar offsets (if defined) must match to 1 &mu;as.
  *
  * Note, that an observing frame may not equal itself if it contains NAN or infinite components.
  *
@@ -121,7 +125,9 @@ Frame& Frame::operator=(const Frame& frame) {
  * @sa operator==(), operator!=()
  */
 bool Frame::equals(const Frame& other) const {
-  return (_time == other._time) && (_observer == other._observer);
+  return (_frame.accuracy == other._frame.accuracy)
+          && (_time == other._time)
+          && (_observer == other._observer);
 }
 
 /**

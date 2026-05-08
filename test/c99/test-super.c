@@ -5325,6 +5325,9 @@ static int test_equals_on_surface() {
   b.longitude += 2.0e-6 / 3600.0;
   if(!is_ok("equals_on_surface:longitude", novas_equals_on_surface(&a, &b) != 0)) n++;
 
+  b = a; b.longitude += 360.0;
+  if(!is_ok("equals_on_surface:longitude:wrap", novas_equals_on_surface(&a, &b) == 0)) n++;
+
   b = a; b.latitude += 2.0e-6 / 3600.0;
   if(!is_ok("equals_on_surface:latitude", novas_equals_on_surface(&a, &b) != 0)) n++;
 
@@ -5455,6 +5458,9 @@ static int test_equals_cat_entry() {
   b = a; b.ra += 1e-7;
   if(!is_ok("equals_cat_entry:ra", novas_equals_cat_entry(&a, &b) != 0)) n++;
 
+  b = a; b.ra += 24.0;
+  if(!is_ok("equals_cat_entry:ra:wrap", novas_equals_cat_entry(&a, &b) == 0)) n++;
+
   b = a; b.dec += 1e-6;
   if(!is_ok("equals_cat_entry:dec", novas_equals_cat_entry(&a, &b) != 0)) n++;
 
@@ -5508,6 +5514,9 @@ static int test_equals_orbsys() {
   b = a; b.obl += 1e-6;
   if(!is_ok("equals_orbsys:obl", novas_equals_orbsys(&a, &b) != 0)) n++;
 
+  b = a; b.Omega += 360.0;
+  if(!is_ok("equals_orbsys:Omega:wrap", novas_equals_orbsys(&a, &b) == 0)) n++;
+
   return n;
 }
 
@@ -5540,17 +5549,26 @@ static int test_equals_orbital() {
   a.e = b.e = 1e-5;
   if(!is_ok("equals_orbital:omega:e", novas_equals_orbital(&a, &b) != 0)) n++;
 
+  b = a; b.omega += 360.0;
+  if(!is_ok("equals_orbital:omega:wrap", novas_equals_orbital(&a, &b) == 0)) n++;
+
   b = a; b.Omega -= 90.0;
   if(!is_ok("equals_orbital:Omega:no-i", novas_equals_orbital(&a, &b) == 0)) n++;
 
   a.i = b.i = 0.1;
   if(!is_ok("equals_orbital:Omega:i", novas_equals_orbital(&a, &b) != 0)) n++;
 
+  b = a; b.Omega += 360.0;
+  if(!is_ok("equals_orbital:Omega:wrap", novas_equals_orbital(&a, &b) == 0)) n++;
+
   b = a; b.a += 2.0 / NOVAS_AU;
   if(!is_ok("equals_orbital:a", novas_equals_orbital(&a, &b) != 0)) n++;
 
   b = a; b.M0 += 1e-6;
   if(!is_ok("equals_orbital:M0", novas_equals_orbital(&a, &b) != 0)) n++;
+
+  b = a; b.M0 += 360.0;
+  if(!is_ok("equals_orbital:M0:wrap", novas_equals_orbital(&a, &b) == 0)) n++;
 
   b = a; b.n += 1e-9;
   if(!is_ok("equals_orbital:n", novas_equals_orbital(&a, &b) != 0)) n++;

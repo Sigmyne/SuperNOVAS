@@ -86,6 +86,13 @@ int main() {
   if(!test.check("copy(on_earth)", *copy == g1)) n++;
   delete copy;
 
+  EOP ex1 = EOP(eop.leap_seconds(), eop.dUT1(), eop.xp() + Angle(2.0 * Unit::mas), eop.yp());
+  if(!test.check("operator!=(xp+)", Observer::on_earth(site, ex1) != g1)) n++;
+
+  EOP ey1 = EOP(eop.leap_seconds(), eop.dUT1(), eop.xp(), eop.yp() + Angle(2.0 * Unit::mas));
+  if(!test.check("operator!=(yp+)", Observer::on_earth(site, ey1) != g1)) n++;
+  if(!test.check("operator!=(gc)", Observer::at_geocenter() != g1)) n++;
+
   EOP e = g1.eop_at(app.frame().time());
 
   double uvw[3] = {0.0};
