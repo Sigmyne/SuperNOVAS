@@ -5592,6 +5592,9 @@ static int test_equals_object() {
   b = a; b.number++;
   if(!is_ok("equals_object:number", novas_equals_object(&a, &b) != 0)) n++;
 
+  b = a; b.type = a.type = (enum novas_object_type) -1;
+  if(!is_ok("equals_object:type:-1", novas_equals_object(&a, &b) != 0)) n++;
+
   make_cat_entry("test", "TST", 123, 10.0, 20.0, -0.1, -0.2, 1e-3, 100.0, &e);
   make_cat_object(&e, &b);
   if(!is_ok("equals_object:cat!=planet", novas_equals_object(&a, &b) != 0)) n++;
