@@ -25,6 +25,8 @@ Upcoming maintenance release, possibly around 1 August 2026.
  
  - `examples/Makefile` to work standalone, without `config.mk`.
  
+ - Fix wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
+ 
 
 ## [1.6.0] - 2026-04-27
 

@@ -240,7 +240,7 @@ Equinox Ecliptic::system() const {
     case NOVAS_TRUE_EQUATOR:
       return Equinox::tod(_jd);
     default:
-      novas_set_errno(EINVAL, "Ecliptic::system()", "invalid equator type: %s", _equator);
+      novas_set_errno(EINVAL, "Ecliptic::system()", "invalid equator type: %d", (int) _equator);
       return Equinox::undefined();
   }
 }

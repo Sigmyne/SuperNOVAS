@@ -644,7 +644,7 @@ const Source *Planet::copy() const {
 Planet Planet::for_naif_id(long naif, const std::string& name) {
   enum novas_planet num = naif_to_novas_planet(naif);
   if((unsigned) num >= NOVAS_PLANETS) {
-    novas_set_errno(EINVAL, "Planet::for_naif_id()", "no planet with NAIF %d", naif);
+    novas_set_errno(EINVAL, "Planet::for_naif_id()", "no planet with NAIF %ld", naif);
     return Planet();
   }
   return Planet(num, name);
