@@ -156,7 +156,7 @@ CatalogEntry::CatalogEntry(cat_entry e, const Equinox& system)
 
 /**
  * Checks if this catalog entry matches another within the standard tolerances. For two catalog
- * entries to be equals, they must have matching
+ * entries to be equals, they must have matching:
  *
  *  - names (case sensitive)
  *  - catalog IDs (case sensitive)
