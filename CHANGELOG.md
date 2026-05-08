@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
-Upcoming maintenance release, possibly around 1 August 2026.
+Upcoming feature release, possibly around 1 August 2026.
 
 ### Added
 
@@ -17,7 +17,18 @@ Upcoming maintenance release, possibly around 1 August 2026.
    `offset_by()` function. Added `novas_offset_by()`, `novas_equ_offset_by()` functions; and `Equatorial::offset()`, 
    `Ecliptic::offset()`, `Galactic::offset()`, and `Horizontal::offset()` methods. (thanks to aleberti)
 
+ - #318: New functions to check for effective equality of data structures, within typical tolerances of the library.
+   The functions are in `cmp.c`, and have names `novas_equals_[...]()`.
+   
+ - #318: `CatalogEntry`, `OrbitalSystem`, `Orbital`, `Source`, `Observer`, and `Frame` now have `equals()` methods
+   as well as overridden `==` and `!=` operators, thanks to the new C99 comparison functions.
+
 ### Changed
+
+ - #317: Avoid `memcmp()` in testing structs for equality, using new comparison functions instead.
+
+ - #318: `Vector::equals()` to use the new `novas_equals_vector()` for consitent implementation between the C99 and 
+   C++ APIs.
 
  - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
 
@@ -32,6 +43,7 @@ Upcoming maintenance release, possibly around 1 August 2026.
  - `examples/Makefile` to work standalone, without `config.mk`.
  
  - Fix wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
+
  
 
 ## [1.6.0] - 2026-04-27
