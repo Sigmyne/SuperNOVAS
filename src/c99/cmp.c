@@ -117,7 +117,7 @@ int novas_equals_on_surface(const on_surface *a, const on_surface *b) {
   if(!a || !b)
     return 0;
 
-  if(!novas_equals_double(a->longitude, b->longitude, CMP_DEG))
+  if(!novas_equals_double(remainder(a->longitude, DEG360), remainder(b->longitude, DEG360), CMP_DEG))
     return 0;
   if(!novas_equals_double(a->latitude, b->latitude, CMP_DEG))
     return 0;
@@ -185,9 +185,9 @@ int novas_equals_ssb_posvel(const in_space *a, const in_space *b) {
   if(!a || !b)
     return 0;
 
-  if(!novas_equals_vector(a->sc_pos, b->sc_pos,  1e-3 / NOVAS_AU))          // [m]
+  if(!novas_equals_vector(a->sc_pos, b->sc_pos,  1.0 / NOVAS_AU))          // [m]
     return 0;
-  if(!novas_equals_vector(a->sc_vel, b->sc_vel,  1e2 / NOVAS_AU))           // [~mm/s]
+  if(!novas_equals_vector(a->sc_vel, b->sc_vel,  10.0 / NOVAS_AU))         // [~mm/s] 1e-4 km/s * 1e5 s / AU[m]
     return 0;
 
   return 1;
@@ -242,7 +242,7 @@ int novas_equals_observer(const observer *a, const observer *b) {
  *  - numerical IDs
  *  - coordinates within 1 &mu;as.
  *  - proper motions to within 1 &mu;as / century.
- *  - parallaxes to within 0.1 % of their geometric mean.
+ *  - parallaxes to within 10<sup>-4</sup> % of their geometric mean.
  *  - radial velocities to withing 1 mm/s.
  *
  * In addition, two NULL catalog entries are also considered equal.
@@ -270,7 +270,7 @@ int novas_equals_cat_entry(const cat_entry *a, const cat_entry *b) {
     return 0;
   if(a->starnumber != b->starnumber)
     return 0;
-  if(!novas_equals_double(a->ra, b->ra, CMP_DEG / 15.0))
+  if(!novas_equals_double(remainder(a->ra, 24.0), remainder(b->ra, 24.0), CMP_DEG / 15.0))
     return 0;
   if(!novas_equals_double(a->dec, b->dec, CMP_DEG))
     return 0;
@@ -278,7 +278,7 @@ int novas_equals_cat_entry(const cat_entry *a, const cat_entry *b) {
     return 0;
   if(!novas_equals_double(a->promodec, b->promodec, 1e-6))  // [uas / cy]
     return 0;
-  if(!novas_equals_double(a->parallax, b->parallax, 1e-3 * sqrt(fabs(a->parallax * b->parallax))))  // [0.1 %]
+  if(!novas_equals_double(a->parallax, b->parallax, 1e-5 * sqrt(fabs(a->parallax * b->parallax))))  // [0.1 %]
     return 0;
   if(!novas_equals_double(a->radialvelocity, b->radialvelocity, 1e-6))  // [mm/s]
     return 0;
@@ -315,9 +315,9 @@ int novas_equals_orbsys(const novas_orbital_system *a, const novas_orbital_syste
     return 0;
   if(a->type != b->type)
     return 0;
-  if(!novas_equals_double(a->obl, b->obl, CMP_DEG))
+  if(!novas_equals_double(remainder(a->obl, DEG360), remainder(b->obl, DEG360), CMP_DEG))
     return 0;
-  if(fabs(a->obl) > CMP_DEG && !novas_equals_double(a->Omega, b->Omega, CMP_DEG))
+  if(fabs(a->obl) > CMP_DEG && !novas_equals_double(remainder(a->Omega, DEG360), remainder(b->Omega, DEG360), CMP_DEG))
     return 0;
 
   return 1;
@@ -332,7 +332,7 @@ int novas_equals_orbsys(const novas_orbital_system *a, const novas_orbital_syste
  *
  *   - angular parameters must match to within 1 &mu;as.
  *   - semi-major axis must match to within 1 m.
- *   - eccentricity must match to within 1 ppm.
+ *   - eccentricity must match to within 10<sup>-12</sup> time the geometric mean of the two semi-major axes.
  *   - mean motion must match to within 1 &mu;as / cy.
  *   - apsis and node periods must match to within ~10 ms (see `novas_time_equals()`)
  *
@@ -361,17 +361,17 @@ int novas_equals_orbital(const novas_orbital *a, const novas_orbital *b) {
     return 0;
   if(!novas_equals_double(a->a, b->a, 1.0 / NOVAS_AU))    // [m]
     return 0;
-  if(!novas_equals_double(a->M0, b->M0, CMP_DEG))
+  if(!novas_equals_double(remainder(a->M0, DEG360), remainder(b->M0, DEG360), CMP_DEG))
     return 0;
   if(!novas_equals_double(a->n, b->n, 1e-3 * CMP_DEG))    // [< uas/yr]
     return 0;
-  if(!novas_equals_double(a->e, b->e, 1e-6))
+  if(!novas_equals_double(a->e, b->e, 1e-12 * sqrt(a->a * b->a)))
     return 0;
   if(fabs(a->e) > 1e-6 && !novas_equals_double(a->omega, b->omega, CMP_DEG))
     return 0;
-  if(!novas_equals_double(a->i, b->i, CMP_DEG))
+  if(!novas_equals_double(remainder(a->i, DEG360), remainder(b->i, DEG360), CMP_DEG))
     return 0;
-  if(fabs(a->i) > CMP_DEG && !novas_equals_double(a->Omega, b->Omega, CMP_DEG))
+  if(fabs(a->i) > CMP_DEG && !novas_equals_double(remainder(a->Omega, DEG360), remainder(b->Omega, DEG360), CMP_DEG))
     return 0;
   if(!novas_time_equals(a->apsis_period, b->apsis_period))
     return 0;
