@@ -3384,7 +3384,7 @@ int novas_icrs_to_sys(const double *in, double jd_tdb, enum novas_accuracy accur
 int novas_sys_to_icrs(enum novas_reference_system sys, const double *in, double jd_tdb, enum novas_accuracy accuracy, double *out);
 
 
-// ---------------------- Added in 1.6.0 -------------------------
+// ---------------------- Added in 1.7.0 -------------------------
 
 // in util.c
 /// @c_util
@@ -3392,6 +3392,37 @@ int novas_offset_by(double lon, double lat, double direction, double distance, d
 
 /// @c_util
 int novas_equ_offset_by(double ra, double dec, double direction, double distance, double *restrict out_ra, double *restrict out_dec);
+
+// in cmp.c
+/// @c_util
+int novas_equals_vector(const double *a, const double *b, double tol);
+
+/// @c_time
+int novas_equals_timespec(const novas_timespec *a, const novas_timespec *b);
+
+/// @c_observer
+int novas_equals_on_surface(const on_surface *a, const on_surface *b);
+
+/// @c_observer
+int novas_equals_near_earth(const in_space *a, const in_space *b);
+
+/// @c_observer
+int novas_equals_ssb_posvel(const in_space *a, const in_space *b);
+
+/// @c_observer
+int novas_equals_observer(const observer *a, const observer *b);
+
+/// @c_source
+int novas_equals_cat_entry(const cat_entry *a, const cat_entry *b);
+
+/// @c_source
+int novas_equals_orbsys(const novas_orbital_system *a, const novas_orbital_system *b);
+
+/// @c_source
+int novas_equals_orbital(const novas_orbital *a, const novas_orbital *b);
+
+/// @c_source
+int novas_equals_object(const object *a, const object *b);
 
 
 // <================= END of SuperNOVAS API =====================>

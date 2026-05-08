@@ -33,6 +33,7 @@ set(SUPERNOVAS_CORE_SOURCES
     solsys3.c
     solsys-ephem.c
     moon.c
+    cmp.c
 )
 
 
