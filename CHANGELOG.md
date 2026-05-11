@@ -11,6 +11,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 Upcoming maintenance release, possibly around 1 August 2026.
 
+### Added
+
+ - #316: Spherical offset positions along a grat circle in specified direction and distance, based on the __astropy__
+   `offset_by()` function. Added `novas_offset_by()`, `novas_equ_offset_by()` functions; and `Equatorial::offset()`, 
+   `Ecliptic::offset()`, `Galactic::offset()`, and `Horizontal::offset()` methods. (thanks to aleberti)
+
 ### Changed
 
  - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
