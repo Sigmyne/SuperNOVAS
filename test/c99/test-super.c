@@ -5756,7 +5756,7 @@ int main(int argc, char *argv[]) {
   int n = 0;
 
   if(argc > 1)
-  dataPath = argv[1];
+    dataPath = argv[1];
 
   novas_debug(NOVAS_DEBUG_ON);
   enable_earth_sun_hp(1);
