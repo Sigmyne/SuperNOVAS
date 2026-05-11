@@ -214,12 +214,53 @@ enum novas_reference_system Equatorial::system_type() const {
  * @return        the angular distance of thereturn Angle::operator+(r);se coordinates to/from the argument.
  *
  * @since 1.6
+ *
+ * @sa offset_by()
  */
 Angle Equatorial::distance_to(const Equatorial& other) const {
   Angle a = Spherical::distance_to(other >> _sys);
   if(!a.is_valid())
     novas_trace_invalid("Equatorial::distance_to()");
   return a;
+}
+
+/**
+ * Returns equatorial coordinates for an offset position from these along the great circle that
+ * crosses these coordinates in the speciifed direction.
+ *
+ * @param direction_rad   [rad] offset direction, measured East of the local North.
+ * @param distance_rad    [rad] offset great circle distance.
+ *
+ * @return                The equatorial coordinates of the offset position
+ *
+ * @since 1.7
+ *
+ * @sa distance_to(), Ecliptic::offset(), Galactic::offset(), Horizontal::offset()
+ */
+Equatorial Equatorial::offset(double direction_rad, double distance_rad) const {
+  double lon = NAN, lat = NAN;
+  novas_offset_by(ra().deg(), dec().deg(), direction_rad / Unit::deg, distance_rad / Unit::deg, &lon, &lat);
+  Equatorial e(lon * Unit::deg, lat * Unit::deg, system());
+  if(!e.is_valid())
+    novas_trace_invalid("Equatorial::offset()");
+  return e;
+}
+
+/**
+ * Returns equatorial coordinates for an offset position from these along the great circle that
+ * crosses these coordinates in the speciifed direction.
+ *
+ * @param direction   offset direction, measured East of the local North.
+ * @param distance    offset great circle distance.
+ *
+ * @return            The equatorial coordinates of the offset position
+ *
+ * @since 1.7
+ *
+ * @sa distance_to(), Ecliptic::offset(), Galactic::offset(), Horizontal::offset()
+ */
+Equatorial Equatorial::offset(const Angle& direction, const Angle& distance) const {
+  return offset(direction.rad(), distance.rad());
 }
 
 /**

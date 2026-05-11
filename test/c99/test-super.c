@@ -5192,6 +5192,71 @@ static int test_sys_to_gcrs() {
   return 0;
 }
 
+static int test_offset_by() {
+  int n = 0;
+
+  double lon = 0.0, lat = 0.0;
+
+  if(!is_ok("offset_by:d=0", novas_offset_by(15.0, 30.0, 0.0, 0.0, &lon, &lat))) n++;
+  if(!is_equal("offset:by:d=0:lon", 15.0, lon, 1e-14)) n++;
+  if(!is_equal("offset:by:d=0:lat", 30.0, lat, 1e-14)) n++;
+
+  if(!is_ok("offset_by:d=0:lon-only", novas_offset_by(15.0, 30.0, 0.0, 0.0, &lon, NULL))) n++;
+  if(!is_equal("offset:by:d=0:lon", 15.0, lon, 1e-14)) n++;
+
+  if(!is_ok("offset_by:d=0:lat-only", novas_offset_by(15.0, 30.0, 0.0, 0.0, NULL, &lat))) n++;
+  if(!is_equal("offset:by:d=0:lat", 30.0, lat, 1e-14)) n++;
+
+  if(!is_ok("offset_by:N", novas_offset_by(15.0, 30.0, 0.0, 1.0, &lon, &lat))) n++;
+  if(!is_equal("offset:by:N:lon", 15.0, lon, 1e-14)) n++;
+  if(!is_equal("offset:by:N:lat", 31.0, lat, 1e-14)) n++;
+
+  if(!is_ok("offset_by:N:lon-only", novas_offset_by(15.0, 30.0, 0.0, 1.0, &lon, NULL))) n++;
+  if(!is_equal("offset:by:N:lon", 15.0, lon, 1e-14)) n++;
+
+  if(!is_ok("offset_by:N:lat-only", novas_offset_by(15.0, 30.0, 0.0, 1.0, NULL, &lat))) n++;
+  if(!is_equal("offset:by:N:lat", 31.0, lat, 1e-14)) n++;
+
+  if(!is_ok("offset_by:E", novas_offset_by(15.0, 0.0, 90.0, 1.0, &lon, &lat))) n++;
+  if(!is_equal("offset:by:E:lon", 16.0, lon, 1e-14)) n++;
+  if(!is_equal("offset:by:E:lat", 0.0, lat, 1e-14)) n++;
+
+  if(!is_ok("offset_by:N:over", novas_offset_by(15.0, 30.0, 0.0, 119.0, &lon, &lat))) n++;
+  if(!is_equal("offset:by:N:over:lon", -165.0, lon, 1e-14)) n++;
+  if(!is_equal("offset:by:N:over:lat", 31.0, lat, 1e-14)) n++;
+
+  if(!is_ok("offset_by:pole:N:d=0", novas_offset_by(15.0, 90.0, 0.0, 0.0, &lon, &lat))) n++;
+  if(!is_equal("offset:by:N:d=0:lon", 15.0, lon, 1e-14)) n++;
+  if(!is_equal("offset:by:N:d=0:lat", 90.0, lat, 1e-14)) n++;
+
+  if(!is_ok("offset_by:pole:N", novas_offset_by(15.0, 90.0, 0.0, 1.0, NULL, &lat))) n++;
+  if(!is_equal("offset:by:N:lat", 89.0, lat, 1e-14)) n++;
+
+  if(!is_ok("offset_by:pole:N", novas_offset_by(15.0, 90.0, 0.0, 181.0, NULL, &lat))) n++;
+  if(!is_equal("offset:by:N:lat", -89.0, lat, 1e-14)) n++;
+
+  if(!is_ok("offset_by:pole:N", novas_offset_by(15.0, 90.0, 0.0, -361.0, NULL, &lat))) n++;
+  if(!is_equal("offset:by:N:lat", 89.0, lat, 1e-14)) n++;
+
+  return n;
+}
+
+static int test_equ_offset_by() {
+  int n = 0;
+
+  double ra = 0.0, dec = 0.0;
+
+  if(!is_ok("equ_offset_by:N", novas_equ_offset_by(15.0, 30.0, 0.0, 1.0, &ra, &dec))) n++;
+  if(!is_equal("equ_offset:by:N:ra", 15.0, ra, 1e-14)) n++;
+  if(!is_equal("equ_offset:by:N:dec", 31.0, dec, 1e-14)) n++;
+
+  if(!is_ok("equ_offset_by:E", novas_equ_offset_by(15.0, 0.0, 90.0, 15.0, &ra, &dec))) n++;
+  if(!is_equal("equ_offset:by:E:ra", 16.0, ra, 1e-14)) n++;
+  if(!is_equal("equ_offset:by:E:dec", 0.0, dec, 1e-14)) n++;
+
+  return n;
+}
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -5306,7 +5371,6 @@ int main(int argc, char *argv[]) {
   if(test_jd_from_date()) n++;
 
   if(test_epoch()) n++;
-
   if(test_print_hms()) n++;
   if(test_print_dms()) n++;
 
@@ -5363,6 +5427,9 @@ int main(int argc, char *argv[]) {
   if(test_timescale_offset()) n++;
   if(test_gcrs_to_sys()) n++;
   if(test_sys_to_gcrs()) n++;
+
+  if(test_offset_by()) n++;
+  if(test_equ_offset_by()) n++;
 
   n += test_dates();
 

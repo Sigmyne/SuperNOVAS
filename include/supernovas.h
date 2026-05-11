@@ -1030,6 +1030,10 @@ public:
 
   Angle distance_to(const Equatorial& other) const;
 
+  Equatorial offset(double direction_rad, double distance_rad) const;
+
+  Equatorial offset( const Angle& direction, const Angle& distance) const;
+
   Equatorial to_system(const Equinox& system, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   Equatorial to_icrs() const;
@@ -1106,6 +1110,10 @@ public:
 
   Angle distance_to(const Ecliptic& other) const;
 
+  Ecliptic offset(double direction_rad, double distance_rad) const;
+
+  Ecliptic offset(const Angle& direction, const Angle& distance) const;
+
   Ecliptic to_system(const Equinox& system, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   Ecliptic to_icrs() const;
@@ -1158,6 +1166,10 @@ public:
   bool operator!=(const Galactic& other) const;
 
   Angle distance_to(const Galactic& other) const;
+
+  Galactic offset(double direction_rad, double distance_rad) const;
+
+  Galactic offset(const Angle& direction, const Angle& distance) const;
 
   /// @ingroup equatorial
   Equatorial to_equatorial() const;
@@ -2653,6 +2665,10 @@ public:
   bool operator!=(const Horizontal& other) const;
 
   Angle distance_to(const Horizontal& other) const;
+
+  Horizontal offset(double direction_rad, double distance_rad) const;
+
+  Horizontal offset(const Angle& direction, const Angle& distance) const;
 
   const Angle& azimuth() const;
 

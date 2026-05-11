@@ -37,6 +37,16 @@ int main() {
   if(!test.check("invalid.distance_to()", !x.distance_to(a).is_valid())) n++;
   if(!test.equals("to_string()", a.to_string(), "HOR  -20d 00m 00.000s  -30d 00m 00.000s")) n++;
 
+  Horizontal ao = a.offset(Angle(30.0 * Unit::deg), Angle(1.5 * Unit::deg));
+  if(!test.check("offset()", ao.is_valid())) n++;
+  double olon = 0.0, olat = 0.0;
+  novas_offset_by(a.longitude().deg(), a.latitude().deg(), 30.0, 1.5, &olon, &olat);
+  if(!test.equals("offset().longitude()", ao.longitude().deg(), olon, 1e-14)) n++;
+  if(!test.equals("offset().latitude()", ao.latitude().deg(), olat, 1e-14)) n++;
+  if(!test.equals("offset().distance_to()", ao.distance_to(a).deg(), 1.5, 1e-14)) n++;
+
+  if(!test.check("offset(pole)", !Horizontal(150.0 * Unit::deg, 90.0 * Unit::deg).offset(10.0, 2.0).is_valid())) n++;
+
   Site site(15.0 * Unit::deg, -42.0 * Unit::deg, 1.5 * Unit::km);
   Horizontal a1 = a.to_refracted(novas_standard_refraction, site.average_weather());
   on_surface s = *site._on_surface();

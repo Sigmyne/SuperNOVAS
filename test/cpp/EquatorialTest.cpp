@@ -44,6 +44,17 @@ int main() {
   if(!test.check("distance_to() invalid", !x.distance_to(a).is_valid())) n++;
   if(!test.check("invalid.distance_to()", !a.distance_to(x).is_valid())) n++;
 
+  Equatorial ao = a.offset(Angle(30.0 * Unit::deg), Angle(1.5 * Unit::deg));
+  if(!test.check("offset()", ao.is_valid())) n++;
+  double ora = 0.0, odec = 0.0;
+  novas_equ_offset_by(a.ra().hours(), a.dec().deg(), 30.0, 1.5, &ora, &odec);
+  if(!test.equals("offset().ra()", ao.ra().hours(), ora, 1e-14)) n++;
+  if(!test.equals("offset().dec()", ao.dec().deg(), odec, 1e-14)) n++;
+  if(!test.check("offset().system()", ao.system() == a.system())) n++;
+  if(!test.equals("offset().distance_to()", ao.distance_to(a).deg(), 1.5, 1e-14)) n++;
+
+  if(!test.check("offset(pole)", !Equatorial(150.0 * Unit::deg, 90.0 * Unit::deg).offset(10.0, 2.0).is_valid())) n++;
+
   double p0[3] = {0.0}, z[3] = {0.0};
   Position pos(z, Unit::pc);
   double *p1 = (double *) pos._array();

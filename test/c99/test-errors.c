@@ -2723,6 +2723,17 @@ static int test_sys_to_gcrs() {
   return n;
 }
 
+static int test_offset_by() {
+  int n = 0;
+  double lon = 0.0, lat = 0.0;
+
+  if(check("offset_by:+91", -1, novas_offset_by(lon, 91.0, 0.0, 1.0, &lon, &lat))) n++;
+  if(check("offset_by:-91", -1, novas_offset_by(lon, -91.0, 0.0, 1.0, &lon, &lat))) n++;
+  if(check("offset_by:90:lon", -1, novas_offset_by(lon, 90.0, 0.0, 1.0, &lon, &lat))) n++;
+
+  return n;
+}
+
 
 int main(int argc, const char *argv[]) {
   int n = 0;
@@ -2957,6 +2968,8 @@ int main(int argc, const char *argv[]) {
   if(test_timescale_offset()) n++;
   if(test_gcrs_to_sys()) n++;
   if(test_sys_to_gcrs()) n++;
+
+  if(test_offset_by()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");

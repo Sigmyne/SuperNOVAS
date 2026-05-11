@@ -46,6 +46,17 @@ int main() {
   if(!test.check("distance_to(invalid)", !a.distance_to(x).is_valid())) n++;
   if(!test.check("to_system(invalid equinox)", !a.to_system(Equinox::undefined()).is_valid())) n++;
 
+  Ecliptic ao = a.offset(Angle(30.0 * Unit::deg), Angle(1.5 * Unit::deg));
+  if(!test.check("offset()", ao.is_valid())) n++;
+  double olon = 0.0, olat = 0.0;
+  novas_offset_by(a.longitude().deg(), a.latitude().deg(), 30.0, 1.5, &olon, &olat);
+  if(!test.equals("offset().longitude()", ao.longitude().deg(), olon, 1e-14)) n++;
+  if(!test.equals("offset().latitude()", ao.latitude().deg(), olat, 1e-14)) n++;
+  if(!test.check("offset().system()", ao.system() == a.system())) n++;
+  if(!test.equals("offset().distance_to()", ao.distance_to(a).deg(), 1.5, 1e-14)) n++;
+
+  if(!test.check("offset(pole)", !Ecliptic(150.0 * Unit::deg, 90.0 * Unit::deg).offset(10.0, 2.0).is_valid())) n++;
+
   Ecliptic a1 = Ecliptic("45:00 00.000", "30d 00m00s", Equinox::icrs());
   if(!test.check("is_valid() Ecliptic(string)", a1.is_valid())) n++;
   if(!test.check("equals(Angle) Ecliptic(string)", a1.equals(a, Angle(1e-15)))) n++;

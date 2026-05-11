@@ -69,10 +69,10 @@
 #define SUPERNOVAS_MAJOR_VERSION  1
 
 /// API minor version
-#define SUPERNOVAS_MINOR_VERSION  6
+#define SUPERNOVAS_MINOR_VERSION  7
 
 /// Integer sub version of the release
-#define SUPERNOVAS_PATCHLEVEL     1
+#define SUPERNOVAS_PATCHLEVEL     0
 
 /// Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.
 #define SUPERNOVAS_RELEASE_STRING "-devel"
@@ -3382,6 +3382,16 @@ int novas_icrs_to_sys(const double *in, double jd_tdb, enum novas_accuracy accur
 
 /// @c_equatorial
 int novas_sys_to_icrs(enum novas_reference_system sys, const double *in, double jd_tdb, enum novas_accuracy accuracy, double *out);
+
+
+// ---------------------- Added in 1.6.0 -------------------------
+
+// in util.c
+/// @c_util
+int novas_offset_by(double lon, double lat, double direction, double distance, double *restrict out_lon, double *restrict out_lat);
+
+/// @c_util
+int novas_equ_offset_by(double ra, double dec, double direction, double distance, double *restrict out_ra, double *restrict out_dec);
 
 
 // <================= END of SuperNOVAS API =====================>
