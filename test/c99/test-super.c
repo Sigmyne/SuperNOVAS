@@ -5695,6 +5695,8 @@ static int test_equals_frame() {
   novas_timespec ts = {};
   novas_frame a = {}, b;
 
+  novas_set_auto_fetch_eop(0);
+
   make_observer_at_geocenter(&obs);
   novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.0, &ts);
   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 100.0, -200.0, &a);
@@ -5746,6 +5748,8 @@ static int test_equals_frame() {
 
   b = a; b.dy = -200.0;
   if(!is_ok("equals_frame:earth:dy:!nan", novas_equals_frame(&a, &b) != 0)) n++;
+
+  novas_set_auto_fetch_eop(1);
 
   return n;
 }
