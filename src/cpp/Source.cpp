@@ -29,6 +29,60 @@ const struct novas_object *Source::_novas_object() const {
 }
 
 /**
+ * Checks if this astronomical source is the same as another within typical tolerances. Two
+ * sources are considered equals only if their types, names (case sensitive), and defining
+ * parameters all match within tolerances.
+ *
+ * Note, that a source instance may not equal itself if it contains NAN or infinite
+ * components.
+ *
+ * @param other   the other source
+ * @return        `true` if this source and the other source describe essentially the same
+ *                astronomical object/position within tolerances, otherwise `false`.
+ *
+ * @since 1.7
+ *
+ * @sa operator==(), operator!=()
+ */
+bool Source::equals(const Source& other) const {
+  return novas_equals_object(&_object, &other._object);
+}
+
+/**
+ * Checks if this astronomical source is the same as another within typical tolerances. Two
+ * sources are considered equals only if their types, names (case sensitive), and defining
+ * parameters all match within tolerances. Same as `equals()`.
+ *
+ * @param other   the other source
+ * @return        `true` if this source and the other source describe essentially the same
+ *                astronomical object/position within tolerances, otherwise `false`.
+ *
+ * @since 1.7
+ *
+ * @sa equals(), operator!=()
+ */
+bool Source::operator==(const Source& other) const {
+  return equals(other);
+}
+
+/**
+ * Checks if this astronomical source differs another given typical tolerances.
+ * Same as `!equals()`.
+ *
+ * @param other   the other source
+ * @return        `true` if this source and the other source describe two distinct
+ *                astronomical objects/positions given the tolerances, otherwise
+ *                `false`.
+ *
+ * @since 1.7
+ *
+ * @sa equals(), operator==()
+ */
+bool Source::operator!=(const Source& other) const {
+  return !equals(other);
+}
+
+/**
  * Returns the name given to this source at instantiation. It may be lower-case unless the
  * `set_case_sensitive(true)` was called before instantiating the source.
  *

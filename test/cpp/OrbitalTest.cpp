@@ -29,6 +29,8 @@ int main() {
   if(!test.equals("obliquity()", s.obliquity().deg(), 1.0, 1e-15)) n++;
   if(!test.equals("ascending_node()", s.ascending_node().deg(), -2.0, 1e-15)) n++;
   if(!test.equals("system_type()", s.system_type(), NOVAS_ICRS)) n++;
+  if(!test.check("operator==()", s == s)) n++;
+  if(!test.check("operator!=()", !(s != s))) n++;
   if(!test.equals("to_string()", s.to_string(), "Ecliptic OrbitalSystem around SUN inclined at 1.000000 deg with node at -2.000000 deg.")) n++;
 
   s.pole(Spherical(-92.0 * Unit::deg, 89.0 * Unit::deg), Equinox::j2000());
@@ -115,6 +117,9 @@ int main() {
   if(!test.check("node_rate(invalid)", isnan(x.node_rate()))) n++;
   if(!test.check("position(invalid)", !x.position(Time::j2000()).is_valid())) n++;
   if(!test.check("velocity(invalid)", !x.velocity(Time::j2000()).is_valid())) n++;
+  if(!test.check("operator==(invalid)", !(x == x))) n++;
+  if(!test.check("operator!=(invalid)", x != x)) n++;
+
 
   s = (OrbitalSystem::equatorial());
 
@@ -136,6 +141,8 @@ int main() {
   if(!test.equals("mean_anomaly()", o.reference_mean_anomaly().rad(), -1.0, 1e-15)) n++;
   if(!test.equals("mean_motion()", o.mean_motion(), Constant::pi / Unit::yr, 1e-14 * o.mean_motion())) n++;
   if(!test.equals("period()", o.period().years(), 2.0, 1e-15)) n++;
+  if(!test.check("operator==()", o == o)) n++;
+  if(!test.check("operator!=()", !(o != o))) n++;
   if(!test.equals("to_string()", o.to_string(), "Orbital (a = 1.000 AU, T = 2.000 yr, e = 0.000000) in Equatorial OrbitalSystem around SUN inclined at 0.000000 deg with node at 0.000000 deg.")) n++;
   if(!test.check("position(invalid time)", !x.position(Time::undefined()).is_valid())) n++;
   if(!test.check("velocity(invalid time)", !x.velocity(Time::undefined()).is_valid())) n++;
@@ -305,19 +312,18 @@ int main() {
   no.node_period = -1.0 / Unit::julian_century;
   if(!test.check("from_novas_orbit(node period = OK)", Orbital::from_novas_orbit(&no).is_valid())) n++;
 
-
   novas_orbital mo = {};
   novas_make_moon_orbit(Time::b1950().jd(NOVAS_TDB), &mo);
   Orbital m = Orbital::moon_orbit_at(Time::b1950());
   if(!test.check("moon_orbit_at(time invalid)", !Orbital::moon_orbit_at(Time::undefined()).is_valid())) n++;
   if(!test.check("moon_orbit_at()", m.is_valid())) n++;
-  if(!test.check("moon_orbit_at() ==", memcmp(m._novas_orbital(), &mo, sizeof(novas_orbital)) == 0)) n++;
+  if(!test.check("moon_orbit_at() ==", novas_equals_orbital(m._novas_orbital(), &mo))) n++;
 
   novas_make_moon_mean_orbit(Time::b1950().jd(NOVAS_TDB), &mo);
   m = Orbital::moon_mean_orbit_at(Time::b1950());
   if(!test.check("moon_mean_orbit_at(time invalid)", !Orbital::moon_mean_orbit_at(Time::undefined()).is_valid())) n++;
   if(!test.check("moon_mean_orbit_at()", m.is_valid())) n++;
-  if(!test.check("moon_mean_orbit_at() ==", memcmp(m._novas_orbital(), &mo, sizeof(novas_orbital)) == 0)) n++;
+  if(!test.check("moon_mean_orbit_at() ==", novas_equals_orbital(m._novas_orbital(), &mo))) n++;
 
 
   std::cout << "Orbital.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";

@@ -92,6 +92,55 @@ enum novas_observer_place Observer::type() const {
 }
 
 /**
+ * Checks if this observer is essentially the same as the other, within the tolerances associated
+ * to their defining components. Note, that an observer may not equal itself if it contains NAN or
+ * infinite components.
+ *
+ * @param other   the other observer
+ * @return        `true` if both observers effectively describe the same observing location,
+ *                within tolerances, or else `false`.
+ *
+ * @since 1.7
+ *
+ * @sa operator==(), operator!=()
+ */
+bool Observer::equals(const Observer& other) const {
+  return novas_equals_observer(&_observer, &other._observer);
+}
+
+/**
+ * Checks if two observers are essentially the same within the tolerances associated to their
+ * defining components. Same as `equals()`.
+ *
+ * @param other   the other observer
+ * @return        `true` if both observers effectively describe the same observing location,
+ *                within tolerances, or else `false`.
+ *
+ * @since 1.7
+ *
+ * @sa equals(), operator!=()
+ */
+bool Observer::operator==(const Observer& other) const {
+  return equals(other);
+}
+
+/**
+ * Checks if two observers differ given standard tolerances associated to their defining
+ * components. Same as `!equals()`.
+ *
+ * @param other   the other observer
+ * @return        `true` if this and the argument describe distinct observing locations,
+ *                or else `false`.
+ *
+ * @since 1.7
+ *
+ * @sa equals(), operator==()
+ */
+bool Observer::operator!=(const Observer& other) const {
+  return !equals(other);
+}
+
+/**
  * Returns an observing frame for this observer at the specified time and optionally with a
  * specified accuracy. Full accuracy frames (default) require that a high-precision planet
  * provider is configured prior, to the call.
@@ -709,6 +758,20 @@ const Observer *GeodeticObserver::copy() const {
 
 bool GeodeticObserver::is_geodetic() const {
   return true;
+}
+
+bool GeodeticObserver::equals(const Observer& other) const {
+  if(!other.is_geodetic())
+    return 0;
+
+  const GeodeticObserver& go = dynamic_cast<const GeodeticObserver&>(other);
+
+  if(fabs(_eop.xp().uas() - go._eop.xp().uas()) > 1.0)
+    return false;
+  if(fabs(_eop.yp().uas() - go._eop.yp().uas()) > 1.0)
+    return false;
+
+  return Observer::equals(other);
 }
 
 /**

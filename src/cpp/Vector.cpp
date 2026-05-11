@@ -78,7 +78,8 @@ bool Vector::is_zero() const {
 }
 
 /**
- * Checks if this vector is the same as another vector, within the specified precision.
+ * Checks if this vector is the same as another vector, within the specified precision.  Note,
+ * that a vector may not equal itself if it contains NAN or infinite components.
  *
  * @param v           the reference vector
  * @param precision   precision for the equality test
@@ -88,12 +89,7 @@ bool Vector::is_zero() const {
  * @since 1.6
  */
 bool Vector::equals(const Vector& v, double precision) const {
-  double d2 = 0.0;
-  for(int i = 0; i < 3; i++) {
-    double d = _component[i] - v._component[i];
-    d2 += d * d;
-  }
-  return d2 < precision * precision;
+  return novas_equals_vector(_component, v._component, precision);
 }
 
 /**

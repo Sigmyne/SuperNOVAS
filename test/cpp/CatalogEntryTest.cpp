@@ -33,6 +33,8 @@ int main() {
   if(!test.check("parallax(invalid)", !x.parallax().is_valid())) n++;
   if(!test.check("equatorial(invalid)", !x.equatorial().is_valid())) n++;
   if(!test.check("to_source(invalid)", !x.to_source().is_valid())) n++;
+  if(!test.check("operator==(invalid)", !(x == x))) n++;
+  if(!test.check("operator!=(invalid)", x != x)) n++;
 
   char longName[SIZE_OF_OBJ_NAME + 1] = {'\0'};
   memset(longName, 'X', SIZE_OF_OBJ_NAME);
@@ -44,6 +46,8 @@ int main() {
   if(!test.equals("name()", a.name(), "test")) n++;
   if(!test.check("equatorial()", a.equatorial() == Equatorial("12:00:00.00", "-30:00:00"))) n++;
   if(!test.check("system()", a.system() == Equinox::icrs())) n++;
+  if(!test.check("operator==()", a == a)) n++;
+  if(!test.check("operator!=()", !(a != a))) n++;
 
   a.distance(Coordinate(Unit::pc));
   if(!test.equals("distance(1pc)", a.distance().m(), Unit::pc, 1e-15 * Unit::pc)) n++;

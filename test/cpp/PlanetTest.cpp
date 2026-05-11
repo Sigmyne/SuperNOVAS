@@ -39,9 +39,9 @@ int main() {
     Orbital orb = pl.orbit(Time::b1950());
     if((i >= NOVAS_MERCURY && i != NOVAS_EARTH && i <= NOVAS_PLUTO) || i == NOVAS_PLUTO_BARYCENTER) {
       novas_orbital orb0 = {};
-      novas_make_planet_orbit(pl.novas_id(), NOVAS_JD_B1950, &orb0);
+      novas_make_planet_orbit(pl.novas_id(), Time::b1950().jd(NOVAS_TDB), &orb0);
       if(!test.check("orbit(" + std::to_string(i) + ")", orb.is_valid())) n++;
-      if(!test.check("orbit(" + std::to_string(i) + ") == ", memcmp(orb._novas_orbital(), &orb0, sizeof(novas_orbital)))) n++;
+      if(!test.check("orbit(" + std::to_string(i) + ") == ", novas_equals_orbital(orb._novas_orbital(), &orb0))) n++;
     }
     else {
       if(!test.check("orbit(" + std::to_string(i) + ")", !orb.is_valid())) n++;
@@ -52,7 +52,8 @@ int main() {
     if(!test.equals("for_naif_id(" + std::to_string(i) + ").novas_id()", opt.novas_id(), i)) n++;
 
     const Source *p1 = pl.copy();
-    if(!test.check("to_string(catalog)", memcmp(p1->_novas_object(), pl._novas_object(), sizeof(object)) == 0)) n++;
+    if(!test.check("copy()", *p1 == pl)) n++;
+    delete p1;
   }
 
   char lstr[SIZE_OF_OBJ_NAME + 1];

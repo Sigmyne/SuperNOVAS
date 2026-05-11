@@ -155,6 +155,65 @@ CatalogEntry::CatalogEntry(cat_entry e, const Equinox& system)
 }
 
 /**
+ * Checks if this catalog entry matches another within the standard tolerances. For two catalog
+ * entries to be equals, they must have matching:
+ *
+ *  - names (case sensitive)
+ *  - catalog IDs (case sensitive)
+ *  - numerical IDs
+ *  - coordinates within 1 &mu;as.
+ *  - proper motions to within 1 &mu;as / century.
+ *  - parallaxes to within 10<sup>-4</sup> % of their geometric mean.
+ *  - radial velocities to withing 1 mm/s.
+ *
+ * Note, that a catalog entry may not equal itself if it contains NAN or infinite components.
+ *
+ * @param other   the other catalog entry.
+ * @return        `true` if both catalog entries essentially describe the same source, otherwise
+ *                `false`.
+ *
+ * @since 1.7
+ *
+ * @sa operator==(), operator!=()
+ */
+bool CatalogEntry::equals(const CatalogEntry& other) const {
+  return (_sys == other._sys) && novas_equals_cat_entry(&_entry, &other._entry);
+}
+
+/**
+ * Checks if this catalog entry matches another within the standard tolerances. See `equals()`
+ * for details.
+ *
+ * @param other   the other catalog entry.
+ * @return        `true` if both catalog entries essentially describe the same source, otherwise
+ *                `false`.
+ *
+ * @since 1.7
+ *
+ * @sa equals(), operator!=()
+ */
+bool CatalogEntry::operator==(const CatalogEntry& other) const {
+  return equals(other);
+}
+
+/**
+ * Checks if this catalog entry differs from another within. Same as `!equals()`. See `equals()`
+ * for details of the comparisons performed.
+ *
+ * @param other   the other catalog entry.
+ * @return        `true` if this catalog entry and the argument describe two distinct sources,
+ *                otherwise `false`.
+ *
+ * @since 1.7
+ *
+ * @sa equals(), operator!=()
+ */
+bool CatalogEntry::operator!=(const CatalogEntry& other) const {
+  return !equals(other);
+}
+
+
+/**
  * Returns the equatorial coordinate system in which this catalog entry is defined.
  *
  * @return    the equatorial coordinate system of this catalog entry

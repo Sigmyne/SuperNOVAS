@@ -93,8 +93,10 @@ jobs:
           distro: ${{ matrix.distro }}
           install: |
             apt-get update -q -y
-            apt-get install -q -y make gcc gfortran
-          run: make test
+            apt-get install -q -y make gcc g++ gfortran
+          run: |
+            export ENABLE_CPP=1
+            make test
 
   test-macos:
     name: Test on MacOS

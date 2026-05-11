@@ -18,7 +18,9 @@ int main() {
   int n = 0;
 
   CatalogEntry xe("Invalid", Equatorial::undefined());
-  if(!test.check("invalid", !CatalogSource(xe).is_valid())) n++;
+  CatalogSource xs = CatalogSource(xe);
+
+  if(!test.check("invalid", !xs.is_valid())) n++;
 
   char lname[SIZE_OF_OBJ_NAME + 1] = {'\0'};
   memset(lname, 'a', SIZE_OF_OBJ_NAME);
@@ -29,12 +31,15 @@ int main() {
   CatalogSource c(ce);
 
   const Source *c1 = c.copy();
-  if(!test.check("copy()", memcmp(c1->_novas_object(), c._novas_object(), sizeof(object)) == 0)) n++;
+  if(!test.check("copy()", *c1 == c)) n++;
+  delete c1;
 
   if(!test.check("is_valid()", c.is_valid())) n++;
   if(!test.equals("type()", c.type(), NOVAS_CATALOG_OBJECT)) n++;
   if(!test.equals("name() insensitive", c.name(), "TEST")) n++;
-  if(!test.check("catalog_entry()", memcmp(c.catalog_entry()._cat_entry(), ce._cat_entry(), sizeof(cat_entry)) == 0)) n++;
+  if(!test.check("catalog_entry()", c.catalog_entry() == ce)) n++;
+  if(!test.check("operator==()", c == c)) n++;
+  if(!test.check("operator!=()", !(c != c))) n++;
   if(!test.equals("to_string()", c.to_string(), "CatalogSource Test @ 12h 34m 56.789s   12d 34m 56.789s ICRS")) n++;
 
 
@@ -162,6 +167,9 @@ int main() {
   Geometric gs = sun.geometric_in(frame).to_icrs();
   Geometric pv = sun.barycentric_at(frame.time() - gs.distance().m() / Constant::c, NOVAS_REDUCED_ACCURACY);
 
+  if(!test.check("operator==()", sun == sun)) n++;
+  if(!test.check("operator!=()", !(sun != sun))) n++;
+  if(!test.check("operator!=(catalog)", sun != c)) n++;
   if(!test.check("ssb_posvel_at()", pv.is_valid())) n++;
   if(!test.check("ssb_posvel_at() position", pv.position().equals(gs.position() + frame.observer_ssb_position(), Unit::cm))) {
     std::cout << "### " << (pv.position() - gs.position() - frame.observer_ssb_position()).to_string(9) << "\n";
@@ -211,9 +219,16 @@ int main() {
 
   OrbitalSource os = orb.to_source("test");
   if(!test.check("is_valid()", os.is_valid())) n++;
-  if(!test.check("copy()", memcmp(os.copy()->_novas_object(), os._novas_object(), sizeof(object)) == 0)) n++;
-  if(!test.check("_novas_orbital()", memcmp(os._novas_orbital(), orb._novas_orbital(), sizeof(novas_orbital)) == 0)) n++;
-  if(!test.check("orbital()", memcmp(os.orbital()._novas_orbital(), orb._novas_orbital(), sizeof(novas_orbital)) == 0)) n++;
+  if(!test.check("operator==()", os == os)) n++;
+  if(!test.check("operator!=()", !(os != os))) n++;
+  if(!test.check("operator!=(planet)", os != sun)) n++;
+
+  const Source *osc = os.copy();
+  if(!test.check("copy()", *osc == os)) n++;
+  delete osc;
+
+  if(!test.check("_novas_orbital()", novas_equals_orbital(os._novas_orbital(), orb._novas_orbital()))) n++;
+  if(!test.check("orbital()", os.orbital() == orb)) n++;
   if(!test.equals("solar_illumination()", os.solar_illumination(frame), novas_solar_illum(os._novas_object(), frame._novas_frame()), 1e-9)) n++;
   if(!test.equals("solar_power()", os.solar_power(frame.time()), novas_solar_power(frame.jd(NOVAS_TDB), os._novas_object()), 1e-9)) n++;
 
@@ -229,10 +244,17 @@ int main() {
 
   EphemerisSource es = EphemerisSource("test", 123456L);
   if(!test.check("is_valid()", es.is_valid())) n++;
-  if(!test.check("copy()", memcmp(es.copy()->_novas_object(), es._novas_object(), sizeof(object)) == 0)) n++;
+
+  const Source *esc = es.copy();
+  if(!test.check("copy()", *esc == es)) n++;
+  delete esc;
+
   if(!test.equals("type()", es.type(), NOVAS_EPHEM_OBJECT)) n++;
   if(!test.equals("name()", es.name(), "test")) n++;
   if(!test.equals("number()", es.number(), 123456L)) n++;
+  if(!test.check("operator==()", es == es)) n++;
+  if(!test.check("operator!=()", !(es != es))) n++;
+  if(!test.check("operator!=(orbital)", es != os)) n++;
   if(!test.equals("to_string()", es.to_string(), "EphemerisSource test (nr. 123456)")) n++;
 
   std::cout << "Source.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";

@@ -25,12 +25,18 @@ int main() {
   if(!test.check("observer_ssb_velocity(invalid)", !x.observer_ssb_velocity().is_valid())) n++;
   if(!test.check("geometric_moon_elp2000(invalid)", !x.geometric_moon_elp2000().is_valid())) n++;
   if(!test.check("apparent_moon_elp2000(invalid)", !x.apparent_moon_elp2000().is_valid())) n++;
+  if(!test.check("operator==(invalid)", !(x == x))) n++;
+  if(!test.check("operator!=(invalid)", x != x)) n++;
+
 
   if(!test.check("invalid observer", !Frame(Observer::undefined(), Time::j2000(), (enum novas_accuracy) -1).is_valid())) n++;
   if(!test.check("invalid time", !Frame(gc, Time::undefined(), (enum novas_accuracy) -1).is_valid())) n++;
   if(!test.check("invalid accuracy", !Frame(gc, Time::j2000(), (enum novas_accuracy) -1).is_valid())) n++;
 
   Frame a = Frame::reduced_accuracy(gc, Time::j2000());
+  if(!test.check("operator==()", a == a)) n++;
+  if(!test.check("operator!=()", !(a != a))) n++;
+  if(!test.check("operator!=(b1950)", Frame::reduced_accuracy(gc, Time::b1950()) != a)) n++;
   if(!test.equals("accuracy()", a.accuracy(), NOVAS_REDUCED_ACCURACY)) n++;
   if(!test.check("time()", a.time() == Time::j2000())) n++;
   if(!test.check("observer_ssb_position()", a.observer_ssb_position() == Position(a._novas_frame()->obs_pos, Unit::AU))) n++;
@@ -42,6 +48,11 @@ int main() {
 
   a = a; // @suppress("Assignment to itself")
   if(!test.equals("self assign", a.to_string(), "Frame for Geocentric Observer at 2000-01-01T11:58:55.816 UTC")) n++;
+
+  Frame a1(a);
+  novas_frame *f1 = (novas_frame *) a1._novas_frame();
+  f1->accuracy = NOVAS_FULL_ACCURACY;
+  if(!test.check("operator!=(acc)", a1 != a)) n++;
 
   double mp[3] = {0.0}, mv[3] = {0.0};
   novas_moon_elp_posvel_fp(a._novas_frame(), 0.1, NOVAS_ICRS, mp, mv);
@@ -65,6 +76,7 @@ int main() {
 
   b = Frame(gc, Time::j2000(), NOVAS_FULL_ACCURACY);
   if(!test.check("Frame(full accuracy).is_valid()", !b.is_valid())) n++;
+  if(!test.check("operator!=(acc)", a != b)) n++;
 
   b = Frame(Observer::undefined(), Time::j2000());
   if(!test.check("Frame(obs invalid).is_valid()", !b.is_valid())) n++;
@@ -88,6 +100,7 @@ int main() {
   if(!test.check("is_valid()", gf.is_valid())) n++;
   if(!test.check("observer().is_geodetic()", gf.observer().is_geodetic())) n++;
   if(!test.check("observer().is_geocentric()", !gf.observer().is_geocentric())) n++;
+  if(!test.check("operator!=(gc)", go != gc)) n++;
   if(!test.equals("to_string()", gf.to_string(), "Frame for GeodeticObserver at Site (E  10d 00m 00.000s, S  20d 00m 00.000s, altitude 30 m) at 2000-01-01T11:58:55.816 UTC")) n++;
 
   gf = Frame::reduced_accuracy(go, Time::undefined());

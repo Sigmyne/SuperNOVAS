@@ -46,6 +46,56 @@ OrbitalSystem::OrbitalSystem(const novas_orbital_system *system) {
 }
 
 /**
+ * Checks if this orbital system matches another within typical tolerances. Two orbital system are
+ * considered equal, if they are defined with respect to the same reference plane, around the same
+ * major planet (or Solar-system position), and have the obliquity and ascending node (if
+ * obliquity is non-zero) to within 1 &mu;as.
+ *
+ * Note, that an orbital system may not equal itself if it contains NAN or infinite components.
+ *
+ * @param other   the other orbital system
+ * @return        `true` if this orbital system and the other describe essentially the same system,
+ *                within tolerances, or else `false`.
+ *
+ * @since 1.7
+ *
+ * @sa operator==(), operator!=()
+ */
+bool OrbitalSystem::equals(const OrbitalSystem& other) const {
+  return novas_equals_orbsys(&_system, &other._system);
+}
+
+/**
+ * Checks if this orbital system matches another within typical tolerances. Same as `equals()`.
+ *
+ * @param other   the other orbital system
+ * @return        `true` if this orbital system and the other describe essentially the same system,
+ *                within tolerances, or else `false`.
+ *
+ * @since 1.7
+ *
+ * @sa equals(), operator!=()
+ */
+bool OrbitalSystem::operator==(const OrbitalSystem& other) const {
+  return equals(other);
+}
+
+/**
+ * Checks if this orbital system differs from another, given typical tolerances. Same as `!equals()`.
+ *
+ * @param other   the other orbital system
+ * @return        `true` if this orbital system and the other descrive distinct systems, given typical
+ *                tolerances, or else `false`.
+ *
+ * @since 1.7
+ *
+ * @sa equals(), operator!=()
+ */
+bool OrbitalSystem::operator!=(const OrbitalSystem& other) const {
+  return !equals(other);
+}
+
+/**
  * (_primarily for internal use_) Returns the underlying NOVAS C data structure, which
  * defines the orbital system.
  *
@@ -434,6 +484,63 @@ Orbital::Orbital(const OrbitalSystem& system, const Time& ref_time, const Coordi
         const Angle& mean_anomaly, const Interval& period)
 : Orbital(system, ref_time.jd(NOVAS_TDB), semi_major.m(), mean_anomaly.rad(), period.seconds()) {}
 
+
+/**
+ * Checks if this Keplerian orbital matches another within typical tolerances. For two orbitals to
+ * be considered equal, they must have matching orbital systems, have the same reference dates
+ * to within ~10 ms (see `novas_time_equals()`), and:
+ *
+ *   - angular parameters must match to within 1 &mu;as.
+ *   - semi-major axis must match to within 1 m.
+ *   - eccentricity must match to within 10<sup>-12</sup> time the geometric mean of the two semi-major axes.
+ *   - mean motion must match to within 1 &mu;as / cy.
+ *   - apsis and node periods must match to within ~10 ms (see `novas_time_equals()`)
+ *
+ * Note, that an orbital may not equal itself if it contains NAN or infinite components.
+ *
+ * @param other     the other orbital
+ * @return          `true` if this orbital and the argument essentially describe the same Keplerian
+ *                  orbital, within the typical tolerances, or else `false`.
+ *
+ * @since 1.7
+ *
+ * @sa operator==(), operator!=()
+ */
+bool Orbital::equals(const Orbital& other) const {
+  return novas_equals_orbital(&_orbit, &other._orbit);
+}
+
+/**
+ * Checks if this Keplerian orbital matches another within typical tolerances. Same as `equals()`.
+ * See `equals()` for details.
+ *
+ * @param other   the other orbital
+ * @return        `true` if this orbital and the argument essentially describe the same Keplerian
+ *                orbital, within the typical tolerances, or else `false`.
+ *
+ * @since 1.7
+ *
+ * @sa equals(), operator!=()
+ */
+bool Orbital::operator==(const Orbital& other) const {
+  return equals(other);
+}
+
+/**
+ * Checks if this Keplerian orbital differs from another given typical tolerances. Same as
+ * `!equals()`. See `equals()` for details.
+ *
+ * @param other   the other orbital
+ * @return        `true` if this orbital and the argument describe distinct Keplerian orbitals,
+ *                given the typical tolerances, or else `false`.
+ *
+ * @since 1.7
+ *
+ * @sa equals(), operator!=()
+ */
+bool Orbital::operator!=(const Orbital& other) const {
+  return !equals(other);
+}
 
 /**
  * (_for internal use_) Returns the underlying NOVAS C data structure containing the orbital

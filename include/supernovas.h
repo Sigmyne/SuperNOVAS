@@ -1483,6 +1483,12 @@ public:
 
   virtual bool is_geocentric() const;
 
+  virtual bool equals(const Observer& other) const;
+
+  bool operator==(const Observer& other) const;
+
+  bool operator!=(const Observer& other) const;
+
   /// @ingroup frame
   Frame frame_at(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
@@ -1546,6 +1552,8 @@ public:
   const Observer *copy() const override;
 
   bool is_geodetic() const override;
+
+  bool equals(const Observer& other) const override;
 
   Site site() const;
 
@@ -1932,6 +1940,12 @@ public:
 
   Frame& operator=(const Frame& frame);
 
+  bool equals(const Frame& other) const;
+
+  bool operator==(const Frame& other) const;
+
+  bool operator!=(const Frame& other) const;
+
   const novas_frame* _novas_frame() const;
 
   enum novas_accuracy accuracy() const;
@@ -1997,6 +2011,12 @@ public:
 
   enum novas_object_type type() const;
 
+  bool equals(const Source& other) const;
+
+  bool operator==(const Source &other) const;
+
+  bool operator!=(const Source &other) const;
+
   /// @ingroup apparent
   Apparent apparent_in(const Frame &frame) const;
 
@@ -2054,7 +2074,7 @@ public:
 class CatalogEntry : public Validating {
 private:
   cat_entry _entry = {};   ///< stored catalog entry
-  Equinox _sys;                   ///< stored catalog system
+  Equinox _sys;            ///< stored catalog system
 
   void validate(const char *loc);
 
@@ -2068,6 +2088,12 @@ public:
   explicit CatalogEntry(cat_entry e, const Equinox& system = Equinox::icrs());
 
   const cat_entry* _cat_entry() const;
+
+  bool equals(const CatalogEntry& other) const;
+
+  bool operator==(const CatalogEntry& other) const;
+
+  bool operator!=(const CatalogEntry& other) const;
 
   const Equinox& system() const;
 
@@ -2291,6 +2317,12 @@ private:
 public:
   const novas_orbital_system * _novas_orbital_system() const;
 
+  bool equals(const OrbitalSystem& other) const;
+
+  bool operator==(const OrbitalSystem& other) const;
+
+  bool operator!=(const OrbitalSystem& other) const;
+
   Planet center() const;
 
   Angle obliquity() const;
@@ -2360,6 +2392,12 @@ public:
 
   static Orbital from_mean_motion(const OrbitalSystem& system, const Time& ref_time, const Coordinate& semi_major, const Angle& mean_anomaly,
           double rad_per_s);
+
+  bool equals(const Orbital& other) const;
+
+  bool operator==(const Orbital& other) const;
+
+  bool operator!=(const Orbital& other) const;
 
   const novas_orbital * _novas_orbital() const;
 
