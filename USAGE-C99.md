@@ -419,8 +419,9 @@ sub-arcsecond precision is not required.
 As of v1.7, you may leave `xp` and `yp` undefined by setting either or both values to NAN. In that case, 
 `novas_make_frame()` will automatically fetch appropriately interpolated polar offsets from IERS if possible (provided 
 you did not call `novas_auto_fetch_eop(0)` to disable it). It of course will add arbitrary latencies and a source of 
-indeterminacy into your application. Because the lookup mail fail, you should definitely check the return status 
-after, e.g.:
+indeterminacy into your application. You can use your own URLs (such as on a local server) instead of the default ones 
+with `novas_set_eop_url()` for faster / more reliable EOP lookup. Because the lookup mail fail, you should definitely 
+check the return status after, e.g.:
 
 ```c
  // Use NAN for xp / yp to fetch polar offsets automatically from IERS, if possible

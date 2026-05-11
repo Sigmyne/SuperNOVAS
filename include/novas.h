@@ -2119,6 +2119,38 @@ enum novas_reference_ellipsoid {
 #define NOVAS_REFERENCE_ELLIPSOIDS (NOVAS_IERS_2003_ELLIPSOID + 1)
 
 /**
+ * Identifier of the IERS EOP series used (or to use).
+ *
+ * @since 1.7
+ * @author Attila Kovacs
+ *
+ * @c_earth
+ *
+ * @sa novas_eop
+ */
+enum novas_eop_series {
+  /// EOP from undefined source
+  EOP_SERIES_UNDEFINED = -1,
+
+  /// IERS Rapid Service data for IAU2000 (`finals.all.iau2000.txt`).
+  EOP_RAPID_IAU2000,
+
+  /// IERS C04 Long-term data from 2 Jan 1962 to now, daily at 0 UTC (`EOP_20u24_C04_one_file_1962-now.txt`).
+  EOP_C04_IAU2000_0UTC,
+
+  /// IERS C01 Long-term data from 1846 to now (`EOP_C01_IAU2000_1846-now.txt`).
+  EOP_C01_IAU2000
+};
+
+/**
+ * Number of Earth Orientation Parameter Data series handled by __SuperNOVAS__.
+ *
+ * @since 1.7
+ * @sa enum novas_eop_series
+ */
+#define NOVAS_NUM_EOP_SERIES      ( EOP_C01_IAU2000 + 1 )
+
+/**
  * Earth Orienation Parameters (EOP), such as obtained from IERS.
  *
  * @since 1.7
@@ -2127,6 +2159,7 @@ enum novas_reference_ellipsoid {
  * @c_earth
  */
 typedef struct {
+  enum novas_eop_series series; ///< Origin of EOP data (if known)
   double jd;          ///< [day] Julian day of the measurement or prognosis (in any time measure).
   int leap;           ///< [s] Leap seconds, that is the TAI - UTC time difference.
   float dut1;         ///< [s] UT1 - UTC time difference.
@@ -3478,6 +3511,12 @@ int novas_set_auto_fetch_eop(int enabled);
 
 /// @ingroup earth
 int novas_is_auto_fetch_eop();
+
+/// @ingroup earth
+int novas_set_eop_url(enum novas_eop_series series, const char *url);
+
+/// @ingroup earth
+const char *novas_get_eop_url(enum novas_eop_series series);
 
 /// @ingroup earth
 int novas_set_leap_list(FILE *leap_file);

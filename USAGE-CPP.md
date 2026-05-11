@@ -365,8 +365,9 @@ returns).
 
 As of v1.7, you may omit the optional `EOP` parameter in `Site::to_observer()`. In that case, any frame constructed 
 with that geodetic observer location will automatically fetch appropriate polar offsets from IERS if possible (and 
-provided you did not call `novas_set_auto_fetch_eop(0)` to disable it). Note, however that that this will add arbitrary 
-latencies and a source of indeterminacy into your application also.
+provided you did not call `novas_set_auto_fetch_eop(0)` to disable it). You can use your own URLs (such as on a local 
+server) instead of the default ones with `novas_set_eop_url()` for faster / more reliable EOP lookup. Note, however, 
+that that this will add arbitrary latencies and a source of indeterminacy into your application also.
 
 
 ##### B. other observer locations
@@ -432,7 +433,7 @@ check for validity after, e.g.:
 ```
 
 You can also disable the automatic fetch and replacement of NAN `dut1` values by calling 
-`novas_set_auto_fetch_eop(0)`. 
+`novas_set_auto_fetch_eop(0)`.
 
 
 <a name="observing-frame-cpp"></a>

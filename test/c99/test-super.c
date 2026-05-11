@@ -5806,6 +5806,8 @@ static int test_auto_fetch_eop() {
   novas_timespec ts = {};
   novas_frame frame = {};
 
+  novas_set_auto_fetch_eop(1);
+
   if(!is_ok("auto_fetch_eop:time", novas_set_time(NOVAS_UTC, NOVAS_JD_J2000, 0, NAN, &ts))) n++;
   if(!is_equal("auto_fetch_eop:time:leap", novas_time_leap(&ts), 32, 1e-15)) n++;
 
