@@ -23,6 +23,10 @@ foreach(TEST ${TEST_PROGRAMS})
         target_compile_definitions(${TEST} PRIVATE WITHOUT_CURL=1)
     endif()
 
+    if(NOT ENABLE_TESTING_ONLINE)
+        target_compile_definitions(${TEST} PRIVATE OFFLINE=1)
+    endif()
+
     # Link against the supernovas library
     target_link_libraries(${TEST} PRIVATE cpp)
 

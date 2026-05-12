@@ -44,7 +44,7 @@ option(BUILD_BENCHMARK "Build benchmark programs" OFF)
 option(ENABLE_CPP "Enable C++ library build (supernovas++ library)" OFF)
 option(ENABLE_CALCEPH "Enable CALCEPH support (solsys-calceph plugin)" OFF)
 option(ENABLE_CSPICE "Enable CSPICE support (solsys-cspice plugin)" OFF)
-
+option(ENABLE_TESTING_ONLINE "Run online tests requiring internet access" OFF)
 
 # Set feature descriptions for summary
 add_feature_info(SharedLibs BUILD_SHARED_LIBS "Build as shared libraries")
@@ -57,7 +57,7 @@ add_feature_info(Benchmarks BUILD_BENCHMARK "Build benchmarking programs")
 add_feature_info(C++-Libs ENABLE_CPP "Build C++ library also (supernovas++)")
 add_feature_info(Calceph-Plugin ENABLE_CALCEPH "Optional ephemeris support via CALCEPH (solsys-calceph)")
 add_feature_info(CSPICE-Plugin ENABLE_CSPICE "Optional ephemeris support via CSPICE (solsys-cspice)")
-
+add_feature_info(CSPICE-Plugin ENABLE_TESTING_ONLINE "Optional tests requiring internet access")
 
 # ----------------------------------------------------------------------------
 # pkg-config variables

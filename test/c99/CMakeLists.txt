@@ -45,7 +45,11 @@ foreach(TEST ${TEST_PROGRAMS})
         if(NOT HAS_CURL)
             target_compile_definitions(${TEST} PRIVATE WITHOUT_CURL=1)
         endif()
-
+        
+        if(NOT ENABLE_TESTING_ONLINE)
+            target_compile_definitions(${TEST} PRIVATE OFFLINE=1)
+        endif()
+ 
         # Special handling for CALCEPH example
         if(${TEST} STREQUAL "test-calceph")
             find_library(CALCEPH_LIB calceph REQUIRED)

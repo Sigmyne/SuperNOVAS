@@ -5756,9 +5756,10 @@ static int test_equals_frame() {
 
 static int test_fetch_eop() {
   int n = 0;
+
+#if !WITHOUT_CURL && !OFFLINE
   novas_eop eop = {};
 
-#if !WITHOUT_CURL
   if(!is_ok("fetch_eop_unix:now", novas_fetch_eop_unix(time(NULL), 0, &eop))) n++;
 
   if(!is_ok("fetch_eop:j2000", novas_fetch_eop(NOVAS_JD_J2000, 0, &eop))) n++;
@@ -5801,7 +5802,7 @@ static int test_fetch_eop() {
 static int test_auto_fetch_eop() {
   int n = 0;
 
-#if !WITHOUT_CURL
+#if !WITHOUT_CURL && !OFFLINE
   observer obs = {};
   novas_timespec ts = {};
   novas_frame frame = {};
@@ -5830,7 +5831,9 @@ static int test_auto_fetch_eop() {
   if(!is_ok("set_auto_fetch_eop(1)", novas_set_auto_fetch_eop(1))) n++;
   if(!is_ok("is_auto_fetch_eop:1:again", !novas_is_auto_fetch_eop())) n++;
 #else
-  if(!is_ok("is_auto_fetch_eop:0", novas_is_auto_fetch_eop())) n++;
+#  if WITHOUT_CURL
+  if(!is_ok("is_auto_fetch_eop", novas_is_auto_fetch_eop())) n++;
+#  endif
   if(!is_ok("set_auto_fetch_eop(0)", novas_set_auto_fetch_eop(0))) n++;
   if(!is_ok("is_auto_fetch_eop:0", novas_is_auto_fetch_eop())) n++;
 #endif
