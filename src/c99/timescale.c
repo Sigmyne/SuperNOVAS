@@ -693,7 +693,7 @@ int novas_offset_time(const novas_timespec *time, double seconds, novas_timespec
  * @sa novas_set_time(), novas_get_split_time()
  */
 double novas_get_time(const novas_timespec *restrict time, enum novas_timescale timescale) {
-  long ijd;
+  long ijd = 0L;
   double fjd = novas_get_split_time(time, timescale, &ijd);
   return ijd + fjd;
 }
@@ -804,7 +804,7 @@ double novas_diff_time(const novas_timespec *t1, const novas_timespec *t2) {
  * @sa novas_diff_time(), novas_diff_tcg(), novas_diff_time()
  */
 double novas_diff_time_scale(const novas_timespec *t1, const novas_timespec *t2, enum novas_timescale timescale) {
-  long ijd1, ijd2;
+  long ijd1 = 0L, ijd2 = 0L;
   double fjd1, fjd2;
 
   if(!t1 || !t2) {
