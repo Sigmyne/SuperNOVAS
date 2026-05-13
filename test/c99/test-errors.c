@@ -2737,6 +2737,9 @@ static int test_offset_by() {
 static int test_fetch_eop() {
   int n = 0;
   novas_eop eop = {};
+  observer obs = {};
+  novas_timespec ts = {};
+  novas_frame frame = {};
 
   if(check("fetch_eop:eop:null", -1, novas_fetch_eop(NOVAS_JD_J2000, 0, NULL))) n++;
   if(check("fetch_eop:jd:low", -1, novas_fetch_eop(0.0, 0, &eop))) n++;
@@ -2746,6 +2749,11 @@ static int test_fetch_eop() {
 #else
   novas_set_eop_url(EOP_RAPID_IAU2000, "file://nosuchfile");
   if(check("fetch_eop:eop:rapid:url", -1, novas_fetch_eop(NOVAS_JD_J2000, 0, &eop))) n++;
+
+  if(check("fetch_eop:set_split_time:old", 0, novas_set_split_time(NOVAS_TT, 0L, 0.0, 0, NAN, &ts))) n++;
+  make_observer_at_geocenter(&obs);
+  novas_set_split_time(NOVAS_TT, 0L, 0.0, 0, 0.0, &ts);
+  if(check("fetch_eop:make_frame:old", 21, novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, NAN, NAN, &frame))) n++;
 
   // ----------------------------------------------------------------------
 #  if !OFFLINE
@@ -2792,11 +2800,42 @@ static int test_lookup_leap() {
 static int test_set_leap_list() {
   int n = 0;
 
+  const char *bad_exp = "resources/bad-expiration.list";
+  const char *bad_entry = "resources/bad-entry.list";
+  const char *truncated = "resources/truncated-leap.list";
+  FILE *fp;
+
+  novas_set_auto_fetch_eop(0);
+
   if(check("set_leap_list:empty", -1, novas_set_leap_list(""))) n++;
   if(check("set_leap_list:invalid", -1, novas_set_leap_list("blah"))) n++;
-  if(check("set_leap_list:corrupted", -1, novas_set_leap_list("Makefile"))) n++;
-  // TODO bad expiration
-  // empty leap list
+  if(check("set_leap_list:garbage", -1, novas_set_leap_list("Makefile"))) n++;
+
+  fp = fopen(bad_exp, "r");
+  if(!fp) fprintf(stderr, "WARNING! Missing %s: skip tests requiring it", bad_exp);
+  else {
+    fclose(fp);
+    if(check("set_leap_list", -1, novas_set_leap_list(bad_exp))) return n++;
+  }
+
+  fp = fopen(bad_entry, "r");
+  if(!fp) fprintf(stderr, "WARNING! Missing %s: skip tests requiring it", bad_entry);
+  else {
+    fclose(fp);
+    if(check("set_leap_list", -1, novas_set_leap_list(bad_entry))) return n++;
+  }
+
+  fp = fopen(truncated, "r");
+  if(!fp) fprintf(stderr, "WARNING! Missing %s: skip tests requiring it", truncated);
+  else {
+    fclose(fp);
+    if(check("set_leap_list", 0, novas_set_leap_list(truncated))) return n++;
+    if(check("lookup_leap:offline:j2000", -1, novas_lookup_leap(946684800L))) n++;
+  }
+
+#if !WITHOUT_CURL && !OFFLINE
+  novas_set_auto_fetch_eop(1);
+#endif
 
   return n;
 }

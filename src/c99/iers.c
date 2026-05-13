@@ -44,9 +44,14 @@
 #  endif
 
 #define LEAP_FILENAME               "leap-seconds.list"
-#define LEAP_URL                    "https://" HPIERS "/iers/bul/bulc/ntp/" LEAP_FILENAME
+#define DEFAULT_LEAP_URL            "https://" HPIERS "/iers/bul/bulc/ntp/" LEAP_FILENAME
 #define IERS_LATEST_URL_PREFIX      "https://" IERS_DATACENTER "/data/latestVersion/"
 #define NTP_UNIX_EPOCH              2208988800LL  ///< [s] NTP timestamp of UNIX epoch (1970 Jan 1)
+
+#define RAPID_JD_START              ( NOVAS_JD_MJD0 + 41684.0 )   ///< [day] Julian date of first entry in rapid service file
+#define C04_JD_START                ( NOVAS_JD_MJD0 + 37665.0 )   ///< [day] Julian date of first entry in C04 series file
+#define C01_JD_START                ( NOVAS_JD_MJD0 - 4703.268 )  ///< [day] Julian date of first entry in C01 series file
+#define C01_SPARSE_LINES            440           ///< Number of lines in C01 series with sparser sampling
 
 /**
  * A individual leap seconds entry in a linked list of leap seconds
@@ -74,9 +79,11 @@ static time_t leap_expiration;    ///< UNIX time at which leap seconds list expi
 typedef struct {
   CURL *curl;       ///< CURL handle (reused)
   enum novas_eop_series series; /// IERS EOP data series identifier
-  int head_bytes;   ///< [bytes] Header bytes before regular table row data begins
+  long head_bytes;  ///< [bytes] Header bytes before regular table row data begins
   int line_len;     ///< [byres] Length of data rows, including line feed
-  double jd_start;  ///< [day] Julian date of first entry
+  int start_line;   ///< Line index at which to start using data
+  double jd_check;  ///< [day] Julian date of first entry in file
+  double jd_start;  ///< [day] Julian date of first entry to use
   double jd_step;   ///< [day] interval between consecutive entries
   short ijd;        ///< column index from which to parse Julian Date
   short ixp;        ///< column index from which to parse _x_<sub>p</sub>
@@ -94,9 +101,10 @@ static const char *urls[NOVAS_NUM_EOP_SERIES];
 
 /// The default URLs for each data series.
 static const char *default_urls[NOVAS_NUM_EOP_SERIES] = {
-  IERS_LATEST_URL_PREFIX "finals.all.iau2000.txt",
-  IERS_LATEST_URL_PREFIX "EOP_20u24_C04_one_file_1962-now.txt",
-  IERS_LATEST_URL_PREFIX "EOP_C01_IAU2000_1846-now.txt"
+        DEFAULT_LEAP_URL,
+        IERS_LATEST_URL_PREFIX "finals.all.iau2000.txt",
+        IERS_LATEST_URL_PREFIX "EOP_20u24_C04_one_file_1962-now.txt",
+        IERS_LATEST_URL_PREFIX "EOP_C01_IAU2000_1846-now.txt"
 };
 
 /**
@@ -109,30 +117,26 @@ typedef struct {
 } download_buffer;
 
 // 1973.01.02 to +365 days, no head
-static iers_data_file rapid = { NULL,
-        EOP_RAPID_IAU2000,
-        0, 188, NOVAS_JD_MJD0 + 41684.0, 1.0,
+static iers_data_file rapid = { NULL, EOP_RAPID_IAU2000,
+        0, 188, 0, RAPID_JD_START, RAPID_JD_START, 1.0,
         6, 17, 27, 36, 46, 58, 68, 78, 86
 };
 
 // 1962 -- now
-static iers_data_file medium = { NULL,
-        EOP_C04_IAU2000_0UTC,
-        729, 219, NOVAS_JD_MJD0 + 37665.0, 1.0,
+static iers_data_file medium = { NULL, EOP_C04_IAU2000_0UTC,
+        -1, 219, 0, C04_JD_START, C04_JD_START, 1.0,
         16, 26, 122, 38, 134, 50, 146, 111, 206
 };
 
 // 1890 -- now (0.05 year)
-static iers_data_file old = { NULL,
-        EOP_C01_IAU2000,
-        139255, 312, NOVAS_JD_MJD0 + 11367.380, 0.05 * NOVAS_TROPICAL_YEAR_DAYS,
+static iers_data_file old = { NULL, EOP_C01_IAU2000,
+        -1, 312, C01_SPARSE_LINES, C01_JD_START, NOVAS_JD_MJD0 + 11367.380, 0.05 * NOVAS_TROPICAL_YEAR_DAYS,
         0, 12, 71, 22, 83, 32, 93, 226, 281
 };
 
 // 1846 -- 1890 (0.1 year)
-static iers_data_file very_old = { NULL,
-        EOP_C01_IAU2000,
-        1975, 312, NOVAS_JD_MJD0 - 4703.268, 0.1 * NOVAS_TROPICAL_YEAR_DAYS,
+static iers_data_file very_old = { NULL, EOP_C01_IAU2000,
+        -1, 312, 0, C01_JD_START, C01_JD_START, 0.1 * NOVAS_TROPICAL_YEAR_DAYS,
         0, 12, 71, 22, 83, 32, 93, 226, 281
 };
 
@@ -151,7 +155,7 @@ static void destroy_leap_list(iers_leap_entry *list) {
   }
 }
 
-void set_leap_list(iers_leap_entry *list, long long expiration) {
+static void set_leap_list(iers_leap_entry *list, long long expiration) {
   // TODO mutex
   iers_leap_entry *obsolete = leaps;
   leaps = list;
@@ -165,11 +169,6 @@ static iers_leap_entry *parse_leap_file(FILE *fp, long long *expiration) {
 
   iers_leap_entry *list = NULL;
   char line[256] = {'\0'};
-
-  if(fseek(fp, 0, SEEK_SET) != 0) {
-    novas_set_errno(errno, fn, "fseek() failed: %s", strerror(errno));
-    return NULL;
-  }
 
   // Parse leap-seconds.list data
   while(fgets(line, sizeof(line) - 1, fp) != NULL) if(line[0]) {
@@ -268,7 +267,7 @@ static iers_leap_entry *fetch_leaps_async(long long *expiration) {
     return NULL;
   }
 
-  curl_easy_setopt(curl, CURLOPT_URL, LEAP_URL);
+  curl_easy_setopt(curl, CURLOPT_URL, novas_get_eop_url(EOP_LEAP_LIST));
   curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
 
   res = curl_easy_perform(curl);
@@ -362,7 +361,7 @@ static int eop_parse_line(const iers_data_file *restrict file, int line, char *s
       eop->dut1 += eop->leap;
 
     if(fabs(eop->dut1_err - 99.99) < 1e-5)
-          eop->dut1_err = NAN;
+      eop->dut1_err = NAN;
 
     if(fabs(eop->lod - 99.99) < 1e-5)
       eop->lod = NAN;
@@ -377,6 +376,31 @@ static int eop_parse_line(const iers_data_file *restrict file, int line, char *s
   return 0;
 }
 
+static int set_eop_file_struct(iers_data_file *restrict file, long timeout_millis) {
+  static const char *fn = "set_eop_file_struct";
+
+  char buf[4096] = {'\0'};
+  download_buffer head = { buf, sizeof(buf), 0 };
+  char *next = buf;
+  novas_eop eop = {};
+
+  prop_error(fn, novas_fetch_eop_chunk(&file->curl, novas_get_eop_url(file->series), 0, head.capacity - 1, &head, timeout_millis), 0);
+
+  // Skip empty and commented lines.
+  for(; *next == '#' || *next == '\n'; next++)
+    while(*(++next) && *next != '\n');  // parse to end of the line.
+
+  prop_error(fn, eop_parse_line(file, 0, next, &eop), 0);
+
+  if(fabs(eop.jd - file->jd_check) > 1e-2)
+    return novas_error(-1, ERANGE, fn, "Mismatched JD in first entry: expected %.3f, got %.3f", file->jd_check, eop.jd);
+
+  // Set the head
+  file->head_bytes = next - buf + (long) file->start_line * file->line_len;
+
+  return 0;
+}
+
 static int novas_fetch_eop_from_file(iers_data_file *restrict file, double jd, novas_eop *restrict eop, int n, long timeout_millis) {
   static const char *fn = "novas_fetch_eop_from_file";
 
@@ -385,16 +409,18 @@ static int novas_fetch_eop_from_file(iers_data_file *restrict file, double jd, n
   download_buffer data = { lines, sizeof(lines), 0 };
   int i;
 
+  if(file->head_bytes < 0) {
+    prop_error(fn, set_eop_file_struct(file, timeout_millis), 0);
+  }
+
   offset = file->head_bytes + file->line_len * floor((jd - file->jd_start) / file->jd_step);
   prop_error(fn, novas_fetch_eop_chunk(&file->curl, novas_get_eop_url(file->series), offset, n * file->line_len, &data, timeout_millis), 0);
 
   for(i = 0; i < n; i++) {
     time_t t = (jd - NOVAS_JD_J2000 + i * file->jd_step) * 86400L + UNIX_SECONDS_0UTC_1JAN2000;
-    eop[i].leap =  novas_lookup_leap(t);
+    eop[i].leap = novas_lookup_leap(t);
     prop_error(fn, eop_parse_line(file, i, lines, &eop[i]), 0);
   }
-
-  //printf("%s\n", lines);
 
   return 0;
 }
@@ -419,9 +445,13 @@ static int novas_fetch_eop_array(double jd, long timeout_millis, novas_eop *rest
   }
   else if(jd >= old.jd_start + m * old.jd_step) {
     prop_error(fn, novas_fetch_eop_from_file(&old, jd - m * old.jd_step, eop, n, timeout_millis), 0);
+    very_old.line_len = old.line_len;
+    very_old.head_bytes = old.head_bytes - (long) old.start_line * old.line_len;
   }
   else if(jd >= very_old.jd_start + m * very_old.jd_step) {
     prop_error(fn, novas_fetch_eop_from_file(&very_old, jd - m * very_old.jd_step, eop, n, timeout_millis), 0);
+    old.line_len = very_old.line_len;
+    old.head_bytes = very_old.head_bytes + (long) old.start_line * very_old.line_len;
   }
   else {
     memset(eop, 0, sizeof(novas_eop));
@@ -470,7 +500,12 @@ static void cleanup_handle_async(iers_data_file *file) {
   if(!curl)
     return;
 
+  // TODO mutex ----
   file->curl = NULL;
+  if(file->head_bytes)
+    file->head_bytes = -1;
+  // ------
+
   curl_easy_cleanup(curl);
 }
 
@@ -482,6 +517,9 @@ static void cleanup_handle_async(iers_data_file *file) {
  * use, at least until its expiry. (If the local leap file expires, a new one will be fetched from
  * IERS as needed).
  *
+ * It is similar to `novas_set_eop_url()` for the `EOP_LEAP_LIST` series, with a `file://` type
+ * URL, except that this one does not need cURL support, and can work with relative paths also.
+ *
  * @param filename      Path to a local `leap-seconds.list` file (as obtained from IERS or a
  *                      mirror). It is typically included in the `tzdata` package on Linux, where
  *                      it may be found as `/usr/share/zoneinfo/leap-seconds.list` typically.
@@ -492,7 +530,7 @@ static void cleanup_handle_async(iers_data_file *file) {
  * @author Attila Kovacs
  *
  * @sa https://hpiers.obspm.fr/iers/bul/bulc/ntp/leap-seconds.list
- * @sa novas_lookup_leap(), novas_fetch_eop(), novas_cleanup_eop()
+ * @sa novas_set_eop_url(), novas_lookup_leap(), novas_fetch_eop(), novas_cleanup_eop()
  */
 int novas_set_leap_list(const char *filename) {
   static const char *fn = "novas_set_leap_list";
@@ -525,7 +563,7 @@ int novas_set_leap_list(const char *filename) {
 
 /**
  * Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap
- * seconds list (see `novas_set_leap_list()), or else from data obtained as needed from IERS. In
+ * seconds list (see `novas_set_leap_list()`), or else from data obtained as needed from IERS. In
  * case of errors -1 is returned, with errno set as appropriate.
  *
  * While -1 is leap seconds is theoretically possible also, it is unlikely to ever be a real value,
@@ -600,7 +638,7 @@ int novas_lookup_leap(time_t t) {
  * @since 1.7
  * @author Attila Kovacs
  *
- * @sa novas_get_eop_url(), novas_fetch_eop()
+ * @sa novas_get_eop_url(), novas_fetch_eop(), novas_set_leap_list()
  */
 int novas_set_eop_url(enum novas_eop_series series, const char *url) {
   static const char *fn = "novas_set_eop_url";
@@ -633,7 +671,7 @@ int novas_set_eop_url(enum novas_eop_series series, const char *url) {
 
   discard = (char *) urls[series];
   urls[series] = url ? strdup(url) : NULL;
-  // -----
+  // ----
 
   if(discard)
     free(discard);
@@ -709,7 +747,7 @@ void novas_cleanup_eop() {
  *
  * NOTES:
  *
- *  1. You must have access to the `curl` library and built __SuperNOVAS__ with CURL support.
+ *  1. You must have access to the `curl` library and built __SuperNOVAS__ with cURL support.
  *     Otherwise this function will return -1, with `errno` set to `ENOSYS`.
  *
  *  2. You will need an internet connection and the IERS server must be online and accessible (at
@@ -742,7 +780,7 @@ void novas_cleanup_eop() {
  * @author Attila Kovacs
  *
  * @sa https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop
- * @sa novas_fetch_current_eop(), novas_set_eop_url(),
+ * @sa novas_fetch_current_eop(), novas_set_eop_url(), novas_cleanup_eop()
  * @sa novas_make_frame(), novas_set_time(), novas_set_auto_fetch_eop(), @ref earth
  */
 int novas_fetch_eop(double jd, long timeout_millis, novas_eop *eop) {
@@ -764,8 +802,12 @@ int novas_fetch_eop(double jd, long timeout_millis, novas_eop *eop) {
     initialized = 1;
   }
 
-  if(jd < jd_from || jd > jd_to) {
+  if(jd_to < jd_from || jd < jd_from || jd > jd_to) {
     prop_error(fn, novas_fetch_eop_array(jd, timeout_millis, array, 4), 0);
+
+    if(!(jd >= array[1].jd && jd <= array[2].jd))
+      return novas_error(-1, EBADMSG, fn, "Misaligned dates in file");
+
     jd_from = array[1].jd;
     jd_to = array[2].jd;
   }

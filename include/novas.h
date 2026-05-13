@@ -2126,11 +2126,14 @@ enum novas_reference_ellipsoid {
  *
  * @c_earth
  *
- * @sa novas_eop
+ * @sa novas_eop, novas_set_eop_url()
  */
 enum novas_eop_series {
   /// EOP from undefined source
   EOP_SERIES_UNDEFINED = -1,
+
+  /// List of leap seconds, since their introduction in 1972 (`leap-seconds.list`).
+  EOP_LEAP_LIST,
 
   /// IERS Rapid Service data for IAU2000 (`finals.all.iau2000.txt`).
   EOP_RAPID_IAU2000,
