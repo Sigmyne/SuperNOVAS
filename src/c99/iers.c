@@ -155,7 +155,7 @@ static void destroy_leap_list(iers_leap_entry *list) {
   }
 }
 
-static void set_leap_list(iers_leap_entry *list, long long expiration) {
+static void set_leap_list_async(iers_leap_entry *list, long long expiration) {
   // TODO mutex
   iers_leap_entry *obsolete = leaps;
   leaps = list;
@@ -224,7 +224,7 @@ static size_t write_to_buffer(const char *ptr, size_t size, size_t nmemb, void *
 
   size_t n = size * nmemb;
   if(data->size + n >= data->capacity) {
-    novas_set_errno(ERANGE, "write_to_buffer", "truncating buffer %lld -> %lld", (long long) (data->size + n), (long long) data->capacity - 1);
+    novas_set_errno(ERANGE, "write_to_buffer", "buffer overflow");
     n = data->capacity - data->size - 1;
   }
 
@@ -403,7 +403,9 @@ static int checkout_eop_file(iers_data_file *restrict file, long timeout_millis)
     return novas_error(-1, ERANGE, fn, "Mismatched JD in first entry: expected %.3f, got %.3f", file->jd_check, eop.jd);
 
   // Set the head
+  // TODO mutex ---
   file->head_bytes = next - buf + (long) file->start_line * file->line_len;
+  // ---
 
   return 0;
 }
@@ -416,9 +418,14 @@ static int novas_fetch_eop_from_file(iers_data_file *restrict file, double jd, n
   download_buffer data = { lines, sizeof(lines), 0 };
   int i;
 
+  // TODO mutex ---
   if(file->head_bytes < 0) {
+    // ---
     prop_error(fn, checkout_eop_file(file, timeout_millis), 0);
   }
+  //else {
+    // ---
+  //}
 
   offset = file->head_bytes + file->line_len * floor((jd - file->jd_start) / file->jd_step);
   prop_error(fn, novas_fetch_eop_chunk(&file->curl, novas_get_eop_url(file->series), offset, n * file->line_len, &data, timeout_millis), 0);
@@ -554,7 +561,7 @@ int novas_set_leap_list(const char *filename) {
   long long expiration = 0LL;
 
   if(!filename) {
-    set_leap_list(NULL, 0LL);
+    set_leap_list_async(NULL, 0LL);
     return 0;
   }
 
@@ -571,7 +578,9 @@ int novas_set_leap_list(const char *filename) {
   if(!list)
     return novas_trace(fn, -1, 0);
 
-  set_leap_list(list, expiration);
+  // TODO mutex ---
+  set_leap_list_async(list, expiration);
+  // ---
   return 0;
 }
 
@@ -596,22 +605,33 @@ int novas_set_leap_list(const char *filename) {
  */
 int novas_lookup_leap(time_t t) {
   static const char *fn = "novas_lookup_leap";
+  // TODO local mutex
 
   const iers_leap_entry *e;
   char str[40] = {'\0'};
 
+  // TODO global mutex ---
   if(!leaps || (t >= leap_expiration && time(NULL) >= leap_expiration)) {
 #if WITHOUT_CURL
+    // --- global
     return novas_error(NOVAS_INVALID_LEAP, ERANGE, fn, "no leap data available for time %lld", (long long) t);
 #else
     if(novas_is_auto_fetch_eop()) {
+      // TODO local mutex
+      // --- global
       long long expiration = 0LL;
       iers_leap_entry *update = fetch_leaps_async(&expiration);
       if(!update)
         return novas_trace(fn, 1, NOVAS_INVALID_LEAP - 1); // trick work-around propagating negative (not -1) error code.
-      set_leap_list(update, expiration);
+      // TODO global mutex ---
+      set_leap_list_async(update, expiration);
+      // --- global
+      // --- local
     }
-    else return novas_error(NOVAS_INVALID_LEAP, EAGAIN, fn, "automatic EOP fetching is disabled.");
+    else {
+      // --- global
+      return novas_error(NOVAS_INVALID_LEAP, EAGAIN, fn, "automatic EOP fetching is disabled.");
+    }
 #endif
   }
 
@@ -663,7 +683,7 @@ int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *u
   static const char *fn = "novas_set_eop_url";
 
 #if WITHOUT_CURL
-  return novas_error(-1, ENOSYS, fn, "SuperNOVAS was compiled without cURL support");
+  return novas_error(-1, ENOSYS, fn, "SuperNOVAS was built without cURL support");
 #else
   char *discard;
 
@@ -672,6 +692,7 @@ int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *u
 
   // Close existing handles...
   // TODO mutex ---
+  // + local mutex?
   switch(series) {
     case EOP_LEAP_LIST:
       novas_set_leap_list(NULL);
@@ -717,9 +738,6 @@ int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *u
     case EOP_C01_IAU2000:
       checkout_eop_file(&c01, 0);
       break;
-    default:
-      // TODO release mutex
-      return novas_error(-1, ERANGE, fn, "invalid EOP series %d", (int) series);
   }
 
   return 0;
@@ -741,7 +759,7 @@ int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *u
  */
 const char *novas_get_eop_url(enum novas_eop_series series) {
 #if WITHOUT_CURL
-  novas_set_errno(ENOSYS, "novas_get_eop_url", "SuperNOVAS was compiled without cURL support");
+  novas_set_errno(ENOSYS, "novas_get_eop_url", "SuperNOVAS was built without cURL support");
   return NULL;
 #else
   const char *url;
@@ -769,7 +787,7 @@ const char *novas_get_eop_url(enum novas_eop_series series) {
  */
 int novas_get_eop_itrf_year(enum novas_eop_series series) {
 #if WITHOUT_CURL
-  return novas_error(-1, EINVAL, "novas_get_eop_itrf_year", "SuperNOVAS was compiled without cURL support");
+  return novas_error(-1, EINVAL, "novas_get_eop_itrf_year", "SuperNOVAS was built without cURL support");
 #else
   if((unsigned int) series >= NOVAS_NUM_EOP_SERIES)
     return novas_error(-1, EINVAL, "novas_get_eop_itrf_year", "invalid series: %d", (int) series);
@@ -790,7 +808,7 @@ int novas_get_eop_itrf_year(enum novas_eop_series series) {
  * @sa novas_set_leap_list(), novas_fetch_eop()
  */
 void novas_cleanup_eop() {
-  set_leap_list(NULL, 0LL);
+  set_leap_list_async(NULL, 0LL);
 
 #if !WITHOUT_CURL
   // TODO mutex...
@@ -854,7 +872,7 @@ int novas_fetch_eop(double jd, long timeout_millis, novas_eop *eop) {
   static const char *fn = "novas_fetch_eop";
 
 #if WITHOUT_CURL
-  return novas_error(-1, ENOSYS, fn, "built without curl support.");
+  return novas_error(-1, ENOSYS, fn, "SuperNOVAS was built without curl support.");
 #else
   static int initialized;
 
@@ -967,7 +985,7 @@ int novas_fetch_eop_unix(time_t t, long timeout_millis, novas_eop *eop) {
 int novas_set_auto_fetch_eop(int enabled) {
 #if WITHOUT_CURL
   if(enabled)
-    return novas_error(-1, ENOSYS, "novas_set_auto_fetch_eop", "SuperNOVAS was compiled without cURL support.");
+    return novas_error(-1, ENOSYS, "novas_set_auto_fetch_eop", "SuperNOVAS was built without cURL support.");
 #else
   auto_fetch_eop = (enabled != 0);
 #endif
