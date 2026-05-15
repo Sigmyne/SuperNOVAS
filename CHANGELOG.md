@@ -27,6 +27,8 @@ Upcoming feature release, possibly around 1 August 2026.
    
  - #318: `CatalogEntry`, `OrbitalSystem`, `Orbital`, `Source`, `Observer`, and `Frame` now have `equals()` methods
    as well as overridden `==` and `!=` operators, thanks to the new C99 comparison functions.
+   
+ - #319: Consolidate portable mutex definitions in `novas-mutex.h` (not installed).
 
 ### Changed
 
@@ -46,6 +48,9 @@ Upcoming feature release, possibly around 1 August 2026.
 
  - #318: `Vector::equals()` to use the new `novas_equals_vector()` for consitent implementation between the C99 and 
    C++ APIs.
+   
+ - #319: Updated `novas-calceph.c`, `novas-cspice.c`, and `iers.c` to use portable mutex definitions from 
+   `novas.mutex.h`.
 
  - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
 
