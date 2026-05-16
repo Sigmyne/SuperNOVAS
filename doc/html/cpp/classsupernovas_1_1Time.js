@@ -1,13 +1,13 @@
 var classsupernovas_1_1Time =
 [
     [ "Time", "classsupernovas_1_1Time.html#a97d9b5141a32888f67d6d2c5deea6367", null ],
-    [ "Time", "classsupernovas_1_1Time.html#ab4dc0b7f28c99848a6171b7c5f6730df", null ],
+    [ "Time", "classsupernovas_1_1Time.html#a054113da9fec91585ed4f6cf687a36f1", null ],
     [ "Time", "classsupernovas_1_1Time.html#a42b9ebbe3c7bda154643b752d2df5ee1", null ],
-    [ "Time", "classsupernovas_1_1Time.html#ad8fe3243b40c7fbc960b7f11468cde89", null ],
+    [ "Time", "classsupernovas_1_1Time.html#a139f2d786c770b81dbc3d231b60c0823", null ],
     [ "Time", "classsupernovas_1_1Time.html#a8bd7c402cd5150f6c0152146c88e14b3", null ],
-    [ "Time", "classsupernovas_1_1Time.html#aa00398d88734ca8aba591b4eb191333a", null ],
+    [ "Time", "classsupernovas_1_1Time.html#a7bb2a5cf62870ab8e62d0bb058b6f013", null ],
     [ "Time", "classsupernovas_1_1Time.html#adb9a2d8830b3b8918eb852c5cac49be8", null ],
-    [ "Time", "classsupernovas_1_1Time.html#a49eff34eb94201b070880aefee039dd0", null ],
+    [ "Time", "classsupernovas_1_1Time.html#a99391508cb386adec31167a5cbc2bf6e", null ],
     [ "Time", "classsupernovas_1_1Time.html#a367dc7221a7fb752720cd121522ed2d7", null ],
     [ "_novas_timespec", "classsupernovas_1_1Time.html#a2d5f0c36a81ba50e8f7205e18c9308f3", null ],
     [ "day_of_week", "classsupernovas_1_1Time.html#ac60c89df769b5a9afaa6c6e0e12e7ba5", null ],

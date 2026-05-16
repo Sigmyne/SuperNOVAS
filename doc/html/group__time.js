@@ -20,6 +20,7 @@ var group__time =
     [ "NOVAS_TAI_TO_TT", "group__time.html#ga68aa01f6e3e0f40bbe1b5ccab3144fda", null ],
     [ "NOVAS_TIMESPEC_INIT", "group__time.html#gaddf3ffbfe4ed05288b689e861600194f", null ],
     [ "NOVAS_TROPICAL_YEAR_DAYS", "group__time.html#ga16b986f7c91252932ecb74c344525397", null ],
+    [ "UNIX_SECONDS_0UTC_1JAN2000", "group__time.html#gacb9c6b9922edfc6971ceb6304cb945f9", null ],
     [ "novas_timespec", "group__time.html#ga98daa33604665eda41d9a9de964d7cc2", null ],
     [ "novas_calendar_type", "group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba", [
       [ "NOVAS_ROMAN_CALENDAR", "group__time.html#ggaa8cfc18bfdf8ebd0198065c9d07e3bbaa73cfd3e5c66bdfdf63a2d792251e0d13", null ],
@@ -55,6 +56,7 @@ var group__time =
     [ "novas_diff_time", "group__time.html#gabdcc8e194d79787838d1ffc064449932", null ],
     [ "novas_diff_time_scale", "group__time.html#gab23af98e7a63ce54c6a8d2534e07dc36", null ],
     [ "novas_epoch", "group__time.html#gaf4e18885b7d173eb3fe5f18b06f0b4d4", null ],
+    [ "novas_equals_timespec", "group__time.html#gaae271d900ea6af740c16d90693c51169", null ],
     [ "novas_frame_lst", "group__time.html#ga273fd76d83b8e04ced14558c69fd175c", null ],
     [ "novas_get_split_time", "group__time.html#ga32d8336084b65fac14d092ab6198c27d", null ],
     [ "novas_get_time", "group__time.html#gae30e3dd8e30bdcf4e8486cfce696fb98", null ],

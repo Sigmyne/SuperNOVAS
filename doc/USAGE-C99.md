@@ -376,6 +376,24 @@ Note, that the likes of `novas_set_time()` will automatically apply diurnal corr
 difference for libration and ocean tides. Thus, the supplied values should not include these. Rather you should pass
 `dut1` directly (or interpolated) from the IERS Bulletin values for the time of observation.
 
+As of v1.7, you can also let __SuperNOVAS__ fetch leap seconds and the UT1 - UTC time difference automatically from 
+IERS, provided you are online and you don't mind the slight delay associated with the HTTP query. Simply pass `NAN` in 
+place of the `dut1` parameter, and the value of `leap_seconds` becomes irrelevant (e.g. you can use 0 or -1, if you 
+will). However, you should be prepared that the lookup may fail, and so you should always check the return status, 
+e.g.:
+
+```c
+  // Use NAN for dut1 to fetch leap seconds and the UT1 - UTC difference from IERS
+  if(novas_set_current_time(-1, NAN, &obs_time) != 0) {
+    // Oops, failed to get leap seconds and dut1 from IERS...
+    return -1;
+  }
+```
+
+You can also disable the automatic fetch and replacement of NAN `dut1` values by calling 
+`novas_set_auto_fetch_eop(0)`. See \ref earth for the set of functions that can be used for fetching appropriate 
+values for the leap seconds and the UT1-UTC time difference from local or external sources.
+
 <a name="observing-frame-c99"></a>
 #### Set up the observing frame
 
@@ -398,6 +416,24 @@ interpolated for the time of observation, but should NOT be corrected for librat
 parameters (EOP) are needed only when converting positions from the celestial CIRS (or TOD) frame to the Earth-fixed 
 ITRS (or PEF) frames. You may ignore these and set zeroes if not interested in Earth-fixed calculations or if 
 sub-arcsecond precision is not required. 
+
+As of v1.7, you may leave `xp` and `yp` undefined by setting either or both values to NAN. In that case, 
+`novas_make_frame()` will automatically fetch appropriately interpolated polar offsets from IERS if possible (provided 
+you did not call `novas_auto_fetch_eop(0)` to disable it). It of course will add arbitrary latencies and a source of 
+indeterminacy into your application. You can use your own URLs (such as on a local server) instead of the default ones 
+with `novas_set_eop_url()` for faster / more reliable EOP lookup. Because the lookup mail fail, you should definitely 
+check the return status after, e.g.:
+
+```c
+ // Use NAN for xp / yp to fetch polar offsets automatically from IERS, if possible
+ if(novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &obs_time, NAN, NAN, &obs_frame) != 0) {
+   // Oops, fetching polar offsets from IERS failed...
+   return -1;
+ }
+```
+
+See \ref earth for the set of functions that can be used for fetching appropriate EOP values from local or external 
+sources.
 
 The advantage of using the observing frame, is that it enables very fast position calculations for multiple objects
 in that frame (see the [benchmarks](#benchmarks)), since all sources in a frame have well-defined, fixed, topological 

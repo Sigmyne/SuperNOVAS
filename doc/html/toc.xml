@@ -1,107 +1,114 @@
 <toc label="SuperNOVAS C API" topic="index.html">
   <topic label="User&apos;s guide" href="index.html">
-    <topic label="Table of Contents" href="index.html#autotoc_md18"/>
-    <topic label="Introduction" href="index.html#autotoc_md20">
-      <topic label="Related links" href="index.html#autotoc_md21"/>
+    <topic label="Table of Contents" href="index.html#autotoc_md1"/>
+    <topic label="Introduction" href="index.html#autotoc_md3">
+      <topic label="Related links" href="index.html#autotoc_md4"/>
     </topic>
-    <topic label="Fixed NOVAS C 3.1 issues" href="index.html#autotoc_md23"/>
-    <topic label="Compatibility with NOVAS C 3.1" href="index.html#autotoc_md25"/>
-    <topic label="Building and installation" href="index.html#autotoc_md27">
-      <topic label="Build SuperNOVAS using GNU make" href="index.html#autotoc_md28"/>
-      <topic label="Build SuperNOVAS using CMake" href="index.html#autotoc_md29"/>
-      <topic label="Install SuperNOVAS via vcpkg" href="index.html#autotoc_md30"/>
-      <topic label="Linux packages" href="index.html#autotoc_md31"/>
-      <topic label="Homebrew package" href="index.html#autotoc_md32"/>
-      <topic label="Nix package" href="index.html#autotoc_md33"/>
+    <topic label="Fixed NOVAS C 3.1 issues" href="index.html#autotoc_md6"/>
+    <topic label="Compatibility with NOVAS C 3.1" href="index.html#autotoc_md8"/>
+    <topic label="Building and installation" href="index.html#autotoc_md10">
+      <topic label="Dependencies" href="index.html#autotoc_md11">
+        <topic label="Installing dependencies on Linux" href="index.html#autotoc_md12"/>
+        <topic label="Installing dependencies on MacOS" href="index.html#autotoc_md13"/>
+        <topic label="Installing dependencies on BSD" href="index.html#autotoc_md14"/>
+      </topic>
+      <topic label="Build SuperNOVAS using GNU make" href="index.html#autotoc_md15">
+        <topic label="Building with GNU make on BSD" href="index.html#autotoc_md16"/>
+      </topic>
+      <topic label="Build SuperNOVAS using CMake" href="index.html#autotoc_md17"/>
+      <topic label="Install SuperNOVAS via vcpkg" href="index.html#autotoc_md18"/>
+      <topic label="Linux packages" href="index.html#autotoc_md19"/>
+      <topic label="Homebrew package" href="index.html#autotoc_md20"/>
+      <topic label="Nix package" href="index.html#autotoc_md21"/>
     </topic>
-    <topic label="Celestial coordinate systems (old vs. new)" href="index.html#autotoc_md35"/>
-    <topic label="Example use cases" href="index.html#autotoc_md37">
-      <topic label="Recommendation: set up an ephemeris provider" href="index.html#autotoc_md38"/>
-      <topic label="Pick your flavor (C or C++)" href="index.html#autotoc_md39"/>
+    <topic label="Celestial coordinate systems (old vs. new)" href="index.html#autotoc_md23"/>
+    <topic label="Example use cases" href="index.html#autotoc_md25">
+      <topic label="Recommendation: set up an ephemeris provider" href="index.html#autotoc_md26"/>
+      <topic label="Pick your flavor (C or C++)" href="index.html#autotoc_md27"/>
     </topic>
-    <topic label="Incorporating Solar-system ephemeris data or services" href="index.html#autotoc_md41">
-      <topic label="CALCEPH integration" href="index.html#autotoc_md42"/>
-      <topic label="NAIF CSPICE toolkit integration" href="index.html#autotoc_md43"/>
-      <topic label="Universal ephemeris data / service integration" href="index.html#autotoc_md44"/>
+    <topic label="Incorporating Solar-system ephemeris data or services" href="index.html#autotoc_md29">
+      <topic label="CALCEPH integration" href="index.html#autotoc_md30"/>
+      <topic label="NAIF CSPICE toolkit integration" href="index.html#autotoc_md31"/>
+      <topic label="Universal ephemeris data / service integration" href="index.html#autotoc_md32"/>
     </topic>
-    <topic label="Notes on precision" href="index.html#autotoc_md45">
-      <topic label="Prerequisites to precise results" href="index.html#autotoc_md46"/>
-      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md47"/>
+    <topic label="Notes on precision" href="index.html#autotoc_md33">
+      <topic label="Prerequisites to precise results" href="index.html#autotoc_md34"/>
+      <topic label="Reduced accuracy shortcuts" href="index.html#autotoc_md35"/>
     </topic>
-    <topic label="Runtime debug support" href="index.html#autotoc_md49"/>
-    <topic label="Representative benchmarks" href="index.html#autotoc_md51"/>
-    <topic label="SuperNOVAS added features" href="index.html#autotoc_md53">
-      <topic label="New functionality highlights" href="index.html#autotoc_md54"/>
-      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md55"/>
+    <topic label="Runtime debug support" href="index.html#autotoc_md37"/>
+    <topic label="Representative benchmarks" href="index.html#autotoc_md39"/>
+    <topic label="SuperNOVAS added features" href="index.html#autotoc_md41">
+      <topic label="New functionality highlights" href="index.html#autotoc_md42"/>
+      <topic label="Refinements to the NOVAS C API" href="index.html#autotoc_md43"/>
     </topic>
-    <topic label="Release schedule" href="index.html#autotoc_md57"/>
+    <topic label="Release schedule" href="index.html#autotoc_md45"/>
   </topic>
   <topic label="C99 Usage" href="md__2github_2workspace_2doc_2USAGE-C99.html">
-    <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61">
-      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62"/>
-      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63"/>
-      <topic label="Deprecated API" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64"/>
-      <topic label="Legacy linking solarsystem() / solarsystem_hp() and readeph() modules" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65"/>
-      <topic label="Legacy modules: a better way" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md66"/>
+    <topic label="Building your application with SuperNOVAS (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49">
+      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md50"/>
+      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51"/>
+      <topic label="Deprecated API" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52"/>
+      <topic label="Legacy linking solarsystem() / solarsystem_hp() and readeph() modules" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53"/>
+      <topic label="Legacy modules: a better way" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54"/>
     </topic>
-    <topic label="Example C99 usage" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68">
-      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md69">
-        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70"/>
-        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md71"/>
-        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md72"/>
-        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md73"/>
-        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md74"/>
-        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md75"/>
+    <topic label="Example C99 usage" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56">
+      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57">
+        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md58"/>
+        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md59"/>
+        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md60"/>
+        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61"/>
+        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62"/>
+        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63"/>
       </topic>
-      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md76">
-        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md77"/>
-        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md78"/>
-        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md79"/>
-        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md80"/>
+      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64">
+        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65"/>
+        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md66"/>
+        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md67"/>
+        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68"/>
       </topic>
-      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md81"/>
-      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md82"/>
-      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md83"/>
+      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md69"/>
+      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70"/>
+      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md71"/>
     </topic>
-    <topic label="Tips and tricks (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md85">
-      <topic label="Multi-threaded calculations" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md86"/>
-      <topic label="Physical units" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md87"/>
-      <topic label="String times and angles" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md88"/>
-      <topic label="String dates" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md89"/>
+    <topic label="Tips and tricks (C99)" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md73">
+      <topic label="Multi-threaded calculations" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md74"/>
+      <topic label="Physical units" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md75"/>
+      <topic label="String times and angles" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md76"/>
+      <topic label="String dates" href="md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md77"/>
     </topic>
   </topic>
   <topic label="C++ Usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html">
-    <topic label="Building your application with SuperNOVAS (C++)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93">
-      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94"/>
-      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95"/>
+    <topic label="Building your application with SuperNOVAS (C++)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81">
+      <topic label="Using a GNU Makefile" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82"/>
+      <topic label="Using CMake" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83"/>
     </topic>
-    <topic label="C++ Fundamentals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97">
-      <topic label="Namespace" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98"/>
-      <topic label="Validation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99"/>
-      <topic label="Thread safety" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100"/>
-      <topic label="Operator overloading" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101"/>
+    <topic label="C++ Fundamentals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85">
+      <topic label="Namespace" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86"/>
+      <topic label="Validation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md87"/>
+      <topic label="Thread safety" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md88"/>
+      <topic label="Operator overloading" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89"/>
     </topic>
-    <topic label="Example C++ usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103">
-      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104">
-        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105"/>
-        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106">
-          <topic label="A. Earth-based observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107"/>
-          <topic label="B. other observer locations" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md108"/>
+    <topic label="Example C++ usage" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91">
+      <topic label="Calculating positions for a sidereal source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92">
+        <topic label="Specify the object of interest" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md93"/>
+        <topic label="Specify the observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md94">
+          <topic label="A. Earth-based observer location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md95"/>
+          <topic label="B. other observer locations" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96"/>
         </topic>
-        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md109"/>
-        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md110"/>
-        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md111"/>
-        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md112"/>
+        <topic label="Specify the time of observation" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md97"/>
+        <topic label="Set up the observing frame" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98"/>
+        <topic label="Calculate an apparent place on sky" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99"/>
+        <topic label="Calculate azimuth and elevation angles at the observing location" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100"/>
       </topic>
-      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md113">
-        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md114"/>
-        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md115"/>
-        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md116"/>
-        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md117"/>
+      <topic label="Calculating positions for a Solar-system source" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101">
+        <topic label="Planets and/or ephemeris type objects" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102"/>
+        <topic label="Solar-system objects with Keplerian orbital parameters" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103"/>
+        <topic label="Approximate planet orbitals" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104"/>
+        <topic label="Moon&apos;s position and phase" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105"/>
       </topic>
-      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md118"/>
-      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md119"/>
-      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md120"/>
+      <topic label="Going in reverse..." href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106"/>
+      <topic label="Calculate rise, set, and transit times" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107"/>
+      <topic label="Coordinate and velocity transforms (change of coordinate system)" href="md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md108"/>
     </topic>
   </topic>
   <topic label="SuperNOVAS C99 vs. astropy" href="md_SuperNOVAS__vs__astropy.html"/>
@@ -227,6 +234,10 @@
       <topic label="make_redshifted_object_sys" href="group__source.html#ga257abae9391aec835dc2b94d9788b9f9"/>
       <topic label="naif_to_novas_planet" href="group__source.html#ga1c4b3f67a3b82808dd16ae43dfaf0f86"/>
       <topic label="novas_case_sensitive" href="group__source.html#ga8f832afe92680a11c3489aaa224ac2e2"/>
+      <topic label="novas_equals_cat_entry" href="group__source.html#gadd575c796128069aa35085c617056a11"/>
+      <topic label="novas_equals_object" href="group__source.html#ga8e8d07b67babdb5be1737d83b29b65c6"/>
+      <topic label="novas_equals_orbital" href="group__source.html#gabf94e216938a5128a00717244dd42e77"/>
+      <topic label="novas_equals_orbsys" href="group__source.html#ga7136ddcd873a9221cac3cefba603d93f"/>
       <topic label="novas_init_cat_entry" href="group__source.html#gaf0137aa791dd29278904e53498fb9515"/>
       <topic label="novas_make_moon_mean_orbit" href="group__source.html#gac5bba418b7f5ebad8a9b44cc7644c99a"/>
       <topic label="novas_make_moon_orbit" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd"/>
@@ -301,6 +312,10 @@
       <topic label="make_xyz_site" href="group__observer.html#ga9e3cbe310a40919ff94d2d530ffa74ee"/>
       <topic label="novas_cartesian_to_geodetic" href="group__observer.html#ga7479134485c298faa858d73ee0513a11"/>
       <topic label="novas_enu_to_itrs" href="group__observer.html#ga2bfff0a80ee078a45bc4301cd1ad8299"/>
+      <topic label="novas_equals_near_earth" href="group__observer.html#gad7850313f8104494d4bd9b5edf8b32b8"/>
+      <topic label="novas_equals_observer" href="group__observer.html#ga6799b84431fcffb40ebe78c47bf65726"/>
+      <topic label="novas_equals_on_surface" href="group__observer.html#ga1d66a855aafa8e8a837d428c501d1756"/>
+      <topic label="novas_equals_ssb_posvel" href="group__observer.html#gaadbd55afe0e21d486c52d319a8e8e6d3"/>
       <topic label="novas_geodetic_to_cartesian" href="group__observer.html#gab07d86d425d68a62e94e965dd36b7a32"/>
       <topic label="novas_geodetic_transform_site" href="group__observer.html#gadcd71f60a1f042af1eb7103134fad8c4"/>
       <topic label="novas_itrf_transform" href="group__observer.html#gafd98ed01148f1291018809d77785527f"/>
@@ -330,6 +345,7 @@
       <topic label="NOVAS_TAI_TO_TT" href="group__time.html#ga68aa01f6e3e0f40bbe1b5ccab3144fda"/>
       <topic label="NOVAS_TIMESPEC_INIT" href="group__time.html#gaddf3ffbfe4ed05288b689e861600194f"/>
       <topic label="NOVAS_TROPICAL_YEAR_DAYS" href="group__time.html#ga16b986f7c91252932ecb74c344525397"/>
+      <topic label="UNIX_SECONDS_0UTC_1JAN2000" href="group__time.html#gacb9c6b9922edfc6971ceb6304cb945f9"/>
       <topic label="novas_timespec" href="group__time.html#ga98daa33604665eda41d9a9de964d7cc2"/>
       <topic label="novas_calendar_type" href="group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba">
         <topic label="NOVAS_ROMAN_CALENDAR" href="group__time.html#ggaa8cfc18bfdf8ebd0198065c9d07e3bbaa73cfd3e5c66bdfdf63a2d792251e0d13"/>
@@ -365,6 +381,7 @@
       <topic label="novas_diff_time" href="group__time.html#gabdcc8e194d79787838d1ffc064449932"/>
       <topic label="novas_diff_time_scale" href="group__time.html#gab23af98e7a63ce54c6a8d2534e07dc36"/>
       <topic label="novas_epoch" href="group__time.html#gaf4e18885b7d173eb3fe5f18b06f0b4d4"/>
+      <topic label="novas_equals_timespec" href="group__time.html#gaae271d900ea6af740c16d90693c51169"/>
       <topic label="novas_frame_lst" href="group__time.html#ga273fd76d83b8e04ced14558c69fd175c"/>
       <topic label="novas_get_split_time" href="group__time.html#ga32d8336084b65fac14d092ab6198c27d"/>
       <topic label="novas_get_time" href="group__time.html#gae30e3dd8e30bdcf4e8486cfce696fb98"/>
@@ -443,6 +460,7 @@
         <topic label="NOVAS_REDUCED_ACCURACY" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846"/>
       </topic>
       <topic label="novas_change_observer" href="group__frame.html#ga2972b3eafa2d7f6c29cff34bad9fcf0d"/>
+      <topic label="novas_equals_frame" href="group__frame.html#gaa6e8919a917e071f67bb1d7d84fe6131"/>
       <topic label="novas_invert_transform" href="group__frame.html#gad2081e123024609d3071b33b183502b7"/>
       <topic label="novas_make_frame" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838"/>
       <topic label="novas_make_transform" href="group__frame.html#ga4d179c8573319fc25c775ce56ba055dc"/>
@@ -466,6 +484,7 @@
       <topic label="novas_app_to_hor" href="group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca"/>
       <topic label="novas_approx_sky_pos" href="group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62"/>
       <topic label="novas_equ_sep" href="group__apparent.html#ga4f7e06b2fa5b3145b37aec4f9c2d1602"/>
+      <topic label="novas_equals_sky_pos" href="group__apparent.html#ga438a2b032c5e2a245a4af642a67a6857"/>
       <topic label="novas_moon_angle" href="group__apparent.html#ga121940d7f0ef41297d28fab8e6df5998"/>
       <topic label="novas_moon_elp_sky_pos" href="group__apparent.html#ga03aca2626e38d04bcdf94fae14c6d11c"/>
       <topic label="novas_moon_elp_sky_pos_fp" href="group__apparent.html#ga59509eb558c0125e9c5081e712f7c3c7"/>
@@ -667,9 +686,28 @@
         <topic label="l1" href="structnovas__delaunay__args.html#a8528d95bd5e3b2ba7f4bc09112907d9f"/>
         <topic label="Omega" href="structnovas__delaunay__args.html#af6987ccf8afceedd1cd2394a7bdf10b0"/>
       </topic>
+      <topic label="novas_eop" href="structnovas__eop.html">
+        <topic label="dut1" href="structnovas__eop.html#aa7dc31267da0f16593948531081b9c20"/>
+        <topic label="dut1_err" href="structnovas__eop.html#a604eee81022909235d5045a3cbda9e5b"/>
+        <topic label="jd" href="structnovas__eop.html#affd6c6e56f462ca17a1badb73cf3c907"/>
+        <topic label="leap" href="structnovas__eop.html#ab16f1e9735ea4825852497ab33b3ebf3"/>
+        <topic label="lod" href="structnovas__eop.html#ac53ddbbe3c91d0403543273a6380a4b6"/>
+        <topic label="lod_err" href="structnovas__eop.html#af72647faf3ebbfed343c9dfee414ab17"/>
+        <topic label="series" href="structnovas__eop.html#a9069ae656f02e20d54c4087971088534"/>
+        <topic label="xp" href="structnovas__eop.html#adad511b5bdef74f8aab97945a432f54a"/>
+        <topic label="xp_err" href="structnovas__eop.html#ac7b81e3fff4afb5fa90ad52008cbc938"/>
+        <topic label="yp" href="structnovas__eop.html#a6a836a00dbc47798b5dbc864b71cc95d"/>
+        <topic label="yp_err" href="structnovas__eop.html#a0f76e007852c146462d3d79577cb5057"/>
+      </topic>
       <topic label="NOVAS_DELAUNAY_ARGS_INIT" href="group__earth.html#gabf34092276df6f7e9ddaab92a197179b"/>
       <topic label="novas_delaunay_args" href="group__earth.html#ga159819a645320787dd3e0049b40142d6"/>
       <topic label="novas_nutation_provider" href="group__earth.html#ga1f0e319630e7a47f17247bf51f7bf36c"/>
+      <topic label="novas_eop_series" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">
+        <topic label="EOP_LEAP_LIST" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a"/>
+        <topic label="EOP_RAPID_IAU2000" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193"/>
+        <topic label="EOP_C04_IAU2000_0UTC" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12"/>
+        <topic label="EOP_C01_IAU2000" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751"/>
+      </topic>
       <topic label="novas_equinox_type" href="group__earth.html#gab970f5de5d5e04874cb31865459b0b4f">
         <topic label="NOVAS_MEAN_EQUINOX" href="group__earth.html#ggab970f5de5d5e04874cb31865459b0b4fa4649e3c4b655ead9fa3e53a75186ab30"/>
         <topic label="NOVAS_TRUE_EQUINOX" href="group__earth.html#ggab970f5de5d5e04874cb31865459b0b4fa1096785746d1a9bc678ea2c51fc21055"/>
@@ -686,9 +724,19 @@
       <topic label="novas_diurnal_eop_at_time" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e"/>
       <topic label="novas_diurnal_libration" href="group__earth.html#ga2576d1eb803afb956373e67fe9c438d1"/>
       <topic label="novas_diurnal_ocean_tides" href="group__earth.html#gabcd371629ee17cd1f1512ff0687db46e"/>
+      <topic label="novas_fetch_eop" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea"/>
+      <topic label="novas_fetch_eop_unix" href="group__earth.html#ga4fe4a31a0284f79b6099bdc9a32f6206"/>
       <topic label="novas_gast" href="group__earth.html#ga348c4fd2a4a046e9768038075717b693"/>
+      <topic label="novas_get_eop_itrf_year" href="group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8"/>
+      <topic label="novas_get_eop_url" href="group__earth.html#gaaacc7748d90e01bb53ace4dc330ffa65"/>
       <topic label="novas_gmst" href="group__earth.html#ga231f535f73e846d3867dbd914054d47b"/>
+      <topic label="novas_is_auto_fetch_eop" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255"/>
       <topic label="novas_itrf_transform_eop" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb"/>
+      <topic label="novas_lookup_leap" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465"/>
+      <topic label="novas_reset_eop" href="group__earth.html#gaf3631f03d8be587e08796747dfe2e9ca"/>
+      <topic label="novas_set_auto_fetch_eop" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553"/>
+      <topic label="novas_set_eop_url" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef"/>
+      <topic label="novas_set_leap_list" href="group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7"/>
       <topic label="novas_time_gst" href="group__earth.html#gaaf53fcad3fade814381cef3d06779a8c"/>
       <topic label="nu2000k" href="group__earth.html#gabd066c2857d1b1cc06d8bd51b912d841"/>
       <topic label="nutation" href="group__earth.html#ga69df5671751c09a7575963b94ad1151e"/>
@@ -745,9 +793,12 @@
       </topic>
       <topic label="novas_debug" href="group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3"/>
       <topic label="novas_dms_degrees" href="group__util.html#gaca89d2a0f49afad45dbddffc09c3adae"/>
+      <topic label="novas_equ_offset_by" href="group__util.html#ga500745e68a50eaac03d963b539637dc5"/>
+      <topic label="novas_equals_vector" href="group__util.html#ga876add3b3ae251b18c8ffc8f06ea695e"/>
       <topic label="novas_get_debug_mode" href="group__util.html#ga29cad12337acfce5f1e370320dcefb79"/>
       <topic label="novas_hms_hours" href="group__util.html#ga696e44a2d1c788f9f335611efd7ed958"/>
       <topic label="novas_norm_ang" href="group__util.html#ga85334614a0f399e0d3cbde68075d0766"/>
+      <topic label="novas_offset_by" href="group__util.html#ga64a31576a4654e8808de6e2fd755fcc4"/>
       <topic label="novas_parse_date" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4"/>
       <topic label="novas_parse_date_format" href="group__util.html#ga5ec9d054b7d363b3db1d065507a1ba41"/>
       <topic label="novas_parse_degrees" href="group__util.html#gad3d04d065e76a5921995e96f67c24c41"/>
@@ -784,6 +835,19 @@
         <topic label="l" href="structnovas__delaunay__args.html#aa1630a9fee0b9072bf57b2c13d9a9c61"/>
         <topic label="l1" href="structnovas__delaunay__args.html#a8528d95bd5e3b2ba7f4bc09112907d9f"/>
         <topic label="Omega" href="structnovas__delaunay__args.html#af6987ccf8afceedd1cd2394a7bdf10b0"/>
+      </topic>
+      <topic label="novas_eop" href="structnovas__eop.html">
+        <topic label="dut1" href="structnovas__eop.html#aa7dc31267da0f16593948531081b9c20"/>
+        <topic label="dut1_err" href="structnovas__eop.html#a604eee81022909235d5045a3cbda9e5b"/>
+        <topic label="jd" href="structnovas__eop.html#affd6c6e56f462ca17a1badb73cf3c907"/>
+        <topic label="leap" href="structnovas__eop.html#ab16f1e9735ea4825852497ab33b3ebf3"/>
+        <topic label="lod" href="structnovas__eop.html#ac53ddbbe3c91d0403543273a6380a4b6"/>
+        <topic label="lod_err" href="structnovas__eop.html#af72647faf3ebbfed343c9dfee414ab17"/>
+        <topic label="series" href="structnovas__eop.html#a9069ae656f02e20d54c4087971088534"/>
+        <topic label="xp" href="structnovas__eop.html#adad511b5bdef74f8aab97945a432f54a"/>
+        <topic label="xp_err" href="structnovas__eop.html#ac7b81e3fff4afb5fa90ad52008cbc938"/>
+        <topic label="yp" href="structnovas__eop.html#a6a836a00dbc47798b5dbc864b71cc95d"/>
+        <topic label="yp_err" href="structnovas__eop.html#a0f76e007852c146462d3d79577cb5057"/>
       </topic>
       <topic label="novas_frame" href="structnovas__frame.html">
         <topic label="accuracy" href="structnovas__frame.html#a3903377726bbadb61a3e181b5acb45c8"/>
@@ -927,6 +991,7 @@
           <topic label="novas_use_cspice_ephem" href="group__solar-system.html#gafb078e1df9b5b08999d24e68d7b4ecdc"/>
           <topic label="novas_use_cspice_planets" href="group__solar-system.html#ga943549e395b19f6a91064e3d6fa1c577"/>
         </topic>
+        <topic label="novas-mutex.h" href="novas-mutex_8h.html"/>
         <topic label="novas.h" href="novas_8h.html">
           <topic label="novas_planet_bundle" href="structnovas__planet__bundle.html">
             <topic label="mask" href="structnovas__planet__bundle.html#ac0b016705e6421505f3961ed6c70c845"/>
@@ -945,6 +1010,7 @@
           <topic label="DEFAULT_GRAV_BODIES_FULL_ACCURACY" href="group__apparent.html#ga4cb74da554b236c835302480688cfaac"/>
           <topic label="DEFAULT_GRAV_BODIES_REDUCED_ACCURACY" href="group__apparent.html#gaec64bf67d5a03b2b4fb2583e5918f1de"/>
           <topic label="DEG2RAD" href="novas_8h.html#af7e8592d0a634bd3642e9fd508ea8022"/>
+          <topic label="EXTERN" href="novas_8h.html#a77366c1bd428629dc898e188bfd182a3"/>
           <topic label="HELIOC" href="novas_8h.html#a5414c24d23ad004a73ec69b1aad9f3e2"/>
           <topic label="IN_SPACE_INIT" href="group__observer.html#ga406038a5cbe32b7e0e7233f6145e4cf5"/>
           <topic label="M_PI" href="novas_8h.html#ae71449b1cc6e6250b91f539153a7a0d3"/>
@@ -978,6 +1044,7 @@
           <topic label="NOVAS_ID_TYPES" href="group__solar-system.html#ga9a736e59fc9bfdc92b7245aa37d529ee"/>
           <topic label="NOVAS_IERS_EARTH_FLATTENING" href="group__observer.html#ga6111d6b21ce788298259f3fc0d716fe3"/>
           <topic label="NOVAS_IERS_EARTH_RADIUS" href="group__observer.html#gaf5888a18d1c8aa269d9141fde8879148"/>
+          <topic label="NOVAS_INVALID_LEAP" href="novas_8h.html#ab74630b694f2fee24d8fc1dedad7eef9"/>
           <topic label="NOVAS_JD_B1900" href="group__time.html#gaf03a1f0412f23cd6edb323297646eb30"/>
           <topic label="NOVAS_JD_B1950" href="group__time.html#ga3785083ae52bbbc1e749dbedd7e5d85e"/>
           <topic label="NOVAS_JD_HIP" href="group__time.html#ga4100ecc5d9badfa07301024baffe9ded"/>
@@ -997,6 +1064,7 @@
           <topic label="NOVAS_MINOR_VERSION" href="novas_8h.html#af7a746fdca818e9d4c4aa27bf65a62be"/>
           <topic label="NOVAS_MOON_INIT" href="group__source.html#ga4cbd3c168b9357e3af2274252a6d1a5b"/>
           <topic label="NOVAS_NEPTUNE_INIT" href="group__source.html#ga341603d54c8cfc1ae9bb23034ba3ef5a"/>
+          <topic label="NOVAS_NUM_EOP_SERIES" href="novas_8h.html#a15d09c89b49351f50864dc58b3b1af8e"/>
           <topic label="NOVAS_OBJECT_INIT" href="group__source.html#ga9980b82723819fa345030b9ddad48061"/>
           <topic label="NOVAS_OBJECT_TYPES" href="novas_8h.html#a60037f5a7c8fe2b7cf8893cf461598d1"/>
           <topic label="NOVAS_OBSERVABLE_INIT" href="group__tracking.html#gaffe559df5bc0f5de1e091037fabfda92"/>
@@ -1057,6 +1125,7 @@
           <topic label="SUPERNOVAS_RELEASE_STRING" href="novas_8h.html#aadef42ba39811e058ee9efe2c6f7d151"/>
           <topic label="SUPERNOVAS_VERSION_STRING" href="novas_8h.html#a44de9d1672290d153a1dfb0685886208"/>
           <topic label="TWOPI" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a"/>
+          <topic label="UNIX_SECONDS_0UTC_1JAN2000" href="group__time.html#gacb9c6b9922edfc6971ceb6304cb945f9"/>
           <topic label="cat_entry" href="group__source.html#ga8fa0251d2ffa4e750420bdc86a7d73b8"/>
           <topic label="in_space" href="group__observer.html#gaf8e6be13c2cd09e2cc6d582717e352e6"/>
           <topic label="novas_delaunay_args" href="group__earth.html#ga159819a645320787dd3e0049b40142d6"/>
@@ -1110,6 +1179,12 @@
           <topic label="novas_earth_rotation_measure" href="novas_8h.html#a9e882d9c9055f187d3a8dc9b019f0609">
             <topic label="EROT_ERA" href="novas_8h.html#a9e882d9c9055f187d3a8dc9b019f0609ab07b6e5ed11fd50e7c2287b5b6626b46"/>
             <topic label="EROT_GST" href="novas_8h.html#a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62"/>
+          </topic>
+          <topic label="novas_eop_series" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">
+            <topic label="EOP_LEAP_LIST" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a"/>
+            <topic label="EOP_RAPID_IAU2000" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193"/>
+            <topic label="EOP_C04_IAU2000_0UTC" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12"/>
+            <topic label="EOP_C01_IAU2000" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751"/>
           </topic>
           <topic label="novas_equator_type" href="group__nonequatorial.html#ga2eff9980cb9db96ab41fb564c1b5c014">
             <topic label="NOVAS_MEAN_EQUATOR" href="group__nonequatorial.html#gga2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040"/>
@@ -1355,8 +1430,24 @@
           <topic label="novas_enu_to_itrs" href="group__observer.html#ga2bfff0a80ee078a45bc4301cd1ad8299"/>
           <topic label="novas_epa" href="group__nonequatorial.html#ga095ba0ee644dc00c11dcdc5616bc96b0"/>
           <topic label="novas_epoch" href="group__time.html#gaf4e18885b7d173eb3fe5f18b06f0b4d4"/>
+          <topic label="novas_equ_offset_by" href="group__util.html#ga500745e68a50eaac03d963b539637dc5"/>
           <topic label="novas_equ_sep" href="group__apparent.html#ga4f7e06b2fa5b3145b37aec4f9c2d1602"/>
           <topic label="novas_equ_track" href="group__tracking.html#ga57f4a449754c88cfc87df658a6bc4cb2"/>
+          <topic label="novas_equals_cat_entry" href="group__source.html#gadd575c796128069aa35085c617056a11"/>
+          <topic label="novas_equals_frame" href="group__frame.html#gaa6e8919a917e071f67bb1d7d84fe6131"/>
+          <topic label="novas_equals_near_earth" href="group__observer.html#gad7850313f8104494d4bd9b5edf8b32b8"/>
+          <topic label="novas_equals_object" href="group__source.html#ga8e8d07b67babdb5be1737d83b29b65c6"/>
+          <topic label="novas_equals_observer" href="group__observer.html#ga6799b84431fcffb40ebe78c47bf65726"/>
+          <topic label="novas_equals_on_surface" href="group__observer.html#ga1d66a855aafa8e8a837d428c501d1756"/>
+          <topic label="novas_equals_orbital" href="group__source.html#gabf94e216938a5128a00717244dd42e77"/>
+          <topic label="novas_equals_orbsys" href="group__source.html#ga7136ddcd873a9221cac3cefba603d93f"/>
+          <topic label="novas_equals_planet_bundle" href="novas_8h.html#a78bf876b768b1979395d544e17902f88"/>
+          <topic label="novas_equals_sky_pos" href="group__apparent.html#ga438a2b032c5e2a245a4af642a67a6857"/>
+          <topic label="novas_equals_ssb_posvel" href="group__observer.html#gaadbd55afe0e21d486c52d319a8e8e6d3"/>
+          <topic label="novas_equals_timespec" href="group__time.html#gaae271d900ea6af740c16d90693c51169"/>
+          <topic label="novas_equals_vector" href="group__util.html#ga876add3b3ae251b18c8ffc8f06ea695e"/>
+          <topic label="novas_fetch_eop" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea"/>
+          <topic label="novas_fetch_eop_unix" href="group__earth.html#ga4fe4a31a0284f79b6099bdc9a32f6206"/>
           <topic label="novas_frame_lst" href="group__time.html#ga273fd76d83b8e04ced14558c69fd175c"/>
           <topic label="novas_gast" href="group__earth.html#ga348c4fd2a4a046e9768038075717b693"/>
           <topic label="novas_geodetic_to_cartesian" href="group__observer.html#gab07d86d425d68a62e94e965dd36b7a32"/>
@@ -1364,6 +1455,8 @@
           <topic label="novas_geom_posvel" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7"/>
           <topic label="novas_geom_to_app" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c"/>
           <topic label="novas_get_debug_mode" href="group__util.html#ga29cad12337acfce5f1e370320dcefb79"/>
+          <topic label="novas_get_eop_itrf_year" href="group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8"/>
+          <topic label="novas_get_eop_url" href="group__earth.html#gaaacc7748d90e01bb53ace4dc330ffa65"/>
           <topic label="novas_get_split_time" href="group__time.html#ga32d8336084b65fac14d092ab6198c27d"/>
           <topic label="novas_get_time" href="group__time.html#gae30e3dd8e30bdcf4e8486cfce696fb98"/>
           <topic label="novas_get_unix_time" href="group__time.html#gafa1a1d804ca70050418429f971c2045a"/>
@@ -1378,6 +1471,7 @@
           <topic label="novas_init_cat_entry" href="group__source.html#gaf0137aa791dd29278904e53498fb9515"/>
           <topic label="novas_inv_refract" href="group__refract.html#ga81da80ae3ab1d0a444f39bde2af3a732"/>
           <topic label="novas_invert_transform" href="group__frame.html#gad2081e123024609d3071b33b183502b7"/>
+          <topic label="novas_is_auto_fetch_eop" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255"/>
           <topic label="novas_iso_timestamp" href="group__time.html#ga4d6da26d0a7d7d904f25d2be00030b25"/>
           <topic label="novas_itrf_transform" href="group__observer.html#gafd98ed01148f1291018809d77785527f"/>
           <topic label="novas_itrf_transform_eop" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb"/>
@@ -1385,6 +1479,7 @@
           <topic label="novas_itrs_to_enu" href="group__observer.html#ga8e7cb3d7902bbecdb9329bf584950367"/>
           <topic label="novas_jd_from_date" href="group__time.html#ga54eee84c46900c80ca9966857c217cc8"/>
           <topic label="novas_jd_to_date" href="group__time.html#ga8ed2fb55bcf86d9f1f434a2f832356a2"/>
+          <topic label="novas_lookup_leap" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465"/>
           <topic label="novas_los_to_xyz" href="group__interferometry.html#ga601d246673742cf72a5dbe1449c97560"/>
           <topic label="novas_lsr_to_ssb_vel" href="group__spectral.html#gaad80bf94be2efc36c340994829df8207"/>
           <topic label="novas_make_frame" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838"/>
@@ -1404,6 +1499,7 @@
           <topic label="novas_next_moon_phase" href="group__time.html#gad0bd6e212af549309b0fcb792ed8cb79"/>
           <topic label="novas_norm_ang" href="group__util.html#ga85334614a0f399e0d3cbde68075d0766"/>
           <topic label="novas_object_sep" href="group__apparent.html#gafa5f3a823a895bed01876df6b2a00370"/>
+          <topic label="novas_offset_by" href="group__util.html#ga64a31576a4654e8808de6e2fd755fcc4"/>
           <topic label="novas_offset_time" href="group__time.html#ga01f98b2b8033c8dbacaeab37e9198e91"/>
           <topic label="novas_optical_refraction" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4"/>
           <topic label="novas_orbit_native_posvel" href="group__geometric.html#ga6b88d2403a3051ab32229244cf98d7ab"/>
@@ -1422,12 +1518,16 @@
           <topic label="novas_print_timescale" href="group__time.html#ga084e5a2dcd20860af7176754d3a32202"/>
           <topic label="novas_radio_refraction" href="group__refract.html#ga6b49f92f8f818f2272613e3432185a39"/>
           <topic label="novas_refract_wavelength" href="group__refract.html#gac673c4fef94847b796dc2aa2f4d0807d"/>
+          <topic label="novas_reset_eop" href="group__earth.html#gaf3631f03d8be587e08796747dfe2e9ca"/>
           <topic label="novas_rises_above" href="group__time.html#gaaf38f64304fa0b00c9c56cead62043f3"/>
           <topic label="novas_sep" href="group__apparent.html#ga9f33de2b26a19a5e20827e9e918b3375"/>
+          <topic label="novas_set_auto_fetch_eop" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553"/>
           <topic label="novas_set_catalog" href="group__source.html#ga5e92f920835111db719e880a61248045"/>
           <topic label="novas_set_current_time" href="group__time.html#ga090f608cd5c82622e3534297fc27daa5"/>
           <topic label="novas_set_default_weather" href="group__observer.html#ga0fc8f315f8606e09571ab49efb13baca"/>
           <topic label="novas_set_distance" href="group__source.html#gaa076ebd4c967fb9afa24bd85feb84f63"/>
+          <topic label="novas_set_eop_url" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef"/>
+          <topic label="novas_set_leap_list" href="group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7"/>
           <topic label="novas_set_lsr_vel" href="group__source.html#ga4aa0c52a1d4838feb4255974486462a7"/>
           <topic label="novas_set_orbsys_pole" href="group__source.html#ga706ecf8998b78e48051d2876efc6e01c"/>
           <topic label="novas_set_parallax" href="group__source.html#ga69274f4ac2631335e1e901142d31f541"/>
@@ -1546,6 +1646,21 @@
             <topic label="cio_ra" href="group__equatorial.html#gacc331c69187b3077b98280bfb57f6670"/>
             <topic label="set_cio_locator_file" href="cio_8c.html#ade20b8035266dfe5b082b12248f5affa"/>
           </topic>
+          <topic label="cmp.c" href="cmp_8c.html">
+            <topic label="novas_equals_cat_entry" href="group__source.html#gadd575c796128069aa35085c617056a11"/>
+            <topic label="novas_equals_frame" href="group__frame.html#gaa6e8919a917e071f67bb1d7d84fe6131"/>
+            <topic label="novas_equals_near_earth" href="group__observer.html#gad7850313f8104494d4bd9b5edf8b32b8"/>
+            <topic label="novas_equals_object" href="group__source.html#ga8e8d07b67babdb5be1737d83b29b65c6"/>
+            <topic label="novas_equals_observer" href="group__observer.html#ga6799b84431fcffb40ebe78c47bf65726"/>
+            <topic label="novas_equals_on_surface" href="group__observer.html#ga1d66a855aafa8e8a837d428c501d1756"/>
+            <topic label="novas_equals_orbital" href="group__source.html#gabf94e216938a5128a00717244dd42e77"/>
+            <topic label="novas_equals_orbsys" href="group__source.html#ga7136ddcd873a9221cac3cefba603d93f"/>
+            <topic label="novas_equals_planet_bundle" href="cmp_8c.html#a78bf876b768b1979395d544e17902f88"/>
+            <topic label="novas_equals_sky_pos" href="group__apparent.html#ga438a2b032c5e2a245a4af642a67a6857"/>
+            <topic label="novas_equals_ssb_posvel" href="group__observer.html#gaadbd55afe0e21d486c52d319a8e8e6d3"/>
+            <topic label="novas_equals_timespec" href="group__time.html#gaae271d900ea6af740c16d90693c51169"/>
+            <topic label="novas_equals_vector" href="group__util.html#ga876add3b3ae251b18c8ffc8f06ea695e"/>
+          </topic>
           <topic label="earth.c" href="earth_8c.html">
             <topic label="era" href="group__earth.html#gaef1f8daaad470353648de90576aefc66"/>
             <topic label="limb_angle" href="group__apparent.html#ga022957936bc7c5a3e9651776689c9380"/>
@@ -1614,6 +1729,19 @@
             <topic label="grav_vec" href="grav_8c.html#a08a008572e2746a70bec19739b5fb7e6"/>
             <topic label="grav_bodies_full_accuracy" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a"/>
             <topic label="grav_bodies_reduced_accuracy" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24"/>
+          </topic>
+          <topic label="iers.c" href="iers_8c.html">
+            <topic label="_GNU_SOURCE" href="iers_8c.html#a369266c24eacffb87046522897a570d5"/>
+            <topic label="novas_fetch_eop" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea"/>
+            <topic label="novas_fetch_eop_unix" href="group__earth.html#ga4fe4a31a0284f79b6099bdc9a32f6206"/>
+            <topic label="novas_get_eop_itrf_year" href="group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8"/>
+            <topic label="novas_get_eop_url" href="group__earth.html#gaaacc7748d90e01bb53ace4dc330ffa65"/>
+            <topic label="novas_is_auto_fetch_eop" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255"/>
+            <topic label="novas_lookup_leap" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465"/>
+            <topic label="novas_reset_eop" href="group__earth.html#gaf3631f03d8be587e08796747dfe2e9ca"/>
+            <topic label="novas_set_auto_fetch_eop" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553"/>
+            <topic label="novas_set_eop_url" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef"/>
+            <topic label="novas_set_leap_list" href="group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7"/>
           </topic>
           <topic label="itrf.c" href="itrf_8c.html">
             <topic label="novas_cartesian_to_geodetic" href="group__observer.html#ga7479134485c298faa858d73ee0513a11"/>
@@ -1882,9 +2010,11 @@
           <topic label="util.c" href="util_8c.html">
             <topic label="d_light" href="util_8c.html#ad799864f637c483fb49491bde5a93e25"/>
             <topic label="novas_debug" href="group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3"/>
+            <topic label="novas_equ_offset_by" href="group__util.html#ga500745e68a50eaac03d963b539637dc5"/>
             <topic label="novas_equ_sep" href="group__apparent.html#ga4f7e06b2fa5b3145b37aec4f9c2d1602"/>
             <topic label="novas_get_debug_mode" href="group__util.html#ga29cad12337acfce5f1e370320dcefb79"/>
             <topic label="novas_norm_ang" href="group__util.html#ga85334614a0f399e0d3cbde68075d0766"/>
+            <topic label="novas_offset_by" href="group__util.html#ga64a31576a4654e8808de6e2fd755fcc4"/>
             <topic label="novas_print_dms" href="group__util.html#gad778a440540ed687572b78b675bebd60"/>
             <topic label="novas_print_hms" href="group__util.html#ga713869893ad7e58c53e44b37a3bcf768"/>
             <topic label="novas_sep" href="group__apparent.html#ga9f33de2b26a19a5e20827e9e918b3375"/>
@@ -1899,7 +2029,8 @@
     </topic>
     <topic label="File Members" href="globals.html">
       <topic label="All" href="globals.html">
-        <topic label="a" href="globals.html"/>
+        <topic label="_" href="globals.html"/>
+        <topic label="a" href="globals_a.html"/>
         <topic label="b" href="globals_b.html"/>
         <topic label="c" href="globals_c.html"/>
         <topic label="d" href="globals_d.html"/>

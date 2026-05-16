@@ -2,6 +2,7 @@ var hierarchy =
 [
     [ "novas_cat_entry", "structnovas__cat__entry.html", null ],
     [ "novas_delaunay_args", "structnovas__delaunay__args.html", null ],
+    [ "novas_eop", "structnovas__eop.html", null ],
     [ "novas_frame", "structnovas__frame.html", null ],
     [ "novas_in_space", "structnovas__in__space.html", null ],
     [ "novas_matrix", "structnovas__matrix.html", null ],

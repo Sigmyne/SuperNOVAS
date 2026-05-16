@@ -113,6 +113,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic astrometric data for any sidereal object located outside the solar system.  <a href="structnovas__cat__entry.html#details">More...</a><br /></td></tr>
 <tr class="memitem:novas_5Fdelaunay_5Fargs" id="r_novas_5Fdelaunay_5Fargs"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__delaunay__args.html">novas_delaunay_args</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fundamental Delaunay arguments of the Sun and Moon, from Simon section 3.4(b.3).  <a href="structnovas__delaunay__args.html#details">More...</a><br /></td></tr>
+<tr class="memitem:novas_5Feop" id="r_novas_5Feop"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__eop.html">novas_eop</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Earth Orienation Parameters (EOP), such as obtained from IERS.  <a href="structnovas__eop.html#details">More...</a><br /></td></tr>
 <tr class="memitem:novas_5Fframe" id="r_novas_5Fframe"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__frame.html">novas_frame</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A set of parameters that uniquely define the place and time of observation.  <a href="structnovas__frame.html#details">More...</a><br /></td></tr>
 <tr class="memitem:novas_5Fin_5Fspace" id="r_novas_5Fin_5Fspace"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__in__space.html">novas_in_space</a></td></tr>
@@ -158,6 +160,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:gaec64bf67d5a03b2b4fb2583e5918f1de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bitwise mask defining a sefault set of gravitating bodies to use for deflection calculations in reduced accuracy mode.  <br /></td></tr>
 <tr class="memitem:af7e8592d0a634bd3642e9fd508ea8022" id="r_af7e8592d0a634bd3642e9fd508ea8022"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af7e8592d0a634bd3642e9fd508ea8022">DEG2RAD</a>&#160;&#160;&#160;(<a class="el" href="#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a> / 180.0)</td></tr>
 <tr class="memdesc:af7e8592d0a634bd3642e9fd508ea8022"><td class="mdescLeft">&#160;</td><td class="mdescRight">[rad/deg] 1 degree in radians  <br /></td></tr>
+<tr class="memitem:a77366c1bd428629dc898e188bfd182a3" id="r_a77366c1bd428629dc898e188bfd182a3"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a77366c1bd428629dc898e188bfd182a3">EXTERN</a>&#160;&#160;&#160;extern</td></tr>
 <tr class="memitem:a406038a5cbe32b7e0e7233f6145e4cf5" id="r_a406038a5cbe32b7e0e7233f6145e4cf5"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a406038a5cbe32b7e0e7233f6145e4cf5">IN_SPACE_INIT</a></td></tr>
 <tr class="memdesc:a406038a5cbe32b7e0e7233f6145e4cf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializer for a NOVAS <a class="el" href="#af8e6be13c2cd09e2cc6d582717e352e6" title="data for an observer&#39;s location on Earth orbit">in_space</a> structure.  <br /></td></tr>
 <tr class="memitem:ae71449b1cc6e6250b91f539153a7a0d3" id="r_ae71449b1cc6e6250b91f539153a7a0d3"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a>&#160;&#160;&#160;3.14159265358979323846</td></tr>
@@ -222,6 +225,8 @@ Macros</h2></td></tr>
 <tr class="memdesc:a6111d6b21ce788298259f3fc0d716fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] Earth ellipsoid flattening from IERS Conventions (2003).  <br /></td></tr>
 <tr class="memitem:af5888a18d1c8aa269d9141fde8879148" id="r_af5888a18d1c8aa269d9141fde8879148"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af5888a18d1c8aa269d9141fde8879148">NOVAS_IERS_EARTH_RADIUS</a>&#160;&#160;&#160;6378136.6</td></tr>
 <tr class="memdesc:af5888a18d1c8aa269d9141fde8879148"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] Equatorial radius of Earth in meters from IERS Conventions (2003).  <br /></td></tr>
+<tr class="memitem:ab74630b694f2fee24d8fc1dedad7eef9" id="r_ab74630b694f2fee24d8fc1dedad7eef9"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ab74630b694f2fee24d8fc1dedad7eef9">NOVAS_INVALID_LEAP</a>&#160;&#160;&#160;(-999)</td></tr>
+<tr class="memdesc:ab74630b694f2fee24d8fc1dedad7eef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leap seconds value to indicate invalid data.  <br /></td></tr>
 <tr class="memitem:af03a1f0412f23cd6edb323297646eb30" id="r_af03a1f0412f23cd6edb323297646eb30"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af03a1f0412f23cd6edb323297646eb30">NOVAS_JD_B1900</a>&#160;&#160;&#160;2415020.31352</td></tr>
 <tr class="memdesc:af03a1f0412f23cd6edb323297646eb30"><td class="mdescLeft">&#160;</td><td class="mdescRight">[day] Julian date at B1900 (NASA / NAIF SPICE definition) <a class="el" href="#a9178358732325399f3a5e3582080ced3" title="Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) preces...">precession()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a>  <br /></td></tr>
 <tr class="memitem:a3785083ae52bbbc1e749dbedd7e5d85e" id="r_a3785083ae52bbbc1e749dbedd7e5d85e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a3785083ae52bbbc1e749dbedd7e5d85e">NOVAS_JD_B1950</a>&#160;&#160;&#160;2433282.42345905</td></tr>
@@ -260,6 +265,8 @@ Macros</h2></td></tr>
 <tr class="memdesc:a4cbd3c168b9357e3af2274252a6d1a5b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> initializer for the Moon  <br /></td></tr>
 <tr class="memitem:a341603d54c8cfc1ae9bb23034ba3ef5a" id="r_a341603d54c8cfc1ae9bb23034ba3ef5a"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a341603d54c8cfc1ae9bb23034ba3ef5a">NOVAS_NEPTUNE_INIT</a></td></tr>
 <tr class="memdesc:a341603d54c8cfc1ae9bb23034ba3ef5a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> initializer for the planet Neptune  <br /></td></tr>
+<tr class="memitem:a15d09c89b49351f50864dc58b3b1af8e" id="r_a15d09c89b49351f50864dc58b3b1af8e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a15d09c89b49351f50864dc58b3b1af8e">NOVAS_NUM_EOP_SERIES</a>&#160;&#160;&#160;( <a class="el" href="#a1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a> + 1 )</td></tr>
+<tr class="memdesc:a15d09c89b49351f50864dc58b3b1af8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of Earth Orientation Parameter Data series handled by <b>SuperNOVAS</b>.  <br /></td></tr>
 <tr class="memitem:a9980b82723819fa345030b9ddad48061" id="r_a9980b82723819fa345030b9ddad48061"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9980b82723819fa345030b9ddad48061">NOVAS_OBJECT_INIT</a></td></tr>
 <tr class="memdesc:a9980b82723819fa345030b9ddad48061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty object initializer.  <br /></td></tr>
 <tr class="memitem:a60037f5a7c8fe2b7cf8893cf461598d1" id="r_a60037f5a7c8fe2b7cf8893cf461598d1"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a60037f5a7c8fe2b7cf8893cf461598d1">NOVAS_OBJECT_TYPES</a></td></tr>
@@ -370,9 +377,9 @@ Macros</h2></td></tr>
 <tr class="memdesc:a462bdac0f370f0c5b421ae5b3f3e35f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializer for a NOVAS <a class="el" href="#a98a44d2a2c0e4f211b128a94c848ed51" title="Celestial object&#39;s place on the sky; contains the output from place().">sky_pos</a> structure.  <br /></td></tr>
 <tr class="memitem:a5ab52d5db18c081b6313ed8b1993ebb7" id="r_a5ab52d5db18c081b6313ed8b1993ebb7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5ab52d5db18c081b6313ed8b1993ebb7">SUPERNOVAS_MAJOR_VERSION</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:a5ab52d5db18c081b6313ed8b1993ebb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">API major version.  <br /></td></tr>
-<tr class="memitem:aaed93e356acfc0d15d0f64ae0793b4f0" id="r_aaed93e356acfc0d15d0f64ae0793b4f0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaed93e356acfc0d15d0f64ae0793b4f0">SUPERNOVAS_MINOR_VERSION</a>&#160;&#160;&#160;6</td></tr>
+<tr class="memitem:aaed93e356acfc0d15d0f64ae0793b4f0" id="r_aaed93e356acfc0d15d0f64ae0793b4f0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaed93e356acfc0d15d0f64ae0793b4f0">SUPERNOVAS_MINOR_VERSION</a>&#160;&#160;&#160;7</td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
-<tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
 <tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-devel&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
@@ -380,6 +387,8 @@ Macros</h2></td></tr>
 <tr class="memdesc:a44de9d1672290d153a1dfb0685886208"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version string for this library.  <br /></td></tr>
 <tr class="memitem:a4912c64aec0c943b7985db6cb61ff83a" id="r_a4912c64aec0c943b7985db6cb61ff83a"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>&#160;&#160;&#160;(2.0 * <a class="el" href="#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a>)</td></tr>
 <tr class="memdesc:a4912c64aec0c943b7985db6cb61ff83a"><td class="mdescLeft">&#160;</td><td class="mdescRight">2&pi;  <br /></td></tr>
+<tr class="memitem:acb9c6b9922edfc6971ceb6304cb945f9" id="r_acb9c6b9922edfc6971ceb6304cb945f9"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#acb9c6b9922edfc6971ceb6304cb945f9">UNIX_SECONDS_0UTC_1JAN2000</a>&#160;&#160;&#160;946684800L</td></tr>
+<tr class="memdesc:acb9c6b9922edfc6971ceb6304cb945f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">[s] UNIX time at 0 UTC, 1 Jan 2000.0  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -452,6 +461,12 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#a61f6463d05c29930c667981fdcb1f341a3bf824e91c250babd516eadef253d1fe">NOVAS_DYNAMICAL_CIRS</a>
  }</td></tr>
 <tr class="memdesc:a61f6463d05c29930c667981fdcb1f341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constants that determine the type of dynamical system.  <a href="#a61f6463d05c29930c667981fdcb1f341">More...</a><br /></td></tr>
+<tr class="memitem:a1ded006133b58c40985faff42c35e6ee" id="r_a1ded006133b58c40985faff42c35e6ee"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> { <a class="el" href="#a1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a">EOP_LEAP_LIST</a> = 0
+, <a class="el" href="#a1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193">EOP_RAPID_IAU2000</a>
+, <a class="el" href="#a1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12">EOP_C04_IAU2000_0UTC</a>
+, <a class="el" href="#a1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a>
+ }</td></tr>
+<tr class="memdesc:a1ded006133b58c40985faff42c35e6ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the IERS EOP series used (or to use).  <a href="#a1ded006133b58c40985faff42c35e6ee">More...</a><br /></td></tr>
 <tr class="memitem:a2eff9980cb9db96ab41fb564c1b5c014" id="r_a2eff9980cb9db96ab41fb564c1b5c014"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a2eff9980cb9db96ab41fb564c1b5c014">novas_equator_type</a> { <a class="el" href="#a2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a> = 0
 , <a class="el" href="#a2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f">NOVAS_TRUE_EQUATOR</a>
 , <a class="el" href="#a2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66">NOVAS_GCRS_EQUATOR</a>
@@ -825,10 +840,42 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga095ba0ee644dc00c11dcdc5616bc96b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Parallactic Angle (PA) calculated for an RA/Dec location of the sky at a given sidereal time.  <br /></td></tr>
 <tr class="memitem:af4e18885b7d173eb3fe5f18b06f0b4d4" id="r_af4e18885b7d173eb3fe5f18b06f0b4d4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch</a> (const char *restrict system)</td></tr>
 <tr class="memdesc:af4e18885b7d173eb3fe5f18b06f0b4d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Julian day corresponding to an astronomical coordinate epoch.  <br /></td></tr>
+<tr class="memitem:a500745e68a50eaac03d963b539637dc5" id="r_a500745e68a50eaac03d963b539637dc5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a500745e68a50eaac03d963b539637dc5">novas_equ_offset_by</a> (double ra, double dec, double direction, double distance, double *restrict out_ra, double *restrict out_dec)</td></tr>
+<tr class="memdesc:a500745e68a50eaac03d963b539637dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle.  <br /></td></tr>
 <tr class="memitem:a4f7e06b2fa5b3145b37aec4f9c2d1602" id="r_a4f7e06b2fa5b3145b37aec4f9c2d1602"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a4f7e06b2fa5b3145b37aec4f9c2d1602">novas_equ_sep</a> (double ra1, double dec1, double ra2, double dec2)</td></tr>
 <tr class="memdesc:a4f7e06b2fa5b3145b37aec4f9c2d1602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of two equatorial locations on a sphere.  <br /></td></tr>
 <tr class="memitem:a57f4a449754c88cfc87df658a6bc4cb2" id="r_a57f4a449754c88cfc87df658a6bc4cb2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a57f4a449754c88cfc87df658a6bc4cb2">novas_equ_track</a> (const <a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict source, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, double dt, <a class="el" href="structnovas__track.html">novas_track</a> *restrict track)</td></tr>
 <tr class="memdesc:a57f4a449754c88cfc87df658a6bc4cb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates true-of-date equatorial tracking position and motion (first and second time derivatives) for the specified source in the given observing frame.  <br /></td></tr>
+<tr class="memitem:add575c796128069aa35085c617056a11" id="r_add575c796128069aa35085c617056a11"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#add575c796128069aa35085c617056a11">novas_equals_cat_entry</a> (const <a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *a, const <a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *b)</td></tr>
+<tr class="memdesc:add575c796128069aa35085c617056a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two catalog entries define the same parameters, within the typical tolerances associated to these.  <br /></td></tr>
+<tr class="memitem:aa6e8919a917e071f67bb1d7d84fe6131" id="r_aa6e8919a917e071f67bb1d7d84fe6131"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aa6e8919a917e071f67bb1d7d84fe6131">novas_equals_frame</a> (const <a class="el" href="structnovas__frame.html">novas_frame</a> *a, const <a class="el" href="structnovas__frame.html">novas_frame</a> *b)</td></tr>
+<tr class="memdesc:aa6e8919a917e071f67bb1d7d84fe6131"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two observing frames are essentially the same, within typical tolerances.  <br /></td></tr>
+<tr class="memitem:ad7850313f8104494d4bd9b5edf8b32b8" id="r_ad7850313f8104494d4bd9b5edf8b32b8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad7850313f8104494d4bd9b5edf8b32b8">novas_equals_near_earth</a> (const <a class="el" href="#af8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *a, const <a class="el" href="#af8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *b)</td></tr>
+<tr class="memdesc:ad7850313f8104494d4bd9b5edf8b32b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two near-Earth locations and motions match within 1 mm and 1 mm/s, respectively.  <br /></td></tr>
+<tr class="memitem:a8e8d07b67babdb5be1737d83b29b65c6" id="r_a8e8d07b67babdb5be1737d83b29b65c6"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a8e8d07b67babdb5be1737d83b29b65c6">novas_equals_object</a> (const <a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *a, const <a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *b)</td></tr>
+<tr class="memdesc:a8e8d07b67babdb5be1737d83b29b65c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two astronomical targets are the same within typical tolerances.  <br /></td></tr>
+<tr class="memitem:a6799b84431fcffb40ebe78c47bf65726" id="r_a6799b84431fcffb40ebe78c47bf65726"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a6799b84431fcffb40ebe78c47bf65726">novas_equals_observer</a> (const <a class="el" href="#ae7963c522d28ce6891b472e079307d03">observer</a> *a, const <a class="el" href="#ae7963c522d28ce6891b472e079307d03">observer</a> *b)</td></tr>
+<tr class="memdesc:a6799b84431fcffb40ebe78c47bf65726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two observers are essentially the same within the tolerances associated to their defining components.  <br /></td></tr>
+<tr class="memitem:a1d66a855aafa8e8a837d428c501d1756" id="r_a1d66a855aafa8e8a837d428c501d1756"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1d66a855aafa8e8a837d428c501d1756">novas_equals_on_surface</a> (const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *a, const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *b)</td></tr>
+<tr class="memdesc:a1d66a855aafa8e8a837d428c501d1756"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two geodetic locations, and the weather parameters defined for them, match.  <br /></td></tr>
+<tr class="memitem:abf94e216938a5128a00717244dd42e77" id="r_abf94e216938a5128a00717244dd42e77"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#abf94e216938a5128a00717244dd42e77">novas_equals_orbital</a> (const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *a, const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *b)</td></tr>
+<tr class="memdesc:abf94e216938a5128a00717244dd42e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two Keplerian orbitals match, within typical tolerances.  <br /></td></tr>
+<tr class="memitem:a7136ddcd873a9221cac3cefba603d93f" id="r_a7136ddcd873a9221cac3cefba603d93f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a7136ddcd873a9221cac3cefba603d93f">novas_equals_orbsys</a> (const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *a, const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *b)</td></tr>
+<tr class="memdesc:a7136ddcd873a9221cac3cefba603d93f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two orbital systems match within typical tolerances.  <br /></td></tr>
+<tr class="memitem:a78bf876b768b1979395d544e17902f88" id="r_a78bf876b768b1979395d544e17902f88"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle</a> (const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *a, const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *b)</td></tr>
+<tr class="memdesc:a78bf876b768b1979395d544e17902f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two bundles containing Solar-system baricentric planet positions and velocities are effectively the same.  <br /></td></tr>
+<tr class="memitem:a438a2b032c5e2a245a4af642a67a6857" id="r_a438a2b032c5e2a245a4af642a67a6857"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a438a2b032c5e2a245a4af642a67a6857">novas_equals_sky_pos</a> (const <a class="el" href="#a98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *a, const <a class="el" href="#a98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *b)</td></tr>
+<tr class="memdesc:a438a2b032c5e2a245a4af642a67a6857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two apparent positions on the observer's sky are the same within typical tolerances.  <br /></td></tr>
+<tr class="memitem:aadbd55afe0e21d486c52d319a8e8e6d3" id="r_aadbd55afe0e21d486c52d319a8e8e6d3"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel</a> (const <a class="el" href="#af8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *a, const <a class="el" href="#af8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *b)</td></tr>
+<tr class="memdesc:aadbd55afe0e21d486c52d319a8e8e6d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two Solar-system locations and motions match within 1 m and ~1 mm/s, respectively.  <br /></td></tr>
+<tr class="memitem:aae271d900ea6af740c16d90693c51169" id="r_aae271d900ea6af740c16d90693c51169"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aae271d900ea6af740c16d90693c51169">novas_equals_timespec</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *a, const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *b)</td></tr>
+<tr class="memdesc:aae271d900ea6af740c16d90693c51169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two time specifications are the same within 10<sup>-7</sup> days (~100 &mu;s).  <br /></td></tr>
+<tr class="memitem:a876add3b3ae251b18c8ffc8f06ea695e" id="r_a876add3b3ae251b18c8ffc8f06ea695e"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector</a> (const double *a, const double *b, double tol)</td></tr>
+<tr class="memdesc:a876add3b3ae251b18c8ffc8f06ea695e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two 3D vectors are effectively the same, within the specified absolute tolerance.  <br /></td></tr>
+<tr class="memitem:aba2fe38e07b94adaa6e8eb1b0a39a7ea" id="r_aba2fe38e07b94adaa6e8eb1b0a39a7ea"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop</a> (double jd, long timeout_millis, <a class="el" href="structnovas__eop.html">novas_eop</a> *eop)</td></tr>
+<tr class="memdesc:aba2fe38e07b94adaa6e8eb1b0a39a7ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Reference Systems Service (IERS).  <br /></td></tr>
+<tr class="memitem:a4fe4a31a0284f79b6099bdc9a32f6206" id="r_a4fe4a31a0284f79b6099bdc9a32f6206"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix</a> (time_t t, long timeout_millis, <a class="el" href="structnovas__eop.html">novas_eop</a> *eop)</td></tr>
+<tr class="memdesc:a4fe4a31a0284f79b6099bdc9a32f6206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Reference Systems Service (IERS) around the current system time, using the rapid service data (<span class="tt">finals.all</span>).  <br /></td></tr>
 <tr class="memitem:a273fd76d83b8e04ced14558c69fd175c" id="r_a273fd76d83b8e04ced14558c69fd175c"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a273fd76d83b8e04ced14558c69fd175c">novas_frame_lst</a> (const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame)</td></tr>
 <tr class="memdesc:a273fd76d83b8e04ced14558c69fd175c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Local (apparent) Sidereal Time for an observing frame of an Earth-bound observer.  <br /></td></tr>
 <tr class="memitem:a348c4fd2a4a046e9768038075717b693" id="r_a348c4fd2a4a046e9768038075717b693"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a348c4fd2a4a046e9768038075717b693">novas_gast</a> (double jd_ut1, double ut1_to_tt, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy)</td></tr>
@@ -843,6 +890,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:a4817703c9357f702a27812584c91f87c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate corrections for aberration and gravitational deflection for the observer's frame.  <br /></td></tr>
 <tr class="memitem:ga29cad12337acfce5f1e370320dcefb79" id="r_ga29cad12337acfce5f1e370320dcefb79"><td class="memItemLeft">enum <a class="el" href="group__util.html#ga9d8d2a1f5c06b488e4c817bc9877e3ba">novas_debug_mode</a>&#160;</td><td class="memItemRight"><a class="el" href="group__util.html#ga29cad12337acfce5f1e370320dcefb79">novas_get_debug_mode</a> ()</td></tr>
 <tr class="memdesc:ga29cad12337acfce5f1e370320dcefb79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current, thread-local, mode for reporting errors encountered (and traces).  <br /></td></tr>
+<tr class="memitem:gaa3b5a785b2a478011aacd114a96d25e8" id="r_gaa3b5a785b2a478011aacd114a96d25e8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8">novas_get_eop_itrf_year</a> (enum <a class="el" href="#a1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> series)</td></tr>
+<tr class="memdesc:gaa3b5a785b2a478011aacd114a96d25e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ITRF realization year for a given IERS Earth Orientation Parameter (EOP) series.  <br /></td></tr>
+<tr class="memitem:gaaacc7748d90e01bb53ace4dc330ffa65" id="r_gaaacc7748d90e01bb53ace4dc330ffa65"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#gaaacc7748d90e01bb53ace4dc330ffa65">novas_get_eop_url</a> (enum <a class="el" href="#a1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> series)</td></tr>
+<tr class="memdesc:gaaacc7748d90e01bb53ace4dc330ffa65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the URL currently configured for a given IERS Earth Orientation Parameter (EOP) series.  <br /></td></tr>
 <tr class="memitem:a32d8336084b65fac14d092ab6198c27d" id="r_a32d8336084b65fac14d092ab6198c27d"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a32d8336084b65fac14d092ab6198c27d">novas_get_split_time</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time, enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale, long *restrict ijd)</td></tr>
 <tr class="memdesc:a32d8336084b65fac14d092ab6198c27d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the fractional Julian date of an astronomical time in the specified timescale, as an integer and fractional part.  <br /></td></tr>
 <tr class="memitem:ae30e3dd8e30bdcf4e8486cfce696fb98" id="r_ae30e3dd8e30bdcf4e8486cfce696fb98"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time, enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale)</td></tr>
@@ -871,6 +922,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:a81da80ae3ab1d0a444f39bde2af3a732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the reverse atmospheric refraction for a given refraction model.  <br /></td></tr>
 <tr class="memitem:ad2081e123024609d3071b33b183502b7" id="r_ad2081e123024609d3071b33b183502b7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad2081e123024609d3071b33b183502b7">novas_invert_transform</a> (const <a class="el" href="structnovas__transform.html">novas_transform</a> *transform, <a class="el" href="structnovas__transform.html">novas_transform</a> *inverse)</td></tr>
 <tr class="memdesc:ad2081e123024609d3071b33b183502b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverts a novas coordinate transformation matrix.  <br /></td></tr>
+<tr class="memitem:gad1e07eedd32cbf4f1160624c74a99255" id="r_gad1e07eedd32cbf4f1160624c74a99255"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255">novas_is_auto_fetch_eop</a> ()</td></tr>
+<tr class="memdesc:gad1e07eedd32cbf4f1160624c74a99255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.  <br /></td></tr>
 <tr class="memitem:a4d6da26d0a7d7d904f25d2be00030b25" id="r_a4d6da26d0a7d7d904f25d2be00030b25"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a4d6da26d0a7d7d904f25d2be00030b25">novas_iso_timestamp</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time, char *restrict dst, int maxlen)</td></tr>
 <tr class="memdesc:a4d6da26d0a7d7d904f25d2be00030b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a UTC-based ISO timestamp to millisecond precision to the specified string buffer.  <br /></td></tr>
 <tr class="memitem:afd98ed01148f1291018809d77785527f" id="r_afd98ed01148f1291018809d77785527f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#afd98ed01148f1291018809d77785527f">novas_itrf_transform</a> (int from_year, const double *restrict from_coords, const double *restrict from_rates, int to_year, double *to_coords, double *to_rates)</td></tr>
@@ -885,6 +938,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:a54eee84c46900c80ca9966857c217cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Julian day for a given calendar date.  <br /></td></tr>
 <tr class="memitem:a8ed2fb55bcf86d9f1f434a2f832356a2" id="r_a8ed2fb55bcf86d9f1f434a2f832356a2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date</a> (double tjd, enum <a class="el" href="#aa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, int *restrict year, int *restrict month, int *restrict day, double *restrict hour)</td></tr>
 <tr class="memdesc:a8ed2fb55bcf86d9f1f434a2f832356a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function will compute a broken down date on the specified calendar for given the Julian day input.  <br /></td></tr>
+<tr class="memitem:ga804733f8206441a8c2dd9ecf3a1e9465" id="r_ga804733f8206441a8c2dd9ecf3a1e9465"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465">novas_lookup_leap</a> (time_t t)</td></tr>
+<tr class="memdesc:ga804733f8206441a8c2dd9ecf3a1e9465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap seconds list (see <span class="tt"><a class="el" href="group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7" title="Specifies a local file containing the official leap seconds list, i.e.">novas_set_leap_list()</a></span>), or else from data obtained as needed from IERS (provided that fetching it is allowed).  <br /></td></tr>
 <tr class="memitem:a601d246673742cf72a5dbe1449c97560" id="r_a601d246673742cf72a5dbe1449c97560"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a601d246673742cf72a5dbe1449c97560">novas_los_to_xyz</a> (const double *los, double lon, double lat, double *xyz)</td></tr>
 <tr class="memdesc:a601d246673742cf72a5dbe1449c97560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a 3D line-of-sight vector (&delta;&phi;, &delta;&theta;, &delta;r) to a rectangular equatorial (&delta;x, &delta;y, &delta;z) vector.  <br /></td></tr>
 <tr class="memitem:aad80bf94be2efc36c340994829df8207" id="r_aad80bf94be2efc36c340994829df8207"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#aad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel</a> (double epoch, double ra, double dec, double vLSR)</td></tr>
@@ -923,6 +978,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:a85334614a0f399e0d3cbde68075d0766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the normalized angle in the [0:2&pi;) range.  <br /></td></tr>
 <tr class="memitem:afa5f3a823a895bed01876df6b2a00370" id="r_afa5f3a823a895bed01876df6b2a00370"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#afa5f3a823a895bed01876df6b2a00370">novas_object_sep</a> (const <a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *source1, const <a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *source2, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame)</td></tr>
 <tr class="memdesc:afa5f3a823a895bed01876df6b2a00370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of two objects from the observer's point of view.  <br /></td></tr>
+<tr class="memitem:a64a31576a4654e8808de6e2fd755fcc4" id="r_a64a31576a4654e8808de6e2fd755fcc4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a64a31576a4654e8808de6e2fd755fcc4">novas_offset_by</a> (double lon, double lat, double direction, double distance, double *restrict out_lon, double *restrict out_lat)</td></tr>
+<tr class="memdesc:a64a31576a4654e8808de6e2fd755fcc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates offset spherical coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified direction.  <br /></td></tr>
 <tr class="memitem:a01f98b2b8033c8dbacaeab37e9198e91" id="r_a01f98b2b8033c8dbacaeab37e9198e91"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a01f98b2b8033c8dbacaeab37e9198e91">novas_offset_time</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *time, double seconds, <a class="el" href="structnovas__timespec.html">novas_timespec</a> *out)</td></tr>
 <tr class="memdesc:a01f98b2b8033c8dbacaeab37e9198e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the astrometric time by a given amount.  <br /></td></tr>
 <tr class="memitem:gae4511a80a1defbb1e1fdc29c289e7de4" id="r_gae4511a80a1defbb1e1fdc29c289e7de4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a> (double jd_tt, const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *loc, enum <a class="el" href="#a8c77758e10b1d3dc8dbd3ab0b694e468">novas_refraction_type</a> type, double el)</td></tr>
@@ -959,10 +1016,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga6b49f92f8f818f2272613e3432185a39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Atmospheric refraction model for radio wavelengths (Berman &amp; Rockwell 1976).  <br /></td></tr>
 <tr class="memitem:gac673c4fef94847b796dc2aa2f4d0807d" id="r_gac673c4fef94847b796dc2aa2f4d0807d"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__refract.html#gac673c4fef94847b796dc2aa2f4d0807d">novas_refract_wavelength</a> (double microns)</td></tr>
 <tr class="memdesc:gac673c4fef94847b796dc2aa2f4d0807d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the observing wavelength for which refraction is to be calculated when using a wavelength-depenendent model, such as <a class="el" href="group__refract.html#ga7b9ad6dfbd86e4faa2d8068c7d64fac4" title="The wavelength-dependent IAU atmospheric refraction model, based on the SOFA iauRefco() function,...">novas_wave_refraction()</a>.  <br /></td></tr>
+<tr class="memitem:af3631f03d8be587e08796747dfe2e9ca" id="r_af3631f03d8be587e08796747dfe2e9ca"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af3631f03d8be587e08796747dfe2e9ca">novas_reset_eop</a> ()</td></tr>
+<tr class="memdesc:af3631f03d8be587e08796747dfe2e9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases resources used by URL handles used for obtaining Earth Orientation Parameter (EOP) data from the International Earth Rotation and Reference Systems Service (IERS), including the leap seconds list supplied earlier or obtained from IERS.  <br /></td></tr>
 <tr class="memitem:aaf38f64304fa0b00c9c56cead62043f3" id="r_aaf38f64304fa0b00c9c56cead62043f3"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#aaf38f64304fa0b00c9c56cead62043f3">novas_rises_above</a> (double el, const <a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict source, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref_model)</td></tr>
 <tr class="memdesc:aaf38f64304fa0b00c9c56cead62043f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the UTC date at which a distant source appears to rise above the specified elevation angle.  <br /></td></tr>
 <tr class="memitem:a9f33de2b26a19a5e20827e9e918b3375" id="r_a9f33de2b26a19a5e20827e9e918b3375"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a9f33de2b26a19a5e20827e9e918b3375">novas_sep</a> (double lon1, double lat1, double lon2, double lat2)</td></tr>
 <tr class="memdesc:a9f33de2b26a19a5e20827e9e918b3375"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of two locations on a sphere.  <br /></td></tr>
+<tr class="memitem:ga7dafe09841e9a43a7f8c87ce67a8d553" id="r_ga7dafe09841e9a43a7f8c87ce67a8d553"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553">novas_set_auto_fetch_eop</a> (int enabled)</td></tr>
+<tr class="memdesc:ga7dafe09841e9a43a7f8c87ce67a8d553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS, when these are left undefined (NAN) when initializing astrometric time or observing frame instances.  <br /></td></tr>
 <tr class="memitem:a5e92f920835111db719e880a61248045" id="r_a5e92f920835111db719e880a61248045"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a5e92f920835111db719e880a61248045">novas_set_catalog</a> (<a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *restrict source, const char *restrict catalog, long num)</td></tr>
 <tr class="memdesc:a5e92f920835111db719e880a61248045"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the optional catalog information for a sidereal source.  <br /></td></tr>
 <tr class="memitem:a090f608cd5c82622e3534297fc27daa5" id="r_a090f608cd5c82622e3534297fc27daa5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a090f608cd5c82622e3534297fc27daa5">novas_set_current_time</a> (int leap, double dut1, <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time)</td></tr>
@@ -971,6 +1032,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:a0fc8f315f8606e09571ab49efb13baca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets default weather parameters based on an approximate global model to the mean annualized temperatures, based on Feulner et al.  <br /></td></tr>
 <tr class="memitem:aa076ebd4c967fb9afa24bd85feb84f63" id="r_aa076ebd4c967fb9afa24bd85feb84f63"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aa076ebd4c967fb9afa24bd85feb84f63">novas_set_distance</a> (<a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *source, double parsecs)</td></tr>
 <tr class="memdesc:aa076ebd4c967fb9afa24bd85feb84f63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the distance for a catalog source.  <br /></td></tr>
+<tr class="memitem:ga30319d4fc323f4f42d199e454abf0aef" id="r_ga30319d4fc323f4f42d199e454abf0aef"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef">novas_set_eop_url</a> (enum <a class="el" href="#a1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> series, int itrf_year, const char *url)</td></tr>
+<tr class="memdesc:ga30319d4fc323f4f42d199e454abf0aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.  <br /></td></tr>
+<tr class="memitem:ga3bfd89aa8b76fc752b67f09b182197c7" id="r_ga3bfd89aa8b76fc752b67f09b182197c7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7">novas_set_leap_list</a> (const char *filename)</td></tr>
+<tr class="memdesc:ga3bfd89aa8b76fc752b67f09b182197c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies a local file containing the official leap seconds list, i.e.  <br /></td></tr>
 <tr class="memitem:a4aa0c52a1d4838feb4255974486462a7" id="r_a4aa0c52a1d4838feb4255974486462a7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a4aa0c52a1d4838feb4255974486462a7">novas_set_lsr_vel</a> (<a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *source, double epoch, double v_kms)</td></tr>
 <tr class="memdesc:a4aa0c52a1d4838feb4255974486462a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a radial velocity for a catalog source, defined w.r.t.  <br /></td></tr>
 <tr class="memitem:a706ecf8998b78e48051d2876efc6e01c" id="r_a706ecf8998b78e48051d2876efc6e01c"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a706ecf8998b78e48051d2876efc6e01c">novas_set_orbsys_pole</a> (enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> type, double ra, double dec, <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *restrict sys)</td></tr>
@@ -1281,6 +1346,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a77366c1bd428629dc898e188bfd182a3" name="a77366c1bd428629dc898e188bfd182a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77366c1bd428629dc898e188bfd182a3">&#9670;&#160;</a></span>EXTERN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EXTERN&#160;&#160;&#160;extern</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a406038a5cbe32b7e0e7233f6145e4cf5" name="a406038a5cbe32b7e0e7233f6145e4cf5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a406038a5cbe32b7e0e7233f6145e4cf5">&#9670;&#160;</a></span>IN_SPACE_INIT</h2>
 
@@ -1371,7 +1450,7 @@ Variables</h2></td></tr>
 <p>[m] Astronomical unit (AU). </p>
 <p>IAU definition. See <a href="https://www.iau.org/static/resolutions/IAU2012_English.pdf">IAU 2012 Resolution B2</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="#af303bf91582509624aa40c6a87eb95ac" title="[m] Astronomical unit (AU).">DE405_AU</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="#ac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="#a7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="#a81f4b147c3f132a1498cdd833042d804">novas_uvw()</a>, and <a class="el" href="#a37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="#abf94e216938a5128a00717244dd42e77">novas_equals_orbital()</a>, <a class="el" href="#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle()</a>, <a class="el" href="#aadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel()</a>, <a class="el" href="#ac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="#a7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="#a81f4b147c3f132a1498cdd833042d804">novas_uvw()</a>, and <a class="el" href="#a37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
 
 </div>
 </div>
@@ -1841,6 +1920,26 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ab74630b694f2fee24d8fc1dedad7eef9" name="ab74630b694f2fee24d8fc1dedad7eef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab74630b694f2fee24d8fc1dedad7eef9">&#9670;&#160;</a></span>NOVAS_INVALID_LEAP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NOVAS_INVALID_LEAP&#160;&#160;&#160;(-999)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Leap seconds value to indicate invalid data. </p>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465">novas_lookup_leap()</a>.</p>
+
+</div>
+</div>
 <a id="af03a1f0412f23cd6edb323297646eb30" name="af03a1f0412f23cd6edb323297646eb30"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af03a1f0412f23cd6edb323297646eb30">&#9670;&#160;</a></span>NOVAS_JD_B1900</h2>
 
@@ -1910,7 +2009,7 @@ Variables</h2></td></tr>
 
 <p>[day] Julian date at J2000 </p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Calendar.html#a865a6d0e1029718a8330a3905fe2a587">supernovas::Calendar::date()</a>, <a class="el" href="classsupernovas_1_1Time.html#aaff57314263437bb06e1d7adcd6febcf">supernovas::Time::epoch()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a1e093e32feee83e7d589f51783ce2912">supernovas::Equinox::from_string()</a>, <a class="el" href="#a75de6cca190c5fbc3056db726f317c7f">gcrs_to_mod()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">supernovas::Equinox::icrs()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a8f74265a182736c65f358d3535b4cfb4">supernovas::Equinox::j2000()</a>, <a class="el" href="classsupernovas_1_1Time.html#a2a483b407997ca602f9a79fb134468e9">supernovas::Time::j2000()</a>, <a class="el" href="#ad9cc07f0e6af9339096e15a440b113e5">mod_to_gcrs()</a>, <a class="el" href="#a7ee576309aa1977e9b2a3824286f725c">novas_day_of_week()</a>, <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch()</a>, <a class="el" href="#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="#aad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel()</a>, <a class="el" href="#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="#ac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="#a7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="#a8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="#ad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase()</a>, <a class="el" href="#a99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8">supernovas::Ecliptic::system()</a>, <a class="el" href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582">supernovas::Ecliptic::to_j2000()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>, <a class="el" href="group__time.html#gad301a9c74bfbdb8b55513cd005787b22">tt2tdb_fp()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#a776056f48ef548d8bb613932fe2647d8">supernovas::CalendarDate::unix_time()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Calendar.html#a865a6d0e1029718a8330a3905fe2a587">supernovas::Calendar::date()</a>, <a class="el" href="classsupernovas_1_1Time.html#aaff57314263437bb06e1d7adcd6febcf">supernovas::Time::epoch()</a>, <a class="el" href="classsupernovas_1_1EOP.html#a795ca27c550868b0dc7e675acbd198a0">supernovas::EOP::fetch_for()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a1e093e32feee83e7d589f51783ce2912">supernovas::Equinox::from_string()</a>, <a class="el" href="#a75de6cca190c5fbc3056db726f317c7f">gcrs_to_mod()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">supernovas::Equinox::icrs()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a8f74265a182736c65f358d3535b4cfb4">supernovas::Equinox::j2000()</a>, <a class="el" href="classsupernovas_1_1Time.html#a2a483b407997ca602f9a79fb134468e9">supernovas::Time::j2000()</a>, <a class="el" href="#ad9cc07f0e6af9339096e15a440b113e5">mod_to_gcrs()</a>, <a class="el" href="#a7ee576309aa1977e9b2a3824286f725c">novas_day_of_week()</a>, <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch()</a>, <a class="el" href="#a4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix()</a>, <a class="el" href="#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="#aad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel()</a>, <a class="el" href="#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="#ac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="#a7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="#a8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="#ad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase()</a>, <a class="el" href="#a99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8">supernovas::Ecliptic::system()</a>, <a class="el" href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582">supernovas::Ecliptic::to_j2000()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>, <a class="el" href="group__time.html#gad301a9c74bfbdb8b55513cd005787b22">tt2tdb_fp()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#a776056f48ef548d8bb613932fe2647d8">supernovas::CalendarDate::unix_time()</a>.</p>
 
 </div>
 </div>
@@ -1928,7 +2027,7 @@ Variables</h2></td></tr>
 
 <p>[day] Julian date at which the Modified Julian Date (MJD) is zero </p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a312b167a2ea16dd21a20e0ebc8e5d80c">supernovas::Time::from_mjd()</a>, <a class="el" href="classsupernovas_1_1CalendarDate.html#a2e92fc09a1316855c5b3a245007e3838">supernovas::CalendarDate::mjd()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a4fe1ee28ce9c07ee116cad3e765d1416">supernovas::Ecliptic::mjd()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a0cca81abe9fb1b74f20175c62c776923">supernovas::Equinox::mjd()</a>, and <a class="el" href="classsupernovas_1_1Time.html#aa00bd10a56e82fdb411f67b5b3a2beb9">supernovas::Time::mjd()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1EOP.html#acb8cd84e38ccd54a041f770cd252f652">supernovas::EOP::fetch_for_mjd()</a>, <a class="el" href="classsupernovas_1_1Time.html#a312b167a2ea16dd21a20e0ebc8e5d80c">supernovas::Time::from_mjd()</a>, <a class="el" href="classsupernovas_1_1CalendarDate.html#a2e92fc09a1316855c5b3a245007e3838">supernovas::CalendarDate::mjd()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a4fe1ee28ce9c07ee116cad3e765d1416">supernovas::Ecliptic::mjd()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a0cca81abe9fb1b74f20175c62c776923">supernovas::Equinox::mjd()</a>, and <a class="el" href="classsupernovas_1_1Time.html#aa00bd10a56e82fdb411f67b5b3a2beb9">supernovas::Time::mjd()</a>.</p>
 
 </div>
 </div>
@@ -2185,6 +2284,26 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a15d09c89b49351f50864dc58b3b1af8e" name="a15d09c89b49351f50864dc58b3b1af8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15d09c89b49351f50864dc58b3b1af8e">&#9670;&#160;</a></span>NOVAS_NUM_EOP_SERIES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NOVAS_NUM_EOP_SERIES&#160;&#160;&#160;( <a class="el" href="#a1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a> + 1 )</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of Earth Orientation Parameter Data series handled by <b>SuperNOVAS</b>. </p>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>enum <a class="el" href="#a1ded006133b58c40985faff42c35e6ee" title="Identifier of the IERS EOP series used (or to use).">novas_eop_series</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8">novas_get_eop_itrf_year()</a>, and <a class="el" href="group__earth.html#gaaacc7748d90e01bb53ace4dc330ffa65">novas_get_eop_url()</a>.</p>
+
+</div>
+</div>
 <a id="a9980b82723819fa345030b9ddad48061" name="a9980b82723819fa345030b9ddad48061"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9980b82723819fa345030b9ddad48061">&#9670;&#160;</a></span>NOVAS_OBJECT_INIT</h2>
 
@@ -2425,7 +2544,7 @@ Variables</h2></td></tr>
 <p>String array initializer for Major planet names, matching the enum <a class="el" href="#a219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a>. </p>
 <p>E.g.</p>
 <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span> *planet_names[] = <a class="code hl_define" href="#abbd19f57e31db2ac91cbe22f9a95f390">NOVAS_PLANET_NAMES_INIT</a>;</div>
-<div class="ttc" id="anovas_8h_html_abbd19f57e31db2ac91cbe22f9a95f390"><div class="ttname"><a href="#abbd19f57e31db2ac91cbe22f9a95f390">NOVAS_PLANET_NAMES_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_NAMES_INIT</div><div class="ttdoc">String array initializer for Major planet names, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:642</div></div>
+<div class="ttc" id="anovas_8h_html_abbd19f57e31db2ac91cbe22f9a95f390"><div class="ttname"><a href="#abbd19f57e31db2ac91cbe22f9a95f390">NOVAS_PLANET_NAMES_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_NAMES_INIT</div><div class="ttdoc">String array initializer for Major planet names, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:654</div></div>
 </div><!-- fragment --><dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>enum <a class="el" href="#a219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a> </dd></dl>
@@ -2449,7 +2568,7 @@ Variables</h2></td></tr>
 <p>Array initializer for mean planet radii in meters, matching the enum <a class="el" href="#a219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a>. </p>
 <p>E.g.</p>
 <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">double</span> *planet_radii[] = <a class="code hl_define" href="#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a>;</div>
-<div class="ttc" id="anovas_8h_html_ae48a8495c1ddf3960784aba5189d178e"><div class="ttname"><a href="#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_RADII_INIT</div><div class="ttdoc">Array initializer for mean planet radii in meters, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:667</div></div>
+<div class="ttc" id="anovas_8h_html_ae48a8495c1ddf3960784aba5189d178e"><div class="ttname"><a href="#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_RADII_INIT</div><div class="ttdoc">Array initializer for mean planet radii in meters, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:679</div></div>
 </div><!-- fragment --><p>REFERENCES:</p>
 <ol type="1">
 <li><a href="https://orbital-mechanics.space/reference/planetary-parameters.html">https://orbital-mechanics.space/reference/planetary-parameters.html</a>, Table 3.</li>
@@ -2481,7 +2600,7 @@ Variables</h2></td></tr>
 <p>The number of major planets defined in NOVAS. </p>
 <dl class="section see"><dt>See also</dt><dd>enum <a class="el" href="#a219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#a580f5949c8a29cdd7bf4787aee891f2b">earth_sun_calc()</a>, <a class="el" href="classsupernovas_1_1Planet.html#a2b4669db5152477ea09b9bf66c809aa3">supernovas::Planet::for_naif_id()</a>, <a class="el" href="classsupernovas_1_1Planet.html#a7cec4323d92f0c576fd25fdc3633efb3">supernovas::Planet::for_name()</a>, <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="target_8c.html#a411f70fb77582d750c5269fcd64b0ce2">make_object()</a>, <a class="el" href="#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="#a2cf7410aa68b980112734227b40890d6">novas_planet_for_name()</a>, <a class="el" href="#a07490a134a685fe0842b2b4816559292">obs_planets()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#a5e0fc23c7c652fa0c89bb29ce4787003">supernovas::OrbitalSystem::orientation()</a>, <a class="el" href="#a93d0f96d81f3c52e05163643bd23eb7d">planet_ephem_provider_hp()</a>, and <a class="el" href="#a37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a580f5949c8a29cdd7bf4787aee891f2b">earth_sun_calc()</a>, <a class="el" href="classsupernovas_1_1Planet.html#a2b4669db5152477ea09b9bf66c809aa3">supernovas::Planet::for_naif_id()</a>, <a class="el" href="classsupernovas_1_1Planet.html#a7cec4323d92f0c576fd25fdc3633efb3">supernovas::Planet::for_name()</a>, <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="target_8c.html#a411f70fb77582d750c5269fcd64b0ce2">make_object()</a>, <a class="el" href="#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle()</a>, <a class="el" href="#a2cf7410aa68b980112734227b40890d6">novas_planet_for_name()</a>, <a class="el" href="#a07490a134a685fe0842b2b4816559292">obs_planets()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#a5e0fc23c7c652fa0c89bb29ce4787003">supernovas::OrbitalSystem::orientation()</a>, <a class="el" href="#a93d0f96d81f3c52e05163643bd23eb7d">planet_ephem_provider_hp()</a>, and <a class="el" href="#a37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
 
 </div>
 </div>
@@ -3244,7 +3363,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_MINOR_VERSION&#160;&#160;&#160;6</td>
+          <td class="memname">#define SUPERNOVAS_MINOR_VERSION&#160;&#160;&#160;7</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3260,7 +3379,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_PATCHLEVEL&#160;&#160;&#160;1</td>
+          <td class="memname">#define SUPERNOVAS_PATCHLEVEL&#160;&#160;&#160;0</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3316,6 +3435,25 @@ Variables</h2></td></tr>
 <p>2&pi; </p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1TimeAngle.html#aefc4d47845acc009e22b368255827448">supernovas::TimeAngle::TimeAngle()</a>, <a class="el" href="#ad1de5b481e41cf193c199bd0dc5084bd">accum_prec()</a>, <a class="el" href="#a580f5949c8a29cdd7bf4787aee891f2b">earth_sun_calc()</a>, <a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb">novas_itrf_transform_eop()</a>, <a class="el" href="#ac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="#a85334614a0f399e0d3cbde68075d0766">novas_norm_ang()</a>, <a class="el" href="#a6b88d2403a3051ab32229244cf98d7ab">novas_orbit_native_posvel()</a>, <a class="el" href="#aacc6a0daf29b8bdc18f46647a94694d3">planet_lon()</a>, <a class="el" href="#af4090e519d7ce7ab1fcdb24b10126eb4">spin()</a>, <a class="el" href="solsys3_8c.html#a869ec4c9fe91668611c0cfcc6bf332cf">sun_eph()</a>, and <a class="el" href="classsupernovas_1_1Time.html#a8dbb3589d1c01cacdbab496dfad66e54">supernovas::Time::time_of_day()</a>.</p>
+
+</div>
+</div>
+<a id="acb9c6b9922edfc6971ceb6304cb945f9" name="acb9c6b9922edfc6971ceb6304cb945f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb9c6b9922edfc6971ceb6304cb945f9">&#9670;&#160;</a></span>UNIX_SECONDS_0UTC_1JAN2000</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UNIX_SECONDS_0UTC_1JAN2000&#160;&#160;&#160;946684800L</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[s] UNIX time at 0 UTC, 1 Jan 2000.0 </p>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1EOP.html#a795ca27c550868b0dc7e675acbd198a0">supernovas::EOP::fetch_for()</a>, and <a class="el" href="#a4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix()</a>.</p>
 
 </div>
 </div>
@@ -3727,6 +3865,35 @@ Variables</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a61f6463d05c29930c667981fdcb1f341a3bf824e91c250babd516eadef253d1fe" name="a61f6463d05c29930c667981fdcb1f341a3bf824e91c250babd516eadef253d1fe"></a>NOVAS_DYNAMICAL_CIRS&#160;</td><td class="fielddoc"><p>Celestial Intermediate Reference System (CIRS): dynamical system of the true equator, with its origin at the CIO (preferred since IAU 2006). </p>
 <p>NOVAS_DYNAMICAL_CIRS </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a1ded006133b58c40985faff42c35e6ee" name="a1ded006133b58c40985faff42c35e6ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ded006133b58c40985faff42c35e6ee">&#9670;&#160;</a></span>novas_eop_series</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a1ded006133b58c40985faff42c35e6ee">novas_eop_series</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Identifier of the IERS EOP series used (or to use). </p>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structnovas__eop.html" title="Earth Orienation Parameters (EOP), such as obtained from IERS.">novas_eop</a>, <a class="el" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a> </dd></dl>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a" name="a1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a"></a>EOP_LEAP_LIST&#160;</td><td class="fielddoc"><p>List of leap seconds, since their introduction in 1972 (<span class="tt">leap-seconds.list</span>). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193" name="a1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193"></a>EOP_RAPID_IAU2000&#160;</td><td class="fielddoc"><p>IERS Rapid Service data for IAU2000, starting in 1973 (<span class="tt">finals.all.iau2000.txt</span>). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12" name="a1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12"></a>EOP_C04_IAU2000_0UTC&#160;</td><td class="fielddoc"><p>IERS C04 Long-term data (ITRF 2020) from 2 Jan 1962 to now, daily at 0 UTC (<span class="tt">EOP_20u24_C04_one_file_1962-now.txt</span>). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751" name="a1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751"></a>EOP_C01_IAU2000&#160;</td><td class="fielddoc"><p>IERS C01 Long-term data from 1846 to now (<span class="tt">EOP_C01_IAU2000_1846-now.txt</span>). </p>
 </td></tr>
 </table>
 
@@ -7326,7 +7493,7 @@ Variables</h2></td></tr>
 
 <p class="reference">References <a class="el" href="#a406038a5cbe32b7e0e7233f6145e4cf5">IN_SPACE_INIT</a>, <a class="el" href="observer_8c.html#a0f2096c7954b583fe749553b956ff9d2">make_observer()</a>, <a class="el" href="#a6140c39d1526b137f827e2091ecc36b3a1665bf146ca1a4d11380bf4d7d9d7058">NOVAS_AIRBORNE_OBSERVER</a>, and <a class="el" href="structnovas__in__space.html#ab4a55b14aa16bcbc5ca3bdc1a6d078af">novas_in_space::sc_vel</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a04cfc686ec4533c6153ced1fe5290560">supernovas::GeodeticObserver::GeodeticObserver()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a27d141fdabb111464442f65126d20168">supernovas::GeodeticObserver::GeodeticObserver()</a>.</p>
 
 </div>
 </div>
@@ -9666,6 +9833,67 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 
 </div>
 </div>
+<a id="a500745e68a50eaac03d963b539637dc5" name="a500745e68a50eaac03d963b539637dc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a500745e68a50eaac03d963b539637dc5">&#9670;&#160;</a></span>novas_equ_offset_by()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equ_offset_by </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>ra</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>dec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>direction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>distance</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>out_ra</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>out_dec</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[deg] reference point right ascention (R.A.) </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] reference point declination </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">direction</td><td>[deg] direction (measured East of North). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">distance</td><td>[deg] offset distance on great circle </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[deg] right ascention (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_dec</td><td>[deg] declination at offset position in [-&amp;pi/2:&pi;/2] range. It may be NULL if not needed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and right ascention (R.A.) at the offset position is requested, or if the input declination is outside of the [-90:90] range.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Attila Kovacs</dd>
+<dd>
+<a class="el" href="util_8c.html#a64a31576a4654e8808de6e2fd755fcc4" title="Calculates offset spherical coordinates at some distance away from the input coordinates along a grea...">novas_offset_by()</a>, <a class="el" href="util_8c.html#a4f7e06b2fa5b3145b37aec4f9c2d1602" title="Returns the angular separation of two equatorial locations on a sphere.">novas_equ_sep()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="util_8c.html#a64a31576a4654e8808de6e2fd755fcc4">novas_offset_by()</a>.</p>
+
+</div>
+</div>
 <a id="a4f7e06b2fa5b3145b37aec4f9c2d1602" name="a4f7e06b2fa5b3145b37aec4f9c2d1602"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4f7e06b2fa5b3145b37aec4f9c2d1602">&#9670;&#160;</a></span>novas_equ_sep()</h2>
 
@@ -9708,7 +9936,9 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section return"><dt>Returns</dt><dd>[deg] the angular separation of the two locations.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="util_8c.html#a9f33de2b26a19a5e20827e9e918b3375" title="Returns the angular separation of two locations on a sphere.">novas_sep()</a>, <a class="el" href="#a2d1ef3bc6d99aa473511e45c6e0481e9" title="Returns the apparent angular distance of a source from the Sun from the observer&#39;s point of view.">novas_sun_angle()</a>, <a class="el" href="#a121940d7f0ef41297d28fab8e6df5998" title="Returns the apparent angular distance of a source from the Moon from the observer&#39;s point of view.">novas_moon_angle()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="util_8c.html#a9f33de2b26a19a5e20827e9e918b3375" title="Returns the angular separation of two locations on a sphere.">novas_sep()</a>, <a class="el" href="#a2d1ef3bc6d99aa473511e45c6e0481e9" title="Returns the apparent angular distance of a source from the Sun from the observer&#39;s point of view.">novas_sun_angle()</a>, <a class="el" href="#a121940d7f0ef41297d28fab8e6df5998" title="Returns the apparent angular distance of a source from the Moon from the observer&#39;s point of view.">novas_moon_angle()</a> </dd>
+<dd>
+<a class="el" href="util_8c.html#a500745e68a50eaac03d963b539637dc5" title="Calculates offset equatorial coordinates at some distance away from the input coordinates along a gre...">novas_equ_offset_by()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="util_8c.html#a9f33de2b26a19a5e20827e9e918b3375">novas_sep()</a>.</p>
 
@@ -9764,6 +9994,730 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <p class="reference">References <a class="el" href="structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f">novas_sky_pos::dec</a>, <a class="el" href="structnovas__sky__pos.html#a3c45d500db3a793b89d234d950886e4d">novas_sky_pos::dis</a>, <a class="el" href="structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c">novas_timespec::fjd_tt</a>, <a class="el" href="frames_8c.html#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="frames_8c.html#ac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, <a class="el" href="#aa54cd00024b294d38fa29433c017c65f">novas_v2z()</a>, <a class="el" href="structnovas__sky__pos.html#a7d5aa9cc738e19f0891bff94ad148741">novas_sky_pos::ra</a>, <a class="el" href="structnovas__sky__pos.html#ae98432478d2c3a8e5eb1a1674394499f">novas_sky_pos::rv</a>, and <a class="el" href="#a462bdac0f370f0c5b421ae5b3f3e35f2">SKY_POS_INIT</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__tracking.html#ga1da60cae52d719260947c000891cfa87">supernovas::Source::equatorial_track()</a>.</p>
+
+</div>
+</div>
+<a id="add575c796128069aa35085c617056a11" name="add575c796128069aa35085c617056a11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add575c796128069aa35085c617056a11">&#9670;&#160;</a></span>novas_equals_cat_entry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_cat_entry </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two catalog entries define the same parameters, within the typical tolerances associated to these. </p>
+<p>For two catalog entries to be equals, they must have matching</p>
+<ul>
+<li>names (case sensitive)</li>
+<li>catalog IDs (case sensitive)</li>
+<li>numerical IDs</li>
+<li>coordinates within 1 &mu;as.</li>
+<li>proper motions to within 1 &mu;as / century.</li>
+<li>parallaxes to within 1 ppm of their geometric mean.</li>
+<li>radial velocities to withing 1 mm/s.</li>
+</ul>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) catalog entries are considered not equal.</li>
+<li>A catalog entry structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one of the catalog entries </td></tr>
+    <tr><td class="paramname">b</td><td>another catalog entry </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two catalog entries define the same sidereal source effectively, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="cmp_8c.html#a8e8d07b67babdb5be1737d83b29b65c6" title="Checks if two astronomical targets are the same within typical tolerances.">novas_equals_object()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__cat__entry.html#ada95bd9127ffe9e1204a233057869f5a">novas_cat_entry::catalog</a>, <a class="el" href="structnovas__cat__entry.html#ab539dc076c350cf98ac047453fa18c9c">novas_cat_entry::dec</a>, <a class="el" href="structnovas__cat__entry.html#ac2e6fe6d5aa8aece4e1d3f2ebc8e5c63">novas_cat_entry::parallax</a>, <a class="el" href="structnovas__cat__entry.html#a64faf35923c3c09bb24265a8ddb2b2f1">novas_cat_entry::promodec</a>, <a class="el" href="structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560">novas_cat_entry::promora</a>, <a class="el" href="structnovas__cat__entry.html#a0bf9261730a8decbfd1d0c63c377dac2">novas_cat_entry::ra</a>, <a class="el" href="structnovas__cat__entry.html#aff726e9a11a48c6ccbd80672a1fa5cc8">novas_cat_entry::radialvelocity</a>, <a class="el" href="group__source.html#gaf32c72297e36b77bead56044d23082f7">SIZE_OF_CAT_NAME</a>, <a class="el" href="group__source.html#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>, <a class="el" href="structnovas__cat__entry.html#ac06af140acde272f032a431f6cfeb85d">novas_cat_entry::starname</a>, and <a class="el" href="structnovas__cat__entry.html#a456d93b89cbbc3c13cb0cb9d3b8a4cb0">novas_cat_entry::starnumber</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogEntry.html#aea15ba68adbffc9c6ad07d321d1aab8e">supernovas::CatalogEntry::equals()</a>, and <a class="el" href="#a8e8d07b67babdb5be1737d83b29b65c6">novas_equals_object()</a>.</p>
+
+</div>
+</div>
+<a id="aa6e8919a917e071f67bb1d7d84fe6131" name="aa6e8919a917e071f67bb1d7d84fe6131"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6e8919a917e071f67bb1d7d84fe6131">&#9670;&#160;</a></span>novas_equals_frame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_frame </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__frame.html">novas_frame</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnovas__frame.html">novas_frame</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two observing frames are essentially the same, within typical tolerances. </p>
+<p>Two frames are considered equal, if they are both:</p>
+<ul>
+<li>initialized,</li>
+<li>represent the same accuracy,</li>
+<li>for the same observer,</li>
+<li>at the same time,</li>
+<li>same polar offsets (for geodetic observers or if defined),</li>
+<li>and contain the same planetary ephemeris data</li>
+</ul>
+<p>all within the typical tolerances associated to these. For non-geodetic observers two frames are considered equal also if both have all NAN (undefined) polar offsets &ndash; since polar offsets are not generally required for non-geodetic observing frames.</p>
+<p>NOTES:</p>
+<ul>
+<li>this function does not check the calculated fields of the observing frames, which are assumed to have been left untouched after the called to <span class="tt"><a class="el" href="#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span>. If the user modifies the calculated fields, they may need additional checks to ensure 'equality' accordingly.</li>
+<li>Two NULL (undefined) observing frames are considered not equal.</li>
+<li>An observing frame may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>an observing frame </td></tr>
+    <tr><td class="paramname">b</td><td>another observing frame </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two observing frames are effectively the same, given the tolerances, or else false.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__frame.html#a3903377726bbadb61a3e181b5acb45c8">novas_frame::accuracy</a>, <a class="el" href="structnovas__frame.html#a5591ff41d6450a6e80be6496e4ba3809">novas_frame::dx</a>, <a class="el" href="structnovas__frame.html#a0524a3109f686582f8693602b09320f7">novas_frame::dy</a>, <a class="el" href="cmp_8c.html#a6799b84431fcffb40ebe78c47bf65726">novas_equals_observer()</a>, <a class="el" href="cmp_8c.html#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle()</a>, <a class="el" href="cmp_8c.html#aae271d900ea6af740c16d90693c51169">novas_equals_timespec()</a>, <a class="el" href="structnovas__frame.html#a362a06a3e783cba6d764e2af2e9f40f7">novas_frame::observer</a>, <a class="el" href="structnovas__frame.html#af7c797cedf9e52ae66757277fb0c1cb5">novas_frame::planets</a>, and <a class="el" href="structnovas__frame.html#a24e21ec075b9676de2efc644d1de95be">novas_frame::time</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Frame.html#aeb3945779f72204681a0dd697e170eb5">supernovas::Frame::equals()</a>.</p>
+
+</div>
+</div>
+<a id="ad7850313f8104494d4bd9b5edf8b32b8" name="ad7850313f8104494d4bd9b5edf8b32b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7850313f8104494d4bd9b5edf8b32b8">&#9670;&#160;</a></span>novas_equals_near_earth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_near_earth </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#af8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#af8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two near-Earth locations and motions match within 1 mm and 1 mm/s, respectively. </p>
+<p>Such near-Earth data structures are used by airborne observers or observers in Earth orbit.</p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) structures are considered not equal.</li>
+<li>A near-Earth position/velocity structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one near-Earth position/velocity data structure </td></tr>
+    <tr><td class="paramname">b</td><td>another near-Earth position/velocity data structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two near-Earth positions and velocities match within 1 mm and 1 mm/s, respectively.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="cmp_8c.html#aadbd55afe0e21d486c52d319a8e8e6d3" title="Checks if two Solar-system locations and motions match within 1 m and ~1 mm/s, respectively.">novas_equals_ssb_posvel()</a>, <a class="el" href="cmp_8c.html#a6799b84431fcffb40ebe78c47bf65726" title="Checks if two observers are essentially the same within the tolerances associated to their defining c...">novas_equals_observer()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="cmp_8c.html#a876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector()</a>, <a class="el" href="structnovas__in__space.html#a437105d9ff690d4d5b51fae9076c9d0a">novas_in_space::sc_pos</a>, and <a class="el" href="structnovas__in__space.html#ab4a55b14aa16bcbc5ca3bdc1a6d078af">novas_in_space::sc_vel</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a6799b84431fcffb40ebe78c47bf65726">novas_equals_observer()</a>.</p>
+
+</div>
+</div>
+<a id="a8e8d07b67babdb5be1737d83b29b65c6" name="a8e8d07b67babdb5be1737d83b29b65c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e8d07b67babdb5be1737d83b29b65c6">&#9670;&#160;</a></span>novas_equals_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_object </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two astronomical targets are the same within typical tolerances. </p>
+<p>Two targets are considered equals only if their types, names (case sensitive), numerical IDs, and defining parameters match within typical tolerances.</p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) objects are considered not equal.</li>
+<li>An astronomical target structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>an astronomical target </td></tr>
+    <tr><td class="paramname">b</td><td>another astronomical target </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two targets are effectively the same, within tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__object.html#a9a4a65802b8ff0edc09062867a51d145">novas_object::name</a>, <a class="el" href="#a1eecb357eeea0de4759e9c8d55af238fa4f9ab9cec85498c41f90c33794d032e5">NOVAS_CATALOG_OBJECT</a>, <a class="el" href="#a1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269">NOVAS_EPHEM_OBJECT</a>, <a class="el" href="cmp_8c.html#add575c796128069aa35085c617056a11">novas_equals_cat_entry()</a>, <a class="el" href="cmp_8c.html#abf94e216938a5128a00717244dd42e77">novas_equals_orbital()</a>, <a class="el" href="#a1eecb357eeea0de4759e9c8d55af238fa17562d2cd1b0b56d59d31f6ca51c759a">NOVAS_ORBITAL_OBJECT</a>, <a class="el" href="#a1eecb357eeea0de4759e9c8d55af238fad1eeaddaa96b028742a8ba424e311aa8">NOVAS_PLANET</a>, <a class="el" href="structnovas__object.html#a5661908bdaa0ce7b53762fb9bc0f46bc">novas_object::number</a>, <a class="el" href="structnovas__object.html#aa8798e7393e309d8cab0dc4eab45e79d">novas_object::orbit</a>, <a class="el" href="group__source.html#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>, <a class="el" href="structnovas__object.html#af6249fc903eaacb4869bdada2987c0cd">novas_object::star</a>, and <a class="el" href="structnovas__object.html#aa411b2233890edefbd41c5fde2e268b2">novas_object::type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Source.html#a7ad4d9077afc0ccbbc8b60910a69273e">supernovas::Source::equals()</a>.</p>
+
+</div>
+</div>
+<a id="a6799b84431fcffb40ebe78c47bf65726" name="a6799b84431fcffb40ebe78c47bf65726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6799b84431fcffb40ebe78c47bf65726">&#9670;&#160;</a></span>novas_equals_observer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_observer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ae7963c522d28ce6891b472e079307d03">observer</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ae7963c522d28ce6891b472e079307d03">observer</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two observers are essentially the same within the tolerances associated to their defining components. </p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) observers are considered not equal.</li>
+<li>An observer structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>an observer data structure </td></tr>
+    <tr><td class="paramname">b</td><td>another observer data structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two data structures describe effectively the same observer location, within the typical tolerances associated to them, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__observer.html#a1d62a0649b551e6ce86160c950d551dd">novas_observer::near_earth</a>, <a class="el" href="#a6140c39d1526b137f827e2091ecc36b3a1665bf146ca1a4d11380bf4d7d9d7058">NOVAS_AIRBORNE_OBSERVER</a>, <a class="el" href="cmp_8c.html#ad7850313f8104494d4bd9b5edf8b32b8">novas_equals_near_earth()</a>, <a class="el" href="cmp_8c.html#a1d66a855aafa8e8a837d428c501d1756">novas_equals_on_surface()</a>, <a class="el" href="cmp_8c.html#aadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel()</a>, <a class="el" href="#a6140c39d1526b137f827e2091ecc36b3aca54b3a0c7d5b31d09090a1f55ff72b2">NOVAS_OBSERVER_AT_GEOCENTER</a>, <a class="el" href="#a6140c39d1526b137f827e2091ecc36b3aca418efc57ac159cf541c324c008eb27">NOVAS_OBSERVER_IN_EARTH_ORBIT</a>, <a class="el" href="#a6140c39d1526b137f827e2091ecc36b3aadb64b75d1bf5344760b942f241e52e8">NOVAS_OBSERVER_ON_EARTH</a>, <a class="el" href="#a6140c39d1526b137f827e2091ecc36b3a82474207bac139bc2a8826b9d317a42c">NOVAS_SOLAR_SYSTEM_OBSERVER</a>, <a class="el" href="structnovas__observer.html#a836c3e0f5d8c99e16e0d04d1519e9e27">novas_observer::on_surf</a>, and <a class="el" href="structnovas__observer.html#afc58c314cdec95813c00a0e0ffa636d0">novas_observer::where</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Observer.html#a57f2b31199ce8657b03ae9972626c3f0">supernovas::Observer::equals()</a>, and <a class="el" href="#aa6e8919a917e071f67bb1d7d84fe6131">novas_equals_frame()</a>.</p>
+
+</div>
+</div>
+<a id="a1d66a855aafa8e8a837d428c501d1756" name="a1d66a855aafa8e8a837d428c501d1756"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d66a855aafa8e8a837d428c501d1756">&#9670;&#160;</a></span>novas_equals_on_surface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_on_surface </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two geodetic locations, and the weather parameters defined for them, match. </p>
+<p>For two <span class="tt"><a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a></span> structures to be equal, they must have matching:</p>
+<ul>
+<li>longitude and latitude angles to within 1 &mu;as.</li>
+<li>altitudes within 1 mm.</li>
+<li>temperatures within 1 mK.</li>
+<li>pressures within 1 &mu;bar</li>
+<li>humidities within 0.001 %</li>
+</ul>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) structures are considered not equal.</li>
+<li>A geodetic location + local weather structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one geodetic location (with weather) </td></tr>
+    <tr><td class="paramname">b</td><td>another geodetic location (with weather) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two locations and their weather parameters match within the described tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="cmp_8c.html#a6799b84431fcffb40ebe78c47bf65726" title="Checks if two observers are essentially the same within the tolerances associated to their defining c...">novas_equals_observer()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__on__surface.html#ae88d1b0111ef62d14083ec38995d8ea9">novas_on_surface::height</a>, <a class="el" href="structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2">novas_on_surface::humidity</a>, <a class="el" href="structnovas__on__surface.html#a77f70abeb6c896623a85b1bdf8861151">novas_on_surface::latitude</a>, <a class="el" href="structnovas__on__surface.html#af62107483c0a9ded0168993c1cfd933f">novas_on_surface::longitude</a>, <a class="el" href="structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab">novas_on_surface::pressure</a>, and <a class="el" href="structnovas__on__surface.html#a1fd9464e53f03ebb2cb987aa1a2dc41b">novas_on_surface::temperature</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a6799b84431fcffb40ebe78c47bf65726">novas_equals_observer()</a>.</p>
+
+</div>
+</div>
+<a id="abf94e216938a5128a00717244dd42e77" name="abf94e216938a5128a00717244dd42e77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf94e216938a5128a00717244dd42e77">&#9670;&#160;</a></span>novas_equals_orbital()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_orbital </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two Keplerian orbitals match, within typical tolerances. </p>
+<p>For two orbitals to be considered equal, they must have matching orbital systems, have the same reference dates to within ~10 ms (see <span class="tt">novas_time_equals()</span>), and:</p>
+<ul>
+<li>angular parameters must match to within 1 &mu;as.</li>
+<li>semi-major axis must match to within 1 m.</li>
+<li>eccentricity must match to within 10<sup>-12</sup> time the geometric mean of the two semi-major axes.</li>
+<li>mean motion must match to within 1 &mu;as / cy.</li>
+<li>apsis and node periods must match to within ~10 ms (see <span class="tt">novas_time_equals()</span>)</li>
+</ul>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) orbitals are considered not equal.</li>
+<li>Sn orbital elements structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one set of Keplerian orbital parameters </td></tr>
+    <tr><td class="paramname">b</td><td>another set of Keplerian orbital parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two Keplerian orbitals are effectively the same, within tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="cmp_8c.html#a8e8d07b67babdb5be1737d83b29b65c6" title="Checks if two astronomical targets are the same within typical tolerances.">novas_equals_object()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__orbital.html#a70b91b91315e8c7adcf394cafbd11ecb">novas_orbital::a</a>, <a class="el" href="structnovas__orbital.html#a798b5b86f39824f432543f0138927e2b">novas_orbital::apsis_period</a>, <a class="el" href="structnovas__orbital.html#aaffd37bb48862ffd35dafaed88ff6fc1">novas_orbital::e</a>, <a class="el" href="structnovas__orbital.html#a72988aea093c3884a6b62094c6e0f606">novas_orbital::i</a>, <a class="el" href="structnovas__orbital.html#acb8d31a6dea072a9329d89695060ec2a">novas_orbital::jd_tdb</a>, <a class="el" href="structnovas__orbital.html#a7d15d917c5ef6798f54ba0bfebcfbe56">novas_orbital::M0</a>, <a class="el" href="structnovas__orbital.html#a32fff80f9d06ec882016f89f575547de">novas_orbital::n</a>, <a class="el" href="structnovas__orbital.html#a1f4e751c390ad629c7abeccd764edd69">novas_orbital::node_period</a>, <a class="el" href="#abc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="cmp_8c.html#a7136ddcd873a9221cac3cefba603d93f">novas_equals_orbsys()</a>, <a class="el" href="structnovas__orbital.html#a8985163e8cadadf0f3394823f6cdf094">novas_orbital::Omega</a>, <a class="el" href="structnovas__orbital.html#aaa2670b33c2146fc304f29748b1680f9">novas_orbital::omega</a>, and <a class="el" href="structnovas__orbital.html#a412b6f9a02d0e9d4597a8872d800a4c6">novas_orbital::system</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Orbital.html#a3a1c415444c0deb54c4f478559d55d7a">supernovas::Orbital::equals()</a>, and <a class="el" href="#a8e8d07b67babdb5be1737d83b29b65c6">novas_equals_object()</a>.</p>
+
+</div>
+</div>
+<a id="a7136ddcd873a9221cac3cefba603d93f" name="a7136ddcd873a9221cac3cefba603d93f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7136ddcd873a9221cac3cefba603d93f">&#9670;&#160;</a></span>novas_equals_orbsys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_orbsys </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two orbital systems match within typical tolerances. </p>
+<p>Two orbital system are considered equal, if they are defined with respect to the same reference plane, around the same major planet (or Solar-system position), and have the obliquity and ascending node (if obliquity is non-zero) to within 1 &mu;as.</p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) orbital systems are considered not equal.</li>
+<li>An orbital system structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one of the orbital systems </td></tr>
+    <tr><td class="paramname">b</td><td>another orbital system </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two systems are effectively the same, within tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="cmp_8c.html#abf94e216938a5128a00717244dd42e77" title="Checks if two Keplerian orbitals match, within typical tolerances.">novas_equals_orbital()</a>, <a class="el" href="cmp_8c.html#a8e8d07b67babdb5be1737d83b29b65c6" title="Checks if two astronomical targets are the same within typical tolerances.">novas_equals_object()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__orbital__system.html#a1e0e4feed59904907eb9c0484ad95516">novas_orbital_system::center</a>, <a class="el" href="structnovas__orbital__system.html#a806d05cf786f3f0de3388d0e319e27f0">novas_orbital_system::obl</a>, <a class="el" href="structnovas__orbital__system.html#a1ac88e32247a155866b20e606f78eb2b">novas_orbital_system::Omega</a>, <a class="el" href="structnovas__orbital__system.html#a032dfd918d2799238bdf6a25c0f198e7">novas_orbital_system::plane</a>, and <a class="el" href="structnovas__orbital__system.html#a168120619bdde8c6af9cf93d2ce96d0d">novas_orbital_system::type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1OrbitalSystem.html#af91582d6772d9e2b8417125759793ee1">supernovas::OrbitalSystem::equals()</a>, and <a class="el" href="#abf94e216938a5128a00717244dd42e77">novas_equals_orbital()</a>.</p>
+
+</div>
+</div>
+<a id="a78bf876b768b1979395d544e17902f88" name="a78bf876b768b1979395d544e17902f88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78bf876b768b1979395d544e17902f88">&#9670;&#160;</a></span>novas_equals_planet_bundle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_planet_bundle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two bundles containing Solar-system baricentric planet positions and velocities are effectively the same. </p>
+<p>The two bundles are considered equals if:</p>
+<ul>
+<li>they contain data for the same set of planets.</li>
+<li>the planets with data have positions matching within 1 m.</li>
+<li>the planets with data have velocities matching within 1 mm/s.</li>
+</ul>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) planet bundles are considered not equal.</li>
+<li>A planet bundle may not equal itself if it contains NAN or infinite components for the planets they are supposed to have data for, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>a planet position / velocity bundle </td></tr>
+    <tr><td class="paramname">b</td><td>another planet position / velocity bundle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two bundles are essentially the same within tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__planet__bundle.html#ac0b016705e6421505f3961ed6c70c845">novas_planet_bundle::mask</a>, <a class="el" href="#abc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="cmp_8c.html#a876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector()</a>, <a class="el" href="#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>, <a class="el" href="structnovas__planet__bundle.html#a76859a0c5dd55e9bc9897d022aeb4503">novas_planet_bundle::pos</a>, and <a class="el" href="structnovas__planet__bundle.html#a37277cd307ab593a78946b68d4b45de1">novas_planet_bundle::vel</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#aa6e8919a917e071f67bb1d7d84fe6131">novas_equals_frame()</a>.</p>
+
+</div>
+</div>
+<a id="a438a2b032c5e2a245a4af642a67a6857" name="a438a2b032c5e2a245a4af642a67a6857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a438a2b032c5e2a245a4af642a67a6857">&#9670;&#160;</a></span>novas_equals_sky_pos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_sky_pos </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#a98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two apparent positions on the observer's sky are the same within typical tolerances. </p>
+<p>Two sky positions are considered to be equal if their:</p>
+<ul>
+<li>coordinates match within 1 &mu;as,</li>
+<li>distances match within 1 ppm.</li>
+<li>radial velocities match within 1 mm/s.</li>
+<li>unit vectors match to 10<sup>-12</sup> (~1 &mu;as).</li>
+</ul>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) sky positions are considered not equal.</li>
+<li>A sky position may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>a position on the observer's sky </td></tr>
+    <tr><td class="paramname">b</td><td>another sky position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two positions are essentially the same within typical tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f">novas_sky_pos::dec</a>, <a class="el" href="structnovas__sky__pos.html#a3c45d500db3a793b89d234d950886e4d">novas_sky_pos::dis</a>, <a class="el" href="cmp_8c.html#a876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector()</a>, <a class="el" href="structnovas__sky__pos.html#aa76dc5a1222e5696e88c986b6c6c3e55">novas_sky_pos::r_hat</a>, <a class="el" href="structnovas__sky__pos.html#a7d5aa9cc738e19f0891bff94ad148741">novas_sky_pos::ra</a>, and <a class="el" href="structnovas__sky__pos.html#ae98432478d2c3a8e5eb1a1674394499f">novas_sky_pos::rv</a>.</p>
+
+</div>
+</div>
+<a id="aadbd55afe0e21d486c52d319a8e8e6d3" name="aadbd55afe0e21d486c52d319a8e8e6d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadbd55afe0e21d486c52d319a8e8e6d3">&#9670;&#160;</a></span>novas_equals_ssb_posvel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_ssb_posvel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#af8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#af8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two Solar-system locations and motions match within 1 m and ~1 mm/s, respectively. </p>
+<p>Such near-Earth data structures are used by observers defined relative to the Solar-System Barycenter (SSB).</p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) structures are considered not equal.</li>
+<li>A Solar-system position / velocity structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one Solar-system position/velocity data structure </td></tr>
+    <tr><td class="paramname">b</td><td>another Solar-system position/velocity data structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two SSB positions and velocities match within 1 m and ~1 mm/s, respectively.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="cmp_8c.html#ad7850313f8104494d4bd9b5edf8b32b8" title="Checks if two near-Earth locations and motions match within 1 mm and 1 mm/s, respectively.">novas_equals_near_earth()</a>, <a class="el" href="cmp_8c.html#a6799b84431fcffb40ebe78c47bf65726" title="Checks if two observers are essentially the same within the tolerances associated to their defining c...">novas_equals_observer()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#abc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="cmp_8c.html#a876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector()</a>, <a class="el" href="structnovas__in__space.html#a437105d9ff690d4d5b51fae9076c9d0a">novas_in_space::sc_pos</a>, and <a class="el" href="structnovas__in__space.html#ab4a55b14aa16bcbc5ca3bdc1a6d078af">novas_in_space::sc_vel</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a6799b84431fcffb40ebe78c47bf65726">novas_equals_observer()</a>.</p>
+
+</div>
+</div>
+<a id="aae271d900ea6af740c16d90693c51169" name="aae271d900ea6af740c16d90693c51169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae271d900ea6af740c16d90693c51169">&#9670;&#160;</a></span>novas_equals_timespec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_timespec </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two time specifications are the same within 10<sup>-7</sup> days (~100 &mu;s). </p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) time specifications are considered not equal.</li>
+<li>A time specification may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one of the time specs </td></tr>
+    <tr><td class="paramname">b</td><td>the other time spec </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two time specifications match to within 100 &mu;s, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__timespec.html#a1e5a8481119ea7e5d982a016f25ecca6">novas_timespec::dut1</a>, <a class="el" href="structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c">novas_timespec::fjd_tt</a>, <a class="el" href="structnovas__timespec.html#afab74bb3269be2c4a8df484c3dbadb35">novas_timespec::ijd_tt</a>, <a class="el" href="structnovas__timespec.html#a465928f4083f7c53635ceb06033c68f2">novas_timespec::tt2tdb</a>, and <a class="el" href="structnovas__timespec.html#a75467e1db6ec68f1828cd010efefe469">novas_timespec::ut1_to_tt</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#aa6e8919a917e071f67bb1d7d84fe6131">novas_equals_frame()</a>.</p>
+
+</div>
+</div>
+<a id="a876add3b3ae251b18c8ffc8f06ea695e" name="a876add3b3ae251b18c8ffc8f06ea695e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a876add3b3ae251b18c8ffc8f06ea695e">&#9670;&#160;</a></span>novas_equals_vector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_vector </td>
+          <td>(</td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>tol</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two 3D vectors are effectively the same, within the specified absolute tolerance. </p>
+<p>Two vectors are equal if the distance between them is less than or equal to the magnitude of the specified tolerance.</p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) vectors are considered not equal.</li>
+<li>A vector may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one of the vectors </td></tr>
+    <tr><td class="paramname">b</td><td>the other vector </td></tr>
+    <tr><td class="paramname">tol</td><td>absolute tolerance (sign is ignored). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if all the two vectors match within the specified tolerance, or else FALSE (0)</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Vector.html#a30393fbff5a33c0890031b7302c18791">supernovas::Vector::equals()</a>, <a class="el" href="#ad7850313f8104494d4bd9b5edf8b32b8">novas_equals_near_earth()</a>, <a class="el" href="#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle()</a>, <a class="el" href="#a438a2b032c5e2a245a4af642a67a6857">novas_equals_sky_pos()</a>, and <a class="el" href="#aadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel()</a>.</p>
+
+</div>
+</div>
+<a id="aba2fe38e07b94adaa6e8eb1b0a39a7ea" name="aba2fe38e07b94adaa6e8eb1b0a39a7ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba2fe38e07b94adaa6e8eb1b0a39a7ea">&#9670;&#160;</a></span>novas_fetch_eop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_fetch_eop </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>jd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>timeout_millis</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structnovas__eop.html">novas_eop</a> *</td>          <td class="paramname"><span class="paramname"><em>eop</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Reference Systems Service (IERS). </p>
+<p>For dates since 1972 or for prediction for up to a year ahead, the rapid service data is used (<span class="tt">finals.all</span>), otherwise for dates after 1962 the C04 series is used, and for dates all the way back to 1846, the C01 series is used. All of the mentioned data are retrieved relative to the IAU2000 precession-nutation model.</p>
+<p>You should always check the return status when using this function, since the fetching of EOP values may fail for a host of different reasons.</p>
+<p>NOTES:</p>
+<ol type="1">
+<li>You must have built <b>SuperNOVAS</b> with cURL support. Otherwise, this function will return -1, with <span class="tt">errno</span> set to <span class="tt">ENOSYS</span>.</li>
+<li>You will need an internet connection and the IERS server must be online and accessible, unless you have changed the necessary URLs to use local copies instead (see <span class="tt"><a class="el" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a></span>).</li>
+<li>Obtaining values from IERS can have arbitrary latencies, and can impact the performance severely. For performance critical applications, you should consider specifying the EOP values more directly, or using local files instead (see also <span class="tt"><a class="el" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a></span>).</li>
+<li>This function assumes that the files served from IERS remain accessible and their format does not change over time. As such what works today, may not work the same in the future.</li>
+<li>This function caches EOP data from the last query. As such repeated calls within the same date bracket (typically the same MJD day) will return fast and will interpolate from the data last obtained from the IERS.</li>
+<li>This function uses cubic spline interpolation around the published data points. As such, it needs at least two data points at the same time or before, and two points after, the date for which interpolated values are requested.</li>
+<li>Prior to 1 Jan 1956, the UT1-UTC time difference, and length-of-day (LOD) are not provided by IERS, as they were not measured prior to the age of atomic clocks. Hence, for dates prior to 1956 the returned EOP will have <span class="tt">dut1</span> and <span class="tt">lod</span> (and their uncertainties) set to NAN. (However, the polar the offsets <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> can be provided all the way back to 1846, with some precision.)</li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">jd</td><td>Julian Date (in any timescale, with a preference for UTC) </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">timeout_millis</td><td>[ms] HTTP connection timeout, or &lt;=0 to leave unchanged. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">eop</td><td>Output EOP data structure to populate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful or else -1 (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop</a> </dd>
+<dd>
+novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a>, <a class="el" href="iers_8c.html#af3631f03d8be587e08796747dfe2e9ca" title="Releases resources used by URL handles used for obtaining Earth Orientation Parameter (EOP) data from...">novas_reset_eop()</a> </dd>
+<dd>
+<a class="el" href="#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a>, <a class="el" href="#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html" title="Earth orientation">Earth orientation</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a66c8d9adc7dad77300f861899866e3cf">supernovas::GeodeticObserver::eop_at()</a>, <a class="el" href="classsupernovas_1_1EOP.html#a3449de521a39b92f85964e06917fa0e4">supernovas::EOP::fetch_for_jd()</a>, <a class="el" href="#a4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix()</a>, <a class="el" href="#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, and <a class="el" href="#ad47bcb1e3c5df56a0ffdf1a127e52598">novas_set_split_time()</a>.</p>
+
+</div>
+</div>
+<a id="a4fe4a31a0284f79b6099bdc9a32f6206" name="a4fe4a31a0284f79b6099bdc9a32f6206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fe4a31a0284f79b6099bdc9a32f6206">&#9670;&#160;</a></span>novas_fetch_eop_unix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_fetch_eop_unix </td>
+          <td>(</td>
+          <td class="paramtype">time_t</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>timeout_millis</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structnovas__eop.html">novas_eop</a> *</td>          <td class="paramname"><span class="paramname"><em>eop</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Reference Systems Service (IERS) around the current system time, using the rapid service data (<span class="tt">finals.all</span>). </p>
+<p>You should always check the return status when using this function, since the fetching of EOP values may fail for a host of different reasons.</p>
+<p>NOTES:</p>
+<ol type="1">
+<li>You must have access to the <span class="tt">curl</span> library and built <b>SuperNOVAS</b> with CURL support. Otherwise this function will return -1, with <span class="tt">errno</span> set to <span class="tt">ENOSYS</span>.</li>
+<li>You will need an internet connection and the IERS server must be online and accessible (at least for the initial call).</li>
+<li>Obtaining values from IERS can have arbitrary latencies, and can impact performance severely. For performance critical applications, you should consider specifying the EOP values more directly, e.g. from a local file instead.</li>
+<li>This function assumes that the files served from IERS remain accessible and their format does not change over time.</li>
+<li>This function caches EOP data from the last online query. As such repeated calls within the same data bracket (typically the same MJD day) will return fast and will reuse the last data obtained from the IERS.</li>
+<li>This function uses cubic spline interpolation of the published data points.</li>
+<li>The returned EOP values are assumed to be ITRF 2020 values, which is appropriate at the time this <b>SuperNOVAS</b> module was written or last updated. If IERS later publishes data in some other future ITRF realization, this module may need to be updated, accordingly. However, the ITRF realization is unlikely to matter significantly.</li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">t</td><td>[s] UNIX time (seconds since 0 UTC 1 Jan 1970). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">timeout_millis</td><td>[ms] HTTP connection timeout, or &lt;=0 to leave unchanged. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">eop</td><td>Output EOP data structure to populate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful or else -1 (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a> </dd>
+<dd>
+<a class="el" href="#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a>, <a class="el" href="#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html" title="Earth orientation">Earth orientation</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="iers_8c.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop()</a>, <a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, and <a class="el" href="#acb9c6b9922edfc6971ceb6304cb945f9">UNIX_SECONDS_0UTC_1JAN2000</a>.</p>
 
 </div>
 </div>
@@ -10170,7 +11124,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 
 <p class="reference">References <a class="el" href="timescale_8c.html#a32d8336084b65fac14d092ab6198c27d">novas_get_split_time()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a03cb4f1df78716f6780e90c02bcd2600">supernovas::Time::gmst()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="#a4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a>, <a class="el" href="#a2972b3eafa2d7f6c29cff34bad9fcf0d">novas_change_observer()</a>, <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="#a8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="#aa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw()</a>, and <a class="el" href="#aaf53fcad3fade814381cef3d06779a8c">novas_time_gst()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a03cb4f1df78716f6780e90c02bcd2600">supernovas::Time::gmst()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1af1c4eb0cc73283892750b9a1af5b64">supernovas::Time::jd()</a>, <a class="el" href="#a4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a>, <a class="el" href="#a2972b3eafa2d7f6c29cff34bad9fcf0d">novas_change_observer()</a>, <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="#a8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="#aa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw()</a>, and <a class="el" href="#aaf53fcad3fade814381cef3d06779a8c">novas_time_gst()</a>.</p>
 
 </div>
 </div>
@@ -10898,7 +11852,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section return"><dt>Returns</dt><dd>0</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="itrf_8c.html#afd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a>, <a class="el" href="itrf_8c.html#ad252294c7d4b3e62609c21f7550e2d09" title="Transforms a geodetic location between two International Terrestrial Reference Frame (ITRF) realizati...">novas_itrf_transform_site()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="itrf_8c.html#afd98ed01148f1291018809d77785527f" title="Converts ITRF coordinates between different realizations of the ITRF coordinate system.">novas_itrf_transform()</a>, <a class="el" href="itrf_8c.html#ad252294c7d4b3e62609c21f7550e2d09" title="Transforms a geodetic location between two International Terrestrial Reference Frame (ITRF) realizati...">novas_itrf_transform_site()</a>, <a class="el" href="group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8" title="Returns the ITRF realization year for a given IERS Earth Orientation Parameter (EOP) series.">novas_get_eop_itrf_year()</a> </dd>
 <dd>
 <a class="el" href="#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a>, <a class="el" href="structnovas__timespec.html" title="A structure, which defines a precise instant of time that can be extpressed in any of the astronomica...">novas_timespec</a>, <a class="el" href="#aead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a> </dd></dl>
 
@@ -11316,11 +12270,11 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="frames_8c.html#a2972b3eafa2d7f6c29cff34bad9fcf0d" title="Change the observer location for an observing frame.">novas_change_observer()</a>, <a class="el" href="frames_8c.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, <a class="el" href="frames_8c.html#ac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a>, <a class="el" href="frames_8c.html#a4d179c8573319fc25c775ce56ba055dc" title="Calculates a transformation matrix that can be used to convert positions and velocities from one coor...">novas_make_transform()</a> </dd>
 <dd>
-<a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a>, <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>, <a class="el" href="group__earth.html#ga694288eb631d6a69ecf313b7b5b4a677" title="Set the function to use for low-precision IAU 2000 nutation calculations instead of the default nu200...">set_nutation_lp_provider()</a>, <a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a> </dd></dl>
+<a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a>, <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>, <a class="el" href="group__earth.html#ga694288eb631d6a69ecf313b7b5b4a677" title="Set the function to use for low-precision IAU 2000 nutation calculations instead of the default nu200...">set_nutation_lp_provider()</a>, <a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a>, <a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="structnovas__frame.html#a3903377726bbadb61a3e181b5acb45c8">novas_frame::accuracy</a>, <a class="el" href="structnovas__frame.html#a470905f8b78f4006dfeb50743e8d1720">novas_frame::deps0</a>, <a class="el" href="structnovas__frame.html#a8ec2c449cbf1c713d382eb0338bafb0d">novas_frame::dpsi0</a>, <a class="el" href="structnovas__frame.html#a5591ff41d6450a6e80be6496e4ba3809">novas_frame::dx</a>, <a class="el" href="structnovas__frame.html#a0524a3109f686582f8693602b09320f7">novas_frame::dy</a>, <a class="el" href="structnovas__frame.html#ad1e4d02f682d0a5c17f76a4302d4a29c">novas_frame::earth_pos</a>, <a class="el" href="structnovas__frame.html#afc324ea0828dc83a568bb55df0235b99">novas_frame::earth_vel</a>, <a class="el" href="structnovas__frame.html#a758c577d4c1d238fe2ffd9e73e79f151">novas_frame::ee</a>, <a class="el" href="#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a>, <a class="el" href="#aef1f8daaad470353648de90576aefc66">era()</a>, <a class="el" href="structnovas__frame.html#affab4fcc1c7378b396e5411f9c2eea71">novas_frame::era</a>, <a class="el" href="structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c">novas_timespec::fjd_tt</a>, <a class="el" href="structnovas__frame.html#ae630c8535a6407922324073c1c4622e5">novas_frame::gst</a>, <a class="el" href="structnovas__timespec.html#afab74bb3269be2c4a8df484c3dbadb35">novas_timespec::ijd_tt</a>, <a class="el" href="#af182ee8cc4239f581f746aa974827d61">mean_obliq()</a>, <a class="el" href="structnovas__frame.html#a6560164407eaa090932f410a33ef68a6">novas_frame::mobl</a>, <a class="el" href="#a208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c">NOVAS_BARYCENTER</a>, <a class="el" href="frames_8c.html#a2972b3eafa2d7f6c29cff34bad9fcf0d">novas_change_observer()</a>, <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#abad802a863342aebe9a40587b4e47bab">NOVAS_EARTH_INIT</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, <a class="el" href="#a32d8336084b65fac14d092ab6198c27d">novas_get_split_time()</a>, <a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="#a7af86c48f77394688f4ad43eb20760f4">NOVAS_OBSERVER_PLACES</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846">NOVAS_REDUCED_ACCURACY</a>, <a class="el" href="#a6afeda74c9df859ae6504eebfee01092">NOVAS_SUN_INIT</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baa6fc4520426c4c9cbe497ab87f2ad583">NOVAS_UT1</a>, <a class="el" href="#a6e9ced7b0aec544ad7b057b58f777ec4">nutation_angles()</a>, <a class="el" href="structnovas__frame.html#a1a565eeb8311e69122226a4dcfbd5d76">novas_frame::state</a>, <a class="el" href="structnovas__frame.html#a97d688f1061399fb56a93f5684efbeec">novas_frame::sun_pos</a>, <a class="el" href="structnovas__frame.html#a5babf593c14bcc79e16c16dc1e8f23b9">novas_frame::sun_vel</a>, <a class="el" href="structnovas__frame.html#a24e21ec075b9676de2efc644d1de95be">novas_frame::time</a>, <a class="el" href="structnovas__frame.html#ae19eb3a9907db51f8288485700baedf1">novas_frame::tobl</a>, <a class="el" href="structnovas__timespec.html#a465928f4083f7c53635ceb06033c68f2">novas_timespec::tt2tdb</a>, and <a class="el" href="structnovas__observer.html#afc58c314cdec95813c00a0e0ffa636d0">novas_observer::where</a>.</p>
+<p class="reference">References <a class="el" href="structnovas__frame.html#a3903377726bbadb61a3e181b5acb45c8">novas_frame::accuracy</a>, <a class="el" href="structnovas__frame.html#a470905f8b78f4006dfeb50743e8d1720">novas_frame::deps0</a>, <a class="el" href="structnovas__frame.html#a8ec2c449cbf1c713d382eb0338bafb0d">novas_frame::dpsi0</a>, <a class="el" href="structnovas__frame.html#a5591ff41d6450a6e80be6496e4ba3809">novas_frame::dx</a>, <a class="el" href="structnovas__frame.html#a0524a3109f686582f8693602b09320f7">novas_frame::dy</a>, <a class="el" href="structnovas__frame.html#ad1e4d02f682d0a5c17f76a4302d4a29c">novas_frame::earth_pos</a>, <a class="el" href="structnovas__frame.html#afc324ea0828dc83a568bb55df0235b99">novas_frame::earth_vel</a>, <a class="el" href="structnovas__frame.html#a758c577d4c1d238fe2ffd9e73e79f151">novas_frame::ee</a>, <a class="el" href="#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a>, <a class="el" href="#aef1f8daaad470353648de90576aefc66">era()</a>, <a class="el" href="structnovas__frame.html#affab4fcc1c7378b396e5411f9c2eea71">novas_frame::era</a>, <a class="el" href="structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c">novas_timespec::fjd_tt</a>, <a class="el" href="structnovas__frame.html#ae630c8535a6407922324073c1c4622e5">novas_frame::gst</a>, <a class="el" href="structnovas__timespec.html#afab74bb3269be2c4a8df484c3dbadb35">novas_timespec::ijd_tt</a>, <a class="el" href="#af182ee8cc4239f581f746aa974827d61">mean_obliq()</a>, <a class="el" href="structnovas__frame.html#a6560164407eaa090932f410a33ef68a6">novas_frame::mobl</a>, <a class="el" href="#a208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c">NOVAS_BARYCENTER</a>, <a class="el" href="frames_8c.html#a2972b3eafa2d7f6c29cff34bad9fcf0d">novas_change_observer()</a>, <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#abad802a863342aebe9a40587b4e47bab">NOVAS_EARTH_INIT</a>, <a class="el" href="#aba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, <a class="el" href="#a32d8336084b65fac14d092ab6198c27d">novas_get_split_time()</a>, <a class="el" href="#ae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time()</a>, <a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255">novas_is_auto_fetch_eop()</a>, <a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="#a7af86c48f77394688f4ad43eb20760f4">NOVAS_OBSERVER_PLACES</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846">NOVAS_REDUCED_ACCURACY</a>, <a class="el" href="#a6afeda74c9df859ae6504eebfee01092">NOVAS_SUN_INIT</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baa6fc4520426c4c9cbe497ab87f2ad583">NOVAS_UT1</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>, <a class="el" href="#a6e9ced7b0aec544ad7b057b58f777ec4">nutation_angles()</a>, <a class="el" href="structnovas__frame.html#a1a565eeb8311e69122226a4dcfbd5d76">novas_frame::state</a>, <a class="el" href="structnovas__frame.html#a97d688f1061399fb56a93f5684efbeec">novas_frame::sun_pos</a>, <a class="el" href="structnovas__frame.html#a5babf593c14bcc79e16c16dc1e8f23b9">novas_frame::sun_vel</a>, <a class="el" href="structnovas__frame.html#a24e21ec075b9676de2efc644d1de95be">novas_frame::time</a>, <a class="el" href="structnovas__frame.html#ae19eb3a9907db51f8288485700baedf1">novas_frame::tobl</a>, <a class="el" href="structnovas__timespec.html#a465928f4083f7c53635ceb06033c68f2">novas_timespec::tt2tdb</a>, <a class="el" href="structnovas__observer.html#afc58c314cdec95813c00a0e0ffa636d0">novas_observer::where</a>, <a class="el" href="structnovas__eop.html#adad511b5bdef74f8aab97945a432f54a">novas_eop::xp</a>, and <a class="el" href="structnovas__eop.html#a6a836a00dbc47798b5dbc864b71cc95d">novas_eop::yp</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6">supernovas::Frame::Frame()</a>, <a class="el" href="#a57f4a449754c88cfc87df658a6bc4cb2">novas_equ_track()</a>, and <a class="el" href="#a1f29810393108d15fd8312a2a95158dc">novas_hor_track()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Frame.html#a045f690bf158d04c8f77c8b049b0ef50">supernovas::Frame::Frame()</a>, <a class="el" href="#a57f4a449754c88cfc87df658a6bc4cb2">novas_equ_track()</a>, and <a class="el" href="#a1f29810393108d15fd8312a2a95158dc">novas_hor_track()</a>.</p>
 
 </div>
 </div>
@@ -12165,6 +13119,70 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 
 </div>
 </div>
+<a id="a64a31576a4654e8808de6e2fd755fcc4" name="a64a31576a4654e8808de6e2fd755fcc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64a31576a4654e8808de6e2fd755fcc4">&#9670;&#160;</a></span>novas_offset_by()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_offset_by </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>lon</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>lat</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>direction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>distance</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>out_lon</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>out_lat</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates offset spherical coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified direction. </p>
+<p>Based on the <b>astropy</b> <span class="tt">offset_by()</span> implementation.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] reference point longitude </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] reference point latitude </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">direction</td><td>[deg] direction (measured East of North). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">distance</td><td>[deg] offset distance on great circle </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_lon</td><td>[deg] longitude at offset position in [-&amp;pi:&pi;) range. It may be NULL if not needed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_lat</td><td>[deg] latitude at offset position in [-&amp;pi/2:&pi;/2] range. It may be NULL if not needed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and longitude at the offset position is requested, or if the input latitude is outside of the [-90:90] range.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Attila Kovacs</dd>
+<dd>
+<a class="el" href="util_8c.html#a500745e68a50eaac03d963b539637dc5" title="Calculates offset equatorial coordinates at some distance away from the input coordinates along a gre...">novas_equ_offset_by()</a>, <a class="el" href="util_8c.html#a9f33de2b26a19a5e20827e9e918b3375" title="Returns the angular separation of two locations on a sphere.">novas_sep()</a> </dd>
+<dd>
+<a href="https://docs.astropy.org/en/stable/_modules/astropy/coordinates/angles/utils.html#offset_at">https://docs.astropy.org/en/stable/_modules/astropy/coordinates/angles/utils.html#offset_at</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#a500745e68a50eaac03d963b539637dc5">novas_equ_offset_by()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a71ab12e9fcedf977e46aca688871f68e">supernovas::Ecliptic::offset()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#a174a4ec5aeff0d91f9e1618cd7558ec9">supernovas::Equatorial::offset()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#ab8f594a3b3721ec86fae5939ba9247c0">supernovas::Galactic::offset()</a>, and <a class="el" href="classsupernovas_1_1Horizontal.html#a5b2ad9e09eea9c644c3d3cf3af45de61">supernovas::Horizontal::offset()</a>.</p>
+
+</div>
+</div>
 <a id="a01f98b2b8033c8dbacaeab37e9198e91" name="a01f98b2b8033c8dbacaeab37e9198e91"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01f98b2b8033c8dbacaeab37e9198e91">&#9670;&#160;</a></span>novas_offset_time()</h2>
 
@@ -12516,6 +13534,33 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 
 </div>
 </div>
+<a id="af3631f03d8be587e08796747dfe2e9ca" name="af3631f03d8be587e08796747dfe2e9ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3631f03d8be587e08796747dfe2e9ca">&#9670;&#160;</a></span>novas_reset_eop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void novas_reset_eop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Releases resources used by URL handles used for obtaining Earth Orientation Parameter (EOP) data from the International Earth Rotation and Reference Systems Service (IERS), including the leap seconds list supplied earlier or obtained from IERS. </p>
+<p>It also discards any custom URLs that may have been set previously, and restores the default IERS URLs for obtaining leap seconds and EOP from IERS. The cleanup performed by this function is automatic at normal program exit, but users may call it explicitly restore the initial state at any point.</p>
+<p>NOTES:</p>
+<ul>
+<li>This call does not affect or destroy any thread-local data currently cached. As such, <span class="tt"><a class="el" href="iers_8c.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a></span> may continue to return EOP using the previously cached values, if the requested date falls within the same data bracket as the last call.</li>
+</ul>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7" title="Specifies a local file containing the official leap seconds list, i.e.">novas_set_leap_list()</a>, <a class="el" href="iers_8c.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
+
+</div>
+</div>
 <a id="aaf38f64304fa0b00c9c56cead62043f3" name="aaf38f64304fa0b00c9c56cead62043f3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf38f64304fa0b00c9c56cead62043f3">&#9670;&#160;</a></span>novas_rises_above()</h2>
 
@@ -12624,7 +13669,9 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section return"><dt>Returns</dt><dd>[deg] the angular separation of the two locations.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="util_8c.html#a4f7e06b2fa5b3145b37aec4f9c2d1602" title="Returns the angular separation of two equatorial locations on a sphere.">novas_equ_sep()</a>, <a class="el" href="#a2d1ef3bc6d99aa473511e45c6e0481e9" title="Returns the apparent angular distance of a source from the Sun from the observer&#39;s point of view.">novas_sun_angle()</a>, <a class="el" href="#a121940d7f0ef41297d28fab8e6df5998" title="Returns the apparent angular distance of a source from the Moon from the observer&#39;s point of view.">novas_moon_angle()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="util_8c.html#a4f7e06b2fa5b3145b37aec4f9c2d1602" title="Returns the angular separation of two equatorial locations on a sphere.">novas_equ_sep()</a>, <a class="el" href="#a2d1ef3bc6d99aa473511e45c6e0481e9" title="Returns the apparent angular distance of a source from the Sun from the observer&#39;s point of view.">novas_sun_angle()</a>, <a class="el" href="#a121940d7f0ef41297d28fab8e6df5998" title="Returns the apparent angular distance of a source from the Moon from the observer&#39;s point of view.">novas_moon_angle()</a> </dd>
+<dd>
+<a class="el" href="util_8c.html#a64a31576a4654e8808de6e2fd755fcc4" title="Calculates offset spherical coordinates at some distance away from the input coordinates along a grea...">novas_offset_by()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Spherical.html#a3f83a7b7c79a6f71e52fb8de35225a7c">supernovas::Spherical::distance_to()</a>, and <a class="el" href="#a4f7e06b2fa5b3145b37aec4f9c2d1602">novas_equ_sep()</a>.</p>
 
@@ -12707,8 +13754,8 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be unused if <span class="tt">dut1</span> is NAN &ndash; see below). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. If <span class="tt">dut1</span> is NAN, and <span class="tt"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255" title="Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.">novas_is_auto_fetch_eop()</a></span> is TRUE then both <span class="tt">leap</span> and <span class="tt">dut1</span> will be fetched from IERS if possible. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
@@ -12716,11 +13763,13 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#a9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#a9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="timescale_8c.html#a9d54ea7c6cdbc75ee78cf552a7e1858d">novas_set_unix_time()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a1634e281fe67ec0c8d8b83ef9838831b">supernovas::Time::now()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#ad622c9888273f38a34f8f3dd75ddeaa0">supernovas::Time::now()</a>.</p>
 
 </div>
 </div>
@@ -13078,8 +14127,8 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the Julian Date is given </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ijd</td><td>[day] integer part of the Julian day in the specified timescale </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">fjd</td><td>[day] fractional part Julian day value in the specified timescale </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be unused if <span class="tt">dut1</span> is NAN &ndash; see below). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. If <span class="tt">dut1</span> is NAN and <span class="tt"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255" title="Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.">novas_is_auto_fetch_eop()</a></span> is TRUE, then both <span class="tt">leap</span> and <span class="tt">dut1</span> will be fetched from IERS if possible. Note, that prior to 1956 IERS does not provide UT1-UTC difference. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
@@ -13087,9 +14136,11 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="timescale_8c.html#a9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a>, <a class="el" href="timescale_8c.html#a32d8336084b65fac14d092ab6198c27d" title="Returns the fractional Julian date of an astronomical time in the specified timescale,...">novas_get_split_time()</a>, <a class="el" href="group__time.html#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="#a9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="timescale_8c.html#a9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a>, <a class="el" href="timescale_8c.html#a32d8336084b65fac14d092ab6198c27d" title="Returns the fractional Julian date of an astronomical time in the specified timescale,...">novas_get_split_time()</a>, <a class="el" href="group__time.html#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="#a9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4">NOVAS_TCB</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="#a7505fe27b163e97b60bcf4406eadffa7">NOVAS_TIMESCALES</a>, and <a class="el" href="timescale_8c.html#a5709058076f4aea4eeaeeb000342cd94">tt2tdb_hp()</a>.</p>
+<p class="reference">References <a class="el" href="structnovas__eop.html#aa7dc31267da0f16593948531081b9c20">novas_eop::dut1</a>, <a class="el" href="structnovas__eop.html#ab16f1e9735ea4825852497ab33b3ebf3">novas_eop::leap</a>, <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#aba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop()</a>, <a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255">novas_is_auto_fetch_eop()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4">NOVAS_TCB</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="#a7505fe27b163e97b60bcf4406eadffa7">NOVAS_TIMESCALES</a>, and <a class="el" href="timescale_8c.html#a5709058076f4aea4eeaeeb000342cd94">tt2tdb_hp()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a42b9ebbe3c7bda154643b752d2df5ee1">supernovas::Time::Time()</a>, <a class="el" href="#af4a1a5180905a7d8f76aeafe3f9a8ebb">novas_set_time()</a>, <a class="el" href="#a9d54ea7c6cdbc75ee78cf552a7e1858d">novas_set_unix_time()</a>, and <a class="el" href="classsupernovas_1_1Time.html#afb780ba361ceb3fa054c90de435d560f">supernovas::Time::shifted()</a>.</p>
 
@@ -13174,8 +14225,8 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the Julian Date is given </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">str</td><td>The astronomical date specification, possibly including time and timezone, in a standard format. The date is assumed to be in the astronomical calendar of date, which differs from ISO 8601 timestamps for dates prior to the Gregorian calendar reform of 1582 October 15 (otherwise, the two are identical). See <span class="tt"><a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a></span> for more on acceptable formats. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides). If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be unused if <span class="tt">dut1</span> is NAN &ndash; see below). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides). If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. If <span class="tt">dut1</span> is NAN, and <span class="tt"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255" title="Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.">novas_is_auto_fetch_eop()</a></span> is TRUE then both <span class="tt">leap</span> and <span class="tt">dut1</span> will be fetched from IERS if possible. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
@@ -13183,7 +14234,9 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4">novas_parse_date()</a>, and <a class="el" href="timescale_8c.html#af4a1a5180905a7d8f76aeafe3f9a8ebb">novas_set_time()</a>.</p>
 
@@ -13231,8 +14284,8 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the Julian Date is given </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">jd</td><td>[day] Julian day value in the specified timescale </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides). If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be unused if <span class="tt">dut1</span> is NAN &ndash; see below). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides). If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. If <span class="tt">dut1</span> is NAN, and <span class="tt"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255" title="Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.">novas_is_auto_fetch_eop()</a></span> is TRUE then both <span class="tt">leap</span> and <span class="tt">dut1</span> will be fetched from IERS if possible. Note, that prior to 1956 IERS does not provide UT1-UTC difference. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
@@ -13240,7 +14293,9 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#ad47bcb1e3c5df56a0ffdf1a127e52598" title="Sets an astronomical time to the split Julian Date value, defined in the specified timescale.">novas_set_split_time()</a>, <a class="el" href="timescale_8c.html#a9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a>, <a class="el" href="timescale_8c.html#a4b5b82161f8eb474aaa650815b7ca66f" title="Sets astronomical time in a specific timescale using a string specification.">novas_set_str_time()</a>, <a class="el" href="timescale_8c.html#a090f608cd5c82622e3534297fc27daa5" title="Sets the time eith the UNIX time obtained from the system clock.">novas_set_current_time()</a>, <a class="el" href="timescale_8c.html#ae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a>, <a class="el" href="group__time.html#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="#a9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#ad47bcb1e3c5df56a0ffdf1a127e52598" title="Sets an astronomical time to the split Julian Date value, defined in the specified timescale.">novas_set_split_time()</a>, <a class="el" href="timescale_8c.html#a9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a>, <a class="el" href="timescale_8c.html#a4b5b82161f8eb474aaa650815b7ca66f" title="Sets astronomical time in a specific timescale using a string specification.">novas_set_str_time()</a>, <a class="el" href="timescale_8c.html#a090f608cd5c82622e3534297fc27daa5" title="Sets the time eith the UNIX time obtained from the system clock.">novas_set_current_time()</a>, <a class="el" href="timescale_8c.html#ae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a>, <a class="el" href="group__time.html#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="#a9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="timescale_8c.html#ad47bcb1e3c5df56a0ffdf1a127e52598">novas_set_split_time()</a>.</p>
 
@@ -13288,8 +14343,8 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">unix_time</td><td>[s] UNIX time (UTC) seconds </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">nanos</td><td>[ns] UTC sub-second component </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be unused if <span class="tt">dut1</span> is NAN &ndash; see below). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. If <span class="tt">dut1</span> is NAN, and <span class="tt"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255" title="Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.">novas_is_auto_fetch_eop()</a></span> is TRUE then both <span class="tt">leap</span> and <span class="tt">dut1</span> will be fetched from IERS if possible. Note, that prior to 1956 IERS does not provide UT1-UTC difference. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
@@ -13297,7 +14352,9 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#a090f608cd5c82622e3534297fc27daa5" title="Sets the time eith the UNIX time obtained from the system clock.">novas_set_current_time()</a>, <a class="el" href="timescale_8c.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="timescale_8c.html#afa1a1d804ca70050418429f971c2045a" title="Returns the UNIX time for an astronomical time instant.">novas_get_unix_time()</a>, <a class="el" href="#a9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html#a090f608cd5c82622e3534297fc27daa5" title="Sets the time eith the UNIX time obtained from the system clock.">novas_set_current_time()</a>, <a class="el" href="timescale_8c.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="timescale_8c.html#afa1a1d804ca70050418429f971c2045a" title="Returns the UNIX time for an astronomical time instant.">novas_get_unix_time()</a>, <a class="el" href="#a9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="timescale_8c.html#ad47bcb1e3c5df56a0ffdf1a127e52598">novas_set_split_time()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>.</p>
 
@@ -16446,12 +17503,12 @@ solarsystem_hp() </dd></dl>
 <p>It has a maximum error of 10 &mu;s between for dates 1600 and 2200.</p>
 <p>This function is wrapped by <span class="tt"><a class="el" href="timescale_8c.html#a129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a></span>, which is typically a lot easier to use as it returns the time difference directly, which can then be used to convert time in both directions with greater ease. For exable to convert a TT-based date to a TDB-based date:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> TDB = TT + <a class="code hl_function" href="#a129acca41760da486e1179c93cb9e86d">tt2tdb</a>(TT) / 86400.0;</div>
-<div class="ttc" id="anovas_8h_html_a129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="#a129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:163</div></div>
+<div class="ttc" id="anovas_8h_html_a129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="#a129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:162</div></div>
 </div><!-- fragment --><p>is equivalent to:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> dt;</div>
 <div class="line"><a class="code hl_function" href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a>(TT, NULL, &amp;dt);   <span class="comment">// Uses TT input so don&#39;t attempt to calculate TT here...</span></div>
 <div class="line"><span class="keywordtype">double</span> TDB = TT + dt / 86400.0;</div>
-<div class="ttc" id="anovas_8h_html_a90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:121</div></div>
+<div class="ttc" id="anovas_8h_html_a90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:120</div></div>
 </div><!-- fragment --><p>NOTES:</p>
 <ol type="1">
 <li>This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.</li>

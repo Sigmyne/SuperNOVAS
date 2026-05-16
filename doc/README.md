@@ -24,7 +24,7 @@ repository on GitHub, without licensing restrictions. Its source code is compati
 and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully 
 supports the IAU 2000/2006 conventions for microarcsecond-level position calculations. 
 
-This document has been updated for the `v1.6` and later releases.
+This document has been updated for the `v1.7` and later releases.
 
 
 ## Table of Contents
@@ -193,12 +193,55 @@ accommodate JPL NAIF codes, for which 16-bit storage is insufficient.
 <a name="installation"></a>
 ## Building and installation
 
+ - [Dependencies](#dependencies)
  - [Build SuperNOVAS using GNU make](#gnu-build)
  - [Build SuperNOVAS using CMake](#cmake-build)
  - [Install SuperNOVAS via `vcpkg`](#vcpkg-port)
  - [Linux packages](#linux-packages)
  - [Homebrew package](#homebrew)
  - [Nix package](#nix)
+
+
+<a name="dependencies"></a>
+### Dependencies
+
+Optional dependencies:
+
+ - `libcurl` -- (recommended) for fetching Earth Orientation data from IERS.
+ - `calceph` -- (recommended) if building with CALCEPH support enabled.
+ - `cspice` -- if building with CSPICE support enabled.
+ - `doxygen` -- if compiling HTML documentation.
+ 
+#### Installing dependencies on Linux
+
+On Fedora / EPEL Linux and derivatives, you may install all packaged (build + runtime) dependencies as:
+
+```bash
+  sudo dnf install libcurl-devel calceph-devel doxygen
+```
+
+And on Debian and derivatives (e.g. Ubuntu, Mint, Alpine), you may do the same with:
+
+```bash
+  sudo apt-get install libcurl4-openssl-dev calceph-dev doxygen
+```
+
+#### Installing dependencies on MacOS
+
+On MacOS you may install the dependencies with Homebrew:
+
+```bash
+  brew install curl calceph doxygen
+```
+
+#### Installing dependencies on BSD
+
+On BSD (e.g. FreeBSD, OpenBSD) you might install `curl` and `calceph`. And you will also need additional packages for 
+building __SuperNOVAS__, such as and `cmake` and/or `gmake`, and `pkgconf`:
+
+```bash
+  pkg install -y curl calceph cmake gmake devel/pkgconf
+```
 
 <a name="gnu-build"></a>
 ### Build SuperNOVAS using GNU make
@@ -255,6 +298,9 @@ Additionally, you may set number of environment variables to futher customize th
 
  - `CHECKEXTRA`: Extra options to pass to `cppcheck` for the `make check` target
  
+ - `CURL_SUPPORT`: Setting to 0 disables building against `libcurl` (default: 1). If disabled, the EOP fetching 
+   functions and methods will return an error or invalid EOP, with `errno` set to `ENOSYS`.
+ 
  - `DOXYGEN`: Specify the `doxygen` executable to use for generating documentation. If not set (default), `make` will
    use `doxygen` in your `PATH` (if any). You can also set it to `none` to disable document generation and the
    checking for a usable `doxygen` version entirely.
@@ -292,17 +338,34 @@ Or, to stage the installation (to `/usr`) under a 'build root':
   $ make DESTDIR="/tmp/stage" install
 ```
 
-
-__TIP__
-
-> On BSD, you will need to use `gmake` instead of `make`.
-
 __NOTE__
 
 > if you want to build __SuperNOVAS__ for with your old NOVAS C applications you might want to further customize the 
 > build. See section on 
 > [legacy application](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99) in the 
 > [C99 User's guide](USAGE-C99.md). 
+
+
+#### Building with GNU make on BSD
+
+
+On BSD, you will need to use `gmake` instead of `make` (see section on dependencies above). You will also need 
+`pkgconf` s.t. `gcc` may locate the dependencies (headers and libraries). In practice, it means setting 
+`CPPFLAGS` and `LDFLAGS` to contain the appropriate include and library paths and libraries prior to calling
+`gmake`. E.g., to build against both `libcurl` and `calceph`: 
+
+```bash
+  export CPPFLAGS=`pkg-config --cflags libcurl calceph`
+  export LDFLAGS=`pkg-config --libs libcurl calceph`
+```
+
+Now you can build __SuperNOVAS__, for example as a shared library, with:
+
+```bash
+  gmake shared
+```
+
+
 
 
 <a name="cmake-build"></a>
@@ -326,9 +389,10 @@ The __SuperNOVAS__ CMake build supports the following options (in addition to th
  - `BUILD_SHARED_LIBS=ON|OFF` (default: OFF) - Build shared libraries instead of static
  - `BUILD_DOC=ON|OFF` (default: OFF) - Compile HTML documentation. Requires `doxygen`.
  - `BUILD_EXAMPLES=ON|OFF` (default: OFF) - Build the included examples
- - `BUILD_TESTING=ON|OFF` (default: ON - Build regression tests
- - `BUILD_BENCHMARK=ON|OFF` (default: OFF - Build benchmarking programs 
- - `ENABLE_CPP=ON|OFF` (default: OFF - Build C++11 library (`supernovas++`) also. 
+ - `BUILD_TESTING=ON|OFF` (default: ON) - Build regression tests
+ - `BUILD_BENCHMARK=ON|OFF` (default: OFF) - Build benchmarking programs 
+ - `WITHOUT_CURL=ON|OFF` (default: OFF) - Build without cURL support, which allows fetching EOP from IERS.
+ - `ENABLE_CPP=ON|OFF` (default: OFF) - Build C++11 library (`supernovas++`) also. 
  - `ENABLE_CALCEPH=ON|OFF` (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires `calceph` package.
  - `ENABLE_CSPICE=ON|OFF` (default: OFF) - Optional CSPICE ephemeris plugin support. Requires `cspice` library 
    installed.

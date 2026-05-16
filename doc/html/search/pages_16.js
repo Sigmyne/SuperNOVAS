@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['validation_0',['Validation',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md99',1,'']]],
-  ['vcpkg_1',['Install SuperNOVAS via &lt;span class=&quot;tt&quot;&gt;vcpkg&lt;/span&gt;',['../index.html#autotoc_md30',1,'']]],
-  ['velocity_20transforms_20change_20of_20coordinate_20system_2',['velocity transforms change of coordinate system',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md83',1,'Coordinate and velocity transforms (change of coordinate system)'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md120',1,'Coordinate and velocity transforms (change of coordinate system)']]],
-  ['via_20vcpkg_3',['Install SuperNOVAS via &lt;span class=&quot;tt&quot;&gt;vcpkg&lt;/span&gt;',['../index.html#autotoc_md30',1,'']]],
-  ['void_4',['void',['../solsys-cspice_8c.html#autotoc_md14',1,'define mtx_lock (void)'],['../solsys-cspice_8c.html#autotoc_md15',1,'define mtx_unlock (void)']]],
-  ['vs_20astropy_5',['SuperNOVAS C99 vs. astropy',['../md_SuperNOVAS__vs__astropy.html',1,'']]],
-  ['vs_20new_6',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md35',1,'']]]
+  ['way_0',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54',1,'']]],
+  ['with_20gnu_20make_20on_20bsd_1',['Building with GNU make on BSD',['../index.html#autotoc_md16',1,'']]],
+  ['with_20keplerian_20orbital_20parameters_2',['with Keplerian orbital parameters',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md66',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103',1,'Solar-system objects with Keplerian orbital parameters']]],
+  ['with_20novas_20c_203_201_3',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
+  ['with_20supernovas_20c_4',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md81',1,'']]],
+  ['with_20supernovas_20c99_5',['Building your application with SuperNOVAS (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49',1,'']]]
 ];

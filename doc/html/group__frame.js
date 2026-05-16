@@ -48,6 +48,7 @@ var group__frame =
       [ "NOVAS_REDUCED_ACCURACY", "group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846", null ]
     ] ],
     [ "novas_change_observer", "group__frame.html#ga2972b3eafa2d7f6c29cff34bad9fcf0d", null ],
+    [ "novas_equals_frame", "group__frame.html#gaa6e8919a917e071f67bb1d7d84fe6131", null ],
     [ "novas_invert_transform", "group__frame.html#gad2081e123024609d3071b33b183502b7", null ],
     [ "novas_make_frame", "group__frame.html#gadc72577f99a7b076b23e0e44ddbca838", null ],
     [ "novas_make_transform", "group__frame.html#ga4d179c8573319fc25c775ce56ba055dc", null ]

@@ -127,8 +127,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6b6dccdfd22003029d0f3a40dafd716d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle of the orbital system's ascending node relative to the vernal equinox on the reference plane (equatorial or ecliptic) relative to which the orbital system was specified.  <br /></td></tr>
 <tr class="memitem:ad298620379b01fe4de16aedaa4d1fdb5" id="r_ad298620379b01fe4de16aedaa4d1fdb5"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Planet.html">Planet</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad298620379b01fe4de16aedaa4d1fdb5">center</a> () const</td></tr>
 <tr class="memdesc:ad298620379b01fe4de16aedaa4d1fdb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the major planet (including the Sun, Moon, SSB, EMB, and Pluto system barycenter), which is the center of the orbits that are defined in this orbital system.  <br /></td></tr>
+<tr class="memitem:af91582d6772d9e2b8417125759793ee1" id="r_af91582d6772d9e2b8417125759793ee1"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af91582d6772d9e2b8417125759793ee1">equals</a> (const OrbitalSystem &amp;other) const</td></tr>
+<tr class="memdesc:af91582d6772d9e2b8417125759793ee1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this orbital system matches another within typical tolerances.  <br /></td></tr>
 <tr class="memitem:a29b05395e65801706fe3233f5b708572" id="r_a29b05395e65801706fe3233f5b708572"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#a29b05395e65801706fe3233f5b708572">obliquity</a> () const</td></tr>
 <tr class="memdesc:a29b05395e65801706fe3233f5b708572"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the obliquity of this orbital system, relative to the reference plane (equatorial or ecliptic) in which this orbital system was specified.  <br /></td></tr>
+<tr class="memitem:af6bae9ed2648f6c62548974b491545b9" id="r_af6bae9ed2648f6c62548974b491545b9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af6bae9ed2648f6c62548974b491545b9">operator!=</a> (const OrbitalSystem &amp;other) const</td></tr>
+<tr class="memdesc:af6bae9ed2648f6c62548974b491545b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this orbital system differs from another, given typical tolerances.  <br /></td></tr>
+<tr class="memitem:a51cb8a03b453827a7ff48490f0ac72c7" id="r_a51cb8a03b453827a7ff48490f0ac72c7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a51cb8a03b453827a7ff48490f0ac72c7">operator==</a> (const OrbitalSystem &amp;other) const</td></tr>
+<tr class="memdesc:a51cb8a03b453827a7ff48490f0ac72c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this orbital system matches another within typical tolerances.  <br /></td></tr>
 <tr class="memitem:a6a21b9432e3362cf6cfa8082f383e3d3" id="r_a6a21b9432e3362cf6cfa8082f383e3d3"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Orbital.html">Orbital</a>&#160;</td><td class="memItemRight"><a class="el" href="#a6a21b9432e3362cf6cfa8082f383e3d3">orbit</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;ref_time, const <a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a> &amp;semi_major, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;mean_anomaly, const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;period) const</td></tr>
 <tr class="memdesc:a6a21b9432e3362cf6cfa8082f383e3d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new Keplerian orbital in this orbital system and the basic circular orbital parameters.  <br /></td></tr>
 <tr class="memitem:a85faf73b6e2643bac87b323dfa45b36f" id="r_a85faf73b6e2643bac87b323dfa45b36f"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Orbital.html">Orbital</a>&#160;</td><td class="memItemRight"><a class="el" href="#a85faf73b6e2643bac87b323dfa45b36f">orbit</a> (double jd_tdb, double semi_major_m, double mean_anomaly_rad, double period_s) const</td></tr>
@@ -299,6 +305,40 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="af91582d6772d9e2b8417125759793ee1" name="af91582d6772d9e2b8417125759793ee1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af91582d6772d9e2b8417125759793ee1">&#9670;&#160;</a></span>equals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::OrbitalSystem::equals </td>
+          <td>(</td>
+          <td class="paramtype">const OrbitalSystem &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this orbital system matches another within typical tolerances. </p>
+<p>Two orbital system are considered equal, if they are defined with respect to the same reference plane, around the same major planet (or Solar-system position), and have the obliquity and ascending node (if obliquity is non-zero) to within 1 &mu;as.</p>
+<p>Note, that an orbital system may not equal itself if it contains NAN or infinite components.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other orbital system </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this orbital system and the other describe essentially the same system, within tolerances, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a51cb8a03b453827a7ff48490f0ac72c7" title="Checks if this orbital system matches another within typical tolerances.">operator==()</a>, <a class="el" href="#af6bae9ed2648f6c62548974b491545b9" title="Checks if this orbital system differs from another, given typical tolerances.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#af91582d6772d9e2b8417125759793ee1">equals()</a>, and <a class="el" href="novas_8h.html#a7136ddcd873a9221cac3cefba603d93f">novas_equals_orbsys()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#af91582d6772d9e2b8417125759793ee1">equals()</a>, <a class="el" href="#af6bae9ed2648f6c62548974b491545b9">operator!=()</a>, and <a class="el" href="#a51cb8a03b453827a7ff48490f0ac72c7">operator==()</a>.</p>
+
+</div>
+</div>
 <a id="ac681db544b1838b4916fe20964d6bbbd" name="ac681db544b1838b4916fe20964d6bbbd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac681db544b1838b4916fe20964d6bbbd">&#9670;&#160;</a></span>equatorial()</h2>
 
@@ -404,6 +444,72 @@ Additional Inherited Members</h2></td></tr>
 <p class="reference">References <a class="el" href="#a29b05395e65801706fe3233f5b708572">obliquity()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a29b05395e65801706fe3233f5b708572">obliquity()</a>, and <a class="el" href="#a1e172d2a439dcf69eea5e234febf9f8d">orientation()</a>.</p>
+
+</div>
+</div>
+<a id="af6bae9ed2648f6c62548974b491545b9" name="af6bae9ed2648f6c62548974b491545b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6bae9ed2648f6c62548974b491545b9">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::OrbitalSystem::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const OrbitalSystem &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this orbital system differs from another, given typical tolerances. </p>
+<p>Same as <span class="tt">!equals()</span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other orbital system </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this orbital system and the other descrive distinct systems, given typical tolerances, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af91582d6772d9e2b8417125759793ee1" title="Checks if this orbital system matches another within typical tolerances.">equals()</a>, <a class="el" href="#af6bae9ed2648f6c62548974b491545b9" title="Checks if this orbital system differs from another, given typical tolerances.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#af91582d6772d9e2b8417125759793ee1">equals()</a>, and <a class="el" href="#af6bae9ed2648f6c62548974b491545b9">operator!=()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#af6bae9ed2648f6c62548974b491545b9">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="a51cb8a03b453827a7ff48490f0ac72c7" name="a51cb8a03b453827a7ff48490f0ac72c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51cb8a03b453827a7ff48490f0ac72c7">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::OrbitalSystem::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const OrbitalSystem &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this orbital system matches another within typical tolerances. </p>
+<p>Same as <span class="tt"><a class="el" href="#af91582d6772d9e2b8417125759793ee1" title="Checks if this orbital system matches another within typical tolerances.">equals()</a></span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other orbital system </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this orbital system and the other describe essentially the same system, within tolerances, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af91582d6772d9e2b8417125759793ee1" title="Checks if this orbital system matches another within typical tolerances.">equals()</a>, <a class="el" href="#af6bae9ed2648f6c62548974b491545b9" title="Checks if this orbital system differs from another, given typical tolerances.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#af91582d6772d9e2b8417125759793ee1">equals()</a>, and <a class="el" href="#a51cb8a03b453827a7ff48490f0ac72c7">operator==()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a51cb8a03b453827a7ff48490f0ac72c7">operator==()</a>.</p>
 
 </div>
 </div>

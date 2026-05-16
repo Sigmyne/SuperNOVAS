@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['z_0',['z',['../structnovas__observable.html#a5ad32154eadc4cf7de31ec926f71e752',1,'novas_observable::z'],['../classsupernovas_1_1Velocity.html#ad034a48f76943c43dd9899aa456791dd',1,'supernovas::Velocity::z()'],['../classsupernovas_1_1Position.html#a0de42fa3ff4d852b9adfc6c59c0df920',1,'supernovas::Position::z()']]],
-  ['zenith_5fangle_1',['zenith_angle',['../classsupernovas_1_1Horizontal.html#a41a2959b8c966369e8d71af38671093d',1,'supernovas::Horizontal']]],
-  ['zero_2',['zero',['../classsupernovas_1_1Coordinate.html#a9511f9f4073d0b2552e175d3f8d064a3',1,'supernovas::Coordinate::zero()'],['../classsupernovas_1_1Interval.html#a8523c7802c342170c93c1dec1d0440d8',1,'supernovas::Interval::zero()'],['../classsupernovas_1_1TimeAngle.html#a4947ba9bb1cd1176f7ca54a07f9f0e08',1,'supernovas::TimeAngle::zero()']]]
+  ['_7eframe_0',['~Frame',['../classsupernovas_1_1Frame.html#a4f1ae334ec980c176ffa2ecc30a61180',1,'supernovas::Frame']]],
+  ['_7eobserver_1',['~Observer',['../classsupernovas_1_1Observer.html#a05aad2955d8cfcb712e71091276fb715',1,'supernovas::Observer']]],
+  ['_7escalar_2',['~Scalar',['../classsupernovas_1_1Scalar.html#ad6ba6d2c13c7c4df083da1ecb0852c3a',1,'supernovas::Scalar']]],
+  ['_7esource_3',['~Source',['../classsupernovas_1_1Source.html#a242d769b819853c2647a8dcb9a8d180d',1,'supernovas::Source']]],
+  ['_7espherical_4',['~Spherical',['../classsupernovas_1_1Spherical.html#a265ae4eb65d111f2ee41ee929d980047',1,'supernovas::Spherical']]],
+  ['_7etrack_5',['~Track',['../classsupernovas_1_1Track.html#ad855778035b6f474a30d1536971839f2',1,'supernovas::Track']]],
+  ['_7evector_6',['~Vector',['../classsupernovas_1_1Vector.html#a6e0deaf0bff9961abfb6fe57160abe3b',1,'supernovas::Vector']]]
 ];

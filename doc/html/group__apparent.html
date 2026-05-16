@@ -148,6 +148,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga4cb01609f76b0ff8487817b9446a3a62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon Barycenter (EMB) &ndash; typically to arcmin level accuracy &ndash; using Keplerian orbital elements.  <br /></td></tr>
 <tr class="memitem:ga4f7e06b2fa5b3145b37aec4f9c2d1602" id="r_ga4f7e06b2fa5b3145b37aec4f9c2d1602"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga4f7e06b2fa5b3145b37aec4f9c2d1602">novas_equ_sep</a> (double ra1, double dec1, double ra2, double dec2)</td></tr>
 <tr class="memdesc:ga4f7e06b2fa5b3145b37aec4f9c2d1602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of two equatorial locations on a sphere.  <br /></td></tr>
+<tr class="memitem:ga438a2b032c5e2a245a4af642a67a6857" id="r_ga438a2b032c5e2a245a4af642a67a6857"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga438a2b032c5e2a245a4af642a67a6857">novas_equals_sky_pos</a> (const <a class="el" href="#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *a, const <a class="el" href="#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *b)</td></tr>
+<tr class="memdesc:ga438a2b032c5e2a245a4af642a67a6857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two apparent positions on the observer's sky are the same within typical tolerances.  <br /></td></tr>
 <tr class="memitem:ga121940d7f0ef41297d28fab8e6df5998" id="r_ga121940d7f0ef41297d28fab8e6df5998"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga121940d7f0ef41297d28fab8e6df5998">novas_moon_angle</a> (const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict source, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame)</td></tr>
 <tr class="memdesc:ga121940d7f0ef41297d28fab8e6df5998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the apparent angular distance of a source from the Moon from the observer's point of view.  <br /></td></tr>
 <tr class="memitem:ga03aca2626e38d04bcdf94fae14c6d11c" id="r_ga03aca2626e38d04bcdf94fae14c6d11c"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga03aca2626e38d04bcdf94fae14c6d11c">novas_moon_elp_sky_pos</a> (const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> sys, <a class="el" href="#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *restrict pos)</td></tr>
@@ -717,11 +719,60 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[deg] the angular separation of the two locations.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9f33de2b26a19a5e20827e9e918b3375" title="Returns the angular separation of two locations on a sphere.">novas_sep()</a>, <a class="el" href="#ga2d1ef3bc6d99aa473511e45c6e0481e9" title="Returns the apparent angular distance of a source from the Sun from the observer&#39;s point of view.">novas_sun_angle()</a>, <a class="el" href="#ga121940d7f0ef41297d28fab8e6df5998" title="Returns the apparent angular distance of a source from the Moon from the observer&#39;s point of view.">novas_moon_angle()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9f33de2b26a19a5e20827e9e918b3375" title="Returns the angular separation of two locations on a sphere.">novas_sep()</a>, <a class="el" href="#ga2d1ef3bc6d99aa473511e45c6e0481e9" title="Returns the apparent angular distance of a source from the Sun from the observer&#39;s point of view.">novas_sun_angle()</a>, <a class="el" href="#ga121940d7f0ef41297d28fab8e6df5998" title="Returns the apparent angular distance of a source from the Moon from the observer&#39;s point of view.">novas_moon_angle()</a> </dd>
+<dd>
+<a class="el" href="group__util.html#ga500745e68a50eaac03d963b539637dc5" title="Calculates offset equatorial coordinates at some distance away from the input coordinates along a gre...">novas_equ_offset_by()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ga9f33de2b26a19a5e20827e9e918b3375">novas_sep()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#gafa5f3a823a895bed01876df6b2a00370">novas_object_sep()</a>.</p>
+
+</div>
+</div>
+<a id="ga438a2b032c5e2a245a4af642a67a6857" name="ga438a2b032c5e2a245a4af642a67a6857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga438a2b032c5e2a245a4af642a67a6857">&#9670;&#160;</a></span>novas_equals_sky_pos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_sky_pos </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two apparent positions on the observer's sky are the same within typical tolerances. </p>
+<p>Two sky positions are considered to be equal if their:</p>
+<ul>
+<li>coordinates match within 1 &mu;as,</li>
+<li>distances match within 1 ppm.</li>
+<li>radial velocities match within 1 mm/s.</li>
+<li>unit vectors match to 10<sup>-12</sup> (~1 &mu;as).</li>
+</ul>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) sky positions are considered not equal.</li>
+<li>A sky position may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>a position on the observer's sky </td></tr>
+    <tr><td class="paramname">b</td><td>another sky position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two positions are essentially the same within typical tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f">novas_sky_pos::dec</a>, <a class="el" href="structnovas__sky__pos.html#a3c45d500db3a793b89d234d950886e4d">novas_sky_pos::dis</a>, <a class="el" href="group__util.html#ga876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector()</a>, <a class="el" href="structnovas__sky__pos.html#aa76dc5a1222e5696e88c986b6c6c3e55">novas_sky_pos::r_hat</a>, <a class="el" href="structnovas__sky__pos.html#a7d5aa9cc738e19f0891bff94ad148741">novas_sky_pos::ra</a>, and <a class="el" href="structnovas__sky__pos.html#ae98432478d2c3a8e5eb1a1674394499f">novas_sky_pos::rv</a>.</p>
 
 </div>
 </div>
@@ -1027,7 +1078,9 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[deg] the angular separation of the two locations.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga4f7e06b2fa5b3145b37aec4f9c2d1602" title="Returns the angular separation of two equatorial locations on a sphere.">novas_equ_sep()</a>, <a class="el" href="#ga2d1ef3bc6d99aa473511e45c6e0481e9" title="Returns the apparent angular distance of a source from the Sun from the observer&#39;s point of view.">novas_sun_angle()</a>, <a class="el" href="#ga121940d7f0ef41297d28fab8e6df5998" title="Returns the apparent angular distance of a source from the Moon from the observer&#39;s point of view.">novas_moon_angle()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga4f7e06b2fa5b3145b37aec4f9c2d1602" title="Returns the angular separation of two equatorial locations on a sphere.">novas_equ_sep()</a>, <a class="el" href="#ga2d1ef3bc6d99aa473511e45c6e0481e9" title="Returns the apparent angular distance of a source from the Sun from the observer&#39;s point of view.">novas_sun_angle()</a>, <a class="el" href="#ga121940d7f0ef41297d28fab8e6df5998" title="Returns the apparent angular distance of a source from the Moon from the observer&#39;s point of view.">novas_moon_angle()</a> </dd>
+<dd>
+<a class="el" href="group__util.html#ga64a31576a4654e8808de6e2fd755fcc4" title="Calculates offset spherical coordinates at some distance away from the input coordinates along a grea...">novas_offset_by()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#ga4f7e06b2fa5b3145b37aec4f9c2d1602">novas_equ_sep()</a>.</p>
 

@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['earth_20based_20observer_20location_0',['A. Earth-based observer location',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107',1,'']]],
-  ['elevation_20angles_20at_20the_20observing_20location_1',['elevation angles at the observing location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md75',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md112',1,'Calculate azimuth and elevation angles at the observing location']]],
-  ['ephemeris_20data_20or_20services_2',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md41',1,'']]],
-  ['ephemeris_20data_20service_20integration_3',['Universal ephemeris data / service integration',['../index.html#autotoc_md44',1,'']]],
-  ['ephemeris_20provider_4',['Recommendation: set up an ephemeris provider',['../index.html#autotoc_md38',1,'']]],
-  ['ephemeris_20type_20objects_5',['ephemeris type objects',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md77',1,'Planets and/or ephemeris type objects'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md114',1,'Planets and/or ephemeris type objects']]],
-  ['example_20c_20usage_6',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md103',1,'']]],
-  ['example_20c99_20usage_7',['Example C99 usage',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68',1,'']]],
-  ['example_20use_20cases_8',['Example use cases',['../index.html#autotoc_md37',1,'']]]
+  ['features_0',['SuperNOVAS added features',['../index.html#autotoc_md41',1,'']]],
+  ['fixed_20novas_20c_203_201_20issues_1',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
+  ['flavor_20c_20or_20c_2',['Pick your flavor (C or C++)',['../index.html#autotoc_md27',1,'']]],
+  ['for_20a_20sidereal_20source_3',['for a sidereal source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md57',1,'Calculating positions for a sidereal source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md92',1,'Calculating positions for a sidereal source']]],
+  ['for_20a_20solar_20system_20source_4',['for a Solar system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md64',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md101',1,'Calculating positions for a Solar-system source']]],
+  ['frame_5',['frame',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md61',1,'Set up the observing frame'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md98',1,'Set up the observing frame']]],
+  ['functionality_20highlights_6',['New functionality highlights',['../index.html#autotoc_md42',1,'']]],
+  ['fundamentals_7',['C++ Fundamentals',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md85',1,'']]]
 ];

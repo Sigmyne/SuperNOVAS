@@ -32,7 +32,7 @@ var classsupernovas_1_1CalendarDate =
     [ "to_long_date_string", "classsupernovas_1_1CalendarDate.html#a3b9796a72c0db80b720bf8800caf51b5", null ],
     [ "to_string", "classsupernovas_1_1CalendarDate.html#a3102b8cadee180eec8a16bdfdfdc166b", null ],
     [ "to_string", "classsupernovas_1_1CalendarDate.html#acb08e303f1b3f7dca36c6d9595bcd590", null ],
-    [ "to_time", "classsupernovas_1_1CalendarDate.html#aaeff76161e28706bacc5d87421231d51", null ],
+    [ "to_time", "classsupernovas_1_1CalendarDate.html#aeaf96a71d76a05250a4d9f4d1112a49a", null ],
     [ "to_time", "classsupernovas_1_1CalendarDate.html#a244dcacb5dda6dae7e674dc5a61dfa88", null ],
     [ "unix_time", "classsupernovas_1_1CalendarDate.html#a776056f48ef548d8bb613932fe2647d8", null ],
     [ "year", "classsupernovas_1_1CalendarDate.html#ae5e159bc329f7d8c9b22341090f51aec", null ]

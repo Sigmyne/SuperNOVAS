@@ -142,12 +142,18 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga5f35633b872751df4dacd2fb2cbe4ac3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables reporting errors and traces to the standard error stream.  <br /></td></tr>
 <tr class="memitem:gaca89d2a0f49afad45dbddffc09c3adae" id="r_gaca89d2a0f49afad45dbddffc09c3adae"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gaca89d2a0f49afad45dbddffc09c3adae">novas_dms_degrees</a> (const char *restrict dms)</td></tr>
 <tr class="memdesc:gaca89d2a0f49afad45dbddffc09c3adae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the decimal degrees for a DMS string specification.  <br /></td></tr>
+<tr class="memitem:ga500745e68a50eaac03d963b539637dc5" id="r_ga500745e68a50eaac03d963b539637dc5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga500745e68a50eaac03d963b539637dc5">novas_equ_offset_by</a> (double ra, double dec, double direction, double distance, double *restrict out_ra, double *restrict out_dec)</td></tr>
+<tr class="memdesc:ga500745e68a50eaac03d963b539637dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle.  <br /></td></tr>
+<tr class="memitem:ga876add3b3ae251b18c8ffc8f06ea695e" id="r_ga876add3b3ae251b18c8ffc8f06ea695e"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector</a> (const double *a, const double *b, double tol)</td></tr>
+<tr class="memdesc:ga876add3b3ae251b18c8ffc8f06ea695e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two 3D vectors are effectively the same, within the specified absolute tolerance.  <br /></td></tr>
 <tr class="memitem:ga29cad12337acfce5f1e370320dcefb79" id="r_ga29cad12337acfce5f1e370320dcefb79"><td class="memItemLeft">enum <a class="el" href="#ga9d8d2a1f5c06b488e4c817bc9877e3ba">novas_debug_mode</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga29cad12337acfce5f1e370320dcefb79">novas_get_debug_mode</a> ()</td></tr>
 <tr class="memdesc:ga29cad12337acfce5f1e370320dcefb79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current, thread-local, mode for reporting errors encountered (and traces).  <br /></td></tr>
 <tr class="memitem:ga696e44a2d1c788f9f335611efd7ed958" id="r_ga696e44a2d1c788f9f335611efd7ed958"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga696e44a2d1c788f9f335611efd7ed958">novas_hms_hours</a> (const char *restrict hms)</td></tr>
 <tr class="memdesc:ga696e44a2d1c788f9f335611efd7ed958"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the decimal hours for a HMS string specification.  <br /></td></tr>
 <tr class="memitem:ga85334614a0f399e0d3cbde68075d0766" id="r_ga85334614a0f399e0d3cbde68075d0766"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga85334614a0f399e0d3cbde68075d0766">novas_norm_ang</a> (double angle)</td></tr>
 <tr class="memdesc:ga85334614a0f399e0d3cbde68075d0766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the normalized angle in the [0:2&pi;) range.  <br /></td></tr>
+<tr class="memitem:ga64a31576a4654e8808de6e2fd755fcc4" id="r_ga64a31576a4654e8808de6e2fd755fcc4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga64a31576a4654e8808de6e2fd755fcc4">novas_offset_by</a> (double lon, double lat, double direction, double distance, double *restrict out_lon, double *restrict out_lat)</td></tr>
+<tr class="memdesc:ga64a31576a4654e8808de6e2fd755fcc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates offset spherical coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified direction.  <br /></td></tr>
 <tr class="memitem:ga4934da85b9722ef43a5b238f3e1971e4" id="r_ga4934da85b9722ef43a5b238f3e1971e4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga4934da85b9722ef43a5b238f3e1971e4">novas_parse_date</a> (const char *restrict date, char **restrict tail)</td></tr>
 <tr class="memdesc:ga4934da85b9722ef43a5b238f3e1971e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an astronomical date/time string into a Julian date specification.  <br /></td></tr>
 <tr class="memitem:ga5ec9d054b7d363b3db1d065507a1ba41" id="r_ga5ec9d054b7d363b3db1d065507a1ba41"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga5ec9d054b7d363b3db1d065507a1ba41">novas_parse_date_format</a> (enum <a class="el" href="group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, enum <a class="el" href="group__time.html#ga9f2b43ae4b048783dc09c2a3d9b46ca4">novas_date_format</a> format, const char *restrict date, char **restrict tail)</td></tr>
@@ -426,6 +432,114 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ga500745e68a50eaac03d963b539637dc5" name="ga500745e68a50eaac03d963b539637dc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga500745e68a50eaac03d963b539637dc5">&#9670;&#160;</a></span>novas_equ_offset_by()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equ_offset_by </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>ra</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>dec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>direction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>distance</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>out_ra</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>out_dec</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[deg] reference point right ascention (R.A.) </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] reference point declination </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">direction</td><td>[deg] direction (measured East of North). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">distance</td><td>[deg] offset distance on great circle </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[deg] right ascention (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_dec</td><td>[deg] declination at offset position in [-&amp;pi/2:&pi;/2] range. It may be NULL if not needed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and right ascention (R.A.) at the offset position is requested, or if the input declination is outside of the [-90:90] range.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Attila Kovacs</dd>
+<dd>
+<a class="el" href="#ga64a31576a4654e8808de6e2fd755fcc4" title="Calculates offset spherical coordinates at some distance away from the input coordinates along a grea...">novas_offset_by()</a>, <a class="el" href="group__apparent.html#ga4f7e06b2fa5b3145b37aec4f9c2d1602" title="Returns the angular separation of two equatorial locations on a sphere.">novas_equ_sep()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ga64a31576a4654e8808de6e2fd755fcc4">novas_offset_by()</a>.</p>
+
+</div>
+</div>
+<a id="ga876add3b3ae251b18c8ffc8f06ea695e" name="ga876add3b3ae251b18c8ffc8f06ea695e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga876add3b3ae251b18c8ffc8f06ea695e">&#9670;&#160;</a></span>novas_equals_vector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_vector </td>
+          <td>(</td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>tol</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two 3D vectors are effectively the same, within the specified absolute tolerance. </p>
+<p>Two vectors are equal if the distance between them is less than or equal to the magnitude of the specified tolerance.</p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) vectors are considered not equal.</li>
+<li>A vector may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one of the vectors </td></tr>
+    <tr><td class="paramname">b</td><td>the other vector </td></tr>
+    <tr><td class="paramname">tol</td><td>absolute tolerance (sign is ignored). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if all the two vectors match within the specified tolerance, or else FALSE (0)</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__observer.html#gad7850313f8104494d4bd9b5edf8b32b8">novas_equals_near_earth()</a>, <a class="el" href="cmp_8c.html#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle()</a>, <a class="el" href="group__apparent.html#ga438a2b032c5e2a245a4af642a67a6857">novas_equals_sky_pos()</a>, and <a class="el" href="group__observer.html#gaadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel()</a>.</p>
+
+</div>
+</div>
 <a id="ga29cad12337acfce5f1e370320dcefb79" name="ga29cad12337acfce5f1e370320dcefb79"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga29cad12337acfce5f1e370320dcefb79">&#9670;&#160;</a></span>novas_get_debug_mode()</h2>
 
@@ -525,6 +639,70 @@ Functions</h2></td></tr>
 <p class="reference">References <a class="el" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__earth.html#ga312b5ab1a004b179d80463a07ca7da8f">fund_args()</a>.</p>
+
+</div>
+</div>
+<a id="ga64a31576a4654e8808de6e2fd755fcc4" name="ga64a31576a4654e8808de6e2fd755fcc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga64a31576a4654e8808de6e2fd755fcc4">&#9670;&#160;</a></span>novas_offset_by()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_offset_by </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>lon</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>lat</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>direction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>distance</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>out_lon</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>out_lat</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates offset spherical coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified direction. </p>
+<p>Based on the <b>astropy</b> <span class="tt">offset_by()</span> implementation.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">lon</td><td>[deg] reference point longitude </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lat</td><td>[deg] reference point latitude </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">direction</td><td>[deg] direction (measured East of North). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">distance</td><td>[deg] offset distance on great circle </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_lon</td><td>[deg] longitude at offset position in [-&amp;pi:&pi;) range. It may be NULL if not needed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_lat</td><td>[deg] latitude at offset position in [-&amp;pi/2:&pi;/2] range. It may be NULL if not needed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and longitude at the offset position is requested, or if the input latitude is outside of the [-90:90] range.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Attila Kovacs</dd>
+<dd>
+<a class="el" href="#ga500745e68a50eaac03d963b539637dc5" title="Calculates offset equatorial coordinates at some distance away from the input coordinates along a gre...">novas_equ_offset_by()</a>, <a class="el" href="group__apparent.html#ga9f33de2b26a19a5e20827e9e918b3375" title="Returns the angular separation of two locations on a sphere.">novas_sep()</a> </dd>
+<dd>
+<a href="https://docs.astropy.org/en/stable/_modules/astropy/coordinates/angles/utils.html#offset_at">https://docs.astropy.org/en/stable/_modules/astropy/coordinates/angles/utils.html#offset_at</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#ga500745e68a50eaac03d963b539637dc5">novas_equ_offset_by()</a>.</p>
 
 </div>
 </div>

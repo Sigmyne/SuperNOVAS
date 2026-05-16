@@ -9,9 +9,48 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
-Upcoming maintenance release, possibly around 1 August 2026.
+Upcoming feature release, possibly around 1 August 2026.
+
+### Added
+
+ - #313: Support for fetching of leap-seconds and EOP data from IERS, also automatically as needed when the EOP 
+   parameters supplied for initializing astrometric time or an observing frame are left undefined (NAN). These 
+   features require cURL (`curl` library) support, and may not be available if __SuperNOVAS__ was built without it. 
+   Various new functions (in `iers.c`) control the URLs (or local files) to use for leap seconds and EOP data.
+
+ - #316: Spherical offset positions along a great circle in specified direction and distance, based on the __astropy__
+   `offset_by()` function. Added `novas_offset_by()`, `novas_equ_offset_by()` functions; and `Equatorial::offset()`, 
+   `Ecliptic::offset()`, `Galactic::offset()`, and `Horizontal::offset()` methods. (thanks to aleberti)
+
+ - #318: New functions to check for effective equality of data structures, within typical tolerances of the library.
+   The functions are in `cmp.c`, and have names `novas_equals_[...]()`.
+   
+ - #318: `CatalogEntry`, `OrbitalSystem`, `Orbital`, `Source`, `Observer`, and `Frame` now have `equals()` methods
+   as well as overridden `==` and `!=` operators, thanks to the new C99 comparison functions.
+   
+ - #319: Consolidate portable mutex definitions in `novas-mutex.h` (not installed).
 
 ### Changed
+
+ - #313: `novas_set_time()` and related similar functions, can now fetch leap seconds and the mean interpolated 
+   UT1-UTC time difference from IERS (or from the URLs defined) as needed when the `dut1` parameter is NAN, and EOP 
+   fetching has not been explicitly disabled by the user.
+   
+ - #313: `novas_make_frame()` can now fetch mean interpolated polar offsets from IERS (or from the URLs defined) as 
+   needed when the `xp` or `yp` parameter is NAN, and EOP fetching has not been explicitly disabled by the user.
+
+ - #313: Constructors for `Time`, `Frame`, and `GeodeticObserver` now have optional EOP values, as do the convenience 
+   methods that call these (e.g. `Observer::frame_at()`). When `Time` or `Frame` is instantiated with undefined
+   (NAN) EOP values, they will attempt to fetch appropriately interpolated values from IERS (or from the URLs 
+   defined), provided EOP fetching has not been explicitly disabled by the user.
+   
+ - #317: Avoid `memcmp()` in testing structs for equality, using new comparison functions instead.
+
+ - #318: `Vector::equals()` to use the new `novas_equals_vector()` for consitent implementation between the C99 and 
+   C++ APIs.
+   
+ - #319: Updated `novas-calceph.c`, `novas-cspice.c`, and `iers.c` to use portable mutex definitions from 
+   `novas.mutex.h`.
 
  - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
 
@@ -24,6 +63,9 @@ Upcoming maintenance release, possibly around 1 August 2026.
  - Tweak portable mutex macros in ephemeris plugins.
  
  - `examples/Makefile` to work standalone, without `config.mk`.
+ 
+ - Fix wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
+
  
 
 ## [1.6.0] - 2026-04-27

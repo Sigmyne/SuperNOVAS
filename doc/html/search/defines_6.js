@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rad2deg_0',['RAD2DEG',['../novas_8h.html#ac5a945020d3528355cda82d383676736',1,'novas.h']]]
+  ['m_5fpi_0',['M_PI',['../novas_8h.html#ae71449b1cc6e6250b91f539153a7a0d3',1,'novas.h']]]
 ];

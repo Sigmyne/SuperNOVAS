@@ -268,6 +268,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga1c4b3f67a3b82808dd16ae43dfaf0f86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a NAIF ID to a NOVAS major planet ID.  <br /></td></tr>
 <tr class="memitem:ga8f832afe92680a11c3489aaa224ac2e2" id="r_ga8f832afe92680a11c3489aaa224ac2e2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga8f832afe92680a11c3489aaa224ac2e2">novas_case_sensitive</a> (int value)</td></tr>
 <tr class="memdesc:ga8f832afe92680a11c3489aaa224ac2e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables case-sensitive processing of the object name.  <br /></td></tr>
+<tr class="memitem:gadd575c796128069aa35085c617056a11" id="r_gadd575c796128069aa35085c617056a11"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gadd575c796128069aa35085c617056a11">novas_equals_cat_entry</a> (const <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *a, const <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *b)</td></tr>
+<tr class="memdesc:gadd575c796128069aa35085c617056a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two catalog entries define the same parameters, within the typical tolerances associated to these.  <br /></td></tr>
+<tr class="memitem:ga8e8d07b67babdb5be1737d83b29b65c6" id="r_ga8e8d07b67babdb5be1737d83b29b65c6"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga8e8d07b67babdb5be1737d83b29b65c6">novas_equals_object</a> (const <a class="el" href="#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *a, const <a class="el" href="#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *b)</td></tr>
+<tr class="memdesc:ga8e8d07b67babdb5be1737d83b29b65c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two astronomical targets are the same within typical tolerances.  <br /></td></tr>
+<tr class="memitem:gabf94e216938a5128a00717244dd42e77" id="r_gabf94e216938a5128a00717244dd42e77"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gabf94e216938a5128a00717244dd42e77">novas_equals_orbital</a> (const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *a, const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *b)</td></tr>
+<tr class="memdesc:gabf94e216938a5128a00717244dd42e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two Keplerian orbitals match, within typical tolerances.  <br /></td></tr>
+<tr class="memitem:ga7136ddcd873a9221cac3cefba603d93f" id="r_ga7136ddcd873a9221cac3cefba603d93f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga7136ddcd873a9221cac3cefba603d93f">novas_equals_orbsys</a> (const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *a, const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *b)</td></tr>
+<tr class="memdesc:ga7136ddcd873a9221cac3cefba603d93f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two orbital systems match within typical tolerances.  <br /></td></tr>
 <tr class="memitem:gaf0137aa791dd29278904e53498fb9515" id="r_gaf0137aa791dd29278904e53498fb9515"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gaf0137aa791dd29278904e53498fb9515">novas_init_cat_entry</a> (<a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *restrict source, const char *restrict name, double ra, double dec)</td></tr>
 <tr class="memdesc:gaf0137aa791dd29278904e53498fb9515"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.  <br /></td></tr>
 <tr class="memitem:gac5bba418b7f5ebad8a9b44cc7644c99a" id="r_gac5bba418b7f5ebad8a9b44cc7644c99a"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit</a> (double jd_tdb, <a class="el" href="structnovas__orbital.html">novas_orbital</a> *restrict orbit)</td></tr>
@@ -349,7 +357,7 @@ Functions</h2></td></tr>
 <p>[m] Astronomical unit (AU). </p>
 <p>IAU definition. See <a href="https://www.iau.org/static/resolutions/IAU2012_English.pdf">IAU 2012 Resolution B2</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__solar-system.html#gaf303bf91582509624aa40c6a87eb95ac" title="[m] Astronomical unit (AU).">DE405_AU</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="grav_8c.html#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="group__nonequatorial.html#ga7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="group__interferometry.html#ga81f4b147c3f132a1498cdd833042d804">novas_uvw()</a>, and <a class="el" href="group__spectral.html#ga37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="grav_8c.html#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="#gabf94e216938a5128a00717244dd42e77">novas_equals_orbital()</a>, <a class="el" href="cmp_8c.html#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle()</a>, <a class="el" href="group__observer.html#gaadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel()</a>, <a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="group__nonequatorial.html#ga7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="group__interferometry.html#ga81f4b147c3f132a1498cdd833042d804">novas_uvw()</a>, and <a class="el" href="group__spectral.html#ga37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
 
 </div>
 </div>
@@ -627,7 +635,7 @@ Functions</h2></td></tr>
 <p>String array initializer for Major planet names, matching the enum <a class="el" href="#ga219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a>. </p>
 <p>E.g.</p>
 <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span> *planet_names[] = <a class="code hl_define" href="#gabbd19f57e31db2ac91cbe22f9a95f390">NOVAS_PLANET_NAMES_INIT</a>;</div>
-<div class="ttc" id="agroup__source_html_gabbd19f57e31db2ac91cbe22f9a95f390"><div class="ttname"><a href="#gabbd19f57e31db2ac91cbe22f9a95f390">NOVAS_PLANET_NAMES_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_NAMES_INIT</div><div class="ttdoc">String array initializer for Major planet names, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:642</div></div>
+<div class="ttc" id="agroup__source_html_gabbd19f57e31db2ac91cbe22f9a95f390"><div class="ttname"><a href="#gabbd19f57e31db2ac91cbe22f9a95f390">NOVAS_PLANET_NAMES_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_NAMES_INIT</div><div class="ttdoc">String array initializer for Major planet names, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:654</div></div>
 </div><!-- fragment --><dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>enum <a class="el" href="#ga219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a> </dd></dl>
@@ -930,7 +938,7 @@ Functions</h2></td></tr>
 <p>Maximum maximum bytes stored for catalog IDs including string termination. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#ga5e92f920835111db719e880a61248045">novas_set_catalog()</a>, and <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#gadd575c796128069aa35085c617056a11">novas_equals_cat_entry()</a>, <a class="el" href="#ga5e92f920835111db719e880a61248045">novas_set_catalog()</a>, and <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 
 </div>
 </div>
@@ -949,7 +957,7 @@ Functions</h2></td></tr>
 <p>Maximum number of bytes stored for object names including string termination. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#gaf0137aa791dd29278904e53498fb9515">novas_init_cat_entry()</a>, and <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#gadd575c796128069aa35085c617056a11">novas_equals_cat_entry()</a>, <a class="el" href="#ga8e8d07b67babdb5be1737d83b29b65c6">novas_equals_object()</a>, <a class="el" href="#gaf0137aa791dd29278904e53498fb9515">novas_init_cat_entry()</a>, and <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 
 </div>
 </div>
@@ -1727,6 +1735,195 @@ Functions</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#a411f70fb77582d750c5269fcd64b0ce2">make_object()</a></dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+</div>
+</div>
+<a id="gadd575c796128069aa35085c617056a11" name="gadd575c796128069aa35085c617056a11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadd575c796128069aa35085c617056a11">&#9670;&#160;</a></span>novas_equals_cat_entry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_cat_entry </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two catalog entries define the same parameters, within the typical tolerances associated to these. </p>
+<p>For two catalog entries to be equals, they must have matching</p>
+<ul>
+<li>names (case sensitive)</li>
+<li>catalog IDs (case sensitive)</li>
+<li>numerical IDs</li>
+<li>coordinates within 1 &mu;as.</li>
+<li>proper motions to within 1 &mu;as / century.</li>
+<li>parallaxes to within 1 ppm of their geometric mean.</li>
+<li>radial velocities to withing 1 mm/s.</li>
+</ul>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) catalog entries are considered not equal.</li>
+<li>A catalog entry structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one of the catalog entries </td></tr>
+    <tr><td class="paramname">b</td><td>another catalog entry </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two catalog entries define the same sidereal source effectively, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga8e8d07b67babdb5be1737d83b29b65c6" title="Checks if two astronomical targets are the same within typical tolerances.">novas_equals_object()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__cat__entry.html#ada95bd9127ffe9e1204a233057869f5a">novas_cat_entry::catalog</a>, <a class="el" href="structnovas__cat__entry.html#ab539dc076c350cf98ac047453fa18c9c">novas_cat_entry::dec</a>, <a class="el" href="structnovas__cat__entry.html#ac2e6fe6d5aa8aece4e1d3f2ebc8e5c63">novas_cat_entry::parallax</a>, <a class="el" href="structnovas__cat__entry.html#a64faf35923c3c09bb24265a8ddb2b2f1">novas_cat_entry::promodec</a>, <a class="el" href="structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560">novas_cat_entry::promora</a>, <a class="el" href="structnovas__cat__entry.html#a0bf9261730a8decbfd1d0c63c377dac2">novas_cat_entry::ra</a>, <a class="el" href="structnovas__cat__entry.html#aff726e9a11a48c6ccbd80672a1fa5cc8">novas_cat_entry::radialvelocity</a>, <a class="el" href="#gaf32c72297e36b77bead56044d23082f7">SIZE_OF_CAT_NAME</a>, <a class="el" href="#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>, <a class="el" href="structnovas__cat__entry.html#ac06af140acde272f032a431f6cfeb85d">novas_cat_entry::starname</a>, and <a class="el" href="structnovas__cat__entry.html#a456d93b89cbbc3c13cb0cb9d3b8a4cb0">novas_cat_entry::starnumber</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga8e8d07b67babdb5be1737d83b29b65c6">novas_equals_object()</a>.</p>
+
+</div>
+</div>
+<a id="ga8e8d07b67babdb5be1737d83b29b65c6" name="ga8e8d07b67babdb5be1737d83b29b65c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8e8d07b67babdb5be1737d83b29b65c6">&#9670;&#160;</a></span>novas_equals_object()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_object </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two astronomical targets are the same within typical tolerances. </p>
+<p>Two targets are considered equals only if their types, names (case sensitive), numerical IDs, and defining parameters match within typical tolerances.</p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) objects are considered not equal.</li>
+<li>An astronomical target structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>an astronomical target </td></tr>
+    <tr><td class="paramname">b</td><td>another astronomical target </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two targets are effectively the same, within tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__object.html#a9a4a65802b8ff0edc09062867a51d145">novas_object::name</a>, <a class="el" href="#gga1eecb357eeea0de4759e9c8d55af238fa4f9ab9cec85498c41f90c33794d032e5">NOVAS_CATALOG_OBJECT</a>, <a class="el" href="#gga1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269">NOVAS_EPHEM_OBJECT</a>, <a class="el" href="#gadd575c796128069aa35085c617056a11">novas_equals_cat_entry()</a>, <a class="el" href="#gabf94e216938a5128a00717244dd42e77">novas_equals_orbital()</a>, <a class="el" href="#gga1eecb357eeea0de4759e9c8d55af238fa17562d2cd1b0b56d59d31f6ca51c759a">NOVAS_ORBITAL_OBJECT</a>, <a class="el" href="#gga1eecb357eeea0de4759e9c8d55af238fad1eeaddaa96b028742a8ba424e311aa8">NOVAS_PLANET</a>, <a class="el" href="structnovas__object.html#a5661908bdaa0ce7b53762fb9bc0f46bc">novas_object::number</a>, <a class="el" href="structnovas__object.html#aa8798e7393e309d8cab0dc4eab45e79d">novas_object::orbit</a>, <a class="el" href="#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>, <a class="el" href="structnovas__object.html#af6249fc903eaacb4869bdada2987c0cd">novas_object::star</a>, and <a class="el" href="structnovas__object.html#aa411b2233890edefbd41c5fde2e268b2">novas_object::type</a>.</p>
+
+</div>
+</div>
+<a id="gabf94e216938a5128a00717244dd42e77" name="gabf94e216938a5128a00717244dd42e77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabf94e216938a5128a00717244dd42e77">&#9670;&#160;</a></span>novas_equals_orbital()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_orbital </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two Keplerian orbitals match, within typical tolerances. </p>
+<p>For two orbitals to be considered equal, they must have matching orbital systems, have the same reference dates to within ~10 ms (see <span class="tt">novas_time_equals()</span>), and:</p>
+<ul>
+<li>angular parameters must match to within 1 &mu;as.</li>
+<li>semi-major axis must match to within 1 m.</li>
+<li>eccentricity must match to within 10<sup>-12</sup> time the geometric mean of the two semi-major axes.</li>
+<li>mean motion must match to within 1 &mu;as / cy.</li>
+<li>apsis and node periods must match to within ~10 ms (see <span class="tt">novas_time_equals()</span>)</li>
+</ul>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) orbitals are considered not equal.</li>
+<li>Sn orbital elements structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one set of Keplerian orbital parameters </td></tr>
+    <tr><td class="paramname">b</td><td>another set of Keplerian orbital parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two Keplerian orbitals are effectively the same, within tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga8e8d07b67babdb5be1737d83b29b65c6" title="Checks if two astronomical targets are the same within typical tolerances.">novas_equals_object()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__orbital.html#a70b91b91315e8c7adcf394cafbd11ecb">novas_orbital::a</a>, <a class="el" href="structnovas__orbital.html#a798b5b86f39824f432543f0138927e2b">novas_orbital::apsis_period</a>, <a class="el" href="structnovas__orbital.html#aaffd37bb48862ffd35dafaed88ff6fc1">novas_orbital::e</a>, <a class="el" href="structnovas__orbital.html#a72988aea093c3884a6b62094c6e0f606">novas_orbital::i</a>, <a class="el" href="structnovas__orbital.html#acb8d31a6dea072a9329d89695060ec2a">novas_orbital::jd_tdb</a>, <a class="el" href="structnovas__orbital.html#a7d15d917c5ef6798f54ba0bfebcfbe56">novas_orbital::M0</a>, <a class="el" href="structnovas__orbital.html#a32fff80f9d06ec882016f89f575547de">novas_orbital::n</a>, <a class="el" href="structnovas__orbital.html#a1f4e751c390ad629c7abeccd764edd69">novas_orbital::node_period</a>, <a class="el" href="#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="#ga7136ddcd873a9221cac3cefba603d93f">novas_equals_orbsys()</a>, <a class="el" href="structnovas__orbital.html#a8985163e8cadadf0f3394823f6cdf094">novas_orbital::Omega</a>, <a class="el" href="structnovas__orbital.html#aaa2670b33c2146fc304f29748b1680f9">novas_orbital::omega</a>, and <a class="el" href="structnovas__orbital.html#a412b6f9a02d0e9d4597a8872d800a4c6">novas_orbital::system</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga8e8d07b67babdb5be1737d83b29b65c6">novas_equals_object()</a>.</p>
+
+</div>
+</div>
+<a id="ga7136ddcd873a9221cac3cefba603d93f" name="ga7136ddcd873a9221cac3cefba603d93f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7136ddcd873a9221cac3cefba603d93f">&#9670;&#160;</a></span>novas_equals_orbsys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_orbsys </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two orbital systems match within typical tolerances. </p>
+<p>Two orbital system are considered equal, if they are defined with respect to the same reference plane, around the same major planet (or Solar-system position), and have the obliquity and ascending node (if obliquity is non-zero) to within 1 &mu;as.</p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) orbital systems are considered not equal.</li>
+<li>An orbital system structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one of the orbital systems </td></tr>
+    <tr><td class="paramname">b</td><td>another orbital system </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two systems are effectively the same, within tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gabf94e216938a5128a00717244dd42e77" title="Checks if two Keplerian orbitals match, within typical tolerances.">novas_equals_orbital()</a>, <a class="el" href="#ga8e8d07b67babdb5be1737d83b29b65c6" title="Checks if two astronomical targets are the same within typical tolerances.">novas_equals_object()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__orbital__system.html#a1e0e4feed59904907eb9c0484ad95516">novas_orbital_system::center</a>, <a class="el" href="structnovas__orbital__system.html#a806d05cf786f3f0de3388d0e319e27f0">novas_orbital_system::obl</a>, <a class="el" href="structnovas__orbital__system.html#a1ac88e32247a155866b20e606f78eb2b">novas_orbital_system::Omega</a>, <a class="el" href="structnovas__orbital__system.html#a032dfd918d2799238bdf6a25c0f198e7">novas_orbital_system::plane</a>, and <a class="el" href="structnovas__orbital__system.html#a168120619bdde8c6af9cf93d2ce96d0d">novas_orbital_system::type</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#gabf94e216938a5128a00717244dd42e77">novas_equals_orbital()</a>.</p>
 
 </div>
 </div>

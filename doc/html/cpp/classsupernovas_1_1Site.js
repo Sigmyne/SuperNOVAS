@@ -18,7 +18,7 @@ var classsupernovas_1_1Site =
     [ "longitude", "classsupernovas_1_1Site.html#a30ba1028c2b2608eeeaa017f5fb041a6", null ],
     [ "operator!=", "classsupernovas_1_1Site.html#a2a5ac016d86fc7764e88ba77666548e8", null ],
     [ "operator==", "classsupernovas_1_1Site.html#aa0e8ec8112a675b0b1ac71ebdccafcbe", null ],
-    [ "to_observer", "classsupernovas_1_1Site.html#aa78f40123a469a4836a759333bbf8005", null ],
+    [ "to_observer", "classsupernovas_1_1Site.html#a8c76cb1c17d3935149fd3ebc6a946b4c", null ],
     [ "to_string", "classsupernovas_1_1Site.html#ac0025cac941a69c9c4797ecd3f106030", null ],
     [ "xyz", "classsupernovas_1_1Site.html#ae384db5f193b48235789a1ad48720d3e", null ]
 ];

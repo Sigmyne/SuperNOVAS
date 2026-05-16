@@ -138,6 +138,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ad9635b846c25ed6ba2047bb0e58cf8de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these equatorial coordinates are the same as another, within the specified precision.  <br /></td></tr>
 <tr class="memitem:aacb52f4748ba11e46c1076c217021009" id="r_aacb52f4748ba11e46c1076c217021009"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aacb52f4748ba11e46c1076c217021009">equals</a> (const Equatorial &amp;other, double precision_rad=1.0 *<a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">Unit::uas</a>) const</td></tr>
 <tr class="memdesc:aacb52f4748ba11e46c1076c217021009"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these equatorial coordinates are the same as another, within the specified precision.  <br /></td></tr>
+<tr class="memitem:af60ce8010be7da80363aa66729ae53ad" id="r_af60ce8010be7da80363aa66729ae53ad"><td class="memItemLeft">Equatorial&#160;</td><td class="memItemRight"><a class="el" href="#af60ce8010be7da80363aa66729ae53ad">offset</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;direction, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;distance) const</td></tr>
+<tr class="memdesc:af60ce8010be7da80363aa66729ae53ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns equatorial coordinates for an offset position from these along the great circle that crosses these coordinates in the speciifed direction.  <br /></td></tr>
+<tr class="memitem:a174a4ec5aeff0d91f9e1618cd7558ec9" id="r_a174a4ec5aeff0d91f9e1618cd7558ec9"><td class="memItemLeft">Equatorial&#160;</td><td class="memItemRight"><a class="el" href="#a174a4ec5aeff0d91f9e1618cd7558ec9">offset</a> (double direction_rad, double distance_rad) const</td></tr>
+<tr class="memdesc:a174a4ec5aeff0d91f9e1618cd7558ec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns equatorial coordinates for an offset position from these along the great circle that crosses these coordinates in the speciifed direction.  <br /></td></tr>
 <tr class="memitem:aaa1b8ad19cd55463a37d83b0002cf2ca" id="r_aaa1b8ad19cd55463a37d83b0002cf2ca"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aaa1b8ad19cd55463a37d83b0002cf2ca">operator!=</a> (const Equatorial &amp;other) const</td></tr>
 <tr class="memdesc:aaa1b8ad19cd55463a37d83b0002cf2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these equatorial coordinates differ from another, by more than 1 &mu;as.  <br /></td></tr>
 <tr class="memitem:a8139d123f70e65f5a7e64acd944f6f43" id="r_a8139d123f70e65f5a7e64acd944f6f43"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a8139d123f70e65f5a7e64acd944f6f43">operator==</a> (const Equatorial &amp;other) const</td></tr>
@@ -407,7 +411,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogEntry.html#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry()</a>, <a class="el" href="#afd0a59b75217a945d560dfc528333d26">Equatorial()</a>, <a class="el" href="#aece89eb132e3279559b29cca87f8fef0">Equatorial()</a>, <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">to_ecliptic()</a>, <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">to_galactic()</a>, <a class="el" href="#a32bfe60a4d887c5b659720756a3b6006">to_string()</a>, and <a class="el" href="#ac7e00f3f7cc4afdcb89bd66a508591b0">to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogEntry.html#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry()</a>, <a class="el" href="#afd0a59b75217a945d560dfc528333d26">Equatorial()</a>, <a class="el" href="#aece89eb132e3279559b29cca87f8fef0">Equatorial()</a>, <a class="el" href="#a174a4ec5aeff0d91f9e1618cd7558ec9">offset()</a>, <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">to_ecliptic()</a>, <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">to_galactic()</a>, <a class="el" href="#a32bfe60a4d887c5b659720756a3b6006">to_string()</a>, and <a class="el" href="#ac7e00f3f7cc4afdcb89bd66a508591b0">to_system()</a>.</p>
 
 </div>
 </div>
@@ -434,7 +438,8 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the angular distance of thereturn Angle::operator+(r);se coordinates to/from the argument.</dd></dl>
-<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>offset_by() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a3f83a7b7c79a6f71e52fb8de35225a7c">supernovas::Spherical::distance_to()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -509,6 +514,78 @@ Additional Inherited Members</h2></td></tr>
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5">supernovas::Spherical::equals()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ad9635b846c25ed6ba2047bb0e58cf8de">equals()</a>, <a class="el" href="#aaa1b8ad19cd55463a37d83b0002cf2ca">operator!=()</a>, and <a class="el" href="#a8139d123f70e65f5a7e64acd944f6f43">operator==()</a>.</p>
+
+</div>
+</div>
+<a id="af60ce8010be7da80363aa66729ae53ad" name="af60ce8010be7da80363aa66729ae53ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af60ce8010be7da80363aa66729ae53ad">&#9670;&#160;</a></span>offset() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Equatorial supernovas::Equatorial::offset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>direction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>distance</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns equatorial coordinates for an offset position from these along the great circle that crosses these coordinates in the speciifed direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">direction</td><td>offset direction, measured East of the local North. </td></tr>
+    <tr><td class="paramname">distance</td><td>offset great circle distance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The equatorial coordinates of the offset position</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae01c0ae358aadee5e1649fb20b8c8729" title="Returns the angular distance of these equatorial coordiantes to/from the specified other equatorial c...">distance_to()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a71ab12e9fcedf977e46aca688871f68e" title="Returns ecliptic coordinates for an offset position from these along the great circle that crosses th...">Ecliptic::offset()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#ab8f594a3b3721ec86fae5939ba9247c0" title="Returns galactic coordinates for an offset position from these along the great circle that crosses th...">Galactic::offset()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a5b2ad9e09eea9c644c3d3cf3af45de61" title="Returns horizontal coordinates for an offset position from these along the great circle that crosses ...">Horizontal::offset()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a174a4ec5aeff0d91f9e1618cd7558ec9">offset()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
+
+</div>
+</div>
+<a id="a174a4ec5aeff0d91f9e1618cd7558ec9" name="a174a4ec5aeff0d91f9e1618cd7558ec9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a174a4ec5aeff0d91f9e1618cd7558ec9">&#9670;&#160;</a></span>offset() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Equatorial supernovas::Equatorial::offset </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>direction_rad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>distance_rad</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns equatorial coordinates for an offset position from these along the great circle that crosses these coordinates in the speciifed direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">direction_rad</td><td>[rad] offset direction, measured East of the local North. </td></tr>
+    <tr><td class="paramname">distance_rad</td><td>[rad] offset great circle distance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The equatorial coordinates of the offset position</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae01c0ae358aadee5e1649fb20b8c8729" title="Returns the angular distance of these equatorial coordiantes to/from the specified other equatorial c...">distance_to()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a71ab12e9fcedf977e46aca688871f68e" title="Returns ecliptic coordinates for an offset position from these along the great circle that crosses th...">Ecliptic::offset()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#ab8f594a3b3721ec86fae5939ba9247c0" title="Returns galactic coordinates for an offset position from these along the great circle that crosses th...">Galactic::offset()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a5b2ad9e09eea9c644c3d3cf3af45de61" title="Returns horizontal coordinates for an offset position from these along the great circle that crosses ...">Horizontal::offset()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aa4101d906d7943a36a1b6b5363bfb731">dec()</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a64a31576a4654e8808de6e2fd755fcc4">novas_offset_by()</a>, <a class="el" href="#ac1b78ee76a1f5232986ff8e863daf9fb">ra()</a>, and <a class="el" href="#a6a19445d6302007ebb6e321151599c46">system()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#af60ce8010be7da80363aa66729ae53ad">offset()</a>.</p>
 
 </div>
 </div>
@@ -625,7 +702,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogEntry.html#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry()</a>, <a class="el" href="#afd0a59b75217a945d560dfc528333d26">Equatorial()</a>, <a class="el" href="#aece89eb132e3279559b29cca87f8fef0">Equatorial()</a>, <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">to_ecliptic()</a>, <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">to_galactic()</a>, <a class="el" href="#a32bfe60a4d887c5b659720756a3b6006">to_string()</a>, and <a class="el" href="#ac7e00f3f7cc4afdcb89bd66a508591b0">to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogEntry.html#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry()</a>, <a class="el" href="#afd0a59b75217a945d560dfc528333d26">Equatorial()</a>, <a class="el" href="#aece89eb132e3279559b29cca87f8fef0">Equatorial()</a>, <a class="el" href="#a174a4ec5aeff0d91f9e1618cd7558ec9">offset()</a>, <a class="el" href="group__nonequatorial.html#gaf2f5da6694e72211d5f3daf79b60d72b">to_ecliptic()</a>, <a class="el" href="group__nonequatorial.html#ga8461f5b54d570ab2c2f306ae4a4b6526">to_galactic()</a>, <a class="el" href="#a32bfe60a4d887c5b659720756a3b6006">to_string()</a>, and <a class="el" href="#ac7e00f3f7cc4afdcb89bd66a508591b0">to_system()</a>.</p>
 
 </div>
 </div>
@@ -649,7 +726,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0ed912a979ffb625f8766694e6d0bdc1" title="Retuens the equatorial reference system type in which thse equatorial coordinates are defined.">system_type()</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#afd0a59b75217a945d560dfc528333d26">Equatorial()</a>, <a class="el" href="#a0b32b0a522a5cb60c447f7d80ca571e9">Equatorial()</a>, <a class="el" href="#aece89eb132e3279559b29cca87f8fef0">Equatorial()</a>, <a class="el" href="#a730712bceb09af0bcf451c875f282a18">Equatorial()</a>, <a class="el" href="#a2ec0c08c9846c87e997a7f3f4e9aa166">operator&gt;&gt;()</a>, and <a class="el" href="#ac7e00f3f7cc4afdcb89bd66a508591b0">to_system()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#afd0a59b75217a945d560dfc528333d26">Equatorial()</a>, <a class="el" href="#a0b32b0a522a5cb60c447f7d80ca571e9">Equatorial()</a>, <a class="el" href="#aece89eb132e3279559b29cca87f8fef0">Equatorial()</a>, <a class="el" href="#a730712bceb09af0bcf451c875f282a18">Equatorial()</a>, <a class="el" href="#a174a4ec5aeff0d91f9e1618cd7558ec9">offset()</a>, <a class="el" href="#a2ec0c08c9846c87e997a7f3f4e9aa166">operator&gt;&gt;()</a>, and <a class="el" href="#ac7e00f3f7cc4afdcb89bd66a508591b0">to_system()</a>.</p>
 
 </div>
 </div>

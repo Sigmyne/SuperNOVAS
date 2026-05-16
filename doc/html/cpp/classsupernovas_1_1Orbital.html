@@ -145,6 +145,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a784fbc6a317a2385fd19f4cdb2f663c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets parameters for an elliptical orbit.  <br /></td></tr>
 <tr class="memitem:aaa9fd9d152b256c2588e66773bdc3f4b" id="r_aaa9fd9d152b256c2588e66773bdc3f4b"><td class="memItemLeft">Orbital &amp;&#160;</td><td class="memItemRight"><a class="el" href="#aaa9fd9d152b256c2588e66773bdc3f4b">eccentricity</a> (double e, double periapsis_rad)</td></tr>
 <tr class="memdesc:aaa9fd9d152b256c2588e66773bdc3f4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets parameters for an elliptical orbit.  <br /></td></tr>
+<tr class="memitem:a3a1c415444c0deb54c4f478559d55d7a" id="r_a3a1c415444c0deb54c4f478559d55d7a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a3a1c415444c0deb54c4f478559d55d7a">equals</a> (const Orbital &amp;other) const</td></tr>
+<tr class="memdesc:a3a1c415444c0deb54c4f478559d55d7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this Keplerian orbital matches another within typical tolerances.  <br /></td></tr>
 <tr class="memitem:ac27fbfbedc5b8b27674951e11ca53c47" id="r_ac27fbfbedc5b8b27674951e11ca53c47"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47">inclination</a> () const</td></tr>
 <tr class="memdesc:ac27fbfbedc5b8b27674951e11ca53c47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the inclination angle of this orbit, relative to the orbital system's plane.  <br /></td></tr>
 <tr class="memitem:a592c05ee722500bd4287fe1d0a76cdb6" id="r_a592c05ee722500bd4287fe1d0a76cdb6"><td class="memItemLeft">Orbital &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a592c05ee722500bd4287fe1d0a76cdb6">inclination</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;angle, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;ascending_node_angle)</td></tr>
@@ -163,6 +165,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afaf0000a33c68b01b1257cacbd655331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular rate at which the ascending node of the orbit rotates in the orbital system (positive for counter-clockwise rotation, or negative for clockwise rotation, when viewed from the orbital system's pole.).  <br /></td></tr>
 <tr class="memitem:a05d61ea153f256ed7fafd87370f4fa77" id="r_a05d61ea153f256ed7fafd87370f4fa77"><td class="memItemLeft">Orbital &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a05d61ea153f256ed7fafd87370f4fa77">node_rate</a> (double rad_per_sec)</td></tr>
 <tr class="memdesc:a05d61ea153f256ed7fafd87370f4fa77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the node precession rate (positive for counter-clockwise rotation when viewed from the orbital system's pole).  <br /></td></tr>
+<tr class="memitem:aa443257f51bb1e0529146080bed5128d" id="r_aa443257f51bb1e0529146080bed5128d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa443257f51bb1e0529146080bed5128d">operator!=</a> (const Orbital &amp;other) const</td></tr>
+<tr class="memdesc:aa443257f51bb1e0529146080bed5128d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this Keplerian orbital differs from another given typical tolerances.  <br /></td></tr>
+<tr class="memitem:a2d211c4294833b3d9846ec83d9c8b4f9" id="r_a2d211c4294833b3d9846ec83d9c8b4f9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a2d211c4294833b3d9846ec83d9c8b4f9">operator==</a> (const Orbital &amp;other) const</td></tr>
+<tr class="memdesc:a2d211c4294833b3d9846ec83d9c8b4f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this Keplerian orbital matches another within typical tolerances.  <br /></td></tr>
 <tr class="memitem:a8d9df381faf1e5981641a9bdcfbcdf66" id="r_a8d9df381faf1e5981641a9bdcfbcdf66"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#a8d9df381faf1e5981641a9bdcfbcdf66">periapsis</a> () const</td></tr>
 <tr class="memdesc:a8d9df381faf1e5981641a9bdcfbcdf66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the periapsis angle of this orbit, in the orbital system, in which the orbit was defined.  <br /></td></tr>
 <tr class="memitem:aae185fccc7fb024dcae3384002c511b7" id="r_aae185fccc7fb024dcae3384002c511b7"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Interval.html">Interval</a>&#160;</td><td class="memItemRight"><a class="el" href="#aae185fccc7fb024dcae3384002c511b7">period</a> () const</td></tr>
@@ -618,6 +624,47 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a56ab2e63d83df82a2989c209a2b6ac8e" title="Returns the rotation period of the apsis location in the orbital system, in which the orbital was def...">apsis_period()</a>, <a class="el" href="#a13f7aaf93ac2f1c20b50ad120a42bb06" title="Returns the angular rate at which the apsis rotates in the orbital system (positive for counter-clock...">apsis_rate()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>.</p>
+
+</div>
+</div>
+<a id="a3a1c415444c0deb54c4f478559d55d7a" name="a3a1c415444c0deb54c4f478559d55d7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a1c415444c0deb54c4f478559d55d7a">&#9670;&#160;</a></span>equals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Orbital::equals </td>
+          <td>(</td>
+          <td class="paramtype">const Orbital &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this Keplerian orbital matches another within typical tolerances. </p>
+<p>For two orbitals to be considered equal, they must have matching orbital systems, have the same reference dates to within ~10 ms (see <span class="tt">novas_time_equals()</span>), and:</p>
+<ul>
+<li>angular parameters must match to within 1 &mu;as.</li>
+<li>semi-major axis must match to within 1 m.</li>
+<li>eccentricity must match to within 10<sup>-12</sup> time the geometric mean of the two semi-major axes.</li>
+<li>mean motion must match to within 1 &mu;as / cy.</li>
+<li>apsis and node periods must match to within ~10 ms (see <span class="tt">novas_time_equals()</span>)</li>
+</ul>
+<p>Note, that an orbital may not equal itself if it contains NAN or infinite components.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other orbital </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this orbital and the argument essentially describe the same Keplerian orbital, within the typical tolerances, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2d211c4294833b3d9846ec83d9c8b4f9" title="Checks if this Keplerian orbital matches another within typical tolerances.">operator==()</a>, <a class="el" href="#aa443257f51bb1e0529146080bed5128d" title="Checks if this Keplerian orbital differs from another given typical tolerances.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#abf94e216938a5128a00717244dd42e77">novas_equals_orbital()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#aa443257f51bb1e0529146080bed5128d">operator!=()</a>, and <a class="el" href="#a2d211c4294833b3d9846ec83d9c8b4f9">operator==()</a>.</p>
 
 </div>
 </div>
@@ -1138,6 +1185,68 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a1e8611ace299ad61fb2135e04490311b" title="Returns the rotation period (due to precession) of the orbit&#39;s ascending node in the orbital system,...">node_period()</a>, <a class="el" href="#a921ab9f20d2e0d5df2519c1bd3f5cc3d" title="Returns the longitude of the ascending node of this orbit in the orbital system, in which the orbital...">ascending_node()</a>, <a class="el" href="#ac27fbfbedc5b8b27674951e11ca53c47" title="Returns the inclination angle of this orbit, relative to the orbital system&#39;s plane.">inclination()</a>, <a class="el" href="#ab3888018d097a68762e0900c01266e65" title="Returns the spherical coordinates of the orbit&#39;s pole in the orbital system, in which the orbital was...">pole()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a1e8611ace299ad61fb2135e04490311b">node_period()</a>, and <a class="el" href="classsupernovas_1_1Constant.html#a336dd6cdeb2253ed70164d251f027c47">supernovas::Constant::two_pi</a>.</p>
+
+</div>
+</div>
+<a id="aa443257f51bb1e0529146080bed5128d" name="aa443257f51bb1e0529146080bed5128d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa443257f51bb1e0529146080bed5128d">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Orbital::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const Orbital &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this Keplerian orbital differs from another given typical tolerances. </p>
+<p>Same as <span class="tt">!equals()</span>. See <span class="tt"><a class="el" href="#a3a1c415444c0deb54c4f478559d55d7a" title="Checks if this Keplerian orbital matches another within typical tolerances.">equals()</a></span> for details.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other orbital </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this orbital and the argument describe distinct Keplerian orbitals, given the typical tolerances, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3a1c415444c0deb54c4f478559d55d7a" title="Checks if this Keplerian orbital matches another within typical tolerances.">equals()</a>, <a class="el" href="#aa443257f51bb1e0529146080bed5128d" title="Checks if this Keplerian orbital differs from another given typical tolerances.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a3a1c415444c0deb54c4f478559d55d7a">equals()</a>.</p>
+
+</div>
+</div>
+<a id="a2d211c4294833b3d9846ec83d9c8b4f9" name="a2d211c4294833b3d9846ec83d9c8b4f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d211c4294833b3d9846ec83d9c8b4f9">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Orbital::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const Orbital &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this Keplerian orbital matches another within typical tolerances. </p>
+<p>Same as <span class="tt"><a class="el" href="#a3a1c415444c0deb54c4f478559d55d7a" title="Checks if this Keplerian orbital matches another within typical tolerances.">equals()</a></span>. See <span class="tt"><a class="el" href="#a3a1c415444c0deb54c4f478559d55d7a" title="Checks if this Keplerian orbital matches another within typical tolerances.">equals()</a></span> for details.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other orbital </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this orbital and the argument essentially describe the same Keplerian orbital, within the typical tolerances, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3a1c415444c0deb54c4f478559d55d7a" title="Checks if this Keplerian orbital matches another within typical tolerances.">equals()</a>, <a class="el" href="#aa443257f51bb1e0529146080bed5128d" title="Checks if this Keplerian orbital differs from another given typical tolerances.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a3a1c415444c0deb54c4f478559d55d7a">equals()</a>.</p>
 
 </div>
 </div>

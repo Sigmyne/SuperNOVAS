@@ -15,7 +15,7 @@ var searchData=
   ['redshift_5fat_12',['redshift_at',['../classsupernovas_1_1Track.html#ad9fb35cb904f565fb07e22a48d343a10',1,'supernovas::Track']]],
   ['redshift_5fevolution_13',['redshift_evolution',['../classsupernovas_1_1Track.html#afb7ae9347827cf49c54204579b809120',1,'supernovas::Track']]],
   ['redshift_5fvrad_14',['redshift_vrad',['../novas_8h.html#af56088995d42a0673e03bca1f3891544',1,'redshift_vrad(double vrad, double z):&#160;spectral.c'],['../spectral_8c.html#af56088995d42a0673e03bca1f3891544',1,'redshift_vrad(double vrad, double z):&#160;spectral.c']]],
-  ['reduced_5faccuracy_15',['reduced_accuracy',['../classsupernovas_1_1Frame.html#ac1c71cf92a4019d1a993a9868b105173',1,'supernovas::Frame']]],
+  ['reduced_5faccuracy_15',['reduced_accuracy',['../classsupernovas_1_1Frame.html#a10c51835fcbb5c2f04714d1bc17f7e87',1,'supernovas::Frame']]],
   ['reduced_5faccuracy_5fframe_5fat_16',['reduced_accuracy_frame_at',['../group__frame.html#gae636a2863ee350bd67d5d53c19a694ba',1,'supernovas::Observer']]],
   ['reference_17',['reference',['../classsupernovas_1_1AstrometricPosition.html#a812f65f637969fa3049ce897690d4ddb',1,'supernovas::AstrometricPosition']]],
   ['reference_5fjd_5ftdb_18',['reference_jd_tdb',['../classsupernovas_1_1Orbital.html#a8f0409c92f2e7650a28c28a8f05083fa',1,'supernovas::Orbital']]],

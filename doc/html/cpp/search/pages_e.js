@@ -1,23 +1,12 @@
 var searchData=
 [
-  ['make_0',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md11',1,'']]],
-  ['makefile_1',['Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md45',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md77',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
-  ['modules_2',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md48',1,'']]],
-  ['modules_3a_20a_20better_20way_3',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md49',1,'']]],
-  ['moon_20s_20position_20and_20phase_4',['Moon s position and phase',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63',1,'Moon&apos;s position and phase'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Moon&apos;s position and phase']]],
-  ['mtx_5finit_5',['define mutex_init mtx_init',['../solsys-cspice_8c.html#autotoc_md115',1,'']]],
-  ['mtx_5flock_6',['define mutex_lock mtx_lock',['../solsys-cspice_8c.html#autotoc_md116',1,'']]],
-  ['mtx_5flock_20void_7',['define mtx_lock (void)',['../solsys-cspice_8c.html#autotoc_md123',1,'']]],
-  ['mtx_5funlock_8',['define mutex_unlock mtx_unlock',['../solsys-cspice_8c.html#autotoc_md117',1,'']]],
-  ['mtx_5funlock_20void_9',['define mtx_unlock (void)',['../solsys-cspice_8c.html#autotoc_md124',1,'']]],
-  ['multi_20threaded_20calculations_10',['Multi-threaded calculations',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md69',1,'']]],
-  ['mutex_5finit_20initializesrwlock_11',['define mutex_init InitializeSRWLock',['../solsys-cspice_8c.html#autotoc_md119',1,'']]],
-  ['mutex_5finit_20mtx_5finit_12',['define mutex_init mtx_init',['../solsys-cspice_8c.html#autotoc_md115',1,'']]],
-  ['mutex_5finit_20pthread_5fmutex_5finit_13',['define mutex_init pthread_mutex_init',['../solsys-cspice_8c.html#autotoc_md110',1,'']]],
-  ['mutex_5flock_20acquiresrwlockexclusive_14',['define mutex_lock AcquireSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md120',1,'']]],
-  ['mutex_5flock_20mtx_5flock_15',['define mutex_lock mtx_lock',['../solsys-cspice_8c.html#autotoc_md116',1,'']]],
-  ['mutex_5flock_20pthread_5fmutex_5flock_16',['define mutex_lock pthread_mutex_lock',['../solsys-cspice_8c.html#autotoc_md111',1,'']]],
-  ['mutex_5funlock_20mtx_5funlock_17',['define mutex_unlock mtx_unlock',['../solsys-cspice_8c.html#autotoc_md117',1,'']]],
-  ['mutex_5funlock_20pthread_5fmutex_5funlock_18',['define mutex_unlock pthread_mutex_unlock',['../solsys-cspice_8c.html#autotoc_md112',1,'']]],
-  ['mutex_5funlock_20releasesrwlockexclusive_19',['define mutex_unlock ReleaseSRWLockExclusive',['../solsys-cspice_8c.html#autotoc_md121',1,'']]]
+  ['naif_20cspice_20toolkit_20integration_0',['NAIF CSPICE toolkit integration',['../index.html#autotoc_md31',1,'']]],
+  ['namespace_1',['Namespace',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md86',1,'']]],
+  ['new_2',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md23',1,'']]],
+  ['new_20functionality_20highlights_3',['New functionality highlights',['../index.html#autotoc_md42',1,'']]],
+  ['nix_20package_4',['Nix package',['../index.html#autotoc_md21',1,'']]],
+  ['notes_20on_20precision_5',['Notes on precision',['../index.html#autotoc_md33',1,'']]],
+  ['novas_20c_203_201_6',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
+  ['novas_20c_203_201_20issues_7',['Fixed NOVAS C 3.1 issues',['../index.html#autotoc_md6',1,'']]],
+  ['novas_20c_20api_8',['Refinements to the NOVAS C API',['../index.html#autotoc_md43',1,'']]]
 ];

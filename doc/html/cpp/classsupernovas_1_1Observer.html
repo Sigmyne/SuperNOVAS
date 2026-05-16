@@ -129,12 +129,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a06604bddb755e5070caeefb4306de037"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the underlying NOVAS C <span class="tt"><a class="el" href="novas_8h.html#ae7963c522d28ce6891b472e079307d03" title="Observer location.">observer</a></span> data structure.  <br /></td></tr>
 <tr class="memitem:ab96ce405d6c8cbe8d90e50c8e4da2e42" id="r_ab96ce405d6c8cbe8d90e50c8e4da2e42"><td class="memItemLeft">virtual const Observer *&#160;</td><td class="memItemRight"><a class="el" href="#ab96ce405d6c8cbe8d90e50c8e4da2e42">copy</a> () const</td></tr>
 <tr class="memdesc:ab96ce405d6c8cbe8d90e50c8e4da2e42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a newly allocated copy of this observer.  <br /></td></tr>
+<tr class="memitem:a57f2b31199ce8657b03ae9972626c3f0" id="r_a57f2b31199ce8657b03ae9972626c3f0"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a57f2b31199ce8657b03ae9972626c3f0">equals</a> (const Observer &amp;other) const</td></tr>
+<tr class="memdesc:a57f2b31199ce8657b03ae9972626c3f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this observer is essentially the same as the other, within the tolerances associated to their defining components.  <br /></td></tr>
 <tr class="memitem:gadd24c03a86837e10783af06be02a8b21" id="r_gadd24c03a86837e10783af06be02a8b21"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Frame.html">Frame</a>&#160;</td><td class="memItemRight"><a class="el" href="group__frame.html#gadd24c03a86837e10783af06be02a8b21">frame_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>) const</td></tr>
 <tr class="memdesc:gadd24c03a86837e10783af06be02a8b21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an observing frame for this observer at the specified time and optionally with a specified accuracy.  <br /></td></tr>
 <tr class="memitem:a990a78463a20d985f50b6e86ee8bf7e5" id="r_a990a78463a20d985f50b6e86ee8bf7e5"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a990a78463a20d985f50b6e86ee8bf7e5">is_geocentric</a> () const</td></tr>
 <tr class="memdesc:a990a78463a20d985f50b6e86ee8bf7e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeocentricObserver.html" title="An observer location and motion, defined relative to the geocenter, such as for an Earth-orbit satell...">GeocentricObserver</a>.  <br /></td></tr>
 <tr class="memitem:aa5d4f5181e308afd56b517038f1f8720" id="r_aa5d4f5181e308afd56b517038f1f8720"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#aa5d4f5181e308afd56b517038f1f8720">is_geodetic</a> () const</td></tr>
 <tr class="memdesc:aa5d4f5181e308afd56b517038f1f8720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this observer can be cast to a <a class="el" href="classsupernovas_1_1GeodeticObserver.html" title="An observer location at a geodetic (longitude, latitude, altitude) location at the surface or above i...">GeodeticObserver</a>.  <br /></td></tr>
+<tr class="memitem:ade47c18b3b488b1a5190f6cabcc907a6" id="r_ade47c18b3b488b1a5190f6cabcc907a6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ade47c18b3b488b1a5190f6cabcc907a6">operator!=</a> (const Observer &amp;other) const</td></tr>
+<tr class="memdesc:ade47c18b3b488b1a5190f6cabcc907a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two observers differ given standard tolerances associated to their defining components.  <br /></td></tr>
+<tr class="memitem:aff9a9cffc89d0a95f8b91f83a0ffdfa5" id="r_aff9a9cffc89d0a95f8b91f83a0ffdfa5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aff9a9cffc89d0a95f8b91f83a0ffdfa5">operator==</a> (const Observer &amp;other) const</td></tr>
+<tr class="memdesc:aff9a9cffc89d0a95f8b91f83a0ffdfa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two observers are essentially the same within the tolerances associated to their defining components.  <br /></td></tr>
 <tr class="memitem:gae636a2863ee350bd67d5d53c19a694ba" id="r_gae636a2863ee350bd67d5d53c19a694ba"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Frame.html">Frame</a>&#160;</td><td class="memItemRight"><a class="el" href="group__frame.html#gae636a2863ee350bd67d5d53c19a694ba">reduced_accuracy_frame_at</a> (const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;time) const</td></tr>
 <tr class="memdesc:gae636a2863ee350bd67d5d53c19a694ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reduced accuracy observing frame for this observer at the specified time.  <br /></td></tr>
 <tr class="memitem:gadda2670c6c66d72fbd1b57eb0827e629" id="r_gadda2670c6c66d72fbd1b57eb0827e629"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Interferometric.html">Interferometric</a>&#160;</td><td class="memItemRight"><a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">to_interferometric</a> (const <a class="el" href="classsupernovas_1_1Apparent.html">Apparent</a> &amp;phase_center, enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> system=<a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>) const</td></tr>
@@ -161,10 +167,10 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:a19e2218fa648b4233dbd37c7ef2969bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new observer in some Solar-system location.  <br /></td></tr>
 <tr class="memitem:aa0abf1c22d33bb94f266219a9c8282d7" id="r_aa0abf1c22d33bb94f266219a9c8282d7"><td class="memItemLeft">static <a class="el" href="classsupernovas_1_1GeodeticObserver.html">GeodeticObserver</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa0abf1c22d33bb94f266219a9c8282d7">moving_on_earth</a> (const <a class="el" href="classsupernovas_1_1Site.html">Site</a> &amp;site, const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;eop, const <a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a> &amp;horizontal, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;direction, const <a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a> &amp;vertical=<a class="el" href="classsupernovas_1_1ScalarVelocity.html#ae106b32bca97a3d677522da36f4ff853">ScalarVelocity::stationary</a>())</td></tr>
 <tr class="memdesc:aa0abf1c22d33bb94f266219a9c8282d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new observer that is moving relative to Earth's surface, such as an airborne observer.  <br /></td></tr>
-<tr class="memitem:abd2f95516ccb885c0328574b7201ff6f" id="r_abd2f95516ccb885c0328574b7201ff6f"><td class="memItemLeft">static <a class="el" href="classsupernovas_1_1GeodeticObserver.html">GeodeticObserver</a>&#160;</td><td class="memItemRight"><a class="el" href="#abd2f95516ccb885c0328574b7201ff6f">moving_on_earth</a> (const <a class="el" href="classsupernovas_1_1Site.html">Site</a> &amp;site, const <a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a> &amp;itrs_vel, const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;eop)</td></tr>
-<tr class="memdesc:abd2f95516ccb885c0328574b7201ff6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new observer that is moving, at some velocitym relative to Earth's surface, such as an airborne aircraft or balloon based observatory.  <br /></td></tr>
-<tr class="memitem:a4938417fca7a03c1c41ff905e489b79b" id="r_a4938417fca7a03c1c41ff905e489b79b"><td class="memItemLeft">static <a class="el" href="classsupernovas_1_1GeodeticObserver.html">GeodeticObserver</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4938417fca7a03c1c41ff905e489b79b">on_earth</a> (const <a class="el" href="classsupernovas_1_1Site.html">Site</a> &amp;site, const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;eop)</td></tr>
-<tr class="memdesc:a4938417fca7a03c1c41ff905e489b79b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new observer located at a fixed observing site.  <br /></td></tr>
+<tr class="memitem:a21c68f11facf3d6e90f39c10b608a782" id="r_a21c68f11facf3d6e90f39c10b608a782"><td class="memItemLeft">static <a class="el" href="classsupernovas_1_1GeodeticObserver.html">GeodeticObserver</a>&#160;</td><td class="memItemRight"><a class="el" href="#a21c68f11facf3d6e90f39c10b608a782">moving_on_earth</a> (const <a class="el" href="classsupernovas_1_1Site.html">Site</a> &amp;site, const <a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a> &amp;itrs_vel, const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;eop=<a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f">EOP::undefined</a>())</td></tr>
+<tr class="memdesc:a21c68f11facf3d6e90f39c10b608a782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new observer that is moving, at some velocitym relative to Earth's surface, such as an airborne aircraft or balloon based observatory.  <br /></td></tr>
+<tr class="memitem:a4d45a0963a17de753ebd963d0d5a9a35" id="r_a4d45a0963a17de753ebd963d0d5a9a35"><td class="memItemLeft">static <a class="el" href="classsupernovas_1_1GeodeticObserver.html">GeodeticObserver</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4d45a0963a17de753ebd963d0d5a9a35">on_earth</a> (const <a class="el" href="classsupernovas_1_1Site.html">Site</a> &amp;site, const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;eop=<a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f">EOP::undefined</a>())</td></tr>
+<tr class="memdesc:a4d45a0963a17de753ebd963d0d5a9a35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new observer located at a fixed observing site.  <br /></td></tr>
 <tr class="memitem:a305489d2635ff31ceda03baff28594ea" id="r_a305489d2635ff31ceda03baff28594ea"><td class="memItemLeft">static const Observer &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a305489d2635ff31ceda03baff28594ea">undefined</a> ()</td></tr>
 <tr class="memdesc:a305489d2635ff31ceda03baff28594ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined standard invalid observer.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -281,7 +287,7 @@ Protected Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="#a06604bddb755e5070caeefb4306de037">_novas_observer()</a>, and <a class="el" href="#a5d474a28113c03ea809f617fd3f2b61b">_observer</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6">supernovas::Frame::Frame()</a>, and <a class="el" href="#a06604bddb755e5070caeefb4306de037">_novas_observer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Frame.html#a045f690bf158d04c8f77c8b049b0ef50">supernovas::Frame::Frame()</a>, and <a class="el" href="#a06604bddb755e5070caeefb4306de037">_novas_observer()</a>.</p>
 
 </div>
 </div>
@@ -311,7 +317,7 @@ Protected Attributes</h2></td></tr>
 <p>Returns a fictitious observer placed at the location of the geocenter. </p>
 <dl class="section return"><dt>Returns</dt><dd>a new fictitious observer located at the geocenter.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4d45a0963a17de753ebd963d0d5a9a35" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f">at_geocenter()</a>.</p>
 
@@ -345,7 +351,7 @@ Protected Attributes</h2></td></tr>
 <p>Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB). </p>
 <dl class="section return"><dt>Returns</dt><dd>a new fictitious observer located at the Solar-System Barycenter (SSB).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a4d45a0963a17de753ebd963d0d5a9a35" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f">at_ssb()</a>.</p>
 
@@ -386,6 +392,49 @@ Protected Attributes</h2></td></tr>
 <p class="reference">References <a class="el" href="#ab96ce405d6c8cbe8d90e50c8e4da2e42">copy()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ab96ce405d6c8cbe8d90e50c8e4da2e42">copy()</a>, and <a class="el" href="classsupernovas_1_1Frame.html#ab704a402e50378dd391b5a2842323df1">supernovas::Frame::operator=()</a>.</p>
+
+</div>
+</div>
+<a id="a57f2b31199ce8657b03ae9972626c3f0" name="a57f2b31199ce8657b03ae9972626c3f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57f2b31199ce8657b03ae9972626c3f0">&#9670;&#160;</a></span>equals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Observer::equals </td>
+          <td>(</td>
+          <td class="paramtype">const Observer &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks if this observer is essentially the same as the other, within the tolerances associated to their defining components. </p>
+<p>Note, that an observer may not equal itself if it contains NAN or infinite components.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other observer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if both observers effectively describe the same observing location, within tolerances, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aff9a9cffc89d0a95f8b91f83a0ffdfa5" title="Checks if two observers are essentially the same within the tolerances associated to their defining c...">operator==()</a>, <a class="el" href="#ade47c18b3b488b1a5190f6cabcc907a6" title="Checks if two observers differ given standard tolerances associated to their defining components.">operator!=()</a> </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae91c9c23a26531d0aa21b5732e614dcd">supernovas::GeodeticObserver</a>.</p>
+
+<p class="reference">References <a class="el" href="#a5d474a28113c03ea809f617fd3f2b61b">_observer</a>, <a class="el" href="#a57f2b31199ce8657b03ae9972626c3f0">equals()</a>, and <a class="el" href="novas_8h.html#a6799b84431fcffb40ebe78c47bf65726">novas_equals_observer()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae91c9c23a26531d0aa21b5732e614dcd">supernovas::GeodeticObserver::equals()</a>, <a class="el" href="#a57f2b31199ce8657b03ae9972626c3f0">equals()</a>, <a class="el" href="#ade47c18b3b488b1a5190f6cabcc907a6">operator!=()</a>, and <a class="el" href="#aff9a9cffc89d0a95f8b91f83a0ffdfa5">operator==()</a>.</p>
 
 </div>
 </div>
@@ -520,7 +569,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observer instance for the observer in Earth orbit.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4d45a0963a17de753ebd963d0d5a9a35" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a968c562d9e65d4418e77b2457001d09e">in_earth_orbit()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -565,7 +614,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observer instance for the given Solar-system location.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a4d45a0963a17de753ebd963d0d5a9a35" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf">in_solar_system()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -641,7 +690,7 @@ Protected Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="#aa5d4f5181e308afd56b517038f1f8720">is_geodetic()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Frame.html#a78db236d969702337800d8cfcd33cba6">supernovas::Frame::Frame()</a>, <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>, and <a class="el" href="#aa5d4f5181e308afd56b517038f1f8720">is_geodetic()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Frame.html#a045f690bf158d04c8f77c8b049b0ef50">supernovas::Frame::Frame()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae91c9c23a26531d0aa21b5732e614dcd">supernovas::GeodeticObserver::equals()</a>, <a class="el" href="group__tracking.html#gaacf8278daed3c4bd7054aa68f7022842">supernovas::Source::horizontal_track()</a>, and <a class="el" href="#aa5d4f5181e308afd56b517038f1f8720">is_geodetic()</a>.</p>
 
 </div>
 </div>
@@ -691,7 +740,7 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">site</td><td>the momentary geodetic location of the observer. </td></tr>
-    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) appropriate around the time of observation. </td></tr>
+    <tr><td class="paramname">eop</td><td>Mean (preferably interpolated) Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) appropriate around the time of observation, such as obtained from the IERS bulletins or data service, or <a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f" title="Returns a reference to a statically defined standard invalid EOP.">EOP::undefined()</a> to let <span class="tt"><a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a></span> fetch polar offsets from IERS as needed </td></tr>
     <tr><td class="paramname">horizontal</td><td>momentary horizontal speed of moving observer. </td></tr>
     <tr><td class="paramname">direction</td><td>azimuthal direction of motion (from North, measured to the East). </td></tr>
     <tr><td class="paramname">vertical</td><td>(optional) momentary vertical speed of observer (default: 0).</td></tr>
@@ -701,12 +750,12 @@ Protected Attributes</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Site::enu_to_itrf() </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#abd2f95516ccb885c0328574b7201ff6f">moving_on_earth()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a21c68f11facf3d6e90f39c10b608a782">moving_on_earth()</a>.</p>
 
 </div>
 </div>
-<a id="abd2f95516ccb885c0328574b7201ff6f" name="abd2f95516ccb885c0328574b7201ff6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd2f95516ccb885c0328574b7201ff6f">&#9670;&#160;</a></span>moving_on_earth() <span class="overload">[2/2]</span></h2>
+<a id="a21c68f11facf3d6e90f39c10b608a782" name="a21c68f11facf3d6e90f39c10b608a782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21c68f11facf3d6e90f39c10b608a782">&#9670;&#160;</a></span>moving_on_earth() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -727,7 +776,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>eop</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>eop</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f">EOP::undefined</a>()</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -742,22 +791,22 @@ Protected Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">geodetic</td><td>the momentary geodetic location of the observer. </td></tr>
     <tr><td class="paramname">itrs_vel</td><td>the momentary velocity of the observer with respect to the surface (in ITRS). </td></tr>
-    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) appropriate around the time of observation, such as obtained from the IERS bulletins or data service. </td></tr>
+    <tr><td class="paramname">eop</td><td>(optional) Mean (preferably interpolated) Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) appropriate around the time of observation, such as obtained from the IERS bulletins or data service, or <a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f" title="Returns a reference to a statically defined standard invalid EOP.">EOP::undefined()</a> to let <span class="tt"><a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a></span> fetch polar offsets from IERS as needed (default: undefined). </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observer instance for the given moving observer.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4938417fca7a03c1c41ff905e489b79b" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4d45a0963a17de753ebd963d0d5a9a35" title="Returns a new observer located at a fixed observing site.">on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#abd2f95516ccb885c0328574b7201ff6f">moving_on_earth()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a21c68f11facf3d6e90f39c10b608a782">moving_on_earth()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#aa0abf1c22d33bb94f266219a9c8282d7">moving_on_earth()</a>, and <a class="el" href="#abd2f95516ccb885c0328574b7201ff6f">moving_on_earth()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#aa0abf1c22d33bb94f266219a9c8282d7">moving_on_earth()</a>, and <a class="el" href="#a21c68f11facf3d6e90f39c10b608a782">moving_on_earth()</a>.</p>
 
 </div>
 </div>
-<a id="a4938417fca7a03c1c41ff905e489b79b" name="a4938417fca7a03c1c41ff905e489b79b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4938417fca7a03c1c41ff905e489b79b">&#9670;&#160;</a></span>on_earth()</h2>
+<a id="a4d45a0963a17de753ebd963d0d5a9a35" name="a4d45a0963a17de753ebd963d0d5a9a35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d45a0963a17de753ebd963d0d5a9a35">&#9670;&#160;</a></span>on_earth()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -773,7 +822,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>eop</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>eop</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f">EOP::undefined</a>()</span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -787,17 +836,83 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">site</td><td>the observing site </td></tr>
-    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) appropriate the time of observation, such as obtained from the IERS bulletins or data service. </td></tr>
+    <tr><td class="paramname">eop</td><td>(optional) Mean (preferably interpolated) Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) appropriate around the time of observation, such as obtained from the IERS bulletins or data service, or <a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f" title="Returns a reference to a statically defined standard invalid EOP.">EOP::undefined()</a> to let <span class="tt"><a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a></span> fetch polar offsets from IERS as needed (default: undefined). </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a new observer instance for the given observing site.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#abd2f95516ccb885c0328574b7201ff6f" title="Returns a new observer that is moving, at some velocitym relative to Earth&#39;s surface,...">moving_on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a21c68f11facf3d6e90f39c10b608a782" title="Returns a new observer that is moving, at some velocitym relative to Earth&#39;s surface,...">moving_on_earth()</a>, <a class="el" href="#a968c562d9e65d4418e77b2457001d09e" title="Returns a new observer orbiting the Earth.">in_earth_orbit()</a>, <a class="el" href="#a19e2218fa648b4233dbd37c7ef2969bf" title="Returns a new observer in some Solar-system location.">in_solar_system()</a>, <a class="el" href="#a575a758eea4defc3d47fa6da9054e84f" title="Returns a fictitious observer placed at the location of the geocenter.">at_geocenter()</a>, <a class="el" href="#a559ac67489ac1b98ff52312367e0b98f" title="Returns a fictitious observer placed at the location of the Solar-System Barycenter (SSB).">at_ssb()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a4938417fca7a03c1c41ff905e489b79b">on_earth()</a>.</p>
+<p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#a4d45a0963a17de753ebd963d0d5a9a35">on_earth()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a4938417fca7a03c1c41ff905e489b79b">on_earth()</a>, and <a class="el" href="classsupernovas_1_1Site.html#aa78f40123a469a4836a759333bbf8005">supernovas::Site::to_observer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a4d45a0963a17de753ebd963d0d5a9a35">on_earth()</a>, and <a class="el" href="classsupernovas_1_1Site.html#a8c76cb1c17d3935149fd3ebc6a946b4c">supernovas::Site::to_observer()</a>.</p>
+
+</div>
+</div>
+<a id="ade47c18b3b488b1a5190f6cabcc907a6" name="ade47c18b3b488b1a5190f6cabcc907a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade47c18b3b488b1a5190f6cabcc907a6">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Observer::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const Observer &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two observers differ given standard tolerances associated to their defining components. </p>
+<p>Same as <span class="tt">!equals()</span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other observer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this and the argument describe distinct observing locations, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a57f2b31199ce8657b03ae9972626c3f0" title="Checks if this observer is essentially the same as the other, within the tolerances associated to the...">equals()</a>, <a class="el" href="#aff9a9cffc89d0a95f8b91f83a0ffdfa5" title="Checks if two observers are essentially the same within the tolerances associated to their defining c...">operator==()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a57f2b31199ce8657b03ae9972626c3f0">equals()</a>, and <a class="el" href="#ade47c18b3b488b1a5190f6cabcc907a6">operator!=()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ade47c18b3b488b1a5190f6cabcc907a6">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="aff9a9cffc89d0a95f8b91f83a0ffdfa5" name="aff9a9cffc89d0a95f8b91f83a0ffdfa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff9a9cffc89d0a95f8b91f83a0ffdfa5">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Observer::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const Observer &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two observers are essentially the same within the tolerances associated to their defining components. </p>
+<p>Same as <span class="tt"><a class="el" href="#a57f2b31199ce8657b03ae9972626c3f0" title="Checks if this observer is essentially the same as the other, within the tolerances associated to the...">equals()</a></span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other observer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if both observers effectively describe the same observing location, within tolerances, or else <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a57f2b31199ce8657b03ae9972626c3f0" title="Checks if this observer is essentially the same as the other, within the tolerances associated to the...">equals()</a>, <a class="el" href="#ade47c18b3b488b1a5190f6cabcc907a6" title="Checks if two observers differ given standard tolerances associated to their defining components.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a57f2b31199ce8657b03ae9972626c3f0">equals()</a>, and <a class="el" href="#aff9a9cffc89d0a95f8b91f83a0ffdfa5">operator==()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#aff9a9cffc89d0a95f8b91f83a0ffdfa5">operator==()</a>.</p>
 
 </div>
 </div>
@@ -918,7 +1033,7 @@ Protected Attributes</h2></td></tr>
 
 <p>stored observer data </p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a04cfc686ec4533c6153ced1fe5290560">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="#a65ae0b0d36341717bf7b958ac3236f8c">Observer()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#af1ab79f3e321bbbe8a6343c88d8417cf">supernovas::SolarSystemObserver::SolarSystemObserver()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a026039e93a1925b9078502aea993f203">supernovas::SolarSystemObserver::SolarSystemObserver()</a>, <a class="el" href="#a06604bddb755e5070caeefb4306de037">_novas_observer()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a9a65457117d1ae66096805c92e66767b">supernovas::GeodeticObserver::enu_velocity()</a>, <a class="el" href="classsupernovas_1_1GeocentricObserver.html#a293c24268408aba93899f3cf0937db5b">supernovas::GeocentricObserver::gcrs_position()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#aa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver::gcrs_position_at()</a>, <a class="el" href="#adb604ebb6581bd982943b203a89677aa">gcrs_position_at()</a>, <a class="el" href="classsupernovas_1_1GeocentricObserver.html#a220c1019edab5f90502c3ae5141d886e">supernovas::GeocentricObserver::gcrs_velocity()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver::gcrs_velocity_at()</a>, <a class="el" href="#a8cd84f51fedc118c9ed6f8c14f813fbd">gcrs_velocity_at()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a84a0187e4e74e9a51122a41493e80b09">supernovas::GeodeticObserver::itrs_velocity()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a31a5dac606725a7730fad04b5f0e8b5b">supernovas::GeodeticObserver::site()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#af063a24216e1d4f7ec007a524a500464">supernovas::SolarSystemObserver::ssb_position()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a52b68ba98939ec3b3832d4edcfbf5324">supernovas::SolarSystemObserver::ssb_velocity()</a>, <a class="el" href="#a6976e04ac1fe70d10ac5b9966ff73c8b">to_string()</a>, and <a class="el" href="#a68214f28fee06df8aa28478475eccf04">type()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a27d141fdabb111464442f65126d20168">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="#a65ae0b0d36341717bf7b958ac3236f8c">Observer()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#af1ab79f3e321bbbe8a6343c88d8417cf">supernovas::SolarSystemObserver::SolarSystemObserver()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a026039e93a1925b9078502aea993f203">supernovas::SolarSystemObserver::SolarSystemObserver()</a>, <a class="el" href="#a06604bddb755e5070caeefb4306de037">_novas_observer()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a9a65457117d1ae66096805c92e66767b">supernovas::GeodeticObserver::enu_velocity()</a>, <a class="el" href="#a57f2b31199ce8657b03ae9972626c3f0">equals()</a>, <a class="el" href="classsupernovas_1_1GeocentricObserver.html#a293c24268408aba93899f3cf0937db5b">supernovas::GeocentricObserver::gcrs_position()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#aa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver::gcrs_position_at()</a>, <a class="el" href="#adb604ebb6581bd982943b203a89677aa">gcrs_position_at()</a>, <a class="el" href="classsupernovas_1_1GeocentricObserver.html#a220c1019edab5f90502c3ae5141d886e">supernovas::GeocentricObserver::gcrs_velocity()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver::gcrs_velocity_at()</a>, <a class="el" href="#a8cd84f51fedc118c9ed6f8c14f813fbd">gcrs_velocity_at()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a84a0187e4e74e9a51122a41493e80b09">supernovas::GeodeticObserver::itrs_velocity()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a31a5dac606725a7730fad04b5f0e8b5b">supernovas::GeodeticObserver::site()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#af063a24216e1d4f7ec007a524a500464">supernovas::SolarSystemObserver::ssb_position()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a52b68ba98939ec3b3832d4edcfbf5324">supernovas::SolarSystemObserver::ssb_velocity()</a>, <a class="el" href="#a6976e04ac1fe70d10ac5b9966ff73c8b">to_string()</a>, and <a class="el" href="#a68214f28fee06df8aa28478475eccf04">type()</a>.</p>
 
 </div>
 </div>

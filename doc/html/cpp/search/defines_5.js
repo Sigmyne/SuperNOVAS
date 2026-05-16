@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['m_5fpi_0',['M_PI',['../novas_8h.html#ae71449b1cc6e6250b91f539153a7a0d3',1,'novas.h']]]
+  ['in_5fspace_5finit_0',['IN_SPACE_INIT',['../novas_8h.html#a406038a5cbe32b7e0e7233f6145e4cf5',1,'novas.h']]]
 ];

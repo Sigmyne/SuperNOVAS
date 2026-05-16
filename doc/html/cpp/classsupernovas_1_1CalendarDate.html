@@ -184,8 +184,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3102b8cadee180eec8a16bdfdfdc166b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of this calendar date, given the requested date format and decimal places to print for the seconds component.  <br /></td></tr>
 <tr class="memitem:acb08e303f1b3f7dca36c6d9595bcd590" id="r_acb08e303f1b3f7dca36c6d9595bcd590"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#acb08e303f1b3f7dca36c6d9595bcd590">to_string</a> (int decimals) const</td></tr>
 <tr class="memdesc:acb08e303f1b3f7dca36c6d9595bcd590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of this calendar date, using the YMD format and the specified decimal places to print for the seconds component.  <br /></td></tr>
-<tr class="memitem:aaeff76161e28706bacc5d87421231d51" id="r_aaeff76161e28706bacc5d87421231d51"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="#aaeff76161e28706bacc5d87421231d51">to_time</a> (const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;eop, <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale=<a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>) const</td></tr>
-<tr class="memdesc:aaeff76161e28706bacc5d87421231d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts this calendar date to ans astronomical time representation, given the specified Earth Orientation Parameters, and astronomical timescale.  <br /></td></tr>
+<tr class="memitem:aeaf96a71d76a05250a4d9f4d1112a49a" id="r_aeaf96a71d76a05250a4d9f4d1112a49a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="#aeaf96a71d76a05250a4d9f4d1112a49a">to_time</a> (const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;eop=<a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f">EOP::undefined</a>(), <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale=<a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>) const</td></tr>
+<tr class="memdesc:aeaf96a71d76a05250a4d9f4d1112a49a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts this calendar date to ans astronomical time representation, given the specified Earth Orientation Parameters, and astronomical timescale.  <br /></td></tr>
 <tr class="memitem:a244dcacb5dda6dae7e674dc5a61dfa88" id="r_a244dcacb5dda6dae7e674dc5a61dfa88"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="#a244dcacb5dda6dae7e674dc5a61dfa88">to_time</a> (int leap_seconds, double dut1, <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale=<a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>) const</td></tr>
 <tr class="memdesc:a244dcacb5dda6dae7e674dc5a61dfa88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts this calendar date to ans astronomical time representation, given the specified Earth Orientation Parameters, and astronomical timescale.  <br /></td></tr>
 <tr class="memitem:a776056f48ef548d8bb613932fe2647d8" id="r_a776056f48ef548d8bb613932fe2647d8"><td class="memItemLeft">time_t&#160;</td><td class="memItemRight"><a class="el" href="#a776056f48ef548d8bb613932fe2647d8">unix_time</a> () const</td></tr>
@@ -1152,8 +1152,8 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a id="aaeff76161e28706bacc5d87421231d51" name="aaeff76161e28706bacc5d87421231d51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaeff76161e28706bacc5d87421231d51">&#9670;&#160;</a></span>to_time() <span class="overload">[1/2]</span></h2>
+<a id="aeaf96a71d76a05250a4d9f4d1112a49a" name="aeaf96a71d76a05250a4d9f4d1112a49a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaf96a71d76a05250a4d9f4d1112a49a">&#9670;&#160;</a></span>to_time() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1161,7 +1161,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classsupernovas_1_1Time.html">Time</a> supernovas::CalendarDate::to_time </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>eop</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>eop</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f">EOP::undefined</a>()</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1175,13 +1175,14 @@ Additional Inherited Members</h2></td></tr>
 <p>Not, that calendar dates have accuracy at the 0.1 ms level only, hence the resulting astronomical time will be limited to the same level of precision also.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">eop</td><td>Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) for this date. </td></tr>
-    <tr><td class="paramname">timescale</td><td>the astronomical timescale in which this calendar date is defined. </td></tr>
+    <tr><td class="paramname">eop</td><td>(optional) Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) for this date, or <a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f" title="Returns a reference to a statically defined standard invalid EOP.">EOP::undefined()</a> to fetch from IERS for dates after 1 Jan 1956, if possible and allowed. </td></tr>
+    <tr><td class="paramname">timescale</td><td>(optional) the astronomical timescale in which this calendar date is defined (default: UTC). </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an astronomical time instance for this date and input parameters.</dd></dl>
-<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1EOP.html#a14015d01e9b377e3eebede8ae2588f81">supernovas::EOP::dUT1()</a>, <a class="el" href="classsupernovas_1_1EOP.html#a9d345a31c875164637f5763c15add341">supernovas::EOP::leap_seconds()</a>, <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>, and <a class="el" href="#a244dcacb5dda6dae7e674dc5a61dfa88">to_time()</a>.</p>
 
@@ -1226,7 +1227,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#abed16fdddaf4cee40d6d751e22d5f778">jd()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#aaeff76161e28706bacc5d87421231d51">to_time()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#aeaf96a71d76a05250a4d9f4d1112a49a">to_time()</a>.</p>
 
 </div>
 </div>
@@ -1281,6 +1282,8 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, and <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1EOP.html#ae136f1047bfbd30a49b83de5b366db12">supernovas::EOP::fetch_for()</a>.</p>
 
 </div>
 </div>

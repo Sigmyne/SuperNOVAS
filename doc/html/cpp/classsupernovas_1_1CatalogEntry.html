@@ -139,10 +139,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a82a4ce2d55312b948ac6e12e8987e711"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the distance of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:ada8963b72d2eb9de0a8476b5ba6f3061" id="r_ada8963b72d2eb9de0a8476b5ba6f3061"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ada8963b72d2eb9de0a8476b5ba6f3061">distance</a> (double meters)</td></tr>
 <tr class="memdesc:ada8963b72d2eb9de0a8476b5ba6f3061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the distance of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern.  <br /></td></tr>
+<tr class="memitem:aea15ba68adbffc9c6ad07d321d1aab8e" id="r_aea15ba68adbffc9c6ad07d321d1aab8e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aea15ba68adbffc9c6ad07d321d1aab8e">equals</a> (const <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;other) const</td></tr>
+<tr class="memdesc:aea15ba68adbffc9c6ad07d321d1aab8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this catalog entry matches another within the standard tolerances.  <br /></td></tr>
 <tr class="memitem:a7831a2379b0c26f06b17603c60181cb4" id="r_a7831a2379b0c26f06b17603c60181cb4"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Equatorial.html">Equatorial</a>&#160;</td><td class="memItemRight"><a class="el" href="#a7831a2379b0c26f06b17603c60181cb4">equatorial</a> () const</td></tr>
 <tr class="memdesc:a7831a2379b0c26f06b17603c60181cb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the equatorial catalog coordinates of this source.  <br /></td></tr>
 <tr class="memitem:a7328f5c19c2322279e2a3300f4ba2775" id="r_a7328f5c19c2322279e2a3300f4ba2775"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name</a> () const</td></tr>
 <tr class="memdesc:a7328f5c19c2322279e2a3300f4ba2775"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the catalog name that was defined.  <br /></td></tr>
+<tr class="memitem:af152dc6910628c79e66b037a9c1c32d1" id="r_af152dc6910628c79e66b037a9c1c32d1"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af152dc6910628c79e66b037a9c1c32d1">operator!=</a> (const <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;other) const</td></tr>
+<tr class="memdesc:af152dc6910628c79e66b037a9c1c32d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this catalog entry differs from another within.  <br /></td></tr>
+<tr class="memitem:aed726647068daa524984df401f1a118f" id="r_aed726647068daa524984df401f1a118f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aed726647068daa524984df401f1a118f">operator==</a> (const <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;other) const</td></tr>
+<tr class="memdesc:aed726647068daa524984df401f1a118f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this catalog entry matches another within the standard tolerances.  <br /></td></tr>
 <tr class="memitem:aa416d2c477d74c3eccd9ca0546289d6a" id="r_aa416d2c477d74c3eccd9ca0546289d6a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a">parallax</a> () const</td></tr>
 <tr class="memdesc:aa416d2c477d74c3eccd9ca0546289d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the parallax of the source.  <br /></td></tr>
 <tr class="memitem:a12c8a591d4f709fe890859a1477fa23f" id="r_a12c8a591d4f709fe890859a1477fa23f"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a12c8a591d4f709fe890859a1477fa23f">parallax</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;angle)</td></tr>
@@ -250,7 +256,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#aa4101d906d7943a36a1b6b5363bfb731">supernovas::Equatorial::dec()</a>, <a class="el" href="classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be">supernovas::Angle::deg()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#a6ed469439452805722b5954a1cfc7540">supernovas::TimeAngle::hours()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#a7328f5c19c2322279e2a3300f4ba2775">name()</a>, <a class="el" href="novas_8h.html#af0137aa791dd29278904e53498fb9515">novas_init_cat_entry()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ac1b78ee76a1f5232986ff8e863daf9fb">supernovas::Equatorial::ra()</a>, and <a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf">system()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#ada56785cc68a5a3b830cc5ef704f51cc">CatalogEntry()</a>, <a class="el" href="#ae4368af65404acdfeaa1365e12ac2f2f">CatalogEntry()</a>, <a class="el" href="#a82a4ce2d55312b948ac6e12e8987e711">distance()</a>, <a class="el" href="#ada8963b72d2eb9de0a8476b5ba6f3061">distance()</a>, <a class="el" href="#a12c8a591d4f709fe890859a1477fa23f">parallax()</a>, <a class="el" href="#a7ebe4ac151e5af4e68c55c87f18799ed">parallax()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055">proper_motion()</a>, <a class="el" href="#ac7683860c2c02efa78a07beab752adbe">radial_velocity()</a>, <a class="el" href="#aecae9979ad82c997b2a4e674e7f20741">radial_velocity()</a>, <a class="el" href="#a9e0a05b1eed0c217932181f7b8a843d4">redshift()</a>, <a class="el" href="#a74120ab096b8a9db05ebb87e6dce8f84">v_lsr()</a>, and <a class="el" href="#a5abe557f04d1f2ed2dccdaac1e2c0b4b">v_lsr()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#ada56785cc68a5a3b830cc5ef704f51cc">CatalogEntry()</a>, <a class="el" href="#ae4368af65404acdfeaa1365e12ac2f2f">CatalogEntry()</a>, <a class="el" href="#a82a4ce2d55312b948ac6e12e8987e711">distance()</a>, <a class="el" href="#ada8963b72d2eb9de0a8476b5ba6f3061">distance()</a>, <a class="el" href="#aea15ba68adbffc9c6ad07d321d1aab8e">equals()</a>, <a class="el" href="#af152dc6910628c79e66b037a9c1c32d1">operator!=()</a>, <a class="el" href="#aed726647068daa524984df401f1a118f">operator==()</a>, <a class="el" href="#a12c8a591d4f709fe890859a1477fa23f">parallax()</a>, <a class="el" href="#a7ebe4ac151e5af4e68c55c87f18799ed">parallax()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055">proper_motion()</a>, <a class="el" href="#ac7683860c2c02efa78a07beab752adbe">radial_velocity()</a>, <a class="el" href="#aecae9979ad82c997b2a4e674e7f20741">radial_velocity()</a>, <a class="el" href="#a9e0a05b1eed0c217932181f7b8a843d4">redshift()</a>, <a class="el" href="#a74120ab096b8a9db05ebb87e6dce8f84">v_lsr()</a>, and <a class="el" href="#a5abe557f04d1f2ed2dccdaac1e2c0b4b">v_lsr()</a>.</p>
 
 </div>
 </div>
@@ -533,6 +539,49 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aea15ba68adbffc9c6ad07d321d1aab8e" name="aea15ba68adbffc9c6ad07d321d1aab8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea15ba68adbffc9c6ad07d321d1aab8e">&#9670;&#160;</a></span>equals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::CatalogEntry::equals </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this catalog entry matches another within the standard tolerances. </p>
+<p>For two catalog entries to be equals, they must have matching:</p>
+<ul>
+<li>names (case sensitive)</li>
+<li>catalog IDs (case sensitive)</li>
+<li>numerical IDs</li>
+<li>coordinates within 1 &mu;as.</li>
+<li>proper motions to within 1 &mu;as / century.</li>
+<li>parallaxes to within 10<sup>-4</sup> % of their geometric mean.</li>
+<li>radial velocities to withing 1 mm/s.</li>
+</ul>
+<p>Note, that a catalog entry may not equal itself if it contains NAN or infinite components.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other catalog entry. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if both catalog entries essentially describe the same source, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aed726647068daa524984df401f1a118f" title="Checks if this catalog entry matches another within the standard tolerances.">operator==()</a>, <a class="el" href="#af152dc6910628c79e66b037a9c1c32d1" title="Checks if this catalog entry differs from another within.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, and <a class="el" href="novas_8h.html#add575c796128069aa35085c617056a11">novas_equals_cat_entry()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#af152dc6910628c79e66b037a9c1c32d1">operator!=()</a>, and <a class="el" href="#aed726647068daa524984df401f1a118f">operator==()</a>.</p>
+
+</div>
+</div>
 <a id="a7831a2379b0c26f06b17603c60181cb4" name="a7831a2379b0c26f06b17603c60181cb4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7831a2379b0c26f06b17603c60181cb4">&#9670;&#160;</a></span>equatorial()</h2>
 
@@ -580,6 +629,68 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd>number() </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#ada56785cc68a5a3b830cc5ef704f51cc">CatalogEntry()</a>, <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="#ae4368af65404acdfeaa1365e12ac2f2f">CatalogEntry()</a>, and <a class="el" href="#a809dd3e1a781361694cc1332d5e1f363">to_string()</a>.</p>
+
+</div>
+</div>
+<a id="af152dc6910628c79e66b037a9c1c32d1" name="af152dc6910628c79e66b037a9c1c32d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af152dc6910628c79e66b037a9c1c32d1">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::CatalogEntry::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this catalog entry differs from another within. </p>
+<p>Same as <span class="tt">!equals()</span>. See <span class="tt"><a class="el" href="#aea15ba68adbffc9c6ad07d321d1aab8e" title="Checks if this catalog entry matches another within the standard tolerances.">equals()</a></span> for details of the comparisons performed.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other catalog entry. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this catalog entry and the argument describe two distinct sources, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aea15ba68adbffc9c6ad07d321d1aab8e" title="Checks if this catalog entry matches another within the standard tolerances.">equals()</a>, <a class="el" href="#af152dc6910628c79e66b037a9c1c32d1" title="Checks if this catalog entry differs from another within.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, and <a class="el" href="#aea15ba68adbffc9c6ad07d321d1aab8e">equals()</a>.</p>
+
+</div>
+</div>
+<a id="aed726647068daa524984df401f1a118f" name="aed726647068daa524984df401f1a118f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed726647068daa524984df401f1a118f">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::CatalogEntry::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>other</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this catalog entry matches another within the standard tolerances. </p>
+<p>See <span class="tt"><a class="el" href="#aea15ba68adbffc9c6ad07d321d1aab8e" title="Checks if this catalog entry matches another within the standard tolerances.">equals()</a></span> for details.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>the other catalog entry. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if both catalog entries essentially describe the same source, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aea15ba68adbffc9c6ad07d321d1aab8e" title="Checks if this catalog entry matches another within the standard tolerances.">equals()</a>, <a class="el" href="#af152dc6910628c79e66b037a9c1c32d1" title="Checks if this catalog entry differs from another within.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, and <a class="el" href="#aea15ba68adbffc9c6ad07d321d1aab8e">equals()</a>.</p>
 
 </div>
 </div>

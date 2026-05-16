@@ -140,6 +140,8 @@ Macros</h2></td></tr>
 <tr class="memdesc:gaddf3ffbfe4ed05288b689e861600194f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty initializer for <a class="el" href="structnovas__timespec.html" title="A structure, which defines a precise instant of time that can be extpressed in any of the astronomica...">novas_timespec</a>.  <br /></td></tr>
 <tr class="memitem:ga16b986f7c91252932ecb74c344525397" id="r_ga16b986f7c91252932ecb74c344525397"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga16b986f7c91252932ecb74c344525397">NOVAS_TROPICAL_YEAR_DAYS</a>&#160;&#160;&#160;365.2421897</td></tr>
 <tr class="memdesc:ga16b986f7c91252932ecb74c344525397"><td class="mdescLeft">&#160;</td><td class="mdescRight">[day] The length of a tropical year (at J2000) in days.  <br /></td></tr>
+<tr class="memitem:gacb9c6b9922edfc6971ceb6304cb945f9" id="r_gacb9c6b9922edfc6971ceb6304cb945f9"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#gacb9c6b9922edfc6971ceb6304cb945f9">UNIX_SECONDS_0UTC_1JAN2000</a>&#160;&#160;&#160;946684800L</td></tr>
+<tr class="memdesc:gacb9c6b9922edfc6971ceb6304cb945f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">[s] UNIX time at 0 UTC, 1 Jan 2000.0  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -202,6 +204,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:gab23af98e7a63ce54c6a8d2534e07dc36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the UT1 based time difference (t1 - t2) in days between two astronomical time specifications.  <br /></td></tr>
 <tr class="memitem:gaf4e18885b7d173eb3fe5f18b06f0b4d4" id="r_gaf4e18885b7d173eb3fe5f18b06f0b4d4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gaf4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch</a> (const char *restrict system)</td></tr>
 <tr class="memdesc:gaf4e18885b7d173eb3fe5f18b06f0b4d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Julian day corresponding to an astronomical coordinate epoch.  <br /></td></tr>
+<tr class="memitem:gaae271d900ea6af740c16d90693c51169" id="r_gaae271d900ea6af740c16d90693c51169"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gaae271d900ea6af740c16d90693c51169">novas_equals_timespec</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *a, const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *b)</td></tr>
+<tr class="memdesc:gaae271d900ea6af740c16d90693c51169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two time specifications are the same within 10<sup>-7</sup> days (~100 &mu;s).  <br /></td></tr>
 <tr class="memitem:ga273fd76d83b8e04ced14558c69fd175c" id="r_ga273fd76d83b8e04ced14558c69fd175c"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga273fd76d83b8e04ced14558c69fd175c">novas_frame_lst</a> (const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame)</td></tr>
 <tr class="memdesc:ga273fd76d83b8e04ced14558c69fd175c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Local (apparent) Sidereal Time for an observing frame of an Earth-bound observer.  <br /></td></tr>
 <tr class="memitem:ga32d8336084b65fac14d092ab6198c27d" id="r_ga32d8336084b65fac14d092ab6198c27d"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga32d8336084b65fac14d092ab6198c27d">novas_get_split_time</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time, enum <a class="el" href="#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale, long *restrict ijd)</td></tr>
@@ -383,7 +387,7 @@ Functions</h2></td></tr>
 
 <p>[day] Julian date at J2000 </p>
 
-<p class="reference">Referenced by <a class="el" href="group__equatorial.html#ga75de6cca190c5fbc3056db726f317c7f">gcrs_to_mod()</a>, <a class="el" href="group__equatorial.html#gad9cc07f0e6af9339096e15a440b113e5">mod_to_gcrs()</a>, <a class="el" href="#ga7ee576309aa1977e9b2a3824286f725c">novas_day_of_week()</a>, <a class="el" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#gaf4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch()</a>, <a class="el" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="group__spectral.html#gaad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel()</a>, <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="group__source.html#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="group__nonequatorial.html#ga7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="group__geometric.html#ga8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="#gad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase()</a>, <a class="el" href="group__spectral.html#ga99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel()</a>, <a class="el" href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt()</a>, <a class="el" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>, and <a class="el" href="#gad301a9c74bfbdb8b55513cd005787b22">tt2tdb_fp()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__equatorial.html#ga75de6cca190c5fbc3056db726f317c7f">gcrs_to_mod()</a>, <a class="el" href="group__equatorial.html#gad9cc07f0e6af9339096e15a440b113e5">mod_to_gcrs()</a>, <a class="el" href="#ga7ee576309aa1977e9b2a3824286f725c">novas_day_of_week()</a>, <a class="el" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#gaf4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch()</a>, <a class="el" href="group__earth.html#ga4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix()</a>, <a class="el" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="group__spectral.html#gaad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel()</a>, <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="group__source.html#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="group__nonequatorial.html#ga7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="group__geometric.html#ga8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="#gad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase()</a>, <a class="el" href="group__spectral.html#ga99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel()</a>, <a class="el" href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt()</a>, <a class="el" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>, and <a class="el" href="#gad301a9c74bfbdb8b55513cd005787b22">tt2tdb_fp()</a>.</p>
 
 </div>
 </div>
@@ -491,6 +495,25 @@ Functions</h2></td></tr>
 
 <p>[day] The length of a tropical year (at J2000) in days. </p>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
+
+</div>
+</div>
+<a id="gacb9c6b9922edfc6971ceb6304cb945f9" name="gacb9c6b9922edfc6971ceb6304cb945f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb9c6b9922edfc6971ceb6304cb945f9">&#9670;&#160;</a></span>UNIX_SECONDS_0UTC_1JAN2000</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define UNIX_SECONDS_0UTC_1JAN2000&#160;&#160;&#160;946684800L</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[s] UNIX time at 0 UTC, 1 Jan 2000.0 </p>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__earth.html#ga4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix()</a>.</p>
 
 </div>
 </div>
@@ -1190,6 +1213,48 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="gaae271d900ea6af740c16d90693c51169" name="gaae271d900ea6af740c16d90693c51169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaae271d900ea6af740c16d90693c51169">&#9670;&#160;</a></span>novas_equals_timespec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_timespec </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two time specifications are the same within 10<sup>-7</sup> days (~100 &mu;s). </p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) time specifications are considered not equal.</li>
+<li>A time specification may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one of the time specs </td></tr>
+    <tr><td class="paramname">b</td><td>the other time spec </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two time specifications match to within 100 &mu;s, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__timespec.html#a1e5a8481119ea7e5d982a016f25ecca6">novas_timespec::dut1</a>, <a class="el" href="structnovas__timespec.html#a3f8d4d66cf47cf65168657b2c309652c">novas_timespec::fjd_tt</a>, <a class="el" href="structnovas__timespec.html#afab74bb3269be2c4a8df484c3dbadb35">novas_timespec::ijd_tt</a>, <a class="el" href="structnovas__timespec.html#a465928f4083f7c53635ceb06033c68f2">novas_timespec::tt2tdb</a>, and <a class="el" href="structnovas__timespec.html#a75467e1db6ec68f1828cd010efefe469">novas_timespec::ut1_to_tt</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__frame.html#gaa6e8919a917e071f67bb1d7d84fe6131">novas_equals_frame()</a>.</p>
+
+</div>
+</div>
 <a id="ga273fd76d83b8e04ced14558c69fd175c" name="ga273fd76d83b8e04ced14558c69fd175c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga273fd76d83b8e04ced14558c69fd175c">&#9670;&#160;</a></span>novas_frame_lst()</h2>
 
@@ -1311,7 +1376,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="#ga32d8336084b65fac14d092ab6198c27d">novas_get_split_time()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a>, <a class="el" href="group__frame.html#ga2972b3eafa2d7f6c29cff34bad9fcf0d">novas_change_observer()</a>, <a class="el" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="group__geometric.html#ga8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="group__geometric.html#ga65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="group__interferometry.html#gaa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw()</a>, and <a class="el" href="group__earth.html#gaaf53fcad3fade814381cef3d06779a8c">novas_time_gst()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a>, <a class="el" href="group__frame.html#ga2972b3eafa2d7f6c29cff34bad9fcf0d">novas_change_observer()</a>, <a class="el" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="group__geometric.html#ga8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="group__geometric.html#ga65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="group__interferometry.html#gaa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw()</a>, and <a class="el" href="group__earth.html#gaaf53fcad3fade814381cef3d06779a8c">novas_time_gst()</a>.</p>
 
 </div>
 </div>
@@ -1805,8 +1870,8 @@ Functions</h2></td></tr>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be unused if <span class="tt">dut1</span> is NAN &ndash; see below). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. If <span class="tt">dut1</span> is NAN, and <span class="tt"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255" title="Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.">novas_is_auto_fetch_eop()</a></span> is TRUE then both <span class="tt">leap</span> and <span class="tt">dut1</span> will be fetched from IERS if possible. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
@@ -1814,7 +1879,9 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#ga9d54ea7c6cdbc75ee78cf552a7e1858d">novas_set_unix_time()</a>.</p>
 
@@ -1876,8 +1943,8 @@ Functions</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the Julian Date is given </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ijd</td><td>[day] integer part of the Julian day in the specified timescale </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">fjd</td><td>[day] fractional part Julian day value in the specified timescale </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be unused if <span class="tt">dut1</span> is NAN &ndash; see below). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. If <span class="tt">dut1</span> is NAN and <span class="tt"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255" title="Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.">novas_is_auto_fetch_eop()</a></span> is TRUE, then both <span class="tt">leap</span> and <span class="tt">dut1</span> will be fetched from IERS if possible. Note, that prior to 1956 IERS does not provide UT1-UTC difference. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
@@ -1885,9 +1952,11 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="#ga9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a>, <a class="el" href="#ga32d8336084b65fac14d092ab6198c27d" title="Returns the fractional Julian date of an astronomical time in the specified timescale,...">novas_get_split_time()</a>, <a class="el" href="#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="group__earth.html#ga9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="#ga9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a>, <a class="el" href="#ga32d8336084b65fac14d092ab6198c27d" title="Returns the fractional Julian date of an astronomical time in the specified timescale,...">novas_get_split_time()</a>, <a class="el" href="#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="group__earth.html#ga9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4">NOVAS_TCB</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="novas_8h.html#a7505fe27b163e97b60bcf4406eadffa7">NOVAS_TIMESCALES</a>, and <a class="el" href="#ga5709058076f4aea4eeaeeb000342cd94">tt2tdb_hp()</a>.</p>
+<p class="reference">References <a class="el" href="structnovas__eop.html#aa7dc31267da0f16593948531081b9c20">novas_eop::dut1</a>, <a class="el" href="structnovas__eop.html#ab16f1e9735ea4825852497ab33b3ebf3">novas_eop::leap</a>, <a class="el" href="group__earth.html#ga087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop()</a>, <a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255">novas_is_auto_fetch_eop()</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0ba8301aa6dff381beba373826e137c88c4">NOVAS_TCB</a>, <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="novas_8h.html#a7505fe27b163e97b60bcf4406eadffa7">NOVAS_TIMESCALES</a>, and <a class="el" href="#ga5709058076f4aea4eeaeeb000342cd94">tt2tdb_hp()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb">novas_set_time()</a>, and <a class="el" href="#ga9d54ea7c6cdbc75ee78cf552a7e1858d">novas_set_unix_time()</a>.</p>
 
@@ -1933,8 +2002,8 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the Julian Date is given </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">str</td><td>The astronomical date specification, possibly including time and timezone, in a standard format. The date is assumed to be in the astronomical calendar of date, which differs from ISO 8601 timestamps for dates prior to the Gregorian calendar reform of 1582 October 15 (otherwise, the two are identical). See <span class="tt"><a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a></span> for more on acceptable formats. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides). If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be unused if <span class="tt">dut1</span> is NAN &ndash; see below). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides). If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. If <span class="tt">dut1</span> is NAN, and <span class="tt"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255" title="Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.">novas_is_auto_fetch_eop()</a></span> is TRUE then both <span class="tt">leap</span> and <span class="tt">dut1</span> will be fetched from IERS if possible. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
@@ -1942,7 +2011,9 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4">novas_parse_date()</a>, and <a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb">novas_set_time()</a>.</p>
 
@@ -1988,8 +2059,8 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the Julian Date is given </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">jd</td><td>[day] Julian day value in the specified timescale </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides). If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be unused if <span class="tt">dut1</span> is NAN &ndash; see below). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides). If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. If <span class="tt">dut1</span> is NAN, and <span class="tt"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255" title="Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.">novas_is_auto_fetch_eop()</a></span> is TRUE then both <span class="tt">leap</span> and <span class="tt">dut1</span> will be fetched from IERS if possible. Note, that prior to 1956 IERS does not provide UT1-UTC difference. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
@@ -1997,7 +2068,9 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad47bcb1e3c5df56a0ffdf1a127e52598" title="Sets an astronomical time to the split Julian Date value, defined in the specified timescale.">novas_set_split_time()</a>, <a class="el" href="#ga9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a>, <a class="el" href="#ga4b5b82161f8eb474aaa650815b7ca66f" title="Sets astronomical time in a specific timescale using a string specification.">novas_set_str_time()</a>, <a class="el" href="#ga090f608cd5c82622e3534297fc27daa5" title="Sets the time eith the UNIX time obtained from the system clock.">novas_set_current_time()</a>, <a class="el" href="#gae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a>, <a class="el" href="#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="group__earth.html#ga9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad47bcb1e3c5df56a0ffdf1a127e52598" title="Sets an astronomical time to the split Julian Date value, defined in the specified timescale.">novas_set_split_time()</a>, <a class="el" href="#ga9d54ea7c6cdbc75ee78cf552a7e1858d" title="Sets an astronomical time to a UNIX time value.">novas_set_unix_time()</a>, <a class="el" href="#ga4b5b82161f8eb474aaa650815b7ca66f" title="Sets astronomical time in a specific timescale using a string specification.">novas_set_str_time()</a>, <a class="el" href="#ga090f608cd5c82622e3534297fc27daa5" title="Sets the time eith the UNIX time obtained from the system clock.">novas_set_current_time()</a>, <a class="el" href="#gae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a>, <a class="el" href="#gab344242721ca00709d4dc482a7934e2a" title="Returns the timescale constant for a string that denotes the timescale in with a standard abbreviatio...">novas_timescale_for_string()</a>, <a class="el" href="group__earth.html#ga9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#gad47bcb1e3c5df56a0ffdf1a127e52598">novas_set_split_time()</a>.</p>
 
@@ -2045,8 +2118,8 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">unix_time</td><td>[s] UNIX time (UTC) seconds </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">nanos</td><td>[ns] UTC sub-second component </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">leap</td><td>[s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be unused if <span class="tt">dut1</span> is NAN &ndash; see below). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">dut1</td><td>[s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A (without diurnal corrections for libration and ocean tides), If the time offset is defined for a different ITRS realization than what is used for the coordinates of an Earth-based observer, you can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to make it consistent. If <span class="tt">dut1</span> is NAN, and <span class="tt"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255" title="Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.">novas_is_auto_fetch_eop()</a></span> is TRUE then both <span class="tt">leap</span> and <span class="tt">dut1</span> will be fetched from IERS if possible. Note, that prior to 1956 IERS does not provide UT1-UTC difference. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>Pointer to the data structure that uniquely defines the astronomical time for all applications. </td></tr>
   </table>
   </dd>
@@ -2054,7 +2127,9 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if there was an error (errno will be set to indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga090f608cd5c82622e3534297fc27daa5" title="Sets the time eith the UNIX time obtained from the system clock.">novas_set_current_time()</a>, <a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="#gafa1a1d804ca70050418429f971c2045a" title="Returns the UNIX time for an astronomical time instant.">novas_get_unix_time()</a>, <a class="el" href="group__earth.html#ga9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga090f608cd5c82622e3534297fc27daa5" title="Sets the time eith the UNIX time obtained from the system clock.">novas_set_current_time()</a>, <a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="#gafa1a1d804ca70050418429f971c2045a" title="Returns the UNIX time for an astronomical time instant.">novas_get_unix_time()</a>, <a class="el" href="group__earth.html#ga9fc52f6fd358463d0c1ca7aa651e65f6" title="Calculate corrections to the Earth orientation parameters (EOP) due to short term (diurnal and semidi...">novas_diurnal_eop()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#gad47bcb1e3c5df56a0ffdf1a127e52598">novas_set_split_time()</a>, and <a class="el" href="#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>.</p>
 
@@ -2384,12 +2459,12 @@ Functions</h2></td></tr>
 <p>It has a maximum error of 10 &mu;s between for dates 1600 and 2200.</p>
 <p>This function is wrapped by <span class="tt"><a class="el" href="#ga129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a></span>, which is typically a lot easier to use as it returns the time difference directly, which can then be used to convert time in both directions with greater ease. For exable to convert a TT-based date to a TDB-based date:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> TDB = TT + <a class="code hl_function" href="#ga129acca41760da486e1179c93cb9e86d">tt2tdb</a>(TT) / 86400.0;</div>
-<div class="ttc" id="agroup__time_html_ga129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="#ga129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:163</div></div>
+<div class="ttc" id="agroup__time_html_ga129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="#ga129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:162</div></div>
 </div><!-- fragment --><p>is equivalent to:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> dt;</div>
 <div class="line"><a class="code hl_function" href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt</a>(TT, NULL, &amp;dt);   <span class="comment">// Uses TT input so don&#39;t attempt to calculate TT here...</span></div>
 <div class="line"><span class="keywordtype">double</span> TDB = TT + dt / 86400.0;</div>
-<div class="ttc" id="agroup__time_html_ga90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:121</div></div>
+<div class="ttc" id="agroup__time_html_ga90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:120</div></div>
 </div><!-- fragment --><p>NOTES:</p>
 <ol type="1">
 <li>This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.</li>

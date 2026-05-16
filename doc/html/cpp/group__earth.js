@@ -14,5 +14,12 @@ var group__earth =
     ] ],
     [ "novas_nutation_provider", "group__earth.html#ga1f0e319630e7a47f17247bf51f7bf36c", null ],
     [ "get_nutation_lp_provider", "group__earth.html#ga416a96426a0b3c52c1d5fc6452357366", null ],
+    [ "novas_get_eop_itrf_year", "group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8", null ],
+    [ "novas_get_eop_url", "group__earth.html#gaaacc7748d90e01bb53ace4dc330ffa65", null ],
+    [ "novas_is_auto_fetch_eop", "group__earth.html#gad1e07eedd32cbf4f1160624c74a99255", null ],
+    [ "novas_lookup_leap", "group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465", null ],
+    [ "novas_set_auto_fetch_eop", "group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553", null ],
+    [ "novas_set_eop_url", "group__earth.html#ga30319d4fc323f4f42d199e454abf0aef", null ],
+    [ "novas_set_leap_list", "group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7", null ],
     [ "set_nutation_lp_provider", "group__earth.html#ga694288eb631d6a69ecf313b7b5b4a677", null ]
 ];

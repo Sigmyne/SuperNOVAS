@@ -7,6 +7,8 @@ var classsupernovas_1_1Galactic =
     [ "distance_to", "classsupernovas_1_1Galactic.html#a88e6b56ab310eb504ac5633dc7fa0cd4", null ],
     [ "equals", "classsupernovas_1_1Galactic.html#a6cc82f8c0d204efe9ca4a9f803ea6267", null ],
     [ "equals", "classsupernovas_1_1Galactic.html#a9c84c27b2d4926fab89cfd13f8983ca4", null ],
+    [ "offset", "classsupernovas_1_1Galactic.html#aa10fb2678882d8e11bee229655f5b066", null ],
+    [ "offset", "classsupernovas_1_1Galactic.html#ab8f594a3b3721ec86fae5939ba9247c0", null ],
     [ "operator!=", "classsupernovas_1_1Galactic.html#afc45bc27fb00d28df964ad23cef41bcb", null ],
     [ "operator==", "classsupernovas_1_1Galactic.html#a0f9bf04fae88e2f67ec4ffc727a300a0", null ],
     [ "to_ecliptic", "classsupernovas_1_1Galactic.html#a3b6d652ed174bcf1be08cae63b061b21", null ],

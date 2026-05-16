@@ -190,6 +190,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga7479134485c298faa858d73ee0513a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipsoid.  <br /></td></tr>
 <tr class="memitem:ga2bfff0a80ee078a45bc4301cd1ad8299" id="r_ga2bfff0a80ee078a45bc4301cd1ad8299"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga2bfff0a80ee078a45bc4301cd1ad8299">novas_enu_to_itrs</a> (const double *enu, double lon, double lat, double *itrf)</td></tr>
 <tr class="memdesc:ga2bfff0a80ee078a45bc4301cd1ad8299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an East-North-Up (ENU) vector at the specified site to an ITRS vector.  <br /></td></tr>
+<tr class="memitem:gad7850313f8104494d4bd9b5edf8b32b8" id="r_gad7850313f8104494d4bd9b5edf8b32b8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gad7850313f8104494d4bd9b5edf8b32b8">novas_equals_near_earth</a> (const <a class="el" href="#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *a, const <a class="el" href="#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *b)</td></tr>
+<tr class="memdesc:gad7850313f8104494d4bd9b5edf8b32b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two near-Earth locations and motions match within 1 mm and 1 mm/s, respectively.  <br /></td></tr>
+<tr class="memitem:ga6799b84431fcffb40ebe78c47bf65726" id="r_ga6799b84431fcffb40ebe78c47bf65726"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga6799b84431fcffb40ebe78c47bf65726">novas_equals_observer</a> (const <a class="el" href="#gae7963c522d28ce6891b472e079307d03">observer</a> *a, const <a class="el" href="#gae7963c522d28ce6891b472e079307d03">observer</a> *b)</td></tr>
+<tr class="memdesc:ga6799b84431fcffb40ebe78c47bf65726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two observers are essentially the same within the tolerances associated to their defining components.  <br /></td></tr>
+<tr class="memitem:ga1d66a855aafa8e8a837d428c501d1756" id="r_ga1d66a855aafa8e8a837d428c501d1756"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga1d66a855aafa8e8a837d428c501d1756">novas_equals_on_surface</a> (const <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *a, const <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *b)</td></tr>
+<tr class="memdesc:ga1d66a855aafa8e8a837d428c501d1756"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two geodetic locations, and the weather parameters defined for them, match.  <br /></td></tr>
+<tr class="memitem:gaadbd55afe0e21d486c52d319a8e8e6d3" id="r_gaadbd55afe0e21d486c52d319a8e8e6d3"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gaadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel</a> (const <a class="el" href="#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *a, const <a class="el" href="#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *b)</td></tr>
+<tr class="memdesc:gaadbd55afe0e21d486c52d319a8e8e6d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two Solar-system locations and motions match within 1 m and ~1 mm/s, respectively.  <br /></td></tr>
 <tr class="memitem:gab07d86d425d68a62e94e965dd36b7a32" id="r_gab07d86d425d68a62e94e965dd36b7a32"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gab07d86d425d68a62e94e965dd36b7a32">novas_geodetic_to_cartesian</a> (double lon, double lat, double alt, enum <a class="el" href="#ga5928ca4a09c2883b58e951a4582255b3">novas_reference_ellipsoid</a> ellipsoid, double *xyz)</td></tr>
 <tr class="memdesc:gab07d86d425d68a62e94e965dd36b7a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference ellipsoid.  <br /></td></tr>
 <tr class="memitem:gadcd71f60a1f042af1eb7103134fad8c4" id="r_gadcd71f60a1f042af1eb7103134fad8c4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gadcd71f60a1f042af1eb7103134fad8c4">novas_geodetic_transform_site</a> (enum <a class="el" href="#ga5928ca4a09c2883b58e951a4582255b3">novas_reference_ellipsoid</a> from_ellipsoid, const <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *in, enum <a class="el" href="#ga5928ca4a09c2883b58e951a4582255b3">novas_reference_ellipsoid</a> to_ellipsoid, <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *out)</td></tr>
@@ -1218,6 +1226,187 @@ novas_set_weather(), <a class="el" href="#ga7479134485c298faa858d73ee0513a11" ti
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga8e7cb3d7902bbecdb9329bf584950367" title="Converts an ITRS position vector to a local East-North-Up (ENU) vector at the specified site.">novas_itrs_to_enu()</a> </dd></dl>
+
+</div>
+</div>
+<a id="gad7850313f8104494d4bd9b5edf8b32b8" name="gad7850313f8104494d4bd9b5edf8b32b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad7850313f8104494d4bd9b5edf8b32b8">&#9670;&#160;</a></span>novas_equals_near_earth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_near_earth </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two near-Earth locations and motions match within 1 mm and 1 mm/s, respectively. </p>
+<p>Such near-Earth data structures are used by airborne observers or observers in Earth orbit.</p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) structures are considered not equal.</li>
+<li>A near-Earth position/velocity structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one near-Earth position/velocity data structure </td></tr>
+    <tr><td class="paramname">b</td><td>another near-Earth position/velocity data structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two near-Earth positions and velocities match within 1 mm and 1 mm/s, respectively.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaadbd55afe0e21d486c52d319a8e8e6d3" title="Checks if two Solar-system locations and motions match within 1 m and ~1 mm/s, respectively.">novas_equals_ssb_posvel()</a>, <a class="el" href="#ga6799b84431fcffb40ebe78c47bf65726" title="Checks if two observers are essentially the same within the tolerances associated to their defining c...">novas_equals_observer()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__util.html#ga876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector()</a>, <a class="el" href="structnovas__in__space.html#a437105d9ff690d4d5b51fae9076c9d0a">novas_in_space::sc_pos</a>, and <a class="el" href="structnovas__in__space.html#ab4a55b14aa16bcbc5ca3bdc1a6d078af">novas_in_space::sc_vel</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga6799b84431fcffb40ebe78c47bf65726">novas_equals_observer()</a>.</p>
+
+</div>
+</div>
+<a id="ga6799b84431fcffb40ebe78c47bf65726" name="ga6799b84431fcffb40ebe78c47bf65726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6799b84431fcffb40ebe78c47bf65726">&#9670;&#160;</a></span>novas_equals_observer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_observer </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#gae7963c522d28ce6891b472e079307d03">observer</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#gae7963c522d28ce6891b472e079307d03">observer</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two observers are essentially the same within the tolerances associated to their defining components. </p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) observers are considered not equal.</li>
+<li>An observer structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>an observer data structure </td></tr>
+    <tr><td class="paramname">b</td><td>another observer data structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two data structures describe effectively the same observer location, within the typical tolerances associated to them, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__observer.html#a1d62a0649b551e6ce86160c950d551dd">novas_observer::near_earth</a>, <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3a1665bf146ca1a4d11380bf4d7d9d7058">NOVAS_AIRBORNE_OBSERVER</a>, <a class="el" href="#gad7850313f8104494d4bd9b5edf8b32b8">novas_equals_near_earth()</a>, <a class="el" href="#ga1d66a855aafa8e8a837d428c501d1756">novas_equals_on_surface()</a>, <a class="el" href="#gaadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel()</a>, <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3aca54b3a0c7d5b31d09090a1f55ff72b2">NOVAS_OBSERVER_AT_GEOCENTER</a>, <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3aca418efc57ac159cf541c324c008eb27">NOVAS_OBSERVER_IN_EARTH_ORBIT</a>, <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3aadb64b75d1bf5344760b942f241e52e8">NOVAS_OBSERVER_ON_EARTH</a>, <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3a82474207bac139bc2a8826b9d317a42c">NOVAS_SOLAR_SYSTEM_OBSERVER</a>, <a class="el" href="structnovas__observer.html#a836c3e0f5d8c99e16e0d04d1519e9e27">novas_observer::on_surf</a>, and <a class="el" href="structnovas__observer.html#afc58c314cdec95813c00a0e0ffa636d0">novas_observer::where</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__frame.html#gaa6e8919a917e071f67bb1d7d84fe6131">novas_equals_frame()</a>.</p>
+
+</div>
+</div>
+<a id="ga1d66a855aafa8e8a837d428c501d1756" name="ga1d66a855aafa8e8a837d428c501d1756"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1d66a855aafa8e8a837d428c501d1756">&#9670;&#160;</a></span>novas_equals_on_surface()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_on_surface </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two geodetic locations, and the weather parameters defined for them, match. </p>
+<p>For two <span class="tt"><a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a></span> structures to be equal, they must have matching:</p>
+<ul>
+<li>longitude and latitude angles to within 1 &mu;as.</li>
+<li>altitudes within 1 mm.</li>
+<li>temperatures within 1 mK.</li>
+<li>pressures within 1 &mu;bar</li>
+<li>humidities within 0.001 %</li>
+</ul>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) structures are considered not equal.</li>
+<li>A geodetic location + local weather structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one geodetic location (with weather) </td></tr>
+    <tr><td class="paramname">b</td><td>another geodetic location (with weather) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two locations and their weather parameters match within the described tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga6799b84431fcffb40ebe78c47bf65726" title="Checks if two observers are essentially the same within the tolerances associated to their defining c...">novas_equals_observer()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__on__surface.html#ae88d1b0111ef62d14083ec38995d8ea9">novas_on_surface::height</a>, <a class="el" href="structnovas__on__surface.html#ab14268ef249dcf88ac13d0856cb2d8e2">novas_on_surface::humidity</a>, <a class="el" href="structnovas__on__surface.html#a77f70abeb6c896623a85b1bdf8861151">novas_on_surface::latitude</a>, <a class="el" href="structnovas__on__surface.html#af62107483c0a9ded0168993c1cfd933f">novas_on_surface::longitude</a>, <a class="el" href="structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab">novas_on_surface::pressure</a>, and <a class="el" href="structnovas__on__surface.html#a1fd9464e53f03ebb2cb987aa1a2dc41b">novas_on_surface::temperature</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga6799b84431fcffb40ebe78c47bf65726">novas_equals_observer()</a>.</p>
+
+</div>
+</div>
+<a id="gaadbd55afe0e21d486c52d319a8e8e6d3" name="gaadbd55afe0e21d486c52d319a8e8e6d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaadbd55afe0e21d486c52d319a8e8e6d3">&#9670;&#160;</a></span>novas_equals_ssb_posvel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_ssb_posvel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two Solar-system locations and motions match within 1 m and ~1 mm/s, respectively. </p>
+<p>Such near-Earth data structures are used by observers defined relative to the Solar-System Barycenter (SSB).</p>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) structures are considered not equal.</li>
+<li>A Solar-system position / velocity structure may not equal itself if it contains NAN or infinite components, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>one Solar-system position/velocity data structure </td></tr>
+    <tr><td class="paramname">b</td><td>another Solar-system position/velocity data structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two SSB positions and velocities match within 1 m and ~1 mm/s, respectively.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gad7850313f8104494d4bd9b5edf8b32b8" title="Checks if two near-Earth locations and motions match within 1 mm and 1 mm/s, respectively.">novas_equals_near_earth()</a>, <a class="el" href="#ga6799b84431fcffb40ebe78c47bf65726" title="Checks if two observers are essentially the same within the tolerances associated to their defining c...">novas_equals_observer()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="group__util.html#ga876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector()</a>, <a class="el" href="structnovas__in__space.html#a437105d9ff690d4d5b51fae9076c9d0a">novas_in_space::sc_pos</a>, and <a class="el" href="structnovas__in__space.html#ab4a55b14aa16bcbc5ca3bdc1a6d078af">novas_in_space::sc_vel</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ga6799b84431fcffb40ebe78c47bf65726">novas_equals_observer()</a>.</p>
 
 </div>
 </div>

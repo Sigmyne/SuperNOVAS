@@ -18,6 +18,7 @@ var group__apparent =
     [ "novas_app_to_hor", "group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca", null ],
     [ "novas_approx_sky_pos", "group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62", null ],
     [ "novas_equ_sep", "group__apparent.html#ga4f7e06b2fa5b3145b37aec4f9c2d1602", null ],
+    [ "novas_equals_sky_pos", "group__apparent.html#ga438a2b032c5e2a245a4af642a67a6857", null ],
     [ "novas_moon_angle", "group__apparent.html#ga121940d7f0ef41297d28fab8e6df5998", null ],
     [ "novas_moon_elp_sky_pos", "group__apparent.html#ga03aca2626e38d04bcdf94fae14c6d11c", null ],
     [ "novas_moon_elp_sky_pos_fp", "group__apparent.html#ga59509eb558c0125e9c5081e712f7c3c7", null ],

@@ -8,6 +8,8 @@ var classsupernovas_1_1Equatorial =
     [ "distance_to", "classsupernovas_1_1Equatorial.html#ae01c0ae358aadee5e1649fb20b8c8729", null ],
     [ "equals", "classsupernovas_1_1Equatorial.html#ad9635b846c25ed6ba2047bb0e58cf8de", null ],
     [ "equals", "classsupernovas_1_1Equatorial.html#aacb52f4748ba11e46c1076c217021009", null ],
+    [ "offset", "classsupernovas_1_1Equatorial.html#af60ce8010be7da80363aa66729ae53ad", null ],
+    [ "offset", "classsupernovas_1_1Equatorial.html#a174a4ec5aeff0d91f9e1618cd7558ec9", null ],
     [ "operator!=", "classsupernovas_1_1Equatorial.html#aaa1b8ad19cd55463a37d83b0002cf2ca", null ],
     [ "operator==", "classsupernovas_1_1Equatorial.html#a8139d123f70e65f5a7e64acd944f6f43", null ],
     [ "operator>>", "classsupernovas_1_1Equatorial.html#a2ec0c08c9846c87e997a7f3f4e9aa166", null ],

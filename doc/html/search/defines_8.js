@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['twopi_0',['TWOPI',['../novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a',1,'novas.h']]]
+  ['rad2deg_0',['RAD2DEG',['../novas_8h.html#ac5a945020d3528355cda82d383676736',1,'novas.h']]]
 ];

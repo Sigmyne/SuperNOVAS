@@ -10,6 +10,8 @@ var classsupernovas_1_1Ecliptic =
     [ "equator_type", "classsupernovas_1_1Ecliptic.html#a5b59a6e417879d8df6301b687d6b7602", null ],
     [ "jd", "classsupernovas_1_1Ecliptic.html#a88e41e75dd72ae1afebe3edd9e623771", null ],
     [ "mjd", "classsupernovas_1_1Ecliptic.html#a4fe1ee28ce9c07ee116cad3e765d1416", null ],
+    [ "offset", "classsupernovas_1_1Ecliptic.html#a8725e15586f273e82f82bfe5394910d6", null ],
+    [ "offset", "classsupernovas_1_1Ecliptic.html#a71ab12e9fcedf977e46aca688871f68e", null ],
     [ "operator!=", "classsupernovas_1_1Ecliptic.html#a0e7796dd54094d855565c3985e7d0637", null ],
     [ "operator==", "classsupernovas_1_1Ecliptic.html#aa30d882659dad848f4c0be01f0f08a68", null ],
     [ "operator>>", "classsupernovas_1_1Ecliptic.html#ab34beaf9d178f058ec6b813240cafd48", null ],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['m_5fpi_0',['M_PI',['../novas_8h.html#ae71449b1cc6e6250b91f539153a7a0d3',1,'novas.h']]]
+  ['extern_0',['EXTERN',['../novas_8h.html#a77366c1bd428629dc898e188bfd182a3',1,'novas.h']]]
 ];

@@ -7,9 +7,28 @@ var group__earth =
       [ "l1", "structnovas__delaunay__args.html#a8528d95bd5e3b2ba7f4bc09112907d9f", null ],
       [ "Omega", "structnovas__delaunay__args.html#af6987ccf8afceedd1cd2394a7bdf10b0", null ]
     ] ],
+    [ "novas_eop", "structnovas__eop.html", [
+      [ "dut1", "structnovas__eop.html#aa7dc31267da0f16593948531081b9c20", null ],
+      [ "dut1_err", "structnovas__eop.html#a604eee81022909235d5045a3cbda9e5b", null ],
+      [ "jd", "structnovas__eop.html#affd6c6e56f462ca17a1badb73cf3c907", null ],
+      [ "leap", "structnovas__eop.html#ab16f1e9735ea4825852497ab33b3ebf3", null ],
+      [ "lod", "structnovas__eop.html#ac53ddbbe3c91d0403543273a6380a4b6", null ],
+      [ "lod_err", "structnovas__eop.html#af72647faf3ebbfed343c9dfee414ab17", null ],
+      [ "series", "structnovas__eop.html#a9069ae656f02e20d54c4087971088534", null ],
+      [ "xp", "structnovas__eop.html#adad511b5bdef74f8aab97945a432f54a", null ],
+      [ "xp_err", "structnovas__eop.html#ac7b81e3fff4afb5fa90ad52008cbc938", null ],
+      [ "yp", "structnovas__eop.html#a6a836a00dbc47798b5dbc864b71cc95d", null ],
+      [ "yp_err", "structnovas__eop.html#a0f76e007852c146462d3d79577cb5057", null ]
+    ] ],
     [ "NOVAS_DELAUNAY_ARGS_INIT", "group__earth.html#gabf34092276df6f7e9ddaab92a197179b", null ],
     [ "novas_delaunay_args", "group__earth.html#ga159819a645320787dd3e0049b40142d6", null ],
     [ "novas_nutation_provider", "group__earth.html#ga1f0e319630e7a47f17247bf51f7bf36c", null ],
+    [ "novas_eop_series", "group__earth.html#ga1ded006133b58c40985faff42c35e6ee", [
+      [ "EOP_LEAP_LIST", "group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a", null ],
+      [ "EOP_RAPID_IAU2000", "group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193", null ],
+      [ "EOP_C04_IAU2000_0UTC", "group__earth.html#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12", null ],
+      [ "EOP_C01_IAU2000", "group__earth.html#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751", null ]
+    ] ],
     [ "novas_equinox_type", "group__earth.html#gab970f5de5d5e04874cb31865459b0b4f", [
       [ "NOVAS_MEAN_EQUINOX", "group__earth.html#ggab970f5de5d5e04874cb31865459b0b4fa4649e3c4b655ead9fa3e53a75186ab30", null ],
       [ "NOVAS_TRUE_EQUINOX", "group__earth.html#ggab970f5de5d5e04874cb31865459b0b4fa1096785746d1a9bc678ea2c51fc21055", null ]
@@ -26,9 +45,19 @@ var group__earth =
     [ "novas_diurnal_eop_at_time", "group__earth.html#ga087d587e90b4e2138c0dba12d727696e", null ],
     [ "novas_diurnal_libration", "group__earth.html#ga2576d1eb803afb956373e67fe9c438d1", null ],
     [ "novas_diurnal_ocean_tides", "group__earth.html#gabcd371629ee17cd1f1512ff0687db46e", null ],
+    [ "novas_fetch_eop", "group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea", null ],
+    [ "novas_fetch_eop_unix", "group__earth.html#ga4fe4a31a0284f79b6099bdc9a32f6206", null ],
     [ "novas_gast", "group__earth.html#ga348c4fd2a4a046e9768038075717b693", null ],
+    [ "novas_get_eop_itrf_year", "group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8", null ],
+    [ "novas_get_eop_url", "group__earth.html#gaaacc7748d90e01bb53ace4dc330ffa65", null ],
     [ "novas_gmst", "group__earth.html#ga231f535f73e846d3867dbd914054d47b", null ],
+    [ "novas_is_auto_fetch_eop", "group__earth.html#gad1e07eedd32cbf4f1160624c74a99255", null ],
     [ "novas_itrf_transform_eop", "group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb", null ],
+    [ "novas_lookup_leap", "group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465", null ],
+    [ "novas_reset_eop", "group__earth.html#gaf3631f03d8be587e08796747dfe2e9ca", null ],
+    [ "novas_set_auto_fetch_eop", "group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553", null ],
+    [ "novas_set_eop_url", "group__earth.html#ga30319d4fc323f4f42d199e454abf0aef", null ],
+    [ "novas_set_leap_list", "group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7", null ],
     [ "novas_time_gst", "group__earth.html#gaaf53fcad3fade814381cef3d06779a8c", null ],
     [ "nu2000k", "group__earth.html#gabd066c2857d1b1cc06d8bd51b912d841", null ],
     [ "nutation", "group__earth.html#ga69df5671751c09a7575963b94ad1151e", null ],

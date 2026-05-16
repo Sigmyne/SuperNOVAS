@@ -136,6 +136,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6cc82f8c0d204efe9ca4a9f803ea6267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these galactic coordinates are the same as another, within the specified precision.  <br /></td></tr>
 <tr class="memitem:a9c84c27b2d4926fab89cfd13f8983ca4" id="r_a9c84c27b2d4926fab89cfd13f8983ca4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9c84c27b2d4926fab89cfd13f8983ca4">equals</a> (const Galactic &amp;other, double precision_rad=1.0 *<a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">Unit::uas</a>) const</td></tr>
 <tr class="memdesc:a9c84c27b2d4926fab89cfd13f8983ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these galactic coordinates are the same as another, within the specified precision.  <br /></td></tr>
+<tr class="memitem:aa10fb2678882d8e11bee229655f5b066" id="r_aa10fb2678882d8e11bee229655f5b066"><td class="memItemLeft">Galactic&#160;</td><td class="memItemRight"><a class="el" href="#aa10fb2678882d8e11bee229655f5b066">offset</a> (const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;direction, const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;distance) const</td></tr>
+<tr class="memdesc:aa10fb2678882d8e11bee229655f5b066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns galactic coordinates for an offset position from these along the great circle that crosses these coordinates in the speciifed direction.  <br /></td></tr>
+<tr class="memitem:ab8f594a3b3721ec86fae5939ba9247c0" id="r_ab8f594a3b3721ec86fae5939ba9247c0"><td class="memItemLeft">Galactic&#160;</td><td class="memItemRight"><a class="el" href="#ab8f594a3b3721ec86fae5939ba9247c0">offset</a> (double direction_rad, double distance_rad) const</td></tr>
+<tr class="memdesc:ab8f594a3b3721ec86fae5939ba9247c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns galactic coordinates for an offset position from these along the great circle that crosses these coordinates in the speciifed direction.  <br /></td></tr>
 <tr class="memitem:afc45bc27fb00d28df964ad23cef41bcb" id="r_afc45bc27fb00d28df964ad23cef41bcb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afc45bc27fb00d28df964ad23cef41bcb">operator!=</a> (const Galactic &amp;other) const</td></tr>
 <tr class="memdesc:afc45bc27fb00d28df964ad23cef41bcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if these galactic coordinates differ from another, by more than 1 uas.  <br /></td></tr>
 <tr class="memitem:a0f9bf04fae88e2f67ec4ffc727a300a0" id="r_a0f9bf04fae88e2f67ec4ffc727a300a0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0">operator==</a> (const Galactic &amp;other) const</td></tr>
@@ -359,7 +363,8 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the angular distance of these coordinates to/from the argument.</dd></dl>
-<dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>offset_by() </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#a3f83a7b7c79a6f71e52fb8de35225a7c">supernovas::Spherical::distance_to()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
@@ -434,6 +439,78 @@ Additional Inherited Members</h2></td></tr>
 <p class="reference">References <a class="el" href="classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5">supernovas::Spherical::equals()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a6cc82f8c0d204efe9ca4a9f803ea6267">equals()</a>, <a class="el" href="#afc45bc27fb00d28df964ad23cef41bcb">operator!=()</a>, and <a class="el" href="#a0f9bf04fae88e2f67ec4ffc727a300a0">operator==()</a>.</p>
+
+</div>
+</div>
+<a id="aa10fb2678882d8e11bee229655f5b066" name="aa10fb2678882d8e11bee229655f5b066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa10fb2678882d8e11bee229655f5b066">&#9670;&#160;</a></span>offset() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Galactic supernovas::Galactic::offset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>direction</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Angle.html">Angle</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>distance</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns galactic coordinates for an offset position from these along the great circle that crosses these coordinates in the speciifed direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">direction</td><td>offset direction, measured East of the local galactic North. </td></tr>
+    <tr><td class="paramname">distance</td><td>offset great circle distance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The galactic coordinates of the offset position</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a88e6b56ab310eb504ac5633dc7fa0cd4" title="Returns the angular distance of these galactic coordiantes to/from the specified other galactic coord...">distance_to()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#a174a4ec5aeff0d91f9e1618cd7558ec9" title="Returns equatorial coordinates for an offset position from these along the great circle that crosses ...">Equatorial::offset()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a71ab12e9fcedf977e46aca688871f68e" title="Returns ecliptic coordinates for an offset position from these along the great circle that crosses th...">Ecliptic::offset()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a5b2ad9e09eea9c644c3d3cf3af45de61" title="Returns horizontal coordinates for an offset position from these along the great circle that crosses ...">Horizontal::offset()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ab8f594a3b3721ec86fae5939ba9247c0">offset()</a>, and <a class="el" href="classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04">supernovas::Angle::rad()</a>.</p>
+
+</div>
+</div>
+<a id="ab8f594a3b3721ec86fae5939ba9247c0" name="ab8f594a3b3721ec86fae5939ba9247c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8f594a3b3721ec86fae5939ba9247c0">&#9670;&#160;</a></span>offset() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Galactic supernovas::Galactic::offset </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>direction_rad</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>distance_rad</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns galactic coordinates for an offset position from these along the great circle that crosses these coordinates in the speciifed direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">direction_rad</td><td>[rad] offset direction, measured East of the local galactic North. </td></tr>
+    <tr><td class="paramname">distance_rad</td><td>[rad] offset great circle distance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The galactic coordinates of the offset position</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a88e6b56ab310eb504ac5633dc7fa0cd4" title="Returns the angular distance of these galactic coordiantes to/from the specified other galactic coord...">distance_to()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#a174a4ec5aeff0d91f9e1618cd7558ec9" title="Returns equatorial coordinates for an offset position from these along the great circle that crosses ...">Equatorial::offset()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a71ab12e9fcedf977e46aca688871f68e" title="Returns ecliptic coordinates for an offset position from these along the great circle that crosses th...">Ecliptic::offset()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a5b2ad9e09eea9c644c3d3cf3af45de61" title="Returns horizontal coordinates for an offset position from these along the great circle that crosses ...">Horizontal::offset()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a8bfd777ba2cae7778c1ae72e8944b175">supernovas::Unit::deg</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, and <a class="el" href="novas_8h.html#a64a31576a4654e8808de6e2fd755fcc4">novas_offset_by()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#aa10fb2678882d8e11bee229655f5b066">offset()</a>.</p>
 
 </div>
 </div>

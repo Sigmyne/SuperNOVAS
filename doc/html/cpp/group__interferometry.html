@@ -204,7 +204,7 @@ Functions</h2></td></tr>
 <p>That is, it returns <em>u</em>,<em>v</em>,<em>w</em> coordinates, for this observer (station), for a given apparent line-of-sight on the sky, at the time of observation and relative to the location it was calculated for. The <em>u</em> and <em>v</em> coordinates are the orthogonal projections of the site, relative to the array reference, in the directions of local East and North respectively (w.r.t. the coordinate system of choice), as seen from the source; while <em>w</em> is the distance from the array reference along the line of sight.</p>
 <p>The supplied phase center defines the time of observation and the array reference position in its observing frame. For example:</p>
 <div class="fragment"><div class="line"><span class="comment">// Define the array reference location (e.g. on Earth) as an observer place</span></div>
-<div class="line"><span class="keyword">auto</span> reference = <a class="code hl_function" href="classsupernovas_1_1Observer.html#a4938417fca7a03c1c41ff905e489b79b">Observer::on_earth</a>(...);</div>
+<div class="line"><span class="keyword">auto</span> reference = <a class="code hl_function" href="classsupernovas_1_1Observer.html#a4d45a0963a17de753ebd963d0d5a9a35">Observer::on_earth</a>(...);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Astrometric time of observation</span></div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Time.html">Time</a> time = ...;</div>
@@ -219,18 +219,18 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Apparent.html">Apparent</a> app = source.apparent_in(frame);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Define an interferometer station (e.g. on Earth)</span></div>
-<div class="line"><span class="keyword">auto</span> station = <a class="code hl_function" href="classsupernovas_1_1Observer.html#a4938417fca7a03c1c41ff905e489b79b">Observer::on_earth</a>(...);</div>
+<div class="line"><span class="keyword">auto</span> station = <a class="code hl_function" href="classsupernovas_1_1Observer.html#a4d45a0963a17de753ebd963d0d5a9a35">Observer::on_earth</a>(...);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// u,v,w coordinates of the station relative to the array reference (w.r.t. ICRS)</span></div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Interferometric.html">Interferometric</a> uwv = station.to_interferometric(app);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// the geometric delay of the stanovas_site_uvwtion, relative to the array reference</span></div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Interval.html">Interval</a> delay = uvw.geometric_delay()</div>
-<div class="ttc" id="aclasssupernovas_1_1Apparent_html"><div class="ttname"><a href="classsupernovas_1_1Apparent.html">supernovas::Apparent</a></div><div class="ttdoc">Apparent position on sky as seen by an observer at a specific time of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:2485</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Frame_html"><div class="ttname"><a href="classsupernovas_1_1Frame.html">supernovas::Frame</a></div><div class="ttdoc">An observing frame, defined by an observer location and precise time of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:1901</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Observer_html_a4938417fca7a03c1c41ff905e489b79b"><div class="ttname"><a href="classsupernovas_1_1Observer.html#a4938417fca7a03c1c41ff905e489b79b">supernovas::Observer::on_earth</a></div><div class="ttdeci">static GeodeticObserver on_earth(const Site &amp;site, const EOP &amp;eop)</div><div class="ttdoc">Returns a new observer located at a fixed observing site.</div><div class="ttdef"><b>Definition</b> Observer.cpp:307</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Source_html"><div class="ttname"><a href="classsupernovas_1_1Source.html">supernovas::Source</a></div><div class="ttdoc">An abstract superclass for an astronomical source or target of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:1964</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Time_html"><div class="ttname"><a href="classsupernovas_1_1Time.html">supernovas::Time</a></div><div class="ttdoc">Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...</div><div class="ttdef"><b>Definition</b> supernovas.h:1750</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Apparent_html"><div class="ttname"><a href="classsupernovas_1_1Apparent.html">supernovas::Apparent</a></div><div class="ttdoc">Apparent position on sky as seen by an observer at a specific time of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:2549</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Frame_html"><div class="ttname"><a href="classsupernovas_1_1Frame.html">supernovas::Frame</a></div><div class="ttdoc">An observing frame, defined by an observer location and precise time of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:1935</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Observer_html_a4d45a0963a17de753ebd963d0d5a9a35"><div class="ttname"><a href="classsupernovas_1_1Observer.html#a4d45a0963a17de753ebd963d0d5a9a35">supernovas::Observer::on_earth</a></div><div class="ttdeci">static GeodeticObserver on_earth(const Site &amp;site, const EOP &amp;eop=EOP::undefined())</div><div class="ttdoc">Returns a new observer located at a fixed observing site.</div><div class="ttdef"><b>Definition</b> Observer.cpp:358</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Source_html"><div class="ttname"><a href="classsupernovas_1_1Source.html">supernovas::Source</a></div><div class="ttdoc">An abstract superclass for an astronomical source or target of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:2004</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Time_html"><div class="ttname"><a href="classsupernovas_1_1Time.html">supernovas::Time</a></div><div class="ttdoc">Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...</div><div class="ttdef"><b>Definition</b> supernovas.h:1782</div></div>
 </div><!-- fragment --><p>NOTES:</p>
 <ul>
 <li>This method does not take atmospheric refraction into account. Refraction is usually included as a separate atmospheric delay term on top of the geometric delays returned here, and the various other delay terms that account for optics, cabling, and digital electronics etc.</li>

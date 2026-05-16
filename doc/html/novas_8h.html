@@ -113,6 +113,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic astrometric data for any sidereal object located outside the solar system.  <a href="structnovas__cat__entry.html#details">More...</a><br /></td></tr>
 <tr class="memitem:novas_5Fdelaunay_5Fargs" id="r_novas_5Fdelaunay_5Fargs"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__delaunay__args.html">novas_delaunay_args</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fundamental Delaunay arguments of the Sun and Moon, from Simon section 3.4(b.3).  <a href="structnovas__delaunay__args.html#details">More...</a><br /></td></tr>
+<tr class="memitem:novas_5Feop" id="r_novas_5Feop"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__eop.html">novas_eop</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Earth Orienation Parameters (EOP), such as obtained from IERS.  <a href="structnovas__eop.html#details">More...</a><br /></td></tr>
 <tr class="memitem:novas_5Fframe" id="r_novas_5Fframe"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__frame.html">novas_frame</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A set of parameters that uniquely define the place and time of observation.  <a href="structnovas__frame.html#details">More...</a><br /></td></tr>
 <tr class="memitem:novas_5Fin_5Fspace" id="r_novas_5Fin_5Fspace"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__in__space.html">novas_in_space</a></td></tr>
@@ -162,6 +164,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:gaec64bf67d5a03b2b4fb2583e5918f1de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bitwise mask defining a sefault set of gravitating bodies to use for deflection calculations in reduced accuracy mode.  <br /></td></tr>
 <tr class="memitem:af7e8592d0a634bd3642e9fd508ea8022" id="r_af7e8592d0a634bd3642e9fd508ea8022"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af7e8592d0a634bd3642e9fd508ea8022">DEG2RAD</a>&#160;&#160;&#160;(<a class="el" href="#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a> / 180.0)</td></tr>
 <tr class="memdesc:af7e8592d0a634bd3642e9fd508ea8022"><td class="mdescLeft">&#160;</td><td class="mdescRight">[rad/deg] 1 degree in radians  <br /></td></tr>
+<tr class="memitem:a77366c1bd428629dc898e188bfd182a3" id="r_a77366c1bd428629dc898e188bfd182a3"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a77366c1bd428629dc898e188bfd182a3">EXTERN</a>&#160;&#160;&#160;extern</td></tr>
 <tr class="memitem:a5414c24d23ad004a73ec69b1aad9f3e2" id="r_a5414c24d23ad004a73ec69b1aad9f3e2"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5414c24d23ad004a73ec69b1aad9f3e2">HELIOC</a>&#160;&#160;&#160;<a class="el" href="group__solar-system.html#gga208120c5fa3e12853eb37cb99d3e27bea13c0711a025b9aebd4186ab9127cbd7b">NOVAS_HELIOCENTER</a></td></tr>
 <tr class="memdesc:a5414c24d23ad004a73ec69b1aad9f3e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deprecated.  <br /></td></tr>
 <tr class="memitem:ga406038a5cbe32b7e0e7233f6145e4cf5" id="r_ga406038a5cbe32b7e0e7233f6145e4cf5"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#ga406038a5cbe32b7e0e7233f6145e4cf5">IN_SPACE_INIT</a></td></tr>
@@ -228,6 +231,8 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga6111d6b21ce788298259f3fc0d716fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] Earth ellipsoid flattening from IERS Conventions (2003).  <br /></td></tr>
 <tr class="memitem:gaf5888a18d1c8aa269d9141fde8879148" id="r_gaf5888a18d1c8aa269d9141fde8879148"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#gaf5888a18d1c8aa269d9141fde8879148">NOVAS_IERS_EARTH_RADIUS</a>&#160;&#160;&#160;6378136.6</td></tr>
 <tr class="memdesc:gaf5888a18d1c8aa269d9141fde8879148"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] Equatorial radius of Earth in meters from IERS Conventions (2003).  <br /></td></tr>
+<tr class="memitem:ab74630b694f2fee24d8fc1dedad7eef9" id="r_ab74630b694f2fee24d8fc1dedad7eef9"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ab74630b694f2fee24d8fc1dedad7eef9">NOVAS_INVALID_LEAP</a>&#160;&#160;&#160;(-999)</td></tr>
+<tr class="memdesc:ab74630b694f2fee24d8fc1dedad7eef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leap seconds value to indicate invalid data.  <br /></td></tr>
 <tr class="memitem:gaf03a1f0412f23cd6edb323297646eb30" id="r_gaf03a1f0412f23cd6edb323297646eb30"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gaf03a1f0412f23cd6edb323297646eb30">NOVAS_JD_B1900</a>&#160;&#160;&#160;2415020.31352</td></tr>
 <tr class="memdesc:gaf03a1f0412f23cd6edb323297646eb30"><td class="mdescLeft">&#160;</td><td class="mdescRight">[day] Julian date at B1900 (NASA / NAIF SPICE definition) <a class="el" href="group__earth.html#ga9178358732325399f3a5e3582080ced3" title="Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) preces...">precession()</a>, <a class="el" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a>  <br /></td></tr>
 <tr class="memitem:ga3785083ae52bbbc1e749dbedd7e5d85e" id="r_ga3785083ae52bbbc1e749dbedd7e5d85e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga3785083ae52bbbc1e749dbedd7e5d85e">NOVAS_JD_B1950</a>&#160;&#160;&#160;2433282.42345905</td></tr>
@@ -266,6 +271,8 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga4cbd3c168b9357e3af2274252a6d1a5b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> initializer for the Moon  <br /></td></tr>
 <tr class="memitem:ga341603d54c8cfc1ae9bb23034ba3ef5a" id="r_ga341603d54c8cfc1ae9bb23034ba3ef5a"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga341603d54c8cfc1ae9bb23034ba3ef5a">NOVAS_NEPTUNE_INIT</a></td></tr>
 <tr class="memdesc:ga341603d54c8cfc1ae9bb23034ba3ef5a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> initializer for the planet Neptune  <br /></td></tr>
+<tr class="memitem:a15d09c89b49351f50864dc58b3b1af8e" id="r_a15d09c89b49351f50864dc58b3b1af8e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a15d09c89b49351f50864dc58b3b1af8e">NOVAS_NUM_EOP_SERIES</a>&#160;&#160;&#160;( <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a> + 1 )</td></tr>
+<tr class="memdesc:a15d09c89b49351f50864dc58b3b1af8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of Earth Orientation Parameter Data series handled by <b>SuperNOVAS</b>.  <br /></td></tr>
 <tr class="memitem:ga9980b82723819fa345030b9ddad48061" id="r_ga9980b82723819fa345030b9ddad48061"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga9980b82723819fa345030b9ddad48061">NOVAS_OBJECT_INIT</a></td></tr>
 <tr class="memdesc:ga9980b82723819fa345030b9ddad48061"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty object initializer.  <br /></td></tr>
 <tr class="memitem:a60037f5a7c8fe2b7cf8893cf461598d1" id="r_a60037f5a7c8fe2b7cf8893cf461598d1"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a60037f5a7c8fe2b7cf8893cf461598d1">NOVAS_OBJECT_TYPES</a></td></tr>
@@ -376,9 +383,9 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga462bdac0f370f0c5b421ae5b3f3e35f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializer for a NOVAS <a class="el" href="group__apparent.html#ga98a44d2a2c0e4f211b128a94c848ed51" title="Celestial object&#39;s place on the sky; contains the output from place().">sky_pos</a> structure.  <br /></td></tr>
 <tr class="memitem:a5ab52d5db18c081b6313ed8b1993ebb7" id="r_a5ab52d5db18c081b6313ed8b1993ebb7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5ab52d5db18c081b6313ed8b1993ebb7">SUPERNOVAS_MAJOR_VERSION</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:a5ab52d5db18c081b6313ed8b1993ebb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">API major version.  <br /></td></tr>
-<tr class="memitem:aaed93e356acfc0d15d0f64ae0793b4f0" id="r_aaed93e356acfc0d15d0f64ae0793b4f0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaed93e356acfc0d15d0f64ae0793b4f0">SUPERNOVAS_MINOR_VERSION</a>&#160;&#160;&#160;6</td></tr>
+<tr class="memitem:aaed93e356acfc0d15d0f64ae0793b4f0" id="r_aaed93e356acfc0d15d0f64ae0793b4f0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaed93e356acfc0d15d0f64ae0793b4f0">SUPERNOVAS_MINOR_VERSION</a>&#160;&#160;&#160;7</td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
-<tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
 <tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-devel&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
@@ -386,6 +393,8 @@ Macros</h2></td></tr>
 <tr class="memdesc:a44de9d1672290d153a1dfb0685886208"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version string for this library.  <br /></td></tr>
 <tr class="memitem:a4912c64aec0c943b7985db6cb61ff83a" id="r_a4912c64aec0c943b7985db6cb61ff83a"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>&#160;&#160;&#160;(2.0 * <a class="el" href="#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a>)</td></tr>
 <tr class="memdesc:a4912c64aec0c943b7985db6cb61ff83a"><td class="mdescLeft">&#160;</td><td class="mdescRight">2&pi;  <br /></td></tr>
+<tr class="memitem:gacb9c6b9922edfc6971ceb6304cb945f9" id="r_gacb9c6b9922edfc6971ceb6304cb945f9"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gacb9c6b9922edfc6971ceb6304cb945f9">UNIX_SECONDS_0UTC_1JAN2000</a>&#160;&#160;&#160;946684800L</td></tr>
+<tr class="memdesc:gacb9c6b9922edfc6971ceb6304cb945f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">[s] UNIX time at 0 UTC, 1 Jan 2000.0  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -466,6 +475,12 @@ Enumerations</h2></td></tr>
 <tr class="memitem:a9e882d9c9055f187d3a8dc9b019f0609" id="r_a9e882d9c9055f187d3a8dc9b019f0609"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a9e882d9c9055f187d3a8dc9b019f0609">novas_earth_rotation_measure</a> { <a class="el" href="#a9e882d9c9055f187d3a8dc9b019f0609ab07b6e5ed11fd50e7c2287b5b6626b46">EROT_ERA</a> = 0
 , <a class="el" href="#a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62">EROT_GST</a>
  }</td></tr>
+<tr class="memitem:ga1ded006133b58c40985faff42c35e6ee" id="r_ga1ded006133b58c40985faff42c35e6ee"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> { <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a">EOP_LEAP_LIST</a> = 0
+, <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193">EOP_RAPID_IAU2000</a>
+, <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12">EOP_C04_IAU2000_0UTC</a>
+, <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a>
+ }</td></tr>
+<tr class="memdesc:ga1ded006133b58c40985faff42c35e6ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the IERS EOP series used (or to use).  <a href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">More...</a><br /></td></tr>
 <tr class="memitem:ga2eff9980cb9db96ab41fb564c1b5c014" id="r_ga2eff9980cb9db96ab41fb564c1b5c014"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga2eff9980cb9db96ab41fb564c1b5c014">novas_equator_type</a> { <a class="el" href="group__nonequatorial.html#gga2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a> = 0
 , <a class="el" href="group__nonequatorial.html#gga2eff9980cb9db96ab41fb564c1b5c014acca4381f43619e421b26d79c1c77593f">NOVAS_TRUE_EQUATOR</a>
 , <a class="el" href="group__nonequatorial.html#gga2eff9980cb9db96ab41fb564c1b5c014a1248329939f130a4bef0d3ef9ed95c66">NOVAS_GCRS_EQUATOR</a>
@@ -864,10 +879,42 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga095ba0ee644dc00c11dcdc5616bc96b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Parallactic Angle (PA) calculated for an RA/Dec location of the sky at a given sidereal time.  <br /></td></tr>
 <tr class="memitem:gaf4e18885b7d173eb3fe5f18b06f0b4d4" id="r_gaf4e18885b7d173eb3fe5f18b06f0b4d4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gaf4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch</a> (const char *restrict system)</td></tr>
 <tr class="memdesc:gaf4e18885b7d173eb3fe5f18b06f0b4d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Julian day corresponding to an astronomical coordinate epoch.  <br /></td></tr>
+<tr class="memitem:ga500745e68a50eaac03d963b539637dc5" id="r_ga500745e68a50eaac03d963b539637dc5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__util.html#ga500745e68a50eaac03d963b539637dc5">novas_equ_offset_by</a> (double ra, double dec, double direction, double distance, double *restrict out_ra, double *restrict out_dec)</td></tr>
+<tr class="memdesc:ga500745e68a50eaac03d963b539637dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle.  <br /></td></tr>
 <tr class="memitem:ga4f7e06b2fa5b3145b37aec4f9c2d1602" id="r_ga4f7e06b2fa5b3145b37aec4f9c2d1602"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#ga4f7e06b2fa5b3145b37aec4f9c2d1602">novas_equ_sep</a> (double ra1, double dec1, double ra2, double dec2)</td></tr>
 <tr class="memdesc:ga4f7e06b2fa5b3145b37aec4f9c2d1602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of two equatorial locations on a sphere.  <br /></td></tr>
 <tr class="memitem:ga57f4a449754c88cfc87df658a6bc4cb2" id="r_ga57f4a449754c88cfc87df658a6bc4cb2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__tracking.html#ga57f4a449754c88cfc87df658a6bc4cb2">novas_equ_track</a> (const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict source, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, double dt, <a class="el" href="structnovas__track.html">novas_track</a> *restrict track)</td></tr>
 <tr class="memdesc:ga57f4a449754c88cfc87df658a6bc4cb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates true-of-date equatorial tracking position and motion (first and second time derivatives) for the specified source in the given observing frame.  <br /></td></tr>
+<tr class="memitem:gadd575c796128069aa35085c617056a11" id="r_gadd575c796128069aa35085c617056a11"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#gadd575c796128069aa35085c617056a11">novas_equals_cat_entry</a> (const <a class="el" href="group__source.html#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *a, const <a class="el" href="group__source.html#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *b)</td></tr>
+<tr class="memdesc:gadd575c796128069aa35085c617056a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two catalog entries define the same parameters, within the typical tolerances associated to these.  <br /></td></tr>
+<tr class="memitem:gaa6e8919a917e071f67bb1d7d84fe6131" id="r_gaa6e8919a917e071f67bb1d7d84fe6131"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__frame.html#gaa6e8919a917e071f67bb1d7d84fe6131">novas_equals_frame</a> (const <a class="el" href="structnovas__frame.html">novas_frame</a> *a, const <a class="el" href="structnovas__frame.html">novas_frame</a> *b)</td></tr>
+<tr class="memdesc:gaa6e8919a917e071f67bb1d7d84fe6131"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two observing frames are essentially the same, within typical tolerances.  <br /></td></tr>
+<tr class="memitem:gad7850313f8104494d4bd9b5edf8b32b8" id="r_gad7850313f8104494d4bd9b5edf8b32b8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#gad7850313f8104494d4bd9b5edf8b32b8">novas_equals_near_earth</a> (const <a class="el" href="group__observer.html#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *a, const <a class="el" href="group__observer.html#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *b)</td></tr>
+<tr class="memdesc:gad7850313f8104494d4bd9b5edf8b32b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two near-Earth locations and motions match within 1 mm and 1 mm/s, respectively.  <br /></td></tr>
+<tr class="memitem:ga8e8d07b67babdb5be1737d83b29b65c6" id="r_ga8e8d07b67babdb5be1737d83b29b65c6"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga8e8d07b67babdb5be1737d83b29b65c6">novas_equals_object</a> (const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *a, const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *b)</td></tr>
+<tr class="memdesc:ga8e8d07b67babdb5be1737d83b29b65c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two astronomical targets are the same within typical tolerances.  <br /></td></tr>
+<tr class="memitem:ga6799b84431fcffb40ebe78c47bf65726" id="r_ga6799b84431fcffb40ebe78c47bf65726"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#ga6799b84431fcffb40ebe78c47bf65726">novas_equals_observer</a> (const <a class="el" href="group__observer.html#gae7963c522d28ce6891b472e079307d03">observer</a> *a, const <a class="el" href="group__observer.html#gae7963c522d28ce6891b472e079307d03">observer</a> *b)</td></tr>
+<tr class="memdesc:ga6799b84431fcffb40ebe78c47bf65726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two observers are essentially the same within the tolerances associated to their defining components.  <br /></td></tr>
+<tr class="memitem:ga1d66a855aafa8e8a837d428c501d1756" id="r_ga1d66a855aafa8e8a837d428c501d1756"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#ga1d66a855aafa8e8a837d428c501d1756">novas_equals_on_surface</a> (const <a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *a, const <a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *b)</td></tr>
+<tr class="memdesc:ga1d66a855aafa8e8a837d428c501d1756"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two geodetic locations, and the weather parameters defined for them, match.  <br /></td></tr>
+<tr class="memitem:gabf94e216938a5128a00717244dd42e77" id="r_gabf94e216938a5128a00717244dd42e77"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#gabf94e216938a5128a00717244dd42e77">novas_equals_orbital</a> (const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *a, const <a class="el" href="structnovas__orbital.html">novas_orbital</a> *b)</td></tr>
+<tr class="memdesc:gabf94e216938a5128a00717244dd42e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two Keplerian orbitals match, within typical tolerances.  <br /></td></tr>
+<tr class="memitem:ga7136ddcd873a9221cac3cefba603d93f" id="r_ga7136ddcd873a9221cac3cefba603d93f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga7136ddcd873a9221cac3cefba603d93f">novas_equals_orbsys</a> (const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *a, const <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *b)</td></tr>
+<tr class="memdesc:ga7136ddcd873a9221cac3cefba603d93f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two orbital systems match within typical tolerances.  <br /></td></tr>
+<tr class="memitem:a78bf876b768b1979395d544e17902f88" id="r_a78bf876b768b1979395d544e17902f88"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle</a> (const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *a, const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *b)</td></tr>
+<tr class="memdesc:a78bf876b768b1979395d544e17902f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two bundles containing Solar-system baricentric planet positions and velocities are effectively the same.  <br /></td></tr>
+<tr class="memitem:ga438a2b032c5e2a245a4af642a67a6857" id="r_ga438a2b032c5e2a245a4af642a67a6857"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#ga438a2b032c5e2a245a4af642a67a6857">novas_equals_sky_pos</a> (const <a class="el" href="group__apparent.html#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *a, const <a class="el" href="group__apparent.html#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *b)</td></tr>
+<tr class="memdesc:ga438a2b032c5e2a245a4af642a67a6857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two apparent positions on the observer's sky are the same within typical tolerances.  <br /></td></tr>
+<tr class="memitem:gaadbd55afe0e21d486c52d319a8e8e6d3" id="r_gaadbd55afe0e21d486c52d319a8e8e6d3"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#gaadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel</a> (const <a class="el" href="group__observer.html#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *a, const <a class="el" href="group__observer.html#gaf8e6be13c2cd09e2cc6d582717e352e6">in_space</a> *b)</td></tr>
+<tr class="memdesc:gaadbd55afe0e21d486c52d319a8e8e6d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two Solar-system locations and motions match within 1 m and ~1 mm/s, respectively.  <br /></td></tr>
+<tr class="memitem:gaae271d900ea6af740c16d90693c51169" id="r_gaae271d900ea6af740c16d90693c51169"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gaae271d900ea6af740c16d90693c51169">novas_equals_timespec</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *a, const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *b)</td></tr>
+<tr class="memdesc:gaae271d900ea6af740c16d90693c51169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two time specifications are the same within 10<sup>-7</sup> days (~100 &mu;s).  <br /></td></tr>
+<tr class="memitem:ga876add3b3ae251b18c8ffc8f06ea695e" id="r_ga876add3b3ae251b18c8ffc8f06ea695e"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__util.html#ga876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector</a> (const double *a, const double *b, double tol)</td></tr>
+<tr class="memdesc:ga876add3b3ae251b18c8ffc8f06ea695e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two 3D vectors are effectively the same, within the specified absolute tolerance.  <br /></td></tr>
+<tr class="memitem:gaba2fe38e07b94adaa6e8eb1b0a39a7ea" id="r_gaba2fe38e07b94adaa6e8eb1b0a39a7ea"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop</a> (double jd, long timeout_millis, <a class="el" href="structnovas__eop.html">novas_eop</a> *eop)</td></tr>
+<tr class="memdesc:gaba2fe38e07b94adaa6e8eb1b0a39a7ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Reference Systems Service (IERS).  <br /></td></tr>
+<tr class="memitem:ga4fe4a31a0284f79b6099bdc9a32f6206" id="r_ga4fe4a31a0284f79b6099bdc9a32f6206"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix</a> (time_t t, long timeout_millis, <a class="el" href="structnovas__eop.html">novas_eop</a> *eop)</td></tr>
+<tr class="memdesc:ga4fe4a31a0284f79b6099bdc9a32f6206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Reference Systems Service (IERS) around the current system time, using the rapid service data (<span class="tt">finals.all</span>).  <br /></td></tr>
 <tr class="memitem:ga273fd76d83b8e04ced14558c69fd175c" id="r_ga273fd76d83b8e04ced14558c69fd175c"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga273fd76d83b8e04ced14558c69fd175c">novas_frame_lst</a> (const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame)</td></tr>
 <tr class="memdesc:ga273fd76d83b8e04ced14558c69fd175c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Local (apparent) Sidereal Time for an observing frame of an Earth-bound observer.  <br /></td></tr>
 <tr class="memitem:ga348c4fd2a4a046e9768038075717b693" id="r_ga348c4fd2a4a046e9768038075717b693"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga348c4fd2a4a046e9768038075717b693">novas_gast</a> (double jd_ut1, double ut1_to_tt, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy)</td></tr>
@@ -882,6 +929,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga4817703c9357f702a27812584c91f87c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate corrections for aberration and gravitational deflection for the observer's frame.  <br /></td></tr>
 <tr class="memitem:ga29cad12337acfce5f1e370320dcefb79" id="r_ga29cad12337acfce5f1e370320dcefb79"><td class="memItemLeft">enum <a class="el" href="group__util.html#ga9d8d2a1f5c06b488e4c817bc9877e3ba">novas_debug_mode</a>&#160;</td><td class="memItemRight"><a class="el" href="group__util.html#ga29cad12337acfce5f1e370320dcefb79">novas_get_debug_mode</a> ()</td></tr>
 <tr class="memdesc:ga29cad12337acfce5f1e370320dcefb79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current, thread-local, mode for reporting errors encountered (and traces).  <br /></td></tr>
+<tr class="memitem:gaa3b5a785b2a478011aacd114a96d25e8" id="r_gaa3b5a785b2a478011aacd114a96d25e8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8">novas_get_eop_itrf_year</a> (enum <a class="el" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> series)</td></tr>
+<tr class="memdesc:gaa3b5a785b2a478011aacd114a96d25e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ITRF realization year for a given IERS Earth Orientation Parameter (EOP) series.  <br /></td></tr>
+<tr class="memitem:gaaacc7748d90e01bb53ace4dc330ffa65" id="r_gaaacc7748d90e01bb53ace4dc330ffa65"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#gaaacc7748d90e01bb53ace4dc330ffa65">novas_get_eop_url</a> (enum <a class="el" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> series)</td></tr>
+<tr class="memdesc:gaaacc7748d90e01bb53ace4dc330ffa65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the URL currently configured for a given IERS Earth Orientation Parameter (EOP) series.  <br /></td></tr>
 <tr class="memitem:ga32d8336084b65fac14d092ab6198c27d" id="r_ga32d8336084b65fac14d092ab6198c27d"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga32d8336084b65fac14d092ab6198c27d">novas_get_split_time</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time, enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale, long *restrict ijd)</td></tr>
 <tr class="memdesc:ga32d8336084b65fac14d092ab6198c27d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the fractional Julian date of an astronomical time in the specified timescale, as an integer and fractional part.  <br /></td></tr>
 <tr class="memitem:gae30e3dd8e30bdcf4e8486cfce696fb98" id="r_gae30e3dd8e30bdcf4e8486cfce696fb98"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time, enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale)</td></tr>
@@ -910,6 +961,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga81da80ae3ab1d0a444f39bde2af3a732"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the reverse atmospheric refraction for a given refraction model.  <br /></td></tr>
 <tr class="memitem:gad2081e123024609d3071b33b183502b7" id="r_gad2081e123024609d3071b33b183502b7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__frame.html#gad2081e123024609d3071b33b183502b7">novas_invert_transform</a> (const <a class="el" href="structnovas__transform.html">novas_transform</a> *transform, <a class="el" href="structnovas__transform.html">novas_transform</a> *inverse)</td></tr>
 <tr class="memdesc:gad2081e123024609d3071b33b183502b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverts a novas coordinate transformation matrix.  <br /></td></tr>
+<tr class="memitem:gad1e07eedd32cbf4f1160624c74a99255" id="r_gad1e07eedd32cbf4f1160624c74a99255"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255">novas_is_auto_fetch_eop</a> ()</td></tr>
+<tr class="memdesc:gad1e07eedd32cbf4f1160624c74a99255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.  <br /></td></tr>
 <tr class="memitem:ga4d6da26d0a7d7d904f25d2be00030b25" id="r_ga4d6da26d0a7d7d904f25d2be00030b25"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga4d6da26d0a7d7d904f25d2be00030b25">novas_iso_timestamp</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time, char *restrict dst, int maxlen)</td></tr>
 <tr class="memdesc:ga4d6da26d0a7d7d904f25d2be00030b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a UTC-based ISO timestamp to millisecond precision to the specified string buffer.  <br /></td></tr>
 <tr class="memitem:gafd98ed01148f1291018809d77785527f" id="r_gafd98ed01148f1291018809d77785527f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#gafd98ed01148f1291018809d77785527f">novas_itrf_transform</a> (int from_year, const double *restrict from_coords, const double *restrict from_rates, int to_year, double *to_coords, double *to_rates)</td></tr>
@@ -924,6 +977,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga54eee84c46900c80ca9966857c217cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Julian day for a given calendar date.  <br /></td></tr>
 <tr class="memitem:ga8ed2fb55bcf86d9f1f434a2f832356a2" id="r_ga8ed2fb55bcf86d9f1f434a2f832356a2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date</a> (double tjd, enum <a class="el" href="group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, int *restrict year, int *restrict month, int *restrict day, double *restrict hour)</td></tr>
 <tr class="memdesc:ga8ed2fb55bcf86d9f1f434a2f832356a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function will compute a broken down date on the specified calendar for given the Julian day input.  <br /></td></tr>
+<tr class="memitem:ga804733f8206441a8c2dd9ecf3a1e9465" id="r_ga804733f8206441a8c2dd9ecf3a1e9465"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465">novas_lookup_leap</a> (time_t t)</td></tr>
+<tr class="memdesc:ga804733f8206441a8c2dd9ecf3a1e9465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap seconds list (see <span class="tt"><a class="el" href="group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7" title="Specifies a local file containing the official leap seconds list, i.e.">novas_set_leap_list()</a></span>), or else from data obtained as needed from IERS (provided that fetching it is allowed).  <br /></td></tr>
 <tr class="memitem:ga601d246673742cf72a5dbe1449c97560" id="r_ga601d246673742cf72a5dbe1449c97560"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__interferometry.html#ga601d246673742cf72a5dbe1449c97560">novas_los_to_xyz</a> (const double *los, double lon, double lat, double *xyz)</td></tr>
 <tr class="memdesc:ga601d246673742cf72a5dbe1449c97560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a 3D line-of-sight vector (&delta;&phi;, &delta;&theta;, &delta;r) to a rectangular equatorial (&delta;x, &delta;y, &delta;z) vector.  <br /></td></tr>
 <tr class="memitem:gaad80bf94be2efc36c340994829df8207" id="r_gaad80bf94be2efc36c340994829df8207"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__spectral.html#gaad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel</a> (double epoch, double ra, double dec, double vLSR)</td></tr>
@@ -962,6 +1017,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga85334614a0f399e0d3cbde68075d0766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the normalized angle in the [0:2&pi;) range.  <br /></td></tr>
 <tr class="memitem:gafa5f3a823a895bed01876df6b2a00370" id="r_gafa5f3a823a895bed01876df6b2a00370"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#gafa5f3a823a895bed01876df6b2a00370">novas_object_sep</a> (const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *source1, const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *source2, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame)</td></tr>
 <tr class="memdesc:gafa5f3a823a895bed01876df6b2a00370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of two objects from the observer's point of view.  <br /></td></tr>
+<tr class="memitem:ga64a31576a4654e8808de6e2fd755fcc4" id="r_ga64a31576a4654e8808de6e2fd755fcc4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__util.html#ga64a31576a4654e8808de6e2fd755fcc4">novas_offset_by</a> (double lon, double lat, double direction, double distance, double *restrict out_lon, double *restrict out_lat)</td></tr>
+<tr class="memdesc:ga64a31576a4654e8808de6e2fd755fcc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates offset spherical coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified direction.  <br /></td></tr>
 <tr class="memitem:ga01f98b2b8033c8dbacaeab37e9198e91" id="r_ga01f98b2b8033c8dbacaeab37e9198e91"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga01f98b2b8033c8dbacaeab37e9198e91">novas_offset_time</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *time, double seconds, <a class="el" href="structnovas__timespec.html">novas_timespec</a> *out)</td></tr>
 <tr class="memdesc:ga01f98b2b8033c8dbacaeab37e9198e91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the astrometric time by a given amount.  <br /></td></tr>
 <tr class="memitem:gae4511a80a1defbb1e1fdc29c289e7de4" id="r_gae4511a80a1defbb1e1fdc29c289e7de4"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a> (double jd_tt, const <a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *loc, enum <a class="el" href="group__refract.html#ga8c77758e10b1d3dc8dbd3ab0b694e468">novas_refraction_type</a> type, double el)</td></tr>
@@ -998,10 +1055,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga6b49f92f8f818f2272613e3432185a39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Atmospheric refraction model for radio wavelengths (Berman &amp; Rockwell 1976).  <br /></td></tr>
 <tr class="memitem:gac673c4fef94847b796dc2aa2f4d0807d" id="r_gac673c4fef94847b796dc2aa2f4d0807d"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__refract.html#gac673c4fef94847b796dc2aa2f4d0807d">novas_refract_wavelength</a> (double microns)</td></tr>
 <tr class="memdesc:gac673c4fef94847b796dc2aa2f4d0807d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the observing wavelength for which refraction is to be calculated when using a wavelength-depenendent model, such as <a class="el" href="group__refract.html#ga7b9ad6dfbd86e4faa2d8068c7d64fac4" title="The wavelength-dependent IAU atmospheric refraction model, based on the SOFA iauRefco() function,...">novas_wave_refraction()</a>.  <br /></td></tr>
+<tr class="memitem:gaf3631f03d8be587e08796747dfe2e9ca" id="r_gaf3631f03d8be587e08796747dfe2e9ca"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#gaf3631f03d8be587e08796747dfe2e9ca">novas_reset_eop</a> ()</td></tr>
+<tr class="memdesc:gaf3631f03d8be587e08796747dfe2e9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases resources used by URL handles used for obtaining Earth Orientation Parameter (EOP) data from the International Earth Rotation and Reference Systems Service (IERS), including the leap seconds list supplied earlier or obtained from IERS.  <br /></td></tr>
 <tr class="memitem:gaaf38f64304fa0b00c9c56cead62043f3" id="r_gaaf38f64304fa0b00c9c56cead62043f3"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gaaf38f64304fa0b00c9c56cead62043f3">novas_rises_above</a> (double el, const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict source, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref_model)</td></tr>
 <tr class="memdesc:gaaf38f64304fa0b00c9c56cead62043f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the UTC date at which a distant source appears to rise above the specified elevation angle.  <br /></td></tr>
 <tr class="memitem:ga9f33de2b26a19a5e20827e9e918b3375" id="r_ga9f33de2b26a19a5e20827e9e918b3375"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#ga9f33de2b26a19a5e20827e9e918b3375">novas_sep</a> (double lon1, double lat1, double lon2, double lat2)</td></tr>
 <tr class="memdesc:ga9f33de2b26a19a5e20827e9e918b3375"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angular separation of two locations on a sphere.  <br /></td></tr>
+<tr class="memitem:ga7dafe09841e9a43a7f8c87ce67a8d553" id="r_ga7dafe09841e9a43a7f8c87ce67a8d553"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga7dafe09841e9a43a7f8c87ce67a8d553">novas_set_auto_fetch_eop</a> (int enabled)</td></tr>
+<tr class="memdesc:ga7dafe09841e9a43a7f8c87ce67a8d553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS, when these are left undefined (NAN) when initializing astrometric time or observing frame instances.  <br /></td></tr>
 <tr class="memitem:ga5e92f920835111db719e880a61248045" id="r_ga5e92f920835111db719e880a61248045"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga5e92f920835111db719e880a61248045">novas_set_catalog</a> (<a class="el" href="group__source.html#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *restrict source, const char *restrict catalog, long num)</td></tr>
 <tr class="memdesc:ga5e92f920835111db719e880a61248045"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the optional catalog information for a sidereal source.  <br /></td></tr>
 <tr class="memitem:ga090f608cd5c82622e3534297fc27daa5" id="r_ga090f608cd5c82622e3534297fc27daa5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga090f608cd5c82622e3534297fc27daa5">novas_set_current_time</a> (int leap, double dut1, <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time)</td></tr>
@@ -1010,6 +1071,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga0fc8f315f8606e09571ab49efb13baca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets default weather parameters based on an approximate global model to the mean annualized temperatures, based on Feulner et al.  <br /></td></tr>
 <tr class="memitem:gaa076ebd4c967fb9afa24bd85feb84f63" id="r_gaa076ebd4c967fb9afa24bd85feb84f63"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#gaa076ebd4c967fb9afa24bd85feb84f63">novas_set_distance</a> (<a class="el" href="group__source.html#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *source, double parsecs)</td></tr>
 <tr class="memdesc:gaa076ebd4c967fb9afa24bd85feb84f63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the distance for a catalog source.  <br /></td></tr>
+<tr class="memitem:ga30319d4fc323f4f42d199e454abf0aef" id="r_ga30319d4fc323f4f42d199e454abf0aef"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef">novas_set_eop_url</a> (enum <a class="el" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> series, int itrf_year, const char *url)</td></tr>
+<tr class="memdesc:ga30319d4fc323f4f42d199e454abf0aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.  <br /></td></tr>
+<tr class="memitem:ga3bfd89aa8b76fc752b67f09b182197c7" id="r_ga3bfd89aa8b76fc752b67f09b182197c7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7">novas_set_leap_list</a> (const char *filename)</td></tr>
+<tr class="memdesc:ga3bfd89aa8b76fc752b67f09b182197c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies a local file containing the official leap seconds list, i.e.  <br /></td></tr>
 <tr class="memitem:ga4aa0c52a1d4838feb4255974486462a7" id="r_ga4aa0c52a1d4838feb4255974486462a7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga4aa0c52a1d4838feb4255974486462a7">novas_set_lsr_vel</a> (<a class="el" href="group__source.html#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *source, double epoch, double v_kms)</td></tr>
 <tr class="memdesc:ga4aa0c52a1d4838feb4255974486462a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a radial velocity for a catalog source, defined w.r.t.  <br /></td></tr>
 <tr class="memitem:ga706ecf8998b78e48051d2876efc6e01c" id="r_ga706ecf8998b78e48051d2876efc6e01c"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga706ecf8998b78e48051d2876efc6e01c">novas_set_orbsys_pole</a> (enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> type, double ra, double dec, <a class="el" href="structnovas__orbital__system.html">novas_orbital_system</a> *restrict sys)</td></tr>
@@ -1312,6 +1377,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a77366c1bd428629dc898e188bfd182a3" name="a77366c1bd428629dc898e188bfd182a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77366c1bd428629dc898e188bfd182a3">&#9670;&#160;</a></span>EXTERN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EXTERN&#160;&#160;&#160;extern</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a5414c24d23ad004a73ec69b1aad9f3e2" name="a5414c24d23ad004a73ec69b1aad9f3e2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5414c24d23ad004a73ec69b1aad9f3e2">&#9670;&#160;</a></span>HELIOC</h2>
 
@@ -1444,6 +1523,26 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ab74630b694f2fee24d8fc1dedad7eef9" name="ab74630b694f2fee24d8fc1dedad7eef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab74630b694f2fee24d8fc1dedad7eef9">&#9670;&#160;</a></span>NOVAS_INVALID_LEAP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NOVAS_INVALID_LEAP&#160;&#160;&#160;(-999)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Leap seconds value to indicate invalid data. </p>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap second...">novas_lookup_leap()</a>, <a class="el" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465">novas_lookup_leap()</a>.</p>
+
+</div>
+</div>
 <a id="ac73482ee628f676b44bb1476688f223e" name="ac73482ee628f676b44bb1476688f223e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac73482ee628f676b44bb1476688f223e">&#9670;&#160;</a></span>NOVAS_MAJOR_VERSION</h2>
 
@@ -1509,6 +1608,26 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Minor version of NOVAS on which this library is based. </p>
+
+</div>
+</div>
+<a id="a15d09c89b49351f50864dc58b3b1af8e" name="a15d09c89b49351f50864dc58b3b1af8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15d09c89b49351f50864dc58b3b1af8e">&#9670;&#160;</a></span>NOVAS_NUM_EOP_SERIES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NOVAS_NUM_EOP_SERIES&#160;&#160;&#160;( <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a> + 1 )</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of Earth Orientation Parameter Data series handled by <b>SuperNOVAS</b>. </p>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>enum <a class="el" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee" title="Identifier of the IERS EOP series used (or to use).">novas_eop_series</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8">novas_get_eop_itrf_year()</a>, and <a class="el" href="group__earth.html#gaaacc7748d90e01bb53ace4dc330ffa65">novas_get_eop_url()</a>.</p>
 
 </div>
 </div>
@@ -1658,7 +1777,7 @@ Variables</h2></td></tr>
 <p>Array initializer for mean planet radii in meters, matching the enum <a class="el" href="group__source.html#ga219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a>. </p>
 <p>E.g.</p>
 <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">double</span> *planet_radii[] = <a class="code hl_define" href="#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a>;</div>
-<div class="ttc" id="anovas_8h_html_ae48a8495c1ddf3960784aba5189d178e"><div class="ttname"><a href="#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_RADII_INIT</div><div class="ttdoc">Array initializer for mean planet radii in meters, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:667</div></div>
+<div class="ttc" id="anovas_8h_html_ae48a8495c1ddf3960784aba5189d178e"><div class="ttname"><a href="#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a></div><div class="ttdeci">#define NOVAS_PLANET_RADII_INIT</div><div class="ttdoc">Array initializer for mean planet radii in meters, matching the enum novas_planet.</div><div class="ttdef"><b>Definition</b> novas.h:679</div></div>
 </div><!-- fragment --><p>REFERENCES:</p>
 <ol type="1">
 <li><a href="https://orbital-mechanics.space/reference/planetary-parameters.html">https://orbital-mechanics.space/reference/planetary-parameters.html</a>, Table 3.</li>
@@ -1688,7 +1807,7 @@ Variables</h2></td></tr>
 <p>The number of major planets defined in NOVAS. </p>
 <dl class="section see"><dt>See also</dt><dd>enum <a class="el" href="group__source.html#ga219df36b21dc4476656e708d14d08045" title="Enumeration for the &#39;major planet&#39; numbers in NOVAS to use as the solar-system body number whenever t...">novas_planet</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="group__solar-system.html#ga580f5949c8a29cdd7bf4787aee891f2b">earth_sun_calc()</a>, <a class="el" href="grav_8c.html#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="target_8c.html#a411f70fb77582d750c5269fcd64b0ce2">make_object()</a>, <a class="el" href="group__source.html#ga4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="group__source.html#ga2cf7410aa68b980112734227b40890d6">novas_planet_for_name()</a>, <a class="el" href="group__solar-system.html#ga07490a134a685fe0842b2b4816559292">obs_planets()</a>, <a class="el" href="group__solar-system.html#ga93d0f96d81f3c52e05163643bd23eb7d">planet_ephem_provider_hp()</a>, and <a class="el" href="group__spectral.html#ga37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__solar-system.html#ga580f5949c8a29cdd7bf4787aee891f2b">earth_sun_calc()</a>, <a class="el" href="grav_8c.html#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="target_8c.html#a411f70fb77582d750c5269fcd64b0ce2">make_object()</a>, <a class="el" href="group__source.html#ga4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="cmp_8c.html#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle()</a>, <a class="el" href="group__source.html#ga2cf7410aa68b980112734227b40890d6">novas_planet_for_name()</a>, <a class="el" href="group__solar-system.html#ga07490a134a685fe0842b2b4816559292">obs_planets()</a>, <a class="el" href="group__solar-system.html#ga93d0f96d81f3c52e05163643bd23eb7d">planet_ephem_provider_hp()</a>, and <a class="el" href="group__spectral.html#ga37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
 
 </div>
 </div>
@@ -1947,7 +2066,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_MINOR_VERSION&#160;&#160;&#160;6</td>
+          <td class="memname">#define SUPERNOVAS_MINOR_VERSION&#160;&#160;&#160;7</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1963,7 +2082,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_PATCHLEVEL&#160;&#160;&#160;1</td>
+          <td class="memname">#define SUPERNOVAS_PATCHLEVEL&#160;&#160;&#160;0</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3474,6 +3593,54 @@ Variables</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3" title="True equinox Of Date: dynamical system of the &#39;true&#39; equator, with its origin at the &#39;true&#39; equinox (...">NOVAS_TOD</a>, <a class="el" href="group__observer.html#gaabb3ab0d99aa6e487cdcf6b454949b75" title="Populates an &#39;observer&#39; data structure for a hypothetical observer located at Earth&#39;s geocenter.">make_observer_at_geocenter()</a>, <a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9" title="Converts an vector in equatorial rectangular coordinates to equatorial spherical coordinates.">vector2radec()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="group__apparent.html#ga906b17f06b42e31a29cafad4856f565f">app_star()</a>, <a class="el" href="group__source.html#ga0a185da3a347343e5dd21d41a598d0fa">CAT_ENTRY_INIT</a>, <a class="el" href="structnovas__cat__entry.html#ab539dc076c350cf98ac047453fa18c9c">novas_cat_entry::dec</a>, <a class="el" href="util_8c.html#ad2b933ce2f58e8b04bbe76ffbff99eb0">novas_inv_max_iter</a>, <a class="el" href="group__earth.html#ga9178358732325399f3a5e3582080ced3">precession()</a>, <a class="el" href="structnovas__cat__entry.html#a0bf9261730a8decbfd1d0c63c377dac2">novas_cat_entry::ra</a>, <a class="el" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>, and <a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec()</a>.</p>
+
+</div>
+</div>
+<a id="a78bf876b768b1979395d544e17902f88" name="a78bf876b768b1979395d544e17902f88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78bf876b768b1979395d544e17902f88">&#9670;&#160;</a></span>novas_equals_planet_bundle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_equals_planet_bundle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *</td>          <td class="paramname"><span class="paramname"><em>a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *</td>          <td class="paramname"><span class="paramname"><em>b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if two bundles containing Solar-system baricentric planet positions and velocities are effectively the same. </p>
+<p>The two bundles are considered equals if:</p>
+<ul>
+<li>they contain data for the same set of planets.</li>
+<li>the planets with data have positions matching within 1 m.</li>
+<li>the planets with data have velocities matching within 1 mm/s.</li>
+</ul>
+<p>NOTES:</p>
+<ul>
+<li>Two NULL (undefined) planet bundles are considered not equal.</li>
+<li>A planet bundle may not equal itself if it contains NAN or infinite components for the planets they are supposed to have data for, since <span class="tt">NAN != NAN</span> and <span class="tt">INFINITE != INFINITE</span>.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>a planet position / velocity bundle </td></tr>
+    <tr><td class="paramname">b</td><td>another planet position / velocity bundle </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the two bundles are essentially the same within tolerances, or else FALSE (0).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+
+<p class="reference">References <a class="el" href="structnovas__planet__bundle.html#ac0b016705e6421505f3961ed6c70c845">novas_planet_bundle::mask</a>, <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="group__util.html#ga876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector()</a>, <a class="el" href="#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>, <a class="el" href="structnovas__planet__bundle.html#a76859a0c5dd55e9bc9897d022aeb4503">novas_planet_bundle::pos</a>, and <a class="el" href="structnovas__planet__bundle.html#a37277cd307ab593a78946b68d4b45de1">novas_planet_bundle::vel</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__frame.html#gaa6e8919a917e071f67bb1d7d84fe6131">novas_equals_frame()</a>.</p>
 
 </div>
 </div>

@@ -1,22 +1,14 @@
 var searchData=
 [
-  ['package_0',['package',['../index.html#autotoc_md32',1,'Homebrew package'],['../index.html#autotoc_md33',1,'Nix package']]],
-  ['packages_1',['Linux packages',['../index.html#autotoc_md31',1,'']]],
-  ['parameters_2',['parameters',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md78',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md115',1,'Solar-system objects with Keplerian orbital parameters']]],
-  ['phase_3',['phase',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md80',1,'Moon&apos;s position and phase'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md117',1,'Moon&apos;s position and phase']]],
-  ['physical_20units_4',['Physical units',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md87',1,'']]],
-  ['pick_20your_20flavor_20c_20or_20c_5',['Pick your flavor (C or C++)',['../index.html#autotoc_md39',1,'']]],
-  ['place_20on_20sky_6',['place on sky',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md74',1,'Calculate an apparent place on sky'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md111',1,'Calculate an apparent place on sky']]],
-  ['planet_20orbitals_7',['planet orbitals',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md79',1,'Approximate planet orbitals'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md116',1,'Approximate planet orbitals']]],
-  ['planets_20and_20or_20ephemeris_20type_20objects_8',['Planets and or ephemeris type objects',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md77',1,'Planets and/or ephemeris type objects'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md114',1,'Planets and/or ephemeris type objects']]],
-  ['position_20and_20phase_9',['position and phase',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md80',1,'Moon&apos;s position and phase'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md117',1,'Moon&apos;s position and phase']]],
-  ['positions_20for_20a_20sidereal_20source_10',['positions for a sidereal source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md69',1,'Calculating positions for a sidereal source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104',1,'Calculating positions for a sidereal source']]],
-  ['positions_20for_20a_20solar_20system_20source_11',['positions for a Solar system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md76',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md113',1,'Calculating positions for a Solar-system source']]],
-  ['precise_20results_12',['Prerequisites to precise results',['../index.html#autotoc_md46',1,'']]],
-  ['precision_13',['Notes on precision',['../index.html#autotoc_md45',1,'']]],
-  ['prerequisites_20to_20precise_20results_14',['Prerequisites to precise results',['../index.html#autotoc_md46',1,'']]],
-  ['provider_15',['Recommendation: set up an ephemeris provider',['../index.html#autotoc_md38',1,'']]],
-  ['pthread_5fmutex_5finit_16',['define mutex_init pthread_mutex_init',['../solsys-cspice_8c.html#autotoc_md1',1,'']]],
-  ['pthread_5fmutex_5flock_17',['define mutex_lock pthread_mutex_lock',['../solsys-cspice_8c.html#autotoc_md2',1,'']]],
-  ['pthread_5fmutex_5funlock_18',['define mutex_unlock pthread_mutex_unlock',['../solsys-cspice_8c.html#autotoc_md3',1,'']]]
+  ['readeph_20modules_0',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53',1,'']]],
+  ['recommendation_3a_20set_20up_20an_20ephemeris_20provider_1',['Recommendation: set up an ephemeris provider',['../index.html#autotoc_md26',1,'']]],
+  ['reduced_20accuracy_20shortcuts_2',['Reduced accuracy shortcuts',['../index.html#autotoc_md35',1,'']]],
+  ['refinements_20to_20the_20novas_20c_20api_3',['Refinements to the NOVAS C API',['../index.html#autotoc_md43',1,'']]],
+  ['related_20links_4',['Related links',['../index.html#autotoc_md4',1,'']]],
+  ['release_20schedule_5',['Release schedule',['../index.html#autotoc_md45',1,'']]],
+  ['representative_20benchmarks_6',['Representative benchmarks',['../index.html#autotoc_md39',1,'']]],
+  ['results_7',['Prerequisites to precise results',['../index.html#autotoc_md34',1,'']]],
+  ['reverse_8',['reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md69',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106',1,'Going in reverse...']]],
+  ['rise_20set_20and_20transit_20times_9',['rise set and transit times',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'Calculate rise, set, and transit times'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107',1,'Calculate rise, set, and transit times']]],
+  ['runtime_20debug_20support_10',['Runtime debug support',['../index.html#autotoc_md37',1,'']]]
 ];

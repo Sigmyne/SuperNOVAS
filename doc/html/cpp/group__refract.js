@@ -9,6 +9,8 @@ var group__refract =
       [ "elevation", "classsupernovas_1_1Horizontal.html#a82ab515e78cdee62524825584e7299a4", null ],
       [ "equals", "classsupernovas_1_1Horizontal.html#a8c4e0b5bf7d32529482c488475133a1b", null ],
       [ "equals", "classsupernovas_1_1Horizontal.html#aff9dba3c6f84058d9257f03864f897ee", null ],
+      [ "offset", "classsupernovas_1_1Horizontal.html#ae0f67417acd8e7efc718cd1439fddbc7", null ],
+      [ "offset", "classsupernovas_1_1Horizontal.html#a5b2ad9e09eea9c644c3d3cf3af45de61", null ],
       [ "operator!=", "classsupernovas_1_1Horizontal.html#a48d1926c73e09afa9f50b9d68faafc32", null ],
       [ "operator==", "classsupernovas_1_1Horizontal.html#ad76f1144b5248e6463d04e3fad7c8001", null ],
       [ "to_apparent", "group__apparent.html#ga02abf3d9fe725653e8220619a000fc8d", null ],

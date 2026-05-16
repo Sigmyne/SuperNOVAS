@@ -307,7 +307,7 @@ Protected Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a04cfc686ec4533c6153ced1fe5290560">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a026039e93a1925b9078502aea993f203">supernovas::SolarSystemObserver::SolarSystemObserver()</a>, <a class="el" href="classsupernovas_1_1Site.html#a73daad5121d46a112c0e73377f851073">supernovas::Site::enu_to_itrs()</a>, <a class="el" href="classsupernovas_1_1Site.html#a9601544186a4f015da31840d2a3dcc8d">supernovas::Site::enu_to_itrs()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#af6b416709b85d5b566a43ca3c6bb983b">supernovas::ScalarVelocity::in_direction()</a>, <a class="el" href="classsupernovas_1_1Site.html#af93fe5e61e5816b66a9ba251820f11ac">supernovas::Site::itrs_to_enu()</a>, <a class="el" href="classsupernovas_1_1Site.html#ae66a488b0b971cf9f2c65e844a1e37bc">supernovas::Site::itrs_to_enu()</a>, <a class="el" href="group__equatorial.html#ga0e8a6330b443d3f9eaaeee7016d59777">supernovas::AstrometricPosition::to_equatorial()</a>, <a class="el" href="group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36">supernovas::AstrometricPosition::to_interferometric()</a>, and <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">supernovas::Observer::to_interferometric()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a27d141fdabb111464442f65126d20168">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a026039e93a1925b9078502aea993f203">supernovas::SolarSystemObserver::SolarSystemObserver()</a>, <a class="el" href="classsupernovas_1_1Site.html#a73daad5121d46a112c0e73377f851073">supernovas::Site::enu_to_itrs()</a>, <a class="el" href="classsupernovas_1_1Site.html#a9601544186a4f015da31840d2a3dcc8d">supernovas::Site::enu_to_itrs()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#af6b416709b85d5b566a43ca3c6bb983b">supernovas::ScalarVelocity::in_direction()</a>, <a class="el" href="classsupernovas_1_1Site.html#af93fe5e61e5816b66a9ba251820f11ac">supernovas::Site::itrs_to_enu()</a>, <a class="el" href="classsupernovas_1_1Site.html#ae66a488b0b971cf9f2c65e844a1e37bc">supernovas::Site::itrs_to_enu()</a>, <a class="el" href="group__equatorial.html#ga0e8a6330b443d3f9eaaeee7016d59777">supernovas::AstrometricPosition::to_equatorial()</a>, <a class="el" href="group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36">supernovas::AstrometricPosition::to_interferometric()</a>, and <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">supernovas::Observer::to_interferometric()</a>.</p>
 
 </div>
 </div>
@@ -395,6 +395,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Checks if this vector is the same as another vector, within the specified precision. </p>
+<p>Note, that a vector may not equal itself if it contains NAN or infinite components.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>the reference vector </td></tr>
@@ -405,7 +406,7 @@ Protected Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this vector is equal to the argument within the specified precision, or else <span class="tt">false</span>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
-<p class="reference">References <a class="el" href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector()</a>, and <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>.</p>
+<p class="reference">References <a class="el" href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector()</a>, <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>, and <a class="el" href="novas_8h.html#a876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Interferometric.html#a33f65ad7f0ebd05b72bf3c96ac55c751">supernovas::Interferometric::equals()</a>, <a class="el" href="classsupernovas_1_1Position.html#af5a5f447de9406d87925400351a527a5">supernovas::Position::equals()</a>, and <a class="el" href="classsupernovas_1_1Velocity.html#a45a6d8f9d412efcd6e9cb034802cba9a">supernovas::Velocity::equals()</a>.</p>
 
@@ -574,7 +575,7 @@ Protected Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector()</a>, <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a04cfc686ec4533c6153ced1fe5290560">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a026039e93a1925b9078502aea993f203">supernovas::SolarSystemObserver::SolarSystemObserver()</a>, <a class="el" href="#a97c4fd36e79bcd6f02d5a8c2d540942b">operator*()</a>, <a class="el" href="group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36">supernovas::AstrometricPosition::to_interferometric()</a>, <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">supernovas::Observer::to_interferometric()</a>, and <a class="el" href="#ad761bfcd08771389fced7f7c908c9c52">unit_vector()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a27d141fdabb111464442f65126d20168">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="classsupernovas_1_1SolarSystemObserver.html#a026039e93a1925b9078502aea993f203">supernovas::SolarSystemObserver::SolarSystemObserver()</a>, <a class="el" href="#a97c4fd36e79bcd6f02d5a8c2d540942b">operator*()</a>, <a class="el" href="group__interferometry.html#ga3b6180b88e387076c74333dd3726ec36">supernovas::AstrometricPosition::to_interferometric()</a>, <a class="el" href="group__interferometry.html#gadda2670c6c66d72fbd1b57eb0827e629">supernovas::Observer::to_interferometric()</a>, and <a class="el" href="#ad761bfcd08771389fced7f7c908c9c52">unit_vector()</a>.</p>
 
 </div>
 </div>

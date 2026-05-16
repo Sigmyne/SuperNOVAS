@@ -149,6 +149,18 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a883cc4c0097aaa8806c3990b7f8a558a" id="r_a883cc4c0097aaa8806c3990b7f8a558a"><td class="memItemLeft">static EOP&#160;</td><td class="memItemRight"><a class="el" href="#a883cc4c0097aaa8806c3990b7f8a558a">fetch_current</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;offset, long timeout_millis=0L)</td></tr>
+<tr class="memdesc:a883cc4c0097aaa8806c3990b7f8a558a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS) for the current time instant, or an offset time from the current time.  <br /></td></tr>
+<tr class="memitem:ab53597291535b26da9ff1a3629d05904" id="r_ab53597291535b26da9ff1a3629d05904"><td class="memItemLeft">static EOP&#160;</td><td class="memItemRight"><a class="el" href="#ab53597291535b26da9ff1a3629d05904">fetch_current</a> (double offset=0.0, long timeout_millis=0L)</td></tr>
+<tr class="memdesc:ab53597291535b26da9ff1a3629d05904"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS) for the current time instant, or an offset time from the current time.  <br /></td></tr>
+<tr class="memitem:ae136f1047bfbd30a49b83de5b366db12" id="r_ae136f1047bfbd30a49b83de5b366db12"><td class="memItemLeft">static EOP&#160;</td><td class="memItemRight"><a class="el" href="#ae136f1047bfbd30a49b83de5b366db12">fetch_for</a> (const <a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a> &amp;date, long timeout_millis=0L)</td></tr>
+<tr class="memdesc:ae136f1047bfbd30a49b83de5b366db12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS).  <br /></td></tr>
+<tr class="memitem:a795ca27c550868b0dc7e675acbd198a0" id="r_a795ca27c550868b0dc7e675acbd198a0"><td class="memItemLeft">static EOP&#160;</td><td class="memItemRight"><a class="el" href="#a795ca27c550868b0dc7e675acbd198a0">fetch_for</a> (const time_t time, long timeout_millis=0L)</td></tr>
+<tr class="memdesc:a795ca27c550868b0dc7e675acbd198a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS).  <br /></td></tr>
+<tr class="memitem:a3449de521a39b92f85964e06917fa0e4" id="r_a3449de521a39b92f85964e06917fa0e4"><td class="memItemLeft">static EOP&#160;</td><td class="memItemRight"><a class="el" href="#a3449de521a39b92f85964e06917fa0e4">fetch_for_jd</a> (double jd, long timeout_millis=0L)</td></tr>
+<tr class="memdesc:a3449de521a39b92f85964e06917fa0e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS).  <br /></td></tr>
+<tr class="memitem:acb8cd84e38ccd54a041f770cd252f652" id="r_acb8cd84e38ccd54a041f770cd252f652"><td class="memItemLeft">static EOP&#160;</td><td class="memItemRight"><a class="el" href="#acb8cd84e38ccd54a041f770cd252f652">fetch_for_mjd</a> (double mjd, long timeout_millis=0L)</td></tr>
+<tr class="memdesc:acb8cd84e38ccd54a041f770cd252f652"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS).  <br /></td></tr>
 <tr class="memitem:a7675a6f28f30468c22ac70211880cc6f" id="r_a7675a6f28f30468c22ac70211880cc6f"><td class="memItemLeft">static const EOP &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a7675a6f28f30468c22ac70211880cc6f">undefined</a> ()</td></tr>
 <tr class="memdesc:a7675a6f28f30468c22ac70211880cc6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to a statically defined standard invalid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -295,7 +307,313 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#ae1488895a3d9418248de3b09d6df66d0">supernovas::Time::from_mjd()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1634e281fe67ec0c8d8b83ef9838831b">supernovas::Time::now()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#aaeff76161e28706bacc5d87421231d51">supernovas::CalendarDate::to_time()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a8b8a7b78b43ea8ff5c14cae2769e9fbd">supernovas::Time::from_mjd()</a>, <a class="el" href="classsupernovas_1_1Time.html#a78bfbb5d13774187c886b540b3ca8417">supernovas::Time::now()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#aeaf96a71d76a05250a4d9f4d1112a49a">supernovas::CalendarDate::to_time()</a>.</p>
+
+</div>
+</div>
+<a id="a883cc4c0097aaa8806c3990b7f8a558a" name="a883cc4c0097aaa8806c3990b7f8a558a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a883cc4c0097aaa8806c3990b7f8a558a">&#9670;&#160;</a></span>fetch_current() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EOP supernovas::EOP::fetch_current </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>timeout_millis</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0L</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS) for the current time instant, or an offset time from the current time. </p>
+<p>NOTES:</p>
+<ul>
+<li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
+<li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>(optional) time offset from current time (default: 0.0). </td></tr>
+    <tr><td class="paramname">timeout_millis</td><td>[ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Current <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> obtained from IERS or else an invalid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> if there was an error (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop</a> </dd>
+<dd>
+<a class="el" href="#a795ca27c550868b0dc7e675acbd198a0" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for()</a>, <a class="el" href="#a3449de521a39b92f85964e06917fa0e4" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for_jd()</a>, <a class="el" href="#acb8cd84e38ccd54a041f770cd252f652" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for_mjd()</a>, <a class="el" href="novas_8h.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#ab53597291535b26da9ff1a3629d05904">fetch_current()</a>, and <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>.</p>
+
+</div>
+</div>
+<a id="ab53597291535b26da9ff1a3629d05904" name="ab53597291535b26da9ff1a3629d05904"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab53597291535b26da9ff1a3629d05904">&#9670;&#160;</a></span>fetch_current() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EOP supernovas::EOP::fetch_current </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>offset</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>timeout_millis</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0L</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS) for the current time instant, or an offset time from the current time. </p>
+<p>NOTES:</p>
+<ul>
+<li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
+<li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>[s] (optional) time offset from current time (default: 0.0). </td></tr>
+    <tr><td class="paramname">timeout_millis</td><td>[ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Current <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> obtained from IERS or else an invalid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> if there was an error (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop</a> </dd>
+<dd>
+<a class="el" href="#a795ca27c550868b0dc7e675acbd198a0" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for()</a>, <a class="el" href="#a3449de521a39b92f85964e06917fa0e4" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for_jd()</a>, <a class="el" href="#acb8cd84e38ccd54a041f770cd252f652" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for_mjd()</a>, <a class="el" href="novas_8h.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a795ca27c550868b0dc7e675acbd198a0">fetch_for()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a883cc4c0097aaa8806c3990b7f8a558a">fetch_current()</a>.</p>
+
+</div>
+</div>
+<a id="ae136f1047bfbd30a49b83de5b366db12" name="ae136f1047bfbd30a49b83de5b366db12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae136f1047bfbd30a49b83de5b366db12">&#9670;&#160;</a></span>fetch_for() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EOP supernovas::EOP::fetch_for </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>date</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>timeout_millis</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0L</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS). </p>
+<p>NOTES:</p>
+<ul>
+<li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
+<li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">date</td><td><a class="el" href="classsupernovas_1_1Calendar.html" title="Type of calendar used for representing dates, such as Gregorian, Roman, or astronomical.">Calendar</a> date for which to try get <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>. </td></tr>
+    <tr><td class="paramname">timeout_millis</td><td>[ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> obtained from IERS or else an invalid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> if there was an error (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop</a> </dd>
+<dd>
+<a class="el" href="#a3449de521a39b92f85964e06917fa0e4" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for_jd()</a>, <a class="el" href="#acb8cd84e38ccd54a041f770cd252f652" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for_mjd()</a>, <a class="el" href="#ab53597291535b26da9ff1a3629d05904" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_current()</a>, <a class="el" href="novas_8h.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a795ca27c550868b0dc7e675acbd198a0">fetch_for()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#a776056f48ef548d8bb613932fe2647d8">supernovas::CalendarDate::unix_time()</a>.</p>
+
+</div>
+</div>
+<a id="a795ca27c550868b0dc7e675acbd198a0" name="a795ca27c550868b0dc7e675acbd198a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a795ca27c550868b0dc7e675acbd198a0">&#9670;&#160;</a></span>fetch_for() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EOP supernovas::EOP::fetch_for </td>
+          <td>(</td>
+          <td class="paramtype">const time_t</td>          <td class="paramname"><span class="paramname"><em>time</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>timeout_millis</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0L</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS). </p>
+<p>NOTES:</p>
+<ul>
+<li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
+<li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="group__time.html" title="Defining the precise time of observation, and support for all relevant astronomical timescales,...">Time of observation and astronomical timescales</a></td><td>UNIX time for which to try get <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>. </td></tr>
+    <tr><td class="paramname">timeout_millis</td><td>[ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> obtained from IERS or else an invalid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> if there was an error (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop</a> </dd>
+<dd>
+<a class="el" href="#a3449de521a39b92f85964e06917fa0e4" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for_jd()</a>, <a class="el" href="#acb8cd84e38ccd54a041f770cd252f652" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for_mjd()</a>, <a class="el" href="#ab53597291535b26da9ff1a3629d05904" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_current()</a>, <a class="el" href="novas_8h.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a3449de521a39b92f85964e06917fa0e4">fetch_for_jd()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, and <a class="el" href="novas_8h.html#acb9c6b9922edfc6971ceb6304cb945f9">UNIX_SECONDS_0UTC_1JAN2000</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ab53597291535b26da9ff1a3629d05904">fetch_current()</a>, and <a class="el" href="#ae136f1047bfbd30a49b83de5b366db12">fetch_for()</a>.</p>
+
+</div>
+</div>
+<a id="a3449de521a39b92f85964e06917fa0e4" name="a3449de521a39b92f85964e06917fa0e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3449de521a39b92f85964e06917fa0e4">&#9670;&#160;</a></span>fetch_for_jd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EOP supernovas::EOP::fetch_for_jd </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>jd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>timeout_millis</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0L</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS). </p>
+<p>NOTES:</p>
+<ul>
+<li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
+<li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">jd</td><td>[day] Julian Date (preferably UTC-based). </td></tr>
+    <tr><td class="paramname">timeout_millis</td><td>[ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> obtained from IERS or else an invalid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> if there was an error (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop</a> </dd>
+<dd>
+<a class="el" href="#acb8cd84e38ccd54a041f770cd252f652" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for_mjd()</a>, <a class="el" href="#a795ca27c550868b0dc7e675acbd198a0" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for()</a>, <a class="el" href="#ab53597291535b26da9ff1a3629d05904" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_current()</a>, <a class="el" href="novas_8h.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">supernovas::Unit::arcsec</a>, <a class="el" href="structnovas__eop.html#aa7dc31267da0f16593948531081b9c20">novas_eop::dut1</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="structnovas__eop.html#ab16f1e9735ea4825852497ab33b3ebf3">novas_eop::leap</a>, <a class="el" href="novas_8h.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop()</a>, <a class="el" href="#a7675a6f28f30468c22ac70211880cc6f">undefined()</a>, <a class="el" href="structnovas__eop.html#adad511b5bdef74f8aab97945a432f54a">novas_eop::xp</a>, and <a class="el" href="structnovas__eop.html#a6a836a00dbc47798b5dbc864b71cc95d">novas_eop::yp</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a795ca27c550868b0dc7e675acbd198a0">fetch_for()</a>, and <a class="el" href="#acb8cd84e38ccd54a041f770cd252f652">fetch_for_mjd()</a>.</p>
+
+</div>
+</div>
+<a id="acb8cd84e38ccd54a041f770cd252f652" name="acb8cd84e38ccd54a041f770cd252f652"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb8cd84e38ccd54a041f770cd252f652">&#9670;&#160;</a></span>fetch_for_mjd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">EOP supernovas::EOP::fetch_for_mjd </td>
+          <td>(</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>mjd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long</td>          <td class="paramname"><span class="paramname"><em>timeout_millis</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0L</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Obtains cubic spline interpolated Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) from the International Earth Rotation and Reference Systems Service (IERS). </p>
+<p>NOTES:</p>
+<ul>
+<li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
+<li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mjd</td><td>[day] Modified Julian Date (preferably UTC-based). </td></tr>
+    <tr><td class="paramname">timeout_millis</td><td>[ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> obtained from IERS or else an invalid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> if there was an error (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop">https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop</a> </dd>
+<dd>
+<a class="el" href="#a3449de521a39b92f85964e06917fa0e4" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for_jd()</a>, <a class="el" href="#a795ca27c550868b0dc7e675acbd198a0" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_for()</a>, <a class="el" href="#ab53597291535b26da9ff1a3629d05904" title="Obtains cubic spline interpolated Earth Orientation Parameters (EOP) from the International Earth Rot...">fetch_current()</a>, <a class="el" href="novas_8h.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a3449de521a39b92f85964e06917fa0e4">fetch_for_jd()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#ac266a346b8e22946f50079897b0baefa">NOVAS_JD_MJD0</a>.</p>
 
 </div>
 </div>
@@ -354,7 +672,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a14015d01e9b377e3eebede8ae2588f81" title="Returns the UT1 - UTC time difference as a time interval.">dUT1()</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>, <a class="el" href="#acf0f9c3a22be7884fb23cdf7e9c6f5bf">EOP()</a>, <a class="el" href="classsupernovas_1_1Time.html#ae1488895a3d9418248de3b09d6df66d0">supernovas::Time::from_mjd()</a>, <a class="el" href="classsupernovas_1_1Time.html#a1634e281fe67ec0c8d8b83ef9838831b">supernovas::Time::now()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#aaeff76161e28706bacc5d87421231d51">supernovas::CalendarDate::to_time()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>, <a class="el" href="#acf0f9c3a22be7884fb23cdf7e9c6f5bf">EOP()</a>, <a class="el" href="classsupernovas_1_1Time.html#a8b8a7b78b43ea8ff5c14cae2769e9fbd">supernovas::Time::from_mjd()</a>, <a class="el" href="classsupernovas_1_1Time.html#a78bfbb5d13774187c886b540b3ca8417">supernovas::Time::now()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#aeaf96a71d76a05250a4d9f4d1112a49a">supernovas::CalendarDate::to_time()</a>.</p>
 
 </div>
 </div>
@@ -465,6 +783,8 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>a reference to a static standard <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
+<p class="reference">Referenced by <a class="el" href="#a3449de521a39b92f85964e06917fa0e4">fetch_for_jd()</a>, and <a class="el" href="classsupernovas_1_1Time.html#a1705c26da3530ffcd6d42a8f7caa4652">supernovas::Time::operator-()</a>.</p>
+
 </div>
 </div>
 <a id="a0b8ca59fd650c1dbfe4f7fe313c2a5c1" name="a0b8ca59fd650c1dbfe4f7fe313c2a5c1"></a>
@@ -487,7 +807,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a366bb7cd103b544c14e62db54950cad4" title="Returns the IERS y pole offset (yp) as an angle.">yp()</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a66c8d9adc7dad77300f861899866e3cf">supernovas::GeodeticObserver::eop_at()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#aa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver::gcrs_position_at()</a>, and <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver::gcrs_velocity_at()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae91c9c23a26531d0aa21b5732e614dcd">supernovas::GeodeticObserver::equals()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#aa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver::gcrs_position_at()</a>, and <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver::gcrs_velocity_at()</a>.</p>
 
 </div>
 </div>
@@ -511,7 +831,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0b8ca59fd650c1dbfe4f7fe313c2a5c1" title="Returns the IERS x pole offset (xp) as an angle.">xp()</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#a66c8d9adc7dad77300f861899866e3cf">supernovas::GeodeticObserver::eop_at()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#aa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver::gcrs_position_at()</a>, and <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver::gcrs_velocity_at()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#ad8149b4b5c537a550f62913c32ca7874">EOP()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae91c9c23a26531d0aa21b5732e614dcd">supernovas::GeodeticObserver::equals()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#aa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver::gcrs_position_at()</a>, and <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver::gcrs_velocity_at()</a>.</p>
 
 </div>
 </div>

@@ -363,6 +363,14 @@ Again, `supernovas::Observer` has many subclasses of specific flavors, so here w
 are lazy (otherwise we could have specified `supernovas::GeodeticObserver`, which is what `site.to_observer()` 
 returns).
 
+As of v1.7, you may omit the optional `EOP` parameter in `Site::to_observer()`. In that case, any frame constructed 
+with that geodetic observer location will automatically fetch appropriate polar offsets from IERS if possible (and 
+provided you did not call `novas_set_auto_fetch_eop(0)` to disable it). You can use your own URLs (such as on a local 
+server) instead of the default ones with `novas_set_eop_url()` for faster / more reliable EOP lookup. Note, however, 
+that that this will add arbitrary latencies and a source of indeterminacy into your application also. See \ref earth 
+for the set of functions and methods that can be used for fetching EOP from local or external sources as needed for 
+a time of observation specified later.
+
 ##### B. other observer locations
 
 Alternatively, you can also specify airborne observers, or observers in Earth orbit, in heliocentric orbit, or a 
@@ -409,6 +417,26 @@ Or, you might use string dates, such as an ISO timestamp:
 ```cpp
  Time obs_time = Time("2025-01-26T22:05:14.234+0200", eop);
 ```
+
+As of v1.7, you can let __SuperNOVAS__ fetch leap seconds and the UT1 - UTC time difference automatically from IERS,
+provided you are online, and you don't mind the slight delay associated with the HTTP query. Simply omit the optional 
+`eop` parameter, or else pass `EOP::undefined()`, in the time constructor to indicate that the leap seconds and 
+UT1 - UTC time difference should be fetched automatically. However, the EOP lookup may fail, and so you should always 
+check for validity after, e.g.:
+
+```c
+  // Use NAN for dut1 to fetch leap seconds and the UT1 - UTC difference from IERS
+  Time t = Time::now();
+  if(!t) {
+    // Oops, failed to get leap seconds and dut1 from IERS...
+    return -1;
+  }
+```
+
+You can also disable the automatic fetch and replacement of NAN `dut1` values by calling 
+`novas_set_auto_fetch_eop(0)`. See \ref earth for the set of functions and methods that can be used for fetching 
+appropriate values for leap seconds or the UT1-UTC time difference from local or external sources.
+
 
 <a name="observing-frame-cpp"></a>
 #### Set up the observing frame
