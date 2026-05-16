@@ -2,7 +2,7 @@
 
 
 <a href="https://doi.org/10.5281/zenodo.14584983">
- ![DOI: 10.5281/zenodo.14584983](resources/zenodo.14584983.svg)
+ <img src="zenodo.14584983.svg" alt="DOI: 10.5281/zenodo.14584983"/>
 </a>
 
 The NOVAS C astrometry library, made better.
