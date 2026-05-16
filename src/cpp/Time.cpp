@@ -46,7 +46,8 @@ static bool is_valid_parms(double dUT1,  enum novas_timescale timescale) {
  * @param leap_seconds  [s] leap seconds, that is TAI - UTC (default: 0). It may be unused if
  *                      `dUT1` is NAN -- see below.
  * @param dUT1          [s] UT1 - UTC time difference, e.g. from the IERS Bulletins or service, or
- *                      NAN to fetch leap and dUT1 from IERS, if possible and allowed.
+ *                      NAN to fetch leap and dUT1 from IERS, if possible and allowed for dates
+ *                      after 1 Jan 1956.
  * @param timescale     (optional) Astronomical timescale (default: TT).
  *
  * @since 1.6
@@ -86,7 +87,8 @@ Time::Time(double jd, const EOP& eop, enum novas_timescale timescale)
  * @param leap_seconds  [s] leap seconds, that is TAI - UTC (default: 0). It may be unused if
  *                      `dUT1` is NAN -- see below.
  * @param dUT1          [s] UT1 - UTC time difference, e.g. from the IERS Bulletins or service, or
- *                      NAN to fetch leap and dUT1 from IERS, if possible and allowed.
+ *                      NAN to fetch leap and dUT1 from IERS, if possible and allowed for dates
+ *                      after 1 Jan 1956.
  * @param timescale     (optional) Astronomical timescale (default: TT).
  *
  * @since 1.6
@@ -125,7 +127,8 @@ Time::Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale)
  * @param leap_seconds  [s] leap seconds, that is TAI - UTC (default: 0). It may be unused if
  *                      `dUT1` is NAN -- see below.
  * @param dUT1          [s] UT1 - UTC time difference, e.g. from the IERS Bulletins or service, or
- *                      NAN to fetch leap and dUT1 from IERS, if possible and allowed.
+ *                      NAN to fetch leap and dUT1 from IERS, if possible and allowed for dates
+ *                      after 1 Jan 1956.
  * @param timescale     (optional) Astronomical timescale (default: TT).
  *
  * @since 1.6
@@ -166,7 +169,8 @@ Time::Time(const std::string& timestamp, const EOP& eop, enum novas_timescale ti
  * @param leap_seconds  [s] leap seconds, that is TAI - UTC (default: 0). It may be unused if
  *                      `dUT1` is NAN -- see below.
  * @param dUT1          [s] UT1 - UTC time difference, e.g. from the IERS Bulletins or service, or
- *                      NAN to fetch leap and dUT1 from IERS, if possible and allowed.
+ *                      NAN to fetch leap and dUT1 from IERS, if possible and allowed for dates
+ *                      after 1 Jan 1956.
  *
  * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()

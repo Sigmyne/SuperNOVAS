@@ -40,7 +40,12 @@ jobs:
           sudo apt-get install -y libcurl4-openssl-dev
 
       - name: Configure CMake (Unix)
+        if: runner.os != 'Windows'
         run: cmake -B build -DENABLE_CPP=ON -DBUILD_SHARED_LIBS=ON -DBUILD_EXAMPLES=ON -DBUILD_BENCHMARK=ON
+
+      - name: Configure CMake (Windows)
+        if: runner.os == 'Windows'
+        run: cmake -B build -DWITHOUT_CURL=ON -DENABLE_CPP=ON -DBUILD_SHARED_LIBS=ON -DBUILD_EXAMPLES=ON -DBUILD_BENCHMARK=ON
 
       - name: Build (Unix)
         if: runner.os != 'Windows'
@@ -77,7 +82,7 @@ jobs:
           release: "14.0"
           usesh: true
           prepare: |
-            pkg install -y cmake
+            pkg install -y cmake curl
           run: |
             echo Building on FreeBSD $(uname -m)
             cmake -B build

@@ -41,6 +41,7 @@ option(BUILD_DOC "Build HTML documetation" OFF)
 option(BUILD_TESTING "Build regression test suite" ON)
 option(BUILD_EXAMPLES "Build example programs" OFF)
 option(BUILD_BENCHMARK "Build benchmark programs" OFF)
+option(WITHOUT_CURL "Build withour cURL support (no fetching EOP from IERS possible)" ON)
 option(ENABLE_CPP "Enable C++ library build (supernovas++ library)" OFF)
 option(ENABLE_CALCEPH "Enable CALCEPH support (solsys-calceph plugin)" OFF)
 option(ENABLE_CSPICE "Enable CSPICE support (solsys-cspice plugin)" OFF)
@@ -53,6 +54,8 @@ add_feature_info(Documentation BUILD_DOC "Developer documentation (HTML)")
 add_feature_info(Testing BUILD_TESTING "Run regression testing")
 add_feature_info(Examples BUILD_EXAMPLES "Build and test example programs")
 add_feature_info(Benchmarks BUILD_BENCHMARK "Build benchmarking programs")
+
+add_feature_info(Without-cURL WITHOUT_CURL "Build with cURL support (no fetching EOP from IERS possible)")
 
 add_feature_info(C++-Libs ENABLE_CPP "Build C++ library also (supernovas++)")
 add_feature_info(Calceph-Plugin ENABLE_CALCEPH "Optional ephemeris support via CALCEPH (solsys-calceph)")
@@ -99,7 +102,13 @@ if(HAS_MATHLIB)
     string(APPEND PC_LIBS_PRIVATE -l${MATHLIB} " ")
 endif()
 
-check_library_exists(curl curl_init "" HAS_CURL)
+if(NOT WITHOUT_CURL)
+   find_library(curl_FOUND curl REGISTRY_VIEW TARGET REQUIRED)   
+   set(LIBCURL curl)
+   
+   # [.pc] Link applications against curl lib...
+   string(APPEND PC_LIBS_PRIVATE -l${LIBCURL} " ")
+endif()
 
 if(ENABLE_CALCEPH OR ENABLE_CSPICE)
     find_package(Threads)
@@ -128,7 +137,7 @@ endif()
 
 # CSPICE plugin
 if(ENABLE_CSPICE)
-    find_library(cspice cspice REGISTRY_VIEW TARGET REQUIRED)
+    find_library(cspice_FOUND cspice REGISTRY_VIEW TARGET REQUIRED)
     string(APPEND PC_LIBS "-lsolsys-cspice ")
     string(APPEND PC_LIBS_PRIVATE "-lcspice ")
 endif()

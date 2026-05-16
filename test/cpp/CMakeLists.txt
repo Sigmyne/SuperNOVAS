@@ -19,7 +19,7 @@ foreach(TEST ${TEST_PROGRAMS})
               
     target_include_directories(${TEST} PRIVATE ${PROJECT_SOURCE_DIR}/include)
         
-    if(NOT HAS_CURL)
+    if(WITHOUT_CURL)
         target_compile_definitions(${TEST} PRIVATE WITHOUT_CURL=1)
     endif()
 

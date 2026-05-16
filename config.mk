@@ -160,8 +160,13 @@ else
 endif 
 
 ifeq ($(AUTO_DETECT_LIBS),1)
-  # Use ldconfig (if available) to detect CALCEPH / CSPICE shared libs 
+  # Use ldconfig (if available) to detect dependency shared libs 
   # automatically
+  ifndef CURL_SUPPORT
+    ifneq ($(shell ldconfig -p | grep libcurl), )
+      CURL_SUPPORT = 1
+    endif
+  endif
   ifndef CALCEPH_SUPPORT
     ifneq ($(shell ldconfig -p | grep libcalceph), )
       CALCEPH_SUPPORT = 1

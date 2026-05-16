@@ -22,9 +22,7 @@ target_include_directories(core PUBLIC
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-if(HAS_CURL)
-  set(LIBCURL curl)
-else()
+if(WITHOUT_CURL)
   target_compile_definitions(core PRIVATE WITHOUT_CURL=1)
 endif()
 

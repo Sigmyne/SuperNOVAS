@@ -934,6 +934,10 @@ void novas_reset_eop() {
  *     data in some other future ITRF realization, this module may need to be updated, accordingly.
  *     However, the ITRF realization is unlikely to matter significantly.
  *
+ *  8. Prior to 1 Jan 1956, the UT1-UTC time difference is not provided by IERS, as it was not
+ *     measured prior to the age of atomic clocks. Hence for dates prior to 1956 the returned
+ *     EOP will have `dut1`(and its uncertainty) set to NAN.
+ *
  * @param jd              Julian Date (in any timescale, with a preference for UTC)
  * @param timeout_millis  [ms] HTTP connection timeout, or &lt;=0 to leave unchanged.
  * @param[out] eop        Output EOP data structure to populate

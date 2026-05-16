@@ -41,7 +41,7 @@ repository on GitHub, without licensing restrictions. Its source code is compati
 and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully 
 supports the IAU 2000/2006 conventions for microarcsecond-level position calculations. 
 
-This document has been updated for the `v1.6` and later releases.
+This document has been updated for the `v1.7` and later releases.
 
 
 ## Table of Contents
@@ -224,15 +224,10 @@ accommodate JPL NAIF codes, for which 16-bit storage is insufficient.
 <a name="dependencies"></a>
 ### Dependencies
 
-Required dependencies:
-
- - `libcurl` -- for fetching Earth Orientation data from IERS. (If `libcurl` is not available, and you do not need
-   the EOP ftching functionality, you can disable the dependency by setting `CURL_SUPPORT=0` in your environment prior 
-   to the build.
- 
 Optional dependencies:
 
- - `calceph` -- if building with CALCEPH support enabled.
+ - `libcurl` -- (recommended) for fetching Earth Orientation data from IERS.
+ - `calceph` -- (recommended) if building with CALCEPH support enabled.
  - `cspice` -- if building with CSPICE support enabled.
  - `doxygen` -- if compiling HTML documentation.
  
@@ -416,9 +411,10 @@ The __SuperNOVAS__ CMake build supports the following options (in addition to th
  - `BUILD_SHARED_LIBS=ON|OFF` (default: OFF) - Build shared libraries instead of static
  - `BUILD_DOC=ON|OFF` (default: OFF) - Compile HTML documentation. Requires `doxygen`.
  - `BUILD_EXAMPLES=ON|OFF` (default: OFF) - Build the included examples
- - `BUILD_TESTING=ON|OFF` (default: ON - Build regression tests
- - `BUILD_BENCHMARK=ON|OFF` (default: OFF - Build benchmarking programs 
- - `ENABLE_CPP=ON|OFF` (default: OFF - Build C++11 library (`supernovas++`) also. 
+ - `BUILD_TESTING=ON|OFF` (default: ON) - Build regression tests
+ - `BUILD_BENCHMARK=ON|OFF` (default: OFF) - Build benchmarking programs 
+ - `WITHOUT_CURL=ON|OFF` (default: OFF) - Build without cURL support, which allows fetching EOP from IERS.
+ - `ENABLE_CPP=ON|OFF` (default: OFF) - Build C++11 library (`supernovas++`) also. 
  - `ENABLE_CALCEPH=ON|OFF` (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires `calceph` package.
  - `ENABLE_CSPICE=ON|OFF` (default: OFF) - Optional CSPICE ephemeris plugin support. Requires `cspice` library 
    installed.

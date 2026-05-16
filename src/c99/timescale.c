@@ -444,7 +444,8 @@ double get_ut1_to_tt(int leap_seconds, double dut1) {
  *                      the coordinates of an Earth-based observer, you can use
  *                      `novas_itrf_transform_eop()` to make it consistent. If `dut1` is NAN, and
  *                      `novas_is_auto_fetch_eop()` is TRUE then both `leap` and `dut1` will be
- *                      fetched from IERS if possible.
+ *                      fetched from IERS if possible. Note, that prior to 1956 IERS does not
+ *                      provide UT1-UTC difference.
  * @param[out] time     Pointer to the data structure that uniquely defines the astronomical time
  *                      for all applications.
  * @return              0 if successful, or else -1 if there was an error (errno will be set to
@@ -564,7 +565,8 @@ static double tt_offset(const novas_timespec *ts, enum novas_timescale timescale
  *                      the coordinates of an Earth-based observer, you can use
  *                      `novas_itrf_transform_eop()` to make it consistent. If `dut1` is NAN
  *                      and `novas_is_auto_fetch_eop()` is TRUE, then both `leap` and `dut1` will be
- *                      fetched from IERS if possible.
+ *                      fetched from IERS if possible. Note, that prior to 1956 IERS does not
+ *                      provide UT1-UTC difference.
  * @param[out] time     Pointer to the data structure that uniquely defines the astronomical time
  *                      for all applications.
  * @return              0 if successful, or else -1 if there was an error (errno will be set to
@@ -912,7 +914,8 @@ double novas_diff_tcg(const novas_timespec *t1, const novas_timespec *t2) {
  *                    the coordinates of an Earth-based observer, you can use
  *                    `novas_itrf_transform_eop()` to make it consistent. If `dut1` is NAN, and
  *                    `novas_is_auto_fetch_eop()` is TRUE then both `leap` and `dut1` will be
- *                    fetched from IERS if possible.
+ *                    fetched from IERS if possible. Note, that prior to 1956 IERS does not
+ *                      provide UT1-UTC difference.
  * @param[out] time   Pointer to the data structure that uniquely defines the astronomical time
  *                    for all applications.
  * @return            0 if successful, or else -1 if there was an error (errno will be set to

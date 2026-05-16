@@ -44,7 +44,7 @@ foreach(TEST ${TEST_PROGRAMS})
         
         target_compile_definitions(${TEST} PRIVATE RESOURCES="${PROJECT_SOURCE_DIR}/resources")
         
-        if(NOT HAS_CURL)
+        if(WITHOUT_CURL)
             target_compile_definitions(${TEST} PRIVATE WITHOUT_CURL=1)
         endif()
         
