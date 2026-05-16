@@ -1,7 +1,9 @@
 # User's guide
 
 
-[![DOI: 10.5281/zenodo.14584983](https://zenodo.org/badge/DOI/10.5281/zenodo.14584983.svg)](https://doi.org/10.5281/zenodo.14584983)
+<a href="https://doi.org/10.5281/zenodo.14584983">
+ ![DOI: 10.5281/zenodo.14584983](resources/zenodo.14584983.svg)
+</a>
 
 The NOVAS C astrometry library, made better.
 
@@ -207,10 +209,10 @@ accommodate JPL NAIF codes, for which 16-bit storage is insufficient.
 
 Optional dependencies:
 
- - `libcurl` -- (recommended) for fetching Earth Orientation data from IERS.
- - `calceph` -- (recommended) if building with CALCEPH support enabled.
- - `cspice` -- if building with CSPICE support enabled.
- - `doxygen` -- if compiling HTML documentation.
+ - [`curl`](https://curl.se/) -- (recommended) for fetching Earth Orientation data from IERS.
+ - [`calceph`](https://calceph.imcce.fr/docs/latest/html/c/) -- (recommended) if building with CALCEPH support enabled.
+ - [`cspice`](https://naif.jpl.nasa.gov/naif/toolkit.html) -- if building with CSPICE support enabled.
+ - [`doxygen`](https://www.doxygen.nl/) -- if compiling HTML documentation.
  
 #### Installing dependencies on Linux
 
@@ -391,7 +393,8 @@ The __SuperNOVAS__ CMake build supports the following options (in addition to th
  - `BUILD_EXAMPLES=ON|OFF` (default: OFF) - Build the included examples
  - `BUILD_TESTING=ON|OFF` (default: ON) - Build regression tests
  - `BUILD_BENCHMARK=ON|OFF` (default: OFF) - Build benchmarking programs 
- - `WITHOUT_CURL=ON|OFF` (default: OFF) - Build without cURL support, which allows fetching EOP from IERS.
+ - `WITHOUT_CURL=ON|OFF` (default: OFF) - Build without [cURL](https://curl.se/) support (no fetching EOP 
+   from IERS).
  - `ENABLE_CPP=ON|OFF` (default: OFF) - Build C++11 library (`supernovas++`) also. 
  - `ENABLE_CALCEPH=ON|OFF` (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires `calceph` package.
  - `ENABLE_CSPICE=ON|OFF` (default: OFF) - Optional CSPICE ephemeris plugin support. Requires `cspice` library 
@@ -451,7 +454,8 @@ following components are available:
 
  - `core` -- The core C99 library (this is installed by default if no components are specified).
  - `cpp` -- The C++11 extension runtime and development files.
- - `solsys-calceph` -- CALCEPH plugin runtime and development files. (It also installs the `calceph` dependency as needed).
+ - `solsys-calceph` -- CALCEPH plugin runtime and development files. (It also installs the `calceph` dependency as 
+   needed).
 
 You can install just the core C99 library of SuperNOVAS (without the C++ API and CALCEPH support) with `vcpkg` as:
 
@@ -622,10 +626,11 @@ if you don't particularly care to obtain precise planet positions per se, they a
 high-precision calculations (such as for positional calculations for Earth-based observers, and gravitational 
 deflections in full-precision observing frames).
 
-Therefore, it is strongly recommended that you download [planetary ephemeris files from NASA / JPL](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/) (such as the DE440, or the smaller DE440s, or the long-term DE441), and install 
-[CALCEPH](https://calceph.imcce.fr/) or the [CSPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html) for 
-accessing these. I recommend CALCEPH, because it is more widely available (also in packaged form), and it is also 
-more modern, and actively maintained. 
+Therefore, it is strongly recommended that you download 
+[planetary ephemeris files from NASA / JPL](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/) (such as 
+the DE440, or the smaller DE440s, or the long-term DE441), and install [CALCEPH](https://calceph.imcce.fr/) or the 
+[CSPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html) for accessing these. I recommend CALCEPH, because it is 
+more widely available (also in packaged form), and it is also more modern, and actively maintained. 
 
 Provided you installed CALCEPH, you usage of __SuperNOVAS__ should always start with something like this (regardless 
 of whether you will use the C99 or the C++ API afterwards):
@@ -665,8 +670,8 @@ one you intend to use, choose the appropriate link to an external document below
 
 If you want to use __SuperNOVAS__ to calculate positions for a range of Solar-system objects, and/or to do it with 
 precision, you will have to interface it to a suitable provider of ephemeris data. The preferred ways to do that in
-__SuperNOVAS__ enumerated below. (The legacy NOVAS C ways are not covered here, since they require specialized builds of 
-__SuperNOVAS__, which are covered 
+__SuperNOVAS__ enumerated below. (The legacy NOVAS C ways are not covered here, since they require specialized builds 
+of __SuperNOVAS__, which are covered 
 [separately](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application).)
 
 NASA/JPL provides [generic ephemerides](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/) for the major 
@@ -1218,6 +1223,16 @@ Below is a non-exhaustive overview new features added by __SuperNOVAS__ on top o
  - Added a truncated version of the ELP2000 / MPP02 semi-analytical model of the Moon (Chapront &amp; Francou 2003),
    allowing arcsec (km) level position calculations for the Moon even without ephemeris data.
    
+
+<summary>New in v1.7</summary>
+
+ - New functions and methods to obtain Earth Orientation Parameters (EOP) from IERS, or from a user-defined remote or 
+   local source. EOP can also be fetched automatically when a astrometric time or an observing frame is initialized
+   with undefined (NAN) values for these. If you don't mind the slight latencies involved with getting EOP values 
+   from a remote source, they can make using __SuperNOVAS__ at its full precision a whole lot easier.
+   
+ - New practical equality tests, with reasonable tolerances, for data structures and classes.
+
 
 <a name="api-changes"></a>
 ### Refinements to the NOVAS C API

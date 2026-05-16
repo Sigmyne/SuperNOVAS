@@ -104,7 +104,7 @@ $(function(){initNavTree('index.html','',''); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__2github_2workspace_2doc_2README"></a></p>
-<p><a href="https://doi.org/10.5281/zenodo.14584983"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.14584983.svg" alt="DOI: 10.5281/zenodo.14584983" style="pointer-events: none;" class="inline"/></a></p>
+<p><a href="https://doi.org/10.5281/zenodo.14584983"><img src="zenodo.14584983.svg" alt="" style="pointer-events: none;" class="inline" title="DOI: 10.5281/zenodo.14584983"/>     </a></p>
 <p>The NOVAS C astrometry library, made better.</p>
 <ul>
 <li><a href="https://sigmyne.github.io/SuperNOVAS/doc/html/topics.html">C99 API documentation</a></li>
@@ -218,10 +218,10 @@ Building and installation</h1>
 Dependencies</h2>
 <p>Optional dependencies:</p>
 <ul>
-<li><span class="tt">libcurl</span> &ndash; (recommended) for fetching Earth Orientation data from IERS.</li>
-<li><span class="tt">calceph</span> &ndash; (recommended) if building with CALCEPH support enabled.</li>
-<li><span class="tt">cspice</span> &ndash; if building with CSPICE support enabled.</li>
-<li><span class="tt">doxygen</span> &ndash; if compiling HTML documentation.</li>
+<li><a href="https://curl.se/"><span class="tt">curl</span></a> &ndash; (recommended) for fetching Earth Orientation data from IERS.</li>
+<li><a href="https://calceph.imcce.fr/docs/latest/html/c/"><span class="tt">calceph</span></a> &ndash; (recommended) if building with CALCEPH support enabled.</li>
+<li><a href="https://naif.jpl.nasa.gov/naif/toolkit.html"><span class="tt">cspice</span></a> &ndash; if building with CSPICE support enabled.</li>
+<li><a href="https://www.doxygen.nl/"><span class="tt">doxygen</span></a> &ndash; if compiling HTML documentation.</li>
 </ul>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
 Installing dependencies on Linux</h3>
@@ -308,7 +308,7 @@ Details</summary>
 <li><span class="tt">BUILD_EXAMPLES=ON|OFF</span> (default: OFF) - Build the included examples</li>
 <li><span class="tt">BUILD_TESTING=ON|OFF</span> (default: ON) - Build regression tests</li>
 <li><span class="tt">BUILD_BENCHMARK=ON|OFF</span> (default: OFF) - Build benchmarking programs</li>
-<li><span class="tt">WITHOUT_CURL=ON|OFF</span> (default: OFF) - Build without cURL support, which allows fetching EOP from IERS.</li>
+<li><span class="tt">WITHOUT_CURL=ON|OFF</span> (default: OFF) - Build without <a href="https://curl.se/">cURL</a> support (no fetching EOP from IERS).</li>
 <li><span class="tt">ENABLE_CPP=ON|OFF</span> (default: OFF) - Build C++11 library (<span class="tt">supernovas++</span>) also.</li>
 <li><span class="tt">ENABLE_CALCEPH=ON|OFF</span> (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires <span class="tt">calceph</span> package.</li>
 <li><span class="tt">ENABLE_CSPICE=ON|OFF</span> (default: OFF) - Optional CSPICE ephemeris plugin support. Requires <span class="tt">cspice</span> library installed.</li>
@@ -845,6 +845,16 @@ New in v1.6</summary>
 <ul>
 <li>Introducing a new, high-level, C++11 API (<span class="tt">libsupernovas++</span>) on top of the standard C99 one.</li>
 <li>Added a truncated version of the ELP2000 / MPP02 semi-analytical model of the Moon (Chapront &amp; Francou 2003), allowing arcsec (km) level position calculations for the Moon even without ephemeris data.</li>
+</ul>
+<p></p>
+</details>
+<details  open="true">
+<summary >
+New in v1.7</summary>
+<p></p>
+<ul>
+<li>New functions and methods to obtain Earth Orientation Parameters (EOP) from IERS, or from a user-defined remote or local source. EOP can also be fetched automatically when a astrometric time or an observing frame is initialized with undefined (NAN) values for these. If you don't mind the slight latencies involved with getting EOP values from a remote source, they can make using <b>SuperNOVAS</b> at its full precision a whole lot easier.</li>
+<li>New practical equality tests, with reasonable tolerances, for data structures and classes.</li>
 </ul>
 <p></p>
 </details>
