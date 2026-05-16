@@ -15,6 +15,8 @@ The following links provide further useful documentation resources for you:
  - [C99 API documentation](https://sigmyne.github.io/SuperNOVAS/doc/html/topics.html)
  - [SuperNOVAS pages](https://sigmyne.github.io/SuperNOVAS) on github.io 
  
+This document has been updated for the `v1.7` and later releases.
+ 
 -----------------------------------------------------------------------------
 
 <a name="integration-c99"></a>
@@ -41,7 +43,7 @@ have a `Makefile` with contents like:
 
 ```make
   myastroapp: myastroapp.c 
-  	$(CC) -o $@ $(CFLAGS) $^ -lm -lsupernovas
+  	$(CC) -o $@ $(CFLAGS) $^ -lsupernovas -lm -lcurl
 ```
 
 If you have a legacy NOVAS C 3.1 application, it is possible that the compilation will give you errors due to missing 
@@ -53,7 +55,7 @@ application:
 
 ```make
   myastroapp: myastroapp.c 
-  	$(CC) -o $@ $(CFLAGS) -DCOMPAT $^ -lm -lsupernovas
+  	$(CC) -o $@ $(CFLAGS) -DCOMPAT $^ -lsupernovas -lm -lcurl
 ```
 
 If your application uses optional planet or ephemeris calculator modules, you may need to specify the additional 
@@ -61,7 +63,7 @@ shared libraries also:
 
 ```make
   myastroapp: myastroapp.c 
-  	$(CC) -o $@ $(CFLAGS) $^ -lm -lsupernovas -lsolsys-calceph -lcalceph
+  	$(CC) -o $@ $(CFLAGS) $^ -lsupernovas -lsolsys-calceph -lcalceph -lm -lcurl
 ```
 
 </details>

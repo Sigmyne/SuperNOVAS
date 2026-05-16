@@ -116,6 +116,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-CPP.html','',''); }
 <li><a href="https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/topics.html">C++ API documentation</a></li>
 <li><a href="https://sigmyne.github.io/SuperNOVAS">SuperNOVAS pages</a> on github.io</li>
 </ul>
+<p>This document has been updated for the <span class="tt">v1.7</span> and later releases.</p>
 <hr  />
 <p><a class="anchor" id="integration-cpp"></a> </p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
@@ -134,10 +135,10 @@ Details</summary>
 <p></p>
 <p>Provided you have installed the <b>SuperNOVAS</b> headers and (static or shared) libraries into a standard location, you can build your application against it easily. For example, to build <span class="tt">myastroapp.cpp</span> against <b>SuperNOVAS</b>, you might have a <span class="tt">Makefile</span> with contents like:</p>
 <div class="fragment"><div class="line">myastroapp: myastroapp.cpp </div>
-<div class="line">  $(CC) -o $@ $(CFLAGS) $^ -lm -lsupernovas -lsupernovas++</div>
+<div class="line">  $(CC) -o $@ $(CFLAGS) $^ -lsupernovas -lsupernovas++ -lm -lcurl</div>
 </div><!-- fragment --><p>I.e., you will need to link your program against <em>both</em> the C99 <span class="tt">supernovas</span> library <em>and</em> the C++ <span class="tt">supernovas++</span> library on top of that. If your application uses optional planet or ephemeris calculator modules, you may need to specify the additional shared libraries also:</p>
 <div class="fragment"><div class="line">myastroapp: myastroapp.cpp</div>
-<div class="line">  $(CC) -o $@ $(CFLAGS) $^ -lm -lsupernovas -lsupernovas++ -lsolsys-calceph -lcalceph</div>
+<div class="line">  $(CC) -o $@ $(CFLAGS) $^ -lsupernovas -lsupernovas++ -lsolsys-calceph -lcalceph -lm -lcurl</div>
 </div><!-- fragment --><p></p>
 </details>
 <p><a class="anchor" id="cmake-application-cpp"></a> </p>

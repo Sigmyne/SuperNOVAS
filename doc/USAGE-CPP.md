@@ -16,6 +16,8 @@ The following links provide further useful documentation resources for you:
  - [C++ API documentation](https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/topics.html)
  - [SuperNOVAS pages](https://sigmyne.github.io/SuperNOVAS) on github.io 
  
+This document has been updated for the `v1.7` and later releases.
+ 
 -----------------------------------------------------------------------------
 
 <a name="integration-cpp"></a>
@@ -39,7 +41,7 @@ have a `Makefile` with contents like:
 
 ```make
   myastroapp: myastroapp.cpp 
-  	$(CC) -o $@ $(CFLAGS) $^ -lm -lsupernovas -lsupernovas++
+  	$(CC) -o $@ $(CFLAGS) $^ -lsupernovas -lsupernovas++ -lm -lcurl
 ```
 
 I.e., you will need to link your program against *both* the C99 `supernovas` library *and* the C++ `supernovas++`
@@ -48,7 +50,7 @@ specify the additional shared libraries also:
 
 ```make
   myastroapp: myastroapp.cpp
-  	$(CC) -o $@ $(CFLAGS) $^ -lm -lsupernovas -lsupernovas++ -lsolsys-calceph -lcalceph
+  	$(CC) -o $@ $(CFLAGS) $^ -lsupernovas -lsupernovas++ -lsolsys-calceph -lcalceph -lm -lcurl
 ```
 
 </details>
