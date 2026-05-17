@@ -38,10 +38,10 @@ __SuperNOVAS__ is easy to use and it is very fast, with 3--5 orders of magnitude
 [astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
 will scale further with the number of CPUs when calculations are performed in parallel threads.
 
-__SuperNOVAS__ is and it is available through the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS) 
-repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, 
-and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully 
-supports the IAU 2000/2006 conventions for microarcsecond-level position calculations. 
+__SuperNOVAS__ is available through the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS) repository on 
+GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence 
+should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports 
+the IAU 2000/2006 conventions for microarcsecond-level position calculations. 
 
 This document has been updated for the `v1.7` and later releases.
 
@@ -228,10 +228,12 @@ accommodate JPL NAIF codes, for which 16-bit storage is insufficient.
 
 Optional dependencies:
 
- - [`curl`](https://curl.se/) -- (recommended) for fetching Earth Orientation data from IERS.
- - [`calceph`](https://calceph.imcce.fr/docs/latest/html/c/) -- (recommended) if building with CALCEPH support enabled.
- - [`cspice`](https://naif.jpl.nasa.gov/naif/toolkit.html) -- if building with CSPICE support enabled.
- - [`doxygen`](https://www.doxygen.nl/) -- if compiling HTML documentation.
+ - [`curl`](https://curl.se/) -- (recommended) for fetching Earth Orientation data from IERS or from elsewhere.
+ - [`calceph`](https://calceph.imcce.fr/docs/latest/html/c/) -- (recommended) for using CALCEPH as the Solar-system 
+   ephemeris provider.
+ - [`cspice`](https://naif.jpl.nasa.gov/naif/toolkit.html) -- for usign the NAIF CSPICE Toolkit as the Solar-system 
+   ephemeris provider.
+ - [`doxygen`](https://www.doxygen.nl/) -- for compiling HTML documentation.
  
 #### Installing dependencies on Linux
 
@@ -268,7 +270,7 @@ building __SuperNOVAS__, such as and `cmake` and/or `gmake`, and `pkgconf`:
 ### Build SuperNOVAS using GNU make
 
 The __SuperNOVAS__ distribution contains a GNU `Makefile`, which is suitable for compiling the library (as well as 
-local documentation, and tests, etc.) on POSIX systems such as Linux, Mac OS X, BSD, Cygwin or WSL -- using 
+local documentation, and tests, etc.) on POSIX systems such as Linux, MacOS X, BSD, Cygwin or WSL -- using 
 [GNU `make`](https://www.gnu.org/software/make/).
 
 <details>
@@ -363,8 +365,8 @@ Or, to stage the installation (to `/usr`) under a 'build root':
 </details>
 
 > [!NOTE]
-> if you want to build __SuperNOVAS__ for with your old NOVAS C applications you might want to further customize the 
-> build. See section on 
+> if you want to build __SuperNOVAS__ for your old NOVAS C application you might want to further customize the build. 
+> See section on 
 > [legacy application](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99) in the 
 > [C99 User's guide](USAGE-C99.md). 
 
@@ -392,7 +394,6 @@ Now you can build __SuperNOVAS__, for example as a shared library, with:
 </details>
 
 
-
 <a name="cmake-build"></a>
 ### Build SuperNOVAS using CMake 
 
@@ -417,8 +418,8 @@ The __SuperNOVAS__ CMake build supports the following options (in addition to th
  - `BUILD_EXAMPLES=ON|OFF` (default: OFF) - Build the included examples
  - `BUILD_TESTING=ON|OFF` (default: ON) - Build regression tests
  - `BUILD_BENCHMARK=ON|OFF` (default: OFF) - Build benchmarking programs 
- - `WITHOUT_CURL=ON|OFF` (default: OFF) - Build without [cURL](https://curl.se/) support (no fetching EOP 
-   from IERS).
+ - `WITHOUT_CURL=ON|OFF` (default: OFF) - Build without [cURL](https://curl.se/) support (fetching EOP from IERS will 
+   not be possible without cURL support).
  - `ENABLE_CPP=ON|OFF` (default: OFF) - Build C++11 library (`supernovas++`) also. 
  - `ENABLE_CALCEPH=ON|OFF` (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires `calceph` package.
  - `ENABLE_CSPICE=ON|OFF` (default: OFF) - Optional CSPICE ephemeris plugin support. Requires `cspice` library 
@@ -475,8 +476,8 @@ more simplicity, convenience, and dependency resolution.
 
 <details>
 
-The `vcpkg` port has optional add-on components, which may be installed along with the `core` library as needed. The 
-following components are available:
+The `vcpkg` port has optional add-on features, which may be installed along with the `core` library as needed. The 
+following features are available:
 
  - `core` -- The core C99 library (this is installed by default if no components are specified).
  - `cpp` -- The C++11 extension runtime and development files.
@@ -489,7 +490,7 @@ You can install just the core C99 library of SuperNOVAS (without the C++ API and
   $ vcpkg install supernovas
 ```
 
-Or, a set of selected components library as, such as all the complete installation as:
+Or, with a selected set of features, such as:
 
 ```bash
   $ vcpkg install supernovas[core,cpp,solsys-calceph]
