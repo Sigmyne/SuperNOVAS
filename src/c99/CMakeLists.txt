@@ -26,6 +26,9 @@ if(WITHOUT_CURL)
   target_compile_definitions(core PRIVATE WITHOUT_CURL=1)
 endif()
 
+# Allow deprecated functions internally
+set(CMAKE_WARN_DEPRECATED FALSE)
+
 # Link with math libs as necessary
 target_link_libraries(core PUBLIC ${MATHLIB} ${LIBCURL})
 

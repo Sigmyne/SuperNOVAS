@@ -22,6 +22,9 @@ if(ENABLE_CSPICE)
     list(APPEND TEST_PROGRAMS test-cspice)
 endif()
 
+# Allow deprecated functions internally
+set(CMAKE_WARN_DEPRECATED FALSE)
+
 # Directory where ephemeris data for the tests are found
 set(EPHEM_DIR ${PROJECT_SOURCE_DIR}/test/ephem)
 

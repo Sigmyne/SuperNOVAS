@@ -9,8 +9,11 @@ include ../../config.mk
 # Flags for measuring test coverage
 # Our own include directory
 CPPFLAGS += -I../../include
-CFLAGS += -I../../include -I../../legacy -pg -Wall
+CFLAGS += -I../../include -I../../legacy -pg -Wall 
 LDFLAGS += -lm -lcurl -fprofile-arcs -ftest-coverage
+
+# Allow deprecated functions to be used interally
+CFLAGS += -Wno-deprecated-declarations
 
 # cppcheck options for 'check' target. You can add additional options by
 # setting the CHECKEXTRA variable (e.g. in shell) prior to invoking 'make'.

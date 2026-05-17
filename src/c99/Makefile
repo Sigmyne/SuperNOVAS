@@ -17,6 +17,9 @@ LIB ?= ../../lib
 # Our own include directory
 CPPFLAGS += -I../../include
 
+# Allow deprecated functions to be used interally
+CFLAGS += -Wno-deprecated-declarations
+
 # We'll need math functions to link
 LDFLAGS += -lm
 

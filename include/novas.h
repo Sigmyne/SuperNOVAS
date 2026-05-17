@@ -28,7 +28,7 @@
 #include <time.h>
 
 #ifndef EXTERN
-#  if(WIN32)
+#  if WIN32
 #    define EXTERN __declspec(dllimport) extern
 #  else
 #    define EXTERN extern
@@ -38,6 +38,18 @@
 /// \cond PRIVATE
 #if __STDC_VERSION__ < 199901L
 #  define restrict                        ///< No 'restrict' keyword prior to C99
+#endif
+
+#ifndef COMPAT
+#  define __NOVAS_DEPRECATE__(expl)
+#elif __STDC_VERSION__ >= 202311L || (defined(__cplusplus) && __cplusplus >= 201402L)
+#  define __NOVAS_DEPRECATE__(expl)  [[deprecated(expl)]]
+#elif WIN32
+#  define __NOVAS_DEPRECATE__(expl)  __declspec(deprecated(expl))
+#elif defined(__GNUC__)
+#  define __NOVAS_DEPRECATE__(expl)  __attribute__ ((deprecated))
+#else
+#  define __NOVAS_DEPRECATE__(expl)
 #endif
 /// \endcond
 
@@ -2385,6 +2397,7 @@ typedef double (*RefractionModel)(double jd_tt, const on_surface *loc, enum nova
  * @sa novas_ephem_provider
  *
  */
+__NOVAS_DEPRECATE__("Use get/set_ephem_provider() with a novas_ephem_provider adapter function instead")
 double *readeph(int mp, const char *restrict name, double jd_tdb, int *restrict error);
 #endif
 
@@ -2476,6 +2489,7 @@ short ecl2equ_vec(double jd_tt, enum novas_equator_type coord_sys, enum novas_ac
         const double *in, double *out);
 
 #ifndef _EXCLUDE_DEPRECATED
+__NOVAS_DEPRECATE__("Use tod_to_itrs() or cirs_to_itrs() followed by itrs_to_hor() instead")
 int equ2hor(double jd_ut1, double ut1_to_tt, enum novas_accuracy accuracy, double xp, double yp,
         const on_surface *restrict location, double ra, double dec, enum novas_refraction_model ref_option,
         double *restrict zd, double *restrict az, double *restrict rar, double *restrict decr);
@@ -2495,12 +2509,14 @@ short sidereal_time(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enu
 #endif
 
 #ifndef _EXCLUDE_DEPRECATED
+__NOVAS_DEPRECATE__("Use itrs_to_tod() or itrs_to_cirs() instead")
 short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum novas_earth_rotation_measure erot,
         enum novas_accuracy accuracy, enum novas_equatorial_class coordType, double xp, double yp, const double *in,
         double *out);
 #endif
 
 #ifndef _EXCLUDE_DEPRECATED
+__NOVAS_DEPRECATE__("Use tod_to_itrs() or cirs_to_itrs() instead")
 short cel2ter(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum novas_earth_rotation_measure erot,
         enum novas_accuracy accuracy, enum novas_equatorial_class coordType, double xp, double yp, const double *in,
         double *out);
@@ -2533,12 +2549,14 @@ int e_tilt(double jd_tdb, enum novas_accuracy accuracy, double *restrict mobl, d
         double *restrict ee, double *restrict dpsi, double *restrict deps);
 
 #ifndef _EXCLUDE_DEPRECATED
+__NOVAS_DEPRECATE__("Use tod_to_itrs() / itrs_to_tod(), cirs_to_itrs() / itrs_to_cirs(), or novas_make_frame() instead")
 short cel_pole(double jd_tt, enum novas_pole_offset_type type, double dpole1, double dpole2);
 #endif
 
 // in equator.c
 #ifndef _EXCLUDE_DEPRECATED
 /// \cond PRIVATE
+__NOVAS_DEPRECATE__("Meant for internal use only")
 double ee_ct(double jd_tt_high, double jd_tt_low, enum novas_accuracy accuracy);
 /// \endcond
 #endif
@@ -2599,15 +2617,18 @@ int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff);
 short cio_ra(double jd_tt, enum novas_accuracy accuracy, double *restrict ra_cio);
 
 #ifndef _EXCLUDE_DEPRECATED
+__NOVAS_DEPRECATE__("Use cio_ra() or -ira_equinox() instead")
 short cio_location(double jd_tdb, enum novas_accuracy accuracy, double *restrict ra_cio, short *restrict loc_type);
 #endif
 
 #ifndef _EXCLUDE_DEPRECATED
+__NOVAS_DEPRECATE__("Not needed, and actively discouranged")
 short cio_basis(double jd_tdb, double ra_cio, enum novas_cio_location_type loc_type, enum novas_accuracy accuracy,
         double *restrict x, double *restrict y, double *restrict z);
 #endif
 
 #ifndef _EXCLUDE_DEPRECATED
+__NOVAS_DEPRECATE__("Not needed, and actively discouranged")
 short cio_array(double jd_tdb, long n_pts, ra_of_cio *restrict cio);
 #endif
 
@@ -2702,6 +2723,7 @@ int make_ephem_object(const char *name, long num, object *body);
 
 // in cio.c
 #ifndef _EXCLUDE_DEPRECATED
+__NOVAS_DEPRECATE__("Not needed, and actively discouranged")
 int set_cio_locator_file(const char *restrict filename);
 #endif
 
@@ -3657,8 +3679,6 @@ int novas_error(int ret, int en, const char *restrict from, const char *restrict
         } \
 }
 
-
-
 double novas_norm_ang(double angle);
 int novas_time_equals(double jd1, double jd2);
 int novas_time_equals_hp(double jd1, double jd2);
@@ -3684,7 +3704,7 @@ int novas_Rz(double angle, double *v);
 
 int novas_print_decimal(double value, int decimals, char *str, int len);
 
-#if __cplusplus || __STDC_VERSION__ >= 200809L
+#if defined(__cplusplus) || __STDC_VERSION__ >= 200809L
 #  ifndef _POSIX_C_SOURCE
 #    define _POSIX_C_SOURCE 200809L ///< for snprintf
 #  endif
@@ -3698,6 +3718,7 @@ int novas_snprintf(char *buf, size_t len, const char *fmt, ...);
  * @deprecated Use novas_set_max_iter() instead
  * @sa novas_set_max_iter()
  */
+__NOVAS_DEPRECATE__("Use novas_set_max_iter() instead")
 extern int novas_inv_max_iter;
 
 #endif /* __NOVAS_INTERNAL_API__ */

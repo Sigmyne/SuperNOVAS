@@ -15,6 +15,7 @@
 #endif
 /// \endcond
 
+
 #ifndef _EXCLUDE_DEPRECATED
 /**
  * @deprecated (legacy function</i>) Use `set_planet_provider()` instead to specify what

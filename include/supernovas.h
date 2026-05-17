@@ -235,7 +235,7 @@ public:
   static constexpr double GM_sun = NOVAS_G_SUN;	        ///< [m<sup>3</sup> s<sup>-2</sup>] Solar graviational constant
   static constexpr double GM_earth = NOVAS_G_EARTH;     ///< [m<sup>3</sup> s<sup>-2</sup>] Earth graviational constant
   static constexpr double M_sun = GM_sun / G;           ///< [kg] Mass of the Sun
-  static constexpr double M_earth = GM_earth / G;         ///< [kg] Earth mass
+  static constexpr double M_earth = GM_earth / G;       ///< [kg] Earth mass
 
   static constexpr double R_earth = NOVAS_GRS80_RADIUS; ///< [m] 1 Earth quatorial radius (GRS80) in meters
 };
@@ -1216,11 +1216,13 @@ public:
   /// \cond PRIVATE
   // These are the original misspelled forms, which we'll support still, but won't advertise
   // in the documentation.
-  [[deprecated("Use fahrenheit() instead.")]] double farenheit() const {
+  __NOVAS_DEPRECATE__("Use fahrenheit() instead.")
+  double farenheit() const {
     return fahrenheit();
   }
 
-  [[deprecated("Use fahrenheit(double) instead.")]] static Temperature farenheit(double value) {
+  __NOVAS_DEPRECATE__("Use fahrenheit(double) instead.")
+  static Temperature farenheit(double value) {
     return fahrenheit(value);
   }
   /// \endcond

@@ -75,6 +75,12 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
  
  - Fixed wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
 
+### Deprecated
+
+ - #323: A few functions, which have already been documented as deprecated, are now annotated as such also so the
+   compiler will warn when these are used. Only the functions, which really should be avoided are affected, either 
+   because they are irrelevant (e.g. `cio_array()`, `cio_basis()`) or prone to misuse (e.g.  `cel2ter()`, `ter2cel()`, 
+   `equ2hor()`), and/or may have unintended consequences (e.g. `cel_pole()`).
  
 
 ## [1.6.0] - 2026-04-27
