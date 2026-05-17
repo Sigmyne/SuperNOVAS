@@ -209,10 +209,12 @@ accommodate JPL NAIF codes, for which 16-bit storage is insufficient.
 
 Optional dependencies:
 
- - [`curl`](https://curl.se/) -- (recommended) for fetching Earth Orientation data from IERS.
- - [`calceph`](https://calceph.imcce.fr/docs/latest/html/c/) -- (recommended) if building with CALCEPH support enabled.
- - [`cspice`](https://naif.jpl.nasa.gov/naif/toolkit.html) -- if building with CSPICE support enabled.
- - [`doxygen`](https://www.doxygen.nl/) -- if compiling HTML documentation.
+ - [`curl`](https://curl.se/) -- (recommended) for fetching Earth Orientation data from IERS or from elsewhere.
+ - [`calceph`](https://calceph.imcce.fr/docs/latest/html/c/) -- (recommended) for using CALCEPH as the Solar-system 
+   ephemeris provider.
+ - [`cspice`](https://naif.jpl.nasa.gov/naif/toolkit.html) -- for usign the NAIF CSPICE Toolkit as the Solar-system 
+   ephemeris provider.
+ - [`doxygen`](https://www.doxygen.nl/) -- for compiling HTML documentation.
  
 #### Installing dependencies on Linux
 
@@ -242,14 +244,14 @@ On BSD (e.g. FreeBSD, OpenBSD) you might install `curl` and `calceph`. And you w
 building __SuperNOVAS__, such as and `cmake` and/or `gmake`, and `pkgconf`:
 
 ```bash
-  pkg install -y curl calceph cmake gmake devel/pkgconf
+  pkg install -y gmake cmake devel/pkgconf curl calceph 
 ```
 
 <a name="gnu-build"></a>
 ### Build SuperNOVAS using GNU make
 
 The __SuperNOVAS__ distribution contains a GNU `Makefile`, which is suitable for compiling the library (as well as 
-local documentation, and tests, etc.) on POSIX systems such as Linux, Mac OS X, BSD, Cygwin or WSL -- using 
+local documentation, and tests, etc.) on POSIX systems such as Linux, MacOS X, BSD, Cygwin or WSL -- using 
 [GNU `make`](https://www.gnu.org/software/make/).
 
 
@@ -340,10 +342,11 @@ Or, to stage the installation (to `/usr`) under a 'build root':
   $ make DESTDIR="/tmp/stage" install
 ```
 
+
 __NOTE__
 
-> if you want to build __SuperNOVAS__ for with your old NOVAS C applications you might want to further customize the 
-> build. See section on 
+> if you want to build __SuperNOVAS__ for your old NOVAS C application you might want to further customize the build. 
+> See section on 
 > [legacy application](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99) in the 
 > [C99 User's guide](USAGE-C99.md). 
 
@@ -393,8 +396,8 @@ The __SuperNOVAS__ CMake build supports the following options (in addition to th
  - `BUILD_EXAMPLES=ON|OFF` (default: OFF) - Build the included examples
  - `BUILD_TESTING=ON|OFF` (default: ON) - Build regression tests
  - `BUILD_BENCHMARK=ON|OFF` (default: OFF) - Build benchmarking programs 
- - `WITHOUT_CURL=ON|OFF` (default: OFF) - Build without [cURL](https://curl.se/) support (no fetching EOP 
-   from IERS).
+ - `WITHOUT_CURL=ON|OFF` (default: OFF) - Build without [cURL](https://curl.se/) support (fetching EOP from IERS will 
+   not be possible without cURL support).
  - `ENABLE_CPP=ON|OFF` (default: OFF) - Build C++11 library (`supernovas++`) also. 
  - `ENABLE_CALCEPH=ON|OFF` (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires `calceph` package.
  - `ENABLE_CSPICE=ON|OFF` (default: OFF) - Optional CSPICE ephemeris plugin support. Requires `cspice` library 
@@ -826,7 +829,6 @@ rectangular ICRS _x,y,z_ vectors in units of AU and AU/day respectively.
 This way you can easily integrate current ephemeris data, e.g. for the Minor Planet Center (MPC), or whatever other 
 ephemeris service you prefer.
 
-
 Once you have your adapter function, you can set it as your ephemeris service via `set_ephem_provider()`:
 
 ```c
@@ -845,6 +847,7 @@ for the major planets (`NOVAS_PLANET` type objects) also via:
 The above simply instructs __SuperNOVAS__ to use the same ephemeris provider function for planets as what was set
 for `NOVAS_EPHEM_OBJECT` type objects, provided you compiled __SuperNOVAS__ with `BUILTIN_SOLSYS_EPHEM = 1` (in 
 `config.mk`), or else you link your code against `solsys-ephem.c` explicitly. Easy-peasy.
+
 
 
 <a name="precision"></a>

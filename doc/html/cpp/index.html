@@ -218,10 +218,10 @@ Building and installation</h1>
 Dependencies</h2>
 <p>Optional dependencies:</p>
 <ul>
-<li><a href="https://curl.se/"><span class="tt">curl</span></a> &ndash; (recommended) for fetching Earth Orientation data from IERS.</li>
-<li><a href="https://calceph.imcce.fr/docs/latest/html/c/"><span class="tt">calceph</span></a> &ndash; (recommended) if building with CALCEPH support enabled.</li>
-<li><a href="https://naif.jpl.nasa.gov/naif/toolkit.html"><span class="tt">cspice</span></a> &ndash; if building with CSPICE support enabled.</li>
-<li><a href="https://www.doxygen.nl/"><span class="tt">doxygen</span></a> &ndash; if compiling HTML documentation.</li>
+<li><a href="https://curl.se/"><span class="tt">curl</span></a> &ndash; (recommended) for fetching Earth Orientation data from IERS or from elsewhere.</li>
+<li><a href="https://calceph.imcce.fr/docs/latest/html/c/"><span class="tt">calceph</span></a> &ndash; (recommended) for using CALCEPH as the Solar-system ephemeris provider.</li>
+<li><a href="https://naif.jpl.nasa.gov/naif/toolkit.html"><span class="tt">cspice</span></a> &ndash; for usign the NAIF CSPICE Toolkit as the Solar-system ephemeris provider.</li>
+<li><a href="https://www.doxygen.nl/"><span class="tt">doxygen</span></a> &ndash; for compiling HTML documentation.</li>
 </ul>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
 Installing dependencies on Linux</h3>
@@ -236,11 +236,11 @@ Installing dependencies on MacOS</h3>
 </div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
 Installing dependencies on BSD</h3>
 <p>On BSD (e.g. FreeBSD, OpenBSD) you might install <span class="tt">curl</span> and <span class="tt">calceph</span>. And you will also need additional packages for building <b>SuperNOVAS</b>, such as and <span class="tt">cmake</span> and/or <span class="tt">gmake</span>, and <span class="tt">pkgconf</span>:</p>
-<div class="fragment"><div class="line">pkg install -y curl calceph cmake gmake devel/pkgconf</div>
+<div class="fragment"><div class="line">pkg install -y gmake cmake devel/pkgconf curl calceph </div>
 </div><!-- fragment --><p><a class="anchor" id="gnu-build"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
 Build SuperNOVAS using GNU make</h2>
-<p>The <b>SuperNOVAS</b> distribution contains a GNU <span class="tt">Makefile</span>, which is suitable for compiling the library (as well as local documentation, and tests, etc.) on POSIX systems such as Linux, Mac OS X, BSD, Cygwin or WSL &ndash; using <a href="https://www.gnu.org/software/make/">GNU <span class="tt">make</span></a>.</p>
+<p>The <b>SuperNOVAS</b> distribution contains a GNU <span class="tt">Makefile</span>, which is suitable for compiling the library (as well as local documentation, and tests, etc.) on POSIX systems such as Linux, MacOS X, BSD, Cygwin or WSL &ndash; using <a href="https://www.gnu.org/software/make/">GNU <span class="tt">make</span></a>.</p>
 <details >
 <summary >
 Details</summary>
@@ -275,8 +275,9 @@ Details</summary>
 <div class="fragment"><div class="line">$ sudo make prefix=&quot;/opt&quot; install</div>
 </div><!-- fragment --><p>Or, to stage the installation (to <span class="tt">/usr</span>) under a 'build root':</p>
 <div class="fragment"><div class="line">$ make DESTDIR=&quot;/tmp/stage&quot; install</div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>if you want to build <b>SuperNOVAS</b> for with your old NOVAS C applications you might want to further customize the build. See section on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99">legacy application</a> in the <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">C99 User's guide</a>.</dd></dl>
+</div><!-- fragment --><p></p>
 </details>
+<dl class="section note"><dt>Note</dt><dd>if you want to build <b>SuperNOVAS</b> for your old NOVAS C application you might want to further customize the build. See section on <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#legacy-application-c99">legacy application</a> in the <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">C99 User's guide</a>.</dd></dl>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
 Building with GNU make on BSD</h3>
 <details >
@@ -308,7 +309,7 @@ Details</summary>
 <li><span class="tt">BUILD_EXAMPLES=ON|OFF</span> (default: OFF) - Build the included examples</li>
 <li><span class="tt">BUILD_TESTING=ON|OFF</span> (default: ON) - Build regression tests</li>
 <li><span class="tt">BUILD_BENCHMARK=ON|OFF</span> (default: OFF) - Build benchmarking programs</li>
-<li><span class="tt">WITHOUT_CURL=ON|OFF</span> (default: OFF) - Build without <a href="https://curl.se/">cURL</a> support (no fetching EOP from IERS).</li>
+<li><span class="tt">WITHOUT_CURL=ON|OFF</span> (default: OFF) - Build without <a href="https://curl.se/">cURL</a> support (fetching EOP from IERS will not be possible without cURL support).</li>
 <li><span class="tt">ENABLE_CPP=ON|OFF</span> (default: OFF) - Build C++11 library (<span class="tt">supernovas++</span>) also.</li>
 <li><span class="tt">ENABLE_CALCEPH=ON|OFF</span> (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires <span class="tt">calceph</span> package.</li>
 <li><span class="tt">ENABLE_CSPICE=ON|OFF</span> (default: OFF) - Optional CSPICE ephemeris plugin support. Requires <span class="tt">cspice</span> library installed.</li>
@@ -483,7 +484,7 @@ Incorporating Solar-system ephemeris data or services</h1>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 CALCEPH integration</h2>
 <p>The <a href="https://www.imcce.fr/recherche/equipes/asd/calceph/">CALCEPH</a> library provides easy-to-use access to JPL and INPOP ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing <b>SuperNOVAS</b> with the the CALCEPH C library for handling Solar-system objects.</p>
-<details  open="true">
+<details >
 <summary >
 Details</summary>
 <p></p>
@@ -567,8 +568,6 @@ Details</summary>
 <div class="ttc" id="anovas_8h_html_a208120c5fa3e12853eb37cb99d3e27be"><div class="ttname"><a href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27be">novas_origin</a></div><div class="ttdeci">novas_origin</div><div class="ttdoc">The origin of the ICRS system for referencing positions and velocities for solar-system bodies.</div><div class="ttdef"><b>Definition</b> novas.h:1095</div></div>
 </div><!-- fragment --><p>which takes an object ID number (such as a NAIF), an object name, and a split TDB date (for precision) as it inputs, and returns the type of origin with corresponding ICRS position and velocity vectors in the supplied pointer locations. The function can use either the ID number or the name to identify the object or file (whatever is the most appropriate for the implementation and for the supplied parameters). The positions and velocities may be returned either relative to the SSB or relative to the heliocenter, and accordingly, your function should set the value pointed at by origin to <span class="tt"><a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c" title="Origin at the Solar-system baricenter (i.e. BCRS).">NOVAS_BARYCENTER</a></span> or <span class="tt"><a class="el" href="novas_8h.html#a208120c5fa3e12853eb37cb99d3e27bea13c0711a025b9aebd4186ab9127cbd7b" title="Origin at the center of the Sun.">NOVAS_HELIOCENTER</a></span> accordingly. Positions and velocities are rectangular ICRS <em>x,y,z</em> vectors in units of AU and AU/day respectively.</p>
 <p>This way you can easily integrate current ephemeris data, e.g. for the Minor Planet Center (MPC), or whatever other ephemeris service you prefer.</p>
-<p></p>
-</details>
 <p>Once you have your adapter function, you can set it as your ephemeris service via <span class="tt"><a class="el" href="group__solar-system.html#ga6097083c438a8d1872c2e00a66360030" title="Sets the function to use for obtaining position / velocity information for minor planets,...">set_ephem_provider()</a></span>:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="group__solar-system.html#ga6097083c438a8d1872c2e00a66360030">set_ephem_provider</a>(my_ephem_reader);</div>
 <div class="ttc" id="agroup__solar-system_html_ga6097083c438a8d1872c2e00a66360030"><div class="ttname"><a href="group__solar-system.html#ga6097083c438a8d1872c2e00a66360030">set_ephem_provider</a></div><div class="ttdeci">int set_ephem_provider(novas_ephem_provider func)</div><div class="ttdoc">Sets the function to use for obtaining position / velocity information for minor planets,...</div><div class="ttdef"><b>Definition</b> ephemeris.c:118</div></div>
@@ -580,6 +579,8 @@ Details</summary>
 <div class="ttc" id="anovas_8h_html_a93d0f96d81f3c52e05163643bd23eb7d"><div class="ttname"><a href="novas_8h.html#a93d0f96d81f3c52e05163643bd23eb7d">planet_ephem_provider_hp</a></div><div class="ttdeci">short planet_ephem_provider_hp(const double jd_tdb[restrict 2], enum novas_planet body, enum novas_origin origin, double *restrict position, double *restrict velocity)</div><div class="ttdoc">Major planet ephemeris data via the same generic ephemeris provider that is configured by set_ephem_p...</div><div class="ttdef"><b>Definition</b> solsys-ephem.c:42</div></div>
 <div class="ttc" id="anovas_8h_html_a9d0f54c0ab00827768e61a353488b0ee"><div class="ttname"><a href="novas_8h.html#a9d0f54c0ab00827768e61a353488b0ee">planet_ephem_provider</a></div><div class="ttdeci">short planet_ephem_provider(double jd_tdb, enum novas_planet body, enum novas_origin origin, double *restrict position, double *restrict velocity)</div><div class="ttdoc">Major planet ephemeris data via the same generic ephemeris provider that is configured by set_ephem_p...</div><div class="ttdef"><b>Definition</b> solsys-ephem.c:100</div></div>
 </div><!-- fragment --><p>The above simply instructs <b>SuperNOVAS</b> to use the same ephemeris provider function for planets as what was set for <span class="tt"><a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fa58f22833170aee0959154d3a7be6c269" title="A Solar-system body that does not fit the major planet type, and requires specific user-provided nova...">NOVAS_EPHEM_OBJECT</a></span> type objects, provided you compiled <b>SuperNOVAS</b> with <span class="tt">BUILTIN_SOLSYS_EPHEM = 1</span> (in <span class="tt">config.mk</span>), or else you link your code against <span class="tt"><a class="el" href="solsys-ephem_8c.html" title="Major planet ephemeris lookup via the function, which was configured by set_ephem_provider().">solsys-ephem.c</a></span> explicitly. Easy-peasy.</p>
+<p></p>
+</details>
 <p><a class="anchor" id="precision"></a> </p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
 Notes on precision</h1>
