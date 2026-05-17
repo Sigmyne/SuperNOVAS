@@ -261,7 +261,7 @@ On BSD (e.g. FreeBSD, OpenBSD) you might install `curl` and `calceph`. And you w
 building __SuperNOVAS__, such as and `cmake` and/or `gmake`, and `pkgconf`:
 
 ```bash
-  pkg install -y curl calceph cmake gmake devel/pkgconf
+  pkg install -y gmake cmake devel/pkgconf curl calceph 
 ```
 
 <a name="gnu-build"></a>
@@ -359,6 +359,8 @@ Or, to stage the installation (to `/usr`) under a 'build root':
 ```bash
   $ make DESTDIR="/tmp/stage" install
 ```
+
+</details>
 
 > [!NOTE]
 > if you want to build __SuperNOVAS__ for with your old NOVAS C applications you might want to further customize the 
@@ -718,7 +720,7 @@ The [CALCEPH](https://www.imcce.fr/recherche/equipes/asd/calceph/) library provi
 INPOP ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing __SuperNOVAS__ with 
 the the CALCEPH C library for handling Solar-system objects.
 
-<details open>
+<details>
 
 Prior to building __SuperNOVAS__ simply set `CALCEPH_SUPPORT` to 1 in `config.mk` or in your environment (or for CMake
 configure with the `-DENABLE_CALCEPH=ON`). Depending on the build target (or type), it will build 
@@ -857,8 +859,6 @@ rectangular ICRS _x,y,z_ vectors in units of AU and AU/day respectively.
 This way you can easily integrate current ephemeris data, e.g. for the Minor Planet Center (MPC), or whatever other 
 ephemeris service you prefer.
 
-</details>
-
 Once you have your adapter function, you can set it as your ephemeris service via `set_ephem_provider()`:
 
 ```c
@@ -877,6 +877,8 @@ for the major planets (`NOVAS_PLANET` type objects) also via:
 The above simply instructs __SuperNOVAS__ to use the same ephemeris provider function for planets as what was set
 for `NOVAS_EPHEM_OBJECT` type objects, provided you compiled __SuperNOVAS__ with `BUILTIN_SOLSYS_EPHEM = 1` (in 
 `config.mk`), or else you link your code against `solsys-ephem.c` explicitly. Easy-peasy.
+
+</details>
 
 
 <a name="precision"></a>

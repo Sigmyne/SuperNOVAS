@@ -18,4 +18,3 @@ endif
 clean distclean:
 	$(MAKE) -s -C c99 $@
 	$(MAKE) -s -C cpp $@
-	$(MAKE) -s -C tools $@
