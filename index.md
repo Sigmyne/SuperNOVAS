@@ -22,7 +22,7 @@ __SuperNOVAS__ is easy to use and it is very fast, providing 3--5 orders of magn
 [astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
 will scale with the number of CPUs when calculations are performed in parallel threads.
 
-__SuperNOVAS__  it is freely available via the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS/) repository 
+__SuperNOVAS__  is freely available via the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS/) repository 
 on GitHub, without licensing restrictions. Its source code is compatible with the C99 and/or C++11 standards, and 
 hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully 
 supports the IAU 2000/2006 conventions for sub-microarcsecond position calculations. 
