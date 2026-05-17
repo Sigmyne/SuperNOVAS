@@ -7,16 +7,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [1.7.0-rc1] - 2026-05-18
 
-Upcoming feature release, possibly around 1 August 2026.
+Release candidate for the upcoming feature release, possibly around 1 August 2026.
 
 ### Added
 
  - #313: Support for fetching of leap-seconds and EOP data from IERS, also automatically as needed when the EOP 
    parameters supplied for initializing astrometric time or an observing frame are left undefined (NAN). These 
    features require cURL (`curl` library) support, and may not be available if __SuperNOVAS__ was built without it. 
-   Various new functions (in `iers.c`) control the URLs (or local files) to use for leap seconds and EOP data.
+   Various new functions (in `iers.c`) also control what URLs (or local files) are used for leap seconds and EOP 
+   data.
 
  - #316: Spherical offset positions along a great circle in specified direction and distance, based on the __astropy__
    `offset_by()` function. Added `novas_offset_by()`, `novas_equ_offset_by()` functions; and `Equatorial::offset()`, 
@@ -26,9 +27,9 @@ Upcoming feature release, possibly around 1 August 2026.
    The functions are in `cmp.c`, and have names `novas_equals_[...]()`.
    
  - #318: `CatalogEntry`, `OrbitalSystem`, `Orbital`, `Source`, `Observer`, and `Frame` now have `equals()` methods
-   as well as overridden `==` and `!=` operators, thanks to the new C99 comparison functions.
+   as well as overridden `==` and `!=` operators, thanks to the new C99 comparison functions (above).
    
- - #319: Consolidate portable mutex definitions in `novas-mutex.h` (not installed).
+ - #319: Consolidated local portable mutex definitions in `novas-mutex.h` (not installed).
 
 ### Changed
 
@@ -40,9 +41,9 @@ Upcoming feature release, possibly around 1 August 2026.
    needed when the `xp` or `yp` parameter is NAN, and EOP fetching has not been explicitly disabled by the user.
 
  - #313: Constructors for `Time`, `Frame`, and `GeodeticObserver` now have optional EOP values, as do the convenience 
-   methods that call these (e.g. `Observer::frame_at()`). When `Time` or `Frame` is instantiated with undefined
-   (NAN) EOP values, they will attempt to fetch appropriately interpolated values from IERS (or from the URLs 
-   defined), provided EOP fetching has not been explicitly disabled by the user.
+   methods that call these (e.g. `Observer::frame_at()`, `CalendarDate::to_time()`). When `Time` or `Frame` is 
+   instantiated with undefined (NAN) EOP values, they will attempt to fetch appropriately interpolated values from 
+   IERS (or from the URLs defined), provided EOP fetching has not been explicitly disabled by the user.
    
  - #317: Avoid `memcmp()` in testing structs for equality, using new comparison functions instead.
 
@@ -54,17 +55,17 @@ Upcoming feature release, possibly around 1 August 2026.
 
  - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
 
- - Adjust C++ testing precision on tests that can trip up, depending on the platform.
+ - Adjusted C++ testing precision on tests that can trip up, depending on the platform.
  
- - Disable parallel Doxygen builds -- they are non-reproducible.
+ - Disabled parallel Doxygen builds -- they are non-reproducible.
  
  - CMake export build-dir targets for dependent builds.
  
- - Tweak portable mutex macros in ephemeris plugins.
+ - Tweaked portable mutex macros in ephemeris plugins.
  
  - `examples/Makefile` to work standalone, without `config.mk`.
  
- - Fix wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
+ - Fixed wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
 
  
 

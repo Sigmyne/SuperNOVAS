@@ -4,7 +4,7 @@ This guide is specifically for using __SuperNOVAS__ primarily as a C++11 library
 [using the C99 API](USAGE-C99.md). The links below let you jump to the relevant sections:
 
  - [Building your application with SuperNOVAS (C++)](#integration-cpp)
- - [C++ Fundametals](#fundamentals-cpp)
+ - [C++ Fundamentals](#fundamentals-cpp)
  - [Example C++ usage](#examples-cpp)
 
 __SuperNOVAS__ is a C99 library at its core. If you are looking for maximum speed, or want to use __SuperNOVAS__ on 
@@ -171,7 +171,7 @@ with the implicit copy-assignment operator -- but not when the variable was decl
 
 To further support thread safety, the __SuperNOVAS__ classes are designed never to store references to external 
 objects internally. Instead, they always store copies of the parameters that were supplied by their constructors or 
-update methods. While the copying may result in a small overhead, it guarantess that the internal data cannot vanish 
+update methods. While the copying may result in a small overhead, it guarantees that the internal data cannot vanish 
 or change unexpectedly.
 
 
@@ -301,7 +301,7 @@ may have:
 ```cpp
  // Let's assume we have B1950 (FK4) coordinates
  CatalogEntry entry = CatalogEntry("Antares", "16h26m20.1918s", "-26d19m23.138s", Equinox::b1950())
-   .proper_motion(-12.11 * Unit::mas / Unit::yr, -23.30 * Unit::mas / Unit:yr)
+   .proper_motion(-12.11 * Unit::mas / Unit::yr, -23.30 * Unit::mas / Unit::yr)
    .parallax(5.89 * Unit::mas)
    .radial_velocity(5.89 * Unit::km / Unit::s);
 ```
@@ -358,7 +358,7 @@ _y<sub>p</sub>_ polar offsets, which measure small wanders of Earth's rotational
  EOP eop(37, 0.6447 * Unit::s, 103.2 * Unit::mas, 211.3 * Unit::mas);
  
  // Now create an observer for that site
- auto obs = site::to_observer(eop);
+ auto obs = site.to_observer(eop);
 ```
 
 Again, `supernovas::Observer` has many subclasses of specific flavors, so here we use the `auto` keyword again if we 
@@ -545,7 +545,7 @@ Earth based observer (otherwise, you'll get an invalid result):
  // Lets define the weather parameters explicitly as 12.0C, 895 mbar, and 47% humidity:
  Weather weather = Weather(Temperature::celsius(12.0), Pressure::mbar(895.0), 47.0 * Unit::percent);
  
- // Obtain refraction cofrrected horizontal coordinates
+ // Obtain refraction corrected horizontal coordinates
  hor = hor.to_refracted(novas_optical_refraction, weather);
 ```
 

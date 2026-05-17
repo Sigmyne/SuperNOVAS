@@ -107,7 +107,7 @@ $(function(){initNavTree('md__2github_2workspace_2doc_2USAGE-CPP.html','',''); }
 <p>This guide is specifically for using <b>SuperNOVAS</b> primarily as a C++11 library. There is a separate guide for <a class="el" href="md__2github_2workspace_2doc_2USAGE-C99.html" title="C99 Usage">using the C99 API</a>. The links below let you jump to the relevant sections:</p>
 <ul>
 <li><a class="el" href="#integration-cpp" title="integration-cpp">Building your application with SuperNOVAS (C++)</a></li>
-<li><a class="el" href="#fundamentals-cpp" title="fundamentals-cpp">C++ Fundametals</a></li>
+<li><a class="el" href="#fundamentals-cpp" title="fundamentals-cpp">C++ Fundamentals</a></li>
 <li><a class="el" href="#examples-cpp" title="examples-cpp">Example C++ usage</a></li>
 </ul>
 <p><b>SuperNOVAS</b> is a C99 library at its core. If you are looking for maximum speed, or want to use <b>SuperNOVAS</b> on older platforms, the C99 API is there for you. However, if you want a more modern, more intuitive, higher-level, and more elegant way of using <b>SuperNOVAS</b> then the C++ API gives you that comfort.</p>
@@ -208,7 +208,7 @@ Thread safety</h2>
 <p>It is easy to use the C++ API safely in a multi-threaded environment, even without explicit mutexing. The best practice is to always declare your shared (among threads) class variables as <span class="tt">const</span> so they will never get accidentally modified by one thread while another thread accesses them concurrently. While most <b>SuperNOVAS</b> classes do not have explicitly declared methods that can modify them, their contents can nevertheless get overwritten easily with the implicit copy-assignment operator &ndash; but not when the variable was declared as <span class="tt">const</span>. For example:</p>
 <div class="fragment"><div class="line"><span class="comment">// Declaring &#39;frame&#39; as const will make it safe to use in threads.</span></div>
 <div class="line"><span class="keyword">const</span> Frame frame = ...;</div>
-</div><!-- fragment --><p>To further support thread safety, the <b>SuperNOVAS</b> classes are designed never to store references to external objects internally. Instead, they always store copies of the parameters that were supplied by their constructors or update methods. While the copying may result in a small overhead, it guarantess that the internal data cannot vanish or change unexpectedly.</p>
+</div><!-- fragment --><p>To further support thread safety, the <b>SuperNOVAS</b> classes are designed never to store references to external objects internally. Instead, they always store copies of the parameters that were supplied by their constructors or update methods. While the copying may result in a small overhead, it guarantees that the internal data cannot vanish or change unexpectedly.</p>
 <p><a class="anchor" id="operators-cpp"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md89"></a>
 Operator overloading</h2>
@@ -272,7 +272,7 @@ Specify the object of interest</h3>
 <p>First, you must provide the astrometric parameters (coordinates, and optionally radial velocity or redshift, proper motion, and/or parallax or distance also). Let's assume we pick a star for which we have B1950 (i.e. FK4) coordinates. We begin with the assigned name and the R.A. / Dec coordinates, and then populate any other astrometric parameters we may have:</p>
 <div class="fragment"><div class="line"><span class="comment">// Let&#39;s assume we have B1950 (FK4) coordinates</span></div>
 <div class="line">CatalogEntry entry = CatalogEntry(<span class="stringliteral">&quot;Antares&quot;</span>, <span class="stringliteral">&quot;16h26m20.1918s&quot;</span>, <span class="stringliteral">&quot;-26d19m23.138s&quot;</span>, Equinox::b1950())</div>
-<div class="line">  .proper_motion(-12.11 * Unit::mas / Unit::yr, -23.30 * Unit::mas / Unit:yr)</div>
+<div class="line">  .proper_motion(-12.11 * Unit::mas / Unit::yr, -23.30 * Unit::mas / Unit::yr)</div>
 <div class="line">  .parallax(5.89 * Unit::mas)</div>
 <div class="line">  .radial_velocity(5.89 * Unit::km / Unit::s);</div>
 </div><!-- fragment --><p>Above, the coordinates were specified as strings. but they could have been floating-point values (e.g. <span class="tt">16.43894213 *
@@ -296,7 +296,7 @@ A. Earth-based observer location</h4>
 <div class="line">EOP eop(37, 0.6447 * Unit::s, 103.2 * Unit::mas, 211.3 * Unit::mas);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Now create an observer for that site</span></div>
-<div class="line"><span class="keyword">auto</span> obs = site::to_observer(eop);</div>
+<div class="line"><span class="keyword">auto</span> obs = site.to_observer(eop);</div>
 </div><!-- fragment --><p>Again, <span class="tt">supernovas::Observer</span> has many subclasses of specific flavors, so here we use the <span class="tt">auto</span> keyword again if we are lazy (otherwise we could have specified <span class="tt">supernovas::GeodeticObserver</span>, which is what <span class="tt">site.to_observer()</span> returns).</p>
 <p>As of v1.7, you may omit the optional <span class="tt">EOP</span> parameter in <span class="tt">Site::to_observer()</span>. In that case, any frame constructed with that geodetic observer location will automatically fetch appropriate polar offsets from IERS if possible (and provided you did not call <span class="tt">novas_set_auto_fetch_eop(0)</span> to disable it). You can use your own URLs (such as on a local server) instead of the default ones with <span class="tt"><a class="el" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a></span> for faster / more reliable EOP lookup. Note, however, that that this will add arbitrary latencies and a source of indeterminacy into your application also. See <a class="el" href="group__earth.html" title="Earth orientation">Earth orientation</a> for the set of functions and methods that can be used for fetching EOP from local or external sources as needed for a time of observation specified later.</p>
 <h4 class="doxsection"><a class="anchor" id="autotoc_md96"></a>
@@ -385,7 +385,7 @@ Calculate azimuth and elevation angles at the observing location</h3>
 <div class="line"><span class="comment">// Lets define the weather parameters explicitly as 12.0C, 895 mbar, and 47% humidity:</span></div>
 <div class="line">Weather weather = Weather(Temperature::celsius(12.0), Pressure::mbar(895.0), 47.0 * Unit::percent);</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Obtain refraction cofrrected horizontal coordinates</span></div>
+<div class="line"><span class="comment">// Obtain refraction corrected horizontal coordinates</span></div>
 <div class="line">hor = hor.to_refracted(<a class="code hl_function" href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a>, weather);</div>
 <div class="ttc" id="agroup__refract_html_gae4511a80a1defbb1e1fdc29c289e7de4"><div class="ttname"><a href="group__refract.html#gae4511a80a1defbb1e1fdc29c289e7de4">novas_optical_refraction</a></div><div class="ttdeci">double novas_optical_refraction(double jd_tt, const on_surface *loc, enum novas_refraction_type type, double el)</div><div class="ttdoc">Returns an optical refraction correction using the weather parameters defined for the observer locati...</div><div class="ttdef"><b>Definition</b> refract.c:281</div></div>
 </div><!-- fragment --><p><a class="anchor" id="solsys-example-cpp"></a> </p>

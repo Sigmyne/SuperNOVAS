@@ -104,7 +104,7 @@ $(function(){initNavTree('classsupernovas_1_1Site.html','','classsupernovas_1_1S
 </div><!--header-->
 <div class="contents">
 
-<p>An Earth-based (geodetic) observer site location, or airborne observer location.  
+<p>An Earth-based (geodetic) observer site location, or a momentary airborne observer location.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;supernovas.h&gt;</code></p>
@@ -190,7 +190,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a4aa2e66ea6acca6705d87457a08ac2d6 inherit pro_attribs_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">the state variable.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>An Earth-based (geodetic) observer site location, or airborne observer location. </p>
+<div class="textblock"><p>An Earth-based (geodetic) observer site location, or a momentary airborne observer location. </p>
 <p>Positions may be defined as GPS / WGS84 or else as ITRF / GRS80 geodetic locations, or as Cartesian geocentric <em>xyz</em> positions in the International Terrestrial Reference <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> (ITRF).</p>
 <p>The class provides the means to convert between ITRF realizations, e.g. to match the ITRF realization used for the Eath Orientation Parameters (EOP) obtained from IERS, for &mu;as precision. (This is really only necessary for VLBI interferometry). Alternatively, one may also transform the EOP values to match the ITRF realization of the site.</p>
 <dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
@@ -726,7 +726,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">from_year</td><td>[yr] The original ITRF realization year of this site, e.g. 2008. </td></tr>
-    <tr><td class="paramname">to_year</td><td>[yr] The ITRF realization year of the returned new <a class="el" href="classsupernovas_1_1Site.html" title="An Earth-based (geodetic) observer site location, or airborne observer location.">Site</a>, e.g. 2014. </td></tr>
+    <tr><td class="paramname">to_year</td><td>[yr] The ITRF realization year of the returned new <a class="el" href="classsupernovas_1_1Site.html" title="An Earth-based (geodetic) observer site location, or a momentary airborne observer location.">Site</a>, e.g. 2014. </td></tr>
   </table>
   </dd>
 </dl>
