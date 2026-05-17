@@ -113,7 +113,7 @@ $(function(){initNavTree('index.html','',''); });
 </ul>
 <p><a href="https://github.com/Sigmyne/SuperNOVAS/">SuperNOVAS</a> is a C/C++ astronomy software library, providing high-precision astrometry such as one might need for running an observatory, a precise planetarium program, or for analyzing astronomical datasets. It started as a fork of the Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>) C version 3.1, but since then it has grown into its own, providing bug fixes, tons of new features, and a much improved API compared to the original NOVAS.</p>
 <p><b>SuperNOVAS</b> is easy to use and it is very fast, with 3&ndash;5 orders of magnitude faster position calculations than <a href="https://www.astropy.org/">astropy</a> 7.0.0 in a single thread (see the <a class="el" href="#benchmarks" title="benchmarks">benchmarks</a>), and its performance will scale further with the number of CPUs when calculations are performed in parallel threads.</p>
-<p><b>SuperNOVAS</b> is and it is available through the <a href="https://github.com/Sigmyne/SuperNOVAS">Sigmyne/SuperNOVAS</a> repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports the IAU 2000/2006 conventions for microarcsecond-level position calculations.</p>
+<p><b>SuperNOVAS</b> is available through the <a href="https://github.com/Sigmyne/SuperNOVAS">Sigmyne/SuperNOVAS</a> repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports the IAU 2000/2006 conventions for microarcsecond-level position calculations.</p>
 <p>This document has been updated for the <span class="tt">v1.7</span> and later releases.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 Table of Contents</h1>
@@ -334,7 +334,7 @@ Install SuperNOVAS via <span class="tt">vcpkg</span></h2>
 <summary >
 Details</summary>
 <p></p>
-<p>The <span class="tt">vcpkg</span> port has optional add-on components, which may be installed along with the <span class="tt">core</span> library as needed. The following components are available:</p>
+<p>The <span class="tt">vcpkg</span> port has optional add-on features, which may be installed along with the <span class="tt">core</span> library as needed. The following features are available:</p>
 <ul>
 <li><span class="tt">core</span> &ndash; The core C99 library (this is installed by default if no components are specified).</li>
 <li><span class="tt">cpp</span> &ndash; The C++11 extension runtime and development files.</li>
@@ -342,7 +342,7 @@ Details</summary>
 </ul>
 <p>You can install just the core C99 library of SuperNOVAS (without the C++ API and CALCEPH support) with <span class="tt">vcpkg</span> as:</p>
 <div class="fragment"><div class="line">$ vcpkg install supernovas</div>
-</div><!-- fragment --><p>Or, a set of selected components library as, such as all the complete installation as:</p>
+</div><!-- fragment --><p>Or, with a selected set of features, such as:</p>
 <div class="fragment"><div class="line">$ vcpkg install supernovas[core,cpp,solsys-calceph]</div>
 </div><!-- fragment --><p></p>
 </details>

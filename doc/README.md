@@ -21,10 +21,10 @@ __SuperNOVAS__ is easy to use and it is very fast, with 3--5 orders of magnitude
 [astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
 will scale further with the number of CPUs when calculations are performed in parallel threads.
 
-__SuperNOVAS__ is and it is available through the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS) 
-repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, 
-and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully 
-supports the IAU 2000/2006 conventions for microarcsecond-level position calculations. 
+__SuperNOVAS__ is available through the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS) repository on 
+GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence 
+should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports 
+the IAU 2000/2006 conventions for microarcsecond-level position calculations. 
 
 This document has been updated for the `v1.7` and later releases.
 
@@ -372,7 +372,6 @@ Now you can build __SuperNOVAS__, for example as a shared library, with:
 
 
 
-
 <a name="cmake-build"></a>
 ### Build SuperNOVAS using CMake 
 
@@ -452,8 +451,8 @@ architectures (and in case of Windows also `x86`). It is effectively the same as
 more simplicity, convenience, and dependency resolution.
 
 
-The `vcpkg` port has optional add-on components, which may be installed along with the `core` library as needed. The 
-following components are available:
+The `vcpkg` port has optional add-on features, which may be installed along with the `core` library as needed. The 
+following features are available:
 
  - `core` -- The core C99 library (this is installed by default if no components are specified).
  - `cpp` -- The C++11 extension runtime and development files.
@@ -466,7 +465,7 @@ You can install just the core C99 library of SuperNOVAS (without the C++ API and
   $ vcpkg install supernovas
 ```
 
-Or, a set of selected components library as, such as all the complete installation as:
+Or, with a selected set of features, such as:
 
 ```bash
   $ vcpkg install supernovas[core,cpp,solsys-calceph]
