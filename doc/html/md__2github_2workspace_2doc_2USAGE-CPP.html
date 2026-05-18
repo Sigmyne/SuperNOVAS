@@ -314,7 +314,7 @@ Specify the time of observation</h3>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> jd_tai = ...     <span class="comment">// TAI-based Julian Date </span></div>
 <div class="line"> </div>
 <div class="line">Time obs_time(jd_tai, eop, <a class="code hl_enumvalue" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba328f2523f4f064c5252f4ac858bddc4b">NOVAS_TAI</a>)</div>
-<div class="ttc" id="agroup__time_html_ggaa642c4ccc7195dc62fd0dc56567ebd0ba328f2523f4f064c5252f4ac858bddc4b"><div class="ttname"><a href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba328f2523f4f064c5252f4ac858bddc4b">NOVAS_TAI</a></div><div class="ttdeci">@ NOVAS_TAI</div><div class="ttdoc">Innternational Atomic Time (TAI).</div><div class="ttdef"><b>Definition</b> novas.h:1790</div></div>
+<div class="ttc" id="agroup__time_html_ggaa642c4ccc7195dc62fd0dc56567ebd0ba328f2523f4f064c5252f4ac858bddc4b"><div class="ttname"><a href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba328f2523f4f064c5252f4ac858bddc4b">NOVAS_TAI</a></div><div class="ttdeci">@ NOVAS_TAI</div><div class="ttdoc">Innternational Atomic Time (TAI).</div><div class="ttdef"><b>Definition</b> novas.h:1802</div></div>
 </div><!-- fragment --><p>or, for the best precision we may do the same with an integer / fractional split:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">long</span> ijd_tai = ...     <span class="comment">// Integer part of the TAI-based Julian Date</span></div>
 <div class="line"><span class="keywordtype">double</span> fjd_tai = ...   <span class="comment">// Fractional part of the TAI-based Julian Date </span></div>
@@ -363,7 +363,7 @@ Calculate an apparent place on sky</h3>
 <div class="line"> </div>
 <div class="line"><span class="comment">// apparent Galactic coordinates</span></div>
 <div class="line">Galactic gal = app.galactic();</div>
-<div class="ttc" id="agroup__equatorial_html_gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9"><div class="ttname"><a href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a></div><div class="ttdeci">@ NOVAS_J2000</div><div class="ttdoc">The J2000 dynamical reference system.</div><div class="ttdef"><b>Definition</b> novas.h:891</div></div>
+<div class="ttc" id="agroup__equatorial_html_gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9"><div class="ttname"><a href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ead110200de7f232d9110467c0862733d9">NOVAS_J2000</a></div><div class="ttdeci">@ NOVAS_J2000</div><div class="ttdoc">The J2000 dynamical reference system.</div><div class="ttdef"><b>Definition</b> novas.h:903</div></div>
 </div><!-- fragment --><p>Above the <span class="tt">&gt;&gt;</span> operator is used as a shorthand for the <span class="tt">.to_system()</span> method. It's the same as writing <span class="tt">.to_system(NOVAS_J2000)</span> or <span class="tt">.to_j2000()</span>.</p>
 <p>For spectroscopic applications, you can get a spectroscopic radial velocity or redshift (including gravitational effects) as:</p>
 <div class="fragment"><div class="line">ScalarVelocity rv = app.radial_velocity();</div>
@@ -561,7 +561,7 @@ Coordinate and velocity transforms (change of coordinate system)</h2>
 <div class="line"> </div>
 <div class="line"><span class="comment">// convert to pseudo Earth rotating TIRS positions / velocities</span></div>
 <div class="line">Geometric geom_tirs = geom &gt;&gt; <a class="code hl_enumvalue" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a>;</div>
-<div class="ttc" id="agroup__equatorial_html_gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f"><div class="ttname"><a href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a></div><div class="ttdeci">@ NOVAS_TIRS</div><div class="ttdoc">Terrestrial Intermediate Reference System.</div><div class="ttdef"><b>Definition</b> novas.h:903</div></div>
+<div class="ttc" id="agroup__equatorial_html_gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f"><div class="ttname"><a href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea524041fc2059f8432b76fad1b8edb89f">NOVAS_TIRS</a></div><div class="ttdeci">@ NOVAS_TIRS</div><div class="ttdoc">Terrestrial Intermediate Reference System.</div><div class="ttdef"><b>Definition</b> novas.h:915</div></div>
 </div><!-- fragment --><p>Once again, the <span class="tt">&gt;&gt;</span> operator is just a shorthand for the <span class="tt">.to_system()</span> method, and there are system-specific convenience methods (like <span class="tt">.to_icrs()</span>, or <span class="tt">to_mod()</span>) defined also. Note, that geometric coordinates can be defined not only for celestial equatorial systems, but also for the Earth-rotating reference systems TIRS and ITRS.</p>
 <hr  />
 <p> Copyright (C) 2026 Attila Kovács </p>

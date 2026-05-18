@@ -109,17 +109,17 @@ $(function(){initNavTree('grav_8c.html','',''); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a48f90ac20950507fad9b880a7f7f2383" id="r_a48f90ac20950507fad9b880a7f7f2383"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#a48f90ac20950507fad9b880a7f7f2383">grav_def</a> (double jd_tdb, enum <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3">novas_observer_place</a> unused, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, const double *pos_src, const double *pos_obs, double *out)</td></tr>
+<tr class="memitem:a48f90ac20950507fad9b880a7f7f2383" id="r_a48f90ac20950507fad9b880a7f7f2383"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#a48f90ac20950507fad9b880a7f7f2383">grav_def</a> (double jd_tdb, enum <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3">novas_observer_place</a> unused, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, const double *pos_src, const double *pos_obs, double *<a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>)</td></tr>
 <tr class="memdesc:a48f90ac20950507fad9b880a7f7f2383"><td class="mdescLeft">&#160;</td><td class="mdescRight">(<em>primarily for internal use</em>) Computes the total gravitational deflection of light for the observed object due to the major gravitating bodies in the solar system.  <br /></td></tr>
-<tr class="memitem:ae36bc31e1dad8a68f94f7a6414f0519f" id="r_ae36bc31e1dad8a68f94f7a6414f0519f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets</a> (const double *pos_src, const double *pos_obs, const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *restrict planets, double *out)</td></tr>
+<tr class="memitem:ae36bc31e1dad8a68f94f7a6414f0519f" id="r_ae36bc31e1dad8a68f94f7a6414f0519f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets</a> (const double *pos_src, const double *pos_obs, const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *restrict planets, double *<a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>)</td></tr>
 <tr class="memdesc:ae36bc31e1dad8a68f94f7a6414f0519f"><td class="mdescLeft">&#160;</td><td class="mdescRight">(<em>primarily for internal use</em>) Computes the total gravitational deflection of light for the observed object due to the specified gravitating bodies in the solar system.  <br /></td></tr>
 <tr class="memitem:ga3ce6b306bc183387d0aaac97abbd82e8" id="r_ga3ce6b306bc183387d0aaac97abbd82e8"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__spectral.html#ga3ce6b306bc183387d0aaac97abbd82e8">grav_redshift</a> (double M_kg, double r_m)</td></tr>
 <tr class="memdesc:ga3ce6b306bc183387d0aaac97abbd82e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the gravitational redshift (<em>z</em>) for light emitted near a massive spherical body at some distance from its center, and observed at some very large (infinite) distance away.  <br /></td></tr>
-<tr class="memitem:aaae33249717912663bbb00be4fa4e6c3" id="r_aaae33249717912663bbb00be4fa4e6c3"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aaae33249717912663bbb00be4fa4e6c3">grav_undef</a> (double jd_tdb, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, const double *pos_app, const double *pos_obs, double *out)</td></tr>
+<tr class="memitem:aaae33249717912663bbb00be4fa4e6c3" id="r_aaae33249717912663bbb00be4fa4e6c3"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aaae33249717912663bbb00be4fa4e6c3">grav_undef</a> (double jd_tdb, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, const double *pos_app, const double *pos_obs, double *<a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>)</td></tr>
 <tr class="memdesc:aaae33249717912663bbb00be4fa4e6c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">(<em>primarily for internal use</em>) Computes the gravitationally undeflected position of an observed source position due to the major gravitating bodies in the solar system.  <br /></td></tr>
-<tr class="memitem:a1b107a24b9fadc79cc5df8c6f5505d16" id="r_a1b107a24b9fadc79cc5df8c6f5505d16"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1b107a24b9fadc79cc5df8c6f5505d16">grav_undo_planets</a> (const double *pos_app, const double *pos_obs, const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *restrict planets, double *out)</td></tr>
+<tr class="memitem:a1b107a24b9fadc79cc5df8c6f5505d16" id="r_a1b107a24b9fadc79cc5df8c6f5505d16"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1b107a24b9fadc79cc5df8c6f5505d16">grav_undo_planets</a> (const double *pos_app, const double *pos_obs, const <a class="el" href="structnovas__planet__bundle.html">novas_planet_bundle</a> *restrict planets, double *<a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>)</td></tr>
 <tr class="memdesc:a1b107a24b9fadc79cc5df8c6f5505d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">(<em>primarily for internal use</em>) Computes the gravitationally undeflected position of an observed source position due to the specified Solar-system bodies.  <br /></td></tr>
-<tr class="memitem:a08a008572e2746a70bec19739b5fb7e6" id="r_a08a008572e2746a70bec19739b5fb7e6"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec</a> (const double *pos_src, const double *pos_obs, const double *pos_body, double rmass, double *out)</td></tr>
+<tr class="memitem:a08a008572e2746a70bec19739b5fb7e6" id="r_a08a008572e2746a70bec19739b5fb7e6"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec</a> (const double *pos_src, const double *pos_obs, const double *pos_body, double rmass, double *<a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>)</td></tr>
 <tr class="memdesc:a08a008572e2746a70bec19739b5fb7e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">(<em>primarily for internal use</em>) Corrects position vector for the deflection of light in the gravitational field of anarbitrary body.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
@@ -193,7 +193,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1). In full accuracy mode, it will calculate the deflection due to the Sun, Jupiter, Saturn and Earth. In reduced accuracy mode, only the deflection due to the Sun is calculated. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_src</td><td>[AU] Position 3-vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, components in AU. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_obs</td><td>[AU] Position 3-vector of observer (or the geocenter), with respect to origin at solar system barycenter, referred to ICRS axes, components in AU. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>[AU] Position vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, corrected for gravitational deflection, components in AU. It can be the same vector as the input, but not the same as pos_obs. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a></td><td>[AU] Position vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, corrected for gravitational deflection, components in AU. It can be the same vector as the input, but not the same as pos_obs. </td></tr>
   </table>
   </dd>
 </dl>
@@ -202,7 +202,7 @@ Variables</h2></td></tr>
 <dd>
 <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, <a class="el" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c" title="Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate correc...">novas_geom_to_app()</a>, <a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf" title="Converts an observed apparent sky position of a source to an ICRS geometric position,...">novas_app_to_geom()</a>, <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>, <a class="el" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a" title="Current set of gravitating bodies to use for deflection calculations in full accuracy mode.">grav_bodies_full_accuracy</a>, <a class="el" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24" title="Current set of gravitating bodies to use for deflection calculations in reduced accuracy mode.">grav_bodies_reduced_accuracy</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a">grav_bodies_full_accuracy</a>, <a class="el" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24">grav_bodies_reduced_accuracy</a>, <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, and <a class="el" href="group__solar-system.html#ga07490a134a685fe0842b2b4816559292">obs_planets()</a>.</p>
+<p class="reference">References <a class="el" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a">grav_bodies_full_accuracy</a>, <a class="el" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24">grav_bodies_reduced_accuracy</a>, <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, <a class="el" href="group__solar-system.html#ga07490a134a685fe0842b2b4816559292">obs_planets()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
 
 </div>
 </div>
@@ -250,7 +250,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_src</td><td>[AU] Position 3-vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, components in AU. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_obs</td><td>[AU] Position 3-vector of observer (or the geocenter), with respect to origin at solar system barycenter, referred to ICRS axes, components in AU. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">planets</td><td>Apparent planet data containing positions and velocities for the major gravitating bodies in the solar-system. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>[AU] Position vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, corrected for gravitational deflection, components in AU. It can be the same vector as the input, but not the same as pos_obs. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a></td><td>[AU] Position vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, corrected for gravitational deflection, components in AU. It can be the same vector as the input, but not the same as pos_obs. </td></tr>
   </table>
   </dd>
 </dl>
@@ -261,7 +261,7 @@ Variables</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 
-<p class="reference">References <a class="el" href="util_8c.html#ad799864f637c483fb49491bde5a93e25">d_light()</a>, <a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>, <a class="el" href="novas_8h.html#a5ddc7a011476a8cffaec1866beaa0095">NOVAS_RMASS_INIT</a>, and <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>.</p>
+<p class="reference">References <a class="el" href="util_8c.html#ad799864f637c483fb49491bde5a93e25">d_light()</a>, <a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>, <a class="el" href="novas_8h.html#a5ddc7a011476a8cffaec1866beaa0095">NOVAS_RMASS_INIT</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a48f90ac20950507fad9b880a7f7f2383">grav_def()</a>, <a class="el" href="#a1b107a24b9fadc79cc5df8c6f5505d16">grav_undo_planets()</a>, <a class="el" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c">novas_geom_to_app()</a>, <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos()</a>, and <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
 
@@ -315,7 +315,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_app</td><td>[AU] Apparent position 3-vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, components in AU. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_obs</td><td>[AU] Position 3-vector of observer (or the geocenter), with respect to origin at solar system barycenter, referred to ICRS axes, components in AU. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>[AU] Nominal position vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, without gravitational deflection, components in AU. It can be the same vector as the input, but not the same as pos_obs. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a></td><td>[AU] Nominal position vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, without gravitational deflection, components in AU. It can be the same vector as the input, but not the same as pos_obs. </td></tr>
   </table>
   </dd>
 </dl>
@@ -326,7 +326,7 @@ Variables</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 
-<p class="reference">References <a class="el" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a">grav_bodies_full_accuracy</a>, <a class="el" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24">grav_bodies_reduced_accuracy</a>, <a class="el" href="#a1b107a24b9fadc79cc5df8c6f5505d16">grav_undo_planets()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, and <a class="el" href="group__solar-system.html#ga07490a134a685fe0842b2b4816559292">obs_planets()</a>.</p>
+<p class="reference">References <a class="el" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a">grav_bodies_full_accuracy</a>, <a class="el" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24">grav_bodies_reduced_accuracy</a>, <a class="el" href="#a1b107a24b9fadc79cc5df8c6f5505d16">grav_undo_planets()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, <a class="el" href="group__solar-system.html#ga07490a134a685fe0842b2b4816559292">obs_planets()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
 
 </div>
 </div>
@@ -369,7 +369,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_app</td><td>[AU] Apparent position 3-vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, components in AU. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_obs</td><td>[AU] Position 3-vector of observer (or the geocenter), with respect to origin at solar system barycenter, referred to ICRS axes, components in AU. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">planets</td><td>Apparent planet data containing positions and velocities for the major gravitating bodies in the solar-system. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>[AU] Nominal position vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, without gravitational deflection, components in AU. It can be the same vector as the input, but not the same as pos_obs. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a></td><td>[AU] Nominal position vector of observed object, with respect to origin at observer (or the geocenter), referred to ICRS axes, without gravitational deflection, components in AU. It can be the same vector as the input, but not the same as pos_obs. </td></tr>
   </table>
   </dd>
 </dl>
@@ -380,7 +380,7 @@ Variables</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 
-<p class="reference">References <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="util_8c.html#ad2b933ce2f58e8b04bbe76ffbff99eb0">novas_inv_max_iter</a>, and <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>.</p>
+<p class="reference">References <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="util_8c.html#ad2b933ce2f58e8b04bbe76ffbff99eb0">novas_inv_max_iter</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#aaae33249717912663bbb00be4fa4e6c3">grav_undef()</a>, and <a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf">novas_app_to_geom()</a>.</p>
 
@@ -438,14 +438,14 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_obs</td><td>[AU] Position vector of gravitating body, with respect to origin at solar system barycenter, components in AU. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_body</td><td>[AU] Position 3-vector of gravitating body, with respect to origin at solar system barycenter, components in AU. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">rmass</td><td>[1/Msun] Reciprocal mass of gravitating body in solar mass units, that is, Sun mass / body mass. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>[AU] Position 3-vector of observed object, with respect to origin at observer (or the geocenter), corrected for gravitational deflection, components in AU. It can the same vector as the input. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a></td><td>[AU] Position 3-vector of observed object, with respect to origin at observer (or the geocenter), corrected for gravitational deflection, components in AU. It can the same vector as the input. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the input vectors is NULL.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, and <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>.</p>
+<p class="reference">References <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>.</p>
 

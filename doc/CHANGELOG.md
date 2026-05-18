@@ -11,6 +11,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 Release candidate for the upcoming feature release, possibly around 1 August 2026.
 
+### Fixed
+
+ - #321: `Constant::G` had missing digit in exponent, causing also `Constant::M_sun` and `Contant::M_earth` to be 
+   wrong (thanks to CodeQL).
+   
+ - #322: Fixed spelling of `Temperature::fahrenheit()` (thanks to CodeQL). (The misspelled `farenheit()` remains
+   supported also for backward compatibility). 
+
 ### Added
 
  - #313: Support for fetching of leap-seconds and EOP data from IERS, also automatically as needed when the EOP 
@@ -67,6 +75,12 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
  
  - Fixed wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
 
+### Deprecated
+
+ - #323: A few functions, which have already been documented as deprecated, are now annotated as such also so the
+   compiler will warn when these are used. Only the functions, which really should be avoided are affected, either 
+   because they are irrelevant (e.g. `cio_array()`, `cio_basis()`) or prone to misuse (e.g.  `cel2ter()`, `ter2cel()`, 
+   `equ2hor()`), and/or may have unintended consequences (e.g. `cel_pole()`).
  
 
 ## [1.6.0] - 2026-04-27

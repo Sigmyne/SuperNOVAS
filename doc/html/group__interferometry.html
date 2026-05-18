@@ -115,11 +115,11 @@ Functions</h2></td></tr>
 <tr class="memdesc:gaa75f22539fa6135b64f5026c6e1fcba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns geocentric <em>u</em>,<em>v</em>,<em>w</em> coordinates for a ground-based interferometer station.  <br /></td></tr>
 <tr class="memitem:ga81f4b147c3f132a1498cdd833042d804" id="r_ga81f4b147c3f132a1498cdd833042d804"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga81f4b147c3f132a1498cdd833042d804">novas_uvw</a> (const double *restrict station_pos, const double *restrict station_vel, const double *restrict phase_center, double *restrict uvw)</td></tr>
 <tr class="memdesc:ga81f4b147c3f132a1498cdd833042d804"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <em>u</em>,<em>v</em>,<em>w</em> coordinates for a space-based interferometer station.  <br /></td></tr>
-<tr class="memitem:ga16c920eee105431247e9a1d9bf1c3021" id="r_ga16c920eee105431247e9a1d9bf1c3021"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga16c920eee105431247e9a1d9bf1c3021">novas_uvw_to_xyz</a> (const double *uvw, double ha, double dec, double *xyz)</td></tr>
+<tr class="memitem:ga16c920eee105431247e9a1d9bf1c3021" id="r_ga16c920eee105431247e9a1d9bf1c3021"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga16c920eee105431247e9a1d9bf1c3021">novas_uvw_to_xyz</a> (const double *uvw, double ha, double <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, double *xyz)</td></tr>
 <tr class="memdesc:ga16c920eee105431247e9a1d9bf1c3021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts equatorial u,v,w projected (absolute or relative) coordinates to rectangular telescope x,y,z coordinates (in PEF) to for a specified line of sight.  <br /></td></tr>
 <tr class="memitem:ga14deb6fdce80ba213e1f1d5238306e17" id="r_ga14deb6fdce80ba213e1f1d5238306e17"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los</a> (const double *xyz, double lon, double lat, double *los)</td></tr>
 <tr class="memdesc:ga14deb6fdce80ba213e1f1d5238306e17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a 3D rectangular equatorial (&delta;x, &delta;y, &delta;z) vector to a polar (&delta;&phi;, &delta;&theta;, &delta;r) vector along a line-of-sight.  <br /></td></tr>
-<tr class="memitem:ga87867e8e7fc7decaa44777a696465353" id="r_ga87867e8e7fc7decaa44777a696465353"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga87867e8e7fc7decaa44777a696465353">novas_xyz_to_uvw</a> (const double *xyz, double ha, double dec, double *uvw)</td></tr>
+<tr class="memitem:ga87867e8e7fc7decaa44777a696465353" id="r_ga87867e8e7fc7decaa44777a696465353"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga87867e8e7fc7decaa44777a696465353">novas_xyz_to_uvw</a> (const double *xyz, double ha, double <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, double *uvw)</td></tr>
 <tr class="memdesc:ga87867e8e7fc7decaa44777a696465353"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts rectangular telescope x,y,z (absolute or relative) coordinates (in PEF) to an equatorial u,v,w projection for a specified line of sight.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
@@ -291,7 +291,7 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaa75f22539fa6135b64f5026c6e1fcba1" title="Returns geocentric u,v,w coordinates for a ground-based interferometer station.">novas_site_uvw()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="observer_8c.html#a033f1bf4b01e0e21a0e05e13c19c02f6">aberration()</a>, <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="#ga14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los()</a>, and <a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec()</a>.</p>
+<p class="reference">References <a class="el" href="observer_8c.html#a033f1bf4b01e0e21a0e05e13c19c02f6">aberration()</a>, <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="#ga14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los()</a>, <a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a>, and <a class="el" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#gaa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw()</a>.</p>
 
@@ -333,7 +333,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">uvw</td><td>[arb.u.] Absolute or relative line of sight coordinates (double[3]). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ha</td><td>[h] Hourangle (LST - RA) i.e., the difference between the Local (apparent) Sidereal Time and the apparent (true-of-date) Right Ascension of observed source. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] Apparent (true-of-date) declination of source. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Apparent (true-of-date) declination of source. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">xyz</td><td>[arb.u.] Converted x,y,z coordinates (double[3]) in the same unit as uvw, in the Pseudo Earth Frame (PEF). It may be the same vector as the input.</td></tr>
   </table>
   </dd>
@@ -343,7 +343,7 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga87867e8e7fc7decaa44777a696465353" title="Converts rectangular telescope x,y,z (absolute or relative) coordinates (in PEF) to an equatorial u,...">novas_xyz_to_uvw()</a>, <a class="el" href="group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ga601d246673742cf72a5dbe1449c97560">novas_los_to_xyz()</a>.</p>
+<p class="reference">References <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, and <a class="el" href="#ga601d246673742cf72a5dbe1449c97560">novas_los_to_xyz()</a>.</p>
 
 </div>
 </div>
@@ -432,7 +432,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">xyz</td><td>[arb.u.] Absolute or relative x,y,z coordinates (double[3]) in the Pseudo Earth Frame (PEF). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ha</td><td>[h] Hourangle (LST - RA) i.e., the difference between the Local (apparent) Sidereal Time and the apparent (true-of-date) Right Ascension of observed source, from the input location. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] Apparent (true-of-date) declination of source at the input location </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Apparent (true-of-date) declination of source at the input location </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">uvw</td><td>[arb.u.] Converted u,v,w coordinates (double[3]), in same units as the input xyz. It may be the same vector as the input.</td></tr>
   </table>
   </dd>
@@ -442,7 +442,7 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaa75f22539fa6135b64f5026c6e1fcba1" title="Returns geocentric u,v,w coordinates for a ground-based interferometer station.">novas_site_uvw()</a>, <a class="el" href="#ga16c920eee105431247e9a1d9bf1c3021" title="Converts equatorial u,v,w projected (absolute or relative) coordinates to rectangular telescope x,...">novas_uvw_to_xyz()</a>, <a class="el" href="group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ga14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los()</a>.</p>
+<p class="reference">References <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, and <a class="el" href="#ga14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los()</a>.</p>
 
 </div>
 </div>

@@ -5,5 +5,6 @@ var searchData=
   ['j2000_5fto_5ftod_2',['j2000_to_tod',['../group__equatorial.html#ga02fa1ee652c20160055cbd2c7bd9ca63',1,'j2000_to_tod(double jd_tdb, enum novas_accuracy accuracy, const double *in, double *out):&#160;transform.c'],['../group__equatorial.html#ga02fa1ee652c20160055cbd2c7bd9ca63',1,'j2000_to_tod(double jd_tdb, enum novas_accuracy accuracy, const double *in, double *out):&#160;transform.c']]],
   ['jd_3',['jd',['../structnovas__eop.html#affd6c6e56f462ca17a1badb73cf3c907',1,'novas_eop']]],
   ['jd_5ftdb_4',['jd_tdb',['../structnovas__orbital.html#acb8d31a6dea072a9329d89695060ec2a',1,'novas_orbital::jd_tdb'],['../structnovas__ra__of__cio.html#aeec708ff70ce3b510c35f9496c41aafe',1,'novas_ra_of_cio::jd_tdb']]],
-  ['julian_5fdate_5',['julian_date',['../group__time.html#ga7cd85bc0a0248f84d399cbbce9fe9546',1,'julian_date(short year, short month, short day, double hour):&#160;calendar.c'],['../group__time.html#ga7cd85bc0a0248f84d399cbbce9fe9546',1,'julian_date(short year, short month, short day, double hour):&#160;calendar.c']]]
+  ['jd_5fut1_5flow_5',['jd_ut1_low',['../novas_8h.html#a443200f019acf7ec3c2ab46533cb4704',1,'novas.h']]],
+  ['julian_5fdate_6',['julian_date',['../group__time.html#ga7cd85bc0a0248f84d399cbbce9fe9546',1,'julian_date(short year, short month, short day, double hour):&#160;calendar.c'],['../group__time.html#ga7cd85bc0a0248f84d399cbbce9fe9546',1,'julian_date(short year, short month, short day, double hour):&#160;calendar.c']]]
 ];

@@ -48,5 +48,6 @@ var searchData=
   ['orientation_45',['Earth orientation',['../group__earth.html',1,'']]],
   ['other_20coordinate_20systems_46',['Other coordinate systems',['../group__nonequatorial.html',1,'']]],
   ['other_20observer_20locations_47',['B. other observer locations',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md96',1,'']]],
-  ['overloading_48',['Operator overloading',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89',1,'']]]
+  ['out_48',['out',['../novas_8h.html#ab6b014bd66a719d43c7b88713b033988',1,'novas.h']]],
+  ['overloading_49',['Operator overloading',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md89',1,'']]]
 ];

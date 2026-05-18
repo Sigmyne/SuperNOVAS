@@ -115,7 +115,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga338e3436ba86dadf6bd4d7390f9940ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">It may provide the position and velocity of the Earth and Sun, the same as <a class="el" href="group__solar-system.html#ga580f5949c8a29cdd7bf4787aee891f2b" title="Provides the position and velocity of the Earth and Sun only at epoch &#39;jd_tdb&#39; by evaluating a closed...">earth_sun_calc()</a>, if <a class="el" href="group__solar-system.html#ga279bca0519117cee9a3bd4382f38e7ad" title="Specify whether the high-precision call is allowed to return a low-precision result.">enable_earth_sun_hp()</a> is set to true (non-zero).  <br /></td></tr>
 <tr class="memitem:ga279bca0519117cee9a3bd4382f38e7ad" id="r_ga279bca0519117cee9a3bd4382f38e7ad"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__solar-system.html#ga279bca0519117cee9a3bd4382f38e7ad">enable_earth_sun_hp</a> (int value)</td></tr>
 <tr class="memdesc:ga279bca0519117cee9a3bd4382f38e7ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specify whether the high-precision call is allowed to return a low-precision result.  <br /></td></tr>
-<tr class="memitem:a869ec4c9fe91668611c0cfcc6bf332cf" id="r_a869ec4c9fe91668611c0cfcc6bf332cf"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a869ec4c9fe91668611c0cfcc6bf332cf">sun_eph</a> (double jd, double *restrict ra, double *restrict dec, double *restrict dis)</td></tr>
+<tr class="memitem:a869ec4c9fe91668611c0cfcc6bf332cf" id="r_a869ec4c9fe91668611c0cfcc6bf332cf"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a869ec4c9fe91668611c0cfcc6bf332cf">sun_eph</a> (double jd, double *restrict <a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a>, double *restrict <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, double *restrict dis)</td></tr>
 <tr class="memdesc:a869ec4c9fe91668611c0cfcc6bf332cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes equatorial spherical coordinates of Sun referred to the mean equator and equinox of date.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
@@ -171,8 +171,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">jd</td><td>[day] jd (double) Julian date on TDT or ET time scale. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">ra</td><td>[h] Right ascension referred to mean equator and equinox of date (hours). </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">dec</td><td>[deg] Declination referred to mean equator and equinox of date (degrees). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a></td><td>[h] Right ascension referred to mean equator and equinox of date (hours). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Declination referred to mean equator and equinox of date (degrees). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dis</td><td>[AU] Geocentric distance (AU). </td></tr>
   </table>
   </dd>
@@ -180,7 +180,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if any of the pointer arguments are NULL.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__solar-system.html#ga580f5949c8a29cdd7bf4787aee891f2b" title="Provides the position and velocity of the Earth and Sun only at epoch &#39;jd_tdb&#39; by evaluating a closed...">earth_sun_calc()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>.</p>
+<p class="reference">References <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, <a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a>, and <a class="el" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__solar-system.html#ga580f5949c8a29cdd7bf4787aee891f2b">earth_sun_calc()</a>.</p>
 

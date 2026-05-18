@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['farenheit_0',['farenheit',['../classsupernovas_1_1Temperature.html#aa9a2354a7fb058c412270a95e1a964de',1,'supernovas::Temperature::farenheit() const'],['../classsupernovas_1_1Temperature.html#a7965a353b25180bc06adbd52462ef42a',1,'supernovas::Temperature::farenheit(double value)']]],
+  ['fahrenheit_0',['fahrenheit',['../classsupernovas_1_1Temperature.html#a22c90e193100efe9b9060048e4d51a37',1,'supernovas::Temperature::fahrenheit() const'],['../classsupernovas_1_1Temperature.html#ad3575f8bcd2a3c16842ff80a62422852',1,'supernovas::Temperature::fahrenheit(double value)']]],
   ['fetch_5fcurrent_1',['fetch_current',['../classsupernovas_1_1EOP.html#ab53597291535b26da9ff1a3629d05904',1,'supernovas::EOP::fetch_current(double offset=0.0, long timeout_millis=0L)'],['../classsupernovas_1_1EOP.html#a883cc4c0097aaa8806c3990b7f8a558a',1,'supernovas::EOP::fetch_current(const Interval &amp;offset, long timeout_millis=0L)']]],
   ['fetch_5ffor_2',['fetch_for',['../classsupernovas_1_1EOP.html#a795ca27c550868b0dc7e675acbd198a0',1,'supernovas::EOP::fetch_for(const time_t time, long timeout_millis=0L)'],['../classsupernovas_1_1EOP.html#ae136f1047bfbd30a49b83de5b366db12',1,'supernovas::EOP::fetch_for(const CalendarDate &amp;date, long timeout_millis=0L)']]],
   ['fetch_5ffor_5fjd_3',['fetch_for_jd',['../classsupernovas_1_1EOP.html#a3449de521a39b92f85964e06917fa0e4',1,'supernovas::EOP']]],

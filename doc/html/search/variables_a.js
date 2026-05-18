@@ -5,8 +5,10 @@ var searchData=
   ['lat_2',['lat',['../structnovas__observable.html#a78f8830087146b6f19dc55544da2827b',1,'novas_observable']]],
   ['latitude_3',['latitude',['../structnovas__on__surface.html#a77f70abeb6c896623a85b1bdf8861151',1,'novas_on_surface']]],
   ['leap_4',['leap',['../structnovas__eop.html#ab16f1e9735ea4825852497ab33b3ebf3',1,'novas_eop']]],
-  ['lod_5',['lod',['../structnovas__eop.html#ac53ddbbe3c91d0403543273a6380a4b6',1,'novas_eop']]],
-  ['lod_5ferr_6',['lod_err',['../structnovas__eop.html#af72647faf3ebbfed343c9dfee414ab17',1,'novas_eop']]],
-  ['lon_7',['lon',['../structnovas__observable.html#a60f4ec4f3e6b5ca9f967c1b48b5d8eb8',1,'novas_observable']]],
-  ['longitude_8',['longitude',['../structnovas__on__surface.html#af62107483c0a9ded0168993c1cfd933f',1,'novas_on_surface']]]
+  ['loc_5ftype_5',['loc_type',['../novas_8h.html#a2b6120b7b5fd1654a4ca6bee9890a11c',1,'novas.h']]],
+  ['location_6',['location',['../novas_8h.html#aa090506272d868edfa7664be259292ce',1,'novas.h']]],
+  ['lod_7',['lod',['../structnovas__eop.html#ac53ddbbe3c91d0403543273a6380a4b6',1,'novas_eop']]],
+  ['lod_5ferr_8',['lod_err',['../structnovas__eop.html#af72647faf3ebbfed343c9dfee414ab17',1,'novas_eop']]],
+  ['lon_9',['lon',['../structnovas__observable.html#a60f4ec4f3e6b5ca9f967c1b48b5d8eb8',1,'novas_observable']]],
+  ['longitude_10',['longitude',['../structnovas__on__surface.html#af62107483c0a9ded0168993c1cfd933f',1,'novas_on_surface']]]
 ];

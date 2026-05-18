@@ -1308,6 +1308,11 @@
             <topic label="WOBBLE_ITRS_TO_PEF" href="group__nonequatorial.html#ggaab27106a2d5c2c7fa64b2f208deff7f5ac1fc144f868517a2268a56343cc218a9"/>
             <topic label="WOBBLE_PEF_TO_ITRS" href="group__nonequatorial.html#ggaab27106a2d5c2c7fa64b2f208deff7f5a6148979c7c2a121fc0852ec129eb4b10"/>
           </topic>
+          <topic label="__NOVAS_DEPRECATE__" href="novas_8h.html#abbbe5448739d61599c1637f50b0ecf91"/>
+          <topic label="__NOVAS_DEPRECATE__" href="novas_8h.html#a40c3c527ec2edaee88e08a825556b7ee"/>
+          <topic label="__NOVAS_DEPRECATE__" href="novas_8h.html#a1f872782e41149782a6763a7b2a18d17"/>
+          <topic label="__NOVAS_DEPRECATE__" href="novas_8h.html#af5ee359d3a94d70399ba41e7b41c4342"/>
+          <topic label="__NOVAS_DEPRECATE__" href="novas_8h.html#aa7e82563a7307462cbaf15ffbcf707d2"/>
           <topic label="aberration" href="novas_8h.html#a033f1bf4b01e0e21a0e05e13c19c02f6"/>
           <topic label="accum_prec" href="group__earth.html#gad1de5b481e41cf193c199bd0dc5084bd"/>
           <topic label="app_planet" href="group__apparent.html#gac28dd9a362982cfce150751001a96a8a"/>
@@ -1317,11 +1322,8 @@
           <topic label="astro_star" href="group__geometric.html#ga9530c770e83db2cbc5a31d8d1f8c36f4"/>
           <topic label="bary2obs" href="novas_8h.html#a1d58fd371e7604f75df315365672941e"/>
           <topic label="cal_date" href="group__time.html#ga044f1359abcf0a039ac6452a95729b5a"/>
-          <topic label="cel2ter" href="novas_8h.html#a6217852bfd7d3a58d3266d0daadfc6bc"/>
-          <topic label="cel_pole" href="novas_8h.html#a8937180de2ee1545d19b8fc840f35fe2"/>
           <topic label="cio_array" href="novas_8h.html#afc894b55420495a727a90d3d85188ef4"/>
           <topic label="cio_basis" href="novas_8h.html#a51bfbe9b491f50851326b2522dc2a29f"/>
-          <topic label="cio_location" href="novas_8h.html#a65ffaaa2b527ed03149eadc7568f3714"/>
           <topic label="cio_ra" href="group__equatorial.html#gacc331c69187b3077b98280bfb57f6670"/>
           <topic label="cirs_to_app_ra" href="group__equatorial.html#gaf90d52a6527d9b62b8ac35d8c1ac7c6b"/>
           <topic label="cirs_to_gcrs" href="group__equatorial.html#gac0ba048cd1732d0d0398397396d158bc"/>
@@ -1338,7 +1340,6 @@
           <topic label="equ2ecl" href="group__nonequatorial.html#ga035047336b16951b8b850066e74210a9"/>
           <topic label="equ2ecl_vec" href="group__nonequatorial.html#gaa05ecc76c1ccc0c3445f8b642d6c5311"/>
           <topic label="equ2gal" href="group__nonequatorial.html#ga288b49c03bc29704c8dd5acf8baca80e"/>
-          <topic label="equ2hor" href="novas_8h.html#ad932a8617973ef06e4a5c955b7897bb0"/>
           <topic label="era" href="group__earth.html#gaef1f8daaad470353648de90576aefc66"/>
           <topic label="frame_tie" href="group__equatorial.html#gaa11d2253a44261370af8d0c32f0715e9"/>
           <topic label="fund_args" href="group__earth.html#ga312b5ab1a004b179d80463a07ca7da8f"/>
@@ -1607,7 +1608,6 @@
           <topic label="spin" href="group__util.html#gaf4090e519d7ce7ab1fcdb24b10126eb4"/>
           <topic label="starvectors" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669"/>
           <topic label="tdb2tt" href="group__time.html#ga90d5fae30728b51151c3daf355ca585b"/>
-          <topic label="ter2cel" href="novas_8h.html#ac8c5ff3cc13126aba2ec5a6cbe187a31"/>
           <topic label="terra" href="group__earth.html#gadc81730affa75f5facc8c6bd280c83c9"/>
           <topic label="tod_to_cirs" href="group__equatorial.html#gadb48b2acaf76cc3a1e3a1412cc42c232"/>
           <topic label="tod_to_gcrs" href="group__equatorial.html#ga6871e7fecde44084c7b4e1b8dda5ac70"/>
@@ -1625,8 +1625,22 @@
           <topic label="virtual_planet" href="group__apparent.html#ga0dc172d82eec79f78c2d218c1a7b9cbe"/>
           <topic label="virtual_star" href="group__apparent.html#gaaf187624a93349391518f9d6bb3051e5"/>
           <topic label="wobble" href="group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652"/>
+          <topic label="az" href="novas_8h.html#a31a4e1a9a011423c0bc3aae8a13927c4"/>
+          <topic label="dec" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2"/>
+          <topic label="decr" href="novas_8h.html#af2a976cdd1425286ed17684ac4780d31"/>
+          <topic label="dpole2" href="novas_8h.html#ab684391f8e4a5da20830bcd50fd08340"/>
           <topic label="grav_bodies_full_accuracy" href="group__apparent.html#ga18647d39520d1a15a137661f698cb12a"/>
           <topic label="grav_bodies_reduced_accuracy" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24"/>
+          <topic label="in" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56"/>
+          <topic label="jd_ut1_low" href="novas_8h.html#a443200f019acf7ec3c2ab46533cb4704"/>
+          <topic label="loc_type" href="novas_8h.html#a2b6120b7b5fd1654a4ca6bee9890a11c"/>
+          <topic label="location" href="novas_8h.html#aa090506272d868edfa7664be259292ce"/>
+          <topic label="out" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988"/>
+          <topic label="ra" href="novas_8h.html#ada05482d024deb9f801682907522736a"/>
+          <topic label="ra_cio" href="novas_8h.html#a9e06c275af46acfd547d7be7238c7766"/>
+          <topic label="rar" href="novas_8h.html#a8f7558bcd21afd4d42a20c0a5ef7204f"/>
+          <topic label="ut1_to_tt" href="novas_8h.html#a5148d2f592416c43be14b1ce3c594b83"/>
+          <topic label="zd" href="novas_8h.html#a0671c7455a17e65799dbf8d06aedf68d"/>
         </topic>
       </topic>
       <topic label="src" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">
@@ -2051,9 +2065,11 @@
         <topic label="u" href="globals_u.html"/>
         <topic label="v" href="globals_v.html"/>
         <topic label="w" href="globals_w.html"/>
+        <topic label="z" href="globals_z.html"/>
       </topic>
       <topic label="Functions" href="globals_func.html">
-        <topic label="a" href="globals_func.html"/>
+        <topic label="_" href="globals_func.html"/>
+        <topic label="a" href="globals_func_a.html"/>
         <topic label="b" href="globals_func_b.html"/>
         <topic label="c" href="globals_func_c.html"/>
         <topic label="d" href="globals_func_d.html"/>

@@ -145,7 +145,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:gad1de5b481e41cf193c199bd0dc5084bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the general precession in longitude (Simon et al.  <br /></td></tr>
 <tr class="memitem:gab75165e2d69231da10c67de025ee05d8" id="r_gab75165e2d69231da10c67de025ee05d8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gab75165e2d69231da10c67de025ee05d8">e_tilt</a> (double jd_tdb, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, double *restrict mobl, double *restrict tobl, double *restrict ee, double *restrict dpsi, double *restrict deps)</td></tr>
 <tr class="memdesc:gab75165e2d69231da10c67de025ee05d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">(<em>primarily for internal use</em>) Computes quantities related to the orientation of the Earth's rotation axis at the specified Julian date.  <br /></td></tr>
-<tr class="memitem:gaef1f8daaad470353648de90576aefc66" id="r_gaef1f8daaad470353648de90576aefc66"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gaef1f8daaad470353648de90576aefc66">era</a> (double jd_ut1_high, double jd_ut1_low)</td></tr>
+<tr class="memitem:gaef1f8daaad470353648de90576aefc66" id="r_gaef1f8daaad470353648de90576aefc66"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gaef1f8daaad470353648de90576aefc66">era</a> (double jd_ut1_high, double <a class="el" href="novas_8h.html#a443200f019acf7ec3c2ab46533cb4704">jd_ut1_low</a>)</td></tr>
 <tr class="memdesc:gaef1f8daaad470353648de90576aefc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the value of the Earth Rotation Angle (&theta;) for a given UT1 Julian date.  <br /></td></tr>
 <tr class="memitem:ga312b5ab1a004b179d80463a07ca7da8f" id="r_ga312b5ab1a004b179d80463a07ca7da8f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga312b5ab1a004b179d80463a07ca7da8f">fund_args</a> (double t, <a class="el" href="structnovas__delaunay__args.html">novas_delaunay_args</a> *restrict a)</td></tr>
 <tr class="memdesc:ga312b5ab1a004b179d80463a07ca7da8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the fundamental (a.k.a.  <br /></td></tr>
@@ -169,13 +169,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:gaba2fe38e07b94adaa6e8eb1b0a39a7ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Reference Systems Service (IERS).  <br /></td></tr>
 <tr class="memitem:ga4fe4a31a0284f79b6099bdc9a32f6206" id="r_ga4fe4a31a0284f79b6099bdc9a32f6206"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix</a> (time_t t, long timeout_millis, <a class="el" href="structnovas__eop.html">novas_eop</a> *eop)</td></tr>
 <tr class="memdesc:ga4fe4a31a0284f79b6099bdc9a32f6206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Reference Systems Service (IERS) around the current system time, using the rapid service data (<span class="tt">finals.all</span>).  <br /></td></tr>
-<tr class="memitem:ga348c4fd2a4a046e9768038075717b693" id="r_ga348c4fd2a4a046e9768038075717b693"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga348c4fd2a4a046e9768038075717b693">novas_gast</a> (double jd_ut1, double ut1_to_tt, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy)</td></tr>
+<tr class="memitem:ga348c4fd2a4a046e9768038075717b693" id="r_ga348c4fd2a4a046e9768038075717b693"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga348c4fd2a4a046e9768038075717b693">novas_gast</a> (double jd_ut1, double <a class="el" href="novas_8h.html#a5148d2f592416c43be14b1ce3c594b83">ut1_to_tt</a>, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy)</td></tr>
 <tr class="memdesc:ga348c4fd2a4a046e9768038075717b693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.  <br /></td></tr>
 <tr class="memitem:gaa3b5a785b2a478011aacd114a96d25e8" id="r_gaa3b5a785b2a478011aacd114a96d25e8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gaa3b5a785b2a478011aacd114a96d25e8">novas_get_eop_itrf_year</a> (enum <a class="el" href="#ga1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> series)</td></tr>
 <tr class="memdesc:gaa3b5a785b2a478011aacd114a96d25e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ITRF realization year for a given IERS Earth Orientation Parameter (EOP) series.  <br /></td></tr>
 <tr class="memitem:gaaacc7748d90e01bb53ace4dc330ffa65" id="r_gaaacc7748d90e01bb53ace4dc330ffa65"><td class="memItemLeft">const char *&#160;</td><td class="memItemRight"><a class="el" href="#gaaacc7748d90e01bb53ace4dc330ffa65">novas_get_eop_url</a> (enum <a class="el" href="#ga1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> series)</td></tr>
 <tr class="memdesc:gaaacc7748d90e01bb53ace4dc330ffa65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the URL currently configured for a given IERS Earth Orientation Parameter (EOP) series.  <br /></td></tr>
-<tr class="memitem:ga231f535f73e846d3867dbd914054d47b" id="r_ga231f535f73e846d3867dbd914054d47b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga231f535f73e846d3867dbd914054d47b">novas_gmst</a> (double jd_ut1, double ut1_to_tt)</td></tr>
+<tr class="memitem:ga231f535f73e846d3867dbd914054d47b" id="r_ga231f535f73e846d3867dbd914054d47b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga231f535f73e846d3867dbd914054d47b">novas_gmst</a> (double jd_ut1, double <a class="el" href="novas_8h.html#a5148d2f592416c43be14b1ce3c594b83">ut1_to_tt</a>)</td></tr>
 <tr class="memdesc:ga231f535f73e846d3867dbd914054d47b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Greenwich Mean Sidereal Time (GMST) for a given UT1 date, using eq.  <br /></td></tr>
 <tr class="memitem:gad1e07eedd32cbf4f1160624c74a99255" id="r_gad1e07eedd32cbf4f1160624c74a99255"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gad1e07eedd32cbf4f1160624c74a99255">novas_is_auto_fetch_eop</a> ()</td></tr>
 <tr class="memdesc:gad1e07eedd32cbf4f1160624c74a99255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.  <br /></td></tr>
@@ -195,15 +195,15 @@ Functions</h2></td></tr>
 <tr class="memdesc:gaaf53fcad3fade814381cef3d06779a8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Greenwich (apparent) Sidereal Time (GST/GaST) for a given astronomical time specification.  <br /></td></tr>
 <tr class="memitem:gabd066c2857d1b1cc06d8bd51b912d841" id="r_gabd066c2857d1b1cc06d8bd51b912d841"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gabd066c2857d1b1cc06d8bd51b912d841">nu2000k</a> (double jd_tt_high, double jd_tt_low, double *restrict dpsi, double *restrict deps)</td></tr>
 <tr class="memdesc:gabd066c2857d1b1cc06d8bd51b912d841"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the forced nutation of the non-rigid Earth: Model NU2000K.  <br /></td></tr>
-<tr class="memitem:ga69df5671751c09a7575963b94ad1151e" id="r_ga69df5671751c09a7575963b94ad1151e"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga69df5671751c09a7575963b94ad1151e">nutation</a> (double jd_tdb, enum <a class="el" href="group__nonequatorial.html#gae2d3d508d68d268bec838bdc013d0ada">novas_nutation_direction</a> direction, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, const double *in, double *out)</td></tr>
+<tr class="memitem:ga69df5671751c09a7575963b94ad1151e" id="r_ga69df5671751c09a7575963b94ad1151e"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga69df5671751c09a7575963b94ad1151e">nutation</a> (double jd_tdb, enum <a class="el" href="group__nonequatorial.html#gae2d3d508d68d268bec838bdc013d0ada">novas_nutation_direction</a> direction, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, const double *<a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a>, double *<a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>)</td></tr>
 <tr class="memdesc:ga69df5671751c09a7575963b94ad1151e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nutates equatorial rectangular coordinates from mean equator and equinox of epoch to true equator and equinox of epoch.  <br /></td></tr>
 <tr class="memitem:ga6e9ced7b0aec544ad7b057b58f777ec4" id="r_ga6e9ced7b0aec544ad7b057b58f777ec4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga6e9ced7b0aec544ad7b057b58f777ec4">nutation_angles</a> (double t, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, double *restrict dpsi, double *restrict deps)</td></tr>
 <tr class="memdesc:ga6e9ced7b0aec544ad7b057b58f777ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the IAU2000 / 2006 values for nutation in longitude and nutation in obliquity for a given TDB Julian date and the desired level of accuracy.  <br /></td></tr>
-<tr class="memitem:ga9178358732325399f3a5e3582080ced3" id="r_ga9178358732325399f3a5e3582080ced3"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#ga9178358732325399f3a5e3582080ced3">precession</a> (double jd_tdb_in, const double *in, double jd_tdb_out, double *out)</td></tr>
+<tr class="memitem:ga9178358732325399f3a5e3582080ced3" id="r_ga9178358732325399f3a5e3582080ced3"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#ga9178358732325399f3a5e3582080ced3">precession</a> (double jd_tdb_in, const double *<a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a>, double jd_tdb_out, double *<a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>)</td></tr>
 <tr class="memdesc:ga9178358732325399f3a5e3582080ced3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) precession model of Capitaine et al.  <br /></td></tr>
 <tr class="memitem:ga694288eb631d6a69ecf313b7b5b4a677" id="r_ga694288eb631d6a69ecf313b7b5b4a677"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga694288eb631d6a69ecf313b7b5b4a677">set_nutation_lp_provider</a> (<a class="el" href="#ga1f0e319630e7a47f17247bf51f7bf36c">novas_nutation_provider</a> func)</td></tr>
 <tr class="memdesc:ga694288eb631d6a69ecf313b7b5b4a677"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the function to use for low-precision IAU 2000 nutation calculations instead of the default <a class="el" href="#gabd066c2857d1b1cc06d8bd51b912d841" title="Computes the forced nutation of the non-rigid Earth: Model NU2000K.">nu2000k()</a>.  <br /></td></tr>
-<tr class="memitem:gadc81730affa75f5facc8c6bd280c83c9" id="r_gadc81730affa75f5facc8c6bd280c83c9"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gadc81730affa75f5facc8c6bd280c83c9">terra</a> (const <a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict location, double gast, double *restrict pos, double *restrict vel)</td></tr>
+<tr class="memitem:gadc81730affa75f5facc8c6bd280c83c9" id="r_gadc81730affa75f5facc8c6bd280c83c9"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gadc81730affa75f5facc8c6bd280c83c9">terra</a> (const <a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict <a class="el" href="novas_8h.html#aa090506272d868edfa7664be259292ce">location</a>, double gast, double *restrict pos, double *restrict vel)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Earth Orientation Parameters (EOP), for defining the unmodelled (via the IAU 2000 / 2006 precession-nutation models) polar motion and rotational variations of the physical Earth. </p>
@@ -468,7 +468,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">jd_ut1_high</td><td>[day] High-order part of UT1 Julian date. </td></tr>
-    <tr><td class="paramname">jd_ut1_low</td><td>[day] Low-order part of UT1 Julian date. </td></tr>
+    <tr><td class="paramname"><a class="el" href="novas_8h.html#a443200f019acf7ec3c2ab46533cb4704">jd_ut1_low</a></td><td>[day] Low-order part of UT1 Julian date. </td></tr>
   </table>
   </dd>
 </dl>
@@ -476,6 +476,8 @@ Functions</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a>, <a class="el" href="#gaaf53fcad3fade814381cef3d06779a8c" title="Returns the Greenwich (apparent) Sidereal Time (GST/GaST) for a given astronomical time specification...">novas_time_gst()</a> </dd>
 <dd>
 <a class="el" href="group__equatorial.html#gaa2768d89d499a7155f90a6fd8c176d8d" title="Rotates a position vector from the dynamical CIRS frame of date to the Earth-fixed ITRS frame (IAU 20...">cirs_to_itrs()</a>, <a class="el" href="group__equatorial.html#ga12953f66c0f774284f0700ae785784d0" title="Rotates a position vector from the Earth-fixed ITRS frame to the dynamical CIRS frame of date (IAU 20...">itrs_to_cirs()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#a443200f019acf7ec3c2ab46533cb4704">jd_ut1_low</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="#ga231f535f73e846d3867dbd914054d47b">novas_gmst()</a>, <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>.</p>
 
@@ -1092,7 +1094,7 @@ novas_fetch_current_eop(), <a class="el" href="#ga30319d4fc323f4f42d199e454abf0a
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">jd_ut1</td><td>[day] UT1-based Julian Date. </td></tr>
-    <tr><td class="paramname">ut1_to_tt</td><td>[s] UT1 - UTC time difference. </td></tr>
+    <tr><td class="paramname"><a class="el" href="novas_8h.html#a5148d2f592416c43be14b1ce3c594b83">ut1_to_tt</a></td><td>[s] UT1 - UTC time difference. </td></tr>
     <tr><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
   </table>
   </dd>
@@ -1102,7 +1104,7 @@ novas_fetch_current_eop(), <a class="el" href="#ga30319d4fc323f4f42d199e454abf0a
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga231f535f73e846d3867dbd914054d47b" title="Returns the Greenwich Mean Sidereal Time (GMST) for a given UT1 date, using eq.">novas_gmst()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#gab75165e2d69231da10c67de025ee05d8">e_tilt()</a>, and <a class="el" href="#ga231f535f73e846d3867dbd914054d47b">novas_gmst()</a>.</p>
+<p class="reference">References <a class="el" href="#gab75165e2d69231da10c67de025ee05d8">e_tilt()</a>, <a class="el" href="#ga231f535f73e846d3867dbd914054d47b">novas_gmst()</a>, and <a class="el" href="novas_8h.html#a5148d2f592416c43be14b1ce3c594b83">ut1_to_tt</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, <a class="el" href="#gaaf53fcad3fade814381cef3d06779a8c">novas_time_gst()</a>, <a class="el" href="earth_8c.html#a6eacba14d3c382d67307856a2ea290e3">sidereal_time()</a>, and <a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>.</p>
 
@@ -1199,7 +1201,7 @@ novas_fetch_current_eop(), <a class="el" href="#ga30319d4fc323f4f42d199e454abf0a
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">jd_ut1</td><td>[day] UT1-based Julian Date. </td></tr>
-    <tr><td class="paramname">ut1_to_tt</td><td>[s] UT1 - UTC time difference. </td></tr>
+    <tr><td class="paramname"><a class="el" href="novas_8h.html#a5148d2f592416c43be14b1ce3c594b83">ut1_to_tt</a></td><td>[s] UT1 - UTC time difference. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1208,7 +1210,7 @@ novas_fetch_current_eop(), <a class="el" href="#ga30319d4fc323f4f42d199e454abf0a
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a>, <a class="el" href="#gaaf53fcad3fade814381cef3d06779a8c" title="Returns the Greenwich (apparent) Sidereal Time (GST/GaST) for a given astronomical time specification...">novas_time_gst()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#gaef1f8daaad470353648de90576aefc66">era()</a>.</p>
+<p class="reference">References <a class="el" href="#gaef1f8daaad470353648de90576aefc66">era()</a>, and <a class="el" href="novas_8h.html#a5148d2f592416c43be14b1ce3c594b83">ut1_to_tt</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ga087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#ga348c4fd2a4a046e9768038075717b693">novas_gast()</a>, and <a class="el" href="earth_8c.html#a6eacba14d3c382d67307856a2ea290e3">sidereal_time()</a>.</p>
 
@@ -1643,8 +1645,8 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
     <tr><td class="paramdir"></td><td class="paramname">jd_tdb</td><td>[day] Barycentric Dynamic Time (TDB) based Julian date </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">direction</td><td>NUTATE_MEAN_TO_TRUE (0) or NUTATE_TRUE_TO_MEAN (-1; or non-zero) </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">in</td><td>Position 3-vector, geocentric equatorial rectangular coordinates, referred to mean equator and equinox of epoch. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Position vector, geocentric equatorial rectangular coordinates, referred to true equator and equinox of epoch. It can be the same as the input position.</td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a></td><td>Position 3-vector, geocentric equatorial rectangular coordinates, referred to mean equator and equinox of epoch. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a></td><td>Position vector, geocentric equatorial rectangular coordinates, referred to true equator and equinox of epoch. It can be the same as the input position.</td></tr>
   </table>
   </dd>
 </dl>
@@ -1653,7 +1655,7 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 <dd>
 <a class="el" href="group__time.html#ga129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a>, <a class="el" href="group__time.html#gae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd" title="Mean of date: dynamical system of the &#39;mean&#39; equator, with its origin at the &#39;mean&#39; equinox (pre IAU ...">NOVAS_MOD</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3" title="True equinox Of Date: dynamical system of the &#39;true&#39; equator, with its origin at the &#39;true&#39; equinox (...">NOVAS_TOD</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#gab75165e2d69231da10c67de025ee05d8">e_tilt()</a>, and <a class="el" href="group__nonequatorial.html#ggae2d3d508d68d268bec838bdc013d0adaacd57b0308467899ec6304aa26dcc8f4c">NUTATE_MEAN_TO_TRUE</a>.</p>
+<p class="reference">References <a class="el" href="#gab75165e2d69231da10c67de025ee05d8">e_tilt()</a>, <a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a>, <a class="el" href="group__nonequatorial.html#ggae2d3d508d68d268bec838bdc013d0adaacd57b0308467899ec6304aa26dcc8f4c">NUTATE_MEAN_TO_TRUE</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__equatorial.html#ga02fa1ee652c20160055cbd2c7bd9ca63">j2000_to_tod()</a>, and <a class="el" href="group__equatorial.html#ga6205edb1361e56cc0c7aed0f088f7437">tod_to_j2000()</a>.</p>
 
@@ -1764,9 +1766,9 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">jd_tdb_in</td><td>[day] Barycentric Dynamic Time (TDB) based Julian date of the input epoch </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">in</td><td>Position 3-vector, geocentric equatorial rectangular coordinates, referred to mean dynamical equator and equinox of the initial epoch. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a></td><td>Position 3-vector, geocentric equatorial rectangular coordinates, referred to mean dynamical equator and equinox of the initial epoch. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">jd_tdb_out</td><td>[day] Barycentric Dynamic Time (TDB) based Julian date of the output epoch </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Position 3-vector, geocentric equatorial rectangular coordinates, referred to mean dynamical equator and equinox of the final epoch. It can be the same vector as the input. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a></td><td>Position 3-vector, geocentric equatorial rectangular coordinates, referred to mean dynamical equator and equinox of the final epoch. It can be the same vector as the input. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1775,7 +1777,7 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 <dd>
 <a class="el" href="group__time.html#ga129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a>, <a class="el" href="group__time.html#gae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a>, <a class="el" href="group__equatorial.html#gaa11d2253a44261370af8d0c32f0715e9" title="Transforms a vector from the dynamical reference system to the International Celestial Reference Syst...">frame_tie()</a>, <a class="el" href="group__time.html#gaf4e18885b7d173eb3fe5f18b06f0b4d4" title="Returns the Julian day corresponding to an astronomical coordinate epoch.">novas_epoch()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd" title="Mean of date: dynamical system of the &#39;mean&#39; equator, with its origin at the &#39;mean&#39; equinox (pre IAU ...">NOVAS_MOD</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="group__time.html#ga3785083ae52bbbc1e749dbedd7e5d85e" title="[day] Julian date at B1950 (NASA / NAIF SPICE definition) precession(), transform_cat()">NOVAS_JD_B1950</a>, <a class="el" href="group__time.html#gaf03a1f0412f23cd6edb323297646eb30" title="[day] Julian date at B1900 (NASA / NAIF SPICE definition) precession(), transform_cat()">NOVAS_JD_B1900</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ga9178358732325399f3a5e3582080ced3">precession()</a>.</p>
+<p class="reference">References <a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a>, <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>, and <a class="el" href="#ga9178358732325399f3a5e3582080ced3">precession()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__solar-system.html#ga580f5949c8a29cdd7bf4787aee891f2b">earth_sun_calc()</a>, <a class="el" href="group__equatorial.html#ga75de6cca190c5fbc3056db726f317c7f">gcrs_to_mod()</a>, <a class="el" href="group__equatorial.html#ga02fa1ee652c20160055cbd2c7bd9ca63">j2000_to_tod()</a>, <a class="el" href="place_8c.html#aaf51bf000e993807101a34adf423d36b">mean_star()</a>, <a class="el" href="group__equatorial.html#gad9cc07f0e6af9339096e15a440b113e5">mod_to_gcrs()</a>, <a class="el" href="group__spectral.html#gaad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel()</a>, <a class="el" href="group__spectral.html#ga99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel()</a>, <a class="el" href="#ga9178358732325399f3a5e3582080ced3">precession()</a>, <a class="el" href="group__equatorial.html#ga6205edb1361e56cc0c7aed0f088f7437">tod_to_j2000()</a>, and <a class="el" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 
@@ -1847,7 +1849,7 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">location</td><td>ITRF / GRS80 geodetic location of observer in Earth's rotating frame. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#aa090506272d868edfa7664be259292ce">location</a></td><td>ITRF / GRS80 geodetic location of observer in Earth's rotating frame. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">gast</td><td>[h] Greenwich apparent sidereal time (GAST). If set to 0, it returns positions and velocities w.r.t. the ITRS. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] Position vector of observer with respect to center of Earth, equatorial rectangular coordinates, referred to true equator and equinox of date, components in AU. If reference meridian is Greenwich and 'lst' = 0, 'pos' is effectively referred to equator and Greenwich. (It may be NULL if no position data is required). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">vel</td><td>[AU/day] Velocity vector of observer with respect to center of Earth, equatorial rectangular coordinates, referred to true equator and equinox of date, components in AU/day. (It must be distinct from the pos output vector, and may be NULL if no velocity data is required).</td></tr>
@@ -1859,7 +1861,7 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 <dd>
 <a class="el" href="group__observer.html#gab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a>, <a class="el" href="group__observer.html#ga236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="group__observer.html#ga9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a>, <a class="el" href="#ga348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a>, <a class="el" href="#gaaf53fcad3fade814381cef3d06779a8c" title="Returns the Greenwich (apparent) Sidereal Time (GST/GaST) for a given astronomical time specification...">novas_time_gst()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="group__util.html#ga0a84af1a760ed2aaa01dd93e9e22bdf1">NOVAS_KM</a>.</p>
+<p class="reference">References <a class="el" href="novas_8h.html#aa090506272d868edfa7664be259292ce">location</a>, and <a class="el" href="group__util.html#ga0a84af1a760ed2aaa01dd93e9e22bdf1">NOVAS_KM</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, and <a class="el" href="group__geometric.html#ga65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>.</p>
 

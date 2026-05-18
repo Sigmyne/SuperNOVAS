@@ -142,7 +142,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga5f35633b872751df4dacd2fb2cbe4ac3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables reporting errors and traces to the standard error stream.  <br /></td></tr>
 <tr class="memitem:gaca89d2a0f49afad45dbddffc09c3adae" id="r_gaca89d2a0f49afad45dbddffc09c3adae"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#gaca89d2a0f49afad45dbddffc09c3adae">novas_dms_degrees</a> (const char *restrict dms)</td></tr>
 <tr class="memdesc:gaca89d2a0f49afad45dbddffc09c3adae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the decimal degrees for a DMS string specification.  <br /></td></tr>
-<tr class="memitem:ga500745e68a50eaac03d963b539637dc5" id="r_ga500745e68a50eaac03d963b539637dc5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga500745e68a50eaac03d963b539637dc5">novas_equ_offset_by</a> (double ra, double dec, double direction, double distance, double *restrict out_ra, double *restrict out_dec)</td></tr>
+<tr class="memitem:ga500745e68a50eaac03d963b539637dc5" id="r_ga500745e68a50eaac03d963b539637dc5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga500745e68a50eaac03d963b539637dc5">novas_equ_offset_by</a> (double <a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a>, double <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, double direction, double distance, double *restrict out_ra, double *restrict out_dec)</td></tr>
 <tr class="memdesc:ga500745e68a50eaac03d963b539637dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle.  <br /></td></tr>
 <tr class="memitem:ga876add3b3ae251b18c8ffc8f06ea695e" id="r_ga876add3b3ae251b18c8ffc8f06ea695e"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga876add3b3ae251b18c8ffc8f06ea695e">novas_equals_vector</a> (const double *a, const double *b, double tol)</td></tr>
 <tr class="memdesc:ga876add3b3ae251b18c8ffc8f06ea695e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two 3D vectors are effectively the same, within the specified absolute tolerance.  <br /></td></tr>
@@ -178,11 +178,11 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga6d6ada07aab7ce09fb8ea7b12660ebcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DMS representation.  <br /></td></tr>
 <tr class="memitem:ga3ed26b6af870f6dbc353f651563afd4a" id="r_ga3ed26b6af870f6dbc353f651563afd4a"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga3ed26b6af870f6dbc353f651563afd4a">novas_str_hours</a> (const char *restrict hms)</td></tr>
 <tr class="memdesc:ga3ed26b6af870f6dbc353f651563afd4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a time or time-like angleparsed from a string that contains either a decimal hours or else a broken-down HMS representation.  <br /></td></tr>
-<tr class="memitem:gae104afd1bc638def9bdbce1801e5054a" id="r_gae104afd1bc638def9bdbce1801e5054a"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gae104afd1bc638def9bdbce1801e5054a">radec2vector</a> (double ra, double dec, double dist, double *restrict pos)</td></tr>
+<tr class="memitem:gae104afd1bc638def9bdbce1801e5054a" id="r_gae104afd1bc638def9bdbce1801e5054a"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gae104afd1bc638def9bdbce1801e5054a">radec2vector</a> (double <a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a>, double <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, double dist, double *restrict pos)</td></tr>
 <tr class="memdesc:gae104afd1bc638def9bdbce1801e5054a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts equatorial spherical coordinates to a vector (equatorial rectangular coordinates).  <br /></td></tr>
-<tr class="memitem:gaf4090e519d7ce7ab1fcdb24b10126eb4" id="r_gaf4090e519d7ce7ab1fcdb24b10126eb4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gaf4090e519d7ce7ab1fcdb24b10126eb4">spin</a> (double angle, const double *in, double *out)</td></tr>
+<tr class="memitem:gaf4090e519d7ce7ab1fcdb24b10126eb4" id="r_gaf4090e519d7ce7ab1fcdb24b10126eb4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gaf4090e519d7ce7ab1fcdb24b10126eb4">spin</a> (double angle, const double *<a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a>, double *<a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>)</td></tr>
 <tr class="memdesc:gaf4090e519d7ce7ab1fcdb24b10126eb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms a vector from one coordinate system to another with same origin and axes rotated about the z-axis.  <br /></td></tr>
-<tr class="memitem:ga84f672dc1c37e3af374198f29cbcfba9" id="r_ga84f672dc1c37e3af374198f29cbcfba9"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec</a> (const double *restrict pos, double *restrict ra, double *restrict dec)</td></tr>
+<tr class="memitem:ga84f672dc1c37e3af374198f29cbcfba9" id="r_ga84f672dc1c37e3af374198f29cbcfba9"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#ga84f672dc1c37e3af374198f29cbcfba9">vector2radec</a> (const double *restrict pos, double *restrict <a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a>, double *restrict <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>)</td></tr>
 <tr class="memdesc:ga84f672dc1c37e3af374198f29cbcfba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an vector in equatorial rectangular coordinates to equatorial spherical coordinates.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
@@ -474,8 +474,8 @@ Functions</h2></td></tr>
 <p>Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[deg] reference point right ascention (R.A.) </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] reference point declination </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a></td><td>[deg] reference point right ascention (R.A.) </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] reference point declination </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">direction</td><td>[deg] direction (measured East of North). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">distance</td><td>[deg] offset distance on great circle </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[deg] right ascention (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
@@ -489,7 +489,7 @@ Functions</h2></td></tr>
 <dd>
 <a class="el" href="#ga64a31576a4654e8808de6e2fd755fcc4" title="Calculates offset spherical coordinates at some distance away from the input coordinates along a grea...">novas_offset_by()</a>, <a class="el" href="group__apparent.html#ga4f7e06b2fa5b3145b37aec4f9c2d1602" title="Returns the angular separation of two equatorial locations on a sphere.">novas_equ_sep()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ga64a31576a4654e8808de6e2fd755fcc4">novas_offset_by()</a>.</p>
+<p class="reference">References <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, <a class="el" href="#ga64a31576a4654e8808de6e2fd755fcc4">novas_offset_by()</a>, and <a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a>.</p>
 
 </div>
 </div>
@@ -1315,8 +1315,8 @@ Functions</h2></td></tr>
 <p>Converts equatorial spherical coordinates to a vector (equatorial rectangular coordinates). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[h] Right ascension (hours). </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] Declination (degrees). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a></td><td>[h] Right ascension (hours). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Declination (degrees). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dist</td><td>[AU] Distance (AU) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] Position 3-vector, equatorial rectangular coordinates (AU).</td></tr>
   </table>
@@ -1324,6 +1324,8 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if the vector argument is NULL.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga84f672dc1c37e3af374198f29cbcfba9" title="Converts an vector in equatorial rectangular coordinates to equatorial spherical coordinates.">vector2radec()</a>, <a class="el" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669" title="Converts angular quantities for stars to vectors.">starvectors()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, and <a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__solar-system.html#ga580f5949c8a29cdd7bf4787aee891f2b">earth_sun_calc()</a>, <a class="el" href="group__equatorial.html#gabd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf">novas_app_to_geom()</a>, <a class="el" href="group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca">novas_app_to_hor()</a>, <a class="el" href="group__spectral.html#gaad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel()</a>, <a class="el" href="group__spectral.html#ga99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel()</a>, <a class="el" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>, and <a class="el" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 
@@ -1361,14 +1363,14 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">angle</td><td>[deg] Angle of coordinate system rotation, positive counterclockwise when viewed from +z, in degrees. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">in</td><td>Input position vector. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Position vector expressed in new coordinate system rotated about z by 'angle'. It can be the same vector as the input.</td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a></td><td>Input position vector. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a></td><td>Position vector expressed in new coordinate system rotated about z by 'angle'. It can be the same vector as the input.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if the output vector is NULL. </dd></dl>
 
-<p class="reference">References <a class="el" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>.</p>
+<p class="reference">References <a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a>, <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>, and <a class="el" href="novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a">TWOPI</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a>, <a class="el" href="group__equatorial.html#ga9cac4f3a18d4c14939519e7123b4d504">cirs_to_tod()</a>, <a class="el" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf">novas_app_to_geom()</a>, <a class="el" href="group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca">novas_app_to_hor()</a>, <a class="el" href="group__nonequatorial.html#gaa57cbcae2001fece2ee4a2babfbc5f89">novas_hor_to_app()</a>, <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, <a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a>, and <a class="el" href="group__equatorial.html#gadb48b2acaf76cc3a1e3a1412cc42c232">tod_to_cirs()</a>.</p>
 
@@ -1406,13 +1408,15 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">pos</td><td>Position 3-vector, equatorial rectangular coordinates. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">ra</td><td>[h] Right ascension in hours [0:24] or NAN if the position vector is NULL or a null-vector. It may be NULL if notrequired. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">dec</td><td>[deg] Declination in degrees [-90:90] or NAN if the position vector is NULL or a null-vector. It may be NULL if not required. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a></td><td>[h] Right ascension in hours [0:24] or NAN if the position vector is NULL or a null-vector. It may be NULL if notrequired. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Declination in degrees [-90:90] or NAN if the position vector is NULL or a null-vector. It may be NULL if not required. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 of any of the arguments are NULL, or 1 if all input components are 0 so 'ra' and 'dec' are indeterminate, or else 2 if both x and y are zero, but z is nonzero, and so 'ra' is indeterminate.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae104afd1bc638def9bdbce1801e5054a" title="Converts equatorial spherical coordinates to a vector (equatorial rectangular coordinates).">radec2vector()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, and <a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="group__equatorial.html#gabd38071a8d4bdc342feaecfac2fc7856">gcrs2equ()</a>, <a class="el" href="place_8c.html#aaf51bf000e993807101a34adf423d36b">mean_star()</a>, <a class="el" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c">novas_geom_to_app()</a>, <a class="el" href="group__nonequatorial.html#gaa57cbcae2001fece2ee4a2babfbc5f89">novas_hor_to_app()</a>, <a class="el" href="group__apparent.html#ga59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="group__apparent.html#ga2dbdafd6b07f079815ae52d00e142861">novas_moon_phase()</a>, <a class="el" href="group__apparent.html#gacfcfb90637cd1fdb25ef9afd1bda8e30">novas_transform_sky_pos()</a>, <a class="el" href="group__interferometry.html#ga81f4b147c3f132a1498cdd833042d804">novas_uvw()</a>, and <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
 

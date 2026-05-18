@@ -115,7 +115,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="memdesc:acb407c995c70664707773b91ff049531"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m/s] speed of light  <br /></td></tr>
 <tr class="memitem:a5c77f7cb7e9e31fac251554faf08e80e" id="r_a5c77f7cb7e9e31fac251554faf08e80e"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a5c77f7cb7e9e31fac251554faf08e80e">F_earth</a> = <a class="el" href="novas_8h.html#ae283901f9a884acc6c5b88c6afb040b4">NOVAS_GRS80_FLATTENING</a></td></tr>
 <tr class="memdesc:a5c77f7cb7e9e31fac251554faf08e80e"><td class="mdescLeft">&#160;</td><td class="mdescRight">GRS80 Earth flattening.  <br /></td></tr>
-<tr class="memitem:a86a697b7dcc5c487e5052335e2fab00d" id="r_a86a697b7dcc5c487e5052335e2fab00d"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a86a697b7dcc5c487e5052335e2fab00d">G</a> = 6.67428e-1</td></tr>
+<tr class="memitem:a86a697b7dcc5c487e5052335e2fab00d" id="r_a86a697b7dcc5c487e5052335e2fab00d"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a86a697b7dcc5c487e5052335e2fab00d">G</a> = 6.67428e-11</td></tr>
 <tr class="memdesc:a86a697b7dcc5c487e5052335e2fab00d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>]  <br /></td></tr>
 <tr class="memitem:a03b9c8bd0b3a7340f13454d202021a42" id="r_a03b9c8bd0b3a7340f13454d202021a42"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a03b9c8bd0b3a7340f13454d202021a42">GM_earth</a> = <a class="el" href="novas_8h.html#af125f22b69933024d6a8513b205dca8b">NOVAS_G_EARTH</a></td></tr>
 <tr class="memdesc:a03b9c8bd0b3a7340f13454d202021a42"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m<sup>3</sup> s<sup>-2</sup>] Earth graviational constant  <br /></td></tr>
@@ -127,7 +127,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="memdesc:ad8e2656cc801880776884720430bd7f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Barycentric clock rate increment over TT.  <br /></td></tr>
 <tr class="memitem:ac5c3666ee76d1c1bf4eb24b389798d5c" id="r_ac5c3666ee76d1c1bf4eb24b389798d5c"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#ac5c3666ee76d1c1bf4eb24b389798d5c">L_G</a> = 6.969290134e-10</td></tr>
 <tr class="memdesc:ac5c3666ee76d1c1bf4eb24b389798d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Geocentric clock rate increment over TT.  <br /></td></tr>
-<tr class="memitem:a0870d31b2c6e609d991dee5db8e155ae" id="r_a0870d31b2c6e609d991dee5db8e155ae"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a0870d31b2c6e609d991dee5db8e155ae">M_earth</a> = <a class="el" href="#a9de961740408cf29989240919a143673">GM_sun</a> / <a class="el" href="#a86a697b7dcc5c487e5052335e2fab00d">G</a></td></tr>
+<tr class="memitem:a0870d31b2c6e609d991dee5db8e155ae" id="r_a0870d31b2c6e609d991dee5db8e155ae"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a0870d31b2c6e609d991dee5db8e155ae">M_earth</a> = <a class="el" href="#a03b9c8bd0b3a7340f13454d202021a42">GM_earth</a> / <a class="el" href="#a86a697b7dcc5c487e5052335e2fab00d">G</a></td></tr>
 <tr class="memdesc:a0870d31b2c6e609d991dee5db8e155ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">[kg] Earth mass  <br /></td></tr>
 <tr class="memitem:a63b4473c34fb6d24422d98fdf0d61616" id="r_a63b4473c34fb6d24422d98fdf0d61616"><td class="memItemLeft">static constexpr double&#160;</td><td class="memItemRight"><a class="el" href="#a63b4473c34fb6d24422d98fdf0d61616">M_sun</a> = <a class="el" href="#a9de961740408cf29989240919a143673">GM_sun</a> / <a class="el" href="#a86a697b7dcc5c487e5052335e2fab00d">G</a></td></tr>
 <tr class="memdesc:a63b4473c34fb6d24422d98fdf0d61616"><td class="mdescLeft">&#160;</td><td class="mdescRight">[kg] Mass of the Sun  <br /></td></tr>
@@ -140,7 +140,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Various physical constants that SuperNOVAS uses for astrometric calculations, all expressed in terms of SI units. </p>
-<p>You can use them also. For example, you might use <a class="el" href="#acb407c995c70664707773b91ff049531" title="[m/s] speed of light">Constant::c</a> to turn a velocity (im m/s) to a unitless &beta;:</p>
+<p>You can use them also. For example, you might use <a class="el" href="#acb407c995c70664707773b91ff049531" title="[m/s] speed of light">Constant::c</a> to turn a velocity (in m/s) to a unitless &beta;:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> beta = (29.5 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">Unit::km</a> / <a class="code hl_variable" href="classsupernovas_1_1Unit.html#af44b7254ee42e6568e894ed4b7266064">Unit::sec</a>) / <a class="code hl_variable" href="#acb407c995c70664707773b91ff049531">Constant::c</a>;</div>
 <div class="ttc" id="aclasssupernovas_1_1Constant_html_acb407c995c70664707773b91ff049531"><div class="ttname"><a href="#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a></div><div class="ttdeci">static constexpr double c</div><div class="ttdoc">[m/s] speed of light</div><div class="ttdef"><b>Definition</b> supernovas.h:227</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_a06a5719176ea23f07378bfb5f04a84a2"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2">supernovas::Unit::km</a></div><div class="ttdeci">static constexpr double km</div><div class="ttdoc">[m] 1 kilometer in meters</div><div class="ttdef"><b>Definition</b> supernovas.h:135</div></div>
@@ -209,7 +209,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double supernovas::Constant::G = 6.67428e-1</td>
+          <td class="memname">double supernovas::Constant::G = 6.67428e-11</td>
         </tr>
       </table>
   </td>
@@ -355,7 +355,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double supernovas::Constant::M_earth = <a class="el" href="#a9de961740408cf29989240919a143673">GM_sun</a> / <a class="el" href="#a86a697b7dcc5c487e5052335e2fab00d">G</a></td>
+          <td class="memname">double supernovas::Constant::M_earth = <a class="el" href="#a03b9c8bd0b3a7340f13454d202021a42">GM_earth</a> / <a class="el" href="#a86a697b7dcc5c487e5052335e2fab00d">G</a></td>
         </tr>
       </table>
   </td>

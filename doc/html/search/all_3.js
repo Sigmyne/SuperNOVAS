@@ -49,5 +49,6 @@ var searchData=
   ['astropy_46',['SuperNOVAS C99 vs. astropy',['../md_SuperNOVAS__vs__astropy.html',1,'']]],
   ['at_20the_20observing_20location_47',['at the observing location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculate azimuth and elevation angles at the observing location']]],
   ['atmospheric_20refraction_48',['Atmospheric refraction',['../group__refract.html',1,'']]],
-  ['azimuth_20and_20elevation_20angles_20at_20the_20observing_20location_49',['azimuth and elevation angles at the observing location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculate azimuth and elevation angles at the observing location']]]
+  ['az_49',['az',['../novas_8h.html#a31a4e1a9a011423c0bc3aae8a13927c4',1,'novas.h']]],
+  ['azimuth_20and_20elevation_20angles_20at_20the_20observing_20location_50',['azimuth and elevation angles at the observing location',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md63',1,'Calculate azimuth and elevation angles at the observing location'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md100',1,'Calculate azimuth and elevation angles at the observing location']]]
 ];

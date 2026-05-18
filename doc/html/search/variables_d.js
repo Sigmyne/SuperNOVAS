@@ -7,5 +7,6 @@ var searchData=
   ['omega_4',['Omega',['../structnovas__delaunay__args.html#af6987ccf8afceedd1cd2394a7bdf10b0',1,'novas_delaunay_args::Omega'],['../structnovas__orbital__system.html#a1ac88e32247a155866b20e606f78eb2b',1,'novas_orbital_system::Omega'],['../structnovas__orbital.html#a8985163e8cadadf0f3394823f6cdf094',1,'novas_orbital::Omega']]],
   ['omega_5',['omega',['../structnovas__orbital.html#aaa2670b33c2146fc304f29748b1680f9',1,'novas_orbital']]],
   ['on_5fsurf_6',['on_surf',['../structnovas__observer.html#a836c3e0f5d8c99e16e0d04d1519e9e27',1,'novas_observer']]],
-  ['orbit_7',['orbit',['../structnovas__object.html#aa8798e7393e309d8cab0dc4eab45e79d',1,'novas_object']]]
+  ['orbit_7',['orbit',['../structnovas__object.html#aa8798e7393e309d8cab0dc4eab45e79d',1,'novas_object']]],
+  ['out_8',['out',['../novas_8h.html#ab6b014bd66a719d43c7b88713b033988',1,'novas.h']]]
 ];
