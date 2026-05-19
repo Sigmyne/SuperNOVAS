@@ -45,6 +45,12 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    
  - #319: Consolidated local portable mutex definitions in `novas-mutex.h` (not installed).
 
+ - New `novas_set_error_handler()` (and `novas_error_handler` typedef) to route `novas_trace()` / `novas_error()`
+   output through a user-supplied callback instead of `fprintf(stderr, ...)`. Pass NULL to silence.
+
+ - New `NOVAS_NO_SYSTEM_CLOCK` build flag compiles out `novas_set_current_time()` for targets without a
+   real-time clock (e.g. embedded, freestanding).
+
 ### Changed
 
  - #313: `novas_set_time()` and related similar functions, can now fetch leap seconds and the mean interpolated 
