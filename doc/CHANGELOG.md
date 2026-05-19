@@ -57,11 +57,11 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    
  - #317: Avoid `memcmp()` in testing structs for equality, using new comparison functions instead.
 
- - #318: `Vector::equals()` to use the new `novas_equals_vector()` for consitent implementation between the C99 and 
+ - #318: `Vector::equals()` to use the new `novas_equals_vector()` for consistent implementation between the C99 and 
    C++ APIs.
    
  - #319: Updated `novas-calceph.c`, `novas-cspice.c`, and `iers.c` to use portable mutex definitions from 
-   `novas.mutex.h`.
+   `novas-mutex.h`.
 
  - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
 
@@ -621,8 +621,8 @@ changes to improve performance.
    `solsys-ephem.c` inadvertently definining these functions when `BUILTIN_SOLSYS_EPHEM` was set to 1 (default) during
    the build, even though it was not supposed to.
    
- - #156: `obs_posvel()` called `geo_posvel()` with TDB instead of TT. It less than a 2 ms difference, so not typically
-   signifficant, unless &lt;10-m level poitioning is required for Earth-orbiting satellites.
+ - #156: `obs_posvel()` called `geo_posvel()` with TDB instead of TT. It is less than a 2 ms difference, so not 
+   typically significant, unless &lt;10-m level positioning is required for Earth-orbiting satellites.
    
 ### Added
 
