@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.7.0-rc1] - 2026-05-18
+## [Unreleased]
 
 Release candidate for the upcoming feature release, possibly around 1 August 2026.
 
@@ -18,6 +18,8 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    
  - #322: Fixed spelling of `Temperature::fahrenheit()` (thanks to CodeQL). (The misspelled `farenheit()` remains
    supported also for backward compatibility). 
+   
+ - #324: Fixed definition of `NOVAS_MARS_INIT` (it had the number ID of Mercury).
 
 ### Added
 
