@@ -698,7 +698,7 @@ changes to improve performance.
    floating point values for SuperNOVAS, and return the parse position after the time/angle specification.
 
  - #135: New `novas_str_hours()` and `novas_str_degrees()` for the simplest conversion of strings in decimal or 
-   HMS/DMS formats to floating point values for SuperNOVAS (without retruning a parse position).
+   HMS/DMS formats to floating point values for SuperNOVAS (without returning a parse position).
 
  - #137: New `novas_epoch()` to convert string coordinate system specifications to the Julian date of the corresponding
    epoch, and new `make_cat_object_sys()` and `make_redshifted_object_sys()` to make it simpler to define ICRS catalog 
