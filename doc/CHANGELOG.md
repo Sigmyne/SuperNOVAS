@@ -107,7 +107,7 @@ MPP02 model of the Moon, and bringing various other improvements.
  - #256: New `novas_time_leap()` to simplify back calculating the leap seconds from a `novas_timespec` structure.
 
  - #281: Added a truncated version of semi-analytic ELP/MPP02 model of the Moon's position relative to the geocenter 
-   by Chapront &amp; Francou (2003), using up to about 3400 terms, and reaching accuracies to the 1 arcsec / 1km
+   by Chapront & Francou (2003), using up to about 3400 terms, and reaching accuracies to the 1 arcsec / 1km
    level (or better for the present era). 
    
  - #298: Added `cspice_clear_kernels()` to CSPICE plugin to close all kernels and free up the resources they use 
@@ -494,7 +494,7 @@ Feature release, with critical bug fixes.
    by `novas_refract_wavelength()`. By default 550 nm (0.55 &mu;m) is assumed.
    
  - #176: `novas_make_planet_orbit()` to generate Keplerian orbital elements for the major planets (sans Earth), and the 
-   Earth-Moon Barycenter (EMB), based on Standish &amp; Williams 1992. In most cases such orbitals can provide 
+   Earth-Moon Barycenter (EMB), based on Standish & Williams 1992. In most cases such orbitals can provide 
    arcmin-level precisions, especially for current dates.
 
  - #176:`novas_make_moon_orbit()` to generate geocentric Keplerian orbital elements for the Moon using the Chapront et 
@@ -506,7 +506,7 @@ Feature release, with critical bug fixes.
 
  - #176: `novas_moon_phase()` and `novas_next_moon_phase()` to calculate the Moon's apparent phase or the date/time 
    when it reaches a specific phase, respectively, using the Keplerian orbitals for the E-M Barycenter by Standish 
-   &amp; Williams 1992, and the geocentric orbitals of the Moon by Chapront et al. 2002.
+   & Williams 1992, and the geocentric orbitals of the Moon by Chapront et al. 2002.
  
  - #176: `novas_orbital_native_posvel()` to calculate orbital positions in the native system, in which the orbital 
    is defined (e.g. ecliptic coordinates for planetary orbits).
@@ -520,10 +520,10 @@ Feature release, with critical bug fixes.
    co-rotating systems are not inertial systems.
 
  - #186: Added `NOVAS_RADIO_REFRACTION` and `NOVAS_WAVE_REFRACTION` to `enum novas_refraction_model`, for referencing 
-   the Berman &amp; Rockwell 1976 radio-wave model, or the IAU / SOFA wavelength-dependent model, respectively.
+   the Berman & Rockwell 1976 radio-wave model, or the IAU / SOFA wavelength-dependent model, respectively.
    
  - #191: Added `tt2tdb_hp()` (high-precision) and `tt2tdb_fp()` (flexible-precision) functions for calculating the
-   TDB-TT time difference (in seconds), with up to 0.1 &mu;s accuracy based on Fairhead &amp; Bretagnon 1990.
+   TDB-TT time difference (in seconds), with up to 0.1 &mu;s accuracy based on Fairhead & Bretagnon 1990.
    
  - #194: Added documentation under `resources/` for a side-by-side example comparison with __astropy__.
  
