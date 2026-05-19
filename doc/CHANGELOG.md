@@ -295,7 +295,7 @@ compatibility, and documentation.
  
  - #214: Reworked GCRS-CIRS transforms without `cio_basis()` (IERS method 2).
  
- - #217: Changed `terra()` to use GRS80 reference ellipsoid insread of the IERS 2003 ellipsoid. ITRF uses the GRS80 
+ - #217: Changed `terra()` to use GRS80 reference ellipsoid instead of the IERS 2003 ellipsoid. ITRF uses the GRS80 
    ellipsoid. The change restores the original NOVAS C behaviour.
  
  - #221: GitHub Actions CI now includes `Makefile` builds and tests for Mac OS X. (by kiranshila)
@@ -899,7 +899,7 @@ Planet Center (MPC) for asteroids, comets, and Near-Earth-Objects (NEOs). And, m
    
  - Added `-g` to default `CFLAGS` as a matter of GNU best practice.
  
- - Static library is now named `ibsupernovas.a`, which is symlinked to `libnovas.a` for back compatibility.
+ - Static library is now named `libsupernovas.a`, which is symlinked to `libnovas.a` for back compatibility.
  
  - `readeph0.c` moved to `examples/`. It's a dummy legacy NOVAS C implementation that is not really needed in 
    SuperNOVAS.
