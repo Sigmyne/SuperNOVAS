@@ -60,6 +60,7 @@
 extern int strcasecmp(const char *s1, const char *s2);
 #elif defined(_MSC_VER)
 #  define strcasecmp _stricmp                       /// MSVC equivalent
+#  define strtok_r   strtok_s                       /// MSVC equivalent
 #endif
 
 static int is_case_sensitive = 0; ///< (boolean) whether object names are case-sensitive.
@@ -791,7 +792,10 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
 enum novas_planet novas_planet_for_name(const char *restrict name) {
   static const char *fn = "novas_planet_for_name()";
   static const char *names[] = NOVAS_PLANET_NAMES_INIT;
+  static const char delims[] = " \t-_";
 
+  char buf[64];
+  char *saveptr = NULL;
   char *tok;
   int i;
 
@@ -805,12 +809,18 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
     if(strcasecmp(name, (const char *) names[i]) == 0)
       return (enum novas_planet) i;
 
-  // Check for Solar System Barycenter (and variants)
-  tok = strtok(strdup(name), " \t-_");
-  if(strcasecmp("solar", tok) == 0) {
-    tok = strtok(NULL, " \t-_");
+  // Check for Solar System Barycenter (and variants). Copy into a local
+  // buffer so we can tokenize in place without heap allocation. Any input
+  // longer than the buffer cannot match the expected "Solar System
+  // Barycenter" phrase anyway, so truncation is safe.
+  strncpy(buf, name, sizeof(buf) - 1);
+  buf[sizeof(buf) - 1] = '\0';
+
+  tok = strtok_r(buf, delims, &saveptr);
+  if(tok && strcasecmp("solar", tok) == 0) {
+    tok = strtok_r(NULL, delims, &saveptr);
     if(tok && strcasecmp("system", tok) == 0) {
-      tok = strtok(NULL, " \t-_");
+      tok = strtok_r(NULL, delims, &saveptr);
       if(tok && strcasecmp("barycenter", tok) == 0)
         return NOVAS_SSB;
     }
