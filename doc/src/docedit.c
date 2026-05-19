@@ -26,7 +26,7 @@ static FILE *openfile(const char *path, const char *name, const char *mode) {
   char filename[1024] = {'\0'};
   FILE *fp;
 
-  sprintf(filename, "%s" PATH_SEP "%s", path, name);
+  snprintf(filename, sizeof(filename), "%s" PATH_SEP "%s", path, name);
   fp = fopen(filename, mode);
   if(!fp) fprintf(stderr, "ERROR! opening %s: %s", filename, strerror(errno));
   return fp;
@@ -101,7 +101,7 @@ static int make_undecorated_readme() {
   while(fgets(line, sizeof(line) - 1, in) != NULL) {
     char type[100] = {'\0'};
 
-    if(sscanf(line, "> [!%99[^]]]", type) == 1) sprintf(line, "__%s__\n\n", type);
+    if(sscanf(line, "> [!%99[^]]]", type) == 1) snprintf(line, sizeof(line), "__%s__\n\n", type);
     if(strstr(line, "<details") || strstr(line, "</details>")) continue;
 
     fwrite(line, strlen(line), 1, out);
@@ -123,7 +123,7 @@ int main(int argc, const char *argv[]) {
   if(argc > 1) {
     outpath = (char *) argv[1];
     inpath = (char *) calloc(1, strlen(argv[1]) + 10);
-    sprintf(inpath, "%s/..", argv[1]);
+    snprintf(inpath, strlen(argv[1]) + 10, "%s/..", argv[1]);
   }
 
   if(make_headless_readme() != 0) nerr++;
