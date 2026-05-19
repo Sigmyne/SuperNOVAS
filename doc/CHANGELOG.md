@@ -95,7 +95,7 @@ MPP02 model of the Moon, and bringing various other improvements.
  - #293: `geo_posvel()` applied TOD to ICRS conversions twice for airborne observers, resulting in imprecise
    observer coordinates relative to the geocenter.
    
- - #296: Possible buffer overflow in `novas_print_dms()`. (thanks to aleberti)
+ - #296: Fixed potential buffer overflow in `novas_print_dms()`. (thanks to aleberti)
 
  - #305: `novas_geom_posvel()` returned velocities referenced to SSB, not to the observer.
 
@@ -647,7 +647,7 @@ changes to improve performance.
    respectively. The parallactic angle (PA) can be useful to convert local Cartesian offsets (e.g. from a flat image 
    or detector array) between the local horizontal and equatorial orientations, e.g. via the newly added 
    `novas_h2e_offset()` or `novas_e2h_offset()` functions. The conversion between offsets and absolute coordinates 
-   usually requires a WCS projections, such as described in Calabretta &amp; Greisen 2002.
+   usually requires a WCS projection, such as described in Calabretta & Greisen 2002.
    
  - #113: New `novas_sep()`, `novas_equ_sep()`, and `novas_object_sep()` functions can be used to calculate the precise 
    apparent distance between to spherical or equatorial locations, or between two sources, respectively. 
