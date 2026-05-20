@@ -5,7 +5,7 @@
 # Author: Attila Kovacs
 
 ifeq ($(ENABLE_CPP), 1)
-	EXCLUDE_COV += '*/include/*' '*Test'
+	EXCLUDE_COV += '*/include/*' '*test/*'
 endif
 
 .PHONY: run
