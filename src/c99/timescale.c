@@ -982,16 +982,25 @@ int novas_set_unix_time(time_t unix_time, long nanos, int leap, double dut1, nov
  * @sa novas_set_auto_fetch_eop(), novas_lookup_leap(), novas_fetch_eop()
  */
 int novas_set_current_time(int leap, double dut1, novas_timespec *restrict time) {
+#ifdef NOVAS_NO_SYSTEM_CLOCK
+  (void) leap;
+  (void) dut1;
+  (void) time;
+  return novas_error(-1, ENOSYS, "novas_set_current_time",
+          "system clock support disabled at build time (NOVAS_NO_SYSTEM_CLOCK); "
+          "use novas_set_unix_time() with an externally-supplied time instead");
+#else
   struct timespec t = {};
 
-#if (__STDC_VERSION__ >= 201112L && !defined(__ANDROID__)) || defined(_MSC_VER)
+#  if (__STDC_VERSION__ >= 201112L && !defined(__ANDROID__)) || defined(_MSC_VER)
   timespec_get(&t, TIME_UTC);
-#else
+#  else
   clock_gettime(CLOCK_REALTIME, &t);
-#endif
+#  endif
 
   prop_error("novas_set_current_time", novas_set_unix_time(t.tv_sec, t.tv_nsec, leap, dut1, time), 0);
   return 0;
+#endif
 }
 
 /**

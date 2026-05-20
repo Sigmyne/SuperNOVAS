@@ -2192,14 +2192,22 @@ static int test_unix_time() {
 }
 
 static int test_set_current_time() {
+#ifdef NOVAS_NO_SYSTEM_CLOCK
+  novas_timespec t = {};
+  // With the system clock disabled, novas_set_current_time() must return -1
+  // with errno set to ENOSYS, and must not touch the output.
+  if(novas_set_current_time(37, 0.014, &t) != -1) return 1;
+  if(errno != ENOSYS) return 1;
+  return 0;
+#else
   struct timespec now = {};
   novas_timespec t1 = {}, t2 = {};
 
-#if (__STDC_VERSION__ >= 201112L && !defined(__ANDROID__)) || defined(_MSC_VER)
+#  if (__STDC_VERSION__ >= 201112L && !defined(__ANDROID__)) || defined(_MSC_VER)
   timespec_get(&now, TIME_UTC);
-#else
+#  else
   clock_gettime(CLOCK_REALTIME, &now);
-#endif
+#  endif
 
   novas_set_current_time(37, 0.014, &t1);
 
@@ -2207,6 +2215,7 @@ static int test_set_current_time() {
 
   if(!is_equal("set_current_time:diff", 0.0, novas_diff_time(&t1, &t2), 1e-3)) return 1;
   return 0;
+#endif
 }
 
 static int test_set_str_time() {
