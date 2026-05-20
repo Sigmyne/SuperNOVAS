@@ -35,7 +35,7 @@ typedef pthread_mutex_t       lock_type;
 
 typedef mtx_t                   lock_type;
 
-#elif defined(WIN32)
+#elif defined(_MSC_VER)
 #  include <windows.h>
 
 #  define novas_init_lock(x)    InitializeSRWLock(x)

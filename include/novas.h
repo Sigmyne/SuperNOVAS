@@ -27,14 +27,6 @@
 #include <stdint.h>
 #include <time.h>
 
-#ifndef EXTERN
-#  if WIN32
-#    define EXTERN __declspec(dllimport) extern
-#  else
-#    define EXTERN extern
-#  endif
-#endif
-
 /// \cond PRIVATE
 #if __STDC_VERSION__ < 199901L
 #  define restrict                        ///< No 'restrict' keyword prior to C99
@@ -44,7 +36,7 @@
 #  define __NOVAS_DEPRECATE__(expl)
 #elif __STDC_VERSION__ >= 202311L || (defined(__cplusplus) && __cplusplus >= 201402L)
 #  define __NOVAS_DEPRECATE__(expl)  [[deprecated(expl)]]
-#elif WIN32
+#elif defined(_MSC_VER)
 #  define __NOVAS_DEPRECATE__(expl)  __declspec(deprecated(expl))
 #elif defined(__GNUC__)
 #  define __NOVAS_DEPRECATE__(expl)  __attribute__ ((deprecated))
