@@ -28,7 +28,7 @@
 
 /// \cond PRIVATE
 #define DTA         32.184                ///< [s] TT - TAI time difference
-#define GPS2TAI     19.0                  ///< [day] TAI - GPS time difference
+#define GPS2TAI     19.0                  ///< [s] TAI - GPS time difference
 
 #define IDAY        86400                 ///< [s] 1 day
 
@@ -40,8 +40,8 @@
 #define TC_T0      2443144.5003725       ///< 1977 January 1, 0h 0m 0s TAI
 
 /**
- * Relative rate at which Barycentric coordinate time progresses faster than time on Earth i.e.,
- * Terrestrial Time (TT).
+ * [s/s] Relative rate at which Barycentric coordinate time progresses faster than time on Earth
+ * i.e., Terrestrial Time (TT).
  *
  * REFERENCES:
  *
@@ -50,8 +50,8 @@
 #define TC_LB          1.550519768e-8
 
 /**
- * Relative rate at which Geocentric coordinate time progresses faster than time on Earth i.e.,
- * Terrestrial Time (TT).
+ * [s/s] Relative rate at which Geocentric coordinate time progresses faster than time on Earth
+ * i.e., Terrestrial Time (TT).
  *
  * NOTES:
  *
@@ -1270,7 +1270,7 @@ int novas_timestamp(const novas_timespec *restrict time, enum novas_timescale sc
 /**
  * Prints the standard string representation of the timescale to the specified buffer. The string
  * is terminated after. E.g. "UTC", or "TAI". It will print dates in the Gregorian calendar, which
- * was introduced in was introduced on 15 October 1582 only. Thus the
+ * was introduced on 15 October 1582 only.
  *
  * @param scale   The timescale
  * @param buf     String in which to print. It should have at least 4-bytes of available storage.
@@ -1435,7 +1435,7 @@ static double solar_system_potential(const novas_frame *frame, const double *pos
 }
 
 /**
- * Returns the first derivative of the Solar-system gravitational potential die to the major
+ * Returns the first derivative of the Solar-system gravitational potential due to the major
  * planets, the Sun, and the Moon.
  *
  * @param frame     The observing frame, defining the observer position as well as the positions
