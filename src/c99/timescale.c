@@ -609,15 +609,19 @@ int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, i
   time->tt2tdb = NAN;
   time->dut1 = dut1;
   time->ut1_to_tt = leap - dut1 + DTA;
-  time->ijd_tt = ijd;
-  time->fjd_tt = fjd;
+
+  // Normalized split, s.t. fjd is fractional day [0:1)
+  ifjd = (long) floor(fjd);
+  time->ijd_tt = ijd + ifjd;
+  time->fjd_tt = fjd - ifjd;
 
   if(timescale == NOVAS_TCB || timescale == NOVAS_TDB)
     time->tt2tdb = tt2tdb_hp(ijd + fjd);
 
   fjd -= tt_offset(time, timescale) / DAY;
-  ifjd = (long) floor(fjd);
 
+  // Re-split after fjd adjustment.
+  ifjd = (long) floor(fjd);
   time->ijd_tt = ijd + ifjd;
   time->fjd_tt = fjd - ifjd;
 
