@@ -36,6 +36,5 @@ var searchData=
   ['erot_5fgst_33',['EROT_GST',['../novas_8h.html#a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62',1,'novas.h']]],
   ['example_20c_20usage_34',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91',1,'']]],
   ['example_20c99_20usage_35',['Example C99 usage',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56',1,'']]],
-  ['example_20use_20cases_36',['Example use cases',['../index.html#autotoc_md25',1,'']]],
-  ['extern_37',['EXTERN',['../novas_8h.html#a77366c1bd428629dc898e188bfd182a3',1,'novas.h']]]
+  ['example_20use_20cases_36',['Example use cases',['../index.html#autotoc_md25',1,'']]]
 ];

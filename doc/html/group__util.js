@@ -6,6 +6,7 @@ var group__util =
     [ "NOVAS_DEGREE", "group__util.html#ga6d9698dbaf6260d7fe8a531a0e96d2a8", null ],
     [ "NOVAS_HOURANGLE", "group__util.html#gaee2680f03d1dfa4c9fbeea2be806dbf7", null ],
     [ "NOVAS_KM", "group__util.html#ga0a84af1a760ed2aaa01dd93e9e22bdf1", null ],
+    [ "novas_error_handler", "group__util.html#gac8c38bd9090a5c71ec69753bff953e14", null ],
     [ "novas_debug_mode", "group__util.html#ga9d8d2a1f5c06b488e4c817bc9877e3ba", [
       [ "NOVAS_DEBUG_OFF", "group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf", null ],
       [ "NOVAS_DEBUG_ON", "group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65", null ],
@@ -35,6 +36,7 @@ var group__util =
     [ "novas_parse_timescale", "group__util.html#ga72245b3ea6099c573278f721a4bfd3d9", null ],
     [ "novas_print_dms", "group__util.html#gad778a440540ed687572b78b675bebd60", null ],
     [ "novas_print_hms", "group__util.html#ga713869893ad7e58c53e44b37a3bcf768", null ],
+    [ "novas_set_error_handler", "group__util.html#gaf0859cb18e167bf9a3dcae5727c3ec97", null ],
     [ "novas_str_degrees", "group__util.html#ga6d6ada07aab7ce09fb8ea7b12660ebcd", null ],
     [ "novas_str_hours", "group__util.html#ga3ed26b6af870f6dbc353f651563afd4a", null ],
     [ "radec2vector", "group__util.html#gae104afd1bc638def9bdbce1801e5054a", null ],

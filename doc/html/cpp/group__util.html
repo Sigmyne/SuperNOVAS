@@ -130,6 +130,11 @@ Classes</h2></td></tr>
 <tr class="memitem:supernovas_3A_3AVector" id="r_supernovas_3A_3AVector"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Vector.html">supernovas::Vector</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic 3D spatial vector, expressed in arbitrary units.  <a href="classsupernovas_1_1Vector.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:gac8c38bd9090a5c71ec69753bff953e14" id="r_gac8c38bd9090a5c71ec69753bff953e14"><td class="memItemLeft">typedef void(*&#160;</td><td class="memItemRight"><a class="el" href="#gac8c38bd9090a5c71ec69753bff953e14">novas_error_handler</a>) (const char *fmt, va_list args)</td></tr>
+<tr class="memdesc:gac8c38bd9090a5c71ec69753bff953e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback type for the trace / error message handler.  <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ga9d8d2a1f5c06b488e4c817bc9877e3ba" id="r_ga9d8d2a1f5c06b488e4c817bc9877e3ba"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ga9d8d2a1f5c06b488e4c817bc9877e3ba">novas_debug_mode</a> { <a class="el" href="#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf">NOVAS_DEBUG_OFF</a> = 0
@@ -160,10 +165,41 @@ Functions</h2></td></tr>
 <tr class="memdesc:gad53b3be5b92ea244cfb0347feb3bec9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an ISO 8601 timestamp, converting it to a Julian day.  <br /></td></tr>
 <tr class="memitem:ga72245b3ea6099c573278f721a4bfd3d9" id="r_ga72245b3ea6099c573278f721a4bfd3d9"><td class="memItemLeft">enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga72245b3ea6099c573278f721a4bfd3d9">novas_parse_timescale</a> (const char *restrict str, char **restrict tail)</td></tr>
 <tr class="memdesc:ga72245b3ea6099c573278f721a4bfd3d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the timescale from a string containing a standard abbreviation (case insensitive), and returns the updated parse position after the timescale specification (if any).  <br /></td></tr>
+<tr class="memitem:gaf0859cb18e167bf9a3dcae5727c3ec97" id="r_gaf0859cb18e167bf9a3dcae5727c3ec97"><td class="memItemLeft"><a class="el" href="#gac8c38bd9090a5c71ec69753bff953e14">novas_error_handler</a>&#160;</td><td class="memItemRight"><a class="el" href="#gaf0859cb18e167bf9a3dcae5727c3ec97">novas_set_error_handler</a> (<a class="el" href="#gac8c38bd9090a5c71ec69753bff953e14">novas_error_handler</a> handler)</td></tr>
+<tr class="memdesc:gaf0859cb18e167bf9a3dcae5727c3ec97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces the trace / error message handler.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Various helpers tools and utilities of the <b>SuperNOVAS</b> library. </p>
-</div><a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="gac8c38bd9090a5c71ec69753bff953e14" name="gac8c38bd9090a5c71ec69753bff953e14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac8c38bd9090a5c71ec69753bff953e14">&#9670;&#160;</a></span>novas_error_handler</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* novas_error_handler) (const char *fmt, va_list args)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Callback type for the trace / error message handler. </p>
+<p>Invoked from the internal tracing helpers (<span class="tt">novas_trace()</span>, <span class="tt">novas_set_errno()</span>, <span class="tt">novas_error()</span>, etc.) whenever the debug mode is not <span class="tt"><a class="el" href="#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf" title="Do not print errors and traces to the standard error (default).">NOVAS_DEBUG_OFF</a></span>. The default handler writes to <span class="tt">stderr</span> via <span class="tt">vfprintf()</span>.</p>
+<p>Replacing the handler lets embedded, WASM, or otherwise freestanding targets redirect error output (or silence it entirely) without paying the cost of <span class="tt">stderr</span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fmt</td><td><span class="tt">printf</span>-style format string, never NULL </td></tr>
+    <tr><td class="paramname">args</td><td>variadic argument list matching <span class="tt">fmt</span></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Kiran Shila, Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaf0859cb18e167bf9a3dcae5727c3ec97" title="Replaces the trace / error message handler.">novas_set_error_handler()</a>, novas_dfebug() </dd></dl>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
 <a id="ga9d8d2a1f5c06b488e4c817bc9877e3ba" name="ga9d8d2a1f5c06b488e4c817bc9877e3ba"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga9d8d2a1f5c06b488e4c817bc9877e3ba">&#9670;&#160;</a></span>novas_debug_mode</h2>
 
@@ -644,6 +680,36 @@ Functions</h2></td></tr>
 <p class="reference">References <a class="el" href="group__time.html#gab344242721ca00709d4dc482a7934e2a">novas_timescale_for_string()</a>, and <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="novas_8h.html#a66656c3f5a1256f4bfc3ed2e168c70c2">novas_date_scale()</a>.</p>
+
+</div>
+</div>
+<a id="gaf0859cb18e167bf9a3dcae5727c3ec97" name="gaf0859cb18e167bf9a3dcae5727c3ec97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf0859cb18e167bf9a3dcae5727c3ec97">&#9670;&#160;</a></span>novas_set_error_handler()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#gac8c38bd9090a5c71ec69753bff953e14">novas_error_handler</a> novas_set_error_handler </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#gac8c38bd9090a5c71ec69753bff953e14">novas_error_handler</a></td>          <td class="paramname"><span class="paramname"><em>handler</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Replaces the trace / error message handler. </p>
+<p>Pass NULL to restore the default error reporting to <span class="tt">stderr</span>. Or, to silence error output entirely, use <span class="tt">novas_debug(NOVAS_DEBUG_OFF)</span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">handler</td><td>new handler, or NULL to restore the default error messaging to <span class="tt">stderr</span>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the previous handler (so it can be restored or chained)</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Kiran Shila</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug()</a> </dd></dl>
 
 </div>
 </div>

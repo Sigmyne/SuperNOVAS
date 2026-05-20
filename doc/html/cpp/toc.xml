@@ -1051,6 +1051,7 @@
         <topic label="unit_vector" href="classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52"/>
         <topic label="_component" href="classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18"/>
       </topic>
+      <topic label="novas_error_handler" href="group__util.html#gac8c38bd9090a5c71ec69753bff953e14"/>
       <topic label="novas_debug_mode" href="group__util.html#ga9d8d2a1f5c06b488e4c817bc9877e3ba">
         <topic label="NOVAS_DEBUG_OFF" href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf"/>
         <topic label="NOVAS_DEBUG_ON" href="group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65"/>
@@ -1066,6 +1067,7 @@
       <topic label="novas_parse_hours" href="group__util.html#gaff8c2c3fae3be867d3fc73972a158514"/>
       <topic label="novas_parse_iso_date" href="group__util.html#gad53b3be5b92ea244cfb0347feb3bec9f"/>
       <topic label="novas_parse_timescale" href="group__util.html#ga72245b3ea6099c573278f721a4bfd3d9"/>
+      <topic label="novas_set_error_handler" href="group__util.html#gaf0859cb18e167bf9a3dcae5727c3ec97"/>
     </topic>
   </topic>
   <topic label="Namespaces" href="namespaces.html">
@@ -3110,7 +3112,6 @@
           <topic label="DEFAULT_GRAV_BODIES_FULL_ACCURACY" href="group__apparent.html#ga4cb74da554b236c835302480688cfaac"/>
           <topic label="DEFAULT_GRAV_BODIES_REDUCED_ACCURACY" href="group__apparent.html#gaec64bf67d5a03b2b4fb2583e5918f1de"/>
           <topic label="DEG2RAD" href="novas_8h.html#af7e8592d0a634bd3642e9fd508ea8022"/>
-          <topic label="EXTERN" href="novas_8h.html#a77366c1bd428629dc898e188bfd182a3"/>
           <topic label="IN_SPACE_INIT" href="novas_8h.html#a406038a5cbe32b7e0e7233f6145e4cf5"/>
           <topic label="M_PI" href="novas_8h.html#ae71449b1cc6e6250b91f539153a7a0d3"/>
           <topic label="NOVAS_ARCMIN" href="novas_8h.html#aacce04f99c506d5ff67ff4daf1ccda95"/>
@@ -3229,6 +3230,7 @@
           <topic label="in_space" href="novas_8h.html#af8e6be13c2cd09e2cc6d582717e352e6"/>
           <topic label="novas_delaunay_args" href="novas_8h.html#a159819a645320787dd3e0049b40142d6"/>
           <topic label="novas_ephem_provider" href="group__solar-system.html#gaebb3d71006e8d93de242df61510374ad"/>
+          <topic label="novas_error_handler" href="group__util.html#gac8c38bd9090a5c71ec69753bff953e14"/>
           <topic label="novas_frame" href="novas_8h.html#ac43ec723503b8084bef8ae758cfe5371"/>
           <topic label="novas_matrix" href="novas_8h.html#a04f3d0ec70f0f20526f18e94188b98bf"/>
           <topic label="novas_nutation_provider" href="group__earth.html#ga1f0e319630e7a47f17247bf51f7bf36c"/>
@@ -3598,6 +3600,7 @@
           <topic label="novas_set_default_weather" href="novas_8h.html#a0fc8f315f8606e09571ab49efb13baca"/>
           <topic label="novas_set_distance" href="novas_8h.html#aa076ebd4c967fb9afa24bd85feb84f63"/>
           <topic label="novas_set_eop_url" href="group__earth.html#ga30319d4fc323f4f42d199e454abf0aef"/>
+          <topic label="novas_set_error_handler" href="group__util.html#gaf0859cb18e167bf9a3dcae5727c3ec97"/>
           <topic label="novas_set_leap_list" href="group__earth.html#ga3bfd89aa8b76fc752b67f09b182197c7"/>
           <topic label="novas_set_lsr_vel" href="novas_8h.html#a4aa0c52a1d4838feb4255974486462a7"/>
           <topic label="novas_set_orbsys_pole" href="novas_8h.html#a706ecf8998b78e48051d2876efc6e01c"/>
@@ -4152,6 +4155,7 @@
             <topic label="novas_print_dms" href="util_8c.html#ad778a440540ed687572b78b675bebd60"/>
             <topic label="novas_print_hms" href="util_8c.html#a713869893ad7e58c53e44b37a3bcf768"/>
             <topic label="novas_sep" href="util_8c.html#a9f33de2b26a19a5e20827e9e918b3375"/>
+            <topic label="novas_set_error_handler" href="group__util.html#gaf0859cb18e167bf9a3dcae5727c3ec97"/>
             <topic label="novas_vlen" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143"/>
             <topic label="radec2vector" href="util_8c.html#ae104afd1bc638def9bdbce1801e5054a"/>
             <topic label="spin" href="util_8c.html#af4090e519d7ce7ab1fcdb24b10126eb4"/>

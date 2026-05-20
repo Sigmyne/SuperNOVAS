@@ -117,7 +117,7 @@ Macros</h2></td></tr>
 <tr class="memitem:ga4cb74da554b236c835302480688cfaac" id="r_ga4cb74da554b236c835302480688cfaac"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga4cb74da554b236c835302480688cfaac">DEFAULT_GRAV_BODIES_FULL_ACCURACY</a>&#160;&#160;&#160;( <a class="el" href="#gaec64bf67d5a03b2b4fb2583e5918f1de">DEFAULT_GRAV_BODIES_REDUCED_ACCURACY</a> | (1 &lt;&lt; <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a994baf0c30caeaaee7b8b4d5a12921a3">NOVAS_JUPITER</a>) | (1 &lt;&lt; <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a03b12ea0f93a1a1045d7bcccd613c6f2">NOVAS_SATURN</a>) )</td></tr>
 <tr class="memdesc:ga4cb74da554b236c835302480688cfaac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bitwise mask defining a default set of gravitating bodies to use for deflection calculations in full accuracy mode.  <br /></td></tr>
 <tr class="memitem:gaec64bf67d5a03b2b4fb2583e5918f1de" id="r_gaec64bf67d5a03b2b4fb2583e5918f1de"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#gaec64bf67d5a03b2b4fb2583e5918f1de">DEFAULT_GRAV_BODIES_REDUCED_ACCURACY</a>&#160;&#160;&#160;( (1 &lt;&lt; <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a170e1c704bd29c8d46f66d4d9a03d9c2">NOVAS_SUN</a>) )</td></tr>
-<tr class="memdesc:gaec64bf67d5a03b2b4fb2583e5918f1de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bitwise mask defining a sefault set of gravitating bodies to use for deflection calculations in reduced accuracy mode.  <br /></td></tr>
+<tr class="memdesc:gaec64bf67d5a03b2b4fb2583e5918f1de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bitwise mask defining a default set of gravitating bodies to use for deflection calculations in reduced accuracy mode.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -180,7 +180,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Bitwise mask defining a sefault set of gravitating bodies to use for deflection calculations in reduced accuracy mode. </p>
+<p>Bitwise mask defining a default set of gravitating bodies to use for deflection calculations in reduced accuracy mode. </p>
 <p>(only apply gravitational deflection for the Sun.)</p>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
@@ -573,7 +573,7 @@ Variables</h2></td></tr>
 <p>Current set of gravitating bodies to use for deflection calculations in reduced accuracy mode. </p>
 <p>Each bit signifies whether a given body is to be accounted for as a gravitating body that bends light, such as the bit <span class="tt">(1 &lt;&lt; <a class="el" href="novas_8h.html#a219df36b21dc4476656e708d14d08045a994baf0c30caeaaee7b8b4d5a12921a3" title="Major planet number for Jupiter in NOVAS.">NOVAS_JUPITER</a>)</span> indicates whether or not Jupiter is considered as a deflecting body. You should also be sure that you provide ephemeris data for bodies that are designated for the deflection calculation.</p>
 <dl class="section since"><dt>Since</dt><dd>1.1</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a>, <a class="el" href="novas_8h.html#ae36bc31e1dad8a68f94f7a6414f0519f" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_planets()</a>, <a class="el" href="#gaec64bf67d5a03b2b4fb2583e5918f1de" title="Bitwise mask defining a sefault set of gravitating bodies to use for deflection calculations in reduc...">DEFAULT_GRAV_BODIES_REDUCED_ACCURACY</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a>, <a class="el" href="novas_8h.html#ae36bc31e1dad8a68f94f7a6414f0519f" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_planets()</a>, <a class="el" href="#gaec64bf67d5a03b2b4fb2583e5918f1de" title="Bitwise mask defining a default set of gravitating bodies to use for deflection calculations in reduc...">DEFAULT_GRAV_BODIES_REDUCED_ACCURACY</a> </dd>
 <dd>
 <a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a> </dd></dl>
 

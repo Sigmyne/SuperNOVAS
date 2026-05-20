@@ -137,10 +137,10 @@ var NAVTREEINDEX =
 "classsupernovas_1_1OrbitalSource.html#ab7d23a68a9b0af5cec3778db13cafe8b",
 "classsupernovas_1_1TimeAngle.html#ad3e673f9bf33b709f7d032a797900904",
 "globals_func_m.html",
-"md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md69",
-"novas_8h.html#a6205edb1361e56cc0c7aed0f088f7437",
-"novas_8h.html#ae548ecdfc646914084936acb32e9c993",
-"structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f"
+"md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md67",
+"novas_8h.html#a61f6463d05c29930c667981fdcb1f341a3bf824e91c250babd516eadef253d1fe",
+"novas_8h.html#ae48a8495c1ddf3960784aba5189d178e",
+"structnovas__sky__pos.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

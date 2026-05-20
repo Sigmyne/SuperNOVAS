@@ -126,6 +126,7 @@ var group__util =
       [ "unit_vector", "classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52", null ],
       [ "_component", "classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18", null ]
     ] ],
+    [ "novas_error_handler", "group__util.html#gac8c38bd9090a5c71ec69753bff953e14", null ],
     [ "novas_debug_mode", "group__util.html#ga9d8d2a1f5c06b488e4c817bc9877e3ba", [
       [ "NOVAS_DEBUG_OFF", "group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf", null ],
       [ "NOVAS_DEBUG_ON", "group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65", null ],
@@ -140,5 +141,6 @@ var group__util =
     [ "novas_parse_hms", "group__util.html#ga22e1bcf36379e0244b665c3e22d5fcba", null ],
     [ "novas_parse_hours", "group__util.html#gaff8c2c3fae3be867d3fc73972a158514", null ],
     [ "novas_parse_iso_date", "group__util.html#gad53b3be5b92ea244cfb0347feb3bec9f", null ],
-    [ "novas_parse_timescale", "group__util.html#ga72245b3ea6099c573278f721a4bfd3d9", null ]
+    [ "novas_parse_timescale", "group__util.html#ga72245b3ea6099c573278f721a4bfd3d9", null ],
+    [ "novas_set_error_handler", "group__util.html#gaf0859cb18e167bf9a3dcae5727c3ec97", null ]
 ];

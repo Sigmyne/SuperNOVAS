@@ -10,6 +10,7 @@ var util_8c =
     [ "novas_print_dms", "util_8c.html#ad778a440540ed687572b78b675bebd60", null ],
     [ "novas_print_hms", "util_8c.html#a713869893ad7e58c53e44b37a3bcf768", null ],
     [ "novas_sep", "util_8c.html#a9f33de2b26a19a5e20827e9e918b3375", null ],
+    [ "novas_set_error_handler", "group__util.html#gaf0859cb18e167bf9a3dcae5727c3ec97", null ],
     [ "novas_vlen", "util_8c.html#a0f41cefb8c872973b07e936b5026d143", null ],
     [ "radec2vector", "util_8c.html#ae104afd1bc638def9bdbce1801e5054a", null ],
     [ "spin", "util_8c.html#af4090e519d7ce7ab1fcdb24b10126eb4", null ],

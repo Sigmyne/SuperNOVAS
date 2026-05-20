@@ -60,6 +60,5 @@ var searchData=
   ['era_57',['era',['../structnovas__frame.html#affab4fcc1c7378b396e5411f9c2eea71',1,'novas_frame::era'],['../classsupernovas_1_1Time.html#aef268b7bbb4f82eb0127b15ba5090a01',1,'supernovas::Time::era()'],['../novas_8h.html#aef1f8daaad470353648de90576aefc66',1,'era(double jd_ut1_high, double jd_ut1_low):&#160;earth.c'],['../earth_8c.html#aef1f8daaad470353648de90576aefc66',1,'era(double jd_ut1_high, double jd_ut1_low):&#160;earth.c']]],
   ['example_20c_20usage_58',['Example C++ usage',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md91',1,'']]],
   ['example_20c99_20usage_59',['Example C99 usage',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56',1,'']]],
-  ['example_20use_20cases_60',['Example use cases',['../index.html#autotoc_md25',1,'']]],
-  ['extern_61',['EXTERN',['../novas_8h.html#a77366c1bd428629dc898e188bfd182a3',1,'novas.h']]]
+  ['example_20use_20cases_60',['Example use cases',['../index.html#autotoc_md25',1,'']]]
 ];
