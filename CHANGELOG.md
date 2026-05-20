@@ -21,6 +21,9 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    
  - #324: Fixed definition of `NOVAS_MARS_INIT` (it had the number ID of Mercury).
 
+ - `novas_planet_for_name()` leaked its `strdup()` buffer on non-matching lookups, and crashed on
+   delimiter-only inputs (no NULL check after `strtok()`). Both fixed by removing the heap allocation.
+
 ### Added
 
  - #313: Support for fetching of leap-seconds and EOP data from IERS, also automatically as needed when the EOP 
@@ -40,6 +43,12 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    as well as overridden `==` and `!=` operators, thanks to the new C99 comparison functions (above).
    
  - #319: Consolidated local portable mutex definitions in `novas-mutex.h` (not installed).
+
+ - New `novas_set_error_handler()` (and `novas_error_handler` typedef) to route `novas_trace()` / `novas_error()`
+   output through a user-supplied callback instead of `fprintf(stderr, ...)`. Pass NULL to silence.
+
+ - New `NOVAS_NO_SYSTEM_CLOCK` build flag compiles out `novas_set_current_time()` for targets without a
+   real-time clock (e.g. embedded, freestanding).
 
 ### Changed
 
@@ -76,6 +85,9 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
  - `examples/Makefile` to work standalone, without `config.mk`.
  
  - Fixed wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
+
+ - `novas_planet_for_name()` no longer allocates: replaced `strdup()` + `strtok()` with a stack buffer and
+   `strtok_r()`.
 
 ### Deprecated
 
