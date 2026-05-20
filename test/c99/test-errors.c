@@ -3,6 +3,7 @@
  * @author Attila Kovacs
  */
 
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -2610,6 +2611,111 @@ static int test_trace_invalid() {
   return n;
 }
 
+// Capturing handler used by test_error_handler() below. Appends to the buffer
+// because some emission paths (novas_set_errno, novas_error) invoke the handler
+// multiple times per call (prefix + body + suffix).
+static char captured_msg[512];
+static int captured_len = 0;
+
+static void capturing_handler(const char *fmt, va_list args) {
+  int avail = (int) sizeof(captured_msg) - captured_len;
+  if(avail > 1) {
+    int n = vsnprintf(captured_msg + captured_len, (size_t) avail, fmt, args);
+    if(n > 0) captured_len += (n < avail) ? n : (avail - 1);
+  }
+}
+
+static void reset_captured(void) {
+  captured_msg[0] = '\0';
+  captured_len = 0;
+}
+
+static int test_error_handler() {
+  int n = 0;
+  enum novas_debug_mode mode = novas_get_debug_mode();
+  novas_error_handler default_h;
+  novas_error_handler prev;
+
+  // Installing a custom handler returns the previous (default) handler.
+  default_h = novas_set_error_handler(capturing_handler);
+  if(!default_h) {
+    fprintf(stderr, "ERROR! novas_set_error_handler should return non-NULL default handler\n");
+    n++;
+  }
+
+  novas_debug(NOVAS_DEBUG_ON);
+
+  // novas_trace() routes through the active handler.
+  reset_captured();
+  (void) novas_trace("test_error_handler:trace", 1, 10);
+  if(!strstr(captured_msg, "test_error_handler:trace")) {
+    fprintf(stderr, "ERROR! novas_trace not routed: %s\n", captured_msg);
+    n++;
+  }
+
+  // novas_trace_nan() / novas_trace_invalid() also go through the handler.
+  reset_captured();
+  (void) novas_trace_nan("test_error_handler:nan");
+  if(!strstr(captured_msg, "test_error_handler:nan")) {
+    fprintf(stderr, "ERROR! novas_trace_nan not routed: %s\n", captured_msg);
+    n++;
+  }
+  reset_captured();
+  novas_trace_invalid("test_error_handler:invalid");
+  if(!strstr(captured_msg, "test_error_handler:invalid")) {
+    fprintf(stderr, "ERROR! novas_trace_invalid not routed: %s\n", captured_msg);
+    n++;
+  }
+
+  // Variadic paths: novas_set_errno() and novas_error() forward va_list to handler.
+  reset_captured();
+  novas_set_errno(EINVAL, "test_error_handler", "errno value %d", 42);
+  if(!strstr(captured_msg, "42")) {
+    fprintf(stderr, "ERROR! novas_set_errno not routed: %s\n", captured_msg);
+    n++;
+  }
+  reset_captured();
+  (void) novas_error(-1, EINVAL, "test_error_handler", "err %s", "abc");
+  if(!strstr(captured_msg, "abc")) {
+    fprintf(stderr, "ERROR! novas_error not routed: %s\n", captured_msg);
+    n++;
+  }
+
+  // NULL handler silences output across all paths.
+  novas_set_error_handler(NULL);
+  reset_captured();
+  (void) novas_trace("test_error_handler:silenced", 1, 0);
+  (void) novas_trace_nan("test_error_handler:silenced");
+  novas_trace_invalid("test_error_handler:silenced");
+  novas_set_errno(EINVAL, "test_error_handler", "silenced %d", 1);
+  (void) novas_error(-1, EINVAL, "test_error_handler", "silenced %s", "msg");
+  if(captured_msg[0] != '\0') {
+    fprintf(stderr, "ERROR! NULL handler did not silence: %s\n", captured_msg);
+    n++;
+  }
+
+  // Replacing NULL with a real handler reports NULL as the previous.
+  prev = novas_set_error_handler(capturing_handler);
+  if(prev != NULL) {
+    fprintf(stderr, "ERROR! expected NULL as previous handler, got non-NULL\n");
+    n++;
+  }
+
+  // errno propagation is independent of the handler.
+  errno = 0;
+  (void) novas_error(-1, ERANGE, "test_error_handler", "%s", "x");
+  if(errno != ERANGE) {
+    fprintf(stderr, "ERROR! novas_error did not set errno through custom handler\n");
+    n++;
+  }
+
+  // Restore so the rest of the suite uses the default handler.
+  novas_set_error_handler(default_h);
+  novas_debug(mode);
+
+  return n;
+}
+
 static int test_check_nan() {
   int n = 0;
 
@@ -3145,6 +3251,7 @@ int main(int argc, const char *argv[]) {
   if(test_time_leap()) n++;
 
   if(test_trace_invalid()) n++;
+  if(test_error_handler()) n++;
   if(test_check_nan()) n++;
 
   if(test_moon_elp_ecl_pos()) n++;
