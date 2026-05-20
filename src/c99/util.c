@@ -76,6 +76,18 @@ int novas_inv_max_iter = 100;
 /// \cond PROTECTED
 
 #if !__cplusplus && !(__STDC_VERSION__ >= 200809L)
+
+/**
+ * A dummy local `snprintf()` implementation when it is not provided by libc, such as on some very
+ * old platforms. It simpy behaves like `sprintf()`, ignoring the `len` argument altogether.
+ *
+ * @param buf     buffer to print to
+ * @param len     maximum number of characters that can be printed in the buffer (ignored)
+ * @param fmt     format string, as for `printf()`.
+ * @return        the number of character printed (may be larger than `len`!).
+ *
+ * @author Attila Kovacs
+ */
 int novas_snprintf(char *buf, size_t len, const char *fmt, ...) {
   va_list varg;
   int n;
