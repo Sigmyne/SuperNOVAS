@@ -1325,6 +1325,16 @@ static int test_set_time() {
     return 1;
   }
 
+  {
+    // Regression: novas_set_time used to lose ~1 µs of fractional precision
+    // by passing the entire JD as fjd with ijd=0, causing large+small
+    // addition in IEEE 754 double. Verify fjd_tt matches the split path.
+    novas_timespec ref;
+    if(!is_ok("set_time:precision:set:ref", novas_set_split_time(NOVAS_UTC, (long)J2000, 0.0, leap, 0.0, &ref))) return 1;
+    if(!is_ok("set_time:precision:set:test", novas_set_time(NOVAS_UTC, J2000, leap, 0.0, &tt1))) return 1;
+    if(!is_equal("set_time:precision:fjd", tt1.fjd_tt, ref.fjd_tt, 1e-15)) return 1;
+  }
+
   if(!is_ok("set_time:set:tdb", novas_set_split_time(NOVAS_TDB, ijd, fjd, leap, dut1, &TDB))) return 1;
   if(!is_ok("set_time:set:tcb", novas_set_split_time(NOVAS_TCB, ijd, fjd, leap, dut1, &tcb))) return 1;
   if(!is_ok("set_time:set:tcg", novas_set_split_time(NOVAS_TCG, ijd, fjd, leap, dut1, &tcg))) return 1;
