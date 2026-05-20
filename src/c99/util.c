@@ -31,26 +31,33 @@ static void default_error_handler(const char *fmt, va_list args) {
 }
 
 /// Active error handler. NULL means "silenced".
-static novas_error_handler novas_error_handler_fn = default_error_handler;
+static novas_error_handler error_hanfler_fn = default_error_handler;
 
 /**
- * Replaces the trace / error message handler. See novas.h for the public
- * docs.
+ * Replaces the trace / error message handler. Pass NULL to restore the default error reporting to
+ * `stderr`. Or, to silence error output entirely, use `novas_debug(NOVAS_DEBUG_OFF)`.
+ *
+ * @param handler  new handler, or NULL to restore the default error messaging to `stderr`.
+ * @return         the previous handler (so it can be restored or chained)
+ *
+ * @since 1.7
+ * @author Kiran Shila
+ *
+ * @sa novas_debug()
  */
 novas_error_handler novas_set_error_handler(novas_error_handler handler) {
-  novas_error_handler prev = novas_error_handler_fn;
-  novas_error_handler_fn = handler;
+  novas_error_handler prev = error_hanfler_fn;
+  error_hanfler_fn = handler ? handler : default_error_handler;
   return prev;
 }
 
-/// (_internal_) Emit a trace message through the active handler.
 static void novas_emit(const char *fmt, ...) {
-  if(!novas_error_handler_fn)
+  if(!error_hanfler_fn)
     return;
   {
     va_list args;
     va_start(args, fmt);
-    novas_error_handler_fn(fmt, args);
+    error_hanfler_fn(fmt, args);
     va_end(args);
   }
 }
@@ -115,9 +122,8 @@ int novas_trace(const char *restrict loc, int n, int offset) {
  * @author Attila Kovacs
  */
 double novas_trace_nan(const char *restrict loc) {
-  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF) {
+  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF)
     novas_emit("       @ %s [=> NAN]\n", loc);
-  }
   return NAN;
 }
 
@@ -130,9 +136,8 @@ double novas_trace_nan(const char *restrict loc) {
  * @author Attila Kovacs
  */
 void novas_trace_invalid(const char *restrict loc) {
-  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF) {
+  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF)
     novas_emit("       @ %s [=> invalid]\n", loc);
-  }
 }
 
 
@@ -171,9 +176,9 @@ void novas_set_errno(int en, const char *restrict from, const char *restrict des
   va_list varg;
 
   va_start(varg, desc);
-  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF && novas_error_handler_fn) {
+  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF && error_hanfler_fn) {
     novas_emit("\n  ERROR! %s: ", from);
-    novas_error_handler_fn(desc, varg);
+    error_hanfler_fn(desc, varg);
     novas_emit("\n");
   }
   va_end(varg);
@@ -199,9 +204,9 @@ int novas_error(int ret, int en, const char *restrict from, const char *restrict
   va_list varg;
 
   va_start(varg, desc);
-  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF && novas_error_handler_fn) {
+  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF && error_hanfler_fn) {
     novas_emit("\n  ERROR! %s: ", from);
-    novas_error_handler_fn(desc, varg);
+    error_hanfler_fn(desc, varg);
     novas_emit(" [=> %d]\n", ret);
   }
   va_end(varg);

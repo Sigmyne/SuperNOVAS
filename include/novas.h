@@ -2353,6 +2353,27 @@ typedef int (*novas_ephem_provider)(const char *name, long id, double jd_tdb_hig
  */
 typedef double (*RefractionModel)(double jd_tt, const on_surface *loc, enum novas_refraction_type type, double el);
 
+/**
+ * Callback type for the trace / error message handler.
+ *
+ * Invoked from the internal tracing helpers (`novas_trace()`, `novas_set_errno()`,
+ * `novas_error()`, etc.) whenever the debug mode is not `NOVAS_DEBUG_OFF`. The default handler
+ * writes to `stderr` via `vfprintf()`.
+ *
+ * Replacing the handler lets embedded, WASM, or otherwise freestanding targets redirect error
+ * output (or silence it entirely) without paying the cost of `stderr`.
+ *
+ * @param fmt   `printf`-style format string, never NULL
+ * @param args  variadic argument list matching `fmt`
+ *
+ * @since 1.7
+ * @author Kiran Shila, Attila Kovacs
+ *
+ * @sa novas_set_error_handler(), novas_dfebug()
+ * @ingroup util
+ */
+typedef void (*novas_error_handler)(const char *fmt, va_list args);
+
 
 #ifndef _EXCLUDE_DEPRECATED
 /**
@@ -2700,38 +2721,6 @@ void novas_debug(enum novas_debug_mode mode);
 
 /// @ingroup util
 enum novas_debug_mode novas_get_debug_mode();
-
-/**
- * Callback type for the trace / error message handler.
- *
- * Invoked from the internal tracing helpers (`novas_trace()`,
- * `novas_set_errno()`, `novas_error()`, etc.) whenever the debug mode is not
- * `NOVAS_DEBUG_OFF`. The default handler writes to `stderr` via `vfprintf()`.
- *
- * Replacing the handler lets embedded, WASM, or otherwise freestanding
- * targets redirect error output (or silence it entirely) without paying the
- * cost of `stderr`.
- *
- * @param fmt   `printf`-style format string, never NULL
- * @param args  variadic argument list matching `fmt`
- *
- * @since 1.7
- * @sa novas_set_error_handler()
- */
-typedef void (*novas_error_handler)(const char *fmt, va_list args);
-
-/**
- * Replaces the trace / error message handler. Pass NULL to silence error
- * output entirely while keeping `errno` and return-code propagation intact.
- *
- * @param handler  new handler, or NULL to disable error output
- * @return         the previous handler (so it can be restored or chained)
- *
- * @since 1.7
- * @sa novas_error_handler
- * @ingroup util
- */
-novas_error_handler novas_set_error_handler(novas_error_handler handler);
 
 /// @c_util
 double novas_norm_ang(double angle);
@@ -3510,6 +3499,9 @@ int novas_offset_by(double lon, double lat, double direction, double distance, d
 
 /// @c_util
 int novas_equ_offset_by(double ra, double dec, double direction, double distance, double *restrict out_ra, double *restrict out_dec);
+
+/// @ingroup util
+novas_error_handler novas_set_error_handler(novas_error_handler handler);
 
 // in cmp.c
 /// @c_util

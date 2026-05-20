@@ -2682,8 +2682,22 @@ static int test_error_handler() {
   }
 
   // NULL handler silences output across all paths.
-  novas_set_error_handler(NULL);
+  prev = novas_set_error_handler(NULL);
+  if(prev != capturing_handler) {
+    fprintf(stderr, "ERROR! expected NULL as previous handler, got non-NULL\n");
+    n++;
+  }
+
   reset_captured();
+
+  // Replacing NULL with a real handler reports NULL as the previous.
+  prev = novas_set_error_handler(capturing_handler);
+  if(prev != default_h) {
+    fprintf(stderr, "ERROR! expected NULL as previous handler, got non-NULL\n");
+    n++;
+  }
+
+  novas_debug(NOVAS_DEBUG_OFF);
   (void) novas_trace("test_error_handler:silenced", 1, 0);
   (void) novas_trace_nan("test_error_handler:silenced");
   novas_trace_invalid("test_error_handler:silenced");
@@ -2691,13 +2705,6 @@ static int test_error_handler() {
   (void) novas_error(-1, EINVAL, "test_error_handler", "silenced %s", "msg");
   if(captured_msg[0] != '\0') {
     fprintf(stderr, "ERROR! NULL handler did not silence: %s\n", captured_msg);
-    n++;
-  }
-
-  // Replacing NULL with a real handler reports NULL as the previous.
-  prev = novas_set_error_handler(capturing_handler);
-  if(prev != NULL) {
-    fprintf(stderr, "ERROR! expected NULL as previous handler, got non-NULL\n");
     n++;
   }
 
@@ -2710,7 +2717,7 @@ static int test_error_handler() {
   }
 
   // Restore so the rest of the suite uses the default handler.
-  novas_set_error_handler(default_h);
+  novas_set_error_handler(NULL);
   novas_debug(mode);
 
   return n;

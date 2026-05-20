@@ -961,6 +961,10 @@ int novas_set_unix_time(time_t unix_time, long nanos, int leap, double dut1, nov
  *  1. With MSC, this function uses the C11 standard `timespec_get()` function, which is
  *     portable. For older C standard, the POSIX only `clock_gettime()` function is used.
  *
+ *  2. If __SuperNOVAS__ is built with the `NOVAS_NO_SYSTEM_CLOCK` option, then this function
+ *     will always return an error. You may want to set the time explicitly with one of the
+ *     other functions instead.
+ *
  * @param leap        [s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be
  *                    unused if `dut1` is NAN -- see below).
  * @param dut1        [s] mean UT1-UTC time difference, e.g. as published in IERS Bulletin A
@@ -976,7 +980,7 @@ int novas_set_unix_time(time_t unix_time, long nanos, int leap, double dut1, nov
  *                    indicate the type of error).
  *
  * @since 1.5
- * @author Attila Kovacs
+ * @author Attila Kovacs, Kiran Shila
  *
  * @sa novas_set_unix_time()
  * @sa novas_set_auto_fetch_eop(), novas_lookup_leap(), novas_fetch_eop()
