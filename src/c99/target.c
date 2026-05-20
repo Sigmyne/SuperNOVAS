@@ -442,6 +442,11 @@ short make_object(enum novas_object_type type, long number, const char *name, co
 /**
  * Sets a celestial object to be a major planet, or the Sun, Moon, Solar-system Barycenter, etc.
  *
+ * NOTES:
+ *
+ *  1. This call does not initialize the `orbit` field (added in v1.2) with zeroes to remain ABI
+ *     compatible with versions &lt;1.2.
+ *
  * @param num           Planet ID number (NOVAS convention)
  * @param[out] planet   Pointer to structure to populate.
  * @return              0 if successful, or else -1 if the 'planet' pointer is NULL.
@@ -467,6 +472,11 @@ int make_planet(enum novas_planet num, object *restrict planet) {
  * Populates and object data structure with the data for a catalog source. The astrometric
  * parameters must be defined with ICRS. To create objects in other reference systems, use
  * `make_cat_object_sys()` instead.
+ *
+ * NOTES:
+ *
+ *  1. This call does not initialize the `orbit` field (added in v1.2) with zeroes to remain ABI
+ *     compatible with versions &lt;1.2.
  *
  * @param star          Pointer to structure to populate with the catalog data for a celestial
  *                      object located outside the solar system, specified with ICRS astrometric
@@ -538,6 +548,9 @@ int make_cat_object_sys(const cat_entry *star, const char *restrict system, obje
   prop_error(fn, make_cat_object(star, source), 0);
   prop_error(fn, cat_to_icrs(&source->star, system), 0);
 
+  // Since this came after 1.2, we can initialize the orbit too.
+  memset(&source->orbit, 0, sizeof(source->orbit));
+
   return 0;
 }
 
@@ -607,6 +620,10 @@ int make_redshifted_object(const char *name, double ra, double dec, double z, ob
 
   prop_error(fn, make_redshifted_cat_entry(name, ra, dec, z, &c), 0);
   prop_error(fn, make_cat_object(&c, source), 0);
+
+  // Since this came after 1.2, we can initialize the orbit too.
+  memset(&source->orbit, 0, sizeof(source->orbit));
+
   return 0;
 }
 
@@ -648,12 +665,20 @@ int make_redshifted_object_sys(const char *name, double ra, double dec, const ch
   prop_error(fn, make_redshifted_object(name, ra, dec, z, source), 0);
   prop_error(fn, cat_to_icrs(&source->star, system), 0);
 
+  // Since this came after 1.2, we can initialize the orbit too.
+  memset(&source->orbit, 0, sizeof(source->orbit));
+
   return 0;
 }
 
 /**
  * Sets a celestial object to be a Solar-system ephemeris body. Typically this would be used to
  * define minor planets, asteroids, comets and planetary satellites.
+ *
+ * NOTES:
+ *
+ *  1. This call does not initialize the `orbit` field (added in v1.2) with zeroes to remain ABI
+ *     compatible with versions &lt;1.2.
  *
  * @param name          Name of object. By default converted to upper-case, unless
  *                      novas_case_sensitive() was called with a non-zero argument. Max.
