@@ -21,6 +21,11 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    
  - #324: Fixed definition of `NOVAS_MARS_INIT` (it had the number ID of Mercury).
 
+ - Fixed `novas_set_time()` always passing the fractional JD as the full Julian date, losing ~1 &mu;s of 
+   fractional precision in the stored `fjd_tt` field due to the large+small addition in IEEE 754 double.
+   Now splits the JD into integer and fractional parts before calling `novas_set_split_time()`, matching
+   the existing pattern in `novas_set_unix_time()`.
+
 ### Added
 
  - #313: Support for fetching of leap-seconds and EOP data from IERS, also automatically as needed when the EOP 

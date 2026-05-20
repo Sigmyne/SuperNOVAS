@@ -460,7 +460,8 @@ double get_ut1_to_tt(int leap_seconds, double dut1) {
  * @sa novas_set_auto_fetch_eop(), novas_lookup_leap(), novas_fetch_eop()
  */
 int novas_set_time(enum novas_timescale timescale, double jd, int leap, double dut1, novas_timespec *restrict time) {
-  prop_error("novas_set_time", novas_set_split_time(timescale, 0, jd, leap, dut1, time), 0);
+  long ijd = (long) floor(jd);
+  prop_error("novas_set_time", novas_set_split_time(timescale, ijd, jd - ijd, leap, dut1, time), 0);
   return 0;
 }
 
