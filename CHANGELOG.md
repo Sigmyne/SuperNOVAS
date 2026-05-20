@@ -45,11 +45,12 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    
  - #319: Consolidated local portable mutex definitions in `novas-mutex.h` (not installed).
 
- - #326: New `novas_set_error_handler()` (and `novas_error_handler` typedef) to route `novas_trace()` / `novas_error()`
-   output through a user-supplied callback instead of `fprintf(stderr, ...)`. (by kiranshila)
+ - #326: New `novas_set_error_handler()` (and `novas_error_handler` typedef) to route `novas_trace()` / 
+   `novas_error()` output through a user-supplied callback instead of `fprintf(stderr, ...)`. (by kiranshila)
 
- - #326: New `NOVAS_NO_SYSTEM_CLOCK` build flag compiles out `novas_set_current_time()` for targets without a
-   real-time clock (e.g. embedded, freestanding). (by @kiranshila)
+ - #326: New `NOVAS_NO_SYSTEM_CLOCK` compiler flag to build without `clock_gettime()` / `timespec_get()` calls for 
+   targets without real-time clock (e.g. embedded, freestanding). If set during the build, `novas_set_current_time()` 
+   will simply return an error. (by @kiranshila)
 
 ### Changed
 
