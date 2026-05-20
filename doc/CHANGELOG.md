@@ -64,9 +64,9 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    `novas-mutex.h`.
 
  - #329: Initialize the orbit in `make_cat_object_sys()`, `make_redshifted_object()`, `make_redshifted_object_sys()`, 
-   all of which came at the same time or after the orbit field was introduced. Hence they are always safe to use. And, 
-   document other `make_[...]()` `object` initializers to note that they do not initialize the `orbit` fields with 
-   zeroes for back-compatibility reasons. (thanks to kiranshila)
+   all of which came at the same time or after the `orbit` field was introduced. Hence they are always safe to use. 
+   And, document other `object` initializers to note that they do not initialize the `orbit` fields with zeroes for 
+   back-compatibility reasons. (thanks to kiranshila)
    
  - Precision in `novas_set_split_time()` to be independent of the choice of integer/double split of the parameters, 
    beyond the precision of the split itself.
