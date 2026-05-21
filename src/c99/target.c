@@ -184,7 +184,7 @@ int novas_set_ssb_vel(cat_entry *source, double v_kms) {
   if(!source)
     return novas_error(-1, EINVAL, fn, "NULL input 'source'");
 
-  if(1000.0 * fabs(v_kms) > NOVAS_C)
+  if(fabs(v_kms) > 1e-3 * NOVAS_C)
     return novas_error(-1, ERANGE, fn, "input velocity exceeds the speed of light");
 
   source->radialvelocity = v_kms;
@@ -784,7 +784,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
   // Convert right ascension, declination, and parallax to position vector
   // in equatorial system with units of AU.
   if(pos)
-    radec2vector(star->ra, star->dec, 1.0 / sin(paralx * MAS), pos);
+    radec2vector(star->ra, star->dec, 1.0 / (paralx * MAS), pos);
 
   if(motion) {
     // Compute Doppler factor, which accounts for change in
@@ -937,7 +937,7 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
 
   // Convert right ascension, declination, and parallax to position
   // vector in equatorial system with units of AU.
-  radec2vector(in->ra, in->dec, 1.0 / sin(paralx * MAS), pos);
+  radec2vector(in->ra, in->dec, 1.0 / (paralx * MAS), pos);
 
   // Compute Doppler factor, which accounts for change in light travel time to star.
   k = 1.0 / (1.0 - in->radialvelocity * NOVAS_KMS / NOVAS_C);
@@ -1077,7 +1077,7 @@ int transform_hip(const cat_entry *hipparcos, cat_entry *hip_2000) {
  * @param vel        [AU/day] Velocity vector at first epoch.
  * @param jd_tdb_out [day] Barycentric Dynamical Time (TDB) based Julian date of the second epoch.
  * @param[out] out   Position vector at second epoch. It can be the same vector as the input.
- * @return           0 if successful, or -1 if any of the vector areguments is NULL.
+ * @return           0 if successful, or -1 if any of the vector arguments is NULL.
  *
  * @sa transform_cat()
  */
