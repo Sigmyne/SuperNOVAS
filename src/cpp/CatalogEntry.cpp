@@ -250,9 +250,9 @@ std::string CatalogEntry::name() const {
 }
 
 /**
- * Returns the catalog right ascention (R.A.) coordinate as a time-angle.
+ * Returns the catalog right ascension (R.A.) coordinate as a time-angle.
  *
- * @return    the catalog right-ascention angle as defined in the catalog system.
+ * @return    the catalog right-ascension angle as defined in the catalog system.
  *
  * @since 1.6
  * @sa system(), equatorial()

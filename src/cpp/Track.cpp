@@ -587,7 +587,7 @@ EquatorialTrack::EquatorialTrack(const Equinox& system, const novas_track *track
  * @param system      the equatorial coordinate system in which the trajectory is defined.
  * @param ref_time    astrometric reference time for which the data is defined.
  * @param range       time range of validity around the reference time for extrapolating.
- * @param ra          short-term time evolution of the right-ascention (R.A.) coordinate.
+ * @param ra          short-term time evolution of the right-ascension (R.A.) coordinate.
  * @param dec         short-term time evolution of the declination coordinate.
  * @param distance    (optional) short-term time evolution of distance (default: static at 1 Gpc).
  * @param z           (optional) time evolution of redshift, including gravitational effects.

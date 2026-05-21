@@ -76,7 +76,7 @@ Apparent::Apparent(const Frame& frame, enum novas_reference_system sys, const sk
 /**
  * Instantiates apparent sky coordinates in the Celestrial Intermediate Reference System (CIRS).
  *
- * @param ra_rad    [rad] right ascention (R.A.) in CIRS (from the CIO)
+ * @param ra_rad    [rad] right ascension (R.A.) in CIRS (from the CIO)
  * @param dec_rad   [rad] declination in CIRS
  * @param frame     observing frame (time of observation and observer location)
  * @param rv_ms     [m/s] radial velocity
@@ -95,7 +95,7 @@ Apparent Apparent::from_cirs(double ra_rad, double dec_rad, const Frame& frame, 
 /**
  * Instantiates apparent sky coordinates in the Celestrial Intermediate Reference System (CIRS).
  *
- * @param ra        right ascention (R.A.) angle in CIRS (from the CIO)
+ * @param ra        right ascension (R.A.) angle in CIRS (from the CIO)
  * @param dec       declination angle in CIRS
  * @param frame     observing frame (time of observation and observer location)
  * @param rv        radial velocity
@@ -112,7 +112,7 @@ Apparent Apparent::from_cirs(const Angle& ra, const Angle& dec, const Frame& fra
  * Instantiates apparent sky coordinates in the True-of-Date (TOD) system, with respect to the
  * true dynamical equator and equinox of date.
  *
- * @param ra_rad    [rad] true right ascention (R.A.) of date (from the true equinox of date)
+ * @param ra_rad    [rad] true right ascension (R.A.) of date (from the true equinox of date)
  * @param dec_rad   [rad] true declination of date
  * @param frame     observing frame (time of observation and observer location)
  * @param rv_ms     [m/s] radial velocity
@@ -132,7 +132,7 @@ Apparent Apparent::from_tod(double ra_rad, double dec_rad, const Frame& frame, d
  * Instantiates apparent sky coordinates in the True-of-Date (TOD) system, with respect to the
  * true dynamical equator and equinox of date.
  *
- * @param ra        true right ascention (R.A.) angle of date (from the equinox of date)
+ * @param ra        true right ascension (R.A.) angle of date (from the equinox of date)
  * @param dec       true declination angle of date
  * @param frame     observing frame (time of observation and observer location)
  * @param rv        radial velocity

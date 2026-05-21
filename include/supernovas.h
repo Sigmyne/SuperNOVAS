@@ -341,7 +341,7 @@ public:
 /**
  * An inertial equatorial coordinate system, defined by the orientation of the equator and its
  * origin (such as the Vernal %Equinox or else the Celestial Intermediate Origin), relative to
- * which the right ascention and declination (RA/Dec) coordinates are measured. We'll simply
+ * which the right ascension and declination (RA/Dec) coordinates are measured. We'll simply
  * refer to it as %Equinox in this API. This class does not support (noninertial) Earth-rotating
  * systems (TIRS and ITRS).
  *

@@ -30,10 +30,10 @@ void Equatorial::validate() {
 }
 
 /**
- * Instantiates equatorial coordinates with the specified right-ascention (R.A.) and declination
+ * Instantiates equatorial coordinates with the specified right-ascension (R.A.) and declination
  * coordinates, optionally specifying a system and a distance if needed.
  *
- * @param ra_rad      [rad] right ascention (R.A.) coordinate
+ * @param ra_rad      [rad] right ascension (R.A.) coordinate
  * @param dec_rad     [rad] declination coordinate
  * @param system      (optional) the equatorial coordinate reference system in which the
  *                    coordinates are specified (default: ICRS)
@@ -46,10 +46,10 @@ Equatorial::Equatorial(double ra_rad, double dec_rad, const Equinox &system)
 }
 
 /**
- * Instantiates equatorial coordinates with the specified right-ascention (R.A.) and declination
+ * Instantiates equatorial coordinates with the specified right-ascension (R.A.) and declination
  * coordinates, optionally specifying a system and a distance if needed.
  *
- * @param ra          right ascention (R.A.) coordinate
+ * @param ra          right ascension (R.A.) coordinate
  * @param dec         declination coordinate
  * @param system      (optional) the equatorial coordinate reference system in which the
  *                    coordinates are specified (default: ICRS)
@@ -63,7 +63,7 @@ Equatorial::Equatorial(const Angle& ra, const Angle& dec, const Equinox &system)
 
 /**
  * Instantiates equatorial coordinates with the specified string representations of
- * right-ascention (R.A.) and declination, optionally specifying a system and a distance if
+ * right-ascension (R.A.) and declination, optionally specifying a system and a distance if
  * needed. After instantiation, you should check that the resulting coordinates are valid, e.g.
  * as:
  *
@@ -75,7 +75,7 @@ Equatorial::Equatorial(const Angle& ra, const Angle& dec, const Equinox &system)
  *   }
  * ```
  *
- * @param ra          string representation of the right ascention (R.A.) coordinate in HMS or
+ * @param ra          string representation of the right ascension (R.A.) coordinate in HMS or
  *                    decimal hours.
  * @param dec         string representation of the declination coordinate as DMS or decimal
  *                    degrees.
@@ -432,9 +432,9 @@ Equatorial Equatorial::to_cirs(const Time& time) const {
 }
 
 /**
- * Returns the right ascention (R.A.) coordinate as a time-angle.
+ * Returns the right ascension (R.A.) coordinate as a time-angle.
  *
- * @return    the right ascention (R.A.) coordinate.
+ * @return    the right ascension (R.A.) coordinate.
  *
  * @since 1.6
  * @sa dec()
