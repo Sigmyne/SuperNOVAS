@@ -21,6 +21,8 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    
  - #324: Fixed definition of `NOVAS_MARS_INIT` (it had the number ID of Mercury).
  
+ - #332: Fixed `novas_helio_dist()` heliocentric rate of recession calculation.
+ 
  - Eliminated memleak in `novas_planet_for_name()`. Also, it no longer does alloc to copy input.
  
  - Fixed definition of `NOVAS_TRANSFORM_TYPES` in `novas.h`.

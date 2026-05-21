@@ -1141,7 +1141,7 @@ double novas_helio_dist(double jd_tdb, const object *restrict source, double *re
   }
 
   if(rate)
-    *rate = novas_vlen(vel);
+    *rate = novas_vdot(pos, vel) / d;
 
   return d;
 }
