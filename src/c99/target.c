@@ -120,7 +120,7 @@ int novas_init_cat_entry(cat_entry *restrict source, const char *restrict name, 
   if(!name)
     return 0;
 
-  strncpy(source->starname, name, SIZE_OF_OBJ_NAME - 1);
+  snprintf(source->starname, SIZE_OF_OBJ_NAME, "%s", name);
   if(strlen(name) >= SIZE_OF_OBJ_NAME)
      return novas_error(1, ERANGE, fn, "input 'name' is too long (%d > %d)", (int) strlen(name), SIZE_OF_OBJ_NAME - 1);
 
@@ -156,7 +156,7 @@ int novas_set_catalog(cat_entry *restrict source, const char *restrict catalog, 
   if(!catalog)
     return 0;
 
-  strncpy(source->catalog, catalog, SIZE_OF_CAT_NAME - 1);
+  snprintf(source->catalog, SIZE_OF_CAT_NAME, "%s", catalog);
   if(strlen(catalog) >= SIZE_OF_CAT_NAME)
     return novas_error(2, ERANGE, fn, "Input catalog ID is too long (%d > %d)", (int) strlen(catalog), SIZE_OF_CAT_NAME - 1);
 
@@ -837,8 +837,7 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
       return (enum novas_planet) i;
 
   // Check for Solar System Barycenter (and variants)
-  strncpy(buf, name, sizeof(buf) - 1);
-  buf[sizeof(buf) - 1] = '\0';
+  snprintf(buf, sizeof(buf), "%s", name);
 
   tok = strtok_r(buf, delims, &context);
   if(strcasecmp("solar", tok) == 0) {
@@ -1013,16 +1012,13 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
 
   // Set the catalog identification code for the transformed catalog entry.
   if(out_id)
-    strncpy(out->catalog, out_id, SIZE_OF_CAT_NAME - 1);
+    snprintf(out->catalog, SIZE_OF_CAT_NAME, "%s", out_id);
   else if(out != in)
-    strncpy(out->catalog, in->catalog, SIZE_OF_CAT_NAME - 1);
-  // Make sure catalog name is terminated.
-  out->catalog[SIZE_OF_CAT_NAME - 1] = '\0';
+    snprintf(out->catalog, SIZE_OF_CAT_NAME, "%s", in->catalog);
 
   if(out != in) {
     // Copy unchanged quantities from the input catalog entry to the transformed catalog entry.
-    strncpy(out->starname, in->starname, SIZE_OF_OBJ_NAME - 1);
-    out->starname[SIZE_OF_OBJ_NAME - 1] = '\0';
+    snprintf(out->starname, SIZE_OF_OBJ_NAME, "%s", in->starname);
     out->starnumber = in->starnumber;
   }
 
@@ -1053,7 +1049,7 @@ int transform_hip(const cat_entry *hipparcos, cat_entry *hip_2000) {
   // Set up a "scratch" catalog entry containing Hipparcos data in
   // "NOVAS units."
   scratch = *hipparcos;
-  strncpy(scratch.catalog, "SCR", sizeof(scratch.catalog));
+  snprintf(scratch.catalog, sizeof(scratch.catalog), "%s", "SCR");
 
   // Convert right ascension from degrees to hours.
   scratch.ra /= 15.0;
