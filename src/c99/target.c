@@ -195,8 +195,8 @@ int novas_set_ssb_vel(cat_entry *source, double v_kms) {
  * Sets a radial velocity for a catalog source, defined w.r.t. the Local Standard of Rest (LSR).
  *
  * @param[out] source  Output structure to populate with the parameters.
- * @param v_kms        [km/s] Radial velocity of source w.r.t. the Local Standard of Rest (LSR).
  * @param epoch        [yr] Coordinate epoch.
+ * @param v_kms        [km/s] Radial velocity of source w.r.t. the Local Standard of Rest (LSR).
  * @return             0 if successful, or else -1 if the source is NULL (errno is set to EINVAL)
  *                     or if the velocity exceeds the speed of light (errno set to ERANGE).
  *
@@ -293,7 +293,7 @@ int novas_set_parallax(cat_entry *source, double mas) {
  * @since 1.5
  * @author Attila Kovacs
  *
- * @sa novas_set_distance(), novas_init_cat_entry()
+ * @sa novas_set_parallax(), novas_init_cat_entry()
  */
 int novas_set_distance(cat_entry *source, double parsecs) {
   prop_error("novas_set_distance", novas_set_parallax(source, 1000.0 / parsecs), 0);
