@@ -68,7 +68,7 @@ template<class CoordType> Track<CoordType>::Track(const Time& ref_time, const In
         const ScalarEvolution& r, const ScalarEvolution& z)
 : _ref_time(ref_time), _range(range), _lon(lon), _lat(lat), _r(r), _z(z) {
 
-  // make sure CoordType is a sublcass of Spherical
+  // make sure CoordType is a subclass of Spherical
   static_assert(std::is_base_of<Spherical, CoordType>::value, "Track: CoordType is not a subclass of Spherical");
 
   validate();
@@ -78,7 +78,7 @@ template<class CoordType> Track<CoordType>::Track(const Time& ref_time, const In
  * Instantiates a local trajectory estimate for a source on sky, which can be used to extrapolate
  * positions around the specified reference time inside an interval of validity.
  *
- * @param track     Pointer to the C tajectory data structure
+ * @param track     Pointer to the C trajectory data structure
  * @param range     time range of validity around the reference time. Attempts to extrapolate
  *                  outside this interval will produce invalid data.
  *
@@ -92,7 +92,7 @@ template<class CoordType> Track<CoordType>::Track(const novas_track *track, cons
   _r(ScalarEvolution(track->pos.dist * Unit::au, track->rate.dist * Unit::au / Unit::sec, track->accel.dist * Unit::au / (Unit::sec * Unit::sec))),
   _z(ScalarEvolution(track->pos.z, track->rate.z, track->accel.z)) {
 
-  // make sure CoordType is a sublcass of Spherical
+  // make sure CoordType is a subclass of Spherical
   static_assert(std::is_base_of<Spherical, CoordType>::value, "CoordType is not a subclass of Spherical");
 
   validate();
@@ -163,7 +163,7 @@ template<class CoordType> bool Track<CoordType>::is_valid_at(const Time& time) c
 }
 
 /**
- * Returns the astrometic time of reference, at which the (quadratic) trajectory has been defined.
+ * Returns the astrometric time of reference, at which the (quadratic) trajectory has been defined.
  *
  * @return  the reference time for this trajectory.
  *
@@ -177,7 +177,7 @@ template<class CoordType> const Time& Track<CoordType>::reference_time() const {
 /**
  * Returns the time range of validity for this trajectory. The trajectory can only provide valid
  * extrapolation within that time range around the reference time, for which the trajectory's
- * paramteres have been defined.
+ * parameters have been defined.
  *
  * @return   the time range of validity around the reference time.
  *
@@ -434,7 +434,6 @@ HorizontalTrack::HorizontalTrack(const Time& ref_time, const Interval& range,
       novas_trace_invalid("HorizontalTrack()");
 }
 
-
 /**
  * Returns the momentary extrapolated horizontal coordinates (if valid), or else
  * Horizontal::undefined() if the time is outside the range of validity. It is best practice to
@@ -481,7 +480,7 @@ Horizontal HorizontalTrack::projected_at(const Time& time) const {
  *   }
  * ```
  *
- * @param track     Pointer to the C tajectory data structure
+ * @param track     Pointer to the C trajectory data structure
  * @param range     time range of validity around the reference time. Attempts to extrapolate
  *                  outside this interval will produce invalid data.
  *
@@ -520,7 +519,7 @@ const HorizontalTrack& HorizontalTrack::undefined() {
 /**
  * Returns the momentary extrapolated equatorial coordinates (if valid), or else
  * Equatorial::undefined() if the time is outside the range of validity. It is best practice to
- * check the valifity of the returned value before using it, e.g. as:
+ * check the validity of the returned value before using it, e.g. as:
  *
  * ```c++
  *   Equatorial eq = track.projected_at(...);
@@ -541,7 +540,7 @@ Equatorial EquatorialTrack::projected_at(const Time& time) const {
   if(is_valid_at(time)) {
     Equatorial e(unchecked_longitude(time), unchecked_latitude(time), _system);
     if(!e.is_valid())
-      novas_trace_invalid("EuatorialTrack::projected_at()");
+      novas_trace_invalid("EquatorialTrack::projected_at()");
     return e;
   }
   novas_set_errno(ERANGE, "EquatorialTrack::projected_at()", "requested time is outside the trajectory validity range");
@@ -595,7 +594,7 @@ EquatorialTrack::EquatorialTrack(const Equinox& system, const novas_track *track
  *                    distance evolution determine it automatically.
  *
  * @since 1.6
- * @sa from_novas_track(), HorizontalTrack::HorizontalTrackTrack()
+ * @sa from_novas_track(), HorizontalTrack::HorizontalTrack()
  */
 EquatorialTrack::EquatorialTrack(const Equinox& system, const Time& ref_time, const Interval& range,
         const ScalarEvolution& ra, const ScalarEvolution& dec, const ScalarEvolution& distance, const ScalarEvolution& z)
@@ -627,7 +626,7 @@ EquatorialTrack::EquatorialTrack(const Equinox& system, const Time& ref_time, co
  * ```
  *
  * @param system    equatorial coordinate system
- * @param track     Pointer to the C tajectory data structure
+ * @param track     Pointer to the C trajectory data structure
  * @param range     time range of validity around the reference time. Attempts to extrapolate
  *                  outside this interval will produce invalid data.
  *
