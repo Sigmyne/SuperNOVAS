@@ -186,7 +186,7 @@ static double novas_refraction(enum novas_refraction_model model, const on_surfa
   if(type == NOVAS_REFRACT_ASTROMETRIC)
     return refract_astro(loc, model, 90.0 - el);
 
-  novas_set_errno(EINVAL, fn, "NULL on surface observer location");
+  novas_set_errno(EINVAL, fn, "invalid refraction type: %d", (int) type);
   return NAN;
 }
 
@@ -480,7 +480,7 @@ int novas_refract_wavelength(double microns) {
  * @sa make_gps_site(), make_itrf_site(), make_xyz_site(), make_gps_observer(), make_itrf_observer()
  */
 double novas_wave_refraction(double jd_tt, const on_surface *loc, enum novas_refraction_type type, double el) {
-  static const char *fn = "novas_wave_refration";
+  static const char *fn = "novas_wave_refraction";
 
   double p, t, r, ps = 0.0, pw = 0.0, gamma, beta, a, b, tanz;
 
@@ -505,7 +505,7 @@ double novas_wave_refraction(double jd_tt, const on_surface *loc, enum novas_ref
   }
 
   if(lambda < 0.1) {
-    novas_set_errno(EINVAL, fn, "wavelength too low: %g mirons", lambda);
+    novas_set_errno(EINVAL, fn, "wavelength too low: %g microns", lambda);
     return NAN;
   }
 
