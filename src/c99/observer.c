@@ -475,7 +475,7 @@ int make_xyz_site(const double *restrict xyz, on_surface *restrict site) {
   double lon = 0.0, lat = 0.0, alt = 0.0;
 
   if(!xyz)
-    return novas_error(-1, EINVAL, fn, "input xzy position is NULL");
+    return novas_error(-1, EINVAL, fn, "input xyz position is NULL");
 
   prop_error(fn, novas_cartesian_to_geodetic(xyz, NOVAS_GRS80_ELLIPSOID, &lon, &lat, &alt), 0);
   prop_error(fn, make_itrf_site(lat, lon, alt, site), 0);
@@ -564,7 +564,7 @@ int make_airborne_observer(const on_surface *location, const double *itrs_vel, o
  * @author Attila Kovacs
  */
 int make_solar_system_observer(const double *sc_pos, const double *sc_vel, observer *obs) {
-  static const char *fn = "make_observer_in_space";
+  static const char *fn = "make_solar_system_observer";
   in_space loc;
   prop_error(fn, make_in_space(sc_pos, sc_vel, &loc), 0);
   prop_error(fn, make_observer(NOVAS_SOLAR_SYSTEM_OBSERVER, NULL, &loc, obs), 0);
@@ -797,7 +797,7 @@ int aberration(const double *pos, const double *vobs, double lighttime, double *
  */
 int obs_posvel(double jd_tdb, double ut1_to_tt, enum novas_accuracy accuracy, const observer *restrict obs,
         const double *restrict geo_pos, const double *restrict geo_vel, double *restrict pos, double *restrict vel) {
-  static const char *fn = "get_obs_posvel";
+  static const char *fn = "obs_posvel";
 
   if(!obs)
     return novas_error(-1, EINVAL, fn, "NULL observer parameter");
@@ -913,7 +913,7 @@ int novas_site_gcrs_posvel(const novas_timespec *restrict ts, const on_surface *
     return novas_error(-1, EINVAL, fn, "invalid accuracy: %d", accuracy);
 
   if(pos == vel)
-    return novas_error(-1, EINVAL, fn, "identical output vectors pos = vel", accuracy);
+    return novas_error(-1, EINVAL, fn, "identical output vectors pos = vel");
 
   // ITRS
   terra(site, 0.0, pos, vel);
@@ -1094,7 +1094,7 @@ int obs_planets(double jd_tdb, enum novas_accuracy accuracy, const double *restr
  * @param pos_obs         [AU] Position 3-vector of observer (or the geocenter), with respect
  *                        to origin at solar system barycenter, referred to ICRS axes.
  * @param tlight0         [day] First approximation to light-time (can be set to 0.0 if not
- *                        readily avasilable -- so it will be calculated as needed).
+ *                        readily available -- so it will be calculated as needed).
  * @param accuracy        NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
  * @param[out] p_src_obs  [AU] Position 3-vector of body, relative to observer, referred to ICRS
  *                        axes, components in AU.
@@ -1180,7 +1180,7 @@ int light_time2(double jd_tdb, const object *restrict body, const double *restri
  *                            as either of the inputs.
  * @param[out] tlight [day] Calculated light time
  *
- * @return            0 if successful, -1 if any of the poiinter arguments is NULL, 1 if the
+ * @return            0 if successful, -1 if any of the pointer arguments is NULL, 1 if the
  *                    algorithm failed to converge after 10 iterations, or 10 + the error from
  *                    ephemeris().
  *
@@ -1277,7 +1277,7 @@ int novas_set_default_weather(on_surface *site) {
  *                        The _u_, and _v_ coordinates are aligned with the local East and
  *                        North directions in the system, in which the coordinates were
  *                        specified.
- * @return                0 if succcessful or else -1 if the station position or phase center is
+ * @return                0 if successful or else -1 if the station position or phase center is
  *                        NULL (errno will be set to EINVAL).
  *
  * @since 1.6
@@ -1355,7 +1355,7 @@ int novas_uvw(const double *restrict station_pos, const double *restrict station
  * @param[out] uvw            [m] output _u_, _v_, _w_ coordinates, relative to geocenter, the
  *                            _u_, and _v_ coordinates are aligned with the local East and
  *                            North directions in the GCRS.
- * @return                    0 if succcessful or else -1 if any of the pointer arguments are NULL
+ * @return                    0 if successful or else -1 if any of the pointer arguments are NULL
  *                            or if the accuracy is invalid (errno will be set to EINVAL).
  * @since 1.6
  * @author Attila Kovacs

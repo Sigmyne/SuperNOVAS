@@ -393,7 +393,7 @@ int place_star(double jd_tt, const cat_entry *restrict star, const observer *res
  * @param[out] dec  [deg] Topocentric declination in degrees, referred to true equator and equinox
  *                  of date 'jd_tt' or NAN when returning with an error code. (It may be NULL if
  *                  not required)
- * @param[out] rv   [AU/day] radial velocity relative ot observer, or NAN when returning with an
+ * @param[out] rv   [km/s] radial velocity relative ot observer, or NAN when returning with an
  *                  error code. (It may be NULL if not required)
  * @return          0 if successful, -1 if a required pointer argument is NULL, or else 20 + the
  *                  error from place_star().
@@ -463,7 +463,7 @@ int radec_star(double jd_tt, const cat_entry *restrict star, const observer *res
  *                  code. (It may be NULL if not required)
  * @param[out] dis  [AU] True distance from Earth to the body at 'jd_tt' in AU, or NAN when
  *                  returning with an error code. (It may be NULL if not needed).
- * @param[out] rv   [AU/day] radial velocity relative ot observer, or NAN when returning with
+ * @param[out] rv   [km/s] radial velocity relative ot observer, or NAN when returning with
  *                  an error code. (It may be NULL if not required)
  * @return          0 if successful, or -1 if the object argument is NULL or if
  *                  the value of 'where' in structure 'location' is invalid, or 10 + the
@@ -847,7 +847,7 @@ short topo_star(double jd_tt, double ut1_to_tt, const cat_entry *restrict star, 
  * @param accuracy  NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
  * @param[out] ra   [h] Local apparent right ascension, referred to the GCRS (it may be NULL if
  *                  not required).
- * @param[out] dec  [deg] Local apparent right ascension, referred to the GCRS (it may be NULL if
+ * @param[out] dec  [deg] Local apparent declination, referred to the GCRS (it may be NULL if
  *                  not required).
  * @return          0 if successful, or -1 if any of the required pointer arguments is NULL, or
  *                  else 20 + the error from place().
@@ -943,7 +943,7 @@ short topo_planet(double jd_tt, const object *restrict ss_body, double ut1_to_tt
  * @param accuracy  NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
  * @param[out] ra   [h] Local apparent right ascension, referred to the GCRS (it may be NULL if
  *                  not required).
- * @param[out] dec  [deg] Local apparent right ascension, referred to the GCRS (it may be NULL
+ * @param[out] dec  [deg] Local apparent declination, referred to the GCRS (it may be NULL
  *                  if not required).
  * @param[out] dis  [AU] Apparent distance from Earth to the body at 'jd_tt' (it may be NULL if
  *                  not required).

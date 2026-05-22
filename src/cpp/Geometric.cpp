@@ -36,9 +36,9 @@ Geometric::Geometric(const Frame& frame, const Position& p, const Velocity& v, e
   else if((unsigned) system >= NOVAS_REFERENCE_SYSTEMS)
     novas_set_errno(EINVAL, fn, "input reference_system is invalid: %d", system);
   else if(!p.is_valid())
-    novas_set_errno(EINVAL, fn, "input position contains NAN coponent(s)");
+    novas_set_errno(EINVAL, fn, "input position contains NAN component(s)");
   else if(!v.is_valid())
-    novas_set_errno(EINVAL, fn, "input velocity contains NAN coponent(s)");
+    novas_set_errno(EINVAL, fn, "input velocity contains NAN component(s)");
   else
     _valid = true;
 }
@@ -113,7 +113,7 @@ const Velocity& Geometric::velocity() const {
 /**
  * Returns the geometric distance.
  *
- * @return    the geoemtric distance.
+ * @return    the geometric distance.
  *
  * @since 1.6
  */
@@ -123,7 +123,7 @@ Coordinate Geometric::distance() const {
 
 /**
  * Returns the geometric equatorial coordinates, in the system in which the geometric positions
- * and velocities were defined. Note, that these coordinates are phyisical, and not what an observer
+ * and velocities were defined. Note, that these coordinates are physical, and not what an observer
  * would perceive at the time of observation, because:
  *
  *  - they are not corrected for aberration for a moving observer.

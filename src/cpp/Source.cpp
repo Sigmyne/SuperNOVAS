@@ -222,7 +222,7 @@ Geometric Source::geometric_in(const Frame& frame, enum novas_reference_system s
  * Returns the time when the source rises above the specified elevation next for an observer
  * located on or near Earth's surface, or else an undefined (invalid) time if the observer is not
  * near Earth's surface. The returned value may also be NAN if the source does not cross the
- * specified elevation theshold within a day of the specified time of observation.
+ * specified elevation threshold within a day of the specified time of observation.
  *
  * @param el        elevation threshold angle
  * @param frame     observing frame (observer location and the lower bound for the returned time).
@@ -266,7 +266,7 @@ Time Source::transits_in(const Frame &frame) const {
  * Returns the time when the source sets below the specified elevation next for an observer
  * located on or near Earth's surface, or else an undefined (invalid) time if the observer is not
  * near Earth's surface. The returned value may also be NAN if the source does not cross the
- * specified elevation theshold within a day of the specified time of observation.
+ * specified elevation threshold within a day of the specified time of observation.
  *
  * @param el        elevation threshold angle
  * @param frame     observing frame (observer location and the lower bound for the returned time).

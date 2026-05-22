@@ -880,14 +880,14 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
  * implicit in function precession().
  *
  * @param option      Type of transformation
- * @param jd_tt_in    [day|yr] Terrestrial Time (TT) based Julian date, or year, of input catalog
- *                    data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000
- *                    (5).
+ * @param jd_tt_in    [day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else year
+ *                    (if &lt;10000), of input catalog data. Not used if option is
+ *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
  * @param in          An entry from the input catalog, with units as given in the struct
  *                    definition
- * @param jd_tt_out   [day|yr] Terrestrial Time (TT) based Julian date, or year, of output catalog
- *                    data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000
- *                    (5).
+ * @param jd_tt_out   [day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else year
+ *                    (if &lt;10000) of output catalog data. Not used if option is
+ *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
  * @param out_id      Catalog identifier (0 terminated). It may also be NULL in which case the
  *                    catalog name is inherited from the input.
  * @param[out] out    The transformed catalog entry, with units as given in the struct definition.

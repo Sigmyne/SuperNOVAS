@@ -162,7 +162,7 @@ double unredshift_vrad(double vrad, double z) {
  *
  * @param z1    One of the redshift values
  * @param z2    The other redshift value
- * @return      The compound redshift value, ot NAN if either input redshift is invalid (errno
+ * @return      The compound redshift value, or NAN if either input redshift is invalid (errno
  *              will be set to EINVAL).
  *
  * @since 1.2
@@ -274,10 +274,10 @@ double novas_lsr_to_ssb_vel(double epoch, double ra, double dec, double vLSR) {
  *                  E.g. 2000.0.
  * @param ra        [h] Right-ascenscion of source at given epoch.
  * @param dec       [deg] Declination of source at given epoch.
- * @param vLSR      [km/s] radial velocity defined against the Local Standard of Rest (LSR), at
+ * @param v_SSB     [km/s] radial velocity defined against the Solar System Barycenter (SSB), at
  *                  given epoch.
  *
- * @return          [km/s] Equivalent Solar-System Barycentric radial velocity.
+ * @return          [km/s] Equivalent radial velocity defined against the Local Standard of Rest (LSR).
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -285,14 +285,14 @@ double novas_lsr_to_ssb_vel(double epoch, double ra, double dec, double vLSR) {
  * @sa novas_lsr_to_ssb_vel(), make_cat_entry()
  * @sa novas_str_hours(), novas_str_degrees()
  */
-double novas_ssb_to_lsr_vel(double epoch, double ra, double dec, double vLSR) {
+double novas_ssb_to_lsr_vel(double epoch, double ra, double dec, double v_SSB) {
   double u[3] = {0.0}, v[3];
   double jd = NOVAS_JD_J2000 + NOVAS_JULIAN_YEAR_DAYS * (epoch - 2000.0);
   int i;
 
   radec2vector(ra, dec, 1.0, u);
   for(i = 3; --i >= 0;)
-    v[i] = vLSR * u[i];
+    v[i] = v_SSB * u[i];
 
   precession(jd, v, NOVAS_JD_J2000, v);
   convert_lsr_ssb_vel(v, 1, v);
@@ -392,7 +392,7 @@ int rad_vel(const object *restrict source, const double *restrict pos_src, const
   int stat;
 
   if(!rv)
-    return novas_error(-1, EINVAL, fn, "NULL input source");
+    return novas_error(-1, EINVAL, fn, "NULL output radial velocity");
 
   *rv = rad_vel2(source, pos_src, vel_src, pos_src, vel_obs, d_obs_geo, d_obs_sun, d_src_sun);
   stat = isnan(*rv) ? -1 : 0;

@@ -97,7 +97,7 @@ Frame::Frame(const Observer& obs, const Time& time, enum novas_accuracy accuracy
 }
 
 /**
- * Custom copy contructor, that points to a copy of the observer.
+ * Custom copy constructor, that points to a copy of the observer.
  *
  * @param frame   the frame to be copied.
  *
@@ -173,7 +173,7 @@ bool Frame::operator==(const Frame& other) const {
 }
 
 /**
- * Checks if this observing frame differes from another, given typical tolerances. Same as `!equals()`.
+ * Checks if this observing frame differs from another, given typical tolerances. Same as `!equals()`.
  *
  * @param other   the other observing frame
  * @return        `true` if this frame and the argument describe essentially the same observing
@@ -199,7 +199,7 @@ const novas_frame * Frame::_novas_frame() const {
 }
 
 /**
- * Returns the accuracy type of this bserving frame.
+ * Returns the accuracy type of this observing frame.
  *
  * @return    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1).
  *
@@ -274,7 +274,7 @@ double Frame::jd(enum novas_timescale timescale) const {
  *
  * d&tau;<sub>obs</sub> / dt<sub>timescale</sub> = (1 + _D_)
  *
- * The instantaneous difference in clock rate includes tiny diurnal or orbital variationd for
+ * The instantaneous difference in clock rate includes tiny diurnal or orbital variations for
  * Earth-bound observers as the they cycle through the tidal potential around the geocenter
  * (mainly due to the Sun and Moon). For a closer match to Earth-based timescales (TCG, TT, TAI,
  * GPS, or UTC) you may want to exclude the periodic tidal effects and calculate the averaged
@@ -286,7 +286,7 @@ double Frame::jd(enum novas_timescale timescale) const {
  *
  * NOTES:
  *
- *  1. Based on the IERS Conventions 2010, Chapter 10, Eqa. 10.6 / 10.8 but also including the
+ *  1. Based on the IERS Conventions 2010, Chapter 10, Eqs. 10.6 / 10.8 but also including the
  *     near-Earth tidal effects, and modified for relativistic observer motion.
  *
  *  2. The potential for an observer inside 0.9 planet radii of a major Solar-system body's center

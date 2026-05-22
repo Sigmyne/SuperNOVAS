@@ -44,7 +44,7 @@
  * @param month     [month] Calendar month [1:12]
  * @param day       [day] Day of month [1:31]
  * @param hour      [hr] Hour of day [0:24]
- * @return          [day] the fractional Julian day for the input calendar date, ot NAN if the
+ * @return          [day] the fractional Julian day for the input calendar date, or NAN if the
  *                  calendar is invalid or the month or day components are out of range.
  *
  * @author Attila Kovacs

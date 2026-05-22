@@ -147,7 +147,7 @@ bool Observer::operator!=(const Observer& other) const {
  *
  * @param time      Astrometric time of observation
  * @param accuracy  (optional) NOVAS_FULL_ACCYRACY (default) or NOVAS_REDUCED_ACCURACY
- * @return          An observing frame, which may be invaliud if a valid observing frame
+ * @return          An observing frame, which may be invalid if a valid observing frame
  *                  could not be created with the accuracy, for example because no high
  *                  accuracy planetary position provider was specified, or because either this
  *                  observer or the time itself were invalid. The caller should typically
