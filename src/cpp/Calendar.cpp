@@ -32,7 +32,7 @@ namespace supernovas {
  *                  calendar before the reform. The Gregorian calendar can be used also for dates
  *                  that precede the calendar reform, for so called proleptic Gregorian dates.
  *                  Accordingly, ISO 8601 timestamps are always expressed in the Gregorian
- *                  calendar, withour exception.
+ *                  calendar, without exception.
  *
  * @since 1.6
  */
@@ -496,7 +496,7 @@ int CalendarDate::day_of_week() const {
 }
 
 /**
- * Returns the time-of-dat component of this calendar date.
+ * Returns the time-of-date component of this calendar date.
  *
  * @return    reference to the the time of day component
  *
@@ -517,7 +517,7 @@ const TimeAngle& CalendarDate::time_of_day() const {
 const std::string& CalendarDate::month_name() const {
   static const std::string names[] = {
           "invalid",
-          "January", "February", "March", "April", "May", "June", "July", "August"
+          "January", "February", "March", "April", "May", "June", "July", "August",
           "September", "October", "November", "December"
   };
 
@@ -649,7 +649,7 @@ CalendarDate CalendarDate::operator>>(const Calendar& calendar) const {
    return d;
 }
 /**
- * Converts this calendar date to ans astronomical time representation, given the specified
+ * Converts this calendar date to and astronomical time representation, given the specified
  * Earth Orientation Parameters, and astronomical timescale. Not, that calendar dates have
  * accuracy at the 0.1 ms level only, hence the resulting astronomical time will be limited
  * to the same level of precision also.

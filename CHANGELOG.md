@@ -23,6 +23,8 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
  
  - #332: Fixed `novas_helio_dist()` heliocentric rate of recession calculation.
  
+ - #334: `CalendarDate::month_name()` returned wrong name August to December due to a missing comma.
+ 
  - Eliminated memleak in `novas_planet_for_name()`. Also, it no longer does alloc to copy input.
  
  - Fixed definition of `NOVAS_TRANSFORM_TYPES` in `novas.h`.
