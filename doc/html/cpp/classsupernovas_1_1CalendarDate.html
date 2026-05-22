@@ -173,7 +173,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a91d8d22580016798a974a97cd69505fe" id="r_a91d8d22580016798a974a97cd69505fe"><td class="memItemLeft">const std::string &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a91d8d22580016798a974a97cd69505fe">short_month_name</a> () const</td></tr>
 <tr class="memdesc:a91d8d22580016798a974a97cd69505fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the short 3-letter (English) abbreviation of the month name for this date.  <br /></td></tr>
 <tr class="memitem:a9eab7d56375ff8cd2358d49955aa369c" id="r_a9eab7d56375ff8cd2358d49955aa369c"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1TimeAngle.html">TimeAngle</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9eab7d56375ff8cd2358d49955aa369c">time_of_day</a> () const</td></tr>
-<tr class="memdesc:a9eab7d56375ff8cd2358d49955aa369c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time-of-dat component of this calendar date.  <br /></td></tr>
+<tr class="memdesc:a9eab7d56375ff8cd2358d49955aa369c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the time-of-date component of this calendar date.  <br /></td></tr>
 <tr class="memitem:a879bbc76f05f17495edf6a0db6e994b8" id="r_a879bbc76f05f17495edf6a0db6e994b8"><td class="memItemLeft">CalendarDate&#160;</td><td class="memItemRight"><a class="el" href="#a879bbc76f05f17495edf6a0db6e994b8">to_calendar</a> (const <a class="el" href="classsupernovas_1_1Calendar.html">Calendar</a> &amp;<a class="el" href="#a7a9cd91c5663da52b39af6d985b1ecf6">calendar</a>) const</td></tr>
 <tr class="memdesc:a879bbc76f05f17495edf6a0db6e994b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this date in the specified other calendar.  <br /></td></tr>
 <tr class="memitem:a24cb36d8ecbd0cce715c8df7f3cc6205" id="r_a24cb36d8ecbd0cce715c8df7f3cc6205"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a24cb36d8ecbd0cce715c8df7f3cc6205">to_date_string</a> (enum <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4">novas_date_format</a> fmt=<a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab4320d2be90ff55e278e6171f6516bab">NOVAS_YMD</a>) const</td></tr>
@@ -187,7 +187,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeaf96a71d76a05250a4d9f4d1112a49a" id="r_aeaf96a71d76a05250a4d9f4d1112a49a"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="#aeaf96a71d76a05250a4d9f4d1112a49a">to_time</a> (const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;eop=<a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f">EOP::undefined</a>(), <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale=<a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>) const</td></tr>
 <tr class="memdesc:aeaf96a71d76a05250a4d9f4d1112a49a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts this calendar date to ans astronomical time representation, given the specified Earth Orientation Parameters, and astronomical timescale.  <br /></td></tr>
 <tr class="memitem:a244dcacb5dda6dae7e674dc5a61dfa88" id="r_a244dcacb5dda6dae7e674dc5a61dfa88"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Time.html">Time</a>&#160;</td><td class="memItemRight"><a class="el" href="#a244dcacb5dda6dae7e674dc5a61dfa88">to_time</a> (int leap_seconds, double dut1, <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a> timescale=<a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0ba01787464888b92c37b8340174c03cc8d">NOVAS_UTC</a>) const</td></tr>
-<tr class="memdesc:a244dcacb5dda6dae7e674dc5a61dfa88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts this calendar date to ans astronomical time representation, given the specified Earth Orientation Parameters, and astronomical timescale.  <br /></td></tr>
+<tr class="memdesc:a244dcacb5dda6dae7e674dc5a61dfa88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts this calendar date to and astronomical time representation, given the specified Earth Orientation Parameters, and astronomical timescale.  <br /></td></tr>
 <tr class="memitem:a776056f48ef548d8bb613932fe2647d8" id="r_a776056f48ef548d8bb613932fe2647d8"><td class="memItemLeft">time_t&#160;</td><td class="memItemRight"><a class="el" href="#a776056f48ef548d8bb613932fe2647d8">unix_time</a> () const</td></tr>
 <tr class="memdesc:a776056f48ef548d8bb613932fe2647d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the UNIX time for this calendar date.  <br /></td></tr>
 <tr class="memitem:ae5e159bc329f7d8c9b22341090f51aec" id="r_ae5e159bc329f7d8c9b22341090f51aec"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae5e159bc329f7d8c9b22341090f51aec">year</a> () const</td></tr>
@@ -329,7 +329,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if the argument is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae5e159bc329f7d8c9b22341090f51aec" title="Returns the calendar year component of this date.">year()</a>, <a class="el" href="#a2f74beecedf39fcb12f82a1c82a4ba6f" title="Returns the calendar month component [1:12] of this date.">month()</a>, <a class="el" href="#a2572163948ba123f7714bf90f5954791" title="Returns the day of year number [1:366] of this date.">day_of_year()</a>, <a class="el" href="#a09996f4c0ed0df75b5838b8c7da69f8a" title="Returns the day of month component [1:32] of this date.">day_of_month()</a>, <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b" title="Returns the day of week number [1:7] of this date, starting from 1 (Monday) to 7 (Sunday).">day_of_week()</a>, <a class="el" href="#a9eab7d56375ff8cd2358d49955aa369c" title="Returns the time-of-dat component of this calendar date.">time_of_day()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae5e159bc329f7d8c9b22341090f51aec" title="Returns the calendar year component of this date.">year()</a>, <a class="el" href="#a2f74beecedf39fcb12f82a1c82a4ba6f" title="Returns the calendar month component [1:12] of this date.">month()</a>, <a class="el" href="#a2572163948ba123f7714bf90f5954791" title="Returns the day of year number [1:366] of this date.">day_of_year()</a>, <a class="el" href="#a09996f4c0ed0df75b5838b8c7da69f8a" title="Returns the day of month component [1:32] of this date.">day_of_month()</a>, <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b" title="Returns the day of week number [1:7] of this date, starting from 1 (Monday) to 7 (Sunday).">day_of_week()</a>, <a class="el" href="#a9eab7d56375ff8cd2358d49955aa369c" title="Returns the time-of-date component of this calendar date.">time_of_day()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="#ae54a26556de0a77f301f0c87a6072a6b">day_of_week()</a>, and <a class="el" href="#a2572163948ba123f7714bf90f5954791">day_of_year()</a>.</p>
 
@@ -989,7 +989,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the time-of-dat component of this calendar date. </p>
+<p>Returns the time-of-date component of this calendar date. </p>
 <dl class="section return"><dt>Returns</dt><dd>reference to the the time of day component</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
@@ -1216,7 +1216,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Converts this calendar date to ans astronomical time representation, given the specified Earth Orientation Parameters, and astronomical timescale. </p>
+<p>Converts this calendar date to and astronomical time representation, given the specified Earth Orientation Parameters, and astronomical timescale. </p>
 <p>Not, that calendar dates have accuracy at the 0.1 ms level only, hence the resulting astronomical time will be limited to the same level of precision also.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

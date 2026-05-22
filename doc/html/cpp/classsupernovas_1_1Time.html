@@ -182,7 +182,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a48044472c2ddff8f4fc6bf4cf685f814" id="r_a48044472c2ddff8f4fc6bf4cf685f814"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a48044472c2ddff8f4fc6bf4cf685f814">operator!=</a> (const Time &amp;time) const</td></tr>
 <tr class="memdesc:a48044472c2ddff8f4fc6bf4cf685f814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this time instance differs from another time by more than 1 &mu;s.  <br /></td></tr>
 <tr class="memitem:a5096d16f533ea92676e37ad9f1d744b8" id="r_a5096d16f533ea92676e37ad9f1d744b8"><td class="memItemLeft">Time&#160;</td><td class="memItemRight"><a class="el" href="#a5096d16f533ea92676e37ad9f1d744b8">operator+</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;delta) const</td></tr>
-<tr class="memdesc:a5096d16f533ea92676e37ad9f1d744b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an offset time in the backward direction.  <br /></td></tr>
+<tr class="memdesc:a5096d16f533ea92676e37ad9f1d744b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an offset time in the forward direction.  <br /></td></tr>
 <tr class="memitem:a17d1989661278f8fea2072b3219d4583" id="r_a17d1989661278f8fea2072b3219d4583"><td class="memItemLeft">Time&#160;</td><td class="memItemRight"><a class="el" href="#a17d1989661278f8fea2072b3219d4583">operator+</a> (double seconds) const</td></tr>
 <tr class="memdesc:a17d1989661278f8fea2072b3219d4583"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an offset time.  <br /></td></tr>
 <tr class="memitem:a1705c26da3530ffcd6d42a8f7caa4652" id="r_a1705c26da3530ffcd6d42a8f7caa4652"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Interval.html">Interval</a>&#160;</td><td class="memItemRight"><a class="el" href="#a1705c26da3530ffcd6d42a8f7caa4652">operator-</a> (const <a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a> &amp;other) const</td></tr>
@@ -1682,11 +1682,11 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns an offset time in the backward direction. </p>
+<p>Returns an offset time in the forward direction. </p>
 <p>It assumes that the leap seconds and UT1 - UTC time difference of this time instance is also valid for the offset time, which should be true typically for reasonably small time offsets.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">offset</td><td>the offset interval (in backwards direction). </td></tr>
+    <tr><td class="paramname">offset</td><td>the offset interval (in forward direction). </td></tr>
   </table>
   </dd>
 </dl>
@@ -1721,7 +1721,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a new time that is offset from this one by the specified interval in the reverse direction (backwards in time).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>a new time that is offset from this one by the specified interval in the forward direction.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a17d1989661278f8fea2072b3219d4583" title="Returns an offset time.">operator+()</a>, <a class="el" href="#afb780ba361ceb3fa054c90de435d560f" title="Returns an offset time.">shifted()</a> </dd></dl>
 
