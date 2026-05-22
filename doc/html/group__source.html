@@ -2829,9 +2829,9 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">option</td><td>Type of transformation </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">jd_tt_in</td><td>[day|yr] Terrestrial Time (TT) based Julian date, or year, of input catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">jd_tt_in</td><td>[day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else year (if &lt;10000), of input catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a></td><td>An entry from the input catalog, with units as given in the struct definition </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">jd_tt_out</td><td>[day|yr] Terrestrial Time (TT) based Julian date, or year, of output catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">jd_tt_out</td><td>[day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else year (if &lt;10000) of output catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">out_id</td><td>Catalog identifier (0 terminated). It may also be NULL in which case the catalog name is inherited from the input. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a></td><td>The transformed catalog entry, with units as given in the struct definition. It may be the same as the input. </td></tr>
   </table>

@@ -1,7 +1,7 @@
 var spectral_8c =
 [
     [ "novas_lsr_to_ssb_vel", "spectral_8c.html#aad80bf94be2efc36c340994829df8207", null ],
-    [ "novas_ssb_to_lsr_vel", "spectral_8c.html#a99ed25baa029f3980924da8c8af54d1a", null ],
+    [ "novas_ssb_to_lsr_vel", "spectral_8c.html#af10de7da246bf23a731adb6e7ada76ff", null ],
     [ "novas_v2z", "spectral_8c.html#aa54cd00024b294d38fa29433c017c65f", null ],
     [ "novas_z2v", "spectral_8c.html#a63621cea3b4985c1bfcc4514a7aa3fb1", null ],
     [ "novas_z_add", "spectral_8c.html#a493ab751eee5804db77157c37e94e5c3", null ],

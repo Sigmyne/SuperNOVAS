@@ -7304,7 +7304,7 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if any of the poiinter arguments is NULL, 1 if the algorithm failed to converge after 10 iterations, or 10 + the error from <a class="el" href="#a713982e1f2bae0a72b39d03007f00d23" title="Retrieves the position and velocity of a solar system body using the currently configured plugins tha...">ephemeris()</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if any of the pointer arguments is NULL, 1 if the algorithm failed to converge after 10 iterations, or 10 + the error from <a class="el" href="#a713982e1f2bae0a72b39d03007f00d23" title="Retrieves the position and velocity of a solar system body using the currently configured plugins tha...">ephemeris()</a>.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="observer_8c.html#a5c940b62732d74e6c6b1c844931aaa76" title="Computes the geocentric position and velocity of a solar system body, as antedated for light-time.">light_time2()</a>, <a class="el" href="#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="observer_8c.html#a5c940b62732d74e6c6b1c844931aaa76">light_time2()</a>.</p>
@@ -7371,7 +7371,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">jd_tdb</td><td>[day] Barycentric Dynamical Time (TDB) based Julian date </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">body</td><td>Pointer to structure containing the designation for the solar system body </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_obs</td><td>[AU] Position 3-vector of observer (or the geocenter), with respect to origin at solar system barycenter, referred to ICRS axes. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">tlight0</td><td>[day] First approximation to light-time (can be set to 0.0 if not readily avasilable &ndash; so it will be calculated as needed). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">tlight0</td><td>[day] First approximation to light-time (can be set to 0.0 if not readily available &ndash; so it will be calculated as needed). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">p_src_obs</td><td>[AU] Position 3-vector of body, relative to observer, referred to ICRS axes, components in AU. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">v_ssb</td><td>[AU/day] Velocity 3-vector of body, with respect to the Solar-system barycenter, referred to ICRS axes. </td></tr>
@@ -12022,7 +12022,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[day] the fractional Julian day for the input calendar date, ot NAN if the calendar is invalid or the month or day components are out of range.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[day] the fractional Julian day for the input calendar date, or NAN if the calendar is invalid or the month or day components are out of range.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="calendar_8c.html#a8ed2fb55bcf86d9f1f434a2f832356a2" title="This function will compute a broken down date on the specified calendar for given the Julian day inpu...">novas_jd_to_date()</a>, <a class="el" href="#ae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a> </dd></dl>
@@ -12200,7 +12200,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <dl class="section return"><dt>Returns</dt><dd>[km/s] Equivalent Solar-System Barycentric radial velocity.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="spectral_8c.html#a99ed25baa029f3980924da8c8af54d1a" title="Returns a radial-velocity referenced to the Local Standard of Rest (LSR) for a given Solar-System Bar...">novas_ssb_to_lsr_vel()</a>, <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="spectral_8c.html#af10de7da246bf23a731adb6e7ada76ff" title="Returns a radial-velocity referenced to the Local Standard of Rest (LSR) for a given Solar-System Bar...">novas_ssb_to_lsr_vel()</a>, <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
 <dd>
 <a class="el" href="#a3ed26b6af870f6dbc353f651563afd4a" title="Returns a time or time-like angleparsed from a string that contains either a decimal hours or else a ...">novas_str_hours()</a>, <a class="el" href="#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> </dd></dl>
 
@@ -14579,7 +14579,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if succcessful or else -1 if any of the pointer arguments are NULL or if the accuracy is invalid (errno will be set to EINVAL). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful or else -1 if any of the pointer arguments are NULL or if the accuracy is invalid (errno will be set to EINVAL). </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="observer_8c.html#a81f4b147c3f132a1498cdd833042d804" title="Returns u,v,w coordinates for a space-based interferometer station.">novas_uvw()</a> </dd></dl>
@@ -14747,7 +14747,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>vLSR</em></span>&#160;)</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>v_SSB</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -14764,11 +14764,11 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
     <tr><td class="paramname">epoch</td><td>[yr] Coordinate epoch in which the coordinates and velocities are defined. E.g. 2000.0. </td></tr>
     <tr><td class="paramname">ra</td><td>[h] Right-ascenscion of source at given epoch. </td></tr>
     <tr><td class="paramname">dec</td><td>[deg] Declination of source at given epoch. </td></tr>
-    <tr><td class="paramname">vLSR</td><td>[km/s] radial velocity defined against the Local Standard of Rest (LSR), at given epoch.</td></tr>
+    <tr><td class="paramname">v_SSB</td><td>[km/s] radial velocity defined against the Solar System Barycenter (SSB), at given epoch.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[km/s] Equivalent Solar-System Barycentric radial velocity.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[km/s] Equivalent radial velocity defined against the Local Standard of Rest (LSR).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="spectral_8c.html#aad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a>, <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
@@ -15461,7 +15461,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if succcessful or else -1 if the station position or phase center is NULL (errno will be set to EINVAL).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful or else -1 if the station position or phase center is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="observer_8c.html#aa75f22539fa6135b64f5026c6e1fcba1" title="Returns geocentric u,v,w coordinates for a ground-based interferometer station.">novas_site_uvw()</a> </dd></dl>
@@ -15722,7 +15722,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The compound redshift value, ot NAN if either input redshift is invalid (errno will be set to EINVAL).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The compound redshift value, or NAN if either input redshift is invalid (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3ce6b306bc183387d0aaac97abbd82e8" title="Returns the gravitational redshift (z) for light emitted near a massive spherical body at some distan...">grav_redshift()</a>, <a class="el" href="spectral_8c.html#af56088995d42a0673e03bca1f3891544" title="Applies an incremental redshift correction to a radial velocity.">redshift_vrad()</a>, <a class="el" href="spectral_8c.html#aea89203030ca831260dec18f83081d23" title="Undoes an incremental redshift correction that was applied to radial velocity.">unredshift_vrad()</a> </dd></dl>
@@ -17155,7 +17155,7 @@ solarsystem_hp() </dd></dl>
     <tr><td class="paramdir">[out]</td><td class="paramname">ra</td><td>[h] Topocentric apparent right ascension in hours, referred to the true equator and equinox of date, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dec</td><td>[deg] Topocentric apparent declination in degrees referred to the true equator and equinox of date, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dis</td><td>[AU] True distance from Earth to the body at 'jd_tt' in AU, or NAN when returning with an error code. (It may be NULL if not needed). </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">rv</td><td>[AU/day] radial velocity relative ot observer, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">rv</td><td>[km/s] radial velocity relative ot observer, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
   </table>
   </dd>
 </dl>
@@ -17244,7 +17244,7 @@ solarsystem_hp() </dd></dl>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">ra</td><td>[h] Topocentric right ascension in hours, referred to true equator and equinox of date 'jd_tt' or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dec</td><td>[deg] Topocentric declination in degrees, referred to true equator and equinox of date 'jd_tt' or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">rv</td><td>[AU/day] radial velocity relative ot observer, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">rv</td><td>[km/s] radial velocity relative ot observer, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
   </table>
   </dd>
 </dl>
@@ -17890,9 +17890,9 @@ solarsystem_hp() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">option</td><td>Type of transformation </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">jd_tt_in</td><td>[day|yr] Terrestrial Time (TT) based Julian date, or year, of input catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">jd_tt_in</td><td>[day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else year (if &lt;10000), of input catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">in</td><td>An entry from the input catalog, with units as given in the struct definition </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">jd_tt_out</td><td>[day|yr] Terrestrial Time (TT) based Julian date, or year, of output catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">jd_tt_out</td><td>[day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else year (if &lt;10000) of output catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">out_id</td><td>Catalog identifier (0 terminated). It may also be NULL in which case the catalog name is inherited from the input. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>The transformed catalog entry, with units as given in the struct definition. It may be the same as the input. </td></tr>
   </table>

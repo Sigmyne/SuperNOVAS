@@ -122,14 +122,14 @@ $(function(){initNavTree('classsupernovas_1_1Frame.html','','classsupernovas_1_1
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a074fa6f8c669da6f40f7a885d39af88e" id="r_a074fa6f8c669da6f40f7a885d39af88e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a074fa6f8c669da6f40f7a885d39af88e">Frame</a> (const Frame &amp;frame)</td></tr>
-<tr class="memdesc:a074fa6f8c669da6f40f7a885d39af88e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom copy contructor, that points to a copy of the observer.  <br /></td></tr>
+<tr class="memdesc:a074fa6f8c669da6f40f7a885d39af88e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom copy constructor, that points to a copy of the observer.  <br /></td></tr>
 <tr class="memitem:a045f690bf158d04c8f77c8b049b0ef50" id="r_a045f690bf158d04c8f77c8b049b0ef50"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a045f690bf158d04c8f77c8b049b0ef50">Frame</a> (const <a class="el" href="classsupernovas_1_1Observer.html">Observer</a> &amp;obs, const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;<a class="el" href="#ad6eb32c4b1cf68e839d6257ad1933d4a">time</a>, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> <a class="el" href="#a662b8d1698620c98076d66c08d5ce00f">accuracy</a>=<a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, const <a class="el" href="classsupernovas_1_1EOP.html">EOP</a> &amp;<a class="el" href="#aec03822a46bbd6c686285ab718cb61b3">eop</a>=<a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f">EOP::undefined</a>())</td></tr>
 <tr class="memdesc:a045f690bf158d04c8f77c8b049b0ef50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new observer frame, given the observer location and time of observation, and optionally the required accuracy.  <br /></td></tr>
 <tr class="memitem:a4f1ae334ec980c176ffa2ecc30a61180" id="r_a4f1ae334ec980c176ffa2ecc30a61180"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4f1ae334ec980c176ffa2ecc30a61180">~Frame</a> ()</td></tr>
 <tr class="memitem:a4e10de68f7acb16e4aa067101808ad98" id="r_a4e10de68f7acb16e4aa067101808ad98"><td class="memItemLeft">const <a class="el" href="structnovas__frame.html">novas_frame</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a4e10de68f7acb16e4aa067101808ad98">_novas_frame</a> () const</td></tr>
 <tr class="memdesc:a4e10de68f7acb16e4aa067101808ad98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the pointer to the underlying C data structure of this observing frame.  <br /></td></tr>
 <tr class="memitem:a662b8d1698620c98076d66c08d5ce00f" id="r_a662b8d1698620c98076d66c08d5ce00f"><td class="memItemLeft">enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a>&#160;</td><td class="memItemRight"><a class="el" href="#a662b8d1698620c98076d66c08d5ce00f">accuracy</a> () const</td></tr>
-<tr class="memdesc:a662b8d1698620c98076d66c08d5ce00f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the accuracy type of this bserving frame.  <br /></td></tr>
+<tr class="memdesc:a662b8d1698620c98076d66c08d5ce00f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the accuracy type of this observing frame.  <br /></td></tr>
 <tr class="memitem:ga1c1afd88b17a269740a4d5c8b7eb36ee" id="r_ga1c1afd88b17a269740a4d5c8b7eb36ee"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Apparent.html">Apparent</a>&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#ga1c1afd88b17a269740a4d5c8b7eb36ee">apparent_moon_elp2000</a> (double limit_term=0.0) const</td></tr>
 <tr class="memdesc:ga1c1afd88b17a269740a4d5c8b7eb36ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Moon's apparent position using the ELP/MPP02 model by Chapront &amp; Francou (2003) down to the specified limiting term amplitude.  <br /></td></tr>
 <tr class="memitem:affba920b8a7ddee76b4477ea2d36ced5" id="r_affba920b8a7ddee76b4477ea2d36ced5"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#affba920b8a7ddee76b4477ea2d36ced5">clock_skew</a> (enum <a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b">novas_timescale</a>=<a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baadb0d1437b46022bca75d4e7ab0542c7">NOVAS_TT</a>) const</td></tr>
@@ -151,7 +151,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a69b96ff286c84d7f6f1a5f303b075253" id="r_a69b96ff286c84d7f6f1a5f303b075253"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#a69b96ff286c84d7f6f1a5f303b075253">observer_ssb_velocity</a> () const</td></tr>
 <tr class="memdesc:a69b96ff286c84d7f6f1a5f303b075253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the observer's ICRS velocity relative to the Solar System Barycenter (SSB).  <br /></td></tr>
 <tr class="memitem:a684085bcaf241bf029fbe8e564c43931" id="r_a684085bcaf241bf029fbe8e564c43931"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a684085bcaf241bf029fbe8e564c43931">operator!=</a> (const Frame &amp;other) const</td></tr>
-<tr class="memdesc:a684085bcaf241bf029fbe8e564c43931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this observing frame differes from another, given typical tolerances.  <br /></td></tr>
+<tr class="memdesc:a684085bcaf241bf029fbe8e564c43931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this observing frame differs from another, given typical tolerances.  <br /></td></tr>
 <tr class="memitem:ab704a402e50378dd391b5a2842323df1" id="r_ab704a402e50378dd391b5a2842323df1"><td class="memItemLeft">Frame &amp;&#160;</td><td class="memItemRight"><a class="el" href="#ab704a402e50378dd391b5a2842323df1">operator=</a> (const Frame &amp;frame)</td></tr>
 <tr class="memdesc:ab704a402e50378dd391b5a2842323df1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom copy-assignment operator, which updates the observer pointer to a copy of the original frame's observer.  <br /></td></tr>
 <tr class="memitem:ac728d32761f858eb463a27646bd77c95" id="r_ac728d32761f858eb463a27646bd77c95"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac728d32761f858eb463a27646bd77c95">operator==</a> (const Frame &amp;other) const</td></tr>
@@ -244,7 +244,7 @@ Additional Inherited Members</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">obs</td><td>observer location </td></tr>
     <tr><td class="paramname"><a class="el" href="#ad6eb32c4b1cf68e839d6257ad1933d4a" title="Returns the astrometric time of observation of this observing frame.">time</a></td><td>time of observation </td></tr>
-    <tr><td class="paramname"><a class="el" href="#a662b8d1698620c98076d66c08d5ce00f" title="Returns the accuracy type of this bserving frame.">accuracy</a></td><td>(optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY. </td></tr>
+    <tr><td class="paramname"><a class="el" href="#a662b8d1698620c98076d66c08d5ce00f" title="Returns the accuracy type of this observing frame.">accuracy</a></td><td>(optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY. </td></tr>
     <tr><td class="paramname"><a class="el" href="#aec03822a46bbd6c686285ab718cb61b3" title="Returns the Earth Orientation Parameters contained in this frame.">eop</a></td><td>(optional) Earth Orientation Parameters (polar offsets) to assume for non geodetic observers. Typically, an observer that is not referenced to Earth's surface should not need <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>. However, the user may supply the polar offsets <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub> here to use in the unlikely case they want to transform geometric positions for a space-based observer to/from the Earth-fixed ITRS with sub-arcsecond level accuracy (since 1.7).</td></tr>
   </table>
   </dd>
@@ -273,7 +273,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Custom copy contructor, that points to a copy of the observer. </p>
+<p>Custom copy constructor, that points to a copy of the observer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="group__frame.html" title="Observing frames are a combination of an observer place, and a specific time of observation.">Observing frame</a></td><td>the frame to be copied.</td></tr>
@@ -350,7 +350,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the accuracy type of this bserving frame. </p>
+<p>Returns the accuracy type of this observing frame. </p>
 <dl class="section return"><dt>Returns</dt><dd>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
@@ -376,11 +376,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the instantaneous incremental rate at which the observer's clock (i.e. </p>
 <p>proper time &tau;) ticks faster than a clock in the specified timescale in this observing frame. I.e., it returns <em>D</em>, which is defined by:</p>
 <p>d&tau;<sub>obs</sub> / dt<sub>timescale</sub> = (1 + <em>D</em>)</p>
-<p>The instantaneous difference in clock rate includes tiny diurnal or orbital variationd for Earth-bound observers as the they cycle through the tidal potential around the geocenter (mainly due to the Sun and Moon). For a closer match to Earth-based timescales (TCG, TT, TAI, GPS, or UTC) you may want to exclude the periodic tidal effects and calculate the averaged observer clock rate over the geocentric cycle (see Eqs. 10.6 and 10.8 of the IERS Conventions 2010), which is provided by <span class="tt"><a class="el" href="novas_8h.html#ad2d5ef17b41a30ebca91e4c70e636acf" title="Returns the averaged incremental rate at which the observer&#39;s clock (i.e.">novas_mean_clock_skew()</a></span> instead.</p>
+<p>The instantaneous difference in clock rate includes tiny diurnal or orbital variations for Earth-bound observers as the they cycle through the tidal potential around the geocenter (mainly due to the Sun and Moon). For a closer match to Earth-based timescales (TCG, TT, TAI, GPS, or UTC) you may want to exclude the periodic tidal effects and calculate the averaged observer clock rate over the geocentric cycle (see Eqs. 10.6 and 10.8 of the IERS Conventions 2010), which is provided by <span class="tt"><a class="el" href="novas_8h.html#ad2d5ef17b41a30ebca91e4c70e636acf" title="Returns the averaged incremental rate at which the observer&#39;s clock (i.e.">novas_mean_clock_skew()</a></span> instead.</p>
 <p>For reduced accuracy frames, the result will be approximate, because the gravitational effect of the Sun and Earth alone may be accounted for.</p>
 <p>NOTES:</p>
 <ol type="1">
-<li>Based on the IERS Conventions 2010, Chapter 10, Eqa. 10.6 / 10.8 but also including the near-Earth tidal effects, and modified for relativistic observer motion.</li>
+<li>Based on the IERS Conventions 2010, Chapter 10, Eqs. 10.6 / 10.8 but also including the near-Earth tidal effects, and modified for relativistic observer motion.</li>
 <li>The potential for an observer inside 0.9 planet radii of a major Solar-system body's center will not include the term for that body in the calculation.</li>
 </ol>
 <p>REFERENCES:</p>
@@ -459,7 +459,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this frame and the argument describe essentially the same observing frame, within the typical tolerances.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac728d32761f858eb463a27646bd77c95" title="Checks if this observing frame is essentially the same as another, given typical tolerances.">operator==()</a>, <a class="el" href="#a684085bcaf241bf029fbe8e564c43931" title="Checks if this observing frame differes from another, given typical tolerances.">operator!=()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac728d32761f858eb463a27646bd77c95" title="Checks if this observing frame is essentially the same as another, given typical tolerances.">operator==()</a>, <a class="el" href="#a684085bcaf241bf029fbe8e564c43931" title="Checks if this observing frame differs from another, given typical tolerances.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#aa6e8919a917e071f67bb1d7d84fe6131">novas_equals_frame()</a>.</p>
 
@@ -624,7 +624,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if this observing frame differes from another, given typical tolerances. </p>
+<p>Checks if this observing frame differs from another, given typical tolerances. </p>
 <p>Same as <span class="tt">!equals()</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -634,7 +634,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this frame and the argument describe essentially the same observing frame, within the typical tolerances.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aeb3945779f72204681a0dd697e170eb5" title="Checks if this observing frame is essentially the same as another, given typical tolerances.">equals()</a>, <a class="el" href="#a684085bcaf241bf029fbe8e564c43931" title="Checks if this observing frame differes from another, given typical tolerances.">operator!=()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aeb3945779f72204681a0dd697e170eb5" title="Checks if this observing frame is essentially the same as another, given typical tolerances.">equals()</a>, <a class="el" href="#a684085bcaf241bf029fbe8e564c43931" title="Checks if this observing frame differs from another, given typical tolerances.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aeb3945779f72204681a0dd697e170eb5">equals()</a>.</p>
 
@@ -694,7 +694,7 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this frame and the argument describe essentially the same observing frame, within the typical tolerances.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aeb3945779f72204681a0dd697e170eb5" title="Checks if this observing frame is essentially the same as another, given typical tolerances.">equals()</a>, <a class="el" href="#a684085bcaf241bf029fbe8e564c43931" title="Checks if this observing frame differes from another, given typical tolerances.">operator!=()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aeb3945779f72204681a0dd697e170eb5" title="Checks if this observing frame is essentially the same as another, given typical tolerances.">equals()</a>, <a class="el" href="#a684085bcaf241bf029fbe8e564c43931" title="Checks if this observing frame differs from another, given typical tolerances.">operator!=()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#aeb3945779f72204681a0dd697e170eb5">equals()</a>.</p>
 

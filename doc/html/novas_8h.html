@@ -3051,7 +3051,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">position</td><td>Position of the observer </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="#ada05482d024deb9f801682907522736a">ra</a></td><td>[h] Local apparent right ascension, referred to the GCRS (it may be NULL if not required). </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Local apparent right ascension, referred to the GCRS (it may be NULL if not required). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Local apparent declination, referred to the GCRS (it may be NULL if not required). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dis</td><td>[AU] Apparent distance from Earth to the body at 'jd_tt' (it may be NULL if not required). </td></tr>
   </table>
   </dd>
@@ -3129,7 +3129,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">position</td><td>Position of the observer </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="#ada05482d024deb9f801682907522736a">ra</a></td><td>[h] Local apparent right ascension, referred to the GCRS (it may be NULL if not required). </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Local apparent right ascension, referred to the GCRS (it may be NULL if not required). </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Local apparent declination, referred to the GCRS (it may be NULL if not required). </td></tr>
   </table>
   </dd>
 </dl>
@@ -3833,7 +3833,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="#ada05482d024deb9f801682907522736a">ra</a></td><td>[h] Topocentric apparent right ascension in hours, referred to the true equator and equinox of date, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Topocentric apparent declination in degrees referred to the true equator and equinox of date, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dis</td><td>[AU] True distance from Earth to the body at 'jd_tt' in AU, or NAN when returning with an error code. (It may be NULL if not needed). </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">rv</td><td>[AU/day] radial velocity relative ot observer, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">rv</td><td>[km/s] radial velocity relative ot observer, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
   </table>
   </dd>
 </dl>
@@ -3922,7 +3922,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="#ada05482d024deb9f801682907522736a">ra</a></td><td>[h] Topocentric right ascension in hours, referred to true equator and equinox of date 'jd_tt' or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Topocentric declination in degrees, referred to true equator and equinox of date 'jd_tt' or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">rv</td><td>[AU/day] radial velocity relative ot observer, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">rv</td><td>[km/s] radial velocity relative ot observer, or NAN when returning with an error code. (It may be NULL if not required) </td></tr>
   </table>
   </dd>
 </dl>

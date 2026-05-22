@@ -111,8 +111,8 @@ $(function(){initNavTree('spectral_8c.html','',''); });
 Functions</h2></td></tr>
 <tr class="memitem:aad80bf94be2efc36c340994829df8207" id="r_aad80bf94be2efc36c340994829df8207"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#aad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel</a> (double epoch, double ra, double dec, double vLSR)</td></tr>
 <tr class="memdesc:aad80bf94be2efc36c340994829df8207"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to the Local Standard of Rest (LSR).  <br /></td></tr>
-<tr class="memitem:a99ed25baa029f3980924da8c8af54d1a" id="r_a99ed25baa029f3980924da8c8af54d1a"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel</a> (double epoch, double ra, double dec, double vLSR)</td></tr>
-<tr class="memdesc:a99ed25baa029f3980924da8c8af54d1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a radial-velocity referenced to the Local Standard of Rest (LSR) for a given Solar-System Barycentric (SSB) radial velocity.  <br /></td></tr>
+<tr class="memitem:af10de7da246bf23a731adb6e7ada76ff" id="r_af10de7da246bf23a731adb6e7ada76ff"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af10de7da246bf23a731adb6e7ada76ff">novas_ssb_to_lsr_vel</a> (double epoch, double ra, double dec, double v_SSB)</td></tr>
+<tr class="memdesc:af10de7da246bf23a731adb6e7ada76ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a radial-velocity referenced to the Local Standard of Rest (LSR) for a given Solar-System Barycentric (SSB) radial velocity.  <br /></td></tr>
 <tr class="memitem:aa54cd00024b294d38fa29433c017c65f" id="r_aa54cd00024b294d38fa29433c017c65f"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#aa54cd00024b294d38fa29433c017c65f">novas_v2z</a> (double vel)</td></tr>
 <tr class="memdesc:aa54cd00024b294d38fa29433c017c65f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a radial recession velocity to a redshift value (z = &Delta;&lambda; / &lambda;<sub>rest</sub>).  <br /></td></tr>
 <tr class="memitem:a63621cea3b4985c1bfcc4514a7aa3fb1" id="r_a63621cea3b4985c1bfcc4514a7aa3fb1"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a63621cea3b4985c1bfcc4514a7aa3fb1">novas_z2v</a> (double z)</td></tr>
@@ -188,7 +188,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[km/s] Equivalent Solar-System Barycentric radial velocity.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a99ed25baa029f3980924da8c8af54d1a" title="Returns a radial-velocity referenced to the Local Standard of Rest (LSR) for a given Solar-System Bar...">novas_ssb_to_lsr_vel()</a>, <a class="el" href="novas_8h.html#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af10de7da246bf23a731adb6e7ada76ff" title="Returns a radial-velocity referenced to the Local Standard of Rest (LSR) for a given Solar-System Bar...">novas_ssb_to_lsr_vel()</a>, <a class="el" href="novas_8h.html#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
 <dd>
 <a class="el" href="novas_8h.html#a3ed26b6af870f6dbc353f651563afd4a" title="Returns a time or time-like angleparsed from a string that contains either a decimal hours or else a ...">novas_str_hours()</a>, <a class="el" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> </dd></dl>
 
@@ -198,8 +198,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a99ed25baa029f3980924da8c8af54d1a" name="a99ed25baa029f3980924da8c8af54d1a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99ed25baa029f3980924da8c8af54d1a">&#9670;&#160;</a></span>novas_ssb_to_lsr_vel()</h2>
+<a id="af10de7da246bf23a731adb6e7ada76ff" name="af10de7da246bf23a731adb6e7ada76ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af10de7da246bf23a731adb6e7ada76ff">&#9670;&#160;</a></span>novas_ssb_to_lsr_vel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,7 +222,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>vLSR</em></span>&#160;)</td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>v_SSB</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -239,11 +239,11 @@ Functions</h2></td></tr>
     <tr><td class="paramname">epoch</td><td>[yr] Coordinate epoch in which the coordinates and velocities are defined. E.g. 2000.0. </td></tr>
     <tr><td class="paramname">ra</td><td>[h] Right-ascenscion of source at given epoch. </td></tr>
     <tr><td class="paramname">dec</td><td>[deg] Declination of source at given epoch. </td></tr>
-    <tr><td class="paramname">vLSR</td><td>[km/s] radial velocity defined against the Local Standard of Rest (LSR), at given epoch.</td></tr>
+    <tr><td class="paramname">v_SSB</td><td>[km/s] radial velocity defined against the Solar System Barycenter (SSB), at given epoch.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[km/s] Equivalent Solar-System Barycentric radial velocity.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[km/s] Equivalent radial velocity defined against the Local Standard of Rest (LSR).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a>, <a class="el" href="novas_8h.html#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
@@ -357,7 +357,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The compound redshift value, ot NAN if either input redshift is invalid (errno will be set to EINVAL).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The compound redshift value, or NAN if either input redshift is invalid (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.2 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#a3ce6b306bc183387d0aaac97abbd82e8" title="Returns the gravitational redshift (z) for light emitted near a massive spherical body at some distan...">grav_redshift()</a>, <a class="el" href="#af56088995d42a0673e03bca1f3891544" title="Applies an incremental redshift correction to a radial velocity.">redshift_vrad()</a>, <a class="el" href="#aea89203030ca831260dec18f83081d23" title="Undoes an incremental redshift correction that was applied to radial velocity.">unredshift_vrad()</a> </dd></dl>

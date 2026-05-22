@@ -407,7 +407,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if any of the poiinter arguments is NULL, 1 if the algorithm failed to converge after 10 iterations, or 10 + the error from <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23" title="Retrieves the position and velocity of a solar system body using the currently configured plugins tha...">ephemeris()</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if any of the pointer arguments is NULL, 1 if the algorithm failed to converge after 10 iterations, or 10 + the error from <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23" title="Retrieves the position and velocity of a solar system body using the currently configured plugins tha...">ephemeris()</a>.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a5c940b62732d74e6c6b1c844931aaa76" title="Computes the geocentric position and velocity of a solar system body, as antedated for light-time.">light_time2()</a>, <a class="el" href="novas_8h.html#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a5c940b62732d74e6c6b1c844931aaa76">light_time2()</a>.</p>
@@ -474,7 +474,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">jd_tdb</td><td>[day] Barycentric Dynamical Time (TDB) based Julian date </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">body</td><td>Pointer to structure containing the designation for the solar system body </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pos_obs</td><td>[AU] Position 3-vector of observer (or the geocenter), with respect to origin at solar system barycenter, referred to ICRS axes. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">tlight0</td><td>[day] First approximation to light-time (can be set to 0.0 if not readily avasilable &ndash; so it will be calculated as needed). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">tlight0</td><td>[day] First approximation to light-time (can be set to 0.0 if not readily available &ndash; so it will be calculated as needed). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">p_src_obs</td><td>[AU] Position 3-vector of body, relative to observer, referred to ICRS axes, components in AU. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">v_ssb</td><td>[AU/day] Velocity 3-vector of body, with respect to the Solar-system barycenter, referred to ICRS axes. </td></tr>
@@ -1363,7 +1363,7 @@ novas_set_weather(), <a class="el" href="novas_8h.html#a7479134485c298faa858d73e
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if succcessful or else -1 if any of the pointer arguments are NULL or if the accuracy is invalid (errno will be set to EINVAL). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful or else -1 if any of the pointer arguments are NULL or if the accuracy is invalid (errno will be set to EINVAL). </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a81f4b147c3f132a1498cdd833042d804" title="Returns u,v,w coordinates for a space-based interferometer station.">novas_uvw()</a> </dd></dl>
@@ -1413,7 +1413,7 @@ novas_set_weather(), <a class="el" href="novas_8h.html#a7479134485c298faa858d73e
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if succcessful or else -1 if the station position or phase center is NULL (errno will be set to EINVAL).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful or else -1 if the station position or phase center is NULL (errno will be set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa75f22539fa6135b64f5026c6e1fcba1" title="Returns geocentric u,v,w coordinates for a ground-based interferometer station.">novas_site_uvw()</a> </dd></dl>
