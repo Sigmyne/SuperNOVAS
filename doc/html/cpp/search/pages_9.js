@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['highlights_0',['New functionality highlights',['../index.html#autotoc_md42',1,'']]],
-  ['homebrew_20package_1',['Homebrew package',['../index.html#autotoc_md20',1,'']]]
+  ['highlights_0',['New functionality highlights',['../index.html#autotoc_md43',1,'']]],
+  ['homebrew_20package_1',['Homebrew package',['../index.html#autotoc_md21',1,'']]]
 ];

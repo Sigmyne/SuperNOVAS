@@ -461,6 +461,7 @@ Functions</h2></td></tr>
 <ol type="1">
 <li>This function expects the Earth polar wobble parameters to be defined on a per-frame basis and will not use the legacy global (undated) orientation parameters set via <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a>.</li>
 <li>The Earth orientation parameters xp, yp should be provided in the same ITRF realization as the observer location for an Earth-based observer. You can use <span class="tt"><a class="el" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to convert the EOP values as necessary.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the polar offsets is not possible. You must set <span class="tt">xp</span> and <span class="tt">yp</span> appropriately explicitly.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

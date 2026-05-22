@@ -1867,7 +1867,8 @@ Functions</h2></td></tr>
 <p>NOTES:</p>
 <ol type="1">
 <li>With MSC, this function uses the C11 standard <span class="tt">timespec_get()</span> function, which is portable. For older C standard, the POSIX only <span class="tt">clock_gettime()</span> function is used.</li>
-<li>If <b>SuperNOVAS</b> is built with the <span class="tt">NOVAS_NO_SYSTEM_CLOCK</span> option, then this function will always return an error. You may want to set the time explicitly with one of the other functions instead.</li>
+<li>If <b>SuperNOVAS</b> was built with the <span class="tt">WITHOUT_SYSTEM_CLOCK</span> preprocessor flag (or with the <span class="tt">WITHOUT_LIBC</span> build configuration option), then this function will always return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>). You may want to set the time explicitly with one of the other functions instead.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1930,6 +1931,10 @@ Functions</h2></td></tr>
 <p>Sets an astronomical time to the split Julian Date value, defined in the specified timescale. </p>
 <p>The split into the integer and fractional parts can be done in any convenient way. The highest precision is reached if the fractional part is &le; 1 day. In that case, the time may be specified to picosecond accuracy, if needed.</p>
 <p>The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is limited by the precision of <span class="tt"><a class="el" href="#ga90d5fae30728b51151c3daf355ca585b" title="Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...">tdb2tt()</a></span> implementation, to around 10 &mu;s.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+</ul>
 <p>REFERENCES:</p>
 <ol type="1">
 <li>IAU 1991, RECOMMENDATION III. XXIst General Assembly of the International Astronomical Union. Retrieved 6 June 2019.</li>
@@ -1999,6 +2004,10 @@ Functions</h2></td></tr>
 
 <p>Sets astronomical time in a specific timescale using a string specification. </p>
 <p>It is effectively just a shorthand for using <span class="tt"><a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a></span> followed by <span class="tt"><a class="el" href="#gaf4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a></span> and the error checking in-between.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the Julian Date is given </td></tr>
@@ -2056,6 +2065,10 @@ Functions</h2></td></tr>
 
 <p>Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale. </p>
 <p>The time set this way is accurate to a few &mu;s (microseconds) due to the inherent precision of the double-precision argument. For higher precision applications you may use <span class="tt"><a class="el" href="#gad47bcb1e3c5df56a0ffdf1a127e52598" title="Sets an astronomical time to the split Julian Date value, defined in the specified timescale.">novas_set_split_time()</a></span> instead, which has an inherent accuracy at the picosecond level.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the Julian Date is given </td></tr>
@@ -2115,6 +2128,10 @@ Functions</h2></td></tr>
 
 <p>Sets an astronomical time to a UNIX time value. </p>
 <p>UNIX time is defined as UTC seconds measured since 0 UTC, 1 Jan 1970 (the start of the UNIX era). Specifying time this way supports precisions to the nanoseconds level by construct. Specifying UNIX time in split seconds and nanoseconds is a common way CLIB handles precision time, e.g. with <span class="tt">struct timespec</span> and functions like <span class="tt">clock_gettime()</span> or the C11 <span class="tt">timespec_get</span> (see <span class="tt">time.h</span>).</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">unix_time</td><td>[s] UNIX time (UTC) seconds </td></tr>
@@ -2460,12 +2477,12 @@ Functions</h2></td></tr>
 <p>It has a maximum error of 10 &mu;s between 1600 and 2200.</p>
 <p>This function is wrapped by <span class="tt"><a class="el" href="#ga129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a></span>, which is typically a lot easier to use as it returns the time difference directly, which can then be used to convert time in both directions with greater ease. For example, to convert a TT-based date to a TDB-based date:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> TDB = TT + <a class="code hl_function" href="#ga129acca41760da486e1179c93cb9e86d">tt2tdb</a>(TT) / 86400.0;</div>
-<div class="ttc" id="agroup__time_html_ga129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="#ga129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:162</div></div>
+<div class="ttc" id="agroup__time_html_ga129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="#ga129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:167</div></div>
 </div><!-- fragment --><p>is equivalent to:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> dt;</div>
 <div class="line"><a class="code hl_function" href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt</a>(TT, NULL, &amp;dt);   <span class="comment">// Uses TT input so don&#39;t attempt to calculate TT here...</span></div>
 <div class="line"><span class="keywordtype">double</span> TDB = TT + dt / 86400.0;</div>
-<div class="ttc" id="agroup__time_html_ga90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:120</div></div>
+<div class="ttc" id="agroup__time_html_ga90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="#ga90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:125</div></div>
 </div><!-- fragment --><p>NOTES:</p>
 <ol type="1">
 <li>This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.</li>

@@ -34,7 +34,7 @@ var searchData=
   ['make_5fredshifted_5fobject_5fsys_31',['make_redshifted_object_sys',['../novas_8h.html#a257abae9391aec835dc2b94d9788b9f9',1,'make_redshifted_object_sys(const char *name, double ra, double dec, const char *restrict system, double z, object *source):&#160;target.c'],['../target_8c.html#a257abae9391aec835dc2b94d9788b9f9',1,'make_redshifted_object_sys(const char *name, double ra, double dec, const char *restrict system, double z, object *source):&#160;target.c']]],
   ['make_5fsolar_5fsystem_5fobserver_32',['make_solar_system_observer',['../novas_8h.html#a9c3f1a1bc3fd9ac6d211806913d2d529',1,'make_solar_system_observer(const double *sc_pos, const double *sc_vel, observer *obs):&#160;observer.c'],['../observer_8c.html#a9c3f1a1bc3fd9ac6d211806913d2d529',1,'make_solar_system_observer(const double *sc_pos, const double *sc_vel, observer *obs):&#160;observer.c']]],
   ['make_5fxyz_5fsite_33',['make_xyz_site',['../novas_8h.html#a9e3cbe310a40919ff94d2d530ffa74ee',1,'make_xyz_site(const double *restrict xyz, on_surface *restrict site):&#160;observer.c'],['../observer_8c.html#a9e3cbe310a40919ff94d2d530ffa74ee',1,'make_xyz_site(const double *restrict xyz, on_surface *restrict site):&#160;observer.c']]],
-  ['makefile_34',['Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md50',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
+  ['makefile_34',['Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
   ['mars_35',['mars',['../classsupernovas_1_1Planet.html#ac7ade8a1003570eda0b2b25d5649768a',1,'supernovas::Planet']]],
   ['mas_36',['mas',['../classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c',1,'supernovas::Unit::mas'],['../classsupernovas_1_1Angle.html#a6f8542151ca185e23be12aaac101bd0b',1,'supernovas::Angle::mas()']]],
   ['mask_37',['mask',['../structnovas__planet__bundle.html#ac0b016705e6421505f3961ed6c70c845',1,'novas_planet_bundle']]],
@@ -59,12 +59,12 @@ var searchData=
   ['mod_56',['mod',['../classsupernovas_1_1Equinox.html#adfef9ebd870cdb45547b91afb34dd7ef',1,'supernovas::Equinox::mod(double jd_tt)'],['../classsupernovas_1_1Equinox.html#aacad3ee3ea5fa096d555333fdbfd09f9',1,'supernovas::Equinox::mod(const Time &amp;time)']]],
   ['mod_5fat_5fbesselian_5fepoch_57',['mod_at_besselian_epoch',['../classsupernovas_1_1Equinox.html#adcf12113ffc8c7ccd8776d33adcb0c36',1,'supernovas::Equinox']]],
   ['mod_5fto_5fgcrs_58',['mod_to_gcrs',['../novas_8h.html#ad9cc07f0e6af9339096e15a440b113e5',1,'mod_to_gcrs(double jd_tdb, const double *in, double *out):&#160;transform.c'],['../transform_8c.html#ad9cc07f0e6af9339096e15a440b113e5',1,'mod_to_gcrs(double jd_tdb, const double *in, double *out):&#160;transform.c']]],
-  ['modules_59',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md53',1,'']]],
-  ['modules_3a_20a_20better_20way_60',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54',1,'']]],
+  ['modules_59',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md54',1,'']]],
+  ['modules_3a_20a_20better_20way_60',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55',1,'']]],
   ['month_61',['month',['../classsupernovas_1_1CalendarDate.html#a2f74beecedf39fcb12f82a1c82a4ba6f',1,'supernovas::CalendarDate']]],
   ['month_5fname_62',['month_name',['../classsupernovas_1_1CalendarDate.html#ac2f0d28681561bf807669721683e6efe',1,'supernovas::CalendarDate']]],
   ['moon_63',['moon',['../classsupernovas_1_1Planet.html#a0d65c875c7bc426241516ac37456e09f',1,'supernovas::Planet']]],
-  ['moon_20s_20position_20and_20phase_64',['Moon s position and phase',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68',1,'Moon&apos;s position and phase'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md105',1,'Moon&apos;s position and phase']]],
+  ['moon_20s_20position_20and_20phase_64',['Moon s position and phase',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md69',1,'Moon&apos;s position and phase'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md106',1,'Moon&apos;s position and phase']]],
   ['moon_2ec_65',['moon.c',['../moon_8c.html',1,'']]],
   ['moon_5fangle_66',['moon_angle',['../group__apparent.html#ga4d8c425044b5594fa8251812db25f0d7',1,'supernovas::Source']]],
   ['moon_5fmean_5forbit_5fat_67',['moon_mean_orbit_at',['../classsupernovas_1_1Orbital.html#a54a6508c863a590f42309ae413e113c7',1,'supernovas::Orbital']]],
@@ -74,5 +74,5 @@ var searchData=
   ['mpa_71',['MPa',['../classsupernovas_1_1Unit.html#a615174cfd9a17c79b0184b26f3b11e51',1,'supernovas::Unit']]],
   ['mpc_72',['Mpc',['../classsupernovas_1_1Unit.html#a5d9b548b564b26a85176bfdd77246058',1,'supernovas::Unit::Mpc'],['../classsupernovas_1_1Coordinate.html#a224984b16c07dec5e0f373912898da3b',1,'supernovas::Coordinate::Mpc()']]],
   ['ms_73',['ms',['../classsupernovas_1_1Unit.html#ac2fabcb0d1ee4f70d57818e0c91620dd',1,'supernovas::Unit']]],
-  ['multi_20threaded_20calculations_74',['Multi-threaded calculations',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md74',1,'']]]
+  ['multi_20threaded_20calculations_74',['Multi-threaded calculations',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md75',1,'']]]
 ];

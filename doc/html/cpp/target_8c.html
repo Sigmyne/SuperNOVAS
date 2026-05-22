@@ -990,7 +990,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if the source is NULL (errno is set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa076ebd4c967fb9afa24bd85feb84f63" title="Sets the distance for a catalog source.">novas_set_distance()</a>, <a class="el" href="#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a69274f4ac2631335e1e901142d31f541" title="Sets the parallax (a measure of distance) for a catalog source.">novas_set_parallax()</a>, <a class="el" href="#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a69274f4ac2631335e1e901142d31f541">novas_set_parallax()</a>.</p>
 
@@ -1027,8 +1027,8 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Output structure to populate with the parameters. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">v_kms</td><td>[km/s] Radial velocity of source w.r.t. the Local Standard of Rest (LSR). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">epoch</td><td>[yr] Coordinate epoch. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">v_kms</td><td>[km/s] Radial velocity of source w.r.t. the Local Standard of Rest (LSR). </td></tr>
   </table>
   </dd>
 </dl>
@@ -1289,7 +1289,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the vector areguments is NULL.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the vector arguments is NULL.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#abe0c6e6fc60a49efa88c365aef8cdc50" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, and <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>

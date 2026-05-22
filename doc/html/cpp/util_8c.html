@@ -107,6 +107,11 @@ $(function(){initNavTree('util_8c.html','',''); });
 <p>Various commonly used routines used throughout the SuperNOVAS library.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:af02b7e9a81013c9554af3a8a7f5514ff" id="r_af02b7e9a81013c9554af3a8a7f5514ff"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af02b7e9a81013c9554af3a8a7f5514ff">DEFAULT_ERROR_HANDLER</a>&#160;&#160;&#160;default_error_handler</td></tr>
+<tr class="memdesc:af02b7e9a81013c9554af3a8a7f5514ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints debug error messages to <span class="tt">stderr</span>.  <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ad799864f637c483fb49491bde5a93e25" id="r_ad799864f637c483fb49491bde5a93e25"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ad799864f637c483fb49491bde5a93e25">d_light</a> (const double *pos_src, const double *pos_body)</td></tr>
@@ -148,8 +153,27 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Various commonly used routines used throughout the SuperNOVAS library. </p>
 <dl class="section date"><dt>Date</dt><dd>Created on Mar 6, 2025 </dd></dl>
-<dl class="section author"><dt>Author</dt><dd>G. Kaplan and Attila Kovacs </dd></dl>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<dl class="section author"><dt>Author</dt><dd>G. Kaplan, Attila Kovacs, and Kiran Shila </dd></dl>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="af02b7e9a81013c9554af3a8a7f5514ff" name="af02b7e9a81013c9554af3a8a7f5514ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af02b7e9a81013c9554af3a8a7f5514ff">&#9670;&#160;</a></span>DEFAULT_ERROR_HANDLER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFAULT_ERROR_HANDLER&#160;&#160;&#160;default_error_handler</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints debug error messages to <span class="tt">stderr</span>. </p>
+
+<p class="reference">Referenced by <a class="el" href="group__util.html#gaf0859cb18e167bf9a3dcae5727c3ec97">novas_set_error_handler()</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="ad799864f637c483fb49491bde5a93e25" name="ad799864f637c483fb49491bde5a93e25"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad799864f637c483fb49491bde5a93e25">&#9670;&#160;</a></span>d_light()</h2>
 
@@ -233,16 +257,16 @@ Variables</h2></td></tr>
 <p>Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[deg] reference point right ascention (R.A.) </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[deg] reference point right ascension (R.A.) </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] reference point declination </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">direction</td><td>[deg] direction (measured East of North). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">distance</td><td>[deg] offset distance on great circle </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[deg] right ascention (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[deg] right ascension (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out_dec</td><td>[deg] declination at offset position in [-&amp;pi/2:&pi;/2] range. It may be NULL if not needed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and right ascention (R.A.) at the offset position is requested, or if the input declination is outside of the [-90:90] range.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and right ascension (R.A.) at the offset position is requested, or if the input declination is outside of the [-90:90] range.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Attila Kovacs</dd>
 <dd>
@@ -731,7 +755,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">pos</td><td>Position 3-vector, equatorial rectangular coordinates. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">ra</td><td>[h] Right ascension in hours [0:24] or NAN if the position vector is NULL or a null-vector. It may be NULL if notrequired. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ra</td><td>[h] Right ascension in hours [0:24] or NAN if the position vector is NULL or a null-vector. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dec</td><td>[deg] Declination in degrees [-90:90] or NAN if the position vector is NULL or a null-vector. It may be NULL if not required. </td></tr>
   </table>
   </dd>

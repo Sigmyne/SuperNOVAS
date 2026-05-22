@@ -107,7 +107,11 @@ $(function(){initNavTree('iers_8c.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a369266c24eacffb87046522897a570d5" id="r_a369266c24eacffb87046522897a570d5"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a369266c24eacffb87046522897a570d5">_GNU_SOURCE</a></td></tr>
-<tr class="memdesc:a369266c24eacffb87046522897a570d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">fmemopen (before glibc 2.10)  <br /></td></tr>
+<tr class="memdesc:a369266c24eacffb87046522897a570d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">fmemopen() (before glibc 2.10)  <br /></td></tr>
+<tr class="memitem:ad373a09690936b8af10b0ac6a00aadc4" id="r_ad373a09690936b8af10b0ac6a00aadc4"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad373a09690936b8af10b0ac6a00aadc4">IERS_DATACENTER</a>&#160;&#160;&#160;&quot;datacenter.iers.org&quot;</td></tr>
+<tr class="memdesc:ad373a09690936b8af10b0ac6a00aadc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">IERS EOP server name.  <br /></td></tr>
+<tr class="memitem:a20da422c599203a2e493e129c9566ad2" id="r_a20da422c599203a2e493e129c9566ad2"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a20da422c599203a2e493e129c9566ad2">IERS_LEAP_SERVER</a>&#160;&#160;&#160;&quot;hpiers.obspm.fr&quot;</td></tr>
+<tr class="memdesc:a20da422c599203a2e493e129c9566ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">IERS leap-seconds.list server name.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -134,7 +138,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section date"><dt>Date</dt><dd>Created on Apr 18, 2026 </dd></dl>
-<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs and Kiran Shila</dd></dl>
 <p>Functions to obtain and manage Earth Orientation data from the International Earth Rotation and Reference Systems Service (IERS) via HTTPS, or using other (remote or local) URLs.</p>
 <p>The functions in this module are generally thread-safe. That is, you may call all functions from concurrent threads without data corruption. However, note that the EOP resources (URLs and/or local files), and the setting that enables/disables automatic fetching, are global settings. Thus, changing these in one thread will effect subsequent EOP fetch calls in other threads also.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__earth.html" title="Earth orientation">Earth orientation</a> </dd></dl>
@@ -151,7 +155,39 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>fmemopen (before glibc 2.10) </p>
+<p>fmemopen() (before glibc 2.10) </p>
+
+</div>
+</div>
+<a id="ad373a09690936b8af10b0ac6a00aadc4" name="ad373a09690936b8af10b0ac6a00aadc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad373a09690936b8af10b0ac6a00aadc4">&#9670;&#160;</a></span>IERS_DATACENTER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IERS_DATACENTER&#160;&#160;&#160;&quot;datacenter.iers.org&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>IERS EOP server name. </p>
+
+</div>
+</div>
+<a id="a20da422c599203a2e493e129c9566ad2" name="a20da422c599203a2e493e129c9566ad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20da422c599203a2e493e129c9566ad2">&#9670;&#160;</a></span>IERS_LEAP_SERVER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define IERS_LEAP_SERVER&#160;&#160;&#160;&quot;hpiers.obspm.fr&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>IERS leap-seconds.list server name. </p>
 
 </div>
 </div>
@@ -192,6 +228,7 @@ Functions</h2></td></tr>
 <li>This function caches EOP data from the last query. As such repeated calls within the same date bracket (typically the same MJD day) will return fast and will interpolate from the data last obtained from the IERS.</li>
 <li>This function uses cubic spline interpolation around the published data points. As such, it needs at least two data points at the same time or before, and two points after, the date for which interpolated values are requested.</li>
 <li>Prior to 1 Jan 1956, the UT1-UTC time difference, and length-of-day (LOD) are not provided by IERS, as they were not measured prior to the age of atomic clocks. Hence, for dates prior to 1956 the returned EOP will have <span class="tt">dut1</span> and <span class="tt">lod</span> (and their uncertainties) set to NAN. (However, the polar the offsets <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> can be provided all the way back to 1846, with some precision.)</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -249,6 +286,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <li>This function caches EOP data from the last online query. As such repeated calls within the same data bracket (typically the same MJD day) will return fast and will reuse the last data obtained from the IERS.</li>
 <li>This function uses cubic spline interpolation of the published data points.</li>
 <li>The returned EOP values are assumed to be ITRF 2020 values, which is appropriate at the time this <b>SuperNOVAS</b> module was written or last updated. If IERS later publishes data in some other future ITRF realization, this module may need to be updated, accordingly. However, the ITRF realization is unlikely to matter significantly.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

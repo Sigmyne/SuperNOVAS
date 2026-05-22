@@ -1173,6 +1173,10 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Converts this calendar date to ans astronomical time representation, given the specified Earth Orientation Parameters, and astronomical timescale. </p>
 <p>Not, that calendar dates have accuracy at the 0.1 ms level only, hence the resulting astronomical time will be limited to the same level of precision also.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set a valid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">eop</td><td>(optional) Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) for this date, or <a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f" title="Returns a reference to a statically defined standard invalid EOP.">EOP::undefined()</a> to fetch from IERS for dates after 1 Jan 1956, if possible and allowed. </td></tr>

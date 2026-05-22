@@ -145,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afb7ae9347827cf49c54204579b809120" id="r_afb7ae9347827cf49c54204579b809120"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1ScalarEvolution.html">ScalarEvolution</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#afb7ae9347827cf49c54204579b809120">redshift_evolution</a> () const</td></tr>
 <tr class="memdesc:afb7ae9347827cf49c54204579b809120"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the redshift evolution in this trajectory.  <br /></td></tr>
 <tr class="memitem:a9e59d1ef17ace25b321ddb3dc9c2d88b" id="r_a9e59d1ef17ace25b321ddb3dc9c2d88b"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Time.html">Time</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9e59d1ef17ace25b321ddb3dc9c2d88b">reference_time</a> () const</td></tr>
-<tr class="memdesc:a9e59d1ef17ace25b321ddb3dc9c2d88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the astrometic time of reference, at which the (quadratic) trajectory has been defined.  <br /></td></tr>
+<tr class="memdesc:a9e59d1ef17ace25b321ddb3dc9c2d88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the astrometric time of reference, at which the (quadratic) trajectory has been defined.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classsupernovas_1_1Validating')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' state of the implementing instance.  <br /></td></tr>
@@ -310,7 +310,7 @@ template&lt;class CoordType&gt; </div>
 <p>Instantiates a local trajectory estimate for a source on sky, which can be used to extrapolate positions around the specified reference time inside an interval of validity. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">track</td><td>Pointer to the C tajectory data structure </td></tr>
+    <tr><td class="paramname">track</td><td>Pointer to the C trajectory data structure </td></tr>
     <tr><td class="paramname"><a class="el" href="#a97fa819bba5cfb544d4f8d4d53c7ba63" title="Returns the time range of validity for this trajectory.">range</a></td><td>time range of validity around the reference time. Attempts to extrapolate outside this interval will produce invalid data.</td></tr>
   </table>
   </dd>
@@ -439,7 +439,7 @@ template&lt;class CoordType&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if this trajectory can provide valid extrapolated position / velocity data for the given time instant, or else <span class="tt">false</span> if the time is outside the range of validity for this trajectory.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e59d1ef17ace25b321ddb3dc9c2d88b" title="Returns the astrometic time of reference, at which the (quadratic) trajectory has been defined.">reference_time()</a>, <a class="el" href="#a97fa819bba5cfb544d4f8d4d53c7ba63" title="Returns the time range of validity for this trajectory.">range()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e59d1ef17ace25b321ddb3dc9c2d88b" title="Returns the astrometric time of reference, at which the (quadratic) trajectory has been defined.">reference_time()</a>, <a class="el" href="#a97fa819bba5cfb544d4f8d4d53c7ba63" title="Returns the time range of validity for this trajectory.">range()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#a2cfc60cf5b9143e975d75483a1c093b0">distance_at()</a>, <a class="el" href="#acf7c5ba0db5ab484826f7e4e907ee5c9">latitude_at()</a>, <a class="el" href="#aef365777f4bc7c5f5e8d167b506d2cb8">longitude_at()</a>, <a class="el" href="#acea5816a0208a4776dc4a664155e58a3">radial_velocity_at()</a>, and <a class="el" href="#ad9fb35cb904f565fb07e22a48d343a10">redshift_at()</a>.</p>
 
@@ -656,10 +656,10 @@ template&lt;class CoordType&gt; </div>
 </div><div class="memdoc">
 
 <p>Returns the time range of validity for this trajectory. </p>
-<p>The trajectory can only provide valid extrapolation within that time range around the reference time, for which the trajectory's paramteres have been defined.</p>
+<p>The trajectory can only provide valid extrapolation within that time range around the reference time, for which the trajectory's parameters have been defined.</p>
 <dl class="section return"><dt>Returns</dt><dd>the time range of validity around the reference time.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e59d1ef17ace25b321ddb3dc9c2d88b" title="Returns the astrometic time of reference, at which the (quadratic) trajectory has been defined.">reference_time()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; state of the implementing instance.">is_valid()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9e59d1ef17ace25b321ddb3dc9c2d88b" title="Returns the astrometric time of reference, at which the (quadratic) trajectory has been defined.">reference_time()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; state of the implementing instance.">is_valid()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#afc4b8df8b47d00b14239b462a77f4178">Track()</a>, and <a class="el" href="#ad925bc380eee618f6037de954ff9cdc9">Track()</a>.</p>
 
@@ -744,7 +744,7 @@ template&lt;class CoordType&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the astrometic time of reference, at which the (quadratic) trajectory has been defined. </p>
+<p>Returns the astrometric time of reference, at which the (quadratic) trajectory has been defined. </p>
 <dl class="section return"><dt>Returns</dt><dd>the reference time for this trajectory.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a97fa819bba5cfb544d4f8d4d53c7ba63" title="Returns the time range of validity for this trajectory.">range()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53" title="Returns the previously set &#39;valid&#39; state of the implementing instance.">is_valid()</a> </dd></dl>

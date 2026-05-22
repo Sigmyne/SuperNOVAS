@@ -345,6 +345,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Instantiates an astrometric time instance with the specified time parameters. </p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set a valid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="#a1af1c4eb0cc73283892750b9a1af5b64" title="Returns the precise Julian Date of this time instance, in the specific timescale of choice.">jd</a></td><td>[day] Julian date (in the selected timescale) </td></tr>
@@ -446,6 +450,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Instantiates an astrometric time instance with the specified time parameters. </p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set a valid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ijd</td><td>[day] integer part of Julian date (in the selected timescale) </td></tr>
@@ -547,6 +555,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Instantiates an astrometric time instance with the specified time parameters. </p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set a valid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">timestamp</td><td>A precision timestamp, such as an ISO 8601 timestamp. </td></tr>
@@ -636,6 +648,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Instantiates an astrometric time instance with the specified time parameters. </p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set a valid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>A precision POSIX standard UTC timestamp. </td></tr>
@@ -1510,6 +1526,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Resturns a new astrometric time instance for the current time. </p>
 <p>It is only as accurate as the system clock, and its precision may be limited by the resolution of the system clock also. Be sure that your computer is well synchronized to a trustworthy time server, preferably on a local network, such as an ntp server with a GPS receiver.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without <span class="tt">libc</span> support (<span class="tt">WITHOUT_LIBC</span> build configuration option), then this function will always return an invalid (undefined) time (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> build configuration option), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set a valid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">eop</td><td>(optional) Earth Orientation Parameters (<a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a>) values, e.g. obtained from IERS, or <a class="el" href="classsupernovas_1_1EOP.html#a7675a6f28f30468c22ac70211880cc6f" title="Returns a reference to a statically defined standard invalid EOP.">EOP::undefined()</a> to fetch it from IERS, if possible and allowed (default: undefined). </td></tr>
@@ -1555,6 +1576,10 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Resturns a new astrometric time instance for the current time. </p>
 <p>It is only as accurate as the system clock, and its precision may be limited by the resolution of the system clock also. Be sure that your computer is well synchronized to a trustworthy time server, preferably on a local network, such as an ntp server with a GPS receiver.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built with the <span class="tt">WITHOUT_SYSTEM_CLOCK</span> preprocessor flag (or with the <span class="tt">WITHOUT_LIBC</span> build configuration option), then this function will always return an invalid / undefined time (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>). You may want to set the time explicitly with one of the constructors or other static methods instead.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname"><a class="el" href="#af5f3b37c56645a2d06486e054e9dd681" title="Returns the leap seconds for this time instance, as was provided during instantiation.">leap_seconds</a></td><td>[s] leap seconds, that is TAI - UTC (default: 0). It may be unused if <span class="tt"><a class="el" href="#acf5b4f03c103c649a2561cb7b6696e14" title="Returns the UT1 - UTC time difference for this time instance, as was provided during instantiation.">dUT1</a></span> is NAN &ndash; see below. </td></tr>

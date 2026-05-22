@@ -343,6 +343,8 @@ Additional Inherited Members</h2></td></tr>
 <ul>
 <li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
 <li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+<li>If <b>SuperNOVAS</b> was built withut cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an invalid / undefined <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
+<li>If <b>SuperNOVAS</b> was built with the <span class="tt">WITHOUT_SYSTEM_CLOCK</span> preprocessor flag (or with the <span class="tt">WITHOUT_LIBC</span> build configuration option), then this function will always return an invalid / undefined <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>). You may want to set the time explicitly with one of the constructors instead.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -393,6 +395,8 @@ Additional Inherited Members</h2></td></tr>
 <ul>
 <li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
 <li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+<li>If <b>SuperNOVAS</b> was built withut cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
+<li>If <b>SuperNOVAS</b> was built with the <span class="tt">WITHOUT_SYSTEM_CLOCK</span> preprocessor flag (or with the <span class="tt">WITHOUT_LIBC</span> build configuration option), then this function will always return an invalid / undefined <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>). You may want to set the time explicitly with one of the constructors instead.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -445,6 +449,7 @@ Additional Inherited Members</h2></td></tr>
 <ul>
 <li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
 <li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+<li>If <b>SuperNOVAS</b> was built withut cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an invalid / undefined <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -495,6 +500,7 @@ Additional Inherited Members</h2></td></tr>
 <ul>
 <li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
 <li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+<li>If <b>SuperNOVAS</b> was built withut cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an invalid / undefined <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -547,6 +553,7 @@ Additional Inherited Members</h2></td></tr>
 <ul>
 <li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
 <li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+<li>If <b>SuperNOVAS</b> was built withut cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an invalid / undefined <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -599,6 +606,7 @@ Additional Inherited Members</h2></td></tr>
 <ul>
 <li>The IERS service may be offline, slow to respond, and the format of the data served may change. Therefore, you should avoid using this method in critical applications or when responsiveness is important. In such cases you are likely better off obtaining <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> from data stored locally, such as on the file-system or in a local database.</li>
 <li>The returned data does not include diurnal variations for ocean tides and libration. These are added automatically in the constructors of <a class="el" href="classsupernovas_1_1Time.html" title="Precise astronomical time specification, supporting all relevant astronomical timescales (UT1,...">Time</a> and <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a> as neeed.</li>
+<li>If <b>SuperNOVAS</b> was built withut cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an invalid / undefined <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

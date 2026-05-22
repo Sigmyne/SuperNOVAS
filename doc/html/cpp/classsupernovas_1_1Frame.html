@@ -226,7 +226,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">  <span class="comment">// This did not work as expected...</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Frame_html_ad6eb32c4b1cf68e839d6257ad1933d4a"><div class="ttname"><a href="#ad6eb32c4b1cf68e839d6257ad1933d4a">supernovas::Frame::time</a></div><div class="ttdeci">const Time &amp; time() const</div><div class="ttdoc">Returns the astrometric time of observation of this observing frame.</div><div class="ttdef"><b>Definition</b> Frame.cpp:226</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Frame_html_ad6eb32c4b1cf68e839d6257ad1933d4a"><div class="ttname"><a href="#ad6eb32c4b1cf68e839d6257ad1933d4a">supernovas::Frame::time</a></div><div class="ttdeci">const Time &amp; time() const</div><div class="ttdoc">Returns the astrometric time of observation of this observing frame.</div><div class="ttdef"><b>Definition</b> Frame.cpp:232</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; state of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:278</div></div>
 </div><!-- fragment --><p>The returned new frame may be invalid for multiple reasons, such as:</p>
 <ul>
@@ -236,6 +236,10 @@ Additional Inherited Members</h2></td></tr>
 <li>The currently configured planet provider function, for the given accuracy, cannot provide positions and velocities for the Earth, Sun, observer location, or one of the major planets configured for gravitational deflection calculations.</li>
 </ul>
 <p>In either case, you can obtain more information on why things went wrong, when they do, by enabling debug mode is enabled via <span class="tt"><a class="el" href="group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug()</a></span> prior to constructing a <a class="el" href="classsupernovas_1_1Frame.html" title="An observing frame, defined by an observer location and precise time of observation.">Frame</a>.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> is not possible. You must define a valid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">obs</td><td>observer location </td></tr>
@@ -731,6 +735,10 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns a reduced accuracy observing frame for the specified observer at the specified time. </p>
 <p>Reduced accuracy frames provide 1 mas accuracy typically, and do not require a planet provider to be configured. As such, they offer a simplest way for obtaining astrometric positions for catalog and orbital sources at the 1 mas level.</p>
 <p>Note, that the returned frame may be invalid, if the this observer or the time argument themselves are invalid.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> is not possible. You must define a valid <a class="el" href="classsupernovas_1_1EOP.html" title="IERS Earth Orientation Parameters (EOP).">EOP</a> explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">obs</td><td>Observer location </td></tr>

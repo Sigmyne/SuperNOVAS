@@ -9876,16 +9876,16 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <p>Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[deg] reference point right ascention (R.A.) </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[deg] reference point right ascension (R.A.) </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] reference point declination </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">direction</td><td>[deg] direction (measured East of North). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">distance</td><td>[deg] offset distance on great circle </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[deg] right ascention (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[deg] right ascension (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out_dec</td><td>[deg] declination at offset position in [-&amp;pi/2:&pi;/2] range. It may be NULL if not needed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and right ascention (R.A.) at the offset position is requested, or if the input declination is outside of the [-90:90] range.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and right ascension (R.A.) at the offset position is requested, or if the input declination is outside of the [-90:90] range.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Attila Kovacs</dd>
 <dd>
@@ -10643,6 +10643,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <li>This function caches EOP data from the last query. As such repeated calls within the same date bracket (typically the same MJD day) will return fast and will interpolate from the data last obtained from the IERS.</li>
 <li>This function uses cubic spline interpolation around the published data points. As such, it needs at least two data points at the same time or before, and two points after, the date for which interpolated values are requested.</li>
 <li>Prior to 1 Jan 1956, the UT1-UTC time difference, and length-of-day (LOD) are not provided by IERS, as they were not measured prior to the age of atomic clocks. Hence, for dates prior to 1956 the returned EOP will have <span class="tt">dut1</span> and <span class="tt">lod</span> (and their uncertainties) set to NAN. (However, the polar the offsets <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> can be provided all the way back to 1846, with some precision.)</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -10700,6 +10701,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <li>This function caches EOP data from the last online query. As such repeated calls within the same data bracket (typically the same MJD day) will return fast and will reuse the last data obtained from the IERS.</li>
 <li>This function uses cubic spline interpolation of the published data points.</li>
 <li>The returned EOP values are assumed to be ITRF 2020 values, which is appropriate at the time this <b>SuperNOVAS</b> module was written or last updated. If IERS later publishes data in some other future ITRF realization, this module may need to be updated, accordingly. However, the ITRF realization is unlikely to matter significantly.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -11748,7 +11750,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <div class="line"> </div>
 <div class="line"><span class="comment">// Convert ITRF88 coordinates to ITRF2000</span></div>
 <div class="line"><a class="code hl_function" href="#afd98ed01148f1291018809d77785527f">novas_itrf_transform</a>(1988, from_coords, from_rates, 2000, ...);</div>
-<div class="ttc" id="anovas_8h_html_afd98ed01148f1291018809d77785527f"><div class="ttname"><a href="#afd98ed01148f1291018809d77785527f">novas_itrf_transform</a></div><div class="ttdeci">int novas_itrf_transform(int from_year, const double *restrict from_coords, const double *restrict from_rates, int to_year, double *to_coords, double *to_rates)</div><div class="ttdoc">Converts ITRF coordinates between different realizations of the ITRF coordinate system.</div><div class="ttdef"><b>Definition</b> itrf.c:223</div></div>
+<div class="ttc" id="anovas_8h_html_afd98ed01148f1291018809d77785527f"><div class="ttname"><a href="#afd98ed01148f1291018809d77785527f">novas_itrf_transform</a></div><div class="ttdeci">int novas_itrf_transform(int from_year, const double *restrict from_coords, const double *restrict from_rates, int to_year, double *to_coords, double *to_rates)</div><div class="ttdoc">Converts ITRF coordinates between different realizations of the ITRF coordinate system.</div><div class="ttdef"><b>Definition</b> itrf.c:222</div></div>
 </div><!-- fragment --><p>or equivalently, after the transformation to ITRF2000, as:</p>
 <div class="fragment"><div class="line"><span class="comment">// Convert ITRF88 coordinates to ITRF2000</span></div>
 <div class="line"><a class="code hl_function" href="#afd98ed01148f1291018809d77785527f">novas_itrf_transform</a>(1988, from_coords, from_rates, 2000, to_coords, to_rates);</div>
@@ -12254,6 +12256,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <ol type="1">
 <li>This function expects the Earth polar wobble parameters to be defined on a per-frame basis and will not use the legacy global (undated) orientation parameters set via <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a>.</li>
 <li>The Earth orientation parameters xp, yp should be provided in the same ITRF realization as the observer location for an Earth-based observer. You can use <span class="tt"><a class="el" href="#a3c8c9b8f709d1e5a7aa3a915f8fafcbb" title="Transforms Earth orientation parameters (xp, yp, dUT1) from one ITRF realization to another.">novas_itrf_transform_eop()</a></span> to convert the EOP values as necessary.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the polar offsets is not possible. You must set <span class="tt">xp</span> and <span class="tt">yp</span> appropriately explicitly.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -13752,7 +13755,8 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <p>NOTES:</p>
 <ol type="1">
 <li>With MSC, this function uses the C11 standard <span class="tt">timespec_get()</span> function, which is portable. For older C standard, the POSIX only <span class="tt">clock_gettime()</span> function is used.</li>
-<li>If <b>SuperNOVAS</b> is built with the <span class="tt">NOVAS_NO_SYSTEM_CLOCK</span> option, then this function will always return an error. You may want to set the time explicitly with one of the other functions instead.</li>
+<li>If <b>SuperNOVAS</b> was built with the <span class="tt">WITHOUT_SYSTEM_CLOCK</span> preprocessor flag (or with the <span class="tt">WITHOUT_LIBC</span> build configuration option), then this function will always return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>). You may want to set the time explicitly with one of the other functions instead.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -13846,7 +13850,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if the source is NULL (errno is set to EINVAL).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#aa076ebd4c967fb9afa24bd85feb84f63" title="Sets the distance for a catalog source.">novas_set_distance()</a>, <a class="el" href="target_8c.html#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#a69274f4ac2631335e1e901142d31f541" title="Sets the parallax (a measure of distance) for a catalog source.">novas_set_parallax()</a>, <a class="el" href="target_8c.html#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="target_8c.html#a69274f4ac2631335e1e901142d31f541">novas_set_parallax()</a>.</p>
 
@@ -13883,8 +13887,8 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Output structure to populate with the parameters. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">v_kms</td><td>[km/s] Radial velocity of source w.r.t. the Local Standard of Rest (LSR). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">epoch</td><td>[yr] Coordinate epoch. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">v_kms</td><td>[km/s] Radial velocity of source w.r.t. the Local Standard of Rest (LSR). </td></tr>
   </table>
   </dd>
 </dl>
@@ -14115,6 +14119,10 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <p>Sets an astronomical time to the split Julian Date value, defined in the specified timescale. </p>
 <p>The split into the integer and fractional parts can be done in any convenient way. The highest precision is reached if the fractional part is &le; 1 day. In that case, the time may be specified to picosecond accuracy, if needed.</p>
 <p>The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is limited by the precision of <span class="tt"><a class="el" href="timescale_8c.html#a90d5fae30728b51151c3daf355ca585b" title="Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...">tdb2tt()</a></span> implementation, to around 10 &mu;s.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+</ul>
 <p>REFERENCES:</p>
 <ol type="1">
 <li>IAU 1991, RECOMMENDATION III. XXIst General Assembly of the International Astronomical Union. Retrieved 6 June 2019.</li>
@@ -14223,6 +14231,10 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 
 <p>Sets astronomical time in a specific timescale using a string specification. </p>
 <p>It is effectively just a shorthand for using <span class="tt"><a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a></span> followed by <span class="tt"><a class="el" href="timescale_8c.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a></span> and the error checking in-between.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the Julian Date is given </td></tr>
@@ -14282,6 +14294,10 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 
 <p>Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale. </p>
 <p>The time set this way is accurate to a few &mu;s (microseconds) due to the inherent precision of the double-precision argument. For higher precision applications you may use <span class="tt"><a class="el" href="timescale_8c.html#ad47bcb1e3c5df56a0ffdf1a127e52598" title="Sets an astronomical time to the split Julian Date value, defined in the specified timescale.">novas_set_split_time()</a></span> instead, which has an inherent accuracy at the picosecond level.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">timescale</td><td>The astronomical time scale in which the Julian Date is given </td></tr>
@@ -14341,6 +14357,10 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 
 <p>Sets an astronomical time to a UNIX time value. </p>
 <p>UNIX time is defined as UTC seconds measured since 0 UTC, 1 Jan 1970 (the start of the UNIX era). Specifying time this way supports precisions to the nanoseconds level by construct. Specifying UNIX time in split seconds and nanoseconds is a common way CLIB handles precision time, e.g. with <span class="tt">struct timespec</span> and functions like <span class="tt">clock_gettime()</span> or the C11 <span class="tt">timespec_get</span> (see <span class="tt">time.h</span>).</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">unix_time</td><td>[s] UNIX time (UTC) seconds </td></tr>
@@ -16818,7 +16838,7 @@ solarsystem_hp() </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the vector areguments is NULL.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the vector arguments is NULL.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#abe0c6e6fc60a49efa88c365aef8cdc50" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, and <a class="el" href="#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
@@ -17505,12 +17525,12 @@ solarsystem_hp() </dd></dl>
 <p>It has a maximum error of 10 &mu;s between 1600 and 2200.</p>
 <p>This function is wrapped by <span class="tt"><a class="el" href="timescale_8c.html#a129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a></span>, which is typically a lot easier to use as it returns the time difference directly, which can then be used to convert time in both directions with greater ease. For example, to convert a TT-based date to a TDB-based date:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> TDB = TT + <a class="code hl_function" href="#a129acca41760da486e1179c93cb9e86d">tt2tdb</a>(TT) / 86400.0;</div>
-<div class="ttc" id="anovas_8h_html_a129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="#a129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:162</div></div>
+<div class="ttc" id="anovas_8h_html_a129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="#a129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:167</div></div>
 </div><!-- fragment --><p>is equivalent to:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> dt;</div>
 <div class="line"><a class="code hl_function" href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a>(TT, NULL, &amp;dt);   <span class="comment">// Uses TT input so don&#39;t attempt to calculate TT here...</span></div>
 <div class="line"><span class="keywordtype">double</span> TDB = TT + dt / 86400.0;</div>
-<div class="ttc" id="anovas_8h_html_a90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:120</div></div>
+<div class="ttc" id="anovas_8h_html_a90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:125</div></div>
 </div><!-- fragment --><p>NOTES:</p>
 <ol type="1">
 <li>This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.</li>
@@ -18073,7 +18093,7 @@ solarsystem_hp() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">pos</td><td>Position 3-vector, equatorial rectangular coordinates. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">ra</td><td>[h] Right ascension in hours [0:24] or NAN if the position vector is NULL or a null-vector. It may be NULL if notrequired. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ra</td><td>[h] Right ascension in hours [0:24] or NAN if the position vector is NULL or a null-vector. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dec</td><td>[deg] Declination in degrees [-90:90] or NAN if the position vector is NULL or a null-vector. It may be NULL if not required. </td></tr>
   </table>
   </dd>

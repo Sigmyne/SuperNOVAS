@@ -1,5 +1,6 @@
 var util_8c =
 [
+    [ "DEFAULT_ERROR_HANDLER", "util_8c.html#af02b7e9a81013c9554af3a8a7f5514ff", null ],
     [ "d_light", "util_8c.html#ad799864f637c483fb49491bde5a93e25", null ],
     [ "novas_debug", "group__util.html#ga5f35633b872751df4dacd2fb2cbe4ac3", null ],
     [ "novas_equ_offset_by", "util_8c.html#a500745e68a50eaac03d963b539637dc5", null ],

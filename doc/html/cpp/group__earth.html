@@ -214,6 +214,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the ITRF realization year for a given IERS Earth Orientation Parameter (EOP) series. </p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">series</td><td>The EOP series identifier constant. </td></tr>
@@ -245,6 +249,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns the URL currently configured for a given IERS Earth Orientation Parameter (EOP) series. </p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">series</td><td>The EOP series identifier constant. </td></tr>
@@ -276,6 +284,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed. </p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
+</ul>
 <dl class="section return"><dt>Returns</dt><dd>TRUE (1) if automatic fetching of EOP values from IERS is allowed, or else FALSE (0) if fetching is disabled.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
@@ -303,6 +315,10 @@ Functions</h2></td></tr>
 <p>Returns the leap seconds for the given UNIX timestamp, based either on a locally supplied leap seconds list (see <span class="tt"><a class="el" href="#ga3bfd89aa8b76fc752b67f09b182197c7" title="Specifies a local file containing the official leap seconds list, i.e.">novas_set_leap_list()</a></span>), or else from data obtained as needed from IERS (provided that fetching it is allowed). </p>
 <p>In case of errors -1 is returned, with errno set as appropriate.</p>
 <p>Leap seconds were first introduced on 1 Jan 1972. Thus for date preceding the introduction, 0 is returned. Leap seconds prognosis into the future is available only up to the expiration date of the <span class="tt">leap-seconds.list</span> file (as supplied or updated from IERS).</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without <span class="tt">libc</span> support (<span class="tt">WITHOUT_LIBC</span> build configuration option), then this function will always return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>[s] UNIX time (seconds since 0 UTC, 1 Jan 1970) </td></tr>
@@ -339,6 +355,10 @@ Functions</h2></td></tr>
 <p>If set to TRUE (non-zero) then when an astrometric time is initialized with an undefined EOP, whose dUT1 value is NAN, it will automatically fetch appropriate leap second and dUT1 values from IERS, if possible. Similarly, if an observing frame is configured with a <em>x</em><sub>p</sub> or <em>y</em><sub>p</sub> values are NAN, the frame will fetch appropriate polar offsets from IERS for the time of observation.</p>
 <p>The default value of this global setting is TRUE (1), hence the automatic fetching of EOP values from IERS is enabled by default, and will override NAN EOP values with the fetched interpolated data, whenever possible.</p>
 <p>If you do not want this behavior, e.g. because of the associated arbitrary latencies involved with getting data from IERS, or because you are using <b>SuperNOVAS</b> offline, then simply call this function with FALSE (0) to disable the automatic fetching of EOP values.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then this function will return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>) if trying to enable EOP fetching.</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">enabled</td><td>TRUE (non-zero) to enabled automatic fetching of EOP values from IERS, or else FALSE (0) to disable. By default EOP fetching is enabled.</td></tr>
@@ -421,6 +441,10 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 <p>Specifies a local file containing the official leap seconds list, i.e. </p>
 <p><span class="tt">leap-seconds.list</span>, to use, at least until its expiry. (If the local leap file expires, a new one will be fetched from IERS as needed).</p>
 <p>It is similar to <span class="tt"><a class="el" href="#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a></span> for the <span class="tt"><a class="el" href="novas_8h.html#a1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a" title="List of leap seconds, since their introduction in 1972 (leap-seconds.list).">EOP_LEAP_LIST</a></span> series, with a <span class="tt"><a href="file://">file://</a></span> type URL, except that this one does not need cURL support, and can work with relative paths also.</p>
+<p>NOTES:</p>
+<ul>
+<li>If <b>SuperNOVAS</b> was built without <span class="tt">libc</span> support (<span class="tt">WITHOUT_LIBC</span> build configuration option), then this function will always return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>).</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">filename</td><td>Path to a local <span class="tt">leap-seconds.list</span> file (as obtained from IERS or a mirror). It is typically included in the <span class="tt">tzdata</span> package on Linux, where it may be found as <span class="tt">/usr/share/zoneinfo/leap-seconds.list</span> typically. Or, NULL to clean up any prior leap seconds resources. </td></tr>

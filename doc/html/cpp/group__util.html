@@ -700,16 +700,19 @@ Functions</h2></td></tr>
 
 <p>Replaces the trace / error message handler. </p>
 <p>Pass NULL to restore the default error reporting to <span class="tt">stderr</span>. Or, to silence error output entirely, use <span class="tt">novas_debug(NOVAS_DEBUG_OFF)</span>.</p>
+<p>When built with <span class="tt">WITHOUT_LIBC</span> there is no default stderr handler, so passing NULL silences output entirely (same effect as <span class="tt">novas_debug(NOVAS_DEBUG_OFF)</span>).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handler</td><td>new handler, or NULL to restore the default error messaging to <span class="tt">stderr</span>. </td></tr>
+    <tr><td class="paramname">handler</td><td>new handler, or NULL to restore the default error messaging to <span class="tt">stderr</span> (or to silence output when built with <span class="tt">WITHOUT_LIBC</span>). </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the previous handler (so it can be restored or chained)</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
-<dl class="section author"><dt>Author</dt><dd>Kiran Shila</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Kiran Shila, Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="util_8c.html#af02b7e9a81013c9554af3a8a7f5514ff">DEFAULT_ERROR_HANDLER</a>.</p>
 
 </div>
 </div>

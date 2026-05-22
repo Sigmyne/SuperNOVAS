@@ -510,16 +510,16 @@ Functions</h2></td></tr>
 <p>Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a></td><td>[deg] reference point right ascention (R.A.) </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a></td><td>[deg] reference point right ascension (R.A.) </td></tr>
     <tr><td class="paramdir"></td><td class="paramname"><a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] reference point declination </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">direction</td><td>[deg] direction (measured East of North). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">distance</td><td>[deg] offset distance on great circle </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[deg] right ascention (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[deg] right ascension (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out_dec</td><td>[deg] declination at offset position in [-&amp;pi/2:&pi;/2] range. It may be NULL if not needed. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and right ascention (R.A.) at the offset position is requested, or if the input declination is outside of the [-90:90] range.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and right ascension (R.A.) at the offset position is requested, or if the input declination is outside of the [-90:90] range.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Attila Kovacs</dd>
 <dd>
@@ -1270,16 +1270,19 @@ Functions</h2></td></tr>
 
 <p>Replaces the trace / error message handler. </p>
 <p>Pass NULL to restore the default error reporting to <span class="tt">stderr</span>. Or, to silence error output entirely, use <span class="tt">novas_debug(NOVAS_DEBUG_OFF)</span>.</p>
+<p>When built with <span class="tt">WITHOUT_LIBC</span> there is no default stderr handler, so passing NULL silences output entirely (same effect as <span class="tt">novas_debug(NOVAS_DEBUG_OFF)</span>).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">handler</td><td>new handler, or NULL to restore the default error messaging to <span class="tt">stderr</span>. </td></tr>
+    <tr><td class="paramname">handler</td><td>new handler, or NULL to restore the default error messaging to <span class="tt">stderr</span> (or to silence output when built with <span class="tt">WITHOUT_LIBC</span>). </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the previous handler (so it can be restored or chained)</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
-<dl class="section author"><dt>Author</dt><dd>Kiran Shila</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Kiran Shila, Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga5f35633b872751df4dacd2fb2cbe4ac3" title="Enables or disables reporting errors and traces to the standard error stream.">novas_debug()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="util_8c.html#af02b7e9a81013c9554af3a8a7f5514ff">DEFAULT_ERROR_HANDLER</a>.</p>
 
 </div>
 </div>
@@ -1474,7 +1477,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">pos</td><td>Position 3-vector, equatorial rectangular coordinates. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a></td><td>[h] Right ascension in hours [0:24] or NAN if the position vector is NULL or a null-vector. It may be NULL if notrequired. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a></td><td>[h] Right ascension in hours [0:24] or NAN if the position vector is NULL or a null-vector. It may be NULL if not required. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a></td><td>[deg] Declination in degrees [-90:90] or NAN if the position vector is NULL or a null-vector. It may be NULL if not required. </td></tr>
   </table>
   </dd>
