@@ -247,7 +247,7 @@ help:
 	@echo
 	@echo "Syntax: make [target]"
 	@echo
-	@echo "The following tairgets are available:"
+	@echo "The following targets are available:"
 	@echo
 	@echo "  distro        (default) 'shared' targets and also 'local-dox' provided 'doxygen'" 
 	@echo "                is available, or was specified via the DOXYGEN variable (e.g. in"

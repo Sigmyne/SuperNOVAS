@@ -102,7 +102,7 @@ typedef struct {
   CURL *curl;       ///< CURL handle (reused)
   enum novas_eop_series series; /// IERS EOP data series identifier
   long head_bytes;  ///< [bytes] Header bytes before regular table row data begins
-  int line_len;     ///< [byres] Length of data rows, including line feed
+  int line_len;     ///< [bytes] Length of data rows, including line feed
   int start_line;   ///< Line index at which to start using data
   double jd_check;  ///< [day] Julian date of first entry in file
   double jd_start;  ///< [day] Julian date of first entry to use

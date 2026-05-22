@@ -247,7 +247,7 @@ Time::Time(const novas_timespec *t) {
     if(!isfinite(t->ut1_to_tt))
       novas_set_errno(EINVAL, fn, "input t->ut1_to_tt is NAN or infinite");
     if(!isfinite(t->tt2tdb))
-      novas_set_errno(EINVAL, fn, "input t->tt2tdb is NANA or infinite");
+      novas_set_errno(EINVAL, fn, "input t->tt2tdb is NAN or infinite");
   }
 
   _valid = (errno == 0);
@@ -262,7 +262,7 @@ Time::Time(const novas_timespec *t) {
  *
  * @param seconds     [s] the offset interval
  * @return            a new time that is offset from this one by the specified interval in the
- *                    reverse direction (backwards in time).
+ *                    forward direction.
  *
  * @since 1.6
  * @sa operator+(), shifted()
@@ -275,11 +275,11 @@ Time Time::operator+(double seconds) const {
 }
 
 /**
- * Returns an offset time in the backward direction. It assumes that the leap seconds and
+ * Returns an offset time in the forward direction. It assumes that the leap seconds and
  * UT1 - UTC time difference of this time instance is also valid for the offset time, which should
  * be true typically for reasonably small time offsets.
  *
- * @param offset    the offset interval (in backwards direction).
+ * @param offset    the offset interval (in forward direction).
  * @return          a new time that is offset from this one by the specified interval.
  *
  * @since 1.6
