@@ -3,6 +3,10 @@
  * @author Attila Kovacs
  */
 
+#ifdef _MSC_VER
+#  define _DEFAULT_SOURCE             ///< for struct timespec, PATH_MAX
+#endif
+
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,16 +18,17 @@
 #include "novas.h"
 #include "solarsystem.h"
 
-#if defined _WIN32
+#ifdef _MSC_VER
 #  include <windows.h>
 #  ifndef PATH_MAX
 #    define PATH_MAX MAX_PATH
 #  endif
+#  define realpath(rel, full)   _fullpath((full), (rel), PATH_MAX)
 #else
 #  include <limits.h>
 #endif
 
-#if defined _WIN32 || defined __CYGWIN__
+#ifdef WIN32
 #  define PATH_SEP  "\\"
 #else
 #  define PATH_SEP  "/"
@@ -2960,13 +2965,18 @@ static int test_fetch_eop() {
   // Reset EOP URLs to their defaults
   novas_reset_eop();
 
+  novas_set_auto_fetch_eop(0);
+#endif // WITH_CURL
+
   if(check("fetch_eop:set_eop_url:empty", -1, novas_set_eop_url(EOP_LEAP_LIST, 0, get_resource_url("leap-seconds.empty")))) n++;
   novas_set_leap_list(NULL);
   if(check("fetch_eop:lookup_leap:empty_leap", NOVAS_INVALID_LEAP, novas_lookup_leap(UNIX_SECONDS_0UTC_1JAN2000))) n++;
   if(check("fetch_eop:empty_leap", -1, novas_fetch_eop(NOVAS_JD_J2000, 0, &eop))) n++;
   novas_set_eop_url(EOP_LEAP_LIST, 0, NULL);
 
-#endif // WITH_CURL
+#if !WITHOUT_CURL
+  novas_set_auto_fetch_eop(1);
+#endif
 
   return n;
 }

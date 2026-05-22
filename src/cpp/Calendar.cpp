@@ -674,6 +674,12 @@ Time CalendarDate::to_time(int leap_seconds, double dut1, novas_timescale timesc
  * accuracy at the 0.1 ms level only, hence the resulting astronomical time will be limited
  * to the same level of precision also.
  *
+ * NOTES:
+ *
+ * - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *   configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
+ *   differennce is not possible. You must set a valid EOP explicitly.
+ *
  * @param eop             (optional) Earth Orientation Parameters (EOP) for this date, or
  *                        EOP::undefined() to fetch from IERS for dates after 1 Jan 1956, if
  *                        possible and allowed.

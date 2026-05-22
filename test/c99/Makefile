@@ -12,9 +12,6 @@ CPPFLAGS += -I../../include -I../../legacy
 CFLAGS += -pg -Wall -fprofile-arcs -ftest-coverage
 LDFLAGS += -lm -fprofile-arcs -ftest-coverage
 
-ifeq ($(CURL_SUPPORT),1)
-  LDFLAGS += -lcurl
-endif
 
 # Allow deprecated functions to be used internally
 CFLAGS += -Wno-deprecated-declarations
@@ -43,7 +40,8 @@ ifeq ($(CSPICE_SUPPORT),1)
   COVFILES += solsys-cspice.c.gcov
 endif
 
-ifeq ($(CURL_SUPPORT),1)
+ifneq ($(WITHOUT_CURL),1)
+  LDFLAGS += -lcurl
   TESTS += test-dummy-curl
 endif
 
@@ -60,7 +58,7 @@ endif
 ifeq ($(CSPICE_SUPPORT),1)
 	./test-cspice ../ephem
 endif
-ifeq ($(CURL_SUPPORT),1)
+ifneq ($(WITHOUT_CURL),1)
 	./test-dummy-curl
 endif
 

@@ -63,15 +63,19 @@ CFLAGS ?= -g -Os -Wall
 #CSPICE_SUPPORT = 1
 
 
-# Build with cURL support for obtaining EOP data from IERS. If you don't
-# have access to curl, and do not need the functionality, you may disable
-# it by setting it to 0.
-CURL_SUPPORT = 1
+# Build without cURL support for obtaining EOP data from IERS. If you don't 
+# have access to libcurl, and do not need the functionality, you may disable 
+# it by setting it to 1.
+#WITHOUT_CURL = 1
 
 
 # Set to 1 to build for freestanding targets (bare-metal, WASM) that have no
-# libc file I/O, heap, or system clock. Forces CURL_SUPPORT=0.
-# The C preprocessor flag NOVAS_NO_LIBC=1 is defined automatically.
+# libc file I/O, heap, or system clock. Forces WITHOUT_CURL=1 config also.
+#
+# Setting this option will disable some functionality, like using the system 
+# clock to set current time, or automatically managing leap seconds and Earth 
+# Orientation Parameters (EOP). You must set time, leap seconds, and EOP 
+# explicitly instead, when needed.
 #WITHOUT_LIBC = 1
 
 
@@ -104,6 +108,18 @@ export SUPERNOVAS_BUILD
 
 # The version of the shared .so libraries
 SO_VERSION := 1
+
+# If building without LIBC, force disable the incompatible options.
+ifeq ($(WITHOUT_LIBC), 1)
+  $(info Configured WITHOUT_LIBC: Force disable incompatible config options.)
+
+  override WITHOUT_CURL := 1
+  override CALCEPH_SUPPORT := 0
+  override CSPICE_SUPPORT := 0
+  override ENABLE_CPP := 0
+  
+  CPPFLAGS += -DWITHOUT_LIBC -DWITHOUT_SYSTEM_CLOCK
+endif
 
 # If the THREAD_LOCAL variable was defined externally, use that definition to 
 # specify the thread local keyword to use. 
@@ -168,9 +184,9 @@ endif
 ifeq ($(AUTO_DETECT_LIBS),1)
   # Use ldconfig (if available) to detect dependency shared libs 
   # automatically
-  ifndef CURL_SUPPORT
-    ifneq ($(shell ldconfig -p | grep libcurl), )
-      CURL_SUPPORT = 1
+  ifndef WITHOUT_CURL
+    ifeq ($(shell ldconfig -p | grep libcurl), )
+      WITHOUT_CURL = 1
     endif
   endif
   ifndef CALCEPH_SUPPORT

@@ -31,7 +31,7 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
 
  - #313: Support for fetching of leap-seconds and EOP data from IERS, also automatically as needed when the EOP 
    parameters supplied for initializing astrometric time or an observing frame are left undefined (NAN). These 
-   features require cURL (`curl` library) support, and may not be available if __SuperNOVAS__ was built without it. 
+   features require cURL (`libcurl` library) support, and may not be available if __SuperNOVAS__ was built without it. 
    Various new functions (in `iers.c`) also control what URLs (or local files) are used for leap seconds and EOP 
    data.
 
@@ -50,13 +50,14 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
  - #326: New `novas_set_error_handler()` (and `novas_error_handler` typedef) to route `novas_trace()` / 
    `novas_error()` output through a user-supplied callback instead of `fprintf(stderr, ...)`. (by kiranshila)
 
- - #326: New `NOVAS_NO_SYSTEM_CLOCK` compiler flag to build without `clock_gettime()` / `timespec_get()` calls for 
+ - #326: New `WITHOUT_SYSTEM_CLOCK` precompiler flag to build without `clock_gettime()` / `timespec_get()` calls for 
    targets without real-time clock (e.g. embedded, freestanding). If set during the build, `novas_set_current_time()` 
-   will simply return an error. (by @kiranshila)
+   will simply return an error. (by kiranshila)
 
- - `WITHOUT_LIBC=1` build mode for freestanding targets (bare-metal, WebAssembly) with no libc file I/O, heap, or
-   system clock. Automatically sets `NOVAS_NO_LIBC=1` and `NOVAS_NO_SYSTEM_CLOCK=1`, and forces `CURL_SUPPORT=0`.
-   CI now cross-compiles and verifies the static library for ARM Cortex-M33.
+ - #331: `WITHOUT_LIBC` build mode for freestanding targets (bare-metal, WebAssembly) with no libc file I/O, heap, or
+   system clock. Automatically sets the `WITHOUT_LIBC`, `WITHOUT_CLOCK`, and `WITHOUT_CURL` preprocessor options. The 
+   CI now cross-compiles and verifies the static library for ARM Cortex-M33. (by kiranshila)
+   
 ### Changed
 
  - #313: `novas_set_time()` and related similar functions, can now fetch leap seconds and the mean interpolated 
@@ -83,6 +84,9 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    all of which came at the same time or after the `orbit` field was added. Hence they are always safe to use. And, 
    document other `object` initializers to note that they do not initialize the `orbit` fields with zeroes for 
    back-compatibility reasons. (thanks to kiranshila)
+   
+ - #333: More consistent build configuration, improved use of feature tests macros where necessary, and mention
+   build options in API docs where approriate.
    
  - Precision in `novas_set_split_time()` to be independent of the choice of integer/double split of the parameters, 
    beyond the precision of the split itself.

@@ -65,6 +65,12 @@ Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timesc
 /**
  * Instantiates an astrometric time instance with the specified time parameters.
  *
+ * NOTES:
+ *
+ * - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *   configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
+ *   differennce is not possible. You must set a valid EOP explicitly.
+ *
  * @param jd            [day] Julian date (in the selected timescale)
  * @param eop           (optional) Earth Orientation Parameters (EOP) values, e.g. obtained from
  *                      IERS, or EOP::undefined() to fetch it from IERS, if possible and allowed
@@ -107,6 +113,12 @@ Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_times
 /**
  * Instantiates an astrometric time instance with the specified time parameters.
  *
+ * NOTES:
+ *
+ * - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *   configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
+ *   differennce is not possible. You must set a valid EOP explicitly.
+ *
  * @param ijd           [day] integer part of Julian date (in the selected timescale)
  * @param fjd           [day] fractional part of Julian date (in the selected timescale)
  * @param eop           (optional) Earth Orientation Parameters (EOP) values, e.g. obtained from
@@ -148,6 +160,12 @@ Time::Time(const std::string& timestamp, int leap_seconds, double dUT1, enum nov
 /**
  * Instantiates an astrometric time instance with the specified time parameters.
  *
+ * NOTES:
+ *
+ * - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *   configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
+ *   differennce is not possible. You must set a valid EOP explicitly.
+ *
  * @param timestamp     A precision timestamp, such as an ISO 8601 timestamp.
  * @param eop           (optional) Earth Orientation Parameters (EOP) values, e.g. obtained from
  *                      IERS, or EOP::undefined() to fetch it from IERS, if possible and allowed
@@ -188,6 +206,12 @@ Time::Time(const struct timespec *t, int leap_seconds, double dUT1) {
 
 /**
  * Instantiates an astrometric time instance with the specified time parameters.
+ *
+ * NOTES:
+ *
+ * - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *   configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
+ *   differennce is not possible. You must set a valid EOP explicitly.
  *
  * @param t             A precision POSIX standard UTC timestamp.
  * @param eop           (optional) Earth Orientation Parameters (EOP) values, e.g. obtained from
@@ -864,6 +888,13 @@ Time Time::from_mjd(double mjd, const EOP& eop, enum novas_timescale timescale) 
  * sure that your computer is well synchronized to a trustworthy time server, preferably on a local
  * network, such as an ntp server with a GPS receiver.
  *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built with the `WITHOUT_SYSTEM_CLOCK` preprocessor flag (or with the
+ *    `WITHOUT_LIBC` build configuration option), then this function will always return an invalid
+ *    / undefined time (`errno` set to `ENOSYS`). You may want to set the time explicitly with one
+ *    of the constructors or other static methods instead.
+ *
  * @param leap_seconds  [s] leap seconds, that is TAI - UTC (default: 0). It may be unused if
  *                      `dUT1` is NAN -- see below.
  * @param dUT1          [s] UT1 - UTC time difference, e.g. from the IERS Bulletins or service, or
@@ -890,6 +921,16 @@ Time Time::now(int leap_seconds, double dUT1) {
  * system clock, and its precision may be limited by the resolution of the system clock also. Be
  * sure that your computer is well synchronized to a trustworthy time server, preferably on a local
  * network, such as an ntp server with a GPS receiver.
+ *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without `libc` support (`WITHOUT_LIBC` build configuration
+ *    option), then this function will always return an invalid (undefined) time (`errno` set to
+ *    `ENOSYS`).
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` build configuration
+ *    option), then automatic fetching of the leap seconds and the UT1 - UTC differennce is not
+ *    possible. You must set a valid EOP explicitly.
  *
  * @param eop           (optional) Earth Orientation Parameters (EOP) values, e.g. obtained from
  *                      IERS, or EOP::undefined() to fetch it from IERS, if possible and

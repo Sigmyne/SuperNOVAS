@@ -2,7 +2,7 @@
  * @file
  *
  * @date Created  on Apr 18, 2026
- * @author Attila Kovacs
+ * @author Attila Kovacs and Kiran Shila
  *
  *  Functions to obtain and manage Earth Orientation data from the International Earth Rotation
  *  and Reference Systems Service (IERS) via HTTPS, or using other (remote or local) URLs.
@@ -16,20 +16,25 @@
  *  @sa \ref earth
  */
 
-#if !defined(_MSC_VER) && !defined(NOVAS_NO_LIBC)
-#  define _GNU_SOURCE               ///< fmemopen (before glibc 2.10)
+#if !defined(_MSC_VER) && !defined(WITHOUT_LIBC)
+#  define _GNU_SOURCE         ///< fmemopen() (before glibc 2.10)
 #endif
 
 #include <errno.h>
 #include <string.h>
 #include <time.h>
 
-#ifndef NOVAS_NO_LIBC
-#  include <stdio.h>
-#  include <stdlib.h>   // atexit(), calloc(), free()
-#  if !WITHOUT_CURL
-#    include <curl/curl.h>
+#ifdef WITHOUT_LIBC
+#  ifndef WITHOUT_CURL
+#    define WITHOUT_CURL      ///< Without libc, we also cannot have cURL...
 #  endif
+#else
+#  include <stdio.h>
+#  include <stdlib.h>         // atexit(), calloc(), free()
+#endif
+
+#ifndef WITHOUT_CURL
+#  include <curl/curl.h>
 #endif
 
 /// \cond PRIVATE
@@ -38,29 +43,22 @@
 
 #include "novas.h"
 
-#ifndef NOVAS_NO_LIBC
-#include "novas-mutex.h"
+#ifndef WITHOUT_LIBC
+#  include "novas-mutex.h"
+#endif
+
+#if SKIP_IERS_DNS_LOOKUP
+#  define IERS_DATACENTER         "141.74.67.212"       ///< datacenter.iers.org
+#  define IERS_LEAP_SERVER        "145.238.80.89"       ///< hpiers.obspm.fr
+#else
+#  define IERS_DATACENTER         "datacenter.iers.org" ///< IERS EOP server name
+#  define IERS_LEAP_SERVER        "hpiers.obspm.fr"     ///< IERS leap-seconds.list server name
 #endif
 
 /// \cond PRIVATE
-
-#  if SKIP_IERS_DNS_LOOKUP
-#    define IERS_DATACENTER         "141.74.67.212"       ///< datacenter.iers.org
-#    define HPIERS                  "145.238.80.89"       ///< hpiers.obspm.fr
-#  else
-#    define IERS_DATACENTER         "datacenter.iers.org" ///< IERS EOP server name
-#    define HPIERS                  "hpiers.obspm.fr"     ///< IERS leap seconds server name
-#  endif
-
-#define LEAP_FILENAME               "leap-seconds.list"
-#define DEFAULT_LEAP_URL            "https://" HPIERS "/iers/bul/bulc/ntp/" LEAP_FILENAME
-#define IERS_LATEST_URL_PREFIX      "https://" IERS_DATACENTER "/data/latestVersion/"
-#define NTP_UNIX_EPOCH              2208988800LL  ///< [s] NTP timestamp of UNIX epoch (1970 Jan 1)
-
-#define RAPID_JD_START              ( NOVAS_JD_MJD0 + 41684.0 )   ///< [day] Julian date of first entry in rapid service file
-#define C04_JD_START                ( NOVAS_JD_MJD0 + 37665.0 )   ///< [day] Julian date of first entry in C04 series file
-#define C01_JD_START                ( NOVAS_JD_MJD0 - 4703.268 )  ///< [day] Julian date of first entry in C01 series file
-#define C01_SPARSE_LINES            440           ///< Number of lines in C01 series with sparser sampling
+#  define LEAP_FILENAME               "leap-seconds.list"
+#  define DEFAULT_LEAP_URL            "https://" IERS_LEAP_SERVER "/iers/bul/bulc/ntp/" LEAP_FILENAME
+#  define NTP_UNIX_EPOCH              2208988800LL  ///< [s] NTP timestamp of UNIX epoch (1970 Jan 1)
 
 /**
  * A individual leap seconds entry in a linked list of leap seconds
@@ -72,20 +70,30 @@ typedef struct iers_leap_entry {
   int leap;         ///< [s] Leap seconds (TAI - UTC time difference)
   struct iers_leap_entry *next;   ///< Link to the next leap entry in list.
 } iers_leap_entry;
-
 /// \endcond
 
-#ifndef NOVAS_NO_LIBC
+// ===========================================================================
+#ifndef WITHOUT_LIBC
+
 static iers_leap_entry *leaps;      ///< Leap seconds list
 static time_t leap_expiration;      ///< UNIX time at which leap seconds list expires.
 static lock_type leap_mutex;        ///< mutex for leap seconds data
 static int leap_mutex_initialized;  ///< whether the leap mutex was initialized;
-#endif
+
+#endif // WITH_LIBC
+// ===========================================================================
 
 
 // ---------------------------------------------------------------------------
-#if !WITHOUT_CURL
+#ifndef WITHOUT_CURL
 /// \cond PRIVATE
+
+#  define IERS_LATEST_URL_PREFIX      "https://" IERS_DATACENTER "/data/latestVersion/"
+
+#  define RAPID_JD_START              ( NOVAS_JD_MJD0 + 41684.0 )   ///< [day] Julian date of first entry in rapid service file
+#  define C04_JD_START                ( NOVAS_JD_MJD0 + 37665.0 )   ///< [day] Julian date of first entry in C04 series file
+#  define C01_JD_START                ( NOVAS_JD_MJD0 - 4703.268 )  ///< [day] Julian date of first entry in C01 series file
+#  define C01_SPARSE_LINES            440           ///< Number of lines in C01 series with sparser sampling
 
 /**
  * IERS data file structural description.
@@ -163,10 +171,11 @@ static lock_type eop_mutex;       ///< Mutex for EOP data (excl. leap) access
 static int eop_mutex_initialized;  ///< Whether EOP mutex was initialized
 
 /// \endcond
-#endif /* !WITHOUT_CURL */
+#endif /* WITH_CURL */
 // ---------------------------------------------------------------------------
 
-#ifndef NOVAS_NO_LIBC
+// ===========================================================================
+#ifndef WITHOUT_LIBC
 
 static void lock_leap() {
   if(!leap_mutex_initialized) {
@@ -259,9 +268,11 @@ static iers_leap_entry *parse_leap_file(FILE *fp, long long *expiration) {
   return list;
 }
 
-#endif /* !NOVAS_NO_LIBC */
+#endif /* WITH_LIBC */
+// ===========================================================================
+
 // ---------------------------------------------------------------------------
-#if !WITHOUT_CURL
+#ifndef WITHOUT_CURL
 
 static void lock_eop() {
   if(!eop_mutex_initialized) {
@@ -606,7 +617,7 @@ static void cleanup_eop_urls_async() {
     }
 }
 
-#endif /* !WITHOUT_CURL */
+#endif /* WITH_CURL */
 // ---------------------------------------------------------------------------
 
 /**
@@ -616,6 +627,11 @@ static void cleanup_eop_urls_async() {
  *
  * It is similar to `novas_set_eop_url()` for the `EOP_LEAP_LIST` series, with a `file://` type
  * URL, except that this one does not need cURL support, and can work with relative paths also.
+ *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without `libc` support (`WITHOUT_LIBC` build configuration option),
+ *    then this function will always return an error (`errno` set to `ENOSYS`).
  *
  * @param filename      Path to a local `leap-seconds.list` file (as obtained from IERS or a
  *                      mirror). It is typically included in the `tzdata` package on Linux, where
@@ -633,9 +649,9 @@ static void cleanup_eop_urls_async() {
 int novas_set_leap_list(const char *filename) {
   static const char *fn = "novas_set_leap_list";
 
-#ifdef NOVAS_NO_LIBC
+#ifdef WITHOUT_LIBC
   (void) filename;
-  return novas_error(-1, ENOSYS, fn, "built with NOVAS_NO_LIBC: file I/O unavailable");
+  return novas_error(-1, ENOSYS, fn, "SuperNOVAS was built without libc (WITHOUT_LIBC): file I/O unavailable");
 #else
   FILE *fp;
   iers_leap_entry *list;
@@ -664,7 +680,7 @@ int novas_set_leap_list(const char *filename) {
   novas_unlock(&leap_mutex);
 
   return 0;
-#endif /* !NOVAS_NO_LIBC */
+#endif /* !WITHOUT_LIBC */
 }
 
 /**
@@ -676,6 +692,11 @@ int novas_set_leap_list(const char *filename) {
  * Leap seconds were first introduced on 1 Jan 1972. Thus for date preceding the introduction,
  * 0 is returned. Leap seconds prognosis into the future is available only up to the expiration
  * date of the `leap-seconds.list` file (as supplied or updated from IERS).
+ *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without `libc` support (`WITHOUT_LIBC` build configuration option),
+ *    then this function will always return an error (`errno` set to `ENOSYS`).
  *
  * @param t     [s] UNIX time (seconds since 0 UTC, 1 Jan 1970)
  * @return      The leap seconds for the given time, or NOVAS_INVALID_LEAP (-999) if there was an
@@ -690,19 +711,19 @@ int novas_set_leap_list(const char *filename) {
 int novas_lookup_leap(time_t t) {
   static const char *fn = "novas_lookup_leap";
 
-#ifdef NOVAS_NO_LIBC
+#ifdef WITHOUT_LIBC
   (void) t;
-  return novas_error(NOVAS_INVALID_LEAP, ENOSYS, fn, "built with NOVAS_NO_LIBC: supply leap count explicitly");
+  return novas_error(NOVAS_INVALID_LEAP, ENOSYS, fn, "SuperNOVAS was built without libc (WITHOUT_LIBC): specify leap seconds explicitly instead.");
 #else
   const iers_leap_entry *e;
-  char str[40] = {'\0'};
 
   lock_leap();
   if(!leaps || (t >= leap_expiration && time(NULL) >= leap_expiration)) {
-#if WITHOUT_CURL
+
+#  ifdef WITHOUT_CURL
     unlock_leap();
-    return novas_error(NOVAS_INVALID_LEAP, ERANGE, fn, "no leap data available for time %lld", (long long) t);
-#else
+    return novas_error(NOVAS_INVALID_LEAP, ERANGE, fn, "no leap data available for time %lld (WITHOUT_CURL)", (long long) t);
+#  else
     if(novas_is_auto_fetch_eop()) {
       long long expiration = 0LL;
       iers_leap_entry *update = fetch_leaps_async(&expiration);
@@ -716,10 +737,11 @@ int novas_lookup_leap(time_t t) {
       unlock_leap();
       return novas_error(NOVAS_INVALID_LEAP, EAGAIN, fn, "automatic EOP fetching is disabled.");
     }
-#endif
+#  endif
   }
 
   if(t > leaps->unix_end) {
+    char str[40] = {'\0'};
     unlock_leap();
     strftime(str, sizeof(str), "%c", gmtime(&t));
     return novas_error(NOVAS_INVALID_LEAP, ERANGE, fn, "Time %s is beyond the leap seconds coverage range", str);
@@ -734,7 +756,7 @@ int novas_lookup_leap(time_t t) {
   unlock_leap();
 
   return 0;
-#endif /* !NOVAS_NO_LIBC */
+#endif /* !WITHOUT_LIBC */
 }
 
 
@@ -753,7 +775,7 @@ int novas_lookup_leap(time_t t) {
  *
  *  - Requires __SuperNOVAS__ to be compiled with cURL support enabled, otherwise -1 is returned
  *    with `errno` set to `ENOSYS`.
- *
+
  * @param series      The EOP series identifier constant.
  * @param itrf_year   [yr] ITRF realization year. Needed only for precision at the few &mu;as
  *                    level, otherwise, you can set it to something recent, like 2020. It is
@@ -773,8 +795,8 @@ int novas_lookup_leap(time_t t) {
 int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *url) {
   static const char *fn = "novas_set_eop_url";
 
-#if WITHOUT_CURL
-  return novas_error(-1, ENOSYS, fn, "SuperNOVAS was built without cURL support");
+#ifdef WITHOUT_CURL
+  return novas_error(-1, ENOSYS, fn, "SuperNOVAS was built without cURL support (WITHOUT_CURL)");
 #else
   static int initialized;
   char *discard;
@@ -846,6 +868,11 @@ int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *u
 /**
  * Returns the URL currently configured for a given IERS Earth Orientation Parameter (EOP) series.
  *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then this function will return an error (`errno` set to `ENOSYS`).
+ *
  * @param series    The EOP series identifier constant.
  * @return          The currently configured URL for the given series, or else NULL if the series
  *                  is invalid (`errno` set to `ERANGE`), or if __SuperNOVAS__ was built without
@@ -857,8 +884,8 @@ int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *u
  * @sa novas_set_eop_url(), novas_fetch_eop(), novas_get_eop_itrf_year()
  */
 const char *novas_get_eop_url(enum novas_eop_series series) {
-#if WITHOUT_CURL
-  novas_set_errno(ENOSYS, "novas_get_eop_url", "SuperNOVAS was built without cURL support");
+#ifdef WITHOUT_CURL
+  novas_set_errno(ENOSYS, "novas_get_eop_url", "SuperNOVAS was built without cURL support (WITHOUT_CURL)");
   return NULL;
 #else
   const char *url;
@@ -876,6 +903,11 @@ const char *novas_get_eop_url(enum novas_eop_series series) {
 /**
  * Returns the ITRF realization year for a given IERS Earth Orientation Parameter (EOP) series.
  *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then this function will return an error (`errno` set to `ENOSYS`).
+ *
  * @param series    The EOP series identifier constant.
  * @return          [yr] ITRF realization year, e.g. as set by `novas_set_eop_url()`.
  *
@@ -885,8 +917,8 @@ const char *novas_get_eop_url(enum novas_eop_series series) {
  * @sa novas_set_eop_url(), novas_fetch_eop()
  */
 int novas_get_eop_itrf_year(enum novas_eop_series series) {
-#if WITHOUT_CURL
-  return novas_error(-1, EINVAL, "novas_get_eop_itrf_year", "SuperNOVAS was built without cURL support");
+#ifdef WITHOUT_CURL
+  return novas_error(-1, ENOSYS, "novas_get_eop_itrf_year", "SuperNOVAS was built without cURL support (WITHOUT_CURL)");
 #else
   if((unsigned int) series >= NOVAS_NUM_EOP_SERIES)
     return novas_error(-1, EINVAL, "novas_get_eop_itrf_year", "invalid series: %d", (int) series);
@@ -914,18 +946,18 @@ int novas_get_eop_itrf_year(enum novas_eop_series series) {
  * @sa novas_set_leap_list(), novas_fetch_eop()
  */
 void novas_reset_eop() {
-#ifndef NOVAS_NO_LIBC
+#ifndef WITHOUT_LIBC
  lock_leap();
  set_leap_list_async(NULL, 0LL);
  unlock_leap();
+#endif
 
-#  if !WITHOUT_CURL
+#ifndef WITHOUT_CURL
  lock_eop();
  cleanup_eop_urls_async();
  cleanup_eop_handles_async();
  unlock_eop();
-#  endif
-#endif /* !NOVAS_NO_LIBC */
+#endif
 }
 
 /**
@@ -968,6 +1000,9 @@ void novas_reset_eop() {
  *     NAN. (However, the polar the offsets _x_<sub>p</sub> and _y_<sub>p</sub> can be provided
  *     all the way back to 1846, with some precision.)
  *
+ *  8. If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *     configuration options), then this function will return an error (`errno` set to `ENOSYS`).
+ *
  * @param jd              Julian Date (in any timescale, with a preference for UTC)
  * @param timeout_millis  [ms] HTTP connection timeout, or &lt;=0 to leave unchanged.
  * @param[out] eop        Output EOP data structure to populate
@@ -983,8 +1018,8 @@ void novas_reset_eop() {
 int novas_fetch_eop(double jd, long timeout_millis, novas_eop *eop) {
   static const char *fn = "novas_fetch_eop";
 
-#if WITHOUT_CURL
-  return novas_error(-1, ENOSYS, fn, "SuperNOVAS was built without cURL support.");
+#ifdef WITHOUT_CURL
+  return novas_error(-1, ENOSYS, fn, "SuperNOVAS was built without cURL support (WITHOUT_CURL).");
 #else
   static THREAD_LOCAL novas_eop array[4];
   static THREAD_LOCAL double jd_from, jd_to = -1.0;
@@ -1040,6 +1075,9 @@ int novas_fetch_eop(double jd, long timeout_millis, novas_eop *eop) {
  *     data in some other future ITRF realization, this module may need to be updated, accordingly.
  *     However, the ITRF realization is unlikely to matter significantly.
  *
+ *  8. If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *     configuration options), then this function will return an error (`errno` set to `ENOSYS`).
+ *
  * @param t               [s] UNIX time (seconds since 0 UTC 1 Jan 1970).
  * @param timeout_millis  [ms] HTTP connection timeout, or &lt;=0 to leave unchanged.
  * @param[out] eop        Output EOP data structure to populate
@@ -1077,6 +1115,12 @@ int novas_fetch_eop_unix(time_t t, long timeout_millis, novas_eop *eop) {
  * with getting data from IERS, or because you are using __SuperNOVAS__ offline, then simply
  * call this function with FALSE (0) to disable the automatic fetching of EOP values.
  *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then this function will return an error (`errno` set to `ENOSYS`) if
+ *    trying to enable EOP fetching.
+ *
  * @param enabled     TRUE (non-zero) to enabled automatic fetching of EOP values from IERS,
  *                    or else FALSE (0) to disable. By default EOP fetching is enabled.
  *
@@ -1088,9 +1132,9 @@ int novas_fetch_eop_unix(time_t t, long timeout_millis, novas_eop *eop) {
  * @sa Time, Frame, GeodeticObserver, CalendarDate::to_time()
  */
 int novas_set_auto_fetch_eop(int enabled) {
-#if WITHOUT_CURL
+#ifdef WITHOUT_CURL
   if(enabled)
-    return novas_error(-1, ENOSYS, "novas_set_auto_fetch_eop", "SuperNOVAS was built without cURL support.");
+    return novas_error(-1, ENOSYS, "novas_set_auto_fetch_eop", "SuperNOVAS was built without cURL support (WITHOUT_CURL).");
 #else
   auto_fetch_eop = (enabled != 0);
 #endif
@@ -1101,6 +1145,11 @@ int novas_set_auto_fetch_eop(int enabled) {
  * Checks if automatic fetching of Earth Orientation Parameter values from IERS is
  * allowed.
  *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then this function will return an error (`errno` set to `ENOSYS`).
+ *
  * @return    TRUE (1) if automatic fetching of EOP values from IERS is allowed, or else
  *            FALSE (0) if fetching is disabled.
  *
@@ -1110,7 +1159,7 @@ int novas_set_auto_fetch_eop(int enabled) {
  * @sa novas_set_auto_fetch_eop()
  */
 int novas_is_auto_fetch_eop() {
-#if WITHOUT_CURL
+#ifdef WITHOUT_CURL
   return 0;
 #else
   return auto_fetch_eop;

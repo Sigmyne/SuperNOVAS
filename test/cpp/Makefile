@@ -12,7 +12,7 @@ CPP_OBJECTS = $(subst .cpp,.opp, $(subst $(CPP_SRC)/,obj/, $(CPP_SOURCES)))
 
 TESTS = $(subst .cpp,, $(wildcard *.cpp))
 
-ifeq ($(CURL_SUPPORT),1)
+ifneq ($(WITHOUT_CURL),1)
   LDFLAGS += -lcurl
 endif
 

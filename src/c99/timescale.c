@@ -10,24 +10,26 @@
  * @sa calendar.c, frames.c, observer.c
  */
 
-/// \cond PRIVATE
-#if !defined(_MSC_VER) && __STDC_VERSION__ < 201112L
-#  define _POSIX_C_SOURCE 199309L   ///< struct timespec
-#endif
-#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
-// NOVAS_NO_LIBC implies NOVAS_NO_SYSTEM_CLOCK: no clock_gettime() / timespec_get()
-#if defined(NOVAS_NO_LIBC) && !defined(NOVAS_NO_SYSTEM_CLOCK)
-#  define NOVAS_NO_SYSTEM_CLOCK 1
-#endif
-/// \endcond
+#define _DEFAULT_SOURCE 1           ///< struct timespec
 
-#include <stdio.h>    // snprintf()
+#include <stdio.h>
 #include <string.h>
 #include <errno.h>
 #include <math.h>
 #include <time.h>
 
+/// \cond PRIVATE
+#define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+/// \endcond
+
 #include "novas.h"
+
+// WITHOUT_LIBC implies WITHOUT_SYSTEM_CLOCK: no clock_gettime() / timespec_get()
+#ifdef WITHOUT_LIBC
+#  ifndef WITHOUT_SYSTEM_CLOCK
+#    define WITHOUT_SYSTEM_CLOCK    ///< without libc, we also don't have system clock access
+#  endif
+#endif
 
 /// \cond PRIVATE
 #define DTA         32.184                ///< [s] TT - TAI time difference
@@ -437,6 +439,12 @@ double get_ut1_to_tt(int leap_seconds, double dut1) {
  * precision of the double-precision argument. For higher precision applications you may use
  * `novas_set_split_time()` instead, which has an inherent accuracy at the picosecond level.
  *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
+ *    differennce is not possible. You must set `leap` and `dut1` appropriately explicitly.
+ *
  * @param timescale     The astronomical time scale in which the Julian Date is given
  * @param jd            [day] Julian day value in the specified timescale
  * @param leap          [s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be
@@ -471,6 +479,12 @@ int novas_set_time(enum novas_timescale timescale, double jd, int leap, double d
  * Sets astronomical time in a specific timescale using a string specification. It is effectively just
  * a shorthand for using `novas_parse_date()` followed by `novas_set_time()` and the error checking
  * in-between.
+ *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
+ *    differennce is not possible. You must set `leap` and `dut1` appropriately explicitly.
  *
  * @param timescale     The astronomical time scale in which the Julian Date is given
  * @param str           The astronomical date specification, possibly including time and timezone,
@@ -547,6 +561,11 @@ static double tt_offset(const novas_timespec *ts, enum novas_timescale timescale
  * The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is
  * limited by the precision of `tdb2tt()` implementation, to around 10 &mu;s.
  *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
+ *    differennce is not possible. You must set `leap` and `dut1` appropriately explicitly.
  *
  * REFERENCES:
  *
@@ -913,6 +932,12 @@ double novas_diff_tcg(const novas_timespec *t1, const novas_timespec *t2) {
  * nanoseconds is a common way CLIB handles precision time, e.g. with `struct timespec` and
  * functions like `clock_gettime()` or the C11 `timespec_get` (see `time.h`).
  *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
+ *    differennce is not possible. You must set `leap` and `dut1` appropriately explicitly.
+ *
  * @param unix_time   [s] UNIX time (UTC) seconds
  * @param nanos       [ns] UTC sub-second component
  * @param leap        [s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be
@@ -964,9 +989,14 @@ int novas_set_unix_time(time_t unix_time, long nanos, int leap, double dut1, nov
  *  1. With MSC, this function uses the C11 standard `timespec_get()` function, which is
  *     portable. For older C standard, the POSIX only `clock_gettime()` function is used.
  *
- *  2. If __SuperNOVAS__ is built with the `NOVAS_NO_SYSTEM_CLOCK` option, then this function
- *     will always return an error. You may want to set the time explicitly with one of the
- *     other functions instead.
+ *  2. If __SuperNOVAS__ was built with the `WITHOUT_SYSTEM_CLOCK` preprocessor flag (or with the
+ *     `WITHOUT_LIBC` build configuration option), then this function will always return an error
+ *     (`errno` set to `ENOSYS`). You may want to set the time explicitly with one of the other
+ *     functions instead.
+ *
+ *  3. If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *     configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
+ *     differennce is not possible. You must set `leap` and `dut1` appropriately explicitly.
  *
  * @param leap        [s] Leap seconds, e.g. as published by IERS Bulletin C. (It may be
  *                    unused if `dut1` is NAN -- see below).
@@ -989,12 +1019,12 @@ int novas_set_unix_time(time_t unix_time, long nanos, int leap, double dut1, nov
  * @sa novas_set_auto_fetch_eop(), novas_lookup_leap(), novas_fetch_eop()
  */
 int novas_set_current_time(int leap, double dut1, novas_timespec *restrict time) {
-#ifdef NOVAS_NO_SYSTEM_CLOCK
+#ifdef WITHOUT_SYSTEM_CLOCK
   (void) leap;
   (void) dut1;
   (void) time;
   return novas_error(-1, ENOSYS, "novas_set_current_time",
-          "system clock support disabled at build time (NOVAS_NO_SYSTEM_CLOCK); "
+          "system clock support disabled at build time (WITHOUT_SYSTEM_CLOCK); "
           "use novas_set_unix_time() with an externally-supplied time instead");
 #else
   struct timespec t = {};

@@ -108,7 +108,6 @@ dox local-dox:
 	$(MAKE) -C doc
 
 
-
 # ----------------------------------------------------------------------------
 # Install targets and recipes
 # ----------------------------------------------------------------------------
@@ -231,11 +230,11 @@ summary:
 	@echo
 	@echo "SuperNOVAS build configuration:"
 	@echo
+	@echo "    ENABLE_CPP           = $(ENABLE_CPP)"
+	@echo "    WITHOUT_LIBC         = $(WITHOUT_LIBC)"
+	@echo "    WITHOUT_CURL         = $(WITHOUT_CURL)"
 	@echo "    CALCEPH_SUPPORT      = $(CALCEPH_SUPPORT)"
 	@echo "    CSPICE_SUPPORT       = $(CSPICE_SUPPORT)"
-	@echo "    ENABLE_CPP           = $(ENABLE_CPP)"
-	@echo "    SOLSYS_SOURCES       = $(SOLSYS_SOURCES)"
-	@echo "    READEPH_SOURCES      = $(READEPH_SOURCES)"
 	@echo
 	@echo "    CC      = $(CC)" 
 	@echo "    CFLAGS  = $(CFLAGS)"

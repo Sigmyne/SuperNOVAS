@@ -23,11 +23,11 @@ target_include_directories(core PUBLIC
 )
 
 if(WITHOUT_CURL)
-  target_compile_definitions(core PRIVATE WITHOUT_CURL=1)
+  target_compile_definitions(core PRIVATE WITHOUT_CURL)
 endif()
 
 if(WITHOUT_LIBC)
-  target_compile_definitions(core PRIVATE NOVAS_NO_LIBC=1 NOVAS_NO_SYSTEM_CLOCK=1)
+  target_compile_definitions(core PRIVATE WITHOUT_LIBC WITHOUT_SYSTEM_CLOCK)
 endif()
 
 # Allow deprecated functions internally

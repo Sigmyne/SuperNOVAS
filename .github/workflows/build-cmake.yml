@@ -89,7 +89,7 @@ jobs:
             cmake --build build
             cmake --install build --prefix install
             ls -la install/
-
+      
   build-doc:
     runs-on: ubuntu-latest
     name: Build Documentation (Ubuntu)
@@ -101,7 +101,7 @@ jobs:
 
       - name: Build HTML documentation
         run: |
-          cmake -B build -DENABLE_CPP=ON -DBUILD_DOC=ON
+          cmake -B build -DENABLE_CPP=ON -DBUILD_DOC=ON -DWITHOUT_CURL=ON
           cmake --build build
 
       - name: Install docs

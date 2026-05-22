@@ -237,6 +237,7 @@ Optional dependencies:
  
 #### Installing dependencies on Linux
 
+<details>
 On Fedora / EPEL Linux and derivatives, you may install all packaged (build + runtime) dependencies as:
 
 ```bash
@@ -248,23 +249,28 @@ And on Debian and derivatives (e.g. Ubuntu, Mint, Alpine), you may do the same w
 ```bash
   sudo apt-get install libcurl4-openssl-dev calceph-dev doxygen
 ```
+</details>
 
 #### Installing dependencies on MacOS
 
+<details>
 On MacOS you may install the dependencies with Homebrew:
 
 ```bash
   brew install curl calceph doxygen
 ```
+</details>
 
 #### Installing dependencies on BSD
 
+<details>
 On BSD (e.g. FreeBSD, OpenBSD) you might install `curl` and `calceph`. And you will also need additional packages for 
 building __SuperNOVAS__, such as and `cmake` and/or `gmake`, and `pkgconf`:
 
 ```bash
   pkg install -y gmake cmake devel/pkgconf curl calceph 
 ```
+</details>
 
 <a name="gnu-build"></a>
 ### Build SuperNOVAS using GNU make
@@ -322,12 +328,13 @@ Additionally, you may set number of environment variables to futher customize th
 
  - `CHECKEXTRA`: Extra options to pass to `cppcheck` for the `make check` target
  
- - `CURL_SUPPORT`: Setting to 0 disables building against `libcurl` (default: 1). If disabled, the EOP fetching 
-   functions and methods will return an error or invalid EOP, with `errno` set to `ENOSYS`.
+ - `WITHOUT_CURL`: Setting to 1 disables building against `libcurl`. Without cURL support, the EOP fetching functions 
+   and methods will return an error or invalid EOP, with `errno` set to `ENOSYS`.
 
- - `WITHOUT_LIBC`: Setting to 1 builds the library for bare-metal or WebAssembly targets
-   that have no libc file I/O, heap allocator, or system clock. This sets the `NOVAS_NO_LIBC` and 
-   `NOVAS_NO_SYSTEM_CLOCK` preprocessor flags, and forces `CURL_SUPPORT=0`. See the 
+ - `WITHOUT_LIBC`: Setting to 1 builds the library for bare-metal or WebAssembly targets that have no libc file I/O, 
+   heap allocator, or system clock. This sets the `WITHOUT_LIBC`, `WITHOUT_SYSTEM_CLOCK`, and `WITHOUT_CURL` 
+   preprocessor flags. Without `libc` support, you cannot use the system clock to set current time, and/or manage
+   leap seconds and Earth Orientation Parameters automatically. You must set these explicitly instead. See 
    [Cross-compiling for embedded targets](#cross-compile) section below.
  
  - `DOXYGEN`: Specify the `doxygen` executable to use for generating documentation. If not set (default), `make` will
@@ -402,13 +409,11 @@ Now you can build __SuperNOVAS__, for example as a shared library, with:
 <a name="cross-compile"></a>
 #### Cross-compiling for embedded targets
 
-<details>
-
 __SuperNOVAS__ can be compiled as a static library for bare-metal embedded systems (e.g. ARM Cortex-M) or WebAssembly
-targets. Set `WITHOUT_LIBC=1` to build in freestanding mode, which disables all libc file I/O, heap allocation, and
-system clock dependencies:
+targets (as of v1.7). Set `WITHOUT_LIBC=1` to build in freestanding mode, which disables all libc file I/O, heap 
+allocation, and system clock dependencies:
 
-
+<details>
 For embedded ARM, this may look like:
 
 ```bash
@@ -455,6 +460,8 @@ The __SuperNOVAS__ CMake build supports the following options (in addition to th
  - `BUILD_BENCHMARK=ON|OFF` (default: OFF) - Build benchmarking programs 
  - `WITHOUT_CURL=ON|OFF` (default: OFF) - Build without [cURL](https://curl.se/) support (fetching EOP from IERS will 
    not be possible without cURL support).
+ - `WITHOUT_LIBC=ON|OFF` (default: OFF) - Build for bare-metal or WebAssembly targets that have no libc file I/O, heap 
+   allocator, or system clock.
  - `ENABLE_CPP=ON|OFF` (default: OFF) - Build C++11 library (`supernovas++`) also. 
  - `ENABLE_CALCEPH=ON|OFF` (default: OFF) - Optional CALCEPH ephemeris plugin support. Requires `calceph` package.
  - `ENABLE_CSPICE=ON|OFF` (default: OFF) - Optional CSPICE ephemeris plugin support. Requires `cspice` library 

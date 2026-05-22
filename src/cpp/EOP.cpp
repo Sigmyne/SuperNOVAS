@@ -204,6 +204,10 @@ std::string EOP::to_string() const {
  * - The returned data does not include diurnal variations for ocean tides and libration.
  *   These are added automatically in the constructors of Time and Frame as neeed.
  *
+ * - If __SuperNOVAS__ was built withut cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *   configuration options), then this function will return an invalid / undefined EOP (`errno`
+ *   set to `ENOSYS`).
+ *
  * @param jd              [day] Julian Date (preferably UTC-based).
  * @param timeout_millis  [ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged.
  * @return        EOP obtained from IERS or else an invalid EOP if there was an error (errno will
@@ -244,6 +248,10 @@ EOP EOP::fetch_for_jd(double jd, long timeout_millis) {
  * - The returned data does not include diurnal variations for ocean tides and libration.
  *   These are added automatically in the constructors of Time and Frame as neeed.
  *
+ * - If __SuperNOVAS__ was built withut cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *   configuration options), then this function will return an invalid / undefined EOP (`errno`
+ *   set to `ENOSYS`).
+ *
  * @param mjd             [day] Modified Julian Date (preferably UTC-based).
  * @param timeout_millis  [ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged.
  * @return        EOP obtained from IERS or else an invalid EOP if there was an error (errno will
@@ -274,6 +282,10 @@ EOP EOP::fetch_for_mjd(double mjd, long timeout_millis) {
  *
  * - The returned data does not include diurnal variations for ocean tides and libration.
  *   These are added automatically in the constructors of Time and Frame as neeed.
+ *
+ * - If __SuperNOVAS__ was built withut cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *   configuration options), then this function will return an invalid / undefined EOP (`errno`
+ *   set to `ENOSYS`).
  *
  * @param time            UNIX time for which to try get EOP.
  * @param timeout_millis  [ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged.
@@ -306,6 +318,10 @@ EOP EOP::fetch_for(const time_t time, long timeout_millis) {
  * - The returned data does not include diurnal variations for ocean tides and libration.
  *   These are added automatically in the constructors of Time and Frame as neeed.
  *
+ * - If __SuperNOVAS__ was built withut cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *   configuration options), then this function will return an invalid / undefined EOP (`errno`
+ *   set to `ENOSYS`).
+ *
  * @param date            Calendar date for which to try get EOP.
  * @param timeout_millis  [ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged.
  * @return        EOP obtained from IERS or else an invalid EOP if there was an error (errno will
@@ -334,6 +350,14 @@ EOP EOP::fetch_for(const CalendarDate& date, long timeout_millis) {
  *
  * - The returned data does not include diurnal variations for ocean tides and libration.
  *   These are added automatically in the constructors of Time and Frame as neeed.
+ *
+ * - If __SuperNOVAS__ was built withut cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then this function will return an error (`errno` set to `ENOSYS`).
+ *
+ * - If __SuperNOVAS__ was built with the `WITHOUT_SYSTEM_CLOCK` preprocessor flag (or with the
+ *    `WITHOUT_LIBC` build configuration option), then this function will always return an invalid
+ *    / undefined EOP (`errno` set to `ENOSYS`). You may want to set the time explicitly with one
+ *    of the constructors instead.
  *
  * @param offset          [s] (optional) time offset from current time (default: 0.0).
  * @param timeout_millis  [ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged.
@@ -366,6 +390,15 @@ EOP EOP::fetch_current(double offset, long timeout_millis) {
  *
  * - The returned data does not include diurnal variations for ocean tides and libration.
  *   These are added automatically in the constructors of Time and Frame as neeed.
+ *
+ * - If __SuperNOVAS__ was built withut cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then this function will return an invalid / undefined EOP (`errno`
+ *    set to `ENOSYS`).
+ *
+ * - If __SuperNOVAS__ was built with the `WITHOUT_SYSTEM_CLOCK` preprocessor flag (or with the
+ *    `WITHOUT_LIBC` build configuration option), then this function will always return an invalid
+ *    / undefined EOP (`errno` set to `ENOSYS`). You may want to set the time explicitly with one
+ *    of the constructors instead.
  *
  * @param offset          (optional) time offset from current time (default: 0.0).
  * @param timeout_millis  [ms] (optional) HTTP connection timeout, or &lt;=0 to leave unchanged.

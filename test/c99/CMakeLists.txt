@@ -45,7 +45,7 @@ foreach(TEST ${TEST_PROGRAMS})
         # Link against the supernovas library
         target_link_libraries(${TEST} PRIVATE core)
         
-        target_compile_definitions(${TEST} PRIVATE RESOURCES="${PROJECT_SOURCE_DIR}/resources")
+        target_compile_definitions(${TEST} PRIVATE RESOURCES="${PROJECT_SOURCE_DIR}/test/c99/resources")
         
         if(WITHOUT_CURL)
             target_compile_definitions(${TEST} PRIVATE WITHOUT_CURL=1)

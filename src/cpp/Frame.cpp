@@ -43,6 +43,12 @@ namespace supernovas {
  * In either case, you can obtain more information on why things went wrong, when they do, by
  * enabling debug mode is enabled via `novas_debug()` prior to constructing a Frame.
  *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then automatic fetching of EOP is not possible. You must define
+ *    a valid EOP explicitly.
+ *
  * @param obs         observer location
  * @param time        time of observation
  * @param accuracy    (optional) NOVAS_FULL_ACCURACY (default) or NOVAS_REDUCED_ACCURACY.
@@ -440,6 +446,12 @@ Apparent Frame::apparent_moon_elp2000(double limit_term) const {
  *
  * Note, that the returned frame may be invalid, if the this observer or the time argument
  * themselves are invalid.
+ *
+ * NOTES:
+ *
+ *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then automatic fetching of EOP is not possible. You must define
+ *    a valid EOP explicitly.
  *
  * @param obs       %Observer location
  * @param time      Astrometric time of observation

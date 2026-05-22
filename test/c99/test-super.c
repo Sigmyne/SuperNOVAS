@@ -3,10 +3,9 @@
  * @author Attila Kovacs
  */
 
-#if !defined(_MSC_VER) && __STDC_VERSION__ < 201112L
-#  define _POSIX_C_SOURCE 199309L   ///< struct timespec
+#ifdef _MSC_VER
+#  define _DEFAULT_SOURCE             ///< for strcasecmp(), struct timespec, PATH_MAX
 #endif
-#define _DEFAULT_SOURCE             ///< for strcasecmp()
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,16 +28,17 @@ extern int strncasecmp(const char *s1, const char *s2, size_t n);
 
 #define J2000   NOVAS_JD_J2000
 
-#if defined _WIN32
+#ifdef _MSC_VER
 #  include <windows.h>
 #  ifndef PATH_MAX
 #    define PATH_MAX MAX_PATH
 #  endif
+#  define realpath(rel, full)   _fullpath((full), (rel), PATH_MAX)
 #else
 #  include <limits.h>
 #endif
 
-#if defined _WIN32 || defined __CYGWIN__
+#ifdef WIN32
 #  define PATH_SEP  "\\"
 #else
 #  define PATH_SEP  "/"
@@ -2192,7 +2192,7 @@ static int test_unix_time() {
 }
 
 static int test_set_current_time() {
-#ifdef NOVAS_NO_SYSTEM_CLOCK
+#ifdef WITHOUT_SYSTEM_CLOCK
   novas_timespec t = {};
   // With the system clock disabled, novas_set_current_time() must return -1
   // with errno set to ENOSYS, and must not touch the output.

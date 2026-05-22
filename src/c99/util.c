@@ -4,13 +4,11 @@
  *  Various commonly used routines used throughout the SuperNOVAS library.
  *
  * @date Created  on Mar 6, 2025
- * @author G. Kaplan and Attila Kovacs
+ * @author G. Kaplan, Attila Kovacs, and Kiran Shila
  */
 
 #include <stdarg.h>               // before stdio for vfprintf on LynxOS 3.1
-#ifndef NOVAS_NO_LIBC
-#  include <stdio.h>              // vfprintf()
-#endif
+#include <stdio.h>                // vfprintf()
 #include <string.h>
 #include <errno.h>
 
@@ -25,8 +23,8 @@
 /// \endcond
 
 
-#ifdef NOVAS_NO_LIBC
-#  define DEFAULT_ERROR_HANDLER   NULL                    ///< No default errro handler without LIBC
+#ifdef WITHOUT_LIBC
+#  define DEFAULT_ERROR_HANDLER   NULL                    ///< No default error handler without LIBC
 #else
 #  define DEFAULT_ERROR_HANDLER   default_error_handler   ///< Prints debug error messages to `stderr`.
 
@@ -47,11 +45,11 @@ static novas_error_handler error_handler_fn = DEFAULT_ERROR_HANDLER;
  * Replaces the trace / error message handler. Pass NULL to restore the default error reporting to
  * `stderr`. Or, to silence error output entirely, use `novas_debug(NOVAS_DEBUG_OFF)`.
  *
- * When built with `NOVAS_NO_LIBC` there is no default stderr handler, so passing NULL silences
+ * When built with `WITHOUT_LIBC` there is no default stderr handler, so passing NULL silences
  * output entirely (same effect as `novas_debug(NOVAS_DEBUG_OFF)`).
  *
  * @param handler  new handler, or NULL to restore the default error messaging to `stderr`
- *                 (or to silence output when built with `NOVAS_NO_LIBC`).
+ *                 (or to silence output when built with `WITHOUT_LIBC`).
  * @return         the previous handler (so it can be restored or chained)
  *
  * @since 1.7
@@ -89,11 +87,10 @@ int novas_inv_max_iter = 100;
 
 /// \cond PROTECTED
 
-#if !__cplusplus && !(__STDC_VERSION__ >= 200809L)
-
+#ifdef NOVAS_SNPRINTF
 /**
  * A dummy local `snprintf()` implementation when it is not provided by libc, such as on some very
- * old platforms. It simpy behaves like `sprintf()`, ignoring the `len` argument altogether.
+ * old platforms. It simply behaves like `sprintf()`, ignoring the `len` argument altogether.
  *
  * @param buf     buffer to print to
  * @param len     maximum number of characters that can be printed in the buffer (ignored)
@@ -113,7 +110,7 @@ int novas_snprintf(char *buf, size_t len, const char *fmt, ...) {
   va_end(varg);
   return n;
 }
-#endif
+#endif  // NOVAS_SNPRINTF
 
 /**
  * (_for internal use_) Propagates an error (if any) with an offset. If the error is
@@ -627,7 +624,7 @@ int spin(double angle, const double *in, double *out) {
  *
  * @param pos       Position 3-vector, equatorial rectangular coordinates.
  * @param[out] ra   [h] Right ascension in hours [0:24] or NAN if the position vector is NULL or a
- *                  null-vector. It may be NULL if notrequired.
+ *                  null-vector. It may be NULL if not required.
  * @param[out] dec  [deg] Declination in degrees [-90:90] or NAN if the position vector is NULL or
  *                  a null-vector. It may be NULL if not required.
  * @return          0 if successful, -1 of any of the arguments are NULL, or
@@ -1117,16 +1114,16 @@ int novas_offset_by(double lon, double lat, double direction, double distance, d
  * Calculates offset equatorial coordinates at some distance away from the input coordinates along
  * a great circle which crosses the input position at the specified position angle.
  *
- * @param ra              [deg] reference point right ascention (R.A.)
+ * @param ra              [deg] reference point right ascension (R.A.)
  * @param dec             [deg] reference point declination
  * @param direction       [deg] direction (measured East of North).
  * @param distance        [deg] offset distance on great circle
- * @param[out] out_ra     [deg] right ascention (R.A.) at offset position in [0:24) range. It may
+ * @param[out] out_ra     [deg] right ascension (R.A.) at offset position in [0:24) range. It may
  *                        be NULL if not needed.
  * @param[out] out_dec    [deg] declination at offset position in [-&pi/2:&pi;/2] range. It may be
  *                        NULL if not needed.
  * @return                0 if successful, or else -1 if very close to the pole, and right
- *                        ascention (R.A.) at the offset position is requested, or if the
+ *                        ascension (R.A.) at the offset position is requested, or if the
  *                        input declination is outside of the [-90:90] range.
  *
  * @since 1.7

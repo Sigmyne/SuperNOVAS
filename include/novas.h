@@ -3721,12 +3721,12 @@ int novas_Rz(double angle, double *v);
 
 int novas_print_decimal(double value, int decimals, char *str, int len);
 
-#if defined(__cplusplus) || __STDC_VERSION__ >= 200809L
-#  ifndef _POSIX_C_SOURCE
-#    define _POSIX_C_SOURCE 200809L ///< for snprintf
-#  endif
+// Check to see if snprintf() is available, or if we should use our own dummy version of it.
+#if !defined(NOVAS_SNPRINTF) && ( defined(snprintf) || defined(__cplusplus) || __STDC_VERSION__ >= 199901L \
+        || defined(_MSC_VER) || defined(_ISOC99_SOURCE) || _XOPEN_SOURCE >= 500 || defined(_BSD_SOURCE) )
 #  define novas_snprintf snprintf
 #else
+#  define NOVAS_SNPRINTF          ///< Use our own dummy version of snprintf(), same as sprintf()
 int novas_snprintf(char *buf, size_t len, const char *fmt, ...);
 #endif
 

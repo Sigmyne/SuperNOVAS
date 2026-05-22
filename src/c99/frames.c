@@ -488,9 +488,14 @@ int novas_frame_is_initialized(const novas_frame *frame) {
  *
  *  1. This function expects the Earth polar wobble parameters to be defined on a per-frame basis
  *     and will not use the legacy global (undated) orientation parameters set via cel_pole().
+ *
  *  2. The Earth orientation parameters xp, yp should be provided in the same ITRF realization as
  *     the observer location for an Earth-based observer. You can use `novas_itrf_transform_eop()` to
  *     convert the EOP values as necessary.
+ *
+ *  3. If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
+ *    configuration options), then automatic fetching of the polar offsets is not possible. You must
+ *    set `xp` and `yp` appropriately explicitly.
  *
  * @param accuracy    Accuracy requirement, NOVAS_FULL_ACCURACY (0) for the utmost precision or
  *                    NOVAS_REDUCED_ACCURACY (1) if ~1 mas accuracy is sufficient.

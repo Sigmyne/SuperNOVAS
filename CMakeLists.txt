@@ -40,19 +40,19 @@ option(BUILD_DOC "Build HTML documentation" OFF)
 option(BUILD_TESTING "Build regression test suite" ON)
 option(BUILD_EXAMPLES "Build example programs" OFF)
 option(BUILD_BENCHMARK "Build benchmark programs" OFF)
-option(WITHOUT_CURL "Build without cURL support (no fetching EOP from IERS possible)" ON)
+option(WITHOUT_CURL "Build without cURL support (no fetching EOP from IERS possible)" OFF)
+option(WITHOUT_LIBC "Build without libc-dependent features (file I/O, heap, system clock). Enable for bare-metal/WASM targets." OFF)
 option(ENABLE_CPP "Enable C++ library build (supernovas++ library)" OFF)
 option(ENABLE_CALCEPH "Enable CALCEPH support (solsys-calceph plugin)" OFF)
 option(ENABLE_CSPICE "Enable CSPICE support (solsys-cspice plugin)" OFF)
 option(ENABLE_TESTING_ONLINE "Run online tests requiring internet access" OFF)
-option(WITHOUT_LIBC "Build without libc-dependent features (file I/O, heap, system clock). Enable for bare-metal/WASM targets." OFF)
 
 if(WITHOUT_LIBC)
+    message(STATUS "WITHOUT_LIBC=ON: forcing WITHOUT_CURL=ON, ENABLE_CPP/CALCEPH/CSPICE=OFF")
     set(WITHOUT_CURL ON CACHE BOOL "Forced ON: WITHOUT_LIBC=ON" FORCE)
     set(ENABLE_CPP OFF CACHE BOOL "Forced OFF: WITHOUT_LIBC=ON" FORCE)
     set(ENABLE_CALCEPH OFF CACHE BOOL "Forced OFF: WITHOUT_LIBC=ON" FORCE)
     set(ENABLE_CSPICE OFF CACHE BOOL "Forced OFF: WITHOUT_LIBC=ON" FORCE)
-    message(STATUS "WITHOUT_LIBC=ON: forcing WITHOUT_CURL=ON, ENABLE_CPP/CALCEPH/CSPICE=OFF")
 endif()
 
 # Set feature descriptions for summary
@@ -111,8 +111,8 @@ if(HAS_MATHLIB)
 endif()
 
 if(NOT WITHOUT_CURL)
-   find_library(curl_FOUND curl REGISTRY_VIEW TARGET REQUIRED)   
-   set(LIBCURL curl)
+   find_package(CURL)
+   set(LIBCURL CURL::libcurl)
    
    # [.pc] Link applications against curl lib...
    string(APPEND PC_LIBS_PRIVATE -l${LIBCURL} " ")
