@@ -97,7 +97,6 @@
  * @sa timescale.c, observer.c, target.c, ephemeris.c
  */
 
-#include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 #include <math.h>

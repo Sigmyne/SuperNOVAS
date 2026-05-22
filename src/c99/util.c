@@ -8,7 +8,9 @@
  */
 
 #include <stdarg.h>               // before stdio for vfprintf on LynxOS 3.1
-#include <stdio.h>                // snprintf()
+#ifndef NOVAS_NO_LIBC
+#  include <stdio.h>              // vfprintf()
+#endif
 #include <string.h>
 #include <errno.h>
 
@@ -22,32 +24,44 @@
 #define MAX_SECONDS_DECIMALS      9                 ///< Maximum decimal places for seconds in HMS/DMS formats
 /// \endcond
 
-/// Current debugging state for reporting errors and traces to stderr.
-static enum novas_debug_mode novas_debug_state = NOVAS_DEBUG_OFF;
+
+#ifdef NOVAS_NO_LIBC
+#  define DEFAULT_ERROR_HANDLER   NULL                    ///< No default errro handler without LIBC
+#else
+#  define DEFAULT_ERROR_HANDLER   default_error_handler   ///< Prints debug error messages to `stderr`.
 
 /// Default error handler: writes the formatted message to stderr.
 static void default_error_handler(const char *fmt, va_list args) {
   vfprintf(stderr, fmt, args);
 }
+#endif // LIBC
 
-/// Active error messages handler
-static novas_error_handler error_handler_fn = default_error_handler;
+
+/// Current debugging state for reporting errors and traces to stderr.
+static enum novas_debug_mode novas_debug_state = NOVAS_DEBUG_OFF;
+
+/// Active error handler; restored to default_error_handler when NULL is passed to novas_set_error_handler().
+static novas_error_handler error_handler_fn = DEFAULT_ERROR_HANDLER;
 
 /**
  * Replaces the trace / error message handler. Pass NULL to restore the default error reporting to
  * `stderr`. Or, to silence error output entirely, use `novas_debug(NOVAS_DEBUG_OFF)`.
  *
- * @param handler  new handler, or NULL to restore the default error messaging to `stderr`.
+ * When built with `NOVAS_NO_LIBC` there is no default stderr handler, so passing NULL silences
+ * output entirely (same effect as `novas_debug(NOVAS_DEBUG_OFF)`).
+ *
+ * @param handler  new handler, or NULL to restore the default error messaging to `stderr`
+ *                 (or to silence output when built with `NOVAS_NO_LIBC`).
  * @return         the previous handler (so it can be restored or chained)
  *
  * @since 1.7
- * @author Kiran Shila
+ * @author Kiran Shila, Attila Kovacs
  *
  * @sa novas_debug()
  */
 novas_error_handler novas_set_error_handler(novas_error_handler handler) {
   novas_error_handler prev = error_handler_fn;
-  error_handler_fn = handler ? handler : default_error_handler;
+  error_handler_fn = handler ? handler : DEFAULT_ERROR_HANDLER;
   return prev;
 }
 

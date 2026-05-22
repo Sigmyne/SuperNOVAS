@@ -26,6 +26,10 @@ if(WITHOUT_CURL)
   target_compile_definitions(core PRIVATE WITHOUT_CURL=1)
 endif()
 
+if(WITHOUT_LIBC)
+  target_compile_definitions(core PRIVATE NOVAS_NO_LIBC=1 NOVAS_NO_SYSTEM_CLOCK=1)
+endif()
+
 # Allow deprecated functions internally
 set(CMAKE_WARN_DEPRECATED FALSE)
 

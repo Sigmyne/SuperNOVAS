@@ -16,19 +16,20 @@
  *  @sa \ref earth
  */
 
-#if !defined(_MSC_VER)
+#if !defined(_MSC_VER) && !defined(NOVAS_NO_LIBC)
 #  define _GNU_SOURCE               ///< fmemopen (before glibc 2.10)
 #endif
 
-
-#include <stdio.h>
-#include <stdlib.h>   // atexit()
+#include <errno.h>
 #include <string.h>
 #include <time.h>
-#include <errno.h>
 
-#if !WITHOUT_CURL
-#include <curl/curl.h>
+#ifndef NOVAS_NO_LIBC
+#  include <stdio.h>
+#  include <stdlib.h>   // atexit(), calloc(), free()
+#  if !WITHOUT_CURL
+#    include <curl/curl.h>
+#  endif
 #endif
 
 /// \cond PRIVATE
@@ -36,7 +37,10 @@
 /// \endcond
 
 #include "novas.h"
+
+#ifndef NOVAS_NO_LIBC
 #include "novas-mutex.h"
+#endif
 
 /// \cond PRIVATE
 
@@ -71,10 +75,12 @@ typedef struct iers_leap_entry {
 
 /// \endcond
 
+#ifndef NOVAS_NO_LIBC
 static iers_leap_entry *leaps;      ///< Leap seconds list
 static time_t leap_expiration;      ///< UNIX time at which leap seconds list expires.
 static lock_type leap_mutex;        ///< mutex for leap seconds data
 static int leap_mutex_initialized;  ///< whether the leap mutex was initialized;
+#endif
 
 
 // ---------------------------------------------------------------------------
@@ -159,6 +165,8 @@ static int eop_mutex_initialized;  ///< Whether EOP mutex was initialized
 /// \endcond
 #endif /* !WITHOUT_CURL */
 // ---------------------------------------------------------------------------
+
+#ifndef NOVAS_NO_LIBC
 
 static void lock_leap() {
   if(!leap_mutex_initialized) {
@@ -251,6 +259,7 @@ static iers_leap_entry *parse_leap_file(FILE *fp, long long *expiration) {
   return list;
 }
 
+#endif /* !NOVAS_NO_LIBC */
 // ---------------------------------------------------------------------------
 #if !WITHOUT_CURL
 
@@ -624,6 +633,10 @@ static void cleanup_eop_urls_async() {
 int novas_set_leap_list(const char *filename) {
   static const char *fn = "novas_set_leap_list";
 
+#ifdef NOVAS_NO_LIBC
+  (void) filename;
+  return novas_error(-1, ENOSYS, fn, "built with NOVAS_NO_LIBC: file I/O unavailable");
+#else
   FILE *fp;
   iers_leap_entry *list;
   long long expiration = 0LL;
@@ -651,6 +664,7 @@ int novas_set_leap_list(const char *filename) {
   novas_unlock(&leap_mutex);
 
   return 0;
+#endif /* !NOVAS_NO_LIBC */
 }
 
 /**
@@ -676,6 +690,10 @@ int novas_set_leap_list(const char *filename) {
 int novas_lookup_leap(time_t t) {
   static const char *fn = "novas_lookup_leap";
 
+#ifdef NOVAS_NO_LIBC
+  (void) t;
+  return novas_error(NOVAS_INVALID_LEAP, ENOSYS, fn, "built with NOVAS_NO_LIBC: supply leap count explicitly");
+#else
   const iers_leap_entry *e;
   char str[40] = {'\0'};
 
@@ -716,6 +734,7 @@ int novas_lookup_leap(time_t t) {
   unlock_leap();
 
   return 0;
+#endif /* !NOVAS_NO_LIBC */
 }
 
 
@@ -895,16 +914,18 @@ int novas_get_eop_itrf_year(enum novas_eop_series series) {
  * @sa novas_set_leap_list(), novas_fetch_eop()
  */
 void novas_reset_eop() {
+#ifndef NOVAS_NO_LIBC
  lock_leap();
  set_leap_list_async(NULL, 0LL);
  unlock_leap();
 
-#if !WITHOUT_CURL
+#  if !WITHOUT_CURL
  lock_eop();
  cleanup_eop_urls_async();
  cleanup_eop_handles_async();
  unlock_eop();
-#endif
+#  endif
+#endif /* !NOVAS_NO_LIBC */
 }
 
 /**

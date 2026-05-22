@@ -10,7 +10,6 @@
  * @sa novas_app_to_hor(), novas_hor_to_app()
  */
 
-#include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 

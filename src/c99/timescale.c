@@ -15,10 +15,13 @@
 #  define _POSIX_C_SOURCE 199309L   ///< struct timespec
 #endif
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
+// NOVAS_NO_LIBC implies NOVAS_NO_SYSTEM_CLOCK: no clock_gettime() / timespec_get()
+#if defined(NOVAS_NO_LIBC) && !defined(NOVAS_NO_SYSTEM_CLOCK)
+#  define NOVAS_NO_SYSTEM_CLOCK 1
+#endif
 /// \endcond
 
 #include <stdio.h>    // snprintf()
-#include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 #include <math.h>

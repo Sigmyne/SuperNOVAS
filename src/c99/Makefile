@@ -38,6 +38,14 @@ ifeq ($(CSPICE_SUPPORT), 1)
   SHARED_TARGETS += $(LIB)/libsolsys-cspice.$(SOEXT)
 endif
 
+ifeq ($(WITHOUT_LIBC), 1)
+  CPPFLAGS += -DNOVAS_NO_LIBC=1 -DNOVAS_NO_SYSTEM_CLOCK=1
+  override CURL_SUPPORT := 0
+  override CALCEPH_SUPPORT :=
+  override CSPICE_SUPPORT :=
+  override ENABLE_CPP :=
+endif
+
 ifeq ($(CURL_SUPPORT), 0)
   CPPFLAGS += -DWITHOUT_CURL=1
 else

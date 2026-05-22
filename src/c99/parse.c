@@ -90,11 +90,11 @@ double novas_epoch(const char *restrict system) {
   if(strcasecmp(system, NOVAS_SYSTEM_HIP) == 0)
     return NOVAS_JD_HIP;
 
-  if(toupper(system[0]) == 'B') {
+  if(toupper((unsigned char)system[0]) == 'B') {
     type = 'B';
     system++;
   }
-  else if(toupper(system[0]) == 'J') {
+  else if(toupper((unsigned char)system[0]) == 'J') {
     type = 'J';
     system++;
   }
@@ -191,7 +191,7 @@ double novas_parse_hms(const char *restrict hms, char **restrict tail) {
 
   // The trailing markers must be standalone (end of string or followed by white space)
   next = hms[n + k];
-  if(next == '\0' || next == '_' || isspace(next) || ispunct(next))
+  if(next == '\0' || next == '_' || isspace((unsigned char)next) || ispunct((unsigned char)next))
     n += k;
 
   if(tail)
@@ -252,7 +252,7 @@ double novas_hms_hours(const char *restrict hms) {
   errno = 0;
 
   // Skip trailing white spaces / punctuation
-  while(*tail && (isspace(*tail) || ispunct(*tail))) tail++;
+  while(*tail && (isspace((unsigned char)*tail) || ispunct((unsigned char)*tail))) tail++;
   if(*tail)
     errno = EINVAL;
 
@@ -266,14 +266,14 @@ static int parse_compass(const char *restrict str, int *n) {
   *n = 0;
 
   // Skip underscores and white spaces
-  while(str[from] && (str[from] == '_' || isspace(str[from]) || ispunct(str[from]))) from++;
+  while(str[from] && (str[from] == '_' || isspace((unsigned char)str[from]) || ispunct((unsigned char)str[from]))) from++;
 
   // Compass direction (if any)
   if(sscanf(&str[from], "%6s", compass) > 0) {
     int i;
 
     for(i = 0; compass[i]; i++)
-      if(compass[i] == '_' || ispunct(compass[i])) {
+      if(compass[i] == '_' || ispunct((unsigned char)compass[i])) {
         compass[i] = '\0';
         break;
       }
@@ -461,7 +461,7 @@ double novas_dms_degrees(const char *restrict dms) {
   errno = 0;
 
   // Skip trailing white spaces / punctuation
-  while(*tail && (isspace(*tail) || ispunct(*tail))) tail++;
+  while(*tail && (isspace((unsigned char)*tail) || ispunct((unsigned char)*tail))) tail++;
   if(*tail)
     errno = EINVAL;
 
@@ -543,7 +543,7 @@ double novas_parse_degrees(const char *restrict str, char **restrict tail) {
   sign = parse_compass(str, &nc);
   next = (char *) str + nc;
 
-  while(*next && isspace(*next)) next++;
+  while(*next && isspace((unsigned char)*next)) next++;
 
   if(sscanf(next, "%79[-+0-9.]", num) > 0) {
     char *end = num;
@@ -557,7 +557,7 @@ double novas_parse_degrees(const char *restrict str, char **restrict tail) {
       int n1, nu = 0;
 
       // Check if exponential notation.
-      if(toupper(next[n]) == 'E' && next[n+1] && !isspace(next[n+1]) && next[n+1] != '_') {
+      if(toupper((unsigned char)next[n]) == 'E' && next[n+1] && !isspace((unsigned char)next[n+1]) && next[n+1] != '_') {
         int exp = strtol(&next[n+1], &end, 10);
         if(end > &next[n+1]) {
           deg *= pow(10.0, exp);
@@ -566,7 +566,7 @@ double novas_parse_degrees(const char *restrict str, char **restrict tail) {
       }
 
       // Skip underscores and white spaces
-      for(n1 = n; next[n1] && (next[n1] == '_' || isspace(next[n1]));) n1++;
+      for(n1 = n; next[n1] && (next[n1] == '_' || isspace((unsigned char)next[n1]));) n1++;
 
       // Skip over unit specification
       if(sscanf(&next[n1], "%8s%n", unit, &nu) > 0) {
@@ -574,7 +574,7 @@ double novas_parse_degrees(const char *restrict str, char **restrict tail) {
         int i;
 
         // Terminate unit at punctuation
-        for(i = 0; unit[i]; i++) if(unit[i] == '_' || ispunct(unit[i])) {
+        for(i = 0; unit[i]; i++) if(unit[i] == '_' || ispunct((unsigned char)unit[i])) {
           unit[i] = '\0';
           nu = i;
           break;
@@ -671,7 +671,7 @@ double novas_parse_hours(const char *restrict str, char **restrict tail) {
     int n1, n2 = 0;
 
     // Skip underscores and white spaces
-    for(n1 = n; str[n1] && (str[n1] == '_' || isspace(str[n1])); n1++);
+    for(n1 = n; str[n1] && (str[n1] == '_' || isspace((unsigned char)str[n1])); n1++);
 
     // Skip over unit specification
     if(sscanf(&str[n1], "%6s%n", unit, &n2) > 0) {
@@ -679,7 +679,7 @@ double novas_parse_hours(const char *restrict str, char **restrict tail) {
       int i;
 
       // Terminate unit at punctuation
-      for(i = 0; unit[i]; i++) if(unit[i] == '_' || ispunct(unit[i])) {
+      for(i = 0; unit[i]; i++) if(unit[i] == '_' || ispunct((unsigned char)unit[i])) {
         unit[i] = '\0';
         n2 = i;
         break;
@@ -736,7 +736,7 @@ double novas_str_degrees(const char *restrict str) {
   errno = 0;
 
   // Skip trailing white spaces / punctuation
-  while(*tail && (isspace(*tail) || ispunct(*tail))) tail++;
+  while(*tail && (isspace((unsigned char)*tail) || ispunct((unsigned char)*tail))) tail++;
   if(*tail)
     errno = EINVAL;
 
@@ -775,7 +775,7 @@ double novas_str_hours(const char *restrict str) {
   errno = 0;
 
   // Skip trailing white spaces / punctuation
-  while(*tail && (isspace(*tail) || ispunct(*tail))) tail++;
+  while(*tail && (isspace((unsigned char)*tail) || ispunct((unsigned char)*tail))) tail++;
   if(*tail)
     errno = EINVAL;
 
@@ -787,7 +787,7 @@ static int skip_white(const char *str, char **tail) {
 
   // Consume trailing 'white' spaces / punctuation
   for(; *next; next++)
-    if(!isspace(*next) && *next != '_')
+    if(!isspace((unsigned char)*next) && *next != '_')
       break;
 
   *tail = next;
@@ -807,7 +807,7 @@ static int parse_zone(const char *str, char **tail) {
     int sign = *(next++) == '-' ? -1 : 1;
     int colon = 0;
 
-    if(isdigit(next[0]) && isdigit(next[1])) {
+    if(isdigit((unsigned char)next[0]) && isdigit((unsigned char)next[1])) {
       H = 10 * (next[0] - '0') + (next[1] - '0');
       if(H >= 24)
         return novas_error(-1, EINVAL, fn, "invalid zone hours: %d, expected [0-23]", H);
@@ -821,8 +821,8 @@ static int parse_zone(const char *str, char **tail) {
       colon = 1;
     }
 
-    if(isdigit(next[0])) {
-      if(!isdigit(next[1]))
+    if(isdigit((unsigned char)next[0])) {
+      if(!isdigit((unsigned char)next[1]))
         return novas_error(-1, EINVAL, fn, "invalid time zone specification");
 
       M = 10 * (next[0] - '0') + (next[1] - '0');

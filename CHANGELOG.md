@@ -54,6 +54,9 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    targets without real-time clock (e.g. embedded, freestanding). If set during the build, `novas_set_current_time()` 
    will simply return an error. (by @kiranshila)
 
+ - `WITHOUT_LIBC=1` build mode for freestanding targets (bare-metal, WebAssembly) with no libc file I/O, heap, or
+   system clock. Automatically sets `NOVAS_NO_LIBC=1` and `NOVAS_NO_SYSTEM_CLOCK=1`, and forces `CURL_SUPPORT=0`.
+   CI now cross-compiles and verifies the static library for ARM Cortex-M33.
 ### Changed
 
  - #313: `novas_set_time()` and related similar functions, can now fetch leap seconds and the mean interpolated 

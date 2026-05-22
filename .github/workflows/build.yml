@@ -144,3 +144,18 @@ jobs:
             export LDFLAGS=`pkg-config --libs libcurl`
             gmake static
             gmake shared
+
+  build-mcu:
+    runs-on: ubuntu-latest
+    name: Embedded ARM
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: carlosperate/arm-none-eabi-gcc-action@v1
+
+      - name: Build static library (bare-metal, no-libc)
+        # As an example, compile a static library for the RP2350 microcontroller
+        run: >
+          make CC=arm-none-eabi-gcc WITHOUT_LIBC=1
+          CFLAGS="-mcpu=cortex-m33 -mthumb -mfloat-abi=hard -mfpu=fpv5-sp-d16 -Os -Wall -Werror"
+          static

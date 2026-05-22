@@ -69,6 +69,12 @@ CFLAGS ?= -g -Os -Wall
 CURL_SUPPORT = 1
 
 
+# Set to 1 to build for freestanding targets (bare-metal, WASM) that have no
+# libc file I/O, heap, or system clock. Forces CURL_SUPPORT=0.
+# The C preprocessor flag NOVAS_NO_LIBC=1 is defined automatically.
+#WITHOUT_LIBC = 1
+
+
 # cppcheck options for 'check' target. You can add additional options by
 # setting the CHECKEXTRA variable (e.g. in shell) prior to invoking 'make'.
 LANGUAGE ?= c

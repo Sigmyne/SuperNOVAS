@@ -45,6 +45,15 @@ option(ENABLE_CPP "Enable C++ library build (supernovas++ library)" OFF)
 option(ENABLE_CALCEPH "Enable CALCEPH support (solsys-calceph plugin)" OFF)
 option(ENABLE_CSPICE "Enable CSPICE support (solsys-cspice plugin)" OFF)
 option(ENABLE_TESTING_ONLINE "Run online tests requiring internet access" OFF)
+option(WITHOUT_LIBC "Build without libc-dependent features (file I/O, heap, system clock). Enable for bare-metal/WASM targets." OFF)
+
+if(WITHOUT_LIBC)
+    set(WITHOUT_CURL ON CACHE BOOL "Forced ON: WITHOUT_LIBC=ON" FORCE)
+    set(ENABLE_CPP OFF CACHE BOOL "Forced OFF: WITHOUT_LIBC=ON" FORCE)
+    set(ENABLE_CALCEPH OFF CACHE BOOL "Forced OFF: WITHOUT_LIBC=ON" FORCE)
+    set(ENABLE_CSPICE OFF CACHE BOOL "Forced OFF: WITHOUT_LIBC=ON" FORCE)
+    message(STATUS "WITHOUT_LIBC=ON: forcing WITHOUT_CURL=ON, ENABLE_CPP/CALCEPH/CSPICE=OFF")
+endif()
 
 # Set feature descriptions for summary
 add_feature_info(SharedLibs BUILD_SHARED_LIBS "Build as shared libraries")
@@ -54,6 +63,7 @@ add_feature_info(Examples BUILD_EXAMPLES "Build and test example programs")
 add_feature_info(Benchmarks BUILD_BENCHMARK "Build benchmarking programs")
 
 add_feature_info(Without-cURL WITHOUT_CURL "Build with cURL support (no fetching EOP from IERS possible)")
+add_feature_info(Without-libc WITHOUT_LIBC "Build without libc-dependent features (file I/O, heap, system clock)")
 
 add_feature_info(C++-Libs ENABLE_CPP "Build C++ library also (supernovas++)")
 add_feature_info(Calceph-Plugin ENABLE_CALCEPH "Optional ephemeris support via CALCEPH (solsys-calceph)")

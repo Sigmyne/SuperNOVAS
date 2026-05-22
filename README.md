@@ -324,6 +324,11 @@ Additionally, you may set number of environment variables to futher customize th
  
  - `CURL_SUPPORT`: Setting to 0 disables building against `libcurl` (default: 1). If disabled, the EOP fetching 
    functions and methods will return an error or invalid EOP, with `errno` set to `ENOSYS`.
+
+ - `WITHOUT_LIBC`: Setting to 1 builds the library for bare-metal or WebAssembly targets
+   that have no libc file I/O, heap allocator, or system clock. This sets the `NOVAS_NO_LIBC` and 
+   `NOVAS_NO_SYSTEM_CLOCK` preprocessor flags, and forces `CURL_SUPPORT=0`. See the 
+   [Cross-compiling for embedded targets](#cross-compile) section below.
  
  - `DOXYGEN`: Specify the `doxygen` executable to use for generating documentation. If not set (default), `make` will
    use `doxygen` in your `PATH` (if any). You can also set it to `none` to disable document generation and the
@@ -389,6 +394,36 @@ Now you can build __SuperNOVAS__, for example as a shared library, with:
 
 ```bash
   gmake shared
+```
+
+</details>
+
+
+<a name="cross-compile"></a>
+#### Cross-compiling for embedded targets
+
+<details>
+
+__SuperNOVAS__ can be compiled as a static library for bare-metal embedded systems (e.g. ARM Cortex-M) or WebAssembly
+targets. Set `WITHOUT_LIBC=1` to build in freestanding mode, which disables all libc file I/O, heap allocation, and
+system clock dependencies:
+
+
+For embedded ARM, this may look like:
+
+```bash
+  make CC=arm-none-eabi-gcc WITHOUT_LIBC=1 \
+       CFLAGS="-mcpu=cortex-m33 -mthumb -mfloat-abi=hard -mfpu=fpv5-sp-d16 -Os -Wall" \
+       static
+```
+
+where we cross-compile using the arm-none-eabi-gcc compiler with target-specific flags.
+
+For WebAssembly with [Emscripten](https://emscripten.org/), use `emmake` which substitutes the compiler and archiver
+automatically:
+
+```bash
+  emmake make WITHOUT_LIBC=1 static
 ```
 
 </details>
