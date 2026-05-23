@@ -257,11 +257,11 @@ Variables</h2></td></tr>
 <p>Calculates offset equatorial coordinates at some distance away from the input coordinates along a great circle which crosses the input position at the specified position angle. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[deg] reference point right ascension (R.A.) </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[h] reference point right ascension (R.A.) </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] reference point declination </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">direction</td><td>[deg] direction (measured East of North). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">distance</td><td>[deg] offset distance on great circle </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[deg] right ascension (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_ra</td><td>[h] right ascension (R.A.) at offset position in [0:24) range. It may be NULL if not needed. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out_dec</td><td>[deg] declination at offset position in [-&amp;pi/2:&pi;/2] range. It may be NULL if not needed. </td></tr>
   </table>
   </dd>

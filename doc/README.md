@@ -382,8 +382,8 @@ Now you can build __SuperNOVAS__, for example as a shared library, with:
 #### Cross-compiling for embedded targets
 
 __SuperNOVAS__ can be compiled as a static library for bare-metal embedded systems (e.g. ARM Cortex-M) or WebAssembly
-targets (as of v1.7). Set `WITHOUT_LIBC=1` to build in freestanding mode, which disables all libc file I/O, heap 
-allocation, and system clock dependencies:
+targets (as of v1.7, thanks to Kiran Shila). Set `WITHOUT_LIBC=1` to build in freestanding mode, which disables all 
+`libc` file I/O, heap allocation, and system clock dependencies:
 
 For embedded ARM, this may look like:
 
@@ -402,12 +402,15 @@ automatically:
   emmake make WITHOUT_LIBC=1 static
 ```
 
+Note, that some __SuperNOVAS__ functionality is lost when built without `libc`, such as setting current time or 
+managing leap seconds and EOP automatically. Thus, you will have to specify these explicity instead, when needed.
+
 
 
 <a name="cmake-build"></a>
 ### Build SuperNOVAS using CMake 
 
-As of v1.5, __SuperNOVAS__ can be built using [CMake](https://cmake.org/) (many thanks to Kiran Shila). CMake allows 
+As of v1.5, __SuperNOVAS__ can be built using [CMake](https://cmake.org/) (big thanks to Kiran Shila). CMake allows 
 for greater portability than the regular GNU `Makefile`. Note, however, that the CMake configuration does not support 
 all of the build options of the GNU `Makefile`, such as automatic CALCEPH and CSPICE integration on Linux, supporting 
 legacy NOVAS C style builds, and code coverage tracking. 
@@ -440,7 +443,7 @@ For example, to configure the build of __SuperNOVAS__ with shared libraries and 
 [CALCEPH](https://calceph.imcce.fr) integration for ephemeris support:
 
 ```bash
-  $ cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DENABLE_CALCEPH=ON
+  $ cmake -B build -DBUILD_SHARED_LIBS=ON -DENABLE_CALCEPH=ON
 ```
 
 and then perform the build:
@@ -455,10 +458,10 @@ Or, on Windows (Microsoft Visual C) you will want:
   $ cmake --build build --config Release
 ```
 
-If a `CMAKE_BUILD_TYPE` is not set, the build will only use the `CFLAGS` (if any) that were set in the environment.
-This is ideal for those who want to have full control of the compiler flags used in the build. Specifying
-`Release` or `Debug` will append a particular set of appropriate compiler options which are suited for the given 
-build type. (If you want to use the MinGW compiler on Windows, you'll want to set 
+If the config / `CMAKE_BUILD_TYPE` is not set, the build will only use the `CFLAGS` (if any) that were set in the 
+environment. This is ideal for those who want to have full control of the compiler flags used in the build. 
+Specifying `Release` or `Debug` will append a particular set of appropriate compiler options which are suited for the 
+given build type. (If you want to use the MinGW compiler on Windows, you'll want to set 
 `-DCMAKE_C_COMPILER=gcc -G "MinGW Makefiles"` options also.)
 
 After a successful build, you can install the `Runtime` (libraries), and `Development` (headers, CMake config, and 
@@ -533,10 +536,10 @@ runtime for the `solsys-calceph` plugin, then documentation, and finally the fil
 
 __NOTE__
 
-> The turnaround time for Debian packages is quite slow, and typically follows the 6-month Debian release cycle, 
-> whereas the Fedora / EPEL packages are usually fully up-to-date (i.e. in `stable`) within a week of a new SuperNOVAS 
-> release. Somewhat newer Debian versions may be found in `testing`, but even that tends to lag behind the `stable` 
-> Fedora / EPEL updates.
+> The turnaround time for Debian packages is quite slow, and typically follows the Debian release cycle, whereas the 
+> Fedora / EPEL packages are usually fully up-to-date (i.e. in `stable`) within a week of a new SuperNOVAS release. 
+> Somewhat newer Debian versions may be found in `testing`, but even that tends to lag behind the `stable` Fedora / 
+> EPEL updates.
 
 
 <a name="homebrew"></a>
