@@ -3,8 +3,8 @@
  * @author Attila Kovacs
  */
 
-#ifdef _MSC_VER
-#  define _DEFAULT_SOURCE             ///< for struct timespec, PATH_MAX
+#ifndef _MSC_VER
+#  define _DEFAULT_SOURCE           ///< for struct timespec, PATH_MAX
 #endif
 
 #include <stdarg.h>
