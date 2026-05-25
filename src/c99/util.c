@@ -87,7 +87,7 @@ int novas_inv_max_iter = 100;
 
 /// \cond PROTECTED
 
-#ifdef NOVAS_SNPRINTF
+#ifdef WITHOUT_SNPRINTF
 /**
  * A dummy local `snprintf()` implementation when it is not provided by libc, such as on some very
  * old platforms. It simply behaves like `sprintf()`, ignoring the `len` argument altogether.
@@ -110,7 +110,7 @@ int novas_snprintf(char *buf, size_t len, const char *fmt, ...) {
   va_end(varg);
   return n;
 }
-#endif  // NOVAS_SNPRINTF
+#endif  // WITHOUT_SNPRINTF
 
 /**
  * (_for internal use_) Propagates an error (if any) with an offset. If the error is
@@ -466,7 +466,7 @@ int novas_print_decimal(double value, int decimals, char *str, int len) {
 
   char fmt[20] = {'\0'};
 
-#ifdef NOVAS_SNPRINTF
+#ifdef WITHOUT_SNPRINTF
   char s[40] = {'\0'};
   int n;
 #endif
@@ -484,7 +484,7 @@ int novas_print_decimal(double value, int decimals, char *str, int len) {
 
   novas_snprintf(fmt, sizeof(fmt), "%%.%dg", decimals + 1);
 
-#ifdef NOVAS_SNPRINTF
+#ifdef WITHOUT_SNPRINTF
   // We are using our dummy snprintf(), without length checking, so make sure
   // otherwise that we don't write more then len bytes into the output buffer.
 
