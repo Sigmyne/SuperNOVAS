@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.7.0-rc2] - 2026-05-25
+## [Unreleased]
 
 Release candidate for the upcoming feature release, possibly around 1 August 2026 -- or before.
 
@@ -88,14 +88,14 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
    back-compatibility reasons. (thanks to kiranshila)
    
  - #333: More consistent build configuration, improved use of feature tests macros where necessary, and mention
-   build options in API docs where approriate.
+   build options in API docs where appropriate.
    
  - Precision in `novas_set_split_time()` to be independent of the choice of integer/double split of the parameters, 
    beyond the precision of the split itself.
 
  - Fixed wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
  
- - `novas_print_decimal()` changed to return printed character count _excuding_ termination. (The prior version
+ - `novas_print_decimal()` changed to return printed character count _excluding_ termination. (The prior version
    included the string termination in the count, which was inconsistent with the other print functions.)
 
  - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
@@ -259,7 +259,7 @@ compatibility, and documentation.
    ocean tides. Such corrections are necessary if needing or using ITRS / TIRS coordinates with accuracy below the 
    milli-arcsecond (mas) level.
 
- - #217: New functions `novas_itrf_transform()` and `novas_itrf_transform_eop()` to enable transforming gecocentric
+ - #217: New functions `novas_itrf_transform()` and `novas_itrf_transform_eop()` to enable transforming geocentric
    _xyz_ station coordinates, or Earth orientation parameters (EOP), between different ITRF realizations (e.g. 
    ITRF2000 to ITRF2014). The implementation is based on Chapter 4 of the IERS Conventions 2010.
    
@@ -492,7 +492,7 @@ Feature release, with critical bug fixes.
 
  - #188: Critical bug in `novas_make_transform()` since inception in v1.1. Compound transforms were calculated using
    matrix products in the wrong commutation order (successive transforms were multiplied from the right instead of
-   from the left). Very embarrasing indeed, and somehow it went unnoticed with the testing suite also (even more 
+   from the left). Very embarrassing indeed, and somehow it went unnoticed with the testing suite also (even more 
    embarrassing...).
 
  - #183: IERS Earth orientation corrections set via `cel_pole()` were not taken into account for true obliquity and 
@@ -501,7 +501,7 @@ Feature release, with critical bug fixes.
    method, it is now preferrable to apply such offsets with `wobble()` for the PEF / TIRS to ITRS (and reverse) 
    conversions instead.
 
- - #184: The frame based approach introduced in v1.1 has ommitted applying polar wobble corrections for transforming 
+ - #184: The frame based approach introduced in v1.1 has omitted applying polar wobble corrections for transforming 
    between the TIRS) / PEF and ITRS, and vice versa. This resulted in an error at the sub-arcsec level for celestial 
    to ITRS / horizontal (or reverse) calculations, when IERS Earth orientation parameters were explicitly set.
    

@@ -41,7 +41,7 @@ int main() {
   if(!test.check("invalid Velocity", !Observer::moving_on_earth(site, Velocity::undefined(), eop).is_valid())) n++;
   if(!test.check("invalid speed", !Observer::moving_on_earth(site, eop, ScalarVelocity(NAN), Angle(0.0)).is_valid())) n++;
   if(!test.check("invalid direction", !Observer::moving_on_earth(site, eop, ScalarVelocity(1.0), Angle(NAN)).is_valid())) n++;
-  if(!test.check("invalid vertial speed", !Observer::moving_on_earth(site, eop, ScalarVelocity(1.0), Angle(0.0), ScalarVelocity(NAN)).is_valid())) n++;
+  if(!test.check("invalid vertical speed", !Observer::moving_on_earth(site, eop, ScalarVelocity(1.0), Angle(0.0), ScalarVelocity(NAN)).is_valid())) n++;
   if(!test.check("invalid EOP", !Observer::on_earth(site, EOP::undefined()).is_valid())) n++;
   if(!test.check("invalid EOP (moving)", !Observer::moving_on_earth(site, Velocity::stationary(), EOP::undefined()).is_valid())) n++;
 
@@ -76,7 +76,7 @@ int main() {
   if(!test.check("is_geocentric(on_earth)", !g1.is_geocentric())) n++;
   if(!test.check("site()", g1.site() == site)) n++;
   if(!test.check("velocity()", g1.itrs_velocity() == Velocity::stationary())) n++;
-  if(!test.check("site()", g1.mean_eop() == eop)) n++;
+  if(!test.check("mean_eop()", g1.mean_eop() == eop)) n++;
   if(!test.check("frame_at(reduced)", g1.frame_at(Time::j2000(), NOVAS_REDUCED_ACCURACY).is_valid())) n++;
   if(!test.check("frame_at(full)", !g1.frame_at(Time::j2000(), NOVAS_FULL_ACCURACY).is_valid())) n++;
   if(!test.equals("to_string(on_earth)", g1.to_string(),

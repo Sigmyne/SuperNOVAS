@@ -10,7 +10,7 @@
  *  The functions in this module are generally thread-safe. That is, you may call all functions
  *  from concurrent threads without data corruption. However, note that the EOP resources (URLs
  *  and/or local files), and the setting that enables/disables automatic fetching, are global
- *  settings. Thus, changing these in one thread will effect subsequent EOP fetch calls in other
+ *  settings. Thus, changing these in one thread will affect subsequent EOP fetch calls in other
  *  threads also.
  *
  *  @sa \ref earth
@@ -333,7 +333,7 @@ static iers_leap_entry *fetch_leaps_async(long long *expiration) {
   download_buffer data = { str, sizeof(str), 0 };
   FILE *fp;
   iers_leap_entry *list;
-  static const char *url;
+  const char *url;
 
   curl = init_curl();
   if (!curl) {
@@ -680,9 +680,9 @@ int novas_set_leap_list(const char *filename) {
   if(!list)
     return novas_trace(fn, -1, 0);
 
-  novas_lock(&leap_mutex);
+  lock_leap();
   set_leap_list_async(list, expiration);
-  novas_unlock(&leap_mutex);
+  unlock_leap();
 
   return 0;
 #endif /* !WITHOUT_LIBC */

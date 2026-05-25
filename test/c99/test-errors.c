@@ -97,7 +97,7 @@ static char *get_resource_url(const char *filename) {
     return NULL;
 
   realpath(rel, path);
-  for(i = 0; i < path[i]; i++) if(path[i] == sep[0]) path[i] = '/';
+  for(i = 0; path[i]; i++) if(path[i] == sep[0]) path[i] = '/';
 
   sprintf(url, "file://%s", path);
   return url;
@@ -1325,10 +1325,10 @@ static int test_refraction() {
   int n = 0;
   on_surface obs = ON_SURFACE_INIT;
 
-  if(check_nan("stardard_refraction:loc", novas_standard_refraction(NOVAS_JD_J2000, NULL, NOVAS_REFRACT_OBSERVED, 10.0))) n++;
-  if(check_nan("stardard_refraction:type:-2", novas_standard_refraction(NOVAS_JD_J2000, &obs, -2, 10.0))) n++;
-  if(check_nan("stardard_refraction:type:1", novas_standard_refraction(NOVAS_JD_J2000, &obs, 1, 10.0))) n++;
-  if(check_nan("stardard_refraction:el:neg", novas_standard_refraction(NOVAS_JD_J2000, &obs, 1, -10.0))) n++;
+  if(check_nan("standard_refraction:loc", novas_standard_refraction(NOVAS_JD_J2000, NULL, NOVAS_REFRACT_OBSERVED, 10.0))) n++;
+  if(check_nan("standard_refraction:type:-2", novas_standard_refraction(NOVAS_JD_J2000, &obs, -2, 10.0))) n++;
+  if(check_nan("standard_refraction:type:1", novas_standard_refraction(NOVAS_JD_J2000, &obs, 1, 10.0))) n++;
+  if(check_nan("standard_refraction:el:neg", novas_standard_refraction(NOVAS_JD_J2000, &obs, 1, -10.0))) n++;
 
   if(check_nan("optical_refraction:loc", novas_optical_refraction(NOVAS_JD_J2000, NULL, NOVAS_REFRACT_OBSERVED, 10.0))) n++;
   if(check_nan("optical_refraction:type:-2", novas_optical_refraction(NOVAS_JD_J2000, &obs, -2, 10.0))) n++;

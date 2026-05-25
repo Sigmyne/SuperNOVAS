@@ -88,7 +88,7 @@
 #define SUPERNOVAS_PATCHLEVEL     0
 
 /// Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.
-#define SUPERNOVAS_RELEASE_STRING "-rc2"
+#define SUPERNOVAS_RELEASE_STRING "-devel"
 
 /// \cond PRIVATE
 
@@ -1139,12 +1139,13 @@ enum novas_transform_type {
 };
 
 /**
- * The number of coordinate transfor types in NOVAS.
+ * The number of coordinate transfor types in NOVAS. Note, that transform types start at 1, so the
+ * value of this constant matches the value of the last transform in the enum.
  *
  * @hideinitializer
  * @sa enum novas_transform_type
  */
-#define NOVAS_TRANSFORM_TYPES     (CHANGE_ICRS_TO_J2000 + 1)
+#define NOVAS_TRANSFORM_TYPES     (CHANGE_ICRS_TO_J2000)
 
 #ifndef _EXCLUDE_DEPRECATED
 /**
@@ -2123,6 +2124,8 @@ enum novas_reference_ellipsoid {
 /**
  * The total number of reference ellipsoid types known to SuperNOVAS.
  *
+ * @hideinitializer
+ * @since 1.5
  * @sa enum novas_reference_ellipsoid
  */
 #define NOVAS_REFERENCE_ELLIPSOIDS (NOVAS_IERS_2003_ELLIPSOID + 1)
@@ -2154,6 +2157,7 @@ enum novas_eop_series {
 /**
  * Number of Earth Orientation Parameter Data series handled by __SuperNOVAS__.
  *
+ * @hideinitializer
  * @since 1.7
  * @sa enum novas_eop_series
  */
@@ -2181,9 +2185,13 @@ typedef struct {
   float lod_err;      ///< [s] Standard error on Length of day (LOD).
 } novas_eop;
 
-/// Leap seconds value to indicate invalid data
-/// @since 1.7
-/// @sa novas_lookup_leap(), novas_fetch_eop()
+/**
+ * Leap seconds value to indicate invalid data
+ *
+ * @hideinitializer
+ * @since 1.7
+ * @sa novas_lookup_leap(), novas_fetch_eop()
+ */
 #define NOVAS_INVALID_LEAP  (-999)
 
 /// \cond _PRIVATE

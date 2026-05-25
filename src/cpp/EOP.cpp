@@ -61,7 +61,6 @@ EOP::EOP(int leap_seconds, double dut1_sec, double xp_rad, double yp_rad)
  */
 EOP::EOP(int leap_seconds, const Interval& dut1, const Angle& xp, const Angle& yp)
 : EOP(leap_seconds, dut1.seconds(), xp.rad(), yp.rad()) {
-  validate();
 }
 
 /**
