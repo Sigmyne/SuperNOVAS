@@ -329,7 +329,7 @@ int novas_time_equals(double jd1, double jd2) {
  * dynamic equator. The two dates are considered equal if they agree within 10<sup>-9</sup> days
  * (or about 100 &mu;s) of each other.
  *
- * For reference, with a precession rate of ~50"/year, the precession in in 100 &mu;s is on the
+ * For reference, with a precession rate of ~50"/year, the precession in 100 &mu;s is on the
  * order of 0.00015 &mu;as, which is way below the promised sub-&mu;as precision even in for the
  * highest accuracy calculations. However, coordinates in a non-inertial Earth-rotating frame will
  * be accurate to ~1.5 mas only, which is still not very precise Earth rotation measures.
@@ -531,7 +531,9 @@ int novas_print_decimal(double value, int decimals, char *str, int len) {
  * @sa novas_get_debug_mode()
  */
 void novas_debug(enum novas_debug_mode mode) {
-  if(mode < 0 || mode > NOVAS_DEBUG_EXTRA)
+  if(mode < 0)
+    mode = NOVAS_DEBUG_OFF;
+  else if(mode > NOVAS_DEBUG_EXTRA)
     mode = NOVAS_DEBUG_EXTRA;
 
   novas_debug_state = mode;
@@ -639,7 +641,7 @@ int spin(double angle, const double *in, double *out) {
 }
 
 /**
- * Converts an vector in equatorial rectangular coordinates to equatorial spherical
+ * Converts a vector in equatorial rectangular coordinates to equatorial spherical
  * coordinates.
  *
  * REFERENCES:
@@ -1051,7 +1053,7 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
  * @param lat             [deg] reference point latitude
  * @param direction       [deg] direction (measured East of North).
  * @param distance        [deg] offset distance on great circle
- * @param[out] out_lon    [deg] longitude at offset position in [-&pi:&pi;) range. It may be NULL
+ * @param[out] out_lon    [deg] longitude at offset position in [-&pi;:&pi;) range. It may be NULL
  *                        if not needed.
  * @param[out] out_lat    [deg] latitude at offset position in [-&pi/2:&pi;/2] range. It may be
  *                        NULL if not needed.
@@ -1154,7 +1156,7 @@ int novas_equ_offset_by(double ra, double dec, double direction, double distance
   if(out_ra)
     *out_ra = out_lon / 15.0;
 
-  prop_error("novas_equ_offset", status, 0);
+  prop_error("novas_equ_offset_by", status, 0);
 
   return 0;
 }

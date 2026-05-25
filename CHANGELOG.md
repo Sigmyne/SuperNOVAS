@@ -28,6 +28,8 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
  - Eliminated memleak in `novas_planet_for_name()`. And, it no longer does alloc to copy input. (by kiranshila)
  
  - Fixed definition of `NOVAS_TRANSFORM_TYPES` in `novas.h`.
+ 
+ - `novas_debug()` did not handle negative parameter values as advertised. Now it does.
 
 ### Added
 
