@@ -121,6 +121,9 @@ typedef struct {
 /// The currently configured URLs for each data series
 static const char *urls[NOVAS_NUM_EOP_SERIES];
 
+/// Serial number for the URL configuration;
+static unsigned long url_version;
+
 static int itrf_years[NOVAS_NUM_EOP_SERIES] = { -1, 2020, 2020, 2020 };
 
 /// The default URLs for each data series.
@@ -330,6 +333,7 @@ static iers_leap_entry *fetch_leaps_async(long long *expiration) {
   download_buffer data = { str, sizeof(str), 0 };
   FILE *fp;
   iers_leap_entry *list;
+  static const char *url;
 
   curl = init_curl();
   if (!curl) {
@@ -337,14 +341,15 @@ static iers_leap_entry *fetch_leaps_async(long long *expiration) {
     return NULL;
   }
 
-  curl_easy_setopt(curl, CURLOPT_URL, novas_get_eop_url(EOP_LEAP_LIST));
+  url = novas_get_eop_url(EOP_LEAP_LIST);
+  curl_easy_setopt(curl, CURLOPT_URL, url);
   curl_easy_setopt(curl, CURLOPT_WRITEDATA, &data);
 
   res = curl_easy_perform(curl);
   curl_easy_cleanup(curl);
 
   if(res) {
-    novas_set_errno(EAGAIN, fn, "curl error %d: %s", res, curl_easy_strerror(res));
+    novas_set_errno(EAGAIN, fn, "curl error %d for %s: %s", res, url, curl_easy_strerror(res));
     return NULL;
   }
 
@@ -411,7 +416,7 @@ static int novas_fetch_eop_chunk(CURL **restrict pCurl, const char *restrict url
   //curl_easy_cleanup(curl);
 
   if(res)
-    return novas_error(-1, EAGAIN, fn, "curl error %d: %s", res, curl_easy_strerror(res));
+    return novas_error(-1, EAGAIN, fn, "curl error %d for %s: %s", res, url, curl_easy_strerror(res));
 
   return 0;
 }
@@ -838,6 +843,8 @@ int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *u
 
   discard = (char *) urls[series];
   urls[series] = url ? strdup(url) : NULL;
+  url_version++;
+
   if(series != EOP_LEAP_LIST)
     itrf_years[series] = url ? itrf_year : default_itrf_years[series];
 
@@ -1023,13 +1030,14 @@ int novas_fetch_eop(double jd, long timeout_millis, novas_eop *eop) {
 #ifdef WITHOUT_CURL
   return novas_error(-1, ENOSYS, fn, "SuperNOVAS was built without cURL support (WITHOUT_CURL).");
 #else
+  static THREAD_LOCAL unsigned long version = -1;
   static THREAD_LOCAL novas_eop array[4];
   static THREAD_LOCAL double jd_from, jd_to = -1.0;
 
   if(!eop)
     return novas_error(-1, EINVAL, fn, "output eop is NULL");
 
-  if(jd_to < jd_from || jd < jd_from || jd > jd_to) {
+  if(version != url_version || jd_to < jd_from || jd < jd_from || jd > jd_to) {
     prop_error(fn, novas_fetch_eop_array(jd, timeout_millis, array, 4), 0);
 
     if(!(jd >= array[1].jd && jd <= array[2].jd))
@@ -1037,6 +1045,7 @@ int novas_fetch_eop(double jd, long timeout_millis, novas_eop *eop) {
 
     jd_from = array[1].jd;
     jd_to = array[2].jd;
+    version = url_version;
   }
 
   return novas_eop_spline_interp(jd, array, eop);

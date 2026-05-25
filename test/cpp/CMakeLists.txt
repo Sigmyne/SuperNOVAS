@@ -20,11 +20,11 @@ foreach(TEST ${TEST_PROGRAMS})
     target_include_directories(${TEST} PRIVATE ${PROJECT_SOURCE_DIR}/include)
         
     if(WITHOUT_CURL)
-        target_compile_definitions(${TEST} PRIVATE WITHOUT_CURL=1)
+        target_compile_definitions(${TEST} PRIVATE WITHOUT_CURL)
     endif()
 
     if(NOT ENABLE_TESTING_ONLINE)
-        target_compile_definitions(${TEST} PRIVATE OFFLINE=1)
+        target_compile_definitions(${TEST} PRIVATE OFFLINE)
     endif()
 
     # Link against the supernovas library

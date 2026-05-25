@@ -114,7 +114,7 @@ int main() {
   gf = Frame(go, Time::j2000(), NOVAS_FULL_ACCURACY);
   if(!test.check("create(full accuracy).is_valid()", !gf.is_valid())) n++;
 
-#if !WITHOUR_CURL && !OFFLINE
+#if !defined(WITHOUT_CURL) && !defined(OFFLINE)
   if(!test.check("[enable fetch EOP]", novas_set_auto_fetch_eop(1) == 0)) n++;
   Frame fe = Frame::reduced_accuracy(gc, Time::j2000(), eop);
   if(!test.check("is_valid(geocentric/no-EOP)", fe.is_valid())) n++;

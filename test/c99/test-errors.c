@@ -2905,7 +2905,7 @@ static int test_fetch_eop() {
   if(check("fetch_eop:eop:null", -1, novas_fetch_eop(NOVAS_JD_J2000, 0, NULL))) n++;
   if(check("fetch_eop:jd:low", -1, novas_fetch_eop(0.0, 0, &eop))) n++;
 
-#if WITHOUT_CURL
+#if !defined(WITHOUT_CURL) && !defined(OFFLINE)
   if(check("fetch_eop:no_curl", -1, novas_fetch_eop_unix(time(NULL), 0, NULL))) n++;
 #else
   novas_set_eop_url(EOP_RAPID_IAU2000, 2020, "file://nosuchfile");
@@ -2974,7 +2974,7 @@ static int test_fetch_eop() {
   if(check("fetch_eop:empty_leap", -1, novas_fetch_eop(NOVAS_JD_J2000, 0, &eop))) n++;
   novas_set_eop_url(EOP_LEAP_LIST, 0, NULL);
 
-#if !WITHOUT_CURL
+#ifndef WITHOUT_CURL
   novas_set_auto_fetch_eop(1);
 #endif
 
@@ -3008,7 +3008,7 @@ static int test_lookup_leap() {
 
   novas_set_auto_fetch_eop(1);
 
-#if  !WITHOUT_CURL
+#if  !defined(WITHOUT_CURL) && !defined(OFFLINE)
   if(check("lookup:set_eop_url:bad", -1, novas_set_eop_url(EOP_LEAP_LIST, 0, "file:///blah.txt"))) n++;
   novas_set_eop_url(EOP_LEAP_LIST, 0, NULL);
 #endif

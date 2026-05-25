@@ -48,11 +48,11 @@ foreach(TEST ${TEST_PROGRAMS})
         target_compile_definitions(${TEST} PRIVATE RESOURCES="${PROJECT_SOURCE_DIR}/test/c99/resources")
         
         if(WITHOUT_CURL)
-            target_compile_definitions(${TEST} PRIVATE WITHOUT_CURL=1)
+            target_compile_definitions(${TEST} PRIVATE WITHOUT_CURL)
         endif()
         
         if(NOT ENABLE_TESTING_ONLINE)
-            target_compile_definitions(${TEST} PRIVATE OFFLINE=1)
+            target_compile_definitions(${TEST} PRIVATE OFFLINE)
         endif()
  
         # Special handling for CALCEPH example

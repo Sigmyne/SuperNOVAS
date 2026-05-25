@@ -144,7 +144,7 @@ int main() {
   if(!test.equals("to_string(moving ENU)", g3.to_string(),
           "GeodeticObserver at Site (W 114d 35m 29.612s, N  57d 17m 44.806s, altitude 75 m) moving at ENU Velocity (1.000 km/s, -2.000 km/s, 3.000 km/s)")) n++;
 
-#if !WITHOUR_CURL && !OFFLINE
+#if !defined(WITHOUT_CURL) && !defined(OFFLINE)
   if(!test.check("[enable fetch EOP]", novas_set_auto_fetch_eop(1) == 0)) n++;
   GeodeticObserver g4 = Observer::on_earth(site);
   if(!test.check("is_valid(no-EOP)", g4.is_valid())) n++;

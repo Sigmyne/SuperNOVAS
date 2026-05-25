@@ -5809,20 +5809,21 @@ static int test_equals_frame() {
 static int test_fetch_eop() {
   int n = 0;
 
-#if !WITHOUT_CURL
+#ifndef WITHOUT_CURL
   novas_eop eop = {};
 
-#  if !OFFLINE
+#  ifndef OFFLINE
   if(!is_ok("fetch_eop:unix:now", novas_fetch_eop_unix(time(NULL), 0, &eop))) n++;
 #  endif
 
+  if(!is_ok("fetch_eop:set_eop_url:leap", novas_set_eop_url(EOP_LEAP_LIST, 0, get_resource_url("leap-seconds.list")))) n++;
   if(!is_ok("fetch_eop:set_eop_url:rapid", novas_set_eop_url(EOP_RAPID_IAU2000, 2020, get_resource_url("finals.all.iau2000.txt")))) n++;
   if(!is_ok("fetch_eop:set_eop_url:c04", novas_set_eop_url(EOP_C04_IAU2000_0UTC, 2008, get_resource_url("EOP_20u24_C04_one_file_1962-now.txt")))) n++;
   if(!is_ok("fetch_eop:set_eop_url:c01", novas_set_eop_url(EOP_C01_IAU2000, 1900, get_resource_url("EOP_C01_IAU2000_1846-now.txt")))) n++;
 
   if(!is_equal("fetch_eop:get_eop_itrf_year:rapid", novas_get_eop_itrf_year(EOP_RAPID_IAU2000), 2020, 1e-15)) n++;
-  if(!is_equal("fetch_eop:get_eop_itrf_year:rapid", novas_get_eop_itrf_year(EOP_C04_IAU2000_0UTC), 2008, 1e-15)) n++;
-  if(!is_equal("fetch_eop:get_eop_itrf_year:rapid", novas_get_eop_itrf_year(EOP_C01_IAU2000), 1988, 1e-15)) n++;
+  if(!is_equal("fetch_eop:get_eop_itrf_year:c04", novas_get_eop_itrf_year(EOP_C04_IAU2000_0UTC), 2008, 1e-15)) n++;
+  if(!is_equal("fetch_eop:get_eop_itrf_year:c01", novas_get_eop_itrf_year(EOP_C01_IAU2000), 1988, 1e-15)) n++;
 
   if(!is_ok("fetch_eop:j2000", novas_fetch_eop(NOVAS_JD_J2000, 0, &eop))) n++;
   if(!is_equal("fetch_eop:j2000:leap", eop.leap, 32, 1e-15)) n++;
@@ -5864,7 +5865,7 @@ static int test_fetch_eop() {
 static int test_auto_fetch_eop() {
   int n = 0;
 
-#if !WITHOUT_CURL && !OFFLINE
+#if !defined(WITHOUT_CURL) && !defined(OFFLINE)
   observer obs = {};
   novas_timespec ts = {};
   novas_frame frame = {};
@@ -5893,7 +5894,7 @@ static int test_auto_fetch_eop() {
   if(!is_ok("set_auto_fetch_eop(1)", novas_set_auto_fetch_eop(1))) n++;
   if(!is_ok("is_auto_fetch_eop:1:again", !novas_is_auto_fetch_eop())) n++;
 #else
-#  if WITHOUT_CURL
+#  ifdef WITHOUT_CURL
   if(!is_ok("is_auto_fetch_eop", novas_is_auto_fetch_eop())) n++;
 #  endif
   if(!is_ok("set_auto_fetch_eop(0)", novas_set_auto_fetch_eop(0))) n++;
@@ -5909,7 +5910,7 @@ static int test_lookup_leap() {
   int n = 0;
   char path[1024] = {'\0'}, *rc;
 
-#if !WITHOUT_CURL && !OFFLINE
+#if !defined(WITHOUT_CURL) && !defined(OFFLINE)
   if(!is_ok("lookup_leap:set_eop_url", novas_set_eop_url(EOP_LEAP_LIST, 1950, NULL))) n++;
   if(!is_equal("lookup_leap:auto:j2000", novas_lookup_leap(946684800L), 32.0, 1e-15)) n++;
   if(!is_equal("lookup_leap:auto:1970", novas_lookup_leap(0L), 0.0, 1e-15)) n++;

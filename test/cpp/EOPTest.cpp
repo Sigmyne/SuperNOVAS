@@ -57,7 +57,7 @@ int main() {
   if(!test.equals("itrf_transformed().xp()", c.xp().arcsec(), xp, 1e-14)) n++;
   if(!test.equals("itrf_transformed().yp()", c.yp().arcsec(), yp, 1e-14)) n++;
 
-#if !WITHOUT_CURL && !OFFLINE
+#if !defined(WITHOUT_CURL) && !defined(OFFLINE)
   if(!test.check("[enable EOP fetch]", novas_set_auto_fetch_eop(1) == 0)) n++;
 
   if(!test.check("fetch_current()", EOP::fetch_current(Interval(1.0)).is_valid())) n++;
