@@ -7,9 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [1.7.0-rc2] - 2026-05-25
 
-Release candidate for the upcoming feature release, possibly around 1 August 2026.
+Release candidate for the upcoming feature release, possibly around 1 August 2026 -- or before.
 
 ### Fixed
 
@@ -93,6 +93,11 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
  - Precision in `novas_set_split_time()` to be independent of the choice of integer/double split of the parameters, 
    beyond the precision of the split itself.
 
+ - Fixed wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
+ 
+ - `novas_print_decimal()` changed to return printed character count _excuding_ termination. (The prior version
+   included the string termination in the count, which was inconsistent with the other print functions.)
+
  - Improved CMake installation of examples (no unintended files, C++ examples only if `ENABLE_CPP` option is used). 
 
  - Adjusted C++ testing precision on tests that can trip up, depending on the platform.
@@ -105,8 +110,6 @@ Release candidate for the upcoming feature release, possibly around 1 August 202
  
  - `examples/Makefile` to work standalone, without `config.mk`.
  
- - Fixed wrong argument types in error traces of `Source` and `Ecliptic` (found by CodeQL).
-
 ### Deprecated
 
  - #323: A few functions, which have already been documented as deprecated, are now annotated as such also so the

@@ -380,7 +380,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
 <tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
-<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-devel&quot;</td></tr>
+<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-rc2&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
 <tr class="memitem:a44de9d1672290d153a1dfb0685886208" id="r_a44de9d1672290d153a1dfb0685886208"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a44de9d1672290d153a1dfb0685886208">SUPERNOVAS_VERSION_STRING</a></td></tr>
 <tr class="memdesc:a44de9d1672290d153a1dfb0685886208"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version string for this library.  <br /></td></tr>
@@ -3384,7 +3384,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-devel&quot;</td>
+          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-rc2&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -7645,7 +7645,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">star</td><td>Pointer to structure to populate with the catalog data for a celestial object located outside the solar system. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">system</td><td>Input catalog coordinate system epoch, e.g. "ICRS", "B1950.0", "J2000.0", "FK4", "FK5", or "HIP". In general, any Besselian or Julian year epoch can be used by year (e.g. "B1933.193" or "J2022.033"), or else the fixed value listed. If 'B' or 'J' is omitted in front of the epoch year, then Besselian epochs are assumed prior to 1984.0, and Julian epochs after. (See <span class="tt"><a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4" title="Returns the Julian day corresponding to an astronomical coordinate epoch.">novas_epoch()</a></span> for more). </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Pointer to the celestial object data structure to be populated with the corresponding ICRS catalog coordinates, after appying proper-motion and precession corrections as appropriate. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname"><a class="el" href="group__source.html" title="Defining the astronomical source of interest, or accessing properties thereof.">Astronomical object of interest</a></td><td>Pointer to the celestial object data structure to be populated with the corresponding ICRS catalog coordinates, after applying proper-motion and precession corrections as appropriate. </td></tr>
   </table>
   </dd>
 </dl>
@@ -9887,9 +9887,8 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and right ascension (R.A.) at the offset position is requested, or if the input declination is outside of the [-90:90] range.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd>Attila Kovacs</dd>
-<dd>
-<a class="el" href="util_8c.html#a64a31576a4654e8808de6e2fd755fcc4" title="Calculates offset spherical coordinates at some distance away from the input coordinates along a grea...">novas_offset_by()</a>, <a class="el" href="util_8c.html#a4f7e06b2fa5b3145b37aec4f9c2d1602" title="Returns the angular separation of two equatorial locations on a sphere.">novas_equ_sep()</a> </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="util_8c.html#a64a31576a4654e8808de6e2fd755fcc4" title="Calculates offset spherical coordinates at some distance away from the input coordinates along a grea...">novas_offset_by()</a>, <a class="el" href="util_8c.html#a4f7e06b2fa5b3145b37aec4f9c2d1602" title="Returns the angular separation of two equatorial locations on a sphere.">novas_equ_sep()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="util_8c.html#a64a31576a4654e8808de6e2fd755fcc4">novas_offset_by()</a>.</p>
 
@@ -13177,9 +13176,8 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if very close to the pole, and longitude at the offset position is requested, or if the input latitude is outside of the [-90:90] range.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.7 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd>Attila Kovacs</dd>
-<dd>
-<a class="el" href="util_8c.html#a500745e68a50eaac03d963b539637dc5" title="Calculates offset equatorial coordinates at some distance away from the input coordinates along a gre...">novas_equ_offset_by()</a>, <a class="el" href="util_8c.html#a9f33de2b26a19a5e20827e9e918b3375" title="Returns the angular separation of two locations on a sphere.">novas_sep()</a> </dd>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="util_8c.html#a500745e68a50eaac03d963b539637dc5" title="Calculates offset equatorial coordinates at some distance away from the input coordinates along a gre...">novas_equ_offset_by()</a>, <a class="el" href="util_8c.html#a9f33de2b26a19a5e20827e9e918b3375" title="Returns the angular separation of two locations on a sphere.">novas_sep()</a> </dd>
 <dd>
 <a href="https://docs.astropy.org/en/stable/_modules/astropy/coordinates/angles/utils.html#offset_at">https://docs.astropy.org/en/stable/_modules/astropy/coordinates/angles/utils.html#offset_at</a> </dd></dl>
 
