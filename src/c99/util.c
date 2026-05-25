@@ -495,7 +495,7 @@ int novas_print_decimal(double value, int decimals, char *str, int len) {
   // otherwise that we don't write more then len bytes into the output buffer.
 
   // We first print into a large enough local buffer...
-  n = novas_snprintf(s, sizeof(s), %.*g, (decimals + 1), value);
+  n = novas_snprintf(s, sizeof(s), "%.*g", (decimals + 1), value);
 
   // Use at most len-1 bytes from local buffer
   if(n >= len)

@@ -1509,7 +1509,7 @@ typedef struct novas_object {
 #define NOVAS_SSB_INIT NOVAS_PLANET_INIT(NOVAS_SSB, "SSB")
 
 /**
- * `object` initializer for the planet Venus
+ * `object` initializer for the planet Mercury
  * @hideinitializer
  * @since 1.2
  * @sa object
@@ -1518,7 +1518,7 @@ typedef struct novas_object {
 #define NOVAS_MERCURY_INIT NOVAS_PLANET_INIT(NOVAS_MERCURY, "Mercury")
 
 /**
- * `object` initializer for the planet Mercury
+ * `object` initializer for the planet Venus
  * @hideinitializer
  * @since 1.2
  * @sa object
