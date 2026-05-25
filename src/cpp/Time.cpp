@@ -830,15 +830,14 @@ std::string Time::to_epoch_string(int decimals) const {
   if(!is_valid())
     return "<invalid epoch>";
 
-  char fmt[20] = {'\0'}, s[40] = {'\0'};
+  char s[40] = {'\0'};
 
   if(decimals < 0)
     decimals = 0;
   else if(decimals > 12)
     decimals = 12;
 
-  snprintf(fmt, sizeof(fmt), "J%%.%df", decimals);
-  snprintf(s, sizeof(s), fmt, epoch());
+  snprintf(s, sizeof(s), "J%.*f", decimals, epoch());
 
   return std::string(s);
 }

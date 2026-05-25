@@ -2900,12 +2900,13 @@ static int test_fetch_eop() {
   observer obs = {};
   novas_timespec ts = {};
   novas_frame frame = {};
+
   char *url;
 
   if(check("fetch_eop:eop:null", -1, novas_fetch_eop(NOVAS_JD_J2000, 0, NULL))) n++;
   if(check("fetch_eop:jd:low", -1, novas_fetch_eop(0.0, 0, &eop))) n++;
 
-#if !defined(WITHOUT_CURL) && !defined(OFFLINE)
+#if defined(WITHOUT_CURL) && defined(OFFLINE)
   if(check("fetch_eop:no_curl", -1, novas_fetch_eop_unix(time(NULL), 0, NULL))) n++;
 #else
   novas_set_eop_url(EOP_RAPID_IAU2000, 2020, "file://nosuchfile");

@@ -270,11 +270,8 @@ std::string ScalarVelocity::SI_unit() const {
  * @since 1.6
  */
 std::string ScalarVelocity::to_string(int decimals) const {
-  char fmt[20] = {'\0'}, s[40] = {'\0'};
-
-  snprintf(fmt, sizeof(fmt), "%%.%df", decimals);
-  snprintf(s, sizeof(s), fmt, km_per_s());
-
+  char s[40] = {'\0'};
+  snprintf(s, sizeof(s), "%.*f", decimals, km_per_s());
   return std::string(s) + " km/s";
 }
 

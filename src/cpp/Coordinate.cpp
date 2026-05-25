@@ -177,7 +177,6 @@ std::string Coordinate::SI_unit() const {
  * @since 1.6
  */
 std::string Coordinate::to_string(int decimals) const {
-  char fmt[20] = {'\0'};
   char s[40] = {'\0'};
 
   double value;
@@ -219,8 +218,7 @@ std::string Coordinate::to_string(int decimals) const {
     unit = "Gpc";
   }
 
-  snprintf(fmt, sizeof(fmt), "%%.%df", decimals);
-  snprintf(s, sizeof(s), fmt, value);
+  snprintf(s, sizeof(s), "%.*f", decimals, value);
 
   return std::string(s) + " " + std::string(unit);
 }
