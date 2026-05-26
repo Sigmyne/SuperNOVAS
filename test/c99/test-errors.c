@@ -158,7 +158,7 @@ static int test_make_ephem_object() {
   object o;
   int n = 0;
 
-  char longname[SIZE_OF_OBJ_NAME + 1];
+  char longname[SIZE_OF_OBJ_NAME + 1] = {'\0'};
   memset(longname, 'A', SIZE_OF_OBJ_NAME);
 
   if(check("make_ephem_object", -1, make_ephem_object("dummy", 1, NULL))) n++;
@@ -171,8 +171,8 @@ static int test_make_planet() {
   object o;
   int n = 0;
 
-  if(check("make_ephem_object:lo", -1, make_planet(-1, &o))) n++;
-  if(check("make_ephem_object:hi", -1, make_planet(NOVAS_PLANETS, &o))) n++;
+  if(check("make_planet:lo", -1, make_planet(-1, &o))) n++;
+  if(check("make_planet:hi", -1, make_planet(NOVAS_PLANETS, &o))) n++;
 
   return n;
 }
@@ -206,7 +206,7 @@ static int test_make_object() {
   if(check("make_object:star", -1, make_object(NOVAS_CATALOG_OBJECT, 1, "dummy", NULL, &o))) n++;
   if(check("make_object:type", 1, make_object(-1, 1, "dummy", &s, &o))) n++;
   if(check("make_object:pl:lo", 2, make_object(NOVAS_PLANET, -1, "dummy", NULL, &o))) n++;
-  if(check("make_object:pl:lo", 2, make_object(NOVAS_PLANET, NOVAS_PLANETS, "dummy", NULL, &o))) n++;
+  if(check("make_object:pl:hi", 2, make_object(NOVAS_PLANET, NOVAS_PLANETS, "dummy", NULL, &o))) n++;
   if(check("make_object:name", 5, make_object(NOVAS_PLANET, 1, longname, NULL, &o))) n++;
 
   return n;
@@ -313,7 +313,7 @@ static int test_inv_refract() {
   on_surface surf = ON_SURFACE_INIT;
   int n = 0;
 
-  if(check_nan("inv_refract:loc", novas_inv_refract(novas_optical_refraction, NOVAS_JD_J2000, NULL, NOVAS_REFRACT_OBSERVED, 5.0))) n++;;
+  if(check_nan("inv_refract:loc", novas_inv_refract(novas_optical_refraction, NOVAS_JD_J2000, NULL, NOVAS_REFRACT_OBSERVED, 5.0))) n++;
 
   novas_set_max_iter(0);
   if(check_nan("inv_refract:converge", novas_inv_refract(novas_optical_refraction, NOVAS_JD_J2000, &surf, NOVAS_REFRACT_OBSERVED, 5.0))) n++;
@@ -402,7 +402,7 @@ static int test_refract_wavelength() {
   if(check("refract:wavelength:neg", -1, novas_refract_wavelength(-0.1))) n++;
   if(check("refract:wavelength:nan", -1, novas_refract_wavelength(NAN))) n++;
 
-  return n++;
+  return n;
 }
 
 
@@ -872,9 +872,9 @@ static int test_proper_motion() {
   double p[3] = {1.0}, v[3] = {1.0};
   int n = 0;
 
-  if(check("frame_tie:p", -1, proper_motion(0.0, NULL, v, 1.0, p))) n++;
-  if(check("frame_tie:v", -1, proper_motion(0.0, p, NULL, 1.0, p))) n++;
-  if(check("frame_tie:out", -1, proper_motion(0.0, p, v, 1.0, NULL))) n++;
+  if(check("proper_motion:p", -1, proper_motion(0.0, NULL, v, 1.0, p))) n++;
+  if(check("proper_motion:v", -1, proper_motion(0.0, p, NULL, 1.0, p))) n++;
+  if(check("proper_motion:out", -1, proper_motion(0.0, p, v, 1.0, NULL))) n++;
 
   return n;
 }
@@ -979,8 +979,8 @@ static int test_cio_ra() {
   double x;
   int n = 0;
 
-  if(check("cio_location:ra", -1, cio_ra(0.0, NOVAS_FULL_ACCURACY, NULL))) n++;
-  if(check("cio_location:accuracy", 1, cio_ra(0.0, -1, &x))) n++;
+  if(check("cio_ra:ra", -1, cio_ra(0.0, NOVAS_FULL_ACCURACY, NULL))) n++;
+  if(check("cio_ra:accuracy", 1, cio_ra(0.0, -1, &x))) n++;
 
   return n;
 }
@@ -1032,7 +1032,7 @@ static int test_planet_lon() {
 static int test_fund_args() {
   int n = 0;
 
-  if(check("find_args", -1, fund_args(0.0, NULL))) n++;
+  if(check("fund_args", -1, fund_args(0.0, NULL))) n++;
 
   return n;
 }
@@ -1069,8 +1069,8 @@ static int test_precession() {
   double p[3] = {1.0};
   int n = 0;
 
-  if(check("precesion:in", -1, precession(0.0, NULL, 1.0, p))) n++;
-  if(check("precesion:out", -1, precession(0.0, p, 1.0, NULL))) n++;
+  if(check("precession:in", -1, precession(0.0, NULL, 1.0, p))) n++;
+  if(check("precession:out", -1, precession(0.0, p, 1.0, NULL))) n++;
 
   return n;
 }
@@ -1146,9 +1146,9 @@ static int test_grav_undef() {
   double p[3] = {2.0}, po[3] = {0.0, 1.0};
   int n = 0;
 
-  if(check("grav_def:pos", -1, grav_undef(NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, NULL, po, p))) n++;
-  if(check("grav_def:po", -1, grav_undef(NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, p, NULL, p))) n++;
-  if(check("grav_def:out", -1, grav_undef(NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, p, po, NULL))) n++;
+  if(check("grav_undef:pos", -1, grav_undef(NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, NULL, po, p))) n++;
+  if(check("grav_undef:po", -1, grav_undef(NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, p, NULL, p))) n++;
+  if(check("grav_undef:out", -1, grav_undef(NOVAS_JD_J2000, NOVAS_FULL_ACCURACY, p, po, NULL))) n++;
 
   return n;
 }
@@ -1714,9 +1714,8 @@ static int test_novas_to_dexxx_planet() {
 static int test_naif_to_novas_planet() {
   int n = 0;
 
-  if(check("naif_to_novas_planet:-2", -1, naif_to_novas_planet(-1))) n++;
+  if(check("naif_to_novas_planet:-2", -1, naif_to_novas_planet(-2))) n++;
   if(check("naif_to_novas_planet:-1", -1, naif_to_novas_planet(-1))) n++;
-  if(check("naif_to_novas_planet:", -1, naif_to_novas_planet(-1))) n++;
   if(check("naif_to_novas_planet:500", -1, naif_to_novas_planet(500))) n++;
   if(check("naif_to_novas_planet:501", -1, naif_to_novas_planet(501))) n++;
   if(check("naif_to_novas_planet:598", -1, naif_to_novas_planet(598))) n++;
@@ -1759,37 +1758,37 @@ static int test_orbit_posvel() {
 
   orbit.a = 1.0;
 
-  if(check("set_obsys_pole:orbit", -1, novas_orbit_posvel(0.0, NULL, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
-  if(check("set_obsys_pole:pos=vel:NULL", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, NULL, NULL))) n++;
-  if(check("set_obsys_pole:accuracy:-1", -1, novas_orbit_posvel(0.0, &orbit, -1, pos, vel))) n++;
-  if(check("set_obsys_pole:accuracy:2", -1, novas_orbit_posvel(0.0, &orbit, 2, pos, vel))) n++;
+  if(check("orbit_posvel:orbit", -1, novas_orbit_posvel(0.0, NULL, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
+  if(check("orbit_posvel:pos=vel:NULL", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, NULL, NULL))) n++;
+  if(check("orbit_posvel:accuracy:-1", -1, novas_orbit_posvel(0.0, &orbit, -1, pos, vel))) n++;
+  if(check("orbit_posvel:accuracy:2", -1, novas_orbit_posvel(0.0, &orbit, 2, pos, vel))) n++;
 
-  if(check("set_obsys_pole:orbit:converge", 0, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
+  if(check("orbit_posvel:orbit:converge", 0, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
 
   novas_set_max_iter(0);
-  if(check("set_obsys_pole:orbit:converge", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
-  else if(check("set_obsys_pole:orbit:converge:errno", ECANCELED, errno)) n++;
+  if(check("orbit_posvel:orbit:converge", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
+  else if(check("orbit_posvel:orbit:converge:errno", ECANCELED, errno)) n++;
   novas_set_max_iter(NOVAS_DEFAULT_MAX_ITER);
 
   orbit.system.type = -1;
-  if(check("set_obsys_pole:orbit:type:-1", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
+  if(check("orbit_posvel:orbit:type:-1", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
 
   orbit.system.type = NOVAS_TIRS;
-  if(check("set_obsys_pole:orbit:type:tirs", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
+  if(check("orbit_posvel:orbit:type:tirs", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
 
   orbit.system.type = NOVAS_ITRS;
-  if(check("set_obsys_pole:orbit:type:itrs", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
+  if(check("orbit_posvel:orbit:type:itrs", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
 
   orbit.system.type = NOVAS_REFERENCE_SYSTEMS;
-  if(check("set_obsys_pole:orbit:type:hi", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
+  if(check("orbit_posvel:orbit:type:hi", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
 
   orbit.system.plane = NOVAS_EQUATORIAL_PLANE;
   orbit.system.type = -1;
-  if(check("set_obsys_pole:orbit:type:-1:eq", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
+  if(check("orbit_posvel:orbit:type:-1:eq", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
 
   orbit.system.type = NOVAS_GCRS;
   orbit.system.plane = -1;
-  if(check("set_obsys_pole:orbit:plane:-1", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
+  if(check("orbit_posvel:orbit:plane:-1", -1, novas_orbit_posvel(0.0, &orbit, NOVAS_REDUCED_ACCURACY, pos, vel))) n++;
 
   return n;
 }
@@ -1812,7 +1811,6 @@ static int test_hms_hours() {
 
   if(check_nan("hms_hours:null", novas_hms_hours(NULL))) n++;
   if(check_nan("hms_hours:empty", novas_hms_hours(""))) n++;
-  if(check_nan("hms_hours:empty", novas_hms_hours(""))) n++;
   if(check_nan("hms_hours:few", novas_hms_hours("12"))) n++;
   if(check_nan("hms_hours:dms", novas_hms_hours("12d 39m 33.0"))) n++;
   if(check_nan("hms_hours:sep", novas_hms_hours("12,39,33.0"))) n++;
@@ -1828,7 +1826,6 @@ static int test_dms_degrees() {
   int n = 0;
 
   if(check_nan("dms_degrees:null", novas_dms_degrees(NULL))) n++;
-  if(check_nan("dms_degrees:empty", novas_dms_degrees(""))) n++;
   if(check_nan("dms_degrees:empty", novas_dms_degrees(""))) n++;
   if(check_nan("dms_degrees:few", novas_dms_degrees("122"))) n++;
   if(check_nan("dms_degrees:hms", novas_dms_degrees("122h 39m 33.0"))) n++;
@@ -1950,7 +1947,7 @@ static int test_rise_set() {
 
   novas_set_max_iter(0);
   if(check_nan("rise_set:rises_above:noconv", novas_rises_above(0.0, &sun, &frame, NULL))) n++;
-  if(check_nan("rise_set:sets_below:noconv", novas_rises_above(0.0, &sun, &frame, NULL))) n++;
+  if(check_nan("rise_set:sets_below:noconv", novas_sets_below(0.0, &sun, &frame, NULL))) n++;
   novas_set_max_iter(NOVAS_DEFAULT_MAX_ITER);
 
   return n;
@@ -2689,16 +2686,16 @@ static int test_error_handler() {
   // NULL handler silences output across all paths.
   prev = novas_set_error_handler(NULL);
   if(prev != capturing_handler) {
-    fprintf(stderr, "ERROR! expected NULL as previous handler, got non-NULL\n");
+    fprintf(stderr, "ERROR! expected the capturing handler as previous handler, got something else.\n");
     n++;
   }
 
   reset_captured();
 
-  // Replacing NULL with a real handler reports NULL as the previous.
+  // Replacing NULL with a real handler reports the default handler as the previous.
   prev = novas_set_error_handler(capturing_handler);
   if(prev != default_h) {
-    fprintf(stderr, "ERROR! expected NULL as previous handler, got non-NULL\n");
+    fprintf(stderr, "ERROR! expected the default handler as previous handler, got something else.\n");
     n++;
   }
 
