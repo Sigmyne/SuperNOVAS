@@ -888,7 +888,7 @@ static void breakdown(double value, int decimals, int *h, int *m, int *s, long l
 int novas_print_hms(double hours, enum novas_separator_type sep, int decimals, char *restrict buf, int len) {
   static const char *fn = "novas_print_hms";
 
-  char tmp[100] = {'\0'};
+  char tmp[40] = {'\0'}; // 6 integer digits + up to 6 separator chars + decimal point + up to 9 decimals + termination = 23 max.
 
   if(!buf)
     return novas_error(-1, EINVAL, fn, "output buffer is NULL");
@@ -979,7 +979,7 @@ int novas_print_hms(double hours, enum novas_separator_type sep, int decimals, c
 int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals, char *restrict buf, int len) {
   static const char *fn = "novas_print_dms";
 
-  char tmp[100] = {'\0'};
+  char tmp[40] = {'\0'}; // sign + 7 integer digits + up to 6 separator chars + decimal point + up to 9 decimals + termination = 25 max.
 
   if(!buf)
     return novas_error(-1, EINVAL, fn, "output buffer is NULL");
