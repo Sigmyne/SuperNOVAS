@@ -73,10 +73,10 @@ The primary goal of __SuperNOVAS__ is to improve on the original NOVAS C library
 
  - Fixing [outstanding issues](#fixed-issues).
  - Adding a high-level [C++11 API](USAGE-CPP.md).
+ - [Refined C99 API](#api-changes) to promote best programming practices.
+ - [New features](#added-functionality).
  - Improved [C99 API documentation](https://sigmyne.github.io/SuperNOVAS/doc/html/files.html).
  - [Faster calculations](#benchmarks).
- - [New features](#added-functionality).
- - [Refined C99 API](#api-changes) to promote best programming practices.
  - [Thread-safe calculations](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#multi-threading-c99).
  - [Debug mode](#debug-support) with informative error tracing.
  - [Regression testing](https://codecov.io/gh/Sigmyne/SuperNOVAS) and continuous integration on GitHub.
@@ -1339,6 +1339,8 @@ Below is a non-exhaustive overview new features added by __SuperNOVAS__ on top o
    from a remote source, they can make using __SuperNOVAS__ at its full precision a whole lot easier.
    
  - New practical equality tests, with reasonable tolerances, for data structures and classes.
+ 
+ - Support for nearly full-featured embedded / bare-metal build targets without `libc` support or system clock.
 
 </details>
 
