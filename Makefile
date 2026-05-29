@@ -8,6 +8,17 @@
 
 include config.mk
 
+# Check if there is a doxygen we can run
+ifndef DOXYGEN
+  DOXYGEN := $(shell which doxygen)
+else
+  $(shell test -f $(DOXYGEN))
+endif
+
+# If there is doxygen, build the API documentation also by default
+ifeq ($(.SHELLSTATUS),0)
+  DOC_TARGETS += dox
+endif
 
 # ===============================================================================
 # Specific build targets and recipes below...
@@ -173,7 +184,7 @@ ifneq ($(wildcard doc/c99/html/search/*),)
 	$(INSTALL_DATA) doc/c99/html/*.* $(DESTDIR)$(htmldir)/c99/
 	@echo "installing C99 Doxygen tag file to $(DESTDIR)$(docdir)"
 	install -d $(DESTDIR)$(docdir)
-	$(INSTALL_DATA) doc/supernovas.tag $(DESTDIR)$(docdir)/
+	$(INSTALL_DATA) doc/c99/supernovas.tag $(DESTDIR)$(docdir)/
 else
 	@echo "WARNING! Skipping C99 HTML docs install: needs doxygen and 'local-dox'"
 endif

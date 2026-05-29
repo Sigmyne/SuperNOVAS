@@ -11,15 +11,6 @@ else
   $(shell test -f $(DOXYGEN))
 endif
 
-# Build only if there is doxygen
-ifeq ($(.SHELLSTATUS),0)
-  TARGET = all
-else
-  ifneq ($(DOXYGEN),none)
-    $(info WARNING! Doxygen is not available. Will skip)
-  endif
-endif
-
 .PHONY: default
 default: $(TARGET)
 
