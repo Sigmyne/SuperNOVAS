@@ -73,8 +73,8 @@ The primary goal of __SuperNOVAS__ is to improve on the original NOVAS C library
 
  - Fixing [outstanding issues](#fixed-issues).
  - Adding a high-level [C++11 API](USAGE-CPP.md).
- - [Refined C99 API](#api-changes) to promote best programming practices.
  - [New features](#added-functionality).
+ - [Refined C99 API](#api-changes) to promote best programming practices.
  - Improved [C99 API documentation](https://sigmyne.github.io/SuperNOVAS/doc/html/files.html).
  - [Faster calculations](#benchmarks).
  - [Thread-safe calculations](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#multi-threading-c99).

@@ -61,7 +61,7 @@ solsys: $(SOLSYS_TARGETS)
 all: static analyze
 
 # Warn about limiting build options.
-.phony: warn
+.PHONY: warn
 warn:
 ifeq ($(WITHOUT_LIBC),1)
 	$(info INFO: Configured WITHOUT_LIBC: Force disable incompatible config options.)
@@ -172,6 +172,7 @@ ifeq ($(ENABLE_CPP),1)
 	$(INSTALL_DATA) doc/cpp/*.md $(DESTDIR)$(cppdocdir)/
 endif
 
+.PHONY: install-html
 install-html:
 ifneq ($(wildcard doc/html/search/*),)
 	@echo "installing C99 API documentation to $(DESTDIR)$(htmldir)"
