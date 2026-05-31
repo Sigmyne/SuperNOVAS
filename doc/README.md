@@ -56,8 +56,8 @@ The primary goal of __SuperNOVAS__ is to improve on the original NOVAS C library
 
  - Fixing [outstanding issues](#fixed-issues).
  - Adding a high-level [C++11 API](USAGE-CPP.md).
- - [Refined C99 API](#api-changes) to promote best programming practices.
  - [New features](#added-functionality).
+ - [Refined C99 API](#api-changes) to promote best programming practices.
  - Improved [C99 API documentation](https://sigmyne.github.io/SuperNOVAS/doc/html/files.html).
  - [Faster calculations](#benchmarks).
  - [Thread-safe calculations](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#multi-threading-c99).
@@ -70,16 +70,13 @@ to change existing (functional) code you may have written for NOVAS C.
 
 __SuperNOVAS__ is really quite easy to use. Its new API is just as simple and intuitive as that of __astropy__ (or so 
 we strive for it to be), and it is similarly well documented also (see the 
-documentation for the [C99](https://sigmyne.github.io/SuperNOVAS/doc/html/files.html)) and/or
-[C++](https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/files.html) APIs. You can typically achieve the 
+documentation for the [C99](https://sigmyne.github.io/SuperNOVAS/doc/html/files.html) and/or
+[C++](https://sigmyne.github.io/SuperNOVAS/doc/html/cpp/files.html) APIs). You can typically achieve the 
 same results with similar lines of code on
 [C](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/SuperNOVAS_vs_astropy.md) or 
 [C++](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/cpp/SuperNOVAS++_vs_astropy.md)
 with __SuperNOVAS__ as with __astropy__, notwithstanding a little more involved error handling (due to the lack of 
 `try / except` style constructs in C/C++).
- 
-__SuperNOVAS__ is currently based on NOVAS C version 3.1. We plan to rebase __SuperNOVAS__ to the latest upstream 
-release of the NOVAS C library, if possible when new releases become available.
  
 __SuperNOVAS__ is maintained by [Attila Kovács](https://www.sigmyne.com/attipaci). 
 
@@ -1287,7 +1284,7 @@ the principal ways __SuperNOVAS__ has improved on the original NOVAS C library i
    C11 standard `_Thread_local`, or the C23 `thread_local`, or else the earlier GNU C &gt;= 3.3 standard `__thread` 
    modifier. You can also set the preferred thread-local keyword for your compiler by passing it via 
    `-DTHREAD_LOCAL=...` in `config.mk` to ensure that your build is thread-safe. And, if your compiler has no support 
-   whatsoever for thread_local variables, then __SuperNOVAS__ will not be thread-safe, just as NOVAS C isn't.
+   whatsoever for thread-local variables, then __SuperNOVAS__ will not be thread-safe, just as NOVAS C isn't.
 
  - __SuperNOVAS__ functions take `enum`s as their option arguments instead of raw integers. The enums allow for some 
    compiler checking (e.g. using the wrong enum), and make for more readable code that is easier to debug. They also 
@@ -1340,7 +1337,7 @@ the principal ways __SuperNOVAS__ has improved on the original NOVAS C library i
    
  - IAU 2000 nutation made a bit faster, reducing the the number of floating-point multiplications necessary by 
    skipping terms that do not contribute. Its coefficients are also packed more frugally in memory, resulting in a
-   smaller footprint.
+   smaller resident footprint.
    
  - Changed the standard atmospheric model for (optical) refraction calculation to include a simple model for the 
    annual average temperature at the site (based on latitude and elevation). This results is a slightly more educated 
@@ -1351,7 +1348,7 @@ the principal ways __SuperNOVAS__ has improved on the original NOVAS C library i
    more careful about the order in which terms are accumulated and combined, resulting in a small improvement on the 
    few uas (micro-arcsecond) level.
    
- - [__v1.1__] `place()` now returns an error 3 if and only if the observer is at (or very close, within ~1.5m) of the 
+ - [__v1.1__] `place()` now returns an error 3 if and only if the observer is at (or very close to, within ~1.5m) the 
    observed Solar-system object.
 
  - [__v1.1__] `grav_def()` is simplified. It no longer uses the location type argument. Instead it will skip 
