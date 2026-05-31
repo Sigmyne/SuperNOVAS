@@ -208,7 +208,7 @@ Classes</h2></td></tr>
 <tr class="memitem:novas_5Fsky_5Fpos" id="r_novas_5Fsky_5Fpos"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__sky__pos.html">novas_sky_pos</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Celestial object's place on the sky; contains the output from <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a>.  <a href="structnovas__sky__pos.html#details">More...</a><br /></td></tr>
 <tr class="memitem:novas_5Ftimespec" id="r_novas_5Ftimespec"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__timespec.html">novas_timespec</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure, which defines a precise instant of time that can be extpressed in any of the astronomical timescales.  <a href="structnovas__timespec.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure, which defines a precise instant of time that can be expressed in any of the astronomical timescales.  <a href="structnovas__timespec.html#details">More...</a><br /></td></tr>
 <tr class="memitem:novas_5Ftrack" id="r_novas_5Ftrack"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__track.html">novas_track</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The spherical and spectral tracking position of a source, and its first and second time derivatives.  <a href="structnovas__track.html#details">More...</a><br /></td></tr>
 <tr class="memitem:novas_5Ftransform" id="r_novas_5Ftransform"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structnovas__transform.html">novas_transform</a></td></tr>
@@ -327,7 +327,7 @@ Macros</h2></td></tr>
 <tr class="memitem:ga26aff9425f7df9a4559da8daac284cc5" id="r_ga26aff9425f7df9a4559da8daac284cc5"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga26aff9425f7df9a4559da8daac284cc5">NOVAS_MARS_INIT</a></td></tr>
 <tr class="memdesc:ga26aff9425f7df9a4559da8daac284cc5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> initializer for the planet Mars  <br /></td></tr>
 <tr class="memitem:a26fdd758cdef560688d38b20aacae68f" id="r_a26fdd758cdef560688d38b20aacae68f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a26fdd758cdef560688d38b20aacae68f">NOVAS_MATRIX_IDENTITY</a></td></tr>
-<tr class="memdesc:a26fdd758cdef560688d38b20aacae68f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structnovas__matrix.html" title="A 3x3 matrix for coordinate transformations.">novas_matrix</a> initializer for an indentity matrix  <br /></td></tr>
+<tr class="memdesc:a26fdd758cdef560688d38b20aacae68f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structnovas__matrix.html" title="A 3x3 matrix for coordinate transformations.">novas_matrix</a> initializer for an identity matrix.  <br /></td></tr>
 <tr class="memitem:ad10fc7f05b49bc1ac1110817dc25834e" id="r_ad10fc7f05b49bc1ac1110817dc25834e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad10fc7f05b49bc1ac1110817dc25834e">NOVAS_MATRIX_INIT</a></td></tr>
 <tr class="memdesc:ad10fc7f05b49bc1ac1110817dc25834e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty initializer for <a class="el" href="structnovas__matrix.html" title="A 3x3 matrix for coordinate transformations.">novas_matrix</a>.  <br /></td></tr>
 <tr class="memitem:gab40e33a03ee368c2496b54f9b222fc89" id="r_gab40e33a03ee368c2496b54f9b222fc89"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#gab40e33a03ee368c2496b54f9b222fc89">NOVAS_MERCURY_INIT</a></td></tr>
@@ -409,9 +409,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ga68aa01f6e3e0f40bbe1b5ccab3144fda" id="r_ga68aa01f6e3e0f40bbe1b5ccab3144fda"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga68aa01f6e3e0f40bbe1b5ccab3144fda">NOVAS_TAI_TO_TT</a>&#160;&#160;&#160;32.184</td></tr>
 <tr class="memdesc:ga68aa01f6e3e0f40bbe1b5ccab3144fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">[s] TT - TAI time offset  <br /></td></tr>
 <tr class="memitem:a7505fe27b163e97b60bcf4406eadffa7" id="r_a7505fe27b163e97b60bcf4406eadffa7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a7505fe27b163e97b60bcf4406eadffa7">NOVAS_TIMESCALES</a></td></tr>
-<tr class="memdesc:a7505fe27b163e97b60bcf4406eadffa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of asronomical time scales supported.  <br /></td></tr>
+<tr class="memdesc:a7505fe27b163e97b60bcf4406eadffa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of astronomical time scales supported.  <br /></td></tr>
 <tr class="memitem:gaddf3ffbfe4ed05288b689e861600194f" id="r_gaddf3ffbfe4ed05288b689e861600194f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gaddf3ffbfe4ed05288b689e861600194f">NOVAS_TIMESPEC_INIT</a></td></tr>
-<tr class="memdesc:gaddf3ffbfe4ed05288b689e861600194f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty initializer for <a class="el" href="structnovas__timespec.html" title="A structure, which defines a precise instant of time that can be extpressed in any of the astronomica...">novas_timespec</a>.  <br /></td></tr>
+<tr class="memdesc:gaddf3ffbfe4ed05288b689e861600194f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty initializer for <a class="el" href="structnovas__timespec.html" title="A structure, which defines a precise instant of time that can be expressed in any of the astronomical...">novas_timespec</a>.  <br /></td></tr>
 <tr class="memitem:a923fc797bc707dda3957e8b3c971df2e" id="r_a923fc797bc707dda3957e8b3c971df2e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a923fc797bc707dda3957e8b3c971df2e">NOVAS_TIMESTAMP_LEN</a>&#160;&#160;&#160;28</td></tr>
 <tr class="memdesc:a923fc797bc707dda3957e8b3c971df2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum number of bytes for a timestamp.  <br /></td></tr>
 <tr class="memitem:gabd9e6922d311d47ee2a7a4faf6b67971" id="r_gabd9e6922d311d47ee2a7a4faf6b67971"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__tracking.html#gabd9e6922d311d47ee2a7a4faf6b67971">NOVAS_TRACK_INIT</a></td></tr>
@@ -494,7 +494,7 @@ Typedefs</h2></td></tr>
 <tr class="memitem:gae8d7c10a8b9e69b1f0654ef4038482fd" id="r_gae8d7c10a8b9e69b1f0654ef4038482fd"><td class="memItemLeft">typedef short(*&#160;</td><td class="memItemRight"><a class="el" href="group__solar-system.html#gae8d7c10a8b9e69b1f0654ef4038482fd">novas_planet_provider_hp</a>) (const double jd_tdb[2], enum <a class="el" href="group__source.html#ga219df36b21dc4476656e708d14d08045">novas_planet</a> body, enum <a class="el" href="group__solar-system.html#ga208120c5fa3e12853eb37cb99d3e27be">novas_origin</a> origin, double *restrict position, double *restrict velocity)</td></tr>
 <tr class="memdesc:gae8d7c10a8b9e69b1f0654ef4038482fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycenter, and other barycenters).  <br /></td></tr>
 <tr class="memitem:ga98daa33604665eda41d9a9de964d7cc2" id="r_ga98daa33604665eda41d9a9de964d7cc2"><td class="memItemLeft">typedef struct novas_timespec&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga98daa33604665eda41d9a9de964d7cc2">novas_timespec</a></td></tr>
-<tr class="memdesc:ga98daa33604665eda41d9a9de964d7cc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure, which defines a precise instant of time that can be extpressed in any of the astronomical timescales.  <br /></td></tr>
+<tr class="memdesc:ga98daa33604665eda41d9a9de964d7cc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure, which defines a precise instant of time that can be expressed in any of the astronomical timescales.  <br /></td></tr>
 <tr class="memitem:ga19e2b7ebefb830d7cab293981adbbe07" id="r_ga19e2b7ebefb830d7cab293981adbbe07"><td class="memItemLeft">typedef struct novas_track&#160;</td><td class="memItemRight"><a class="el" href="group__tracking.html#ga19e2b7ebefb830d7cab293981adbbe07">novas_track</a></td></tr>
 <tr class="memdesc:ga19e2b7ebefb830d7cab293981adbbe07"><td class="mdescLeft">&#160;</td><td class="mdescRight">The spherical and spectral tracking position of a source, and its first and second time derivatives.  <br /></td></tr>
 <tr class="memitem:ga98c96461c56c17948f6ba1cc746f85eb" id="r_ga98c96461c56c17948f6ba1cc746f85eb"><td class="memItemLeft">typedef struct novas_transform&#160;</td><td class="memItemRight"><a class="el" href="group__frame.html#ga98c96461c56c17948f6ba1cc746f85eb">novas_transform</a></td></tr>
@@ -1642,7 +1642,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="structnovas__matrix.html" title="A 3x3 matrix for coordinate transformations.">novas_matrix</a> initializer for an indentity matrix </p>
+<p><a class="el" href="structnovas__matrix.html" title="A 3x3 matrix for coordinate transformations.">novas_matrix</a> initializer for an identity matrix. </p>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structnovas__matrix.html" title="A 3x3 matrix for coordinate transformations.">novas_matrix</a>, <a class="el" href="#ad10fc7f05b49bc1ac1110817dc25834e" title="Empty initializer for novas_matrix.">NOVAS_MATRIX_INIT</a> </dd></dl>
 
@@ -1662,7 +1662,7 @@ Variables</h2></td></tr>
 
 <p>Empty initializer for <a class="el" href="structnovas__matrix.html" title="A 3x3 matrix for coordinate transformations.">novas_matrix</a>. </p>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="structnovas__matrix.html" title="A 3x3 matrix for coordinate transformations.">novas_matrix</a>, <a class="el" href="#a26fdd758cdef560688d38b20aacae68f" title="novas_matrix initializer for an indentity matrix">NOVAS_MATRIX_IDENTITY</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structnovas__matrix.html" title="A 3x3 matrix for coordinate transformations.">novas_matrix</a>, <a class="el" href="#a26fdd758cdef560688d38b20aacae68f" title="novas_matrix initializer for an identity matrix.">NOVAS_MATRIX_IDENTITY</a> </dd></dl>
 
 </div>
 </div>
@@ -2021,7 +2021,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The number of asronomical time scales supported. </p>
+<p>The number of astronomical time scales supported. </p>
 <dl class="section since"><dt>Since</dt><dd>1.1</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__time.html#gaa642c4ccc7195dc62fd0dc56567ebd0b" title="Constants to reference various astronomical timescales used.">novas_timescale</a> </dd></dl>
 
