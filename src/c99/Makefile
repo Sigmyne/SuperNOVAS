@@ -183,7 +183,7 @@ ifneq ($(wildcard doc/html/search/*),)
 	install -d $(DESTDIR)$(docdir)
 	$(INSTALL_DATA) doc/*.tag $(DESTDIR)$(docdir)/
 else
-	@echo "WARNING! Skipping HTML docs install: needs doxygen and 'local-dox'"
+	@echo "WARNING! Skipping C99 HTML docs install: needs doxygen and 'dox' target"
 endif
 ifneq ($(wildcard doc/cpp/html/search/*),)
 	@echo "installing C++ API documentation to $(DESTDIR)$(cpphtmldir)"
@@ -194,19 +194,18 @@ ifneq ($(wildcard doc/cpp/html/search/*),)
 	install -d $(DESTDIR)$(cppdocdir)
 	$(INSTALL_DATA) doc/cpp/*.tag $(DESTDIR)$(cppdocdir)/
 else
-	@echo "WARNING! Skipping HTML docs install: needs doxygen and 'local-dox'"
+	@echo "WARNING! Skipping C++ HTML docs install: needs doxygen and 'dox' target"
 endif
-
 
 .PHONY: install-examples
 install-examples:
 	@echo "installing C99 examples to $(DESTDIR)$(docdir)/examples"
-	install -d $(DESTDIR)$(docdir)/examples
-	$(INSTALL_DATA) examples/* $(DESTDIR)$(docdir)/examples/
+	install -d $(DESTDIR)$(docdir)/examples/c99
+	$(INSTALL_DATA) examples/c99/* $(DESTDIR)$(docdir)/examples/c99/
 ifeq ($(ENABLE_CPP),1)
 	@echo "installing C++ examples to $(DESTDIR)$(cppdocdir)/examples"
-	install -d $(DESTDIR)$(cppdocdir)/examples
-	$(INSTALL_DATA) doc/examples/cpp/* $(DESTDIR)$(cppdocdir)/
+	install -d $(DESTDIR)$(cppdocdir)/examples/cpp
+	$(INSTALL_DATA) examples/cpp/* $(DESTDIR)$(cppdocdir)/examples/cpp/
 endif
 
 .PHONY: install-legacy
