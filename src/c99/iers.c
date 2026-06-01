@@ -16,9 +16,11 @@
  *  @sa \ref earth
  */
 
+/// \cond PRIVATE
 #if !defined(_MSC_VER) && !defined(WITHOUT_LIBC)
-#  define _GNU_SOURCE         ///< fmemopen() (before glibc 2.10)
+#  define _GNU_SOURCE                 ///< fmemopen() (before glibc 2.10)
 #endif
+/// \endcond
 
 #include <errno.h>
 #include <string.h>
@@ -59,6 +61,10 @@
 #  define LEAP_FILENAME               "leap-seconds.list"
 #  define DEFAULT_LEAP_URL            "https://" IERS_LEAP_SERVER "/iers/bul/bulc/ntp/" LEAP_FILENAME
 #  define NTP_UNIX_EPOCH              2208988800LL  ///< [s] NTP timestamp of UNIX epoch (1970 Jan 1)
+
+#ifdef _MSC_VER
+#  define gmtime_r        gmtime_s    ///< MSC equivalent
+#endif
 
 /**
  * A individual leap seconds entry in a linked list of leap seconds
@@ -749,9 +755,11 @@ int novas_lookup_leap(time_t t) {
   }
 
   if(t > leaps->unix_end) {
+    struct tm tm = {};
     char str[40] = {'\0'};
     unlock_leap();
-    strftime(str, sizeof(str), "%c", gmtime(&t));
+    gmtime_r(&t, &tm);
+    strftime(str, sizeof(str), "%c", &tm);
     return novas_error(NOVAS_INVALID_LEAP, ERANGE, fn, "Time %s is beyond the leap seconds coverage range", str);
   }
 
