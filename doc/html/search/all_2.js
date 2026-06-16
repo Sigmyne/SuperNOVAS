@@ -1,6 +1,5 @@
 var searchData=
 [
   ['_5f_5fnovas_5fdeprecate_5f_5f_0',['__NOVAS_DEPRECATE__',['../novas_8h.html#af5ee359d3a94d70399ba41e7b41c4342',1,'__NOVAS_DEPRECATE__(&quot;Use tod_to_itrs() or cirs_to_itrs() followed by itrs_to_hor() instead&quot;) int equ2hor(double jd_ut1:&#160;novas.h'],['../novas_8h.html#a40c3c527ec2edaee88e08a825556b7ee',1,'__NOVAS_DEPRECATE__(&quot;Use itrs_to_tod() or itrs_to_cirs() instead&quot;) short ter2cel(double jd_ut1_high:&#160;novas.h'],['../novas_8h.html#aa7e82563a7307462cbaf15ffbcf707d2',1,'__NOVAS_DEPRECATE__(&quot;Use tod_to_itrs() or cirs_to_itrs() instead&quot;) short cel2ter(double jd_ut1_high:&#160;novas.h'],['../novas_8h.html#a1f872782e41149782a6763a7b2a18d17',1,'__NOVAS_DEPRECATE__(&quot;Use tod_to_itrs() / itrs_to_tod(), cirs_to_itrs() / itrs_to_cirs(), or novas_make_frame() instead&quot;) short cel_pole(double jd_tt:&#160;novas.h'],['../novas_8h.html#abbbe5448739d61599c1637f50b0ecf91',1,'__NOVAS_DEPRECATE__(&quot;Use cio_ra() or -ira_equinox() instead&quot;) short cio_location(double jd_tdb:&#160;novas.h']]],
-  ['_5fdefault_5fsource_1',['_DEFAULT_SOURCE',['../timescale_8c.html#a8fb447618db946a9e2a596d9ea18763f',1,'timescale.c']]],
-  ['_5fgnu_5fsource_2',['_GNU_SOURCE',['../iers_8c.html#a369266c24eacffb87046522897a570d5',1,'iers.c']]]
+  ['_5fdefault_5fsource_1',['_DEFAULT_SOURCE',['../timescale_8c.html#a8fb447618db946a9e2a596d9ea18763f',1,'timescale.c']]]
 ];

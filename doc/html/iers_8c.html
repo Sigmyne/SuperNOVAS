@@ -174,8 +174,6 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('iers_8c.html',
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a369266c24eacffb87046522897a570d5" id="r_a369266c24eacffb87046522897a570d5"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a369266c24eacffb87046522897a570d5">_GNU_SOURCE</a></td></tr>
-<tr class="memdesc:a369266c24eacffb87046522897a570d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">fmemopen() (before glibc 2.10)  <br /></td></tr>
 <tr class="memitem:ad373a09690936b8af10b0ac6a00aadc4" id="r_ad373a09690936b8af10b0ac6a00aadc4"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ad373a09690936b8af10b0ac6a00aadc4">IERS_DATACENTER</a>&#160;&#160;&#160;&quot;datacenter.iers.org&quot;</td></tr>
 <tr class="memdesc:ad373a09690936b8af10b0ac6a00aadc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">IERS EOP server name.  <br /></td></tr>
 <tr class="memitem:a20da422c599203a2e493e129c9566ad2" id="r_a20da422c599203a2e493e129c9566ad2"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a20da422c599203a2e493e129c9566ad2">IERS_LEAP_SERVER</a>&#160;&#160;&#160;&quot;hpiers.obspm.fr&quot;</td></tr>
@@ -211,22 +209,6 @@ Functions</h2></td></tr>
 <p>The functions in this module are generally thread-safe. That is, you may call all functions from concurrent threads without data corruption. However, note that the EOP resources (URLs and/or local files), and the setting that enables/disables automatic fetching, are global settings. Thus, changing these in one thread will affect subsequent EOP fetch calls in other threads also.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__earth.html" title="Earth orientation">Earth orientation</a> </dd></dl>
 </div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
-<a id="a369266c24eacffb87046522897a570d5" name="a369266c24eacffb87046522897a570d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a369266c24eacffb87046522897a570d5">&#9670;&#160;</a></span>_GNU_SOURCE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _GNU_SOURCE</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>fmemopen() (before glibc 2.10) </p>
-
-</div>
-</div>
 <a id="ad373a09690936b8af10b0ac6a00aadc4" name="ad373a09690936b8af10b0ac6a00aadc4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad373a09690936b8af10b0ac6a00aadc4">&#9670;&#160;</a></span>IERS_DATACENTER</h2>
 

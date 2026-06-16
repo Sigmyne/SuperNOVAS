@@ -7,9 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.7.0-rc3] - 2026-05-31
+## [1.7.0] - 2026-06-16
 
-Release candidate for the upcoming feature release, expected between 15 June and 15 July 2026.
+Feature release, providing the ability to fetch Earth Orientation Parameters (EOP) from IERS, both explicitly or 
+automatically, and supporting builds for embedded platforms with a slightly reduced feature set.
 
 ### Fixed
 
@@ -30,6 +31,10 @@ Release candidate for the upcoming feature release, expected between 15 June and
  - Fixed definition of `NOVAS_TRANSFORM_TYPES` in `novas.h`.
  
  - `novas_debug()` did not handle negative parameter values as advertised. Now it does.
+
+ - CMake `xchangeConfig` to skip requiring math lib for non-Windows platforms in general, since it can fail if the 
+   math library is in the build path, but not in the search path, such as for some cross builds (see e.g. the vcpkg 
+   Android builds)
 
 ### Added
 

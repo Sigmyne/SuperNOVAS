@@ -1749,7 +1749,6 @@
             <topic label="grav_bodies_reduced_accuracy" href="group__apparent.html#ga03a4df8961a0cd05f89aca478d2dcd24"/>
           </topic>
           <topic label="iers.c" href="iers_8c.html">
-            <topic label="_GNU_SOURCE" href="iers_8c.html#a369266c24eacffb87046522897a570d5"/>
             <topic label="IERS_DATACENTER" href="iers_8c.html#ad373a09690936b8af10b0ac6a00aadc4"/>
             <topic label="IERS_LEAP_SERVER" href="iers_8c.html#a20da422c599203a2e493e129c9566ad2"/>
             <topic label="novas_fetch_eop" href="group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea"/>

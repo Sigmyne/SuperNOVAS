@@ -1,6 +1,5 @@
 var iers_8c =
 [
-    [ "_GNU_SOURCE", "iers_8c.html#a369266c24eacffb87046522897a570d5", null ],
     [ "IERS_DATACENTER", "iers_8c.html#ad373a09690936b8af10b0ac6a00aadc4", null ],
     [ "IERS_LEAP_SERVER", "iers_8c.html#a20da422c599203a2e493e129c9566ad2", null ],
     [ "novas_fetch_eop", "group__earth.html#gaba2fe38e07b94adaa6e8eb1b0a39a7ea", null ],

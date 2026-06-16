@@ -558,6 +558,7 @@ The above will build and install SuperNOVAS with the C++ API extension and the C
  - `--with-doxygen` -- Install with local HTML documentation.
  - `--without-c++` -- Install without the C++ API extension and runtime.
  - `--without-calceph` -- Install without CALCEPH support (and dependency).
+ - `--without-curl` -- Install without `libcurl` support (disables EOP fetching from IERS).
 
 
 <a name="nix"></a>

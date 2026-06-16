@@ -1,6 +1,5 @@
 var NAVTREEINDEX5 =
 {
-"md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65":[1,1,1],
 "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md66":[1,1,1,0],
 "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md67":[1,1,1,1],
 "md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md68":[1,1,1,2],
@@ -249,5 +248,6 @@ var NAVTREEINDEX5 =
 "novas_8h.html#a6140c39d1526b137f827e2091ecc36b3a82474207bac139bc2a8826b9d317a42c":[9,0,0,3,172,4],
 "novas_8h.html#a6140c39d1526b137f827e2091ecc36b3aadb64b75d1bf5344760b942f241e52e8":[9,0,0,3,172,1],
 "novas_8h.html#a6140c39d1526b137f827e2091ecc36b3aca418efc57ac159cf541c324c008eb27":[9,0,0,3,172,2],
-"novas_8h.html#a6140c39d1526b137f827e2091ecc36b3aca54b3a0c7d5b31d09090a1f55ff72b2":[9,0,0,3,172,0]
+"novas_8h.html#a6140c39d1526b137f827e2091ecc36b3aca54b3a0c7d5b31d09090a1f55ff72b2":[9,0,0,3,172,0],
+"novas_8h.html#a61b4f45764a44517b867442de7749cd4":[9,0,0,3,82]
 };
