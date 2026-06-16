@@ -96,7 +96,9 @@ static char *get_resource_url(const char *filename) {
   if(get_resource(filename, rel, sizeof(rel)) == NULL)
     return NULL;
 
-  realpath(rel, path);
+  if(realpath(rel, path) == NULL)
+    return NULL;
+
   for(i = 0; path[i]; i++) if(path[i] == sep[0]) path[i] = '/';
 
   sprintf(url, "file://%s", path);
