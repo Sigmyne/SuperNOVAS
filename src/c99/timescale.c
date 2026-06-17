@@ -1148,7 +1148,7 @@ double novas_date_scale(const char *restrict date, enum novas_timescale *restric
 
 static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *buf) {
   long dd, ms;
-  int y = 0, M = 0, d = 0, h, m, s;
+  int y = 0, M = 0, d = 0, h, m, s, n;
 
   // fjd -> [-0.5:0.5) range
   dd = (long) floor(fjd + 0.5);
@@ -1175,7 +1175,11 @@ static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *b
   s = (int) (ms / 1000L);
   ms -= 1000L * s;
 
-  return novas_snprintf(buf, NOVAS_TIMESTAMP_LEN, "%04d-%02d-%02dT%02d:%02d:%02d.%03d", y, M, d, h, m, s, (int) ms);
+  // snprintf() returns the length it _would_ have written; clamp to the number of characters
+  // actually placed in buf (at most NOVAS_TIMESTAMP_LEN - 1) so callers cannot index out of
+  // bounds when an out-of-range date produces a many-digit year.
+  n = novas_snprintf(buf, NOVAS_TIMESTAMP_LEN, "%04d-%02d-%02dT%02d:%02d:%02d.%03d", y, M, d, h, m, s, (int) ms);
+  return n < NOVAS_TIMESTAMP_LEN ? n : (NOVAS_TIMESTAMP_LEN - 1);
 }
 
 /**

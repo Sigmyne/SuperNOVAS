@@ -3815,6 +3815,17 @@ static int test_iso_timestamp() {
     }
   }
 
+  // Regression: a far out-of-range Julian Date yields a many-digit year. The
+  // formatted result must never exceed the internal 40-byte buffer; before the
+  // fix the snprintf() would-be length was used as a write index past it.
+  {
+    char big[64] = {'\0'};
+    int len;
+    if(!is_ok("iso_timestamp:oob:set_time", novas_set_time(NOVAS_UTC, 9.0e18, 0, 0.0, &time))) n++;
+    len = novas_iso_timestamp(&time, big, sizeof(big));
+    if(!is_ok("iso_timestamp:oob:bounds", len < 0 || len >= 40)) n++;
+  }
+
   return n;
 }
 
@@ -3898,6 +3909,17 @@ static int test_timestamp() {
   if(!is_ok("timestamp:round:check", strncmp("2000-01-02T", ts, 11))) {
     printf(" >>> got: %s', expected '2000-01-02'\n", ts);
     n++;
+  }
+
+  // Regression: a far out-of-range Julian Date yields a many-digit year. The
+  // formatted result must never exceed the internal 40-byte buffer; before the
+  // fix the snprintf() would-be length was used as a write index past it.
+  {
+    char big[64] = {'\0'};
+    int len;
+    if(!is_ok("timestamp:oob:set_time", novas_set_time(NOVAS_UTC, 9.0e18, 0, 0.0, &time))) n++;
+    len = novas_timestamp(&time, NOVAS_TDB, big, sizeof(big));
+    if(!is_ok("timestamp:oob:bounds", len < 0 || len >= 40)) n++;
   }
 
   return n;
