@@ -59,12 +59,13 @@
 
 /// \cond PRIVATE
 #  define LEAP_FILENAME               "leap-seconds.list"
+#  define LEAP_LIST_MAX_LEN           32768
 #  define DEFAULT_LEAP_URL            "https://" IERS_LEAP_SERVER "/iers/bul/bulc/ntp/" LEAP_FILENAME
 #  define NTP_UNIX_EPOCH              2208988800LL      ///< [s] NTP timestamp of UNIX epoch (1970 Jan 1)
 
 #ifdef _MSC_VER
-#  define TMP_FILE        "C:\\Temp\\supernovas.tmp"    ///< Temporary file to use for leap-seconds.list
 #  define gmtime_r        gmtime_s                      ///< MSC equivalent
+#  define strtok_r        strtok_s                      ///< MSVC equivalent
 #endif
 
 /**
@@ -187,38 +188,6 @@ static int eop_mutex_initialized;  ///< Whether EOP mutex was initialized
 // ===========================================================================
 #ifndef WITHOUT_LIBC
 
-#ifdef _MSC_VER
-/// \cond PRIVATE
-
-// Windows does not have fmemopen(), so we write a proxy version of it, which uses a
-// temporary file (TMP_FILE). After closing the file, the caller should also unlink
-// TMP_FILE.
-FILE *fmemopen(void *buf, size_t size, const char *mode) {
-  static const char *fn = "fmemopen";
-
-  FILE *fp = fopen(TMP_FILE, "rw");
-  (void) mode; // unused
-
-  if(!fp) {
-    novas_set_errno(-1, errno, fn, "Could not create temporary file.");
-    return NULL;
-  }
-
-  if(fwrite(buf, size, 1, fp) <= 0) {
-    novas_set_errno(-1, errno, fn, "Could not write to temporary file.");
-    return NULL;
-  }
-
-  if(fseek(fp, 0, SEEK_SET) < 0) {
-    novas_set_errno(-1, errno, fn, "Could not rewind temporary file.");
-    return NULL;
-  }
-
-  return fp;
-}
-/// \endcond
-#endif
-
 static void lock_leap() {
   if(!leap_mutex_initialized) {
     novas_init_lock(&leap_mutex);
@@ -258,14 +227,16 @@ static void set_leap_list_async(iers_leap_entry *list, long long expiration) {
   destroy_leap_list(obsolete);
 }
 
-static iers_leap_entry *parse_leap_file(FILE *fp, long long *expiration) {
+static iers_leap_entry *parse_leaps(char *buf, long long *expiration) {
   static const char *fn = "parse_leap_file";
 
   iers_leap_entry *list = NULL;
-  char line[256] = {'\0'};
+  char *ptr = buf, *line, *context = NULL;
 
   // Parse leap-seconds.list data
-  while(fgets(line, sizeof(line) - 1, fp) != NULL) if(line[0]) {
+  while((line = strtok_r(ptr, "\r\n", &context)) != NULL) if(line[0]) {
+    ptr = NULL; // Keep parsing from the same input
+
     // Process expiration timestamp
     if(line[0] == '#') {
       if(line[1] == '@') {
@@ -308,6 +279,61 @@ static iers_leap_entry *parse_leap_file(FILE *fp, long long *expiration) {
   }
 
   return list;
+}
+
+static iers_leap_entry *parse_leap_file(FILE *fp, long long *expiration) {
+  static const char *fn = "novas_parse_leap_file";
+
+  long len;
+  char *buf = NULL;
+  iers_leap_entry *list;
+
+  // LCOV_EXCL_START
+  //
+  //  The error conditions in this functions should not normally occur, and
+  //  would be quite impossible to test for in a controlled way. Thus it makes
+  //  no sense to include these bits in the code coverage stats.
+
+  if(fseek(fp, 0, SEEK_END) < 0)
+    goto error; // @suppress("Goto statement used")
+
+  len = ftell(fp);
+  if(len < 0)
+    goto error; // @suppress("Goto statement used")
+
+  if(len > LEAP_LIST_MAX_LEN) {
+    errno = EFBIG;
+    goto error; // @suppress("Goto statement used")
+  }
+
+  if(fseek(fp, 0, SEEK_SET) < 0)
+    goto error; // @suppress("Goto statement used")
+
+  buf = (char *) malloc(len + 1);
+  if(!buf)
+    goto error; // @suppress("Goto statement used")
+
+  if(fread(buf, 1, len, fp) != (size_t) len)
+    goto error; // @suppress("Goto statement used")
+
+  buf[len] = '\0';
+
+  list = parse_leaps(buf, expiration);
+  free(buf);
+  if(!list)
+    novas_trace_invalid(fn);
+
+  return list;
+
+  // -------------------------------------------------------------------------
+  error:
+
+  if(buf)
+    free(buf);
+
+  novas_set_errno(errno, fn, strerror(errno));
+  return NULL;
+  // LCOV_EXCL_STOP
 }
 
 #endif /* WITH_LIBC */
@@ -368,9 +394,8 @@ static iers_leap_entry *fetch_leaps_async(long long *expiration) {
 
   CURL *curl = NULL;
   CURLcode res;
-  char str[32768];
+  char str[LEAP_LIST_MAX_LEN];
   download_buffer data = { str, sizeof(str), 0 };
-  FILE *fp;
   iers_leap_entry *list;
   const char *url;
 
@@ -392,15 +417,7 @@ static iers_leap_entry *fetch_leaps_async(long long *expiration) {
     return NULL;
   }
 
-  fp = fmemopen(str, data.size, "r");
-  list = parse_leap_file(fp, expiration);
-  fclose(fp);
-
-#ifdef _MSC_VER
-  // delete the temporary file
-  unlink(TMP_FILE);
-#endif
-
+  list = parse_leaps(str, expiration);
   if(!list)
     novas_trace_invalid(fn);
 

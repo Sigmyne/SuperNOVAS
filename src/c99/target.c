@@ -59,8 +59,8 @@
 // strcasecmp() / strncasecmp() are not defined on PowerPC / LynxOS 3.1
 extern int strcasecmp(const char *s1, const char *s2);
 #elif defined(_MSC_VER)
-#  define strcasecmp _stricmp                       /// MSVC equivalent
-#  define strtok_r   strtok_s                       /// MSVC equivalent
+#  define strcasecmp _stricmp                       ///< MSVC equivalent
+#  define strtok_r   strtok_s                       ///< MSVC equivalent
 #endif
 
 static int is_case_sensitive = 0; ///< (boolean) whether object names are case-sensitive.

@@ -9,10 +9,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+Replacement for the botched 1.7.0 release below.
+
 ### Fixed
 
- - Fixed Windows builds with MSC, which were broken due to the lack of `fmemopen()` in the Windows world. We now use a 
-   temporary file `C:\Temp\supernovas.tmp` to hold the leap seconds list for processing.
+ - Fixed Windows builds with MSC, which were broken due to the lack of `fmemopen()` in the Windows world.
+
+ - Version in `CMakeLists.txt` was not updated, and still indicated `1.6.0` instead of `1.7.0` in the botched 
+   release below. This affected the version in the pkgconfig also.
+
+### Changed
+
+ - #340: Changed leap list parsing to avoid use of `fmemopen()` entirely, without the need for temp files either
+   (on Windows).
 
 
 ## [1.7.0] - 2026-06-16

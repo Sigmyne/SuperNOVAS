@@ -5921,7 +5921,7 @@ static int test_lookup_leap() {
   rc = get_resource("leap-seconds.list", path, sizeof(path));
   if(!rc) fprintf(stderr, "WARNING! Missing %s: skip tests requiring it", path);
   else {
-    if(!is_ok("set_leap_list", novas_set_leap_list(path))) return ++n;
+    if(!is_ok("lookup_leap:set_leap_list", novas_set_leap_list(path))) return ++n;
     if(!is_equal("lookup_leap:offline:j2000", novas_lookup_leap(946684800L), 32.0, 1e-15)) n++;
   }
 
