@@ -7,6 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [Unreleased]
+
+Upcomin bug-fix release, possibly around 1 August 2026.
+
+### Fixed
+
+ - #345: Fixed possible buffer overflows when using `snprintf()` (by officialconfuzius).
+ 
+
 ## [1.7.1] - 2026-06-17
 
 Replacement for the botched 1.7.0 feature release a day before.
