@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
-Upcomin bug-fix release, possibly around 1 August 2026.
+Upcoming bug-fix release, possibly around 1 August 2026.
 
 ### Fixed
 
