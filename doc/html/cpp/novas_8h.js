@@ -365,7 +365,7 @@ var novas_8h =
     [ "light_time2", "novas_8h.html#a5c940b62732d74e6c6b1c844931aaa76", null ],
     [ "limb_angle", "novas_8h.html#a022957936bc7c5a3e9651776689c9380", null ],
     [ "make_airborne_observer", "novas_8h.html#aa423a88cd3f434642fc89d47390184f4", null ],
-    [ "make_cat_entry", "novas_8h.html#aa040bcfe8bee7d8e1307800f48efddd7", null ],
+    [ "make_cat_entry", "novas_8h.html#abc164144085313b27faa96c838a9d30c", null ],
     [ "make_cat_object", "novas_8h.html#ab9b7a622486f2904615ceed1ba94cd8f", null ],
     [ "make_cat_object_sys", "novas_8h.html#a5104d7db66ce2d8c61c7ad21599fb45e", null ],
     [ "make_ephem_object", "novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2", null ],

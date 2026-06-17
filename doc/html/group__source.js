@@ -109,7 +109,7 @@ var group__source =
       [ "CHANGE_J2000_TO_ICRS", "group__source.html#ggace5e59ce1564bf6c61946c290bb05367a84da44f7510d8c99353b1b1c6bb4faf8", null ],
       [ "CHANGE_ICRS_TO_J2000", "group__source.html#ggace5e59ce1564bf6c61946c290bb05367a1b1e38f90bc3bc3c9f1c04aa2c959444", null ]
     ] ],
-    [ "make_cat_entry", "group__source.html#gaa040bcfe8bee7d8e1307800f48efddd7", null ],
+    [ "make_cat_entry", "group__source.html#gabc164144085313b27faa96c838a9d30c", null ],
     [ "make_cat_object", "group__source.html#gab9b7a622486f2904615ceed1ba94cd8f", null ],
     [ "make_cat_object_sys", "group__source.html#ga5104d7db66ce2d8c61c7ad21599fb45e", null ],
     [ "make_ephem_object", "group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2", null ],

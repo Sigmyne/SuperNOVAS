@@ -7,6 +7,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.7.1] - 2026-06-17
+
+Replacement for the botched 1.7.0 feature release a day before.
+
+### Fixed
+
+ - Fixed Windows builds with MSC, which were broken due to the lack of `fmemopen()` in the Windows world.
+
+ - Version in `CMakeLists.txt` was not updated, and still indicated `1.6.0` instead of `1.7.0` in the botched 
+   release below. This affected the version in the pkgconfig also.
+
+ - Fixed memleak in `iers.c` when the parsing of leap seconds list entry encounters an error.
+
+### Changed
+
+ - #340: Changed leap list parsing to avoid use of `fmemopen()` entirely, without the need for temp files either
+   (on Windows).
+
+
 ## [1.7.0] - 2026-06-16
 
 Feature release, providing the ability to fetch Earth Orientation Parameters (EOP) from IERS, both explicitly or 

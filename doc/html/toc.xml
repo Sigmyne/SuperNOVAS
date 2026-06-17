@@ -224,7 +224,7 @@
         <topic label="CHANGE_J2000_TO_ICRS" href="group__source.html#ggace5e59ce1564bf6c61946c290bb05367a84da44f7510d8c99353b1b1c6bb4faf8"/>
         <topic label="CHANGE_ICRS_TO_J2000" href="group__source.html#ggace5e59ce1564bf6c61946c290bb05367a1b1e38f90bc3bc3c9f1c04aa2c959444"/>
       </topic>
-      <topic label="make_cat_entry" href="group__source.html#gaa040bcfe8bee7d8e1307800f48efddd7"/>
+      <topic label="make_cat_entry" href="group__source.html#gabc164144085313b27faa96c838a9d30c"/>
       <topic label="make_cat_object" href="group__source.html#gab9b7a622486f2904615ceed1ba94cd8f"/>
       <topic label="make_cat_object_sys" href="group__source.html#ga5104d7db66ce2d8c61c7ad21599fb45e"/>
       <topic label="make_ephem_object" href="group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2"/>
@@ -1381,7 +1381,7 @@
           <topic label="local_planet" href="novas_8h.html#adcb9b273dfda5d97a1c01379a16997f9"/>
           <topic label="local_star" href="novas_8h.html#acd56c41e811a002d6280b3b315730fbd"/>
           <topic label="make_airborne_observer" href="group__observer.html#gaa423a88cd3f434642fc89d47390184f4"/>
-          <topic label="make_cat_entry" href="group__source.html#gaa040bcfe8bee7d8e1307800f48efddd7"/>
+          <topic label="make_cat_entry" href="group__source.html#gabc164144085313b27faa96c838a9d30c"/>
           <topic label="make_cat_object" href="group__source.html#gab9b7a622486f2904615ceed1ba94cd8f"/>
           <topic label="make_cat_object_sys" href="group__source.html#ga5104d7db66ce2d8c61c7ad21599fb45e"/>
           <topic label="make_ephem_object" href="group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2"/>
@@ -1941,7 +1941,7 @@
             <topic label="novas_xyz_to_uvw" href="group__interferometry.html#ga87867e8e7fc7decaa44777a696465353"/>
           </topic>
           <topic label="target.c" href="target_8c.html">
-            <topic label="make_cat_entry" href="group__source.html#gaa040bcfe8bee7d8e1307800f48efddd7"/>
+            <topic label="make_cat_entry" href="group__source.html#gabc164144085313b27faa96c838a9d30c"/>
             <topic label="make_cat_object" href="group__source.html#gab9b7a622486f2904615ceed1ba94cd8f"/>
             <topic label="make_cat_object_sys" href="group__source.html#ga5104d7db66ce2d8c61c7ad21599fb45e"/>
             <topic label="make_ephem_object" href="group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2"/>

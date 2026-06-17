@@ -378,7 +378,7 @@ var novas_8h =
     [ "local_planet", "novas_8h.html#adcb9b273dfda5d97a1c01379a16997f9", null ],
     [ "local_star", "novas_8h.html#acd56c41e811a002d6280b3b315730fbd", null ],
     [ "make_airborne_observer", "group__observer.html#gaa423a88cd3f434642fc89d47390184f4", null ],
-    [ "make_cat_entry", "group__source.html#gaa040bcfe8bee7d8e1307800f48efddd7", null ],
+    [ "make_cat_entry", "group__source.html#gabc164144085313b27faa96c838a9d30c", null ],
     [ "make_cat_object", "group__source.html#gab9b7a622486f2904615ceed1ba94cd8f", null ],
     [ "make_cat_object_sys", "group__source.html#ga5104d7db66ce2d8c61c7ad21599fb45e", null ],
     [ "make_ephem_object", "group__source.html#gaa22303f98df2d63edf6d8452ff3a43b2", null ],

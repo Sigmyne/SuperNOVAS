@@ -3454,7 +3454,7 @@
           <topic label="light_time2" href="novas_8h.html#a5c940b62732d74e6c6b1c844931aaa76"/>
           <topic label="limb_angle" href="novas_8h.html#a022957936bc7c5a3e9651776689c9380"/>
           <topic label="make_airborne_observer" href="novas_8h.html#aa423a88cd3f434642fc89d47390184f4"/>
-          <topic label="make_cat_entry" href="novas_8h.html#aa040bcfe8bee7d8e1307800f48efddd7"/>
+          <topic label="make_cat_entry" href="novas_8h.html#abc164144085313b27faa96c838a9d30c"/>
           <topic label="make_cat_object" href="novas_8h.html#ab9b7a622486f2904615ceed1ba94cd8f"/>
           <topic label="make_cat_object_sys" href="novas_8h.html#a5104d7db66ce2d8c61c7ad21599fb45e"/>
           <topic label="make_ephem_object" href="novas_8h.html#aa22303f98df2d63edf6d8452ff3a43b2"/>
@@ -4061,7 +4061,7 @@
             <topic label="novas_xyz_to_uvw" href="system_8c.html#a87867e8e7fc7decaa44777a696465353"/>
           </topic>
           <topic label="target.c" href="target_8c.html">
-            <topic label="make_cat_entry" href="target_8c.html#aa040bcfe8bee7d8e1307800f48efddd7"/>
+            <topic label="make_cat_entry" href="target_8c.html#abc164144085313b27faa96c838a9d30c"/>
             <topic label="make_cat_object" href="target_8c.html#ab9b7a622486f2904615ceed1ba94cd8f"/>
             <topic label="make_cat_object_sys" href="target_8c.html#a5104d7db66ce2d8c61c7ad21599fb45e"/>
             <topic label="make_ephem_object" href="target_8c.html#aa22303f98df2d63edf6d8452ff3a43b2"/>

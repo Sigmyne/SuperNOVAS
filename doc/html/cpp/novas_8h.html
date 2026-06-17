@@ -446,7 +446,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:a5ab52d5db18c081b6313ed8b1993ebb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">API major version.  <br /></td></tr>
 <tr class="memitem:aaed93e356acfc0d15d0f64ae0793b4f0" id="r_aaed93e356acfc0d15d0f64ae0793b4f0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaed93e356acfc0d15d0f64ae0793b4f0">SUPERNOVAS_MINOR_VERSION</a>&#160;&#160;&#160;7</td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
-<tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;0</td></tr>
+<tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
 <tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
@@ -807,8 +807,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:a022957936bc7c5a3e9651776689c9380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines the angle of an object above or below the Earth's limb (horizon).  <br /></td></tr>
 <tr class="memitem:aa423a88cd3f434642fc89d47390184f4" id="r_aa423a88cd3f434642fc89d47390184f4"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aa423a88cd3f434642fc89d47390184f4">make_airborne_observer</a> (const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *location, const double *vel, <a class="el" href="#ae7963c522d28ce6891b472e079307d03">observer</a> *obs)</td></tr>
 <tr class="memdesc:aa423a88cd3f434642fc89d47390184f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populates an 'observer' data structure for an observer moving relative to the surface of Earth, such as an airborne observer.  <br /></td></tr>
-<tr class="memitem:aa040bcfe8bee7d8e1307800f48efddd7" id="r_aa040bcfe8bee7d8e1307800f48efddd7"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7">make_cat_entry</a> (const char *restrict name, const char *restrict catalog, long cat_num, double ra, double dec, double pm_ra, double pm_dec, double parallax, double rad_vel, <a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *source)</td></tr>
-<tr class="memdesc:aa040bcfe8bee7d8e1307800f48efddd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fully populates the data structure for a catalog source, such as a star, with all parameters provided at once.  <br /></td></tr>
+<tr class="memitem:abc164144085313b27faa96c838a9d30c" id="r_abc164144085313b27faa96c838a9d30c"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#abc164144085313b27faa96c838a9d30c">make_cat_entry</a> (const char *restrict name, const char *restrict catalog, long cat_num, double ra, double dec, double pm_ra, double pm_dec, double parallax, double rv, <a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *source)</td></tr>
+<tr class="memdesc:abc164144085313b27faa96c838a9d30c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fully populates the data structure for a catalog source, such as a star, with all parameters provided at once.  <br /></td></tr>
 <tr class="memitem:ab9b7a622486f2904615ceed1ba94cd8f" id="r_ab9b7a622486f2904615ceed1ba94cd8f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ab9b7a622486f2904615ceed1ba94cd8f">make_cat_object</a> (const <a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *star, <a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *source)</td></tr>
 <tr class="memdesc:ab9b7a622486f2904615ceed1ba94cd8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Populates and object data structure with the data for a catalog source.  <br /></td></tr>
 <tr class="memitem:a5104d7db66ce2d8c61c7ad21599fb45e" id="r_a5104d7db66ce2d8c61c7ad21599fb45e"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a5104d7db66ce2d8c61c7ad21599fb45e">make_cat_object_sys</a> (const <a class="el" href="#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *star, const char *restrict system, <a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *source)</td></tr>
@@ -1329,7 +1329,7 @@ Variables</h2></td></tr>
  Washington, DC<br  />
  <a href="http://www.usno.navy.mil/USNO/astronomical-applications">http://www.usno.navy.mil/USNO/astronomical-applications</a></p>
 <dl class="section author"><dt>Author</dt><dd>G. Kaplan and Attila Kovacs </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.7.0 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.7.1 </dd></dl>
 </div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
 <a id="a8a0ef80e44076b86bc707e9414d85d76" name="a8a0ef80e44076b86bc707e9414d85d76"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8a0ef80e44076b86bc707e9414d85d76">&#9670;&#160;</a></span>ASEC2RAD</h2>
@@ -3438,7 +3438,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_PATCHLEVEL&#160;&#160;&#160;0</td>
+          <td class="memname">#define SUPERNOVAS_PATCHLEVEL&#160;&#160;&#160;1</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3531,7 +3531,7 @@ Variables</h2></td></tr>
 
 <p>Basic astrometric data for any sidereal object located outside the solar system. </p>
 <p>Note, that despite the slightly expanded catalog name, this has the same memory footprint as the original NOVAS C version, allowing for cross-compatible binary exchange (I/O) of these structures.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a>, <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a>, <a class="el" href="#ab9b7a622486f2904615ceed1ba94cd8f" title="Populates and object data structure with the data for a catalog source.">make_cat_object()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a>, <a class="el" href="#abc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a>, <a class="el" href="#ab9b7a622486f2904615ceed1ba94cd8f" title="Populates and object data structure with the data for a catalog source.">make_cat_object()</a> </dd>
 <dd>
 <a class="el" href="#a0a185da3a347343e5dd21d41a598d0fa" title="Initializer for a NOVAS cat_entry structure.">CAT_ENTRY_INIT</a> </dd></dl>
 
@@ -7556,8 +7556,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aa040bcfe8bee7d8e1307800f48efddd7" name="aa040bcfe8bee7d8e1307800f48efddd7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa040bcfe8bee7d8e1307800f48efddd7">&#9670;&#160;</a></span>make_cat_entry()</h2>
+<a id="abc164144085313b27faa96c838a9d30c" name="abc164144085313b27faa96c838a9d30c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc164144085313b27faa96c838a9d30c">&#9670;&#160;</a></span>make_cat_entry()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -7605,7 +7605,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>rad_vel</em></span>, </td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>rv</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -7627,7 +7627,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pm_ra</td><td>[mas/yr] Proper motion in right ascension. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pm_dec</td><td>[mas/yr] Proper motion in declination. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">parallax</td><td>[mas] Parallax. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">rad_vel</td><td>[km/s] Radial velocity relative to the Solar-System Barycenter (SSB). To convert velocities defined against the Local Standard of Rest (LSR), you may use <span class="tt"><a class="el" href="#aad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a></span> to convert appropriately. Or, to convert from a redshift value, you might use <span class="tt"><a class="el" href="#a63621cea3b4985c1bfcc4514a7aa3fb1" title="Converts a redshift value (z = Δλ / λrest) to a radial velocity (i.e.">novas_z2v()</a></span>. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rv</td><td>[km/s] Radial velocity relative to the Solar-System Barycenter (SSB). To convert velocities defined against the Local Standard of Rest (LSR), you may use <span class="tt"><a class="el" href="#aad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a></span> to convert appropriately. Or, to convert from a redshift value, you might use <span class="tt"><a class="el" href="#a63621cea3b4985c1bfcc4514a7aa3fb1" title="Converts a redshift value (z = Δλ / λrest) to a radial velocity (i.e.">novas_z2v()</a></span>. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">source</td><td>Pointer to data structure to populate. </td></tr>
   </table>
   </dd>
@@ -7637,7 +7637,7 @@ Variables</h2></td></tr>
 <dd>
 <a class="el" href="#aad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a>, <a class="el" href="target_8c.html#abe0c6e6fc60a49efa88c365aef8cdc50" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="target_8c.html#af0137aa791dd29278904e53498fb9515">novas_init_cat_entry()</a>, <a class="el" href="target_8c.html#a5e92f920835111db719e880a61248045">novas_set_catalog()</a>, <a class="el" href="target_8c.html#a69274f4ac2631335e1e901142d31f541">novas_set_parallax()</a>, <a class="el" href="target_8c.html#a8ac3513c266181baf92a6b3c22818c99">novas_set_proper_motion()</a>, <a class="el" href="target_8c.html#a45f7fdc15580138517ce452a236674d7">novas_set_ssb_vel()</a>, and <a class="el" href="#afca24d914664bb60d20fb428177f329a">rad_vel()</a>.</p>
+<p class="reference">References <a class="el" href="target_8c.html#af0137aa791dd29278904e53498fb9515">novas_init_cat_entry()</a>, <a class="el" href="target_8c.html#a5e92f920835111db719e880a61248045">novas_set_catalog()</a>, <a class="el" href="target_8c.html#a69274f4ac2631335e1e901142d31f541">novas_set_parallax()</a>, <a class="el" href="target_8c.html#a8ac3513c266181baf92a6b3c22818c99">novas_set_proper_motion()</a>, and <a class="el" href="target_8c.html#a45f7fdc15580138517ce452a236674d7">novas_set_ssb_vel()</a>.</p>
 
 </div>
 </div>
@@ -9116,7 +9116,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 </div><div class="memdoc">
 
 <p>Enables or disables case-sensitive processing of the object name. </p>
-<p>The effect is not retroactive. The setting will only affect the celestial objects that are defined after the call. Note, that catalog names, set via <a class="el" href="target_8c.html#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> are always case sensitive regardless of this setting.</p>
+<p>The effect is not retroactive. The setting will only affect the celestial objects that are defined after the call. Note, that catalog names, set via <a class="el" href="target_8c.html#abc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> are always case sensitive regardless of this setting.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td>(boolean) TRUE (non-zero) to enable case-sensitive object names, or else FALSE (0) to convert names to upper case only (NOVAS C compatible behavior).</td></tr>
@@ -11618,13 +11618,13 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if the source is NULL (errno set to EINVAL) or 1 if the name is too long (errno is set to ERANGE).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#a45f7fdc15580138517ce452a236674d7" title="Sets a radial velocity for a catalog source, defined w.r.t.">novas_set_ssb_vel()</a>, <a class="el" href="target_8c.html#a4aa0c52a1d4838feb4255974486462a7" title="Sets a radial velocity for a catalog source, defined w.r.t.">novas_set_lsr_vel()</a>, <a class="el" href="target_8c.html#a4efac9e50efec20489d47726217e9c7e" title="Sets a redshift for a catalog source, as a relativistic measure of velocity.">novas_set_redshift()</a>, <a class="el" href="target_8c.html#a8ac3513c266181baf92a6b3c22818c99" title="Sets the proper-motion for a (Galactic) catalog source.">novas_set_proper_motion()</a>, <a class="el" href="target_8c.html#a69274f4ac2631335e1e901142d31f541" title="Sets the parallax (a measure of distance) for a catalog source.">novas_set_parallax()</a>, <a class="el" href="target_8c.html#aa076ebd4c967fb9afa24bd85feb84f63" title="Sets the distance for a catalog source.">novas_set_distance()</a>, <a class="el" href="target_8c.html#a5e92f920835111db719e880a61248045" title="Sets the optional catalog information for a sidereal source.">novas_set_catalog()</a>, <a class="el" href="target_8c.html#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#a45f7fdc15580138517ce452a236674d7" title="Sets a radial velocity for a catalog source, defined w.r.t.">novas_set_ssb_vel()</a>, <a class="el" href="target_8c.html#a4aa0c52a1d4838feb4255974486462a7" title="Sets a radial velocity for a catalog source, defined w.r.t.">novas_set_lsr_vel()</a>, <a class="el" href="target_8c.html#a4efac9e50efec20489d47726217e9c7e" title="Sets a redshift for a catalog source, as a relativistic measure of velocity.">novas_set_redshift()</a>, <a class="el" href="target_8c.html#a8ac3513c266181baf92a6b3c22818c99" title="Sets the proper-motion for a (Galactic) catalog source.">novas_set_proper_motion()</a>, <a class="el" href="target_8c.html#a69274f4ac2631335e1e901142d31f541" title="Sets the parallax (a measure of distance) for a catalog source.">novas_set_parallax()</a>, <a class="el" href="target_8c.html#aa076ebd4c967fb9afa24bd85feb84f63" title="Sets the distance for a catalog source.">novas_set_distance()</a>, <a class="el" href="target_8c.html#a5e92f920835111db719e880a61248045" title="Sets the optional catalog information for a sidereal source.">novas_set_catalog()</a>, <a class="el" href="target_8c.html#abc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
 <dd>
 <a class="el" href="#a3ed26b6af870f6dbc353f651563afd4a" title="Returns a time or time-like angleparsed from a string that contains either a decimal hours or else a ...">novas_str_hours()</a>, <a class="el" href="#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="group__source.html#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogEntry.html#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry()</a>, <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7">make_cat_entry()</a>, and <a class="el" href="#a11aa3ce6bcdda5b7065b38d6cfaf63d3">make_redshifted_cat_entry()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogEntry.html#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry()</a>, <a class="el" href="#abc164144085313b27faa96c838a9d30c">make_cat_entry()</a>, and <a class="el" href="#a11aa3ce6bcdda5b7065b38d6cfaf63d3">make_redshifted_cat_entry()</a>.</p>
 
 </div>
 </div>
@@ -12269,7 +12269,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <dl class="section return"><dt>Returns</dt><dd>[km/s] Equivalent Solar-System Barycentric radial velocity.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="spectral_8c.html#af10de7da246bf23a731adb6e7ada76ff" title="Returns a radial-velocity referenced to the Local Standard of Rest (LSR) for a given Solar-System Bar...">novas_ssb_to_lsr_vel()</a>, <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="spectral_8c.html#af10de7da246bf23a731adb6e7ada76ff" title="Returns a radial-velocity referenced to the Local Standard of Rest (LSR) for a given Solar-System Bar...">novas_ssb_to_lsr_vel()</a>, <a class="el" href="#abc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
 <dd>
 <a class="el" href="#a3ed26b6af870f6dbc353f651563afd4a" title="Returns a time or time-like angleparsed from a string that contains either a decimal hours or else a ...">novas_str_hours()</a>, <a class="el" href="#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> </dd></dl>
 
@@ -13791,7 +13791,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 
 <p class="reference">References <a class="el" href="group__source.html#gaf32c72297e36b77bead56044d23082f7">SIZE_OF_CAT_NAME</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7">make_cat_entry()</a>, and <a class="el" href="#a11aa3ce6bcdda5b7065b38d6cfaf63d3">make_redshifted_cat_entry()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#abc164144085313b27faa96c838a9d30c">make_cat_entry()</a>, and <a class="el" href="#a11aa3ce6bcdda5b7065b38d6cfaf63d3">make_redshifted_cat_entry()</a>.</p>
 
 </div>
 </div>
@@ -14060,7 +14060,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 
 <p class="reference">References <a class="el" href="structnovas__cat__entry.html#ac2e6fe6d5aa8aece4e1d3f2ebc8e5c63">novas_cat_entry::parallax</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7">make_cat_entry()</a>, <a class="el" href="#aa076ebd4c967fb9afa24bd85feb84f63">novas_set_distance()</a>, and <a class="el" href="classsupernovas_1_1CatalogEntry.html#a7ebe4ac151e5af4e68c55c87f18799ed">supernovas::CatalogEntry::parallax()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#abc164144085313b27faa96c838a9d30c">make_cat_entry()</a>, <a class="el" href="#aa076ebd4c967fb9afa24bd85feb84f63">novas_set_distance()</a>, and <a class="el" href="classsupernovas_1_1CatalogEntry.html#a7ebe4ac151e5af4e68c55c87f18799ed">supernovas::CatalogEntry::parallax()</a>.</p>
 
 </div>
 </div>
@@ -14104,7 +14104,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 
 <p class="reference">References <a class="el" href="structnovas__cat__entry.html#a64faf35923c3c09bb24265a8ddb2b2f1">novas_cat_entry::promodec</a>, and <a class="el" href="structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560">novas_cat_entry::promora</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7">make_cat_entry()</a>, and <a class="el" href="classsupernovas_1_1CatalogEntry.html#a9561e1d23eb50de3b85352ac06792055">supernovas::CatalogEntry::proper_motion()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#abc164144085313b27faa96c838a9d30c">make_cat_entry()</a>, and <a class="el" href="classsupernovas_1_1CatalogEntry.html#a9561e1d23eb50de3b85352ac06792055">supernovas::CatalogEntry::proper_motion()</a>.</p>
 
 </div>
 </div>
@@ -14260,7 +14260,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 
 <p class="reference">References <a class="el" href="#a5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a>, and <a class="el" href="structnovas__cat__entry.html#aff726e9a11a48c6ccbd80672a1fa5cc8">novas_cat_entry::radialvelocity</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7">make_cat_entry()</a>, <a class="el" href="#a4aa0c52a1d4838feb4255974486462a7">novas_set_lsr_vel()</a>, <a class="el" href="#a4efac9e50efec20489d47726217e9c7e">novas_set_redshift()</a>, and <a class="el" href="classsupernovas_1_1CatalogEntry.html#aecae9979ad82c997b2a4e674e7f20741">supernovas::CatalogEntry::radial_velocity()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#abc164144085313b27faa96c838a9d30c">make_cat_entry()</a>, <a class="el" href="#a4aa0c52a1d4838feb4255974486462a7">novas_set_lsr_vel()</a>, <a class="el" href="#a4efac9e50efec20489d47726217e9c7e">novas_set_redshift()</a>, and <a class="el" href="classsupernovas_1_1CatalogEntry.html#aecae9979ad82c997b2a4e674e7f20741">supernovas::CatalogEntry::radial_velocity()</a>.</p>
 
 </div>
 </div>
@@ -14840,7 +14840,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <dl class="section return"><dt>Returns</dt><dd>[km/s] Equivalent radial velocity defined against the Local Standard of Rest (LSR).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="spectral_8c.html#aad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a>, <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="spectral_8c.html#aad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a>, <a class="el" href="#abc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
 <dd>
 <a class="el" href="#a3ed26b6af870f6dbc353f651563afd4a" title="Returns a time or time-like angleparsed from a string that contains either a decimal hours or else a ...">novas_str_hours()</a>, <a class="el" href="#a6d6ada07aab7ce09fb8ea7b12660ebcd" title="Returns an angle parsed from a string that contains either a decimal degrees or else a broken-down DM...">novas_str_degrees()</a> </dd></dl>
 
@@ -17001,8 +17001,6 @@ solarsystem_hp() </dd></dl>
 
 <p class="reference">References <a class="el" href="spectral_8c.html#a37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#aa040bcfe8bee7d8e1307800f48efddd7">make_cat_entry()</a>.</p>
-
 </div>
 </div>
 <a id="a37f22e463cc06b4e381aa18659e6319d" name="a37f22e463cc06b4e381aa18659e6319d"></a>
@@ -17558,7 +17556,7 @@ solarsystem_hp() </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if the star argument is NULL or the output vectors are the same pointer.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a>, <a class="el" href="target_8c.html#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#abc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a>, <a class="el" href="target_8c.html#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#addc432c55434789acee7bc2beacd7d69">NOVAS_AU_PER_DAY</a>, <a class="el" href="#a5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a>, <a class="el" href="#a7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="#a601d246673742cf72a5dbe1449c97560">novas_los_to_xyz()</a>, and <a class="el" href="#ae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>.</p>
 
@@ -18007,7 +18005,7 @@ solarsystem_hp() </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if either of the input pointer arguments is NULL.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#aa040bcfe8bee7d8e1307800f48efddd7" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a>, <a class="el" href="#a4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#abc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a>, <a class="el" href="#a4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="structnovas__cat__entry.html#ada95bd9127ffe9e1204a233057869f5a">novas_cat_entry::catalog</a>, <a class="el" href="#a4100ecc5d9badfa07301024baffe9ded">NOVAS_JD_HIP</a>, <a class="el" href="#ace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065">PROPER_MOTION</a>, <a class="el" href="structnovas__cat__entry.html#a0bf9261730a8decbfd1d0c63c377dac2">novas_cat_entry::ra</a>, and <a class="el" href="target_8c.html#abe0c6e6fc60a49efa88c365aef8cdc50">transform_cat()</a>.</p>
 
