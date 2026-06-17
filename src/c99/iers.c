@@ -263,6 +263,7 @@ static iers_leap_entry *parse_leaps(char *buf, long long *expiration) {
 
       // Parse start time and leap seconds value
       if(sscanf(line, "%lld %d", &start, &e->leap) < 2) {
+        free(e);
         destroy_leap_list(list);
         novas_set_errno(errno, fn, "invalid leap-seconds.list entry: %s", line);
         return NULL;
