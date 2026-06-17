@@ -16,9 +16,11 @@ Replacement for the botched 1.7.0 feature release a day before.
  - Fixed Windows builds with MSC, which were broken due to the lack of `fmemopen()` in the Windows world.
 
  - Version in `CMakeLists.txt` was not updated, and still indicated `1.6.0` instead of `1.7.0` in the botched 
-   release below. This affected the version in the pkgconfig also.
+   release below. This affected the version in the pkgconfig also (thanks to BillyONeal).
 
  - Fixed memleak in `iers.c` when the parsing of leap seconds list entry encounters an error.
+ 
+ - Fixed reference to `libcurl` in pkgconfig as `-lcurl` instead of `-lCURL::libcurl` (thanks to BillyONeal).
 
 ### Changed
 
