@@ -31,7 +31,7 @@
  *
  * @cond C_API
  *  Once the orbital is defined, you can use it to define an orbital @ref object via
- *  `make_orbital_object()` to enable the the same astrometric calculations as for ephemeris
+ *  `make_orbital_object()` to enable the same astrometric calculations as for ephemeris
  *  sources, e.g.:
  *
  *  ```c

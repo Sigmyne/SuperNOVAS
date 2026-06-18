@@ -168,7 +168,7 @@ static int iau2006_fp(double jd_tt_high, double jd_tt_low, int nA0, int nA1, int
  *
  *  1. As of SuperNOVAS v1.4.2, this function has been modified to replace the original IAU2000A
  *     model coefficients with the IAU2006 (a.k.a. IAU2000A R06) model coefficients, to provide an
- *     updated nutation model, which is dynamically consistent with the IAU2006 (P03) precesion model
+ *     updated nutation model, which is dynamically consistent with the IAU2006 (P03) precession model
  *     of Capitaine et al. 2003. This is now the same model with respect to which the IERS Earth
  *     orinetation parameters are computed and published.
  *
@@ -245,7 +245,7 @@ int iau2000b(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double 
 /**
  * Computes the forced nutation of the non-rigid Earth: Model NU2000K.  This model is a modified
  * version of the original IAU 2000A, which has been truncated for speed of execution. NU2000K
- * agrees with IAU 2000A at the 0.1 milliarcsecond level from 1700 to 2300, while being is about
+ * agrees with IAU 2000A at the 0.1 milliarcsecond level from 1700 to 2300, while being about
  * 5x faster than the more precise `iau2000a()`.
  *
  * NU2000K was compared to IAU 2000A over six centuries (1700-2300). The average error in d&psi;

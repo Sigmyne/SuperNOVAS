@@ -762,7 +762,7 @@ generate custom ephemerides (SPK/BSP) for just about all known solar systems bod
 
 The [CALCEPH](https://www.imcce.fr/recherche/equipes/asd/calceph/) library provides easy-to-use access to JPL and 
 INPOP ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing __SuperNOVAS__ with 
-the the CALCEPH C library for handling Solar-system objects.
+the CALCEPH C library for handling Solar-system objects.
 
 <details>
 
@@ -1406,7 +1406,7 @@ the principal ways __SuperNOVAS__ has improved on the original NOVAS C library i
  - IAU 2000A nutation model uses higher-order Delaunay arguments provided by `fund_args()`, instead of the linear
    model in NOVAS C 3.1.
    
- - IAU 2000 nutation made a bit faster, reducing the the number of floating-point multiplications necessary by 
+ - IAU 2000 nutation made a bit faster, reducing the number of floating-point multiplications necessary by 
    skipping terms that do not contribute. Its coefficients are also packed more frugally in memory, resulting in a
    smaller resident footprint.
    

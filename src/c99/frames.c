@@ -3,7 +3,7 @@
  *
  * High-level and efficient astrometric calculations using observing frames. An observing frame
  * represents an observer location at a specific astronomical time (instant), which can be
- * re-used again and again to calculate or transform positions of celestial sources in a a range
+ * re-used again and again to calculate or transform positions of celestial sources in a range
  * of astronomical coordinate systems.
  *
  * To use frames, you start with `novas_make_frame()` with an astrometric time and an observer
@@ -620,7 +620,7 @@ int novas_make_frame(enum novas_accuracy accuracy, const observer *obs, const no
  * @param obs         New observer location
  * @param[out] out    Observing frame to populate with a original frame data and new observer
  *                    location. It can be the same as the input.
- * @return            0 if successfule or else an an error code from geo_posvel()
+ * @return            0 if successful or else an error code from geo_posvel()
  *                    (errno will also indicate the type of error).
  *
  * @since 1.1
@@ -1854,7 +1854,7 @@ double novas_object_sep(const object *source1, const object *source2, const nova
  * @param source    An observed source
  * @param frame     Observing frame, defining the observer location and astronomical time of
  *                  observation.
- * @return          [deg] the apparent angular distance between the source an the Sun, from the
+ * @return          [deg] the apparent angular distance between the source and the Sun, from the
  *                  observer's point of view.
  *
  * @since 1.3
@@ -1877,7 +1877,7 @@ double novas_sun_angle(const object *restrict source, const novas_frame *restric
  * @param source    An observed source
  * @param frame     Observing frame, defining the observer location and astronomical time of
  *                  observation.
- * @return          [deg] Apparent angular distance between the source an the Moon, from the
+ * @return          [deg] Apparent angular distance between the source and the Moon, from the
  *                  observer's point of view.
  *
  * @since 1.3

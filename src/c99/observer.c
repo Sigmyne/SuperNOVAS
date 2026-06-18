@@ -56,7 +56,7 @@
  *                will be available for the foreseeable future also.
  *
  * Populates an 'observer' data structure given the parameters. The output data structure may
- * be used an the the inputs to NOVAS-C functions, such as `make_frame()` or `place()`.
+ * be used as the inputs to NOVAS-C functions, such as `make_frame()` or `place()`.
  *
  * @param where         The location type of the observer
  * @param loc_surface   Pointer to data structure that defines a location on Earth's surface.
@@ -119,7 +119,7 @@ short make_observer(enum novas_observer_place where, const on_surface *loc_surfa
 
 /**
  * Populates an 'observer' data structure for a hypothetical observer located at Earth's
- * geocenter. The output data structure may be used an the the inputs to NOVAS-C functions,
+ * geocenter. The output data structure may be used as the inputs to NOVAS-C functions,
  * such as `make_frame()` or `place()`.
  *
  * @param[out] obs    Pointer to data structure to populate.
@@ -284,8 +284,8 @@ int make_gps_observer(double latitude, double longitude, double height, observer
 /**
  * Populates an 'observer' data structure, for an observer situated on a near-Earth spacecraft,
  * with the specified geocentric position and velocity vectors. Both input vectors are with
- * respect to true equator and equinox of date. The output data structure may be used an the
- * the inputs to NOVAS-C functions, such as `make_frame()` or `place()`.
+ * respect to true equator and equinox of date. The output data structure may be used as the
+ * inputs to NOVAS-C functions, such as `make_frame()` or `place()`.
  *
  * @param sc_pos        [km] Geocentric (x, y, z) position vector.
  * @param sc_vel        [km/s] Geocentric (x, y, z) velocity vector.
@@ -315,7 +315,7 @@ int make_observer_in_space(const double *sc_pos, const double *sc_vel, observer 
  * given parameters.
  *
  * Note, that because this is an original NOVAS C routine, it does not have an argument to set a
- * humidity value (e.g. for radio refraction). As such, the humidity is set to a a default mean
+ * humidity value (e.g. for radio refraction). As such, the humidity is set to a default mean
  * annual value for the location. To set an actual humidity, set the output structure's field
  * after calling this funcion.
  *
@@ -866,7 +866,7 @@ int obs_posvel(double jd_tdb, double ut1_to_tt, enum novas_accuracy accuracy, co
 }
 
 /**
- * Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth's
+ * Returns precise GCRS position and velocity vectors for an observer located on or near Earth's
  * surface.
  *
  * NOTES:

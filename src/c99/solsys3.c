@@ -40,7 +40,7 @@ int sun_eph(double jd, double *restrict ra, double *restrict dec, double *restri
  * Whether the high-precision call is allowed to return a low-precision result. If set to 0
  * (false) solarsystem_earth_sun_hp() will return with an error code 3 indicating that a
  * high-precision calculation is not possible. Otherise, a non-zero value (true) will let the
- * function to be used without errors, returning the low-precison result of
+ * function to be used without errors, returning the low-precision result of
  * solarsystem_earth_sun() instead.
  *
  * @sa solarsystem_earth_sun_hp()
@@ -51,7 +51,7 @@ static int allow_lp_for_hp = 0;
  * Specify whether the high-precision call is allowed to return a low-precision result. If set
  * to 0 (false) solarsystem_earth_sun_hp() will return with an error code 3 indicating that a
  * high-precision calculation is not possible. Otherise, a non-zero value (true) will let the
- * function to be used without errors, returning the low-precison result of
+ * function to be used without errors, returning the low-precision result of
  * solarsystem_earth_sun() instead.
  *
  * @param value   (boolean) A non-zero value enables the error-free use of the earth_sun_calc_hp()

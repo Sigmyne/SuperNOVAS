@@ -19,8 +19,8 @@
 #include "novas.h"
 
 /// \cond PRIVATE
-#define CMP_DEG                   (1e-6 / 3600.0)        ///< [deg] Compare degrees to 1 &mu;as precison.
-#define CMP_RAD                   ( CMP_DEG * DEGREE )   ///< [rad] Compare radians to 1 &mu;as precison.
+#define CMP_DEG                   (1e-6 / 3600.0)        ///< [deg] Compare degrees to 1 &mu;as precision.
+#define CMP_RAD                   ( CMP_DEG * DEGREE )   ///< [rad] Compare radians to 1 &mu;as precision.
 /// \endcond
 
 

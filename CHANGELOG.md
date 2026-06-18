@@ -1348,7 +1348,7 @@ from which SuperNOVAS is forked from.
 
  - New `itrs_to_hor()` and `hor_to_itrs()` functions to convert Earth-fixed ITRS coordinates to astrometric azimuth 
    and elevation or back. Whereas `tod_to_itrs()` followed by `itrs_to_hor()` is effectively a just a more explicit 
-   2-step version of the existing `equ2hor()` for converting from TOD to to local horizontal (old methodology), the 
+   2-step version of the existing `equ2hor()` for converting from TOD to local horizontal (old methodology), the 
    `cirs_to_itrs()`  followed by `itrs_to_hor()` does the same from CIRS (new IAU standard methodology), and had no 
    prior equivalent in NOVAS C 3.1.
 
@@ -1452,7 +1452,7 @@ from which SuperNOVAS is forked from.
  - IAU 2000A nutation model uses higher-order Delaunay arguments provided by `fund_args()`, instead of the linear
    model in NOVAS C 3.1.
    
- - IAU 2000 nutation made a bit faster vs NOVAS C 3.1, via reducing the the number of floating-point multiplications 
+ - IAU 2000 nutation made a bit faster vs NOVAS C 3.1, via reducing the number of floating-point multiplications 
    necessary by skipping terms that do not contribute. Its coefficients are also packed more frugally in memory, 
    resulting in a smaller footprint than in NOVAS C 3.1.
    

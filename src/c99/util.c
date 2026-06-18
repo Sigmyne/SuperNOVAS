@@ -305,7 +305,7 @@ double novas_vdot(const double *v1, const double *v2) {
  * equator. The two dates are considered equal if they agree within 10<sup>-7</sup> days (or about
  * 10 ms).
  *
- * For reference, with a precession rate of ~50"/year, the precession in in 10 ms is on the order
+ * For reference, with a precession rate of ~50"/year, the precession in 10 ms is on the order
  * of 0.015 &mu;as, which is well below the promised sub-&mu;as precision even for the highest
  * accuracy calculations. As such it is safe to use the reduced accuracy time check for cached
  * precession-related quantities. However, coordinates in an non-inertial Earth-rotating frame

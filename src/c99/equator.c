@@ -101,7 +101,7 @@ double EPS_COR = 0.0;
  *                  POLE_OFFSETS_X_Y (2), to transform dx and dy to the equivalent
  *                  &Delta;&delta;&psi; and &Delta;&delta;&epsilon; values.
  * @param type      POLE_OFFSETS_DPSI_DEPS (1) if the offsets are &Delta;&delta;&psi;,
- *                  &Delta;&delta;&epsilon; relative to the IAU 20006 precession/nutation model;
+ *                  &Delta;&delta;&epsilon; relative to the IAU 2006 precession/nutation model;
  *                  or POLE_OFFSETS_X_Y (2) if they are dx, dy offsets relative to the IAU 2000 /
  *                  2006 precession-nutation model.
  * @param dpole1    [mas] Value of celestial pole offset in first coordinate, (&Delta;&delta;&psi;

@@ -345,7 +345,7 @@ double novas_ssb_to_lsr_vel(double epoch, double ra, double dec, double v_SSB) {
  *
  * NOTES:
  *
- *  1. This function does not accont for the gravitational deflection of Solar-system sources.
+ *  1. This function does not account for the gravitational deflection of Solar-system sources.
  *     For that purpose, the rad_vel2() function, introduced in v1.1, is more appropriate.
  *  2. The NOVAS C implementation did not include relatistic corrections for a moving observer
  *     if both `d_obs_geo` and `d_obs_sun` were zero. As of SuperNOVAS v1.1, the relatistic
@@ -379,7 +379,7 @@ double novas_ssb_to_lsr_vel(double epoch, double ra, double dec, double v_SSB) {
  *                      redshifting due to Solar potential around source can be ignored.
  * @param[out] rv       [km/s] The spectroscopic radial velocity measure from the observer's point
  *                      of view, or NAN if there was an error.
- * @return              0 if successfule, or else -1 if there was an error (errno will be set
+ * @return              0 if successful, or else -1 if there was an error (errno will be set
  *                      to EINVAL if any of the arguments are NULL, or to some other value to
  *                      indicate the type of error).
  *

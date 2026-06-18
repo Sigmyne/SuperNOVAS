@@ -5,7 +5,7 @@
  * between different equatorial coordinate systems. The implementations follow the latest standard
  * for high-precision astrometry as described the IAU 2000 / IAU 2006 and IERS 2010 conventions.
  * See Figure 1 below for an overview of the various coordinate reference systems, and the
- * functions, which can be used to tansform position and/or velocoty vectors among them,
+ * functions, which can be used to transform position and/or velocity vectors among them,
  *
  * ![Figure 1. Reference systems and transformations](resources/SuperNOVAS-systems.png)
  *
@@ -348,7 +348,7 @@ short cel2ter(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
  *  2. IERS (2003) Conventions, Chapter 5.
  *
  * @param in          Position vector, equatorial rectangular coordinates.
- * @param direction   <0 for for dynamical to ICRS transformation, or else &gt;=0 for ICRS to
+ * @param direction   <0 for dynamical to ICRS transformation, or else &gt;=0 for ICRS to
  *                    dynamical transformation. Alternatively you may use the constants
  *                    J2000_TO_ICRS (-1; or negative) or ICRS_TO_J2000 (0; or positive).
  * @param[out] out    Position vector, equatorial rectangular coordinates. It can be the same
@@ -659,7 +659,7 @@ int cirs_to_gcrs(double jd_tdb, enum novas_accuracy accuracy, const double *in, 
  * @param accuracy    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
  * @param ra          [h] The CIRS right ascension coordinate, measured from the CIO.
  * @return            [h] the apparent R.A. coordinate measured from the true equinox of date
- *                    [0:24], or NAN if the accuracy is invalid, or if there wan an error from
+ *                    [0:24], or NAN if the accuracy is invalid, or if there was an error from
  *                    cio_ra().
  *
  * @since 1.0.1
@@ -690,7 +690,7 @@ double cirs_to_app_ra(double jd_tt, enum novas_accuracy accuracy, double ra) {
  * @param accuracy    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
  * @param ra          [h] the apparent R.A. coordinate measured from the true equinox of date.
  * @return            [h] The CIRS right ascension coordinate, measured from the CIO [0:24],
- *                    or NAN if the accuracy is invalid, or if there wan an error from cio_ra().
+ *                    or NAN if the accuracy is invalid, or if there was an error from cio_ra().
  *
  * @since 1.0.1
  * @author Attila Kovacs

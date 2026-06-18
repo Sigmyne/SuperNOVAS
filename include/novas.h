@@ -821,7 +821,7 @@ enum novas_id_type {
  #define NOVAS_ID_TYPES      (NOVAS_ID_CALCEPH + 1)
 
 /**
- * Types of places on and around Earth that may serve a a reference position for the observation.
+ * Types of places on and around Earth that may serve as a reference position for the observation.
  *
  * @sa observer, NOVAS_OBSERVER_PLACES
  */
@@ -1045,7 +1045,7 @@ enum novas_earth_rotation_measure {
   /// 2006 standard)
   EROT_ERA = 0,
 
-  /// Use GST as the rotation measure, relative to the true equinox (pre IAU 20006 standard)
+  /// Use GST as the rotation measure, relative to the true equinox (pre IAU 2006 standard)
   EROT_GST
 };
 #endif
@@ -1608,7 +1608,7 @@ typedef struct novas_object {
 #define NOVAS_MOON_INIT NOVAS_PLANET_INIT(NOVAS_MOON, "Moon")
 
 /**
- * `object` initializer for the the Earth-Moon Barycenter (EMB)
+ * `object` initializer for the Earth-Moon Barycenter (EMB)
  * @hideinitializer
  * @since 1.2
  * @sa object

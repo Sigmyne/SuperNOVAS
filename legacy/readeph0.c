@@ -37,7 +37,7 @@
  * This is basically the NOVAS C 3.1 readeph0.c implementation with added comments and
  * error handling.
  *
- * It can be used a a template for an actual implementation for minor planets, which are not
+ * It can be used as a template for an actual implementation for minor planets, which are not
  * handled by the solarsystem() type calls. You can set the built-in implementation for the
  * library at build-time by setting the DEFAULT_READEPH variable in the `config.mk`.
  *

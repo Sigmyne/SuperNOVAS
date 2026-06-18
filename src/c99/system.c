@@ -1019,7 +1019,7 @@ int novas_enu_to_itrs(const double *enu, double lon, double lat, double *itrf) {
  * @param lat   [deg] Geodetic latitude of observer
  * @return      [deg] Parallactic Angle (PA). I.e., the clockwise position angle of the
  *              declination direction w.r.t. the elevation axis in the horizontal system. Same as
- *              the the clockwise position angle of the elevation direction w.r.t. the declination
+ *              the clockwise position angle of the elevation direction w.r.t. the declination
  *              axis in the equatorial system.
  *
  * @since 1.3

@@ -98,7 +98,7 @@
  * are available via a novas_planet_provider function.
  *
  * In case of a dynamical equatorial system (such as CIRS or TOD) and an Earth-based observer, the
- * polar wobble parameters set via a prior call to cel_pole() together with he ut1_to_tt argument
+ * polar wobble parameters set via a prior call to cel_pole() together with the ut1_to_tt argument
  * decide whether the resulting 'topocentric' output frame is Pseudo Earth Fixed (PEF; if
  * cel_pole() was not set and DUT1 is 0) or ITRS (actual rotating Earth; if cel_pole() was set
  * and ut1_to_tt includes the DUT1 component).
@@ -337,7 +337,7 @@ short place(double jd_tt, const object *restrict source, const observer *restric
  * @param system    The type of coordinate reference system in which coordinates are to be
  *                  returned.
  * @param accuracy  NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
- * @param[out] pos  The position and radial velocity of of the catalog source in the specified
+ * @param[out] pos  The position and radial velocity of the catalog source in the specified
  *                  coordinate system and relative to the specified observer location (if
  *                  applicable)
  * @return          0 if successful, or -1 if one of the required arguments is NULL, or else 1 if
