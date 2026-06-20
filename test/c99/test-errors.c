@@ -3031,6 +3031,10 @@ static int test_set_leap_list() {
   if(!rc) fprintf(stderr, "WARNING! Missing %s: skip tests requiring it", path);
   else if(check("set_leap_list", -1, novas_set_leap_list(rc))) return n++;
 
+  rc = get_resource("bad-expiration-after-entries.list", path, sizeof(path));
+  if(!rc) fprintf(stderr, "WARNING! Missing %s: skip tests requiring it", path);
+  else if(check("set_leap_list", -1, novas_set_leap_list(rc))) return n++;
+
   rc = get_resource("bad-entry.list", path, sizeof(path));
   if(!rc) fprintf(stderr, "WARNING! Missing %s. skip tests requiring it", path);
   else if(check("set_leap_list", -1, novas_set_leap_list(rc))) return n++;

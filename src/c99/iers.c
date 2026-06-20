@@ -241,6 +241,7 @@ static iers_leap_entry *parse_leaps(char *buf, long long *expiration) {
     if(line[0] == '#') {
       if(line[1] == '@') {
         if(sscanf(&line[2], "%lld", expiration) < 1) {
+          destroy_leap_list(list);
           novas_set_errno(errno, fn, "could not parse leap-seconds.list expiration time.");
           return NULL;
         }
