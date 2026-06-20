@@ -25,7 +25,7 @@ jobs:
         prog: [star, high-z, orbital, time, rise-set, moon]
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Compile example-${{ matrix.prog }}.c
       run: |

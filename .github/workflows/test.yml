@@ -41,7 +41,7 @@ jobs:
       ENABLE_CPP: 1
     steps:
 
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: install dependencies
       run: |
@@ -85,7 +85,7 @@ jobs:
           - arch: ppc64le
             distro: ubuntu_latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: uraimo/run-on-arch-action@v3
         name: Run regression tests
         with:
@@ -103,7 +103,7 @@ jobs:
     name: Test on MacOS
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Build and test on macOS
         run: |
           export ENABLE_CPP=1
@@ -113,7 +113,7 @@ jobs:
     name: Test with CMake (Ubuntu)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       
 #      - name: Install libcalceph-dev
 #        run: |

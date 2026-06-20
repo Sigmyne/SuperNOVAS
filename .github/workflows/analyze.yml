@@ -32,7 +32,7 @@ jobs:
       CC: gcc
     steps:
     
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     
     - name: install dependencies
       run: sudo apt-get install -y cppcheck

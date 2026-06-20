@@ -31,7 +31,7 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install dependencies
         if: matrix.os == 'ubuntu-latest'
@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build on FreeBSD
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Build on FreeBSD
         uses: vmactions/freebsd-vm@v1
@@ -94,7 +94,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Documentation (Ubuntu)
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Install doxygen
         run: sudo apt-get install doxygen
@@ -113,7 +113,7 @@ jobs:
 #    runs-on: ubuntu-latest
 #    name: Build with CALCEPH support (Ubuntu)
 #    steps:
-#      - uses: actions/checkout@v6
+#      - uses: actions/checkout@v7
 #
 #      - name: Install libcalceph-dev
 #        run: |
