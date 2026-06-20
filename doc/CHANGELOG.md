@@ -18,7 +18,7 @@ Upcoming bug-fix release, possibly around 1 August 2026.
  - #347: pkgconfig to call `find_dependency(CURL)` when __SuperNOVAS__ is built with `WITHOUT_CURL=FALSE` (by
    BillyONeal).
  
- - #350: Possible memleak in `parse_leaps()` if there is a corrupted expiration stamp in an unexpected place (by  @traitimtrongvag)
+ - #350: Possible memleak in `parse_leaps()` if there is a corrupted expiration stamp in an unexpected place (by  @traitimtrongvag).
  
 
 ## [1.7.1] - 2026-06-17
