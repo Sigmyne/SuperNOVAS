@@ -20,6 +20,8 @@ Upcoming bug-fix release, possibly around 1 August 2026.
  
  - #350: Possible memleak in `parse_leaps()` if there is a corrupted expiration stamp in an unexpected place (by 
    traitimtrongvag).
+   
+ - #352: Fix GNU `Makefile` to propagate `WITHOUT_CURL` setting to the build (by traitimtrongvag).
  
 ### Changed
 
