@@ -40,7 +40,9 @@ ifeq ($(CSPICE_SUPPORT),1)
   COVFILES += solsys-cspice.c.gcov
 endif
 
-ifneq ($(WITHOUT_CURL),1)
+ifeq ($(WITHOUT_CURL),1)
+  CPPFLAGS += -DWITHOUT_CURL
+else
   LDFLAGS += -lcurl
   TESTS += test-dummy-curl
 endif
