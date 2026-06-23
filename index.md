@@ -26,7 +26,9 @@ will scale with the number of CPUs when calculations are performed in parallel t
 __SuperNOVAS__  is freely available via the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS/) repository 
 on GitHub, without licensing restrictions. Its source code is compatible with the C99 and/or C++11 standards, and 
 hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully 
-supports the IAU 2000/2006 conventions for sub-microarcsecond position calculations. 
+supports the [IAU 2000/2006 resolutions](https://www.iau.org/IAU/Iau/Publications/List-of-Resolutions.aspx) and the 
+[IERS 2010 conventions](https://www.iers.org/IERS/EN/DataProducts/Conventions/conventions) for sub-microarcsecond 
+position calculations. 
 
 __SuperNOVAS__ is maintained by [Attila Kovacs](https://github.com/attipaci) (Sigmyne LLC), a professional 
 astrophysicist with a long history of telescope control and data reduction software. __SuperNOVAS__
