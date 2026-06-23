@@ -101,7 +101,7 @@ even better.
    Solar-system bodies as per request.
  - [IAU Minor Planet Center](https://www.minorplanetcenter.net/iau/mpc.html) provides up-to-date orbital elements
    for asteroids, comets, and near-Earth objects (NEOs), including newly discovered objects.
- - [IERS Earth Rotation and Reference Systems Service](https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop)
+ - [Earth Rotation and Reference Systems Service (IERS)](https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop)
    provides Earth Orientation Parameter (EOP) data for many high accuracy calculations.
 
 
