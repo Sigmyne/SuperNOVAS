@@ -80,11 +80,9 @@ same results with similar lines of code on
 with __SuperNOVAS__ as with __astropy__, notwithstanding a little more involved error handling (due to the lack of 
 `try / except` style constructs in C/C++).
  
-__SuperNOVAS__ is maintained by [Attila Kovács](https://www.sigmyne.com/attipaci). 
-
-Outside contributions are very welcome. See
-[how you can contribute](https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html) to make __SuperNOVAS__ even 
-better.
+__SuperNOVAS__ was created and is maintained by [Attila Kovács](https://www.sigmyne.com/attipaci). Outside contributions 
+are very welcome. See [how you can contribute](https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html) to make 
+__SuperNOVAS__ even better.
 
 ### Related links
 
