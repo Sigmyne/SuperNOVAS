@@ -275,7 +275,7 @@ Macros</h2></td></tr>
 <tr class="memitem:ga139f16e134bf6119b6e04c8272c85668" id="r_ga139f16e134bf6119b6e04c8272c85668"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#ga139f16e134bf6119b6e04c8272c85668">NOVAS_EARTH_RADIUS</a>&#160;&#160;&#160;<a class="el" href="group__observer.html#ga5518e094e90ed1053aeb03c41d531452">NOVAS_GRS80_RADIUS</a></td></tr>
 <tr class="memdesc:ga139f16e134bf6119b6e04c8272c85668"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] Equatorial radius of Earth (ITRF / GRS80 model)  <br /></td></tr>
 <tr class="memitem:ga209cb6db7acbde105772520150f238de" id="r_ga209cb6db7acbde105772520150f238de"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga209cb6db7acbde105772520150f238de">NOVAS_EMB_INIT</a></td></tr>
-<tr class="memdesc:ga209cb6db7acbde105772520150f238de"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> initializer for the the Earth-Moon Barycenter (EMB)  <br /></td></tr>
+<tr class="memdesc:ga209cb6db7acbde105772520150f238de"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> initializer for the Earth-Moon Barycenter (EMB)  <br /></td></tr>
 <tr class="memitem:gade30c5c72c918b2428e803e3f4430ceb" id="r_gade30c5c72c918b2428e803e3f4430ceb"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#gade30c5c72c918b2428e803e3f4430ceb">NOVAS_EQUATOR_TYPES</a></td></tr>
 <tr class="memdesc:gade30c5c72c918b2428e803e3f4430ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of equator types defined in <span class="tt">enum <a class="el" href="group__nonequatorial.html#ga2eff9980cb9db96ab41fb564c1b5c014" title="Constants that determine the type of equator to be used for the coordinate system.">novas_equator_type</a></span>.  <br /></td></tr>
 <tr class="memitem:gab1c90a8754103ec1bfcf241c75fe9371" id="r_gab1c90a8754103ec1bfcf241c75fe9371"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__frame.html#gab1c90a8754103ec1bfcf241c75fe9371">NOVAS_FRAME_INIT</a></td></tr>
@@ -287,7 +287,7 @@ Macros</h2></td></tr>
 <tr class="memitem:ga6355388ff4a44836eda6eb1e97da60cd" id="r_ga6355388ff4a44836eda6eb1e97da60cd"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga6355388ff4a44836eda6eb1e97da60cd">NOVAS_GPS_TO_TAI</a>&#160;&#160;&#160;19.0</td></tr>
 <tr class="memdesc:ga6355388ff4a44836eda6eb1e97da60cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">[s] TAI - GPS time offset  <br /></td></tr>
 <tr class="memitem:gae283901f9a884acc6c5b88c6afb040b4" id="r_gae283901f9a884acc6c5b88c6afb040b4"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#gae283901f9a884acc6c5b88c6afb040b4">NOVAS_GRS80_FLATTENING</a>&#160;&#160;&#160;(1.0 / 298.257222101)</td></tr>
-<tr class="memdesc:gae283901f9a884acc6c5b88c6afb040b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] WGS84 Earth flattening  <br /></td></tr>
+<tr class="memdesc:gae283901f9a884acc6c5b88c6afb040b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] GRS80 Earth flattening  <br /></td></tr>
 <tr class="memitem:ga5518e094e90ed1053aeb03c41d531452" id="r_ga5518e094e90ed1053aeb03c41d531452"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#ga5518e094e90ed1053aeb03c41d531452">NOVAS_GRS80_RADIUS</a>&#160;&#160;&#160;6378137.0</td></tr>
 <tr class="memdesc:ga5518e094e90ed1053aeb03c41d531452"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] Equatorial radius of the WGS84 reference ellipsoid.  <br /></td></tr>
 <tr class="memitem:gaee2680f03d1dfa4c9fbeea2be806dbf7" id="r_gaee2680f03d1dfa4c9fbeea2be806dbf7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__util.html#gaee2680f03d1dfa4c9fbeea2be806dbf7">NOVAS_HOURANGLE</a>&#160;&#160;&#160;(<a class="el" href="#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a> / 12.0)</td></tr>
@@ -452,9 +452,9 @@ Macros</h2></td></tr>
 <tr class="memdesc:a5ab52d5db18c081b6313ed8b1993ebb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">API major version.  <br /></td></tr>
 <tr class="memitem:aaed93e356acfc0d15d0f64ae0793b4f0" id="r_aaed93e356acfc0d15d0f64ae0793b4f0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaed93e356acfc0d15d0f64ae0793b4f0">SUPERNOVAS_MINOR_VERSION</a>&#160;&#160;&#160;7</td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
-<tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;2</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
-<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;&quot;</td></tr>
+<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-devel&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
 <tr class="memitem:a44de9d1672290d153a1dfb0685886208" id="r_a44de9d1672290d153a1dfb0685886208"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a44de9d1672290d153a1dfb0685886208">SUPERNOVAS_VERSION_STRING</a></td></tr>
 <tr class="memdesc:a44de9d1672290d153a1dfb0685886208"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version string for this library.  <br /></td></tr>
@@ -589,7 +589,7 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="#a6140c39d1526b137f827e2091ecc36b3a82474207bac139bc2a8826b9d317a42c">NOVAS_SOLAR_SYSTEM_OBSERVER</a>
 <br />
  }</td></tr>
-<tr class="memdesc:a6140c39d1526b137f827e2091ecc36b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Types of places on and around Earth that may serve a a reference position for the observation.  <a href="#a6140c39d1526b137f827e2091ecc36b3">More...</a><br /></td></tr>
+<tr class="memdesc:a6140c39d1526b137f827e2091ecc36b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Types of places on and around Earth that may serve as a reference position for the observation.  <a href="#a6140c39d1526b137f827e2091ecc36b3">More...</a><br /></td></tr>
 <tr class="memitem:ga208120c5fa3e12853eb37cb99d3e27be" id="r_ga208120c5fa3e12853eb37cb99d3e27be"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="group__solar-system.html#ga208120c5fa3e12853eb37cb99d3e27be">novas_origin</a> { <a class="el" href="group__solar-system.html#gga208120c5fa3e12853eb37cb99d3e27beade504a1c5ccf790ce9d8ad52797bb94c">NOVAS_BARYCENTER</a> = 0
 , <a class="el" href="group__solar-system.html#gga208120c5fa3e12853eb37cb99d3e27bea13c0711a025b9aebd4186ab9127cbd7b">NOVAS_HELIOCENTER</a>
  }</td></tr>
@@ -1170,7 +1170,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga23af09cd8e5ec5ef4d0b03a347a4add0" id="r_ga23af09cd8e5ec5ef4d0b03a347a4add0"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga23af09cd8e5ec5ef4d0b03a347a4add0">novas_sets_below</a> (double el, const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict source, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, <a class="el" href="group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9">RefractionModel</a> ref_model)</td></tr>
 <tr class="memdesc:ga23af09cd8e5ec5ef4d0b03a347a4add0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the UTC date at which a distant source appears to set below the specified elevation angle.  <br /></td></tr>
 <tr class="memitem:ga65df4b49c0c33285ef5ddcf6814384dc" id="r_ga65df4b49c0c33285ef5ddcf6814384dc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#ga65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict ts, const <a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict site, const double *restrict v_itrs, double xp, double yp, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, double *restrict pos, double *restrict vel)</td></tr>
-<tr class="memdesc:ga65df4b49c0c33285ef5ddcf6814384dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth's surface.  <br /></td></tr>
+<tr class="memdesc:ga65df4b49c0c33285ef5ddcf6814384dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns precise GCRS position and velocity vectors for an observer located on or near Earth's surface.  <br /></td></tr>
 <tr class="memitem:gaa75f22539fa6135b64f5026c6e1fcba1" id="r_gaa75f22539fa6135b64f5026c6e1fcba1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__interferometry.html#gaa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict ts, const <a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict station, const double *restrict geocentric_source, double xp, double yp, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, double *restrict uvw)</td></tr>
 <tr class="memdesc:gaa75f22539fa6135b64f5026c6e1fcba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns geocentric <em>u</em>,<em>v</em>,<em>w</em> coordinates for a ground-based interferometer station.  <br /></td></tr>
 <tr class="memitem:gac365a1e015ae1f875dc5a66fd5435b2f" id="r_gac365a1e015ae1f875dc5a66fd5435b2f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos</a> (const object<a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict object<a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a>, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> sys, <a class="el" href="group__apparent.html#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *restrict out)</td></tr>
@@ -1734,7 +1734,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The number of observer place types supported. </p>
-<dl class="section see"><dt>See also</dt><dd>enum <a class="el" href="#a6140c39d1526b137f827e2091ecc36b3" title="Types of places on and around Earth that may serve a a reference position for the observation.">novas_observer_place</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>enum <a class="el" href="#a6140c39d1526b137f827e2091ecc36b3" title="Types of places on and around Earth that may serve as a reference position for the observation.">novas_observer_place</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, and <a class="el" href="group__geometric.html#ga0e4e5ff7c37e6521ca75ae62aaf4050e">obs_posvel()</a>.</p>
 
@@ -2155,7 +2155,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_PATCHLEVEL&#160;&#160;&#160;1</td>
+          <td class="memname">#define SUPERNOVAS_PATCHLEVEL&#160;&#160;&#160;2</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2171,7 +2171,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;&quot;</td>
+          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-devel&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2288,7 +2288,7 @@ Variables</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a9e882d9c9055f187d3a8dc9b019f0609ab07b6e5ed11fd50e7c2287b5b6626b46" name="a9e882d9c9055f187d3a8dc9b019f0609ab07b6e5ed11fd50e7c2287b5b6626b46"></a>EROT_ERA&#160;</td><td class="fielddoc"><p>Use Earth Rotation Angle (ERA) as the rotation measure, relative to the CIO (new IAU 2006 standard). </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62" name="a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62"></a>EROT_GST&#160;</td><td class="fielddoc"><p>Use GST as the rotation measure, relative to the true equinox (pre IAU 20006 standard). </p>
+<tr><td class="fieldname"><a id="a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62" name="a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62"></a>EROT_GST&#160;</td><td class="fielddoc"><p>Use GST as the rotation measure, relative to the true equinox (pre IAU 2006 standard). </p>
 </td></tr>
 </table>
 
@@ -2327,7 +2327,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Types of places on and around Earth that may serve a a reference position for the observation. </p>
+<p>Types of places on and around Earth that may serve as a reference position for the observation. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__observer.html#gae7963c522d28ce6891b472e079307d03" title="Observer location.">observer</a>, <a class="el" href="#a7af86c48f77394688f4ad43eb20760f4" title="The number of observer place types supported.">NOVAS_OBSERVER_PLACES</a> </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6140c39d1526b137f827e2091ecc36b3aca54b3a0c7d5b31d09090a1f55ff72b2" name="a6140c39d1526b137f827e2091ecc36b3aca54b3a0c7d5b31d09090a1f55ff72b2"></a>NOVAS_OBSERVER_AT_GEOCENTER&#160;</td><td class="fielddoc"><p>Calculate coordinates as if observing from the geocenter for location and Earth rotation independent coordinates. </p>
@@ -3299,7 +3299,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Populates an 'observer' data structure given the parameters. The output data structure may be used an the the inputs to NOVAS-C functions, such as <span class="tt">make_frame()</span> or <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>.</p>
+<p>Populates an 'observer' data structure given the parameters. The output data structure may be used as the inputs to NOVAS-C functions, such as <span class="tt">make_frame()</span> or <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">where</td><td>The location type of the observer </td></tr>
@@ -3357,7 +3357,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Populates an '<a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a>' data structure, for an observer on the surface of the Earth, with the given parameters.</p>
-<p>Note, that because this is an original NOVAS C routine, it does not have an argument to set a humidity value (e.g. for radio refraction). As such, the humidity is set to a a default mean annual value for the location. To set an actual humidity, set the output structure's field after calling this funcion.</p>
+<p>Note, that because this is an original NOVAS C routine, it does not have an argument to set a humidity value (e.g. for radio refraction). As such, the humidity is set to a default mean annual value for the location. To set an actual humidity, set the output structure's field after calling this funcion.</p>
 <p>NOTES:</p>
 <ol type="1">
 <li>This implementation breaks strict v1.0 ABI compatibility since it writes to (initializes) a field (<span class="tt">humidity</span>) that was not yet part of the <span class="tt"><a class="el" href="group__observer.html#gab95cfa1e3e1558f7f99b74df9cd3514a" title="Data for an observer&#39;s location on the surface of the Earth, and optional local weather data for refr...">on_surface</a></span> structure in v1.0. As such, linking SuperNOVAS v1.1 or later with application code compiled for SuperNOVAS v1.0 can result in memory corruption or segmentation fault when this function is called. To be safe, make sure your application has been (re)compiled against SuperNOVAS v1.1 or later.</li>
@@ -3607,7 +3607,7 @@ Variables</h2></td></tr>
 <p>Computes the apparent direction of a celestial object at a specified time and in a specified coordinate system and for a given observer location. </p>
 <p>While <span class="tt">coord_sys</span> defines the coordinate referfence system, it is <span class="tt">location-&gt;where</span> sets the origin of the reference place relative to which positions and velocities are reported.</p>
 <p>For all but ICRS coordinate outputs, the calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>In case of a dynamical equatorial system (such as CIRS or TOD) and an Earth-based observer, the polar wobble parameters set via a prior call to <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> together with he ut1_to_tt argument decide whether the resulting 'topocentric' output frame is Pseudo Earth Fixed (PEF; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was not set and DUT1 is 0) or ITRS (actual rotating Earth; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was set and ut1_to_tt includes the DUT1 component).</p>
+<p>In case of a dynamical equatorial system (such as CIRS or TOD) and an Earth-based observer, the polar wobble parameters set via a prior call to <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> together with the ut1_to_tt argument decide whether the resulting 'topocentric' output frame is Pseudo Earth Fixed (PEF; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was not set and DUT1 is 0) or ITRS (actual rotating Earth; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was set and ut1_to_tt includes the DUT1 component).</p>
 <p>NOTES:</p>
 <ol type="1">
 <li>This version fixes a NOVAS C 3.1 issue that velocities and solar-system distances were not antedated for light-travel time.</li>
@@ -3766,7 +3766,7 @@ Variables</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ut1_to_tt</td><td>[s] Difference TT-UT1 at 'jd_tt', in seconds of time. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">system</td><td>The type of coordinate reference system in which coordinates are to be returned. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>The position and radial velocity of of the catalog source in the specified coordinate system and relative to the specified observer location (if applicable) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>The position and radial velocity of the catalog source in the specified coordinate system and relative to the specified observer location (if applicable) </td></tr>
   </table>
   </dd>
 </dl>

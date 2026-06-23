@@ -193,7 +193,7 @@ Macros</h2></td></tr>
 <tr class="memitem:ga139f16e134bf6119b6e04c8272c85668" id="r_ga139f16e134bf6119b6e04c8272c85668"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga139f16e134bf6119b6e04c8272c85668">NOVAS_EARTH_RADIUS</a>&#160;&#160;&#160;<a class="el" href="#ga5518e094e90ed1053aeb03c41d531452">NOVAS_GRS80_RADIUS</a></td></tr>
 <tr class="memdesc:ga139f16e134bf6119b6e04c8272c85668"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] Equatorial radius of Earth (ITRF / GRS80 model)  <br /></td></tr>
 <tr class="memitem:gae283901f9a884acc6c5b88c6afb040b4" id="r_gae283901f9a884acc6c5b88c6afb040b4"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#gae283901f9a884acc6c5b88c6afb040b4">NOVAS_GRS80_FLATTENING</a>&#160;&#160;&#160;(1.0 / 298.257222101)</td></tr>
-<tr class="memdesc:gae283901f9a884acc6c5b88c6afb040b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] WGS84 Earth flattening  <br /></td></tr>
+<tr class="memdesc:gae283901f9a884acc6c5b88c6afb040b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] GRS80 Earth flattening  <br /></td></tr>
 <tr class="memitem:ga5518e094e90ed1053aeb03c41d531452" id="r_ga5518e094e90ed1053aeb03c41d531452"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga5518e094e90ed1053aeb03c41d531452">NOVAS_GRS80_RADIUS</a>&#160;&#160;&#160;6378137.0</td></tr>
 <tr class="memdesc:ga5518e094e90ed1053aeb03c41d531452"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] Equatorial radius of the WGS84 reference ellipsoid.  <br /></td></tr>
 <tr class="memitem:ga6111d6b21ce788298259f3fc0d716fe3" id="r_ga6111d6b21ce788298259f3fc0d716fe3"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga6111d6b21ce788298259f3fc0d716fe3">NOVAS_IERS_EARTH_FLATTENING</a>&#160;&#160;&#160;(1.0 / 298.25642)</td></tr>
@@ -279,7 +279,7 @@ Functions</h2></td></tr>
 <tr class="memitem:ga0fc8f315f8606e09571ab49efb13baca" id="r_ga0fc8f315f8606e09571ab49efb13baca"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga0fc8f315f8606e09571ab49efb13baca">novas_set_default_weather</a> (<a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *site)</td></tr>
 <tr class="memdesc:ga0fc8f315f8606e09571ab49efb13baca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets default weather parameters based on an approximate global model to the mean annualized temperatures, based on Feulner et al.  <br /></td></tr>
 <tr class="memitem:ga65df4b49c0c33285ef5ddcf6814384dc" id="r_ga65df4b49c0c33285ef5ddcf6814384dc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict ts, const <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict site, const double *restrict v_itrs, double xp, double yp, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, double *restrict pos, double *restrict vel)</td></tr>
-<tr class="memdesc:ga65df4b49c0c33285ef5ddcf6814384dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth's surface.  <br /></td></tr>
+<tr class="memdesc:ga65df4b49c0c33285ef5ddcf6814384dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns precise GCRS position and velocity vectors for an observer located on or near Earth's surface.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defining the observer location, or accessing properties thereof. </p>
@@ -356,7 +356,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[m] WGS84 Earth flattening </p>
+<p>[m] GRS80 Earth flattening </p>
 <dl class="section since"><dt>Since</dt><dd>1.5 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gab07d86d425d68a62e94e965dd36b7a32" title="Converts geodetic site coordinates to geocentric Cartesian coordinates, using the specified reference...">novas_geodetic_to_cartesian()</a>, <a class="el" href="#ga7479134485c298faa858d73ee0513a11" title="Converts geocentric Cartesian site coordinates to geodetic coordinates on the given reference ellipso...">novas_cartesian_to_geodetic()</a> </dd></dl>
 
@@ -933,7 +933,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Populates an 'observer' data structure for a hypothetical observer located at Earth's geocenter. </p>
-<p>The output data structure may be used an the the inputs to NOVAS-C functions, such as <span class="tt">make_frame()</span> or <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>.</p>
+<p>The output data structure may be used as the inputs to NOVAS-C functions, such as <span class="tt">make_frame()</span> or <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">obs</td><td>Pointer to data structure to populate. </td></tr>
@@ -1016,7 +1016,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Populates an 'observer' data structure, for an observer situated on a near-Earth spacecraft, with the specified geocentric position and velocity vectors. </p>
-<p>Both input vectors are with respect to true equator and equinox of date. The output data structure may be used an the the inputs to NOVAS-C functions, such as <span class="tt">make_frame()</span> or <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>.</p>
+<p>Both input vectors are with respect to true equator and equinox of date. The output data structure may be used as the inputs to NOVAS-C functions, such as <span class="tt">make_frame()</span> or <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">sc_pos</td><td>[km] Geocentric (x, y, z) position vector. </td></tr>
@@ -1851,7 +1851,7 @@ novas_set_weather(), <a class="el" href="#ga7479134485c298faa858d73ee0513a11" ti
       </table>
 </div><div class="memdoc">
 
-<p>Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth's surface. </p>
+<p>Returns precise GCRS position and velocity vectors for an observer located on or near Earth's surface. </p>
 <p>NOTES:</p>
 <ol type="1">
 <li>unlike the original NOVAS <span class="tt"><a class="el" href="group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a></span>, this implementation takes the polar offsets into account.</li>

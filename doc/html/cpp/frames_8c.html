@@ -226,7 +226,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>High-level and efficient astrometric calculations using observing frames. </p>
-<p>An observing frame represents an observer location at a specific astronomical time (instant), which can be re-used again and again to calculate or transform positions of celestial sources in a a range of astronomical coordinate systems.</p>
+<p>An observing frame represents an observer location at a specific astronomical time (instant), which can be re-used again and again to calculate or transform positions of celestial sources in a range of astronomical coordinate systems.</p>
 <p>To use frames, you start with <span class="tt"><a class="el" href="#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span> with an astrometric time and an observer location, and optionally Earth-orientation parameters if precision below the arcsecond level is needed. E.g.:</p>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="novas_8h.html#ae7963c522d28ce6891b472e079307d03">observer</a> obs;         <span class="comment">// observer location</span></div>
 <div class="line"><a class="code hl_struct" href="structnovas__timespec.html">novas_timespec</a> time;  <span class="comment">// astrometric time</span></div>
@@ -463,7 +463,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successfule or else an an error code from <a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a> (errno will also indicate the type of error).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful or else an error code from <a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a> (errno will also indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#adc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a> </dd></dl>
@@ -984,7 +984,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[deg] Apparent angular distance between the source an the Moon, from the observer's point of view.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[deg] Apparent angular distance between the source and the Moon, from the observer's point of view.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2d1ef3bc6d99aa473511e45c6e0481e9" title="Returns the apparent angular distance of a source from the Sun from the observer&#39;s point of view.">novas_sun_angle()</a> </dd></dl>
@@ -1272,7 +1272,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[deg] the apparent angular distance between the source an the Sun, from the observer's point of view.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[deg] the apparent angular distance between the source and the Sun, from the observer's point of view.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a121940d7f0ef41297d28fab8e6df5998" title="Returns the apparent angular distance of a source from the Moon from the observer&#39;s point of view.">novas_moon_angle()</a> </dd></dl>

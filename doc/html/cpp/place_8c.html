@@ -861,7 +861,7 @@ Functions</h2></td></tr>
 <p>Computes the apparent direction of a celestial object at a specified time and in a specified coordinate system and for a given observer location. </p>
 <p>While <span class="tt">coord_sys</span> defines the coordinate referfence system, it is <span class="tt">location-&gt;where</span> sets the origin of the reference place relative to which positions and velocities are reported.</p>
 <p>For all but ICRS coordinate outputs, the calculated positions and velocities include aberration corrections for the moving frame of the observer as well as gravitational deflection due to the Sun and Earth and other major gravitating bodies in the Solar system, provided planet positions are available via a <a class="el" href="group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0" title="Provides the position and velocity of major planets (as well as the Sun, Moon, Solar-system Barycente...">novas_planet_provider</a> function.</p>
-<p>In case of a dynamical equatorial system (such as CIRS or TOD) and an Earth-based observer, the polar wobble parameters set via a prior call to <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> together with he ut1_to_tt argument decide whether the resulting 'topocentric' output frame is Pseudo Earth Fixed (PEF; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was not set and DUT1 is 0) or ITRS (actual rotating Earth; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was set and ut1_to_tt includes the DUT1 component).</p>
+<p>In case of a dynamical equatorial system (such as CIRS or TOD) and an Earth-based observer, the polar wobble parameters set via a prior call to <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> together with the ut1_to_tt argument decide whether the resulting 'topocentric' output frame is Pseudo Earth Fixed (PEF; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was not set and DUT1 is 0) or ITRS (actual rotating Earth; if <a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a> was set and ut1_to_tt includes the DUT1 component).</p>
 <p>NOTES:</p>
 <ol type="1">
 <li>This version fixes a NOVAS C 3.1 issue that velocities and solar-system distances were not antedated for light-travel time.</li>
@@ -1239,7 +1239,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ut1_to_tt</td><td>[s] Difference TT-UT1 at 'jd_tt', in seconds of time. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">system</td><td>The type of coordinate reference system in which coordinates are to be returned. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">accuracy</td><td>NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1) </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>The position and radial velocity of of the catalog source in the specified coordinate system and relative to the specified observer location (if applicable) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>The position and radial velocity of the catalog source in the specified coordinate system and relative to the specified observer location (if applicable) </td></tr>
   </table>
   </dd>
 </dl>

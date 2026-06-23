@@ -226,7 +226,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Various functions to transform rectangular equatorial vectors (positions or velocities) between different equatorial coordinate systems. </p>
-<p>The implementations follow the latest standard for high-precision astrometry as described the IAU 2000 / IAU 2006 and IERS 2010 conventions. See Figure 1 below for an overview of the various coordinate reference systems, and the functions, which can be used to tansform position and/or velocoty vectors among them,</p>
+<p>The implementations follow the latest standard for high-precision astrometry as described the IAU 2000 / IAU 2006 and IERS 2010 conventions. See Figure 1 below for an overview of the various coordinate reference systems, and the functions, which can be used to transform position and/or velocity vectors among them,</p>
 <div class="image">
 <img src="SuperNOVAS-systems.png" alt=""/>
 <div class="caption">
@@ -280,7 +280,7 @@ Figure 1. Reference systems and transformations</div></div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[h] The CIRS right ascension coordinate, measured from the CIO [0:24], or NAN if the accuracy is invalid, or if there wan an error from <a class="el" href="novas_8h.html#acc331c69187b3077b98280bfb57f6670" title="Computes the true right ascension of the celestial intermediate origin (CIO) vs the equinox of date o...">cio_ra()</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[h] The CIRS right ascension coordinate, measured from the CIO [0:24], or NAN if the accuracy is invalid, or if there was an error from <a class="el" href="novas_8h.html#acc331c69187b3077b98280bfb57f6670" title="Computes the true right ascension of the celestial intermediate origin (CIO) vs the equinox of date o...">cio_ra()</a>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af90d52a6527d9b62b8ac35d8c1ac7c6b" title="Converts a CIRS right ascension coordinate (measured from the CIO) to an apparent R....">cirs_to_app_ra()</a>, <a class="el" href="#adb48b2acaf76cc3a1e3a1412cc42c232" title="Transforms a rectangular equatorial (x, y, z) vector from the True of Date (TOD) reference system to ...">tod_to_cirs()</a> </dd></dl>
@@ -414,7 +414,7 @@ Figure 1. Reference systems and transformations</div></div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[h] the apparent R.A. coordinate measured from the true equinox of date [0:24], or NAN if the accuracy is invalid, or if there wan an error from <a class="el" href="novas_8h.html#acc331c69187b3077b98280bfb57f6670" title="Computes the true right ascension of the celestial intermediate origin (CIO) vs the equinox of date o...">cio_ra()</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[h] the apparent R.A. coordinate measured from the true equinox of date [0:24], or NAN if the accuracy is invalid, or if there was an error from <a class="el" href="novas_8h.html#acc331c69187b3077b98280bfb57f6670" title="Computes the true right ascension of the celestial intermediate origin (CIO) vs the equinox of date o...">cio_ra()</a>.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3fa57a154f2f423612736e5e3a5addbf" title="Converts an apparent right ascension coordinate (measured from the true equinox of date) to a CIRS R....">app_to_cirs_ra()</a>, <a class="el" href="#a9cac4f3a18d4c14939519e7123b4d504" title="Transforms a rectangular equatorial (x, y, z) vector from the Celestial Intermediate Reference System...">cirs_to_tod()</a> </dd></dl>
@@ -648,7 +648,7 @@ Figure 1. Reference systems and transformations</div></div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">in</td><td>Position vector, equatorial rectangular coordinates. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">direction</td><td>&lt;0 for for dynamical to ICRS transformation, or else &gt;=0 for ICRS to dynamical transformation. Alternatively you may use the constants J2000_TO_ICRS (-1; or negative) or ICRS_TO_J2000 (0; or positive). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">direction</td><td>&lt;0 for dynamical to ICRS transformation, or else &gt;=0 for ICRS to dynamical transformation. Alternatively you may use the constants J2000_TO_ICRS (-1; or negative) or ICRS_TO_J2000 (0; or positive). </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Position vector, equatorial rectangular coordinates. It can be the same vector as the input. </td></tr>
   </table>
   </dd>

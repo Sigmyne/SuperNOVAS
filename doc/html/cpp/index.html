@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 </ul>
 <p><a href="https://github.com/Sigmyne/SuperNOVAS/">SuperNOVAS</a> is a C/C++ astronomy software library, providing high-precision astrometry such as one might need for running an observatory, a precise planetarium program, or for analyzing astronomical datasets. It started as a fork of the Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>) C version 3.1, but since then it has grown into its own, providing bug fixes, tons of new features, and a much improved API compared to the original NOVAS.</p>
 <p><b>SuperNOVAS</b> is easy to use and it is very fast, with 3&ndash;5 orders of magnitude faster position calculations than <a href="https://www.astropy.org/">astropy</a> 7.0.0 in a single thread (see the <a class="el" href="#benchmarks" title="benchmarks">benchmarks</a>benchmarks), and its performance will scale further with the number of CPUs when calculations are performed in parallel threads.</p>
-<p><b>SuperNOVAS</b> is available through the <a href="https://github.com/Sigmyne/SuperNOVAS">Sigmyne/SuperNOVAS</a> repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports the IAU 2000/2006 conventions for microarcsecond-level position calculations.</p>
+<p><b>SuperNOVAS</b> is available through the <a href="https://github.com/Sigmyne/SuperNOVAS">Sigmyne/SuperNOVAS</a> repository on GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports the <a href="https://www.iau.org/IAU/Iau/Publications/List-of-Resolutions.aspx">IAU 2000/2006 resolutions</a> and the <a href="https://www.iers.org/IERS/EN/DataProducts/Conventions/conventions">IERS 2010 conventions</a> for microarcsecond-level position calculations.</p>
 <p>This document has been updated for the <span class="tt">v1.7</span> and later releases.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 Table of Contents</h1>
@@ -225,7 +225,7 @@ Table of Contents</h1>
 <p><a class="anchor" id="introduction"></a> </p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Introduction</h1>
-<p><b>SuperNOVAS</b> is a supercharged fork of the The Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>). (It is not related to the separate NOVA / libnova library.)</p>
+<p><b>SuperNOVAS</b> is a supercharged fork of the The Naval Observatory Vector Astrometry Software (<a href="https://aa.usno.navy.mil/software/novas_info">NOVAS</a>). (It is not related to the separate NOVA / <span class="tt">libnova</span> library.)</p>
 <p>The primary goal of <b>SuperNOVAS</b> is to improve on the original NOVAS C library via:</p>
 <ul>
 <li>Fixing <a class="el" href="#fixed-issues" title="fixed-issues">outstanding issues</a>outstanding issues</li>
@@ -287,7 +287,7 @@ Details</summary>
 <li>[<b>v1.1</b>] Fixes division by zero bug in <span class="tt"><a class="el" href="novas_8h.html#ad799864f637c483fb49491bde5a93e25" title="Returns the difference in light-time, for a star, between the barycenter of the solar system and the ...">d_light()</a></span> if the first position argument is the ephemeris reference position (e.g. the Sun for <span class="tt"><a class="el" href="solsys3_8c.html" title="Planet calculator functions for the Earth and Sun only, with an orbital model fitted to the DE405 eph...">solsys3.c</a></span>). The bug affects for example <span class="tt"><a class="el" href="novas_8h.html#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a></span>, where it effectively results in the gravitational deflection due to the Sun being skipped.</li>
 <li>[<b>v1.1</b>] The NOVAS C 3.1 implementation of <span class="tt"><a class="el" href="novas_8h.html#afca24d914664bb60d20fb428177f329a" title="Predicts the radial velocity of the observed object as it would be measured by spectroscopic means.">rad_vel()</a></span> has a number of issues that produce inaccurate results. The errors are typically at or below the tens of m/s level for objects not moving at relativistic speeds.</li>
 <li>[<b>v1.4</b>] The NOVAS C 3.1 implementation of <span class="tt"><a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a></span> / <span class="tt"><a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a></span> was such that if both <span class="tt">xp</span> and <span class="tt">yp</span> parameters were zero, then no wobble correction was applied, not even for the TIO longitude (s'). The error from this omission is very small, at just a few &mu;as (microarcseconds) within a couple of centuries of J2000.</li>
-<li>[<b>v1.6</b>] The NOVAS C <span class="tt"><a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a></span> function is imprecise for geodetic observer locations on Earth, since it does not account for polar offsets <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub>. As such the geocentric GCRS observer position and velocity vectors are accurate at the tens of meters level only. For Earth-based observers, <b>SuperNOVAS</b> adds <span class="tt"><a class="el" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth&#39;s surface.">novas_site_gcrs_posvel()</a></span> as a more precise alternative.</li>
+<li>[<b>v1.6</b>] The NOVAS C <span class="tt"><a class="el" href="novas_8h.html#ada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a></span> function is imprecise for geodetic observer locations on Earth, since it does not account for polar offsets <em>x</em><sub>p</sub>, <em>y</em><sub>p</sub>. As such the geocentric GCRS observer position and velocity vectors are accurate at the tens of meters level only. For Earth-based observers, <b>SuperNOVAS</b> adds <span class="tt"><a class="el" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS position and velocity vectors for an observer located on or near Earth&#39;s surface...">novas_site_gcrs_posvel()</a></span> as a more precise alternative.</li>
 </ul>
 <p></p>
 </details>
@@ -327,12 +327,11 @@ Building and installation</h1>
 <p><a class="anchor" id="dependencies"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
 Dependencies</h2>
-<p>Optional dependencies:</p>
 <ul>
 <li><a href="https://curl.se/"><span class="tt">curl</span></a> &ndash; (recommended) for fetching Earth Orientation data from IERS or from elsewhere.</li>
 <li><a href="https://calceph.imcce.fr/docs/latest/html/c/"><span class="tt">calceph</span></a> &ndash; (recommended) for using CALCEPH as the Solar-system ephemeris provider.</li>
-<li><a href="https://naif.jpl.nasa.gov/naif/toolkit.html"><span class="tt">cspice</span></a> &ndash; for usign the NAIF CSPICE Toolkit as the Solar-system ephemeris provider.</li>
-<li><a href="https://www.doxygen.nl/"><span class="tt">doxygen</span></a> &ndash; for compiling HTML documentation.</li>
+<li><a href="https://naif.jpl.nasa.gov/naif/toolkit.html"><span class="tt">cspice</span></a> &ndash; (optional) for usign the NAIF CSPICE Toolkit as the Solar-system ephemeris provider.</li>
+<li><a href="https://www.doxygen.nl/"><span class="tt">doxygen</span></a> &ndash; (optional) for compiling HTML documentation.</li>
 </ul>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
 Installing dependencies on Linux</h3>
@@ -553,7 +552,7 @@ Celestial coordinate systems (old vs. new)</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter"><b>Figure 1.</b> SuperNOVAS Coordinate Systems and Conversions. Functions indicated in bold face are available in NOVAS C also. All other functions are available in SuperNOVAS only. SuperNOVAS also adds efficient <a href="https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#transforms-c99">matrix transformations</a> between the equatorial systems.  </td></tr>
 </table>
-<p>The IAU 2000 and 2006 resolutions have completely overhauled the system of astronomical coordinate transformations to enable higher precision astrometry. (Super)NOVAS supports coordinate calculations both in the old (pre IAU 2000) ways, and in the new IAU standard method. The table below provides an overview of how the old and new methods define some of the terms differently:</p>
+<p>The <a href="https://www.iau.org/IAU/Iau/Publications/List-of-Resolutions.aspx">IAU 2000 and 2006 resolutions</a> have completely overhauled the system of astronomical coordinate transformations to enable higher precision astrometry. (Super)NOVAS supports coordinate calculations both in the old (pre IAU 2000) ways, and in the new IAU standard method. The table below provides an overview of how the old and new methods define some of the terms differently:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Concept  </th><th class="markdownTableHeadNone">Old standard  </th><th class="markdownTableHeadNone">New IAU standard  </th></tr>
@@ -635,7 +634,7 @@ Incorporating Solar-system ephemeris data or services</h1>
 <p><a class="anchor" id="calceph-integration"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
 CALCEPH integration</h2>
-<p>The <a href="https://www.imcce.fr/recherche/equipes/asd/calceph/">CALCEPH</a> library provides easy-to-use access to JPL and INPOP ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing <b>SuperNOVAS</b> with the the CALCEPH C library for handling Solar-system objects.</p>
+<p>The <a href="https://www.imcce.fr/recherche/equipes/asd/calceph/">CALCEPH</a> library provides easy-to-use access to JPL and INPOP ephemeris files from C/C++. As of version 1.2, we provide optional support for interfacing <b>SuperNOVAS</b> with the CALCEPH C library for handling Solar-system objects.</p>
 <details >
 <summary >
 Details</summary>
@@ -1045,7 +1044,7 @@ Details</summary>
 <li><span class="tt"><a class="el" href="transform_8c.html#a6217852bfd7d3a58d3266d0daadfc6bc">cel2ter()</a></span> and <span class="tt"><a class="el" href="transform_8c.html#ac8c5ff3cc13126aba2ec5a6cbe187a31">ter2cel()</a></span> can now process 'option'/'class' = 1 (<span class="tt">NOVAS_REFERENCE_CLASS</span>) regardless of the methodology (<span class="tt">EROT_ERA</span> or <span class="tt">EROT_GST</span>) used to input or output coordinates in GCRS.</li>
 <li>More efficient paging (cache management) for <span class="tt"><a class="el" href="cio_8c.html#afc894b55420495a727a90d3d85188ef4">cio_array()</a></span>, including I/O error checking.</li>
 <li>IAU 2000A nutation model uses higher-order Delaunay arguments provided by <span class="tt"><a class="el" href="novas_8h.html#a312b5ab1a004b179d80463a07ca7da8f" title="Compute the fundamental (a.k.a.">fund_args()</a></span>, instead of the linear model in NOVAS C 3.1.</li>
-<li>IAU 2000 nutation made a bit faster, reducing the the number of floating-point multiplications necessary by skipping terms that do not contribute. Its coefficients are also packed more frugally in memory, resulting in a smaller resident footprint.</li>
+<li>IAU 2000 nutation made a bit faster, reducing the number of floating-point multiplications necessary by skipping terms that do not contribute. Its coefficients are also packed more frugally in memory, resulting in a smaller resident footprint.</li>
 <li>Changed the standard atmospheric model for (optical) refraction calculation to include a simple model for the annual average temperature at the site (based on latitude and elevation). This results is a slightly more educated guess of the actual refraction than the global fixed temperature of 10 &deg;C assumed by NOVAS C 3.1 regardless of observing location.</li>
 <li>[<b>v1.1</b>] Improved the precision of some calculations, like <span class="tt"><a class="el" href="novas_8h.html#aef1f8daaad470353648de90576aefc66" title="Returns the value of the Earth Rotation Angle (θ) for a given UT1 Julian date.">era()</a></span>, <span class="tt"><a class="el" href="novas_8h.html#a312b5ab1a004b179d80463a07ca7da8f" title="Compute the fundamental (a.k.a.">fund_args()</a></span>, and <span class="tt"><a class="el" href="novas_8h.html#aacc6a0daf29b8bdc18f46647a94694d3" title="Returns the planetary longitude, for Mercury through Neptune, w.r.t.">planet_lon()</a></span> by being more careful about the order in which terms are accumulated and combined, resulting in a small improvement on the few uas (micro-arcsecond) level.</li>
 <li>[<b>v1.1</b>] <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> now returns an error 3 if and only if the observer is at (or very close to, within ~1.5m) the observed Solar-system object.</li>

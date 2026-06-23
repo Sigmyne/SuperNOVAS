@@ -651,7 +651,7 @@ Functions</h2></td></tr>
 <p>It is rather expensive computationally.</p>
 <p>NOTES:</p>
 <ol type="1">
-<li>As of SuperNOVAS v1.4.2, this function has been modified to replace the original IAU2000A model coefficients with the IAU2006 (a.k.a. IAU2000A R06) model coefficients, to provide an updated nutation model, which is dynamically consistent with the IAU2006 (P03) precesion model of Capitaine et al. 2003. This is now the same model with respect to which the IERS Earth orinetation parameters are computed and published.</li>
+<li>As of SuperNOVAS v1.4.2, this function has been modified to replace the original IAU2000A model coefficients with the IAU2006 (a.k.a. IAU2000A R06) model coefficients, to provide an updated nutation model, which is dynamically consistent with the IAU2006 (P03) precession model of Capitaine et al. 2003. This is now the same model with respect to which the IERS Earth orinetation parameters are computed and published.</li>
 </ol>
 <p>REFERENCES:</p>
 <ol type="1">
@@ -1667,7 +1667,7 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 </div><div class="memdoc">
 
 <p>Computes the forced nutation of the non-rigid Earth: Model NU2000K. </p>
-<p>This model is a modified version of the original IAU 2000A, which has been truncated for speed of execution. NU2000K agrees with IAU 2000A at the 0.1 milliarcsecond level from 1700 to 2300, while being is about 5x faster than the more precise <span class="tt"><a class="el" href="#ga280cbf02b13ca57b3d77451be06e7dbc" title="Computes the IAU 2000A high-precision nutation series for the specified date, to 0....">iau2000a()</a></span>.</p>
+<p>This model is a modified version of the original IAU 2000A, which has been truncated for speed of execution. NU2000K agrees with IAU 2000A at the 0.1 milliarcsecond level from 1700 to 2300, while being about 5x faster than the more precise <span class="tt"><a class="el" href="#ga280cbf02b13ca57b3d77451be06e7dbc" title="Computes the IAU 2000A high-precision nutation series for the specified date, to 0....">iau2000a()</a></span>.</p>
 <p>NU2000K was compared to IAU 2000A over six centuries (1700-2300). The average error in d&psi; is 20 microarcseconds, with 98% of the errors &lt; 60 microarcseconds; the average error in d&epsilon;is 8 microarcseconds, with 100% of the errors &lt; 60 microarcseconds.</p>
 <p>NU2000K was developed by G. Kaplan (USNO) in March 2004</p>
 <p>NOTES:</p>
@@ -1955,7 +1955,7 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if location is NULL or if the pos and vel output arguments are identical pointers.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__geometric.html#ga65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS postion and velocity vectors for an observer locate on or near Earth&#39;s surface.">novas_site_gcrs_posvel()</a>, <a class="el" href="group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__geometric.html#ga65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS position and velocity vectors for an observer located on or near Earth&#39;s surface...">novas_site_gcrs_posvel()</a>, <a class="el" href="group__geometric.html#gada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a> </dd>
 <dd>
 <a class="el" href="group__observer.html#gab5fb62a9fb185632175ae622bce28dea" title="Initializes an observing site with the specified GPS / WGS84 location, and sets mean (annual) weather...">make_gps_site()</a>, <a class="el" href="group__observer.html#ga236750f494f3dcd943e71ba24aa2a55b" title="Initializes an observing site with the specified International Terrestrial Reference Frame (ITRF) / G...">make_itrf_site()</a>, <a class="el" href="group__observer.html#ga9e3cbe310a40919ff94d2d530ffa74ee" title="Initializes an observing site with the specified Cartesian geocentric xyz location,...">make_xyz_site()</a>, <a class="el" href="#ga348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a>, <a class="el" href="#gaaf53fcad3fade814381cef3d06779a8c" title="Returns the Greenwich (apparent) Sidereal Time (GST/GaST) for a given astronomical time specification...">novas_time_gst()</a> </dd></dl>
 

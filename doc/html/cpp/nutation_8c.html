@@ -230,7 +230,7 @@ Functions</h2></td></tr>
 <p>It is rather expensive computationally.</p>
 <p>NOTES:</p>
 <ol type="1">
-<li>As of SuperNOVAS v1.4.2, this function has been modified to replace the original IAU2000A model coefficients with the IAU2006 (a.k.a. IAU2000A R06) model coefficients, to provide an updated nutation model, which is dynamically consistent with the IAU2006 (P03) precesion model of Capitaine et al. 2003. This is now the same model with respect to which the IERS Earth orinetation parameters are computed and published.</li>
+<li>As of SuperNOVAS v1.4.2, this function has been modified to replace the original IAU2000A model coefficients with the IAU2006 (a.k.a. IAU2000A R06) model coefficients, to provide an updated nutation model, which is dynamically consistent with the IAU2006 (P03) precession model of Capitaine et al. 2003. This is now the same model with respect to which the IERS Earth orinetation parameters are computed and published.</li>
 </ol>
 <p>REFERENCES:</p>
 <ol type="1">
@@ -341,7 +341,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Computes the forced nutation of the non-rigid Earth: Model NU2000K. </p>
-<p>This model is a modified version of the original IAU 2000A, which has been truncated for speed of execution. NU2000K agrees with IAU 2000A at the 0.1 milliarcsecond level from 1700 to 2300, while being is about 5x faster than the more precise <span class="tt"><a class="el" href="#a280cbf02b13ca57b3d77451be06e7dbc" title="Computes the IAU 2000A high-precision nutation series for the specified date, to 0....">iau2000a()</a></span>.</p>
+<p>This model is a modified version of the original IAU 2000A, which has been truncated for speed of execution. NU2000K agrees with IAU 2000A at the 0.1 milliarcsecond level from 1700 to 2300, while being about 5x faster than the more precise <span class="tt"><a class="el" href="#a280cbf02b13ca57b3d77451be06e7dbc" title="Computes the IAU 2000A high-precision nutation series for the specified date, to 0....">iau2000a()</a></span>.</p>
 <p>NU2000K was compared to IAU 2000A over six centuries (1700-2300). The average error in d&psi; is 20 microarcseconds, with 98% of the errors &lt; 60 microarcseconds; the average error in d&epsilon;is 8 microarcseconds, with 100% of the errors &lt; 60 microarcseconds.</p>
 <p>NU2000K was developed by G. Kaplan (USNO) in March 2004</p>
 <p>NOTES:</p>
