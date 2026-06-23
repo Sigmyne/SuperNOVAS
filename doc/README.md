@@ -83,8 +83,8 @@ with __SuperNOVAS__ as with __astropy__, notwithstanding a little more involved 
 __SuperNOVAS__ is maintained by [Attila Kovács](https://www.sigmyne.com/attipaci). 
 
 Outside contributions are very welcome. See
-[how you can contribute](https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html) on how you can make __SuperNOVAS__ 
-even better.
+[how you can contribute](https://sigmyne.github.io/SuperNOVAS/doc/CONTRIBUTING.html) to make __SuperNOVAS__ even 
+better.
 
 ### Related links
 
