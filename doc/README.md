@@ -95,8 +95,8 @@ even better.
    from JPL.
  - [Sigmyne/cspice-sharedlib](https://github.com/Sigmyne/cspice-sharedlib) for building CSPICE as a shared
    library for dynamic linking.
- - [Standard SPICE kernels](https://naif.jpl.nasa.gov/naif/data.html) containing ephemeris data for planets,
-   their moons, asteroids, comets, and space missions.
+ - [Standard SPICE kernels](https://naif.jpl.nasa.gov/naif/data.html) containing ephemeris data for planets and
+   their moons, major steroids, comets, and space missions.
  - [JPL Horizons] system provides custom ephemeris data for all types of Solar-system bodies as per request.
  - [IAU Minor Planet Center](https://www.minorplanetcenter.net/iau/mpc.html) provides up-to-date orbital elements
    for asteroids, comets, and near-Earth objects (NEOs), including newly discovered objects.
