@@ -289,14 +289,11 @@ int nu2000k(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double *
   // Planetary longitudes, Mercury through Neptune, wrt mean dynamical
   // ecliptic and equinox of J2000, with high order terms omitted
   // (Simon et al. 1994, 5.8.1-5.8.8).
-  //const double alme = planet_lon(t, NOVAS_MERCURY);
   const double alve = planet_lon(t, NOVAS_VENUS);
   const double alea = planet_lon(t, NOVAS_EARTH);
   const double alma = planet_lon(t, NOVAS_MARS);
   const double alju = planet_lon(t, NOVAS_JUPITER);
   const double alsa = planet_lon(t, NOVAS_SATURN);
-  //const double alur = planet_lon(t, NOVAS_URANUS);
-  //const double alne = planet_lon(t, NOVAS_NEPTUNE);
 
   // General precession in longitude (Simon et al. 1994), equivalent
   // to 5028.8200 arcsec/cy at J2000.
@@ -343,48 +340,24 @@ int nu2000k(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double *
 
   // ** Planetary nutation. **
 
+  // Argument array for the planetary terms (indexed as in napl_t columns).
+  // Columns 1 (l'), 5 (Mercury), 11 (Uranus), 12 (Neptune) are zero for all
+  // terms in this model and are left as 0.0.
+  const double apl[14] = { a.l, 0.0, a.F, a.D, a.Omega, 0.0, alve, alea, alma, alju, alsa, 0.0, 0.0, apa };
+
   // Summation of planetary nutation series (in reverse order).
   for(i = 165; --i >= 0;) {
     const int8_t *n = &napl_t[i][0];
     const int16_t *c = &cpl_t[i][0];
+    const int from = n[14], to = n[15];
 
     // Argument and functions.
     double arg = 0.0, sarg, carg;
+    int k;
 
-    if(n[0])
-      arg += n[0] * a.l;
-    /* This version of Nutation does not contain terms for l1
-    if(n[1])
-      arg += n[1] * a.l1;
-     */
-    if(n[2])
-      arg += n[2] * a.F;
-    if(n[3])
-      arg += n[3] * a.D;
-    if(n[4])
-      arg += n[4] * a.Omega;
-    /* This version of Nutation does not contain terms for Mercury
-    if(n[5])
-      arg += n[5] * alme;
-     */
-    if(n[6])
-      arg += n[6] * alve;
-    if(n[7])
-      arg += n[7] * alea;
-    if(n[8])
-      arg += n[8] * alma;
-    if(n[9])
-      arg += n[9] * alju;
-    if(n[10])
-      arg += n[10] * alsa;
-    /* This version of Nutation does not contain terms for Uranus and Neptune
-    if(n[11])
-      arg += n[11] * alur;
-    if(n[12])
-      arg += n[12] * alne;
-     */
-    if(n[13])
-      arg += n[13] * apa;
+    for(k = from; k < to; k++)
+      if(n[k])
+        arg += n[k] * apl[k];
 
     sarg = sin(arg);
     carg = cos(arg);
