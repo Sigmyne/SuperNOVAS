@@ -243,6 +243,12 @@ int iau2000b(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double 
 }
 
 /**
+ * @deprecated This intermediate precision non-standard, NOVAS specific, nutation model is
+ *             outdated. It has not been fully adjusted for the R06 update, except for a coarse
+ *             rescaling. You probably should prefer using the faster and more standard iau2000b()
+ *             instead for reduced precision nutation, or else the somehwat slower iau2000a()
+ *             series if full precision at the &mu;as level is preferred.
+ *
  * Computes the forced nutation of the non-rigid Earth: Model NU2000K.  This model is a modified
  * version of the original IAU 2000A, which has been truncated for speed of execution. NU2000K
  * agrees with IAU 2000A at the 0.1 milliarcsecond level from 1700 to 2300, while being about

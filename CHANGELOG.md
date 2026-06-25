@@ -25,8 +25,14 @@ Upcoming bug-fix release, possibly around 1 August 2026.
  
 ### Changed
 
- - #351: Improve handling of leap exiration timestamps, but tolerating bad timestamps so long as there is a good one
+ - #351: Improve handling of leap expiration timestamps, but tolerating bad timestamps so long as there is a good one
    also. Only the first valid timestamp is used.
+   
+### Deprecated
+
+ - Deprecated the `nu2000k()` nutation series. It is neither standard (being NOVAS-specific), nor it is up to date 
+   (not adjusted for the R06 update). You should prefer the standard `iau2000b()` model for reduced precision, or the 
+   `iau2000a()` model for full-precision nutation instead.
 
 
 ## [1.7.1] - 2026-06-17
