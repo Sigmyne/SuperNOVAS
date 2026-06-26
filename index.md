@@ -10,6 +10,7 @@ excerpt: SuperNOVAS is a light-weight, high-precision astrometry C/C++ library, 
 <img src="https://img.shields.io/fedora/v/supernovas?color=lightblue" class="badge" alt="Fedora package version" align="left">
 <img src="https://img.shields.io/ubuntu/v/supernovas?color=lightblue" class="badge" alt="Ubuntu package version" align="left">
 <img src="https://img.shields.io/debian/v/supernovas?color=lightblue" class="badge" alt="Debian package version" align="left">
+<img src="https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/attipaci/homebrew-pub/pkginfo/supernovas.json&query=$.versions.stable&label=homebrew" class="badge" alt="Homebrew package version" align="left">
 <br clear="all">
 
 
