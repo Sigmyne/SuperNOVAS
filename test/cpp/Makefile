@@ -12,8 +12,14 @@ CPP_OBJECTS = $(subst .cpp,.opp, $(subst $(CPP_SRC)/,obj/, $(CPP_SOURCES)))
 
 TESTS = $(subst .cpp,, $(wildcard *.cpp))
 
-ifneq ($(WITHOUT_CURL),1)
+ifeq ($(WITHOUT_CURL),1)
+  CPPFLAGS += -DWITHOUT_CURL
+else
   LDFLAGS += -lcurl
+endif
+
+ifeq ($(OFFLINE),1)
+  CPPFLAGS += -DOFFLINE
 endif
 
 .PHONY: build
