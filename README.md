@@ -216,9 +216,9 @@ accommodate JPL NAIF codes, for which 16-bit storage is insufficient.
 ## Building and installation
 
  - [Dependencies](#dependencies)
- - [Build SuperNOVAS using GNU make](#gnu-build)
- - [Build SuperNOVAS using CMake](#cmake-build)
- - [Install SuperNOVAS via `vcpkg`](#vcpkg-port)
+ - [Build / install using GNU make](#gnu-build)
+ - [Build / install using CMake](#cmake-build)
+ - [Install via `vcpkg`](#vcpkg-port)
  - [Linux packages](#linux-packages)
  - [Homebrew package](#homebrew)
  - [Nix package](#nix)
@@ -272,7 +272,7 @@ building __SuperNOVAS__, such as and `cmake` and/or `gmake`, and `pkgconf`:
 </details>
 
 <a name="gnu-build"></a>
-### Build SuperNOVAS using GNU make
+### Build / install using GNU make
 
 The __SuperNOVAS__ distribution contains a GNU `Makefile`, which is suitable for compiling the library (as well as 
 local documentation, and tests, etc.) on POSIX systems such as Linux, MacOS X, BSD, Cygwin or WSL -- using 
@@ -437,7 +437,7 @@ managing leap seconds and EOP automatically. Thus, you will have to specify thes
 
 
 <a name="cmake-build"></a>
-### Build SuperNOVAS using CMake 
+### Build / install using CMake 
 
 As of v1.5, __SuperNOVAS__ can be built using [CMake](https://cmake.org/) (big thanks to Kiran Shila). CMake allows 
 for greater portability than the regular GNU `Makefile`. Note, however, that the CMake configuration does not support 
@@ -511,7 +511,7 @@ the `Runtime` component:
 
 
 <a name="vcpkg-port"></a>
-### Install SuperNOVAS via `vcpkg`
+### Install via `vcpkg`
 
 As of version 1.5, __SuperNOVAS__ is available through the [vcpkg](https://vcpkg.io/en/) registry. The `vcpkg` port 
 supports a wide range of platforms, including Linux, Windows, MacOS, and Android -- for both `arm64` and `x64` 
