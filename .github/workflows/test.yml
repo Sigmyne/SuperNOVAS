@@ -69,6 +69,7 @@ jobs:
       uses: coverallsapp/github-action@v2
 
   test-arch:
+    needs: test
     name: Linux ${{ matrix.arch }}
     runs-on: ubuntu-latest
     strategy:
@@ -100,6 +101,7 @@ jobs:
             make test
 
   test-macos:
+    needs: test
     name: Test on MacOS
     runs-on: macos-latest
     steps:
@@ -110,6 +112,7 @@ jobs:
           make test
 
   test-cmake:
+    needs: test
     name: Test with CMake (Ubuntu)
     runs-on: ubuntu-latest
     steps:

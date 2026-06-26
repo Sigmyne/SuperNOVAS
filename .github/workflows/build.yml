@@ -67,6 +67,7 @@ jobs:
         run: make -C benchmark build
 
   build-cpp:
+    needs: build
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -146,6 +147,7 @@ jobs:
             gmake shared
 
   build-mcu:
+    needs: build
     runs-on: ubuntu-latest
     name: Embedded ARM
     env:
