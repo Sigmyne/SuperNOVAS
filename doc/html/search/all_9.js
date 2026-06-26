@@ -15,7 +15,7 @@ var searchData=
   ['get_5fplanet_5fprovider_5fhp_12',['get_planet_provider_hp',['../group__solar-system.html#gae45badb450c1ca73920d982e12346c5b',1,'get_planet_provider_hp():&#160;ephemeris.c'],['../group__solar-system.html#gae45badb450c1ca73920d982e12346c5b',1,'get_planet_provider_hp():&#160;ephemeris.c']]],
   ['get_5fut1_5fto_5ftt_13',['get_ut1_to_tt',['../group__time.html#ga4d7470ca705efa1953e8b4beab77c6b6',1,'get_ut1_to_tt(int leap_seconds, double dut1):&#160;timescale.c'],['../group__time.html#ga4d7470ca705efa1953e8b4beab77c6b6',1,'get_ut1_to_tt(int leap_seconds, double dut1):&#160;timescale.c']]],
   ['get_5futc_5fto_5ftt_14',['get_utc_to_tt',['../group__time.html#gab7611704bab9ce717744a8b5575c5378',1,'get_utc_to_tt(int leap_seconds):&#160;timescale.c'],['../group__time.html#gab7611704bab9ce717744a8b5575c5378',1,'get_utc_to_tt(int leap_seconds):&#160;timescale.c']]],
-  ['gnu_20make_15',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md15',1,'']]],
+  ['gnu_20make_15',['Build / install using GNU make',['../index.html#autotoc_md15',1,'']]],
   ['gnu_20make_20on_20bsd_16',['Building with GNU make on BSD',['../index.html#autotoc_md16',1,'']]],
   ['gnu_20makefile_17',['GNU Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
   ['going_20in_20reverse_18',['Going in reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107',1,'Going in reverse...']]],

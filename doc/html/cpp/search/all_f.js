@@ -8,7 +8,7 @@ var searchData=
   ['m_5fpi_5',['M_PI',['../novas_8h.html#ae71449b1cc6e6250b91f539153a7a0d3',1,'novas.h']]],
   ['m_5fsun_6',['M_sun',['../classsupernovas_1_1Constant.html#a63b4473c34fb6d24422d98fdf0d61616',1,'supernovas::Constant']]],
   ['macos_7',['Installing dependencies on MacOS',['../index.html#autotoc_md13',1,'']]],
-  ['make_8',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md15',1,'']]],
+  ['make_8',['Build / install using GNU make',['../index.html#autotoc_md15',1,'']]],
   ['make_20on_20bsd_9',['Building with GNU make on BSD',['../index.html#autotoc_md16',1,'']]],
   ['make_5fairborne_5fobserver_10',['make_airborne_observer',['../novas_8h.html#aa423a88cd3f434642fc89d47390184f4',1,'make_airborne_observer(const on_surface *location, const double *vel, observer *obs):&#160;observer.c'],['../observer_8c.html#aa2663594794b4419e3b6feb927383a65',1,'make_airborne_observer(const on_surface *location, const double *itrs_vel, observer *obs):&#160;observer.c']]],
   ['make_5fcat_5fentry_11',['make_cat_entry',['../novas_8h.html#abc164144085313b27faa96c838a9d30c',1,'make_cat_entry(const char *restrict name, const char *restrict catalog, long cat_num, double ra, double dec, double pm_ra, double pm_dec, double parallax, double rv, cat_entry *source):&#160;target.c'],['../target_8c.html#abc164144085313b27faa96c838a9d30c',1,'make_cat_entry(const char *restrict name, const char *restrict catalog, long cat_num, double ra, double dec, double pm_ra, double pm_dec, double parallax, double rv, cat_entry *source):&#160;target.c']]],

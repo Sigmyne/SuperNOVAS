@@ -23,7 +23,7 @@ var searchData=
   ['cases_20',['Example use cases',['../index.html#autotoc_md26',1,'']]],
   ['celestial_20coordinate_20systems_20old_20vs_20new_21',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md24',1,'']]],
   ['change_20of_20coordinate_20system_22',['change of coordinate system',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md72',1,'Coordinate and velocity transforms (change of coordinate system)'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md109',1,'Coordinate and velocity transforms (change of coordinate system)']]],
-  ['cmake_23',['CMake',['../index.html#autotoc_md18',1,'Build SuperNOVAS using CMake'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52',1,'Using CMake'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'Using CMake']]],
+  ['cmake_23',['CMake',['../index.html#autotoc_md18',1,'Build / install using CMake'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52',1,'Using CMake'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'Using CMake']]],
   ['compatibility_20with_20novas_20c_203_201_24',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['compiling_20for_20embedded_20targets_25',['Cross-compiling for embedded targets',['../index.html#autotoc_md17',1,'']]],
   ['contents_26',['Table of Contents',['../index.html#autotoc_md1',1,'']]],

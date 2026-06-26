@@ -35,7 +35,7 @@ var searchData=
   ['gm_5fearth_32',['GM_earth',['../classsupernovas_1_1Constant.html#a03b9c8bd0b3a7340f13454d202021a42',1,'supernovas::Constant']]],
   ['gm_5fsun_33',['GM_sun',['../classsupernovas_1_1Constant.html#a9de961740408cf29989240919a143673',1,'supernovas::Constant']]],
   ['gmst_34',['gmst',['../classsupernovas_1_1Time.html#a03cb4f1df78716f6780e90c02bcd2600',1,'supernovas::Time']]],
-  ['gnu_20make_35',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md15',1,'']]],
+  ['gnu_20make_35',['Build / install using GNU make',['../index.html#autotoc_md15',1,'']]],
   ['gnu_20make_20on_20bsd_36',['Building with GNU make on BSD',['../index.html#autotoc_md16',1,'']]],
   ['gnu_20makefile_37',['GNU Makefile',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md51',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md83',1,'Using a GNU &lt;span class=&quot;tt&quot;&gt;Makefile&lt;/span&gt;']]],
   ['going_20in_20reverse_38',['Going in reverse',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'Going in reverse...'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107',1,'Going in reverse...']]],

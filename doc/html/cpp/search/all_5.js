@@ -56,7 +56,7 @@ var searchData=
   ['cirs_5fto_5ftod_53',['cirs_to_tod',['../novas_8h.html#a9cac4f3a18d4c14939519e7123b4d504',1,'cirs_to_tod(double jd_tt, enum novas_accuracy accuracy, const double *in, double *out):&#160;transform.c'],['../transform_8c.html#a9cac4f3a18d4c14939519e7123b4d504',1,'cirs_to_tod(double jd_tt, enum novas_accuracy accuracy, const double *in, double *out):&#160;transform.c']]],
   ['clock_5fskew_54',['clock_skew',['../classsupernovas_1_1Frame.html#affba920b8a7ddee76b4477ea2d36ced5',1,'supernovas::Frame']]],
   ['cm_55',['cm',['../classsupernovas_1_1Unit.html#ad2e3d420d385dedbb6fbd4d0398bd80f',1,'supernovas::Unit']]],
-  ['cmake_56',['CMake',['../index.html#autotoc_md18',1,'Build SuperNOVAS using CMake'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52',1,'Using CMake'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'Using CMake']]],
+  ['cmake_56',['CMake',['../index.html#autotoc_md18',1,'Build / install using CMake'],['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md52',1,'Using CMake'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md84',1,'Using CMake']]],
   ['cmp_2ec_57',['cmp.c',['../cmp_8c.html',1,'']]],
   ['compatibility_20with_20novas_20c_203_201_58',['Compatibility with NOVAS C 3.1',['../index.html#autotoc_md8',1,'']]],
   ['compiling_20for_20embedded_20targets_59',['Cross-compiling for embedded targets',['../index.html#autotoc_md17',1,'']]],

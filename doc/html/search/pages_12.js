@@ -27,13 +27,10 @@ var searchData=
   ['supernovas_20c_24',['Building your application with SuperNOVAS (C++)',['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md82',1,'']]],
   ['supernovas_20c99_25',['Building your application with SuperNOVAS (C99)',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md50',1,'']]],
   ['supernovas_20c99_20vs_20astropy_26',['SuperNOVAS C99 vs. astropy',['../md_SuperNOVAS__vs__astropy.html',1,'']]],
-  ['supernovas_20using_20cmake_27',['Build SuperNOVAS using CMake',['../index.html#autotoc_md18',1,'']]],
-  ['supernovas_20using_20gnu_20make_28',['Build SuperNOVAS using GNU make',['../index.html#autotoc_md15',1,'']]],
-  ['supernovas_20via_20vcpkg_29',['Install SuperNOVAS via &lt;span class=&quot;tt&quot;&gt;vcpkg&lt;/span&gt;',['../index.html#autotoc_md19',1,'']]],
-  ['support_30',['Runtime debug support',['../index.html#autotoc_md38',1,'']]],
-  ['system_31',['system',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md72',1,'Coordinate and velocity transforms (change of coordinate system)'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md109',1,'Coordinate and velocity transforms (change of coordinate system)']]],
-  ['system_20ephemeris_20data_20or_20services_32',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md30',1,'']]],
-  ['system_20objects_20with_20keplerian_20orbital_20parameters_33',['system objects with Keplerian orbital parameters',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md67',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104',1,'Solar-system objects with Keplerian orbital parameters']]],
-  ['system_20source_34',['system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102',1,'Calculating positions for a Solar-system source']]],
-  ['systems_20old_20vs_20new_35',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md24',1,'']]]
+  ['support_27',['Runtime debug support',['../index.html#autotoc_md38',1,'']]],
+  ['system_28',['system',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md72',1,'Coordinate and velocity transforms (change of coordinate system)'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md109',1,'Coordinate and velocity transforms (change of coordinate system)']]],
+  ['system_20ephemeris_20data_20or_20services_29',['Incorporating Solar-system ephemeris data or services',['../index.html#autotoc_md30',1,'']]],
+  ['system_20objects_20with_20keplerian_20orbital_20parameters_30',['system objects with Keplerian orbital parameters',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md67',1,'Solar-system objects with Keplerian orbital parameters'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md104',1,'Solar-system objects with Keplerian orbital parameters']]],
+  ['system_20source_31',['system source',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md65',1,'Calculating positions for a Solar-system source'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md102',1,'Calculating positions for a Solar-system source']]],
+  ['systems_20old_20vs_20new_32',['Celestial coordinate systems (old vs. new)',['../index.html#autotoc_md24',1,'']]]
 ];

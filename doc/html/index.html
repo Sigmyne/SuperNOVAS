@@ -308,13 +308,13 @@ Building and installation</h1>
 <li><a class="el" href="#dependencies" title="dependencies">Dependencies</a>Dependencies</li>
 </ul>
 <ul>
-<li><a class="el" href="#gnu-build" title="gnu-build">Build SuperNOVAS using GNU make</a>Build SuperNOVAS using GNU make</li>
+<li><a class="el" href="#gnu-build" title="gnu-build">Build / install using GNU make</a>Build / install using GNU make</li>
 </ul>
 <ul>
-<li><a class="el" href="#cmake-build" title="cmake-build">Build SuperNOVAS using CMake</a>Build SuperNOVAS using CMake</li>
+<li><a class="el" href="#cmake-build" title="cmake-build">Build / install using CMake</a>Build / install using CMake</li>
 </ul>
 <ul>
-<li><a class="el" href="#vcpkg-port" title="vcpkg-port">Install SuperNOVAS via `vcpkg`</a>Install SuperNOVAS via <span class="tt">vcpkg</span></li>
+<li><a class="el" href="#vcpkg-port" title="vcpkg-port">Install via `vcpkg`</a>Install via <span class="tt">vcpkg</span></li>
 </ul>
 <ul>
 <li><a class="el" href="#linux-packages" title="linux-packages">Linux packages</a>Linux packages</li>
@@ -362,7 +362,7 @@ Details</summary>
 </div><!-- fragment --> </details>
 <p><a class="anchor" id="gnu-build"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
-Build SuperNOVAS using GNU make</h2>
+Build / install using GNU make</h2>
 <p>The <b>SuperNOVAS</b> distribution contains a GNU <span class="tt">Makefile</span>, which is suitable for compiling the library (as well as local documentation, and tests, etc.) on POSIX systems such as Linux, MacOS X, BSD, Cygwin or WSL &ndash; using <a href="https://www.gnu.org/software/make/">GNU <span class="tt">make</span></a>.</p>
 <details >
 <summary >
@@ -437,7 +437,7 @@ Details</summary>
 </details>
 <p><a class="anchor" id="cmake-build"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
-Build SuperNOVAS using CMake</h2>
+Build / install using CMake</h2>
 <p>As of v1.5, <b>SuperNOVAS</b> can be built using <a href="https://cmake.org/">CMake</a> (big thanks to Kiran Shila). CMake allows for greater portability than the regular GNU <span class="tt">Makefile</span>. Note, however, that the CMake configuration does not support all of the build options of the GNU <span class="tt">Makefile</span>, such as automatic CALCEPH and CSPICE integration on Linux, supporting legacy NOVAS C style builds, and code coverage tracking.</p>
 <details >
 <summary >
@@ -473,7 +473,7 @@ Details</summary>
 </div><!-- fragment --> </details>
 <p><a class="anchor" id="vcpkg-port"></a> </p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
-Install SuperNOVAS via <span class="tt">vcpkg</span></h2>
+Install via <span class="tt">vcpkg</span></h2>
 <p>As of version 1.5, <b>SuperNOVAS</b> is available through the <a href="https://vcpkg.io/en/">vcpkg</a> registry. The <span class="tt">vcpkg</span> port supports a wide range of platforms, including Linux, Windows, MacOS, and Android &ndash; for both <span class="tt">arm64</span> and <span class="tt">x64</span> architectures (and in case of Windows also <span class="tt">x86</span>). It is effectively the same as the CMake build (above), only with more simplicity, convenience, and dependency resolution.</p>
 <details >
 <summary >
@@ -918,7 +918,7 @@ New in v1.0</summary>
 <li>New runtime configuration:<ul>
 <li>The planet position, and generic Solar-system position calculator functions can be set at runtime, and users can provide their own custom implementations, e.g. to read ephemeris data, such as from a JPL <span class="tt">.bsp</span> file.</li>
 <li>If CIO locations vs GCRS are important to the user, the user may call <span class="tt"><a class="el" href="cio_8c.html#ade20b8035266dfe5b082b12248f5affa">set_cio_locator_file()</a></span> at runtime to specify the location of the binary CIO interpolation table (e.g. <span class="tt">CIO_RA.TXT</span> or <span class="tt">cio_ra.bin</span>) to use, even if the library was compiled with the different default CIO locator path.</li>
-<li>The default low-precision nutation calculator <span class="tt"><a class="el" href="group__earth.html#gabd066c2857d1b1cc06d8bd51b912d841" title="Computes the forced nutation of the non-rigid Earth: Model NU2000K.">nu2000k()</a></span> can be replaced by another suitable IAU 2006 nutation approximation. For example, the user may want to use the <span class="tt"><a class="el" href="group__earth.html#ga6f9cddeb8c3dd906b9b0b5941249ad0c" title="Computes the forced nutation of the non-rigid Earth based at reduced precision.">iau2000b()</a></span> model or some custom algorithm instead.</li>
+<li>The default low-precision nutation calculator <span class="tt"><a class="el" href="group__earth.html#gabd066c2857d1b1cc06d8bd51b912d841">nu2000k()</a></span> can be replaced by another suitable IAU 2006 nutation approximation. For example, the user may want to use the <span class="tt"><a class="el" href="group__earth.html#ga6f9cddeb8c3dd906b9b0b5941249ad0c" title="Computes the forced nutation of the non-rigid Earth based at reduced precision.">iau2000b()</a></span> model or some custom algorithm instead.</li>
 </ul>
 </li>
 <li>New constants, and enums &ndash; adding more specificity and transparency to option switches and physical units.</li>

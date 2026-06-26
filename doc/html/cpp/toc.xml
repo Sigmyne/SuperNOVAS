@@ -12,12 +12,12 @@
         <topic label="Installing dependencies on MacOS" href="index.html#autotoc_md13"/>
         <topic label="Installing dependencies on BSD" href="index.html#autotoc_md14"/>
       </topic>
-      <topic label="Build SuperNOVAS using GNU make" href="index.html#autotoc_md15">
+      <topic label="Build / install using GNU make" href="index.html#autotoc_md15">
         <topic label="Building with GNU make on BSD" href="index.html#autotoc_md16"/>
         <topic label="Cross-compiling for embedded targets" href="index.html#autotoc_md17"/>
       </topic>
-      <topic label="Build SuperNOVAS using CMake" href="index.html#autotoc_md18"/>
-      <topic label="Install SuperNOVAS via vcpkg" href="index.html#autotoc_md19"/>
+      <topic label="Build / install using CMake" href="index.html#autotoc_md18"/>
+      <topic label="Install via vcpkg" href="index.html#autotoc_md19"/>
       <topic label="Linux packages" href="index.html#autotoc_md20"/>
       <topic label="Homebrew package" href="index.html#autotoc_md21"/>
       <topic label="Nix package" href="index.html#autotoc_md22"/>

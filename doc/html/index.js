@@ -12,12 +12,12 @@ var index =
         [ "Installing dependencies on MacOS", "index.html#autotoc_md13", null ],
         [ "Installing dependencies on BSD", "index.html#autotoc_md14", null ]
       ] ],
-      [ "Build SuperNOVAS using GNU make", "index.html#autotoc_md15", [
+      [ "Build / install using GNU make", "index.html#autotoc_md15", [
         [ "Building with GNU make on BSD", "index.html#autotoc_md16", null ],
         [ "Cross-compiling for embedded targets", "index.html#autotoc_md17", null ]
       ] ],
-      [ "Build SuperNOVAS using CMake", "index.html#autotoc_md18", null ],
-      [ "Install SuperNOVAS via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md19", null ],
+      [ "Build / install using CMake", "index.html#autotoc_md18", null ],
+      [ "Install via <span class=\"tt\">vcpkg</span>", "index.html#autotoc_md19", null ],
       [ "Linux packages", "index.html#autotoc_md20", null ],
       [ "Homebrew package", "index.html#autotoc_md21", null ],
       [ "Nix package", "index.html#autotoc_md22", null ]
