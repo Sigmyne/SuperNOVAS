@@ -28,6 +28,8 @@ Upcoming bug-fix release, possibly around 1 August 2026.
  - #351: Improve handling of leap expiration timestamps, but tolerating bad timestamps so long as there is a good one
    also. Only the first valid timestamp is used.
    
+ - Staged GitHub workflows, so that we don't run workflows unnecessarily.
+   
 ### Deprecated
 
  - Deprecated the `nu2000k()` nutation series. It is neither standard (being NOVAS-specific), nor it is up to date 
