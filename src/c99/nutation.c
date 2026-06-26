@@ -81,12 +81,12 @@ int nutation_angles(double t, enum novas_accuracy accuracy, double *restrict dps
     if(deps)
       *deps = NAN;
 
-    return novas_error(-1, EINVAL, "nutation_angles", "NULL output pointer: dspi=%p, deps=%p", dpsi, deps);
+    return novas_error(-1, EINVAL, "nutation_angles", "NULL output pointer: dpsi=%p, deps=%p", dpsi, deps);
   }
 
   if(!(fabs(t - last_t) < 1e-12) || (accuracy != last_acc)) {
     novas_nutation_provider nutate_call = (accuracy == NOVAS_FULL_ACCURACY) ? iau2000a : get_nutation_lp_provider();
-    nutate_call(JD_J2000, t * JULIAN_CENTURY_DAYS, &last_dpsi, &last_deps);
+    nutate_call(NOVAS_JD_J2000, t * JULIAN_CENTURY_DAYS, &last_dpsi, &last_deps);
 
     // Convert output to arcseconds.
     last_dpsi /= ARCSEC;
@@ -170,7 +170,7 @@ static int iau2006_fp(double jd_tt_high, double jd_tt_low, int nA0, int nA1, int
  *     model coefficients with the IAU2006 (a.k.a. IAU2000A R06) model coefficients, to provide an
  *     updated nutation model, which is dynamically consistent with the IAU2006 (P03) precession model
  *     of Capitaine et al. 2003. This is now the same model with respect to which the IERS Earth
- *     orinetation parameters are computed and published.
+ *     orientation parameters are computed and published.
  *
  * REFERENCES:
  *
@@ -194,7 +194,7 @@ static int iau2006_fp(double jd_tt_high, double jd_tt_low, int nA0, int nA1, int
  * @sa iau2000b(), nu2000k(), nutation_angles(), nutation()
  */
 int iau2000a(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double *restrict deps) {
-  prop_error("iau200a", iau2006_fp(jd_tt_high, jd_tt_low, 1320, 38, 1037, 19, dpsi, deps), 0);
+  prop_error("iau2000a", iau2006_fp(jd_tt_high, jd_tt_low, 1320, 38, 1037, 19, dpsi, deps), 0);
   return 0;
 }
 
@@ -246,7 +246,7 @@ int iau2000b(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double 
  * @deprecated This intermediate precision non-standard, NOVAS specific, nutation model is
  *             outdated. It has not been fully adjusted for the R06 update, except for a coarse
  *             rescaling. You probably should prefer using the faster and more standard iau2000b()
- *             instead for reduced precision nutation, or else the somehwat slower iau2000a()
+ *             instead for reduced precision nutation, or else the somewhat slower iau2000a()
  *             series if full precision at the &mu;as level is preferred.
  *
  * Computes the forced nutation of the non-rigid Earth: Model NU2000K.  This model is a modified
@@ -401,7 +401,7 @@ int nu2000k(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double *
   }
 
   // Add planetary and luni-solar components, and apply rescaling to IAU2006 equivalent model
-  // to provide nutations that is Dynamically consistent with the IAU20006 (P03) precession model
+  // to provide nutations that is dynamically consistent with the IAU2006 (P03) precession model
   // (see Coppola, Seago, and Vallado 2009).
   if(dpsi)
     *dpsi = 1e-7 * (1.0000004697 + fP03) * (dpsipl + dpsils) * ARCSEC;
