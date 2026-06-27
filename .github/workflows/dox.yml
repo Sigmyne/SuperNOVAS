@@ -1,7 +1,6 @@
 name: Documentation
 permissions:
   contents: write
-  pull-requests: write
 
 on:
   release:

@@ -1,0 +1,142 @@
+name: CMake
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - 'test/**'
+      - '**/CMakeLists.txt'
+      - 'cmake/**'
+      - '.github/workflows/cmake.yml'
+
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - 'test/**'
+      - '**/CMakeLists.txt'
+      - 'cmake/**'
+      - '.github/workflows/cmake.yml'
+
+jobs:
+  
+  build-cmake:
+    name: CMake build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update -q -y
+          sudo apt-get install -y libcurl4-openssl-dev
+
+      - name: Configure CMake (Unix)
+        if: runner.os != 'Windows'
+        run: cmake -B build -DENABLE_CPP=ON -DBUILD_SHARED_LIBS=ON -DBUILD_EXAMPLES=ON -DBUILD_BENCHMARK=ON
+
+      - name: Configure CMake (Windows)
+        if: runner.os == 'Windows'
+        run: cmake -B build -DWITHOUT_CURL=ON -DENABLE_CPP=ON -DBUILD_SHARED_LIBS=ON -DBUILD_EXAMPLES=ON -DBUILD_BENCHMARK=ON
+
+      - name: Build (Unix)
+        if: runner.os != 'Windows'
+        run: cmake --build build
+
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        run: cmake --build build --config Release
+
+      - name: Install
+        run: cmake --install build --prefix install
+
+      - name: Check Installation (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          echo Installation contents:
+          ls -la install/
+
+      - name: Check Installation (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          echo Installation contents:
+          dir install
+
+  build-cmake-freebsd:
+    name: CMake build on FreeBSD
+    needs: build-cmake
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build on FreeBSD
+        uses: vmactions/freebsd-vm@v1
+        with:
+          release: "14.0"
+          usesh: true
+          prepare: |
+            pkg install -y cmake curl
+          run: |
+            echo Building on FreeBSD $(uname -m)
+            cmake -B build
+            cmake --build build
+            cmake --install build --prefix install
+            ls -la install/
+
+  build-cmake-doc:
+    name: CMake with Documentation (Ubuntu)
+    runs-on: ubuntu-latest
+    needs: build-cmake
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install doxygen
+        run: |
+          sudo apt-get update -q -y
+          sudo apt-get install doxygen libcurl4-openssl-dev
+
+      - name: Build HTML documentation
+        run: |
+          cmake -B build -DENABLE_CPP=ON -DBUILD_DOC=ON
+          cmake --build build
+
+      - name: Install docs
+        run: |
+          cmake --install build --prefix install
+          ls -la install/
+
+  test-cmake:
+    name: CMake test (Ubuntu)
+    needs: build-cmake
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+#     - name: Install libcalceph-dev
+#        run: |
+#           sudo apt-get update -q -y
+#           sudo apt-get install -y libcalceph-dev
+
+      - name: Install curl
+        run: |
+          sudo apt-get update -q -y
+          sudo apt-get install -y libcurl4-openssl-dev
+
+      - name: Build
+        run: |
+          cmake -B build -DENABLE_CPP=ON -DBUILD_TESTING=ON -DBUILD_SHARED_LIBS=ON -DBUILD_EXAMPLES=ON
+          cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
