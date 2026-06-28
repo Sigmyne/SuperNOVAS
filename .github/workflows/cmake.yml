@@ -7,23 +7,26 @@ on:
     branches:
       - main
     paths:
-      - "src/**"
-      - "include/**"
-      - "CMakeLists.txt"
-      - "cmake/**"
-      - ".github/workflows/build-cmake.yml"
+      - 'src/**'
+      - 'include/**'
+      - 'test/**'
+      - '**/CMakeLists.txt'
+      - 'cmake/**'
+      - '.github/workflows/cmake.yml'
 
   pull_request:
     paths:
-      - "src/**"
-      - "include/**"
-      - "CMakeLists.txt"
-      - "cmake/**"
-      - ".github/workflows/build-cmake.yml"
+      - 'src/**'
+      - 'include/**'
+      - 'test/**'
+      - '**/CMakeLists.txt'
+      - 'cmake/**'
+      - '.github/workflows/cmake.yml'
 
 jobs:
-  build:
-    name: Build on ${{ matrix.os }}
+  
+  build-cmake:
+    name: CMake build
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -49,11 +52,11 @@ jobs:
 
       - name: Build (Unix)
         if: runner.os != 'Windows'
-        run: cmake --build build 
+        run: cmake --build build
 
       - name: Build (Windows)
         if: runner.os == 'Windows'
-        run: cmake --build build --config Release 
+        run: cmake --build build --config Release
 
       - name: Install
         run: cmake --install build --prefix install
@@ -70,9 +73,10 @@ jobs:
           echo Installation contents:
           dir install
 
-  build-freebsd:
+  build-cmake-freebsd:
+    name: CMake build on FreeBSD
+    needs: build-cmake
     runs-on: ubuntu-latest
-    name: Build on FreeBSD
     steps:
       - uses: actions/checkout@v7
 
@@ -89,19 +93,22 @@ jobs:
             cmake --build build
             cmake --install build --prefix install
             ls -la install/
-      
-  build-doc:
+
+  build-cmake-doc:
+    name: CMake with Documentation (Ubuntu)
     runs-on: ubuntu-latest
-    name: Build Documentation (Ubuntu)
+    needs: build-cmake
     steps:
       - uses: actions/checkout@v7
 
       - name: Install doxygen
-        run: sudo apt-get install doxygen
+        run: |
+          sudo apt-get update -q -y
+          sudo apt-get install doxygen libcurl4-openssl-dev
 
       - name: Build HTML documentation
         run: |
-          cmake -B build -DENABLE_CPP=ON -DBUILD_DOC=ON -DWITHOUT_CURL=ON
+          cmake -B build -DENABLE_CPP=ON -DBUILD_DOC=ON
           cmake --build build
 
       - name: Install docs
@@ -109,18 +116,27 @@ jobs:
           cmake --install build --prefix install
           ls -la install/
 
-#  build-calceph:
-#    runs-on: ubuntu-latest
-#    name: Build with CALCEPH support (Ubuntu)
-#    steps:
-#      - uses: actions/checkout@v7
-#
-#      - name: Install libcalceph-dev
+  test-cmake:
+    name: CMake test (Ubuntu)
+    needs: build-cmake
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+#     - name: Install libcalceph-dev
 #        run: |
-#          sudo apt-get update -q -y
-#          sudo apt-get install -y libcalceph-dev
-#
-#      - name: Build with CALCEPH support enabled
-#        run: |
-#          cmake -B build -DENABLE_CALCEPH=ON
-#          cmake --build build
+#           sudo apt-get update -q -y
+#           sudo apt-get install -y libcalceph-dev
+
+      - name: Install curl
+        run: |
+          sudo apt-get update -q -y
+          sudo apt-get install -y libcurl4-openssl-dev
+
+      - name: Build
+        run: |
+          cmake -B build -DENABLE_CPP=ON -DBUILD_TESTING=ON -DBUILD_SHARED_LIBS=ON -DBUILD_EXAMPLES=ON
+          cmake --build build
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure

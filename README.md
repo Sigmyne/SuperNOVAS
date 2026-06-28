@@ -1,5 +1,6 @@
-![Build Status](https://github.com/Sigmyne/SuperNOVAS/actions/workflows/build.yml/badge.svg)
-![Test](https://github.com/Sigmyne/SuperNOVAS/actions/workflows/test.yml/badge.svg)
+![GNU make](https://github.com/Sigmyne/SuperNOVAS/actions/workflows/gnu.yml/badge.svg)
+![CMake](https://github.com/Sigmyne/SuperNOVAS/actions/workflows/cmake.yml/badge.svg)
+![Static Analysis](https://github.com/Sigmyne/SuperNOVAS/actions/workflows/analyze.yml/badge.svg)
 <a href="https://sigmyne.github.io/SuperNOVAS/doc/html/files.html">
  ![API documentation](https://github.com/Sigmyne/SuperNOVAS/actions/workflows/dox.yml/badge.svg)
 </a>

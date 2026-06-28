@@ -142,6 +142,7 @@ static char *get_resource(const char *filename, char *path, int len) {
   return NULL;
 }
 
+#ifndef WITHOUT_CURL
 static char *get_resource_url(const char *filename) {
   static char url[PATH_MAX + 10];
 
@@ -160,6 +161,7 @@ static char *get_resource_url(const char *filename) {
   sprintf(url, "file://%s", path);
   return url;
 }
+#endif
 
 static int test_gcrs_j2000_gcrs() {
   double pos1[3];

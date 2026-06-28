@@ -47,6 +47,10 @@ else
   TESTS += test-dummy-curl
 endif
 
+ifeq ($(OFFLINE),1)
+  CPPFLAGS += -DOFFLINE
+endif
+
 .PHONY: run
 run: clean-cov clean-data $(TESTS)
 	@mkdir data

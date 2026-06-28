@@ -1,7 +1,6 @@
 name: IndexNow
 permissions:
   contents: read
-  pull-requests: write
 
 on:
   page_build

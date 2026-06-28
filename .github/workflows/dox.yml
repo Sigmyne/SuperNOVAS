@@ -1,7 +1,6 @@
 name: Documentation
 permissions:
   contents: write
-  pull-requests: write
 
 on:
   release:
@@ -37,6 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CC: gcc
+      ENABLE_CPP: 1
     steps:
 
     - name: Install dependencies

@@ -1,0 +1,276 @@
+name: GNU make
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - 'examples/**'
+      - 'test/**'
+      - '**/Makefile'
+      - '*.mk'
+      - '.github/workflows/gnu.yml'
+
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - 'examples/**'
+      - 'test/**'
+      - '**/Makefile'
+      - '*.mk'
+      - '.github/workflows/gnu.yml'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            cc: gcc
+          - os: macos-latest
+            cc: clang
+    env:
+      CC: ${{ matrix.cc }}
+      CFLAGS: -Os -Wall -Werror
+      CSTANDARD: c99
+      WEXTRA: 1
+      FORTIFY: 3
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update -q -y
+          sudo apt-get install -y libcurl4-openssl-dev
+
+      - name: Build static library
+        run: make static
+
+      - name: Build shared library
+        run: make shared
+
+      - name: Compile solsys plugins
+        run: make solsys
+
+      - name: Build examples
+        run: make examples
+
+      - name: Build benchmarks
+        run: make -C benchmark build
+
+  build-freebsd:
+    name: Build FreeBSD
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build on FreeBSD
+        uses: vmactions/freebsd-vm@v1
+        with:
+          release: "14.0"
+          prepare: |
+            pkg install -y gmake curl devel/pkgconf
+          run: |
+            echo Building on FreeBSD $(uname -m)
+            export CFLAGS=`pkg-config --cflags libcurl`
+            export LDFLAGS=`pkg-config --libs libcurl`
+            gmake static
+            gmake shared
+
+  build-cpp:
+    name: Build C++ extension
+    needs: build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            cxx: g++
+          - os: macos-latest
+            cxx: clang++
+    env:
+      CXX: ${{ matrix.cxx }}
+      CXXFLAGS: -Os -Wall -Werror
+      WEXTRA: 1
+      FORTIFY: 3
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update -q -y
+          sudo apt-get install -y libcurl4-openssl-dev
+
+      - name: Build static C++ library
+        run: make static-cpp
+
+      - name: Build shared C++ library
+        run: make shared-cpp
+
+      - name: Build C++ examples
+        run: make -C examples/cpp
+
+  build-mcu:
+    name: Build embedded ARM
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      CC: arm-none-eabi-gcc
+      # As an example, compile a static library for the RP2350 microcontroller
+      CFLAGS: -mcpu=cortex-m33 -mthumb -mfloat-abi=hard -mfpu=fpv5-sp-d16 -Os -Wall -Werror
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: carlosperate/arm-none-eabi-gcc-action@v1
+
+      - name: Build static library
+        run: make WITHOUT_LIBC=1 static
+
+  build-examples:
+    name: Check examples
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        prog: [star, high-z, orbital, time, rise-set, moon]
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Compile example-${{ matrix.prog }}.c
+      run: |
+        gcc -c -Wall -Werror -Iinclude examples/c99/example-${{matrix.prog }}.c
+
+    - name: Compile example-${{ matrix.prog }}.cpp
+      run: |
+        g++ -c -Wall -Werror -Iinclude examples/cpp/example-${{ matrix.prog }}.cpp
+
+  install:
+    name: Install
+    needs: build-cpp
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            cc: g++
+          - os: macos-latest
+            cc: clang
+    env:
+      CC: ${{ matrix.cc }}
+      ENABLE_CPP: 1
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install dependencies
+        run: |
+          if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+            sudo apt-get update
+            sudo apt-get install -y doxygen libcurl4-openssl-dev
+          else
+            brew upgrade
+            brew install doxygen curl
+          fi
+
+      - name: Build distro
+        run: make distro
+
+      - name: Install to local prefix
+        run: |
+          make DESTDIR=$HOME/test-install install
+
+  test:
+    name: Test and Coverage
+    needs: build-cpp
+    runs-on: ubuntu-latest
+    env:
+      CC: gcc
+      CXX: g++
+      CFLAGS: -O0
+      ENABLE_CPP: 1
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: install dependencies
+      run: |
+        sudo apt-get update -q -y
+        sudo apt-get install -y lcov libcurl4-openssl-dev
+
+    - name: Run regression tests
+      run: |
+        ping -c 1 -W 3 www.iers.org || export OFFLINE=1
+        make test
+
+    - name: Generate test coverage
+      run: make coverage
+
+    - name: Upload coverage to Codecov.io
+      uses: codecov/codecov-action@v7
+      continue-on-error: true
+      with:
+        fail_ci_if_error: false
+        flags: unittests
+        name: codecov
+        token: ${{ secrets.CODECOV_TOKEN }}
+        verbose: true
+
+    - name: Upload coverage to Coveralls.io
+      continue-on-error: true
+      uses: coverallsapp/github-action@v2
+
+  test-arch:
+    name: Test on Linux arches (offline)
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: armv7
+            distro: ubuntu_latest
+          - arch: aarch64
+            distro: ubuntu_latest
+          - arch: riscv64
+            distro: ubuntu_latest
+          - arch: s390x
+            distro: ubuntu_latest
+          - arch: ppc64le
+            distro: ubuntu_latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: uraimo/run-on-arch-action@v3
+        name: Run regression tests
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+          install: |
+            apt-get update -q -y
+            apt-get install -q -y make gcc g++ gfortran libcurl4-openssl-dev libcurl4-openssl-dev
+          run: |
+            export ENABLE_CPP=1
+            export OFFLINE=1
+            make test
+
+  test-macos:
+    name: Test on MacOS (offline)
+    needs: test
+    runs-on: macos-latest
+    env:
+      ENABLE_CPP: 1
+      OFFLINE: 1
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build and test on macOS
+        run: make test
