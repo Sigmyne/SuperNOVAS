@@ -103,7 +103,7 @@ static int leap_mutex_initialized;  ///< whether the leap mutex was initialized;
  */
 typedef struct {
   CURL *curl;       ///< CURL handle (reused)
-  enum novas_eop_series series; /// IERS EOP data series identifier
+  enum novas_eop_series series; ///< IERS EOP data series identifier
   long head_bytes;  ///< [bytes] Header bytes before regular table row data begins
   int line_len;     ///< [bytes] Length of data rows, including line feed
   int start_line;   ///< Line index at which to start using data
@@ -124,7 +124,7 @@ typedef struct {
 /// The currently configured URLs for each data series
 static const char *urls[NOVAS_NUM_EOP_SERIES];
 
-/// Serial number for the URL configuration;
+/// Serial number for the URL configuration
 static unsigned long url_version;
 
 static int itrf_years[NOVAS_NUM_EOP_SERIES] = { -1, 2020, 2020, 2020 };
