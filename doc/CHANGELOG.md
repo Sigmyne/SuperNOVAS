@@ -23,6 +23,9 @@ Upcoming bug-fix release, possibly around 1 August 2026.
    
  - #352: Fix GNU `Makefile` to propagate `WITHOUT_CURL` setting to the build (by traitimtrongvag).
  
+ - #355: Incorrect use of `gmtime_s()` in `novas_lookup_leap()` on Windows/MSC. The Windows `gmtime_s()` has swapped 
+   parameter order w.r.t. the POSIX `gmtime_r()` function.
+ 
 ### Changed
 
  - #351: Improve handling of leap expiration timestamps, but tolerating bad timestamps so long as there is a good one
