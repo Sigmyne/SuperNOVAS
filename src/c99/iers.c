@@ -73,9 +73,9 @@
  *
  */
 typedef struct iers_leap_entry {
-  int unix_start;   ///< [day] Julian date leap was introduced
-  int unix_end;     ///< [day] Julian date to which leap is valid
-  int leap;         ///< [s] Leap seconds (TAI - UTC time difference)
+  time_t unix_start;  ///< [s] UNIX seconds when leap was introduced
+  time_t unix_end;    ///< [s] UNIX seconds to which leap is valid
+  int leap;           ///< [s] Leap seconds (TAI - UTC time difference)
   struct iers_leap_entry *next;   ///< Link to the next leap entry in list.
 } iers_leap_entry;
 /// \endcond
