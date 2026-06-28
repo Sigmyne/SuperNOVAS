@@ -154,12 +154,14 @@ typedef struct {
 } download_buffer;
 
 // 1973.01.02 to +365 days, no head
+//  alternative: https://maia.usno.navy.mil/ser7/finals2000A.daily.extended
 static iers_data_file rapid = { NULL, EOP_RAPID_IAU2000,
         0, 188, 0, RAPID_JD_START, RAPID_JD_START, 1.0,
         6, 17, 27, 36, 46, 58, 68, 78, 86
 };
 
 // 1962 -- now
+//  alternative: https://hpiers.obspm.fr/iers/eop/eopc04/eopc04.1962-now
 static iers_data_file c04 = { NULL, EOP_C04_IAU2000_0UTC,
         -1, 219, 0, C04_JD_START, C04_JD_START, 1.0,
         16, 26, 122, 38, 134, 50, 146, 111, 206
@@ -172,6 +174,7 @@ static iers_data_file c01_sparse = { NULL, EOP_C01_IAU2000,
 };
 
 // 1890 -- now (0.05 year)
+//  alternative: https://hpiers.obspm.fr/iers/eop/eopc01/eopc01.1846-now
 static iers_data_file c01 = { NULL, EOP_C01_IAU2000,
         -1, 312, C01_SPARSE_LINES, C01_JD_START, NOVAS_JD_MJD0 + 11367.380, 0.05 * NOVAS_TROPICAL_YEAR_DAYS,
         0, 12, 71, 22, 83, 32, 93, 226, 281
@@ -857,6 +860,16 @@ int novas_lookup_leap(time_t t) {
  *  - This call is not thread-safe. You should avoid calling it from concurrent threads if you
  *    want it to have predictable behavior.
  *
+ *  - The IERS data service may encounter outages. Possible alternative URLs for the IERS EOP
+ *    series are:
+ *     - C01: https://hpiers.obspm.fr/iers/eop/eopc01/eopc01.1846-now
+ *     - C04: https://hpiers.obspm.fr/iers/eop/eopc04/eopc04.1962-now
+ *     - rapid service: https://maia.usno.navy.mil/ser7/finals2000A.daily.extended
+ *
+ *  - You may also download the relevant EOP series from IERS or from the alternative sources
+ *    to store in local files, and then use this function to set `file://` type urls with absolute
+ *    paths. This may be the preferred approach for critical / time critical applications.
+ *
  * @param series      The EOP series identifier constant.
  * @param itrf_year   [yr] ITRF realization year. Needed only for precision at the few &mu;as
  *                    level, otherwise, you can set it to something recent, like 2020. It is
@@ -1073,6 +1086,8 @@ void novas_reset_eop() {
  *
  *  4. This function assumes that the files served from IERS remain accessible and their format
  *     does not change over time. As such what works today, may not work the same in the future.
+ *     The IERS website also encounters outages occasionally (see novas_set_eop_url() for
+ *     alternative sources.).
  *
  *  5. This function caches EOP data from the last query. As such repeated calls within the same
  *     date bracket (typically the same MJD day) will return fast and will interpolate from the
@@ -1152,7 +1167,9 @@ int novas_fetch_eop(double jd, long timeout_millis, novas_eop *eop) {
  *     values more directly, e.g. from a local file instead.
  *
  *  4. This function assumes that the files served from IERS remain accessible and their format
- *     does not change over time.
+ *     does not change over time. As such what works today, may not work the same in the future.
+ *     The IERS website also encounters outages occasionally (see novas_set_eop_url() for
+ *     alternative sources.).
  *
  *  5. This function caches EOP data from the last online query. As such repeated calls within the
  *     same data bracket (typically the same MJD day) will return fast and will reuse the last
