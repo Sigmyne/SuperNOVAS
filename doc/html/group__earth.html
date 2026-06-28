@@ -1040,7 +1040,7 @@ Functions</h2></td></tr>
 <li>You must have built <b>SuperNOVAS</b> with cURL support. Otherwise, this function will return -1, with <span class="tt">errno</span> set to <span class="tt">ENOSYS</span>.</li>
 <li>You will need an internet connection and the IERS server must be online and accessible, unless you have changed the necessary URLs to use local copies instead (see <span class="tt"><a class="el" href="#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a></span>).</li>
 <li>Obtaining values from IERS can have arbitrary latencies, and can impact the performance severely. For performance critical applications, you should consider specifying the EOP values more directly, or using local files instead (see also <span class="tt"><a class="el" href="#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a></span>).</li>
-<li>This function assumes that the files served from IERS remain accessible and their format does not change over time. As such what works today, may not work the same in the future.</li>
+<li>This function assumes that the files served from IERS remain accessible and their format does not change over time. As such what works today, may not work the same in the future. The IERS website also encounters outages occasionally (see <a class="el" href="#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a> for alternative sources.).</li>
 <li>This function caches EOP data from the last query. As such repeated calls within the same date bracket (typically the same MJD day) will return fast and will interpolate from the data last obtained from the IERS.</li>
 <li>This function uses cubic spline interpolation around the published data points. As such, it needs at least two data points at the same time or before, and two points after, the date for which interpolated values are requested.</li>
 <li>Prior to 1 Jan 1956, the UT1-UTC time difference, and length-of-day (LOD) are not provided by IERS, as they were not measured prior to the age of atomic clocks. Hence, for dates prior to 1956 the returned EOP will have <span class="tt">dut1</span> and <span class="tt">lod</span> (and their uncertainties) set to NAN. (However, the polar the offsets <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> can be provided all the way back to 1846, with some precision.)</li>
@@ -1098,7 +1098,7 @@ novas_fetch_current_eop(), <a class="el" href="#ga30319d4fc323f4f42d199e454abf0a
 <li>You must have access to the <span class="tt">curl</span> library and built <b>SuperNOVAS</b> with CURL support. Otherwise this function will return -1, with <span class="tt">errno</span> set to <span class="tt">ENOSYS</span>.</li>
 <li>You will need an internet connection and the IERS server must be online and accessible (at least for the initial call).</li>
 <li>Obtaining values from IERS can have arbitrary latencies, and can impact performance severely. For performance critical applications, you should consider specifying the EOP values more directly, e.g. from a local file instead.</li>
-<li>This function assumes that the files served from IERS remain accessible and their format does not change over time.</li>
+<li>This function assumes that the files served from IERS remain accessible and their format does not change over time. As such what works today, may not work the same in the future. The IERS website also encounters outages occasionally (see <a class="el" href="#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a> for alternative sources.).</li>
 <li>This function caches EOP data from the last online query. As such repeated calls within the same data bracket (typically the same MJD day) will return fast and will reuse the last data obtained from the IERS.</li>
 <li>This function uses cubic spline interpolation of the published data points.</li>
 <li>The returned EOP values are assumed to be ITRF 2020 values, which is appropriate at the time this <b>SuperNOVAS</b> module was written or last updated. If IERS later publishes data in some other future ITRF realization, this module may need to be updated, accordingly. However, the ITRF realization is unlikely to matter significantly.</li>
@@ -1539,6 +1539,13 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 <ul>
 <li>Requires <b>SuperNOVAS</b> to be compiled with cURL support enabled, otherwise -1 is returned with <span class="tt">errno</span> set to <span class="tt">ENOSYS</span>.</li>
 <li>This call is not thread-safe. You should avoid calling it from concurrent threads if you want it to have predictable behavior.</li>
+<li>The IERS data service may encounter outages. Possible alternative URLs for the IERS EOP series are:<ul>
+<li>C01: <a href="https://hpiers.obspm.fr/iers/eop/eopc01/eopc01.1846-now">https://hpiers.obspm.fr/iers/eop/eopc01/eopc01.1846-now</a></li>
+<li>C04: <a href="https://hpiers.obspm.fr/iers/eop/eopc04/eopc04.1962-now">https://hpiers.obspm.fr/iers/eop/eopc04/eopc04.1962-now</a></li>
+<li>rapid service: <a href="https://maia.usno.navy.mil/ser7/finals2000A.daily.extended">https://maia.usno.navy.mil/ser7/finals2000A.daily.extended</a></li>
+</ul>
+</li>
+<li>You may also download the relevant EOP series from IERS or from the alternative sources to store in local files, and then use this function to set <span class="tt"><a href="file://">file://</a></span> type urls with absolute paths. This may be the preferred approach for critical / time critical applications.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

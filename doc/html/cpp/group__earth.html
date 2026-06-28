@@ -475,6 +475,13 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 <ul>
 <li>Requires <b>SuperNOVAS</b> to be compiled with cURL support enabled, otherwise -1 is returned with <span class="tt">errno</span> set to <span class="tt">ENOSYS</span>.</li>
 <li>This call is not thread-safe. You should avoid calling it from concurrent threads if you want it to have predictable behavior.</li>
+<li>The IERS data service may encounter outages. Possible alternative URLs for the IERS EOP series are:<ul>
+<li>C01: <a href="https://hpiers.obspm.fr/iers/eop/eopc01/eopc01.1846-now">https://hpiers.obspm.fr/iers/eop/eopc01/eopc01.1846-now</a></li>
+<li>C04: <a href="https://hpiers.obspm.fr/iers/eop/eopc04/eopc04.1962-now">https://hpiers.obspm.fr/iers/eop/eopc04/eopc04.1962-now</a></li>
+<li>rapid service: <a href="https://maia.usno.navy.mil/ser7/finals2000A.daily.extended">https://maia.usno.navy.mil/ser7/finals2000A.daily.extended</a></li>
+</ul>
+</li>
+<li>You may also download the relevant EOP series from IERS or from the alternative sources to store in local files, and then use this function to set <span class="tt"><a href="file://">file://</a></span> type urls with absolute paths. This may be the preferred approach for critical / time critical applications.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
