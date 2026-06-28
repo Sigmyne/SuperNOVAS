@@ -63,11 +63,6 @@
 #  define DEFAULT_LEAP_URL            "https://" IERS_LEAP_SERVER "/iers/bul/bulc/ntp/" LEAP_FILENAME
 #  define NTP_UNIX_EPOCH              2208988800LL      ///< [s] NTP timestamp of UNIX epoch (1970 Jan 1)
 
-#ifdef _MSC_VER
-#  define gmtime_r        gmtime_s                      ///< MSC equivalent
-#  define strtok_r        strtok_s                      ///< MSVC equivalent
-#endif
-
 /**
  * A individual leap seconds entry in a linked list of leap seconds
  *
@@ -823,7 +818,11 @@ int novas_lookup_leap(time_t t) {
     struct tm tm = {};
     char str[40] = {'\0'};
     unlock_leap();
+#ifdef _MSC_VER
+    gmtime_s(&tm, &t);
+#else
     gmtime_r(&t, &tm);
+#endif
     strftime(str, sizeof(str), "%c", &tm);
     return novas_error(NOVAS_INVALID_LEAP, ERANGE, fn, "Time %s is beyond the leap seconds coverage range", str);
   }
