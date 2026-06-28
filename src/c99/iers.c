@@ -63,6 +63,10 @@
 #  define DEFAULT_LEAP_URL            "https://" IERS_LEAP_SERVER "/iers/bul/bulc/ntp/" LEAP_FILENAME
 #  define NTP_UNIX_EPOCH              2208988800LL      ///< [s] NTP timestamp of UNIX epoch (1970 Jan 1)
 
+#ifdef _MSC_VER
+#  define strtok_r        strtok_s                      ///< MSC equivalent
+#endif
+
 /**
  * A individual leap seconds entry in a linked list of leap seconds
  *
