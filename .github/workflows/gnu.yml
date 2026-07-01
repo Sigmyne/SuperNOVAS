@@ -152,7 +152,7 @@ jobs:
 
     - name: Compile example-${{ matrix.prog }}.c
       run: |
-        gcc -c -Wall -Werror -Iinclude examples/c99/example-${{matrix.prog }}.c
+        gcc -c -Wall -Werror -Iinclude examples/c99/example-${{ matrix.prog }}.c
 
     - name: Compile example-${{ matrix.prog }}.cpp
       run: |
@@ -210,9 +210,7 @@ jobs:
         sudo apt-get install -y lcov libcurl4-openssl-dev
 
     - name: Run regression tests
-      run: |
-        ping -c 1 -W 3 www.iers.org || export OFFLINE=1
-        make test
+      run: make test
 
     - name: Generate test coverage
       run: make coverage
