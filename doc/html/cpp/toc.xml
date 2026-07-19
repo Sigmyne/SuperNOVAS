@@ -3871,6 +3871,10 @@
           <topic label="iers.c" href="iers_8c.html">
             <topic label="IERS_DATACENTER" href="iers_8c.html#ad373a09690936b8af10b0ac6a00aadc4"/>
             <topic label="IERS_LEAP_SERVER" href="iers_8c.html#a20da422c599203a2e493e129c9566ad2"/>
+            <topic label="NOVAS_EOP_ALT_C01_URL" href="iers_8c.html#a876e1b577a0901f7d38ad2847c3dae8d"/>
+            <topic label="NOVAS_EOP_ALT_C04_URL" href="iers_8c.html#ad723537ea2f288c9804cce7d2cfa8e3a"/>
+            <topic label="NOVAS_EOP_ALT_LEAP_URL" href="iers_8c.html#a130158bad217f582b23a37730263ecef"/>
+            <topic label="NOVAS_EOP_ALT_RAPID_URL" href="iers_8c.html#a8ca40f8802acc4750d2e93ccce21de34"/>
             <topic label="novas_fetch_eop" href="iers_8c.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea"/>
             <topic label="novas_fetch_eop_unix" href="iers_8c.html#a4fe4a31a0284f79b6099bdc9a32f6206"/>
             <topic label="novas_get_eop_itrf_year" href="group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8"/>

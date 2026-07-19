@@ -1,5 +1,9 @@
 var NAVTREEINDEX8 =
 {
+"structnovas__orbital__system.html#a1e0e4feed59904907eb9c0484ad95516":[8,0,12,0],
+"structnovas__orbital__system.html#a806d05cf786f3f0de3388d0e319e27f0":[8,0,12,1],
+"structnovas__planet__bundle.html":[8,0,13],
+"structnovas__planet__bundle.html#a37277cd307ab593a78946b68d4b45de1":[8,0,13,2],
 "structnovas__planet__bundle.html#a76859a0c5dd55e9bc9897d022aeb4503":[8,0,13,1],
 "structnovas__planet__bundle.html#ac0b016705e6421505f3961ed6c70c845":[8,0,13,0],
 "structnovas__sky__pos.html":[8,0,14],

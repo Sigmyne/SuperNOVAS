@@ -86,8 +86,9 @@ auto source = CatalogEntry("Antares",
   .to_source();
 
 // Observer location
-auto obs = Site::from_GPS(50.7374, 7.0982, 60.0)
-     .to_observer(eop);
+auto obs = Site::from_GPS(50.7374 * Unit::deg, 
+     7.0982 * Unit::deg, 60.0 * Unit::m)
+  .to_observer(eop);
      
 // Set time of observation
 Time t("2026-03-14T13:43:00.728+0200", eop, 

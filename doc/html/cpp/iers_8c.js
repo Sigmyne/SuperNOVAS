@@ -2,6 +2,10 @@ var iers_8c =
 [
     [ "IERS_DATACENTER", "iers_8c.html#ad373a09690936b8af10b0ac6a00aadc4", null ],
     [ "IERS_LEAP_SERVER", "iers_8c.html#a20da422c599203a2e493e129c9566ad2", null ],
+    [ "NOVAS_EOP_ALT_C01_URL", "iers_8c.html#a876e1b577a0901f7d38ad2847c3dae8d", null ],
+    [ "NOVAS_EOP_ALT_C04_URL", "iers_8c.html#ad723537ea2f288c9804cce7d2cfa8e3a", null ],
+    [ "NOVAS_EOP_ALT_LEAP_URL", "iers_8c.html#a130158bad217f582b23a37730263ecef", null ],
+    [ "NOVAS_EOP_ALT_RAPID_URL", "iers_8c.html#a8ca40f8802acc4750d2e93ccce21de34", null ],
     [ "novas_fetch_eop", "iers_8c.html#aba2fe38e07b94adaa6e8eb1b0a39a7ea", null ],
     [ "novas_fetch_eop_unix", "iers_8c.html#a4fe4a31a0284f79b6099bdc9a32f6206", null ],
     [ "novas_get_eop_itrf_year", "group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8", null ],

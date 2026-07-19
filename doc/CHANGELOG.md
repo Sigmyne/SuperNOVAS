@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [1.7.2-rc1]
 
 Upcoming bug-fix release, possibly around 1 August 2026.
 
@@ -22,6 +22,8 @@ Upcoming bug-fix release, possibly around 1 August 2026.
    traitimtrongvag).
    
  - #352: Fix GNU `Makefile` to propagate `WITHOUT_CURL` setting to the build (by traitimtrongvag).
+
+ - #354: Fix `make test` with `WITHOUT_CURL=1`. Previously the setting did not propagate to the C++ test build.
  
  - #355: Incorrect use of `gmtime_s()` in `novas_lookup_leap()` on Windows/MSC. The Windows `gmtime_s()` has swapped 
    parameter order w.r.t. the POSIX `gmtime_r()` function.
