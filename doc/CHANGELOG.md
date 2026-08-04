@@ -7,9 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.7.2-rc1]
+## [1.7.2] - 2026-08-05
 
-Upcoming bug-fix release, possibly around 1 August 2026.
+Bug fix release.
 
 ### Fixed
 
@@ -21,25 +21,25 @@ Upcoming bug-fix release, possibly around 1 August 2026.
  - #350: Possible memleak in `parse_leaps()` if there is a corrupted expiration stamp in an unexpected place (by 
    traitimtrongvag).
    
- - #352: Fix GNU `Makefile` to propagate `WITHOUT_CURL` setting to the build (by traitimtrongvag).
+ - #352: Fixed GNU `Makefile` to propagate `WITHOUT_CURL` setting to the build (by traitimtrongvag).
 
- - #354: Fix `make test` with `WITHOUT_CURL=1`. Previously the setting did not propagate to the C++ test build.
+ - #354: Fixed `make test` with `WITHOUT_CURL=1`. Previously the setting did not propagate to the C++ test build.
  
  - #355: Incorrect use of `gmtime_s()` in `novas_lookup_leap()` on Windows/MSC. The Windows `gmtime_s()` has swapped 
    parameter order w.r.t. the POSIX `gmtime_r()` function.
  
 ### Changed
 
- - #351: Improve handling of leap expiration timestamps, but tolerating bad timestamps so long as there is a good one
+ - #351: Improved handling of leap expiration timestamps, by tolerating bad timestamps so long as there is a good one
    also. Only the first valid timestamp is used.
    
- - Staged GitHub workflows, so that we don't run workflows unnecessarily.
+ - Staged GitHub workflows, so that we don't run CI workflows unnecessarily.
    
 ### Deprecated
 
  - Deprecated the `nu2000k()` nutation series. It is neither standard (being NOVAS-specific), nor it is up to date 
-   (not adjusted for the R06 update). You should prefer the standard `iau2000b()` model for reduced precision, or the 
-   `iau2000a()` model for full-precision nutation instead.
+   (not fully adjusted for the R06 update). You should prefer the standard `iau2000b()` model for reduced precision, 
+   or the `iau2000a()` model for full-precision nutation instead.
 
 
 ## [1.7.1] - 2026-06-17

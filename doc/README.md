@@ -903,9 +903,7 @@ are calculated. The argument can have one of two values, which correspond to typ
 Note, that some functions will not support full accuracy calculations, unless you have provided a high-precision
 ephemeris provider for the major planets (and any Solar-system bodies of interest), which does not come with 
 __SuperNOVAS__ out of the box. In the absence of a suitable high-precision ephemeris provider, some functions might 
-return an error if called with `NOVAS_FULL_ACCURACY`. (Click on the wedges next to each component to expand the
-details...)
-
+return an error if called with `NOVAS_FULL_ACCURACY`.
 
 
 
@@ -958,6 +956,10 @@ leap-seconds (UTC-TAI). For sub-milliarcsecond accuracy the values published by 
 passing to the likes of `novas_set_time()` or `novas_make_frame()`. At the micro-arcsecond (&mu;as) level, you will 
 need to ensure also that the EOP values are provided for the same ITRF realization as the observer's location, e.g. 
 via `novas_itrf_transform_eop()`. 
+
+As of version 1.7, __SuperNOVAS__ provides the option to fetch EOP values from IERS automatically, as needed. However,
+beware that the IERS servers may experience intermittent outages, availability and file formats may change. Therefore,
+for critical applications it is still recommended that you supply your EOP values explicitly, if possible.
 
    
 
