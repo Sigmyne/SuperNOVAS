@@ -9,6 +9,7 @@
  */
 
 #include <errno.h>
+#include <limits.h>
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
@@ -109,8 +110,9 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
  * @param[out] month   [month] Calendar month [1:12]. It may be NULL if not required.
  * @param[out] day     [day] Day of the month [1:31]. It may be NULL if not required.
  * @param[out] hour    [h] Hour of day [0:24]. It may be NULL if not required.
- * @return             0 if successful, or else -1 if the calendar is invalid (errno will be set
- *                     to EINVAL).
+ * @return             0 if successful, or else -1 if the calendar is invalid (`errno` will be set
+ *                     to `EINVAL`) or the Julian date is outside the supported range (`errno` will
+ *                     be set to `ERANGE`).
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -119,8 +121,8 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
  */
 int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restrict year, int *restrict month,
         int *restrict day, double *restrict hour) {
-  long jd, k, m, n;
-  int y, mo, d;
+  long jd, k, m, n, y;
+  int mo, d;
   double djd, h;
 
   if(calendar < NOVAS_ROMAN_CALENDAR || calendar > NOVAS_GREGORIAN_CALENDAR)
@@ -137,6 +139,10 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
     *hour = NAN;
 
   djd = tjd + 0.5;
+  // Keep headroom for the integer multiplications in the calendar algorithm.
+  if(!isfinite(djd) || djd < (double) LONG_MIN / 5.0 - 68569.0 || (double) LONG_MAX / 5.0 - 68569.0 < djd)
+    return novas_error(-1, ERANGE, "novas_jd_to_date", "Julian date out of range: %.12g", tjd);
+
   jd = (long) floor(djd);
 
   h = remainder(djd, 1.0) * DAY_HOURS;
@@ -166,10 +172,12 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
   k = mo / 11L;
 
   mo = (int) ((long) mo + 2L - 12L * k);
-  y = (int) (100L * (n - 49L) + m + k);
+  y = 100L * (n - 49L) + m + k;
+  if(y < INT_MIN || INT_MAX < y)
+    return novas_error(-1, ERANGE, "novas_jd_to_date", "calendar year out of range: %ld", y);
 
   if(year)
-    *year = y;
+    *year = (int) y;
   if(month)
     *month = mo;
   if(day)
