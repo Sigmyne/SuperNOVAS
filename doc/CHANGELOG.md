@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [Unreleased]
+
+### Fixed
+
+ - #359: Fixed wrong humidity units passed in `Site::average_weather()`. (by csp456)
+ 
+ - #361: Fixed weather parameters not having been used in in `Source::rises_above()`, `Source::sets_below()` and 
+   `Source::horizontal_track()`. (by csp256)
+
+
 ## [1.7.2] - 2026-08-05
 
 Bug fix release.
