@@ -45,9 +45,44 @@ likely end up with added polish as a result. You can be all the more proud of it
 _SuperNOVAS_. Congratulations for your excellent work, and many thanks for dedicating some of your time for making 
 this library a little bit better. There will be many who will appreciate it. :-)
 
-
 If at any point you have questions, or need feedback, don't be afraid to ask. You can put your questions into the 
 issue you found or created, or your pull-request, or as a Q&amp;A in 
 [Discussions](https://github.com/Sigmyne/SuperNOVAS/discussions).
+
+
+## Note on contributions using AI
+
+AI is a great tool when it is used _responsibly_. Everyone can use AI to look for bugs and weaknesses in 
+__SuperNOVAS__. You should do it too if that's your thing. But, please remember that when you submit an AI generated
+bug report or fix, ultimately it is your name that will be on it. And so, you will bear all responsibility for the 
+quality of the report as well as for any 'fix' you submit.
+
+AI can also summarize the issue(s) it finds and generate a Pull Request (PR) with a fix. Sounds great -- but in 
+reality it is nothing but. The problem is that while it takes you 5 minutes to submit an issue and a PR with an AI 
+generated fix, it will take me (or someone else) hours to properly review it. It is beyond frustrating only to find 
+that either the AI 'fixed' a non-issue, or that it did a poor job doing it. It is simply not respectful to submit an 
+AI generated Issue or PR, for which you did not take the time to fully disect and understand it yourself. So, if you 
+use AI to contribute to __SuperNOVAS__, please adhere to the following guidelines: 
+
+ - Write the description of the issue yourself, in your own words, explaining what the proposed fix is supposed to 
+   achieve, and how that is an improvement over what was there before. You should understand the issue in full detail 
+   without blindly trusting the AI generated poetry. Writing the report yourself will help in that respect.
+   
+ - Take a careful look at the existing code and the documentation and verify that the issue is indeed real, present, 
+   and that you fully understand its impact. Make sure that the 'issue' is not a intentional feature, a false 
+   positive, or the by-product of an overzealous 'bug' detector. If unsure, feel free to ask questions in the GitHub 
+   Discussions under Q&A first.
+   
+ - Review any AI generated fix before you submit it. Ask yourself the question: "is this the best possible fix for
+   the problem?". It is even better if you write your own fix based on your understanding of the issue (and then you 
+   can let AI give you feedback on it before you submit). The point is that you should understand every bit of the 
+   code you submit, and every decision that is made within it.
+  
+ - Last, but not least, please note in the Issue or PR if you used AI at any point, and explain what it was used for. 
+   There is no shame in using AI. But, for the sake of accountability you ought to be transparent about it. You'll be 
+   thankful you did that if things go sideways with your contribution.
+
+
+
 
 
