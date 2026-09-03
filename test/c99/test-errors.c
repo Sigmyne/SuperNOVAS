@@ -3037,6 +3037,13 @@ static int test_set_leap_list() {
   if(!rc) fprintf(stderr, "WARNING! Missing %s: skip tests requiring it", path);
   else if(check("set_leap_list", -1, novas_set_leap_list(rc))) return n++;
 
+  rc = get_resource("expiration-after-entries.list", path, sizeof(path));
+  if(!rc) fprintf(stderr, "WARNING! Missing %s: skip tests requiring it", path);
+  else {
+    if(check("set_leap_list:expiration_after_entries", 0, novas_set_leap_list(rc))) return n++;
+    if(check("lookup_leap:expiration_after_entries", 11, novas_lookup_leap(90000000L))) n++;
+  }
+
   rc = get_resource("bad-entry.list", path, sizeof(path));
   if(!rc) fprintf(stderr, "WARNING! Missing %s. skip tests requiring it", path);
   else if(check("set_leap_list", -1, novas_set_leap_list(rc))) return n++;

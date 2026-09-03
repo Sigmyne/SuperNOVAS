@@ -322,6 +322,9 @@ static iers_leap_entry *parse_leaps(char *buf, long long *expiration) {
     return NULL;
   }
 
+  if(list)
+    list->unix_end = (time_t) *expiration;
+
   return list;
 }
 
