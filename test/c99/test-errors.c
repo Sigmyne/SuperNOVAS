@@ -2096,7 +2096,9 @@ static int test_jd_to_date() {
   if(check("jd_to_date:calendar:-2", -1, novas_jd_to_date(NOVAS_JD_J2000, -2, &y, &m, &d, &h))) n++;
   if(check("jd_to_date:calendar:2", -1, novas_jd_to_date(NOVAS_JD_J2000, 2, &y, &m, &d, &h))) n++;
   if(check("jd_to_date:nan", -1, novas_jd_to_date(NAN, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
+#if __STDC_VERSION >= 199901L
   if(check("jd_to_date:infinity", -1, novas_jd_to_date(INFINITY, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
+#endif
   if(check("jd_to_date:large", -1, novas_jd_to_date(9.0e18, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
   if(check("jd_to_date:small", -1, novas_jd_to_date(-9.0e18, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
 
