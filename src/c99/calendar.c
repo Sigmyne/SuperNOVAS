@@ -19,12 +19,19 @@
 
 
 /// \cond PRIVATE
+
 /// [day] JD at 0AD (1 Jan 1 BC, 12PM)
 #define LLJD_0AD  1721058LL
-/// [day] lowest integer JD that can be converted to any calendar
-#define LLJD_MIN (LLJD_0AD + INT_MIN * 146097LL)
-/// [day] largest integer JD that can be converted to any calendar
-#define LLJD_MAX (LLJD_0AD + INT_MAX * 146097LL)
+
+/// [day] number of days in 400 years in the Gregorian calendar
+#define GREGORIAN_400_YEARS  146097LL
+
+/// [day] lowest integer JD that can be converted to any calendar w/o integer overflow
+#define LLJD_MIN (LLJD_0AD + INT_MIN * GREGORIAN_400_YEARS / 400)
+
+/// [day] largest integer JD that can be converted to any calendar w/o integer overflow
+#define LLJD_MAX (LLJD_0AD + INT_MAX * GREGORIAN_400_YEARS / 400)
+
 /// \endcond
 
 
@@ -85,16 +92,16 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
     return NAN;
   }
 
-  jd = day - 32123LL + 1461LL * (year + 4800L + m14 / 12LL) / 4LL + 367LL * (month - 2LL - m14 / 12LL * 12LL) / 12LL;
+  jd = day - 32123 + 1461 * (year + 4800L + m14 / 12) / 4 + 367 * (month - 2 - m14 / 12 * 12) / 12;
   fjd = (hour - 12.0) / DAY_HOURS;
 
   if(calendar == NOVAS_ASTRONOMICAL_CALENDAR)
     calendar = (jd + fjd >= NOVAS_JD_START_GREGORIAN) ? NOVAS_GREGORIAN_CALENDAR : NOVAS_ROMAN_CALENDAR;
 
   if(calendar == NOVAS_GREGORIAN_CALENDAR)
-    jd -= 3LL * ((year + 4900LL + m14 / 12LL) / 100LL) / 4LL - 48LL;  // Gregorian calendar reform
+    jd -= 3 * ((year + 4900L + m14 / 12) / 100) / 4 - 48;  // Gregorian calendar reform
   else
-    jd += 10LL;                                                  // Julian (Roman) calendar
+    jd += 10;                                                  // Julian (Roman) calendar
 
   return jd + fjd;
 }
@@ -127,7 +134,7 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
  *                     be set to `ERANGE`).
  *
  * @since 1.3
- * @author Attila Kovacs, Christopher Parker
+ * @author Attila Kovacs
  *
  * @sa novas_jd_from_date(), novas_set_time()
  */
@@ -162,33 +169,33 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
   if(h < 0.0)
     h += 24.0;
 
-  k = jd + 68569LL;
-  n = 4LL * k / 146097LL;
+  k = jd + 68569;
+  n = 4 * k / 146097;
 
   if(calendar == NOVAS_ASTRONOMICAL_CALENDAR)
     calendar = (tjd >= NOVAS_JD_START_GREGORIAN) ? NOVAS_GREGORIAN_CALENDAR : NOVAS_ROMAN_CALENDAR;
 
   if(calendar == NOVAS_GREGORIAN_CALENDAR)
-    k -= (146097LL * n + 3LL) / 4LL;
+    k -= (146097 * n + 3) / 4;
   else
-    k -= (146100LL * n + 3LL) / 4LL;
+    k -= (146100 * n + 3) / 4;
 
-  m = 4000L * (k + 1LL) / 1461001LL;
+  m = 4000 * (k + 1) / 1461001;
 
-  k += 31LL - 1461LL * m / 4LL;
+  k += 31 - 1461 * m / 4;
 
   if(calendar == NOVAS_ROMAN_CALENDAR)
-    k += 38LL;
+    k += 38;
 
-  mo = (int) (80LL * k / 2447LL);
-  d = (int) (k - 2447LL * (long) mo / 80LL);
-  k = mo / 11LL;
+  mo = (int) (80 * k / 2447);
+  d = (int) (k - 2447 * (long) mo / 80);
+  k = mo / 11;
 
-  mo = (int) ((long) mo + 2LL - 12LL * k);
-  y = (int) (100LL * (n - 49LL) + m + k);
+  mo = (int) ((long) mo + 2 - 12 * k);
+  y = (int) (100 * (n - 49) + m + k);
 
   if(year)
-    *year = (int) y;
+    *year = y;
   if(month)
     *month = mo;
   if(day)
