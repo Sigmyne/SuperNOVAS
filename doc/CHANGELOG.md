@@ -15,6 +15,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
  
  - #361: Fixed weather parameters not having been used in in `Source::rises_above()`, `Source::sets_below()` and 
    `Source::horizontal_track()`. (by csp256)
+   
+### Changed
+   
+ - #367: Testing oops in `Equinox` equality checks in the test suite. (by csp256)
+   
+ - #372: Improved leap seconds list parsing, by applying leap list expiration as end date for last leap entry, in the 
+   unlikely case that the expiration timestamp appears after the entries in the file. Note, that the timestamp of
+   always appears in the commented header section before the leap entries in the IERS data products, so it is unlikely
+   that normal leap list files will ever benefit from the change. (by csp456)
 
 
 ## [1.7.2] - 2026-08-05
