@@ -20,17 +20,19 @@
 
 /// \cond PRIVATE
 
-/// [day] JD at 0AD (1 Jan 1 BC, 12PM)
-#define LLJD_0AD  1721058LL
+/// [day] JD at 200 AD (1 Jan 200 AD, 12PM)
+#define LLJD_200AD  1721424LL
 
 /// [day] number of days in 400 years in the Gregorian calendar
-#define GREGORIAN_400_YEARS  146097LL
+#define DAYS_IN_400_GREGORIAN_YEARS  146097LL
 
 /// [day] lowest integer JD that can be converted to any calendar w/o integer overflow
-#define LLJD_MIN (LLJD_0AD + INT_MIN * GREGORIAN_400_YEARS / 400)
+/// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD)
+#define LLJD_MIN (LLJD_200AD + (INT_MIN - 200LL) * DAYS_IN_400_GREGORIAN_YEARS / 400)
 
 /// [day] largest integer JD that can be converted to any calendar w/o integer overflow
-#define LLJD_MAX (LLJD_0AD + INT_MAX * GREGORIAN_400_YEARS / 400)
+/// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD)
+#define LLJD_MAX (LLJD_200AD + (INT_MAX - 200LL) * DAYS_IN_400_GREGORIAN_YEARS / 400)
 
 /// \endcond
 
