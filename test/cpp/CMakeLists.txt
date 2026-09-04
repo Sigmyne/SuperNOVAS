@@ -19,6 +19,11 @@ foreach(TEST ${TEST_PROGRAMS})
               
     target_include_directories(${TEST} PRIVATE ${PROJECT_SOURCE_DIR}/include)
         
+    # Don't compile runtime checks into test code. It's not for production
+    if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+        target_compile_options(${TEST} PRIVATE -fno-sanitize=undefined)
+    endif()
+
     if(WITHOUT_CURL)
         target_compile_definitions(${TEST} PRIVATE WITHOUT_CURL)
     endif()
