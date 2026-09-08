@@ -13,6 +13,7 @@
 #include <errno.h>
 #include <math.h>
 #include <string.h>
+#include <limits.h>
 
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
 #include "novas.h"
@@ -2093,14 +2094,20 @@ static int test_jd_to_date() {
   int y, m, d;
   double h;
 
+  long long lljd_200AD = 1794108LL;
+  long long days400y = 146097L;
+  long long lljd_min = lljd_200AD + (INT_MIN - 200LL) * days400y / 400;
+  long long lljd_max = lljd_200AD + (INT_MAX - 200LL + 1) * days400y / 400 - 1;
+
   if(check("jd_to_date:calendar:-2", -1, novas_jd_to_date(NOVAS_JD_J2000, -2, &y, &m, &d, &h))) n++;
   if(check("jd_to_date:calendar:2", -1, novas_jd_to_date(NOVAS_JD_J2000, 2, &y, &m, &d, &h))) n++;
   if(check("jd_to_date:nan", -1, novas_jd_to_date(NAN, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
-#if __STDC_VERSION__ >= 199901L
+#ifdef INFINITY
   if(check("jd_to_date:infinity", -1, novas_jd_to_date(INFINITY, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
 #endif
-  if(check("jd_to_date:large", -1, novas_jd_to_date(9.0e18, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
-  if(check("jd_to_date:small", -1, novas_jd_to_date(-9.0e18, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
+
+  if(check("jd_to_date:large", -1, novas_jd_to_date(lljd_min - 1.0, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, &h))) n++;
+  if(check("jd_to_date:small", -1, novas_jd_to_date(lljd_max + 1.0, NOVAS_ROMAN_CALENDAR, &y, &m, &d, &h))) n++;
 
   return n;
 }

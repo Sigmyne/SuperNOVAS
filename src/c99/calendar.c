@@ -21,7 +21,7 @@
 /// \cond PRIVATE
 
 /// [day] JD at 200 AD (1 Jan 200 AD, 12PM)
-#define LLJD_200AD  1721424LL
+#define LLJD_200AD  1794108LL
 
 /// [day] number of days in 400 years in the Gregorian calendar
 #define DAYS_IN_400_GREGORIAN_YEARS  146097LL
@@ -32,7 +32,7 @@
 
 /// [day] largest integer JD that can be converted to any calendar w/o integer overflow
 /// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD)
-#define LLJD_MAX (LLJD_200AD + (INT_MAX - 200LL) * DAYS_IN_400_GREGORIAN_YEARS / 400)
+#define LLJD_MAX (LLJD_200AD + (INT_MAX - 200LL + 1) * DAYS_IN_400_GREGORIAN_YEARS / 400 - 1)
 
 /// \endcond
 
@@ -94,16 +94,16 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
     return NAN;
   }
 
-  jd = day - 32123 + 1461LL * (year + 4800L + m14 / 12) / 4 + 367 * (month - 2 - m14 / 12 * 12) / 12;
+  jd = day - 32123 + 1461LL * (year + 4800LL + m14 / 12) / 4 + 367 * (month - 2 - m14 / 12 * 12) / 12;
   fjd = (hour - 12.0) / DAY_HOURS;
 
   if(calendar == NOVAS_ASTRONOMICAL_CALENDAR)
     calendar = (jd + fjd >= NOVAS_JD_START_GREGORIAN) ? NOVAS_GREGORIAN_CALENDAR : NOVAS_ROMAN_CALENDAR;
 
   if(calendar == NOVAS_GREGORIAN_CALENDAR)
-    jd -= 3 * ((year + 4900L + m14 / 12) / 100) / 4 - 48;  // Gregorian calendar reform
+    jd -= 3 * ((year + 4900LL + m14 / 12) / 100) / 4 - 48;    // Gregorian calendar reform
   else
-    jd += 10;                                                  // Julian (Roman) calendar
+    jd += 10;                                                 // Julian (Roman) calendar
 
   return jd + fjd;
 }
@@ -146,7 +146,7 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
 
   long long jd, k, m, n;
   int y, mo, d;
-  double djd, h;
+  double jd0, jd_day, h;
 
   if(calendar < NOVAS_ROMAN_CALENDAR || calendar > NOVAS_GREGORIAN_CALENDAR)
     return novas_error(-1, EINVAL, fn, "invalid calendar type: %d\n", calendar);
@@ -161,13 +161,15 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
   if(hour)
     *hour = NAN;
 
-  djd = tjd + 0.5;
-  if(djd != djd || djd < LLJD_MIN || djd > LLJD_MAX)
+  jd0 = tjd + 0.5;        // jd referred to 0h instead of 12h on day...
+  jd_day = floor(jd0);    // the day-only component of the JD date
+
+  if(jd_day != jd_day || jd_day < LLJD_MIN || jd_day > LLJD_MAX)
     return novas_error(-1, ERANGE, fn, "input Julian date is outside of conversion range: %12g", tjd);
 
-  jd = (long long) floor(djd);
+  jd = (long long) jd_day;
 
-  h = remainder(djd, 1.0) * DAY_HOURS;
+  h = remainder(jd0, 1.0) * DAY_HOURS;
   if(h < 0.0)
     h += 24.0;
 

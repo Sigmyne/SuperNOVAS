@@ -1226,6 +1226,11 @@ static int test_jd_to_date() {
   double h;
   double tdb = NOVAS_JD_J2000;
 
+  long long lljd_200AD = 1794108LL;
+  long long days400y = 146097L;
+  long long lljd_min = lljd_200AD + (INT_MIN - 200LL) * days400y / 400;
+  long long lljd_max = lljd_200AD + (INT_MAX - 200LL + 1) * days400y / 400 - 1;
+
   if(!is_ok("jd_to_date:J2000", novas_jd_to_date(NOVAS_JD_J2000, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, NULL))) n++;
   if(!is_equal("jd_to_date:J2000:year", y, 2000, 1e-6)) n++;
   if(!is_equal("jd_to_date:J2000:month", m, 1, 1e-6)) n++;
@@ -1256,6 +1261,11 @@ static int test_jd_to_date() {
   if(!is_ok("jd_to_date:m:null", novas_jd_to_date(tdb, NOVAS_ASTRONOMICAL_CALENDAR, &y, NULL, &d, &h))) n++;
   if(!is_ok("jd_to_date:d:null", novas_jd_to_date(tdb, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, NULL, &h))) n++;
   if(!is_ok("jd_to_date:h:null", novas_jd_to_date(tdb, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, NULL))) n++;
+
+  if(!is_ok("jd_to_date:min:gregorian", novas_jd_to_date(lljd_min, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, &h))) n++;
+  if(!is_equal("jd_to_date:min:gregorian:check", INT_MIN, y, 0.5)) n++;
+  if(!is_ok("jd_to_date:max:gregorian", novas_jd_to_date(lljd_max - 1, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, &h))) n++;
+  if(!is_equal("jd_to_date:min:gregorian:check", INT_MAX, y, 0.5)) n++;
 
   return n;
 }
