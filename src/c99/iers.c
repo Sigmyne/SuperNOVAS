@@ -243,10 +243,6 @@ static once_flag eop_mutex_once = ONCE_FLAG_INIT;       ///< One-time mutex init
 static void init_leap_mutex() {
   novas_init_lock(&leap_mutex);
 }
-
-static void init_eop_mutex() {
-  novas_init_lock(&eop_mutex);
-}
 #endif
 
 static void lock_leap() {
@@ -409,7 +405,11 @@ static iers_leap_entry *parse_leap_file(FILE *fp, long long *expiration) {
 // ---------------------------------------------------------------------------
 #ifndef WITHOUT_CURL
 
-
+#if !defined(NOVAS_LOCK_INITIALIZER) && __STDC_VERSION__ >= 201112L
+static void init_eop_mutex() {
+  novas_init_lock(&eop_mutex);
+}
+#endif
 
 static void lock_eop() {
 #if !defined(NOVAS_LOCK_INITIALIZER) && __STDC_VERSION__ >= 201112L
