@@ -644,29 +644,35 @@ static int novas_fetch_eop_from_file(iers_data_file *restrict file, double jd, n
   int i, status;
 
   lock_eop();
+
   if(file->head_bytes < 0) {
     if(checkout_eop_file_async(file, timeout_millis)) {
       unlock_eop();
-      return  novas_trace(fn, -1, 0);
+      return novas_trace(fn, -1, 0);
     }
   }
 
   offset = file->head_bytes + file->line_len * floor((jd - file->jd_start) / file->jd_step);
-
   status = novas_fetch_eop_chunk_async(&file->curl, novas_get_eop_url(file->series), offset, n * file->line_len, &data, timeout_millis);
-  unlock_eop();
-
-  prop_error(fn, status, 0);
+  if(status < 0) goto cleanup; // @suppress("Goto statement used")
 
   for(i = 0; i < n; i++) {
     time_t t = (jd - NOVAS_JD_J2000 + i * file->jd_step) * 86400L + UNIX_SECONDS_0UTC_1JAN2000;
 
     eop[i].leap = novas_lookup_leap(t);
-    if(eop[i].leap == NOVAS_INVALID_LEAP)
+    if(eop[i].leap == NOVAS_INVALID_LEAP) {
+      unlock_eop();
       return novas_trace(fn, -1, 0);
+    }
 
-    prop_error(fn, eop_parse_line(file, i, lines, &eop[i]), 0);
+    status = eop_parse_line(file, i, lines, &eop[i]);
+    if(status < 0) goto cleanup; // @suppress("Goto statement used")
   }
+
+  cleanup:
+
+  unlock_eop();
+  prop_error(fn, status, 0);
 
   return 0;
 }
