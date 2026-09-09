@@ -34,6 +34,11 @@
 /// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD)
 #define LLJD_MAX (LLJD_200AD + (INT_MAX - 200LL + 1) * DAYS_IN_400_GREGORIAN_YEARS / 400 - 1)
 
+/* Round integer division down for negative dates. The divisor must be positive. */
+static long long floor_div(long long value, long long divisor) {
+  return value / divisor - (value % divisor < 0);
+}
+
 /// \endcond
 
 
@@ -77,7 +82,6 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
   static const char *fn = "novas_jd_from_date";
   static const char md[13] = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-  const int m14 = month - 14;
   long long jd;
   double fjd;
 
@@ -94,14 +98,15 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
     return NAN;
   }
 
-  jd = day - 32123 + 1461LL * (year + 4800LL + m14 / 12) / 4 + 367 * (month - 2 - m14 / 12 * 12) / 12;
+  const int m14 = month - 14;
+  jd = day - 32123 + floor_div(1461LL * (year + 4800LL + m14 / 12), 4) + 367 * (month - 2 - m14 / 12 * 12) / 12;
   fjd = (hour - 12.0) / DAY_HOURS;
 
   if(calendar == NOVAS_ASTRONOMICAL_CALENDAR)
     calendar = (jd + fjd >= NOVAS_JD_START_GREGORIAN) ? NOVAS_GREGORIAN_CALENDAR : NOVAS_ROMAN_CALENDAR;
 
   if(calendar == NOVAS_GREGORIAN_CALENDAR)
-    jd -= 3 * ((year + 4900LL + m14 / 12) / 100) / 4 - 48;    // Gregorian calendar reform
+    jd -= floor_div(3 * floor_div(year + 4900LL + m14 / 12, 100), 4) - 48;    // Gregorian calendar reform
   else
     jd += 10;                                                 // Julian (Roman) calendar
 
@@ -174,22 +179,23 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
     h += 24.0;
 
   k = jd + 68569L;
-  n = 4 * k / 146097L;
 
   if(calendar == NOVAS_ASTRONOMICAL_CALENDAR)
     calendar = (tjd >= NOVAS_JD_START_GREGORIAN) ? NOVAS_GREGORIAN_CALENDAR : NOVAS_ROMAN_CALENDAR;
 
-  if(calendar == NOVAS_GREGORIAN_CALENDAR)
-    k -= (146097L * n + 3) / 4;
-  else
-    k -= (146100L * n + 3) / 4;
+  if(calendar == NOVAS_GREGORIAN_CALENDAR) {
+    n = floor_div(4 * k, 146097L);
+    k -= floor_div(146097L * n + 3, 4);
+  } else {
+    /* Use the Julian cycle and origin before calculating the year. */
+    k += 38;
+    n = floor_div(4 * k, 146100L);
+    k -= floor_div(146100L * n + 3, 4);
+  }
 
   m = 4000 * (k + 1) / 1461001L;
 
   k += 31 - 1461 * m / 4;
-
-  if(calendar == NOVAS_ROMAN_CALENDAR)
-    k += 38;
 
   mo = (int) (80 * k / 2447);
   d = (int) (k - 2447L * mo / 80);

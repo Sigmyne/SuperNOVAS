@@ -4429,14 +4429,20 @@ static int test_day_of_year() {
   // 1900-03-01, astronomical
   if(!is_equal("day_of_year:1900-03-01:astronomical", 60, novas_day_of_year(2415079.5, NOVAS_ASTRONOMICAL_CALENDAR, NULL), 1e-6)) n++;
 
+  // 1900-02-29, Roman/Julian
+  if(!is_equal("day_of_year:1900-02-29:roman", 60, novas_day_of_year(2415079.5 + 12, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
+
   // 1900-03-01, Roman/Julian
-  if(!is_equal("day_of_year:1900-03-01:roman", 61, novas_day_of_year(2415079.5 + 12, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
+  if(!is_equal("day_of_year:1900-03-01:roman", 61, novas_day_of_year(2415079.5 + 13, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
 
   // 2000-03-01
   if(!is_equal("day_of_year:2000-03-01", 61, novas_day_of_year(2451604.5, NOVAS_GREGORIAN_CALENDAR, NULL), 1e-6)) n++;
 
+  // 2000-02-29, Roman/Julian
+  if(!is_equal("day_of_year:2000-02-29:roman", 60, novas_day_of_year(2451604.5 + 12, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
+
   // 2000-03-01, Roman/Julian
-  if(!is_equal("day_of_year:2000-03-01:roman", 61, novas_day_of_year(2451604.5 + 12, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
+  if(!is_equal("day_of_year:2000-03-01:roman", 61, novas_day_of_year(2451604.5 + 13, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
 
   // 2004-03-01
   if(!is_equal("day_of_year:2004-03-01", 61, novas_day_of_year(2453065.5, NOVAS_GREGORIAN_CALENDAR, NULL), 1e-6)) n++;
