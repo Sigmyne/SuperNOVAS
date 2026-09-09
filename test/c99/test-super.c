@@ -1226,11 +1226,6 @@ static int test_jd_to_date() {
   double h;
   double tdb = NOVAS_JD_J2000;
 
-  long long lljd_200AD = 1794108LL;
-  long long days400y = 146097L;
-  long long lljd_min = lljd_200AD + (INT_MIN - 200LL) * days400y / 400;
-  long long lljd_max = lljd_200AD + (INT_MAX - 200LL + 1) * days400y / 400 - 1;
-
   if(!is_ok("jd_to_date:J2000", novas_jd_to_date(NOVAS_JD_J2000, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, NULL))) n++;
   if(!is_equal("jd_to_date:J2000:year", y, 2000, 1e-6)) n++;
   if(!is_equal("jd_to_date:J2000:month", m, 1, 1e-6)) n++;
@@ -1257,15 +1252,57 @@ static int test_jd_to_date() {
   if(!is_equal("jd_to_date:roman:month", m, 10, 1e-6)) n++;
   if(!is_equal("jd_to_date:romna:day", d, 4, 1e-6)) n++;
 
+  // leap boundaries...
+  // 1900-02-28 (Gregorian) / 1900-02-29 (Julian)
+  if(!is_ok("jd_to_date:1900-02-28:gregorian", novas_jd_to_date(2415078.5, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, NULL))) n++;
+  else if(!is_equal("jd_to_date:1900-02-28:gregorian:day", d, 28, 1e-6)) n++;
+  if(!is_ok("jd_to_date:1900-02-29:roman", novas_jd_to_date(2415078.5 + 13, NOVAS_ROMAN_CALENDAR, &y, &m, &d, NULL))) n++;
+  else if(!is_equal("jd_to_date:1900-02-29:roman:day", d, 29, 1e-6)) n++;
+
+  // 1900-03-01
+  if(!is_ok("jd_to_date:1900-03-01:gregorian", novas_jd_to_date(2415079.5, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, NULL))) n++;
+  else if(!is_equal("jd_to_date:1900-03-01:gregorian:day", d, 1, 1e-6)) n++;
+  if(!is_ok("jd_to_date:1900-03-01:roman", novas_jd_to_date(2415079.5 + 13, NOVAS_ROMAN_CALENDAR, &y, &m, &d, NULL))) n++;
+  else if(!is_equal("jd_to_date:1900-03-01:roman:day", d, 1, 1e-6)) n++;
+
+  // 2000-02-29
+  if(!is_ok("jd_to_date:2000-02-29:gregorian", novas_jd_to_date(2451603.5, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, NULL))) n++;
+  else if(!is_equal("jd_to_date:2000-02-29:gregorian:day", d, 29, 1e-6)) n++;
+  if(!is_ok("jd_to_date:2000-02-29:roman", novas_jd_to_date(2451603.5 + 13, NOVAS_ROMAN_CALENDAR, &y, &m, &d, NULL))) n++;
+  else if(!is_equal("jd_to_date:2000-02-29:roman:day", d, 29, 1e-6)) n++;
+
+  // 2000-03-01
+  if(!is_ok("jd_to_date:2000-03-01:gregorian", novas_jd_to_date(2451604.5, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, NULL))) n++;
+  else if(!is_equal("jd_to_date:2000-03-01:gregorian:day", d, 1, 1e-6)) n++;
+  if(!is_ok("jd_to_date:2000-03-01:roman", novas_jd_to_date(2451604.5 + 13, NOVAS_ROMAN_CALENDAR, &y, &m, &d, NULL))) n++;
+  else if(!is_equal("jd_to_date:2000-03-01:roman:day", d, 1, 1e-6)) n++;
+
   if(!is_ok("jd_to_date:y:null", novas_jd_to_date(tdb, NOVAS_ASTRONOMICAL_CALENDAR, NULL, &m, &d, &h))) n++;
   if(!is_ok("jd_to_date:m:null", novas_jd_to_date(tdb, NOVAS_ASTRONOMICAL_CALENDAR, &y, NULL, &d, &h))) n++;
   if(!is_ok("jd_to_date:d:null", novas_jd_to_date(tdb, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, NULL, &h))) n++;
   if(!is_ok("jd_to_date:h:null", novas_jd_to_date(tdb, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, NULL))) n++;
 
-  if(!is_ok("jd_to_date:min:gregorian", novas_jd_to_date(lljd_min, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, &h))) n++;
-  if(!is_equal("jd_to_date:min:gregorian:check", INT_MIN, y, 0.5)) n++;
-  if(!is_ok("jd_to_date:max:gregorian", novas_jd_to_date(lljd_max - 1, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, &h))) n++;
-  if(!is_equal("jd_to_date:min:gregorian:check", INT_MAX, y, 0.5)) n++;
+  // integer year limits...
+  if(!is_ok("jd_to_date:min:gregorian", novas_jd_to_date(NOVAS_MIN_CALENDAR_JD, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, &h))) n++;
+  else if(!is_equal("jd_to_date:min:gregorian:check", INT_MIN, y, 0.5)) n++;
+  if(!is_ok("jd_to_date:max:gregorian", novas_jd_to_date(NOVAS_MAX_CALENDAR_JD - 0.01, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, &h))) n++;
+  else if(!is_equal("jd_to_date:max:gregorian:check", INT_MAX, y, 0.5)) n++;
+
+  // 0 JD
+  if(!is_ok("jd_to_date:0:gregorian", novas_jd_to_date(0.0, NOVAS_ROMAN_CALENDAR, &y, &m, &d, NULL))) n++;
+  else {
+    if(!is_equal("jd_to_date:jd0:gregorian:day", y, -4712, 1e-6)) n++; // 4713 BC
+    if(!is_equal("jd_to_date:jd0:gregorian:day", m, 1, 1e-6)) n++;
+    if(!is_equal("jd_to_date:jd0:gregorian:day", d, 1, 1e-6)) n++;
+  }
+
+  // negative JD
+  if(!is_ok("jd_to_date:-1:gregorian", novas_jd_to_date(-1.0, NOVAS_ROMAN_CALENDAR, &y, &m, &d, NULL))) n++;
+  else {
+    if(!is_equal("jd_to_date:jd0:gregorian:day", y, -4713, 1e-6)) n++; // 4713 BC
+    if(!is_equal("jd_to_date:jd0:gregorian:day", m, 12, 1e-6)) n++;
+    if(!is_equal("jd_to_date:jd0:gregorian:day", d, 31, 1e-6)) n++;
+  }
 
   return n;
 }
@@ -1292,9 +1329,15 @@ static int test_jd_from_date() {
           novas_jd_from_date(NOVAS_ASTRONOMICAL_CALENDAR, 1582, 10, 15, 0.0),
           novas_jd_from_date(NOVAS_GREGORIAN_CALENDAR, 1582, 10, 15, 0.0), 1e-6)) n++;
 
-  if(!is_equal("jd_to_date:roman",
+  if(!is_equal("jd_from_date:roman",
           novas_jd_from_date(NOVAS_ROMAN_CALENDAR, 1582, 10, 14, 0.0),
           novas_jd_from_date(NOVAS_ASTRONOMICAL_CALENDAR, 1582, 10, 14, 0.0), 1e-6)) n++;
+
+  if(!is_equal("jd_from_date:min",
+           novas_jd_from_date(NOVAS_GREGORIAN_CALENDAR, INT_MIN, 1, 1, 0.0), NOVAS_MIN_CALENDAR_JD, 1.0)) n++;
+
+  if(!is_equal("jd_from_date:max",
+           novas_jd_from_date(NOVAS_GREGORIAN_CALENDAR, INT_MAX, 12, 31, 23.99), NOVAS_MAX_CALENDAR_JD, 1.0)) n++;
 
   return n;
 }
@@ -3827,17 +3870,6 @@ static int test_iso_timestamp() {
     }
   }
 
-  // Regression: a far out-of-range Julian Date yields a many-digit year. The
-  // formatted result must never exceed the internal 40-byte buffer; before the
-  // fix the snprintf() would-be length was used as a write index past it.
-  {
-    char big[64] = {'\0'};
-    int len;
-    if(!is_ok("iso_timestamp:oob:set_time", novas_set_time(NOVAS_UTC, 9.0e18, 0, 0.0, &time))) n++;
-    len = novas_iso_timestamp(&time, big, sizeof(big));
-    if(!is_ok("iso_timestamp:oob:bounds", len < 0 || len >= 40)) n++;
-  }
-
   return n;
 }
 
@@ -3921,17 +3953,6 @@ static int test_timestamp() {
   if(!is_ok("timestamp:round:check", strncmp("2000-01-02T", ts, 11))) {
     printf(" >>> got: %s', expected '2000-01-02'\n", ts);
     n++;
-  }
-
-  // Regression: a far out-of-range Julian Date yields a many-digit year. The
-  // formatted result must never exceed the internal 40-byte buffer; before the
-  // fix the snprintf() would-be length was used as a write index past it.
-  {
-    char big[64] = {'\0'};
-    int len;
-    if(!is_ok("timestamp:oob:set_time", novas_set_time(NOVAS_UTC, 9.0e18, 0, 0.0, &time))) n++;
-    len = novas_timestamp(&time, NOVAS_TDB, big, sizeof(big));
-    if(!is_ok("timestamp:oob:bounds", len < 0 || len >= 40)) n++;
   }
 
   return n;
@@ -4419,38 +4440,19 @@ static int test_day_of_year() {
   if(!is_equal("day_of_year:reform-1:roman", 277, novas_day_of_year(NOVAS_JD_START_GREGORIAN - 0.5, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
 
   // leaps
-  // 1900-03-01
+  if(!is_equal("day_of_year:1900-02-28", 59, novas_day_of_year(2415078.5, NOVAS_GREGORIAN_CALENDAR, NULL), 1e-6)) n++;
   if(!is_equal("day_of_year:1900-03-01", 60, novas_day_of_year(2415079.5, NOVAS_GREGORIAN_CALENDAR, NULL), 1e-6)) n++;
-
-  // leaps
-  // 1900-03-01
-  if(!is_equal("day_of_year:1900-03-01", 60, novas_day_of_year(2415079.5, NOVAS_ASTRONOMICAL_CALENDAR, NULL), 1e-6)) n++;
-
-  // 1900-03-01, astronomical
+  if(!is_equal("day_of_year:1900-02-28:astronomical", 59, novas_day_of_year(2415078.5, NOVAS_ASTRONOMICAL_CALENDAR, NULL), 1e-6)) n++;
   if(!is_equal("day_of_year:1900-03-01:astronomical", 60, novas_day_of_year(2415079.5, NOVAS_ASTRONOMICAL_CALENDAR, NULL), 1e-6)) n++;
-
-  // 1900-02-29, Roman/Julian
   if(!is_equal("day_of_year:1900-02-29:roman", 60, novas_day_of_year(2415079.5 + 12, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
-
-  // 1900-03-01, Roman/Julian
   if(!is_equal("day_of_year:1900-03-01:roman", 61, novas_day_of_year(2415079.5 + 13, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
-
-  // 2000-03-01
+  if(!is_equal("day_of_year:2000-02-29", 60, novas_day_of_year(2451603.5, NOVAS_GREGORIAN_CALENDAR, NULL), 1e-6)) n++;
   if(!is_equal("day_of_year:2000-03-01", 61, novas_day_of_year(2451604.5, NOVAS_GREGORIAN_CALENDAR, NULL), 1e-6)) n++;
-
-  // 2000-02-29, Roman/Julian
-  if(!is_equal("day_of_year:2000-02-29:roman", 60, novas_day_of_year(2451604.5 + 12, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
-
-  // 2000-03-01, Roman/Julian
+  if(!is_equal("day_of_year:2000-02-29:roman", 60, novas_day_of_year(2451603.5 + 13, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
   if(!is_equal("day_of_year:2000-03-01:roman", 61, novas_day_of_year(2451604.5 + 13, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
-
-  // 2004-03-01
+  if(!is_equal("day_of_year:2004-02-29", 60, novas_day_of_year(2453064.5, NOVAS_GREGORIAN_CALENDAR, NULL), 1e-6)) n++;
   if(!is_equal("day_of_year:2004-03-01", 61, novas_day_of_year(2453065.5, NOVAS_GREGORIAN_CALENDAR, NULL), 1e-6)) n++;
-
-  // 1500-03-01, astronomical
   if(!is_equal("day_of_year:1500-03-01:astronomical", 61, novas_day_of_year(2268992.5, NOVAS_ASTRONOMICAL_CALENDAR, NULL), 1e-6)) n++;
-
-  // 1500-03-01, Roman/Julian
   if(!is_equal("day_of_year:1500-03-01:roman", 61, novas_day_of_year(2268992.5, NOVAS_ROMAN_CALENDAR, NULL), 1e-6)) n++;
 
   return n;

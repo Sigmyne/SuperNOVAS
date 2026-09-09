@@ -510,9 +510,19 @@
 /// @ingroup refract
 #define NOVAS_DEFAULT_WAVELENGTH      0.55
 
-/// Minimum number of bytes for a timestamp
+/// Minimum number of bytes for a timestamp. This works for 1000 B.C.to 9999 A.D. For timestamps
+/// beyond that range you may need extra bytes.
 /// @since 1.6
+/// @sa NOVAS_MAX_TIMESTAMP_LEN
 #define NOVAS_TIMESTAMP_LEN           28
+
+/// Maxmimum number of bytes for a timestamp. All SuperNOVAS timestamps shall fit in a buffer
+/// of such size, even for extreme Gregorian years of `INT_MIN` or `INT_MAX`.
+/// @since 1.7.3
+/// @sa NOVAS_TIMESTAMP_LEN
+#define NOVAS_MAX_TIMESTAMP_LEN       35
+
+
 
 #ifndef COMPAT
 // If we are not in the strict compatibility mode, where constants are defined
@@ -3616,6 +3626,28 @@ int novas_lookup_leap(time_t t);
 #  define HOURANGLE           NOVAS_HOURANGLE
 #  define MAS                 ( 1e-3 * ASEC2RAD )
 #  define KMS                 NOVAS_KMS
+
+/// [day] number of days in 400 years in the Gregorian calendar
+#define DAYS_IN_400_GREGORIAN_YEARS   146097LL
+
+/// [day] JD at 200 AD (1 Jan 200 AD, 12PM)
+#define NOVAS_JD_200AD  1794108LL
+
+/// [day] lowest floating-point Juloan day that can be converted to any calendar w/o integer overflow
+/// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD). Note, that because of
+/// rounding and timescale adjustments, the actual lowest convertible value may be slightly above this
+/// nominal limit.
+/// @since 1.7.3
+#define NOVAS_MIN_CALENDAR_JD (NOVAS_JD_200AD + (INT_MIN - 200LL) * DAYS_IN_400_GREGORIAN_YEARS / 400 - 0.5)
+
+/// [day] largest floating-point JUlian day that can be converted to any calendar w/o integer overflow
+/// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD). Note, that because of
+/// rounding and timescale adjustments, the actual lowest convertible value may be slightly below this
+/// nominal limit.
+/// @since 1.7.3
+#define NOVAS_MAX_CALENDAR_JD (NOVAS_JD_200AD + (INT_MAX - 200LL + 1) * DAYS_IN_400_GREGORIAN_YEARS / 400 + 0.5)
+
+
 
 #endif /* _CONSTS_ */
 

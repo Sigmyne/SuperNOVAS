@@ -1274,6 +1274,12 @@ static int test_time() {
   if(check("time:set:scale:-1", -1, novas_set_time(-1, NOVAS_JD_J2000, 37, 0.11, &time))) n++;
   if(check("time:set:scale:hi", -1, novas_set_time(NOVAS_TIMESCALES, NOVAS_JD_J2000, 37, 0.11, &time))) n++;
 
+  if(check("time:set:lo", -1, novas_set_time(-1, NOVAS_MIN_CALENDAR_JD - 1.0, 37, 0.11, &time))) n++;
+  if(check("time:set:hi", -1, novas_set_time(NOVAS_TIMESCALES, NOVAS_MAX_CALENDAR_JD + 1.0, 37, 0.11, &time))) n++;
+
+  if(check("time:set:split:lo", -1, novas_set_split_time(-1, -1, NOVAS_MIN_CALENDAR_JD, 37, 0.11, &time))) n++;
+  if(check("time:set:split:hi", -1, novas_set_split_time(NOVAS_TIMESCALES, 1, NOVAS_MAX_CALENDAR_JD, 37, 0.11, &time))) n++;
+
   if(check_nan("time:get:time", novas_get_time(NULL, NOVAS_TT))) n++;
   if(check_nan("time:get:scale:-1", novas_get_time(&time, -1))) n++;
   if(check_nan("time:get:scale:hi", novas_get_time(&time, NOVAS_TIMESCALES))) n++;
@@ -2097,7 +2103,7 @@ static int test_jd_to_date() {
   long long lljd_200AD = 1794108LL;
   long long days400y = 146097L;
   long long lljd_min = lljd_200AD + (INT_MIN - 200LL) * days400y / 400;
-  long long lljd_max = lljd_200AD + (INT_MAX - 200LL + 1) * days400y / 400 - 1;
+  long long lljd_max = lljd_200AD + (INT_MAX - 200LL + 1) * days400y / 400;
 
   if(check("jd_to_date:calendar:-2", -1, novas_jd_to_date(NOVAS_JD_J2000, -2, &y, &m, &d, &h))) n++;
   if(check("jd_to_date:calendar:2", -1, novas_jd_to_date(NOVAS_JD_J2000, 2, &y, &m, &d, &h))) n++;
@@ -2106,8 +2112,8 @@ static int test_jd_to_date() {
   if(check("jd_to_date:infinity", -1, novas_jd_to_date(INFINITY, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
 #endif
 
-  if(check("jd_to_date:large", -1, novas_jd_to_date(lljd_min - 1.0, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, &h))) n++;
-  if(check("jd_to_date:small", -1, novas_jd_to_date(lljd_max + 1.0, NOVAS_ROMAN_CALENDAR, &y, &m, &d, &h))) n++;
+  if(check("jd_to_date:low", -1, novas_jd_to_date(lljd_min - 1.0, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, &h))) n++;
+  if(check("jd_to_date:hi", -1, novas_jd_to_date(lljd_max + 1.0, NOVAS_ROMAN_CALENDAR, &y, &m, &d, &h))) n++;
 
   return n;
 }

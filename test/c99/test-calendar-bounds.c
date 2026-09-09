@@ -134,7 +134,7 @@ static int test_bounds(void)
 {
     /* These are the proposed arithmetic limits, not a reference date algorithm. */
     long long min_day = 1794108LL + (INT_MIN - 200LL) * 146097LL / 400;
-    long long max_day = 1794108LL + (INT_MAX - 200LL + 1) * 146097LL / 400 - 1;
+    long long max_day = 1794108LL + (INT_MAX - 200LL + 1) * 146097LL / 400;
     double lower = (double) min_day - 0.5;
     double upper = (double) max_day + 0.5;
     enum novas_calendar_type calendars[] = {

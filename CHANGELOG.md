@@ -25,6 +25,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
    always appears in the commented header section before the leap entries in the IERS data products, so it is unlikely
    that normal leap list files will ever benefit from the change. (by csp456)
 
+ - #371: `novas_jd_to_date()` now checks that input JD date can be represented in a calendar format with an `int`-type 
+   year components in any calendar, and returns -1 with errno set to ERANGE when it cannot. This prevents garbage
+   output for ridiculous JD input values (such as more than 2 billion years from present day).
+   
+ - #373: Change `novas_jd_to_date()` and `novas_jd_from_date()` to work with negative JD dates also, with appropriately
+   modified integer division floor value. (by csp256 and attipaci).
+
+ - #373: Check for integer overflow in `novas_set_time()` / `novas_set_split_time()`, and return -1 with `errno`
+   set to `ERANGE` when the integer part of JD exceeds the `long` storage range.
+   
+ - #373: `novas_timestamp()`, and `novas_iso_timestamp()` now print "<invalid-time>" into buffer when date cannot
+   be converted into a calendar date representation.
+
 
 ## [1.7.2] - 2026-08-05
 

@@ -18,28 +18,21 @@
 #include "novas.h"
 
 
-/// \cond PRIVATE
-
-/// [day] JD at 200 AD (1 Jan 200 AD, 12PM)
-#define LLJD_200AD  1794108LL
-
-/// [day] number of days in 400 years in the Gregorian calendar
-#define DAYS_IN_400_GREGORIAN_YEARS  146097LL
-
-/// [day] lowest integer JD that can be converted to any calendar w/o integer overflow
-/// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD)
-#define LLJD_MIN (LLJD_200AD + (INT_MIN - 200LL) * DAYS_IN_400_GREGORIAN_YEARS / 400)
-
-/// [day] largest integer JD that can be converted to any calendar w/o integer overflow
-/// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD)
-#define LLJD_MAX (LLJD_200AD + (INT_MAX - 200LL + 1) * DAYS_IN_400_GREGORIAN_YEARS / 400 - 1)
-
-/* Round integer division down for negative dates. The divisor must be positive. */
+/**
+ * Integer division floor value. This is not a generic implementation, but one that is sufficient
+ * for being used in the scope of this file. Specifically, the following may prevent broader use:
+ *
+ *  1. The divisor must be positive. This implementation does handle negative divisors
+ *  2. The calculation may overflow if value - divisor exceeds the 64-bit limits of the
+ *     `long long` type. (This never happens in the local context).
+ *
+ *  @param value        the numerator value.
+ *  @param divisor      the denominator value. It _must_ be positive.
+ *  @return the integer value that is smaller or equal to the fraction value / divisor.
+ */
 static long long floor_div(long long value, long long divisor) {
   return value < 0 ? (value - divisor + 1) / divisor : value / divisor;
 }
-
-/// \endcond
 
 
 /**
@@ -169,8 +162,8 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
   jd0 = tjd + 0.5;        // jd referred to 0h instead of 12h on day...
   jd_day = floor(jd0);    // the day-only component of the JD date
 
-  if(jd_day != jd_day || jd_day < LLJD_MIN || jd_day > LLJD_MAX)
-    return novas_error(-1, ERANGE, fn, "input Julian date is outside of conversion range: %12g", tjd);
+  if(jd_day != jd_day || jd_day < NOVAS_MIN_CALENDAR_JD || jd_day > NOVAS_MAX_CALENDAR_JD)
+    return novas_error(-1, ERANGE, fn, "input JD %.16g is outside of range (%.16g:%.16g)", tjd, NOVAS_MIN_CALENDAR_JD, NOVAS_MAX_CALENDAR_JD);
 
   jd = (long long) jd_day;
 
