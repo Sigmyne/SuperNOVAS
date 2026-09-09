@@ -79,6 +79,13 @@ foreach(TEST ${TEST_PROGRAMS})
         # All other examples
         else()
             add_test(NAME ${TEST} COMMAND ${TEST})
+            if(${TEST} STREQUAL "test-eop-concurrency")
+                set_tests_properties(${TEST} PROPERTIES TIMEOUT 30)
+                foreach(SCENARIO same-date cache invalid-date missing-file malformed-file)
+                    add_test(NAME ${TEST}-${SCENARIO} COMMAND ${TEST} ${SCENARIO})
+                    set_tests_properties(${TEST}-${SCENARIO} PROPERTIES TIMEOUT 30)
+                endforeach()
+            endif()
         endif()
         
     else()
