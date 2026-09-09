@@ -36,7 +36,7 @@
 
 /* Round integer division down for negative dates. The divisor must be positive. */
 static long long floor_div(long long value, long long divisor) {
-  return value / divisor - (value % divisor < 0);
+  return value < 0 ? (value - divisor + 1) / divisor : value / divisor;
 }
 
 /// \endcond
