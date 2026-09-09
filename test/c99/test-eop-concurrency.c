@@ -61,12 +61,18 @@ static int configure_eop(void) {
   if(novas_set_eop_url(EOP_RAPID_IAU2000, 2020, "file://" RESOURCES "/finals.all.iau2000.txt"))
     return 1;
   if(mode == MISSING_FILE || mode == MALFORMED_FILE) {
+    // A C01 record has an invalid line length for the C04 parser.
     const char *url = mode == MISSING_FILE ? "file://" RESOURCES "/missing-eop-file.txt"
-          : "file://" RESOURCES "/leap-seconds.empty";
+          : "file://" RESOURCES "/C01-bad.txt";
     int expected_error = mode == MISSING_FILE ? EAGAIN : EBADMSG;
     // The URL remains selected when its initial checkout fails.
     int status = novas_set_eop_url(EOP_C04_IAU2000_0UTC, 2020, url);
-    return status != -1 || errno != expected_error;
+    int error = errno;
+    if(status != -1 || error != expected_error) {
+      fprintf(stderr, "EOP checkout: status %d/-1, errno %d/%d\n", status, error, expected_error);
+      return 1;
+    }
+    return 0;
   }
   return novas_set_eop_url(EOP_C04_IAU2000_0UTC, 2020, "file://" RESOURCES "/EOP_20u24_C04_one_file_1962-now.txt");
 }
