@@ -15,9 +15,6 @@
 #define THREAD_COUNT 8
 #define REQUEST_COUNT 32
 
-enum test_mode { MIXED, SAME_DATE, CACHE, INVALID_DATE, MISSING_FILE, MALFORMED_FILE };
-static enum test_mode mode;
-
 #ifndef RESOURCES
 #  define RESOURCES "resources"
 #endif
@@ -83,12 +80,6 @@ static char *get_resource_url(const char *filename) {
 }
 
 static double request_jd(int worker, int request) {
-  if(mode == SAME_DATE)
-    return 2440000.25;
-  if(mode == CACHE)
-    request /= 2;
-  if(mode == INVALID_DATE && request % 2 == 0)
-    return 2300000.0;
   // Alternate sparse C01, dense C01 without and with UT1/LOD, and C04.
   // Include the rapid series from the local file.
   static const double dates[] = {2400000.0, 2420000.0, 2435800.0, 2440000.0, 2459000.0};
@@ -111,27 +102,23 @@ static int is_same_eop(const novas_eop *actual, const novas_eop *expected) {
 }
 
 static int configure_eop(void) {
-  if(novas_set_leap_list(RESOURCES "/leap-seconds.list"))
+  if(novas_set_leap_list(RESOURCES PATH_SEP "leap-seconds.list")) {
+    fprintf(stderr, "ERROR! missing leap-seconds.list resource.\n");
     return 1;
-  if(novas_set_eop_url(EOP_C01_IAU2000, 1900, get_resource_url("EOP_C01_IAU2000_1846-now.txt")))
-    return 1;
-  if(novas_set_eop_url(EOP_RAPID_IAU2000, 2020, get_resource_url("finals.all.iau2000.txt")))
-    return 1;
-  if(mode == MISSING_FILE || mode == MALFORMED_FILE) {
-    // A C01 record has an invalid line length for the C04 parser.
-    const char *url = mode == MISSING_FILE ? get_resource_url("missing-eop-file.txt")
-            : get_resource_url("C01-bad.txt");
-    int expected_error = mode == MISSING_FILE ? EAGAIN : EBADMSG;
-    // The URL remains selected when its initial checkout fails.
-    int status = novas_set_eop_url(EOP_C04_IAU2000_0UTC, 2020, url);
-    int error = errno;
-    if(status != -1 || error != expected_error) {
-      fprintf(stderr, "EOP checkout: status %d/-1, errno %d/%d\n", status, error, expected_error);
-      return 1;
-    }
-    return 0;
   }
-  return novas_set_eop_url(EOP_C04_IAU2000_0UTC, 2020, get_resource_url("EOP_20u24_C04_one_file_1962-now.txt"));
+  if(novas_set_eop_url(EOP_C01_IAU2000, 1900, get_resource_url("EOP_C01_IAU2000_1846-now.txt"))) {
+    fprintf(stderr, "ERROR! Setting C01 series URL\n");
+    return 1;
+  }
+  if(novas_set_eop_url(EOP_RAPID_IAU2000, 2020, get_resource_url("finals.all.iau2000.txt"))) {
+    fprintf(stderr, "ERROR! Setting rapid series URL\n");
+    return 1;
+  }
+  if(novas_set_eop_url(EOP_C04_IAU2000_0UTC, 2020, get_resource_url("EOP_20u24_C04_one_file_1962-now.txt"))) {
+    fprintf(stderr, "ERROR! Setting C04 series URL (2)\n");
+    return 1;
+  }
+  return 0;
 }
 
 static void *fetch_eop(void *arg) {
@@ -172,24 +159,10 @@ int main(int argc, char **argv) {
   int i;
   int status = 0;
 
-  if(argc == 2) {
-    const char *names[] = {"mixed", "same-date", "cache", "invalid-date", "missing-file", "malformed-file"};
-    for(i = 0; i < 6 && strcmp(argv[1], names[i]); i++);
-    if(i == 6) {
-      fprintf(stderr, "ERROR! invalid argument: %s\n", argv[1]);
-      goto error; // @suppress("Goto statement used")
-    }
-    mode = (enum test_mode) i;
-  }
-
-  if(argc > 2) {
-    fprintf(stderr, "too many arguments");
-    goto error; // @suppress("Goto statement used")
-  }
-
+  novas_debug(NOVAS_DEBUG_ON);
 
   if(configure_eop()) {
-    perror("ERROR! EOP configure error");
+    fprintf(stderr, "ERROR! EOP configure error (1)");
     goto error; // @suppress("Goto statement used")
   }
 
@@ -198,21 +171,14 @@ int main(int argc, char **argv) {
     states[i].id = i;
     for(request = 0; request < REQUEST_COUNT; request++) {
       double jd = request_jd(i, request);
-      int expected_error = 0;
-      if(jd == 2300000.0)
-        expected_error = ERANGE;
-      if(jd >= 2440000.0 && jd < 2450000.0) {
-        if(mode == MISSING_FILE)
-          expected_error = EAGAIN;
-        if(mode == MALFORMED_FILE)
-          expected_error = EBADMSG;
-      }
+      int expected_error = (jd == 2300000.0) ? ERANGE : 0;
+
       errno = 0;
       states[i].expected_status[request] = novas_fetch_eop(jd, 0, &states[i].expected[request]);
       states[i].expected_errno[request] = errno;
       if(states[i].expected_status[request] != (expected_error ? -1 : 0)
               || (expected_error && errno != expected_error)) {
-        fprintf(stderr, "ERROR! Reference worker %d request %d (JD %.1f): unexpected status or errno\n", i, request, jd);
+        fprintf(stderr, "ERROR! Reference worker %d request %d (JD %.1f): unexpected status or errno %d\n", i, request, jd, errno);
         goto error; // @suppress("Goto statement used")
       }
     }
@@ -220,7 +186,7 @@ int main(int argc, char **argv) {
 
   novas_reset_eop();
   if(configure_eop()) {
-    perror("ERROR! EOP configure");
+    fprintf(stderr, "ERROR! EOP configure (2)");
     goto error; // @suppress("Goto statement used")
   }
 

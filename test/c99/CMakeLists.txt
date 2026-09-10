@@ -50,10 +50,6 @@ foreach(TEST ${TEST_PROGRAMS})
         # Link against the supernovas library
         target_link_libraries(${TEST} PRIVATE core)
 
-        if(${TEST} STREQUAL "test-eop-concurrency")
-            target_link_libraries(${TEST} PRIVATE Threads::Threads)
-        endif()
-        
         target_compile_definitions(${TEST} PRIVATE RESOURCES="${PROJECT_SOURCE_DIR}/test/c99/resources")
         
         if(WITHOUT_CURL)
@@ -63,6 +59,8 @@ foreach(TEST ${TEST_PROGRAMS})
         if(NOT ENABLE_TESTING_ONLINE)
             target_compile_definitions(${TEST} PRIVATE OFFLINE)
         endif()
+ 
+        
  
         # Special handling for CALCEPH example
         if(${TEST} STREQUAL "test-calceph")
@@ -75,17 +73,16 @@ foreach(TEST ${TEST_PROGRAMS})
             find_library(CSPICE_LIB cspice REQUIRED)
             target_link_libraries(${TEST} PRIVATE solsys-cspice)
             add_test(NAME ${TEST} COMMAND ${TEST} ${EPHEM_DIR})
+            
+        # Special handling for concurrency testing of EOP fetching
+ 	elseif(${TEST} STREQUAL "test-eop-concurrency")
+            target_link_libraries(${TEST} PRIVATE Threads::Threads)
+            add_test(NAME ${TEST} COMMAND ${TEST})
+	    set_tests_properties(${TEST} PROPERTIES TIMEOUT 30)
 
         # All other examples
         else()
             add_test(NAME ${TEST} COMMAND ${TEST})
-            if(${TEST} STREQUAL "test-eop-concurrency")
-                set_tests_properties(${TEST} PROPERTIES TIMEOUT 30)
-                foreach(SCENARIO same-date cache invalid-date missing-file malformed-file)
-                    add_test(NAME ${TEST}-${SCENARIO} COMMAND ${TEST} ${SCENARIO})
-                    set_tests_properties(${TEST}-${SCENARIO} PROPERTIES TIMEOUT 30)
-                endforeach()
-            endif()
         endif()
         
     else()

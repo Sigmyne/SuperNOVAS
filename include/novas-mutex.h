@@ -22,7 +22,7 @@
 #  define NOVAS_LOCK_INITIALIZER  PTHREAD_MUTEX_INITIALIZER
 #  define THREAD_SAFE             1
 
-typedef pthread_mutex_t       lock_type;
+typedef pthread_mutex_t           lock_type;
 
 #elif __STDC_VERSION__ >= 201112L
 #  include <threads.h>
