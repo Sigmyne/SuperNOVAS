@@ -64,7 +64,8 @@ static long long floor_div(long long value, long long divisor) {
  * @param day       [day] Day of month [1:31]
  * @param hour      [hr] Hour of day [0:24]
  * @return          [day] the fractional Julian day for the input calendar date, or NAN if the
- *                  calendar is invalid or the month or day components are out of range.
+ *                  calendar is invalid or the month or day components are out of range, or if
+ *                  the hour component is NAN.
  *
  * @author Attila Kovacs
  * @since 1.3
@@ -329,7 +330,8 @@ int novas_day_of_week(double tjd) {
  *                  NOVAS_GREGORIAN_CALENDAR, or NOVAS_ROMAN_CALENDAR.
  * @param[out] year [yr] Optional pointer to which to return the calendar year. It may be NULL if
  *                  not required.
- * @return          [1:366] The day-of-year index in the same timescale as the input date.
+ * @return          [1:366] The day-of-year index in the same timescale as the input date, or -1
+ *                  if the date is undetermined because of NAN input or integer overflow.
  *
  * @since 1.4
  * @author Attila Kovacs

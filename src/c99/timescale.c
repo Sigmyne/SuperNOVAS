@@ -785,7 +785,9 @@ double novas_get_time(const novas_timespec *restrict time, enum novas_timescale 
  * @param[out] ijd    [day] The integer part of the Julian date in the requested timescale. It may
  *                    be NULL if not required.
  * @return            [day] The fractional part of the Julian date in the requested timescale or
- *                    NAN if the time argument is NULL (ijd will be set to -1 also).
+ *                    NAN if the time argument is NULL (errno set to EINVAL) or if the integer part
+ *                    overflows the long integer range (errno set to ERANGE). In case of error ijd
+ *                    will be set to -1 also.
  *
  * @since 1.1
  * @author Attila Kovacs
