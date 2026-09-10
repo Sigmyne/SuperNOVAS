@@ -9,12 +9,31 @@
  */
 
 #include <errno.h>
+#include <limits.h>
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
 /// \endcond
 
 #include "novas.h"
+
+
+/**
+ * Integer division floor value. This is not a generic implementation, but one that is sufficient
+ * for being used in the scope of this file. Specifically, the following may prevent broader use:
+ *
+ *  1. The divisor must be positive. This implementation does handle negative divisors
+ *  2. The calculation may overflow if value - divisor exceeds the 64-bit limits of the
+ *     `long long` type. (This never happens in the local context).
+ *
+ *  @param value        the numerator value.
+ *  @param divisor      the denominator value. It _must_ be positive.
+ *  @return the integer value that is smaller or equal to the fraction value / divisor.
+ */
+static long long floor_div(long long value, long long divisor) {
+  return value < 0 ? (value - divisor + 1) / divisor : value / divisor;
+}
+
 
 /**
  * Returns the Julian day for a given calendar date. Input time value can be based on any
@@ -45,7 +64,8 @@
  * @param day       [day] Day of month [1:31]
  * @param hour      [hr] Hour of day [0:24]
  * @return          [day] the fractional Julian day for the input calendar date, or NAN if the
- *                  calendar is invalid or the month or day components are out of range.
+ *                  calendar is invalid or the month or day components are out of range, or if
+ *                  the hour component is NAN.
  *
  * @author Attila Kovacs
  * @since 1.3
@@ -56,7 +76,7 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
   static const char *fn = "novas_jd_from_date";
   static const char md[13] = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-  long jd, m14 = month - 14L;
+  long long jd;
   double fjd;
 
   if(calendar < NOVAS_ROMAN_CALENDAR || calendar > NOVAS_GREGORIAN_CALENDAR)
@@ -72,16 +92,17 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
     return NAN;
   }
 
-  jd = day - 32123L + 1461L * (year + 4800L + m14 / 12L) / 4L + 367L * (month - 2L - m14 / 12L * 12L) / 12L;
+  const int m14 = month - 14;
+  jd = day - 32123 + floor_div(1461LL * (year + 4800LL + m14 / 12), 4) + 367 * (month - 2 - m14 / 12 * 12) / 12;
   fjd = (hour - 12.0) / DAY_HOURS;
 
   if(calendar == NOVAS_ASTRONOMICAL_CALENDAR)
     calendar = (jd + fjd >= NOVAS_JD_START_GREGORIAN) ? NOVAS_GREGORIAN_CALENDAR : NOVAS_ROMAN_CALENDAR;
 
   if(calendar == NOVAS_GREGORIAN_CALENDAR)
-    jd -= 3L * ((year + 4900L + m14 / 12L) / 100L) / 4L - 48L;  // Gregorian calendar reform
+    jd -= floor_div(3 * floor_div(year + 4900LL + m14 / 12, 100), 4) - 48;    // Gregorian calendar reform
   else
-    jd += 10L;                                                  // Julian (Roman) calendar
+    jd += 10;                                                 // Julian (Roman) calendar
 
   return jd + fjd;
 }
@@ -109,8 +130,9 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
  * @param[out] month   [month] Calendar month [1:12]. It may be NULL if not required.
  * @param[out] day     [day] Day of the month [1:31]. It may be NULL if not required.
  * @param[out] hour    [h] Hour of day [0:24]. It may be NULL if not required.
- * @return             0 if successful, or else -1 if the calendar is invalid (errno will be set
- *                     to EINVAL).
+ * @return             0 if successful, or else -1 if the calendar is invalid (`errno` will be set
+ *                     to `EINVAL`) or the Julian date is outside the supported range (`errno` will
+ *                     be set to `ERANGE`).
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -119,12 +141,14 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
  */
 int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restrict year, int *restrict month,
         int *restrict day, double *restrict hour) {
-  long jd, k, m, n;
+  static const char *fn = "novas_jd_to_date";
+
+  long long jd, k, m, n;
   int y, mo, d;
-  double djd, h;
+  double jd0, jd_day, h;
 
   if(calendar < NOVAS_ROMAN_CALENDAR || calendar > NOVAS_GREGORIAN_CALENDAR)
-    return novas_error(-1, EINVAL, "novas_jd_to_date", "invalid calendar type: %d\n", calendar);
+    return novas_error(-1, EINVAL, fn, "invalid calendar type: %d\n", calendar);
 
   // Default return values
   if(year)
@@ -136,37 +160,43 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
   if(hour)
     *hour = NAN;
 
-  djd = tjd + 0.5;
-  jd = (long) floor(djd);
+  jd0 = tjd + 0.5;        // jd referred to 0h instead of 12h on day...
+  jd_day = floor(jd0);    // the day-only component of the JD date
 
-  h = remainder(djd, 1.0) * DAY_HOURS;
+  if(jd_day != jd_day || jd_day < NOVAS_MIN_CALENDAR_JD || jd_day > NOVAS_MAX_CALENDAR_JD)
+    return novas_error(-1, ERANGE, fn, "input JD %.16g is outside of range (%.16g:%.16g)", tjd, NOVAS_MIN_CALENDAR_JD, NOVAS_MAX_CALENDAR_JD);
+
+  jd = (long long) jd_day;
+
+  h = remainder(jd0, 1.0) * DAY_HOURS;
   if(h < 0.0)
     h += 24.0;
 
   k = jd + 68569L;
-  n = 4L * k / 146097L;
 
   if(calendar == NOVAS_ASTRONOMICAL_CALENDAR)
     calendar = (tjd >= NOVAS_JD_START_GREGORIAN) ? NOVAS_GREGORIAN_CALENDAR : NOVAS_ROMAN_CALENDAR;
 
-  if(calendar == NOVAS_GREGORIAN_CALENDAR)
-    k -= (146097L * n + 3L) / 4L;
-  else
-    k -= (146100L * n + 3L) / 4L;
+  if(calendar == NOVAS_GREGORIAN_CALENDAR) {
+    n = floor_div(4 * k, 146097L);
+    k -= floor_div(146097L * n + 3, 4);
+  } else {
+    /* Use the Julian cycle and origin before calculating the year. */
+    k += 38;
+    n = floor_div(4 * k, 146100L);
+    k -= floor_div(146100L * n + 3, 4);
+  }
 
-  m = 4000L * (k + 1L) / 1461001L;
+  m = 4000 * (k + 1) / 1461001L;
 
-  k += 31L - 1461L * m / 4L;
+  k += 31 - 1461 * m / 4;
 
-  if(calendar == NOVAS_ROMAN_CALENDAR)
-    k += 38L;
+  mo = (int) (80 * k / 2447);
+  d = (int) (k - 2447L * mo / 80);
+  k = mo / 11;
 
-  mo = (int) (80L * k / 2447L);
-  d = (int) (k - 2447L * (long) mo / 80L);
-  k = mo / 11L;
-
-  mo = (int) ((long) mo + 2L - 12L * k);
-  y = (int) (100L * (n - 49L) + m + k);
+  mo = (int) (mo + 2 - 12 * k);
+  y = (int) (100 * (n - 49) + m + k);
 
   if(year)
     *year = y;
@@ -300,7 +330,8 @@ int novas_day_of_week(double tjd) {
  *                  NOVAS_GREGORIAN_CALENDAR, or NOVAS_ROMAN_CALENDAR.
  * @param[out] year [yr] Optional pointer to which to return the calendar year. It may be NULL if
  *                  not required.
- * @return          [1:366] The day-of-year index in the same timescale as the input date.
+ * @return          [1:366] The day-of-year index in the same timescale as the input date, or -1
+ *                  if the date is undetermined because of NAN input or integer overflow.
  *
  * @since 1.4
  * @author Attila Kovacs

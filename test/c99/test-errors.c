@@ -13,6 +13,7 @@
 #include <errno.h>
 #include <math.h>
 #include <string.h>
+#include <limits.h>
 
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
 #include "novas.h"
@@ -1270,8 +1271,14 @@ static int test_time() {
   long ijd = 0;
 
   if(check("time:set:time", -1, novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 37, 0.11, NULL))) n++;
-  if(check("time:set:scale:-1", -1, novas_set_time(-1, NOVAS_JD_J2000, 37, 0.11, &time))) n++;
+  if(check("time:set:scale:-1", -1, novas_set_time((enum novas_timescale) -1, NOVAS_JD_J2000, 37, 0.11, &time))) n++;
   if(check("time:set:scale:hi", -1, novas_set_time(NOVAS_TIMESCALES, NOVAS_JD_J2000, 37, 0.11, &time))) n++;
+
+  if(check("time:set:long_min-", -1, novas_set_time(NOVAS_TT, LONG_MIN - 10000.0, 37, 0.11, &time))) n++;
+  if(check("time:set:long_max+", -1, novas_set_time(NOVAS_TT, LONG_MAX + 10000.0, 37, 0.11, &time))) n++;
+
+  if(check("time:set:long_max:timescale", -1, novas_set_time(NOVAS_UTC, LONG_MAX - 10000, INT_MAX, 0.0, &time))) n++;
+  if(check("time:set:long_min:timescale", -1, novas_set_time(NOVAS_UTC, LONG_MIN, INT_MIN, 0.0, &time))) n++;
 
   if(check_nan("time:get:time", novas_get_time(NULL, NOVAS_TT))) n++;
   if(check_nan("time:get:scale:-1", novas_get_time(&time, -1))) n++;
@@ -2093,8 +2100,20 @@ static int test_jd_to_date() {
   int y, m, d;
   double h;
 
+  long long lljd_200AD = 1794108LL;
+  long long days400y = 146097L;
+  long long lljd_min = lljd_200AD + (INT_MIN - 200LL) * days400y / 400;
+  long long lljd_max = lljd_200AD + (INT_MAX - 200LL + 1) * days400y / 400;
+
   if(check("jd_to_date:calendar:-2", -1, novas_jd_to_date(NOVAS_JD_J2000, -2, &y, &m, &d, &h))) n++;
   if(check("jd_to_date:calendar:2", -1, novas_jd_to_date(NOVAS_JD_J2000, 2, &y, &m, &d, &h))) n++;
+  if(check("jd_to_date:nan", -1, novas_jd_to_date(NAN, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
+#ifdef INFINITY
+  if(check("jd_to_date:infinity", -1, novas_jd_to_date(INFINITY, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, &h))) n++;
+#endif
+
+  if(check("jd_to_date:low", -1, novas_jd_to_date(lljd_min - 1.0, NOVAS_GREGORIAN_CALENDAR, &y, &m, &d, &h))) n++;
+  if(check("jd_to_date:hi", -1, novas_jd_to_date(lljd_max + 1.0, NOVAS_ROMAN_CALENDAR, &y, &m, &d, &h))) n++;
 
   return n;
 }
@@ -2160,19 +2179,34 @@ static int test_date_scale() {
 
 static int test_iso_timestamp() {
   int n = 0;
-  char buf[30] = {'\0'};
+  char buf[40] = {'\0'};
   novas_timespec time = NOVAS_TIMESPEC_INIT;
 
   if(check("iso_timestamp:time:null", -1, novas_iso_timestamp(NULL, buf, sizeof(buf)))) n++;
   if(check("iso_timestamp:buf:null", -1, novas_iso_timestamp(&time, NULL, sizeof(buf)))) n++;
   if(check("iso_timestamp:len:0", -1, novas_iso_timestamp(&time, buf, 0))) n++;
 
+  time.fjd_tt = NAN;
+  if(check("iso_timestamp:nan", -1, novas_iso_timestamp(&time, buf, sizeof(buf)))) n++;
+
+  time.ijd_tt = NOVAS_MIN_CALENDAR_JD;
+  time.fjd_tt = -1.0;
+  if(check("iso_timestamp:low", -1, novas_iso_timestamp(&time, buf, sizeof(buf)))) n++;
+
+  time.ijd_tt = LONG_MIN;
+  time.fjd_tt = -1e6;
+  if(check("iso_timestamp:long_min-", -1, novas_iso_timestamp(&time, buf, sizeof(buf)))) n++;
+
+  time.ijd_tt = LONG_MAX;
+  time.fjd_tt = 1e6;
+  if(check("iso_timestamp:long_max+", -1, novas_iso_timestamp(&time, buf, sizeof(buf)))) n++;
+
   return n;
 }
 
 static int test_timestamp() {
   int n = 0;
-  char buf[30] = {'\0'};
+  char buf[40] = {'\0'};
   novas_timespec time = NOVAS_TIMESPEC_INIT;
 
   if(check("timestamp:time:null", -1, novas_timestamp(NULL, NOVAS_UTC, buf, sizeof(buf)))) n++;
@@ -2180,6 +2214,21 @@ static int test_timestamp() {
   if(check("timestamp:time:scale:hi", -1, novas_timestamp(NULL, NOVAS_TIMESCALES, buf, sizeof(buf)))) n++;
   if(check("timestamp:buf:null", -1, novas_timestamp(&time, NOVAS_UTC, NULL, sizeof(buf)))) n++;
   if(check("timestamp:len:0", -1, novas_timestamp(&time, NOVAS_UTC, buf, 0))) n++;
+
+  time.fjd_tt = NAN;
+  if(check("timestamp:nan", -1, novas_timestamp(&time, NOVAS_UTC, buf, sizeof(buf)))) n++;
+
+  time.ijd_tt = NOVAS_MIN_CALENDAR_JD;
+  time.fjd_tt = -1.0;
+  if(check("timestamp:low", -1, novas_timestamp(&time, NOVAS_UTC, buf, sizeof(buf)))) n++;
+
+  time.ijd_tt = LONG_MIN;
+  time.fjd_tt = -1e6;
+  if(check("timestamp:long_min-", -1, novas_timestamp(&time, NOVAS_UTC, buf, sizeof(buf)))) n++;
+
+  time.ijd_tt = LONG_MAX;
+  time.fjd_tt = 1e6;
+  if(check("timestamp:long_max+", -1, novas_timestamp(&time, NOVAS_UTC, buf, sizeof(buf)))) n++;
 
   return n;
 }

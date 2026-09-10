@@ -17,6 +17,7 @@
 #include <errno.h>
 #include <math.h>
 #include <time.h>
+#include <limits.h>
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__      ///< Use definitions meant for internal use by SuperNOVAS only
@@ -607,7 +608,7 @@ int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, i
   static const char *fn = "novas_set_split_time";
 
   long ifjd;
-  double dt = 0.0;
+  double dt = 0.0, floor_jd;
 
   if(!time)
     return novas_error(-1, EINVAL, fn, "NULL output time structure");
@@ -628,12 +629,16 @@ int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, i
     }
   }
 
+  if(fjd < (double) LONG_MIN || fjd >= (double) LONG_MAX)
+    return novas_error(-1, ERANGE, fn, "fractional JD %13g is outside of long integer range", fjd);
+
   time->tt2tdb = NAN;
   time->dut1 = dut1;
   time->ut1_to_tt = leap - dut1 + DTA;
 
   // Normalized split, s.t. fjd is fractional day [0:1)
   ifjd = (long) floor(fjd);
+
   time->ijd_tt = ijd + ifjd;
   time->fjd_tt = fjd - ifjd;
 
@@ -641,9 +646,14 @@ int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, i
     time->tt2tdb = tt2tdb_hp(ijd + fjd);
 
   fjd -= tt_offset(time, timescale) / DAY;
+  floor_jd = ijd + floor(fjd);
+
+  if(floor_jd < (double) LONG_MIN || floor_jd >= (double) LONG_MAX)
+    return novas_error(-1, ERANGE, fn, "JD %13g is outside of long integer range", floor_jd);
 
   // Re-split after fjd adjustment.
   ifjd = (long) floor(fjd);
+
   time->ijd_tt = ijd + ifjd;
   time->fjd_tt = fjd - ifjd;
 
@@ -775,7 +785,9 @@ double novas_get_time(const novas_timespec *restrict time, enum novas_timescale 
  * @param[out] ijd    [day] The integer part of the Julian date in the requested timescale. It may
  *                    be NULL if not required.
  * @return            [day] The fractional part of the Julian date in the requested timescale or
- *                    NAN if the time argument is NULL (ijd will be set to -1 also).
+ *                    NAN if the time argument is NULL (errno set to EINVAL) or if the integer part
+ *                    overflows the long integer range (errno set to ERANGE). In case of error ijd
+ *                    will be set to -1 also.
  *
  * @since 1.1
  * @author Attila Kovacs
@@ -784,7 +796,7 @@ double novas_get_time(const novas_timespec *restrict time, enum novas_timescale 
  */
 double novas_get_split_time(const novas_timespec *restrict time, enum novas_timescale timescale, long *restrict ijd) {
   static const char *fn = "novas_get_split_time";
-  double f;
+  double f, floor_f;
 
   if(ijd) *ijd = -1;
 
@@ -798,20 +810,17 @@ double novas_get_split_time(const novas_timespec *restrict time, enum novas_time
     return NAN;
   }
 
-  if(ijd)
-    *ijd = time->ijd_tt;
-
   f = time->fjd_tt + tt_offset(time, timescale) / DAY;
+  floor_f = floor(f);
+  f -= floor_f;
 
-  if(f < 0.0) {
-    f += 1.0;
-    if(ijd)
-      (*ijd)--;
-  }
-  else if(f > 1.0) {
-    f -= 1.0;
-    if(ijd)
-      (*ijd)++;
+  if(ijd) {
+    double djd = time->ijd_tt + floor_f;
+    if(djd < (double) LONG_MIN || djd >= (double) LONG_MAX) {
+      novas_set_errno(ERANGE, fn, "long integer overflow: jd = %.13g", djd);
+      return NAN;
+    }
+    *ijd = time->ijd_tt + (long) floor_f;
   }
 
   return f;
@@ -1147,8 +1156,16 @@ double novas_date_scale(const char *restrict date, enum novas_timescale *restric
 }
 
 static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *buf) {
+  static const char *fn = "timestamp";
+  static const char *invalid_time_str = "<invalid_time>";
+
   long dd, ms;
   int y = 0, M = 0, d = 0, h, m, s, n;
+
+  if(isnan(fjd)) {
+    novas_snprintf(buf, NOVAS_MAX_TIMESTAMP_LEN, "%s", invalid_time_str);
+    return novas_trace(fn, -1, 0);
+  }
 
   // fjd -> [-0.5:0.5) range
   dd = (long) floor(fjd + 0.5);
@@ -1163,7 +1180,10 @@ static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *b
   }
 
   // Date at 12pm of the same day
-  novas_jd_to_date(ijd, cal, &y, &M, &d, NULL);
+  if(novas_jd_to_date(ijd, cal, &y, &M, &d, NULL) < 0) {
+    novas_snprintf(buf, NOVAS_MAX_TIMESTAMP_LEN, "%s", invalid_time_str);
+    return novas_trace(fn, -1, 0);
+  }
 
   // Time breakdown
   h = (int) (ms / HOUR_MILLIS);
@@ -1175,11 +1195,8 @@ static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *b
   s = (int) (ms / 1000L);
   ms -= 1000L * s;
 
-  // snprintf() returns the length it _would_ have written; clamp to the number of characters
-  // actually placed in buf (at most NOVAS_TIMESTAMP_LEN - 1) so callers cannot index out of
-  // bounds when an out-of-range date produces a many-digit year.
-  n = novas_snprintf(buf, NOVAS_TIMESTAMP_LEN, "%04d-%02d-%02dT%02d:%02d:%02d.%03d", y, M, d, h, m, s, (int) ms);
-  return n < NOVAS_TIMESTAMP_LEN ? n : (NOVAS_TIMESTAMP_LEN - 1);
+  n = novas_snprintf(buf, NOVAS_MAX_TIMESTAMP_LEN, "%04d-%02d-%02dT%02d:%02d:%02d.%03d", y, M, d, h, m, s, (int) ms);
+  return n < NOVAS_MAX_TIMESTAMP_LEN ? n : (NOVAS_MAX_TIMESTAMP_LEN - 1);
 }
 
 /**
@@ -1205,7 +1222,10 @@ static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *b
  *                  `maxlen`, then it will be truncated to fit in the allotted space, including a
  *                  termination character.
  * @return          the number of characters printed into the string buffer, not including the
- *                  termination. As such it is at most `maxlen - 1`.
+ *                  termination. As such it is at most `maxlen - 1`. The call may also return -1 if
+ *                  the time cannot be represented by a timestamp (e.g. because of integer year
+ *                  overflow, or invalid time specification). In case of error, errno will be set
+ *                  to indicate the error, and "<invalid-time>" is printed into the buffer.
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -1233,6 +1253,8 @@ int novas_iso_timestamp(const novas_timespec *restrict time, char *restrict dst,
 
   fjd = novas_get_split_time(time, NOVAS_UTC, &ijd);
   l = timestamp(ijd, fjd, NOVAS_GREGORIAN_CALENDAR, buf);
+  if(l < 0)
+    return novas_trace(fn, -1, 0);
 
   // Add 'Z' to indicate UTC time zone.
   buf[l++] = 'Z';
@@ -1275,7 +1297,10 @@ int novas_iso_timestamp(const novas_timespec *restrict time, char *restrict dst,
  *                  `maxlen`, then it will be truncated to fit in the allotted space, including a
  *                  termination character.
  * @return          the number of characters printed into the string buffer, not including the
- *                  termination. As such it is at most `maxlen - 1`.
+ *                  termination. As such it is at most `maxlen - 1`. The call may also return -1 if
+ *                  the time cannot be represented by a timestamp (e.g. because of integer year
+ *                  overflow, or invalid time specification). In case of error, errno will be set
+ *                  to indicate the error, and "<invalid-time>" is printed into the buffer.
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -1303,6 +1328,8 @@ int novas_timestamp(const novas_timespec *restrict time, enum novas_timescale sc
 
   fjd = novas_get_split_time(time, scale, &ijd);
   n = timestamp(ijd, fjd, NOVAS_ASTRONOMICAL_CALENDAR, buf);
+  if(n < 0)
+      return novas_trace(fn, -1, 0);
 
   buf[n++] = ' ';
 
