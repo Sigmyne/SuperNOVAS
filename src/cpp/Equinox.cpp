@@ -256,6 +256,10 @@ enum novas_reference_system Equinox::system_type() const {
  *
  * @since 1.6
  */
+#if defined(__clang__)
+// the use of an out-of-range enum is intentional below...
+__attribute__((no_sanitize("enum")))
+#endif
 enum novas_equator_type Equinox::equator_type() const {
   switch(system_type()) {
     case NOVAS_GCRS:

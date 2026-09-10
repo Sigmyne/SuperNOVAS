@@ -13,8 +13,11 @@ LIB ?= ../../lib
 NAME = supernovas++
 
 ifeq ($(CXX),clang++)
-  # Treat .c sources as C++, and use C++11
-  CXXFLAGS += -x c++ -std=c++11
+  # and use C++11
+  CXXFLAGS += -std=c++11
+
+  # Don't compile runtime checks into test code. It's not for production
+  CXXFLAGS += -fno-sanitize=undefined
 endif
 
 # Use the definitions project definitions

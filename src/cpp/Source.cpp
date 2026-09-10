@@ -629,6 +629,10 @@ double SolarSystemSource::solar_power(const Time& time) const {
  *
  * @since 1.6
  */
+#if defined(__clang__)
+// the use of an out-of-range enum is intentional below...
+__attribute__((no_sanitize("enum")))
+#endif
 Planet::Planet() : SolarSystemSource() {
   _object.type = NOVAS_PLANET;
   _object.number = (enum novas_planet) -1;

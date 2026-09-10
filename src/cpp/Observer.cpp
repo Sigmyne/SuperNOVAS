@@ -16,7 +16,10 @@
 
 namespace supernovas {
 
-
+#if defined(__clang__)
+// the use of an out-of-range enum is intentional below...
+__attribute__((no_sanitize("enum")))
+#endif
 Observer::Observer() : Observer((enum novas_observer_place) -1, Site::undefined(), Position::undefined(), Velocity::undefined()) {}
 
 Observer::Observer(enum novas_observer_place type, const Site& site, const Position& pos,
