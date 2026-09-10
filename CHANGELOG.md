@@ -36,7 +36,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
    set to `ERANGE` when the integer part of JD exceeds the `long` storage range.
    
  - #373: `novas_timestamp()`, and `novas_iso_timestamp()` now print "<invalid-time>" into buffer when date cannot
-   be converted into a calendar date representation, and return -1.
+   be converted into a calendar date representation (e.g. because of integer year overflow or NAN), and return -1.
 
 
 ## [1.7.2] - 2026-08-05

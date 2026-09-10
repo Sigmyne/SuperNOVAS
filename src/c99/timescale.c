@@ -1157,8 +1157,16 @@ double novas_date_scale(const char *restrict date, enum novas_timescale *restric
 }
 
 static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *buf) {
+  static const char *fn = "timestamp";
+
   long dd, ms;
   int y = 0, M = 0, d = 0, h, m, s, n;
+
+  dd = ijd + floor(fjd);
+  if(dd < (double) LONG_MIN || dd >= (double) LONG_MAX + 1.0) {
+    novas_snprintf(buf, NOVAS_TIMESTAMP_LEN, "%s", "<invalid-time>");
+    return novas_error(-1, ERANGE, fn, "date outside of long integer range");
+  }
 
   // fjd -> [-0.5:0.5) range
   dd = (long) floor(fjd + 0.5);
@@ -1170,12 +1178,13 @@ static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *b
   if(ms >= DAY_MILLIS) {
     ms -= DAY_MILLIS;     // rounding to 0h next day...
     ijd++;
+    fjd -= 1.0;
   }
 
   // Date at 12pm of the same day
-  if(novas_jd_to_date(ijd, cal, &y, &M, &d, NULL) == -1) {
+  if(isnan(fjd) || novas_jd_to_date(ijd, cal, &y, &M, &d, NULL) == -1) {
     novas_snprintf(buf, NOVAS_TIMESTAMP_LEN, "%s", "<invalid-time>");
-    return novas_trace("timestamp", -1, 0);
+    return novas_trace(fn, -1, 0);
   }
 
   // Time breakdown
