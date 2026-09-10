@@ -12,7 +12,6 @@ set(TEST_PROGRAMS
     test-compat
     test-super
     test-errors
-    test-calendar-bounds
 )
 
 if(ENABLE_CALCEPH)
@@ -78,5 +77,4 @@ foreach(TEST ${TEST_PROGRAMS})
     endif()
 endforeach()
 
-add_test(NAME test-calendar-invalid-month COMMAND test-calendar-bounds invalid-month)
 

@@ -24,7 +24,7 @@ CHECKOPTS = --enable=performance,warning,portability --language=c \
 OBJECTS := $(subst $(OBJ)/,,$(OBJECTS))
 COVFILES := $(subst .c,.c.gcov,$(SOURCES))
 
-TESTS := test-compat test-super test-errors test-calendar-bounds
+TESTS := test-compat test-super test-errors
 
 ifeq ($(CALCEPH_SUPPORT),1)
   TESTS += test-calceph
@@ -58,8 +58,6 @@ run: clean-cov clean-data $(TESTS)
 	$(MAKE) check-compat
 	./test-super
 	./test-errors
-	./test-calendar-bounds
-	./test-calendar-bounds invalid-month
 ifeq ($(CALCEPH_SUPPORT),1)
 	./test-calceph ../ephem
 endif

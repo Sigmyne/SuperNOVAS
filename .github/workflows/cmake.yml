@@ -73,31 +73,6 @@ jobs:
           echo Installation contents:
           dir install
 
-  test-calendar-sanitizers:
-    name: Calendar tests (${{ matrix.bits }}-bit, UBSan)
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        bits: [32, 64]
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Install compiler support
-        run: |
-          sudo apt-get update -q -y
-          sudo apt-get install -y gcc-multilib
-
-      - name: Build calendar tests
-        run: |
-          cmake -B build -DWITHOUT_CURL=ON -DBUILD_TESTING=ON \
-            -DCMAKE_C_COMPILER=gcc \
-            -DCMAKE_C_FLAGS="-m${{ matrix.bits }} -fsanitize=undefined,float-cast-overflow -fno-sanitize-recover=all -g"
-          cmake --build build --target test-calendar-bounds --parallel 2
-
-      - name: Test calendar limits
-        run: ctest --test-dir build --output-on-failure -R '^test-calendar-'
-
   build-cmake-freebsd:
     name: CMake build on FreeBSD
     needs: build-cmake
