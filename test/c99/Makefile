@@ -24,7 +24,7 @@ CHECKOPTS = --enable=performance,warning,portability --language=c \
 OBJECTS := $(subst $(OBJ)/,,$(OBJECTS))
 COVFILES := $(subst .c,.c.gcov,$(SOURCES))
 
-TESTS := test-compat test-super test-errors
+TESTS := test-compat test-super test-errors test-eop-concurrency
 
 ifeq ($(CALCEPH_SUPPORT),1)
   TESTS += test-calceph
@@ -44,7 +44,7 @@ ifeq ($(WITHOUT_CURL),1)
   CPPFLAGS += -DWITHOUT_CURL
 else
   LDFLAGS += -lcurl
-  TESTS += test-dummy-curl
+  TESTS += test-dummy-curl test-eop-concurrency
 endif
 
 ifeq ($(OFFLINE),1)
@@ -66,7 +66,9 @@ ifeq ($(CSPICE_SUPPORT),1)
 endif
 ifneq ($(WITHOUT_CURL),1)
 	./test-dummy-curl
+	./test-eop-concurrency
 endif
+
 
 .PHONY: check-compat
 check-compat:

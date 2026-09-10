@@ -1,3 +1,9 @@
+/**
+ * This test was originally submitted by Cristopher Parker (csp256). It was most likely AI generated.
+ * It was then modified slightly by Attila Kovacs for improved resource handling and error messages
+ * in case of failure.
+ */
+
 #include <errno.h>
 #include <math.h>
 #include <pthread.h>
@@ -12,6 +18,26 @@
 enum test_mode { MIXED, SAME_DATE, CACHE, INVALID_DATE, MISSING_FILE, MALFORMED_FILE };
 static enum test_mode mode;
 
+#ifndef RESOURCES
+#  define RESOURCES "resources"
+#endif
+
+#ifdef _MSC_VER
+#  include <windows.h>
+#  ifndef PATH_MAX
+#    define PATH_MAX MAX_PATH
+#  endif
+#  define realpath(rel, full)   _fullpath((full), (rel), PATH_MAX)
+#else
+#  include <limits.h>
+#endif
+
+#ifdef WIN32
+#  define PATH_SEP  "\\"
+#else
+#  define PATH_SEP  "/"
+#endif
+
 typedef struct {
   novas_eop expected[REQUEST_COUNT];
   int expected_status[REQUEST_COUNT];
@@ -24,6 +50,37 @@ static pthread_mutex_t gate_mutex = PTHREAD_MUTEX_INITIALIZER;
 static pthread_cond_t gate_condition = PTHREAD_COND_INITIALIZER;
 static int ready_count;
 static int is_released;
+
+static char *get_resource(const char *filename, char *path, int len) {
+  FILE *fp;
+  snprintf(path, len, RESOURCES PATH_SEP "%s", filename);
+  fp = fopen(path, "r");
+  if(fp) {
+    fclose(fp);
+    return path;
+  }
+  return NULL;
+}
+
+
+static char *get_resource_url(const char *filename) {
+  static char url[PATH_MAX + 10];
+
+  const char *sep = PATH_SEP;
+  char rel[PATH_MAX] = {'\0'}, path[PATH_MAX] = {'\0'};
+  int i;
+
+  if(get_resource(filename, rel, sizeof(rel)) == NULL)
+    return NULL;
+
+  if(realpath(rel, path) == NULL)
+    return NULL;
+
+  for(i = 0; i < path[i]; i++) if(path[i] == sep[0]) path[i] = '/';
+
+  sprintf(url, "file://%s", path);
+  return url;
+}
 
 static double request_jd(int worker, int request) {
   if(mode == SAME_DATE)
@@ -46,24 +103,24 @@ static int is_same_value(double actual, double expected) {
 
 static int is_same_eop(const novas_eop *actual, const novas_eop *expected) {
   return actual->series == expected->series && actual->leap == expected->leap
-        && is_same_value(actual->jd, expected->jd)
-        && is_same_value(actual->xp, expected->xp) && is_same_value(actual->xp_err, expected->xp_err)
-        && is_same_value(actual->yp, expected->yp) && is_same_value(actual->yp_err, expected->yp_err)
-        && is_same_value(actual->dut1, expected->dut1) && is_same_value(actual->dut1_err, expected->dut1_err)
-        && is_same_value(actual->lod, expected->lod) && is_same_value(actual->lod_err, expected->lod_err);
+          && is_same_value(actual->jd, expected->jd)
+  && is_same_value(actual->xp, expected->xp) && is_same_value(actual->xp_err, expected->xp_err)
+  && is_same_value(actual->yp, expected->yp) && is_same_value(actual->yp_err, expected->yp_err)
+  && is_same_value(actual->dut1, expected->dut1) && is_same_value(actual->dut1_err, expected->dut1_err)
+  && is_same_value(actual->lod, expected->lod) && is_same_value(actual->lod_err, expected->lod_err);
 }
 
 static int configure_eop(void) {
   if(novas_set_leap_list(RESOURCES "/leap-seconds.list"))
     return 1;
-  if(novas_set_eop_url(EOP_C01_IAU2000, 1900, "file://" RESOURCES "/EOP_C01_IAU2000_1846-now.txt"))
+  if(novas_set_eop_url(EOP_C01_IAU2000, 1900, get_resource_url("EOP_C01_IAU2000_1846-now.txt")))
     return 1;
-  if(novas_set_eop_url(EOP_RAPID_IAU2000, 2020, "file://" RESOURCES "/finals.all.iau2000.txt"))
+  if(novas_set_eop_url(EOP_RAPID_IAU2000, 2020, get_resource_url("finals.all.iau2000.txt")))
     return 1;
   if(mode == MISSING_FILE || mode == MALFORMED_FILE) {
     // A C01 record has an invalid line length for the C04 parser.
-    const char *url = mode == MISSING_FILE ? "file://" RESOURCES "/missing-eop-file.txt"
-          : "file://" RESOURCES "/C01-bad.txt";
+    const char *url = mode == MISSING_FILE ? get_resource_url("missing-eop-file.txt")
+            : get_resource_url("C01-bad.txt");
     int expected_error = mode == MISSING_FILE ? EAGAIN : EBADMSG;
     // The URL remains selected when its initial checkout fails.
     int status = novas_set_eop_url(EOP_C04_IAU2000_0UTC, 2020, url);
@@ -74,7 +131,7 @@ static int configure_eop(void) {
     }
     return 0;
   }
-  return novas_set_eop_url(EOP_C04_IAU2000_0UTC, 2020, "file://" RESOURCES "/EOP_20u24_C04_one_file_1962-now.txt");
+  return novas_set_eop_url(EOP_C04_IAU2000_0UTC, 2020, get_resource_url("EOP_20u24_C04_one_file_1962-now.txt"));
 }
 
 static void *fetch_eop(void *arg) {
@@ -98,10 +155,10 @@ static void *fetch_eop(void *arg) {
     status = novas_fetch_eop(jd, 0, &eop);
     error = errno;
     if(status != state->expected_status[i]
-          || (status == 0 && !is_same_eop(&eop, &state->expected[i]))
-          || (status != 0 && error != state->expected_errno[i])) {
+                                        || (status == 0 && !is_same_eop(&eop, &state->expected[i]))
+                                        || (status != 0 && error != state->expected_errno[i])) {
       fprintf(stderr, "Worker %d request %d (JD %.1f): EOP fetch or comparison failed; status %d/%d, errno %d/%d\n",
-            state->id, i, jd, status, state->expected_status[i], error, state->expected_errno[i]);
+              state->id, i, jd, status, state->expected_status[i], error, state->expected_errno[i]);
       state->status = 1;
     }
   }
@@ -111,20 +168,30 @@ static void *fetch_eop(void *arg) {
 
 int main(int argc, char **argv) {
   pthread_t threads[THREAD_COUNT];
-  worker_state states[THREAD_COUNT] = {{0}};
+  worker_state states[THREAD_COUNT] = {};
   int i;
   int status = 0;
 
   if(argc == 2) {
     const char *names[] = {"mixed", "same-date", "cache", "invalid-date", "missing-file", "malformed-file"};
-    for(i = 0; i < 6 && strcmp(argv[1], names[i]); i++) {
+    for(i = 0; i < 6 && strcmp(argv[1], names[i]); i++);
+    if(i == 6) {
+      fprintf(stderr, "ERROR! invalid argument: %s\n", argv[1]);
+      goto error; // @suppress("Goto statement used")
     }
-    if(i == 6)
-      return 1;
     mode = (enum test_mode) i;
   }
-  if(argc > 2 || configure_eop())
-    return 1;
+
+  if(argc > 2) {
+    fprintf(stderr, "too many arguments");
+    goto error; // @suppress("Goto statement used")
+  }
+
+
+  if(configure_eop()) {
+    perror("ERROR! EOP configure error");
+    goto error; // @suppress("Goto statement used")
+  }
 
   for(i = 0; i < THREAD_COUNT; i++) {
     int request;
@@ -144,26 +211,27 @@ int main(int argc, char **argv) {
       states[i].expected_status[request] = novas_fetch_eop(jd, 0, &states[i].expected[request]);
       states[i].expected_errno[request] = errno;
       if(states[i].expected_status[request] != (expected_error ? -1 : 0)
-            || (expected_error && errno != expected_error)) {
-        fprintf(stderr, "Reference worker %d request %d (JD %.1f): unexpected status or errno\n", i, request, jd);
-        return 1;
+              || (expected_error && errno != expected_error)) {
+        fprintf(stderr, "ERROR! Reference worker %d request %d (JD %.1f): unexpected status or errno\n", i, request, jd);
+        goto error; // @suppress("Goto statement used")
       }
     }
   }
 
   novas_reset_eop();
-  if(configure_eop())
-    return 1;
-
-  for(i = 0; i < THREAD_COUNT; i++) {
-    if(pthread_create(&threads[i], NULL, fetch_eop, &states[i]))
-      return 1;
+  if(configure_eop()) {
+    perror("ERROR! EOP configure");
+    goto error; // @suppress("Goto statement used")
   }
+
+  for(i = 0; i < THREAD_COUNT; i++)
+    if(pthread_create(&threads[i], NULL, fetch_eop, &states[i])) {
+      perror("ERROR! pthread_create");
+      goto error; // @suppress("Goto statement used")
+    }
 
   pthread_mutex_lock(&gate_mutex);
-  while(ready_count < THREAD_COUNT) {
-    pthread_cond_wait(&gate_condition, &gate_mutex);
-  }
+  while(ready_count < THREAD_COUNT) pthread_cond_wait(&gate_condition, &gate_mutex);
   is_released = 1;
   pthread_cond_broadcast(&gate_condition);
   pthread_mutex_unlock(&gate_mutex);
@@ -174,5 +242,17 @@ int main(int argc, char **argv) {
   }
 
   novas_reset_eop();
-  return status;
+
+  if(status) {
+    fprintf(stderr, "ERROR! status = %d\n", status);
+    goto error; // @suppress("Goto statement used")
+  }
+
+  fprintf(stderr, " -- OK\n");
+  return 0;
+
+  error:
+
+  fprintf(stderr, " -- FAILED\n");
+  return 1;
 }
