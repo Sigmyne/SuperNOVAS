@@ -16,6 +16,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
  - #361: Fixed weather parameters not having been used in in `Source::rises_above()`, `Source::sets_below()` and 
    `Source::horizontal_track()`. (by csp256)
    
+### Added
+
+ - #373: Added `NOVAS_MAX_TIMESTAMP_LENGTH` macro, which defines the maximum length of a SuperNOVAS timestamp
+   string when the year component is more than 4 bytes, i.e. for years before 1000 B.C. or after 9999 A.D.
+   
 ### Changed
    
  - #367: Testing oops in `Equinox` equality checks in the test suite. (by csp256)
@@ -37,6 +42,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
    
  - #373: `novas_timestamp()`, and `novas_iso_timestamp()` now print "<invalid-time>" into buffer when date cannot
    be converted into a calendar date representation (e.g. because of integer year overflow or NAN), and return -1.
+   
+ - #373: `novas_get_split_time()` now ensures that the fractional part is between 0 and 1 and returns NAN (errno set 
+   to `ERANGE`) if the split cannot be done within the long integer range, when the integer part is requested.
 
 
 ## [1.7.2] - 2026-08-05

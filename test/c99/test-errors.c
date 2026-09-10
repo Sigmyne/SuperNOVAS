@@ -2194,11 +2194,11 @@ static int test_iso_timestamp() {
   if(check("iso_timestamp:low", -1, novas_iso_timestamp(&time, buf, sizeof(buf)))) n++;
 
   time.ijd_tt = LONG_MIN;
-  time.fjd_tt = -10000.0;
+  time.fjd_tt = -1e6;
   if(check("iso_timestamp:long_min-", -1, novas_iso_timestamp(&time, buf, sizeof(buf)))) n++;
 
   time.ijd_tt = LONG_MAX;
-  time.fjd_tt = 10000.0;
+  time.fjd_tt = 1e6;
   if(check("iso_timestamp:long_max+", -1, novas_iso_timestamp(&time, buf, sizeof(buf)))) n++;
 
   return n;
@@ -2223,11 +2223,11 @@ static int test_timestamp() {
   if(check("timestamp:low", -1, novas_timestamp(&time, NOVAS_UTC, buf, sizeof(buf)))) n++;
 
   time.ijd_tt = LONG_MIN;
-  time.fjd_tt = -10000.0;
+  time.fjd_tt = -1e6;
   if(check("timestamp:long_min-", -1, novas_timestamp(&time, NOVAS_UTC, buf, sizeof(buf)))) n++;
 
   time.ijd_tt = LONG_MAX;
-  time.fjd_tt = 10000.0;
+  time.fjd_tt = 1e6;
   if(check("timestamp:long_max+", -1, novas_timestamp(&time, NOVAS_UTC, buf, sizeof(buf)))) n++;
 
   return n;

@@ -794,7 +794,7 @@ double novas_get_time(const novas_timespec *restrict time, enum novas_timescale 
  */
 double novas_get_split_time(const novas_timespec *restrict time, enum novas_timescale timescale, long *restrict ijd) {
   static const char *fn = "novas_get_split_time";
-  double f;
+  double f, floor_f;
 
   if(ijd) *ijd = -1;
 
@@ -808,20 +808,17 @@ double novas_get_split_time(const novas_timespec *restrict time, enum novas_time
     return NAN;
   }
 
-  if(ijd)
-    *ijd = time->ijd_tt;
-
   f = time->fjd_tt + tt_offset(time, timescale) / DAY;
+  floor_f = floor(f);
+  f -= floor_f;
 
-  if(f < 0.0) {
-    f += 1.0;
-    if(ijd)
-      (*ijd)--;
-  }
-  else if(f > 1.0) {
-    f -= 1.0;
-    if(ijd)
-      (*ijd)++;
+  if(ijd) {
+    double djd = time->ijd_tt + floor_f;
+    if(djd < (double) LONG_MIN || djd >= (double) LONG_MAX) {
+      novas_set_errno(ERANGE, fn, "long integer overflow: jd = %.13g", djd);
+      return NAN;
+    }
+    *ijd = time->ijd_tt + (long) floor_f;
   }
 
   return f;
@@ -1158,14 +1155,14 @@ double novas_date_scale(const char *restrict date, enum novas_timescale *restric
 
 static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *buf) {
   static const char *fn = "timestamp";
+  static const char *invalid_time_str = "<invalid_time>";
 
   long dd, ms;
   int y = 0, M = 0, d = 0, h, m, s, n;
 
-  dd = ijd + floor(fjd);
-  if(dd < (double) LONG_MIN || dd >= (double) LONG_MAX + 1.0) {
-    novas_snprintf(buf, NOVAS_TIMESTAMP_LEN, "%s", "<invalid-time>");
-    return novas_error(-1, ERANGE, fn, "date outside of long integer range");
+  if(isnan(fjd)) {
+    novas_snprintf(buf, NOVAS_MAX_TIMESTAMP_LEN, "%s", invalid_time_str);
+    return novas_trace(fn, -1, 0);
   }
 
   // fjd -> [-0.5:0.5) range
@@ -1178,12 +1175,11 @@ static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *b
   if(ms >= DAY_MILLIS) {
     ms -= DAY_MILLIS;     // rounding to 0h next day...
     ijd++;
-    fjd -= 1.0;
   }
 
   // Date at 12pm of the same day
-  if(isnan(fjd) || novas_jd_to_date(ijd, cal, &y, &M, &d, NULL) == -1) {
-    novas_snprintf(buf, NOVAS_TIMESTAMP_LEN, "%s", "<invalid-time>");
+  if(novas_jd_to_date(ijd, cal, &y, &M, &d, NULL) < 0) {
+    novas_snprintf(buf, NOVAS_MAX_TIMESTAMP_LEN, "%s", invalid_time_str);
     return novas_trace(fn, -1, 0);
   }
 
@@ -1197,11 +1193,8 @@ static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *b
   s = (int) (ms / 1000L);
   ms -= 1000L * s;
 
-  // snprintf() returns the length it _would_ have written; clamp to the number of characters
-  // actually placed in buf (at most NOVAS_TIMESTAMP_LEN - 1) so callers cannot index out of
-  // bounds when an out-of-range date produces a many-digit year.
-  n = novas_snprintf(buf, NOVAS_TIMESTAMP_LEN, "%04d-%02d-%02dT%02d:%02d:%02d.%03d", y, M, d, h, m, s, (int) ms);
-  return n < NOVAS_TIMESTAMP_LEN ? n : (NOVAS_TIMESTAMP_LEN - 1);
+  n = novas_snprintf(buf, NOVAS_MAX_TIMESTAMP_LEN, "%04d-%02d-%02dT%02d:%02d:%02d.%03d", y, M, d, h, m, s, (int) ms);
+  return n < NOVAS_MAX_TIMESTAMP_LEN ? n : (NOVAS_MAX_TIMESTAMP_LEN - 1);
 }
 
 /**
