@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 3.20...4.3)
 # Configuration in case this is a standalone project....
 if(NOT PROJECT_NAME)
     project(supernovas-examples-c++
-        VERSION 1.7.2
+        VERSION 1.7.3
         DESCRIPTION "SuperNOVAS C++ example programs"
         HOMEPAGE_URL "https://sigmyne.github.io/SuperNOVAS/"
         LANGUAGES CXX
