@@ -46,7 +46,7 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #373: Check for integer overflow in `novas_set_time()` / `novas_set_split_time()`, and return -1 with `errno`
    set to `ERANGE` when the integer part of JD exceeds the `long` storage range.
    
- - #373: `novas_timestamp()`, and `novas_iso_timestamp()` now print "<invalid-time>" into buffer when date cannot
+ - #373: `novas_timestamp()`, and `novas_iso_timestamp()` now print "&lt;invalid-time&gt;" into buffer when date cannot
    be converted into a calendar date representation (e.g. because of integer year overflow or NAN), and return -1.
    (by attipaci, thanks to csp256)
    
