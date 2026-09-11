@@ -13,47 +13,50 @@
 /// \cond PROTECTED
 #if defined(SUPERNOVAS_USE_PTHREAD) || defined(__unix__) || defined(__unix) || defined(__APPLE__)
 #  include <pthread.h>
-#  include <stdlib.h>           // for NULL
+#  include <stdlib.h>             // for NULL
 
-#  define novas_init_lock(x)    pthread_mutex_init(x, NULL)
-#  define novas_lock            pthread_mutex_lock
-#  define novas_unlock          pthread_mutex_unlock
-#  define novas_destroy_lock    pthread_mutex_destroy
-#  define THREAD_SAFE           1
+#  define novas_init_lock(x)      pthread_mutex_init(x, NULL)
+#  define novas_lock              pthread_mutex_lock
+#  define novas_unlock            pthread_mutex_unlock
+#  define novas_destroy_lock      pthread_mutex_destroy
+#  define NOVAS_LOCK_INITIALIZER  PTHREAD_MUTEX_INITIALIZER
+#  define THREAD_SAFE             1
 
-typedef pthread_mutex_t       lock_type;
+typedef pthread_mutex_t           lock_type;
 
 #elif __STDC_VERSION__ >= 201112L
 #  include <threads.h>
 
-#  define novas_init_lock(x)    mtx_init(x, mtx_plain)
-#  define novas_lock            mtx_lock
-#  define novas_unlock          mtx_unlock
-#  define novas_destroy_lock    mtx_destroy
+#  define novas_init_lock(x)      mtx_init(x, mtx_plain)
+#  define novas_lock              mtx_lock
+#  define novas_unlock            mtx_unlock
+#  define novas_destroy_lock      mtx_destroy
 
-#  define THREAD_SAFE           1
+#  define THREAD_SAFE             1
 
-typedef mtx_t                   lock_type;
+typedef mtx_t                     lock_type;
 
 #elif defined(_MSC_VER)
 #  include <windows.h>
 
-#  define novas_init_lock(x)    InitializeSRWLock(x)
-#  define novas_lock            AcquireSRWLockExclusive
-#  define novas_unlock          ReleaseSRWLockExclusive
+#  define novas_init_lock(x)      InitializeSRWLock(x)
+#  define novas_lock              AcquireSRWLockExclusive
+#  define novas_unlock            ReleaseSRWLockExclusive
 #  define novas_destroy_lock(x)                           // no-op: SRWLOCK does not require explicit destruction
-#  define THREAD_SAFE           1
+#  define NOVAS_LOCK_INITIALIZER  SRWLOCK_INIT
+#  define THREAD_SAFE             1
 
-typedef SRWLOCK                 lock_type;
+typedef SRWLOCK                   lock_type;
 
 #else
 #  define novas_init_lock(x)
 #  define novas_lock(x)
 #  define novas_unlock(x)
 #  define novas_destroy_lock(x)
-#  define THREAD_SAFE           0
+#  define NOVAS_LOCK_INITIALIZER  (-1)
+#  define THREAD_SAFE             0
 
-typedef int                     lock_type;
+typedef int                       lock_type;
 
 #endif
 /// \endcond

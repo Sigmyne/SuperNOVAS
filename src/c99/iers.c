@@ -118,8 +118,15 @@ typedef struct iers_leap_entry {
 
 static iers_leap_entry *leaps;      ///< Leap seconds list
 static time_t leap_expiration;      ///< UNIX time at which leap seconds list expires.
-static lock_type leap_mutex;        ///< mutex for leap seconds data
-static int leap_mutex_initialized;  ///< whether the leap mutex was initialized;
+
+#if defined(NOVAS_LOCK_INITIALIZER)
+static lock_type leap_mutex = NOVAS_LOCK_INITIALIZER;   ///< Mutex for leap seconds data.
+#elif __STDC_VERSION__ >= 201112L
+static lock_type leap_mutex;                            ///< Mutex for leap seconds data.
+static once_flag leap_mutex_once = ONCE_FLAG_INIT;      ///< One-time mutex initialization state.
+#else
+#  error "Oops. No thread safe mutex initialization available."
+#endif
 
 #endif // WITH_LIBC
 // ===========================================================================
@@ -215,8 +222,15 @@ static iers_data_file c01 = { NULL, EOP_C01_IAU2000,
 };
 
 static int auto_fetch_eop = 1;    ///< Enable fetching EOP from IERS as needed by default
-static lock_type eop_mutex;       ///< Mutex for EOP data (excl. leap) access
-static int eop_mutex_initialized;  ///< Whether EOP mutex was initialized
+
+#ifdef NOVAS_LOCK_INITIALIZER
+static lock_type eop_mutex = NOVAS_LOCK_INITIALIZER;    ///< Mutex for EOP data other than leap data.
+#elif __STDC_VERSION__ >= 201112L
+static lock_type eop_mutex;                             ///< Mutex for EOP data other than leap data.
+static once_flag eop_mutex_once = ONCE_FLAG_INIT;       ///< One-time mutex initialization state.
+#else
+#  error "Oops. No thread safe mutex initialization available."
+#endif
 
 /// \endcond
 #endif /* WITH_CURL */
@@ -225,11 +239,16 @@ static int eop_mutex_initialized;  ///< Whether EOP mutex was initialized
 // ===========================================================================
 #ifndef WITHOUT_LIBC
 
+#if !defined(NOVAS_LOCK_INITIALIZER) && __STDC_VERSION__ >= 201112L
+static void init_leap_mutex() {
+  novas_init_lock(&leap_mutex);
+}
+#endif
+
 static void lock_leap() {
-  if(!leap_mutex_initialized) {
-    novas_init_lock(&leap_mutex);
-    leap_mutex_initialized = 1;
-  }
+#if !defined(NOVAS_LOCK_INITIALIZER) && __STDC_VERSION__ >= 201112L
+  call_once(&leap_mutex_once, init_leap_mutex);
+#endif
   novas_lock(&leap_mutex);
 }
 
@@ -389,11 +408,16 @@ static iers_leap_entry *parse_leap_file(FILE *fp, long long *expiration) {
 // ---------------------------------------------------------------------------
 #ifndef WITHOUT_CURL
 
+#if !defined(NOVAS_LOCK_INITIALIZER) && __STDC_VERSION__ >= 201112L
+static void init_eop_mutex() {
+  novas_init_lock(&eop_mutex);
+}
+#endif
+
 static void lock_eop() {
-  if(!eop_mutex_initialized) {
-    novas_init_lock(&eop_mutex);
-    eop_mutex_initialized = 1;
-  }
+#if !defined(NOVAS_LOCK_INITIALIZER) && __STDC_VERSION__ >= 201112L
+  call_once(&eop_mutex_once, init_eop_mutex);
+#endif
   novas_lock(&eop_mutex);
 }
 
@@ -491,7 +515,7 @@ static void cleanup_eop_handles_async() {
   cleanup_handle_async(&c01_sparse);
 }
 
-static int novas_fetch_eop_chunk(CURL **restrict pCurl, const char *restrict url, long offset, int len, download_buffer *restrict data,
+static int novas_fetch_eop_chunk_async(CURL **restrict pCurl, const char *restrict url, long offset, int len, download_buffer *restrict data,
         long timeout_millis) {
   static const char *fn = "novas_fetch_eop_chunk";
   static int initialized;
@@ -597,7 +621,7 @@ static int checkout_eop_file_async(iers_data_file *restrict file, long timeout_m
   char *next = buf;
   novas_eop eop = {};
 
-  prop_error(fn, novas_fetch_eop_chunk(&file->curl, novas_get_eop_url(file->series), 0, head.capacity - 1, &head, timeout_millis), 0);
+  prop_error(fn, novas_fetch_eop_chunk_async(&file->curl, novas_get_eop_url(file->series), 0, head.capacity - 1, &head, timeout_millis), 0);
 
   // Skip empty and commented lines.
   for(; *next == '#' || *next == '\n'; next++)
@@ -620,31 +644,38 @@ static int novas_fetch_eop_from_file(iers_data_file *restrict file, double jd, n
   long offset;
   char lines[2048] = {'\0'};
   download_buffer data = { lines, sizeof(lines), 0 };
-  int i;
+  int i, status;
 
   lock_eop();
+
   if(file->head_bytes < 0) {
-    int stat = checkout_eop_file_async(file, timeout_millis);
-    if(stat) {
+    if(checkout_eop_file_async(file, timeout_millis)) {
       unlock_eop();
       return novas_trace(fn, -1, 0);
     }
   }
 
   offset = file->head_bytes + file->line_len * floor((jd - file->jd_start) / file->jd_step);
-  unlock_eop();
-
-  prop_error(fn, novas_fetch_eop_chunk(&file->curl, novas_get_eop_url(file->series), offset, n * file->line_len, &data, timeout_millis), 0);
+  status = novas_fetch_eop_chunk_async(&file->curl, novas_get_eop_url(file->series), offset, n * file->line_len, &data, timeout_millis);
+  if(status < 0) goto cleanup; // @suppress("Goto statement used")
 
   for(i = 0; i < n; i++) {
     time_t t = (jd - NOVAS_JD_J2000 + i * file->jd_step) * 86400L + UNIX_SECONDS_0UTC_1JAN2000;
 
     eop[i].leap = novas_lookup_leap(t);
-    if(eop[i].leap == NOVAS_INVALID_LEAP)
+    if(eop[i].leap == NOVAS_INVALID_LEAP) {
+      unlock_eop();
       return novas_trace(fn, -1, 0);
+    }
 
-    prop_error(fn, eop_parse_line(file, i, lines, &eop[i]), 0);
+    status = eop_parse_line(file, i, lines, &eop[i]);
+    if(status < 0) goto cleanup; // @suppress("Goto statement used")
   }
+
+  cleanup:
+
+  unlock_eop();
+  prop_error(fn, status, 0);
 
   return 0;
 }
@@ -668,16 +699,18 @@ static int novas_fetch_eop_array(double jd, long timeout_millis, novas_eop *rest
     prop_error(fn, novas_fetch_eop_from_file(&c04, jd - m * c04.jd_step, eop, n, timeout_millis), 0);
   }
   else if(jd >= c01.jd_start + m * c01.jd_step) {
-    int stat = novas_fetch_eop_from_file(&c01, jd - m * c01.jd_step, eop, n, timeout_millis);
+    prop_error(fn, novas_fetch_eop_from_file(&c01, jd - m * c01.jd_step, eop, n, timeout_millis), 0);
+    lock_eop();
     c01_sparse.line_len = c01.line_len;
     c01_sparse.head_bytes = c01.head_bytes - (long) c01.start_line * c01.line_len;
-    prop_error(fn, stat, 0);
+    unlock_eop();
   }
   else if(jd >= c01_sparse.jd_start + m * c01_sparse.jd_step) {
-    int stat = novas_fetch_eop_from_file(&c01_sparse, jd - m * c01_sparse.jd_step, eop, n, timeout_millis);
+    prop_error(fn, novas_fetch_eop_from_file(&c01_sparse, jd - m * c01_sparse.jd_step, eop, n, timeout_millis), 0);
+    lock_eop();
     c01.line_len = c01_sparse.line_len;
     c01.head_bytes = c01_sparse.head_bytes + (long) c01.start_line * c01_sparse.line_len;
-    prop_error(fn, stat, 0);
+    unlock_eop();
   }
   else {
     memset(eop, 0, sizeof(novas_eop));

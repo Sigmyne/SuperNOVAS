@@ -43,8 +43,8 @@ endif
 ifeq ($(WITHOUT_CURL),1)
   CPPFLAGS += -DWITHOUT_CURL
 else
+  TESTS += test-dummy-curl test-eop-concurrency
   LDFLAGS += -lcurl
-  TESTS += test-dummy-curl
 endif
 
 ifeq ($(OFFLINE),1)
@@ -66,7 +66,9 @@ ifeq ($(CSPICE_SUPPORT),1)
 endif
 ifneq ($(WITHOUT_CURL),1)
 	./test-dummy-curl
+	./test-eop-concurrency
 endif
+
 
 .PHONY: check-compat
 check-compat:
