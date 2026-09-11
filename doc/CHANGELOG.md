@@ -27,8 +27,8 @@ Upcoming maintenance release, expected around 1 November 2026.
    
  - #367: Testing oops in `Equinox` equality checks in the test suite. (by csp256)
  
- - #369: Improved EOP fetching threasd safety, with thread-safe one-time mutex initialization, and more synchronized
-   code blocks preventing race conditions on modifying EOP resources (by csp256 and attipaci).
+ - #369: Improved EOP fetching thread safety, with thread-safe one-time mutex initialization, and more synchronized
+   code blocks preventing concurrent access of shared EOP resources (by csp256 and attipaci).
    
  - #372: Improved leap seconds list parsing, by applying leap list expiration as end date for last leap entry, in the 
    unlikely case that the expiration timestamp appears after the entries in the file. Note, that the timestamp of
