@@ -7,13 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.7.3-rc1] - 2026-09-11
+## [Unreleased]
 
 Upcoming maintenance release, expected around 1 November 2026.
 
 ### Fixed
 
- - #359: Fixed wrong humidity units passed in `Site::average_weather()`. (by csp456)
+ - #359: Fixed wrong humidity units passed in `Site::average_weather()`. (by csp256)
  
  - #361: Fixed weather parameters not having been used in in `Source::rises_above()`, `Source::sets_below()` and 
    `Source::horizontal_track()`. (by csp256)
@@ -33,7 +33,7 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #372: Improved leap seconds list parsing, by applying leap list expiration as end date for last leap entry, in the 
    unlikely case that the expiration timestamp appears after the entries in the file. Note, that the timestamp of
    always appears in the commented header section before the leap entries in the IERS data products, so it is unlikely
-   that normal leap list files will ever benefit from the change. (by csp456)
+   that normal leap list files will ever benefit from the change. (by csp256)
 
  - #371: `novas_jd_to_date()` now checks that input JD date can be represented in a calendar format with an `int`-type 
    year components in any calendar, and returns -1 with errno set to `ERANGE` when it cannot. The change prevents 
@@ -44,7 +44,7 @@ Upcoming maintenance release, expected around 1 November 2026.
    modified integer division floor value. (by csp256 and attipaci).
 
  - #373: Check for integer overflow in `novas_set_time()` / `novas_set_split_time()`, and return -1 with `errno`
-   set to `ERANGE` when the integer part of JD exceeds the `long` storage range.
+   set to `ERANGE` when the integer part of JD exceeds the `long` storage range. (by attipaci, thanks to csp256) 
    
  - #373: `novas_timestamp()`, and `novas_iso_timestamp()` now print `<invalid-time>` into buffer when date cannot
    be converted into a calendar date representation (e.g. because of integer year overflow or NAN), and return -1.
