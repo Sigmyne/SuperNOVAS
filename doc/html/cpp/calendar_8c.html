@@ -386,7 +386,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[1:366] The day-of-year index in the same timescale as the input date.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[1:366] The day-of-year index in the same timescale as the input date, or -1 if the date is undetermined because of NAN input or integer overflow.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.4 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a7ee576309aa1977e9b2a3824286f725c" title="Returns the one-based ISO 8601 day-of-week index of a given Julian Date.">novas_day_of_week()</a>, <a class="el" href="#a8ed2fb55bcf86d9f1f434a2f832356a2" title="This function will compute a broken down date on the specified calendar for given the Julian day inpu...">novas_jd_to_date()</a> </dd></dl>
@@ -455,7 +455,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[day] the fractional Julian day for the input calendar date, or NAN if the calendar is invalid or the month or day components are out of range.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[day] the fractional Julian day for the input calendar date, or NAN if the calendar is invalid or the month or day components are out of range, or if the hour component is NAN.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a8ed2fb55bcf86d9f1f434a2f832356a2" title="This function will compute a broken down date on the specified calendar for given the Julian day inpu...">novas_jd_to_date()</a>, <a class="el" href="novas_8h.html#ae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a> </dd></dl>
@@ -526,7 +526,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if the calendar is invalid (errno will be set to EINVAL).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if the calendar is invalid (<span class="tt">errno</span> will be set to <span class="tt">EINVAL</span>) or the Julian date is outside the supported range (<span class="tt">errno</span> will be set to <span class="tt">ERANGE</span>).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a54eee84c46900c80ca9966857c217cc8" title="Returns the Julian day for a given calendar date.">novas_jd_from_date()</a>, <a class="el" href="novas_8h.html#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a> </dd></dl>

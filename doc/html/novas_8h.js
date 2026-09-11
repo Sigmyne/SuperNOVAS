@@ -59,6 +59,7 @@ var novas_8h =
     [ "NOVAS_MARS_INIT", "group__source.html#ga26aff9425f7df9a4559da8daac284cc5", null ],
     [ "NOVAS_MATRIX_IDENTITY", "novas_8h.html#a26fdd758cdef560688d38b20aacae68f", null ],
     [ "NOVAS_MATRIX_INIT", "novas_8h.html#ad10fc7f05b49bc1ac1110817dc25834e", null ],
+    [ "NOVAS_MAX_TIMESTAMP_LEN", "novas_8h.html#a2bb257a83783d6f1871e4fab9ed25b8f", null ],
     [ "NOVAS_MERCURY_INIT", "group__source.html#gab40e33a03ee368c2496b54f9b222fc89", null ],
     [ "NOVAS_MINOR_VERSION", "novas_8h.html#af7a746fdca818e9d4c4aa27bf65a62be", null ],
     [ "NOVAS_MOON_INIT", "group__source.html#ga4cbd3c168b9357e3af2274252a6d1a5b", null ],

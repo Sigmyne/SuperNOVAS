@@ -3161,6 +3161,7 @@
           <topic label="NOVAS_MARS_INIT" href="novas_8h.html#a26aff9425f7df9a4559da8daac284cc5"/>
           <topic label="NOVAS_MATRIX_IDENTITY" href="novas_8h.html#a26fdd758cdef560688d38b20aacae68f"/>
           <topic label="NOVAS_MATRIX_INIT" href="novas_8h.html#ad10fc7f05b49bc1ac1110817dc25834e"/>
+          <topic label="NOVAS_MAX_TIMESTAMP_LEN" href="novas_8h.html#a2bb257a83783d6f1871e4fab9ed25b8f"/>
           <topic label="NOVAS_MERCURY_INIT" href="novas_8h.html#ab40e33a03ee368c2496b54f9b222fc89"/>
           <topic label="NOVAS_MINOR_VERSION" href="novas_8h.html#af7a746fdca818e9d4c4aa27bf65a62be"/>
           <topic label="NOVAS_MOON_INIT" href="novas_8h.html#a4cbd3c168b9357e3af2274252a6d1a5b"/>
@@ -4201,7 +4202,8 @@
           <topic label="ScalarEvolution.cpp" href="ScalarEvolution_8cpp.html"/>
           <topic label="ScalarVelocity.cpp" href="ScalarVelocity_8cpp.html"/>
           <topic label="Site.cpp" href="Site_8cpp.html"/>
-          <topic label="Source.cpp" href="Source_8cpp.html"/>
+          <topic label="Source.cpp" href="Source_8cpp.html">
+          </topic>
           <topic label="Spherical.cpp" href="Spherical_8cpp.html"/>
           <topic label="Temperature.cpp" href="Temperature_8cpp.html"/>
           <topic label="Time.cpp" href="Time_8cpp.html">

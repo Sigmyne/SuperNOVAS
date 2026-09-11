@@ -671,7 +671,7 @@ the DE440, or the smaller DE440s, or the long-term DE441), and install [CALCEPH]
 [CSPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html) for accessing these. I recommend CALCEPH, because it is 
 more widely available (also in packaged form), and it is also more modern, and actively maintained. 
 
-Provided you installed CALCEPH, you usage of __SuperNOVAS__ should always start with something like this (regardless 
+Provided you installed CALCEPH, your use of __SuperNOVAS__ should always start with something like this (regardless 
 of whether you will use the C99 or the C++ API afterwards):
 
 ```c

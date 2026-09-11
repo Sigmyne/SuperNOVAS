@@ -221,8 +221,8 @@ Or, using a bunch of the arithmetic operators already discussed, you can calcula
 measured at two different time instances: 
 
 ```cpp
- Position p0, p1;  // Postions measured at two different times
- Time t0, t1;      // the times of the measurements 
+ Position p0, p1;  // Positions measured at two different times
+ Time t0, t1;      // the precise time of the two measurements 
  
  // Calculate an average velocity from the above...
  Velocity v = (p1 - p0) / (t1 - t0);
@@ -737,7 +737,7 @@ If needed correct for atmospheric refraction.
  hor = hor.to_unrefracted(novas_optical_refraction, weather);
 ```
   
-Noew you can calculate an apparent place on the celestial sphere given your observing frame (precise location and time
+Now, you can calculate an apparent place on the celestial sphere given your observing frame (precise location and time
 of observation).
 
 ```cpp

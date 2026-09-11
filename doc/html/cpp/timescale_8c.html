@@ -660,7 +660,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[day] The fractional part of the Julian date in the requested timescale or NAN if the time argument is NULL (ijd will be set to -1 also).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[day] The fractional part of the Julian date in the requested timescale or NAN if the time argument is NULL (errno set to EINVAL) or if the integer part overflows the long integer range (errno set to ERANGE). In case of error ijd will be set to -1 also.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ad47bcb1e3c5df56a0ffdf1a127e52598" title="Sets an astronomical time to the split Julian Date value, defined in the specified timescale.">novas_set_split_time()</a>, <a class="el" href="#ae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a> </dd></dl>
@@ -788,7 +788,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the number of characters printed into the string buffer, not including the termination. As such it is at most <span class="tt">maxlen - 1</span>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of characters printed into the string buffer, not including the termination. As such it is at most <span class="tt">maxlen - 1</span>. The call may also return -1 if the time cannot be represented by a timestamp (e.g. because of integer year overflow, or invalid time specification). In case of error, errno will be set to indicate the error, and "&lt;invalid-time&gt;" is printed into the buffer.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac8e83c48005d5aabb3e7bbf8d9f8ed81" title="Prints an astronomical timestamp to millisecond precision in the specified timescale to the specified...">novas_timestamp()</a>, <a class="el" href="group__util.html#gad53b3be5b92ea244cfb0347feb3bec9f" title="Parses an ISO 8601 timestamp, converting it to a Julian day.">novas_parse_iso_date()</a> </dd></dl>
@@ -1455,7 +1455,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the number of characters printed into the string buffer, not including the termination. As such it is at most <span class="tt">maxlen - 1</span>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the number of characters printed into the string buffer, not including the termination. As such it is at most <span class="tt">maxlen - 1</span>. The call may also return -1 if the time cannot be represented by a timestamp (e.g. because of integer year overflow, or invalid time specification). In case of error, errno will be set to indicate the error, and "&lt;invalid-time&gt;" is printed into the buffer.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a4d6da26d0a7d7d904f25d2be00030b25" title="Prints a UTC-based ISO timestamp to millisecond precision to the specified string buffer.">novas_iso_timestamp()</a>, <a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a> </dd></dl>
@@ -1494,12 +1494,12 @@ Functions</h2></td></tr>
 <p>It has a maximum error of 10 &mu;s between 1600 and 2200.</p>
 <p>This function is wrapped by <span class="tt"><a class="el" href="#a129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a></span>, which is typically a lot easier to use as it returns the time difference directly, which can then be used to convert time in both directions with greater ease. For example, to convert a TT-based date to a TDB-based date:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> TDB = TT + <a class="code hl_function" href="novas_8h.html#a129acca41760da486e1179c93cb9e86d">tt2tdb</a>(TT) / 86400.0;</div>
-<div class="ttc" id="anovas_8h_html_a129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="novas_8h.html#a129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:167</div></div>
+<div class="ttc" id="anovas_8h_html_a129acca41760da486e1179c93cb9e86d"><div class="ttname"><a href="novas_8h.html#a129acca41760da486e1179c93cb9e86d">tt2tdb</a></div><div class="ttdeci">double tt2tdb(double jd_tt)</div><div class="ttdoc">Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...</div><div class="ttdef"><b>Definition</b> timescale.c:168</div></div>
 </div><!-- fragment --><p>is equivalent to:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> dt;</div>
 <div class="line"><a class="code hl_function" href="novas_8h.html#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a>(TT, NULL, &amp;dt);   <span class="comment">// Uses TT input so don&#39;t attempt to calculate TT here...</span></div>
 <div class="line"><span class="keywordtype">double</span> TDB = TT + dt / 86400.0;</div>
-<div class="ttc" id="anovas_8h_html_a90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="novas_8h.html#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:125</div></div>
+<div class="ttc" id="anovas_8h_html_a90d5fae30728b51151c3daf355ca585b"><div class="ttname"><a href="novas_8h.html#a90d5fae30728b51151c3daf355ca585b">tdb2tt</a></div><div class="ttdeci">int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff)</div><div class="ttdoc">Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...</div><div class="ttdef"><b>Definition</b> timescale.c:126</div></div>
 </div><!-- fragment --><p>NOTES:</p>
 <ol type="1">
 <li>This function caches the results of the last calculation in case it may be re-used at no extra computational cost for the next call.</li>
