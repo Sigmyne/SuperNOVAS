@@ -33,17 +33,19 @@
 #endif
 
 /// \cond PRIVATE
-#define DTA         32.184                ///< [s] TT - TAI time difference
-#define GPS2TAI     19.0                  ///< [s] TAI - GPS time difference
+#define DTA         32.184          ///< [s] TT - TAI time difference
+#define GPS2TAI     19.0            ///< [s] TAI - GPS time difference
 
-#define IDAY        86400                 ///< [s] 1 day
+#define IDAY        86400           ///< [s] 1 day
 
 #define IJD_J2000   2451545
 
-#define UNIX_UTC_J2000              (UNIX_SECONDS_0UTC_1JAN2000 + (IDAY / 2))
+#define UNIX_UTC_J2000  (UNIX_SECONDS_0UTC_1JAN2000 + (IDAY / 2))
 
 // IAU 2006 Resolution B3
-#define TC_T0      2443144.5003725       ///< 1977 January 1, 0h 0m 0s TAI
+#define TC_T0       2443144.5003725 ///< 1977 January 1, 0h 0m 0s TAI
+
+#define INVALID_TIME_STRING         "<invalid-timestamp>"
 
 /**
  * [s/s] Relative rate at which Barycentric coordinate time progresses faster than time on Earth
@@ -823,6 +825,9 @@ double novas_get_split_time(const novas_timespec *restrict time, enum novas_time
     *ijd = time->ijd_tt + (long) floor_f;
   }
 
+  if(isnan(f))
+    novas_set_errno(EINVAL, fn, "invalid time (NAN)");
+
   return f;
 }
 
@@ -1156,16 +1161,8 @@ double novas_date_scale(const char *restrict date, enum novas_timescale *restric
 }
 
 static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *buf) {
-  static const char *fn = "timestamp";
-  static const char *invalid_time_str = "<invalid_time>";
-
   long dd, ms;
   int y = 0, M = 0, d = 0, h, m, s, n;
-
-  if(isnan(fjd)) {
-    novas_snprintf(buf, NOVAS_MAX_TIMESTAMP_LEN, "%s", invalid_time_str);
-    return novas_trace(fn, -1, 0);
-  }
 
   // fjd -> [-0.5:0.5) range
   dd = (long) floor(fjd + 0.5);
@@ -1180,10 +1177,7 @@ static int timestamp(long ijd, double fjd, enum novas_calendar_type cal, char *b
   }
 
   // Date at 12pm of the same day
-  if(novas_jd_to_date(ijd, cal, &y, &M, &d, NULL) < 0) {
-    novas_snprintf(buf, NOVAS_MAX_TIMESTAMP_LEN, "%s", invalid_time_str);
-    return novas_trace(fn, -1, 0);
-  }
+  prop_error("timestamp", novas_jd_to_date(ijd, cal, &y, &M, &d, NULL), 0);
 
   // Time breakdown
   h = (int) (ms / HOUR_MILLIS);
@@ -1246,12 +1240,16 @@ int novas_iso_timestamp(const novas_timespec *restrict time, char *restrict dst,
   if(maxlen < 1)
     return novas_error(-1, EINVAL, fn, "invalid maxlen: %d", maxlen);
 
-  *dst = '\0';
+  // print default string into buffer
+  novas_snprintf(dst, maxlen, INVALID_TIME_STRING);
 
   if(!time)
     return novas_error(-1, EINVAL, fn, "input time is NULL");
 
   fjd = novas_get_split_time(time, NOVAS_UTC, &ijd);
+  if(isnan(fjd))
+    return novas_trace(fn, -1, 0);
+
   l = timestamp(ijd, fjd, NOVAS_GREGORIAN_CALENDAR, buf);
   if(l < 0)
     return novas_trace(fn, -1, 0);
@@ -1321,12 +1319,16 @@ int novas_timestamp(const novas_timespec *restrict time, enum novas_timescale sc
   if(maxlen < 1)
     return novas_error(-1, EINVAL, fn, "invalid maxlen: %d", maxlen);
 
-  *dst = '\0';
+  // print default string into buffer
+  novas_snprintf(dst, maxlen, INVALID_TIME_STRING);
 
   if(!time)
     return novas_error(-1, EINVAL, fn, "input time is NULL");
 
   fjd = novas_get_split_time(time, scale, &ijd);
+  if(isnan(fjd))
+      return novas_trace(fn, -1, 0);
+
   n = timestamp(ijd, fjd, NOVAS_ASTRONOMICAL_CALENDAR, buf);
   if(n < 0)
       return novas_trace(fn, -1, 0);
