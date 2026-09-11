@@ -54,8 +54,8 @@ Upcoming maintenance release, expected around 1 November 2026.
    to `ERANGE`) if the split cannot be done within the long integer range, when the integer part is requested.
    (by attipaci, thanks to csp 256)
    
- - #375: Suppress Clang++ sanitizer messages on out-of-range enums, when invalid instances are constructed using them
-   intentionally. The Clang++ sanitizer is also disabled automatically for compiling tests, since the tests are
+ - #375: Suppress Clang++ sanitizer messages on out-of-range enums, when invalid class instances are constructed using 
+   these intentionally. The Clang++ sanitizer is also disabled automatically for compiling tests, since the tests are
    not production code, and sloppyness for these is not critical. (by attipaci, thanks to csp256).
 
 
