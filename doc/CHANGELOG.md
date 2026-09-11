@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+Upcoming maintenance release, expected around 1 November 2026.
+
 ### Fixed
 
  - #359: Fixed wrong humidity units passed in `Site::average_weather()`. (by csp456)
@@ -16,14 +18,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
  - #361: Fixed weather parameters not having been used in in `Source::rises_above()`, `Source::sets_below()` and 
    `Source::horizontal_track()`. (by csp256)
    
+### Added
+
+ - #373: Added `NOVAS_MAX_TIMESTAMP_LENGTH` macro, which defines the maximum length of a SuperNOVAS timestamp
+   string when the year component is more than 4 bytes, i.e. for years before 1000 B.C. or after 9999 A.D.
+   
 ### Changed
    
  - #367: Testing oops in `Equinox` equality checks in the test suite. (by csp256)
+ 
+ - #369: Improved EOP fetching threasd safety, with thread-safe one-time mutex initialization, and more synchronized
+   code blocks preventing race conditions on modifying EOP resources (by csp256 and attipaci).
    
  - #372: Improved leap seconds list parsing, by applying leap list expiration as end date for last leap entry, in the 
    unlikely case that the expiration timestamp appears after the entries in the file. Note, that the timestamp of
    always appears in the commented header section before the leap entries in the IERS data products, so it is unlikely
    that normal leap list files will ever benefit from the change. (by csp456)
+
+ - #371: `novas_jd_to_date()` now checks that input JD date can be represented in a calendar format with an `int`-type 
+   year components in any calendar, and returns -1 with errno set to `ERANGE` when it cannot. The change prevents 
+   silent garbage output for ridiculous JD input values (such as more than 2 billion years from present day).
+   (by csp256 and attipaci)
+   
+ - #373: Change `novas_jd_to_date()` and `novas_jd_from_date()` to work with negative JD dates also, with appropriately
+   modified integer division floor value. (by csp256 and attipaci).
+
+ - #373: Check for integer overflow in `novas_set_time()` / `novas_set_split_time()`, and return -1 with `errno`
+   set to `ERANGE` when the integer part of JD exceeds the `long` storage range.
+   
+ - #373: `novas_timestamp()`, and `novas_iso_timestamp()` now print "<invalid-time>" into buffer when date cannot
+   be converted into a calendar date representation (e.g. because of integer year overflow or NAN), and return -1.
+   (by attipaci, thanks to csp256)
+   
+ - #373: `novas_get_split_time()` now ensures that the fractional part is between 0 and 1 and returns NAN (errno set 
+   to `ERANGE`) if the split cannot be done within the long integer range, when the integer part is requested.
+   (by attipaci, thanks to csp 256)
+   
+ - #375: Suppress Clang++ sanitizer messages on out-of-range enums, when invalid instances are constructed using them
+   intentionally. The Clang++ sanitizer is also disabled automatically for compiling tests, since the tests are
+   not production code, and sloppyness for these is not critical. (by attipaci, thanks to csp256).
 
 
 ## [1.7.2] - 2026-08-05
