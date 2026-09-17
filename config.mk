@@ -31,6 +31,11 @@ CFLAGS ?= -g -Os -Wall
 # To build / install the C++ library (libsupernovas++)...
 #ENABLE_CPP=1
 
+
+# To define `solarsystem()` / `solarsystem_hp()` function only when linking
+# your applicaton (the original NOVAS way):
+#USER_SOLSYS=1
+
 # To compile library with an external or legacy `solarsystem()` / 
 # `solarsystem_hp()` implementation as the default planet provider, specify 
 # the source(s), which provide the implementation. (E.g. `legacy/solsys1.c 
@@ -39,6 +44,10 @@ CFLAGS ?= -g -Os -Wall
 # defined `novas_planet_provider` call, such as `src/solsys3.c`.
 #SOLSYS_SOURCE = legacy/solsys1.c legacy/eph_manager.c
 
+
+# To define the `readeph()` function only when linking your applicaton (the 
+# original NOVAS way):
+#USER_READEPH=1
 
 # To compile to use some user-supplied legacy `readeph()` implementation as
 # the default ephemeris data provider, specify the source that will provide
@@ -125,11 +134,23 @@ ifdef THREAD_LOCAL
   CPPFLAGS += -DTHREAD_LOCAL=\"$(THREAD_LOCAL)\"
 endif
 
+# If defining `solarsystem()` / `solarsystem_hp()` functions only when linking 
+# your application (the original NOVAS way) 
+ifdef USER_SOURCE
+  CPPFLAGS += -DUSER_SOLSYS=1
+endif
+
 # Whether to use user-provided legacy `solarsystem()` / `solarsystem_hp()` 
 # functions as the  default planetary ephemeris provider.
 ifdef SOLSYS_SOURCE
   SOURCES += $(SOLSYS_SOURCE)
   CPPFLAGS += -DUSER_SOLSYS=1
+endif
+
+# If defining `readeph()` functions only when linking your application (the 
+# original NOVAS way) 
+ifdef USER_READEPH
+  CPPFLAGS += -DUSER_READEPH=1
 endif
 
 # Whether to use a legacy `readeph()` function as the default non-planetary

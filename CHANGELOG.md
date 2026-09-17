@@ -23,6 +23,10 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #373: Added `NOVAS_MAX_TIMESTAMP_LENGTH` macro, which defines the maximum length of a SuperNOVAS timestamp
    string when the year component is more than 4 bytes, i.e. for years before 1000 B.C. or after 9999 A.D.
    
+ - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
+   the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
+   defined only when your application is linked.
+   
 ### Changed
    
  - #367: Testing oops in `Equinox` equality checks in the test suite. (by csp256)

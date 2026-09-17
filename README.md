@@ -39,6 +39,9 @@ __SuperNOVAS__ is easy to use and it is very fast, with 3--5 orders of magnitude
 [astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
 will scale further with the number of CPUs when calculations are performed in parallel threads.
 
+__SuperNOVAS__ is suitable for POSIX (e.g. Linux, BSD, MacOS, LynxOS), Windows, Android, as well as embedded and 
+bare-metal platforms alike.
+
 __SuperNOVAS__ is available through the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS) repository on 
 GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence 
 should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports 

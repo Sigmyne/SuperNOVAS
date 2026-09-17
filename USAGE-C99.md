@@ -117,14 +117,40 @@ supported, nevertheless, for legacy applications with some caveats.
 
 <details>
 
-To use your own existing default `solarsystem()` implementation in the NOVAS C way, you will have to build 
-__SuperNOVAS__ with `SOLSYS_SOURCE` set to the source file(s) of the implementation (`config.mk` or the environment).
+To use your own `solarsystem()` / `solarsystem_hp()` implementations in the NOVAS C way, you have two options. Either 
+you build __SuperNOVAS__ with `SOLSYS_SOURCE` set to the source file(s) of that implementation (in `config.mk` or else 
+in the shell environment):
 
-The same principle applies to using your specific legacy `readeph()` implementation, except that you must set 
-`READEPH_SOURCE` to the source file(s) of the chosen implementation when building __SuperNOVAS__). 
+```bash
+ export SOLSYS_SOURCE="legacy/solsys1.c"
+ make 
+```
 
-(You might have to also add additional include directories to `CPPFLAGS`, e.g. `-I/my-path/include` for you custom 
-sources for their associated headers).
+Or, you can build an incomplete __SuperNOVAS__ without integrated ephemeris support by setting `USER_SOLSYS=1`, e.g.:
+
+```bash
+ export USER_SOLSYS=1
+ make
+```
+
+and then specify the external module (e.g. `my-solsys.c`) providing `solarsystem()` / `solarsystem_hp()` for your 
+application when it is linked, e.g.:
+
+```make
+LDFLAGS += -lsupernovas
+
+my-app: my-app.c my-solsys.c 
+```
+
+Note, that while the second option provides more flexibility with switching between different modules, it also implies 
+that you _must_ always provide such a module in this manner.
+
+The same principle applies to using your specific legacy `readeph()` implementation, except that you either set 
+`READEPH_SOURCE` to the source file(s) of the chosen implementation, or else set `USER_READEPH=1` when building 
+__SuperNOVAS__) with an external module provided at link time. 
+
+(You might have to also add additional include directories to `CPPFLAGS` also, e.g. `-I/my-path/include` for the
+headers associated to your custom sources).
 
 </details>
 
