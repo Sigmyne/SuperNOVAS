@@ -39,8 +39,6 @@ This document has been updated for the `v1.7` and later releases.
 14155, _Software and Cyberinfrastructure for Astronomy IX_, 1415533 (2026); https://doi.org/10.1117/12.3104649<br>
 [[BibTex]](resources/citation-14155_1079.bib) [[EndNote]](resources/citation-14155_1079.enw) [[RIS]](resources/citation-14155_1079.ris) 
 
- - __ASCL__: https://ascl.net/code/v/4871
-
 ## Table of Contents
 
  - [Introduction](#introduction)
