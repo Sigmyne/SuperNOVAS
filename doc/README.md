@@ -21,6 +21,9 @@ __SuperNOVAS__ is easy to use and it is very fast, with 3--5 orders of magnitude
 [astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
 will scale further with the number of CPUs when calculations are performed in parallel threads.
 
+__SuperNOVAS__ is suitable for POSIX (e.g. Linux, BSD, MacOS, LynxOS), Windows, Android, as well as embedded and 
+bare-metal platforms alike.
+
 __SuperNOVAS__ is available through the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS) repository on 
 GitHub, without licensing restrictions. Its source code is compatible with the C99 and C++11 standards, and hence 
 should be suitable for old and new platforms alike. And, despite it being a light-weight library, it fully supports 
@@ -30,6 +33,13 @@ position calculations.
 
 This document has been updated for the `v1.7` and later releases.
 
+### Citation
+
+ - __Reference Paper__: Attila Kovács "The SuperNOVAS high-precision C/C++ astrometry library", __Proc. SPIE__, 
+14155, _Software and Cyberinfrastructure for Astronomy IX_, 1415533 (2026); https://doi.org/10.1117/12.3104649<br>
+[[BibTex]](resources/citation-14155_1079.bib) [[EndNote]](resources/citation-14155_1079.enw) [[RIS]](resources/citation-14155_1079.ris) 
+
+ - __ASCL__: https://ascl.net/code/v/4871
 
 ## Table of Contents
 
