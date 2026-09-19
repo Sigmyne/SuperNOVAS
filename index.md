@@ -39,7 +39,8 @@ This site contains various online resources that support the library:
 __Cite as__
 
  - _Reference Paper_: Attila Kovács "The SuperNOVAS high-precision C/C++ astrometry library", Proc. SPIE 
-14155, Software and Cyberinfrastructure for Astronomy IX, 1415533 (19 Aug 2026); https://doi.org/10.1117/12.3104649
+14155, Software and Cyberinfrastructure for Astronomy IX, 1415533 (19 Aug 2026); https://doi.org/10.1117/12.3104649<br>
+[[BibTex]](resources/citation-14155_1079.bib) [[EndNote]](resources/citation-14155_1079.enw) [[RIS]](resources/citation-14155_1079.ris) 
 
  - _ASCL_: https://ascl.net/code/v/4871
 
