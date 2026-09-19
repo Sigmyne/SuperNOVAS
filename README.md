@@ -51,13 +51,11 @@ position calculations.
 
 This document has been updated for the `v1.7` and later releases.
 
-### Cite as
+### Citation
 
-__Reference Paper__: Attila Kovács "The SuperNOVAS high-precision C/C++ astrometry library", Proc. SPIE 
-14155, Software and Cyberinfrastructure for Astronomy IX, 1415533 (19 Aug 2026); https://doi.org/10.1117/12.3104649<br>
+ - __Reference Paper__: Attila Kovács "The SuperNOVAS high-precision C/C++ astrometry library", __Proc. SPIE__, 
+14155, _Software and Cyberinfrastructure for Astronomy IX_, 1415533 (2026); https://doi.org/10.1117/12.3104649<br>
 [[BibTex]](resources/citation-14155_1079.bib) [[EndNote]](resources/citation-14155_1079.enw) [[RIS]](resources/citation-14155_1079.ris) 
-
-__ASCL__: https://ascl.net/code/v/4871
 
 ## Table of Contents
 
