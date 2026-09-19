@@ -36,6 +36,12 @@ astrophysicist with a long history of telescope control and data reduction softw
 
 This site contains various online resources that support the library:
 
+__Cite as__
+
+ - _Reference Paper_: Attila Kovács "The SuperNOVAS high-precision C/C++ astrometry library", Proc. SPIE 
+14155, Software and Cyberinfrastructure for Astronomy IX, 1415533 (19 Aug 2026); https://doi.org/10.1117/12.3104649
+
+ - _ASCL_: https://ascl.net/code/v/4871
 
 __Documentation__
 
