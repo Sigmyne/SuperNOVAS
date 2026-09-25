@@ -435,11 +435,11 @@ static int get_ellipsoid(enum novas_reference_ellipsoid ellipsoid, double *a, do
       break;
     case NOVAS_IERS_1989_ELLIPSOID:
       *a = 6378136.0;
-      *f = 298.257;
+      *f = 1.0 / 298.257;
       break;
     case NOVAS_IERS_2003_ELLIPSOID:
       *a = 6378136.6;
-      *f = 298.25642;
+      *f = 1.0 / 298.25642;
       break;
     default:
       return novas_error(-1, EINVAL, "get_ellipsoid", "invalid reference ellipsoid: %d", ellipsoid);

@@ -4629,14 +4629,14 @@ static int test_cartesian_to_geodetic() {
 
   x[0] = 0.0;
   x[1] = 0.0;
-  x[2] = 6378136.0 * (1.0 - 298.257);
+  x[2] = 6378136.0 * (1.0 - 1.0 / 298.257);
 
   if(!is_ok("cartesian_to_geodetic:pole:iers89:north", novas_cartesian_to_geodetic(x, NOVAS_IERS_1989_ELLIPSOID, &lon, &lat, &alt))) return 1;
   if(!is_equal("cartesian_to_geodetic:north:iers89:alt", alt, 0.0, 1e-3)) n++;
 
   x[0] = 0.0;
   x[1] = 0.0;
-  x[2] = 6378136.6 * (1.0 - 298.25642);
+  x[2] = 6378136.6 * (1.0 - 1.0 / 298.25642);
 
   if(!is_ok("cartesian_to_geodetic:pole:iers1003:north", novas_cartesian_to_geodetic(x, NOVAS_IERS_2003_ELLIPSOID, &lon, &lat, &alt))) return 1;
   if(!is_equal("cartesian_to_geodetic:north:iers2003:alt", alt, 0.0, 1e-3)) n++;
