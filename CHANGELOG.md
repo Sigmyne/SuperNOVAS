@@ -18,6 +18,8 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #361: Fixed weather parameters not having been used in in `Source::rises_above()`, `Source::sets_below()` and 
    `Source::horizontal_track()`. (by csp256)
    
+ - #376: Fixed inverted flattening parameters for the IERS 1989 and 2003 reference ellipsoids.
+   
 ### Added
 
  - #373: Added `NOVAS_MAX_TIMESTAMP_LENGTH` macro, which defines the maximum length of a SuperNOVAS timestamp
@@ -26,6 +28,9 @@ Upcoming maintenance release, expected around 1 November 2026.
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
    defined only when your application is linked.
+   
+ - Added `Angle::sin()`, `Angle::cos()`, and `Angle::tan()` methods and `sin(Angle&)`, `cos(Angle&)`, and 
+   `tan(Angle&)` functions for simpler triginonetric use.
    
 ### Changed
    
@@ -62,6 +67,9 @@ Upcoming maintenance release, expected around 1 November 2026.
    these intentionally. The Clang++ sanitizer is also disabled automatically for compiling tests, since the tests are
    not production code, and sloppyness for these is not critical. (by attipaci, thanks to csp256).
 
+ - `Temperature::to_string(int)` and `Pressure::to_string(int)` have previously ignored the decimal places requested
+   and printed values with 1 decimal place always. Now changed to use the specified decimals parameter, and default 
+   to 3 decimal places bu default.
 
 ## [1.7.2] - 2026-08-05
 
