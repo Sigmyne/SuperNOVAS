@@ -599,6 +599,12 @@ public:
 
   std::string SI_unit() const override;
 
+  double sin() const;
+
+  double cos() const;
+
+  double tan() const;
+
   std::string to_string(int decimals = 3) const override {
     return to_string(NOVAS_SEP_UNITS_AND_SPACES, decimals);
   }
@@ -616,6 +622,12 @@ public:
   static constexpr int south = -1;    ///< South direction sign, e.g `90.0 * Unit::deg * Angle::south` for the South pole.
 
 };
+
+double sin(const Angle& angle);
+
+double cos(const Angle& angle);
+
+double tan(const Angle& angle);
 
 /**
  * A representation of a regularized angle, which can also be represented as a time value in the 0

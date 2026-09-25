@@ -203,9 +203,7 @@ double Interval::milliseconds() const {
  * @return  [s] the time interval
  *
  * @since 1.6
- * @sa Interval::milliseconds(), Interval::minutes(), Interval::hours(), Interval::days(),
- *     Interval::weeks(), Interval::years(), Interval::julian_years(),
- *     Interval::julian_centuries()
+ * @sa milliseconds(), minutes(), hours(), days(), weeks(), years(), julian_years(), julian_centuries()
  */
 double Interval::seconds() const {
   return _value;

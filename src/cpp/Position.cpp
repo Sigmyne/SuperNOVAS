@@ -223,7 +223,7 @@ Spherical Position::to_spherical() const {
 }
 
 /**
- * Returns a reference to the statically define position at the origin (that is a null posiution
+ * Returns a reference to the statically define position at the origin (that is a null position
  * vector).
  *
  * @return    a reference to a static null position vector.
@@ -269,8 +269,7 @@ AstrometricPosition Position::to_astrometric(const Frame& frame, enum novas_refe
  * @since 1.6
  */
 std::string Position::to_string(int decimals) const {
-  return "Position (" + Coordinate(_component[0]).to_string(decimals) + ", "
-          + Coordinate(_component[1]).to_string(decimals) + ", " + Coordinate(_component[2]).to_string(decimals) + ")";
+  return "Position (" + x().to_string(decimals) + ", " + y().to_string(decimals) + ", " + z().to_string(decimals) + ")";
 }
 
 /**
