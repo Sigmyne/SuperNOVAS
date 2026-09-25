@@ -40,6 +40,14 @@ int main() {
   if(!test.equals("fraction()", a.fraction(), 1.0 / 8.0, 1e-15)) n++;
   if(!test.equals("SI_unit()", a.SI_unit(), "rad")) n++;
   if(!test.equals("SI_value()", a.SI_value(), a.rad(), 0.0)) n++;
+  if(!test.equals("sin()", a.sin(), sin(a.rad()), 1e-15)) n++;
+  if(!test.equals("cos()", a.cos(), cos(a.rad()), 1e-15)) n++;
+  if(!test.equals("tan()", a.tan(), tan(a.rad()), 1e-15)) n++;
+
+  if(!test.equals("sin(Angle)", sin(a), sin(a.rad()), 1e-15)) n++;
+  if(!test.equals("cos(Angle)", cos(a), cos(a.rad()), 1e-15)) n++;
+  if(!test.equals("tan(Angle)", tan(a), tan(a.rad()), 1e-15)) n++;
+
 
   Angle b(30.0 * Unit::deg);
   if(!test.check("operator ==", a == a)) n++;

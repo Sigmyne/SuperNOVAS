@@ -70,6 +70,9 @@ Upcoming maintenance release, expected around 1 November 2026.
  - `Temperature::to_string(int)` and `Pressure::to_string(int)` have previously ignored the decimal places requested
    and printed values with 1 decimal place always. Now changed to use the specified decimals parameter, and default 
    to 3 decimal places bu default.
+   
+ - Changed portable mutex feature test order to reserve use of the C11 mutexes for cases where neither POSIX nor
+   MSC mutexes can be used.
 
 ## [1.7.2] - 2026-08-05
 

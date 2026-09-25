@@ -752,8 +752,8 @@ GeodeticObserver::GeodeticObserver(const Site& site, const EOP& eop, const Scala
   _valid &= (errno == 0);
 
   double v[3] = {0.0};
-  v[0] = horizontal.km_per_s() * sin(direction.rad());
-  v[1] = horizontal.km_per_s() * cos(direction.rad());
+  v[0] = horizontal.km_per_s() * direction.sin();
+  v[1] = horizontal.km_per_s() * direction.cos();
   v[2] = vertical.km_per_s();
 
   novas_enu_to_itrs(v, site.longitude().deg(), site.latitude().deg(), _observer.near_earth.sc_vel);

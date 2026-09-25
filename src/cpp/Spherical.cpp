@@ -102,14 +102,8 @@ Angle Spherical::distance_to(const Spherical& other) const {
  * @sa Position::to_spherical()
  */
 Position Spherical::xyz(const Coordinate& distance) const {
-  double pos[3];
-  double xy = distance.m() * cos(_lat.rad());
-
-  pos[0] = xy * cos(_lon.rad());
-  pos[1] = xy * sin(_lon.rad());
-  pos[2] = distance.m() * sin(_lat.rad());
-
-  Position p(pos);
+  double xy = distance.m() * _lat.cos();
+  Position p(xy * _lon.cos(), xy * _lon.sin(), distance.m() * _lat.sin());
   if(!p.is_valid())
       novas_trace_invalid("Spherical::xyz()");
   return p;

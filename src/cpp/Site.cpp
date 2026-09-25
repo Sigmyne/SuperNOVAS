@@ -62,7 +62,7 @@ Site::Site(double longitude_rad, double latitude_rad, double altitude_m, enum no
  * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
  *
  * @since 1.6
- * @sa from_xyz(), Site::from_GPS()
+ * @sa from_xyz(), from_GPS()
  */
 Site::Site(const Angle& longitude, const Angle& latitude, const Coordinate& altitude, enum novas_reference_ellipsoid ellipsoid)
 : Site(longitude.rad(), latitude.rad(), altitude.m(), ellipsoid) {}
@@ -101,7 +101,7 @@ Site::Site(const Position& xyz) {
  * @param ellipsoid       (optional) reference ellipsoid to use (default: NOVAS_GRS80_ELLIPSOID)
  *
  * @since 1.6
- * @sa from_xyz(), Site::from_GPS()
+ * @sa from_xyz(), from_GPS()
  */
 Site::Site(const std::string& longitude, const std::string& latitude, const Coordinate& altitude, enum novas_reference_ellipsoid ellipsoid)
 : Site(Angle(longitude), Angle(latitude), altitude, ellipsoid) {
@@ -250,7 +250,7 @@ Site Site::itrf_transformed(int from_year, int to_year) const {
  * @return    the same vector in East-North-Up (ENU) directions at the site.
  *
  * @since 1.6
- * @sa enu_to_itrf()
+ * @sa enu_to_itrs()
  */
 Position Site::itrs_to_enu(const Position& p) const {
   double x[3] = {0.0};
@@ -268,7 +268,7 @@ Position Site::itrs_to_enu(const Position& p) const {
  * @return    the same vector in East-North-Up (ENU) directions at the site.
  *
  * @since 1.6
- * @sa enu_to_itrf()
+ * @sa enu_to_itrs()
  */
 Velocity Site::itrs_to_enu(const Velocity& v) const {
   double x[3] = {0.0};
@@ -286,7 +286,7 @@ Velocity Site::itrs_to_enu(const Velocity& v) const {
  * @return    the same position vector in ITRF.
  *
  * @since 1.6
- * @sa itrf_to_enu()
+ * @sa itrfsto_enu()
  */
 Position Site::enu_to_itrs(const Position& p) const {
   double x[3] = {0.0};
@@ -304,7 +304,7 @@ Position Site::enu_to_itrs(const Position& p) const {
  * @return    the same position vector in ITRF.
  *
  * @since 1.6
- * @sa itrf_to_enu()
+ * @sa itrs_to_enu()
  */
 Velocity Site::enu_to_itrs(const Velocity& v) const {
   double x[3] = {0.0};
@@ -390,7 +390,7 @@ std::string Site::to_string(enum novas_separator_type separator, int decimals) c
  * @return    a new observing site at the specified GSP location.
  *
  * @since 1.6
- * @sa Site(), from_xyz()
+ * @sa Site()
  */
 Site Site::from_GPS(double longitude, double latitude, double altitude) {
   Site s(longitude, latitude, altitude, NOVAS_WGS84_ELLIPSOID);
@@ -408,7 +408,7 @@ Site Site::from_GPS(double longitude, double latitude, double altitude) {
  * @return    a new observing site at the specified GSP location.
  *
  * @since 1.6
- * @sa Site(), from_xyz()
+ * @sa Site()
  */
 Site Site::from_GPS(const Angle& longitude, const Angle& latitude, const Coordinate& altitude) {
   return from_GPS(longitude.rad(), latitude.rad(), altitude.m());
@@ -424,7 +424,7 @@ Site Site::from_GPS(const Angle& longitude, const Angle& latitude, const Coordin
  * @return    a new observing site at the specified GSP location.
  *
  * @since 1.6
- * @sa Site(), from_xyz(), Angle()
+ * @sa Site(), Angle()
  */
 Site Site::from_GPS(const std::string& longitude, const std::string& latitude, const Coordinate& altitude) {
   return from_GPS(Angle(longitude), Angle(latitude), altitude);
