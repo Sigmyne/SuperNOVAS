@@ -99,8 +99,7 @@ double Pressure::bar() const {
  * @return    [torr] the atmospheric pressure (millimeters of Hg).
  *
  * @since 1.6
- * @sa Pressure::Pa(), Pressure::hPa(), Pressure::kPa(), Pressure::mbar(), Pressure::bar(),
- *     Pressure::atm()
+ * @sa Pa(), hPa(), kPa(), mbar(), bar(), atm()
  */
 double Pressure::torr() const {
   return _value / Unit::torr;
@@ -133,8 +132,8 @@ std::string Pressure::SI_unit() const {
  */
 std::string Pressure::to_string(int decimals) const {
   char s[40] = {'\0'};
-  snprintf(s, sizeof(s), "%.1f mbar", _value / Unit::mbar);
-  return std::string(s);
+  novas_print_decimal(mbar(), decimals, s, (int) sizeof(s));
+  return std::string(s) + " mbar";
 }
 
 /**

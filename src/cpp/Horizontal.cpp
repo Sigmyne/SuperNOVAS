@@ -179,7 +179,7 @@ bool Horizontal::operator!=(const Horizontal& other) const {
  *
  * @since 1.6
  *
- * @sa offset_by()
+ * @sa offset()
  */
 Angle Horizontal::distance_to(const Horizontal& other) const {
   Angle a = Spherical::distance_to(other);
@@ -237,7 +237,7 @@ Horizontal Horizontal::offset(const Angle& direction, const Angle& distance) con
  * @since 1.6
  * @sa to_unrefracted()
  */
-Horizontal Horizontal::to_refracted(RefractionModel ref, const Weather& weather, const Time& time) {
+Horizontal Horizontal::to_refracted(RefractionModel ref, const Weather& weather, const Time& time) const {
   on_surface loc = {};
   use_weather(weather, &loc);
   double del = ref ? ref(time.jd(), &loc, NOVAS_REFRACT_ASTROMETRIC, elevation().deg()) : 0.0;
@@ -261,7 +261,7 @@ Horizontal Horizontal::to_refracted(RefractionModel ref, const Weather& weather,
  * @since 1.6
  * @sa to_refracted()
  */
-Horizontal Horizontal::to_unrefracted(RefractionModel ref, const Weather& weather, const Time& time) {
+Horizontal Horizontal::to_unrefracted(RefractionModel ref, const Weather& weather, const Time& time) const {
   on_surface loc = {};
   use_weather(weather, &loc);
   double del = ref ? ref(time.jd(), &loc, NOVAS_REFRACT_OBSERVED, elevation().deg()) : 0.0;

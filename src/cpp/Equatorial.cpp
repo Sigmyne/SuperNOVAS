@@ -31,7 +31,7 @@ void Equatorial::validate() {
 
 /**
  * Instantiates equatorial coordinates with the specified right-ascension (R.A.) and declination
- * coordinates, optionally specifying a system and a distance if needed.
+ * coordinates.
  *
  * @param ra_rad      [rad] right ascension (R.A.) coordinate
  * @param dec_rad     [rad] declination coordinate
@@ -47,7 +47,7 @@ Equatorial::Equatorial(double ra_rad, double dec_rad, const Equinox &system)
 
 /**
  * Instantiates equatorial coordinates with the specified right-ascension (R.A.) and declination
- * coordinates, optionally specifying a system and a distance if needed.
+ * coordinates.
  *
  * @param ra          right ascension (R.A.) coordinate
  * @param dec         declination coordinate
@@ -63,9 +63,8 @@ Equatorial::Equatorial(const Angle& ra, const Angle& dec, const Equinox &system)
 
 /**
  * Instantiates equatorial coordinates with the specified string representations of
- * right-ascension (R.A.) and declination, optionally specifying a system and a distance if
- * needed. After instantiation, you should check that the resulting coordinates are valid, e.g.
- * as:
+ * right-ascension (R.A.) and declination, optionally specifying a system. After instantiation,
+ * you should check that the resulting coordinates are valid, e.g. as:
  *
  * ```c++
  *   Equatorial coords = Equatorial(..., ...);
@@ -216,7 +215,7 @@ enum novas_reference_system Equatorial::system_type() const {
  *
  * @since 1.6
  *
- * @sa offset_by()
+ * @sa offset()
  */
 Angle Equatorial::distance_to(const Equatorial& other) const {
   Angle a = Spherical::distance_to(other >> _sys);

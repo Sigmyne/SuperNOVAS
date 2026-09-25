@@ -25,12 +25,12 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #373: Added `NOVAS_MAX_TIMESTAMP_LENGTH` macro, which defines the maximum length of a SuperNOVAS timestamp
    string when the year component is more than 4 bytes, i.e. for years before 1000 B.C. or after 9999 A.D.
    
+ - #377: Added `Angle::sin()`, `Angle::cos()`, and `Angle::tan()` methods and `sin(Angle&)`, `cos(Angle&)`, and 
+   `tan(Angle&)` functions for simpler triginonetric use.
+   
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
    defined only when your application is linked.
-   
- - Added `Angle::sin()`, `Angle::cos()`, and `Angle::tan()` methods and `sin(Angle&)`, `cos(Angle&)`, and 
-   `tan(Angle&)` functions for simpler triginonetric use.
    
 ### Changed
    
@@ -67,9 +67,16 @@ Upcoming maintenance release, expected around 1 November 2026.
    these intentionally. The Clang++ sanitizer is also disabled automatically for compiling tests, since the tests are
    not production code, and sloppyness for these is not critical. (by attipaci, thanks to csp256).
 
- - `Temperature::to_string(int)` and `Pressure::to_string(int)` have previously ignored the decimal places requested
-   and printed values with 1 decimal place always. Now changed to use the specified decimals parameter, and default 
-   to 3 decimal places bu default.
+ - #377: `Temperature::to_string(int)` and `Pressure::to_string(int)` have previously ignored the decimal places 
+   requested and printed values with 1 decimal place always. Now changed to use the specified decimals parameter, and 
+   default to 3 decimal places.
+   
+ - #377: `Horizontal::to_refracted()` and `.to_unrefracted()` now marked as `const` since these methods do not alter
+   the parent instance.
+   
+ - Changed portable mutex feature test order to reserve use of the C11 mutexes for cases where neither POSIX nor
+   MSC mutexes can be used.
+   
 
 ## [1.7.2] - 2026-08-05
 

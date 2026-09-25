@@ -255,7 +255,7 @@ Equinox Ecliptic::system() const {
  *
  * @since 1.6
  *
- * @sa offset_by()
+ * @sa offset()
  */
 Angle Ecliptic::distance_to(const Ecliptic& other) const {
   Angle a = Spherical::distance_to(other >> system());

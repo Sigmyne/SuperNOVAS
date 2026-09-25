@@ -146,7 +146,7 @@ Time::Time(long ijd, double fjd, const EOP& eop, enum novas_timescale timescale)
  *
  * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
- * @sa novas_parse_date(), novas_parse_ido_date(), novas_parse_date_format(),
+ * @sa novas_parse_date(), novas_parse_iso_date(), novas_parse_date_format(),
  *     novas_parse_timescale() for more managed parsing from strings.
  * @sa novas_set_auto_fetch_eop(), novas_lookup_leap(), novas_fetch_eop()
  */
@@ -174,7 +174,7 @@ Time::Time(const std::string& timestamp, int leap_seconds, double dUT1, enum nov
  *
  * @since 1.6
  * @sa now(), from_mjd(), j2000(), b1950(), b1900(), hip()
- * @sa novas_parse_date(), novas_parse_ido_date(), novas_parse_date_format(),
+ * @sa novas_parse_date(), novas_parse_iso_date(), novas_parse_date_format(),
  *     novas_parse_timescale() for more managed parsing from strings.
  * @sa novas_set_auto_fetch_eop()
  */
@@ -606,7 +606,7 @@ int Time::leap_seconds() const {
  * Returns the UT1 - UTC time difference for this time instance, as was provided during
  * instantiation.
  *
- * @return      [s] The UT1 - UTC time difference.
+ * @return      The UT1 - UTC time difference.
  *
  * @since 1.6
  * @sa leap_seconds()

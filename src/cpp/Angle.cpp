@@ -220,6 +220,48 @@ std::string Angle::SI_unit() const {
 }
 
 /**
+ * Returns the trigonometric sine of this angle.
+ *
+ * @return the sine of the angle.
+ *
+ * @see cos()
+ * @see tan()
+ *
+ * @since 1.8
+ */
+double Angle::sin() const {
+    return std::sin(_value);
+}
+
+/**
+ * Returns the trigonometric cosine of this angle.
+ *
+ * @return the cosine of the angle.
+ *
+ * @see sin()
+ * @see tan()
+ *
+ * @since 1.8
+ */
+double Angle::cos() const {
+    return std::cos(_value);
+}
+
+/**
+ * Returns the trigonometric tangent of this angle.
+ *
+ * @return the tangent of the angle.
+ *
+ * @see sin()
+ * @see cos()
+ *
+ * @since 1.8
+ */
+double Angle::tan() const {
+    return std::tan(_value);
+}
+
+/**
  * Provides a DDD:MM:SS.SSS representation of the angle with the specified separators and
  * decimal places for the arc seconds.
  *
@@ -246,6 +288,48 @@ std::string Angle::to_string(enum novas_separator_type separator, int decimals) 
 const Angle& Angle::undefined() {
   static Angle _invalid = Angle();
   return _invalid;
+}
+
+/**
+ * Returns the trigonometric sine of an angle.
+ *
+ * @param angle   the angle
+ * @return        the sine of the angle
+ *
+ * @sa Angle::sin()
+ *
+ * @since 1.8
+ */
+double sin(const Angle& angle) {
+  return angle.sin();
+}
+
+/**
+ * Returns the trigonometric cosine of an angle.
+ *
+ * @param angle   the angle
+ * @return        the cosine of the angle
+ *
+ * @sa Angle::cos()
+ *
+ * @since 1.8
+ */
+double cos(const Angle& angle) {
+  return angle.cos();
+}
+
+/**
+ * Returns the trigonometric tangent of an angle.
+ *
+ * @param angle   the angle
+ * @return        the tangent of the angle
+ *
+ * @sa Angle::tan()
+ *
+ * @since 1.8
+ */
+double tan(const Angle& angle) {
+  return angle.tan();
 }
 
 } // namespace supernovas

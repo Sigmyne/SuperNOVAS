@@ -268,12 +268,12 @@
 #define NOVAS_JD_MJD0             2400000.5
 
 /// [day] Julian date at B1950 (NASA / NAIF SPICE definition)
-/// precession(), transform_cat()
+/// @sa precession(), transform_cat()
 /// @c_time
 #define NOVAS_JD_B1950            2433282.42345905
 
 /// [day] Julian date at B1900 (NASA / NAIF SPICE definition)
-/// precession(), transform_cat()
+/// @sa precession(), transform_cat()
 /// @c_time
 #define NOVAS_JD_B1900            2415020.31352
 

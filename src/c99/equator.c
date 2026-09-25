@@ -316,7 +316,7 @@ double mean_obliq(double jd_tdb) {
  *
  * REFERENCES:
  *
- *  1.. Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).
+ *  1. Capitaine, N. et al. (2003), Astronomy and Astrophysics 412, 567-586, eq. (42).
  *  2. https://iers-conventions.obspm.fr/content/chapter5/additional_info/tab5.2e.txt
  *
  * @param jd_tdb    [day] Barycentric Dynamic Time (TDB) based Julian date, but TT-based date may
