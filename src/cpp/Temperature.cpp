@@ -36,6 +36,51 @@ Temperature::Temperature(double deg_C) : Scalar(KELVIN_0C + deg_C) {
 }
 
 /**
+ * Checks if this pressure value is the same as another, within the specified precision.
+ *
+ * @param temp        Another temperature value.
+ * @param precision   [K] (optional) Precision for the comparison (default: 1 mK).
+ * @return            `true` if the two pressures agree within the specified precision, otherwise
+ *                    `false`.
+ *
+ * @since 1.8
+ *
+ * @sa operator==(), operator!=()
+ */
+bool Temperature::equals(const Temperature& temp, double precision) const {
+    return Scalar::equals(temp, precision);
+}
+
+/**
+ * Checks if this pressure value is the same as another, within 1 mK.
+ *
+ * @param temp        Another temperature value.
+ * @return            `true` if the two coordinates are effectively the same within 1 mK, otherwise
+ *                    `false`.
+ *
+ * @since 1.8
+ *
+ * @sa equals(), operator!=()
+ */
+bool Temperature::operator==(const Temperature& temp) const {
+  return equals(temp);
+}
+
+/**
+ * Checks if this pressure value differs from another by more than 1 mK.
+ *
+ * @param temp        Another temperature value.
+ * @return            `true` if the two coordinates differ by more than 1 mK, otherwise `false`.
+ *
+ * @since 1.8
+ *
+ * @sa operator==(), equals()
+ */
+bool Temperature::operator!=(const Temperature& temp) const {
+  return !(*this == temp);
+}
+
+/**
  * Returns the temperature value in degrees Celsius.
  *
  * @return    [C] The temperature value

@@ -46,6 +46,56 @@ Coordinate Coordinate::abs() const {
 }
 
 /**
+ * Checks if this coordinate is the same as another, within the specified precision.
+ *
+ * @param coord       Another coordinate.
+ * @param precision   [m] Precision for the comparison.
+ * @return            `true` if the two coordinates are the same within the specified precision,
+ *                    otherwise `false`.
+ *
+ * @since 1.8
+ *
+ * @sa operator==(), operator!=()
+ */
+bool Coordinate::equals(const Coordinate& coord, double precision) const {
+    return Scalar::equals(coord, precision);
+}
+
+/**
+ * Checks if this coordinate is the same as another, to 12 decimal places or 1 mm (whichever is
+ * larger).
+ *
+ * @param coord       Another coordinate.
+ * @return            `true` if the two coordinates are effectively the same within reasonable
+ *                    precision, otherwise `false`.
+ *
+ * @since 1.8
+ *
+ * @sa equals(), operator!=()
+ */
+bool Coordinate::operator==(const Coordinate& coord) const {
+  double precision = 1e-12 * fabs(_value);
+  if(precision < Unit::mm) precision = Unit::mm;
+  return equals(coord, precision);
+}
+
+/**
+ * Checks if this coordinate differs from another, at 12 decimal places or at the 1 mm level
+ * (whichever is larger).
+ *
+ * @param coord       Another coordinate.
+ * @return            `true` if the two coordinates differ at reasonable precision, otherwise
+ *                    `false`.
+ *
+ * @since 1.8
+ *
+ * @sa operator==(), equals()
+ */
+bool Coordinate::operator!=(const Coordinate& coord) const {
+  return !(*this == coord);
+}
+
+/**
  * Returns the scalar velocity that is equal to this coordinate travelled under the specified time
  * interval.
  *

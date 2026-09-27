@@ -19,6 +19,10 @@ int main() {
   Pressure x = Pressure::Pa(NAN);
   if(!test.check("is_valid(NAN)", !x.is_valid())) n++;
   if(!test.check("isnan(NAN)", isnan(x.Pa()))) n++;
+  if(!test.check("equals(NAN)", !x.equals(x))) n++;
+  if(!test.check("operator==(NAN)", !(x == x))) n++;
+  if(!test.check("operator!=(NAN)", x != x)) n++;
+
   if(!test.check("!is_valid(-1 Pa)", !Pressure::Pa(-1.0).is_valid())) n++;
   if(!test.check("!is_valid(-1 hPa)", !Pressure::hPa(-1.0).is_valid())) n++;
   if(!test.check("!is_valid(-1 kPa)", !Pressure::kPa(-1.0).is_valid())) n++;
@@ -29,6 +33,9 @@ int main() {
 
   Pressure a = Pressure::Pa(1e5);
   if(!test.check("is_valid(100 hPa)", a.is_valid())) n++;
+  if(!test.check("equals()", a.equals(a))) n++;
+  if(!test.check("operator==()", a == a)) n++;
+  if(!test.check("operator!=()", !(a != a))) n++;
   if(!test.equals("Pa()", a.Pa(), 1e5)) n++;
   if(!test.equals("hPa()", a.hPa(), 1000.0, 1e-12)) n++;
   if(!test.equals("kPa()", a.kPa(), 100.0, 1e-13)) n++;
@@ -38,6 +45,10 @@ int main() {
   if(!test.equals("torr()", a.torr(), 1e5 / Unit::torr, 1e-15)) n++;
   if(!test.equals("SI_unit()", a.SI_unit(), "Pa")) n++;
   if(!test.equals("SI_value()", a.SI_value(), a.Pa(), 0.0)) n++;
+
+  Pressure b= Pressure::Pa(1e4);
+  if(!test.check("operator==(a/b)", !(a == b))) n++;
+  if(!test.check("operator!=(a/b)", a != b)) n++;
 
   if(!test.equals("hPA(x)", Pressure::hPa(99.0).hPa(), 99.0, 1e-13)) n++;
   if(!test.equals("kPA(x)", Pressure::kPa(99.0).kPa(), 99.0, 1e-13)) n++;

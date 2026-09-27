@@ -329,9 +329,9 @@ public:
 
   virtual ~Scalar() {}
 
-  double SI_value() const;
-
   bool equals(const Scalar& other, double precision) const;
+
+  double SI_value() const;
 
   virtual std::string SI_unit() const = 0;
 
@@ -457,6 +457,12 @@ public:
   explicit Coordinate(double meters);
 
   Coordinate abs() const;
+
+  bool equals(const Coordinate& coord, double precision) const;
+
+  bool operator==(const Coordinate& coord) const;
+
+  bool operator!=(const Coordinate& coord) const;
 
   ScalarVelocity operator/(const Interval& dt) const;
 
@@ -1209,6 +1215,12 @@ private:
   explicit Temperature(double deg_C);
 
 public:
+  bool equals(const Temperature& temp, double precision = 1e-3) const;
+
+    bool operator==(const Temperature& temp) const;
+
+    bool operator!=(const Temperature& temp) const;
+
   double celsius() const;
 
   double kelvin() const;
@@ -1256,6 +1268,13 @@ private:
   explicit Pressure(double value);
 
 public:
+
+  bool equals(const Pressure& p, double precision = 0.1 * Unit::Pa) const;
+
+  bool operator==(const Pressure& p) const;
+
+  bool operator!=(const Pressure& p) const;
+
   double Pa() const;
 
   double hPa() const;
