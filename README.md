@@ -49,7 +49,7 @@ the [IAU 2000/2006 resolutions](https://www.iau.org/IAU/Iau/Publications/List-of
 [IERS 2010 conventions](https://www.iers.org/IERS/EN/DataProducts/Conventions/conventions) for microarcsecond-level 
 position calculations. 
 
-This document has been updated for the `v1.7` and later releases.
+This document has been updated for the `v1.8` and later releases.
 
 ### Citation
 
