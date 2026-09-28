@@ -428,7 +428,7 @@ double CalendarDate::jd() const {
  *            Julian days start at midnight.
  *
  * @since 1.6
- * @sa mjd()
+ * @sa jd()
  */
 double CalendarDate::mjd() const {
   return _jd - NOVAS_JD_MJD0;

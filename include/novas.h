@@ -518,7 +518,7 @@
 
 /// Maxmimum number of bytes for a timestamp. All SuperNOVAS timestamps shall fit in a buffer
 /// of such size, even for extreme Gregorian years of `INT_MIN` or `INT_MAX`.
-/// @since 1.7.3
+/// @since 1.8
 /// @sa NOVAS_TIMESTAMP_LEN
 #define NOVAS_MAX_TIMESTAMP_LEN       35
 
@@ -3633,18 +3633,18 @@ int novas_lookup_leap(time_t t);
 /// [day] JD at 200 AD (1 Jan 200 AD, 12PM)
 #define NOVAS_JD_200AD  1794108LL
 
-/// [day] lowest floating-point Juloan day that can be converted to any calendar w/o integer overflow
+/// [day] lowest floating-point Julian day that can be converted to any calendar w/o integer overflow
 /// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD). Note, that because of
 /// rounding and timescale adjustments, the actual lowest convertible value may be slightly above this
 /// nominal limit.
-/// @since 1.7.3
+/// @since 1.8
 #define NOVAS_MIN_CALENDAR_JD (NOVAS_JD_200AD + (INT_MIN - 200LL) * DAYS_IN_400_GREGORIAN_YEARS / 400 - 0.5)
 
-/// [day] largest floating-point JUlian day that can be converted to any calendar w/o integer overflow
+/// [day] largest floating-point Jilian day that can be converted to any calendar w/o integer overflow
 /// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD). Note, that because of
 /// rounding and timescale adjustments, the actual lowest convertible value may be slightly below this
 /// nominal limit.
-/// @since 1.7.3
+/// @since 1.8
 #define NOVAS_MAX_CALENDAR_JD (NOVAS_JD_200AD + (INT_MAX - 200LL + 1) * DAYS_IN_400_GREGORIAN_YEARS / 400 + 0.5)
 
 

@@ -255,7 +255,6 @@ Horizontal Horizontal::to_refracted(RefractionModel ref, const Weather& weather,
  * @param weather   (optional) local weather parameters to use for the refraction correction.
  *                  (default: standard atmopshere).
  * @param time      (optional) Time of observation, for time-dependent refraction models.
- * @return          refracted horizontal coordinates.
  * @return          unrefracted (astrometric) horizontal coordinates.
  *
  * @since 1.6
