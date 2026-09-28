@@ -28,6 +28,9 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #377: Added `Angle::sin()`, `Angle::cos()`, and `Angle::tan()` methods and `sin(Angle&)`, `cos(Angle&)`, and 
    `tan(Angle&)` functions for simpler triginonetric use.
    
+ - #377: Added `operator==()`, `operator!=()` and specialized `equals()` methods to `Coordinate`, `Temperature`,
+   `Pressure` and Weather clases.
+   
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
    defined only when your application is linked.

@@ -22,6 +22,7 @@ int main() {
 
   Weather a = Weather(45.0, 1.0 * Unit::atm, 30.0 * Unit::percent);
   if(!test.check("is_valid()", a.is_valid())) n++;
+
   if(!test.equals("temperature()", a.temperature().celsius(), 45.0, 1e-15)) n++;
   if(!test.equals("pressure()", a.pressure().atm(), 1.0, 1e-15)) n++;
   if(!test.equals("humidity()", a.humidity(), 0.3, 1e-15)) n++;
@@ -32,15 +33,22 @@ int main() {
   if(!test.equals("temperature() ==", b.temperature().celsius(), a.temperature().celsius(), 1e-15)) n++;
   if(!test.equals("pressure() ==", b.pressure().atm(), a.pressure().atm(), 1e-15)) n++;
   if(!test.equals("humidity() ==", b.humidity(), a.humidity(), 1e-15)) n++;
+  if(!test.check("equals()", b.equals(a))) n++;
+  if(!test.check("operator==()", b == a)) n++;
+  if(!test.check("operator!=()", !(b != a))) n++;
 
   Site site = Site(45.0 * Unit::deg, 30.0 * Unit::deg, 1500.0 * Unit::m);
   Weather c = site.average_weather();
   if(!test.check("is_valid(site)", c.is_valid())) n++;
+  if(!test.check("operator==(a/c)", !(c == a))) n++;
+  if(!test.check("operator!=(a/c)", c != a)) n++;
 
   const Weather& d = Weather::standard();
   if(!test.equals("standard temperature() ==", d.temperature().celsius(), 10.0, 1e-15)) n++;
   if(!test.equals("standard pressure() ==", d.pressure().atm(), 1.0, 1e-15)) n++;
   if(!test.equals("standard humidity() ==", d.humidity(), 0.5, 1e-15)) n++;
+  if(!test.check("operator==(a/d)", !(d == a))) n++;
+  if(!test.check("operator!=(a/d)", d != a)) n++;
 
   on_surface s = {};
   make_itrf_site(30.0, 45.0, 1500.0, &s);

@@ -1330,6 +1330,12 @@ public:
 
   Weather(double celsius, double pascal, double humidity_fraction);
 
+  bool equals(const Weather& weather) const;
+
+  bool operator==(const Weather& weather) const;
+
+  bool operator!=(const Weather& weather) const;
+
   const Temperature& temperature() const;
 
   const Pressure& pressure() const;
