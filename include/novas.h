@@ -2101,6 +2101,15 @@ enum novas_calendar_type {
 };
 
 /**
+ * TNumber of calendar types in enum novas_calendar_type.
+ *
+ * @since 1.8
+ *
+ * @see enum novas_calendar_type
+ */
+#define NOVAS_CALENDAR_TYPES    (NOVAS_GREGORIAN_CALENDAR + 1)
+
+/**
  * Separator type to use for broken-down time/angle string representations in HMS/DMS formats.
  *
  * @since 1.3
@@ -3590,6 +3599,12 @@ int novas_set_leap_list(const char *filename);
 
 /// @ingroup earth
 int novas_lookup_leap(time_t t);
+
+
+// ---------------------- Added in 1.8.0 -------------------------
+
+// in calendar.c
+int novas_is_leap_year(int year, enum novas_calendar_type calendar);
 
 
 

@@ -1707,6 +1707,8 @@ public:
 
   CalendarDate date(const struct timespec *ts) const;
 
+  bool is_leap_year(int year) const;
+
   static Calendar gregorian();
 
   static Calendar roman();
