@@ -56,7 +56,7 @@ run: clean-cov clean-data $(TESTS)
 	@mkdir data
 	./test-compat
 	$(MAKE) check-compat
-	./test-super
+	./test-super 
 	./test-errors
 ifeq ($(CALCEPH_SUPPORT),1)
 	./test-calceph ../ephem

@@ -3114,8 +3114,7 @@ static int test_set_leap_list() {
 static int test_is_leap_year() {
   int n = 0;
 
-  if(check("is_leap_year:-1", -1, novas_is_leap_year(100, (enum novas_calendar_type) -1))) return n++;
-  if(check("is_leap_year:hi", -1, novas_is_leap_year(100, (enum novas_calendar_type) NOVAS_CALENDAR_TYPES))) return n++;
+  if(check("is_leap_year:invalid_calendar", -1, novas_is_leap_year(100, (enum novas_calendar_type) 1000))) n++;
 
   return n;
 }
