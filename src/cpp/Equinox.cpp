@@ -434,7 +434,7 @@ Equinox Equinox::from_system_type(enum novas_reference_system system, const Time
  *                  the mean equinox of date.
  *
  * @since 1.6
- * @sa mod_at_besselial_epoch(), j2000(), hip()
+ * @sa mod_at_julian_epoch(), mod_at_besselian_epoch(), j2000(), hip()
  */
 Equinox Equinox::mod(double jd_tt) {
   Equinox e(NOVAS_MOD, jd_tt);
@@ -454,7 +454,7 @@ Equinox Equinox::mod(double jd_tt) {
  *                  the mean equinox of date.
  *
  * @since 1.6
- * @sa mod_at_besselial_epoch(), j2000(), hip()
+ * @sa mod_at_julian_epoch(), mod_at_besselian_epoch(), j2000(), hip()
  */
 Equinox Equinox::mod(const Time& time) {
   return mod(time.jd());
@@ -471,12 +471,31 @@ Equinox Equinox::mod(const Time& time) {
  *                  the mean equinox of date.
  *
  * @since 1.6
- * @sa at_julian_date(), b1900(), b1950()
+ * @sa mod_at_julian_epoch(), mod(), b1900(), b1950()
  */
 Equinox Equinox::mod_at_besselian_epoch(double year) {
   Equinox e(_name_for("B", year), NOVAS_JD_B1950 + (year - 1950.0) * Unit::besselian_year / Unit::day);
   if(!e.is_valid())
     novas_trace_invalid("Equinox::mod_at_besselian_epoch()");
+  return e;
+}
+
+/**
+ * Mean-of-date (MOD) dynamical coordinate system, with respect to the mean dynamical equator and
+ * equinox at the specified Julian epoch. MOD coordinates take into account Earth's
+ * precession but not nutation.
+ *
+ * @param year      [yr] UTC-based decimal calendar year.
+ * @return          A reference system with the mean dynamical equator of date, with origin at
+ *                  the mean equinox of date.
+ *
+ * @since 1.8
+ * @sa mod_at_besselian_epoch(), mod(), j2000()
+ */
+Equinox Equinox::mod_at_julian_epoch(double year) {
+  Equinox e(_name_for("J", year), NOVAS_JD_J2000 + (year - 2000.0) * Unit::julian_year / Unit::day);
+  if(!e.is_valid())
+    novas_trace_invalid("Equinox::mod_at_julian_epoch()");
   return e;
 }
 

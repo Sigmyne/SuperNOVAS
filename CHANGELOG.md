@@ -34,6 +34,8 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #377: Added `novas_is_leap_year()` function, and `Calendar::is_leap_year()` method to check if a given year is 
    a leap year in the calendar.
    
+ - #377: Added `Equinox::mod_at_julian_epoch(double year)` method.
+   
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
    defined only when your application is linked.

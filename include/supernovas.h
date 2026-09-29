@@ -418,6 +418,8 @@ public:
 
   static Equinox mod_at_besselian_epoch(double year);
 
+  static Equinox mod_at_julian_epoch(double year);
+
   static Equinox tod(double jd_tt);
 
   static Equinox tod(const Time& time);
