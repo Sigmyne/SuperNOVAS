@@ -82,6 +82,8 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #377: `Horizontal::to_refracted()` and `.to_unrefracted()` now marked as `const` since these methods do not alter
    the parent instance.
    
+ - #377: Streamlined `ee_ct` and nutation series calculations slightly.
+   
  - Changed portable mutex feature test order to reserve use of the C11 mutexes for cases where neither POSIX nor
    MSC mutexes can be used.
    
