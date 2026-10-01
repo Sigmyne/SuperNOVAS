@@ -7,9 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.8.0-rc1] - 2026-10-01
+## [Unreleased]
 
-Release candidate for the upcoming maintenance release, expected around 1 November 2026.
+Upcoming maintenance release, expected around 1 November 2026.
 
 ### Fixed
 
@@ -23,13 +23,13 @@ Release candidate for the upcoming maintenance release, expected around 1 Novemb
 ### Added
 
  - #373: Added `NOVAS_MAX_TIMESTAMP_LENGTH` macro, which defines the maximum length of a SuperNOVAS timestamp
-   string when the year component is more than 4 bytes, i.e. for years before 1000 B.C. or after 9999 A.D.
+   string when the year component is more than 4 bytes, i.e. for years before 10000 B.C. or after 9999 A.D.
    
  - #377: Added `Angle::sin()`, `Angle::cos()`, and `Angle::tan()` methods and `sin(Angle&)`, `cos(Angle&)`, and 
    `tan(Angle&)` functions for simpler triginonetric use.
    
  - #377: Added `operator==()`, `operator!=()` and specialized `equals()` methods to `Coordinate`, `Temperature`,
-   `Pressure` and Weather clases.
+   `Pressure`, and `Weather` classes.
 
  - #377: Added `novas_is_leap_year()` function, and `Calendar::is_leap_year()` method to check if a given year is 
    a leap year in the calendar.
@@ -69,7 +69,7 @@ Release candidate for the upcoming maintenance release, expected around 1 Novemb
    
  - #373: `novas_get_split_time()` now ensures that the fractional part is between 0 and 1 and returns NAN (errno set 
    to `ERANGE`) if the split cannot be done within the long integer range, when the integer part is requested.
-   (by attipaci, thanks to csp 256)
+   (by attipaci, thanks to csp256)
    
  - #375: Suppress Clang++ sanitizer messages on out-of-range enums, when invalid class instances are constructed using 
    these intentionally. The Clang++ sanitizer is also disabled automatically for compiling tests, since the tests are
