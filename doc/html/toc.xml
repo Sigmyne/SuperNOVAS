@@ -1478,6 +1478,7 @@
           <topic label="novas_inv_refract" href="group__refract.html#ga81da80ae3ab1d0a444f39bde2af3a732"/>
           <topic label="novas_invert_transform" href="group__frame.html#gad2081e123024609d3071b33b183502b7"/>
           <topic label="novas_is_auto_fetch_eop" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255"/>
+          <topic label="novas_is_leap_year" href="novas_8h.html#a801ddc21095ec9e3376fc4c15c83d755"/>
           <topic label="novas_iso_timestamp" href="group__time.html#ga4d6da26d0a7d7d904f25d2be00030b25"/>
           <topic label="novas_itrf_transform" href="group__observer.html#gafd98ed01148f1291018809d77785527f"/>
           <topic label="novas_itrf_transform_eop" href="group__earth.html#ga3c8c9b8f709d1e5a7aa3a915f8fafcbb"/>
@@ -1656,6 +1657,7 @@
             <topic label="julian_date" href="group__time.html#ga7cd85bc0a0248f84d399cbbce9fe9546"/>
             <topic label="novas_day_of_week" href="group__time.html#ga7ee576309aa1977e9b2a3824286f725c"/>
             <topic label="novas_day_of_year" href="group__time.html#gae6eaa610037b0828d473062ab8722f47"/>
+            <topic label="novas_is_leap_year" href="calendar_8c.html#a801ddc21095ec9e3376fc4c15c83d755"/>
             <topic label="novas_jd_from_date" href="group__time.html#ga54eee84c46900c80ca9966857c217cc8"/>
             <topic label="novas_jd_to_date" href="group__time.html#ga8ed2fb55bcf86d9f1f434a2f832356a2"/>
           </topic>

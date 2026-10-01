@@ -82,7 +82,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.6</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -196,6 +196,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:afe1f9ddf413878c862a7e7d7c914964e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the absolute value of this distance.  <br /></td></tr>
 <tr class="memitem:a7bdf7782eefcc95e5c8bcca862dfa109" id="r_a7bdf7782eefcc95e5c8bcca862dfa109"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a7bdf7782eefcc95e5c8bcca862dfa109">au</a> () const</td></tr>
 <tr class="memdesc:a7bdf7782eefcc95e5c8bcca862dfa109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance in astronomical units.  <br /></td></tr>
+<tr class="memitem:a0285e718a125655d63b30f3f2ff9653f" id="r_a0285e718a125655d63b30f3f2ff9653f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0285e718a125655d63b30f3f2ff9653f">equals</a> (const Coordinate &amp;coord, double precision) const</td></tr>
+<tr class="memdesc:a0285e718a125655d63b30f3f2ff9653f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this coordinate is the same as another, within the specified precision.  <br /></td></tr>
 <tr class="memitem:a9a7803523870607942abbea098c9347a" id="r_a9a7803523870607942abbea098c9347a"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a9a7803523870607942abbea098c9347a">Gpc</a> () const</td></tr>
 <tr class="memdesc:a9a7803523870607942abbea098c9347a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance in gigaparsecs.  <br /></td></tr>
 <tr class="memitem:add0db7d8cd5c028cdc26b5dff8b08b95" id="r_add0db7d8cd5c028cdc26b5dff8b08b95"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#add0db7d8cd5c028cdc26b5dff8b08b95">km</a> () const</td></tr>
@@ -208,8 +210,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab234567fddc6ad5337c9ad11d6ca74ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance in meters.  <br /></td></tr>
 <tr class="memitem:a224984b16c07dec5e0f373912898da3b" id="r_a224984b16c07dec5e0f373912898da3b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a224984b16c07dec5e0f373912898da3b">Mpc</a> () const</td></tr>
 <tr class="memdesc:a224984b16c07dec5e0f373912898da3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the distance in megaparsecs.  <br /></td></tr>
+<tr class="memitem:ae7b22726570982f192dc3af0029c8397" id="r_ae7b22726570982f192dc3af0029c8397"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae7b22726570982f192dc3af0029c8397">operator!=</a> (const Coordinate &amp;coord) const</td></tr>
+<tr class="memdesc:ae7b22726570982f192dc3af0029c8397"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this coordinate differs from another, at 12 decimal places or at the 1 mm level (whichever is larger).  <br /></td></tr>
 <tr class="memitem:abca5dea0e57561e564c5be11174f2693" id="r_abca5dea0e57561e564c5be11174f2693"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1ScalarVelocity.html">ScalarVelocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#abca5dea0e57561e564c5be11174f2693">operator/</a> (const <a class="el" href="classsupernovas_1_1Interval.html">Interval</a> &amp;dt) const</td></tr>
 <tr class="memdesc:abca5dea0e57561e564c5be11174f2693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the scalar velocity that is equal to this coordinate travelled under the specified time interval.  <br /></td></tr>
+<tr class="memitem:aaf2d2e6bf3a5ce57e1e646bff153509d" id="r_aaf2d2e6bf3a5ce57e1e646bff153509d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aaf2d2e6bf3a5ce57e1e646bff153509d">operator==</a> (const Coordinate &amp;coord) const</td></tr>
+<tr class="memdesc:aaf2d2e6bf3a5ce57e1e646bff153509d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this coordinate is the same as another, to 12 decimal places or 1 mm (whichever is larger).  <br /></td></tr>
 <tr class="memitem:af862edb5c1eddd4451e1639e256cf1c1" id="r_af862edb5c1eddd4451e1639e256cf1c1"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#af862edb5c1eddd4451e1639e256cf1c1">parallax</a> () const</td></tr>
 <tr class="memdesc:af862edb5c1eddd4451e1639e256cf1c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the parallax angle that corresponds to this distance instance.  <br /></td></tr>
 <tr class="memitem:ab0f236c74f41fd3ee004cc77f7452687" id="r_ab0f236c74f41fd3ee004cc77f7452687"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ab0f236c74f41fd3ee004cc77f7452687">pc</a> () const</td></tr>
@@ -378,6 +384,43 @@ Additional Inherited Members</h2></td></tr>
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#af7002241f1407a01092aa9aa0b2db6a2">to_string()</a>.</p>
+
+</div>
+</div>
+<a id="a0285e718a125655d63b30f3f2ff9653f" name="a0285e718a125655d63b30f3f2ff9653f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0285e718a125655d63b30f3f2ff9653f">&#9670;&#160;</a></span>equals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Coordinate::equals </td>
+          <td>(</td>
+          <td class="paramtype">const Coordinate &amp;</td>          <td class="paramname"><span class="paramname"><em>coord</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>precision</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this coordinate is the same as another, within the specified precision. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coord</td><td>Another coordinate. </td></tr>
+    <tr><td class="paramname">precision</td><td>[m] Precision for the comparison. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two coordinates are the same within the specified precision, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aaf2d2e6bf3a5ce57e1e646bff153509d" title="Checks if this coordinate is the same as another, to 12 decimal places or 1 mm (whichever is larger).">operator==()</a>, <a class="el" href="#ae7b22726570982f192dc3af0029c8397" title="Checks if this coordinate differs from another, at 12 decimal places or at the 1 mm level (whichever ...">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a6448cf148c3d70d91d0d36a3fd8fed7b">supernovas::Scalar::equals()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#aaf2d2e6bf3a5ce57e1e646bff153509d">operator==()</a>.</p>
 
 </div>
 </div>
@@ -567,6 +610,34 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ae7b22726570982f192dc3af0029c8397" name="ae7b22726570982f192dc3af0029c8397"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b22726570982f192dc3af0029c8397">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Coordinate::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const Coordinate &amp;</td>          <td class="paramname"><span class="paramname"><em>coord</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this coordinate differs from another, at 12 decimal places or at the 1 mm level (whichever is larger). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coord</td><td>Another coordinate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two coordinates differ at reasonable precision, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aaf2d2e6bf3a5ce57e1e646bff153509d" title="Checks if this coordinate is the same as another, to 12 decimal places or 1 mm (whichever is larger).">operator==()</a>, <a class="el" href="#a0285e718a125655d63b30f3f2ff9653f" title="Checks if this coordinate is the same as another, within the specified precision.">equals()</a> </dd></dl>
+
+</div>
+</div>
 <a id="abca5dea0e57561e564c5be11174f2693" name="abca5dea0e57561e564c5be11174f2693"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abca5dea0e57561e564c5be11174f2693">&#9670;&#160;</a></span>operator/()</h2>
 
@@ -593,6 +664,36 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Position.html#ab424d6ee655671b37c35e678bbfc8cce" title="Returns the velocity vector that is equal to this position vector travelled under the specified time ...">Position::operator/()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="classsupernovas_1_1Interval.html#a0c945507913c689d7be0bec36233cd06">supernovas::Interval::seconds()</a>.</p>
+
+</div>
+</div>
+<a id="aaf2d2e6bf3a5ce57e1e646bff153509d" name="aaf2d2e6bf3a5ce57e1e646bff153509d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf2d2e6bf3a5ce57e1e646bff153509d">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Coordinate::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const Coordinate &amp;</td>          <td class="paramname"><span class="paramname"><em>coord</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this coordinate is the same as another, to 12 decimal places or 1 mm (whichever is larger). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coord</td><td>Another coordinate. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two coordinates are effectively the same within reasonable precision, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0285e718a125655d63b30f3f2ff9653f" title="Checks if this coordinate is the same as another, within the specified precision.">equals()</a>, <a class="el" href="#ae7b22726570982f192dc3af0029c8397" title="Checks if this coordinate differs from another, at 12 decimal places or at the 1 mm level (whichever ...">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="#a0285e718a125655d63b30f3f2ff9653f">equals()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#ad170cd9a48a5041b770d0af4c042a9bf">supernovas::Unit::mm</a>.</p>
 
 </div>
 </div>

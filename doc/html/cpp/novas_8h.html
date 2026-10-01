@@ -82,7 +82,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.6</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -295,9 +295,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ab74630b694f2fee24d8fc1dedad7eef9" id="r_ab74630b694f2fee24d8fc1dedad7eef9"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ab74630b694f2fee24d8fc1dedad7eef9">NOVAS_INVALID_LEAP</a></td></tr>
 <tr class="memdesc:ab74630b694f2fee24d8fc1dedad7eef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leap seconds value to indicate invalid data.  <br /></td></tr>
 <tr class="memitem:af03a1f0412f23cd6edb323297646eb30" id="r_af03a1f0412f23cd6edb323297646eb30"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#af03a1f0412f23cd6edb323297646eb30">NOVAS_JD_B1900</a>&#160;&#160;&#160;2415020.31352</td></tr>
-<tr class="memdesc:af03a1f0412f23cd6edb323297646eb30"><td class="mdescLeft">&#160;</td><td class="mdescRight">[day] Julian date at B1900 (NASA / NAIF SPICE definition) <a class="el" href="#a9178358732325399f3a5e3582080ced3" title="Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) preces...">precession()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a>  <br /></td></tr>
+<tr class="memdesc:af03a1f0412f23cd6edb323297646eb30"><td class="mdescLeft">&#160;</td><td class="mdescRight">[day] Julian date at B1900 (NASA / NAIF SPICE definition)  <br /></td></tr>
 <tr class="memitem:a3785083ae52bbbc1e749dbedd7e5d85e" id="r_a3785083ae52bbbc1e749dbedd7e5d85e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a3785083ae52bbbc1e749dbedd7e5d85e">NOVAS_JD_B1950</a>&#160;&#160;&#160;2433282.42345905</td></tr>
-<tr class="memdesc:a3785083ae52bbbc1e749dbedd7e5d85e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[day] Julian date at B1950 (NASA / NAIF SPICE definition) <a class="el" href="#a9178358732325399f3a5e3582080ced3" title="Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) preces...">precession()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a>  <br /></td></tr>
+<tr class="memdesc:a3785083ae52bbbc1e749dbedd7e5d85e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[day] Julian date at B1950 (NASA / NAIF SPICE definition)  <br /></td></tr>
 <tr class="memitem:a4100ecc5d9badfa07301024baffe9ded" id="r_a4100ecc5d9badfa07301024baffe9ded"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a4100ecc5d9badfa07301024baffe9ded">NOVAS_JD_HIP</a>&#160;&#160;&#160;2448349.0625</td></tr>
 <tr class="memdesc:a4100ecc5d9badfa07301024baffe9ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.  <br /></td></tr>
 <tr class="memitem:a31bf4a08940bfa3e97ae6a1abee80422" id="r_a31bf4a08940bfa3e97ae6a1abee80422"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>&#160;&#160;&#160;2451545.0</td></tr>
@@ -446,11 +446,11 @@ Macros</h2></td></tr>
 <tr class="memdesc:a462bdac0f370f0c5b421ae5b3f3e35f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializer for a NOVAS <a class="el" href="#a98a44d2a2c0e4f211b128a94c848ed51" title="Celestial object&#39;s place on the sky; contains the output from place().">sky_pos</a> structure.  <br /></td></tr>
 <tr class="memitem:a5ab52d5db18c081b6313ed8b1993ebb7" id="r_a5ab52d5db18c081b6313ed8b1993ebb7"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5ab52d5db18c081b6313ed8b1993ebb7">SUPERNOVAS_MAJOR_VERSION</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:a5ab52d5db18c081b6313ed8b1993ebb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">API major version.  <br /></td></tr>
-<tr class="memitem:aaed93e356acfc0d15d0f64ae0793b4f0" id="r_aaed93e356acfc0d15d0f64ae0793b4f0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaed93e356acfc0d15d0f64ae0793b4f0">SUPERNOVAS_MINOR_VERSION</a>&#160;&#160;&#160;7</td></tr>
+<tr class="memitem:aaed93e356acfc0d15d0f64ae0793b4f0" id="r_aaed93e356acfc0d15d0f64ae0793b4f0"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aaed93e356acfc0d15d0f64ae0793b4f0">SUPERNOVAS_MINOR_VERSION</a>&#160;&#160;&#160;8</td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
-<tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;3</td></tr>
+<tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
-<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-devel&quot;</td></tr>
+<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-rc1&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
 <tr class="memitem:a44de9d1672290d153a1dfb0685886208" id="r_a44de9d1672290d153a1dfb0685886208"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a44de9d1672290d153a1dfb0685886208">SUPERNOVAS_VERSION_STRING</a></td></tr>
 <tr class="memdesc:a44de9d1672290d153a1dfb0685886208"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version string for this library.  <br /></td></tr>
@@ -995,6 +995,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ad2081e123024609d3071b33b183502b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverts a novas coordinate transformation matrix.  <br /></td></tr>
 <tr class="memitem:gad1e07eedd32cbf4f1160624c74a99255" id="r_gad1e07eedd32cbf4f1160624c74a99255"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#gad1e07eedd32cbf4f1160624c74a99255">novas_is_auto_fetch_eop</a> ()</td></tr>
 <tr class="memdesc:gad1e07eedd32cbf4f1160624c74a99255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if automatic fetching of Earth Orientation Parameter values from IERS is allowed.  <br /></td></tr>
+<tr class="memitem:a801ddc21095ec9e3376fc4c15c83d755" id="r_a801ddc21095ec9e3376fc4c15c83d755"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a801ddc21095ec9e3376fc4c15c83d755">novas_is_leap_year</a> (int year, enum <a class="el" href="#aa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar)</td></tr>
+<tr class="memdesc:a801ddc21095ec9e3376fc4c15c83d755"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given year is a leap year in a specific calendar.  <br /></td></tr>
 <tr class="memitem:a4d6da26d0a7d7d904f25d2be00030b25" id="r_a4d6da26d0a7d7d904f25d2be00030b25"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a4d6da26d0a7d7d904f25d2be00030b25">novas_iso_timestamp</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict time, char *restrict dst, int maxlen)</td></tr>
 <tr class="memdesc:a4d6da26d0a7d7d904f25d2be00030b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a UTC-based ISO timestamp to millisecond precision to the specified string buffer.  <br /></td></tr>
 <tr class="memitem:afd98ed01148f1291018809d77785527f" id="r_afd98ed01148f1291018809d77785527f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#afd98ed01148f1291018809d77785527f">novas_itrf_transform</a> (int from_year, const double *restrict from_coords, const double *restrict from_rates, int to_year, double *to_coords, double *to_rates)</td></tr>
@@ -1330,7 +1332,7 @@ Variables</h2></td></tr>
  Washington, DC<br  />
  <a href="http://www.usno.navy.mil/USNO/astronomical-applications">http://www.usno.navy.mil/USNO/astronomical-applications</a></p>
 <dl class="section author"><dt>Author</dt><dd>G. Kaplan and Attila Kovacs </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.7.2 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.8.0 </dd></dl>
 </div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
 <a id="a8a0ef80e44076b86bc707e9414d85d76" name="a8a0ef80e44076b86bc707e9414d85d76"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8a0ef80e44076b86bc707e9414d85d76">&#9670;&#160;</a></span>ASEC2RAD</h2>
@@ -2010,7 +2012,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[day] Julian date at B1900 (NASA / NAIF SPICE definition) <a class="el" href="#a9178358732325399f3a5e3582080ced3" title="Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) preces...">precession()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </p>
+<p>[day] Julian date at B1900 (NASA / NAIF SPICE definition) </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9178358732325399f3a5e3582080ced3" title="Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) preces...">precession()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#afb95cc52b6bd739843bca41a2b6cc18f">supernovas::Time::b1900()</a>.</p>
 
@@ -2028,7 +2031,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[day] Julian date at B1950 (NASA / NAIF SPICE definition) <a class="el" href="#a9178358732325399f3a5e3582080ced3" title="Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) preces...">precession()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </p>
+<p>[day] Julian date at B1950 (NASA / NAIF SPICE definition) </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9178358732325399f3a5e3582080ced3" title="Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) preces...">precession()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Time.html#a88061d30b8941199b51e0d7fc1f5063b">supernovas::Time::b1950()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a1e093e32feee83e7d589f51783ce2912">supernovas::Equinox::from_string()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#adcf12113ffc8c7ccd8776d33adcb0c36">supernovas::Equinox::mod_at_besselian_epoch()</a>, and <a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch()</a>.</p>
 
@@ -2067,7 +2071,7 @@ Variables</h2></td></tr>
 
 <p>[day] Julian date at J2000 </p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Calendar.html#a865a6d0e1029718a8330a3905fe2a587">supernovas::Calendar::date()</a>, <a class="el" href="classsupernovas_1_1Time.html#aaff57314263437bb06e1d7adcd6febcf">supernovas::Time::epoch()</a>, <a class="el" href="classsupernovas_1_1EOP.html#a795ca27c550868b0dc7e675acbd198a0">supernovas::EOP::fetch_for()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a1e093e32feee83e7d589f51783ce2912">supernovas::Equinox::from_string()</a>, <a class="el" href="#a75de6cca190c5fbc3056db726f317c7f">gcrs_to_mod()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">supernovas::Equinox::icrs()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a8f74265a182736c65f358d3535b4cfb4">supernovas::Equinox::j2000()</a>, <a class="el" href="classsupernovas_1_1Time.html#a2a483b407997ca602f9a79fb134468e9">supernovas::Time::j2000()</a>, <a class="el" href="#ad9cc07f0e6af9339096e15a440b113e5">mod_to_gcrs()</a>, <a class="el" href="#a7ee576309aa1977e9b2a3824286f725c">novas_day_of_week()</a>, <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch()</a>, <a class="el" href="#a4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix()</a>, <a class="el" href="#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="#aad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel()</a>, <a class="el" href="#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="#ac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="#a7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="#a8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="#ad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase()</a>, <a class="el" href="#a99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel()</a>, <a class="el" href="#a6e9ced7b0aec544ad7b057b58f777ec4">nutation_angles()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8">supernovas::Ecliptic::system()</a>, <a class="el" href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582">supernovas::Ecliptic::to_j2000()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>, <a class="el" href="group__time.html#gad301a9c74bfbdb8b55513cd005787b22">tt2tdb_fp()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#a776056f48ef548d8bb613932fe2647d8">supernovas::CalendarDate::unix_time()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Calendar.html#a865a6d0e1029718a8330a3905fe2a587">supernovas::Calendar::date()</a>, <a class="el" href="classsupernovas_1_1Time.html#aaff57314263437bb06e1d7adcd6febcf">supernovas::Time::epoch()</a>, <a class="el" href="classsupernovas_1_1EOP.html#a795ca27c550868b0dc7e675acbd198a0">supernovas::EOP::fetch_for()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a1e093e32feee83e7d589f51783ce2912">supernovas::Equinox::from_string()</a>, <a class="el" href="#a75de6cca190c5fbc3056db726f317c7f">gcrs_to_mod()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a94d2f811f21d992feabef754d64f6bb2">supernovas::Equinox::icrs()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a8f74265a182736c65f358d3535b4cfb4">supernovas::Equinox::j2000()</a>, <a class="el" href="classsupernovas_1_1Time.html#a2a483b407997ca602f9a79fb134468e9">supernovas::Time::j2000()</a>, <a class="el" href="classsupernovas_1_1Equinox.html#a4495856065dee8b03b4986fdb49ff216">supernovas::Equinox::mod_at_julian_epoch()</a>, <a class="el" href="#ad9cc07f0e6af9339096e15a440b113e5">mod_to_gcrs()</a>, <a class="el" href="#a7ee576309aa1977e9b2a3824286f725c">novas_day_of_week()</a>, <a class="el" href="#a087d587e90b4e2138c0dba12d727696e">novas_diurnal_eop_at_time()</a>, <a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4">novas_epoch()</a>, <a class="el" href="#a4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix()</a>, <a class="el" href="#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="#aad80bf94be2efc36c340994829df8207">novas_lsr_to_ssb_vel()</a>, <a class="el" href="#adc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>, <a class="el" href="#ac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#ad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="#a63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="#a7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="#a8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="#ad0bd6e212af549309b0fcb792ed8cb79">novas_next_moon_phase()</a>, <a class="el" href="#a99ed25baa029f3980924da8c8af54d1a">novas_ssb_to_lsr_vel()</a>, <a class="el" href="#a6e9ced7b0aec544ad7b057b58f777ec4">nutation_angles()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ac76fe2b0eec8eb935a3da7cbed3084b8">supernovas::Ecliptic::system()</a>, <a class="el" href="#a90d5fae30728b51151c3daf355ca585b">tdb2tt()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#ae4a7d476d5e137f909f6e50b91ac6582">supernovas::Ecliptic::to_j2000()</a>, <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>, <a class="el" href="group__time.html#gad301a9c74bfbdb8b55513cd005787b22">tt2tdb_fp()</a>, and <a class="el" href="classsupernovas_1_1CalendarDate.html#a776056f48ef548d8bb613932fe2647d8">supernovas::CalendarDate::unix_time()</a>.</p>
 
 </div>
 </div>
@@ -2104,7 +2108,7 @@ Variables</h2></td></tr>
 <p>[day] The Julian day the Gregorian calendar was introduced in 15 October 1582. </p>
 <p>The day prior to that was 4 October 1582 in the Julian Calendar. </p>
 
-<p class="reference">Referenced by <a class="el" href="#ae6eaa610037b0828d473062ab8722f47">novas_day_of_year()</a>, <a class="el" href="#a54eee84c46900c80ca9966857c217cc8">novas_jd_from_date()</a>, and <a class="el" href="#a8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a54eee84c46900c80ca9966857c217cc8">novas_jd_from_date()</a>, and <a class="el" href="#a8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date()</a>.</p>
 
 </div>
 </div>
@@ -2283,7 +2287,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Maxmimum number of bytes for a timestamp. </p>
-<p>All SuperNOVAS timestamps shall fit in a buffer of such size, even for extreme Gregorian years of <span class="tt">INT_MIN</span> or <span class="tt">INT_MAX</span>. </p><dl class="section since"><dt>Since</dt><dd>1.7.3 </dd></dl>
+<p>All SuperNOVAS timestamps shall fit in a buffer of such size, even for extreme Gregorian years of <span class="tt">INT_MIN</span> or <span class="tt">INT_MAX</span>. </p><dl class="section since"><dt>Since</dt><dd>1.8 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a923fc797bc707dda3957e8b3c971df2e" title="Minimum number of bytes for a timestamp.">NOVAS_TIMESTAMP_LEN</a> </dd></dl>
 
 </div>
@@ -3442,7 +3446,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_MINOR_VERSION&#160;&#160;&#160;7</td>
+          <td class="memname">#define SUPERNOVAS_MINOR_VERSION&#160;&#160;&#160;8</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3458,7 +3462,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_PATCHLEVEL&#160;&#160;&#160;3</td>
+          <td class="memname">#define SUPERNOVAS_PATCHLEVEL&#160;&#160;&#160;0</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3474,7 +3478,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-devel&quot;</td>
+          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-rc1&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -9387,7 +9391,7 @@ novas_set_weather(), <a class="el" href="#a7479134485c298faa858d73ee0513a11" tit
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="calendar_8c.html#a7ee576309aa1977e9b2a3824286f725c" title="Returns the one-based ISO 8601 day-of-week index of a given Julian Date.">novas_day_of_week()</a>, <a class="el" href="calendar_8c.html#a8ed2fb55bcf86d9f1f434a2f832356a2" title="This function will compute a broken down date on the specified calendar for given the Julian day inpu...">novas_jd_to_date()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#aa8cfc18bfdf8ebd0198065c9d07e3bbaa1b6339c57b7baba0957b935fd37cc8ed">NOVAS_ASTRONOMICAL_CALENDAR</a>, <a class="el" href="#a509afe7095f4d597125e9bfd6d0399ad">NOVAS_JD_START_GREGORIAN</a>, <a class="el" href="calendar_8c.html#a8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date()</a>, and <a class="el" href="#aa8cfc18bfdf8ebd0198065c9d07e3bbaa73cfd3e5c66bdfdf63a2d792251e0d13">NOVAS_ROMAN_CALENDAR</a>.</p>
+<p class="reference">References <a class="el" href="calendar_8c.html#a801ddc21095ec9e3376fc4c15c83d755">novas_is_leap_year()</a>, and <a class="el" href="calendar_8c.html#a8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CalendarDate.html#a2572163948ba123f7714bf90f5954791">supernovas::CalendarDate::day_of_year()</a>.</p>
 
@@ -11738,6 +11742,43 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="frames_8c.html#a4d179c8573319fc25c775ce56ba055dc" title="Calculates a transformation matrix that can be used to convert positions and velocities from one coor...">novas_make_transform()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="structnovas__transform.html#abce5e2fe6c3ef9f7507d7debe0c44897">novas_transform::matrix</a>.</p>
+
+</div>
+</div>
+<a id="a801ddc21095ec9e3376fc4c15c83d755" name="a801ddc21095ec9e3376fc4c15c83d755"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a801ddc21095ec9e3376fc4c15c83d755">&#9670;&#160;</a></span>novas_is_leap_year()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_is_leap_year </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>year</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="#aa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a></td>          <td class="paramname"><span class="paramname"><em>calendar</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a given year is a leap year in a specific calendar. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">year</td><td>[yr] The calendar year. for X BCE, it is 1 - X. For example 45 BCE is -44. </td></tr>
+    <tr><td class="paramname">calendar</td><td>The type of calendar </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the year is a leap year in the calendar, or FALSE (0) if it is not a leap year, or else -1 if the calendar is invalid (errno set to EINVAL).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="calendar_8c.html#ae6eaa610037b0828d473062ab8722f47" title="Returns the one-based day index in the calendar year for a given Julian Date.">novas_day_of_year()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aa8cfc18bfdf8ebd0198065c9d07e3bbaa1b6339c57b7baba0957b935fd37cc8ed">NOVAS_ASTRONOMICAL_CALENDAR</a>, <a class="el" href="#aa8cfc18bfdf8ebd0198065c9d07e3bbaa90f19bf1771802f4ad20cf14660c8322">NOVAS_GREGORIAN_CALENDAR</a>, and <a class="el" href="#aa8cfc18bfdf8ebd0198065c9d07e3bbaa73cfd3e5c66bdfdf63a2d792251e0d13">NOVAS_ROMAN_CALENDAR</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Calendar.html#a54149f5de7b985139a06beb68d6d4bd8">supernovas::Calendar::is_leap_year()</a>, and <a class="el" href="#ae6eaa610037b0828d473062ab8722f47">novas_day_of_year()</a>.</p>
 
 </div>
 </div>
@@ -14857,7 +14898,7 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>[km/s] Equivalent radial velocity defined against the Local Standard of Rest (LSR).</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>[km/s] Equivalent scalar velocity defined against the Local Standard of Rest (LSR).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="spectral_8c.html#aad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a>, <a class="el" href="#abc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a> </dd>
@@ -16869,7 +16910,7 @@ solarsystem_hp() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if either of the position vectors is NULL.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="equator_8c.html#a69df5671751c09a7575963b94ad1151e" title="Nutates equatorial rectangular coordinates from mean equator and equinox of epoch to true equator and...">nutation()</a> </dd>
 <dd>
-<a class="el" href="#a129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a>, <a class="el" href="#ae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a>, <a class="el" href="#aa11d2253a44261370af8d0c32f0715e9" title="Transforms a vector from the dynamical reference system to the International Celestial Reference Syst...">frame_tie()</a>, <a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4" title="Returns the Julian day corresponding to an astronomical coordinate epoch.">novas_epoch()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd" title="Mean of date: dynamical system of the &#39;mean&#39; equator, with its origin at the &#39;mean&#39; equinox (pre IAU ...">NOVAS_MOD</a>, <a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="#a3785083ae52bbbc1e749dbedd7e5d85e" title="[day] Julian date at B1950 (NASA / NAIF SPICE definition) precession(), transform_cat()">NOVAS_JD_B1950</a>, <a class="el" href="#af03a1f0412f23cd6edb323297646eb30" title="[day] Julian date at B1900 (NASA / NAIF SPICE definition) precession(), transform_cat()">NOVAS_JD_B1900</a> </dd></dl>
+<a class="el" href="#a129acca41760da486e1179c93cb9e86d" title="Returns the TDB - TT time difference in seconds for a given TT or TDB date, with a maximum error of 1...">tt2tdb()</a>, <a class="el" href="#ae30e3dd8e30bdcf4e8486cfce696fb98" title="Returns the fractional Julian date of an astronomical time in the specified timescale.">novas_get_time()</a>, <a class="el" href="#aa11d2253a44261370af8d0c32f0715e9" title="Transforms a vector from the dynamical reference system to the International Celestial Reference Syst...">frame_tie()</a>, <a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4" title="Returns the Julian day corresponding to an astronomical coordinate epoch.">novas_epoch()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5a2a55ff66f97310a9641d7ffa60b8dd" title="Mean of date: dynamical system of the &#39;mean&#39; equator, with its origin at the &#39;mean&#39; equinox (pre IAU ...">NOVAS_MOD</a>, <a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="#a3785083ae52bbbc1e749dbedd7e5d85e" title="[day] Julian date at B1950 (NASA / NAIF SPICE definition)">NOVAS_JD_B1950</a>, <a class="el" href="#af03a1f0412f23cd6edb323297646eb30" title="[day] Julian date at B1900 (NASA / NAIF SPICE definition)">NOVAS_JD_B1900</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="equator_8c.html#a9178358732325399f3a5e3582080ced3">precession()</a>.</p>
 
@@ -17987,7 +18028,7 @@ solarsystem_hp() </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if either vector argument is NULL or if the 'option' is invalid, or else 2 if 'out_id' is too long.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="target_8c.html#af2c03d540de7a8bfafaed27eb9a753c1" title="Convert Hipparcos catalog data at epoch J1991.25 to epoch J2000.0, for use within NOVAS.">transform_hip()</a>, <a class="el" href="target_8c.html#a5104d7db66ce2d8c61c7ad21599fb45e" title="Populates and object data structure with the data for a catalog source for a given system of catalog ...">make_cat_object_sys()</a>, <a class="el" href="target_8c.html#a5e92f920835111db719e880a61248045" title="Sets the optional catalog information for a sidereal source.">novas_set_catalog()</a> </dd>
 <dd>
-<a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4" title="Returns the Julian day corresponding to an astronomical coordinate epoch.">novas_epoch()</a>, <a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="#a3785083ae52bbbc1e749dbedd7e5d85e" title="[day] Julian date at B1950 (NASA / NAIF SPICE definition) precession(), transform_cat()">NOVAS_JD_B1950</a>, <a class="el" href="#a4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a> </dd></dl>
+<a class="el" href="#af4e18885b7d173eb3fe5f18b06f0b4d4" title="Returns the Julian day corresponding to an astronomical coordinate epoch.">novas_epoch()</a>, <a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="#a3785083ae52bbbc1e749dbedd7e5d85e" title="[day] Julian date at B1950 (NASA / NAIF SPICE definition)">NOVAS_JD_B1950</a>, <a class="el" href="#a4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="structnovas__cat__entry.html#ada95bd9127ffe9e1204a233057869f5a">novas_cat_entry::catalog</a>, <a class="el" href="#ace5e59ce1564bf6c61946c290bb05367a882f5d97444df44485d360ce298843b1">CHANGE_EPOCH</a>, <a class="el" href="#ace5e59ce1564bf6c61946c290bb05367a1b1e38f90bc3bc3c9f1c04aa2c959444">CHANGE_ICRS_TO_J2000</a>, <a class="el" href="#ace5e59ce1564bf6c61946c290bb05367a84da44f7510d8c99353b1b1c6bb4faf8">CHANGE_J2000_TO_ICRS</a>, <a class="el" href="structnovas__cat__entry.html#ab539dc076c350cf98ac047453fa18c9c">novas_cat_entry::dec</a>, <a class="el" href="#aa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="#ae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>, <a class="el" href="#ae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>, <a class="el" href="#a5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a>, <a class="el" href="#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="#a7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="#a601d246673742cf72a5dbe1449c97560">novas_los_to_xyz()</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, <a class="el" href="#a14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los()</a>, <a class="el" href="structnovas__cat__entry.html#ac2e6fe6d5aa8aece4e1d3f2ebc8e5c63">novas_cat_entry::parallax</a>, <a class="el" href="#ace5e59ce1564bf6c61946c290bb05367a6833dbc8bfb3b8ba2cdd7a2da0b82353">PRECESSION</a>, <a class="el" href="#a9178358732325399f3a5e3582080ced3">precession()</a>, <a class="el" href="structnovas__cat__entry.html#a64faf35923c3c09bb24265a8ddb2b2f1">novas_cat_entry::promodec</a>, <a class="el" href="structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560">novas_cat_entry::promora</a>, <a class="el" href="#ace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065">PROPER_MOTION</a>, <a class="el" href="structnovas__cat__entry.html#a0bf9261730a8decbfd1d0c63c377dac2">novas_cat_entry::ra</a>, <a class="el" href="#ae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>, <a class="el" href="structnovas__cat__entry.html#aff726e9a11a48c6ccbd80672a1fa5cc8">novas_cat_entry::radialvelocity</a>, <a class="el" href="group__source.html#gaf32c72297e36b77bead56044d23082f7">SIZE_OF_CAT_NAME</a>, <a class="el" href="group__source.html#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>, <a class="el" href="structnovas__cat__entry.html#ac06af140acde272f032a431f6cfeb85d">novas_cat_entry::starname</a>, and <a class="el" href="structnovas__cat__entry.html#a456d93b89cbbc3c13cb0cb9d3b8a4cb0">novas_cat_entry::starnumber</a>.</p>
 

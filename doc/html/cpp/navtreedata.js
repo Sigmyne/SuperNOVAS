@@ -133,14 +133,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Angle_8cpp.html",
-"classsupernovas_1_1EphemerisSource.html",
-"classsupernovas_1_1OrbitalSource.html#ab7d23a68a9b0af5cec3778db13cafe8b",
-"classsupernovas_1_1TimeAngle.html#ad3e673f9bf33b709f7d032a797900904",
-"globals_func_m.html",
-"md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md62",
-"novas_8h.html#a6140c39d1526b137f827e2091ecc36b3a1665bf146ca1a4d11380bf4d7d9d7058",
-"novas_8h.html#ade30c5c72c918b2428e803e3f4430ceb",
-"structnovas__orbital__system.html#a168120619bdde8c6af9cf93d2ce96d0d"
+"classsupernovas_1_1Ecliptic.html#a926aee5b59a630f097bda63ee925d5a8",
+"classsupernovas_1_1Orbital.html#af575dc65fe9ab550f10120da7270aaeb",
+"classsupernovas_1_1Time.html#adb9a2d8830b3b8918eb852c5cac49be8",
+"globals_defs.html",
+"itrf_8c.html#ab07d86d425d68a62e94e965dd36b7a32",
+"novas_8h.html#a580f5949c8a29cdd7bf4787aee891f2b",
+"novas_8h.html#ad2d5ef17b41a30ebca91e4c70e636acf",
+"structnovas__on__surface.html"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

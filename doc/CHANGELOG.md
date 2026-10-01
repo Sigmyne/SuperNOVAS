@@ -7,9 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [1.8.0-rc1] - 2026-10-01
 
-Upcoming maintenance release, expected around 1 November 2026.
+Release candidate for the upcoming maintenance release, expected around 1 November 2026.
 
 ### Fixed
 
@@ -18,10 +18,23 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #361: Fixed weather parameters not having been used in in `Source::rises_above()`, `Source::sets_below()` and 
    `Source::horizontal_track()`. (by csp256)
    
+ - #376: Fixed inverted flattening parameters for the IERS 1989 and 2003 reference ellipsoids.
+   
 ### Added
 
  - #373: Added `NOVAS_MAX_TIMESTAMP_LENGTH` macro, which defines the maximum length of a SuperNOVAS timestamp
    string when the year component is more than 4 bytes, i.e. for years before 1000 B.C. or after 9999 A.D.
+   
+ - #377: Added `Angle::sin()`, `Angle::cos()`, and `Angle::tan()` methods and `sin(Angle&)`, `cos(Angle&)`, and 
+   `tan(Angle&)` functions for simpler triginonetric use.
+   
+ - #377: Added `operator==()`, `operator!=()` and specialized `equals()` methods to `Coordinate`, `Temperature`,
+   `Pressure` and Weather clases.
+
+ - #377: Added `novas_is_leap_year()` function, and `Calendar::is_leap_year()` method to check if a given year is 
+   a leap year in the calendar.
+   
+ - #377: Added `Equinox::mod_at_julian_epoch(double year)` method.
    
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
@@ -62,6 +75,18 @@ Upcoming maintenance release, expected around 1 November 2026.
    these intentionally. The Clang++ sanitizer is also disabled automatically for compiling tests, since the tests are
    not production code, and sloppyness for these is not critical. (by attipaci, thanks to csp256).
 
+ - #377: `Temperature::to_string(int)` and `Pressure::to_string(int)` have previously ignored the decimal places 
+   requested and printed values with 1 decimal place always. Now changed to use the specified decimals parameter, and 
+   default to 3 decimal places.
+   
+ - #377: `Horizontal::to_refracted()` and `.to_unrefracted()` now marked as `const` since these methods do not alter
+   the parent instance.
+   
+ - #377: Streamlined `ee_ct` and nutation series calculations slightly.
+   
+ - Changed portable mutex feature test order to reserve use of the C11 mutexes for cases where neither POSIX nor
+   MSC mutexes can be used.
+   
 
 ## [1.7.2] - 2026-08-05
 

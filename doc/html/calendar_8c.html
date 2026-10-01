@@ -82,7 +82,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C API<span id="projectnumber">&#160;v1.6</span>
+   <div id="projectname">SuperNOVAS C API<span id="projectnumber">&#160;v1.8</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -185,6 +185,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga7ee576309aa1977e9b2a3824286f725c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the one-based ISO 8601 day-of-week index of a given Julian Date.  <br /></td></tr>
 <tr class="memitem:gae6eaa610037b0828d473062ab8722f47" id="r_gae6eaa610037b0828d473062ab8722f47"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#gae6eaa610037b0828d473062ab8722f47">novas_day_of_year</a> (double tjd, enum <a class="el" href="group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, int *restrict year)</td></tr>
 <tr class="memdesc:gae6eaa610037b0828d473062ab8722f47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the one-based day index in the calendar year for a given Julian Date.  <br /></td></tr>
+<tr class="memitem:a801ddc21095ec9e3376fc4c15c83d755" id="r_a801ddc21095ec9e3376fc4c15c83d755"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a801ddc21095ec9e3376fc4c15c83d755">novas_is_leap_year</a> (int year, enum <a class="el" href="group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar)</td></tr>
+<tr class="memdesc:a801ddc21095ec9e3376fc4c15c83d755"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given year is a leap year in a specific calendar.  <br /></td></tr>
 <tr class="memitem:ga54eee84c46900c80ca9966857c217cc8" id="r_ga54eee84c46900c80ca9966857c217cc8"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga54eee84c46900c80ca9966857c217cc8">novas_jd_from_date</a> (enum <a class="el" href="group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, int year, int month, int day, double hour)</td></tr>
 <tr class="memdesc:ga54eee84c46900c80ca9966857c217cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Julian day for a given calendar date.  <br /></td></tr>
 <tr class="memitem:ga8ed2fb55bcf86d9f1f434a2f832356a2" id="r_ga8ed2fb55bcf86d9f1f434a2f832356a2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__time.html#ga8ed2fb55bcf86d9f1f434a2f832356a2">novas_jd_to_date</a> (double tjd, enum <a class="el" href="group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a> calendar, int *restrict year, int *restrict month, int *restrict day, double *restrict hour)</td></tr>
@@ -195,7 +197,45 @@ Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>Created on Mar 6, 2025 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs and G. Kaplan </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="timescale_8c.html" title="Functions to define and use different astronomical timescales and to convert among them.">timescale.c</a> </dd></dl>
-</div></div><!-- contents -->
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a801ddc21095ec9e3376fc4c15c83d755" name="a801ddc21095ec9e3376fc4c15c83d755"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a801ddc21095ec9e3376fc4c15c83d755">&#9670;&#160;</a></span>novas_is_leap_year()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_is_leap_year </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>year</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__time.html#gaa8cfc18bfdf8ebd0198065c9d07e3bba">novas_calendar_type</a></td>          <td class="paramname"><span class="paramname"><em>calendar</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a given year is a leap year in a specific calendar. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">year</td><td>[yr] The calendar year. for X BCE, it is 1 - X. For example 45 BCE is -44. </td></tr>
+    <tr><td class="paramname">calendar</td><td>The type of calendar </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE (1) if the year is a leap year in the calendar, or FALSE (0) if it is not a leap year, or else -1 if the calendar is invalid (errno set to EINVAL).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__time.html#gae6eaa610037b0828d473062ab8722f47" title="Returns the one-based day index in the calendar year for a given Julian Date.">novas_day_of_year()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__time.html#ggaa8cfc18bfdf8ebd0198065c9d07e3bbaa1b6339c57b7baba0957b935fd37cc8ed">NOVAS_ASTRONOMICAL_CALENDAR</a>, <a class="el" href="group__time.html#ggaa8cfc18bfdf8ebd0198065c9d07e3bbaa90f19bf1771802f4ad20cf14660c8322">NOVAS_GREGORIAN_CALENDAR</a>, and <a class="el" href="group__time.html#ggaa8cfc18bfdf8ebd0198065c9d07e3bbaa73cfd3e5c66bdfdf63a2d792251e0d13">NOVAS_ROMAN_CALENDAR</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="group__time.html#gae6eaa610037b0828d473062ab8722f47">novas_day_of_year()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>

@@ -82,7 +82,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.6</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -314,7 +314,7 @@ Variables</h2></td></tr>
 <div class="line">  <span class="comment">// We could not obtain apparent coordinates for some reason.</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
-<div class="ttc" id="aclasssupernovas_1_1Apparent_html"><div class="ttname"><a href="classsupernovas_1_1Apparent.html">supernovas::Apparent</a></div><div class="ttdoc">Apparent position on sky as seen by an observer at a specific time of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:2563</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Apparent_html"><div class="ttname"><a href="classsupernovas_1_1Apparent.html">supernovas::Apparent</a></div><div class="ttdoc">Apparent position on sky as seen by an observer at a specific time of observation.</div><div class="ttdef"><b>Definition</b> supernovas.h:2604</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Validating_html_aa3695f10056563de6ba2f0863cabda53"><div class="ttname"><a href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid</a></div><div class="ttdeci">bool is_valid() const</div><div class="ttdoc">Returns the previously set &#39;valid&#39; state of the implementing instance.</div><div class="ttdef"><b>Definition</b> supernovas.h:278</div></div>
 </div><!-- fragment --><p>There are multiple reasons why we might not be able to calculate valid apparent positions, such as:</p>
 <ul>
@@ -512,14 +512,14 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts these horizontal coordinates to an apparent place on the sky for an observer on or near Earth's surface. </p>
-<p>Typically you should call this on unrefracted (astrometric) horizontal coordinates. If starting with observed (refracted) coordinates you should call <a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a> first, before calling this function. The returned value may be invalid, e.g. if the frame is not that for an Earth-bound observer with a horizon. As such, it is best practice to check on the valifity of the returned value before using it, e.g. as:</p>
+<p>Typically you should call this on unrefracted (astrometric) horizontal coordinates. If starting with observed (refracted) coordinates you should call <a class="el" href="group__refract.html#gafd08c136fefe96c093c18106a9da3294" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a> first, before calling this function. The returned value may be invalid, e.g. if the frame is not that for an Earth-bound observer with a horizon. As such, it is best practice to check on the valifity of the returned value before using it, e.g. as:</p>
 <div class="fragment"><div class="line">Horizontal hor = ...;</div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Apparent.html">Apparent</a> app = hor.<a class="code hl_function" href="#gac3fce1b4c732817ba50a19edecc544ae">to_apparent</a>(frame);</div>
 <div class="line"><span class="keywordflow">if</span>(!app) {</div>
 <div class="line">  <span class="comment">// Oops, could not calculate valid apparent positions.</span></div>
 <div class="line">  <span class="keywordflow">return</span>;</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__apparent_html_gac3fce1b4c732817ba50a19edecc544ae"><div class="ttname"><a href="#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent</a></div><div class="ttdeci">Apparent to_apparent(const Frame &amp;frame, double rv=0.0, double distance=Unit::Gpc) const</div><div class="ttdoc">Converts these horizontal coordinates to an apparent place on the sky.</div><div class="ttdef"><b>Definition</b> Horizontal.cpp:303</div></div>
+<div class="ttc" id="agroup__apparent_html_gac3fce1b4c732817ba50a19edecc544ae"><div class="ttname"><a href="#gac3fce1b4c732817ba50a19edecc544ae">supernovas::Horizontal::to_apparent</a></div><div class="ttdeci">Apparent to_apparent(const Frame &amp;frame, double rv=0.0, double distance=Unit::Gpc) const</div><div class="ttdoc">Converts these horizontal coordinates to an apparent place on the sky.</div><div class="ttdef"><b>Definition</b> Horizontal.cpp:302</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">frame</td><td>an Earth-based observing frame, defining the time of observation and the observer location, above (or slightly below) Earth's surface. </td></tr>
@@ -530,7 +530,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the apparent equatorial place corresponding to these astrometric horizontal coordinates on the sky, or Apparent::udefined() if the observing frame is not Earth surface based.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a>, <a class="el" href="group__nonequatorial.html#ga39a5c71512aa41496371b99fd2a892d4" title="Returns the apparent unrefracted horizontal coordinates for this position for a geodetic observer loc...">Apparent::to_horizontal()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__refract.html#gafd08c136fefe96c093c18106a9da3294" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a>, <a class="el" href="group__nonequatorial.html#ga39a5c71512aa41496371b99fd2a892d4" title="Returns the apparent unrefracted horizontal coordinates for this position for a geodetic observer loc...">Apparent::to_horizontal()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Coordinate.html#ab234567fddc6ad5337c9ad11d6ca74ff">supernovas::Coordinate::m()</a>, <a class="el" href="classsupernovas_1_1ScalarVelocity.html#a02b0343abd20757afcdf69acf2b11d00">supernovas::ScalarVelocity::m_per_s()</a>, and <a class="el" href="#gac3fce1b4c732817ba50a19edecc544ae">to_apparent()</a>.</p>
 
@@ -561,7 +561,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Converts these horizontal coordinates to an apparent place on the sky. </p>
-<p>Typically you should call this on unrefracted (astrometric) horizontal coordinates. If starting with observed (refracted) coordinates you should call <a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a> first, before calling this function. The returned value may be invalid, e.g. if the frame is not that for an Earth-bound observer with a horizon. As such, it is best practice to check on the valifity of the returned value before using it, e.g. as:</p>
+<p>Typically you should call this on unrefracted (astrometric) horizontal coordinates. If starting with observed (refracted) coordinates you should call <a class="el" href="group__refract.html#gafd08c136fefe96c093c18106a9da3294" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a> first, before calling this function. The returned value may be invalid, e.g. if the frame is not that for an Earth-bound observer with a horizon. As such, it is best practice to check on the valifity of the returned value before using it, e.g. as:</p>
 <div class="fragment"><div class="line">Horizontal hor = ...;</div>
 <div class="line"><a class="code hl_class" href="classsupernovas_1_1Apparent.html">Apparent</a> app = hor.<a class="code hl_function" href="#gac3fce1b4c732817ba50a19edecc544ae">to_apparent</a>(frame);</div>
 <div class="line"><span class="keywordflow">if</span>(!app) {</div>
@@ -578,7 +578,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the apparent equatorial place corresponding to these astrometric horizontal coordinates on the sky, or <a class="el" href="classsupernovas_1_1Apparent.html#a5b4a4b4e68c6dc9792990e7148a77750" title="Returns a reference to a statically defined standard invalid apparent position.">Apparent::undefined()</a> if the observing frame is not Earth surface based.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a>, <a class="el" href="group__nonequatorial.html#ga39a5c71512aa41496371b99fd2a892d4" title="Returns the apparent unrefracted horizontal coordinates for this position for a geodetic observer loc...">Apparent::to_horizontal()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__refract.html#gafd08c136fefe96c093c18106a9da3294" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">to_unrefracted()</a>, <a class="el" href="group__nonequatorial.html#ga39a5c71512aa41496371b99fd2a892d4" title="Returns the apparent unrefracted horizontal coordinates for this position for a geodetic observer loc...">Apparent::to_horizontal()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Frame.html#a4e10de68f7acb16e4aa067101808ad98">supernovas::Frame::_novas_frame()</a>, <a class="el" href="classsupernovas_1_1Unit.html#afe0d2d901c66e59c39d5a5acb26547de">supernovas::Unit::au</a>, <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7">supernovas::Unit::AU_per_day</a>, <a class="el" href="structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f">novas_sky_pos::dec</a>, <a class="el" href="structnovas__sky__pos.html#a3c45d500db3a793b89d234d950886e4d">novas_sky_pos::dis</a>, <a class="el" href="classsupernovas_1_1Apparent.html#ae4fb352249e2eac3311b6239b1e6c5b0">supernovas::Apparent::from_tod_sky_pos()</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2">supernovas::Spherical::latitude()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285">supernovas::Spherical::longitude()</a>, <a class="el" href="novas_8h.html#aa57cbcae2001fece2ee4a2babfbc5f89">novas_hor_to_app()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651eaa4bcd4fdb15ba77023241689a5608df3">NOVAS_TOD</a>, <a class="el" href="structnovas__sky__pos.html#aa76dc5a1222e5696e88c986b6c6c3e55">novas_sky_pos::r_hat</a>, <a class="el" href="structnovas__sky__pos.html#a7d5aa9cc738e19f0891bff94ad148741">novas_sky_pos::ra</a>, <a class="el" href="novas_8h.html#ae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>, <a class="el" href="structnovas__sky__pos.html#ae98432478d2c3a8e5eb1a1674394499f">novas_sky_pos::rv</a>, and <a class="el" href="classsupernovas_1_1Apparent.html#a5b4a4b4e68c6dc9792990e7148a77750">supernovas::Apparent::undefined()</a>.</p>
 

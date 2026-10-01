@@ -82,7 +82,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.6</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -193,8 +193,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2603dbc8cb783a611197af1d943472aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a weather dataset with the specified parameters.  <br /></td></tr>
 <tr class="memitem:abf265d9104e86e49be0f6134dd19009f" id="r_abf265d9104e86e49be0f6134dd19009f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#abf265d9104e86e49be0f6134dd19009f">Weather</a> (double celsius, double pascal, double humidity_fraction)</td></tr>
 <tr class="memdesc:abf265d9104e86e49be0f6134dd19009f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a weather dataset with the specified parameters.  <br /></td></tr>
+<tr class="memitem:a222ffb4185683cae8c887ae29a069b5d" id="r_a222ffb4185683cae8c887ae29a069b5d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a222ffb4185683cae8c887ae29a069b5d">equals</a> (const <a class="el" href="#a2603dbc8cb783a611197af1d943472aa">Weather</a> &amp;weather) const</td></tr>
+<tr class="memdesc:a222ffb4185683cae8c887ae29a069b5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this weather is the same as another, within standard tolerances for temperatures and pressures and 0.001% for humidity.  <br /></td></tr>
 <tr class="memitem:ac43b7b4d8450cf8542a60ff7c0d49b44" id="r_ac43b7b4d8450cf8542a60ff7c0d49b44"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ac43b7b4d8450cf8542a60ff7c0d49b44">humidity</a> () const</td></tr>
 <tr class="memdesc:ac43b7b4d8450cf8542a60ff7c0d49b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the humidity value, as a fraction, from this weather dataset.  <br /></td></tr>
+<tr class="memitem:ab12d53d71dba4049894cf4a4fb530110" id="r_ab12d53d71dba4049894cf4a4fb530110"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab12d53d71dba4049894cf4a4fb530110">operator!=</a> (const <a class="el" href="#a2603dbc8cb783a611197af1d943472aa">Weather</a> &amp;weather) const</td></tr>
+<tr class="memdesc:ab12d53d71dba4049894cf4a4fb530110"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this weather differs from another, beyond the standard tolerances for temperatures and pressures and 0.001% for humidity.  <br /></td></tr>
+<tr class="memitem:a045c9e7a874d4dc34fae42dd1f48c478" id="r_a045c9e7a874d4dc34fae42dd1f48c478"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a045c9e7a874d4dc34fae42dd1f48c478">operator==</a> (const <a class="el" href="#a2603dbc8cb783a611197af1d943472aa">Weather</a> &amp;weather) const</td></tr>
+<tr class="memdesc:a045c9e7a874d4dc34fae42dd1f48c478"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this weather is the same as another, within standard tolerances for temperatures and pressures and 0.001% for humidity.  <br /></td></tr>
 <tr class="memitem:a68fb7dadc7cd72e839c0ed730c4b1f70" id="r_a68fb7dadc7cd72e839c0ed730c4b1f70"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Pressure.html">Pressure</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a68fb7dadc7cd72e839c0ed730c4b1f70">pressure</a> () const</td></tr>
 <tr class="memdesc:a68fb7dadc7cd72e839c0ed730c4b1f70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the the atmpspheric pressure value in this weather dataset.  <br /></td></tr>
 <tr class="memitem:a3d84bdc61aa8a1fb7c958a90df6a911c" id="r_a3d84bdc61aa8a1fb7c958a90df6a911c"><td class="memItemLeft">const <a class="el" href="classsupernovas_1_1Temperature.html">Temperature</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a3d84bdc61aa8a1fb7c958a90df6a911c">temperature</a> () const</td></tr>
@@ -224,7 +230,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Weather data, mainly for atmospheric refraction correction for Earth-based (geodetic) observers. </p>
 <dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029" title="Applies atmospheric refraction correction for these coordinates, returning the result.">Horizontal::to_refracted()</a>, <a class="el" href="group__refract.html#gab44266c51e667838736e49e59008a9be" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">Horizontal::to_unrefracted()</a>, <a class="el" href="classsupernovas_1_1Site.html" title="An Earth-based (geodetic) observer site location, or a momentary airborne observer location.">Site</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__refract.html#ga88edc4136d7df0732233a2bb124d4587" title="Applies atmospheric refraction correction for these coordinates, returning the result.">Horizontal::to_refracted()</a>, <a class="el" href="group__refract.html#gafd08c136fefe96c093c18106a9da3294" title="Undoes atmospheric refraction correction for these coordinates, returning the result.">Horizontal::to_unrefracted()</a>, <a class="el" href="classsupernovas_1_1Site.html" title="An Earth-based (geodetic) observer site location, or a momentary airborne observer location.">Site</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2603dbc8cb783a611197af1d943472aa" name="a2603dbc8cb783a611197af1d943472aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2603dbc8cb783a611197af1d943472aa">&#9670;&#160;</a></span>Weather() <span class="overload">[1/2]</span></h2>
@@ -253,8 +259,8 @@ Additional Inherited Members</h2></td></tr>
 <p>Instantiates a weather dataset with the specified parameters. </p>
 <p>E.g.:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a2603dbc8cb783a611197af1d943472aa">Weather</a> weather(<a class="code hl_function" href="classsupernovas_1_1Temperature.html#a61afe4ec08615a30efefcc5513827f65">Temperature::celsius</a>(12.0), <a class="code hl_function" href="classsupernovas_1_1Pressure.html#a86b184ea2c33af4055f32ad3ff7e75f8">Pressure::mbar</a>(984.3), 33.2 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#ae4ac8156c378f18324afb14663854547">Unit::percent</a>);</div>
-<div class="ttc" id="aclasssupernovas_1_1Pressure_html_a86b184ea2c33af4055f32ad3ff7e75f8"><div class="ttname"><a href="classsupernovas_1_1Pressure.html#a86b184ea2c33af4055f32ad3ff7e75f8">supernovas::Pressure::mbar</a></div><div class="ttdeci">double mbar() const</div><div class="ttdoc">Returns the atmospheric pressure value in millibars.</div><div class="ttdef"><b>Definition</b> Pressure.cpp:80</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Temperature_html_a61afe4ec08615a30efefcc5513827f65"><div class="ttname"><a href="classsupernovas_1_1Temperature.html#a61afe4ec08615a30efefcc5513827f65">supernovas::Temperature::celsius</a></div><div class="ttdeci">double celsius() const</div><div class="ttdoc">Returns the temperature value in degrees Celsius.</div><div class="ttdef"><b>Definition</b> Temperature.cpp:46</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Pressure_html_a86b184ea2c33af4055f32ad3ff7e75f8"><div class="ttname"><a href="classsupernovas_1_1Pressure.html#a86b184ea2c33af4055f32ad3ff7e75f8">supernovas::Pressure::mbar</a></div><div class="ttdeci">double mbar() const</div><div class="ttdoc">Returns the atmospheric pressure value in millibars.</div><div class="ttdef"><b>Definition</b> Pressure.cpp:126</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Temperature_html_a61afe4ec08615a30efefcc5513827f65"><div class="ttname"><a href="classsupernovas_1_1Temperature.html#a61afe4ec08615a30efefcc5513827f65">supernovas::Temperature::celsius</a></div><div class="ttdeci">double celsius() const</div><div class="ttdoc">Returns the temperature value in degrees Celsius.</div><div class="ttdef"><b>Definition</b> Temperature.cpp:91</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_ae4ac8156c378f18324afb14663854547"><div class="ttname"><a href="classsupernovas_1_1Unit.html#ae4ac8156c378f18324afb14663854547">supernovas::Unit::percent</a></div><div class="ttdeci">static constexpr double percent</div><div class="ttdoc">[u] 1 percent as a fraction.</div><div class="ttdef"><b>Definition</b> supernovas.h:190</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Weather_html_a2603dbc8cb783a611197af1d943472aa"><div class="ttname"><a href="#a2603dbc8cb783a611197af1d943472aa">supernovas::Weather::Weather</a></div><div class="ttdeci">Weather(const Temperature &amp;T, const Pressure &amp;p, double humidity_fraction)</div><div class="ttdoc">Instantiates a weather dataset with the specified parameters.</div><div class="ttdef"><b>Definition</b> Weather.cpp:47</div></div>
 </div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
@@ -268,7 +274,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__refract.html#ga90e61dee02f1d0b082bfb4e43fdb850b" title="Returns a default mean annual weather for this site based on a simple global model.">Site::average_weather()</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#a0395574b9c5b2bdb7b9f8e04e1342029">standard()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a222ffb4185683cae8c887ae29a069b5d">equals()</a>, <a class="el" href="#ab12d53d71dba4049894cf4a4fb530110">operator!=()</a>, <a class="el" href="#a045c9e7a874d4dc34fae42dd1f48c478">operator==()</a>, and <a class="el" href="#a0395574b9c5b2bdb7b9f8e04e1342029">standard()</a>.</p>
 
 </div>
 </div>
@@ -315,6 +321,38 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a222ffb4185683cae8c887ae29a069b5d" name="a222ffb4185683cae8c887ae29a069b5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a222ffb4185683cae8c887ae29a069b5d">&#9670;&#160;</a></span>equals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Weather::equals </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a2603dbc8cb783a611197af1d943472aa">Weather</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>weather</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this weather is the same as another, within standard tolerances for temperatures and pressures and 0.001% for humidity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">weather</td><td>another set of weather parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two weathers agree within tolerances, otherwise <span class="tt">false</span></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a045c9e7a874d4dc34fae42dd1f48c478" title="Checks if this weather is the same as another, within standard tolerances for temperatures and pressu...">operator==()</a>, <a class="el" href="#ab12d53d71dba4049894cf4a4fb530110" title="Checks if this weather differs from another, beyond the standard tolerances for temperatures and pres...">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a2603dbc8cb783a611197af1d943472aa">Weather()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ab12d53d71dba4049894cf4a4fb530110">operator!=()</a>, and <a class="el" href="#a045c9e7a874d4dc34fae42dd1f48c478">operator==()</a>.</p>
+
+</div>
+</div>
 <a id="ac43b7b4d8450cf8542a60ff7c0d49b44" name="ac43b7b4d8450cf8542a60ff7c0d49b44"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac43b7b4d8450cf8542a60ff7c0d49b44">&#9670;&#160;</a></span>humidity()</h2>
 
@@ -338,6 +376,66 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Unit.html#ae4ac8156c378f18324afb14663854547" title="[u] 1 percent as a fraction.">Unit::percent</a>, <a class="el" href="#a3d84bdc61aa8a1fb7c958a90df6a911c" title="Returns a reference to the temperature value in this weather dataset.">temperature()</a>, <a class="el" href="#a68fb7dadc7cd72e839c0ed730c4b1f70" title="Returns a reference to the the atmpspheric pressure value in this weather dataset.">pressure()</a> </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="#a0eabf3c9214f5b81cccfc681d4794713">to_string()</a>.</p>
+
+</div>
+</div>
+<a id="ab12d53d71dba4049894cf4a4fb530110" name="ab12d53d71dba4049894cf4a4fb530110"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab12d53d71dba4049894cf4a4fb530110">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Weather::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a2603dbc8cb783a611197af1d943472aa">Weather</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>weather</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this weather differs from another, beyond the standard tolerances for temperatures and pressures and 0.001% for humidity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">weather</td><td>another set of weather parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two weathers differ beyond tolerances, otherwise <span class="tt">false</span></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a045c9e7a874d4dc34fae42dd1f48c478" title="Checks if this weather is the same as another, within standard tolerances for temperatures and pressu...">operator==()</a>, <a class="el" href="#a222ffb4185683cae8c887ae29a069b5d" title="Checks if this weather is the same as another, within standard tolerances for temperatures and pressu...">equals()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a2603dbc8cb783a611197af1d943472aa">Weather()</a>, and <a class="el" href="#a222ffb4185683cae8c887ae29a069b5d">equals()</a>.</p>
+
+</div>
+</div>
+<a id="a045c9e7a874d4dc34fae42dd1f48c478" name="a045c9e7a874d4dc34fae42dd1f48c478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a045c9e7a874d4dc34fae42dd1f48c478">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Weather::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#a2603dbc8cb783a611197af1d943472aa">Weather</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>weather</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this weather is the same as another, within standard tolerances for temperatures and pressures and 0.001% for humidity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">weather</td><td>another set of weather parameters </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two weathers agree within tolerances, otherwise <span class="tt">false</span></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a222ffb4185683cae8c887ae29a069b5d" title="Checks if this weather is the same as another, within standard tolerances for temperatures and pressu...">equals()</a>, <a class="el" href="#ab12d53d71dba4049894cf4a4fb530110" title="Checks if this weather differs from another, beyond the standard tolerances for temperatures and pres...">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a2603dbc8cb783a611197af1d943472aa">Weather()</a>, and <a class="el" href="#a222ffb4185683cae8c887ae29a069b5d">equals()</a>.</p>
 
 </div>
 </div>

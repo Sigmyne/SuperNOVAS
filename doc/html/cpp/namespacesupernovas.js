@@ -48,5 +48,8 @@ var namespacesupernovas =
     [ "Vector", "classsupernovas_1_1Vector.html", "classsupernovas_1_1Vector" ],
     [ "Velocity", "classsupernovas_1_1Velocity.html", "classsupernovas_1_1Velocity" ],
     [ "Weather", "classsupernovas_1_1Weather.html", "classsupernovas_1_1Weather" ],
-    [ "operator*", "namespacesupernovas.html#ad967def47d18f6cad99cc2320d8476da", null ]
+    [ "cos", "namespacesupernovas.html#a07cedefeff1a6694306780356fcbb0f0", null ],
+    [ "operator*", "namespacesupernovas.html#ad967def47d18f6cad99cc2320d8476da", null ],
+    [ "sin", "namespacesupernovas.html#a7498aa57989ded115f6f5b14ec321173", null ],
+    [ "tan", "namespacesupernovas.html#a4dfe213dd899e8b3e97ced54a2ab92a1", null ]
 ];

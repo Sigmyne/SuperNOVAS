@@ -82,7 +82,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.6</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -199,6 +199,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a4692cfb7e9911e34c3df48accd8289bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in arc minutes.  <br /></td></tr>
 <tr class="memitem:a62d566900a6fe0052db3d82ea416b6ae" id="r_a62d566900a6fe0052db3d82ea416b6ae"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a62d566900a6fe0052db3d82ea416b6ae">arcsec</a> () const</td></tr>
 <tr class="memdesc:a62d566900a6fe0052db3d82ea416b6ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in arc seconds.  <br /></td></tr>
+<tr class="memitem:ac8e333eb02709ad211f8692bd9f29526" id="r_ac8e333eb02709ad211f8692bd9f29526"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ac8e333eb02709ad211f8692bd9f29526">cos</a> () const</td></tr>
+<tr class="memdesc:ac8e333eb02709ad211f8692bd9f29526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the trigonometric cosine of this angle.  <br /></td></tr>
 <tr class="memitem:a084ae07a20c426f4f79b5b367b8df1be" id="r_a084ae07a20c426f4f79b5b367b8df1be"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a084ae07a20c426f4f79b5b367b8df1be">deg</a> () const</td></tr>
 <tr class="memdesc:a084ae07a20c426f4f79b5b367b8df1be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in degrees.  <br /></td></tr>
 <tr class="memitem:a4645972967822541c9f964a8f0393e1b" id="r_a4645972967822541c9f964a8f0393e1b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4645972967822541c9f964a8f0393e1b">equals</a> (const Angle &amp;angle, double precision=<a class="el" href="classsupernovas_1_1Unit.html#a18cf1b461845b94758e1286d8d928bf3">Unit::uas</a>) const</td></tr>
@@ -218,6 +220,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a296b29e7589c3c2e96f2316da0f20f04" id="r_a296b29e7589c3c2e96f2316da0f20f04"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a296b29e7589c3c2e96f2316da0f20f04">rad</a> () const</td></tr>
 <tr class="memdesc:a296b29e7589c3c2e96f2316da0f20f04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the angle in radians.  <br /></td></tr>
 <tr class="memitem:a5e1069581348e342fb2f4d7b0ffb9b77" id="r_a5e1069581348e342fb2f4d7b0ffb9b77"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a5e1069581348e342fb2f4d7b0ffb9b77">SI_unit</a> () const override</td></tr>
+<tr class="memitem:a3d2858d7b1609cbf95bedeb7fccdcab5" id="r_a3d2858d7b1609cbf95bedeb7fccdcab5"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a3d2858d7b1609cbf95bedeb7fccdcab5">sin</a> () const</td></tr>
+<tr class="memdesc:a3d2858d7b1609cbf95bedeb7fccdcab5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the trigonometric sine of this angle.  <br /></td></tr>
+<tr class="memitem:aa2f6c88bb9a49f7494429cf0ef620f9b" id="r_aa2f6c88bb9a49f7494429cf0ef620f9b"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#aa2f6c88bb9a49f7494429cf0ef620f9b">tan</a> () const</td></tr>
+<tr class="memdesc:aa2f6c88bb9a49f7494429cf0ef620f9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the trigonometric tangent of this angle.  <br /></td></tr>
 <tr class="memitem:ad59ac7f3877e6f1728789c300eda3bd7" id="r_ad59ac7f3877e6f1728789c300eda3bd7"><td class="memItemLeft">virtual std::string&#160;</td><td class="memItemRight"><a class="el" href="#ad59ac7f3877e6f1728789c300eda3bd7">to_string</a> (enum <a class="el" href="novas_8h.html#acb27ba6ec7f4ed7486f4419f8803f40e">novas_separator_type</a> separator, int decimals=3) const</td></tr>
 <tr class="memdesc:ad59ac7f3877e6f1728789c300eda3bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a DDD:MM:SS.SSS representation of the angle with the specified separators and decimal places for the arc seconds.  <br /></td></tr>
 <tr class="memitem:aa43390f74139176aa53a3dd26d5b1818" id="r_aa43390f74139176aa53a3dd26d5b1818"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#aa43390f74139176aa53a3dd26d5b1818">to_string</a> (int decimals=3) const override</td></tr>
@@ -401,6 +407,34 @@ Additional Inherited Members</h2></td></tr>
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">supernovas::Unit::arcsec</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#aa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver::gcrs_position_at()</a>, and <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver::gcrs_velocity_at()</a>.</p>
+
+</div>
+</div>
+<a id="ac8e333eb02709ad211f8692bd9f29526" name="ac8e333eb02709ad211f8692bd9f29526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8e333eb02709ad211f8692bd9f29526">&#9670;&#160;</a></span>cos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double supernovas::Angle::cos </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the trigonometric cosine of this angle. </p>
+<dl class="section return"><dt>Returns</dt><dd>the cosine of the angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3d2858d7b1609cbf95bedeb7fccdcab5" title="Returns the trigonometric sine of this angle.">sin()</a> </dd>
+<dd>
+<a class="el" href="#aa2f6c88bb9a49f7494429cf0ef620f9b" title="Returns the trigonometric tangent of this angle.">tan()</a></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8 </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445">supernovas::GeodeticObserver::GeodeticObserver()</a>, and <a class="el" href="namespacesupernovas.html#a07cedefeff1a6694306780356fcbb0f0">supernovas::cos()</a>.</p>
 
 </div>
 </div>
@@ -680,7 +714,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445">supernovas::GeodeticObserver::GeodeticObserver()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a784fbc6a317a2385fd19f4cdb2f663c4">supernovas::Orbital::eccentricity()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a3cddea118d722c712a9139c8b44612d3">supernovas::Ecliptic::equals()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ad9635b846c25ed6ba2047bb0e58cf8de">supernovas::Equatorial::equals()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a6cc82f8c0d204efe9ca4a9f803ea6267">supernovas::Galactic::equals()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a8c4e0b5bf7d32529482c488475133a1b">supernovas::Horizontal::equals()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5">supernovas::Spherical::equals()</a>, <a class="el" href="classsupernovas_1_1Apparent.html#a63a78460dda7da4e8402849e49596707">supernovas::Apparent::from_cirs()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a7eaa3df88d837a1c1373e8be87324854">supernovas::Orbital::from_mean_motion()</a>, <a class="el" href="classsupernovas_1_1Apparent.html#a1dcedd8e837756d5ba7c3fd56400f70c">supernovas::Apparent::from_tod()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a592c05ee722500bd4287fe1d0a76cdb6">supernovas::Orbital::inclination()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a8725e15586f273e82f82bfe5394910d6">supernovas::Ecliptic::offset()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#af60ce8010be7da80363aa66729ae53ad">supernovas::Equatorial::offset()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#aa10fb2678882d8e11bee229655f5b066">supernovas::Galactic::offset()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#ae0f67417acd8e7efc718cd1439fddbc7">supernovas::Horizontal::offset()</a>, <a class="el" href="#a82e5f7cc89c1fa80ec6331b91bccd938">operator+()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#ac60228eec1bca415e74b54befd51c611">supernovas::TimeAngle::operator+()</a>, <a class="el" href="#a61870ec8a57c3d67c14a5ebf508794f3">operator-()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#ad4a4dea2db2fe861a715233d5e0b9596">supernovas::TimeAngle::operator-()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#a6a21b9432e3362cf6cfa8082f383e3d3">supernovas::OrbitalSystem::orbit()</a>, <a class="el" href="classsupernovas_1_1CatalogEntry.html#a12c8a591d4f709fe890859a1477fa23f">supernovas::CatalogEntry::parallax()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a54bdb5ea3fa4c40f0e261d9eff830b01">supernovas::Orbital::pole()</a>, and <a class="el" href="classsupernovas_1_1OrbitalSystem.html#af91a1462850775b2d43298fae08a0016">supernovas::OrbitalSystem::pole()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Orbital.html#a784fbc6a317a2385fd19f4cdb2f663c4">supernovas::Orbital::eccentricity()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a3cddea118d722c712a9139c8b44612d3">supernovas::Ecliptic::equals()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#ad9635b846c25ed6ba2047bb0e58cf8de">supernovas::Equatorial::equals()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#a6cc82f8c0d204efe9ca4a9f803ea6267">supernovas::Galactic::equals()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#a8c4e0b5bf7d32529482c488475133a1b">supernovas::Horizontal::equals()</a>, <a class="el" href="classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5">supernovas::Spherical::equals()</a>, <a class="el" href="classsupernovas_1_1Apparent.html#a63a78460dda7da4e8402849e49596707">supernovas::Apparent::from_cirs()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a7eaa3df88d837a1c1373e8be87324854">supernovas::Orbital::from_mean_motion()</a>, <a class="el" href="classsupernovas_1_1Apparent.html#a1dcedd8e837756d5ba7c3fd56400f70c">supernovas::Apparent::from_tod()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a592c05ee722500bd4287fe1d0a76cdb6">supernovas::Orbital::inclination()</a>, <a class="el" href="classsupernovas_1_1Ecliptic.html#a8725e15586f273e82f82bfe5394910d6">supernovas::Ecliptic::offset()</a>, <a class="el" href="classsupernovas_1_1Equatorial.html#af60ce8010be7da80363aa66729ae53ad">supernovas::Equatorial::offset()</a>, <a class="el" href="classsupernovas_1_1Galactic.html#aa10fb2678882d8e11bee229655f5b066">supernovas::Galactic::offset()</a>, <a class="el" href="classsupernovas_1_1Horizontal.html#ae0f67417acd8e7efc718cd1439fddbc7">supernovas::Horizontal::offset()</a>, <a class="el" href="#a82e5f7cc89c1fa80ec6331b91bccd938">operator+()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#ac60228eec1bca415e74b54befd51c611">supernovas::TimeAngle::operator+()</a>, <a class="el" href="#a61870ec8a57c3d67c14a5ebf508794f3">operator-()</a>, <a class="el" href="classsupernovas_1_1TimeAngle.html#ad4a4dea2db2fe861a715233d5e0b9596">supernovas::TimeAngle::operator-()</a>, <a class="el" href="classsupernovas_1_1OrbitalSystem.html#a6a21b9432e3362cf6cfa8082f383e3d3">supernovas::OrbitalSystem::orbit()</a>, <a class="el" href="classsupernovas_1_1CatalogEntry.html#a12c8a591d4f709fe890859a1477fa23f">supernovas::CatalogEntry::parallax()</a>, <a class="el" href="classsupernovas_1_1Orbital.html#a54bdb5ea3fa4c40f0e261d9eff830b01">supernovas::Orbital::pole()</a>, and <a class="el" href="classsupernovas_1_1OrbitalSystem.html#af91a1462850775b2d43298fae08a0016">supernovas::OrbitalSystem::pole()</a>.</p>
 
 </div>
 </div>
@@ -708,6 +742,62 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classsupernovas_1_1Scalar.html#adfdc9060344c26788490a6dcae617dea">supernovas::Scalar</a>.</p>
+
+</div>
+</div>
+<a id="a3d2858d7b1609cbf95bedeb7fccdcab5" name="a3d2858d7b1609cbf95bedeb7fccdcab5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d2858d7b1609cbf95bedeb7fccdcab5">&#9670;&#160;</a></span>sin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double supernovas::Angle::sin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the trigonometric sine of this angle. </p>
+<dl class="section return"><dt>Returns</dt><dd>the sine of the angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac8e333eb02709ad211f8692bd9f29526" title="Returns the trigonometric cosine of this angle.">cos()</a> </dd>
+<dd>
+<a class="el" href="#aa2f6c88bb9a49f7494429cf0ef620f9b" title="Returns the trigonometric tangent of this angle.">tan()</a></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8 </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ae100ecbf7803ed56bd78b3f056353445">supernovas::GeodeticObserver::GeodeticObserver()</a>, and <a class="el" href="namespacesupernovas.html#a7498aa57989ded115f6f5b14ec321173">supernovas::sin()</a>.</p>
+
+</div>
+</div>
+<a id="aa2f6c88bb9a49f7494429cf0ef620f9b" name="aa2f6c88bb9a49f7494429cf0ef620f9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2f6c88bb9a49f7494429cf0ef620f9b">&#9670;&#160;</a></span>tan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double supernovas::Angle::tan </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the trigonometric tangent of this angle. </p>
+<dl class="section return"><dt>Returns</dt><dd>the tangent of the angle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a3d2858d7b1609cbf95bedeb7fccdcab5" title="Returns the trigonometric sine of this angle.">sin()</a> </dd>
+<dd>
+<a class="el" href="#ac8e333eb02709ad211f8692bd9f29526" title="Returns the trigonometric cosine of this angle.">cos()</a></dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8 </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="namespacesupernovas.html#a4dfe213dd899e8b3e97ced54a2ab92a1">supernovas::tan()</a>.</p>
 
 </div>
 </div>

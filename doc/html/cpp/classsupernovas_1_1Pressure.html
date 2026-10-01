@@ -82,7 +82,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.6</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -194,12 +194,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac76a94c028ecfdb29b0a66fdd9f28220"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the atmospheric pressure value in atmospheres.  <br /></td></tr>
 <tr class="memitem:ab799a59ae7b317d7908848bb90f42a3d" id="r_ab799a59ae7b317d7908848bb90f42a3d"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d">bar</a> () const</td></tr>
 <tr class="memdesc:ab799a59ae7b317d7908848bb90f42a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the atmospheric pressure value in bars.  <br /></td></tr>
+<tr class="memitem:aa706397928dcbbe7c81700d0cfc8a794" id="r_aa706397928dcbbe7c81700d0cfc8a794"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa706397928dcbbe7c81700d0cfc8a794">equals</a> (const Pressure &amp;p, double precision=0.1 *<a class="el" href="classsupernovas_1_1Unit.html#a67908d31bcfa621292d7719a5f86e4a2">Unit::Pa</a>) const</td></tr>
+<tr class="memdesc:aa706397928dcbbe7c81700d0cfc8a794"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this pressure value is the same as another, within the specified precision.  <br /></td></tr>
 <tr class="memitem:aca8c999522c852fb20631f2733116254" id="r_aca8c999522c852fb20631f2733116254"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#aca8c999522c852fb20631f2733116254">hPa</a> () const</td></tr>
 <tr class="memdesc:aca8c999522c852fb20631f2733116254"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the atmospheric pressure value in hectopascals.  <br /></td></tr>
 <tr class="memitem:af9d2e95aebba41d40fb338155a29d0ff" id="r_af9d2e95aebba41d40fb338155a29d0ff"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff">kPa</a> () const</td></tr>
 <tr class="memdesc:af9d2e95aebba41d40fb338155a29d0ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the atmospheric pressure value in kilopascals.  <br /></td></tr>
 <tr class="memitem:a86b184ea2c33af4055f32ad3ff7e75f8" id="r_a86b184ea2c33af4055f32ad3ff7e75f8"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8">mbar</a> () const</td></tr>
 <tr class="memdesc:a86b184ea2c33af4055f32ad3ff7e75f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the atmospheric pressure value in millibars.  <br /></td></tr>
+<tr class="memitem:abb3489279b5637ad77096b198b14ae74" id="r_abb3489279b5637ad77096b198b14ae74"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#abb3489279b5637ad77096b198b14ae74">operator!=</a> (const Pressure &amp;p) const</td></tr>
+<tr class="memdesc:abb3489279b5637ad77096b198b14ae74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this pressure value differs from another by more than 0.1 Pa (= 1 &mu;bar).  <br /></td></tr>
+<tr class="memitem:a2d350ba3aa3d769f453d7e6aa61f5104" id="r_a2d350ba3aa3d769f453d7e6aa61f5104"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a2d350ba3aa3d769f453d7e6aa61f5104">operator==</a> (const Pressure &amp;p) const</td></tr>
+<tr class="memdesc:a2d350ba3aa3d769f453d7e6aa61f5104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this pressure value is the same as another, within 0.1 Pa (= 1 &mu;bar).  <br /></td></tr>
 <tr class="memitem:ae7770914f59dabc4848148032d136515" id="r_ae7770914f59dabc4848148032d136515"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ae7770914f59dabc4848148032d136515">Pa</a> () const</td></tr>
 <tr class="memdesc:ae7770914f59dabc4848148032d136515"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the atmospheric pressure value in pascals.  <br /></td></tr>
 <tr class="memitem:ae019c0c01c86efafbbc346bffd7775d1" id="r_ae019c0c01c86efafbbc346bffd7775d1"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ae019c0c01c86efafbbc346bffd7775d1">SI_unit</a> () const override</td></tr>
@@ -387,6 +393,43 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="aa706397928dcbbe7c81700d0cfc8a794" name="aa706397928dcbbe7c81700d0cfc8a794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa706397928dcbbe7c81700d0cfc8a794">&#9670;&#160;</a></span>equals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Pressure::equals </td>
+          <td>(</td>
+          <td class="paramtype">const Pressure &amp;</td>          <td class="paramname"><span class="paramname"><em>p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>precision</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.1&#160;*&#160;<a class="el" href="classsupernovas_1_1Unit.html#a67908d31bcfa621292d7719a5f86e4a2">Unit::Pa</a></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this pressure value is the same as another, within the specified precision. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Another pressure value. </td></tr>
+    <tr><td class="paramname">precision</td><td>[Pa] (optional) Precision for the comparison (default: 0.1 Pa). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two pressures agree within the specified precision, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2d350ba3aa3d769f453d7e6aa61f5104" title="Checks if this pressure value is the same as another, within 0.1 Pa (= 1 μbar).">operator==()</a>, <a class="el" href="#abb3489279b5637ad77096b198b14ae74" title="Checks if this pressure value differs from another by more than 0.1 Pa (= 1 μbar).">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aa706397928dcbbe7c81700d0cfc8a794">equals()</a>, and <a class="el" href="classsupernovas_1_1Scalar.html#a6448cf148c3d70d91d0d36a3fd8fed7b">supernovas::Scalar::equals()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#aa706397928dcbbe7c81700d0cfc8a794">equals()</a>, and <a class="el" href="#a2d350ba3aa3d769f453d7e6aa61f5104">operator==()</a>.</p>
+
+</div>
+</div>
 <a id="aca8c999522c852fb20631f2733116254" name="aca8c999522c852fb20631f2733116254"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aca8c999522c852fb20631f2733116254">&#9670;&#160;</a></span>hPa() <span class="overload">[1/2]</span></h2>
 
@@ -537,7 +580,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8">mbar()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a09dcd47a0e4c66e14372ce96638768cf">supernovas::Unit::mbar</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8">mbar()</a>, and <a class="el" href="#a82553cf415e4e28df6535585741c5045">mbar()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8">mbar()</a>, <a class="el" href="#a82553cf415e4e28df6535585741c5045">mbar()</a>, and <a class="el" href="#ae759aee7c292a9206440a232c6f84f28">to_string()</a>.</p>
 
 </div>
 </div>
@@ -576,6 +619,70 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae7770914f59dabc4848148032d136515" title="Returns the atmospheric pressure value in pascals.">Pa()</a>, <a class="el" href="#aca8c999522c852fb20631f2733116254" title="Returns the atmospheric pressure value in hectopascals.">hPa()</a>, <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff" title="Returns the atmospheric pressure value in kilopascals.">kPa()</a>, <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d" title="Returns the atmospheric pressure value in bars.">bar()</a>, <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4" title="Returns the atmospheric pressure value in millimeters of Hg (torr).">torr()</a>, <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220" title="Returns the atmospheric pressure value in atmospheres.">atm()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8">mbar()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a09dcd47a0e4c66e14372ce96638768cf">supernovas::Unit::mbar</a>.</p>
+
+</div>
+</div>
+<a id="abb3489279b5637ad77096b198b14ae74" name="abb3489279b5637ad77096b198b14ae74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb3489279b5637ad77096b198b14ae74">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Pressure::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const Pressure &amp;</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this pressure value differs from another by more than 0.1 Pa (= 1 &mu;bar). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Another pressure value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two coordinates differ by more than 0.1 Pa (= 1 &mu;bar), otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a2d350ba3aa3d769f453d7e6aa61f5104" title="Checks if this pressure value is the same as another, within 0.1 Pa (= 1 μbar).">operator==()</a>, <a class="el" href="#aa706397928dcbbe7c81700d0cfc8a794" title="Checks if this pressure value is the same as another, within the specified precision.">equals()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#abb3489279b5637ad77096b198b14ae74">operator!=()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#abb3489279b5637ad77096b198b14ae74">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="a2d350ba3aa3d769f453d7e6aa61f5104" name="a2d350ba3aa3d769f453d7e6aa61f5104"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d350ba3aa3d769f453d7e6aa61f5104">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Pressure::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const Pressure &amp;</td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this pressure value is the same as another, within 0.1 Pa (= 1 &mu;bar). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Another pressure value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two coordinates are effectively the same within 0.1 Pa (= 1 &mu;bar), otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa706397928dcbbe7c81700d0cfc8a794" title="Checks if this pressure value is the same as another, within the specified precision.">equals()</a>, <a class="el" href="#abb3489279b5637ad77096b198b14ae74" title="Checks if this pressure value differs from another by more than 0.1 Pa (= 1 μbar).">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aa706397928dcbbe7c81700d0cfc8a794">equals()</a>, and <a class="el" href="#a2d350ba3aa3d769f453d7e6aa61f5104">operator==()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a2d350ba3aa3d769f453d7e6aa61f5104">operator==()</a>.</p>
 
 </div>
 </div>
@@ -709,7 +816,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classsupernovas_1_1Scalar.html#a57a227e1a36070e68e57b8debc84e9ab">supernovas::Scalar</a>.</p>
 
-<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="classsupernovas_1_1Unit.html#a09dcd47a0e4c66e14372ce96638768cf">supernovas::Unit::mbar</a>, and <a class="el" href="#ae759aee7c292a9206440a232c6f84f28">to_string()</a>.</p>
+<p class="reference">References <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8">mbar()</a>, and <a class="el" href="#ae759aee7c292a9206440a232c6f84f28">to_string()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ae759aee7c292a9206440a232c6f84f28">to_string()</a>.</p>
 
@@ -733,7 +840,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the atmospheric pressure value in millimeters of Hg (torr). </p>
 <dl class="section return"><dt>Returns</dt><dd>[torr] the atmospheric pressure (millimeters of Hg).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae7770914f59dabc4848148032d136515" title="Returns the atmospheric pressure value in pascals.">Pressure::Pa()</a>, <a class="el" href="#aca8c999522c852fb20631f2733116254" title="Returns the atmospheric pressure value in hectopascals.">Pressure::hPa()</a>, <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff" title="Returns the atmospheric pressure value in kilopascals.">Pressure::kPa()</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8" title="Returns the atmospheric pressure value in millibars.">Pressure::mbar()</a>, <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d" title="Returns the atmospheric pressure value in bars.">Pressure::bar()</a>, <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220" title="Returns the atmospheric pressure value in atmospheres.">Pressure::atm()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ae7770914f59dabc4848148032d136515" title="Returns the atmospheric pressure value in pascals.">Pa()</a>, <a class="el" href="#aca8c999522c852fb20631f2733116254" title="Returns the atmospheric pressure value in hectopascals.">hPa()</a>, <a class="el" href="#af9d2e95aebba41d40fb338155a29d0ff" title="Returns the atmospheric pressure value in kilopascals.">kPa()</a>, <a class="el" href="#a86b184ea2c33af4055f32ad3ff7e75f8" title="Returns the atmospheric pressure value in millibars.">mbar()</a>, <a class="el" href="#ab799a59ae7b317d7908848bb90f42a3d" title="Returns the atmospheric pressure value in bars.">bar()</a>, <a class="el" href="#ac76a94c028ecfdb29b0a66fdd9f28220" title="Returns the atmospheric pressure value in atmospheres.">atm()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, <a class="el" href="#a57dbcdc6261d85b915d1e1a32725a7a4">torr()</a>, and <a class="el" href="classsupernovas_1_1Unit.html#a969a4c94dfc198ea16a49727f8d82e99">supernovas::Unit::torr</a>.</p>
 

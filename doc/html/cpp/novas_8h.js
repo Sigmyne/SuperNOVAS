@@ -458,6 +458,7 @@ var novas_8h =
     [ "novas_inv_refract", "novas_8h.html#a81da80ae3ab1d0a444f39bde2af3a732", null ],
     [ "novas_invert_transform", "novas_8h.html#ad2081e123024609d3071b33b183502b7", null ],
     [ "novas_is_auto_fetch_eop", "group__earth.html#gad1e07eedd32cbf4f1160624c74a99255", null ],
+    [ "novas_is_leap_year", "novas_8h.html#a801ddc21095ec9e3376fc4c15c83d755", null ],
     [ "novas_iso_timestamp", "novas_8h.html#a4d6da26d0a7d7d904f25d2be00030b25", null ],
     [ "novas_itrf_transform", "novas_8h.html#afd98ed01148f1291018809d77785527f", null ],
     [ "novas_itrf_transform_eop", "novas_8h.html#a3c8c9b8f709d1e5a7aa3a915f8fafcbb", null ],

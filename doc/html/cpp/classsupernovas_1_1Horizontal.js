@@ -14,8 +14,8 @@ var classsupernovas_1_1Horizontal =
     [ "operator==", "classsupernovas_1_1Horizontal.html#ad76f1144b5248e6463d04e3fad7c8001", null ],
     [ "to_apparent", "group__apparent.html#ga02abf3d9fe725653e8220619a000fc8d", null ],
     [ "to_apparent", "group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae", null ],
-    [ "to_refracted", "group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029", null ],
+    [ "to_refracted", "group__refract.html#ga88edc4136d7df0732233a2bb124d4587", null ],
     [ "to_string", "classsupernovas_1_1Horizontal.html#a9e2ec24c847c7f68d62659b4d5ee1021", null ],
-    [ "to_unrefracted", "group__refract.html#gab44266c51e667838736e49e59008a9be", null ],
+    [ "to_unrefracted", "group__refract.html#gafd08c136fefe96c093c18106a9da3294", null ],
     [ "zenith_angle", "classsupernovas_1_1Horizontal.html#a41a2959b8c966369e8d71af38671093d", null ]
 ];

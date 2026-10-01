@@ -15,15 +15,18 @@ var group__refract =
       [ "operator==", "classsupernovas_1_1Horizontal.html#ad76f1144b5248e6463d04e3fad7c8001", null ],
       [ "to_apparent", "group__apparent.html#ga02abf3d9fe725653e8220619a000fc8d", null ],
       [ "to_apparent", "group__apparent.html#gac3fce1b4c732817ba50a19edecc544ae", null ],
-      [ "to_refracted", "group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029", null ],
+      [ "to_refracted", "group__refract.html#ga88edc4136d7df0732233a2bb124d4587", null ],
       [ "to_string", "classsupernovas_1_1Horizontal.html#a9e2ec24c847c7f68d62659b4d5ee1021", null ],
-      [ "to_unrefracted", "group__refract.html#gab44266c51e667838736e49e59008a9be", null ],
+      [ "to_unrefracted", "group__refract.html#gafd08c136fefe96c093c18106a9da3294", null ],
       [ "zenith_angle", "classsupernovas_1_1Horizontal.html#a41a2959b8c966369e8d71af38671093d", null ]
     ] ],
     [ "supernovas::Weather", "classsupernovas_1_1Weather.html", [
       [ "Weather", "classsupernovas_1_1Weather.html#a2603dbc8cb783a611197af1d943472aa", null ],
       [ "Weather", "classsupernovas_1_1Weather.html#abf265d9104e86e49be0f6134dd19009f", null ],
+      [ "equals", "classsupernovas_1_1Weather.html#a222ffb4185683cae8c887ae29a069b5d", null ],
       [ "humidity", "classsupernovas_1_1Weather.html#ac43b7b4d8450cf8542a60ff7c0d49b44", null ],
+      [ "operator!=", "classsupernovas_1_1Weather.html#ab12d53d71dba4049894cf4a4fb530110", null ],
+      [ "operator==", "classsupernovas_1_1Weather.html#a045c9e7a874d4dc34fae42dd1f48c478", null ],
       [ "pressure", "classsupernovas_1_1Weather.html#a68fb7dadc7cd72e839c0ed730c4b1f70", null ],
       [ "temperature", "classsupernovas_1_1Weather.html#a3d84bdc61aa8a1fb7c958a90df6a911c", null ],
       [ "to_string", "classsupernovas_1_1Weather.html#a0eabf3c9214f5b81cccfc681d4794713", null ]
@@ -36,6 +39,6 @@ var group__refract =
     [ "novas_refract_wavelength", "group__refract.html#gac673c4fef94847b796dc2aa2f4d0807d", null ],
     [ "novas_standard_refraction", "group__refract.html#gab04bff3b97c132e358e11c3a5b7a3081", null ],
     [ "novas_wave_refraction", "group__refract.html#ga7b9ad6dfbd86e4faa2d8068c7d64fac4", null ],
-    [ "supernovas::Horizontal::to_refracted", "group__refract.html#ga7720f3cd6bddf9d69ff44ac8ccae8029", null ],
-    [ "supernovas::Horizontal::to_unrefracted", "group__refract.html#gab44266c51e667838736e49e59008a9be", null ]
+    [ "supernovas::Horizontal::to_refracted", "group__refract.html#ga88edc4136d7df0732233a2bb124d4587", null ],
+    [ "supernovas::Horizontal::to_unrefracted", "group__refract.html#gafd08c136fefe96c093c18106a9da3294", null ]
 ];

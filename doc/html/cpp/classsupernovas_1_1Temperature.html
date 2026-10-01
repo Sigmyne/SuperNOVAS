@@ -82,7 +82,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.6</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -192,10 +192,16 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classsupernova
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a61afe4ec08615a30efefcc5513827f65" id="r_a61afe4ec08615a30efefcc5513827f65"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a61afe4ec08615a30efefcc5513827f65">celsius</a> () const</td></tr>
 <tr class="memdesc:a61afe4ec08615a30efefcc5513827f65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the temperature value in degrees Celsius.  <br /></td></tr>
+<tr class="memitem:aa28f49beafeb60b4bee3535eb750ceda" id="r_aa28f49beafeb60b4bee3535eb750ceda"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa28f49beafeb60b4bee3535eb750ceda">equals</a> (const Temperature &amp;temp, double precision=1e-3) const</td></tr>
+<tr class="memdesc:aa28f49beafeb60b4bee3535eb750ceda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this pressure value is the same as another, within the specified precision.  <br /></td></tr>
 <tr class="memitem:a22c90e193100efe9b9060048e4d51a37" id="r_a22c90e193100efe9b9060048e4d51a37"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a22c90e193100efe9b9060048e4d51a37">fahrenheit</a> () const</td></tr>
 <tr class="memdesc:a22c90e193100efe9b9060048e4d51a37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the temperature value in degrees Fahrenheit.  <br /></td></tr>
 <tr class="memitem:ac848561c69d13def40510d3aba529bec" id="r_ac848561c69d13def40510d3aba529bec"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ac848561c69d13def40510d3aba529bec">kelvin</a> () const</td></tr>
 <tr class="memdesc:ac848561c69d13def40510d3aba529bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the temperature value in degrees Kelvin.  <br /></td></tr>
+<tr class="memitem:afd9ee626bdaf7bd691a538ae5f89d528" id="r_afd9ee626bdaf7bd691a538ae5f89d528"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afd9ee626bdaf7bd691a538ae5f89d528">operator!=</a> (const Temperature &amp;temp) const</td></tr>
+<tr class="memdesc:afd9ee626bdaf7bd691a538ae5f89d528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this pressure value differs from another by more than 1 mK.  <br /></td></tr>
+<tr class="memitem:ad9e273a0b2d4851322274f94954a0c04" id="r_ad9e273a0b2d4851322274f94954a0c04"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad9e273a0b2d4851322274f94954a0c04">operator==</a> (const Temperature &amp;temp) const</td></tr>
+<tr class="memdesc:ad9e273a0b2d4851322274f94954a0c04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if this pressure value is the same as another, within 1 mK.  <br /></td></tr>
 <tr class="memitem:ab64b24b58d12c752e750a460c96510f8" id="r_ab64b24b58d12c752e750a460c96510f8"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ab64b24b58d12c752e750a460c96510f8">SI_unit</a> () const override</td></tr>
 <tr class="memitem:ae26a9c37b273842ca4abd37e260f0286" id="r_ae26a9c37b273842ca4abd37e260f0286"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ae26a9c37b273842ca4abd37e260f0286">to_string</a> (int decimals=1) const override</td></tr>
 <tr class="memdesc:ae26a9c37b273842ca4abd37e260f0286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a human-readable string representation of this temperature value.  <br /></td></tr>
@@ -261,7 +267,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the temperature value in degrees Celsius. </p>
 <dl class="section return"><dt>Returns</dt><dd>[C] The temperature value</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac848561c69d13def40510d3aba529bec" title="Returns the temperature value in degrees Kelvin.">kelvin()</a>, farenheit() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac848561c69d13def40510d3aba529bec" title="Returns the temperature value in degrees Kelvin.">kelvin()</a>, <a class="el" href="#a22c90e193100efe9b9060048e4d51a37" title="Returns the temperature value in degrees Fahrenheit.">fahrenheit()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="#a61afe4ec08615a30efefcc5513827f65">celsius()</a>.</p>
 
@@ -301,9 +307,46 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new temperature object with the specified value.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac848561c69d13def40510d3aba529bec" title="Returns the temperature value in degrees Kelvin.">kelvin()</a>, farenheit() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ac848561c69d13def40510d3aba529bec" title="Returns the temperature value in degrees Kelvin.">kelvin()</a>, <a class="el" href="#a22c90e193100efe9b9060048e4d51a37" title="Returns the temperature value in degrees Fahrenheit.">fahrenheit()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a61afe4ec08615a30efefcc5513827f65">celsius()</a>, and <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>.</p>
+
+</div>
+</div>
+<a id="aa28f49beafeb60b4bee3535eb750ceda" name="aa28f49beafeb60b4bee3535eb750ceda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa28f49beafeb60b4bee3535eb750ceda">&#9670;&#160;</a></span>equals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Temperature::equals </td>
+          <td>(</td>
+          <td class="paramtype">const Temperature &amp;</td>          <td class="paramname"><span class="paramname"><em>temp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>precision</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1e-3</span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this pressure value is the same as another, within the specified precision. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">temp</td><td>Another temperature value. </td></tr>
+    <tr><td class="paramname">precision</td><td>[K] (optional) Precision for the comparison (default: 1 mK). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two pressures agree within the specified precision, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ad9e273a0b2d4851322274f94954a0c04" title="Checks if this pressure value is the same as another, within 1 mK.">operator==()</a>, <a class="el" href="#afd9ee626bdaf7bd691a538ae5f89d528" title="Checks if this pressure value differs from another by more than 1 mK.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a6448cf148c3d70d91d0d36a3fd8fed7b">supernovas::Scalar::equals()</a>, and <a class="el" href="#aa28f49beafeb60b4bee3535eb750ceda">equals()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#aa28f49beafeb60b4bee3535eb750ceda">equals()</a>, and <a class="el" href="#ad9e273a0b2d4851322274f94954a0c04">operator==()</a>.</p>
 
 </div>
 </div>
@@ -389,7 +432,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns the temperature value in degrees Kelvin. </p>
 <dl class="section return"><dt>Returns</dt><dd>[K] The temperature value</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a61afe4ec08615a30efefcc5513827f65" title="Returns the temperature value in degrees Celsius.">celsius()</a>, farenheit() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a61afe4ec08615a30efefcc5513827f65" title="Returns the temperature value in degrees Celsius.">celsius()</a>, <a class="el" href="#a22c90e193100efe9b9060048e4d51a37" title="Returns the temperature value in degrees Fahrenheit.">fahrenheit()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Scalar.html#a40c1eb15b68ba82627105e79b0bee85f">supernovas::Scalar::_value</a>, and <a class="el" href="#ac848561c69d13def40510d3aba529bec">kelvin()</a>.</p>
 
@@ -429,9 +472,73 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new temperature object with the specified value.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a61afe4ec08615a30efefcc5513827f65" title="Returns the temperature value in degrees Celsius.">celsius()</a>, farenheit() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a61afe4ec08615a30efefcc5513827f65" title="Returns the temperature value in degrees Celsius.">celsius()</a>, <a class="el" href="#a22c90e193100efe9b9060048e4d51a37" title="Returns the temperature value in degrees Fahrenheit.">fahrenheit()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="#ac848561c69d13def40510d3aba529bec">kelvin()</a>.</p>
+
+</div>
+</div>
+<a id="afd9ee626bdaf7bd691a538ae5f89d528" name="afd9ee626bdaf7bd691a538ae5f89d528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd9ee626bdaf7bd691a538ae5f89d528">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Temperature::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const Temperature &amp;</td>          <td class="paramname"><span class="paramname"><em>temp</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this pressure value differs from another by more than 1 mK. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">temp</td><td>Another temperature value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two coordinates differ by more than 1 mK, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ad9e273a0b2d4851322274f94954a0c04" title="Checks if this pressure value is the same as another, within 1 mK.">operator==()</a>, <a class="el" href="#aa28f49beafeb60b4bee3535eb750ceda" title="Checks if this pressure value is the same as another, within the specified precision.">equals()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#afd9ee626bdaf7bd691a538ae5f89d528">operator!=()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#afd9ee626bdaf7bd691a538ae5f89d528">operator!=()</a>.</p>
+
+</div>
+</div>
+<a id="ad9e273a0b2d4851322274f94954a0c04" name="ad9e273a0b2d4851322274f94954a0c04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9e273a0b2d4851322274f94954a0c04">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Temperature::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const Temperature &amp;</td>          <td class="paramname"><span class="paramname"><em>temp</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if this pressure value is the same as another, within 1 mK. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">temp</td><td>Another temperature value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the two coordinates are effectively the same within 1 mK, otherwise <span class="tt">false</span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa28f49beafeb60b4bee3535eb750ceda" title="Checks if this pressure value is the same as another, within the specified precision.">equals()</a>, <a class="el" href="#afd9ee626bdaf7bd691a538ae5f89d528" title="Checks if this pressure value differs from another by more than 1 mK.">operator!=()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#aa28f49beafeb60b4bee3535eb750ceda">equals()</a>, and <a class="el" href="#ad9e273a0b2d4851322274f94954a0c04">operator==()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#ad9e273a0b2d4851322274f94954a0c04">operator==()</a>.</p>
 
 </div>
 </div>
@@ -492,7 +599,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Returns a human-readable string representation of this temperature value. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">decimals</td><td>(optional) [0:16] decimal places to print (default: 1). </td></tr>
+    <tr><td class="paramname">decimals</td><td>(optional) [0:16] decimal places to print (default: 3). </td></tr>
   </table>
   </dd>
 </dl>

@@ -4,6 +4,7 @@ var classsupernovas_1_1Angle =
     [ "Angle", "classsupernovas_1_1Angle.html#a0af20b06639e0cee8a24cde361d80f88", null ],
     [ "arcmin", "classsupernovas_1_1Angle.html#a4692cfb7e9911e34c3df48accd8289bf", null ],
     [ "arcsec", "classsupernovas_1_1Angle.html#a62d566900a6fe0052db3d82ea416b6ae", null ],
+    [ "cos", "classsupernovas_1_1Angle.html#ac8e333eb02709ad211f8692bd9f29526", null ],
     [ "deg", "classsupernovas_1_1Angle.html#a084ae07a20c426f4f79b5b367b8df1be", null ],
     [ "equals", "classsupernovas_1_1Angle.html#a4645972967822541c9f964a8f0393e1b", null ],
     [ "fraction", "classsupernovas_1_1Angle.html#ae68fb837fb8c311196188dc37eee93d7", null ],
@@ -14,6 +15,8 @@ var classsupernovas_1_1Angle =
     [ "operator==", "classsupernovas_1_1Angle.html#a73d4cf5daf3c1fdaf81940b3a2ba4551", null ],
     [ "rad", "classsupernovas_1_1Angle.html#a296b29e7589c3c2e96f2316da0f20f04", null ],
     [ "SI_unit", "classsupernovas_1_1Angle.html#a5e1069581348e342fb2f4d7b0ffb9b77", null ],
+    [ "sin", "classsupernovas_1_1Angle.html#a3d2858d7b1609cbf95bedeb7fccdcab5", null ],
+    [ "tan", "classsupernovas_1_1Angle.html#aa2f6c88bb9a49f7494429cf0ef620f9b", null ],
     [ "to_string", "classsupernovas_1_1Angle.html#ad59ac7f3877e6f1728789c300eda3bd7", null ],
     [ "to_string", "classsupernovas_1_1Angle.html#aa43390f74139176aa53a3dd26d5b1818", null ],
     [ "uas", "classsupernovas_1_1Angle.html#a39ee92c930646bae2fa5224132ac4804", null ]

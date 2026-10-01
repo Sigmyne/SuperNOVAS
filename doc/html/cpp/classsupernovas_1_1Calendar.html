@@ -82,7 +82,7 @@ mermaid.initialize({ startOnLoad: true, theme: theme });
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.6</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -197,6 +197,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a56e9d8501f78df551e259262ad09c782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance for the date and time specified in this calendar.  <br /></td></tr>
 <tr class="memitem:a865a6d0e1029718a8330a3905fe2a587" id="r_a865a6d0e1029718a8330a3905fe2a587"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a>&#160;</td><td class="memItemRight"><a class="el" href="#a865a6d0e1029718a8330a3905fe2a587">date</a> (time_t t, long nanos=0) const</td></tr>
 <tr class="memdesc:a865a6d0e1029718a8330a3905fe2a587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance, in this calendar, for the specified UNIX time.  <br /></td></tr>
+<tr class="memitem:a54149f5de7b985139a06beb68d6d4bd8" id="r_a54149f5de7b985139a06beb68d6d4bd8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a54149f5de7b985139a06beb68d6d4bd8">is_leap_year</a> (int year) const</td></tr>
+<tr class="memdesc:a54149f5de7b985139a06beb68d6d4bd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a given year is a leap year in this calendar.  <br /></td></tr>
 <tr class="memitem:ad3128abe79227417392c24cbd666a61c" id="r_ad3128abe79227417392c24cbd666a61c"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1CalendarDate.html">CalendarDate</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad3128abe79227417392c24cbd666a61c">parse_date</a> (const std::string &amp;str, enum <a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4">novas_date_format</a> fmt=<a class="el" href="novas_8h.html#a9f2b43ae4b048783dc09c2a3d9b46ca4ab4320d2be90ff55e278e6171f6516bab">NOVAS_YMD</a>) const</td></tr>
 <tr class="memdesc:ad3128abe79227417392c24cbd666a61c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a new calendar date instance, in this calendar, for the specified string date / time representation, if possible, or else an undefined (invalid) date.  <br /></td></tr>
 <tr class="memitem:ac269d4a72c2ff1d8f50b7ee5cd9fa511" id="r_ac269d4a72c2ff1d8f50b7ee5cd9fa511"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ac269d4a72c2ff1d8f50b7ee5cd9fa511">to_string</a> () const</td></tr>
@@ -441,6 +443,38 @@ Additional Inherited Members</h2></td></tr>
 <p class="reference">References <a class="el" href="#a0d625010c543eed0c3db85a57777c15c">gregorian()</a>, and <a class="el" href="novas_8h.html#aa8cfc18bfdf8ebd0198065c9d07e3bbaa90f19bf1771802f4ad20cf14660c8322">NOVAS_GREGORIAN_CALENDAR</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a0d625010c543eed0c3db85a57777c15c">gregorian()</a>.</p>
+
+</div>
+</div>
+<a id="a54149f5de7b985139a06beb68d6d4bd8" name="a54149f5de7b985139a06beb68d6d4bd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54149f5de7b985139a06beb68d6d4bd8">&#9670;&#160;</a></span>is_leap_year()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool supernovas::Calendar::is_leap_year </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>year</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if a given year is a leap year in this calendar. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">year</td><td>[yr] The calendar year. for X BCE, it is 1 - X. For example 45 BCE is -44. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the yer is a leap year in the calendar, or <span class="tt">false</span> if it is not a leap year, or else -1 if the calendar is invalid (errno set to EINVAL).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="novas_8h.html#ae6eaa610037b0828d473062ab8722f47" title="Returns the one-based day index in the calendar year for a given Julian Date.">novas_day_of_year()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#a54149f5de7b985139a06beb68d6d4bd8">is_leap_year()</a>, and <a class="el" href="novas_8h.html#a801ddc21095ec9e3376fc4c15c83d755">novas_is_leap_year()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a54149f5de7b985139a06beb68d6d4bd8">is_leap_year()</a>.</p>
 
 </div>
 </div>

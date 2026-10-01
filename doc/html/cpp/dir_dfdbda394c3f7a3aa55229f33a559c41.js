@@ -1,6 +1,6 @@
 var dir_dfdbda394c3f7a3aa55229f33a559c41 =
 [
-    [ "Angle.cpp", "Angle_8cpp.html", null ],
+    [ "Angle.cpp", "Angle_8cpp.html", "Angle_8cpp" ],
     [ "Apparent.cpp", "Apparent_8cpp.html", null ],
     [ "AstrometricPosition.cpp", "AstrometricPosition_8cpp.html", null ],
     [ "Calendar.cpp", "Calendar_8cpp.html", null ],
