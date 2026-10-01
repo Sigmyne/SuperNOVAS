@@ -34,6 +34,52 @@ Pressure::Pressure(double value) : Scalar(value) {
 }
 
 /**
+ * Checks if this pressure value is the same as another, within the specified precision.
+ *
+ * @param p           Another pressure value.
+ * @param precision   [Pa] (optional) Precision for the comparison (default: 0.1 Pa).
+ * @return            `true` if the two pressures agree within the specified precision, otherwise
+ *                    `false`.
+ *
+ * @since 1.8
+ *
+ * @sa operator==(), operator!=()
+ */
+bool Pressure::equals(const Pressure& p, double precision) const {
+    return Scalar::equals(p, precision);
+}
+
+/**
+ * Checks if this pressure value is the same as another, within 0.1 Pa (= 1 &mu;bar).
+ *
+ * @param p           Another pressure value.
+ * @return            `true` if the two coordinates are effectively the same within 0.1 Pa
+ *                    (= 1 &mu;bar), otherwise `false`.
+ *
+ * @since 1.8
+ *
+ * @sa equals(), operator!=()
+ */
+bool Pressure::operator==(const Pressure& p) const {
+  return equals(p);
+}
+
+/**
+ * Checks if this pressure value differs from another by more than 0.1 Pa (= 1 &mu;bar).
+ *
+ * @param p           Another pressure value.
+ * @return            `true` if the two coordinates differ by more than 0.1 Pa (= 1 &mu;bar),
+ *                    otherwise `false`.
+ *
+ * @since 1.8
+ *
+ * @sa operator==(), equals()
+ */
+bool Pressure::operator!=(const Pressure& p) const {
+  return !(*this == p);
+}
+
+/**
  * Returns the atmospheric pressure value in pascals.
  *
  * @return    [Pa] the atmospheric pressure
@@ -99,8 +145,7 @@ double Pressure::bar() const {
  * @return    [torr] the atmospheric pressure (millimeters of Hg).
  *
  * @since 1.6
- * @sa Pressure::Pa(), Pressure::hPa(), Pressure::kPa(), Pressure::mbar(), Pressure::bar(),
- *     Pressure::atm()
+ * @sa Pa(), hPa(), kPa(), mbar(), bar(), atm()
  */
 double Pressure::torr() const {
   return _value / Unit::torr;
@@ -133,8 +178,8 @@ std::string Pressure::SI_unit() const {
  */
 std::string Pressure::to_string(int decimals) const {
   char s[40] = {'\0'};
-  snprintf(s, sizeof(s), "%.1f mbar", _value / Unit::mbar);
-  return std::string(s);
+  novas_print_decimal(mbar(), decimals, s, (int) sizeof(s));
+  return std::string(s) + " mbar";
 }
 
 /**

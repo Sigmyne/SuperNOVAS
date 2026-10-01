@@ -151,7 +151,7 @@ bool Galactic::operator!=(const Galactic& other) const {
  *
  * @since 1.6
  *
- * @sa offset_by()
+ * @sa offset()
  */
 Angle Galactic::distance_to(const Galactic& other) const {
   Angle a = Spherical::distance_to(other);

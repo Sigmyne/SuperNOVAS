@@ -19,11 +19,18 @@ int main() {
   Temperature x = Temperature::celsius(NAN);
   if(!test.check("is_valid(NAN)", !x.is_valid())) n++;
   if(!test.check("isnan(NAN)", isnan(x.celsius()))) n++;
+  if(!test.check("equals(NAN)", !x.equals(x))) n++;
+  if(!test.check("operator==(NAN)", !(x == x))) n++;
+  if(!test.check("operator!=(NAN)", x != x)) n++;
+
   if(!test.check("!is_valid(-1 K)", !Temperature::kelvin(-1.0).is_valid())) n++;
   if(!test.check("!is_valid(-460 F)", !Temperature::fahrenheit(-460.0).is_valid())) n++;
 
   Temperature a = Temperature::celsius(45.0);
   if(!test.check("is_valid(45 C)", a.is_valid())) n++;
+  if(!test.check("equals()", a.equals(a))) n++;
+  if(!test.check("operator==()", a == a)) n++;
+  if(!test.check("operator!=()", !(a != a))) n++;
   if(!test.equals("celsius()", a.celsius(), 45.0)) n++;
   if(!test.equals("fahrenheit()", a.fahrenheit(), 45.0 * 1.8 + 32.0, 1e-15)) n++;
   if(!test.equals("kelvin()", a.kelvin(), 45.0 + 273.15, 1e-12)) n++;
@@ -32,11 +39,13 @@ int main() {
 
   Temperature b = Temperature::fahrenheit(451.0);
   if(!test.equals("F(value)", b.fahrenheit(), 451.0)) n++;
+  if(!test.check("operator==(a/b)", !(a == b))) n++;
+  if(!test.check("operator!=(a/b)", a != b)) n++;
 
   Temperature c = Temperature::kelvin(300.0);
   if(!test.equals("K(value)", c.kelvin(), 300.0)) n++;
 
-  if(!test.equals("to_string()", a.to_string(), "45.0 C")) n++;
+  if(!test.equals("to_string()", a.to_string(), "45 C")) n++;
 
   std::cout << "Temperature.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

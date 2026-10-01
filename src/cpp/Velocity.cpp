@@ -53,7 +53,7 @@ Velocity::Velocity(double x_ms, double y_ms, double z_ms)
  * @since 1.6
  */
 Velocity::Velocity(const double vel[3], double unit)
-: Vector(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
+: Velocity(vel[0] * unit, vel[1] * unit, vel[2] * unit) {}
 
 /**
  * Checks if this velocity is the same as another, within the specified precision.
@@ -266,7 +266,7 @@ const Velocity& Velocity::stationary() {
  * @since 1.6
  */
 std::string Velocity::to_string(int decimals) const {
-  return "Velocity (" + ScalarVelocity(_component[0]).to_string(decimals) + ", " + ScalarVelocity(_component[1]).to_string(decimals) + ", " + ScalarVelocity(_component[2]).to_string(decimals) + ")";
+  return "Velocity (" + x().to_string(decimals) + ", " + y().to_string(decimals) + ", " + z().to_string(decimals) + ")";
 }
 
 /**

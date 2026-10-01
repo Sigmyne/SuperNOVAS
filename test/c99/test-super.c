@@ -5980,6 +5980,31 @@ static int test_lookup_leap() {
   return n;
 }
 
+static int test_is_leap_year() {
+  int n = 0;
+
+  if(!is_ok("is_leap_year:gregorian:101", novas_is_leap_year(101, NOVAS_GREGORIAN_CALENDAR))) n++;
+  if(!is_ok("is_leap_year:roman:101", novas_is_leap_year(101, NOVAS_ROMAN_CALENDAR))) n++;
+  if(!is_ok("is_leap_year:astronomical:101", novas_is_leap_year(101, NOVAS_ASTRONOMICAL_CALENDAR))) n++;
+
+  if(!is_ok("is_leap_year:gregorian:104", !novas_is_leap_year(104, NOVAS_GREGORIAN_CALENDAR))) n++;
+  if(!is_ok("is_leap_year:roman:104", !novas_is_leap_year(104, NOVAS_ROMAN_CALENDAR))) n++;
+  if(!is_ok("is_leap_year:astronomical:104", !novas_is_leap_year(104, NOVAS_ASTRONOMICAL_CALENDAR))) n++;
+
+  if(!is_ok("is_leap_year:gregorian:100", novas_is_leap_year(100, NOVAS_GREGORIAN_CALENDAR))) n++;
+  if(!is_ok("is_leap_year:roman:100", !novas_is_leap_year(100, NOVAS_ROMAN_CALENDAR))) n++;
+  if(!is_ok("is_leap_year:astronomical:100", !novas_is_leap_year(100, NOVAS_ASTRONOMICAL_CALENDAR))) n++;
+
+  if(!is_ok("is_leap_year:gregorian:1900", novas_is_leap_year(1900, NOVAS_GREGORIAN_CALENDAR))) n++;
+  if(!is_ok("is_leap_year:roman:1900", !novas_is_leap_year(1900, NOVAS_ROMAN_CALENDAR))) n++;
+  if(!is_ok("is_leap_year:astronomical:1900", novas_is_leap_year(1900, NOVAS_ASTRONOMICAL_CALENDAR))) n++;
+
+  if(!is_ok("is_leap_year:gregorian:2000", !novas_is_leap_year(2000, NOVAS_GREGORIAN_CALENDAR))) n++;
+  if(!is_ok("is_leap_year:roman:2000", !novas_is_leap_year(2000, NOVAS_ROMAN_CALENDAR))) n++;
+  if(!is_ok("is_leap_year:astronomical:2000", !novas_is_leap_year(2000, NOVAS_ASTRONOMICAL_CALENDAR))) n++;
+
+  return n;
+}
 
 int main(int argc, char *argv[]) {
   int n = 0;
@@ -6172,6 +6197,8 @@ int main(int argc, char *argv[]) {
   if(test_fetch_eop()) n++;
   if(test_auto_fetch_eop()) n++;
   if(test_lookup_leap()) n++;
+
+  if(test_is_leap_year()) n++;
 
   n += test_dates();
 

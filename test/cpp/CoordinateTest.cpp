@@ -21,6 +21,8 @@ int main() {
   if(!test.check("isnan(NAN)", isnan(x.m()))) n++;
   if(!test.check("abs(NAN)", !x.abs().is_valid())) n++;
   if(!test.check("parallax(NAN)", !x.parallax().is_valid())) n++;
+  if(!test.check("equals(NAN)", !x.equals(x, Unit::pc))) n++;
+  if(!test.check("NAN != NAN", x != x)) n++;
   if(!test.check("NAN.operator/()", !(x / Interval(2.0)).is_valid())) n++;
 
   if(!test.check("is_valid(at_Gpc())", Coordinate::at_Gpc().is_valid())) n++;
@@ -29,6 +31,9 @@ int main() {
 
   Coordinate a(1.0 * Unit::au);
   if(!test.check("is_valid(1 AU)", a.is_valid())) n++;
+  if(!test.check("equals()", a.equals(a, Unit::m))) n++;
+  if(!test.check("operator==()", a == a)) n++;
+  if(!test.check("operator!=()", !(a != a))) n++;
   if(!test.equals("m()", a.m(), Unit::au)) n++;
   if(!test.equals("km()", a.km(), Unit::au / Unit::km, 1e-4)) n++;
   if(!test.equals("au()", a.au(), 1.0)) n++;
@@ -43,10 +48,11 @@ int main() {
           ScalarVelocity(0.01 * Unit::AU_per_day).au_per_day(), 1e-12 * Unit::AU_per_day)) n++;
   if(!test.check("operator/(0.0)", !(a / Interval::zero()).is_valid())) n++;
 
-
   Coordinate b(1.0 * Unit::pc);
   if(!test.equals("pc(1 pc)", b.pc(), 1.0)) n++;
   if(!test.equals("parallax(1 pc)", b.parallax().arcsec(), 1.0, 1e-15)) n++;
+  if(!test.check("operator==(a/b)", !(a == b))) n++;
+  if(!test.check("operator!=(a/b)", a != b)) n++;
 
   Coordinate c = Coordinate::from_parallax(Angle(1.0 * Unit::mas));
   if(!test.check("is_valid(parallax = 1 mas)", c.is_valid())) n++;

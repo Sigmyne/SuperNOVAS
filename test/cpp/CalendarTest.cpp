@@ -20,14 +20,23 @@ int main() {
 
   Calendar a = Calendar::gregorian();
   if(!test.equals("gregorian()", a.type(), NOVAS_GREGORIAN_CALENDAR)) n++;
+  if(!test.check("is_leap_year(Gregorian:100)", a.is_leap_year(100) == false)) n++;
+  if(!test.check("is_leap_year(Gregorian:1900)", a.is_leap_year(1900) == false)) n++;
+  if(!test.check("is_leap_year(Gregorian:2000)", a.is_leap_year(2000) == true)) n++;
 
   Calendar b = Calendar::roman();
   if(!test.equals("roman()", b.type(), NOVAS_ROMAN_CALENDAR)) n++;
+  if(!test.check("is_leap_year(roman:100)", b.is_leap_year(100) == true)) n++;
+  if(!test.check("is_leap_year(roman:1900)", b.is_leap_year(1900) == true)) n++;
+  if(!test.check("is_leap_year(roman:2000)", b.is_leap_year(2000) == true)) n++;
 
   Calendar c = Calendar::astronomical();
   if(!test.equals("astronomical()", c.type(), NOVAS_ASTRONOMICAL_CALENDAR)) n++;
+  if(!test.check("is_leap_year(astronomical:100)", c.is_leap_year(100) == true)) n++;
+  if(!test.check("is_leap_year(astronomical:1900)", c.is_leap_year(1900) == false)) n++;
+  if(!test.check("is_leap_year(astronomical:2000)", c.is_leap_year(2000) == true)) n++;
 
-  if(!test.equals("to_stirng(Gregorian)", a.to_string(), "Gregorian calendar")) n++;
+  if(!test.equals("to_string(Gregorian)", a.to_string(), "Gregorian calendar")) n++;
   if(!test.equals("to_string(Roman)", b.to_string(), "Roman calendar")) n++;
   if(!test.equals("to_string(astronomical)", c.to_string(), "astronomical calendar")) n++;
 

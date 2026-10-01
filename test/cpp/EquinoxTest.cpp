@@ -68,6 +68,7 @@ int main() {
   if(!test.check("j2000() == 'FK5'", (j2000 == Equinox::from_string("FK5")))) n++;
   if(!test.check("j2000() == J2000", (j2000 == Equinox::from_system_type(NOVAS_J2000, NAN)))) n++;
   if(!test.check("j2000() != icrs", (j2000 != icrs))) n++;
+  if(!test.check("mod_at_julian_epoch()", j2000 == Equinox::mod_at_julian_epoch(2000.0))) n++;
 
   Equinox b1950 = Equinox::b1950();
   if(!test.check("b1950().is_valid()", b1950.is_valid())) n++;
@@ -94,6 +95,7 @@ int main() {
 
   if(!test.check("mod(NAN)", !Equinox::mod(NAN).is_valid())) n++;
   if(!test.check("mod_at_besselian_epoch(NAN)", !Equinox::mod_at_besselian_epoch(NAN).is_valid())) n++;
+  if(!test.check("mod_at_julian_epoch(NAN)", !Equinox::mod_at_julian_epoch(NAN).is_valid())) n++;
   if(!test.check("tod(NAN)", !Equinox::tod(NAN).is_valid())) n++;
 
 

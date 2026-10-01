@@ -347,21 +347,48 @@ int novas_day_of_year(double tjd, enum novas_calendar_type calendar, int *restri
   prop_error("novas_day_of_year", novas_jd_to_date(tjd, calendar, &y, &m, &d, NULL), 0);
   yday = mstart[m - 1] + d;
 
-  // Adjust for leap years
-  if(m > 2 && (y % 4) == 0) {
-    if((y % 100) != 0)
-      yday++;   // regular leap years (not 100s)...
-    else if((y % 400) == 0)
-      yday++;   // every 400 is always a leap too...
-    else if(calendar == NOVAS_ROMAN_CALENDAR)
-      yday++;   // in the Roman/Julian calendar every 100 years is a leap...
-    else if(calendar == NOVAS_ASTRONOMICAL_CALENDAR && tjd < NOVAS_JD_START_GREGORIAN)
-      yday++;   // in the astronomical calendar every 100 is a leap before the calendar reform of 1582.
-  }
-
   if(year)
     *year = y;
 
+  // Adjust for leap years
+  if(m > 2 && novas_is_leap_year(y, calendar))
+    yday++;
+
   return yday;
+}
+
+/**
+ * Checks if a given year is a leap year in a specific calendar.
+ *
+ * @param year        [yr] The calendar year. for X BCE, it is 1 - X. For example 45 BCE is -44.
+ * @param calendar    The type of calendar
+ * @return            TRUE (1) if the year is a leap year in the calendar, or FALSE (0) if it is not a leap year,
+ *                    or else -1 if the calendar is invalid (errno set to EINVAL).
+ *
+ * @since 1.8
+ *
+ * @see novas_day_of_year()
+ */
+int novas_is_leap_year(int year, enum novas_calendar_type calendar) {
+    if((year % 4) != 0)
+      return 0; // definitely not a leap...
+
+    if((year % 100) != 0)
+      return 1; // regular leap years (not 100s)...
+
+    // 100s --->
+    switch(calendar) {
+    // in the Roman/Julian calendar every 100 years is a leap...
+    case NOVAS_ROMAN_CALENDAR:
+        return 1;
+    // in the astronomical calendar every 100 is a leap before the calendar reform of 1582.
+    case NOVAS_ASTRONOMICAL_CALENDAR:
+        return year < 1582 || (year % 400) == 0;
+    // in the Gregorian calendar every 400 is a leap...
+    case NOVAS_GREGORIAN_CALENDAR:
+        return (year % 400) == 0;
+    }
+
+    return novas_error(-1, EINVAL, "novas_is_leap_year", "invalid calendar: %d", (int) calendar);
 }
 

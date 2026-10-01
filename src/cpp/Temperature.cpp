@@ -36,12 +36,57 @@ Temperature::Temperature(double deg_C) : Scalar(KELVIN_0C + deg_C) {
 }
 
 /**
+ * Checks if this pressure value is the same as another, within the specified precision.
+ *
+ * @param temp        Another temperature value.
+ * @param precision   [K] (optional) Precision for the comparison (default: 1 mK).
+ * @return            `true` if the two pressures agree within the specified precision, otherwise
+ *                    `false`.
+ *
+ * @since 1.8
+ *
+ * @sa operator==(), operator!=()
+ */
+bool Temperature::equals(const Temperature& temp, double precision) const {
+    return Scalar::equals(temp, precision);
+}
+
+/**
+ * Checks if this pressure value is the same as another, within 1 mK.
+ *
+ * @param temp        Another temperature value.
+ * @return            `true` if the two coordinates are effectively the same within 1 mK, otherwise
+ *                    `false`.
+ *
+ * @since 1.8
+ *
+ * @sa equals(), operator!=()
+ */
+bool Temperature::operator==(const Temperature& temp) const {
+  return equals(temp);
+}
+
+/**
+ * Checks if this pressure value differs from another by more than 1 mK.
+ *
+ * @param temp        Another temperature value.
+ * @return            `true` if the two coordinates differ by more than 1 mK, otherwise `false`.
+ *
+ * @since 1.8
+ *
+ * @sa operator==(), equals()
+ */
+bool Temperature::operator!=(const Temperature& temp) const {
+  return !(*this == temp);
+}
+
+/**
  * Returns the temperature value in degrees Celsius.
  *
  * @return    [C] The temperature value
  *
  * @since 1.6
- * @sa kelvin(), farenheit()
+ * @sa kelvin(), fahrenheit()
  */
 double Temperature::celsius() const {
   return _value - KELVIN_0C;
@@ -53,7 +98,7 @@ double Temperature::celsius() const {
  * @return    [K] The temperature value
  *
  * @since 1.6
- * @sa celsius(), farenheit()
+ * @sa celsius(), fahrenheit()
  */
 double Temperature::kelvin() const {
   return _value;
@@ -78,15 +123,15 @@ std::string Temperature::SI_unit() const {
 /**
  * Returns a human-readable string representation of this temperature value.
  *
- * @param decimals  (optional) [0:16] decimal places to print (default: 1).
+ * @param decimals  (optional) [0:16] decimal places to print (default: 3).
  * @return          a string with the human readable representation of this temperature.
  *
  * @since 1.6
  */
 std::string Temperature::to_string(int decimals) const {
   char s[40] = {'\0'};
-  snprintf(s, sizeof(s), "%.1f C", celsius());
-  return std::string(s);
+  novas_print_decimal(celsius(), decimals, s, (int) sizeof(s));
+  return std::string(s) + " C";
 }
 
 /**
@@ -97,7 +142,7 @@ std::string Temperature::to_string(int decimals) const {
  * @return        A new temperature object with the specified value.
  *
  * @since 1.6
- * @sa kelvin(), farenheit()
+ * @sa kelvin(), fahrenheit()
  */
 Temperature Temperature::celsius(double value) {
   Temperature T(value);
@@ -114,7 +159,7 @@ Temperature Temperature::celsius(double value) {
  * @return        A new temperature object with the specified value.
  *
  * @since 1.6
- * @sa celsius(), farenheit()
+ * @sa celsius(), fahrenheit()
  */
 Temperature Temperature::kelvin(double value) {
   Temperature T(value - KELVIN_0C);

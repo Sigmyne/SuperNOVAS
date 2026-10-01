@@ -70,6 +70,48 @@ Weather::Weather(double celsius, double pascal, double humidity_fraction)
 }
 
 /**
+ * Checks if this weather is the same as another, within standard tolerances for temperatures and pressures
+ * and 0.001% for humidity.
+ *
+ * @param weather   another set of weather parameters
+ * @return          `true` if the two weathers agree within tolerances, otherwise `false`
+ *
+ * @since 1.8
+ * @see operator==(), operator!=()
+ */
+bool Weather::equals(const Weather& weather) const {
+  return _temperature == weather._temperature && _pressure == weather._pressure && fabs(_humidity - weather._humidity) < 0.001;
+}
+
+/**
+ * Checks if this weather is the same as another, within standard tolerances for temperatures and pressures
+ * and 0.001% for humidity.
+ *
+ * @param weather   another set of weather parameters
+ * @return          `true` if the two weathers agree within tolerances, otherwise `false`
+ *
+ * @since 1.8
+ * @see equals(), operator!=()
+ */
+bool Weather::operator==(const Weather& weather) const {
+  return equals(weather);
+}
+
+/**
+ * Checks if this weather differs from another, beyond the standard tolerances for temperatures and pressures
+ * and 0.001% for humidity.
+ *
+ * @param weather   another set of weather parameters
+ * @return          `true` if the two weathers differ beyond tolerances, otherwise `false`
+ *
+ * @since 1.8
+ * @see operator==(), equals()
+ */
+bool Weather::operator!=(const Weather& weather) const {
+  return !equals(weather);
+}
+
+/**
  * Returns a reference to the temperature value in this weather dataset.
  *
  * @return    [C] outside air temperature

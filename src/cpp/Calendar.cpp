@@ -185,6 +185,21 @@ CalendarDate Calendar::parse_date(const std::string& str, enum novas_date_format
 }
 
 /**
+ * Checks if a given year is a leap year in this calendar.
+ *
+ * @param year        [yr] The calendar year. for X BCE, it is 1 - X. For example 45 BCE is -44.
+ * @return            `true` if the yer is a leap year in the calendar, or `false` if it is not a leap year,
+ *                    or else -1 if the calendar is invalid (errno set to EINVAL).
+ *
+ * @since 1.8
+ *
+ * @see novas_day_of_year()
+ */
+bool Calendar::is_leap_year(int year) const {
+    return novas_is_leap_year(year, _type);
+}
+
+/**
  * Returns a string representation of this type of calendar
  *
  * @return    A string representation of the calendar, such as "Gregorian calendar".
@@ -428,7 +443,7 @@ double CalendarDate::jd() const {
  *            Julian days start at midnight.
  *
  * @since 1.6
- * @sa mjd()
+ * @sa jd()
  */
 double CalendarDate::mjd() const {
   return _jd - NOVAS_JD_MJD0;

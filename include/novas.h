@@ -82,10 +82,10 @@
 #define SUPERNOVAS_MAJOR_VERSION  1
 
 /// API minor version
-#define SUPERNOVAS_MINOR_VERSION  7
+#define SUPERNOVAS_MINOR_VERSION  8
 
 /// Integer sub version of the release
-#define SUPERNOVAS_PATCHLEVEL     3
+#define SUPERNOVAS_PATCHLEVEL     0
 
 /// Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.
 #define SUPERNOVAS_RELEASE_STRING "-devel"
@@ -268,12 +268,12 @@
 #define NOVAS_JD_MJD0             2400000.5
 
 /// [day] Julian date at B1950 (NASA / NAIF SPICE definition)
-/// precession(), transform_cat()
+/// @sa precession(), transform_cat()
 /// @c_time
 #define NOVAS_JD_B1950            2433282.42345905
 
 /// [day] Julian date at B1900 (NASA / NAIF SPICE definition)
-/// precession(), transform_cat()
+/// @sa precession(), transform_cat()
 /// @c_time
 #define NOVAS_JD_B1900            2415020.31352
 
@@ -518,7 +518,7 @@
 
 /// Maxmimum number of bytes for a timestamp. All SuperNOVAS timestamps shall fit in a buffer
 /// of such size, even for extreme Gregorian years of `INT_MIN` or `INT_MAX`.
-/// @since 1.7.3
+/// @since 1.8
 /// @sa NOVAS_TIMESTAMP_LEN
 #define NOVAS_MAX_TIMESTAMP_LEN       35
 
@@ -3592,6 +3592,12 @@ int novas_set_leap_list(const char *filename);
 int novas_lookup_leap(time_t t);
 
 
+// ---------------------- Added in 1.8.0 -------------------------
+
+// in calendar.c
+int novas_is_leap_year(int year, enum novas_calendar_type calendar);
+
+
 
 // <================= END of SuperNOVAS API =====================>
 
@@ -3633,18 +3639,18 @@ int novas_lookup_leap(time_t t);
 /// [day] JD at 200 AD (1 Jan 200 AD, 12PM)
 #define NOVAS_JD_200AD  1794108LL
 
-/// [day] lowest floating-point Juloan day that can be converted to any calendar w/o integer overflow
+/// [day] lowest floating-point Julian day that can be converted to any calendar w/o integer overflow
 /// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD). Note, that because of
 /// rounding and timescale adjustments, the actual lowest convertible value may be slightly above this
 /// nominal limit.
-/// @since 1.7.3
+/// @since 1.8
 #define NOVAS_MIN_CALENDAR_JD (NOVAS_JD_200AD + (INT_MIN - 200LL) * DAYS_IN_400_GREGORIAN_YEARS / 400 - 0.5)
 
-/// [day] largest floating-point JUlian day that can be converted to any calendar w/o integer overflow
+/// [day] largest floating-point Jilian day that can be converted to any calendar w/o integer overflow
 /// (The proleptic Gregorian and Julian calendars coincided between 200 and 299 AD). Note, that because of
 /// rounding and timescale adjustments, the actual lowest convertible value may be slightly below this
 /// nominal limit.
-/// @since 1.7.3
+/// @since 1.8
 #define NOVAS_MAX_CALENDAR_JD (NOVAS_JD_200AD + (INT_MAX - 200LL + 1) * DAYS_IN_400_GREGORIAN_YEARS / 400 + 0.5)
 
 

@@ -3110,6 +3110,15 @@ static int test_set_leap_list() {
   return n;
 }
 
+
+static int test_is_leap_year() {
+  int n = 0;
+
+  if(check("is_leap_year:invalid_calendar", -1, novas_is_leap_year(100, (enum novas_calendar_type) 1000))) n++;
+
+  return n;
+}
+
 int main(int argc, const char *argv[]) {
   int n = 0;
 
@@ -3350,6 +3359,8 @@ int main(int argc, const char *argv[]) {
   if(test_get_eop_itrf_year()) n++;
   if(test_lookup_leap()) n++;
   if(test_set_leap_list()) n++;
+
+  if(test_is_leap_year()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");

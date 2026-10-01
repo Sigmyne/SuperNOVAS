@@ -329,9 +329,9 @@ public:
 
   virtual ~Scalar() {}
 
-  double SI_value() const;
-
   bool equals(const Scalar& other, double precision) const;
+
+  double SI_value() const;
 
   virtual std::string SI_unit() const = 0;
 
@@ -418,6 +418,8 @@ public:
 
   static Equinox mod_at_besselian_epoch(double year);
 
+  static Equinox mod_at_julian_epoch(double year);
+
   static Equinox tod(double jd_tt);
 
   static Equinox tod(const Time& time);
@@ -457,6 +459,12 @@ public:
   explicit Coordinate(double meters);
 
   Coordinate abs() const;
+
+  bool equals(const Coordinate& coord, double precision) const;
+
+  bool operator==(const Coordinate& coord) const;
+
+  bool operator!=(const Coordinate& coord) const;
 
   ScalarVelocity operator/(const Interval& dt) const;
 
@@ -599,6 +607,12 @@ public:
 
   std::string SI_unit() const override;
 
+  double sin() const;
+
+  double cos() const;
+
+  double tan() const;
+
   std::string to_string(int decimals = 3) const override {
     return to_string(NOVAS_SEP_UNITS_AND_SPACES, decimals);
   }
@@ -616,6 +630,12 @@ public:
   static constexpr int south = -1;    ///< South direction sign, e.g `90.0 * Unit::deg * Angle::south` for the South pole.
 
 };
+
+double sin(const Angle& angle);
+
+double cos(const Angle& angle);
+
+double tan(const Angle& angle);
 
 /**
  * A representation of a regularized angle, which can also be represented as a time value in the 0
@@ -1197,6 +1217,12 @@ private:
   explicit Temperature(double deg_C);
 
 public:
+  bool equals(const Temperature& temp, double precision = 1e-3) const;
+
+    bool operator==(const Temperature& temp) const;
+
+    bool operator!=(const Temperature& temp) const;
+
   double celsius() const;
 
   double kelvin() const;
@@ -1244,6 +1270,13 @@ private:
   explicit Pressure(double value);
 
 public:
+
+  bool equals(const Pressure& p, double precision = 0.1 * Unit::Pa) const;
+
+  bool operator==(const Pressure& p) const;
+
+  bool operator!=(const Pressure& p) const;
+
   double Pa() const;
 
   double hPa() const;
@@ -1298,6 +1331,12 @@ public:
   Weather(const Temperature& T, const Pressure& p, double humidity_fraction);
 
   Weather(double celsius, double pascal, double humidity_fraction);
+
+  bool equals(const Weather& weather) const;
+
+  bool operator==(const Weather& weather) const;
+
+  bool operator!=(const Weather& weather) const;
 
   const Temperature& temperature() const;
 
@@ -1669,6 +1708,8 @@ public:
   CalendarDate date(time_t t, long nanos = 0) const;
 
   CalendarDate date(const struct timespec *ts) const;
+
+  bool is_leap_year(int year) const;
 
   static Calendar gregorian();
 
@@ -2743,10 +2784,10 @@ public:
   Angle zenith_angle() const;
 
   /// @ingroup refract
-  Horizontal to_refracted(RefractionModel ref, const Weather& weather = Weather::standard(), const Time &time = Time::undefined());
+  Horizontal to_refracted(RefractionModel ref, const Weather& weather = Weather::standard(), const Time &time = Time::undefined()) const;
 
   /// @ingroup refract
-  Horizontal to_unrefracted(RefractionModel ref, const Weather& weather = Weather::standard(), const Time& time = Time::undefined());
+  Horizontal to_unrefracted(RefractionModel ref, const Weather& weather = Weather::standard(), const Time& time = Time::undefined()) const;
 
   /// @ingroup apparent
   Apparent to_apparent(const Frame& frame, double rv = 0.0, double distance = Unit::Gpc) const;

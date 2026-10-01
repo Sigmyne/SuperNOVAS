@@ -277,7 +277,7 @@ double novas_lsr_to_ssb_vel(double epoch, double ra, double dec, double vLSR) {
  * @param v_SSB     [km/s] radial velocity defined against the Solar System Barycenter (SSB), at
  *                  given epoch.
  *
- * @return          [km/s] Equivalent radial velocity defined against the Local Standard of Rest (LSR).
+ * @return          [km/s] Equivalent scalar velocity defined against the Local Standard of Rest (LSR).
  *
  * @since 1.3
  * @author Attila Kovacs

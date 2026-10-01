@@ -102,30 +102,19 @@ int nutation_angles(double t, enum novas_accuracy accuracy, double *restrict dps
   return 0;
 }
 
-static double sum_terms(double t, const double *a, const nutation_terms *P0, int N0, const nutation_terms *P1, int N1) {
+static double sum_terms(const double *a, const nutation_terms *P, int N) {
   double sum = 0.0;
   int i;
 
-  for(i = N0; --i >= 0; ) {
-    const nutation_terms *T = &P0[i];
+  for(i = 0; i < N; i++) {
+    const nutation_terms *T = &P[i];
     double arg = 0.0;
     int k;
 
     for(k = T->from; k < T->to; k++)
       arg += T->n[k] * a[k];
 
-    sum += T->A * sin(arg) + T->B * cos(arg);
-  }
-
-  for(i = N1; --i >= 0; ) {
-    const nutation_terms *T = &P1[i];
-    double arg = 0.0;
-    int k;
-
-    for(k = T->from; k < T->to; k++)
-      arg += T->n[k] * a[k];
-
-    sum += (T->A * sin(arg) + T->B * cos(arg)) * t;
+    sum += (T->A * sin(arg) + T->B * cos(arg));
   }
 
   return sum * 1e-8 * ARCSEC;
@@ -152,10 +141,10 @@ static int iau2006_fp(double jd_tt_high, double jd_tt_low, int nA0, int nA1, int
   a[13] = accum_prec(t);
 
   if(dpsi)
-    *dpsi = sum_terms(t, a, A0, nA0, A1, nA1);
+    *dpsi = sum_terms(a, A0, nA0) + sum_terms(a, A1, nA1) * t;
 
   if(deps)
-    *deps = sum_terms(t, a, B0, nB0, B1, nB1);
+    *deps = sum_terms(a, B0, nB0) + sum_terms(a, B1, nB1) * t;
 
   return 0;
 }
