@@ -7,9 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [1.8.0-rc1] - 2026-10-01
 
-Upcoming maintenance release, expected around 1 November 2026.
+Release candidate for the upcoming maintenance release, expected around 1 November 2026.
 
 ### Fixed
 
