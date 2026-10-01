@@ -374,7 +374,7 @@ Geometric Geometric::to_itrs() const {
  * @since 1.6
  */
 std::string Geometric::to_string(int decimals) const {
-  return "Geometric " + Position(position()).to_string(decimals) + ", " + velocity().to_string(decimals) + " in " + _frame.to_string();
+  return "Geometric " + position().to_string(decimals) + ", " + velocity().to_string(decimals) + " in " + _frame.to_string();
 }
 
 /**

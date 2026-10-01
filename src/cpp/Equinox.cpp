@@ -94,7 +94,8 @@ Equinox::Equinox(enum novas_reference_system system, double jd_tt)
 
 /**
  * Checks if this equatorial system equals the equatorial system as the right-hand side, with the
- * epochs also matching within the specified precision.
+ * epochs also matching within the specified precision. Note, that a mean-of-date (MOD) equinox
+ * defined at J2000 equals the J2000 equinox.
  *
  * @param system  The equatorial system on the right-hand side.
  * @param dt      [s] The tolerance to epoch differences in seconds.
@@ -493,7 +494,7 @@ Equinox Equinox::mod_at_besselian_epoch(double year) {
  * @sa mod_at_besselian_epoch(), mod(), j2000()
  */
 Equinox Equinox::mod_at_julian_epoch(double year) {
-  Equinox e(_name_for("J", year), NOVAS_JD_J2000 + (year - 2000.0) * Unit::julian_year / Unit::day);
+  Equinox e = mod(NOVAS_JD_J2000 + (year - 2000.0) * Unit::julian_year / Unit::day);
   if(!e.is_valid())
     novas_trace_invalid("Equinox::mod_at_julian_epoch()");
   return e;
