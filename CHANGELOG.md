@@ -19,6 +19,9 @@ Upcoming maintenance release, expected around 1 November 2026.
    `Source::horizontal_track()`. (by csp256)
    
  - #376: Fixed inverted flattening parameters for the IERS 1989 and 2003 reference ellipsoids.
+ 
+ - #380: Fixed missing non-relativistic expression for adding observer motion in `rad_vel2()`, which resulted in 
+   errors at the few m/s level typically.
    
 ### Added
 
