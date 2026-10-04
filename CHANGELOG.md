@@ -41,8 +41,8 @@ Upcoming maintenance release, expected around 1 November 2026.
  
  - #378: Added `Position::distance_to(Position&)` to return the coordinate distance between two position vectors.
 
- - #378: Added `Position::longitude()`, and `.latitude()` methods to return the spherical directions for a given
-   Cartesian vector.
+ - #378: Added `Position::longitude()`, and `Position::latitude()` methods to return the spherical directions for a 
+   given Cartesian vector.
 
  - #378: Added `Spherical(Position&)` constructor -- subclasses now rely on it.
    
@@ -67,8 +67,8 @@ Upcoming maintenance release, expected around 1 November 2026.
    silent garbage output for ridiculous JD input values (such as more than 2 billion years from present day).
    (by csp256 and attipaci)
    
- - #373: Change `novas_jd_to_date()` and `novas_jd_from_date()` to work with negative JD dates also, with appropriately
-   modified integer division floor value. (by csp256 and attipaci).
+ - #373: Change `novas_jd_to_date()` and `novas_jd_from_date()` to work with negative JD dates also, with 
+   appropriately modified integer division floor value. (by csp256 and attipaci).
 
  - #373: Check for integer overflow in `novas_set_time()` / `novas_set_split_time()`, and return -1 with `errno`
    set to `ERANGE` when the integer part of JD exceeds the `long` storage range. (by attipaci, thanks to csp256) 
@@ -83,7 +83,7 @@ Upcoming maintenance release, expected around 1 November 2026.
    
  - #375: Suppress Clang++ sanitizer messages on out-of-range enums, when invalid class instances are constructed using 
    these intentionally. The Clang++ sanitizer is also disabled automatically for compiling tests, since the tests are
-   not production code, and sloppyness for these is not critical. (by attipaci, thanks to csp256).
+   not production code, and sloppyness in them is not critical. (by attipaci, thanks to csp256).
 
  - #377: `Temperature::to_string(int)` and `Pressure::to_string(int)` have previously ignored the decimal places 
    requested and printed values with 1 decimal place always. Now changed to use the specified decimals parameter, and 
