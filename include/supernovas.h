@@ -237,7 +237,7 @@ public:
   static constexpr double M_sun = GM_sun / G;           ///< [kg] Mass of the Sun
   static constexpr double M_earth = GM_earth / G;       ///< [kg] Earth mass
 
-  static constexpr double R_earth = NOVAS_GRS80_RADIUS; ///< [m] 1 Earth quatorial radius (GRS80) in meters
+  static constexpr double R_earth = NOVAS_GRS80_RADIUS; ///< [m] 1 Earth equatorial radius (GRS80) in meters
 };
 
 /**
