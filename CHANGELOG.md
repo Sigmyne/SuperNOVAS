@@ -93,6 +93,9 @@ Upcoming maintenance release, expected around 1 November 2026.
    the parent instance.
    
  - #377: Streamlined `ee_ct` and nutation series calculations slightly.
+
+ - #378: Simplified `novas_itrs_to_enu()` / `novas_enu_to_itrf()` to call `novas_xyz_to_los()` / `novas_los_to_xyz()`,
+   respectively.
  
  - #381: Improved radial velocity calculations in `rad_vel2()`, with better accounting of viewing angle for catalog
    sources, and improved calculation of gravitational effects.
