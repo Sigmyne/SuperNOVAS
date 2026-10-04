@@ -221,7 +221,7 @@ AstrometricPosition AstrometricPosition::referenced_to_ssb() const {
  *                          this position is defined.
  * @param distance          (optional) %Apparent distance to phase center, from the array
  *                          reference, at the time of observation (default: 1 Gpc).
- * @param relative_motion   (optional station's velocity vector relative to the reference position
+ * @param relative_motion   (optional) station's velocity vector relative to the reference position
  *                          (default: stationary).
  *
  * @return            interferometric _uvw_ projection this astrometric place viewed from the

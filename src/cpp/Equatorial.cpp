@@ -99,7 +99,7 @@ Equatorial::Equatorial(const std::string& ra, const std::string& dec, const Equi
  * @since 1.6
  */
 Equatorial::Equatorial(const Position& pos, const Equinox& system)
-: Spherical(pos.to_spherical()), _sys(system) {
+: Spherical(pos), _sys(system) {
   validate();
 }
 

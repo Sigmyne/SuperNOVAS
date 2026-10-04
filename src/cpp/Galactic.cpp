@@ -76,7 +76,7 @@ Galactic::Galactic(const std::string& longitude, const std::string& latitude)
  * @since 1.6
  */
 Galactic::Galactic(const Position& pos)
-: Spherical(pos.to_spherical()) {
+: Spherical(pos) {
   if(!is_valid())
     novas_trace_invalid("Galactic()");
 }

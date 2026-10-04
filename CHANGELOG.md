@@ -38,6 +38,13 @@ Upcoming maintenance release, expected around 1 November 2026.
    a leap year in the calendar.
    
  - #377: Added `Equinox::mod_at_julian_epoch(double year)` method.
+ 
+ - #378: Added `Position::distance_to(Position&)` to return the coordinate distance between two position vectors.
+
+ - #378: Added `Position::longitude()`, and `.latitude()` methods to return the spherical directions for a given
+   Cartesian vector.
+
+ - #378: Added `Spherical(Position&)` constructor -- subclasses now rely on it.
    
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
