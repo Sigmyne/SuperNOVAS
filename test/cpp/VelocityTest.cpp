@@ -17,6 +17,7 @@ int main() {
   int n = 0;
 
   Position pos(1.0, -2.0, 3.0);
+  Spherical sph(2.0, -1.0);
 
   Velocity x = Velocity::undefined();
   if(!test.check("is_valid() invalid", !x.is_valid())) n++;
@@ -26,7 +27,8 @@ int main() {
   if(!test.check("inv() invalid", !x.inv().is_valid())) n++;
   if(!test.check("speed() invalid", !x.speed().is_valid())) n++;
   if(!test.check("travel() invalid", !x.travel(Interval::zero()).is_valid())) n++;
-  if(!test.check("along() invalid", !x.along(pos).is_valid())) n++;
+  if(!test.check("along(Vector) invalid", !x.along(pos).is_valid())) n++;
+  if(!test.check("along(Spherical) invalid", !x.along(sph).is_valid())) n++;
   if(!test.check("operator*() invalid", !(x * Interval::zero()).is_valid())) n++;
   if(!test.check("invalid.operator+()", !(x + Velocity::stationary()).is_valid())) n++;
   if(!test.check("invalid.operator-()", !(x - Velocity::stationary()).is_valid())) n++;
@@ -55,7 +57,8 @@ int main() {
   if(!test.check("is_zero()", !a.is_zero())) n++;
   if(!test.equals("speed()", a.speed().km_per_s(), sqrt(14.0), 1e-14)) n++;
   if(!test.equals("travel()", a.travel(Interval(2.0)).distance().km(), 2.0 * sqrt(14.0), 1e-14)) n++;
-  if(!test.equals("along() invalid", a.along(pos).m_per_s(), a.projection_on(pos), 1e-12)) n++;
+  if(!test.equals("along(Vector)", a.along(pos).m_per_s(), a.projection_on(pos), 1e-12)) n++;
+  if(!test.equals("along(Spherical)", a.along(sph).m_per_s(), a.projection_on(sph.unit_vector()), 1e-12)) n++;
   if(!test.equals("operator*(Interval)", (a * Interval(3.0)).distance().km(), 3.0 * sqrt(14.0), 1e-14)) n++;
   if(!test.equals("to_string()", a.to_string(), "Velocity (-1.000 km/s, 2.000 km/s, -3.000 km/s)")) n++;
 

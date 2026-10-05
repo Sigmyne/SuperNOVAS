@@ -264,6 +264,23 @@ ScalarVelocity Velocity::along(const Vector& direction) const {
   return v;
 }
 
+/**
+ * Returns the projection of this velocity vector along the specified direction
+ * as a scalar velocity
+ *
+ * @param direction a vector that defines the direction.
+ * @return the projected velocity in the specified direction
+ *
+ * @since 1.8
+ *
+ * @sa ScalarVelocity::in_direction()
+ */
+ScalarVelocity Velocity::along(const Spherical& direction) const {
+  ScalarVelocity v(projection_on(direction.unit_vector()));
+  if(!v.is_valid())
+    novas_trace_invalid("Velocity::in_direction()");
+  return v;
+}
 
 /**
  * Returns a reference to the statically defined zero velocity of a stationary object.

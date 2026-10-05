@@ -703,11 +703,11 @@ protected:
   /// Instantiates an undefined vector
   Vector();
 
-  explicit Vector(double x, double y, double z);
-
   bool equals(const Vector& v, double precision) const;
 
 public:
+
+  explicit Vector(double x, double y, double z);
 
   virtual ~Vector() {}
 
@@ -775,7 +775,9 @@ public:
 
   ScalarVelocity speed() const;
 
-  ScalarVelocity along(const Vector& v) const;
+  ScalarVelocity along(const Vector& direction) const;
+
+  ScalarVelocity along(const Spherical& direction) const;
 
   Velocity inv() const;
 
@@ -1005,6 +1007,8 @@ public:
   explicit Spherical(const Position& position);
 
   Position xyz(const Coordinate& distance) const;
+
+  Vector unit_vector() const;
 
   const Angle& longitude() const;
 
