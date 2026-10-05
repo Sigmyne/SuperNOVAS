@@ -602,7 +602,7 @@ double rad_vel2(const object *restrict source, const double *pos_emit, const dou
   beta = novas_add_beta(beta_src, -beta_obs);
 
   // Include relativistic redhsift factor due to relative motion
-  rel *= (1.0 + beta) / sqrt(1.0 - novas_vdist2(vel_obs, vel_src) / NOVAS_C2);
+  rel *= sqrt((1.0 + beta) / (1.0 - beta));
 
   // Convert observed radial velocity measure to kilometers/second.
   return novas_z2v(rel - 1.0);
