@@ -775,6 +775,8 @@ public:
 
   ScalarVelocity speed() const;
 
+  ScalarVelocity in_direction(const Vector& v) const;
+
   Velocity inv() const;
 
   Position travel(double seconds) const;

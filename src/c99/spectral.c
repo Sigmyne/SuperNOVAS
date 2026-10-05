@@ -464,7 +464,9 @@ int rad_vel(const object *restrict source, const double *restrict pos_src, const
  *                      with arbitrary magnitude.
  * @param vel_src       [AU/day] Velocity vector of object with respect to solar system
  *                      barycenter.
- * @param pos_det       (unused)
+ * @param pos_det       [AU|*] apparent position vector of source, as seen by the observer.
+ *                      It may be the same vector as `pos_emit`, in which case the routine
+ *                      behaves like the original NOVAS_C rad_vel().
  * @param vel_obs       [AU/day] Velocity vector of observer with respect to solar system
  *                      barycenter.
  * @param d_obs_geo     [AU] Distance from observer to geocenter, or &lt;=0.0 if
@@ -493,16 +495,15 @@ double rad_vel2(const object *restrict source, const double *pos_emit, const dou
 
   double rel; // redshift factor i.e., f_src / fobs = (1 + z)
   double dU = 0.0;  // change in gravitational potential: dU = U_obs - U_src
-  double vso[3], beta;
-  int i;
+  double beta_src, beta_obs, beta;
 
   if(!source) {
     novas_set_errno(EINVAL, fn, "NULL input source");
     return NAN;
   }
 
-  if(!pos_emit || !vel_src) {
-    novas_set_errno(EINVAL, fn, "NULL input source pos/vel: pos_emit=%p, vel_src=%p", pos_emit, vel_src);
+  if(!pos_emit || !vel_src || !pos_det) {
+    novas_set_errno(EINVAL, fn, "NULL input source pos/vel: pos_emit=%p, vel_src=%p, pos_det=%p", pos_emit, vel_src, pos_det);
     return NAN;
   }
 
@@ -511,17 +512,15 @@ double rad_vel2(const object *restrict source, const double *pos_emit, const dou
     return NAN;
   }
 
-  (void) pos_det; // unused
-
-
   // 1. kinetic redshift ----------------------------------------------->
 
-  // source velocity w.r.t. the observer
-  for(i = 0; i < 3; i++)
-    vso[i] = novas_add_vel(vel_src[i], -vel_obs[i]);
+  // apparent source radial velocity (rel. SSB) in the direction of emission
+  beta_src = novas_vdot(vel_src, pos_emit) / novas_vlen(pos_emit) / C_AUDAY;
 
-  // observed beta in the direction of emission
-  beta = novas_vdot(vso, pos_emit) / novas_vlen(pos_emit) / C_AUDAY;
+  // observer radial velocity (rel. SSB) in the direction of detection
+  beta_obs = novas_vdot(vel_obs, pos_det) / novas_vlen(pos_det) / C_AUDAY;
+
+  beta = novas_add_beta(beta_src, -beta_obs);
 
   // relativistic redhsift factor due to relative motion
   rel = sqrt((1.0 + beta) / (1.0 - beta));
