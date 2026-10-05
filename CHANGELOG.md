@@ -38,6 +38,13 @@ Upcoming maintenance release, expected around 1 November 2026.
    a leap year in the calendar.
    
  - #377: Added `Equinox::mod_at_julian_epoch(double year)` method.
+ 
+ - #378: Added `Position::distance_to(Position&)` to return the coordinate distance between two position vectors.
+
+ - #378: Added `Position::longitude()`, and `Position::latitude()` methods to return the spherical directions for a 
+   given Cartesian vector.
+
+ - #378: Added `Spherical(Position&)` constructor -- subclasses now rely on it.
    
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
@@ -60,8 +67,8 @@ Upcoming maintenance release, expected around 1 November 2026.
    silent garbage output for ridiculous JD input values (such as more than 2 billion years from present day).
    (by csp256 and attipaci)
    
- - #373: Change `novas_jd_to_date()` and `novas_jd_from_date()` to work with negative JD dates also, with appropriately
-   modified integer division floor value. (by csp256 and attipaci).
+ - #373: Change `novas_jd_to_date()` and `novas_jd_from_date()` to work with negative JD dates also, with 
+   appropriately modified integer division floor value. (by csp256 and attipaci).
 
  - #373: Check for integer overflow in `novas_set_time()` / `novas_set_split_time()`, and return -1 with `errno`
    set to `ERANGE` when the integer part of JD exceeds the `long` storage range. (by attipaci, thanks to csp256) 
@@ -76,7 +83,7 @@ Upcoming maintenance release, expected around 1 November 2026.
    
  - #375: Suppress Clang++ sanitizer messages on out-of-range enums, when invalid class instances are constructed using 
    these intentionally. The Clang++ sanitizer is also disabled automatically for compiling tests, since the tests are
-   not production code, and sloppyness for these is not critical. (by attipaci, thanks to csp256).
+   not production code, and sloppyness in them is not critical. (by attipaci, thanks to csp256).
 
  - #377: `Temperature::to_string(int)` and `Pressure::to_string(int)` have previously ignored the decimal places 
    requested and printed values with 1 decimal place always. Now changed to use the specified decimals parameter, and 
@@ -86,6 +93,9 @@ Upcoming maintenance release, expected around 1 November 2026.
    the parent instance.
    
  - #377: Streamlined `ee_ct` and nutation series calculations slightly.
+
+ - #378: Simplified `novas_itrs_to_enu()` / `novas_enu_to_itrf()` to call `novas_xyz_to_los()` / `novas_los_to_xyz()`,
+   respectively.
  
  - #381: Improved radial velocity calculations in `rad_vel2()`, with better accounting of viewing angle for catalog
    sources, and improved calculation of gravitational effects.

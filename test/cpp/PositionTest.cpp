@@ -25,6 +25,13 @@ int main() {
   if(!test.check("operator-() invalid", !(x - Position::origin()).is_valid())) n++;
   if(!test.check("inv() invalid", !x.inv().is_valid())) n++;
   if(!test.check("operator/() invalid", !(x / Interval(2.0)).is_valid())) n++;
+  if(!test.check("longitude() invalid", !x.longitude().is_valid())) n++;
+  if(!test.check("latitude() invalid", !x.latitude().is_valid())) n++;
+  if(!test.check("to_spherical() invalid", !x.to_spherical().is_valid())) n++;
+
+  if(!test.check("invalid x", !Position(NAN, 0.0, 0.0).is_valid())) n++;
+  if(!test.check("invalid y", !Position(0.0, NAN, 0.0).is_valid())) n++;
+  if(!test.check("invalid z", !Position(0.0, 0.0, NAN).is_valid())) n++;
 
   Position z = Position::origin();
   if(!test.check("is_valid() origin", z.is_valid())) n++;
@@ -34,18 +41,21 @@ int main() {
   if(!test.check("is_zero(origin)", z.is_zero())) n++;
   if(!test.check("operator+(invalid)", !(z + x).is_valid())) n++;
   if(!test.check("operator-(invalid)", !(z - x).is_valid())) n++;
-
-  if(!test.check("invalid x", !Position(NAN, 0.0, 0.0).is_valid())) n++;
-  if(!test.check("invalid x", !Position(0.0, NAN, 0.0).is_valid())) n++;
-  if(!test.check("invalid x", !Position(0.0, 0.0, NAN).is_valid())) n++;
+  if(!test.equals("to_spherical().longitude() origin", x.to_spherical().longitude().rad(), 0.0, 1e-15)) n++;
+  if(!test.equals("to_spherical().latitude() origin", x.to_spherical().latitude().rad(), 0.0, 1e-15)) n++;
 
   Position a(-1.0 * Unit::au, 2.0 * Unit::au, -3.0 * Unit::au);
   if(!test.check("is_valid(-1 AU, 2 AU, -3 AU)", a.is_valid())) n++;
   if(!test.equals("x()", a.x().m(), -1.0 * Unit::au)) n++;
   if(!test.equals("y()", a.y().m(), 2.0 * Unit::au)) n++;
   if(!test.equals("z()", a.z().m(), -3.0 * Unit::au)) n++;
+  if(!test.equals("longitude()", a.longitude().rad(), atan2(2.0, -1.0), 1e-12)) n++;
+  if(!test.equals("latitude()", a.latitude().rad(), atan2(-3.0, sqrt(5.0)), 1e-12)) n++;
+  if(!test.check("to_spherical().longitude()", a.to_spherical().longitude() == a.longitude())) n++;
+  if(!test.check("to_spherical().latitude()", a.to_spherical().latitude() == a.latitude())) n++;
   if(!test.check("is_zero()", !a.is_zero())) n++;
   if(!test.equals("distance()", a.distance().au(), sqrt(14.0), 1e-14)) n++;
+  if(!test.check("distance_to(invalid)", !a.distance_to(x).is_valid())) n++;
   if(!test.equals("to_string()", a.to_string(), "Position (-1.000 AU, 2.000 AU, -3.000 AU)")) n++;
   if(!test.check("operator/(Interval&)", (a / Interval(Unit::yr)) ==
           Velocity(-1.0 * Unit::au / Unit::yr, 2.0 * Unit::au / Unit::yr, -3.0 * Unit::au / Unit::yr))) n++;
@@ -66,6 +76,7 @@ int main() {
   if(!test.equals("x() inv", ai.x().m(), -a.x().m())) n++;
   if(!test.equals("y() inv", ai.y().m(), -a.y().m())) n++;
   if(!test.equals("z() inv", ai.z().m(), -a.z().m())) n++;
+  if(!test.check("!equals()", !a.equals(ai, 1e-15 * Unit::au))) n++;
   if(!test.check("operator!=() inv", (a != ai))) n++;
   if(!test.check("operator==() inv !", !(a == ai))) n++;
 
@@ -75,26 +86,9 @@ int main() {
 
   double p[3] = {-1.0, 2.0, -3.0};
   Position b(p, Unit::au);
-
   if(!test.check("equals()", a.equals(b, 1e-15 * Unit::au))) n++;
-  if(!test.check("!equals()", !a.equals(ai, 1e-15 * Unit::au))) n++;
   if(!test.check("operator==()", a == b)) n++;
   if(!test.check("operator!=() !", !(a != b))) n++;
-
-  Position c(p, Unit::m);
-  Position c1(-1.00001, 2.0001, -3.0001);
-
-  if(!test.check("operator==() mm", c == c1)) n++;
-  if(!test.check("operator!=() mm !", !(c != c1))) n++;
-
-  if(!test.equals("projection_on(x)", a.projection_on(Position(5.0, 0.0, 0.0)), a.x().m(), 1e-15 * Unit::AU)) n++;
-  if(!test.equals("projection_on(y)", a.projection_on(Position(0.0, 5.0, 0.0)), a.y().m(), 1e-15 * Unit::AU)) n++;
-  if(!test.equals("projection_on(z)", a.projection_on(Position(0.0, 0.0, 5.0)), a.z().m(), 1e-15 * Unit::AU)) n++;
-
-  double l = a.abs();
-  if(!test.equals("unit_vector().x()", a.unit_vector()[0], a.x().m() / l, 1e-15)) n++;
-  if(!test.equals("unit_vector().y()", a.unit_vector()[1], a.y().m() / l, 1e-15)) n++;
-  if(!test.equals("unit_vector().z()", a.unit_vector()[2], a.z().m() / l, 1e-15)) n++;
 
   if(!test.equals("x(a - b)", (a - b).x().m(), 0.0)) n++;
   if(!test.equals("y(a - b)", (a - b).y().m(), 0.0)) n++;
@@ -109,6 +103,25 @@ int main() {
   if(!test.equals("z(2 * a)", (2 * a)[2], -6.0 * Unit::au, 1e-14 * Unit::au)) n++;
 
   if(!test.equals("dot(b)", a.dot(b), a.abs() * b.abs())) n++;
+
+  Position c(p, Unit::m);
+  Position c1(-1.0001, 2.0001, -3.0001);
+
+  if(!test.check("operator==() mm", c == c1)) n++;
+  if(!test.check("operator!=() mm !", !(c != c1))) n++;
+
+  if(!test.equals("projection_on(x)", a.projection_on(Position(5.0, 0.0, 0.0)), a.x().m(), 1e-15 * Unit::AU)) n++;
+  if(!test.equals("projection_on(y)", a.projection_on(Position(0.0, 5.0, 0.0)), a.y().m(), 1e-15 * Unit::AU)) n++;
+  if(!test.equals("projection_on(z)", a.projection_on(Position(0.0, 0.0, 5.0)), a.z().m(), 1e-15 * Unit::AU)) n++;
+
+  double l = a.abs();
+  if(!test.equals("unit_vector().x()", a.unit_vector()[0], a.x().m() / l, 1e-15)) n++;
+  if(!test.equals("unit_vector().y()", a.unit_vector()[1], a.y().m() / l, 1e-15)) n++;
+  if(!test.equals("unit_vector().z()", a.unit_vector()[2], a.z().m() / l, 1e-15)) n++;
+
+
+  Position d(-1.0 * Unit::au, -2.0 * Unit::au, -3.0 * Unit::au);
+  if(!test.equals("distance_to()", a.distance_to(d).au(), 4.0, 1e-14)) n++;
 
   std::cout << "Position.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

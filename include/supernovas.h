@@ -831,7 +831,13 @@ public:
 
   Coordinate distance() const;
 
+  Coordinate distance_to(const Position& pos) const;
+
   Position inv() const;
+
+  Angle longitude() const;
+
+  Angle latitude() const;
 
   Spherical to_spherical() const;
 
@@ -994,6 +1000,8 @@ public:
 
   Spherical(const std::string& longitude, const std::string& latitude);
 
+  explicit Spherical(const Position& position);
+
   Position xyz(const Coordinate& distance) const;
 
   const Angle& longitude() const;
@@ -1009,6 +1017,8 @@ public:
  * equatorial origin (such as the Vernal %Equinox or CIO) in that system.
  *
  * @since 1.6
+ *
+ * @sa Ecliptic, Galactic
  *
  * @ingroup equatorial
  */
@@ -1088,6 +1098,8 @@ public:
  *
  * @since 1.6
  *
+ * @sa Equatorial, Galactic
+ *
  * @ingroup nonequatorial
  */
 class Ecliptic : public Spherical {
@@ -1159,6 +1171,8 @@ public:
  * %Galactic plane and the nominal %Galactic center location.
  *
  * @since 1.6
+ *
+ * @sa Equatorial, Ecliptic
  *
  * @ingroup nonequatorial
  */

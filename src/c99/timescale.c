@@ -1549,17 +1549,13 @@ static void solar_system_tidal_potential(const novas_frame *frame, const double 
  *              observer.
  */
 static double kinetic_potential(double b) {
-  double ig;
-
   if(b < 1e-6)
     // IERS Conventions, Chapter 10, Eq. 10.6 -- non-relativistic.
     return -0.5 * b * b;
 
-  ig = sqrt(1.0 - b * b);
-
   // IERS Conventions, Chapter 10, Eq. 10.6 -- relativistic.
   // dtau / dTCG = (1 - dV/c2) / gamma - 1 -->
-  return (ig - 1.0);
+  return (sqrt(1.0 - b * b) - 1.0);
 }
 
 /**

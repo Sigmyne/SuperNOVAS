@@ -102,7 +102,7 @@ Ecliptic::Ecliptic(const std::string& longitude, const std::string& latitude, co
  * @since 1.6
  */
 Ecliptic::Ecliptic(const Position& pos, const Equinox& system)
-: Spherical(pos.to_spherical()), _equator(system.equator_type()), _jd(system.jd()) {
+: Spherical(pos), _equator(system.equator_type()), _jd(system.jd()) {
   validate();
 }
 

@@ -183,12 +183,29 @@ Coordinate Position::z() const {
  *
  * @since 1.6
  * @return    the distance to the indicated position.
+ *
+ * @sa distance_to()
  */
 Coordinate Position::distance() const {
   Coordinate l(abs());
   if(!l.is_valid())
     novas_trace_invalid("Position::distance()");
   return l;
+}
+
+/**
+ * Returns the distance between this position and another.
+ *
+ * @since 1.8
+ * @return    the distance between the positions.
+ *
+ * @sa distance()
+ */
+Coordinate Position::distance_to(const Position& pos) const {
+  Coordinate d(novas_vdist(_component, pos._component));
+  if(!d.is_valid())
+     novas_trace_invalid("Position::distance_to()");
+   return d;
 }
 
 /**
@@ -205,18 +222,54 @@ Position Position::inv() const {
 }
 
 /**
- * Converts this position vector to Spherical coordinates.
+ * Returns the spherical longitude angle for this Cartesian position vector.
+ *
+ * @return    a new instance of angle, with the spherical longitude of this vector
+ *            it may be invalid if this vector is itself invalid.
+ *
+ * @since 1.8
+ *
+ * @sa latitude(), to_spherical()
+ */
+Angle Position::longitude() const {
+  Angle a(atan2(_component[1], _component[0]));
+  if(!a.is_valid())
+    novas_trace_invalid("Position::longitude()");
+  return a;
+}
+
+/**
+ * Returns the spherical latitude angle for this Cartesian position vector.
+ *
+ * @return    a new instance of angle, with the spherical longitude of this vector
+ *            it may be invalid if this vector is itself invalid.
+ *
+ * @since 1.8
+ *
+ * @sa longitude(), to_spherical()
+ */
+Angle Position::latitude() const {
+  Angle a(atan2(_component[2], hypot(_component[0], _component[1])));
+  if(!a.is_valid())
+    novas_trace_invalid("Position::latitude()");
+  return a;
+}
+
+/**
+ * Converts this position vector to spherical coordinates.
  *
  * @return    a new instance of spherical coordinates corresponding to this position.
  *
  * @since 1.6
+ *
+ * @sa longitude(), latitude()
  */
 Spherical Position::to_spherical() const {
-  double longitude = atan2(_component[1], _component[0]);
+  double lon = atan2(_component[1], _component[0]);
   double xy = hypot(_component[0], _component[1]);
-  double latitude = atan2(_component[2], xy);
+  double lat = atan2(_component[2], xy);
 
-  Spherical s((isfinite(longitude) || !isfinite(latitude)) ? longitude : 0.0, latitude);
+  Spherical s((isfinite(lon) || !isfinite(lat)) ? lon : 0.0, lat);
   if(!s.is_valid())
     novas_trace_invalid("Position::to_spherical()");
   return s;

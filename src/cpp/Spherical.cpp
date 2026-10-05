@@ -53,8 +53,8 @@ Spherical::Spherical(const Angle& longitude, const Angle& latitude)
 
 /**
  * Instantiates spherical coordinates with the specified string representations of the longitude
- * and latitude coordinates, optionally specifying a system and a distance if needed. After
- * instantiation, you should check that the resulting coordinates are valid, e.g. as:
+ * and latitude coordinates. After instantiation, you should check that the resulting coordinates
+ * are valid, e.g. as:
  *
  * ```c++
  *   Spherical coords = Spherical(..., ...);
@@ -75,6 +75,30 @@ Spherical::Spherical(const Angle& longitude, const Angle& latitude)
  */
 Spherical::Spherical(const std::string& lon, const std::string& lat)
 : Spherical(Angle(lon), Angle(lat)) {}
+
+
+/**
+ * Instantiates spherical coordinates which represent the direction of a 3D postion vector. After
+ * instantiation, you should check that the resulting coordinates are valid, e.g. as:
+ *
+ * ```c++
+ *   Spherical coords = Spherical(...);
+ *   if(!coords.is_valid()) {
+ *     // oops, looks like the angles could not be parsed...
+ *     return;
+ *   }
+ * ```
+ *
+ * @param position    Catresian position vector that defines the direction.
+ *
+ * @since 1.8
+ */
+Spherical::Spherical(const Position& position) : _lon(position.longitude()), _lat(position.latitude()) {
+  if(!position.is_valid())
+    novas_trace_invalid("Spherical");
+  else
+    _valid = true;
+}
 
 
 /**
