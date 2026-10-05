@@ -725,7 +725,7 @@ public:
 
   double dot(const Vector& v) const;
 
-  double projection_on(const Vector& v) const;
+  double projection_on(const Vector& direction) const;
 
   Angle phi() const;
 
@@ -775,7 +775,7 @@ public:
 
   ScalarVelocity speed() const;
 
-  ScalarVelocity in_direction(const Vector& v) const;
+  ScalarVelocity along(const Vector& v) const;
 
   Velocity inv() const;
 

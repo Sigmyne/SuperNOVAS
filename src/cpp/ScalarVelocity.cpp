@@ -284,6 +284,8 @@ std::string ScalarVelocity::to_string(int decimals) const {
  *                    this speed.
  *
  * @since 1.6
+ *
+ * @sa Velocity::along()
  */
 Velocity ScalarVelocity::in_direction(const Vector& direction) const {
   Velocity v(direction._array(), _value / direction.abs());
