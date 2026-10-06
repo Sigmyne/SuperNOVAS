@@ -148,7 +148,7 @@ Apparent Apparent::from_tod(const Angle& ra, const Angle& dec, const Frame& fram
 /**
  * Retuns the reference to the frame for which these apparent positions are defined.
  *
- * @return      the ovbserving frame (time of observation and observer location) for this
+ * @return      the observing frame (time of observation and observer location) for this
  *              apparent position.
  *
  * @since 1.6

@@ -775,6 +775,8 @@ public:
 
   ScalarVelocity speed() const;
 
+  ScalarVelocity speed_difference_to(const Velocity& v) const;
+
   ScalarVelocity along(const Vector& direction) const;
 
   ScalarVelocity along(const Spherical& direction) const;

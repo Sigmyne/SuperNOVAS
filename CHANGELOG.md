@@ -51,6 +51,8 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #382: Added `Velocity::along(Vector&)` / `Velocity::along(Spherical&)` to get the 1D projected scalar velocity of 
    a 3D velocity vector along some direction. 
    
+ - #382: Added `Velocity::speed_difference_to(Velocity&)`.
+   
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
    defined only when your application is linked.

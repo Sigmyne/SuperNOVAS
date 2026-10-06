@@ -114,7 +114,7 @@ Position Position::operator+(const Position& r) const {
  * @return    a new position vector with the difference of this position and the argument.
  *
  * @since 1.6
- * @sa operator+()
+ * @sa operator+(), distance_to()
  */
 Position Position::operator-(const Position& r) const {
   Position p(_component[0] - r._component[0], _component[1] - r._component[1], _component[2] - r._component[2]);
@@ -196,10 +196,13 @@ Coordinate Position::distance() const {
 /**
  * Returns the distance between this position and another.
  *
- * @since 1.8
+ * @param pos   the other position vector
  * @return    the distance between the positions.
  *
- * @sa distance()
+ * @since 1.8
+ *
+ * @sa operator-(), distance()
+ * @sa Velocity::speed_difference_to()
  */
 Coordinate Position::distance_to(const Position& pos) const {
   Coordinate d(novas_vdist(_component, pos._component));
