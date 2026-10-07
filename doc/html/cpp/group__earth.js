@@ -12,7 +12,7 @@ var group__earth =
       [ "xp", "classsupernovas_1_1EOP.html#a0b8ca59fd650c1dbfe4f7fe313c2a5c1", null ],
       [ "yp", "classsupernovas_1_1EOP.html#a366bb7cd103b544c14e62db54950cad4", null ]
     ] ],
-    [ "novas_nutation_provider", "group__earth.html#ga1f0e319630e7a47f17247bf51f7bf36c", null ],
+    [ "novas_nutation_provider", "group__earth.html#ga44786e1f9eb1825df3984dce24254eb8", null ],
     [ "get_nutation_lp_provider", "group__earth.html#ga416a96426a0b3c52c1d5fc6452357366", null ],
     [ "novas_get_eop_itrf_year", "group__earth.html#gaa3b5a785b2a478011aacd114a96d25e8", null ],
     [ "novas_get_eop_url", "group__earth.html#gaaacc7748d90e01bb53ace4dc330ffa65", null ],

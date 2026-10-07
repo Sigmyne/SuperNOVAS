@@ -24,7 +24,7 @@ var searchData=
   ['refract_2ec_21',['refract.c',['../refract_8c.html',1,'']]],
   ['refract_5fastro_22',['refract_astro',['../group__refract.html#gafe1d4e96dd66676f5567a279e83e88d9',1,'refract_astro(const on_surface *restrict location, enum novas_refraction_model model, double zd_astro):&#160;refract.c'],['../group__refract.html#gafe1d4e96dd66676f5567a279e83e88d9',1,'refract_astro(const on_surface *restrict location, enum novas_refraction_model model, double zd_astro):&#160;refract.c']]],
   ['refraction_23',['Atmospheric refraction',['../group__refract.html',1,'']]],
-  ['refractionmodel_24',['RefractionModel',['../group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9',1,'novas.h']]],
+  ['refractionmodel_24',['RefractionModel',['../group__refract.html#ga5b495d1a5fd203e7b2f3c28020d856da',1,'novas.h']]],
   ['related_20links_25',['Related links',['../index.html#autotoc_md5',1,'']]],
   ['release_20schedule_26',['Release schedule',['../index.html#autotoc_md47',1,'']]],
   ['representative_20benchmarks_27',['Representative benchmarks',['../index.html#autotoc_md41',1,'']]],

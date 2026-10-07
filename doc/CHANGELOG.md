@@ -7,9 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.8.0-rc1] - 2026-10-01
+## [1.8.0-rc2] - 2026-10-07
 
-Release candidate for the upcoming maintenance release, expected around 1 November 2026.
+Upcoming maintenance release, expected around 1 November 2026.
 
 ### Fixed
 
@@ -19,22 +19,43 @@ Release candidate for the upcoming maintenance release, expected around 1 Novemb
    `Source::horizontal_track()`. (by csp256)
    
  - #376: Fixed inverted flattening parameters for the IERS 1989 and 2003 reference ellipsoids.
+ 
+ - #380: Fixed missing non-relativistic expression for adding observer motion in `rad_vel2()`, which resulted in 
+   errors at or below the few m/s level typically.
+  
+ - #383: Fixed retrograde apsis / node motion not being accounted for in Keplerian orbital model before.
+ 
+ - #384: Fixed reprojection of radial velocity in `transform_cat()`, when proper motion is applied.
    
 ### Added
 
  - #373: Added `NOVAS_MAX_TIMESTAMP_LENGTH` macro, which defines the maximum length of a SuperNOVAS timestamp
-   string when the year component is more than 4 bytes, i.e. for years before 1000 B.C. or after 9999 A.D.
+   string when the year component is more than 4 bytes, i.e. for years before 10000 B.C. or after 9999 A.D.
    
  - #377: Added `Angle::sin()`, `Angle::cos()`, and `Angle::tan()` methods and `sin(Angle&)`, `cos(Angle&)`, and 
    `tan(Angle&)` functions for simpler triginonetric use.
    
  - #377: Added `operator==()`, `operator!=()` and specialized `equals()` methods to `Coordinate`, `Temperature`,
-   `Pressure` and Weather clases.
+   `Pressure`, and `Weather` classes.
 
  - #377: Added `novas_is_leap_year()` function, and `Calendar::is_leap_year()` method to check if a given year is 
    a leap year in the calendar.
    
  - #377: Added `Equinox::mod_at_julian_epoch(double year)` method.
+ 
+ - #378: Added `Position::distance_to(Position&)` to return the coordinate distance between two position vectors.
+
+ - #378: Added `Position::longitude()`, and `Position::latitude()` methods to return the spherical directions for a 
+   given Cartesian vector.
+
+ - #378: Added `Spherical(Position&)` constructor -- subclasses now rely on it.
+ 
+ - #382: Added `Spherical::unit_vector()`.  
+ 
+ - #382: Added `Velocity::along(Vector&)` / `Velocity::along(Spherical&)` to get the 1D projected scalar velocity of 
+   a 3D velocity vector along some direction. 
+   
+ - #382: Added `Velocity::speed_difference_to(Velocity&)`.
    
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
@@ -57,8 +78,8 @@ Release candidate for the upcoming maintenance release, expected around 1 Novemb
    silent garbage output for ridiculous JD input values (such as more than 2 billion years from present day).
    (by csp256 and attipaci)
    
- - #373: Change `novas_jd_to_date()` and `novas_jd_from_date()` to work with negative JD dates also, with appropriately
-   modified integer division floor value. (by csp256 and attipaci).
+ - #373: Change `novas_jd_to_date()` and `novas_jd_from_date()` to work with negative JD dates also, with 
+   appropriately modified integer division floor value. (by csp256 and attipaci).
 
  - #373: Check for integer overflow in `novas_set_time()` / `novas_set_split_time()`, and return -1 with `errno`
    set to `ERANGE` when the integer part of JD exceeds the `long` storage range. (by attipaci, thanks to csp256) 
@@ -69,11 +90,11 @@ Release candidate for the upcoming maintenance release, expected around 1 Novemb
    
  - #373: `novas_get_split_time()` now ensures that the fractional part is between 0 and 1 and returns NAN (errno set 
    to `ERANGE`) if the split cannot be done within the long integer range, when the integer part is requested.
-   (by attipaci, thanks to csp 256)
+   (by attipaci, thanks to csp256)
    
  - #375: Suppress Clang++ sanitizer messages on out-of-range enums, when invalid class instances are constructed using 
    these intentionally. The Clang++ sanitizer is also disabled automatically for compiling tests, since the tests are
-   not production code, and sloppyness for these is not critical. (by attipaci, thanks to csp256).
+   not production code, and sloppyness in them is not critical. (by attipaci, thanks to csp256).
 
  - #377: `Temperature::to_string(int)` and `Pressure::to_string(int)` have previously ignored the decimal places 
    requested and printed values with 1 decimal place always. Now changed to use the specified decimals parameter, and 
@@ -83,6 +104,14 @@ Release candidate for the upcoming maintenance release, expected around 1 Novemb
    the parent instance.
    
  - #377: Streamlined `ee_ct` and nutation series calculations slightly.
+
+ - #378: Simplified `novas_itrs_to_enu()` / `novas_enu_to_itrf()` to call `novas_xyz_to_los()` / `novas_los_to_xyz()`,
+   respectively.
+ 
+ - #381: Improved radial velocity calculations in `rad_vel2()`, with better accounting of viewing angle for catalog
+   sources, and improved calculation of gravitational effects.
+   
+ - #382: `Vector(double, double, double)` promoted to public.
    
  - Changed portable mutex feature test order to reserve use of the C11 mutexes for cases where neither POSIX nor
    MSC mutexes can be used.

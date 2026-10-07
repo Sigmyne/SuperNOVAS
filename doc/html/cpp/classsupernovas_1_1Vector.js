@@ -11,7 +11,7 @@ var classsupernovas_1_1Vector =
     [ "operator*", "classsupernovas_1_1Vector.html#a97c4fd36e79bcd6f02d5a8c2d540942b", null ],
     [ "operator[]", "classsupernovas_1_1Vector.html#a7612aaea33ea473db7f467e9725c4eae", null ],
     [ "phi", "classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f", null ],
-    [ "projection_on", "classsupernovas_1_1Vector.html#a6a9ec63eb5edce53642a058fc8b5fc83", null ],
+    [ "projection_on", "classsupernovas_1_1Vector.html#ae0a3cd5be4f0eab813cce7ffe37fce78", null ],
     [ "scaled", "classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46", null ],
     [ "theta", "classsupernovas_1_1Vector.html#aa5cd444d1ad1aecfae916a9a73ffceb2", null ],
     [ "to_string", "classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f", null ],

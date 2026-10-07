@@ -1,5 +1,13 @@
 var NAVTREEINDEX8 =
 {
+"structnovas__observable.html#a5ad32154eadc4cf7de31ec926f71e752":[8,0,8,3],
+"structnovas__observable.html#a60f4ec4f3e6b5ca9f967c1b48b5d8eb8":[8,0,8,2],
+"structnovas__observable.html#a78f8830087146b6f19dc55544da2827b":[8,0,8,1],
+"structnovas__observable.html#afa1300da8fe42184dc2fe22251578510":[8,0,8,0],
+"structnovas__observer.html":[8,0,9],
+"structnovas__observer.html#a1d62a0649b551e6ce86160c950d551dd":[8,0,9,0],
+"structnovas__observer.html#a836c3e0f5d8c99e16e0d04d1519e9e27":[8,0,9,1],
+"structnovas__observer.html#afc58c314cdec95813c00a0e0ffa636d0":[8,0,9,2],
 "structnovas__on__surface.html":[8,0,10],
 "structnovas__on__surface.html#a1fd9464e53f03ebb2cb987aa1a2dc41b":[8,0,10,5],
 "structnovas__on__surface.html#a77f70abeb6c896623a85b1bdf8861151":[8,0,10,2],

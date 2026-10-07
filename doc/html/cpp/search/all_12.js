@@ -56,7 +56,7 @@ var searchData=
   ['pressure_53',['pressure',['../structnovas__on__surface.html#aea37f834be2f30756c1aa20da0e002ab',1,'novas_on_surface::pressure'],['../classsupernovas_1_1Weather.html#a68fb7dadc7cd72e839c0ed730c4b1f70',1,'supernovas::Weather::pressure()']]],
   ['pressure_2ecpp_54',['Pressure.cpp',['../Pressure_8cpp.html',1,'']]],
   ['projected_5fat_55',['projected_at',['../classsupernovas_1_1Track.html#a8207b9f806097736e7d2622caa5c5bdf',1,'supernovas::Track::projected_at()'],['../classsupernovas_1_1HorizontalTrack.html#ac81fc4f94c292ff2a92cafd1a7404fd7',1,'supernovas::HorizontalTrack::projected_at()'],['../classsupernovas_1_1EquatorialTrack.html#a8f41282a1f30c8ede1f28b829ae67480',1,'supernovas::EquatorialTrack::projected_at()']]],
-  ['projection_5fon_56',['projection_on',['../classsupernovas_1_1Vector.html#a6a9ec63eb5edce53642a058fc8b5fc83',1,'supernovas::Vector']]],
+  ['projection_5fon_56',['projection_on',['../classsupernovas_1_1Vector.html#ae0a3cd5be4f0eab813cce7ffe37fce78',1,'supernovas::Vector']]],
   ['promodec_57',['promodec',['../structnovas__cat__entry.html#a64faf35923c3c09bb24265a8ddb2b2f1',1,'novas_cat_entry']]],
   ['promora_58',['promora',['../structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560',1,'novas_cat_entry']]],
   ['proper_5fmotion_59',['PROPER_MOTION',['../novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065',1,'novas.h']]],

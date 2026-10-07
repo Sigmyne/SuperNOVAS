@@ -1,5 +1,13 @@
 var NAVTREEINDEX7 =
 {
+"novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a882f5d97444df44485d360ce298843b1":[9,0,0,3,183,2],
+"novas_8h.html#acfcfb90637cd1fdb25ef9afd1bda8e30":[9,0,0,3,427],
+"novas_8h.html#ad04f1ebd7b2d39e5258b152fec231001":[9,0,0,3,429],
+"novas_8h.html#ad0bd6e212af549309b0fcb792ed8cb79":[9,0,0,3,363],
+"novas_8h.html#ad10fc7f05b49bc1ac1110817dc25834e":[9,0,0,3,71],
+"novas_8h.html#ad1de5b481e41cf193c199bd0dc5084bd":[9,0,0,3,186],
+"novas_8h.html#ad2081e123024609d3071b33b183502b7":[9,0,0,3,336],
+"novas_8h.html#ad252294c7d4b3e62609c21f7550e2d09":[9,0,0,3,342],
 "novas_8h.html#ad2d5ef17b41a30ebca91e4c70e636acf":[9,0,0,3,354],
 "novas_8h.html#ad34a88c2c04b624f8f85fc86e7935967":[9,0,0,3,88],
 "novas_8h.html#ad465eafe65e3d701fc4bd57efa793a12":[9,0,0,3,447],
@@ -241,13 +249,5 @@ var NAVTREEINDEX7 =
 "structnovas__object.html#aa411b2233890edefbd41c5fde2e268b2":[8,0,7,4],
 "structnovas__object.html#aa8798e7393e309d8cab0dc4eab45e79d":[8,0,7,2],
 "structnovas__object.html#af6249fc903eaacb4869bdada2987c0cd":[8,0,7,3],
-"structnovas__observable.html":[8,0,8],
-"structnovas__observable.html#a5ad32154eadc4cf7de31ec926f71e752":[8,0,8,3],
-"structnovas__observable.html#a60f4ec4f3e6b5ca9f967c1b48b5d8eb8":[8,0,8,2],
-"structnovas__observable.html#a78f8830087146b6f19dc55544da2827b":[8,0,8,1],
-"structnovas__observable.html#afa1300da8fe42184dc2fe22251578510":[8,0,8,0],
-"structnovas__observer.html":[8,0,9],
-"structnovas__observer.html#a1d62a0649b551e6ce86160c950d551dd":[8,0,9,0],
-"structnovas__observer.html#a836c3e0f5d8c99e16e0d04d1519e9e27":[8,0,9,1],
-"structnovas__observer.html#afc58c314cdec95813c00a0e0ffa636d0":[8,0,9,2]
+"structnovas__observable.html":[8,0,8]
 };

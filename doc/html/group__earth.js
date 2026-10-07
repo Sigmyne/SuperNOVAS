@@ -22,7 +22,7 @@ var group__earth =
     ] ],
     [ "NOVAS_DELAUNAY_ARGS_INIT", "group__earth.html#gabf34092276df6f7e9ddaab92a197179b", null ],
     [ "novas_delaunay_args", "group__earth.html#ga159819a645320787dd3e0049b40142d6", null ],
-    [ "novas_nutation_provider", "group__earth.html#ga1f0e319630e7a47f17247bf51f7bf36c", null ],
+    [ "novas_nutation_provider", "group__earth.html#ga44786e1f9eb1825df3984dce24254eb8", null ],
     [ "novas_eop_series", "group__earth.html#ga1ded006133b58c40985faff42c35e6ee", [
       [ "EOP_LEAP_LIST", "group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a", null ],
       [ "EOP_RAPID_IAU2000", "group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193", null ],

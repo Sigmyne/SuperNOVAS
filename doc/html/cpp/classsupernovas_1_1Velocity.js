@@ -2,6 +2,8 @@ var classsupernovas_1_1Velocity =
 [
     [ "Velocity", "classsupernovas_1_1Velocity.html#a2f26da36dd9c4dba704ec314585ebc2c", null ],
     [ "Velocity", "classsupernovas_1_1Velocity.html#a5bb1ea41d36509cddef281e0a6d16376", null ],
+    [ "along", "classsupernovas_1_1Velocity.html#ad189cf3486e7149a6977ef64128fefcb", null ],
+    [ "along", "classsupernovas_1_1Velocity.html#ac8c45cf5e2a78e9753557a78eab76949", null ],
     [ "equals", "classsupernovas_1_1Velocity.html#a45a6d8f9d412efcd6e9cb034802cba9a", null ],
     [ "inv", "classsupernovas_1_1Velocity.html#ad5c692ed0da403c536bea22c9737f12f", null ],
     [ "operator!=", "classsupernovas_1_1Velocity.html#a6c2174cd805b548a519664879cbb0486", null ],
@@ -10,6 +12,7 @@ var classsupernovas_1_1Velocity =
     [ "operator-", "classsupernovas_1_1Velocity.html#aa1eed97f4c7f762d450ad80130454a6b", null ],
     [ "operator==", "classsupernovas_1_1Velocity.html#ab51ed547b89f094b0bbff492eaa05a3a", null ],
     [ "speed", "classsupernovas_1_1Velocity.html#a3dbaf0927a89219ae14a2a759c103f09", null ],
+    [ "speed_difference_to", "classsupernovas_1_1Velocity.html#a73986e4a3fe977fd14760a0b97a3e00d", null ],
     [ "to_string", "classsupernovas_1_1Velocity.html#a1484083f9c73aec4e40e9fe8f45c056c", null ],
     [ "travel", "classsupernovas_1_1Velocity.html#abe62c156f9ab61154ec48b894be1cc05", null ],
     [ "travel", "classsupernovas_1_1Velocity.html#a1d295312687a1dc8bcecb35bc7625297", null ],

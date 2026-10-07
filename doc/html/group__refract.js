@@ -1,7 +1,7 @@
 var group__refract =
 [
     [ "NOVAS_DEFAULT_WAVELENGTH", "group__refract.html#ga4f7dee9d4c9db4cf201af8383c72d4db", null ],
-    [ "RefractionModel", "group__refract.html#gad4899a6116cfbbe17400e7ef0c8426a9", null ],
+    [ "RefractionModel", "group__refract.html#ga5b495d1a5fd203e7b2f3c28020d856da", null ],
     [ "novas_refraction_model", "group__refract.html#gabe97e2d459a30db9d0f67d8c60af3b81", [
       [ "NOVAS_NO_ATMOSPHERE", "group__refract.html#ggabe97e2d459a30db9d0f67d8c60af3b81ace535f58f84fa374a973aa9d4e6a52e8", null ],
       [ "NOVAS_STANDARD_ATMOSPHERE", "group__refract.html#ggabe97e2d459a30db9d0f67d8c60af3b81a7ed64c314f06fdf9acfa72beb531e73d", null ],

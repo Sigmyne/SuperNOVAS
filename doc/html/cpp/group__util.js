@@ -86,11 +86,13 @@ var group__util =
       [ "Spherical", "classsupernovas_1_1Spherical.html#a56058332425eb69e7d4ae75146d20fe9", null ],
       [ "Spherical", "classsupernovas_1_1Spherical.html#a50902496f54614a2ef3594191b6404a0", null ],
       [ "Spherical", "classsupernovas_1_1Spherical.html#ab09d97244a4c1a2bdc9bed69b373a972", null ],
+      [ "Spherical", "classsupernovas_1_1Spherical.html#a309f4ddd3a7b1c50dfceae613aa577fe", null ],
       [ "distance_to", "classsupernovas_1_1Spherical.html#a3f83a7b7c79a6f71e52fb8de35225a7c", null ],
       [ "equals", "classsupernovas_1_1Spherical.html#ad62db6fc114b95c781dc63750d5708e5", null ],
       [ "latitude", "classsupernovas_1_1Spherical.html#a377c70d3c9454c6a6b6eb05c023d2fc2", null ],
       [ "longitude", "classsupernovas_1_1Spherical.html#a62d5a5d8264d0e94db83afcf55a1d285", null ],
       [ "to_string", "classsupernovas_1_1Spherical.html#a50b5dc34240686d2eaf63c483e839277", null ],
+      [ "unit_vector", "classsupernovas_1_1Spherical.html#ae4bb61503c9a67af0b701f3bdf5957c6", null ],
       [ "xyz", "classsupernovas_1_1Spherical.html#afa7cdecc61619598f88cdbbedcb257c7", null ]
     ] ],
     [ "supernovas::Temperature", "classsupernovas_1_1Temperature.html", [
@@ -131,14 +133,14 @@ var group__util =
       [ "operator*", "classsupernovas_1_1Vector.html#a97c4fd36e79bcd6f02d5a8c2d540942b", null ],
       [ "operator[]", "classsupernovas_1_1Vector.html#a7612aaea33ea473db7f467e9725c4eae", null ],
       [ "phi", "classsupernovas_1_1Vector.html#aa5981c5505f8f831a68a95f28c2c284f", null ],
-      [ "projection_on", "classsupernovas_1_1Vector.html#a6a9ec63eb5edce53642a058fc8b5fc83", null ],
+      [ "projection_on", "classsupernovas_1_1Vector.html#ae0a3cd5be4f0eab813cce7ffe37fce78", null ],
       [ "scaled", "classsupernovas_1_1Vector.html#a442ce772514302bdb431d74675e12c46", null ],
       [ "theta", "classsupernovas_1_1Vector.html#aa5cd444d1ad1aecfae916a9a73ffceb2", null ],
       [ "to_string", "classsupernovas_1_1Vector.html#a6c91dbd6022f0b91ad1b66c5f197be9f", null ],
       [ "unit_vector", "classsupernovas_1_1Vector.html#ad761bfcd08771389fced7f7c908c9c52", null ],
       [ "_component", "classsupernovas_1_1Vector.html#a2faf9b36e0fdc2bc3f09f9e524b65d18", null ]
     ] ],
-    [ "novas_error_handler", "group__util.html#gac8c38bd9090a5c71ec69753bff953e14", null ],
+    [ "novas_error_handler", "group__util.html#ga990a550561486bffa84a935f5f5d2b5d", null ],
     [ "novas_debug_mode", "group__util.html#ga9d8d2a1f5c06b488e4c817bc9877e3ba", [
       [ "NOVAS_DEBUG_OFF", "group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baa0b25a908023b92a2f4f42114736de9cf", null ],
       [ "NOVAS_DEBUG_ON", "group__util.html#gga9d8d2a1f5c06b488e4c817bc9877e3baadc10e15517b94fdd3d9eba3359909c65", null ],

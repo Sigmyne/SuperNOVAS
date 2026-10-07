@@ -2,9 +2,9 @@ var group__solar_system =
 [
     [ "DE405_AU", "group__solar-system.html#gaf303bf91582509624aa40c6a87eb95ac", null ],
     [ "NOVAS_ID_TYPES", "group__solar-system.html#ga9a736e59fc9bfdc92b7245aa37d529ee", null ],
-    [ "novas_ephem_provider", "group__solar-system.html#gaebb3d71006e8d93de242df61510374ad", null ],
-    [ "novas_planet_provider", "group__solar-system.html#gaae2b06af367d7b0a70a8b89c258b00b0", null ],
-    [ "novas_planet_provider_hp", "group__solar-system.html#gae8d7c10a8b9e69b1f0654ef4038482fd", null ],
+    [ "novas_ephem_provider", "group__solar-system.html#gadbd62a48b46ce89f20e0343632dfcdd0", null ],
+    [ "novas_planet_provider", "group__solar-system.html#ga08b05562aa008e4fffb943c3500d22eb", null ],
+    [ "novas_planet_provider_hp", "group__solar-system.html#ga0c4147e9cb7fa16f9f0b252d5619df7b", null ],
     [ "novas_id_type", "group__solar-system.html#gac42df1db80fbcb6f7a72de80d9f9c531", [
       [ "NOVAS_ID_NAIF", "group__solar-system.html#ggac42df1db80fbcb6f7a72de80d9f9c531ab3e6efc1ad89e02f915df25265ec32db", null ],
       [ "NOVAS_ID_CALCEPH", "group__solar-system.html#ggac42df1db80fbcb6f7a72de80d9f9c531a074c723dfc1f03c82d52347c46ee0719", null ]
