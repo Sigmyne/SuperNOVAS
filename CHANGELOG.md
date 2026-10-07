@@ -24,6 +24,8 @@ Upcoming maintenance release, expected around 1 November 2026.
    errors at or below the few m/s level typically.
   
  - #383: Fixed retrograde apsis / node motion not being accounted for in Keplerian orbital model before.
+ 
+ - #384: Fixed reprojection of radial velocity in `transform_cat()`, when proper motion is applied.
    
 ### Added
 

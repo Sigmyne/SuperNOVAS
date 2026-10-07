@@ -1010,7 +1010,7 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
   // Convert components of motion to from AU/day to normal catalog units.
   out->promora = vel[0] * term1 / k;
   out->promodec = vel[1] * term1 / k;
-  out->radialvelocity = vel[2] * (AU_KM / DAY) / k;
+  out->radialvelocity = vel[2] * (AU_KM / DAY) / (1.0 + vel[2] / C_AUDAY);
   out->parallax = (in->parallax > 0.0) ? paralx : 0.0;
 
   // Set the catalog identification code for the transformed catalog entry.
