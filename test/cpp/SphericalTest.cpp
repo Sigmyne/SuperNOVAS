@@ -22,8 +22,8 @@ int main() {
 
   Spherical x(NAN, NAN);
   if(!test.check("is_valid() invalid", !x.is_valid())) n++;
+  if(!test.check("unit_vector() invalid", !x.unit_vector().is_valid())) n++;
   if(!test.check("xyz() invalid", !x.xyz(Coordinate(Unit::Gpc)).is_valid())) n++;
-
 
   Spherical a(45.0 * Unit::deg, 30.0 * Unit::deg);
   if(!test.check("is_valid()", a.is_valid())) n++;
@@ -44,6 +44,11 @@ int main() {
   if(!test.equals("xyz().x()", xyz.x().au(), 10.0 * cos(a.latitude().rad()) * cos(a.longitude().rad()), 1e-15 * Unit::AU)) n++;
   if(!test.equals("xyz().y()", xyz.y().au(), 10.0 * cos(a.latitude().rad()) * sin(a.longitude().rad()), 1e-15 * Unit::AU)) n++;
   if(!test.equals("xyz().z()", xyz.z().au(), 10.0 * sin(a.latitude().rad()), 1e-15 * Unit::AU)) n++;
+
+  Vector u = a.unit_vector();
+  if(!test.equals("unit_vector() x", u[0], a.latitude().cos() * a.longitude().cos(), 1e-15)) n++;
+  if(!test.equals("unit_vector() y", u[1], a.latitude().cos() * a.longitude().sin(), 1e-15)) n++;
+  if(!test.equals("unit_vector() z", u[2], a.latitude().sin(), 1e-15)) n++;
 
   a.to_string();
 

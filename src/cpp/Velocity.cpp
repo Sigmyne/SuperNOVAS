@@ -122,7 +122,7 @@ Velocity Velocity::operator+(const Velocity& r) const {
  * @return    the sum of this velocity and the argument.
  *
  * @since 1.6
- * @sa operator+()
+ * @sa operator+(), speed_difference_to()
  */
 Velocity Velocity::operator-(const Velocity& r) const {
   Velocity v(v_add(_component[0], -r._component[0]), v_add(_component[1], -r._component[01]), v_add(_component[2], -r._component[2]));
@@ -173,12 +173,42 @@ ScalarVelocity Velocity::z() const {
  * @return    the speed (absolute value) of this velocity.
  *
  * @since 1.6
+ *
+ * @sa speed_difference_to()
  */
 ScalarVelocity Velocity::speed() const {
   ScalarVelocity v(abs());
   if(!v.is_valid())
     novas_trace_invalid("Velocity::speed()");
   return v;
+}
+
+/**
+ * Returns the magnitude of the difference between this velocity vector and a specified other
+ * velocity vector as a new scalar velocity instance. It's effectively equivalent to
+ * `(v - *this).speed()` but with less overhead.
+ *
+ * @param v
+ *              the velocity to relate this one to.
+ *
+ * @return the relativistic speed difference between this velocity vector and the argument.
+ *
+ * @since 1.8
+ *
+ * @sa operator-(), speed()
+ * @sa Position::distance_to()
+ */
+ScalarVelocity Velocity::speed_difference_to(const Velocity& v) const {
+  double sum = 0.0;
+  for(int i = 0; i < 3; i++) {
+    double d = _component[i] - v._component[i];
+    sum += d * d;
+  }
+
+  ScalarVelocity rv(sqrt(sum));
+  if(!rv.is_valid())
+    novas_trace_invalid("Velocity::speed_relative_to()");
+  return rv;
 }
 
 /**
@@ -242,6 +272,43 @@ Velocity Velocity::inv() const {
   Velocity v(-_component[0], -_component[1], -_component[2]);
   if(!v.is_valid())
     novas_trace_invalid("Velocity::inv()");
+  return v;
+}
+
+
+/**
+ * Returns the projection of this velocity vector along the specified direction
+ * as a scalar velocity
+ *
+ * @param direction a vector that defines the direction.
+ * @return the projected velocity in the specified direction
+ *
+ * @since 1.8
+ *
+ * @sa ScalarVelocity::in_direction()
+ */
+ScalarVelocity Velocity::along(const Vector& direction) const {
+  ScalarVelocity v(projection_on(direction));
+  if(!v.is_valid())
+    novas_trace_invalid("Velocity::in_direction()");
+  return v;
+}
+
+/**
+ * Returns the projection of this velocity vector along the specified direction
+ * as a scalar velocity
+ *
+ * @param direction a vector that defines the direction.
+ * @return the projected velocity in the specified direction
+ *
+ * @since 1.8
+ *
+ * @sa ScalarVelocity::in_direction()
+ */
+ScalarVelocity Velocity::along(const Spherical& direction) const {
+  ScalarVelocity v(projection_on(direction.unit_vector()));
+  if(!v.is_valid())
+    novas_trace_invalid("Velocity::in_direction()");
   return v;
 }
 

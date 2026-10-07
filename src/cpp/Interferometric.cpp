@@ -193,7 +193,6 @@ Interferometric Interferometric::operator-(const Interferometric& r) const {
   return x;
 }
 
-
 /**
  * Returns a human-readable representation of these interferometric projection.
  *

@@ -135,6 +135,24 @@ Position Spherical::xyz(const Coordinate& distance) const {
 }
 
 /**
+ * Returns the cartesian unit vector corresponding to these spherical coordinates.
+ *
+ * @return    the Cartesian unitv vector in the same direction as these spherical coordinates.
+ *
+ * @since 1.8
+ * @sa xyz()
+ * @sa Vector::unit_vector()
+ */
+Vector Spherical::unit_vector() const {
+  double xy = _lat.cos();
+  Vector u(xy * _lon.cos(), xy * _lon.sin(), _lat.sin());
+  if(!u.is_valid())
+      novas_trace_invalid("Spherical::unit_vector()");
+  return u;
+}
+
+
+/**
  * Returns the longitude coordinate as an angle.
  *
  * @return    the reference to the longitude coordinate stored internally.

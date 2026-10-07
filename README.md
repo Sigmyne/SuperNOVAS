@@ -195,6 +195,11 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    does not account for polar offsets _x_<sub>p</sub>, _y_<sub>p</sub>. As such the geocentric GCRS observer position 
    and velocity vectors are accurate at the tens of meters level only. For Earth-based observers, __SuperNOVAS__ adds
    `novas_site_gcrs_posvel()` as a more precise alternative.
+   
+ - [__v1.8__] The NOVAS C `transform_cat()` calculated reprojected radial velocities using the Doppler factor derived
+   for the original radial velocity, when applying proper motion. The resulting difference is typically negligible so
+   long as the proper motion correction itself is small, but may become significant in case of large proper motion
+   corrections.
 
 </details>
    

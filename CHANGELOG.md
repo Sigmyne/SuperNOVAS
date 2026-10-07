@@ -22,6 +22,10 @@ Upcoming maintenance release, expected around 1 November 2026.
  
  - #380: Fixed missing non-relativistic expression for adding observer motion in `rad_vel2()`, which resulted in 
    errors at or below the few m/s level typically.
+  
+ - #383: Fixed retrograde apsis / node motion not being accounted for in Keplerian orbital model before.
+ 
+ - #384: Fixed reprojection of radial velocity in `transform_cat()`, when proper motion is applied.
    
 ### Added
 
@@ -45,6 +49,13 @@ Upcoming maintenance release, expected around 1 November 2026.
    given Cartesian vector.
 
  - #378: Added `Spherical(Position&)` constructor -- subclasses now rely on it.
+ 
+ - #382: Added `Spherical::unit_vector()`.  
+ 
+ - #382: Added `Velocity::along(Vector&)` / `Velocity::along(Spherical&)` to get the 1D projected scalar velocity of 
+   a 3D velocity vector along some direction. 
+   
+ - #382: Added `Velocity::speed_difference_to(Velocity&)`.
    
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
@@ -99,6 +110,8 @@ Upcoming maintenance release, expected around 1 November 2026.
  
  - #381: Improved radial velocity calculations in `rad_vel2()`, with better accounting of viewing angle for catalog
    sources, and improved calculation of gravitational effects.
+   
+ - #382: `Vector(double, double, double)` promoted to public.
    
  - Changed portable mutex feature test order to reserve use of the C11 mutexes for cases where neither POSIX nor
    MSC mutexes can be used.

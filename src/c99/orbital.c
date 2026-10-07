@@ -253,11 +253,11 @@ int novas_orbit_native_posvel(double jd_tdb, const novas_orbital *restrict orbit
   nu *= DEGREE;
 
   omega = orbit->omega * DEGREE;
-  if(orbit->apsis_period > 0.0)
+  if(orbit->apsis_period != 0.0)
     omega += TWOPI * remainder(dt / orbit->apsis_period, 1.0);
 
   Omega = orbit->Omega * DEGREE;
-  if(orbit->node_period > 0.0)
+  if(orbit->node_period != 0.0)
     Omega += TWOPI * remainder(dt / orbit->node_period, 1.0);
 
   // pos = Rz(-Omega) . Rx(-i) . Rz(-omega) . orb
