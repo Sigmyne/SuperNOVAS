@@ -22,6 +22,8 @@ Upcoming maintenance release, expected around 1 November 2026.
  
  - #380: Fixed missing non-relativistic expression for adding observer motion in `rad_vel2()`, which resulted in 
    errors at or below the few m/s level typically.
+  
+ - #383: Fixed retrograde apsis / node motion not being accounted for in Keplerian orbital model before.
    
 ### Added
 
