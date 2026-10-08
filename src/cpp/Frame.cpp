@@ -483,6 +483,25 @@ std::string Frame::to_string() const {
 }
 
 /**
+ * Returns a new Solar-System Barycentric observing frame for the given time
+ * and accuracy.
+ *
+ * @param time      Astrometric time of observation
+ * @param accuracy  (optional) NOVAS_FULL_ACCURACY or NOVAS_REDUCED_ACCURACY (default: full accuracy).
+ * @return          A new barycentric observing frame for the specified time and accuracy.
+ *
+ * @since 1.8
+ */
+Frame Frame::barycentric_at(const Time& time, enum novas_accuracy accuracy) {
+  Frame f(Observer::at_ssb(), time, accuracy);
+  if(!f.is_valid()) {
+    novas_trace_invalid("Frame::barycentric");
+    return undefined();
+  }
+  return f;
+}
+
+/**
  * Returns a reference to a statically defined standard invalid observing frame. This invalid
  * frame may be used inside any object that is invalid itself.
  *

@@ -6,6 +6,7 @@
  */
 
 #include <cstring>
+#include <sstream>
 
 /// \cond PRIVATE
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
@@ -20,7 +21,7 @@ namespace supernovas {
 // the use of an out-of-range enum is intentional below...
 __attribute__((no_sanitize("enum")))
 #endif
-Observer::Observer() : Observer((enum novas_observer_place) -1, Site::undefined(), Position::undefined(), Velocity::undefined()) {}
+                        Observer::Observer() : Observer((enum novas_observer_place) -1, Site::undefined(), Position::undefined(), Velocity::undefined()) {}
 
 Observer::Observer(enum novas_observer_place type, const Site& site, const Position& pos,
         const Velocity& vel) {
@@ -356,7 +357,8 @@ std::string Observer::to_string() const {
  * @return        a new observer instance for the given observing site.
  *
  * @since 1.6
- * @sa moving_on_earth(), in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
+ * @sa moving_on_earth(), in_earth_orbit(), via_ephemeris(), in_orbit(), in_solar_system(),
+ *     at_geocenter(), at_ssb(),
  */
 GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
   GeodeticObserver o = GeodeticObserver(site, eop);
@@ -379,7 +381,8 @@ GeodeticObserver Observer::on_earth(const Site& site, const EOP& eop) {
  * @return            a new observer instance for the given moving observer.
  *
  * @since 1.6
- * @sa on_earth(), in_earth_orbit(), in_solar_system(), at_geocenter(), at_ssb()
+ * @sa on_earth(), in_earth_orbit(), via_ephemeris(), in_orbit(), in_solar_system(),
+ *     at_geocenter(), at_ssb()
  */
 GeodeticObserver Observer::moving_on_earth(const Site& geodetic, const Velocity& itrs_vel, const EOP& eop) {
   GeodeticObserver o = GeodeticObserver(geodetic, itrs_vel, eop);
@@ -419,7 +422,8 @@ GeodeticObserver Observer::moving_on_earth(const Site& site, const EOP& eop, con
  * @return          a new observer instance for the observer in Earth orbit.
  *
  * @since 1.6
- * @sa on_earth(), in_solar_system(), at_geocenter(), at_ssb()
+ * @sa at_geocenter(), on_earth(), in_earth_orbit(), via_ephemeris(), in_orbit(),
+ *     in_solar_system(), at_ssb(), dyamic()
  */
 GeocentricObserver Observer::in_earth_orbit(const Position& pos, const Velocity& vel) {
   GeocentricObserver o = GeocentricObserver(pos, vel);
@@ -434,7 +438,8 @@ GeocentricObserver Observer::in_earth_orbit(const Position& pos, const Velocity&
  * @return         a new fictitious observer located at the geocenter.
  *
  * @since 1.6
- * @sa on_earth(), in_earth_orbit(), in_solar_system(), at_ssb()
+ * @sa on_earth(), in_earth_orbit(), in_orbit(), via_ephemeris(), in_solar_system(), at_ssb(),
+ *     dynamic()
  */
 GeocentricObserver Observer::at_geocenter() {
   return GeocentricObserver();
@@ -450,7 +455,8 @@ GeocentricObserver Observer::at_geocenter() {
  * @return        a new observer instance for the given Solar-system location.
  *
  * @since 1.6
- * @sa at_ssb(), at_geocenter(), on_earth(), in_earth_orbit()
+ * @sa at_ssb(), via_ephemeris(), in_orbit(), at_geocenter(), on_earth(), in_earth_orbit(),
+ *     dynamic()
  */
 SolarSystemObserver Observer::in_solar_system(const Position& pos, const Velocity& vel) {
   SolarSystemObserver o = SolarSystemObserver(pos, vel);
@@ -465,10 +471,72 @@ SolarSystemObserver Observer::in_solar_system(const Position& pos, const Velocit
  * @return        a new fictitious observer located at the Solar-System Barycenter (SSB).
  *
  * @since 1.6
- * @sa in_solar_system(), at_geocenter(), on_earth(), in_earth_orbit()
+ * @sa via_ephemeris(), in_orbit(), in_solar_system(), at_geocenter(), on_earth(),
+ *     in_earth_orbit(), dynamic()
  */
 SolarSystemObserver Observer::at_ssb() {
   return SolarSystemObserver();
+}
+
+/**
+ * Returns a new observer defined by an ephemeris position, that can be obtained by the
+ * configured `novas_ephem_provider` call. Depending on the call, the provider may use the
+ * specified object name or ID number for the ephemeris lookup, and you should make sure that you
+ * defined the one needed correctly.
+ *
+ * @param name    The name to use by the ephemeric call. It may be an empty string if the
+ *                ephemeris provider does not use names.
+ * @param id      The numerical ID, such as a NAIF ID, to use for the ephemeris call. It may be
+ *                0 or -1 if the ephemeris provider uses names rather than IDs.
+ *
+ * @since 1.8
+ *
+ * @sa dynamic(), in_orbit(), at_geocenter(), in_earth_orbit(), in_solar_system(), at_ssb()
+ * @sa set_ephem_provider()
+ */
+EphemerisObserver Observer::via_ephemeris(const std::string& name, long id) {
+  EphemerisObserver o(name, id);
+  if(!o.is_valid())
+    novas_trace_invalid("Observer::ephemeris()");
+  return o;
+}
+
+/**
+ * Returns a new observer, whose location is defined by Keplerian orbital parameters around a
+ * major Solar System body.
+ *
+ * @param orbit     the Keplerian orbital elements that define the observer location.
+ * @param name      (optional) a descriptive name or label to identify this observer (default:
+ *                  "orbital observer").
+ *
+ * @since 1.8
+ *
+ * @see via_ephemeris(), at_geocenter(), in_earth_orbit(), in_solar_system(), at_ssb(), dynamic()
+ */
+OrbitalObserver Observer::in_orbit(const Orbital& orbit, const std::string& name) {
+  OrbitalObserver o(orbit, name);
+  if(!o.is_valid())
+    novas_trace_invalid("Observer::in_orbit()");
+  return o;
+}
+
+/**
+ * Returns a new observer with dynamically determined position / velocity via a designated
+ * state provider function.
+ *
+ * @param state_call    the state provider function
+ * @param arg           (optional) pointer argument to pass to the state provider function. It may be NULL
+ *                      if the function does not use externally supplied data. (default: NULL)
+ *
+ * @since 1.8
+ *
+ * @sa via_ephemeris(), in_orbit(), at_geocenter(), in_earth_orbit(), in_solar_system(), at_ssb()
+ */
+DynamicObserver Observer::dynamic(novas_state_provider state_call, const void *arg) {
+  DynamicObserver o(state_call, arg);
+    if(!o.is_valid())
+      novas_trace_invalid("Observer::dynamic()");
+    return o;
 }
 
 /**
@@ -961,6 +1029,200 @@ std::string GeodeticObserver::to_string() const {
   std::string v = (vel.is_zero()) ? "" : " moving at ENU " + vel.to_string();
   return "GeodeticObserver at " + site().to_string() + v;
 }
+
+/**
+ * Instantiates a new observer with dynamically determined position / velocity via a designated
+ * state provider function.
+ *
+ * @param call    the state provider function
+ * @param arg     (optional) pointer argument to pass to the state provider function. It may be NULL
+ *                if the function does not use externally supplied data. (default: NULL)
+ *
+ * @since 1.8
+ *
+ * @sa Observer::dynamic(), EphemerisObserver, OrbitalObserver
+ */
+DynamicObserver::DynamicObserver(novas_state_provider call, const void *arg)
+ : Observer(NOVAS_DYNAMIC_OBSERVER, Site::undefined(), Position::undefined(), Velocity::undefined()), _call(call), _arg(arg)
+{
+  if(!call)
+    novas_set_errno(EINVAL, "DynamicObserver::DynamicObserver", "input state provider function is NULL");
+  else
+    _valid = true;
+}
+
+/**
+ * Sets the pointer argument to pass onto the state function call.
+ *
+ * @param ptr   pointer to the data to pass along to the state function call.
+ *
+ * @since 1.8
+ */
+void DynamicObserver::set_arg(const void *ptr) {
+  _arg = ptr;
+}
+
+const Observer *DynamicObserver::copy() const {
+  return new DynamicObserver(_call, _arg);
+}
+
+novas_state_provider DynamicObserver::state_call() const {
+  return _call;
+}
+
+const void * DynamicObserver::state_call_arg() const {
+  return _arg;
+}
+
+/**
+ * Returns the Solar System Barycentric position and velocity vectors of this observer for the
+ * specified time and accuracy.
+ *
+ * @param time      Astrometric time specification
+ * @param accuracy  (optional) NOVAS_FULL_ACCURACY or NOVAS_REDUCED_ACCURACY (default: full
+ *                  accuracy).
+ * @return          The geometric observer coordinates relative to the Solar System Barycenter
+ *                  (SSB)
+ *
+ * @since 1.8
+ */
+Geometric DynamicObserver::barycentric_at(const Time& time, enum novas_accuracy accuracy) const{
+  double pos[3] = {0.0};
+  double vel[3] = {0.0};
+
+  if(_call(time.jd(NOVAS_TDB), accuracy, _arg, pos, vel) != 0) {
+    novas_trace_invalid("EphemerisObserver::barycentric_at");
+    return Geometric::undefined();
+  }
+
+  return Geometric(Frame::barycentric_at(time, accuracy),
+          Position(pos, Unit::AU), Velocity(vel, Unit::AU_per_day), NOVAS_ICRS);
+}
+
+std::string DynamicObserver::to_string() const {
+  std::stringstream s;
+  s << "DynamicObserver(call = " << _call << ", arg = " << _arg << ")";
+  return s.str();
+}
+
+/**
+ * Instantiates a new observer defined by an ephemeris position, that can be obtained by the
+ * configured `novas_ephem_provider` call. Depending on the call, the provider may use the
+ * specified object name or ID number for the ephemeris lookup, and you should make sure that you
+ * defined the one needed correctly.
+ *
+ * @param name    The name to use by the ephemeric call. It may be an empty string if the
+ *                ephemeris provider does not use names.
+ * @param id      The numerical ID, such as a NAIF ID, to use for the ephemeris call. It may be
+ *                0 or -1 if the ephemeris provider uses names rather than IDs.
+ *
+ * @since 1.8
+ *
+ * @sa Observer::via_ephemeris(), set_ephem_provider()
+ */
+EphemerisObserver::EphemerisObserver(const std::string& name, long id)
+: DynamicObserver(novas_ephem_state, NULL), _object({}) {
+  if(make_ephem_object(name.c_str(), id, &_object) == 0)
+    _valid = true;
+  else
+    novas_trace_invalid("EphemerisObserver::EphemerisObserver");
+
+  set_arg(&_object);
+}
+
+const Observer* EphemerisObserver::copy() const {
+  return new EphemerisObserver(name(), id());
+}
+
+/**
+ * Returns the name used for the ephemeris lookup by the currently configured
+ * novas_ephem_provider function.
+ *
+ * @return    the name used for the ephemeris lookup
+ *
+ * @since 1.8
+ *
+ * @sa id(), novas_ephem_provider
+ */
+std::string EphemerisObserver::name() const {
+  return std::string(_object.name);
+}
+
+/**
+ * Returns the ID number, such as a NAIF ID, used for the ephemeris lookup by the currently
+ * configured novas_ephem_provider function.
+ *
+ * @return    the numerical ID used for the ephemeris lookup
+ *
+ * @since 1.8
+ *
+ * @sa name(), novas_ephem_provider
+ */
+long EphemerisObserver::id() const {
+  return _object.number;
+}
+
+
+std::string EphemerisObserver::to_string() const {
+  return "Ephemeris Observer(name = " + name() + ", id = " + std::to_string(_object.number) + ")";
+}
+
+/**
+ * Instantiates a new observer, whose location is defined by Keplerian orbital parameters around a
+ * major Solar System body.
+ *
+ * @param orbital   the Keplerian orbital elements that define the observer location.
+ * @param name      (optional) a descriptive name or label to identify this observer (default:
+ *                  "orbital observer").
+ *
+ * @since 1.8
+ * @see Observer::in_orbit()
+ */
+OrbitalObserver::OrbitalObserver(const Orbital& orbital, const std::string& name)
+: DynamicObserver(novas_ephem_state, NULL) {
+  if(orbital.is_valid() && make_orbital_object(name.c_str(), -1, orbital._novas_orbital(), &_object) == 0)
+    _valid = true;
+  else
+    novas_trace_invalid("OrbitalObserver::OrbitalObserver");
+  _observer.call_arg = &_object;
+}
+
+const Observer *OrbitalObserver::copy() const {
+  return new OrbitalObserver(orbital());
+}
+
+/**
+ * Returns the name used for the ephemeris lookup by the currently configured
+ * novas_ephem_provider function.
+ *
+ * @return    the name used for the ephemeris lookup
+ *
+ * @since 1.8
+ *
+ * @sa id(), novas_ephem_provider
+ */
+std::string OrbitalObserver::name() const {
+  return std::string(_object.name);
+}
+
+/**
+ * Returns a new instance of the Keplerian orbital elements that define this
+ * observer's location and movement.
+ *
+ * @return    the orbital parameters of this observer.
+ *
+ * @since 1.8
+ */
+const Orbital OrbitalObserver::orbital() const {
+  return Orbital::from_novas_orbit(&_object.orbit);
+}
+
+
+std::string OrbitalObserver::to_string() const {
+  return "Orbital Observer(name = " + std::string(_object.name) + ", " + orbital().to_string() + ")";
+}
+
+
 
 } // namespace supernovas
 
