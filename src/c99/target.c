@@ -879,6 +879,11 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
  * motions were derived by assuming a precession constant significantly different from the value
  * implicit in function precession().
  *
+ * NOTES:
+ *
+ *  - The original NOVAS C implementation of proper-motion had several shortcomings in calculating
+ *    the motion of the final epoch. These have been corrected in __SuperNOVAS v1.8__.
+ *
  * @param option      Type of transformation
  * @param jd_tt_in    [day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else year
  *                    (if &lt;10000), of input catalog data. Not used if option is
@@ -942,7 +947,7 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
   // Initial Doppler factor, which accounts for change in light travel time to star.
   k = 1.0 / (1.0 - in->radialvelocity * NOVAS_KMS / NOVAS_C);
 
-  // Conversion factor from angular motion per year to motion per day
+  // Conversion factor from angular motion per year to AU/day
   u = 1.0 / (paralx * JULIAN_YEAR_DAYS);
 
   vel[0] = k * in->promora * u ;
@@ -1010,14 +1015,13 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
   // Final Doppler factor, which accounts for change in light travel time to star.
   k = 1.0 / (1.0 + vel[2] / C_AUDAY);
 
-  // Conversion from motion per day to angular motion per year
+  // Final conversion from AU/day to angular motion per year
   u = paralx * JULIAN_YEAR_DAYS;
 
   // Convert components of motion to from AU/day to normal catalog units.
   out->promora = k * vel[0] * u;
   out->promodec = k * vel[1] * u;
   out->radialvelocity = k * vel[2] * (AU_KM / DAY);
-
 
   // Set the catalog identification code for the transformed catalog entry.
   if(out_id)

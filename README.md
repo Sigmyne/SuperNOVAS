@@ -200,6 +200,10 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    for the original radial velocity, when applying proper motion. The resulting difference is typically negligible so
    long as the proper motion correction itself is small, but may become significant in case of large proper motion
    corrections.
+   
+ - [__v1.8__] The NOVAS C `transform_cat()` used the initial angular-to-physical conversion factor, based on the 
+   initial distance, when calculating the final quantities. Instead, the conversion factor should be recalculated for 
+   the final distance before calculating the output motion parameters.
 
 </details>
    

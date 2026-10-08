@@ -26,6 +26,9 @@ Upcoming maintenance release, expected around 1 November 2026.
  - #383: Fixed retrograde apsis / node motion not being accounted for in Keplerian orbital model before.
  
  - #384: Fixed reprojection of radial velocity in `transform_cat()`, when proper motion is applied.
+ 
+ - #385: Recalculate angular-to-physical motion conversion in `transform_cat()` for the final epoch. Previously,
+   and in NOVAS C, the conversion incorrectly used the initial distance for the final output quantities also.
    
 ### Added
 
