@@ -341,9 +341,10 @@ here, such as:
    &obs);
 ```
 
-Alternatively, you can also specify airborne observers, or observers in Earth orbit, in heliocentric orbit, at the 
-geocenter, or at the Solar-system barycenter. The above also sets default, mean annual weather parameters based on
-the location and a global model based on Feulner et al. (2013). 
+Alternatively, you can also specify airborne observers, or observers in Earth orbit, in heliocentric or planerary 
+orbits (defined by ephemerides or using orbital elements), at the geocenter, or at the Solar-system barycenter. The 
+above also sets default, mean annual weather parameters based on the location and a global model based on Feulner et 
+al. (2013). 
 
 You can, of course, set actual weather values _after_, as appropriate, if you need them for the refraction models, 
 e.g.:

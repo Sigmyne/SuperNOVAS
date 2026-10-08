@@ -22,6 +22,9 @@
  *  4. Solar-system locations via `make_solar_system_observer()`, specifying a momentary
  *     barycentric (that is w.r.t. the SSB) position and velocity vector.
  *
+ *  5. Dynamic observer locations via `make_dynamic_observer()`, where the observer's position and
+ *     velocity state vectors are provided on demand for the time of observation.
+ *
  * Once an observer is defined, it maybe used to set up an observing frame for a specific time of
  * observation. Observing frames allow efficient and precise position calculations from an
  * observer's point-of-view.
@@ -33,6 +36,7 @@
  */
 
 #include <string.h>
+#include <stddef.h>
 #include <errno.h>
 
 /// \cond PRIVATE
@@ -80,7 +84,9 @@ short make_observer(enum novas_observer_place where, const on_surface *loc_surfa
     return novas_error(-1, EINVAL, fn, "NULL output observer pointer");
 
   // Initialize the output structure.
-  memset(obs, 0, sizeof(*obs));
+  // To stay binary compatible with versions <1.8, initialize only up to the added state_call field.
+  // TODO [v.2] initialize fully
+  memset(obs, 0, offsetof(observer, state_call));
   obs->where = where;
 
   // Populate the output structure based on the value of 'where'.
@@ -208,7 +214,9 @@ int make_observer_at_site(const on_surface *restrict site, observer *restrict ob
   if(!obs)
     return novas_error(-1, EINVAL, fn, "output observer is NULL");
 
-  memset(obs, 0, sizeof(observer));
+  // To stay binary compatible with versions <1.8, initialize only up to the added state_call field.
+  // TODO [v.2] initialize fully
+  memset(obs, 0, offsetof(observer, state_call));
   obs->where = NOVAS_OBSERVER_ON_EARTH;
   obs->on_surf = *site;
 
@@ -293,7 +301,8 @@ int make_gps_observer(double latitude, double longitude, double height, observer
  * @return          0 if successful, or -1 if the output argument is NULL.
  *
  * @sa make_gps_observer(), make_itrf_observer(), make_observer_at_site(),
- *     make_airborne_observer(), make_observer_at_geocenter(), make_solar_system_observer()
+ *     make_airborne_observer(), make_observer_at_geocenter(), make_solar_system_observer(),
+ *     make_dynamic_observer()
  * @sa novas_make_frame()
  */
 int make_observer_in_space(const double *sc_pos, const double *sc_vel, observer *obs) {
@@ -526,7 +535,8 @@ int make_in_space(const double *sc_pos, const double *sc_vel, in_space *loc) {
  *
  * @sa make_itrf_site(), make_gps_site(), make_xyz_site()
  * @sa make_gps_observer(), make_itrf_observer(), make_observer_at_site(), make_observer_in_space(),
- *     make_solar_system_observer(), make_observer_at_geocenter(), novas_make_frame()
+ *     make_solar_system_observer(), make_observer_at_geocenter(), make_dynamic_observer(),
+ *     novas_make_frame()
  *
  * @since 1.1
  * @author Attila Kovacs
@@ -557,7 +567,7 @@ int make_airborne_observer(const on_surface *location, const double *itrs_vel, o
  * @return              0 if successful, or -1 if the output argument is NULL.
  *
  * @sa make_gps_observer(), make_itrf_observer(), make_observer_at_site(),
- *     make_airborne_observer(), make_observer_in_space(), make_solar_system_observer()
+ *     make_airborne_observer(), make_observer_in_space(),make_dynamic_observer()
  * @sa novas_make_frame()
  *
  * @since 1.1
@@ -571,6 +581,36 @@ int make_solar_system_observer(const double *sc_pos, const double *sc_vel, obser
   return 0;
 }
 
+/**
+ * Populates an 'observer' data structure, for an observer whose position and velocity state
+ * vectors are detwermined dynamically for the time of observation.
+ *
+ * @param call      the function that provides the observer's Solar System Barycentric position
+ *                  and velocity vectors.
+ * @param arg       (optional) additional parameters to pass to the call, as needed.
+ * @param[out] obs  Pointer to the data structure to populate
+ * @return          0 if successful, or -1 if either argument is NULL.
+ *
+ * @sa make_gps_observer(), make_itrf_observer(), make_observer_at_site(),
+ *     make_airborne_observer(), make_observer_in_space(), make_solar_system_observer()
+ *
+ * @since 1.8
+ * @author Attila Kovacs
+ */
+int make_dynamic_observer(novas_state_provider call, const void *restrict arg, observer *restrict obs) {
+  static const char *fn = "make_dynamic_observer";
+
+  if(!fn)
+    return novas_error(-1, EINVAL, fn, "input state provider function is null");
+  if(!obs)
+    return novas_error(-1, EINVAL, fn, "output observer is null");
+
+  memset(obs, 0, sizeof(observer));
+  obs->where = NOVAS_DYNAMIC_OBSERVER;
+  obs->state_call = call;
+  obs->call_arg = arg;
+  return 0;
+}
 
 /**
  * Computes the geocentric GCRS position and velocity of an observer.
@@ -660,21 +700,34 @@ short geo_posvel(double jd_tt, double ut1_to_tt, enum novas_accuracy accuracy, c
       break;
     }
 
-    case NOVAS_SOLAR_SYSTEM_OBSERVER: {               // Observer in Solar orbit
+    case NOVAS_SOLAR_SYSTEM_OBSERVER:
+    case NOVAS_DYNAMIC_OBSERVER: {               // Observer in Solar orbit
       const object earth = NOVAS_EARTH_INIT;
       const double tdb[2] = { jd_tt, tt2tdb(jd_tt) / DAY };
-      int i;
+      double opos[3] = {0.0}, ovel[3] = {0.0};
+      const double *ssbPos, *ssbVel;
 
+      int i;
 
       // Get the position and velocity of the geocenter rel. to SSB
       prop_error(fn, ephemeris(tdb, &earth, NOVAS_BARYCENTER, accuracy, pos1, vel1), 0);
 
+      if(obs->where == NOVAS_DYNAMIC_OBSERVER) {
+        prop_error(fn, obs->state_call(tdb[0] + tdb[1], accuracy, obs->call_arg, opos, ovel), 0);
+        ssbPos = opos;
+        ssbVel = ovel;
+      }
+      else {
+        ssbPos = obs->near_earth.sc_pos;
+        ssbVel = obs->near_earth.sc_vel;
+      }
+
       // Return velocities w.r.t. the geocenter.
       for(i = 3; --i >= 0;) {
         if(pos)
-          pos[i] = obs->near_earth.sc_pos[i] - pos1[i];
+          pos[i] = ssbPos[i] - pos1[i];
         if(vel)
-          vel[i] = novas_add_vel(obs->near_earth.sc_vel[i], -vel1[i]);
+          vel[i] = novas_add_vel(ssbVel[i], -vel1[i]);
       }
 
       // Already in GCRS...
@@ -892,8 +945,6 @@ int obs_posvel(double jd_tdb, double ut1_to_tt, enum novas_accuracy accuracy, co
  *
  * @author Attila Kovacs
  * @since 1.6
- *
- * @c_geometric
  *
  * @sa geo_posvel()
  */
@@ -1374,6 +1425,40 @@ int novas_site_uvw(const novas_timespec *restrict ts, const on_surface *restrict
   tod_to_gcrs(novas_get_time(ts, NOVAS_TDB), accuracy, geocentric_source, los);
   prop_error(fn, novas_uvw(p, v, los, uvw), 0);
 
+  return 0;
+}
+
+/**
+ * A novas_state_provider adapter function for planets, ephemeris objects, or Keplerian orbital
+ * objects. It routes the observer position / velocity to an ephemeris() call.
+ *
+ * @param jd_tdb        The Barycentric Dynamic Time (TDB) based Julian date
+ * @param accuracy      NOVAS_FULL_ACCURACY or NOVAS_REDUCED_ACCURACY
+ * @param p_object      Pointer to the Solar-system body definition of `novas_object` type.
+ * @param[out] ssb_pos  [AU] The output ICRS equatorial position vector with respect to the Solar
+ *                      System Barycenter (SSB)
+ * @param[out] ssb_vel  [AU/day] the output ICRS equatorial velocity vector with respect to the
+ *                      Solar System Barycenter (SSB)
+ *
+ * @return          0 if successful or else -1 in there is an error (errno should be set
+ *                  appropriately to indicate the type of error).
+ *
+ * @since 1.8
+ *
+ * @sa novas_state_provider(), ephemeris()
+ */
+int novas_ephem_state(double jd_tdb, enum novas_accuracy accuracy, const void *p_object, double *restrict ssb_pos, double *restrict ssb_vel) {
+  static const char *fn = "novas_ephem_state";
+
+  const double tdb2[] = { jd_tdb, 0.0 };
+
+  if(!p_object)
+    return novas_error(-1, EINVAL, fn, "input object pointer is NULL");
+
+  if(!ssb_pos || !ssb_vel)
+    return novas_error(-1, EINVAL, fn, "NULL output vector: pos = %p, vel = %p", ssb_pos, ssb_vel);
+
+  prop_error(fn, ephemeris(tdb2, (const object *) p_object, NOVAS_BARYCENTER, accuracy, ssb_pos, ssb_vel), 0);
   return 0;
 }
 
