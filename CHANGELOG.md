@@ -29,6 +29,10 @@ Upcoming maintenance release, expected around 1 November 2026.
  
  - #385: Recalculate angular-to-physical motion conversion in `transform_cat()` for the final epoch. Previously,
    and in NOVAS C, the conversion incorrectly used the initial distance for the final output quantities also.
+
+ - #388: Fixed wrong angle in a matrix element of the rotation matrix that is used for converting between ITRF 
+   realizations (e.g. `novas_itrf_transform_site()` / `novas_itrf_transform_eop()`). The reuslting error in
+   ITRF-based positioning is below 1 mas typically.
    
 ### Added
 
