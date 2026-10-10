@@ -859,7 +859,10 @@ enum novas_observer_place {
   /// Observer is orbiting the Sun.
   /// @since 1.1
   /// @sa make_solar_system_observer()
-  NOVAS_SOLAR_SYSTEM_OBSERVER
+  NOVAS_SOLAR_SYSTEM_OBSERVER,
+
+  /// Observer position / velocity is provided by a plugin function
+  NOVAS_DYNAMIC_OBSERVER
 };
 
 /**
@@ -1708,12 +1711,34 @@ typedef struct novas_in_space {
 #define IN_SPACE_INIT   {{0.0}, {0.0}}
 
 /**
+ * Calculates the Solar-System Barycentric (SSB) position / velocity state vectors for a
+ * dynamic observer location.
+ *
+ * @param jd_tdb        The Barycentric Dynamic Time (TDB) based Julian date
+ * @param accuracy      NOVAS_FULL_ACCURACY or NOVAS_REDUCED_ACCURACY
+ * @param arg           Pointer argument for additional data.
+ * @param[out] ssb_pos  [AU] The output ICRS equatorial position vector with respect to the Solar
+ *                      System Barycenter (SSB)
+ * @param[out] ssb_vel  [AU/day] the output ICRS equatorial velocity vector with respect to the
+ *                      Solar System Barycenter (SSB)
+ *
+ * @return          0 if successful or else -1 in there is an error (errno should be set
+ *                  appropriately to indicate the type of error).
+ *
+ * @since 1.8
+ *
+ * @sa make_dynamic_observer(), novas_ephem_state()
+ */
+typedef int (*novas_state_provider)(double jd_tdb, enum novas_accuracy accuracy, const void *restrict arg, double *restrict ssb_pos, double *restrict ssb_vel);
+
+/**
  * Observer location.
  *
  * @sa make_itrf_observer(), make_gps_observer(), make_observer_at_site(),
  *     make_airborne_observer(), make_observer_at_geocenter(), make_observer_in_space(),
- *     make_solar_system_observer(), OBSERVER_INIT
+ *     make_solar_system_observer(), make_dynamic_observer(), OBSERVER_INIT
  * @sa novas_make_frame()
+ *
  * @c_observer
  */
 typedef struct novas_observer {
@@ -1727,6 +1752,18 @@ typedef struct novas_observer {
   /// As of v1.1 the same structure may be used to store heliocentric location and motion
   /// for any Solar-system observer also (if where = NOVAS_SOLAR_SYSTEM_OBSERVER).
   struct novas_in_space near_earth;
+
+  /// plugin function for observer's Solar-system barycentric position and velocity state
+  /// vectors in the ICRS (if where = NOVAS_DYNAMIC_OBSERVER). It provides a generic interface
+  /// for specifying observer locations, along with the custom argument below.
+  /// @since 1.8
+  novas_state_provider state_call;
+
+  /// Pointer argument to pass to plugin function that determines the observer's momentary
+  /// position and velocity state vectors (if where = NOVAS_DYNAMIC_OBSERVER).
+  /// @since 1.8
+  const void *call_arg;
+
 } observer;
 
 /**
@@ -1739,7 +1776,7 @@ typedef struct novas_observer {
  * @sa observer
  * @c_observer
  */
-#define OBSERVER_INIT   { NOVAS_OBSERVER_AT_GEOCENTER, ON_SURFACE_INIT, IN_SPACE_INIT }
+#define OBSERVER_INIT   { NOVAS_OBSERVER_AT_GEOCENTER, ON_SURFACE_INIT, IN_SPACE_INIT, NULL, NULL }
 
 /**
  * Celestial object's place on the sky; contains the output from place()
@@ -3597,6 +3634,9 @@ int novas_lookup_leap(time_t t);
 // in calendar.c
 int novas_is_leap_year(int year, enum novas_calendar_type calendar);
 
+int novas_make_dynamic_observer(novas_state_provider call, const void *restrict call_arg, observer *restrict obs);
+
+int novas_ephem_state(double jd_tdb, enum novas_accuracy accuracy, const void *p_object, double *restrict pos, double *restrict vel);
 
 
 // <================= END of SuperNOVAS API =====================>

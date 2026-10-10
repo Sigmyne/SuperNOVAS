@@ -556,7 +556,7 @@ Geometric SolarSystemSource::barycentric_at(const Time& time, enum novas_accurac
     return Geometric::undefined();
   }
 
-  return Geometric(Observer::at_ssb().frame_at(time, accuracy),
+  return Geometric(Frame::barycentric_at(time, accuracy),
           Position(p, Unit::AU), Velocity(v, Unit::AU_per_day), NOVAS_ICRS);
 }
 

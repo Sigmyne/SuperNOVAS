@@ -256,6 +256,8 @@ int novas_equals_observer(const observer *a, const observer *b) {
       return novas_equals_near_earth(&a->near_earth, &b->near_earth);
     case NOVAS_SOLAR_SYSTEM_OBSERVER:
       return novas_equals_ssb_posvel(&a->near_earth, &b->near_earth);
+    case NOVAS_DYNAMIC_OBSERVER:
+      return a->state_call == b->state_call && a->call_arg == b->call_arg;
     default:
       return 0;
   }
