@@ -124,6 +124,8 @@ Upcoming maintenance release, expected around 1 November 2026.
    
  - Streamlined `novas_make_planet_orbit()` slightly by avoiding duplicate trigonometric calls.
    
+ - Streamlined `novas_make_planet_orbit()` slightly by avoiding duplicate trigonometric calls.
+   
  - Changed portable mutex feature test order to reserve use of the C11 mutexes for cases where neither POSIX nor
    MSC mutexes can be used.
    
