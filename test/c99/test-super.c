@@ -4729,7 +4729,7 @@ static int test_itrf_transform_eop() {
 
   if(!is_equal("itrf_transform_eop:check:xp", xp, R2, 2e-6)) n++;
   if(!is_equal("itrf_transform_eop:check:yp", yp, R1, 2e-6)) n++;
-  if(!is_equal("itrf_transform_eop:check:dut1", dut1, R3 * ARCSEC / NOVAS_EARTH_FLATTENING * (NOVAS_DAY / TWOPI), 2e-6)) n++;
+  if(!is_equal("itrf_transform_eop:check:dut1", dut1, R3 * ARCSEC * (NOVAS_DAY / TWOPI), 2e-6)) n++;
 
   if(!is_ok("itrf_transform_eop:xp_only", novas_itrf_transform_eop(2014, 0.0, 0.0, 0.0, 1993, &z, NULL, NULL))) return 1;
   if(!is_equal("itrf_transform_eop:xp_only:check", z, xp, 1e-9)) n++;

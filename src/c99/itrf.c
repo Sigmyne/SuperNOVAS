@@ -279,6 +279,13 @@ int novas_itrf_transform(int from_year, const double *restrict from_coords, cons
  *  1. IERS Conventions, Chapter 4, Eq. 4.14 and Table 4.1. See
  *     https://iers-conventions.obspm.fr/content/chapter4/icc4.pdf
  *
+ * NOTES:
+ *
+ *  - Equation 4.14 of the IERS Conventions 2010 has UT' = UT + R3 / f. However the 1/f factor
+ *    for Earth flattening does not make sense here. And R3 rotation translates to a change
+ *    of UT1 directly. And for a spherical Earth (f = 0.0), this would result in an infinite
+ *    UT1 correction. This must be an error in the conventions.
+ *
  * @param from_year       [yr] ITRF realization year of input coordinates / rates. E.g. 1992 for
  *                        ITRF92.
  * @param[in] from_xp     [arcsec] x-pole Earth orientation parameter (angle) in the input ITRF
@@ -319,9 +326,10 @@ int novas_itrf_transform_eop(int from_year, double from_xp, double from_yp, doub
   if(to_yp)
     *to_yp = from_yp + T0.R[0] / ARCSEC;
 
-  // UT +- 1/f R3
+  // UT += R3
+  // Note that Eq. 4.14 has a 1/f factor, which makes no sense. Contacted IERS about it.
   if(to_dut1)
-    *to_dut1 = from_dut1 + T0.R[2] / NOVAS_EARTH_FLATTENING * (NOVAS_DAY / TWOPI);
+    *to_dut1 = from_dut1 + T0.R[2] * (NOVAS_DAY / TWOPI);
 
   return 0;
 }

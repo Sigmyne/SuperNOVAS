@@ -1643,7 +1643,7 @@ static double tidal_clock_skew(const novas_frame *frame) {
  *
  * NOTES:
  *
- *  1. Based on the IERS Conventions 2010, Chapter 10, Eqa. 10.6 / 10.8 but also including the
+ *  1. Based on the IERS Conventions 2010, Chapter 10, Eqs. 10.6 / 10.8 but also including the
  *     near-Earth tidal effects, and modified for relativistic observer motion.
  *  2. The potential for an observer inside 0.9 planet radii of a major Solar-system body's center
  *     will not include the term for that body in the calculation.
@@ -1693,7 +1693,7 @@ double novas_clock_skew(const novas_frame *frame, enum novas_timescale timescale
     case NOVAS_GPS:
     case NOVAS_UTC: {
       D = clock_skew_near_earth(frame);
-      // (1 + D) * (1 + D') = 1 + D + (1+ D) D'
+      // (1 + D) * (1 + D') = 1 + D + (1 + D) D'
       D += TC_LG * (1.0 + D);
       break;
     }
