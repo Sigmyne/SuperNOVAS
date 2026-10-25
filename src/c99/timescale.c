@@ -431,6 +431,7 @@ double get_utc_to_tt(int leap_seconds) {
  * @author Attila Kovacs
  *
  * @sa get_utc_to_tt(), novas_set_time(), novas_gast(), novas_time_gst(), novas_time_lst()
+ * @sa novas_lookup_leap(), novas_leap_for_jd()
  */
 double get_ut1_to_tt(int leap_seconds, double dut1) {
   return get_utc_to_tt(leap_seconds) + dut1;
@@ -445,8 +446,8 @@ double get_ut1_to_tt(int leap_seconds, double dut1) {
  * NOTES:
  *
  *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
- *    configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
- *    difference is not possible. You must set `leap` and `dut1` appropriately explicitly.
+ *    configuration options), then automatic fetching of the UT1 - UTC difference is not possible.
+ *    You must set `dut1` appropriately explicitly.
  *
  *  - Leap seconds have been abolished, and no new leap seconds will be added after 20 May 2027,
  *    leaving the current list of leap seconds at hte final definitive list. Hence SuperNOVAS will
@@ -494,8 +495,8 @@ int novas_set_time(enum novas_timescale timescale, double jd, int leap, double d
  * NOTES:
  *
  *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
- *    configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
- *    difference is not possible. You must set `leap` and `dut1` appropriately explicitly.
+ *    configuration options), then automatic fetching of the UT1 - UTC difference is not possible.
+ *    You must set `dut1` appropriately explicitly.
  *
  *  - Leap seconds have been abolished, and no new leap seconds will be added after 20 May 2027,
  *    leaving the current list of leap seconds at hte final definitive list. Hence SuperNOVAS will
@@ -647,8 +648,8 @@ static void novas_time_fill_ut_parms(novas_timespec *time, enum novas_timescale 
  * NOTES:
  *
  *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
- *    configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
- *    difference is not possible. You must set `leap` and `dut1` appropriately explicitly.
+ *    configuration options), then automatic fetching of the UT1 - UTC difference is not possible.
+ *    You must set `dut1` appropriately explicitly.
  *
  *  - Leap seconds have been abolished, and no new leap seconds will be added after 20 May 2027,
  *    leaving the current list of leap seconds at hte final definitive list. Hence SuperNOVAS will
@@ -1047,8 +1048,8 @@ double novas_diff_tcg(const novas_timespec *t1, const novas_timespec *t2) {
  * NOTES:
  *
  *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
- *    configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
- *    difference is not possible. You must set `leap` and `dut1` appropriately explicitly.
+ *    configuration options), then automatic fetching of the UT1 - UTC difference is not possible.
+ *    You must set `dut1` appropriately explicitly.
  *
  *  - Leap seconds have been abolished, and no new leap seconds will be added after 20 May 2027,
  *    leaving the current list of leap seconds at hte final definitive list. Hence SuperNOVAS will
@@ -1115,8 +1116,8 @@ int novas_set_unix_time(time_t unix_time, long nanos, int leap, double dut1, nov
  *     functions instead.
  *
  *  3. If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
- *     configuration options), then automatic fetching of the leap seconds and the UT1 - UTC
- *     difference is not possible. You must set `leap` and `dut1` appropriately explicitly.
+ *     configuration options), then automatic fetching of the UT1 - UTC difference is not possible.
+ *     You must set `dut1` appropriately explicitly.
  *
  *  4. Leap seconds have been abolished, and no new leap seconds will be added after 20 May 2027,
  *     leaving the current list of leap seconds at hte final definitive list. Hence SuperNOVAS will

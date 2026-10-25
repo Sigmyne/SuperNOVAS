@@ -23,11 +23,10 @@
 
 #include <novas.h>      ///< SuperNOVAS functions and definitions
 
-#define  LEAP_SECONDS     37        ///< [s] current leap seconds from IERS Bulletin C
 #define  DUT1             0.114     ///< [s] current UT1 - UTC time difference from IERS Bulletin A
 
 static void timestamp(novas_timespec *t) {
-  novas_set_current_time(LEAP_SECONDS, DUT1, t);
+  novas_set_current_time(0, DUT1, t);
 }
 
 

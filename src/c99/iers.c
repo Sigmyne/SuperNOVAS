@@ -51,10 +51,8 @@
 
 #if SKIP_IERS_DNS_LOOKUP
 #  define IERS_DATACENTER         "141.74.67.212"       ///< datacenter.iers.org
-#  define IERS_LEAP_SERVER        "145.238.80.89"       ///< hpiers.obspm.fr
 #else
 #  define IERS_DATACENTER         "datacenter.iers.org" ///< IERS EOP server name
-#  define IERS_LEAP_SERVER        "hpiers.obspm.fr"     ///< IERS leap-seconds.list server name
 #endif
 
 
@@ -206,9 +204,9 @@ static iers_data_file c01 = { NULL, EOP_C01_IAU2000,
 static int auto_fetch_eop = 1;    ///< Enable fetching EOP from IERS as needed by default
 
 #ifdef NOVAS_LOCK_INITIALIZER
-static lock_type eop_mutex = NOVAS_LOCK_INITIALIZER;    ///< Mutex for EOP data other than leap data.
+static lock_type eop_mutex = NOVAS_LOCK_INITIALIZER;    ///< Mutex for EOP data.
 #elif __STDC_VERSION__ >= 201112L
-static lock_type eop_mutex;                             ///< Mutex for EOP data other than leap data.
+static lock_type eop_mutex;                             ///< Mutex for EOP data.
 static once_flag eop_mutex_once = ONCE_FLAG_INIT;       ///< One-time mutex initialization state.
 #else
 #  error "Oops. No thread safe mutex initialization available."
@@ -355,6 +353,7 @@ static int eop_parse_line(const iers_data_file *restrict file, int line, char *s
 
   eop->series = file->series;
   eop->jd = NOVAS_JD_MJD0 + strtod(from + file->ijd, NULL);
+  eop->leap = novas_leap_for_jd(eop->jd);
 
   eop->xp = read_float(from + file->ixp, 1);
   eop->yp = read_float(from + file->iyp, 1);
@@ -459,7 +458,6 @@ static int novas_fetch_eop_array(double jd, long timeout_millis, novas_eop *rest
   long mjd = (long) floor(jd - NOVAS_JD_MJD0);
   long mjd_now;
   int m = n >> 2;
-  int i;
 
   novas_set_current_time(0, 0.0, &ts);
   mjd_now = (long) floor(novas_get_time(&ts, NOVAS_TAI) - NOVAS_JD_MJD0);
@@ -489,9 +487,6 @@ static int novas_fetch_eop_array(double jd, long timeout_millis, novas_eop *rest
     memset(eop, 0, sizeof(novas_eop));
     return novas_error(-1, ERANGE, fn, "JD %.3f is outside of IERS EOP data range", jd);
   }
-
-  for(i = 0; i < n; i++)
-    eop[i].leap = novas_leap_for_jd(eop[i].jd);
 
   return 0;
 }
@@ -685,7 +680,7 @@ int novas_leap_for_jd(double jd_utc) {
  * @param series      The EOP series identifier constant.
  * @param itrf_year   [yr] ITRF realization year. Needed only for precision at the few &mu;as
  *                    level, otherwise, you can set it to something recent, like 2020. It is
- *                    unused if the URL is NULL, or if the series if the leap seconds list. For
+ *                    unused if the URL is NULL, or if the series is the leap second list. For
  *                    years prior to the first ITRF realization (in 1988), 1988 will be used.
  * @param url         The new URL to use for the given data series, or NULL to use the default
  *                    IERS data center URL.

@@ -18,8 +18,8 @@
  *   // Specify an observer, with GPS coordinates
  *   make_gps_observer(gps_lat, gps_lon, gps_alt, &obs);
  *
- *   // Specify time, e.g. current time with leap seconds and UT1-UTC time difference:
- *   novas_set_current_time(leap_seconds, dut1, &time);
+ *   // Specify time, e.g. current time with UT1-UTC time difference:
+ *   novas_set_current_time(0, dut1, &time);
  *
  *   // Set up a frame with the desired accuracy and Earth orientation parameters xp, yp.
  *   novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &time, xp, yp, &frame);

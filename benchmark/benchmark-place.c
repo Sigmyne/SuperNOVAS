@@ -17,14 +17,13 @@
 
 #include <novas.h>      ///< SuperNOVAS functions and definitions
 
-#define  LEAP_SECONDS     37        ///< [s] current leap seconds from IERS Bulletin C
 #define  DUT1             0.114     ///< [s] current UT1 - UTC time difference from IERS Bulletin A
 #define  POLAR_DX         230.0     ///< [mas] Earth polar offset x, e.g. from IERS Bulletin A.
 #define  POLAR_DY         -62.0     ///< [mas] Earth polar offset y, e.g. from IERS Bulletin A.
 
 
 static void timestamp(novas_timespec *t) {
-  novas_set_current_time(LEAP_SECONDS, DUT1, t);
+  novas_set_current_time(0, DUT1, t);
 }
 
 static void calc_pos(const cat_entry *star, const novas_frame *frame) {
@@ -99,7 +98,7 @@ int main(int argc, const char *argv[]) {
   // Set the astrometric time of observation...
 
   // Set the time of observation to the current UTC-based UNIX time
-  if(novas_set_current_time(LEAP_SECONDS, DUT1, &obs_time) != 0) {
+  if(novas_set_current_time(0, DUT1, &obs_time) != 0) {
     fprintf(stderr, "ERROR! failed to set time of observation.\n");
     return 1;
   }
@@ -188,7 +187,7 @@ int main(int argc, const char *argv[]) {
   // Benchmark reduced accuracy, individual fames
   timestamp(&start);
   for(i = 0; i < N2; i++) {
-    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + i, LEAP_SECONDS, DUT1, &obs_time);
+    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + i, 0, DUT1, &obs_time);
     novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &obs_time, POLAR_DX, POLAR_DY, &obs_frame);
     calc_pos(&stars[i], &obs_frame);
   }
@@ -200,7 +199,7 @@ int main(int argc, const char *argv[]) {
   // Benchmark full accuracy, individual frames
   timestamp(&start);
   for(i = 0; i < N3; i++) {
-    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + i, LEAP_SECONDS, DUT1, &obs_time);
+    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + i, 0, DUT1, &obs_time);
     novas_make_frame(NOVAS_FULL_ACCURACY, &obs, &obs_time, POLAR_DX, POLAR_DY, &obs_frame);
     calc_pos(&stars[i], &obs_frame);
   }
@@ -214,7 +213,7 @@ int main(int argc, const char *argv[]) {
   obs_frame.accuracy = NOVAS_REDUCED_ACCURACY;
   timestamp(&start);
   for(i = 0; i < N2; i++) {
-    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + ((i % 2) ? 1 : -1), LEAP_SECONDS, DUT1, &obs_frame.time);
+    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + ((i % 2) ? 1 : -1), 0, DUT1, &obs_frame.time);
     calc_place(&stars[i], &obs_frame);
   }
   timestamp(&end);
@@ -226,7 +225,7 @@ int main(int argc, const char *argv[]) {
   obs_frame.accuracy = NOVAS_FULL_ACCURACY;
   timestamp(&start);
   for(i = 0; i < N3; i++) {
-    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + ((i % 2) ? 1 : -1), LEAP_SECONDS, DUT1, &obs_frame.time);
+    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + ((i % 2) ? 1 : -1), 0, DUT1, &obs_frame.time);
     calc_place(&stars[i], &obs_frame);
   }
   timestamp(&end);
