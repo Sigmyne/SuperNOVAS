@@ -26,15 +26,12 @@ static double novas_era(long ijd, double fjd) {
 namespace supernovas {
 
 
-static bool is_valid_parms(double dUT1, enum novas_timescale timescale) {
-  static const char *fn = "Time()";
+static bool is_valid_dut1(double dUT1) {
+  if(isfinite(dUT1))
+    return true;
 
-  if(!isfinite(dUT1))
-    return novas_error(0, EINVAL, fn, "dUT1 is invalid (NAN)");
-  if((unsigned) timescale >= NOVAS_TIMESCALES)
-    return novas_error(0, EINVAL, fn, "invalid timescale: %d", timescale);
-
-  return 1;
+  novas_set_errno(EINVAL, "Time()", "dUT1 is invalid (NAN)");
+  return false;
 }
 
 /**
@@ -72,7 +69,7 @@ Time::Time(double jd, int leap_seconds, double dUT1, enum novas_timescale timesc
   if(novas_set_time(timescale, jd, leap_seconds, dUT1, &_ts) != 0)
     novas_trace_invalid("Time()");
   else
-    _valid = is_valid_parms(_ts.dut1, timescale);
+    _valid = is_valid_dut1(_ts.dut1);
 }
 
 /**
@@ -133,7 +130,7 @@ Time::Time(long ijd, double fjd, int leap_seconds, double dUT1, enum novas_times
   if(novas_set_split_time(timescale, ijd, fjd, leap_seconds, dUT1, &_ts) != 0)
     novas_trace_invalid("Time()");
   else
-    _valid = is_valid_parms(_ts.dut1, timescale);
+    _valid = is_valid_dut1(_ts.dut1);
 }
 
 /**
@@ -196,7 +193,7 @@ Time::Time(const std::string& timestamp, int leap_seconds, double dUT1, enum nov
   if(novas_set_str_time(timescale, timestamp.c_str(), leap_seconds, dUT1, &_ts) != 0)
     novas_trace_invalid("Time()");
   else
-    _valid = is_valid_parms(_ts.dut1, timescale);
+    _valid = is_valid_dut1(_ts.dut1);
 }
 
 /**
@@ -258,7 +255,7 @@ Time::Time(const struct timespec *t, int leap_seconds, double dUT1) {
     novas_set_errno(EINVAL, "Time()", "input timespec is NULL");
   else {
     novas_set_unix_time(t->tv_sec, t->tv_nsec, leap_seconds, dUT1, &_ts);
-    _valid = is_valid_parms(_ts.dut1, NOVAS_UTC);
+    _valid = is_valid_dut1(_ts.dut1);
   }
 }
 

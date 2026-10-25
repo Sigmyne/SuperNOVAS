@@ -80,10 +80,12 @@ int main() {
   d = EOP::fetch_for_jd(NOVAS_JD_B1950, timeout);
   if(!test.check("fetch_for_jd(B1950)", !d.is_valid())) n++;
   if(!test.equals("fetch_for_jd(B1950)", d.leap_seconds(), 0)) n++;
+  if(!test.check("fetch_for_jd(B1950).xp()", d.xp().arcsec() != 0.0)) n++;
 
   d = EOP::fetch_for_mjd(0.0, timeout);
   if(!test.check("fetch_for_jd(old)", !d.is_valid())) n++;
   if(!test.equals("fetch_for_jd(old)", d.leap_seconds(), 0)) n++;
+  if(!test.check("fetch_for_jd(B1950).xp()", d.xp().arcsec() != 0.0)) n++;
 
   novas_set_auto_fetch_eop(0);
   novas_set_eop_url(EOP_RAPID_IAU2000, 2020, "file://blah.txt");
