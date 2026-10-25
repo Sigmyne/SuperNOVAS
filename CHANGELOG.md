@@ -160,7 +160,8 @@ than that, the release contains a number fixes and improvements also.
    
  - #395: Given that leap seconds are abolished effective 20 May 2027, the final leap seconds list is now hardcoded,
    making `novas_set_leap_list()` useless. It no longer does anything, except returning 0 (but setting `errno` to
-   `ENOSYS`). The same goes for `novas_set_eop_url()`, when called with `EOP_LEAP_LIST` as the series.
+   `ENOSYS`). Or, if debug mode is set to `NOVAS_DEBUG_EXTGRA`, then it returns -1. The same goes for 
+   `novas_set_eop_url()`, when called with `EOP_LEAP_LIST` as the series.
     
  - #395: `novas_lookup_leap()` no longer needs LIBC support, and will always return a valid leap seconds value, 
    since no new leap seconds will be introduced in the future. The definitive list of leap seconds is now hard-coded.

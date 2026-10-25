@@ -562,7 +562,8 @@ static void cleanup_eop_urls_async() {
  *     Versailles, France, October 15, 2026. https://www.bipm.org/en/cgpm-2026/resolution-5.
  *
  * @param filename      _unused_
- * @return              0
+ * @return              0 is successful, or -1 if `novas_debug()` was called with `NOVAS_DEBUG_EXTRA`.
+ *                      In both cases errno will be set to `ENOSYS`.
  *
  * @since 1.7
  * @author Attila Kovacs
@@ -571,15 +572,15 @@ static void cleanup_eop_urls_async() {
  * @sa novas_set_eop_url(), novas_lookup_leap(), novas_fetch_eop(), novas_reset_eop()
  *
  * @deprecated There will be no more leap seconds, so we readily know the final leap list, which
- *      is now hardcoded into SuperNOVAS as of v1.8. This function will return 0 to remain compatible
- *      with working code that uses it, but it will no longer actually load the specified leap seconds
- *      file. It will however set `errno` to `ENOSYS` to indicate that the function is no longer
- *      meaningful.
+ *      is now hardcoded into SuperNOVAS as of v1.8. This function will return 0 (unless extra
+ *      level debugging is enabled) to remain compatible with existing working code that uses this
+ *      function, but it will no longer actually load the specified leap seconds file. It will
+ *      always set `errno` to `ENOSYS` to indicate that the function is no longer meaningful.
  */
 int novas_set_leap_list(const char *filename) {
   (void) filename; // unused
   novas_set_errno(ENOSYS, "novas_set_leap_list", "Setting leap seconds lists is no longer supported or needed.");
-  return 0;
+  return novas_get_debug_mode() == NOVAS_DEBUG_EXTRA ? -1 : 0;
 }
 
 /**
@@ -721,8 +722,8 @@ int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *u
   // Close existing handles...
   switch(series) {
     case EOP_LEAP_LIST:
-      novas_set_leap_list(NULL);
-      return novas_trace(fn, 0, 0);
+      prop_error(fn, novas_set_leap_list(NULL), 0);
+      return 0;
     case EOP_RAPID_IAU2000:
       cleanup_handle_async(&rapid);
       break;

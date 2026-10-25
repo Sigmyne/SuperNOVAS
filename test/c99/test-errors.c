@@ -3106,6 +3106,11 @@ static int test_set_leap_list() {
   if(check("set_eop_url:leap", 0, novas_set_eop_url(EOP_LEAP_LIST, 0, "file://blah"))) n++;
   if(check("set_eop_url:leap:errno", ENOSYS, errno)) n++;
 
+  novas_debug(NOVAS_DEBUG_EXTRA);
+  if(check("set_leap_list:extra", -1, novas_set_leap_list("blah"))) n++;
+  if(check("set_eop_url:leap:extra", -1, novas_set_eop_url(EOP_LEAP_LIST, 0, "file://blah"))) n++;
+  novas_debug(NOVAS_DEBUG_OFF);
+
   errno = 0;
   return n;
 }
