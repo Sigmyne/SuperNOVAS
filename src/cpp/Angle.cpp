@@ -224,8 +224,7 @@ std::string Angle::SI_unit() const {
  *
  * @return the sine of the angle.
  *
- * @see cos()
- * @see tan()
+ * @sa cos(), tan()
  *
  * @since 1.8
  */
@@ -238,8 +237,7 @@ double Angle::sin() const {
  *
  * @return the cosine of the angle.
  *
- * @see sin()
- * @see tan()
+ * @sa sin(), tan()
  *
  * @since 1.8
  */
@@ -252,8 +250,7 @@ double Angle::cos() const {
  *
  * @return the tangent of the angle.
  *
- * @see sin()
- * @see cos()
+ * @sa sin(), cos()
  *
  * @since 1.8
  */

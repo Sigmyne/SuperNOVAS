@@ -524,7 +524,7 @@ EphemerisObserver Observer::in_ephemeris(const std::string& name, long id) {
  *
  * @since 1.8
  *
- * @see in_ephemeris(), at_geocenter(), in_earth_orbit(), in_solar_system(), at_ssb(), dynamic()
+ * @sa in_ephemeris(), at_geocenter(), in_earth_orbit(), in_solar_system(), at_ssb(), dynamic()
  */
 OrbitalObserver Observer::in_orbital(const Orbital& orbit, const std::string& name) {
   OrbitalObserver o(orbit, name);
@@ -1240,7 +1240,7 @@ std::string EphemerisObserver::to_string() const {
  *                  "orbital observer").
  *
  * @since 1.8
- * @see Observer::in_orbital()
+ * @sa Observer::in_orbital()
  */
 OrbitalObserver::OrbitalObserver(const Orbital& orbital, const std::string& name)
 : DynamicObserver(novas_ephem_state, NULL) {

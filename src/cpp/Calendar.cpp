@@ -193,7 +193,7 @@ CalendarDate Calendar::parse_date(const std::string& str, enum novas_date_format
  *
  * @since 1.8
  *
- * @see novas_day_of_year()
+ * @sa novas_day_of_year()
  */
 bool Calendar::is_leap_year(int year) const {
     return novas_is_leap_year(year, _type);

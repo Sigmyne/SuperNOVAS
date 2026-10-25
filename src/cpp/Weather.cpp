@@ -77,7 +77,7 @@ Weather::Weather(double celsius, double pascal, double humidity_fraction)
  * @return          `true` if the two weathers agree within tolerances, otherwise `false`
  *
  * @since 1.8
- * @see operator==(), operator!=()
+ * @sa operator==(), operator!=()
  */
 bool Weather::equals(const Weather& weather) const {
   return _temperature == weather._temperature && _pressure == weather._pressure && fabs(_humidity - weather._humidity) < 0.001;
@@ -91,7 +91,7 @@ bool Weather::equals(const Weather& weather) const {
  * @return          `true` if the two weathers agree within tolerances, otherwise `false`
  *
  * @since 1.8
- * @see equals(), operator!=()
+ * @sa equals(), operator!=()
  */
 bool Weather::operator==(const Weather& weather) const {
   return equals(weather);
@@ -105,7 +105,7 @@ bool Weather::operator==(const Weather& weather) const {
  * @return          `true` if the two weathers differ beyond tolerances, otherwise `false`
  *
  * @since 1.8
- * @see operator==(), equals()
+ * @sa operator==(), equals()
  */
 bool Weather::operator!=(const Weather& weather) const {
   return !equals(weather);

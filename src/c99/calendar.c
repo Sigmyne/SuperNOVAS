@@ -367,7 +367,7 @@ int novas_day_of_year(double tjd, enum novas_calendar_type calendar, int *restri
  *
  * @since 1.8
  *
- * @see novas_day_of_year()
+ * @sa novas_day_of_year()
  */
 int novas_is_leap_year(int year, enum novas_calendar_type calendar) {
     if((year % 4) != 0)

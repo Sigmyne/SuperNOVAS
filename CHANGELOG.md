@@ -47,7 +47,7 @@ than that, the release contains a number fixes and improvements also.
 ### Added
 
  - #373: Added `NOVAS_MAX_TIMESTAMP_LENGTH` macro, which defines the maximum length of a SuperNOVAS timestamp
-   string when the year component is more than 4 bytes, i.e. for years before 10000 B.C. or after 9999 A.D.
+   string when the year component is more than 4 bytes, i.e. for years before 1000 B.C. or after 9999 A.D.
    
  - #377: Added `Angle::sin()`, `Angle::cos()`, and `Angle::tan()` methods and `sin(Angle&)`, `cos(Angle&)`, and 
    `tan(Angle&)` functions for simpler triginonetric use.
