@@ -94,7 +94,7 @@ than that, the release contains a number fixes and improvements also.
    
  - #395: Added `novas_leap_for_jd()` to make it easier to lookup leap seconds for a (UTC-based) Julian dates. 
    
- - #296: Added `make_comoving_observer()` to simplify the creation of observers whose momentary location is defined
+ - #396: Added `make_comoving_observer()` to simplify the creation of observers whose momentary location is defined
    by a Solar-system body or place, such as virtual observers planet centers, travelling on a spacescraft with
    ephemeris data, or defined by Keplerian orbital parameters around a major Solar-system body or barycenter position.
    
@@ -124,7 +124,7 @@ than that, the release contains a number fixes and improvements also.
    be converted into a calendar date representation (e.g. because of integer year overflow or NAN), and return -1.
    (by attipaci, thanks to csp256)
    
- - #373: `novas_get_split_time()` now ensures that the fractional part is between 0 and 1 and returns NAN (errno set 
+ - #373: `novas_get_split_time()` now ensures that the fractional part is between 0 and 1 and returns NAN (`errno` set 
    to `ERANGE`) if the split cannot be done within the long integer range, when the integer part is requested.
    (by attipaci, thanks to csp256)
    
@@ -184,6 +184,8 @@ than that, the release contains a number fixes and improvements also.
 
  - Changed portable mutex feature test order to reserve use of the C11 mutexes for cases where neither POSIX nor
    MSC mutexes can be used.
+   
+ - Updated examples and documentation.
    
 ### Deprecated
 
