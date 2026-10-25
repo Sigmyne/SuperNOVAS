@@ -24,7 +24,8 @@ If you use SMA-X for your project, please cite as:
 
  - Kovács, Attila "The SuperNOVAS high-precision C/C++ astrometry library", __Proc. SPIE__, 
 14155, _Software and Cyberinfrastructure for Astronomy IX_, 1415533 (2026); https://doi.org/10.1117/12.3104649<br>
-[[BibTex]](resources/citation-14155_1079.bib) [[EndNote]](resources/citation-14155_1079.enw) [[RIS]](resources/citation-14155_1079.ris) 
+[[BibTex]](resources/citation-14155_1079.bib) [[EndNote]](resources/citation-14155_1079.enw) 
+[[RIS]](resources/citation-14155_1079.ris) 
 
 __SuperNOVAS__ is easy to use and it is very fast, providing 3--5 orders of magnitude faster position calculations than 
 [astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
@@ -85,7 +86,7 @@ You can also install the core SuperNOVAS library with `vcpkg` on Linux, MacOS, W
   $ vcpkg install supernovas
 ```
 
-Or, with the optional `cpp` (C++17 API extension) and `solsys-calceph` (CALCEPH adapter) components as:
+Or, with the optional `cpp` (C++11 API extension) and `solsys-calceph` (CALCEPH adapter) components as:
 
 ```bash
   $ vcpkg install supernovas[core,cpp,solsys-calceph]
