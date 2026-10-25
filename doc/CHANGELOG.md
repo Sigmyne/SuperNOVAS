@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [1.8.0-rc4] - 2026-10-25
 
 Upcoming feature release, expected around 1 November 2026. The highlights are new observer locations, and changes
 relating to the upcoming abolishment (freeze) of leap seconds on 20 May 2027, as voted by the General Conference on 
