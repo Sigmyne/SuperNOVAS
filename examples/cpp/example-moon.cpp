@@ -26,7 +26,6 @@ using namespace supernovas;
 // of course be variables. They should be set to the appropriate values for the time
 // of observation based on the IERS Bulletins or data service...
 
-#define  LEAP_SECONDS     37        ///< [s] current leap seconds from IERS Bulletin C
 #define  DUT1             0.114     ///< [s] current UT1 - UTC time difference from IERS Bulletin A
 #define  POLAR_DX         230.0     ///< [mas] Earth polar offset x, e.g. from IERS Bulletin A.
 #define  POLAR_DY         -62.0     ///< [mas] Earth polar offset y, e.g. from IERS Bulletin A.
@@ -39,7 +38,7 @@ int main() {
   // -------------------------------------------------------------------------
   // Earth orientation parameters (EOP), as appropriate for the time of observation,
   // e.g. as obtained from IERS bulletins or data service:
-  EOP eop(LEAP_SECONDS, DUT1, POLAR_DX * Unit::mas, POLAR_DY * Unit::mas);
+  EOP eop(0, DUT1, POLAR_DX * Unit::mas, POLAR_DY * Unit::mas);
 
 
   // -------------------------------------------------------------------------
@@ -69,7 +68,7 @@ int main() {
   */
 
   // ... Or you could set a time as a Julian date any known timescale.
-  //Time t(NOVAS_JD_J2000, 32, 0.0);
+  //Time t(NOVAS_JD_J2000, eop);
 
   // ... Or you could set a time via a POSIX timespec.
   //struct timespec ts = ...;     // the POSIX time specification

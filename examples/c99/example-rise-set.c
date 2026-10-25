@@ -26,7 +26,6 @@
 // of course be variables. They should be set to the appropriate values for the time
 // of observation based on the IERS Bulletins...
 
-#define  LEAP_SECONDS     37        ///< [s] current leap seconds from IERS Bulletin C
 #define  DUT1             0.114     ///< [s] current UT1 - UTC time difference from IERS Bulletin A
 #define  POLAR_DX         230.0     ///< [mas] Earth polar offset x, e.g. from IERS Bulletin A.
 #define  POLAR_DY         -62.0     ///< [mas] Earth polar offset y, e.g. from IERS Bulletin A.
@@ -124,7 +123,7 @@ int main(int argc, const char *argv[]) {
   // Set the astrometric time of observation...
 
   // Set the time of observation to the current UTC-based UNIX time
-  if(novas_set_current_time(LEAP_SECONDS, DUT1, &obs_time) != 0) {
+  if(novas_set_current_time(0, DUT1, &obs_time) != 0) {
     fprintf(stderr, "ERROR! failed to set time of observation.\n");
     return 1;
   }
@@ -132,7 +131,7 @@ int main(int argc, const char *argv[]) {
   // ... Or you could set a time explicily in any known timescale.
   /*
   // Let's set a TDB-based time for the start of the J2000 epoch exactly...
-  if(novas_set_time(NOVAS_TDB, NOVAS_JD_J2000, 32, 0.0, &obs_time) != 0) {
+  if(novas_set_time(NOVAS_TDB, NOVAS_JD_J2000, 0, 0.0, &obs_time) != 0) {
     fprintf(stderr, "ERROR! failed to set time of observation.\n");
     return 1;
   }
@@ -140,7 +139,7 @@ int main(int argc, const char *argv[]) {
 
   /*
   // Or using a string date, e.g:
-  if(novas_set_time(NOVAS_UTC, novas_date("2025-03-09T11:03:28+0200"), 37, 0.044, &obs_time)) {
+  if(novas_set_time(NOVAS_UTC, novas_date("2025-03-09T11:03:28+0200"), 0, 0.044, &obs_time)) {
     fprintf(stderr, "ERROR! failed to set time of observation.\n");
     return 1;
   }
@@ -192,7 +191,7 @@ int main(int argc, const char *argv[]) {
     printf(" will not rise above %5.1f degrees\n", el);
   }
   else {
-    novas_set_time(NOVAS_UTC, jd_utc, LEAP_SECONDS, DUT1, &ts);
+    novas_set_time(NOVAS_UTC, jd_utc, 0, DUT1, &ts);
     novas_iso_timestamp(&ts, timestamp, sizeof(timestamp));
     printf(" will rise above %5.1f degrees at  : %s\n", el, timestamp);
   }
@@ -201,7 +200,7 @@ int main(int argc, const char *argv[]) {
   // Calculate next UTC-based date/time source transits at observer location
   jd_utc = novas_transit_time(&source, &obs_frame);
 
-  novas_set_time(NOVAS_UTC, jd_utc, LEAP_SECONDS, DUT1, &ts);
+  novas_set_time(NOVAS_UTC, jd_utc, 0, DUT1, &ts);
   novas_iso_timestamp(&ts, timestamp, sizeof(timestamp));
   printf(" will transit at                   : %s\n", timestamp);
 
@@ -215,7 +214,7 @@ int main(int argc, const char *argv[]) {
     printf(" will not set below %5.1f degrees\n", el);
   }
   else {
-    novas_set_time(NOVAS_UTC, jd_utc, LEAP_SECONDS, DUT1, &ts);
+    novas_set_time(NOVAS_UTC, jd_utc, 0, DUT1, &ts);
     novas_iso_timestamp(&ts, timestamp, sizeof(timestamp));
     printf(" will set below %5.1f degrees at   : %s\n", el, timestamp);
   }

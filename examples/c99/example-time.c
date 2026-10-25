@@ -27,7 +27,6 @@
 // of course be variables. They should be set to the appropriate values for the time
 // of observation based on the IERS Bulletins...
 
-#define  LEAP_SECONDS     37        ///< [s] current leap seconds from IERS Bulletin C
 #define  DUT1             0.048     ///< [s] current UT1 - UTC time difference from IERS Bulletin A
 #define  POLAR_DX         230.0     ///< [mas] Earth polar offset x, e.g. from IERS Bulletin A.
 #define  POLAR_DY         -62.0     ///< [mas] Earth polar offset y, e.g. from IERS Bulletin A.
@@ -57,7 +56,7 @@ int main() {
 
   // Use a UTC string date-time specification in YMD format
   // (It could also be TAI, or GPS, or TDB...)
-  novas_set_str_time(NOVAS_UTC, "2025-01-29T18:09:29.333+0200", LEAP_SECONDS, DUT1, &time1);
+  novas_set_str_time(NOVAS_UTC, "2025-01-29T18:09:29.333+0200", 0, DUT1, &time1);
 
 
   // -------------------------------------------------------------------------
@@ -76,7 +75,7 @@ int main() {
   // - Next, convert that date to an astronomical time of a specific time
   //   scale. Let's say the above date was on the TAI... (It could be UTC, or
   //   GPS, or TDB...)
-  novas_set_time(NOVAS_TAI, jd, LEAP_SECONDS, DUT1, &time1);
+  novas_set_time(NOVAS_TAI, jd, 0, DUT1, &time1);
 
   // Print ISO 8601 timestamp
   novas_iso_timestamp(&time1, timestamp, sizeof(timestamp));
@@ -92,7 +91,7 @@ int main() {
   // - Next, convert that date to an astronomical time of a specific time
   //   scale. Let's say the above date was on the TAI... (It could be UTC, or
   //   GPS, or TDB...)
-  novas_set_time(NOVAS_TAI, jd, LEAP_SECONDS, DUT1, &time2);
+  novas_set_time(NOVAS_TAI, jd, 0, DUT1, &time2);
 
   // Print ISO 8601 timestamp
   novas_iso_timestamp(&time2, timestamp, sizeof(timestamp));
@@ -110,14 +109,14 @@ int main() {
 #endif
 
   // Use the UNIX time (seconds + nanoseconds) to define astrometric time
-  novas_set_unix_time(unix_time.tv_sec, unix_time.tv_nsec, LEAP_SECONDS, DUT1, &time3);
+  novas_set_unix_time(unix_time.tv_sec, unix_time.tv_nsec, 0, DUT1, &time3);
 
 
   // -------------------------------------------------------------------------
   // 1.e. Current time
 
   // Use the current UNIX time to set astronomical time
-  novas_set_current_time(LEAP_SECONDS, DUT1, &time3);
+  novas_set_current_time(0, DUT1, &time3);
 
 
   // -------------------------------------------------------------------------

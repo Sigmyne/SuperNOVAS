@@ -32,7 +32,6 @@
 // of course be variables. They should be set to the appropriate values for the time
 // of observation based on the IERS Bulletins...
 
-#define  LEAP_SECONDS     37        ///< [s] current leap seconds from IERS Bulletin C
 #define  DUT1             0.114     ///< [s] current UT1 - UTC time difference from IERS Bulletin A
 #define  POLAR_DX         230.0     ///< [mas] Earth polar offset x, e.g. from IERS Bulletin A.
 #define  POLAR_DY         -62.0     ///< [mas] Earth polar offset y, e.g. from IERS Bulletin A.
@@ -136,7 +135,7 @@ int main(int argc, const char *argv[]) {
 
   // Set the time of observation to the current UTC-based UNIX time
   /*
-  if(novas_set_current_time(LEAP_SECONDS, DUT1, &obs_time) != 0) {
+  if(novas_set_current_time(0, DUT1, &obs_time) != 0) {
     fprintf(stderr, "ERROR! failed to set time of observation.\n");
     return 1;
   }
@@ -144,7 +143,7 @@ int main(int argc, const char *argv[]) {
 
   // ... Or you could set a time explicily in any known timescale.
   // Let's set a TDB-based time for the start of the J2000 epoch exactly...
-  if(novas_set_time(NOVAS_TDB, NOVAS_JD_J2000, 32, 0.0, &obs_time) != 0) {
+  if(novas_set_time(NOVAS_TDB, NOVAS_JD_J2000, 0, DUT1, &obs_time) != 0) {
     fprintf(stderr, "ERROR! failed to set time of observation.\n");
     return 1;
   }

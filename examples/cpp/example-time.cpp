@@ -24,7 +24,6 @@ using namespace supernovas;
 // of course be variables. They should be set to the appropriate values for the time
 // of observation based on the IERS Bulletins or data service...
 
-#define  LEAP_SECONDS     37        ///< [s] current leap seconds from IERS Bulletin C
 #define  DUT1             0.114     ///< [s] current UT1 - UTC time difference from IERS Bulletin A
 #define  POLAR_DX         230.0     ///< [mas] Earth polar offset x, e.g. from IERS Bulletin A.
 #define  POLAR_DY         -62.0     ///< [mas] Earth polar offset y, e.g. from IERS Bulletin A.
@@ -34,7 +33,7 @@ int main() {
   // -------------------------------------------------------------------------
   // Earth orientation parameters (EOP), as appropriate for the time of observation,
   // e.g. as obtained from IERS bulletins or data service:
-  EOP eop(LEAP_SECONDS, DUT1, POLAR_DX * Unit::mas, POLAR_DY * Unit::mas);
+  EOP eop(0, DUT1, POLAR_DX * Unit::mas, POLAR_DY * Unit::mas);
 
   // -------------------------------------------------------------------------
   // 1.a. Simple dates from strings...
@@ -80,7 +79,7 @@ int main() {
   // - Next, convert that date to an astronomical time of a specific time
   //   scale. Let's say the above date was on the TAI... (It could be UTC, or
   //   GPS, or TDB...)
-  Time time2 = date2.to_time(LEAP_SECONDS, DUT1, NOVAS_TAI);
+  Time time2 = date2.to_time(eop, NOVAS_TAI);
 
   std::cout << "Time 2 is " << time2.to_string() << "\n";
 
@@ -97,7 +96,7 @@ int main() {
 #endif
 
   // Use the UNIX time (seconds + nanoseconds) to define astrometric time
-  Time time3 = Time(&unix_time, LEAP_SECONDS, DUT1);
+  Time time3 = Time(&unix_time, eop);
 
   // -------------------------------------------------------------------------
   // 1.e. Current time
