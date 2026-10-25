@@ -84,9 +84,9 @@ The primary goal of __SuperNOVAS__ is to improve on the original NOVAS C library
 
  - Fixing [outstanding issues](#fixed-issues).
  - Adding a high-level [C++11 API](USAGE-CPP.md).
- - [New features](#added-functionality).
  - [Refined C99 API](#api-changes) to promote best programming practices.
- - Improved [C99 API documentation](https://sigmyne.github.io/SuperNOVAS/doc/html/files.html).
+ - Lots of [new features](#added-functionality).
+ - Improved [API documentation](https://sigmyne.github.io/SuperNOVAS/doc/html/files.html).
  - [Faster calculations](#benchmarks).
  - [Thread-safe calculations](https://github.com/Sigmyne/SuperNOVAS/blob/main/doc/USAGE-C99.md#multi-threading-c99).
  - [Debug mode](#debug-support) with informative error tracing.
@@ -449,7 +449,8 @@ automatically:
 ```
 
 Note, that some __SuperNOVAS__ functionality is lost when built without `libc`, such as setting current time or 
-managing leap seconds and EOP automatically. Thus, you will have to specify these explicity instead, when needed.
+managing Earth Orientation Parameters (EOP) automatically. Thus, you will have to specify these explicity instead, 
+when needed.
 
 </details>
 
@@ -589,9 +590,9 @@ runtime for the `solsys-calceph` plugin, then documentation, and finally the fil
 
 > [!NOTE] 
 > The turnaround time for Debian packages is quite slow, and typically follows the Debian release cycle, whereas the 
-> Fedora / EPEL packages are usually fully up-to-date (i.e. in `stable`) within a week of a new SuperNOVAS release. 
-> Somewhat newer Debian versions may be found in `testing`, but even that tends to lag behind the `stable` Fedora / 
-> EPEL updates.
+> Fedora / EPEL and Ubuntu packages are usually fully up-to-date (i.e. in `stable`) within a week of a new SuperNOVAS 
+> release. Somewhat newer Debian versions may be found in `testing`, but even that tends to lag behind the `stable` 
+> Fedora / EPEL or Ubuntu versions.
 
 
 <a name="homebrew"></a>
@@ -724,8 +725,8 @@ the DE440, or the smaller DE440s, or the long-term DE441), and install [CALCEPH]
 [CSPICE Toolkit](https://naif.jpl.nasa.gov/naif/toolkit.html) for accessing these. I recommend CALCEPH, because it is 
 more widely available (also in packaged form), and it is also more modern, and actively maintained. 
 
-Provided you installed CALCEPH, your use of __SuperNOVAS__ should always start with something like this (regardless 
-of whether you will use the C99 or the C++ API afterwards):
+If you go with CALCEPH, as recommended, your use of __SuperNOVAS__ should always start with something like this 
+(regardless of whether you will use the C99 or the C++ API afterwards):
 
 ```c
  #include <novas-calceph.h>
@@ -1013,19 +1014,21 @@ Calculating precise positions for any Earth-based observations requires precise 
 parameters (EOP) at the time of observation. Earth's pole is subject to predictable precession and nutation, but also 
 small irregular and diurnal variations in the orientation of the rotational axis and the rotation period (a.k.a. polar 
 wobble). You can apply the EOP values in `novas_set_time()` (for UT1-UTC), and `novas_make_frame()` (_x_<sub>p</sub> 
-and _y_<sub>p</sub>) to improve the astrometric precision of Earth based coordinate calculations. Without the EOP 
-values, positions for Earth-based calculations will be accurate at the tenths of arcsecond level only.
+and _y_<sub>p</sub>) (or via the C++ `EOP` class) to improve the astrometric precision of Earth based coordinate 
+calculations. Without the EOP values, positions for Earth-based calculations will be accurate at the tenths of 
+arcsecond level only.
 
 The [IERS Bulletins](https://www.iers.org/IERS/EN/Publications/Bulletins/bulletins.html) provide up-to-date 
-measurements, historical data, and near-term projections for the polar offsets, the UT1-UTC time difference, and 
-leap-seconds (UTC-TAI). For sub-milliarcsecond accuracy the values published by IERS should be interpolated before
-passing to the likes of `novas_set_time()` or `novas_make_frame()`. At the micro-arcsecond (&mu;as) level, you will 
-need to ensure also that the EOP values are provided for the same ITRF realization as the observer's location, e.g. 
-via `novas_itrf_transform_eop()`. 
+measurements, historical data, and near-term projections for the polar offsets, the UT1-UTC time difference. For 
+sub-milliarcsecond accuracy the mean values published by IERS should be interpolated before passing to the likes of 
+`novas_set_time()` or `novas_make_frame()`. At the micro-arcsecond (&mu;as) level, you will need to ensure also that 
+the EOP values are provided for the same ITRF realization as the observer's location, e.g. via 
+`novas_itrf_transform_eop()`. 
 
 As of version 1.7, __SuperNOVAS__ provides the option to fetch EOP values from IERS automatically, as needed. However,
-beware that the IERS servers may experience intermittent outages, availability and file formats may change. Therefore,
-for critical applications it is still recommended that you supply your EOP values explicitly, if possible.
+beware that the IERS servers (or mirrors) may experience intermittent outages, and file formats or availability may 
+change. Therefore, for critical applications it is still recommended that you supply your EOP values explicitly, if 
+possible.
 
 </details>
    
