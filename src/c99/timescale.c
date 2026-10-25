@@ -642,10 +642,10 @@ static void novas_time_fill_ut_parms(novas_timespec *time, enum novas_timescale 
  * precision is reached if the fractional part is &le; 1 day. In that case, the time may be
  * specified to picosecond accuracy, if needed.
  *
- * The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is
- * limited by the precision of `tdb2tt()` implementation, to around 10 &mu;s.
- *
  * NOTES:
+ *
+ *  - The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is
+ *    limited by the precision of `tt2tdb_hp()`, to around 100 ns.
  *
  *  - If __SuperNOVAS__ was built without cURL support (`WITHOUT_CURL` or `WITHOUT_LIBC` build
  *    configuration options), then automatic fetching of the UT1 - UTC difference is not possible.
@@ -868,7 +868,7 @@ double novas_get_time(const novas_timespec *restrict time, enum novas_timescale 
  * few microseconds typically.
  *
  * The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is
- * limited by the precision of the `tdb2tt()` implementation, to around 10 &mu;s.
+ * limited by the precision of the `tdb2tt()` implementation, to around 100 ns.
  *
  * REFERENCES:
  *
