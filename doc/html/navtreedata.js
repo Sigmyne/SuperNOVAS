@@ -124,8 +124,8 @@ var NAVTREEINDEX =
 "annotated.html",
 "group__nonequatorial.html#gae2d3d508d68d268bec838bdc013d0ada",
 "group__time.html#ga4818ab9be2f0891091c719db01bcfa98",
-"novas_8h.html#a5414c24d23ad004a73ec69b1aad9f3e2",
-"timescale_8c.html#a8fb447618db946a9e2a596d9ea18763f"
+"novas_8h.html#a57854b43a0a88bfaac0fb886d30fecf5",
+"topics.html"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

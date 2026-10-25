@@ -1544,7 +1544,7 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">series</td><td>The EOP series identifier constant. </td></tr>
-    <tr><td class="paramname">itrf_year</td><td>[yr] ITRF realization year. Needed only for precision at the few &mu;as level, otherwise, you can set it to something recent, like 2020. It is unused if the URL is NULL, or if the series if the leap seconds list. For years prior to the first ITRF realization (in 1988), 1988 will be used. </td></tr>
+    <tr><td class="paramname">itrf_year</td><td>[yr] ITRF realization year. Needed only for precision at the few &mu;as level, otherwise, you can set it to something recent, like 2020. It is unused if the URL is NULL, or if the series is the leap second list. For years prior to the first ITRF realization (in 1988), 1988 will be used. </td></tr>
     <tr><td class="paramname">url</td><td>The new URL to use for the given data series, or NULL to use the default IERS data center URL. </td></tr>
   </table>
   </dd>

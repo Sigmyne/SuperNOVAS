@@ -254,7 +254,9 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>[s] The TT - UT1 time difference that is suitable for use with all calls in this library that require a <span class="tt">ut1_to_tt</span> argument. It includes diurnal corrections for libration and ocean tides.</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.0 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab7611704bab9ce717744a8b5575c5378" title="Returns the difference between Terrestrial Time (TT) and Universal Coordinated Time (UTC).">get_utc_to_tt()</a>, <a class="el" href="#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="novas_8h.html#a348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a>, <a class="el" href="#aaf53fcad3fade814381cef3d06779a8c" title="Returns the Greenwich (apparent) Sidereal Time (GST/GaST) for a given astronomical time specification...">novas_time_gst()</a>, <a class="el" href="#a9e99ea879ba0ddc1d9fbefc4b32b1ef1" title="Returns the Local (apparent) Sidereal Time (LST/LaST) for a given astronomical time specification and...">novas_time_lst()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ab7611704bab9ce717744a8b5575c5378" title="Returns the difference between Terrestrial Time (TT) and Universal Coordinated Time (UTC).">get_utc_to_tt()</a>, <a class="el" href="#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="novas_8h.html#a348c4fd2a4a046e9768038075717b693" title="Returns the Greenwich Apparent Sidereal Time (GAST) for a given UT1 date.">novas_gast()</a>, <a class="el" href="#aaf53fcad3fade814381cef3d06779a8c" title="Returns the Greenwich (apparent) Sidereal Time (GST/GaST) for a given astronomical time specification...">novas_time_gst()</a>, <a class="el" href="#a9e99ea879ba0ddc1d9fbefc4b32b1ef1" title="Returns the Local (apparent) Sidereal Time (LST/LaST) for a given astronomical time specification and...">novas_time_lst()</a> </dd>
+<dd>
+<a class="el" href="group__earth.html#ga804733f8206441a8c2dd9ecf3a1e9465" title="Returns the leap seconds for the given UNIX timestamp.">novas_lookup_leap()</a>, <a class="el" href="novas_8h.html#a3d487552b2112f93ed7ec9347faf2574" title="Returns the leap seconds for the given (UTC-based) Julian date.">novas_leap_for_jd()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a4d7470ca705efa1953e8b4beab77c6b6">get_ut1_to_tt()</a>, and <a class="el" href="novas_8h.html#ab7611704bab9ce717744a8b5575c5378">get_utc_to_tt()</a>.</p>
 
@@ -605,7 +607,7 @@ Functions</h2></td></tr>
 
 <p>Returns the fractional Julian date of an astronomical time in the specified timescale, as an integer and fractional part. </p>
 <p>The two-component split of the time allows for absolute precisions at the picosecond level, as opposed to <span class="tt"><a class="el" href="#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a></span>, whose precision is limited to a few microseconds typically.</p>
-<p>The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is limited by the precision of the <span class="tt"><a class="el" href="#a90d5fae30728b51151c3daf355ca585b" title="Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...">tdb2tt()</a></span> implementation, to around 10 &mu;s.</p>
+<p>The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is limited by the precision of the <span class="tt"><a class="el" href="#a90d5fae30728b51151c3daf355ca585b" title="Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...">tdb2tt()</a></span> implementation, to around 100 ns.</p>
 <p>REFERENCES:</p>
 <ol type="1">
 <li>IAU 1991, RECOMMENDATION III. XXIst General Assembly of the International Astronomical Union. Retrieved 6 June 2019.</li>
@@ -926,7 +928,7 @@ Functions</h2></td></tr>
 <ol type="1">
 <li>With MSC, this function uses the C11 standard <span class="tt">timespec_get()</span> function, which is portable. For older C standard, the POSIX only <span class="tt">clock_gettime()</span> function is used.</li>
 <li>If <b>SuperNOVAS</b> was built with the <span class="tt">WITHOUT_SYSTEM_CLOCK</span> preprocessor flag (or with the <span class="tt">WITHOUT_LIBC</span> build configuration option), then this function will always return an error (<span class="tt">errno</span> set to <span class="tt">ENOSYS</span>). You may want to set the time explicitly with one of the other functions instead.</li>
-<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC difference is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the UT1 - UTC difference is not possible. You must set <span class="tt">dut1</span> appropriately explicitly.</li>
 <li>Leap seconds have been abolished, and no new leap seconds will be added after 20 May 2027, leaving the current list of leap seconds at hte final definitive list. Hence SuperNOVAS will determine leap seconds automatically, based on the time, starting with v1.8, and the user no longer needs to supply this information when defining astrometric times.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -991,10 +993,10 @@ Functions</h2></td></tr>
 
 <p>Sets an astronomical time to the split Julian Date value, defined in the specified timescale. </p>
 <p>The split into the integer and fractional parts can be done in any convenient way. The highest precision is reached if the fractional part is &le; 1 day. In that case, the time may be specified to picosecond accuracy, if needed.</p>
-<p>The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is limited by the precision of <span class="tt"><a class="el" href="#a90d5fae30728b51151c3daf355ca585b" title="Computes the Terrestrial Time (TT) based Julian date corresponding to a Barycentric Dynamical Time (T...">tdb2tt()</a></span> implementation, to around 10 &mu;s.</p>
 <p>NOTES:</p>
 <ul>
-<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC difference is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+<li>The accuracy of Barycentric Time measures (TDB and TCB) relative to other time measures is limited by the precision of <span class="tt"><a class="el" href="#a5709058076f4aea4eeaeeb000342cd94" title="Returns the TDB-TT time difference with high precision.">tt2tdb_hp()</a></span>, to around 100 ns.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the UT1 - UTC difference is not possible. You must set <span class="tt">dut1</span> appropriately explicitly.</li>
 <li>Leap seconds have been abolished, and no new leap seconds will be added after 20 May 2027, leaving the current list of leap seconds at hte final definitive list. Hence SuperNOVAS will determine leap seconds automatically, based on the time, starting with v1.8, and the user no longer needs to supply this information when defining astrometric times.</li>
 </ul>
 <p>REFERENCES:</p>
@@ -1068,7 +1070,7 @@ Functions</h2></td></tr>
 <p>It is effectively just a shorthand for using <span class="tt"><a class="el" href="group__util.html#ga4934da85b9722ef43a5b238f3e1971e4" title="Parses an astronomical date/time string into a Julian date specification.">novas_parse_date()</a></span> followed by <span class="tt"><a class="el" href="#af4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a></span> and the error checking in-between.</p>
 <p>NOTES:</p>
 <ul>
-<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC difference is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the UT1 - UTC difference is not possible. You must set <span class="tt">dut1</span> appropriately explicitly.</li>
 <li>Leap seconds have been abolished, and no new leap seconds will be added after 20 May 2027, leaving the current list of leap seconds at hte final definitive list. Hence SuperNOVAS will determine leap seconds automatically, based on the time, starting with v1.8, and the user no longer needs to supply this information when defining astrometric times.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1132,7 +1134,7 @@ Functions</h2></td></tr>
 <p>The time set this way is accurate to a few &mu;s (microseconds) due to the inherent precision of the double-precision argument. For higher precision applications you may use <span class="tt"><a class="el" href="#ad47bcb1e3c5df56a0ffdf1a127e52598" title="Sets an astronomical time to the split Julian Date value, defined in the specified timescale.">novas_set_split_time()</a></span> instead, which has an inherent accuracy at the picosecond level.</p>
 <p>NOTES:</p>
 <ul>
-<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC difference is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the UT1 - UTC difference is not possible. You must set <span class="tt">dut1</span> appropriately explicitly.</li>
 <li>Leap seconds have been abolished, and no new leap seconds will be added after 20 May 2027, leaving the current list of leap seconds at hte final definitive list. Hence SuperNOVAS will determine leap seconds automatically, based on the time, starting with v1.8, and the user no longer needs to supply this information when defining astrometric times.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1196,7 +1198,7 @@ Functions</h2></td></tr>
 <p>UNIX time is defined as UTC seconds measured since 0 UTC, 1 Jan 1970 (the start of the UNIX era). Specifying time this way supports precisions to the nanoseconds level by construct. Specifying UNIX time in split seconds and nanoseconds is a common way CLIB handles precision time, e.g. with <span class="tt">struct timespec</span> and functions like <span class="tt">clock_gettime()</span> or the C11 <span class="tt">timespec_get</span> (see <span class="tt">time.h</span>).</p>
 <p>NOTES:</p>
 <ul>
-<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the leap seconds and the UT1 - UTC difference is not possible. You must set <span class="tt">leap</span> and <span class="tt">dut1</span> appropriately explicitly.</li>
+<li>If <b>SuperNOVAS</b> was built without cURL support (<span class="tt">WITHOUT_CURL</span> or <span class="tt">WITHOUT_LIBC</span> build configuration options), then automatic fetching of the UT1 - UTC difference is not possible. You must set <span class="tt">dut1</span> appropriately explicitly.</li>
 <li>Leap seconds have been abolished, and no new leap seconds will be added after 20 May 2027, leaving the current list of leap seconds at hte final definitive list. Hence SuperNOVAS will determine leap seconds automatically, based on the time, starting with v1.8, and the user no longer needs to supply this information when defining astrometric times.</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
