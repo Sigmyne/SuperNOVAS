@@ -84,6 +84,7 @@ int nutation_angles(double t, enum novas_accuracy accuracy, double *restrict dps
     return novas_error(-1, EINVAL, "nutation_angles", "NULL output pointer: dpsi=%p, deps=%p", dpsi, deps);
   }
 
+  // time to within second.
   if(!(fabs(t - last_t) < 1e-12) || (accuracy != last_acc)) {
     novas_nutation_provider nutate_call = (accuracy == NOVAS_FULL_ACCURACY) ? iau2000a : get_nutation_lp_provider();
     nutate_call(NOVAS_JD_J2000, t * JULIAN_CENTURY_DAYS, &last_dpsi, &last_deps);

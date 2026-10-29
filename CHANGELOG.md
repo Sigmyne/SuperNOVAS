@@ -7,31 +7,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.8.0-rc4] - 2026-10-25
+## [1.8.0] - 2026-11-02
 
-Upcoming feature release, expected around 1 November 2026. The highlights are new observer locations, and changes
-relating to the upcoming abolishment (freeze) of leap seconds on 20 May 2027, as voted by the General Conference on 
-Weights and Measures (CGPM). As a result of the latter, SuperNOVAS now hardcodes the definitive list of historical 
-leap seconds, which no longer need external resources, nor need to be specified explicitly. While the API remains 
-unchanged, the astrometric time will now determine the leap seconds to use automatically, ignoring any user supplied 
-values (which means users can now simply pass 0 or -1 in place of leap second parameters) when specifying time. Other 
-than that, the release contains a number fixes and improvements also.
+Feature release. The highlights are new observer locations, and changes relating to the upcoming abolishment (freeze) 
+of leap seconds on 20 May 2027, as voted by the General Conference on Weights and Measures (CGPM). As a result of the 
+latter, SuperNOVAS now hardcodes the definitive list of historical leap seconds, which no longer need external 
+resources, nor need to be specified explicitly. While the API remains unchanged, the astrometric time will now 
+determine the leap seconds to use automatically, ignoring any user supplied values (which means users can now simply 
+pass 0 or -1 in place of leap second parameters) when specifying time. Other than that, the release contains a number 
+fixes and improvements also.
 
 ### Fixed
 
- - #359: Fixed wrong humidity units passed in `Site::average_weather()`. (by csp256)
+ - #359: Fixed wrong humidity units used in `Site::average_weather()`. (by csp256)
  
  - #361: Fixed weather parameters not having been used in in `Source::rises_above()`, `Source::sets_below()` and 
    `Source::horizontal_track()`. (by csp256)
    
- - #376: Fixed inverted flattening parameters for the IERS 1989 and 2003 reference ellipsoids.
+ - #376: Fixed inverted Earth flattening parameters for the IERS 1989 and 2003 reference ellipsoids.
  
- - #380: Fixed missing non-relativistic expression for adding observer motion in `rad_vel2()`, which resulted in 
+ - #380: Fixed leftover non-relativistic expression for adding observer motion in `rad_vel2()`, which resulted in 
    errors at or below the m/s level typically.
 
  - #393: Fixed `interpolate()` in the legacy `eph_manager.c` using `remainder()` instead of `fmod()` for the
    normalized Chebyshev time, which evaluated bodies stored with more than one sub-interval per record (e.g. the
-   Earth-Moon barycenter and the Moon in DE421) at the wrong time. (by joeytroy)
+   Earth-Moon barycenter and the Moon in DE421) at the wrong time. (by joeytroy via Claude)
   
  - #383: Fixed retrograde apsis / node motion not being accounted for in Keplerian orbital model before.
  
@@ -74,8 +74,8 @@ than that, the release contains a number fixes and improvements also.
    
  - #382: Added `Velocity::speed_relative_to(Velocity&)`.
  
- - #387: Added `novas_state_provider` function type, and corresponding `state_call` and `call_arg` fields to `object` 
-   (a.k.a. `novas_object`) data structure.
+ - #387: Added `novas_state_provider` function type, and corresponding `state_call` and `call_arg` fields to 
+   `observer` (a.k.a. `struct novas_observer`) data structure.
  
  - #387: Added `NOVAS_DYNAMIC_OBSERVER` constant to `enum novas_observer_place`, and `make_dynamic_observer()` 
    function.
@@ -92,11 +92,13 @@ than that, the release contains a number fixes and improvements also.
  - #387: Added `Observer::className()` and `Source::className()` methods, which returns the name of the concrete 
    subclass used.
    
- - #395: Added `novas_leap_for_jd()` to make it easier to lookup leap seconds for a (UTC-based) Julian dates. 
+ - #395: Added `novas_leap_for_jd()` to make it easier to lookup leap seconds for (UTC-based) Julian dates. 
    
  - #396: Added `make_comoving_observer()` to simplify the creation of observers whose momentary location is defined
    by a Solar-system body or place, such as virtual observers planet centers, travelling on a spacescraft with
    ephemeris data, or defined by Keplerian orbital parameters around a major Solar-system body or barycenter position.
+   
+ - #397: Added `novas_site_itrs_posvel()`.
    
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
@@ -104,7 +106,7 @@ than that, the release contains a number fixes and improvements also.
    
 ### Changed
    
- - #367: Testing oops in `Equinox` equality checks in the test suite. (by csp256)
+ - #367: Fixed testing oops in `Equinox` equality checks in the test suite. (by csp256)
  
  - #369: Improved EOP fetching thread safety, with thread-safe one-time mutex initialization, and more synchronized
    code blocks preventing concurrent access of shared EOP resources (by csp256 and attipaci).
@@ -154,12 +156,12 @@ than that, the release contains a number fixes and improvements also.
  - #389: Improved error propagation on interpolated EOP estimate when EOP is obtained from IERS or some other source.
  
  - #390: Removed 1/_f_ factor from the dUT1 transformation in `novas_itrf_transform_eop()`. The original 
-   implementation was based on Eq. 4.14 of the IERS Conventions 2010, Chapter 4. However, the 1/_f_ factor makes no 
-   sense here, as an __R3__ rotation should be direcly equivalent to a rotation of the same amount in the dUT1 
-   direction.
+   implementation was based on Eq. 4.14 of the IERS Conventions 2010, Chapter 4 (latest version). However, the 1/_f_ 
+   factor makes no sense here, as an __R3__ rotation should be direcly equivalent to a rotation of the same amount in 
+   the dUT1 direction.
    
  - #395: Given that leap seconds are abolished effective 20 May 2027, the final leap seconds list is now hardcoded,
-   making `novas_set_leap_list()` useless. It no longer does anything, except returning 0 (but setting `errno` to
+   making `novas_set_leap_list()` useless. It no longer does anything, except returning 0 (however, it sets `errno` to
    `ENOSYS`). Or, if debug mode is set to `NOVAS_DEBUG_EXTGRA`, then it returns -1. The same goes for 
    `novas_set_eop_url()`, when called with `EOP_LEAP_LIST` as the series.
     
@@ -176,9 +178,11 @@ than that, the release contains a number fixes and improvements also.
    the leap second boundaries for all timescales, when `dut1` is NAN. They now also check for NAN input JD values and 
    will return an error (`errno` set to `EINVAL`) in case of NAN JD input.
    
- - #395: `Time` constructor to allow the UT1 - UTC difference to grow beyond +/- 1s.
+ - #395: `Time` constructor to allow the UT1 - UTC difference to grow beyond +/- 1 second.
    
  - #395: Changed default EOP URLs to use `brahe` mirrors for rapid service and C04 series.
+ 
+ - #397: Streamlined `novas_make_frame()` slightly, and updated benchmarks.
    
  - Streamlined `novas_make_planet_orbit()` slightly by avoiding duplicate trigonometric calls.
 
@@ -190,7 +194,7 @@ than that, the release contains a number fixes and improvements also.
 ### Deprecated
 
  - #395: Deprecated `novas_set_leap_list()`. It's pretty useless now that it does pretty much nothing at all, 
-   except setting `errno` to `ENOSYS`.
+   except for setting `errno` to `ENOSYS`.
 
 
 ## [1.7.2] - 2026-08-05

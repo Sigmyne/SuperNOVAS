@@ -392,8 +392,13 @@ static int set_obs_posvel(novas_frame *frame) {
 
   if(frame->observer.where == NOVAS_OBSERVER_ON_EARTH || frame->observer.where == NOVAS_AIRBORNE_OBSERVER) {
     const double *v_itrs = (frame->observer.where == NOVAS_AIRBORNE_OBSERVER) ? frame->observer.near_earth.sc_vel : NULL;
-    res = novas_site_gcrs_posvel(&frame->time, &frame->observer.on_surf, v_itrs, 1e-3 * frame->dx, 1e-3 * frame->dy,
-            frame->accuracy, frame->obs_pos, frame->obs_vel);
+    novas_transform T = {};
+
+    res = novas_site_itrs_posvel(&frame->time, &frame->observer.on_surf, v_itrs, frame->obs_pos, frame->obs_vel);
+
+    novas_make_transform(frame, NOVAS_ITRS, NOVAS_GCRS, &T);
+    novas_transform_vector(frame->obs_pos, &T, frame->obs_pos);
+    novas_transform_vector(frame->obs_vel, &T, frame->obs_vel);
   }
   else {
     res = geo_posvel(novas_get_time(&frame->time, NOVAS_TT), frame->time.ut1_to_tt, frame->accuracy, &frame->observer,
@@ -547,6 +552,9 @@ int novas_make_frame(enum novas_accuracy accuracy, const observer *obs, const no
   if((unsigned) obs->where >= NOVAS_OBSERVER_PLACES)
     return novas_error(-1, EINVAL, fn, "invalid observer location: %d", obs->where);
 
+  frame->accuracy = accuracy;
+  frame->time = *time;
+
   if(novas_is_auto_fetch_eop() && (isnan(xp) || isnan(yp))) {
     // Fetch EOP from IERS, as needed.
     novas_eop eop = {};
@@ -558,9 +566,6 @@ int novas_make_frame(enum novas_accuracy accuracy, const observer *obs, const no
       novas_trace_invalid(fn);
     }
   }
-
-  frame->accuracy = accuracy;
-  frame->time = *time;
 
   tdb2[0] = time->ijd_tt;
   tdb2[1] = time->fjd_tt + time->tt2tdb / DAY;
@@ -642,12 +647,13 @@ int novas_change_observer(const novas_frame *orig, const observer *obs, novas_fr
   if(out != orig)
     *out = *orig;
 
-  out->state = FRAME_DEFAULT;
+  //out->state = FRAME_DEFAULT; // TODO on error return...
   out->observer = *obs;
 
   prop_error(fn, set_obs_posvel(out), 0);
 
   jd_tdb = novas_get_time(&out->time, NOVAS_TDB);
+
   pl_mask = (out->accuracy == NOVAS_FULL_ACCURACY) ? grav_bodies_full_accuracy : grav_bodies_reduced_accuracy;
   prop_error(fn, obs_planets(jd_tdb, out->accuracy, out->obs_pos, pl_mask, &out->planets), 0);
 
@@ -1393,8 +1399,8 @@ int novas_make_transform(const novas_frame *frame, enum novas_reference_system f
         add_transform(transform, &R, 1);
         if(to_system == NOVAS_TIRS)
           return 0;
-        } // @suppress("No break at end of case")
-        /* fallthrough */
+      } // @suppress("No break at end of case")
+      /* fallthrough */
 
       case NOVAS_TIRS: {
         novas_matrix W;
