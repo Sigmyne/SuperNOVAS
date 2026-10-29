@@ -1137,14 +1137,14 @@ aberration and gravitational deflection corrections from the observer's point of
 
  | Description                         | accuracy  | positions / sec |
  |:----------------------------------- |:---------:| ---------------:|
- | `novas_sky_pos()`, same frame       | reduced   |         3533523 |
- |                                     |   full    |         3527956 |
- | `place()`, same time, same observer | reduced   |          955815 |
- |                                     |   full    |          955694 |
+ | `novas_sky_pos()`, same frame       | reduced   |         3556775 |
+ |                                     |   full    |         3555723 |
+ | `place()`, same time, same observer | reduced   |          970271 |
+ |                                     |   full    |          969258 |
  | `novas_sky_pos()`, individual       | reduced   |           82363 |
- |                                     |   full    |           14311 |
+ |                                     |   full    |           14398 |
  | `place()`, individual               | reduced   |           81545 |
- |                                     |   full    |           14305 |
+ |                                     |   full    |           14344 |
 
 For reference, we also provide the reduced accuracy benchmarks from NOVAS C 3.1.
 
@@ -1177,9 +1177,9 @@ reduced accuracy is sufficient.
 
 The above benchmarks are all for single-threaded performance. Since __SuperNOVAS__ is generally thread-safe, you can 
 expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single 
-core performance, you could calculate up to 70 million precise positions per second, if you wanted to. To put that into 
+core performance, you could calculate 56 million precise positions per second, if you wanted to. To put that into 
 perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in just 30 
-seconds.
+seconds. (It would take 2 weeks with __astropy__ if multiprocessing, or a 7 months in a single process).
 
 
 
