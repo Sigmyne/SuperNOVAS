@@ -1100,6 +1100,15 @@ For reference, we also provide the reduced accuracy benchmarks from NOVAS C 3.1.
  | NOVAS C 3.1 `place()`, same frame   | reduced   |          503401 |
  | NOVAS C 3.1 `place()`, individual   | reduced   |           64171 |
  
+
+As one may observe, the __SuperNOVAS__ `novas_sky_pos()` significantly outperforms the legacy `place()` function, when 
+repeatedly calculating positions for sources for the same instant of time and same observer location, providing 4--5
+times faster performance than `place()` with the same observer and time. And when cycling through a set of predefined 
+frames the `novas_sky_pos` may be 40--250 faster than `place()`, depending on the accuracy. When observing frames are 
+reused, the performance is essentially independent of the accuracy. 
+
+For individual observing times or observer locations, the calculations of apparent positions at reduced, mas-level, 
+accuracy are generally around 5--6 times faster than with the full, &mu;as level, accuracy.
  
 For comparison, a very similar benchmark with [astropy](https://www.astropy.org/) (v8.0.2 on Python v3.14.8) on the 
 same machine, provides 90-100 positions / second both for a fixed frame and for individual frames. As such, 
@@ -1113,15 +1122,6 @@ provided under the `benchmark/` folder in the __SuperNOVAS__ GitHub repository).
  | __astropy__ 8.0.2 (python 3.14.8), same frame   |              91 |
  | __astropy__ 8.0.2 (python 3.14.8), individual   |              99 |
  
- 
-As one may observe, the __SuperNOVAS__ `novas_sky_pos()` significantly outperforms the legacy `place()` function, when 
-repeatedly calculating positions for sources for the same instant of time and same observer location, providing 4--5
-times faster performance than `place()` with the same observer and time. And when cycling through a set of predefined 
-frames the `novas_sky_pos` may be 40--250 faster than `place()`, depending on the accuracy. When observing frames are 
-reused, the performance is essentially independent of the accuracy. 
-
-For individual observing times or observer locations, the calculations of apparent positions at reduced, mas-level, 
-accuracy are generally around 5--6 times faster than with the full, &mu;as level, accuracy.
 
 The above benchmarks are all for single-threaded performance. Since __SuperNOVAS__ is generally thread-safe, you can 
 expect that performance shall scale with the number of concurrent CPUs used when used multi-threaded. Thus, on a 
