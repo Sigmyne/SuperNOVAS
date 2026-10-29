@@ -1128,7 +1128,7 @@ expect that performance shall scale with the number of concurrent CPUs used when
 16-core desktop PC, with similar single core performance, you could calculate 56 million precise positions per second, 
 if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia 
 dataset (1.7 billion stars) in just 30 seconds on your desktop PC. (It would take 2 weeks with __astropy__ if 
-multiprocessing, or a 7 months in a single process).
+multiprocessing, or a 7 months in a single __astropy__ process).
 
 
 
