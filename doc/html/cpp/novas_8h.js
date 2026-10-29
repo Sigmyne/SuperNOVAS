@@ -534,6 +534,7 @@ var novas_8h =
     [ "novas_set_unix_time", "novas_8h.html#a9d54ea7c6cdbc75ee78cf552a7e1858d", null ],
     [ "novas_sets_below", "novas_8h.html#a23af09cd8e5ec5ef4d0b03a347a4add0", null ],
     [ "novas_site_gcrs_posvel", "novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc", null ],
+    [ "novas_site_itrs_posvel", "novas_8h.html#ab7f162ecce55b3d63834ac6ed10761fa", null ],
     [ "novas_site_uvw", "novas_8h.html#aa75f22539fa6135b64f5026c6e1fcba1", null ],
     [ "novas_sky_pos", "novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f", null ],
     [ "novas_solar_illum", "novas_8h.html#ac780bd907a12957995d36ad916dd4ec1", null ],

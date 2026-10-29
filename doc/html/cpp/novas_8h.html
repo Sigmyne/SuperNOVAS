@@ -403,7 +403,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
 <tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
-<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-rc4&quot;</td></tr>
+<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-devel&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
 <tr class="memitem:a44de9d1672290d153a1dfb0685886208" id="r_a44de9d1672290d153a1dfb0685886208"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a44de9d1672290d153a1dfb0685886208">SUPERNOVAS_VERSION_STRING</a></td></tr>
 <tr class="memdesc:a44de9d1672290d153a1dfb0685886208"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version string for this library.  <br /></td></tr>
@@ -1099,6 +1099,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:a23af09cd8e5ec5ef4d0b03a347a4add0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the UTC date at which a distant source appears to set below the specified elevation angle.  <br /></td></tr>
 <tr class="memitem:a65df4b49c0c33285ef5ddcf6814384dc" id="r_a65df4b49c0c33285ef5ddcf6814384dc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict ts, const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict site, const double *restrict v_itrs, double xp, double yp, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, double *restrict pos, double *restrict vel)</td></tr>
 <tr class="memdesc:a65df4b49c0c33285ef5ddcf6814384dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns precise GCRS position and velocity vectors for an observer located on or near Earth's surface.  <br /></td></tr>
+<tr class="memitem:ab7f162ecce55b3d63834ac6ed10761fa" id="r_ab7f162ecce55b3d63834ac6ed10761fa"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict ts, const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict site, const double *restrict v_itrs, double *restrict pos, double *restrict vel)</td></tr>
+<tr class="memdesc:ab7f162ecce55b3d63834ac6ed10761fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns precise ITRS position and velocity vectors for an observer located on or near Earth's surface.  <br /></td></tr>
 <tr class="memitem:aa75f22539fa6135b64f5026c6e1fcba1" id="r_aa75f22539fa6135b64f5026c6e1fcba1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict ts, const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict station, const double *restrict geocentric_source, double xp, double yp, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, double *restrict uvw)</td></tr>
 <tr class="memdesc:aa75f22539fa6135b64f5026c6e1fcba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns geocentric <em>u</em>,<em>v</em>,<em>w</em> coordinates for a ground-based interferometer station.  <br /></td></tr>
 <tr class="memitem:ac365a1e015ae1f875dc5a66fd5435b2f" id="r_ac365a1e015ae1f875dc5a66fd5435b2f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos</a> (const object<a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict object<a class="el" href="#a8bb95dd453e33d4c9892266c9af5df2a">object</a>, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> sys, <a class="el" href="#a98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *restrict out)</td></tr>
@@ -1509,7 +1511,7 @@ Variables</h2></td></tr>
 <p>[m/s] 1 AU / day </p>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#a59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, and <a class="el" href="#a27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="#ab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel()</a>, and <a class="el" href="#a27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>.</p>
 
 </div>
 </div>
@@ -2143,7 +2145,7 @@ Variables</h2></td></tr>
 <p>[m] One km/s in m/s. </p>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#a59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="#aa54cd00024b294d38fa29433c017c65f">novas_v2z()</a>, <a class="el" href="#a63621cea3b4985c1bfcc4514a7aa3fb1">novas_z2v()</a>, <a class="el" href="#a27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>, and <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#a59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="#ab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel()</a>, <a class="el" href="#aa54cd00024b294d38fa29433c017c65f">novas_v2z()</a>, <a class="el" href="#a63621cea3b4985c1bfcc4514a7aa3fb1">novas_z2v()</a>, <a class="el" href="#a27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>, and <a class="el" href="#a59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
 
 </div>
 </div>
@@ -3438,7 +3440,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-rc4&quot;</td>
+          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-devel&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -15014,9 +15016,65 @@ novas_fetch_current_eop(), <a class="el" href="group__earth.html#ga30319d4fc323f
 <dl class="section since"><dt>Since</dt><dd>1.6</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="observer_8c.html#ada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a3f6ae564cfac3766a21e0754905e5f7c">itrs_to_tod()</a>, <a class="el" href="#addc432c55434789acee7bc2beacd7d69">NOVAS_AU_PER_DAY</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, <a class="el" href="#ae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time()</a>, <a class="el" href="#a7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846">NOVAS_REDUCED_ACCURACY</a>, <a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="#adc81730affa75f5facc8c6bd280c83c9">terra()</a>, and <a class="el" href="#a6871e7fecde44084c7b4e1b8dda5ac70">tod_to_gcrs()</a>.</p>
+<p class="reference">References <a class="el" href="#a3f6ae564cfac3766a21e0754905e5f7c">itrs_to_tod()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, <a class="el" href="#ae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846">NOVAS_REDUCED_ACCURACY</a>, <a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, <a class="el" href="#ab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, and <a class="el" href="#a6871e7fecde44084c7b4e1b8dda5ac70">tod_to_gcrs()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1GeodeticObserver.html#aa611c71d2b1150452cb203455ffdc013">supernovas::GeodeticObserver::gcrs_position_at()</a>, <a class="el" href="classsupernovas_1_1GeodeticObserver.html#ad53631f865c62ee8cb8c535be22ed180">supernovas::GeodeticObserver::gcrs_velocity_at()</a>, <a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, and <a class="el" href="#aa75f22539fa6135b64f5026c6e1fcba1">novas_site_uvw()</a>.</p>
+
+</div>
+</div>
+<a id="ab7f162ecce55b3d63834ac6ed10761fa" name="ab7f162ecce55b3d63834ac6ed10761fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7f162ecce55b3d63834ac6ed10761fa">&#9670;&#160;</a></span>novas_site_itrs_posvel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_site_itrs_posvel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict</td>          <td class="paramname"><span class="paramname"><em>ts</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict</td>          <td class="paramname"><span class="paramname"><em>site</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *restrict</td>          <td class="paramname"><span class="paramname"><em>v_itrs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns precise ITRS position and velocity vectors for an observer located on or near Earth's surface. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">ts</td><td>Astrometric time of oservation </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">site</td><td>ITRF / GRS80 geodetic location on Earth </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">v_itrs</td><td>[km/s] surface velocity vector in ITRS, or NULL if observing from a fixed Earth location. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>ITRS position vector of observer. It may be NULL if not required. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">vel</td><td>ITRS velocity vector of observer. It may be NULL if not required. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if any of the input pointers is NULL or if both output pointers are NULL (errno will be set to EINVAL).</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.8</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="observer_8c.html#a65df4b49c0c33285ef5ddcf6814384dc" title="Returns precise GCRS position and velocity vectors for an observer located on or near Earth&#39;s surface...">novas_site_gcrs_posvel()</a>, <a class="el" href="observer_8c.html#ada5ca37110e66c8b65f623c9e26ae52e" title="Computes the geocentric GCRS position and velocity of an observer.">geo_posvel()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="#addc432c55434789acee7bc2beacd7d69">NOVAS_AU_PER_DAY</a>, <a class="el" href="#a7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="#ab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel()</a>, and <a class="el" href="#adc81730affa75f5facc8c6bd280c83c9">terra()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, and <a class="el" href="#ab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel()</a>.</p>
 
 </div>
 </div>
@@ -18160,7 +18218,7 @@ solarsystem_hp() </dd></dl>
 
 <p class="reference">References <a class="el" href="#a0a84af1a760ed2aaa01dd93e9e22bdf1">NOVAS_KM</a>, and <a class="el" href="#adc81730affa75f5facc8c6bd280c83c9">terra()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#ada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, <a class="el" href="#a65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, and <a class="el" href="#adc81730affa75f5facc8c6bd280c83c9">terra()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#ada5ca37110e66c8b65f623c9e26ae52e">geo_posvel()</a>, <a class="el" href="#ab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel()</a>, and <a class="el" href="#adc81730affa75f5facc8c6bd280c83c9">terra()</a>.</p>
 
 </div>
 </div>

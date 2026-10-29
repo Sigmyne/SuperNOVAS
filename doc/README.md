@@ -228,11 +228,12 @@ accommodate JPL NAIF codes, for which 16-bit storage is insufficient.
  - [`curl`](https://curl.se/) -- (recommended) for fetching Earth Orientation data from IERS or from elsewhere.
  - [`calceph`](https://calceph.imcce.fr/docs/latest/html/c/) -- (recommended) for using CALCEPH as the Solar-system 
    ephemeris provider.
- - [`cspice`](https://naif.jpl.nasa.gov/naif/toolkit.html) -- (optional) for usign the NAIF CSPICE Toolkit as the Solar-system 
+ - [`cspice`](https://naif.jpl.nasa.gov/naif/toolkit.html) -- (optional) for using the NAIF CSPICE Toolkit as the Solar-system 
    ephemeris provider.
  - [`doxygen`](https://www.doxygen.nl/) -- (optional) for compiling HTML documentation.
  
 #### Installing dependencies on Linux
+
 
 On Fedora / EPEL Linux and derivatives, you may install all packaged (build + runtime) dependencies as:
 
@@ -248,6 +249,7 @@ And on Debian and derivatives (e.g. Ubuntu, Mint, Alpine), you may do the same w
 
 #### Installing dependencies on MacOS
 
+
 On MacOS you may install the dependencies with Homebrew:
 
 ```bash
@@ -255,6 +257,7 @@ On MacOS you may install the dependencies with Homebrew:
 ```
 
 #### Installing dependencies on BSD
+
 
 On BSD (e.g. FreeBSD, OpenBSD) you might install `curl` and `calceph`. And you will also need additional packages for 
 building __SuperNOVAS__, such as and `cmake` and/or `gmake`, and `pkgconf`:
@@ -400,6 +403,7 @@ Now you can build __SuperNOVAS__, for example as a shared library, with:
 __SuperNOVAS__ can be compiled as a static library for bare-metal embedded systems (e.g. ARM Cortex-M) or WebAssembly
 targets (as of v1.7, thanks to Kiran Shila). Set `WITHOUT_LIBC=1` to build in freestanding mode, which disables all 
 `libc` file I/O, heap allocation, and system clock dependencies:
+
 
 For embedded ARM, this may look like:
 
@@ -936,9 +940,9 @@ the details.)
 
 High precision calculations will generally require that you use __SuperNOVAS__ with the new IAU standard quantities 
 and methods. The old ways were simply not suited for precision much below the milliarcsecond level. In particular, 
-Earth orientation parameters (EOP) should be applied only for converting between TIRS and ITRS systems, and defined 
-either with `novas_make_frame()` or else with `wobble()`. The old ways of incorporating (global) offsets in TOD 
-coordinates via `cel_pole()` should be avoided.
+Earth orientation parameters (EOP) should be applied only for converting between TIRS (or PEF) and ITRS systems, and 
+defined  either with `novas_make_frame()` or else with `wobble()`. The old ways of incorporating (global) offsets in 
+the TOD coordinates via `cel_pole()` should be avoided.
 
  
 
@@ -1064,9 +1068,9 @@ NaN), e.g.:
 ## Representative benchmarks
 
 To get an idea of the speed of __SuperNOVAS__, you can use `make benchmark` on your machine. Figure 2 below 
-summarizes the single-threaded results obtained with v1.5.0 on an AMD Ryzen 5 PRO 6650U laptop. While this is clearly 
-not the state of the art for today's server class machines, it nevertheless gives you a ballpark idea for how a 
-typical, not so new, run-of-the-mill PC might perform.
+summarizes the single-threaded results obtained with v1.8.0 on an AMD Ryzen 5 PRO 6650U laptop (Linux 7.2.11, GCC 
+16.2.1). While this is clearly not the state of the art for today's server class machines, it nevertheless gives you a 
+ballpark idea for how a typical, not so new, run-of-the-mill PC might perform.
 
 | ![SuperNOVAS benchmarks](resources/SuperNOVAS-benchmark.png) |
 |:--:| 
@@ -1080,47 +1084,49 @@ aberration and gravitational deflection corrections from the observer's point of
 
  | Description                         | accuracy  | positions / sec |
  |:----------------------------------- |:---------:| ---------------:|
- | `novas_sky_pos()`, same frame       | reduced   |         3130414 |
- |                                     |   full    |         3149028 |
- | `place()`, same time, same observer | reduced   |          831101 |
- |                                     |   full    |          831015 |
- | `novas_sky_pos()`, individual       | reduced   |          168212 |
- |                                     |   full    |           25943 |
- | `place()`, individual               | reduced   |          167475 |
- |                                     |   full    |           25537 |
+ | `novas_sky_pos()`, same frame       | reduced   |         3556775 |
+ |                                     |   full    |         3555723 |
+ | `place()`, same time, same observer | reduced   |          970271 |
+ |                                     |   full    |          969258 |
+ | `novas_sky_pos()`, individual       | reduced   |           82363 |
+ |                                     |   full    |           14398 |
+ | `place()`, individual               | reduced   |           81545 |
+ |                                     |   full    |           14344 |
 
 For reference, we also provide the reduced accuracy benchmarks from NOVAS C 3.1.
 
  | Description                         | accuracy  | positions / sec |
  |:------------------------------------|:---------:|----------------:|
- | NOVAS C 3.1 `place()`, same frame   | reduced   |          371164 |
- | NOVAS C 3.1 `place()`, individual   | reduced   |           55484 |
+ | NOVAS C 3.1 `place()`, same frame   | reduced   |          503401 |
+ | NOVAS C 3.1 `place()`, individual   | reduced   |           64171 |
  
-For comparison, a very similar benchmark with [astropy](https://www.astropy.org/) (v7.0.0 on Python v3.13.1) on the 
-same machine, provides ~70 positions / second both for a fixed frame and for individual frames. As such, 
+For comparison, a very similar benchmark with [astropy](https://www.astropy.org/) (v8.0.2 on Python v3.14.8) on the 
+same machine, provides 90-100 positions / second both for a fixed frame and for individual frames. As such, 
 __SuperNOVAS__ is a whopping ~40000 times faster than __astropy__ for calculations in the same observing frame, and 
-400--2000 times faster than __astropy__ for individual frames. (The __astropy__ benchmarking code is also provided 
-under the `benchmark/` folder in the __SuperNOVAS__ GitHub repository).
+2--3 orders of magnitude faster than __astropy__ for individual frames. (The __astropy__ benchmarking code is also 
+provided under the `benchmark/` folder in the __SuperNOVAS__ GitHub repository).
  
  | Description                                     | positions / sec |
  |:------------------------------------------------|----------------:|
- | __astropy__ 7.0.0 (python 3.13.1), same frame   |              71 |
- | __astropy__ 7.0.0 (python 3.13.1), individual   |              70 |
+ | __astropy__ 8.0.2 (python 3.14.8), same frame   |              91 |
+ | __astropy__ 8.0.2 (python 3.14.8), individual   |              99 |
  
  
 As one may observe, the __SuperNOVAS__ `novas_sky_pos()` significantly outperforms the legacy `place()` function, when 
-repeatedly calculating positions for sources for the same instant of time and same observer location, providing 3--4
-times faster performance than `place()` with the same observer and time. The same performance is maintained even when 
-cycling through different frames, a usage scenario in which the performance advantage over `place()` may be up to 2 
-orders of magnitude. When observing frames are reused, the performance is essentially independent of the accuracy. By 
-contrast, calculations for individual observing times or observer locations are generally around twice a fast if 
-reduced accuracy is sufficient.
+repeatedly calculating positions for sources for the same instant of time and same observer location, providing 4--5
+times faster performance than `place()` with the same observer and time. And when cycling through a set of predefined 
+frames the `novas_sky_pos` may be 40--250 faster than `place()`, depending on the accuracy. When observing frames are 
+reused, the performance is essentially independent of the accuracy. 
+
+For individual observing times or observer locations, the calculations of apparent positions at reduced, mas-level, 
+accuracy are generally around 5--6 times faster than with the full, &mu;as level, accuracy.
 
 The above benchmarks are all for single-threaded performance. Since __SuperNOVAS__ is generally thread-safe, you can 
-expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single 
-core performance, you could calculate up to 32 million precise positions per second, if you wanted to. To put that into 
-perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in under 
-one minute.
+expect that performance shall scale with the number of concurrent CPUs used when used multi-threaded. Thus, on a 
+16-core desktop PC, with similar single core performance, you could calculate 56 million precise positions per second, 
+if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia 
+dataset (1.7 billion stars) in just 30 seconds on your desktop PC. (It would take 2 weeks with __astropy__ if 
+multiprocessing, or a 7 months in a single process).
 
 
 

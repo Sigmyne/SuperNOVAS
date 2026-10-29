@@ -24,6 +24,7 @@ var observer_8c =
     [ "novas_ephem_state", "group__observer.html#ga14078c87a8cbbb5bc5c8444b40814018", null ],
     [ "novas_set_default_weather", "group__observer.html#ga0fc8f315f8606e09571ab49efb13baca", null ],
     [ "novas_site_gcrs_posvel", "group__observer.html#ga65df4b49c0c33285ef5ddcf6814384dc", null ],
+    [ "novas_site_itrs_posvel", "group__observer.html#gab7f162ecce55b3d63834ac6ed10761fa", null ],
     [ "novas_site_uvw", "group__interferometry.html#gaa75f22539fa6135b64f5026c6e1fcba1", null ],
     [ "novas_uvw", "group__interferometry.html#ga81f4b147c3f132a1498cdd833042d804", null ],
     [ "obs_planets", "group__solar-system.html#ga07490a134a685fe0842b2b4816559292", null ],

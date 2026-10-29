@@ -249,7 +249,7 @@ Dependencies</h2>
 <ul>
 <li><a href="https://curl.se/"><span class="tt">curl</span></a> &ndash; (recommended) for fetching Earth Orientation data from IERS or from elsewhere.</li>
 <li><a href="https://calceph.imcce.fr/docs/latest/html/c/"><span class="tt">calceph</span></a> &ndash; (recommended) for using CALCEPH as the Solar-system ephemeris provider.</li>
-<li><a href="https://naif.jpl.nasa.gov/naif/toolkit.html"><span class="tt">cspice</span></a> &ndash; (optional) for usign the NAIF CSPICE Toolkit as the Solar-system ephemeris provider.</li>
+<li><a href="https://naif.jpl.nasa.gov/naif/toolkit.html"><span class="tt">cspice</span></a> &ndash; (optional) for using the NAIF CSPICE Toolkit as the Solar-system ephemeris provider.</li>
 <li><a href="https://www.doxygen.nl/"><span class="tt">doxygen</span></a> &ndash; (optional) for compiling HTML documentation.</li>
 </ul>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
@@ -257,6 +257,7 @@ Installing dependencies on Linux</h3>
 <details >
 <summary >
 Details</summary>
+<p></p>
 <p>On Fedora / EPEL Linux and derivatives, you may install all packaged (build + runtime) dependencies as:</p>
 <div class="fragment"><div class="line">sudo dnf install libcurl-devel calceph-devel doxygen</div>
 </div><!-- fragment --><p>And on Debian and derivatives (e.g. Ubuntu, Mint, Alpine), you may do the same with:</p>
@@ -267,6 +268,7 @@ Installing dependencies on MacOS</h3>
 <details >
 <summary >
 Details</summary>
+<p></p>
 <p>On MacOS you may install the dependencies with Homebrew:</p>
 <div class="fragment"><div class="line">brew install curl calceph doxygen</div>
 </div><!-- fragment --> </details>
@@ -275,6 +277,7 @@ Installing dependencies on BSD</h3>
 <details >
 <summary >
 Details</summary>
+<p></p>
 <p>On BSD (e.g. FreeBSD, OpenBSD) you might install <span class="tt">curl</span> and <span class="tt">calceph</span>. And you will also need additional packages for building <b>SuperNOVAS</b>, such as and <span class="tt">cmake</span> and/or <span class="tt">gmake</span>, and <span class="tt">pkgconf</span>:</p>
 <div class="fragment"><div class="line">pkg install -y gmake cmake devel/pkgconf curl calceph </div>
 </div><!-- fragment --> </details>
@@ -340,6 +343,7 @@ Cross-compiling for embedded targets</h3>
 <details >
 <summary >
 Details</summary>
+<p></p>
 <p>For embedded ARM, this may look like:</p>
 <div class="fragment"><div class="line">make CC=arm-none-eabi-gcc WITHOUT_LIBC=1 \</div>
 <div class="line">     CFLAGS=&quot;-mcpu=cortex-m33 -mthumb -mfloat-abi=hard -mfpu=fpv5-sp-d16 -Os -Wall&quot; \</div>
@@ -667,7 +671,7 @@ Prerequisites to precise results</h2>
 <summary >
 The IAU 2000/2006 conventions and methods</summary>
 <p></p>
-<p>High precision calculations will generally require that you use <b>SuperNOVAS</b> with the new IAU standard quantities and methods. The old ways were simply not suited for precision much below the milliarcsecond level. In particular, Earth orientation parameters (EOP) should be applied only for converting between TIRS and ITRS systems, and defined either with <span class="tt"><a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span> or else with <span class="tt"><a class="el" href="group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span>. The old ways of incorporating (global) offsets in TOD coordinates via <span class="tt"><a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> should be avoided.</p>
+<p>High precision calculations will generally require that you use <b>SuperNOVAS</b> with the new IAU standard quantities and methods. The old ways were simply not suited for precision much below the milliarcsecond level. In particular, Earth orientation parameters (EOP) should be applied only for converting between TIRS (or PEF) and ITRS systems, and defined either with <span class="tt"><a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a></span> or else with <span class="tt"><a class="el" href="group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652" title="Corrects a vector in the ITRS (rotating Earth-fixed system) for polar motion, and also corrects the l...">wobble()</a></span>. The old ways of incorporating (global) offsets in the TOD coordinates via <span class="tt"><a class="el" href="equator_8c.html#a8937180de2ee1545d19b8fc840f35fe2">cel_pole()</a></span> should be avoided.</p>
 <p></p>
 </details>
 <details >
@@ -748,7 +752,7 @@ Runtime debug support</h1>
 <p><a class="anchor" id="benchmarks"></a> </p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
 Representative benchmarks</h1>
-<p>To get an idea of the speed of <b>SuperNOVAS</b>, you can use <span class="tt">make benchmark</span> on your machine. Figure 2 below summarizes the single-threaded results obtained with v1.5.0 on an AMD Ryzen 5 PRO 6650U laptop. While this is clearly not the state of the art for today's server class machines, it nevertheless gives you a ballpark idea for how a typical, not so new, run-of-the-mill PC might perform.</p>
+<p>To get an idea of the speed of <b>SuperNOVAS</b>, you can use <span class="tt">make benchmark</span> on your machine. Figure 2 below summarizes the single-threaded results obtained with v1.8.0 on an AMD Ryzen 5 PRO 6650U laptop (Linux 7.2.11, GCC 16.2.1). While this is clearly not the state of the art for today's server class machines, it nevertheless gives you a ballpark idea for how a typical, not so new, run-of-the-mill PC might perform.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadCenter"><p class="starttd"><img src="SuperNOVAS-benchmark.png" alt="" class="inline" title="SuperNOVAS benchmarks"/>    </p>
@@ -766,44 +770,45 @@ Details</summary>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Description  </th><th class="markdownTableHeadCenter">accuracy  </th><th class="markdownTableHeadRight">positions / sec  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><span class="tt"><a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, same frame  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">3130414  </td></tr>
+<td class="markdownTableBodyLeft"><span class="tt"><a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, same frame  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">3556775  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyCenter">full  </td><td class="markdownTableBodyRight">3149028  </td></tr>
+<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyCenter">full  </td><td class="markdownTableBodyRight">3555723  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, same time, same observer  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">831101  </td></tr>
+<td class="markdownTableBodyLeft"><span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, same time, same observer  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">970271  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyCenter">full  </td><td class="markdownTableBodyRight">831015  </td></tr>
+<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyCenter">full  </td><td class="markdownTableBodyRight">969258  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><span class="tt"><a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, individual  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">168212  </td></tr>
+<td class="markdownTableBodyLeft"><span class="tt"><a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, individual  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">82363  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyCenter">full  </td><td class="markdownTableBodyRight">25943  </td></tr>
+<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyCenter">full  </td><td class="markdownTableBodyRight">14398  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, individual  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">167475  </td></tr>
+<td class="markdownTableBodyLeft"><span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, individual  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">81545  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyCenter">full  </td><td class="markdownTableBodyRight">25537  </td></tr>
+<td class="markdownTableBodyLeft"></td><td class="markdownTableBodyCenter">full  </td><td class="markdownTableBodyRight">14344  </td></tr>
 </table>
 <p>For reference, we also provide the reduced accuracy benchmarks from NOVAS C 3.1.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Description  </th><th class="markdownTableHeadCenter">accuracy  </th><th class="markdownTableHeadRight">positions / sec  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">NOVAS C 3.1 <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, same frame  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">371164  </td></tr>
+<td class="markdownTableBodyLeft">NOVAS C 3.1 <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, same frame  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">503401  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft">NOVAS C 3.1 <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, individual  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">55484  </td></tr>
+<td class="markdownTableBodyLeft">NOVAS C 3.1 <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, individual  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">64171  </td></tr>
 </table>
-<p>For comparison, a very similar benchmark with <a href="https://www.astropy.org/">astropy</a> (v7.0.0 on Python v3.13.1) on the same machine, provides ~70 positions / second both for a fixed frame and for individual frames. As such, <b>SuperNOVAS</b> is a whopping ~40000 times faster than <b>astropy</b> for calculations in the same observing frame, and 400&ndash;2000 times faster than <b>astropy</b> for individual frames. (The <b>astropy</b> benchmarking code is also provided under the <span class="tt">benchmark/</span> folder in the <b>SuperNOVAS</b> GitHub repository).</p>
+<p>For comparison, a very similar benchmark with <a href="https://www.astropy.org/">astropy</a> (v8.0.2 on Python v3.14.8) on the same machine, provides 90-100 positions / second both for a fixed frame and for individual frames. As such, <b>SuperNOVAS</b> is a whopping ~40000 times faster than <b>astropy</b> for calculations in the same observing frame, and 2&ndash;3 orders of magnitude faster than <b>astropy</b> for individual frames. (The <b>astropy</b> benchmarking code is also provided under the <span class="tt">benchmark/</span> folder in the <b>SuperNOVAS</b> GitHub repository).</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Description  </th><th class="markdownTableHeadRight">positions / sec  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft"><b>astropy</b> 7.0.0 (python 3.13.1), same frame  </td><td class="markdownTableBodyRight">71  </td></tr>
+<td class="markdownTableBodyLeft"><b>astropy</b> 8.0.2 (python 3.14.8), same frame  </td><td class="markdownTableBodyRight">91  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyLeft"><b>astropy</b> 7.0.0 (python 3.13.1), individual  </td><td class="markdownTableBodyRight">70  </td></tr>
+<td class="markdownTableBodyLeft"><b>astropy</b> 8.0.2 (python 3.14.8), individual  </td><td class="markdownTableBodyRight">99  </td></tr>
 </table>
 <p></p>
 </details>
-<p>As one may observe, the <b>SuperNOVAS</b> <span class="tt"><a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span> significantly outperforms the legacy <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> function, when repeatedly calculating positions for sources for the same instant of time and same observer location, providing 3&ndash;4 times faster performance than <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> with the same observer and time. The same performance is maintained even when cycling through different frames, a usage scenario in which the performance advantage over <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> may be up to 2 orders of magnitude. When observing frames are reused, the performance is essentially independent of the accuracy. By contrast, calculations for individual observing times or observer locations are generally around twice a fast if reduced accuracy is sufficient.</p>
-<p>The above benchmarks are all for single-threaded performance. Since <b>SuperNOVAS</b> is generally thread-safe, you can expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single core performance, you could calculate up to 32 million precise positions per second, if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in under one minute.</p>
+<p>As one may observe, the <b>SuperNOVAS</b> <span class="tt"><a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span> significantly outperforms the legacy <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> function, when repeatedly calculating positions for sources for the same instant of time and same observer location, providing 4&ndash;5 times faster performance than <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> with the same observer and time. And when cycling through a set of predefined frames the <span class="tt"><a class="el" href="structnovas__sky__pos.html" title="Celestial object&#39;s place on the sky; contains the output from place().">novas_sky_pos</a></span> may be 40&ndash;250 faster than <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, depending on the accuracy. When observing frames are reused, the performance is essentially independent of the accuracy.</p>
+<p>For individual observing times or observer locations, the calculations of apparent positions at reduced, mas-level, accuracy are generally around 5&ndash;6 times faster than with the full, &mu;as level, accuracy.</p>
+<p>The above benchmarks are all for single-threaded performance. Since <b>SuperNOVAS</b> is generally thread-safe, you can expect that performance shall scale with the number of concurrent CPUs used when used multi-threaded. Thus, on a 16-core desktop PC, with similar single core performance, you could calculate 56 million precise positions per second, if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in just 30 seconds on your desktop PC. (It would take 2 weeks with <b>astropy</b> if multiprocessing, or a 7 months in a single process).</p>
 <hr  />
 <p><a class="anchor" id="supernovas-features"></a> </p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md43"></a>

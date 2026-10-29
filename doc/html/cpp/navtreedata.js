@@ -139,8 +139,8 @@ var NAVTREEINDEX =
 "functions_func_l.html",
 "index.html",
 "novas_8h.html#a406038a5cbe32b7e0e7233f6145e4cf5",
-"novas_8h.html#abe97e2d459a30db9d0f67d8c60af3b81aaf3bef1a45c5d59df8e779da09cecb68",
-"structnovas__frame.html"
+"novas_8h.html#abe97e2d459a30db9d0f67d8c60af3b81a7ed64c314f06fdf9acfa72beb531e73d",
+"structnovas__eop.html#af72647faf3ebbfed343c9dfee414ab17"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

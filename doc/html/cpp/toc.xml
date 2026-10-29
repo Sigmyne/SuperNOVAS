@@ -3820,6 +3820,7 @@
           <topic label="novas_set_unix_time" href="novas_8h.html#a9d54ea7c6cdbc75ee78cf552a7e1858d"/>
           <topic label="novas_sets_below" href="novas_8h.html#a23af09cd8e5ec5ef4d0b03a347a4add0"/>
           <topic label="novas_site_gcrs_posvel" href="novas_8h.html#a65df4b49c0c33285ef5ddcf6814384dc"/>
+          <topic label="novas_site_itrs_posvel" href="novas_8h.html#ab7f162ecce55b3d63834ac6ed10761fa"/>
           <topic label="novas_site_uvw" href="novas_8h.html#aa75f22539fa6135b64f5026c6e1fcba1"/>
           <topic label="novas_sky_pos" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f"/>
           <topic label="novas_solar_illum" href="novas_8h.html#ac780bd907a12957995d36ad916dd4ec1"/>
@@ -4147,6 +4148,7 @@
             <topic label="novas_ephem_state" href="observer_8c.html#a0be3e21bb2a8350105c9894fa7c3e8c6"/>
             <topic label="novas_set_default_weather" href="observer_8c.html#a0fc8f315f8606e09571ab49efb13baca"/>
             <topic label="novas_site_gcrs_posvel" href="observer_8c.html#a65df4b49c0c33285ef5ddcf6814384dc"/>
+            <topic label="novas_site_itrs_posvel" href="observer_8c.html#ab7f162ecce55b3d63834ac6ed10761fa"/>
             <topic label="novas_site_uvw" href="observer_8c.html#aa75f22539fa6135b64f5026c6e1fcba1"/>
             <topic label="novas_uvw" href="observer_8c.html#a81f4b147c3f132a1498cdd833042d804"/>
             <topic label="obs_planets" href="observer_8c.html#a07490a134a685fe0842b2b4816559292"/>
