@@ -1153,11 +1153,24 @@ For reference, we also provide the reduced accuracy benchmarks from NOVAS C 3.1.
  | NOVAS C 3.1 `place()`, same frame   | reduced   |          503401 |
  | NOVAS C 3.1 `place()`, individual   | reduced   |           64171 |
  
+</details>
+
+As one may observe, the __SuperNOVAS__ `novas_sky_pos()` significantly outperforms the legacy `place()` function, when 
+repeatedly calculating positions for sources for the same instant of time and same observer location, providing 4--5
+times faster performance than `place()` with the same observer and time. And when cycling through a set of predefined 
+frames the `novas_sky_pos` may be 40--250 faster than `place()`, depending on the accuracy. When observing frames are 
+reused, the performance is essentially independent of the accuracy. 
+
+For individual observing times or observer locations, the calculations of apparent positions at reduced, mas-level, 
+accuracy are generally around 5--6 times faster than with the full, &mu;as level, accuracy.
+ 
 For comparison, a very similar benchmark with [astropy](https://www.astropy.org/) (v8.0.2 on Python v3.14.8) on the 
 same machine, provides 90-100 positions / second both for a fixed frame and for individual frames. As such, 
 __SuperNOVAS__ is a whopping ~40000 times faster than __astropy__ for calculations in the same observing frame, and 
 2--3 orders of magnitude faster than __astropy__ for individual frames. (The __astropy__ benchmarking code is also 
 provided under the `benchmark/` folder in the __SuperNOVAS__ GitHub repository).
+ 
+<details>
  
  | Description                                     | positions / sec |
  |:------------------------------------------------|----------------:|
@@ -1165,21 +1178,13 @@ provided under the `benchmark/` folder in the __SuperNOVAS__ GitHub repository).
  | __astropy__ 8.0.2 (python 3.14.8), individual   |              99 |
  
 </details>
- 
-As one may observe, the __SuperNOVAS__ `novas_sky_pos()` significantly outperforms the legacy `place()` function, when 
-repeatedly calculating positions for sources for the same instant of time and same observer location, providing 4--5
-times faster performance than `place()` with the same observer and time. And when cycling through different frames
-the `novas_sky_pos` may be 40--250 faster than `place()`, depending on the accuracy. It is because when observing 
-frames are reused, the performance is essentially independent of the accuracy. 
-
-For individual observing times or observer locations, the calculations are generally around 5--6 times faster if 
-reduced accuracy is sufficient.
 
 The above benchmarks are all for single-threaded performance. Since __SuperNOVAS__ is generally thread-safe, you can 
-expect that performance shall scale with the number of concurrent CPUs used. So, on a 16-core PC, with similar single 
-core performance, you could calculate 56 million precise positions per second, if you wanted to. To put that into 
-perspective, you could calculate precise apparent positions for the entire Gaia dataset (1.7 billion stars) in just 30 
-seconds. (It would take 2 weeks with __astropy__ if multiprocessing, or a 7 months in a single process).
+expect that performance shall scale with the number of concurrent CPUs used when used multi-threaded. Thus, on a 
+16-core desktop PC, with similar single core performance, you could calculate 56 million precise positions per second, 
+if you wanted to. To put that into perspective, you could calculate precise apparent positions for the entire Gaia 
+dataset (1.7 billion stars) in just 30 seconds on your desktop PC. (It would take 2 weeks with __astropy__ if 
+multiprocessing, or a 7 months in a single __astropy__ process).
 
 
 
