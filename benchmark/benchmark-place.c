@@ -26,24 +26,21 @@ static void timestamp(novas_timespec *t) {
   novas_set_current_time(0, DUT1, t);
 }
 
-static void calc_pos(const cat_entry *star, const novas_frame *frame) {
-  object source = NOVAS_OBJECT_INIT;
+static void calc_pos(const object *source, const novas_frame *frame) {
   sky_pos apparent = SKY_POS_INIT;
 
-  make_cat_object(star, &source);
-
-  if(novas_sky_pos(&source, frame, NOVAS_CIRS, &apparent) != 0) {
+  if(novas_sky_pos(source, frame, NOVAS_CIRS, &apparent) != 0) {
     fprintf(stderr, "ERROR! failed to calculate apparent position.\n");
     exit(1);
   }
 }
 
 
-static void calc_place(const cat_entry *star, const novas_frame *frame) {
+static void calc_place(const object *source, const novas_frame *frame) {
   const novas_timespec *time = &frame->time;
   sky_pos apparent = SKY_POS_INIT;
 
-  if(place_star(time->ijd_tt + time->fjd_tt, star, &frame->observer, time->ut1_to_tt, NOVAS_CIRS, frame->accuracy, &apparent) != 0) {
+  if(place_star(time->ijd_tt + time->fjd_tt, &source->star, &frame->observer, time->ut1_to_tt, NOVAS_CIRS, frame->accuracy, &apparent) != 0) {
     fprintf(stderr, "ERROR! failed to calculate apparent position.\n");
     exit(1);
   }
@@ -52,7 +49,7 @@ static void calc_place(const cat_entry *star, const novas_frame *frame) {
 
 int main(int argc, const char *argv[]) {
   // SuperNOVAS variables used for the calculations ------------------------->
-  cat_entry *stars;                 // Array of sidereal source entries.
+  object *sources;                  // Array of sources
   observer obs;                     // observer location
   novas_timespec obs_time;          // astrometric time of observation
   novas_frame obs_frame;            // observing frame defined for observing time and location
@@ -74,9 +71,9 @@ int main(int argc, const char *argv[]) {
     return 1;
   }
 
-  stars = (cat_entry *) calloc(N, sizeof(cat_entry));
-  if(!stars) {
-    fprintf(stderr, "ERROR! alloc %d stars: %s\n", N, strerror(errno));
+  sources = (object *) calloc(N, sizeof(object));
+  if(!sources) {
+    fprintf(stderr, "ERROR! alloc %d objects: %s\n", N, strerror(errno));
     return 1;
   }
 
@@ -123,17 +120,19 @@ int main(int argc, const char *argv[]) {
   fprintf(stderr, "Configuring %d sources...\n", N);
 
   for(i = 0; i < N; i++) {
-    cat_entry *star = &stars[i];
+    cat_entry star = {};
 
-    sprintf(star->catalog, "TST");
-    sprintf(star->starname, "test-%d", i);
-    star->starnumber = i;
-    star->ra = (23.0 * rand()) / RAND_MAX;
-    star->dec = (180.0 * rand()) / RAND_MAX - 90.0;
-    star->radialvelocity = (1000.0 * rand()) / RAND_MAX - 500.0;
-    star->parallax = (20.0 * rand()) / RAND_MAX;
-    star->promora = (200.0 * rand()) / RAND_MAX - 100.0;
-    star->promodec = (200.0 * rand()) / RAND_MAX - 100.0;
+    sprintf(star.catalog, "TST");
+    sprintf(star.starname, "test-%d", i);
+    star.starnumber = i;
+    star.ra = (23.0 * rand()) / RAND_MAX;
+    star.dec = (180.0 * rand()) / RAND_MAX - 90.0;
+    star.radialvelocity = (1000.0 * rand()) / RAND_MAX - 500.0;
+    star.parallax = (20.0 * rand()) / RAND_MAX;
+    star.promora = (200.0 * rand()) / RAND_MAX - 100.0;
+    star.promodec = (200.0 * rand()) / RAND_MAX - 100.0;
+
+    make_cat_object(&star, &sources[i]);
   }
 
 
@@ -145,7 +144,7 @@ int main(int argc, const char *argv[]) {
   // -------------------------------------------------------------------------
   // Benchmark reduced accuracy, same frame
   timestamp(&start);
-  for(i = 0; i < N; i++) calc_pos(&stars[i], &obs_frame);
+  for(i = 0; i < N; i++) calc_pos(&sources[i], &obs_frame);
   timestamp(&end);
   printf(" - novas_sky_pos(), same frame, red. acc.:        %12.1f positions/sec\n",
           N / novas_diff_time(&end, &start));
@@ -154,7 +153,7 @@ int main(int argc, const char *argv[]) {
   // Benchmark full accuracy, same frame
   obs_frame.accuracy = NOVAS_FULL_ACCURACY;
   timestamp(&start);
-  for(i = 0; i < N; i++) calc_pos(&stars[i], &obs_frame);
+  for(i = 0; i < N; i++) calc_pos(&sources[i], &obs_frame);
   timestamp(&end);
   printf(" - novas_sky_pos(), same frame, full acc.:        %12.1f positions/sec\n",
           N / novas_diff_time(&end, &start));
@@ -164,7 +163,7 @@ int main(int argc, const char *argv[]) {
   // -------------------------------------------------------------------------
   // Benchmark place() reduced accuracy, same frame
   timestamp(&start);
-  for(i = 0; i < N; i++) calc_place(&stars[i], &obs_frame);
+  for(i = 0; i < N; i++) calc_place(&sources[i], &obs_frame);
   timestamp(&end);
   printf(" - place(), same frame, red. acc.:                %12.1f positions/sec\n",
           N / novas_diff_time(&end, &start));
@@ -173,7 +172,7 @@ int main(int argc, const char *argv[]) {
   // Benchmark place() full accuracy, same frame
   obs_frame.accuracy = NOVAS_FULL_ACCURACY;
   timestamp(&start);
-  for(i = 0; i < N; i++) calc_place(&stars[i], &obs_frame);
+  for(i = 0; i < N; i++) calc_place(&sources[i], &obs_frame);
   timestamp(&end);
   printf(" - place(), same frame, full acc.:                %12.1f positions/sec\n",
           N / novas_diff_time(&end, &start));
@@ -189,7 +188,7 @@ int main(int argc, const char *argv[]) {
   for(i = 0; i < N2; i++) {
     novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + i, 0, DUT1, &obs_time);
     novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &obs_time, POLAR_DX, POLAR_DY, &obs_frame);
-    calc_pos(&stars[i], &obs_frame);
+    calc_pos(&sources[i], &obs_frame);
   }
   timestamp(&end);
   printf(" - novas_sky_pos, individual, red. acc.:          %12.1f positions/sec\n",
@@ -201,7 +200,7 @@ int main(int argc, const char *argv[]) {
   for(i = 0; i < N3; i++) {
     novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + i, 0, DUT1, &obs_time);
     novas_make_frame(NOVAS_FULL_ACCURACY, &obs, &obs_time, POLAR_DX, POLAR_DY, &obs_frame);
-    calc_pos(&stars[i], &obs_frame);
+    calc_pos(&sources[i], &obs_frame);
   }
   timestamp(&end);
   printf(" - novas_sky_pos, individual, full acc.:          %12.1f positions/sec\n",
@@ -213,8 +212,8 @@ int main(int argc, const char *argv[]) {
   obs_frame.accuracy = NOVAS_REDUCED_ACCURACY;
   timestamp(&start);
   for(i = 0; i < N2; i++) {
-    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + ((i % 2) ? 1 : -1), 0, DUT1, &obs_frame.time);
-    calc_place(&stars[i], &obs_frame);
+    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + i, 0, DUT1, &obs_frame.time);
+    calc_place(&sources[i], &obs_frame);
   }
   timestamp(&end);
   printf(" - place(), individual, red. acc.:                %12.1f positions/sec\n",
@@ -225,8 +224,8 @@ int main(int argc, const char *argv[]) {
   obs_frame.accuracy = NOVAS_FULL_ACCURACY;
   timestamp(&start);
   for(i = 0; i < N3; i++) {
-    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + ((i % 2) ? 1 : -1), 0, DUT1, &obs_frame.time);
-    calc_place(&stars[i], &obs_frame);
+    novas_set_time(NOVAS_TT, novas_get_time(&start, NOVAS_TT) + i, 0, DUT1, &obs_frame.time);
+    calc_place(&sources[i], &obs_frame);
   }
   timestamp(&end);
   printf(" - place(), individual, full acc.:                %12.1f positions/sec\n",

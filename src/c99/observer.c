@@ -981,6 +981,52 @@ int obs_posvel(double jd_tdb, double ut1_to_tt, enum novas_accuracy accuracy, co
 }
 
 /**
+ * Returns precise ITRS position and velocity vectors for an observer located on or near Earth's
+ * surface.
+ *
+ * @param ts        Astrometric time of oservation
+ * @param site      ITRF / GRS80 geodetic location on Earth
+ * @param v_itrs    [km/s] surface velocity vector in ITRS, or NULL if observing from a fixed
+ *                  Earth location.
+ * @param[out] pos  ITRS position vector of observer. It may be NULL if not required.
+ * @param[out] vel  ITRS velocity vector of observer. It may be NULL if not required.
+ * @return          0 if successful, or else -1 if any of the input pointers is NULL or if
+ *                  both output pointers are NULL (errno will be set to EINVAL).
+ *
+ * @author Attila Kovacs
+ * @since 1.8
+ *
+ * @sa novas_site_gcrs_posvel(), geo_posvel()
+ */
+int novas_site_itrs_posvel(const novas_timespec *restrict ts, const on_surface *restrict site, const double *restrict v_itrs,
+        double *restrict pos, double *restrict vel) {
+  static const char *fn = "novas_site_gcrs_posvel";
+
+  if(!ts)
+    return novas_error(-1, EINVAL, fn, "input time specification is NULL");
+
+  if(!site)
+    return novas_error(-1, EINVAL, fn, "input site is NULL");
+
+  if(pos == vel)
+    return novas_error(-1, EINVAL, fn, "identical output vectors pos = vel");
+
+  // ITRS
+  terra(site, 0.0, pos, vel);
+
+  // Add surface velocity...
+  if(vel && v_itrs) {
+    int k;
+    double kms = NOVAS_KMS / NOVAS_AU_PER_DAY;
+    for(k = 0; k < 3; k++)
+      vel[k] = novas_add_vel(vel[k], v_itrs[k] * kms);
+  }
+
+  return 0;
+}
+
+
+/**
  * Returns precise GCRS position and velocity vectors for an observer located on or near Earth's
  * surface.
  *
@@ -1014,42 +1060,21 @@ int novas_site_gcrs_posvel(const novas_timespec *restrict ts, const on_surface *
         double xp, double yp, enum novas_accuracy accuracy, double *restrict pos, double *restrict vel) {
   static const char *fn = "novas_site_gcrs_posvel";
 
-  double tdb;
-
-  if(!ts)
-    return novas_error(-1, EINVAL, fn, "input time specification is NULL");
-
-  if(!site)
-    return novas_error(-1, EINVAL, fn, "input site is NULL");
-
   if(accuracy != NOVAS_FULL_ACCURACY && accuracy != NOVAS_REDUCED_ACCURACY)
     return novas_error(-1, EINVAL, fn, "invalid accuracy: %d", accuracy);
 
-  if(pos == vel)
-    return novas_error(-1, EINVAL, fn, "identical output vectors pos = vel");
-
-  // ITRS
-  terra(site, 0.0, pos, vel);
-
-  // Add surface velocity...
-  if(vel && v_itrs) {
-    int k;
-    double kms = NOVAS_KMS / NOVAS_AU_PER_DAY;
-    for(k = 0; k < 3; k++)
-      vel[k] = novas_add_vel(vel[k], v_itrs[k] * kms);
-  }
-
-  tdb = novas_get_time(ts, NOVAS_TDB);
+  prop_error(fn, novas_site_itrs_posvel(ts, site, v_itrs, pos, vel), 0);
+  double tdb = novas_get_time(ts, NOVAS_TDB);
 
   // ITRS -> GCRS
   if(pos) {
-   itrs_to_tod(ts->ijd_tt, ts->fjd_tt, ts->ut1_to_tt, accuracy, xp, yp, pos, pos);
-   tod_to_gcrs(tdb, accuracy, pos, pos);
+    itrs_to_tod(ts->ijd_tt, ts->fjd_tt, ts->ut1_to_tt, accuracy, xp, yp, pos, pos);
+    tod_to_gcrs(tdb, accuracy, pos, pos);
   }
 
   if(vel) {
-   itrs_to_tod(ts->ijd_tt, ts->fjd_tt, ts->ut1_to_tt, accuracy, xp, yp, vel, vel);
-   tod_to_gcrs(tdb, accuracy, vel, vel);
+    itrs_to_tod(ts->ijd_tt, ts->fjd_tt, ts->ut1_to_tt, accuracy, xp, yp, vel, vel);
+    tod_to_gcrs(tdb, accuracy, vel, vel);
   }
 
   return 0;
@@ -1179,8 +1204,8 @@ int obs_planets(double jd_tdb, enum novas_accuracy accuracy, const double *restr
   novas_debug(dbmode);
 
   // If could not calculate deflection due to Sun, return with error
-  if((planets->mask & (1 << NOVAS_SUN)) == 0)
-    prop_error("grav_init_planet:sun", error, 0);
+  if((pl_mask & (1 << NOVAS_SUN)) != 0 && (planets->mask & (1 << NOVAS_SUN)) == 0)
+    prop_error("obs_planets:sun", error, 0);
 
   // If could not get positions for another gravitating body then
   // return error only if in extra debug mode...

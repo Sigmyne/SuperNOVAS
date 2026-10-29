@@ -3649,9 +3649,15 @@ int make_comoving_observer(const object *restrict place, observer *restrict obs)
 /// @c_observer
 int novas_ephem_state(double jd_tdb, enum novas_accuracy accuracy, const void *p_object, double *restrict pos, double *restrict vel);
 
+/// @c_observer
+int novas_site_itrs_posvel(const novas_timespec *restrict ts, const on_surface *restrict site, const double *restrict v_itrs,
+        double *restrict pos, double *restrict vel);
+
 // in iers.c
 /// @c_time
 int novas_leap_for_jd(double jd_utc);
+
+
 
 
 // <================= END of SuperNOVAS API =====================>
