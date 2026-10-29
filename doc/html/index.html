@@ -795,7 +795,13 @@ Details</summary>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyLeft">NOVAS C 3.1 <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span>, individual  </td><td class="markdownTableBodyCenter">reduced  </td><td class="markdownTableBodyRight">64171  </td></tr>
 </table>
+<p></p>
+</details>
 <p>For comparison, a very similar benchmark with <a href="https://www.astropy.org/">astropy</a> (v8.0.2 on Python v3.14.8) on the same machine, provides 90-100 positions / second both for a fixed frame and for individual frames. As such, <b>SuperNOVAS</b> is a whopping ~40000 times faster than <b>astropy</b> for calculations in the same observing frame, and 2&ndash;3 orders of magnitude faster than <b>astropy</b> for individual frames. (The <b>astropy</b> benchmarking code is also provided under the <span class="tt">benchmark/</span> folder in the <b>SuperNOVAS</b> GitHub repository).</p>
+<details >
+<summary >
+Details</summary>
+<p></p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">Description  </th><th class="markdownTableHeadRight">positions / sec  </th></tr>
