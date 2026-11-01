@@ -1032,7 +1032,7 @@ static int test_observers() {
 static int test_sources() {
   cat_entry star;
 
-  printf(" Testing date %.3f\n", (tdb - J2000));
+  //printf(" Testing date %.3f\n", (tdb - J2000));
 
   make_cat_entry("22+20", "TST", 1001, 22.0, 20.0, 3.0, -2.0, 5.0, 10.0, &star);
   if(make_object(2, star.starnumber, star.starname, &star, &source) != 0) return -1;
@@ -1062,13 +1062,9 @@ static int test_dates() {
 
     test_time_specific();
 
-    if(test_sources() != 0) {
-      fprintf(stderr, " -- FAILED\n");
-      return -1;
-    }
+    if(test_sources() != 0) return -1;
   }
 
-  fprintf(stderr, " -- OK\n");
   return 0;
 }
 

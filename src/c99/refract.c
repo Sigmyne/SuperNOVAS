@@ -176,7 +176,7 @@ static double novas_refraction(enum novas_refraction_model model, const on_surfa
   static const char *fn = "novas_refraction";
 
   if(!loc) {
-    novas_set_errno(EINVAL, fn, "NULL on surface observer location");
+    novas_set_errno(EINVAL, fn, "NULL surface observer location");
     return NAN;
   }
 
@@ -332,7 +332,7 @@ double novas_radio_refraction(double jd_tt, const on_surface *loc, enum novas_re
   (void) jd_tt;
 
   if(!loc) {
-    novas_set_errno(EINVAL, fn, "NULL on surface observer location");
+    novas_set_errno(EINVAL, fn, "NULL surface observer location");
     return NAN;
   }
 
@@ -485,7 +485,7 @@ double novas_wave_refraction(double jd_tt, const on_surface *loc, enum novas_ref
   double p, t, r, ps = 0.0, pw = 0.0, gamma, beta, a, b, tanz;
 
   if(!loc) {
-    novas_set_errno(EINVAL, fn, "NULL on surface observer location");
+    novas_set_errno(EINVAL, fn, "NULL surface observer location");
     return NAN;
   }
 

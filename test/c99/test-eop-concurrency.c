@@ -4,11 +4,16 @@
  * in case of failure.
  */
 
+#ifndef _MSC_VER
+#  define _DEFAULT_SOURCE           ///< for struct timespec, PATH_MAX
+#endif
+
 #include <errno.h>
 #include <math.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "novas.h"
 
@@ -58,7 +63,6 @@ static char *get_resource(const char *filename, char *path, int len) {
   }
   return NULL;
 }
-
 
 static char *get_resource_url(const char *filename) {
   static char url[PATH_MAX + 10];

@@ -651,9 +651,10 @@ int spin(double angle, const double *in, double *out) {
  *                  a null-vector. It may be NULL if not required.
  * @return          0 if successful, -1 of any of the arguments are NULL, or
  *                  1 if all input components are 0 so 'ra' and 'dec' are indeterminate, or else 2
- *                  if both x and y are zero, but z is nonzero, and so 'ra' is indeterminate.
+ *                  if debug mode is set to NOVAS_DEBUG_EXTRA and both x and y are zero, but z is
+ *                  nonzero, so 'ra' is indeterminate.
  *
- * @sa radec2vector()
+ * @sa radec2vector(), novas_debug()
  */
 short vector2radec(const double *restrict pos, double *restrict ra, double *restrict dec) {
   static const char *fn = "vector2radec";
@@ -678,7 +679,7 @@ short vector2radec(const double *restrict pos, double *restrict ra, double *rest
     if(dec)
       *dec = (pos[2] < 0.0) ? -90.0 : 90.0;
 
-    return novas_error(2, EDOM, fn, "indeterminate RA for equatorial pole input");
+    return novas_get_debug_mode() == NOVAS_DEBUG_EXTRA ? novas_error(2, EDOM, fn, "indeterminate RA for equatorial pole input") : 0;
   }
 
   if(ra) {

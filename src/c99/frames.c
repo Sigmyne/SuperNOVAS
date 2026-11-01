@@ -391,7 +391,12 @@ static int set_obs_posvel(novas_frame *frame) {
   int k, res;
 
   if(frame->observer.where == NOVAS_OBSERVER_ON_EARTH || frame->observer.where == NOVAS_AIRBORNE_OBSERVER) {
-    const double *v_itrs = (frame->observer.where == NOVAS_AIRBORNE_OBSERVER) ? frame->observer.near_earth.sc_vel : NULL;
+    const double *v_itrs;
+
+    if(isnan(frame->dx) || isnan(frame->dy))
+      return novas_error(-1, EAGAIN, "set_obs_posvel", "polar offsets undefined for observer type %d", frame->observer.where);
+
+    v_itrs = (frame->observer.where == NOVAS_AIRBORNE_OBSERVER) ? frame->observer.near_earth.sc_vel : NULL;
     novas_transform T = {};
 
     res = novas_site_itrs_posvel(&frame->time, &frame->observer.on_surf, v_itrs, frame->obs_pos, frame->obs_vel);
@@ -557,14 +562,13 @@ int novas_make_frame(enum novas_accuracy accuracy, const observer *obs, const no
 
   if(novas_is_auto_fetch_eop() && (isnan(xp) || isnan(yp))) {
     // Fetch EOP from IERS, as needed.
-    novas_eop eop = {};
-    if(novas_fetch_eop(novas_get_time(time, NOVAS_UTC), 0.0, &eop) == 0) {
-      xp = 1e3 * eop.xp;
-      yp = 1e3 * eop.yp;
-    }
-    else {
+    novas_eop eop = NOVAS_EOP_INVALID;
+
+    if(novas_fetch_eop(novas_get_time(time, NOVAS_UTC), 0.0, &eop) < 0)
       novas_trace_invalid(fn);
-    }
+
+    xp = 1e3 * eop.xp;
+    yp = 1e3 * eop.yp;
   }
 
   tdb2[0] = time->ijd_tt;

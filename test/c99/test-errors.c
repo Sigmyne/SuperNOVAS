@@ -43,6 +43,28 @@ static char *resourcePath = "resources";
 
 static char *dataPath = ".." PATH_SEP "data";
 
+// Capturing handler used by test_error_handler() below. Appends to the buffer
+// because some emission paths (novas_set_errno, novas_error) invoke the handler
+// multiple times per call (prefix + body + suffix).
+static char captured_msg[1024];
+static int captured_len = 0;
+
+
+static void error_sink(const char *fmt, va_list args) {}
+
+static void error_capture(const char *fmt, va_list args) {
+  int avail = (int) sizeof(captured_msg) - captured_len;
+  if(avail > 1) {
+    int n = vsnprintf(captured_msg + captured_len, (size_t) avail, fmt, args);
+    if(n > 0) captured_len += (n < avail) ? n : (avail - 1);
+  }
+}
+
+static void reset_captured(void) {
+  captured_msg[0] = '\0';
+  captured_len = 0;
+}
+
 static int dummy_ephem(const char *name, long id, double jd_tdb_high, double jd_tdb_low, enum novas_origin *origin, double *pos, double *vel) {
   (void) name;
   (void) jd_tdb_high;
@@ -73,6 +95,23 @@ static int check_nan(const char *func, double value) {
     fprintf(stderr, "ERROR! %s: expected NAN, got %f\n", func, value);
     return 1;
   }
+  return 0;
+}
+
+static int check_error_captured(const char *func, const char *text) {
+  if(*captured_msg == '\0') {
+    fprintf(stderr, "ERROR! %s: expected error output.\n", func);
+    return 1;
+  }
+
+  if(!text)
+    text = func;
+
+  if(!strstr(captured_msg, text)) {
+    fprintf(stderr, "ERROR! error does not contain '%s': %s\n", text, captured_msg);
+    return 1;
+  }
+
   return 0;
 }
 
@@ -253,15 +292,22 @@ static int test_z2v() {
 }
 
 static int test_refract() {
-  on_surface loc = ON_SURFACE_INIT, loc0 = ON_SURFACE_INIT;
   int n = 0;
 
-  novas_debug(NOVAS_DEBUG_ON);
-  fprintf(stderr, ">>> Expecting error message...\n");
+  on_surface loc = ON_SURFACE_INIT, loc0 = ON_SURFACE_INIT;
+  double r;
 
+
+  novas_debug(NOVAS_DEBUG_ON);
+  novas_set_error_handler(error_capture);
+  reset_captured();
   errno = 0;
-  double r = refract(NULL, NOVAS_STANDARD_ATMOSPHERE, 30.0);
+
+  r = refract(NULL, NOVAS_STANDARD_ATMOSPHERE, 30.0);
   if(check("refract:loc", 1, r == 0.0 && errno == EINVAL)) n++;
+  if(check_error_captured("refract:loc:err", "NULL")) n++;
+
+  novas_set_error_handler(NULL);
   novas_debug(NOVAS_DEBUG_OFF);
 
   errno = 0;
@@ -907,7 +953,11 @@ static int test_geo_posvel() {
   if(check("geo_posvel:accuracy", 1, geo_posvel(0.0, 0.0, -1, &o, p, v))) n++;
 
   novas_debug(NOVAS_DEBUG_EXTRA);
+  novas_set_error_handler(error_capture);
+  reset_captured();
   if(check("geo_posvel:geodetic", -1, geo_posvel(0.0, 0.0, NOVAS_REDUCED_ACCURACY, &o, p, v))) n++;
+  if(check_error_captured("geo_posvel:geodetic", "inaccurate")) n++;
+  novas_set_error_handler(NULL);
   novas_debug(m);
 
   o.where = -1;
@@ -1018,9 +1068,24 @@ static int test_vector2radec() {
   if(check("vector2radec:zero", 1, vector2radec(p, &ra, &dec))) n++;
 
   p[2] = 1.0;
-  if(check("vector2radec:pole", 2, vector2radec(p, &ra, &dec))) n++;
-  if(check("vector2radec:pole:ra:null", 2, vector2radec(p, NULL, &dec))) n++;
-  if(check("vector2radec:pole:dec:null", 2, vector2radec(p, &ra, NULL))) n++;
+
+  novas_debug(NOVAS_DEBUG_ON);
+  if(check("vector2radec:pole", 0, vector2radec(p, &ra, &dec))) n++;
+  if(check("vector2radec:pole:ra:null", 0, vector2radec(p, NULL, &dec))) n++;
+  if(check("vector2radec:pole:dec:null", 0, vector2radec(p, &ra, NULL))) n++;
+
+  novas_debug(NOVAS_DEBUG_EXTRA);
+  novas_set_error_handler(error_capture);
+  if(check("vector2radec:pole:extra", 2, vector2radec(p, &ra, &dec))) n++;
+  if(check_error_captured("vector2radec:pole", "indeterminate")) n++;
+  if(check("vector2radec:pole:ra:null:extra", 2, vector2radec(p, NULL, &dec))) n++;
+  if(check_error_captured("vector2radec:ra:null", "indeterminate")) n++;
+  if(check("vector2radec:pole:dec:null:extra", 2, vector2radec(p, &ra, NULL))) n++;
+  if(check_error_captured("vector2radec:dec:null", "indeterminate")) n++;
+  novas_set_error_handler(NULL);
+  novas_debug(NOVAS_DEBUG_OFF);
+
+
 
   return n;
 }
@@ -1137,11 +1202,14 @@ static int test_grav_def() {
 
   if(check("grav_def:sun", 13, grav_def(NOVAS_JD_J2000, NOVAS_OBSERVER_AT_GEOCENTER, NOVAS_FULL_ACCURACY, p, po, p))) n++;
 
-  fprintf(stderr, ">>> Expecting an error and trace...\n");
   novas_debug(NOVAS_DEBUG_EXTRA);
+  novas_set_error_handler(error_capture);
+  reset_captured();
   enable_earth_sun_hp(1);
   if(check("grav_def:planets", 12, grav_def(NOVAS_JD_J2000, NOVAS_OBSERVER_AT_GEOCENTER, NOVAS_FULL_ACCURACY, p, po, p))) n++;
+  if(check_error_captured("grav_def:planets:err", "planet number")) n++;
   enable_earth_sun_hp(0);
+  novas_set_error_handler(NULL);
   novas_debug(NOVAS_DEBUG_OFF);
 
   return n;
@@ -1355,9 +1423,12 @@ static int test_refraction() {
   if(check_nan("inv_refract:conv", novas_inv_refract(switching_refraction, NOVAS_JD_J2000, NULL, NOVAS_REFRACT_OBSERVED, 10.0))) n++;
   else if(check("inv_refract:conv:errno", ECANCELED, errno)) n++;
 
-  fprintf(stderr, ">>> Expecting an error and trace...\n");
   novas_debug(1);
+  novas_set_error_handler(error_capture);
+  reset_captured();
   novas_optical_refraction(NOVAS_JD_J2000, NULL, NOVAS_REFRACT_OBSERVED, 10.0);
+  if(check_error_captured("novas_optical_refration", "NULL")) n++;
+  novas_set_error_handler(NULL);
   novas_debug(0);
 
   obs.humidity = -1.01;
@@ -1386,6 +1457,13 @@ static int test_make_frame() {
 
   obs.where = NOVAS_OBSERVER_PLACES;
   if(check("make_frame:obs:where:hi", -1, novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &frame))) n++;
+
+  // Geodetic....
+  novas_set_auto_fetch_eop(0);
+  if(check("make_frame:set_time", 0, novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 0, 0.0, &ts))) n++;
+  if(check("make_frame:geodetic", 0, make_observer_on_surface(30.0, -40.0, 3000.0, 10.0, 900.0, &obs))) n++;
+  if(check("make_frame:geodetic:no-polar", -1, novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, NAN, NAN, &frame))) n++;
+  novas_set_auto_fetch_eop(1);
 
   return n;
 }
@@ -2658,41 +2736,30 @@ static int test_trace_invalid() {
 
   enum novas_debug_mode mode = novas_get_debug_mode();
 
+  novas_set_error_handler(error_capture);
+
   novas_debug(NOVAS_DEBUG_OFF);
-  printf(">>> Expecting no trace...\n");
+  reset_captured();
   novas_trace_invalid("test_trace_invalid:debug:off");
+  if(check("test_trace_invalid:debug:off", 0, *captured_msg)) n++;
 
   novas_debug(NOVAS_DEBUG_ON);
-  printf(">>> Expecting trace...\n");
+  reset_captured();
   novas_trace_invalid("test_trace_invalid:debug:on");
+  if(check_error_captured("test_trace_invalid:debug:on", NULL)) n++;
 
   novas_debug(NOVAS_DEBUG_EXTRA);
-  printf(">>> Expecting trace...\n");
+  reset_captured();
   novas_trace_invalid("test_trace_invalid:debug:extra");
+  if(check_error_captured("test_trace_invalid:debug:extra", NULL)) n++;
 
+  novas_set_error_handler(NULL);
   novas_debug(mode);
 
   return n;
 }
 
-// Capturing handler used by test_error_handler() below. Appends to the buffer
-// because some emission paths (novas_set_errno, novas_error) invoke the handler
-// multiple times per call (prefix + body + suffix).
-static char captured_msg[512];
-static int captured_len = 0;
 
-static void capturing_handler(const char *fmt, va_list args) {
-  int avail = (int) sizeof(captured_msg) - captured_len;
-  if(avail > 1) {
-    int n = vsnprintf(captured_msg + captured_len, (size_t) avail, fmt, args);
-    if(n > 0) captured_len += (n < avail) ? n : (avail - 1);
-  }
-}
-
-static void reset_captured(void) {
-  captured_msg[0] = '\0';
-  captured_len = 0;
-}
 
 static int test_error_handler() {
   int n = 0;
@@ -2700,54 +2767,44 @@ static int test_error_handler() {
   novas_error_handler default_h;
   novas_error_handler prev;
 
+  novas_debug(NOVAS_DEBUG_ON);
+
+  fprintf(stderr, "     > Test trace:\n");
+  novas_trace("check_default_error_handler", -1, 0);
+
   // Installing a custom handler returns the previous (default) handler.
-  default_h = novas_set_error_handler(capturing_handler);
+  default_h = novas_set_error_handler(error_capture);
   if(!default_h) {
     fprintf(stderr, "ERROR! novas_set_error_handler should return non-NULL default handler\n");
     n++;
   }
 
-  novas_debug(NOVAS_DEBUG_ON);
-
   // novas_trace() routes through the active handler.
   reset_captured();
   (void) novas_trace("test_error_handler:trace", 1, 10);
-  if(!strstr(captured_msg, "test_error_handler:trace")) {
-    fprintf(stderr, "ERROR! novas_trace not routed: %s\n", captured_msg);
-    n++;
-  }
+  if(check_error_captured("test_error_handler:trace", NULL)) n++;
 
   // novas_trace_nan() / novas_trace_invalid() also go through the handler.
   reset_captured();
   (void) novas_trace_nan("test_error_handler:nan");
-  if(!strstr(captured_msg, "test_error_handler:nan")) {
-    fprintf(stderr, "ERROR! novas_trace_nan not routed: %s\n", captured_msg);
-    n++;
-  }
+  if(check_error_captured("test_error_handler:nan", NULL)) n++;
+
   reset_captured();
   novas_trace_invalid("test_error_handler:invalid");
-  if(!strstr(captured_msg, "test_error_handler:invalid")) {
-    fprintf(stderr, "ERROR! novas_trace_invalid not routed: %s\n", captured_msg);
-    n++;
-  }
+  if(check_error_captured("test_error_handler:invalid", NULL)) n++;
 
   // Variadic paths: novas_set_errno() and novas_error() forward va_list to handler.
   reset_captured();
   novas_set_errno(EINVAL, "test_error_handler", "errno value %d", 42);
-  if(!strstr(captured_msg, "42")) {
-    fprintf(stderr, "ERROR! novas_set_errno not routed: %s\n", captured_msg);
-    n++;
-  }
+  if(check_error_captured("test_error_handler", "42")) n++;
+
   reset_captured();
   (void) novas_error(-1, EINVAL, "test_error_handler", "err %s", "abc");
-  if(!strstr(captured_msg, "abc")) {
-    fprintf(stderr, "ERROR! novas_error not routed: %s\n", captured_msg);
-    n++;
-  }
+  if(check_error_captured("test_error_handler", "abc")) n++;
 
   // NULL handler silences output across all paths.
   prev = novas_set_error_handler(NULL);
-  if(prev != capturing_handler) {
+  if(prev != error_capture) {
     fprintf(stderr, "ERROR! expected the capturing handler as previous handler, got something else.\n");
     n++;
   }
@@ -2755,7 +2812,7 @@ static int test_error_handler() {
   reset_captured();
 
   // Replacing NULL with a real handler reports the default handler as the previous.
-  prev = novas_set_error_handler(capturing_handler);
+  prev = novas_set_error_handler(error_capture);
   if(prev != default_h) {
     fprintf(stderr, "ERROR! expected the default handler as previous handler, got something else.\n");
     n++;
@@ -3036,7 +3093,7 @@ static int test_fetch_eop() {
 static int test_get_eop_itrf_year() {
   int n = 0;
 
-  if(check("get_eop_itrf_year:-1", -1, novas_get_eop_itrf_year((enum novas_eop_series) -1))) n++;
+  if(check("get_eop_itrf_year:-1", -1, novas_get_eop_itrf_year(EOP_USER_DEFINED))) n++;
   if(check("get_eop_itrf_year:hi", -1, novas_get_eop_itrf_year((enum novas_eop_series) NOVAS_NUM_EOP_SERIES))) n++;
 
   return n;
@@ -3107,8 +3164,10 @@ static int test_set_leap_list() {
   if(check("set_eop_url:leap:errno", ENOSYS, errno)) n++;
 
   novas_debug(NOVAS_DEBUG_EXTRA);
+  novas_set_error_handler(error_sink);
   if(check("set_leap_list:extra", -1, novas_set_leap_list("blah"))) n++;
   if(check("set_eop_url:leap:extra", -1, novas_set_eop_url(EOP_LEAP_LIST, 0, "file://blah"))) n++;
+  novas_set_error_handler(NULL);
   novas_debug(NOVAS_DEBUG_OFF);
 
   errno = 0;

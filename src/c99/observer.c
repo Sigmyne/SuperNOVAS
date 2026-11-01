@@ -1143,7 +1143,7 @@ int bary2obs(const double *pos, const double *pos_obs, double *out, double *rest
  *                      mask bits will have have positions and velocities calculated. See enum
  *                      novas_planet for the enumeration of planet numbers.
  * @return              0 if successful, -1 if any of the pointer arguments is NULL or if the
- *                      output vector is the same as pos_obs, or the error from ephemeris().
+ *                      output vector is the same as pos_obs, or the error code from ephemeris().
  *
  * @sa enum novas_planet, grav_planets(), grav_undo_planets(), set_planet_provider(),
  *     set_planet_provider_hp()
@@ -1203,14 +1203,16 @@ int obs_planets(double jd_tdb, enum novas_accuracy accuracy, const double *restr
   // Re-enable debug traces
   novas_debug(dbmode);
 
-  // If could not calculate deflection due to Sun, return with error
-  if((pl_mask & (1 << NOVAS_SUN)) != 0 && (planets->mask & (1 << NOVAS_SUN)) == 0)
-    prop_error("obs_planets:sun", error, 0);
+  if(error) {
+    // If could not calculate deflection due to Sun, return with error
+    if((pl_mask & (1 << NOVAS_SUN)) != 0 && (planets->mask & (1 << NOVAS_SUN)) == 0)
+      return novas_error(error, EAGAIN, "obs_planets", "Missing required Sun position");
 
-  // If could not get positions for another gravitating body then
-  // return error only if in extra debug mode...
-  if(planets->mask != pl_mask && novas_get_debug_mode() == NOVAS_DEBUG_EXTRA)
-    prop_error(fn, error, 0);
+    // If could not get positions for another gravitating body then
+    // return error only if in extra debug mode...
+    if(planets->mask != pl_mask && novas_get_debug_mode() == NOVAS_DEBUG_EXTRA)
+      return novas_trace(fn, error, 0);
+  }
 
   return 0;
 }
@@ -1256,7 +1258,7 @@ int light_time2(double jd_tdb, const object *restrict body, const double *restri
   static const char *fn = "light_time2";
   int iter = 0;
 
-  double tol, jd[2] = {0};
+  double tol, jd[2] = {0.0};
 
   if(!tlight)
     return novas_error(-1, EINVAL, fn, "NULL 'tlight' output pointer");
@@ -1288,6 +1290,7 @@ int light_time2(double jd_tdb, const object *restrict body, const double *restri
     double dt = 0.0;
 
     error = ephemeris(jd, body, NOVAS_BARYCENTER, accuracy, p_src_obs, v_ssb);
+
     bary2obs(p_src_obs, pos_obs, p_src_obs, tlight);
     prop_error(fn, error, 10);
 
