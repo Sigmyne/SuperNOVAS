@@ -729,6 +729,7 @@ int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *u
       cleanup_handle_async(&c01);
       cleanup_handle_async(&c01_sparse);
       break;
+    case EOP_USER_DEFINED:
     default:
       unlock_eop();
       return novas_error(-1, ERANGE, fn, "invalid EOP series %d", (int) series);
@@ -747,6 +748,7 @@ int novas_set_eop_url(enum novas_eop_series series, int itrf_year, const char *u
     free(discard);
 
   switch(series) {
+    case EOP_USER_DEFINED:
     case EOP_LEAP_LIST: // it's a dummy entry point here, but here for completeness.
     case EOP_RAPID_IAU2000:
       status = checkout_eop_file_async(&rapid, 0);
@@ -924,13 +926,15 @@ int novas_fetch_eop(double jd, long timeout_millis, novas_eop *eop) {
   static THREAD_LOCAL double jd_from, jd_to = -1.0;
 #endif
 
+  const novas_eop invalid = NOVAS_EOP_INVALID;
+
   if(isnan(jd))
     return novas_error(-1, EINVAL, fn, "input jd is NAN");
 
   if(!eop)
     return novas_error(-1, EINVAL, fn, "output eop is NULL");
 
-  memset(eop, 0, sizeof(novas_eop));
+  memcpy(eop, &invalid, sizeof(novas_eop));
 
   eop->jd = jd;
   eop->leap = novas_leap_for_jd(jd);

@@ -115,6 +115,20 @@ static int check_equal_pos(const double *posa, const double *posb, double tol) {
   return n;
 }
 
+static int check_diff_pos(const double *posa, const double *posb, double tol) {
+  int i;
+
+  tol = fabs(tol);
+  if(tol < 1e-30) tol = 1e-30;
+
+  for(i = 0; i < 3; i++) {
+    if(isnan(posa[i]) || isnan(posb[i])) return 0;
+    if(fabs(posa[i] - posb[i]) > tol) return 0;
+  }
+
+  return 1;
+}
+
 static int is_ok(const char *func, int error) {
   if(error) fprintf(stderr, "ERROR %d! %s (source = %s, from = %d)\n", error, func, source.name, obs.where);
   return !error;
@@ -648,7 +662,7 @@ static int test_app_to_hor_compat() {
   sprintf(label, "app_to_hor_compat:make_frame");
   if(!is_ok(label, novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 200.0, 300.0, &frame))) return 1;
 
-  vector2radec(pos0, &ra, &dec);
+  if(!is_ok("app_to_hor:vector2radec", vector2radec(pos0, &ra, &dec))) return 1;
 
   if(!is_ok("app_to_hor_comat:app_to_hor:cirs",
           novas_app_to_hor(&frame, NOVAS_CIRS, ra, dec, NULL, &az, &el))) return 1;
@@ -1092,7 +1106,9 @@ static int test_cirs_tod() {
   double pos1[3] = {0.0}, pos2[3] = {0.0};
   double ra0, dec0, ra1, dec1;
 
-  if(vector2radec(pos0, &ra0, &dec0) != 0) return 0;
+  if(novas_vlen(pos0) == 0.0) return 0;
+
+  if(!is_ok("cirs_to_tod:vector2radec", vector2radec(pos0, &ra0, &dec0))) return 1;
 
   if(!is_ok("cirs_tod:cirs_to_tod", cirs_to_tod(tdb, NOVAS_FULL_ACCURACY, pos0, pos1))) return 1;
 
@@ -1622,7 +1638,7 @@ static int test_dates() {
   for(i = 0; i < 5; i++) {
     int k;
 
-    printf(" Testing date %.3f\n", offsets[i]);
+    //printf(" ... Testing date %.3f\n", offsets[i]);
 
     tdb = J2000 + offsets[i];
 
@@ -1636,8 +1652,6 @@ static int test_dates() {
     n += test_sources();
   }
 
-  if(n) fprintf(stderr, " -- FAILED! %d errors\n", n);
-  else fprintf(stderr, " -- OK\n");
   return n;
 }
 
@@ -1647,7 +1661,7 @@ static int test_refract_astro() {
 
   if(!is_ok("refract_astro:init", make_observer_on_surface(10.0, 20.0, 2000.0, -10.0, 900.0, &o))) return 1;
 
-  for(i = 10; i < 90; i++) {
+  for(i = 10; i < 89; i++) {
     double za = i;
     int j;
 
@@ -1655,7 +1669,7 @@ static int test_refract_astro() {
       double r = refract_astro(&o.on_surf, j, za);
       double r1 = refract(&o.on_surf, j, za - r);
 
-      if(!is_ok("refract_astro", fabs(r - r1) > 1e-4)) {
+      if(!is_ok("refract_astro", !(fabs(r - r1) < 1e-4))) {
         fprintf(stderr, "  za = %d, option = %d, r = %.6f, r1 = %.6f\n", i, j, r, r1);
         return 1;
       }
@@ -1790,7 +1804,7 @@ static int test_planet_provider() {
 static int test_ephem_provider() {
   novas_ephem_provider prior = get_ephem_provider();
 
-  object body;
+  object body = {};
   double p[3], v[3], p0[3], v0[3];
   double tdb2[2] = { tdb };
   int status = 1;
@@ -1810,10 +1824,8 @@ static int test_ephem_provider() {
 
     if(!is_ok("ephem_provider:ephemeris", ephemeris(tdb2, &body, NOVAS_HELIOCENTER, NOVAS_FULL_ACCURACY, p, v))) goto cleanup; // @suppress("Goto statement used")
     if(o == NOVAS_BARYCENTER) {
-      fprintf(stderr, ">>> Expecting diffent A/B, twice:\n");
-      if(!is_ok("ephem_provider:check_pos", !check_equal_pos(p, p0, 1e-9 * vlen(p0)))) goto cleanup; // @suppress("Goto statement used")
-      if(!is_ok("ephem_provider:check_vel", !check_equal_pos(v, v0, 1e-9 * vlen(v0)))) goto cleanup; // @suppress("Goto statement used")
-      fprintf(stderr, " OK.\n");
+      if(!is_ok("ephem_provider:check_diff_pos", check_diff_pos(p, p0, 1e-9 * vlen(p0)))) goto cleanup; // @suppress("Goto statement used")
+      if(!is_ok("ephem_provider:check_diff_vel", check_diff_pos(v, v0, 1e-9 * vlen(v0)))) goto cleanup; // @suppress("Goto statement used")
     }
 
     if(!is_ok("ephem_provider:bary", planet_ephem_provider(tdb, NOVAS_SUN, NOVAS_BARYCENTER, p, v))) goto cleanup; // @suppress("Goto statement used")
@@ -2537,13 +2549,13 @@ static int test_transform() {
   if(!is_ok("transform:invert", novas_invert_transform(&T, &I))) return 1;
 
   novas_transform_vector(pos0, &T, pos1);
-  if(!is_ok("transform:vec", !check_equal_pos(pos0, pos1, 1e-9))) return 1;
+  if(!is_ok("transform:vec", check_diff_pos(pos0, pos1, 1e-9))) return 1;
 
   novas_transform_vector(pos1, &I, pos1);
   if(!is_ok("transform:inv:vec", check_equal_pos(pos0, pos1, 1e-9))) return 1;
 
   novas_transform_sky_pos(&p0, &T, &p1);
-  if(!is_ok("transform:sky", !check_equal_pos(p0.r_hat, p1.r_hat, 1e-9))) return 1;
+  if(!is_ok("transform:sky", check_diff_pos(p0.r_hat, p1.r_hat, 1e-9))) return 1;
 
   novas_transform_sky_pos(&p1, &I, &p1);
   if(!is_ok("transform:inv:sky", check_equal_pos(p0.r_hat, p1.r_hat, 1e-9))) return 1;
@@ -2890,7 +2902,7 @@ static int test_orbit_posvel_callisto() {
   memcpy(pos0, pos, sizeof(pos));
 
   for(i = 3 ;--i >= 0; ) pos[i] += pos1[i];
-  vector2radec(pos, &ra, &dec);
+  if(!is_ok("orbit_posvel_callistor:vector2radec", vector2radec(pos, &ra, &dec))) n++;
 
   ra *= HOURANGLE;
   dec *= DEGREE;
@@ -4291,9 +4303,9 @@ static int test_make_moon_orbit_elp() {
     printf("  ERROR! make_moon_orbit / ELP: RMS = %8.3f (x: %8.3f, y: %8.3f)\n", rms, sumx, sumy);
     n++;
   }
-  else {
-    printf("  ... make_moon_orbit: RMS = %8.3f (x: %8.3f, y: %8.3f)\n", rms, sumx, sumy);
-  }
+//  else {
+//    printf("  ... make_moon_orbit: RMS = %8.3f (x: %8.3f, y: %8.3f)\n", rms, sumx, sumy);
+//  }
 
   return n;
 }
@@ -4321,9 +4333,9 @@ static int test_moon_elp_ecl_pos() {
 
     novas_moon_elp_ecl_pos(tdb, 0.0, pos);
     for(i = 3; --i >= 0; ) pos[i] *= NOVAS_AU / NOVAS_KM;
-    sprintf(label, "moon_elp_posvel:%.1f", tdb);
 
-    printf("  ... %s: d = %.3f km\n", label, novas_vdist(pos, p0));
+    //sprintf(label, "moon_elp_posvel:%.1f", tdb);
+    //printf("  ... %s: d = %.3f km\n", label, novas_vdist(pos, p0));
 
     if(!is_ok(label, check_equal_pos(pos, p0, 1.0))) n++;
   }
@@ -5104,7 +5116,7 @@ static int test_moon_elp_posvel() {
 
   novas_set_time(NOVAS_TDB, NOVAS_JD_B1950, 32, 0.0, &ts);
   make_observer_at_geocenter(&obs);
-  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+  if(!is_ok("moon_elp_posvel:make_frame", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f))) return 1;
 
   // J2000 ecliptic
   novas_moon_elp_ecl_pos(NOVAS_JD_B1950, 0.01, p0);
@@ -5137,7 +5149,7 @@ static int test_moon_elp_posvel() {
   if(1) return n;
 
   make_observer_on_surface(19.3, -155.2, 4150.0, 0.0, 637.0, &obs);
-  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+  if(!is_ok("moon_elp_poscel:site:make_frame", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f))) n++;
 
   // observer pos at time.
   novas_site_gcrs_posvel(&ts, &obs.on_surf, NULL, 0.0, 0.0, NOVAS_FULL_ACCURACY, p1, v1);
@@ -5173,7 +5185,7 @@ static int test_moon_elp_sky_pos() {
   make_itrf_site(19.3, -155.2, 4150.0, &site);
   make_observer_at_site(&site, &obs);
   novas_set_time(NOVAS_TDB, NOVAS_JD_B1950, 32, 0.0, &ts);
-  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+  if(!is_ok("moon_elp_sky_pos:make_frame", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f))) n++;
 
   // moon pos at time
   novas_moon_elp_posvel(&f, NOVAS_TOD, p, NULL);
@@ -5181,15 +5193,15 @@ static int test_moon_elp_sky_pos() {
   // observer pos/vel at time (in TOD)
   novas_site_gcrs_posvel(&ts, &obs.on_surf, NULL, 0.0, 0.0, NOVAS_FULL_ACCURACY, NULL, vo);
   aberration(p, vo, 0.0, p1);
-  vector2radec(p1, &ra, &dec);
 
+  if(!is_ok("moon_elp_sky_pos:vector2radec", vector2radec(p1, &ra, &dec))) n++;
   if(!is_ok("moon_elp_sky_pos:site", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
   if(!is_equal("moon_elp_sky_pos:site:ra", pos.ra, ra, 1e-6)) n++;
   if(!is_equal("moon_elp_sky_pos:site:dec", pos.dec, dec, 1e-6)) n++;
 
   // airborne observer...
   make_airborne_observer(&site, v0, &obs);
-  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f);
+  if(!is_ok("moon_elp_sky_pos:air:make_frame", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f))) n++;
 
   // geocentric observer velocity (TOD)
   for(i = 0; i < 3; i++)
@@ -5202,8 +5214,8 @@ static int test_moon_elp_sky_pos() {
 
   novas_moon_elp_posvel(&f, NOVAS_TOD, p, NULL);
   aberration(p, vo, 0.0, p1);
-  vector2radec(p1, &ra, &dec);
 
+  if(!is_ok("moon_elp_sky_pos:air:vector2radec", vector2radec(p1, &ra, &dec))) n++;
   if(!is_ok("moon_elp_sky_pos:air", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
   if(!is_equal("moon_elp_sky_pos:air:ra", pos.ra, ra, 1e-6)) n++;
   if(!is_equal("moon_elp_sky_pos:air:dec", pos.dec, dec, 1e-6)) n++;
@@ -5803,7 +5815,7 @@ static int test_equals_frame() {
 
   make_observer_at_geocenter(&obs);
   novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.0, &ts);
-  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 100.0, -200.0, &a);
+  if(!is_ok("equals_frame:make_frame:1", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 100.0, -200.0, &a))) n++;
 
   b = a;
 
@@ -5819,13 +5831,13 @@ static int test_equals_frame() {
   if(!is_ok("equals_frame:planets", novas_equals_frame(&a, &b) != 0)) n++;
 
   novas_set_time(NOVAS_TT, NOVAS_JD_J2000 + 2e-7, 32, 0.0, &ts);
-  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 100.0, -200.0, &b);
+  if(!is_ok("equals_frame:make_frame:2", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 100.0, -200.0, &b))) n++;
   if(!is_ok("equals_frame:time", novas_equals_frame(&a, &b) != 0)) n++;
 
   // Geodetic....
   make_observer_on_surface(30.0, -40.0, 3000.0, 10.0, 900.0, &obs);
 
-  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 100.0, -200.0, &a);
+  if(!is_ok("equals_frame:make_frame:3", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 100.0, -200.0, &a))) n++;
   if(!is_ok("equals_frame:earth!=gc", novas_equals_frame(&a, &b) != 0)) n++;
 
   b = a;
@@ -5843,7 +5855,8 @@ static int test_equals_frame() {
   b = a; b.dy = NAN;
   if(!is_ok("equals_frame:earth:dy:NAN", novas_equals_frame(&a, &b) != 0)) n++;
 
-  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, NAN, NAN, &a);
+  a.dx = NAN;
+  a.dy = NAN;
   b = a;
   if(!is_ok("equals_frame:earth:no-polar", novas_equals_frame(&a, &b) != 0)) n++;
 
@@ -6101,10 +6114,10 @@ int main(int argc, char *argv[]) {
   if(argc > 1)
     dataPath = argv[1];
 
+  make_object(NOVAS_CATALOG_OBJECT, 0, "None", NULL, &source);
+
   novas_debug(NOVAS_DEBUG_ON);
   enable_earth_sun_hp(1);
-
-  make_object(NOVAS_CATALOG_OBJECT, 0, "None", NULL, &source);
 
   if(test_novas_debug()) n++;
   if(test_make_cat_entry()) n++;

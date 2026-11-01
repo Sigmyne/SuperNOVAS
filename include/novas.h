@@ -2187,10 +2187,14 @@ enum novas_reference_ellipsoid {
  * @sa novas_eop, novas_set_eop_url()
  */
 enum novas_eop_series {
+  /// User-specified values, not specifically associated with any of the published series data published by IERS.
+  /// @since 1.8
+  EOP_USER_DEFINED = -1,
+
   /// List of leap seconds, since their introduction in 1972 (`leap-seconds.list`).
   /// @deprecated it is not used any longer as of v1.8. Due to the abolishment of leap seconds
   /// going forward, the final list of leaps is now hard coded into SuperNOVAS.
-  EOP_LEAP_LIST = 0,
+  EOP_LEAP_LIST,
 
   /// IERS Rapid Service data for IAU2000, starting in 1973 (`finals.all.iau2000.txt`).
   EOP_RAPID_IAU2000,
@@ -2232,6 +2236,38 @@ typedef struct {
   float lod;          ///< [s] Length of day (LOD) differential.
   float lod_err;      ///< [s] Standard error on Length of day (LOD).
 } novas_eop;
+
+/**
+ * EOP initializer with zero values for the leap seconds, UT1-UTC difference, _x_<sub>p</sub> and
+ * _y_<sub>p</sub> polar offsets, and length-of-day (LOD) differential. All uncertainties are
+ * set to NAN to indicate that this is not actuallt valid EOP data. This initializer may be
+ * used when users want to pass EOP values, but do not really care for the precision afforded
+ * by actual data.
+ *
+ * @since 1.8
+ * @author Attila Kovacs
+ *
+ * @sa novas_eop, NOVAS_EOP_INVALID
+ *
+ * @c_earth
+ */
+#define NOVAS_EOP_NONE    { EOP_USER_DEFINED, NAN, 0, 0.0, NAN, 0.0, NAN, 0.0, NAN, 0.0, NAN }
+
+/**
+ * EOP initializer with undefined (NAN) values for the UT1-UTC difference, _x_<sub>p</sub> and
+ * _y_<sub>p</sub> polar offsets, and length-of-day (LOD) differential and their uncertainties.
+ * The leap seconds is set to 0. This initializer may be used when users do not really
+ * care for conversions between ITRS and TIRS / PEF coordinate systems, but need to pass
+ * some EOP value to functions that need them.
+ *
+ * @since 1.8
+ * @author Attila Kovacs
+ *
+ * @sa novas_eop, NOVAS_EOP_NONE
+ *
+ * @c_earth
+ */
+#define NOVAS_EOP_INVALID { EOP_USER_DEFINED, NAN, 0, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN }
 
 /**
  * Leap seconds value to indicate invalid data.
