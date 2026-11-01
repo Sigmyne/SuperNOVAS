@@ -118,7 +118,7 @@ static int configure_eop(void) {
     return 1;
   }
   if(novas_set_eop_url(EOP_C04_IAU2000_0UTC, 2020, get_resource_url("EOP_20u24_C04_one_file_1962-now.txt"))) {
-    fprintf(stderr, "ERROR! Setting C04 series URL (2)\n");
+    fprintf(stderr, "ERROR! Setting C04 series URL\n");
     return 1;
   }
   return 0;

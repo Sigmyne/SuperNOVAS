@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.8.0] - 2026-11-02
+## [1.8.0] - 2026-11-01
 
 Feature release. The highlights are new observer locations, and changes relating to the upcoming abolishment (freeze) 
 of leap seconds on 20 May 2027, as voted by the General Conference on Weights and Measures (CGPM). As a result of the 
