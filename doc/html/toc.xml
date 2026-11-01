@@ -709,9 +709,12 @@
         <topic label="yp_err" href="structnovas__eop.html#a0f76e007852c146462d3d79577cb5057"/>
       </topic>
       <topic label="NOVAS_DELAUNAY_ARGS_INIT" href="group__earth.html#gabf34092276df6f7e9ddaab92a197179b"/>
+      <topic label="NOVAS_EOP_INVALID" href="group__earth.html#ga6773e89e63a5e431bc4355dcee9d63c1"/>
+      <topic label="NOVAS_EOP_NONE" href="group__earth.html#ga95f28ff4537b70133d44b75dcec2638e"/>
       <topic label="novas_delaunay_args" href="group__earth.html#ga159819a645320787dd3e0049b40142d6"/>
       <topic label="novas_nutation_provider" href="group__earth.html#ga44786e1f9eb1825df3984dce24254eb8"/>
       <topic label="novas_eop_series" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">
+        <topic label="EOP_USER_DEFINED" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914"/>
         <topic label="EOP_LEAP_LIST" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a"/>
         <topic label="EOP_RAPID_IAU2000" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193"/>
         <topic label="EOP_C04_IAU2000_0UTC" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12"/>
@@ -1044,6 +1047,8 @@
           <topic label="NOVAS_EARTH_INIT" href="group__source.html#gabad802a863342aebe9a40587b4e47bab"/>
           <topic label="NOVAS_EARTH_RADIUS" href="group__observer.html#ga139f16e134bf6119b6e04c8272c85668"/>
           <topic label="NOVAS_EMB_INIT" href="group__source.html#ga209cb6db7acbde105772520150f238de"/>
+          <topic label="NOVAS_EOP_INVALID" href="group__earth.html#ga6773e89e63a5e431bc4355dcee9d63c1"/>
+          <topic label="NOVAS_EOP_NONE" href="group__earth.html#ga95f28ff4537b70133d44b75dcec2638e"/>
           <topic label="NOVAS_EQUATOR_TYPES" href="group__nonequatorial.html#gade30c5c72c918b2428e803e3f4430ceb"/>
           <topic label="NOVAS_FRAME_INIT" href="group__frame.html#gab1c90a8754103ec1bfcf241c75fe9371"/>
           <topic label="NOVAS_G_EARTH" href="novas_8h.html#af125f22b69933024d6a8513b205dca8b"/>
@@ -1195,6 +1200,7 @@
             <topic label="EROT_GST" href="novas_8h.html#a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62"/>
           </topic>
           <topic label="novas_eop_series" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">
+            <topic label="EOP_USER_DEFINED" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914"/>
             <topic label="EOP_LEAP_LIST" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a"/>
             <topic label="EOP_RAPID_IAU2000" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193"/>
             <topic label="EOP_C04_IAU2000_0UTC" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12"/>

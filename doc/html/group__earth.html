@@ -139,6 +139,10 @@ Classes</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:gabf34092276df6f7e9ddaab92a197179b" id="r_gabf34092276df6f7e9ddaab92a197179b"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#gabf34092276df6f7e9ddaab92a197179b">NOVAS_DELAUNAY_ARGS_INIT</a></td></tr>
 <tr class="memdesc:gabf34092276df6f7e9ddaab92a197179b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty initializer for <a class="el" href="structnovas__delaunay__args.html" title="Fundamental Delaunay arguments of the Sun and Moon, from Simon section 3.4(b.3).">novas_delaunay_args</a>.  <br /></td></tr>
+<tr class="memitem:ga6773e89e63a5e431bc4355dcee9d63c1" id="r_ga6773e89e63a5e431bc4355dcee9d63c1"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga6773e89e63a5e431bc4355dcee9d63c1">NOVAS_EOP_INVALID</a>&#160;&#160;&#160;{ <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914">EOP_USER_DEFINED</a>, NAN, 0, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN }</td></tr>
+<tr class="memdesc:ga6773e89e63a5e431bc4355dcee9d63c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">EOP initializer with undefined (NAN) values for the UT1-UTC difference, <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> polar offsets, and length-of-day (LOD) differential and their uncertainties.  <br /></td></tr>
+<tr class="memitem:ga95f28ff4537b70133d44b75dcec2638e" id="r_ga95f28ff4537b70133d44b75dcec2638e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga95f28ff4537b70133d44b75dcec2638e">NOVAS_EOP_NONE</a>&#160;&#160;&#160;{ <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914">EOP_USER_DEFINED</a>, NAN, 0, 0.0, NAN, 0.0, NAN, 0.0, NAN, 0.0, NAN }</td></tr>
+<tr class="memdesc:ga95f28ff4537b70133d44b75dcec2638e"><td class="mdescLeft">&#160;</td><td class="mdescRight">EOP initializer with zero values for the leap seconds, UT1-UTC difference, <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> polar offsets, and length-of-day (LOD) differential.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -149,10 +153,14 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ga1ded006133b58c40985faff42c35e6ee" id="r_ga1ded006133b58c40985faff42c35e6ee"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ga1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> { <a class="el" href="#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a">EOP_LEAP_LIST</a> = 0
+<tr class="memitem:ga1ded006133b58c40985faff42c35e6ee" id="r_ga1ded006133b58c40985faff42c35e6ee"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ga1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> { <br />
+&#160;&#160;<a class="el" href="#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914">EOP_USER_DEFINED</a> = -1
+, <a class="el" href="#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a">EOP_LEAP_LIST</a>
 , <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193">EOP_RAPID_IAU2000</a>
 , <a class="el" href="#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12">EOP_C04_IAU2000_0UTC</a>
-, <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a>
+, <br />
+&#160;&#160;<a class="el" href="#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a>
+<br />
  }</td></tr>
 <tr class="memdesc:ga1ded006133b58c40985faff42c35e6ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the IERS EOP series used (or to use).  <a href="#ga1ded006133b58c40985faff42c35e6ee">More...</a><br /></td></tr>
 <tr class="memitem:gab970f5de5d5e04874cb31865459b0b4f" id="r_gab970f5de5d5e04874cb31865459b0b4f"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#gab970f5de5d5e04874cb31865459b0b4f">novas_equinox_type</a> { <a class="el" href="#ggab970f5de5d5e04874cb31865459b0b4fa4649e3c4b655ead9fa3e53a75186ab30">NOVAS_MEAN_EQUINOX</a> = 0
@@ -247,6 +255,48 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ga6773e89e63a5e431bc4355dcee9d63c1" name="ga6773e89e63a5e431bc4355dcee9d63c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6773e89e63a5e431bc4355dcee9d63c1">&#9670;&#160;</a></span>NOVAS_EOP_INVALID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NOVAS_EOP_INVALID&#160;&#160;&#160;{ <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914">EOP_USER_DEFINED</a>, NAN, 0, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>EOP initializer with undefined (NAN) values for the UT1-UTC difference, <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> polar offsets, and length-of-day (LOD) differential and their uncertainties. </p>
+<p>The leap seconds is set to 0. This initializer may be used when users do not really care for conversions between ITRS and TIRS / PEF coordinate systems, but need to pass some EOP value to functions that need them.</p>
+<dl class="section since"><dt>Since</dt><dd>1.8 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structnovas__eop.html" title="Earth Orienation Parameters (EOP), such as obtained from IERS.">novas_eop</a>, <a class="el" href="#ga95f28ff4537b70133d44b75dcec2638e" title="EOP initializer with zero values for the leap seconds, UT1-UTC difference, xp and yp polar offsets,...">NOVAS_EOP_NONE</a> </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#gaba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop()</a>, and <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>.</p>
+
+</div>
+</div>
+<a id="ga95f28ff4537b70133d44b75dcec2638e" name="ga95f28ff4537b70133d44b75dcec2638e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga95f28ff4537b70133d44b75dcec2638e">&#9670;&#160;</a></span>NOVAS_EOP_NONE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NOVAS_EOP_NONE&#160;&#160;&#160;{ <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914">EOP_USER_DEFINED</a>, NAN, 0, 0.0, NAN, 0.0, NAN, 0.0, NAN, 0.0, NAN }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>EOP initializer with zero values for the leap seconds, UT1-UTC difference, <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> polar offsets, and length-of-day (LOD) differential. </p>
+<p>All uncertainties are set to NAN to indicate that this is not actuallt valid EOP data. This initializer may be used when users want to pass EOP values, but do not really care for the precision afforded by actual data.</p>
+<dl class="section since"><dt>Since</dt><dd>1.8 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structnovas__eop.html" title="Earth Orienation Parameters (EOP), such as obtained from IERS.">novas_eop</a>, <a class="el" href="#ga6773e89e63a5e431bc4355dcee9d63c1" title="EOP initializer with undefined (NAN) values for the UT1-UTC difference, xp and yp polar offsets,...">NOVAS_EOP_INVALID</a> </dd></dl>
+
+</div>
+</div>
 <a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
 <a id="ga159819a645320787dd3e0049b40142d6" name="ga159819a645320787dd3e0049b40142d6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga159819a645320787dd3e0049b40142d6">&#9670;&#160;</a></span>novas_delaunay_args</h2>
@@ -314,7 +364,10 @@ Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structnovas__eop.html" title="Earth Orienation Parameters (EOP), such as obtained from IERS.">novas_eop</a>, <a class="el" href="#ga30319d4fc323f4f42d199e454abf0aef" title="Specify a URL to use for a given IERS Earth Orientation Parameter (EOP) series.">novas_set_eop_url()</a> </dd></dl>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a" name="gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a"></a>EOP_LEAP_LIST&#160;</td><td class="fielddoc"><p>List of leap seconds, since their introduction in 1972 (<span class="tt">leap-seconds.list</span>). </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914" name="gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914"></a>EOP_USER_DEFINED&#160;</td><td class="fielddoc"><p>User-specified values, not specifically associated with any of the published series data published by IERS. </p>
+<dl class="section since"><dt>Since</dt><dd>1.8 </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a" name="gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a"></a>EOP_LEAP_LIST&#160;</td><td class="fielddoc"><p>List of leap seconds, since their introduction in 1972 (<span class="tt">leap-seconds.list</span>). </p>
 </td></tr>
 <tr><td class="fieldname"><a id="gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193" name="gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193"></a>EOP_RAPID_IAU2000&#160;</td><td class="fielddoc"><p>IERS Rapid Service data for IAU2000, starting in 1973 (<span class="tt">finals.all.iau2000.txt</span>). </p>
 </td></tr>
@@ -1034,7 +1087,7 @@ novas_fetch_current_eop(), <a class="el" href="#ga30319d4fc323f4f42d199e454abf0a
 <dd>
 <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a>, <a class="el" href="group__time.html#gaf4a1a5180905a7d8f76aeafe3f9a8ebb" title="Sets an astronomical time to the fractional Julian Date value, defined in the specified timescale.">novas_set_time()</a>, <a class="el" href="#ga7dafe09841e9a43a7f8c87ce67a8d553" title="Disable or Re-enabled the automatic fetching of Earth Orientation Parameter values from IERS,...">novas_set_auto_fetch_eop()</a>, <a class="el" href="group__earth.html" title="Earth orientation">Earth orientation</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="structnovas__eop.html#affd6c6e56f462ca17a1badb73cf3c907">novas_eop::jd</a>, <a class="el" href="structnovas__eop.html#ab16f1e9735ea4825852497ab33b3ebf3">novas_eop::leap</a>, <a class="el" href="#gaba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop()</a>, and <a class="el" href="group__time.html#ga3d487552b2112f93ed7ec9347faf2574">novas_leap_for_jd()</a>.</p>
+<p class="reference">References <a class="el" href="structnovas__eop.html#affd6c6e56f462ca17a1badb73cf3c907">novas_eop::jd</a>, <a class="el" href="structnovas__eop.html#ab16f1e9735ea4825852497ab33b3ebf3">novas_eop::leap</a>, <a class="el" href="#ga6773e89e63a5e431bc4355dcee9d63c1">NOVAS_EOP_INVALID</a>, <a class="el" href="#gaba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop()</a>, and <a class="el" href="group__time.html#ga3d487552b2112f93ed7ec9347faf2574">novas_leap_for_jd()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#gaba2fe38e07b94adaa6e8eb1b0a39a7ea">novas_fetch_eop()</a>, <a class="el" href="#ga4fe4a31a0284f79b6099bdc9a32f6206">novas_fetch_eop_unix()</a>, and <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838">novas_make_frame()</a>.</p>
 
@@ -1554,7 +1607,7 @@ Time, Frame, GeodeticObserver, CalendarDate::to_time() </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaaacc7748d90e01bb53ace4dc330ffa65" title="Returns the URL currently configured for a given IERS Earth Orientation Parameter (EOP) series.">novas_get_eop_url()</a>, <a class="el" href="#gaba2fe38e07b94adaa6e8eb1b0a39a7ea" title="Obtains interpolated Earth Orientation Parameter data from the International Earth Rotation and Refer...">novas_fetch_eop()</a>, <a class="el" href="#gaa3b5a785b2a478011aacd114a96d25e8" title="Returns the ITRF realization year for a given IERS Earth Orientation Parameter (EOP) series.">novas_get_eop_itrf_year()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a>, <a class="el" href="#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12">EOP_C04_IAU2000_0UTC</a>, <a class="el" href="#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a">EOP_LEAP_LIST</a>, <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193">EOP_RAPID_IAU2000</a>, <a class="el" href="#ga30319d4fc323f4f42d199e454abf0aef">novas_set_eop_url()</a>, and <a class="el" href="iers_8c.html#a3bfd89aa8b76fc752b67f09b182197c7">novas_set_leap_list()</a>.</p>
+<p class="reference">References <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a>, <a class="el" href="#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12">EOP_C04_IAU2000_0UTC</a>, <a class="el" href="#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a">EOP_LEAP_LIST</a>, <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193">EOP_RAPID_IAU2000</a>, <a class="el" href="#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914">EOP_USER_DEFINED</a>, <a class="el" href="#ga30319d4fc323f4f42d199e454abf0aef">novas_set_eop_url()</a>, and <a class="el" href="iers_8c.html#a3bfd89aa8b76fc752b67f09b182197c7">novas_set_leap_list()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ga30319d4fc323f4f42d199e454abf0aef">novas_set_eop_url()</a>.</p>
 

@@ -1,5 +1,8 @@
 var NAVTREEINDEX8 =
 {
+"structnovas__eop.html#ac53ddbbe3c91d0403543273a6380a4b6":[8,0,3,4],
+"structnovas__eop.html#ac7b81e3fff4afb5fa90ad52008cbc938":[8,0,3,8],
+"structnovas__eop.html#adad511b5bdef74f8aab97945a432f54a":[8,0,3,7],
 "structnovas__eop.html#af72647faf3ebbfed343c9dfee414ab17":[8,0,3,5],
 "structnovas__eop.html#affd6c6e56f462ca17a1badb73cf3c907":[8,0,3,2],
 "structnovas__frame.html":[8,0,4],

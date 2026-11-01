@@ -1310,7 +1310,7 @@ Below is a non-exhaustive overview new features added by __SuperNOVAS__ on top o
  - New observer locations with dynamically calculated positions and velocities, such as observers defined by an 
    ephemeris location or by Keplerian orbital elements.
    
- - Leap seconds are now hard coded into SuperNOVAS, eliminating the dependence of an external (e.g. online) resource.
+ - Leap seconds are now hard coded into SuperNOVAS, eliminating the dependence on an external (e.g. online) resource.
    There will be no more leap seconds introduced after 20 May 2027, leaving the current 37 seconds for many millenia.
    As a result, SuperNOVAS time functions, which have previously taken a leap seconds input, will now ignore that
    input parameter, and will use the leap seconds that is appropriate for the time that is defined.
@@ -1321,7 +1321,7 @@ Below is a non-exhaustive overview new features added by __SuperNOVAS__ on top o
 
 Many __SuperNOVAS__ changes are focused on improving the usability and promote best coding practices so that both
 the library and your application will be safer, and less prone to nagging errors. Below is a detailed listing of
-the principal ways __SuperNOVAS__ has improved on the original NOVAS C library in these respects.
+the principal ways __SuperNOVAS__ has improved on the original NOVAS C library in this regard:
 
 
  - Changed to support for calculations in parallel threads by making cached results thread-local. This works using the 

@@ -229,6 +229,10 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga139f16e134bf6119b6e04c8272c85668"><td class="mdescLeft">&#160;</td><td class="mdescRight">[m] Equatorial radius of Earth (ITRF / GRS80 model)  <br /></td></tr>
 <tr class="memitem:ga209cb6db7acbde105772520150f238de" id="r_ga209cb6db7acbde105772520150f238de"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__source.html#ga209cb6db7acbde105772520150f238de">NOVAS_EMB_INIT</a></td></tr>
 <tr class="memdesc:ga209cb6db7acbde105772520150f238de"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt"><a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a" title="Celestial object of interest.">object</a></span> initializer for the Earth-Moon Barycenter (EMB)  <br /></td></tr>
+<tr class="memitem:ga6773e89e63a5e431bc4355dcee9d63c1" id="r_ga6773e89e63a5e431bc4355dcee9d63c1"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga6773e89e63a5e431bc4355dcee9d63c1">NOVAS_EOP_INVALID</a>&#160;&#160;&#160;{ <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914">EOP_USER_DEFINED</a>, NAN, 0, NAN, NAN, NAN, NAN, NAN, NAN, NAN, NAN }</td></tr>
+<tr class="memdesc:ga6773e89e63a5e431bc4355dcee9d63c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">EOP initializer with undefined (NAN) values for the UT1-UTC difference, <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> polar offsets, and length-of-day (LOD) differential and their uncertainties.  <br /></td></tr>
+<tr class="memitem:ga95f28ff4537b70133d44b75dcec2638e" id="r_ga95f28ff4537b70133d44b75dcec2638e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga95f28ff4537b70133d44b75dcec2638e">NOVAS_EOP_NONE</a>&#160;&#160;&#160;{ <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914">EOP_USER_DEFINED</a>, NAN, 0, 0.0, NAN, 0.0, NAN, 0.0, NAN, 0.0, NAN }</td></tr>
+<tr class="memdesc:ga95f28ff4537b70133d44b75dcec2638e"><td class="mdescLeft">&#160;</td><td class="mdescRight">EOP initializer with zero values for the leap seconds, UT1-UTC difference, <em>x</em><sub>p</sub> and <em>y</em><sub>p</sub> polar offsets, and length-of-day (LOD) differential.  <br /></td></tr>
 <tr class="memitem:gade30c5c72c918b2428e803e3f4430ceb" id="r_gade30c5c72c918b2428e803e3f4430ceb"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#gade30c5c72c918b2428e803e3f4430ceb">NOVAS_EQUATOR_TYPES</a></td></tr>
 <tr class="memdesc:gade30c5c72c918b2428e803e3f4430ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of equator types defined in <span class="tt">enum <a class="el" href="group__nonequatorial.html#ga2eff9980cb9db96ab41fb564c1b5c014" title="Constants that determine the type of equator to be used for the coordinate system.">novas_equator_type</a></span>.  <br /></td></tr>
 <tr class="memitem:gab1c90a8754103ec1bfcf241c75fe9371" id="r_gab1c90a8754103ec1bfcf241c75fe9371"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="group__frame.html#gab1c90a8754103ec1bfcf241c75fe9371">NOVAS_FRAME_INIT</a></td></tr>
@@ -409,7 +413,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:aaed93e356acfc0d15d0f64ae0793b4f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">API minor version.  <br /></td></tr>
 <tr class="memitem:a9b926427954233b94ebd6925d86f9f81" id="r_a9b926427954233b94ebd6925d86f9f81"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a9b926427954233b94ebd6925d86f9f81">SUPERNOVAS_PATCHLEVEL</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a9b926427954233b94ebd6925d86f9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer sub version of the release.  <br /></td></tr>
-<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;-devel&quot;</td></tr>
+<tr class="memitem:aadef42ba39811e058ee9efe2c6f7d151" id="r_aadef42ba39811e058ee9efe2c6f7d151"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#aadef42ba39811e058ee9efe2c6f7d151">SUPERNOVAS_RELEASE_STRING</a>&#160;&#160;&#160;&quot;&quot;</td></tr>
 <tr class="memdesc:aadef42ba39811e058ee9efe2c6f7d151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.  <br /></td></tr>
 <tr class="memitem:a44de9d1672290d153a1dfb0685886208" id="r_a44de9d1672290d153a1dfb0685886208"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a44de9d1672290d153a1dfb0685886208">SUPERNOVAS_VERSION_STRING</a></td></tr>
 <tr class="memdesc:a44de9d1672290d153a1dfb0685886208"><td class="mdescLeft">&#160;</td><td class="mdescRight">The version string for this library.  <br /></td></tr>
@@ -501,10 +505,14 @@ Enumerations</h2></td></tr>
 <tr class="memitem:a9e882d9c9055f187d3a8dc9b019f0609" id="r_a9e882d9c9055f187d3a8dc9b019f0609"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#a9e882d9c9055f187d3a8dc9b019f0609">novas_earth_rotation_measure</a> { <a class="el" href="#a9e882d9c9055f187d3a8dc9b019f0609ab07b6e5ed11fd50e7c2287b5b6626b46">EROT_ERA</a> = 0
 , <a class="el" href="#a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62">EROT_GST</a>
  }</td></tr>
-<tr class="memitem:ga1ded006133b58c40985faff42c35e6ee" id="r_ga1ded006133b58c40985faff42c35e6ee"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> { <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a">EOP_LEAP_LIST</a> = 0
+<tr class="memitem:ga1ded006133b58c40985faff42c35e6ee" id="r_ga1ded006133b58c40985faff42c35e6ee"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">novas_eop_series</a> { <br />
+&#160;&#160;<a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914">EOP_USER_DEFINED</a> = -1
+, <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a">EOP_LEAP_LIST</a>
 , <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193">EOP_RAPID_IAU2000</a>
 , <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12">EOP_C04_IAU2000_0UTC</a>
-, <a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a>
+, <br />
+&#160;&#160;<a class="el" href="group__earth.html#gga1ded006133b58c40985faff42c35e6eea374f3de972320eddc472ec96da2f6751">EOP_C01_IAU2000</a>
+<br />
  }</td></tr>
 <tr class="memdesc:ga1ded006133b58c40985faff42c35e6ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifier of the IERS EOP series used (or to use).  <a href="group__earth.html#ga1ded006133b58c40985faff42c35e6ee">More...</a><br /></td></tr>
 <tr class="memitem:ga2eff9980cb9db96ab41fb564c1b5c014" id="r_ga2eff9980cb9db96ab41fb564c1b5c014"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="group__nonequatorial.html#ga2eff9980cb9db96ab41fb564c1b5c014">novas_equator_type</a> { <a class="el" href="group__nonequatorial.html#gga2eff9980cb9db96ab41fb564c1b5c014a90d1ef6cedd7a9fdfd7e538ecea5a040">NOVAS_MEAN_EQUATOR</a> = 0
@@ -2156,7 +2164,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;-devel&quot;</td>
+          <td class="memname">#define SUPERNOVAS_RELEASE_STRING&#160;&#160;&#160;&quot;&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">

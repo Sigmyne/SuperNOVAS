@@ -4,6 +4,7 @@ var searchData=
   ['eop_5fc04_5fiau2000_5f0utc_1',['EOP_C04_IAU2000_0UTC',['../group__earth.html#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12',1,'novas.h']]],
   ['eop_5fleap_5flist_2',['EOP_LEAP_LIST',['../group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a',1,'novas.h']]],
   ['eop_5frapid_5fiau2000_3',['EOP_RAPID_IAU2000',['../group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193',1,'novas.h']]],
-  ['erot_5fera_4',['EROT_ERA',['../novas_8h.html#a9e882d9c9055f187d3a8dc9b019f0609ab07b6e5ed11fd50e7c2287b5b6626b46',1,'novas.h']]],
-  ['erot_5fgst_5',['EROT_GST',['../novas_8h.html#a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62',1,'novas.h']]]
+  ['eop_5fuser_5fdefined_4',['EOP_USER_DEFINED',['../group__earth.html#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914',1,'novas.h']]],
+  ['erot_5fera_5',['EROT_ERA',['../novas_8h.html#a9e882d9c9055f187d3a8dc9b019f0609ab07b6e5ed11fd50e7c2287b5b6626b46',1,'novas.h']]],
+  ['erot_5fgst_6',['EROT_GST',['../novas_8h.html#a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62',1,'novas.h']]]
 ];

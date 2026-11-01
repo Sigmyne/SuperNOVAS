@@ -7,7 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.8.0] - 2026-11-02
+## [1.8.0] - 2026-11-01
 
 Feature release. The highlights are new observer locations, and changes relating to the upcoming abolishment (freeze) 
 of leap seconds on 20 May 2027, as voted by the General Conference on Weights and Measures (CGPM). As a result of the 
@@ -100,6 +100,9 @@ fixes and improvements also.
    
  - #397: Added `novas_site_itrs_posvel()`.
    
+ - #398: Added `EOP_USER_DEFINED` to `enum novas_eop_series` to indicate user-specified EOP data. Also added 
+   `NOVAS_EOP_ZERO` and `NOVAS_EOP_INVALID` initializers for `novas_eop`.
+   
  - Added `USER_SOLSYS` / `USER_READEPH` GNU make configuration options (see `config.mk`) for legacy builds when
    the `solarsystem()` / `solarsystem_hp()` and / or the `readeph()` functions are provided as external modules
    defined only when your application is linked.
@@ -183,6 +186,12 @@ fixes and improvements also.
  - #395: Changed default EOP URLs to use `brahe` mirrors for rapid service and C04 series.
  
  - #397: Streamlined `novas_make_frame()` slightly, and updated benchmarks.
+ 
+ - #398: Improved debug messages for `obs_planets()` and `set_obs_posvel()` (both called by `novas_make_frame()`).
+ 
+ - #398: `vector2radec()` now only throws error 2 at the poles, when debug mode is set to `NOVAS_DEBUG_EXTRA`. 
+   Otherwise, it will return normally with `dec` set to +90 or -90, and `ra` set to 0, which are valid, though
+   not unique, representation of coordinates at the poles.
    
  - Streamlined `novas_make_planet_orbit()` slightly by avoiding duplicate trigonometric calls.
 
@@ -193,8 +202,8 @@ fixes and improvements also.
    
 ### Deprecated
 
- - #395: Deprecated `novas_set_leap_list()`. It's pretty useless now that it does pretty much nothing at all, 
-   except for setting `errno` to `ENOSYS`.
+ - #395: Deprecated `novas_set_leap_list()`. It's pretty useless now that it does pretty much nothing at all, except 
+   setting `errno` to `ENOSYS`.
 
 
 ## [1.7.2] - 2026-08-05

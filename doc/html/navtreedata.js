@@ -122,10 +122,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__nonequatorial.html#gae2d3d508d68d268bec838bdc013d0ada",
-"group__time.html#ga4100ecc5d9badfa07301024baffe9ded",
-"novas_8h.html#a5414c24d23ad004a73ec69b1aad9f3e2",
-"timescale_8c.html#a8fb447618db946a9e2a596d9ea18763f"
+"group__nonequatorial.html#gaab27106a2d5c2c7fa64b2f208deff7f5",
+"group__time.html#ga32d8336084b65fac14d092ab6198c27d",
+"novas_8h.html#a4cc558a8e366bfea3be40777ea0fcbc3",
+"target_8c.html"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

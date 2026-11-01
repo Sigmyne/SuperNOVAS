@@ -21,9 +21,12 @@ var group__earth =
       [ "yp_err", "structnovas__eop.html#a0f76e007852c146462d3d79577cb5057", null ]
     ] ],
     [ "NOVAS_DELAUNAY_ARGS_INIT", "group__earth.html#gabf34092276df6f7e9ddaab92a197179b", null ],
+    [ "NOVAS_EOP_INVALID", "group__earth.html#ga6773e89e63a5e431bc4355dcee9d63c1", null ],
+    [ "NOVAS_EOP_NONE", "group__earth.html#ga95f28ff4537b70133d44b75dcec2638e", null ],
     [ "novas_delaunay_args", "group__earth.html#ga159819a645320787dd3e0049b40142d6", null ],
     [ "novas_nutation_provider", "group__earth.html#ga44786e1f9eb1825df3984dce24254eb8", null ],
     [ "novas_eop_series", "group__earth.html#ga1ded006133b58c40985faff42c35e6ee", [
+      [ "EOP_USER_DEFINED", "group__earth.html#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914", null ],
       [ "EOP_LEAP_LIST", "group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a", null ],
       [ "EOP_RAPID_IAU2000", "group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193", null ],
       [ "EOP_C04_IAU2000_0UTC", "group__earth.html#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12", null ],

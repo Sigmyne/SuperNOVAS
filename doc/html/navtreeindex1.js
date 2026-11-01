@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"group__nonequatorial.html#gaab27106a2d5c2c7fa64b2f208deff7f5":[4,7,3],
+"group__nonequatorial.html#gadcce501bd3f8f70974e7f55527162f83":[4,7,9],
+"group__nonequatorial.html#gade30c5c72c918b2428e803e3f4430ceb":[4,7,0],
 "group__nonequatorial.html#gae2d3d508d68d268bec838bdc013d0ada":[4,7,2],
 "group__nonequatorial.html#gaead87744eeb3029ce7d5ffb1801ee652":[4,7,18],
 "group__nonequatorial.html#gaef3c1f8e4c443e51e65003018449768a":[4,7,11],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "group__time.html#ga23af09cd8e5ec5ef4d0b03a347a4add0":[4,2,53],
 "group__time.html#ga273fd76d83b8e04ced14558c69fd175c":[4,2,34],
 "group__time.html#ga28a5e4ae2b4d6c0069400a6ac5a600cf":[4,2,54],
-"group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422":[4,2,7],
-"group__time.html#ga32d8336084b65fac14d092ab6198c27d":[4,2,35],
-"group__time.html#ga3785083ae52bbbc1e749dbedd7e5d85e":[4,2,5],
-"group__time.html#ga3d487552b2112f93ed7ec9347faf2574":[4,2,42]
+"group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422":[4,2,7]
 };

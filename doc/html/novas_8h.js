@@ -32,6 +32,8 @@ var novas_8h =
     [ "NOVAS_EARTH_INIT", "group__source.html#gabad802a863342aebe9a40587b4e47bab", null ],
     [ "NOVAS_EARTH_RADIUS", "group__observer.html#ga139f16e134bf6119b6e04c8272c85668", null ],
     [ "NOVAS_EMB_INIT", "group__source.html#ga209cb6db7acbde105772520150f238de", null ],
+    [ "NOVAS_EOP_INVALID", "group__earth.html#ga6773e89e63a5e431bc4355dcee9d63c1", null ],
+    [ "NOVAS_EOP_NONE", "group__earth.html#ga95f28ff4537b70133d44b75dcec2638e", null ],
     [ "NOVAS_EQUATOR_TYPES", "group__nonequatorial.html#gade30c5c72c918b2428e803e3f4430ceb", null ],
     [ "NOVAS_FRAME_INIT", "group__frame.html#gab1c90a8754103ec1bfcf241c75fe9371", null ],
     [ "NOVAS_G_EARTH", "novas_8h.html#af125f22b69933024d6a8513b205dca8b", null ],
@@ -183,6 +185,7 @@ var novas_8h =
       [ "EROT_GST", "novas_8h.html#a9e882d9c9055f187d3a8dc9b019f0609a1d56a4fb59b567049ed1937bfcdf0f62", null ]
     ] ],
     [ "novas_eop_series", "group__earth.html#ga1ded006133b58c40985faff42c35e6ee", [
+      [ "EOP_USER_DEFINED", "group__earth.html#gga1ded006133b58c40985faff42c35e6eea219a273d0671c47573b89085d30bb914", null ],
       [ "EOP_LEAP_LIST", "group__earth.html#gga1ded006133b58c40985faff42c35e6eeab68a8ce01e1a212e54a7ca7c468d077a", null ],
       [ "EOP_RAPID_IAU2000", "group__earth.html#gga1ded006133b58c40985faff42c35e6eea9c906aecd204f567713d2416f4da5193", null ],
       [ "EOP_C04_IAU2000_0UTC", "group__earth.html#gga1ded006133b58c40985faff42c35e6eeade92ae9ee1efe6c34bba0fbb62c3ee12", null ],
