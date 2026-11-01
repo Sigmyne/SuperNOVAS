@@ -126,6 +126,7 @@ static char *get_resource(const char *filename, char *path, int len) {
   return NULL;
 }
 
+#if !defined(WITHOUT_CURL) && !defined(OFFLINE)
 static char *get_resource_url(const char *filename) {
   static char url[PATH_MAX + 10];
 
@@ -144,6 +145,7 @@ static char *get_resource_url(const char *filename) {
   sprintf(url, "file://%s", path);
   return url;
 }
+#endif
 
 static int test_make_on_surface() {
   int n = 0;
