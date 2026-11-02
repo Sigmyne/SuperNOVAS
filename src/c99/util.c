@@ -598,42 +598,15 @@ double novas_vlen(const double *restrict v) {
  *                    'angle'. It can be the same vector as the input.
  *
  * @return        0 if successful, or -1 if the output vector is NULL.
- *
  */
 int spin(double angle, const double *in, double *out) {
-  static THREAD_LOCAL double ang_last = -999.0;
-  static THREAD_LOCAL double xx, yx, xy, yy, zz = 1.0;
-
-  double x, y, z;
-
   if(!in || !out)
     return novas_error(-1, EINVAL, "spin", "NULL input or output 3-vector: in=%p, out=%p", in, out);
 
-  angle = remainder(angle * DEGREE, TWOPI);
+  if(out != in)
+    memcpy(out, in, XYZ_VECTOR_SIZE);
 
-  if(fabs(angle - ang_last) >= 1.0e-12) {
-    const double cosang = cos(angle);
-    const double sinang = sin(angle);
-
-    // Rotation matrix (non-zero elements only).
-    xx = cosang;
-    yx = sinang;
-    xy = -sinang;
-    yy = cosang;
-
-    ang_last = angle;
-  }
-
-  x = in[0];
-  y = in[1];
-  z = in[2];
-
-  // Perform rotation.
-  out[0] = xx * x + yx * y;
-  out[1] = xy * x + yy * y;
-  out[2] = zz * z;
-
-  return 0;
+  return novas_Rz(angle * DEGREE, out);
 }
 
 /**

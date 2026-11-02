@@ -295,7 +295,7 @@ short place(double jd_tt, const object *restrict source, const observer *restric
   if(coord_sys == NOVAS_TIRS) {
     // Transform to equator and CIO of date.
     prop_error(fn, gcrs_to_cirs(jd_tdb, accuracy, pos, pos), 80);
-    spin(era(jd_tt, -ut1_to_tt / DAY), pos, pos);
+    novas_Rz(era(jd_tt, -ut1_to_tt / DAY) * DEGREE, pos);
   }
   else {
     novas_icrs_to_sys(pos, jd_tdb, accuracy, coord_sys, pos);

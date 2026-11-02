@@ -677,7 +677,7 @@ static int icrs_to_sys(const novas_frame *restrict frame, double *restrict pos, 
       matrix_transform(pos, &frame->gcrs_to_cirs, pos);
       if(sys == NOVAS_CIRS) return 0;
 
-      spin(frame->era, pos, pos);
+      novas_Rz(frame->era * DEGREE, pos);
       if(sys == NOVAS_TIRS) return 0;
 
       wobble(frame->time.ijd_tt + frame->time.fjd_tt, WOBBLE_TIRS_TO_ITRS, frame->dx, frame->dy, pos, pos);
@@ -1063,7 +1063,7 @@ int novas_app_to_hor(const novas_frame *restrict frame, enum novas_reference_sys
       matrix_transform(pos, &frame->nutation, pos); // @suppress("No break at end of case")
       /* fallthrough */
     case NOVAS_TOD:
-      spin(15.0 * frame->gst, pos, pos);
+      novas_Rz(frame->gst * HOURANGLE, pos);
       wobble(time->ijd_tt + time->fjd_tt, WOBBLE_PEF_TO_ITRS, 1e-3 * frame->dx, 1e-3 * frame->dy, pos, pos);
       break;
 
@@ -1072,7 +1072,7 @@ int novas_app_to_hor(const novas_frame *restrict frame, enum novas_reference_sys
       matrix_transform(pos, &frame->gcrs_to_cirs, pos); // @suppress("No break at end of case")
       /* fallthrough */
     case NOVAS_CIRS:
-      spin(frame->era, pos, pos); // @suppress("No break at end of case")
+      novas_Rz(frame->era * DEGREE, pos); // @suppress("No break at end of case")
       /* fallthrough */
     case NOVAS_TIRS:
       wobble(time->ijd_tt + time->fjd_tt, WOBBLE_TIRS_TO_ITRS, 1e-3 * frame->dx, 1e-3 * frame->dy, pos, pos); // @suppress("No break at end of case")
@@ -1160,7 +1160,7 @@ int novas_hor_to_app(const novas_frame *restrict frame, double az, double el, Re
 
     if(sys != NOVAS_TIRS) {
       // TIRS -> TOD or CIRS...
-      spin(cmp_sys(sys, NOVAS_GCRS) < 0 ? -15.0 * frame->gst : -frame->era, pos, pos);
+      novas_Rz(cmp_sys(sys, NOVAS_GCRS) < 0 ? -frame->gst * HOURANGLE : -frame->era * DEGREE, pos);
 
       // Continue to convert TOD / CIRS to output system....
       switch(sys) {
@@ -1241,7 +1241,7 @@ int novas_app_to_geom(const novas_frame *restrict frame, enum novas_reference_sy
       /* fallthrough */
     case NOVAS_TIRS:
       // TIRS -> CIRS
-      spin(-frame->era, app_pos, app_pos); // @suppress("No break at end of case")
+      novas_Rz(-frame->era * DEGREE, app_pos); // @suppress("No break at end of case")
       /* fallthrough */
     case NOVAS_CIRS:
       matrix_inv_rotate(app_pos, &frame->gcrs_to_cirs, app_pos);

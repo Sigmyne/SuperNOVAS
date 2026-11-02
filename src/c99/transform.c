@@ -124,10 +124,14 @@ short gcrs2equ(double jd_tt, enum novas_dynamical_type sys, enum novas_accuracy 
  * (a local space-fixed system) by applying rotations for polar motion, Earth rotation (for
  * TOD); and nutation, precession, and the dynamical-to-GCRS frame tie (for GCRS).
  *
- * If 'system' is NOVAS_CIRS then method EROT_ERA must be used. Similarly, if 'system' is
- * NOVAS_TOD then method must be EROT_ERA. Otherwise an error 3 is returned.
+ * NOTES:
  *
- * If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.
+ *  - If the celestial system is NOVAS_CIRS then method EROT_ERA must be used together with
+ *    NOVAS_DYNAMICAL_CLASS. Similarly, if the celestial system is NOVAS_TOD then EROT_GST must be
+ *    used together with NOVAS_DYNAMICAL_CLASS. If the celestial system in ICRS/GCRS then either
+ *    `erot` parameter is acceptable together with NOVAS_REFENCE_CLASS.
+ *
+ *  - If both `xp` and `yp` are set to 0 no polar motion is included in the transformation.
  *
  * REFERENCES:
  *
@@ -138,7 +142,7 @@ short gcrs2equ(double jd_tt, enum novas_dynamical_type sys, enum novas_accuracy 
  * @param jd_ut1_high   [day] High-order part of UT1 Julian date.
  * @param jd_ut1_low    [day] Low-order part of UT1 Julian date.
  * @param ut1_to_tt     [s] TT - UT1 Time difference in seconds
- * @param erot          Unused.
+ * @param erot          EROT_ERA (0) or EROT_GST (1)
  * @param accuracy      NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
  * @param coordType     Output coordinate class NOVAS_REFERENCE_CLASS (0, or any value other than
  *                      1) or NOVAS_DYNAMICAL_CLASS (1). Use the former if the output coordinates
@@ -159,8 +163,8 @@ short gcrs2equ(double jd_tt, enum novas_dynamical_type sys, enum novas_accuracy 
  *                      or else either CIRS if 'erot' is EROT_ERA, or TOD if 'erot' is EROT_GST).
  *                      It may be the same vector as the input.
  * @return              0 if successful, -1 if either of the vector arguments is NULL, 1 if
- *                      'accuracy' is invalid, 2 if 'method' is invalid 10--20, or else 10 + the
- *                      error from cio_location(), or 20 + error from cio_basis().
+ *                      `accuracy` is invalid, 2 if `method` is invalid, or else -1 from
+ *                      `cirs_to_gcrs()`.
  *
  * @sa novas_hor_to_app(), itrs_to_cirs(), cirs_to_gcrs(), itrs_to_tod(), tod_to_j2000(),
  *     frame_tie(), cel2ter()
@@ -191,7 +195,7 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
 
       // Compute and apply the Earth rotation angle, 'theta', transforming the
       // vector to the celestial intermediate system.
-      spin(-era(jd_ut1_high, jd_ut1_low), out, out);
+      novas_Rz(-era(jd_ut1_high, jd_ut1_low) * DEGREE, out);
 
       if(coordType != NOVAS_DYNAMICAL_CLASS)
         prop_error(fn, cirs_to_gcrs(jd_tdb, accuracy, out, out), 10);
@@ -204,7 +208,7 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
       else
         memcpy(out, in, XYZ_VECTOR_SIZE);
 
-      spin(-15.0 * novas_gast(jd_ut1_high + jd_ut1_low, ut1_to_tt, accuracy), out, out);
+      novas_Rz(-novas_gast(jd_ut1_high + jd_ut1_low, ut1_to_tt, accuracy) * HOURANGLE, out);
 
       if(coordType != NOVAS_DYNAMICAL_CLASS)
         tod_to_gcrs(jd_tdb, accuracy, out, out);
@@ -221,8 +225,8 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
 
 /**
  * @deprecated This function can be confusing to use due to the input coordinate system being
- *             specified by a combination of two options. Use itrs_to_cirs() or itrs_to_tod()
- *             instead. You can then follow these with other conversions to GCRS (or whatever
+ *             specified by a combination of two options. Use cirs_to_itrs() or tod_to_itrs()
+ *             instead. You can precede these with conversions from GCRS (or whatever
  *             else) as appropriate.
  *
  * Rotates a vector from the celestial to the terrestrial system.  Specifically, it transforms
@@ -230,10 +234,14 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
  * system) by applying rotations for the GCRS-to-dynamical frame tie, precession, nutation, Earth
  * rotation, and polar motion.
  *
- * If 'system' is NOVAS_CIRS then method EROT_ERA must be used. Similarly, if 'system' is
- * NOVAS_TOD then method must be EROT_ERA. Otherwise an error 3 is returned.
+ * NOTES:
  *
- * If both 'xp' and 'yp' are set to 0 no polar motion is included in the transformation.
+ *  - If the celestial system is NOVAS_CIRS then method EROT_ERA must be used together with
+ *    NOVAS_DYNAMICAL_CLASS. Similarly, if the celestial system is NOVAS_TOD then EROT_GST must be
+ *    used together with NOVAS_DYNAMICAL_CLASS. If the celestial system in ICRS/GCRS then either
+ *    `erot` parameter is acceptable together with NOVAS_REFENCE_CLASS.
+ *
+ *  - If both `xp` and `yp` are set to 0 no polar motion is included in the transformation.
  *
  * REFERENCES:
  *
@@ -244,7 +252,7 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
  * @param jd_ut1_high   [day] High-order part of UT1 Julian date.
  * @param jd_ut1_low    [day] Low-order part of UT1 Julian date.
  * @param ut1_to_tt     [s] TT - UT1 Time difference in seconds
- * @param erot          Unused.
+ * @param erot          EROT_ERA (0) or EROT_GST (1).
  * @param accuracy      NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
  * @param coordType     Input coordinate class, NOVAS_REFERENCE_CLASS (0) or NOVAS_DYNAMICAL_CLASS
  *                      (1). Use the former if the input coordinates are in the GCRS, and the
@@ -263,8 +271,8 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
  * @param[out] out      ITRS position vector, geocentric equatorial rectangular coordinates
  *                      (terrestrial system). It can be the same vector as the input.
  * @return              0 if successful, -1 if either of the vector arguments is NULL, 1 if
- *                      'accuracy' is invalid, 2 if 'method' is invalid, or else 10 + the error
- *                      from cio_location(), or 20 + error from cio_basis().
+ *                      `accuracy` is invalid, 2 if `method` is invalid, or else -1 from
+ *                      `gcrs_to_cirs()`.
  *
  * @sa novas_app_to_hor(), gcrs_to_cirs(), cirs_to_itrs(), frame_tie(), j2000_to_tod(),
  *     tod_to_itrs(), ter2cel()
@@ -300,7 +308,7 @@ short cel2ter(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
 
       // Compute and apply the Earth rotation angle, 'theta', transforming the
       // vector to the terrestrial intermediate system.
-      spin(era(jd_ut1_high, jd_ut1_low), out, out);
+      novas_Rz(era(jd_ut1_high, jd_ut1_low) * DEGREE, out);
 
       // Apply polar motion, transforming the vector to the ITRS.
       wobble(jd_tt, WOBBLE_TIRS_TO_ITRS, xp, yp, out, out);
@@ -316,7 +324,7 @@ short cel2ter(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
       }
 
       // Apply Earth rotation.
-      spin(15.0 * novas_gast(jd_ut1_high + jd_ut1_low, ut1_to_tt, accuracy), out, out);
+      novas_Rz(novas_gast(jd_ut1_high + jd_ut1_low, ut1_to_tt, accuracy) * HOURANGLE, out);
 
       // Apply polar motion, transforming the vector to the ITRS.
       if(xp || yp)
