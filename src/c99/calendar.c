@@ -283,7 +283,7 @@ double julian_date(short year, short month, short day, double hour) {
 int cal_date(double tjd, short *restrict year, short *restrict month, short *restrict day, double *restrict hour) {
   int y, m, d;
 
-  novas_jd_to_date(tjd, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, hour);
+  prop_error("cal_date", novas_jd_to_date(tjd, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, hour), 0);
 
   if(year)
     *year = (short) y;
