@@ -261,7 +261,8 @@ novas_planet_provider_hp get_planet_provider_hp() {
  * @return          0 if successful, -1 if the `jd_tdb` or input object argument is NULL or if
  *                  either of the time components is NAN, or else 1 if 'origin' is invalid, 2 if
  *                  `cel_obj->type` is invalid, 10 + the error code from the currently configured
- *                  `novas_planet_provider_hp` call, or 20 + the error code from `readeph()`.
+ *                  `novas_planet_provider_hp` call, or 20 + the error code from the currently
+ *                  configured `novas_ephem_provider` call.
  *
  * @sa set_planet_provider(), set_planet_provider_hp(), set_ephem_provider()
  * @sa make_planet(), make_ephem_object()
