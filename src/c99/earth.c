@@ -455,9 +455,6 @@ static int add_diurnal_eop(double gmst, const novas_delaunay_args *restrict dela
   double *py = yp ? &y : NULL;
   double *put1 = dut1 ? &ut1 : NULL;
 
-  if(!delaunay)
-    return novas_error(-1, EINVAL, "add_diurnal_eop", "Delaunay arguments pointer is NULL.");
-
   novas_diurnal_libration(gmst, delaunay, px, py, put1);
   if(xp)
     *xp += x;
@@ -518,6 +515,8 @@ static int add_diurnal_eop(double gmst, const novas_delaunay_args *restrict dela
  */
 int novas_diurnal_eop(double gmst, const novas_delaunay_args *restrict delaunay, double *restrict dxp, double *restrict dyp,
         double *restrict dut1) {
+  static const char *fn = "novas_diurnal_eop";
+
   if(dxp)
     *dxp = 0.0;
   if(dyp)
@@ -525,7 +524,10 @@ int novas_diurnal_eop(double gmst, const novas_delaunay_args *restrict delaunay,
   if(dut1)
     *dut1 = 0.0;
 
-  prop_error("novas_diurnal_eop", add_diurnal_eop(gmst, delaunay, dxp, dyp, dut1), 0);
+  if(!delaunay)
+    return novas_error(-1, EINVAL, fn, "Delaunay arguments pointer is NULL.");
+
+  prop_error(fn, add_diurnal_eop(gmst, delaunay, dxp, dyp, dut1), 0);
   return 0;
 }
 
