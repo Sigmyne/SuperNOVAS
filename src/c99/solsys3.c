@@ -88,8 +88,8 @@ void enable_earth_sun_hp(int value) {
  * @param[out] velocity [AU/day] Velocity vector of 'body' at 'tjd'; equatorial rectangular
  *                      system referred to the mean equator and equinox of J2000.0, in AU/Day.
  * @return              0 if successful, -1 if there is a required function is not provided
- *                      (errno set to ENOSYS)
- *                      or if one of the output pointer arguments is NULL (errno set to EINVAL).
+ *                      (errno set to ENOSYS), or if one of the output pointer arguments is NULL
+ *                      (errno set to EINVAL), or if the Julian date is NAN (errno set to EDOM).
  *                      1 if the input Julian date ('tjd') is out of range, 2 if 'body' is
  *                      invalid.
  *
@@ -250,6 +250,9 @@ short earth_sun_calc(double jd_tdb, enum novas_planet body, enum novas_origin or
     }
   }
 
+  if(isnan(jd_tdb))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
+
   return 0;
 }
 
@@ -280,7 +283,8 @@ short earth_sun_calc(double jd_tdb, enum novas_planet body, enum novas_origin or
  *                      in AU/Day.
  * @return              0 if successful, -1 if there is a required function is not provided
  *                      (errno set to ENOSYS), or if one of the output pointer arguments is
- *                      NULL (errno set to EINVAL). 1 if the input Julian date ('tjd') is
+ *                      NULL (errno set to EINVAL), or if the Julian date is NAN (errno set
+ *                      to EDOM). 1 if the input Julian date ('tjd') is
  *                      out of range, 2 if 'body' is invalid, or 3 if the high-precision
  *                      orbital data cannot be produced (default return value).
  *
@@ -323,11 +327,14 @@ short earth_sun_calc_hp(const double jd_tdb[restrict 2], enum novas_planet body,
  * @param[out] ra      [h] Right ascension referred to mean equator and equinox of date (hours).
  * @param[out] dec     [deg] Declination referred to mean equator and equinox of date (degrees).
  * @param[out] dis     [AU] Geocentric distance (AU).
- * @return             0 if successful, or else -1 if any of the pointer arguments are NULL.
+ * @return             0 if successful, or else -1 if any of the pointer arguments are NULL
+ *                     (errno set to EINVAL), or if the Julian date is NAN (errno set to EDOM)
  *
  * @sa earth_sun_calc()
  */
 int sun_eph(double jd, double *restrict ra, double *restrict dec, double *restrict dis) {
+  static const char *fn = "sun_eph";
+
   struct sun_con {
     int l;
     int r;
@@ -395,7 +402,7 @@ int sun_eph(double jd, double *restrict ra, double *restrict dec, double *restri
   int i;
 
   if(!ra || !dec || !dis)
-    return novas_error(-1, EINVAL, "sun_eph", "NULL output pointer: ra=%p, dec=%p, dis=%p", ra, dec, dis);
+    return novas_error(-1, EINVAL, fn, "NULL output pointer: ra=%p, dec=%p, dis=%p", ra, dec, dis);
 
   // Define the time units 'u', measured in units of 10000 Julian years
   // from J2000.0, and 't', measured in Julian centuries from J2000.0.
@@ -432,6 +439,9 @@ int sun_eph(double jd, double *restrict ra, double *restrict dec, double *restri
   *ra = *ra / 15.0;
 
   *dec = asin(sin(emean) * sin_lon) / DEGREE;
+
+  if(isnan(jd))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
 
   return 0;
 }

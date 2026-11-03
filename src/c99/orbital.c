@@ -112,7 +112,9 @@ static int change_pole(const double *in, double obl, double Omega, double *out) 
  * @param sys           Orbital system specification
  * @param accuracy      NOVAS_FULL_ACCURACY or NOVAS_REDUCED_ACCURACY
  * @param[in, out] vec  Coordinates
- * @return              0 if successful, or else an error from ecl2equ_vec().
+ * @return              0 if successful, -1 if the accuracy is invalid (errno set to ERANGE) or
+ *                      if the Julian date is NAN (errno set to EDOM), or else an error from
+ *                      ecl2equ_vec().
  *
  * @author Attila Kovacs
  * @since 1.2
@@ -121,7 +123,7 @@ static int orbit2gcrs(double jd_tdb, const novas_orbital_system *sys, enum novas
   static const char *fn = "orbit2gcrs";
 
   if(accuracy != NOVAS_FULL_ACCURACY && accuracy != NOVAS_REDUCED_ACCURACY)
-    return novas_error(-1, EINVAL, fn, "invalid accuracy: %d", accuracy);
+    return novas_error(-1, ERANGE, fn, "invalid accuracy: %d", accuracy);
 
   if(sys->obl)
     change_pole(vec, sys->obl, sys->Omega, vec);
@@ -158,6 +160,9 @@ static int orbit2gcrs(double jd_tdb, const novas_orbital_system *sys, enum novas
 
   prop_error(fn, novas_sys_to_icrs(sys->type, vec, jd_tdb, NOVAS_REDUCED_ACCURACY, vec), 0);
 
+  if(isnan(jd_tdb))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
+
   return 0;
 }
 
@@ -181,6 +186,8 @@ static int orbit2gcrs(double jd_tdb, const novas_orbital_system *sys, enum novas
  * @sa novas_orbit_posvel()
  */
 static int novas_orbital_plane_pos(double M, double e, double *restrict E, double *restrict r_hat, double *restrict l) {
+  static const char *fn = "novas_orbital_plane_pos";
+
   double E1 = remainder(M * DEGREE, TWOPI);
   int i = novas_inv_max_iter;
 
@@ -195,11 +202,14 @@ static int novas_orbital_plane_pos(double M, double e, double *restrict E, doubl
   }
 
   if(i < 0)
-    return novas_error(-1, ECANCELED, "novas_orbital_plane_pos", "Eccentric anomaly convergence failure.");
+    return novas_error(-1, ECANCELED, fn, "Eccentric anomaly convergence failure.");
 
   *E = remainder(E1, TWOPI) / DEGREE;
   *l = 2.0 * atan2(sqrt(1.0 + e) * sin(0.5 * E1), sqrt(1.0 - e) * cos(0.5 * E1)) / DEGREE;
   *r_hat = (1.0 - e * cos(E1));
+
+  if(isnan(M) || isnan(e))
+    return novas_error(-1, EDOM, fn, "NAN input parameter(s): M=%g, e=%g", M, e);
 
   return 0;
 }
@@ -223,7 +233,8 @@ static int novas_orbital_plane_pos(double M, double e, double *restrict E, doubl
  *                  not required.
  * @param[out] vel  [AU/day] Output ICRS velocity vector rel. to orbital center, in the native
  *                  system of the orbital, or NULL if not required. 0 if successful, or else -1 if
- *                  the orbital parameters are NULL, or if the position and velocity output
+ *                  the orbital parameters are NULL (errno set to EINVAL), if the Julian date or the
+ *                  parameters are NAN (errno set to EDOM), or if the position and velocity output
  *                  vectors are the same or the orbital system is ill defined (errno set to
  *                  EINVAL), or if the calculation did not converge (errno set to ECANCELED).
  *
@@ -247,17 +258,18 @@ int novas_orbit_native_posvel(double jd_tdb, const novas_orbital *restrict orbit
 
   dt = (jd_tdb - orbit->jd_tdb);
 
+  // TODO prop at end only (for NAN handling)?
   prop_error(fn, novas_orbital_plane_pos(orbit->M0 + orbit->n * dt, orbit->e, &E, &r_hat, &nu), 0)
 
   E *= DEGREE;
   nu *= DEGREE;
 
   omega = orbit->omega * DEGREE;
-  if(orbit->apsis_period != 0.0)
+  if(orbit->apsis_period != 0.0 && !isnan(orbit->apsis_period))
     omega += TWOPI * remainder(dt / orbit->apsis_period, 1.0);
 
   Omega = orbit->Omega * DEGREE;
-  if(orbit->node_period != 0.0)
+  if(orbit->node_period != 0.0 && !isnan(orbit->node_period))
     Omega += TWOPI * remainder(dt / orbit->node_period, 1.0);
 
   // pos = Rz(-Omega) . Rx(-i) . Rz(-omega) . orb
@@ -298,6 +310,19 @@ int novas_orbit_native_posvel(double jd_tdb, const novas_orbital *restrict orbit
     vel[2] = zx * x + zy * y;
   }
 
+  if(isnan(jd_tdb))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
+
+  if(isnan(orbit->a))
+    return novas_error(-1, EDOM, fn, "semi-major axis is NAN");
+
+  if(isnan(orbit->n))
+    return novas_error(-1, EDOM, fn, "mean motion is NAN");
+
+  if(isnan(orbit->omega) || isnan(orbit->Omega) || isnan(orbit->i))
+    return novas_error(-1, EDOM, fn, "NAN parameter(s): omega=%g, Omega=%g, i=%g", orbit->omega, orbit->Omega, orbit->i);
+
+
   return 0;
 }
 
@@ -321,8 +346,8 @@ int novas_orbit_native_posvel(double jd_tdb, const novas_orbital *restrict orbit
  * @param[out] vel  [AU/day] Output ICRS equatorial velocity vector rel. to orbital center, or
  *                  NULL if not required.
  * @return          0 if successful, or else -1 if the orbital parameters are NULL,
- *                  or if the position and velocity output vectors are the same or the orbital
- *                  system is ill defined (errno set to EINVAL), or if the calculation did not
+ *                  or if the position and velocity output vectors are the same (errno set to EINVAL) or the
+ *                  orbital system is ill defined (errno set to EDOM or ERANGE), or if the calculation did not
  *                  converge (errno set to ECANCELED).
  *
  * @author Attila Kovacs
@@ -366,8 +391,10 @@ int novas_orbit_posvel(double jd_tdb, const novas_orbital *restrict orbit, enum 
  * @param ra    [h] the R.A. of the pole of the orbital reference plane.
  * @param dec   [deg] the declination of the pole of the oribtal reference plane.
  * @param[out]  sys   Orbital system
- * @return      0 if successful, or else -1 (errno will be set to EINVAL) if the output `sys`
- *              pointer is NULL.
+ * @return      0 if successful, or else -1 if the output `sys` pointer is NULL (errno set to
+ *              EINVAL), or if the `ra`/`dec` parameters are NAN (errno set to EDOM), or
+ *              if the reference system type is out of range or if the declination is outside
+ *              the [-90:90] range (errno set to ERANGE).
  *
  * @author Attila Kovacs
  * @since 1.2
@@ -378,15 +405,21 @@ int novas_set_orbsys_pole(enum novas_reference_system type, double ra, double de
   static const char *fn = "novas_set_orbsys_pole";
 
   if((unsigned) type >= NOVAS_TIRS)
-    return novas_error(-1, EINVAL, fn, "invalid orbital system type: %d", type);
+    return novas_error(-1, ERANGE, fn, "invalid orbital system type: %d", type);
 
   if(!sys)
     return novas_error(-1, EINVAL, fn, "input system is NULL");
+
+  if(fabs(dec) > 90.0)
+    return novas_error(-1, ERANGE, fn, "input declination %g exceeds +/- 90", dec);
 
   sys->plane = NOVAS_EQUATORIAL_PLANE;
   sys->type = type;
   sys->obl = remainder(90.0 - dec, DEG360);
   sys->Omega = remainder(15.0 * ra + 90.0, DEG360);
+
+  if(isnan(ra) || isnan(dec))
+    return novas_error(-1, EDOM, fn, "NAN input coord(s): ra=%g, dec=%g", ra, dec);
 
   return 0;
 }

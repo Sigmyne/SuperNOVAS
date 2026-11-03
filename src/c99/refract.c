@@ -24,6 +24,36 @@
 static double lambda = NOVAS_DEFAULT_WAVELENGTH;      ///< [&mu;m] Observing wavelength
 
 
+static int check_weather_parms(const on_surface *restrict loc) {
+  static const char *fn = "check_weather_parms";
+
+  if(!loc)
+    return novas_error(-1, EINVAL, fn, "NULL surface observer location");
+
+  if(loc->temperature < -150.0 || loc->temperature > 100.0)
+    return novas_error(-1, ERANGE, fn, "invalid temperature value: %g C", loc->temperature);
+
+  if(loc->pressure < 0.0 || loc->pressure > 2000.0)
+    return novas_error(-1, ERANGE, fn, "invalid pressure value: %g mbar", loc->pressure);
+
+  if(loc->humidity < 0.0 || loc->humidity > 100.0)
+    return novas_error(-1, ERANGE, fn, "invalid humidity value: %g", loc->humidity);
+
+  return 0;
+}
+
+static int check_elevation(double el) {
+  static const char *fn = "check_elevation";
+
+  if(isnan(el))
+    return novas_error(-1, EDOM, fn, "input elevation is NAN");
+
+  if(fabs(el) > 90.001)
+    return novas_error(-1, ERANGE, fn, "invalid input elevation: %g deg", el);
+
+  return 0;
+}
+
 /**
  * Computes atmospheric optical refraction for a source at an astrometric zenith distance
  * (e.g. calculated without accounting for an atmosphere). This is suitable for converting
@@ -48,7 +78,8 @@ static double lambda = NOVAS_DEFAULT_WAVELENGTH;      ///< [&mu;m] Observing wav
  *                      or NOVAS_WEATHER_AT_LOCATION (2)...
  * @param zd_astro      [deg] Astrometric (unrefracted) zenith distance angle of the source.
  * @return              [deg] the calculated optical refraction. (to ~0.1 arcsec accuracy),
- *                      or 0.0 if the location is NULL or the option is invalid.
+ *                      or 0.0 if the location is NULL or the option is invalid, or NAN if the
+ *                      input zenith distance is NAN.
  *
  * @sa refract(), itrs_to_hor()
  *
@@ -60,6 +91,14 @@ double refract_astro(const on_surface *restrict location, enum novas_refraction_
 
   double refr = 0.0;
   int i;
+
+  if(model == NOVAS_NO_ATMOSPHERE)
+    return 0.0;
+
+  if(isnan(zd_astro)) {
+    novas_warn(EDOM, fn, "input zenith distance is NAN");
+    return NAN;
+  }
 
   if(model == NOVAS_RADIO_REFRACTION)
     return novas_radio_refraction(0.0, location, NOVAS_REFRACT_ASTROMETRIC, 90.0 - zd_astro);
@@ -117,7 +156,7 @@ double refract_astro(const on_surface *restrict location, enum novas_refraction_
 double refract(const on_surface *restrict location, enum novas_refraction_model model, double zd_obs) {
   static const char *fn = "refract";
 
-  double p, t, h, r;
+  double r;
 
   if((unsigned) model >= NOVAS_REFRACTION_MODELS) {
     novas_set_errno(EINVAL, fn, "invalid refraction model option: %d", model);
@@ -127,20 +166,13 @@ double refract(const on_surface *restrict location, enum novas_refraction_model 
   if(model == NOVAS_NO_ATMOSPHERE)
     return 0.0;
 
-  if(!location) {
-    novas_set_errno(EINVAL, fn, "NULL observer location");
-    return 0.0;
-  }
-
-  if(location->temperature < -150.0 || location->temperature > 100.0) {
-    novas_set_errno(EINVAL, fn, "invalid temperature value: %g C", location->temperature);
+  if(isnan(zd_obs)) {
+    novas_warn(EDOM, fn, "input zenith distance is NAN");
     return NAN;
   }
 
-  if(location->pressure < 0.0 || location->pressure > 2000.0) {
-    novas_set_errno(EINVAL, fn, "invalid pressure value: %g mbar", location->pressure);
-    return NAN;
-  }
+  if(check_weather_parms(location) != 0)
+    return novas_trace_nan(fn);
 
   zd_obs = fabs(zd_obs);
 
@@ -148,32 +180,45 @@ double refract(const on_surface *restrict location, enum novas_refraction_model 
   if(zd_obs > 91.0)
     return 0.0;
 
-  if(model == NOVAS_RADIO_REFRACTION)
-    return novas_radio_refraction(0.0, location, NOVAS_REFRACT_OBSERVED, 90.0 - zd_obs);
+  switch(model) {
+    case NOVAS_NO_ATMOSPHERE: // dummy entry point
+    case NOVAS_RADIO_REFRACTION:
+      r = novas_radio_refraction(0.0, location, NOVAS_REFRACT_OBSERVED, 90.0 - zd_obs);
+      break;
 
-  if(model == NOVAS_WAVE_REFRACTION)
-    return novas_wave_refraction(0.0, location, NOVAS_REFRACT_OBSERVED, 90.0 - zd_obs);
+    case NOVAS_WAVE_REFRACTION:
+      r = novas_wave_refraction(0.0, location, NOVAS_REFRACT_OBSERVED, 90.0 - zd_obs);
+      break;
 
-  // If observed weather data are available, use them.  Otherwise, use
-  // crude estimates of average conditions.
-  if(model == NOVAS_WEATHER_AT_LOCATION) {
-    p = location->pressure;
-    t = location->temperature;
+    case NOVAS_STANDARD_ATMOSPHERE:
+    case NOVAS_WEATHER_AT_LOCATION: {
+      double p, t, h = 90.0 - zd_obs;
+
+      if(model == NOVAS_WEATHER_AT_LOCATION) {
+        // If observed weather data are available, use them.  Otherwise, use
+        // crude estimates of average conditions.
+        p = location->pressure;
+        t = location->temperature; // @suppress("No break at end of case")
+      }
+      else {
+        on_surface site = *location;
+        novas_set_default_weather(&site);
+        p = site.pressure;
+        t = site.temperature;
+      }
+
+      r = 0.016667 / tan((h + 7.31 / (h + 4.4)) * DEGREE);
+      r *= (0.28 * p / (t + 273.0));
+    }
   }
-  else {
-    on_surface site = *location;
-    novas_set_default_weather(&site);
-    p = site.pressure;
-    t = site.temperature;
-  }
 
-  h = 90.0 - zd_obs;
-  r = 0.016667 / tan((h + 7.31 / (h + 4.4)) * DEGREE);
-  return r * (0.28 * p / (t + 273.0));
+  prop_nan(fn, r);
+  return r;
 }
 
 static double novas_refraction(enum novas_refraction_model model, const on_surface *loc, enum novas_refraction_type type, double el) {
   static const char *fn = "novas_refraction";
+  double ref;
 
   if(!loc) {
     novas_set_errno(EINVAL, fn, "NULL surface observer location");
@@ -181,13 +226,16 @@ static double novas_refraction(enum novas_refraction_model model, const on_surfa
   }
 
   if(type == NOVAS_REFRACT_OBSERVED)
-    return refract(loc, model, 90.0 - el);
+    ref = refract(loc, model, 90.0 - el);
+  else if(type == NOVAS_REFRACT_ASTROMETRIC)
+    ref = refract_astro(loc, model, 90.0 - el);
+  else {
+    novas_set_errno(EINVAL, fn, "invalid refraction type: %d", (int) type);
+    return NAN;
+  }
 
-  if(type == NOVAS_REFRACT_ASTROMETRIC)
-    return refract_astro(loc, model, 90.0 - el);
-
-  novas_set_errno(EINVAL, fn, "invalid refraction type: %d", (int) type);
-  return NAN;
+  prop_nan(fn, ref);
+  return ref;
 }
 
 /**
@@ -222,7 +270,7 @@ double novas_inv_refract(RefractionModel model, double jd_tt, const on_surface *
   for(i = 0; i < novas_inv_max_iter; i++) {
     double el1 = el0 + dir * refr;
     refr = model(jd_tt, loc, type, el1);
-    if(errno)
+    if(errno || isnan(refr))
       return novas_trace_nan(fn);
 
     if(fabs(refr - dir * (el1 - el0)) < 1e-7)
@@ -253,8 +301,7 @@ double novas_standard_refraction(double jd_tt, const on_surface *loc, enum novas
   double dz = novas_refraction(NOVAS_STANDARD_ATMOSPHERE, loc, type, el);
   (void) jd_tt;
 
-  if(isnan(dz))
-    return novas_trace_nan("novas_standard_refraction");
+  prop_nan("novas_standard_refraction", dz);
   return dz;
 }
 
@@ -281,10 +328,11 @@ double novas_optical_refraction(double jd_tt, const on_surface *loc, enum novas_
   double dz = novas_refraction(NOVAS_WEATHER_AT_LOCATION, loc, type, el);
   (void) jd_tt;
 
-  if(isnan(dz))
-    return novas_trace_nan("novas_optical_refraction");
+  prop_nan("novas_optical_refraction", dz);
   return dz;
 }
+
+
 
 /**
  * Atmospheric refraction model for radio wavelengths (Berman &amp; Rockwell 1976).
@@ -296,6 +344,8 @@ double novas_optical_refraction(double jd_tt, const on_surface *loc, enum novas_
  * observing site.
  *
  * Adapted from FORTAN code provided by Berman &amp; Rockwell 1976.
+ *
+ * NOTES:
  *
  * REFERENCES:
  *
@@ -312,7 +362,7 @@ double novas_optical_refraction(double jd_tt, const on_surface *loc, enum novas_
  * @return          [deg] Estimated refraction, or NAN if there was an error (it should also
  *                  set errno to indicate the type of error). An error is returned if the location
  *                  is NULL, or if the weather parameters are way outside of their resonable
- *                  ranges, or if the elevation is outside the supported [-1:90] range.
+ *                  ranges, or if the elevation is outside the supported [-90:90] range.
  *
  * @sa novas_optical_refraction(), novas_wave_refraction(), novas_standard_refraction()
  * @sa make_itrf_site(), make_gps_site(), make_xyz_site(), make_itrf_observer(), make_gps_observer()
@@ -331,26 +381,6 @@ double novas_radio_refraction(double jd_tt, const on_surface *loc, enum novas_re
 
   (void) jd_tt;
 
-  if(!loc) {
-    novas_set_errno(EINVAL, fn, "NULL surface observer location");
-    return NAN;
-  }
-
-  if(loc->temperature < -150.0 || loc->temperature > 100.0) {
-    novas_set_errno(EINVAL, fn, "invalid temperature value: %g C", loc->temperature);
-    return NAN;
-  }
-
-  if(loc->pressure < 0.0 || loc->pressure > 2000.0) {
-    novas_set_errno(EINVAL, fn, "invalid pressure value: %g mbar", loc->pressure);
-    return NAN;
-  }
-
-  if(loc->humidity < 0.0 || loc->humidity > 100.0) {
-    novas_set_errno(EINVAL, fn, "invalid humidity value: %g", loc->humidity);
-    return NAN;
-  }
-
   if(type == NOVAS_REFRACT_OBSERVED)
     return novas_inv_refract(novas_radio_refraction, jd_tt, loc, NOVAS_REFRACT_ASTROMETRIC, el);
 
@@ -359,10 +389,8 @@ double novas_radio_refraction(double jd_tt, const on_surface *loc, enum novas_re
     return NAN;
   }
 
-  if(el < -1.0 || el > 90.0) {
-    novas_set_errno(EINVAL, fn, "invalid input elevation: %g deg", el);
-    return NAN;
-  }
+  if(check_weather_parms(loc) != 0 || check_elevation(el) != 0)
+    return novas_trace_nan(fn);
 
   // Zenith angle in degrees
   z = 90.0 - el;
@@ -376,15 +404,13 @@ double novas_radio_refraction(double jd_tt, const on_surface *loc, enum novas_re
   for(j = 1; j <= 8; j++)
     poly = poly * E0 + E[11 - j];
 
-  // Not needed... (?)
-  //if(poly <= -80.)
-  //  poly = 0.0;
-
   poly = exp(poly) - E[12];
   refraction = poly * fptem / 3600.0;
   y = exp(((TK * 17.149) - 4684.1) / (TK - 38.45));
 
-  return refraction * (1.0 + (y * loc->humidity * 71.) / (TK * loc->pressure * 0.760));
+  refraction *= (1.0 + (y * loc->humidity * 71.) / (TK * loc->pressure * 0.760));
+
+  return (el + refraction > -1.0) ? refraction : NAN;
 }
 
 /**
@@ -470,7 +496,7 @@ int novas_refract_wavelength(double microns) {
  * @return          [deg] Estimated refraction, or NAN if there was an error (it should also
  *                  set errno to indicate the type of error), e.g. because the location is NULL, or
  *                  because the weather parameters are outside of the supported (sensible) range, or
- *                  because the elevation is outside of the supported (0:90] range, or because the
+ *                  because the elevation is outside of the supported [-90:90] range, or because the
  *                  wavelength set is below 100 nm (0.1 &mu;m);
  *
  * @since 1.4
@@ -484,25 +510,7 @@ double novas_wave_refraction(double jd_tt, const on_surface *loc, enum novas_ref
 
   double p, t, r, ps = 0.0, pw = 0.0, gamma, beta, a, b, tanz;
 
-  if(!loc) {
-    novas_set_errno(EINVAL, fn, "NULL surface observer location");
-    return NAN;
-  }
-
-  if(loc->temperature < -150.0 || loc->temperature > 200.0) {
-    novas_set_errno(EINVAL, fn, "invalid temperature value: %g C", loc->temperature);
-    return NAN;
-  }
-
-  if(loc->pressure < 0.0 || loc->pressure > 10000.0) {
-    novas_set_errno(EINVAL, fn, "invalid pressure value: %g mbar", loc->pressure);
-    return NAN;
-  }
-
-  if(loc->humidity < 0.0 || loc->humidity > 100.0) {
-    novas_set_errno(EINVAL, fn, "invalid humidity value: %g %%", loc->humidity);
-    return NAN;
-  }
+  (void) jd_tt; // unused
 
   if(lambda < 0.1) {
     novas_set_errno(EINVAL, fn, "wavelength too low: %g microns", lambda);
@@ -517,12 +525,13 @@ double novas_wave_refraction(double jd_tt, const on_surface *loc, enum novas_ref
     return NAN;
   }
 
-  if(el <= 0.0 || el > 90.0) {
-    novas_set_errno(EINVAL, fn, "invalid input elevation: %g deg", el);
+  if(el <= 0.0) {
+    novas_warn(ERANGE, fn, "refraction at or below the horizon is undefined (el = %.3f deg)", el);
     return NAN;
   }
 
-  (void) jd_tt; // unused
+  if(check_weather_parms(loc) != 0 || check_elevation(el) != 0)
+    return novas_trace_nan(fn);
 
   t = loc->temperature;
   p = loc->pressure;

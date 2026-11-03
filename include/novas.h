@@ -2329,7 +2329,8 @@ typedef int (*novas_nutation_provider)(double jd_tt_high, double jd_tt_low, doub
  * @param[out] velocity [AU/day] Velocity vector of 'body' at 'tjd'; equatorial rectangular
  *                      system referred to the mean equator and equinox of J2000.0, in AU/Day.
  * @return              0 if successful, -1 if there is a required function is not provided
- *                      (errno set to ENOSYS), 1 if the input Julian date ('tjd') is out of
+ *                      (errno set to ENOSYS) or the input Julian date is NAN (errno set to
+ *                      EDOM); 1 if the input Julian date ('tjd') is out of
  *                      range, 2 if 'body' is invalid, or 3 if the ephemeris data cannot be
  *                      produced for other reasons.
  *
@@ -2368,9 +2369,10 @@ typedef short (*novas_planet_provider)(double jd_tdb, enum novas_planet body, en
  * @param[out] velocity [AU/day] Velocity vector of 'body' at 'tjd'; equatorial rectangular
  *                      system referred to the mean equator and equinox of J2000.0, in AU/Day.
  * @return              0 if successful, -1 if there is a required function is not provided
- *                      (errno set to ENOSYS), 1 if the input Julian date ('tjd') is out of
- *                      range, 2 if 'body' is invalid, or 3 if the ephemeris data cannot be
- *                      produced for other reasons.
+ *                      (errno set to ENOSYS) or the input Julian date is NAN (errno set to
+ *                      EDOM); 1 if the input Julian date ('tjd') is out of range, 2 if 'body'
+ *                      is invalid, or 3 if the ephemeris data cannot be produced for other
+ *                      reasons.
  *
  * @sa set_planet_provider_hp(), novas_planet_provider, ephemeris()
  * @sa make_planet(), novas_sky_pos(), novas_geom_posvel(), grav_planets(), grav_undo_planets()
@@ -3806,6 +3808,7 @@ double novas_trace_nan(const char *restrict loc);
 double novas_check_nan(const char *loc, double x);
 void novas_trace_invalid(const char *loc);
 void novas_set_errno(int en, const char *restrict from, const char *restrict desc, ...);
+void novas_warn(int en, const char *restrict from, const char *restrict desc, ...);
 int novas_error(int ret, int en, const char *restrict from, const char *restrict desc, ...);
 
 /**
@@ -3830,14 +3833,25 @@ int novas_error(int ret, int en, const char *restrict from, const char *restrict
  * @param loc   {string} function / location from where it's called
  * @param n     {int} error code or the call that produces the error code
  *
- * @sa trace_nan()
+ * @sa trace_nan(), prop_nan()
  */
-#  define prop_nan(loc, n) { \
+#  define prop_as_nan(loc, n) { \
         if (n) { \
           novas_trace_nan(loc); \
           return NAN; \
         } \
 }
+
+/**
+ * Propagates a NaN value if it occurs, or else continues on.
+ *
+ * @param loc   {string} function / location from where it's called
+ * @param x     {double} A value that may be NaN
+ *
+ * @sa trace_nan(), proip_as_nan()
+ */
+#  define prop_nan(loc, x)   prop_as_nan(loc, isnan(x))
+
 
 double novas_norm_ang(double angle);
 int novas_time_equals(double jd1, double jd2);

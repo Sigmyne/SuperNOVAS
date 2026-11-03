@@ -27,6 +27,9 @@
 
 /// \cond PRIVATE
 double novas_add_beta(double beta1, double beta2) {
+  if(isnan(beta1) || isnan(beta2))
+    novas_warn(EDOM, "novas_add_beta", "NAN input velocity: beta1 = %g, beta2 = %g [AU/day]", beta1, beta2);
+
   return (beta1 + beta2) / (1 + beta1 * beta2);
 }
 
@@ -43,7 +46,9 @@ double novas_add_beta(double beta1, double beta2) {
  * @sa novas_z_add()
  */
 double novas_add_vel(double v1, double v2) {
-  return novas_add_beta(v1 / C_AUDAY, v2 / C_AUDAY) * C_AUDAY;
+  double v = novas_add_beta(v1 / C_AUDAY, v2 / C_AUDAY) * C_AUDAY;
+  prop_nan("novas_add_vel", v);
+  return v;
 }
 /// \endcond
 
@@ -57,7 +62,7 @@ double novas_add_vel(double v1, double v2) {
  *
  * @param z   the redshift value (z = &Delta;&lambda; / &lambda;<sub>rest</sub>).
  * @return    [km/s] Corresponding velocity of recession, or NAN if the input redshift is invalid,
- *            i.e. z &lt;= -1).
+ *            i.e. _z_ is NAN or _z_ &lt;= -1).
  *
  * @author Attila Kovacs
  * @since 1.2
@@ -65,10 +70,16 @@ double novas_add_vel(double v1, double v2) {
  * @sa novas_v2z(), redshift_vrad()
  */
 double novas_z2v(double z) {
-  if(z <= -1.0) {
-    novas_error(-1, ERANGE, "novas_z2v", "invalid redshift value z=%g", z);
+  static const char *fn = "novas_z2v";
+
+  if(isnan(z))
+    novas_warn(EDOM, fn, "input redshift is NAN");
+
+  else if(z <= -1.0) {
+    novas_set_errno(EDOM, fn, "invalid redshift value z=%g", z);
     return NAN;
   }
+
   z += 1.0;
   z *= z;
   return (z - 1.0) / (z + 1.0) * NOVAS_C / NOVAS_KMS;
@@ -84,7 +95,7 @@ double novas_z2v(double z) {
  *
  * @param vel   [km/s] velocity (i.e. rate) of recession.
  * @return      the corresponding redshift value (z = &Delta;&lambda; / &lambda;<sub>rest</sub>),
- *              or NAN if the input velocity is invalid (i.e., it exceeds the speed of light).
+ *              or NAN if the input velocity is invalid (i.e., NAN or it exceeds the speed of light).
  *
  * @author Attila Kovacs
  * @since 1.2
@@ -92,11 +103,18 @@ double novas_z2v(double z) {
  * @sa novas_z2v(), novas_z_add()
  */
 double novas_v2z(double vel) {
+  static const char *fn = "novas_v2z";
+
   vel *= NOVAS_KMS / NOVAS_C;   // [km/s] -> beta
-  if(fabs(vel) > 1.0) {
-    novas_error(-1, EINVAL, "novas_v2z", "velocity exceeds speed of light v=%g km/s", vel * NOVAS_C / NOVAS_KMS);
+
+  if(isnan(vel))
+    novas_warn(EDOM, fn, "input velocity is NAN");
+
+  else if(fabs(vel) > 1.0) {
+    novas_set_errno(EDOM, fn, "velocity exceeds speed of light v=%g km/s", vel * NOVAS_C / NOVAS_KMS);
     return NAN;
   }
+
   return sqrt((1.0 + vel) / (1.0 - vel)) - 1.0;
 }
 
@@ -119,14 +137,20 @@ double novas_v2z(double vel) {
  */
 double redshift_vrad(double vrad, double z) {
   static const char *fn = "redshift_vrad";
-  double z0;
-  if(z <= -1.0) {
-    novas_error(-1, EINVAL, fn, "invalid redshift value: z=%g", z);
+  double x;
+
+  if(isnan(z))
+    novas_warn(EDOM, fn, "input redshift is NAN");
+
+  else if(z <= -1.0) {
+    novas_set_errno(EINVAL, fn, "invalid redshift value: z=%g", z);
     return NAN;
   }
-  z0 = novas_v2z(vrad);
-  if(isnan(z0)) novas_trace(fn, -1, 0);
-  return novas_z2v((1.0 + z0) * (1.0 + z) - 1.0);
+
+  x = novas_v2z(vrad);
+  x = novas_z2v((1.0 + x) * (1.0 + z) - 1.0);
+  prop_nan(fn, x);
+  return x;
 }
 
 /**
@@ -144,14 +168,20 @@ double redshift_vrad(double vrad, double z) {
  */
 double unredshift_vrad(double vrad, double z) {
   static const char *fn = "unredshift_vrad";
-  double z0;
-  if(z <= -1.0) {
-    novas_error(-1, EINVAL, fn, "invalid redshift value: z=%g", z);
+  double x;
+
+  if(isnan(z))
+    novas_warn(EDOM, fn, "input redshift is NAN");
+
+  else if(z <= -1.0) {
+    novas_set_errno(EINVAL, fn, "invalid redshift value: z=%g", z);
     return NAN;
   }
-  z0 = novas_v2z(vrad);
-  if(isnan(z0)) novas_trace(fn, -1, 0);
-  return novas_z2v((1.0 + z0) / (1.0 + z) - 1.0);
+
+  x = novas_v2z(vrad);
+  x = novas_z2v((1.0 + x) / (1.0 + z) - 1.0);
+  prop_nan(fn, x);
+  return x;
 }
 
 /**
@@ -171,10 +201,16 @@ double unredshift_vrad(double vrad, double z) {
  * @sa grav_redshift(), redshift_vrad(), unredshift_vrad()
  */
 double novas_z_add(double z1, double z2) {
-  if(z1 <= -1.0 || z2 <= -1.0) {
-    novas_error(-1, EINVAL, "novas_z_add", "invalid redshift value: z1=%g, z2=%g", z1, z2);
+  static const char *fn = "novas_z_add";
+
+  if(isnan(z1) || isnan(z2))
+    novas_warn(EDOM, fn, "NAN input redshift: z1 = %g, z2 = %g", z1, z2);
+
+  else if(z1 <= -1.0 || z2 <= -1.0) {
+    novas_set_errno(EINVAL, fn, "invalid redshift value: z1=%g, z2=%g", z1, z2);
     return NAN;
   }
+
   return z1 + z2 + z1 * z2;
 }
 
@@ -192,10 +228,16 @@ double novas_z_add(double z1, double z2) {
  * @sa novas_z_add()
  */
 double novas_z_inv(double z) {
-  if(z <= -1.0) {
-    novas_error(-1, EINVAL, "novas_z_inv", "invalid redshift value: z=%g", z);
+  static const char *fn = "novas_z_inv";
+
+  if(isnan(z))
+    novas_warn(EDOM, fn, "NAN input redshift");
+
+  else if(z <= -1.0) {
+    novas_set_errno(EINVAL, fn, "invalid redshift value: z=%g", z);
     return NAN;
   }
+
   return 1.0 / (1.0 + z) - 1.0;
 }
 
@@ -240,11 +282,21 @@ static int convert_lsr_ssb_vel(const double *vLSR, int sign, double *vSSB) {
  * @sa novas_str_hours(), novas_str_degrees()
  */
 double novas_lsr_to_ssb_vel(double epoch, double ra, double dec, double vLSR) {
+  static const char *fn = "novas_lsr_to_ssb_vel";
+
   double u[3] = {0.0}, v[3];
   double jd = NOVAS_JD_J2000 + NOVAS_JULIAN_YEAR_DAYS * (epoch - 2000.0);
   int i;
 
-  radec2vector(ra, dec, 1.0, u);
+  if(isnan(epoch))
+    novas_set_errno(EDOM, fn, "input epoch is NAN");
+
+  if(isnan(vLSR))
+    novas_set_errno(EDOM, fn, "input vLSR is NAN");
+
+  if(radec2vector(ra, dec, 1.0, u) != 0)
+    return novas_trace_nan(fn);
+
   for(i = 3; --i >= 0; )
     v[i] = vLSR * u[i];
 
@@ -286,11 +338,21 @@ double novas_lsr_to_ssb_vel(double epoch, double ra, double dec, double vLSR) {
  * @sa novas_str_hours(), novas_str_degrees()
  */
 double novas_ssb_to_lsr_vel(double epoch, double ra, double dec, double v_SSB) {
+  static const char *fn = "novas_ssb_to_lsr_vel";
+
   double u[3] = {0.0}, v[3];
   double jd = NOVAS_JD_J2000 + NOVAS_JULIAN_YEAR_DAYS * (epoch - 2000.0);
   int i;
 
-  radec2vector(ra, dec, 1.0, u);
+  if(isnan(epoch))
+    novas_set_errno(EDOM, fn, "input epoch is NAN");
+
+  else if(isnan(v_SSB))
+    novas_set_errno(EDOM, fn, "input vSSB is NAN");
+
+  if(radec2vector(ra, dec, 1.0, u) != 0)
+    novas_trace_nan(fn);
+
   for(i = 3; --i >= 0;)
     v[i] = v_SSB * u[i];
 
@@ -388,14 +450,13 @@ double novas_ssb_to_lsr_vel(double epoch, double ra, double dec, double v_SSB) {
 int rad_vel(const object *restrict source, const double *restrict pos_src, const double *vel_src, const double *vel_obs,
         double d_obs_geo, double d_obs_sun, double d_src_sun, double *restrict rv) {
   static const char *fn = "rad_vel";
-  int stat;
 
   if(!rv)
     return novas_error(-1, EINVAL, fn, "NULL output radial velocity");
 
   *rv = rad_vel2(source, pos_src, vel_src, pos_src, vel_obs, d_obs_geo, d_obs_sun, d_src_sun);
-  stat = isnan(*rv) ? -1 : 0;
-  prop_error(fn, stat, 0);
+  if(isnan(*rv))
+    return novas_trace(fn, -1, 0);
 
   return 0;
 }
@@ -507,8 +568,13 @@ double rad_vel2(const object *restrict source, const double *pos_emit, const dou
     return NAN;
   }
 
+  if(isnan(d_obs_geo) || isnan(d_obs_sun) || isnan(d_src_sun)) {
+    novas_warn(EDOM, fn, "NAN input distance: d_obs_geo=%g, d_obs_sun=%g, d_src_sun=%g", d_obs_geo, d_obs_sun, d_src_sun);
+    return NAN;
+  }
+
   if(!vel_obs) {
-    novas_set_errno(EINVAL, fn, "NULL input observer velocity");
+    novas_warn(EINVAL, fn, "NULL input observer velocity");
     return NAN;
   }
 
@@ -516,9 +582,11 @@ double rad_vel2(const object *restrict source, const double *pos_emit, const dou
 
   // apparent source radial velocity (rel. SSB) in the direction of emission
   beta_src = novas_vdot(vel_src, pos_emit) / novas_vlen(pos_emit) / C_AUDAY;
+  prop_nan(fn, beta_src);
 
   // observer radial velocity (rel. SSB) in the direction of detection
   beta_obs = novas_vdot(vel_obs, pos_det) / novas_vlen(pos_det) / C_AUDAY;
+  prop_nan(fn, beta_obs);
 
   beta = novas_add_beta(beta_src, -beta_obs);
 
