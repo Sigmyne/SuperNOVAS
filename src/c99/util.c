@@ -598,42 +598,15 @@ double novas_vlen(const double *restrict v) {
  *                    'angle'. It can be the same vector as the input.
  *
  * @return        0 if successful, or -1 if the output vector is NULL.
- *
  */
 int spin(double angle, const double *in, double *out) {
-  static THREAD_LOCAL double ang_last = -999.0;
-  static THREAD_LOCAL double xx, yx, xy, yy, zz = 1.0;
-
-  double x, y, z;
-
   if(!in || !out)
     return novas_error(-1, EINVAL, "spin", "NULL input or output 3-vector: in=%p, out=%p", in, out);
 
-  angle = remainder(angle * DEGREE, TWOPI);
+  if(out != in)
+    memcpy(out, in, XYZ_VECTOR_SIZE);
 
-  if(fabs(angle - ang_last) >= 1.0e-12) {
-    const double cosang = cos(angle);
-    const double sinang = sin(angle);
-
-    // Rotation matrix (non-zero elements only).
-    xx = cosang;
-    yx = sinang;
-    xy = -sinang;
-    yy = cosang;
-
-    ang_last = angle;
-  }
-
-  x = in[0];
-  y = in[1];
-  z = in[2];
-
-  // Perform rotation.
-  out[0] = xx * x + yx * y;
-  out[1] = xy * x + yy * y;
-  out[2] = zz * z;
-
-  return 0;
+  return novas_Rz(angle * DEGREE, out);
 }
 
 /**
@@ -800,8 +773,8 @@ double d_light(const double *pos_src, const double *pos_body) {
  */
 double novas_sep(double lon1, double lat1, double lon2, double lat2) {
   const double cp1 = cos(lat1 * DEGREE);
-  const double cp2 = cos(lat2 * DEGREE);
   const double sp1 = sin(lat1 * DEGREE);
+  const double cp2 = cos(lat2 * DEGREE);
   const double sp2 = sin(lat2 * DEGREE);
   const double cdl = cos((lon1 - lon2) * DEGREE);
 
@@ -1043,12 +1016,12 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
 
 /**
  * Calculates offset spherical coordinates at some distance away from the input coordinates along
- * a great circle which crosses the input position at the specified direction. Based on the
+ * a great circle which crosses the input position at the specified position angle. Based on the
  * __astropy__ `offset_by()` implementation.
  *
  * @param lon             [deg] reference point longitude
  * @param lat             [deg] reference point latitude
- * @param direction       [deg] direction (measured East of North).
+ * @param direction       [deg] position angle (measured East of North).
  * @param distance        [deg] offset distance on great circle
  * @param[out] out_lon    [deg] longitude at offset position in [-&pi;:&pi;) range. It may be NULL
  *                        if not needed.
@@ -1062,7 +1035,7 @@ int novas_print_dms(double degrees, enum novas_separator_type sep, int decimals,
  * @author Attila Kovacs
  *
  * @sa novas_equ_offset_by(), novas_sep()
- * @sa https://docs.astropy.org/en/stable/_modules/astropy/coordinates/angles/utils.html#offset_at
+ * @sa https://docs.astropy.org/en/stable/_modules/astropy/coordinates/angles/utils.html#offset_by
  */
 int novas_offset_by(double lon, double lat, double direction, double distance, double *restrict out_lon, double *restrict out_lat) {
   static const char *fn = "novas_offset_by";
@@ -1127,7 +1100,7 @@ int novas_offset_by(double lon, double lat, double direction, double distance, d
  *
  * @param ra              [h] reference point right ascension (R.A.)
  * @param dec             [deg] reference point declination
- * @param direction       [deg] direction (measured East of North).
+ * @param direction       [deg] position angle (measured East of North).
  * @param distance        [deg] offset distance on great circle
  * @param[out] out_ra     [h] right ascension (R.A.) at offset position in [0:24) range. It may
  *                        be NULL if not needed.

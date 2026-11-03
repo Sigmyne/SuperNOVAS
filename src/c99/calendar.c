@@ -275,7 +275,8 @@ double julian_date(short year, short month, short day, double hour) {
  * @param[out] month   [month] Astronomical calendar month [1:12]. It may be NULL if not required.
  * @param[out] day     [day] Day of the month [1:31]. It may be NULL if not required.
  * @param[out] hour    [h] Hour of day [0:24]. It may be NULL if not required.
- * @return              0
+ * @return             0 if successful, or else -1 if the Julian date cannot be represented as
+ *                     an astronomical calendar date.
  *
  * @sa novas_jd_to_date()
  * @sa novas_get_time()
@@ -283,7 +284,7 @@ double julian_date(short year, short month, short day, double hour) {
 int cal_date(double tjd, short *restrict year, short *restrict month, short *restrict day, double *restrict hour) {
   int y, m, d;
 
-  novas_jd_to_date(tjd, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, hour);
+  prop_error("cal_date", novas_jd_to_date(tjd, NOVAS_ASTRONOMICAL_CALENDAR, &y, &m, &d, hour), 0);
 
   if(year)
     *year = (short) y;
