@@ -36,7 +36,8 @@
  * @param t       [cy] Julian centuries since J2000
  * @param planet  Novas planet id, e.g. NOVAS_MARS.
  * @return        [rad] The approximate longitude of the planet in radians [-&pi;:&pi;],
- *                or NAN if the `planet` id is out of range.
+ *                or NAN if the `planet` id is out of range (errno set to ERANGE) or if the time
+ *                parameter is NAN (errno set to EDOM).
  *
  * @sa accum_prec(), nutation_angles(), NOVAS_JD_J2000
  *
@@ -44,6 +45,8 @@
  * @author Attila Kovacs
  */
 double planet_lon(double t, enum novas_planet planet) {
+  static const char *fn = "planet_lon";
+
   static const double c[9][2] = {
           { 0.0, 0.0 }, //
           { 4.402608842461, 2608.790314157421 },  // Mercury
@@ -56,8 +59,13 @@ double planet_lon(double t, enum novas_planet planet) {
           { 5.311886286677,    3.813303563778 }   // Neptune
   };
 
+  if(isnan(t)) {
+    novas_warn(EDOM, fn, "input time parameter is NAN");
+    return NAN;
+  }
+
   if(planet < NOVAS_MERCURY || planet > NOVAS_NEPTUNE) {
-    novas_set_errno(EINVAL, "planet_lon", "invalid planet number: %d", planet);
+    novas_set_errno(ERANGE, fn, "invalid planet number: %d", planet);
     return NAN;
   }
 
@@ -92,7 +100,8 @@ double planet_lon(double t, enum novas_planet planet) {
  *                    (For Pluto, the Pluto System Barycenter values are returned.)
  * @param jd_tdb      [day] Barycentric Dynamical Time (TDB) based Julian Date.
  * @param[out] orbit  Orbital elements data structure to populate.
- * @return            0 if successful, or else -1 (`errno` set to `EINVAL`).
+ * @return            0 if successful, or else -1 if the `orbit` is NULL (errno set to EINVAL),
+ *                    or if the Julian date is NAN (errno set to EDOM)
  *
  * @since 1.4
  * @author Attila Kovacs
@@ -265,6 +274,9 @@ int novas_make_planet_orbit(enum novas_planet id, double jd_tdb, novas_orbital *
   orbit->apsis_period = JULIAN_CENTURY_DAYS * TWOPI / p1->omega_bar;
   orbit->node_period = JULIAN_CENTURY_DAYS * TWOPI / p1->Omega;
 
+  if(isnan(jd_tdb))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
+
   return 0;
 }
 
@@ -324,8 +336,8 @@ int novas_make_planet_orbit(enum novas_planet id, double jd_tdb, novas_orbital *
  * @param[out] vel  [AU/day] Output Heliocentric ICRS velocity vector, or NULL if not required.
  * @return          0 if successful, or if the JD date is outside of the range with valid
  *                  parameters, or else -1 if the planet ID is not supported or if both
- *                  output vectors are NULL. In case of errors errno will be set to indicate
- *                  the type of error.
+ *                  output vectors are NULL, or if the Julian date is NAN. In case of errors
+ *                  errno will be set to indicate the type of error.
  *
  * @since 1.4
  * @author Attila Kovacs

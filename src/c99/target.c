@@ -124,6 +124,9 @@ int novas_init_cat_entry(cat_entry *restrict source, const char *restrict name, 
   if(strlen(name) >= SIZE_OF_OBJ_NAME)
     return novas_error(1, ERANGE, fn, "input 'name' is too long (%lu > %d)", (unsigned long) strlen(name), SIZE_OF_OBJ_NAME - 1);
 
+  if(isnan(ra) || isnan(dec))
+    return novas_error(-1, EDOM, fn, "NAN input coord(s): ra=%g, dec=%g", ra, dec);
+
   return 0;
 }
 
@@ -189,6 +192,9 @@ int novas_set_ssb_vel(cat_entry *source, double v_kms) {
   if(fabs(v_kms) > 1e-3 * NOVAS_C)
     return novas_error(-1, ERANGE, fn, "input velocity exceeds the speed of light");
 
+  if(isnan(v_kms))
+    return novas_error(-1, EDOM, fn, "input radial velocity is NAN");
+
   return 0;
 }
 
@@ -212,7 +218,8 @@ int novas_set_lsr_vel(cat_entry *source, double epoch, double v_kms) {
   if(!source)
     return novas_error(-1, EINVAL, fn, "NULL input 'source'");
 
-  prop_error(fn, novas_set_ssb_vel(source, novas_lsr_to_ssb_vel(epoch, source->ra, source->dec, v_kms)), 0);
+  v_kms = novas_lsr_to_ssb_vel(epoch, source->ra, source->dec, v_kms);
+  prop_error(fn, novas_set_ssb_vel(source, v_kms), 0);
   return 0;
 }
 
@@ -223,7 +230,7 @@ int novas_set_lsr_vel(cat_entry *source, double epoch, double v_kms) {
  * @param z            [-1:inf] The redshift measure _z_, defined as (1 + _z_) =
  *                     sqrt((1 + _v_/_c_) / (1 - _v_/_c_))
  * @return             0 if successful, or else -1 if the source is NULL (errno is set to EINVAL)
- *                     or if the redshift is invalid (errno set to ERANGE).
+ *                     or if the redshift is invalid (errno set to EDOM).
  *
  * @since 1.5
  * @author Attila Kovacs
@@ -234,10 +241,6 @@ int novas_set_redshift(cat_entry *source, double z) {
   static const char *fn = "novas_set_redshift";
 
   double v = novas_z2v(z);
-
-  if(isnan(v))
-    return novas_error(-1, ERANGE, fn, "invalid redshift value: %f\n", z);
-
   prop_error(fn, novas_set_ssb_vel(source, v), 0);
   return 0;
 }
@@ -257,11 +260,17 @@ int novas_set_redshift(cat_entry *source, double z) {
  * @sa novas_set_parallax(), novas_set_distance(), novas_init_cat_entry()
  */
 int novas_set_proper_motion(cat_entry *source, double pm_ra, double pm_dec) {
+  static const char *fn = "novas_set_proper_motion";
+
   if(!source)
-    return novas_error(-1, EINVAL, "novas_set_proper_motion", "NULL input 'source'");
+    return novas_error(-1, EINVAL, fn, "NULL input 'source'");
 
   source->promora = pm_ra;
   source->promodec = pm_dec;
+
+  if(isnan(pm_ra) || isnan(pm_dec))
+    return novas_error(-1, EDOM, fn, "NAN input motion: pm_ra=%g, pm_dec=%g", pm_ra, pm_dec);
+
   return 0;
 }
 
@@ -278,10 +287,16 @@ int novas_set_proper_motion(cat_entry *source, double pm_ra, double pm_dec) {
  * @sa novas_set_distance(), novas_init_cat_entry()
  */
 int novas_set_parallax(cat_entry *source, double mas) {
+  static const char *fn = "novas_set_parallax";
+
   if(!source)
-    return novas_error(-1, EINVAL, "novas_set_parallax", "NULL input 'source'");
+    return novas_error(-1, EINVAL, fn, "NULL input 'source'");
 
   source->parallax = fabs(mas);
+
+  if(isnan(mas))
+    return novas_error(-1, EDOM, fn, "input parallax is NAN");
+
   return 0;
 }
 
@@ -342,8 +357,8 @@ short make_cat_entry(const char *restrict name, const char *restrict catalog, lo
 
   prop_error(fn, novas_init_cat_entry(source, name, ra, dec), 0);
   prop_error(fn, novas_set_catalog(source, catalog, cat_num), 0);
-  novas_set_proper_motion(source, pm_ra, pm_dec);
-  novas_set_parallax(source, parallax);
+  prop_error(fn, novas_set_proper_motion(source, pm_ra, pm_dec), 0);
+  prop_error(fn, novas_set_parallax(source, parallax), 0);
   prop_error(fn, novas_set_ssb_vel(source, rv), 0);
 
   return 0;
@@ -511,14 +526,15 @@ int make_cat_object(const cat_entry *star, object *source) {
 static int cat_to_icrs(cat_entry *restrict star, const char *restrict system) {
   if(strcasecmp(system, NOVAS_SYSTEM_ICRS) != 0 && strcasecmp(system, NOVAS_SYSTEM_FK6) != 0) {
     double jd = novas_epoch(system);
-    if(isnan(jd))
-      return novas_trace("cat_to_icrs", -1, 0);
 
     if(jd != NOVAS_JD_J2000)
       transform_cat(CHANGE_EPOCH, jd, star, NOVAS_JD_J2000, NOVAS_SYSTEM_FK5, star);
 
     // Then convert J2000 coordinates to ICRS (also in place). Here the dates don't matter...
     transform_cat(CHANGE_J2000_TO_ICRS, 0.0, star, 0.0, NOVAS_SYSTEM_ICRS, star);
+
+    if(isnan(jd))
+      return novas_trace("cat_to_icrs", -1, 0);
   }
   return 0;
 }
@@ -842,7 +858,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
   // Convert right ascension, declination, and parallax to position vector
   // in equatorial system with units of AU.
   if(pos)
-    radec2vector(star->ra, star->dec, 1.0 / (paralx * MAS), pos);
+    prop_error(fn, radec2vector(star->ra, star->dec, 1.0 / (paralx * MAS), pos), 0);
 
   if(v_apparent) {
     double br_app, bt_app, br, bt, d;
@@ -886,7 +902,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
         v_apparent[2] = br * C_AUDAY / d;
 
         // Transform motion vector to equatorial system.
-        novas_los_to_xyz(v_apparent, 15.0 * star->ra, star->dec, v_apparent);
+        prop_error(fn, novas_los_to_xyz(v_apparent, 15.0 * star->ra, star->dec, v_apparent), 0);
         return 0;
       }
 
@@ -899,422 +915,429 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
   return 0;
 }
 
-  /**
-   * Returns the NOVAS planet ID for a given name (case insensitive), or -1 if no match is found.
-   *
-   * @param name    The planet name, or that for the "Sun", "Moon" or "SSB" (case insensitive).
-   *                The spelled out "Solar System Barycenter" is also recognized with either spaces,
-   *                hyphens ('-') or underscores ('_') separating the case insensitive words.
-   *                Only up to 63 characters (not including termination) of the input are processed.
-   * @return        The NOVAS major planet ID, or -1 (errno set to EINVAL) if the input name is
-   *                NULL or if there is no match for the name provided.
-   *
-   * @author Attila Kovacs
-   * @since 1.2
-   *
-   * @sa make_planet()
-   */
-  enum novas_planet novas_planet_for_name(const char *restrict name) {
-    static const char *fn = "novas_planet_for_name()";
-    static const char *names[] = NOVAS_PLANET_NAMES_INIT;
-    static const char delims[] = " \t-_";
+/**
+ * Returns the NOVAS planet ID for a given name (case insensitive), or -1 if no match is found.
+ *
+ * @param name    The planet name, or that for the "Sun", "Moon" or "SSB" (case insensitive).
+ *                The spelled out "Solar System Barycenter" is also recognized with either spaces,
+ *                hyphens ('-') or underscores ('_') separating the case insensitive words.
+ *                Only up to 63 characters (not including termination) of the input are processed.
+ * @return        The NOVAS major planet ID, or -1 (errno set to EINVAL) if the input name is
+ *                NULL or if there is no match for the name provided.
+ *
+ * @author Attila Kovacs
+ * @since 1.2
+ *
+ * @sa make_planet()
+ */
+enum novas_planet novas_planet_for_name(const char *restrict name) {
+  static const char *fn = "novas_planet_for_name()";
+  static const char *names[] = NOVAS_PLANET_NAMES_INIT;
+  static const char delims[] = " \t-_";
 
-    char buf[64];
-    char *tok, *context = NULL;
-    int i;
+  char buf[64];
+  char *tok, *context = NULL;
+  int i;
 
-    if(!name)
-      return (enum novas_planet) novas_error(-1, EINVAL, fn, "Input name is NULL");
+  if(!name)
+    return (enum novas_planet) novas_error(-1, EINVAL, fn, "Input name is NULL");
 
-    if(!name[0])
-      return (enum novas_planet) novas_error(-1, EINVAL, fn, "Input name is empty");
+  if(!name[0])
+    return (enum novas_planet) novas_error(-1, EINVAL, fn, "Input name is empty");
 
-    for(i = 0; i < NOVAS_PLANETS; i++)
-      if(strcasecmp(name, (const char *) names[i]) == 0)
-        return (enum novas_planet) i;
+  for(i = 0; i < NOVAS_PLANETS; i++)
+    if(strcasecmp(name, (const char *) names[i]) == 0)
+      return (enum novas_planet) i;
 
-    // Check for Solar System Barycenter (and variants)
-    strncpy(buf, name, sizeof(buf) - 1);
-    buf[sizeof(buf) - 1] = '\0';
+  // Check for Solar System Barycenter (and variants)
+  strncpy(buf, name, sizeof(buf) - 1);
+  buf[sizeof(buf) - 1] = '\0';
 
-    tok = strtok_r(buf, delims, &context);
-    if(strcasecmp("solar", tok) == 0) {
+  tok = strtok_r(buf, delims, &context);
+  if(strcasecmp("solar", tok) == 0) {
+    tok = strtok_r(NULL, delims, &context);
+    if(tok && strcasecmp("system", tok) == 0) {
       tok = strtok_r(NULL, delims, &context);
-      if(tok && strcasecmp("system", tok) == 0) {
-        tok = strtok_r(NULL, delims, &context);
-        if(tok && strcasecmp("barycenter", tok) == 0) {
-          return NOVAS_SSB;
-        }
+      if(tok && strcasecmp("barycenter", tok) == 0) {
+        return NOVAS_SSB;
       }
     }
-
-    return (enum novas_planet) novas_error(-1, EINVAL, fn, "No match for name: '%s'", name);
   }
 
-  /**
-   * Transform a star's catalog quantities for a change the coordinate system and/or the date for
-   * which the positions are calculated.  Also used to rotate catalog quantities on the dynamical
-   * equator and equinox of J2000.0 to the ICRS or vice versa.
-   *
-   * 'date_incat' and 'date_newcat' may be specified either as a Julian date (e.g., 2433282.5 or
-   * NOVAS_JD_B1950) or a fractional Julian year and fraction (e.g., 1950.0). Values less than 10000
-   * are assumed to be years. You can also use the supplied constants NOVAS_JD_J2000 or
-   * NOVAS_JD_B1950. The date arguments are ignored for the ICRS frame conversion options.
-   *
-   * If 'option' is PROPER_MOTION (1), input data can be in any reference system. If 'option' is
-   * PRECESSION (2) or CHANGE_EPOCH (3), input data is assume to be in the dynamical system of
-   * 'date_incat' and produces output in the dynamical system of 'date_outcat'. If 'option' is
-   * CHANGE_J2000_TO_ICRS (4), the input data should be in the J2000.0 dynamical frame. And if
-   * 'option' is CHANGE_ICRS_TO_J2000 (5), the input data must be in the ICRS, and the output will
-   * be in the J2000 dynamical frame.
-   *
-   * This function cannot be properly used to bring data from old star catalogs into the modern
-   * system, because old catalogs were compiled using a set of constants that are incompatible with
-   * modern values.  In particular, it should not be used for catalogs whose positions and proper
-   * motions were derived by assuming a precession constant significantly different from the value
-   * implicit in function precession().
-   *
-   * NOTES:
-   *
-   *  1. The original NOVAS C implementation of proper-motion had several shortcomings in calculating
-   *     the motion in the final epoch. These have been corrected in __v1.8__.
-   *
-   *  2. The original NOVAS C implementation applied a physical to apparent motion conversion factor
-   *     (k = 1 / (1 - rv/c)) for the proper motion parameters. But proper motion is already apparent,
-   *     so the factor was a mistake. Also, the factor should be 1 / (1 + rv/c), since the correction
-   *     diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to
-   *     Mike Kretlow for noticing these. It has been corrected for __v1.9__.
-   *
-   *  3. Modified in v1.9 to iteratively account for change of light time between initial and final
-   *     epochs.
-   *
-   *  4. As of __v1.9__ the implementation accounts for the transverse Doppler effect, following the
-   *     prescription of Stumpff 1985, and yields consistent results with SOFA below the 1 &mu;as
-   *     level over a century, even for Barnard's star.
-   *
-   * REFERENCES:
-   *
-   *  1. Stumpff, P., Astronomy and Astrophysics (ISSN 0004-6361), vol. 144, no. 1, March 1985, p. 232-240.
-   *
-   * @param option      Type of transformation
-   * @param date_in     [day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else
-   *                    Julian year (if &lt;10000), of input catalog data. Not used if option is
-   *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
-   * @param in          An entry from the input catalog, with units as given in the struct
-   *                    definition
-   * @param date_out    [day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else
-   *                    Julian year (if &lt;10000) of output catalog data. Not used if option is
-   *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
-   * @param out_id      Catalog identifier (0 terminated). It may also be NULL in which case the
-   *                    catalog name is inherited from the input.
-   * @param[out] out    The transformed catalog entry, with units as given in the struct definition.
-   *                    It may be the same as the input.
-   * @return            0 if successful, -1 if either vector argument is NULL (errno set to EINVAL)
-   *                    or if the 'option' is invalid (errno set to ERANGE) or if the proper motion
-   *                    failed to converge (errno set to ECANCELED), or else 2 if 'out_id' is too
-   *                    long.
-   *
-   * @sa transform_hip(), make_cat_object_sys(), novas_set_catalog()
-   * @sa novas_epoch(), NOVAS_JD_J2000, NOVAS_JD_B1950, NOVAS_JD_HIP
-   */
-  short transform_cat(enum novas_transform_type option, double date_in, const cat_entry *in, double date_out, const char *out_id,
-          cat_entry *out) {
-    static const char *fn = "transform_cat";
+  return (enum novas_planet) novas_error(-1, EINVAL, fn, "No match for name: '%s'", name);
+}
 
-    double paralx, u, k0, k1;
-    double pos[3], motion[3];
-    double jd0 = date_in < 10000.0 ? (NOVAS_JD_J2000 + (date_in - 2000.0) * NOVAS_JULIAN_YEAR_DAYS) : date_in;
-    double jd1 = date_out < 10000.0 ? (NOVAS_JD_J2000 + (date_out - 2000.0) * NOVAS_JULIAN_YEAR_DAYS) : date_out;
+/**
+ * Transform a star's catalog quantities for a change the coordinate system and/or the date for
+ * which the positions are calculated.  Also used to rotate catalog quantities on the dynamical
+ * equator and equinox of J2000.0 to the ICRS or vice versa.
+ *
+ * 'date_incat' and 'date_newcat' may be specified either as a Julian date (e.g., 2433282.5 or
+ * NOVAS_JD_B1950) or a fractional Julian year and fraction (e.g., 1950.0). Values less than 10000
+ * are assumed to be years. You can also use the supplied constants NOVAS_JD_J2000 or
+ * NOVAS_JD_B1950. The date arguments are ignored for the ICRS frame conversion options.
+ *
+ * If 'option' is PROPER_MOTION (1), input data can be in any reference system. If 'option' is
+ * PRECESSION (2) or CHANGE_EPOCH (3), input data is assume to be in the dynamical system of
+ * 'date_incat' and produces output in the dynamical system of 'date_outcat'. If 'option' is
+ * CHANGE_J2000_TO_ICRS (4), the input data should be in the J2000.0 dynamical frame. And if
+ * 'option' is CHANGE_ICRS_TO_J2000 (5), the input data must be in the ICRS, and the output will
+ * be in the J2000 dynamical frame.
+ *
+ * This function cannot be properly used to bring data from old star catalogs into the modern
+ * system, because old catalogs were compiled using a set of constants that are incompatible with
+ * modern values.  In particular, it should not be used for catalogs whose positions and proper
+ * motions were derived by assuming a precession constant significantly different from the value
+ * implicit in function precession().
+ *
+ * NOTES:
+ *
+ *  1. The original NOVAS C implementation of proper-motion had several shortcomings in calculating
+ *     the motion in the final epoch. These have been corrected in __v1.8__.
+ *
+ *  2. The original NOVAS C implementation applied a physical to apparent motion conversion factor
+ *     (k = 1 / (1 - rv/c)) for the proper motion parameters. But proper motion is already apparent,
+ *     so the factor was a mistake. Also, the factor should be 1 / (1 + rv/c), since the correction
+ *     diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to
+ *     Mike Kretlow for noticing these. It has been corrected for __v1.9__.
+ *
+ *  3. Modified in v1.9 to iteratively account for change of light time between initial and final
+ *     epochs.
+ *
+ *  4. As of __v1.9__ the implementation accounts for the transverse Doppler effect, following the
+ *     prescription of Stumpff 1985, and yields consistent results with SOFA below the 1 &mu;as
+ *     level over a century, even for Barnard's star.
+ *
+ * REFERENCES:
+ *
+ *  1. Stumpff, P., Astronomy and Astrophysics (ISSN 0004-6361), vol. 144, no. 1, March 1985, p. 232-240.
+ *
+ * @param option      Type of transformation
+ * @param date_in     [day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else
+ *                    Julian year (if &lt;10000), of input catalog data. Not used if option is
+ *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
+ * @param in          An entry from the input catalog, with units as given in the struct
+ *                    definition
+ * @param date_out    [day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else
+ *                    Julian year (if &lt;10000) of output catalog data. Not used if option is
+ *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
+ * @param out_id      Catalog identifier (0 terminated). It may also be NULL in which case the
+ *                    catalog name is inherited from the input.
+ * @param[out] out    The transformed catalog entry, with units as given in the struct definition.
+ *                    It may be the same as the input.
+ * @return            0 if successful, -1 if either vector argument is NULL (errno set to EINVAL)
+ *                    or if the 'option' is invalid (errno set to ERANGE) or if the proper motion
+ *                    failed to converge (errno set to ECANCELED), or else 2 if 'out_id' is too
+ *                    long.
+ *
+ * @sa transform_hip(), make_cat_object_sys(), novas_set_catalog()
+ * @sa novas_epoch(), NOVAS_JD_J2000, NOVAS_JD_B1950, NOVAS_JD_HIP
+ */
+short transform_cat(enum novas_transform_type option, double date_in, const cat_entry *in, double date_out, const char *out_id,
+        cat_entry *out) {
+  static const char *fn = "transform_cat";
 
-    if(!in || !out)
-      return novas_error(-1, EINVAL, fn, "NULL parameter: in=%p, out=%p", in, out);
+  double paralx, u, k0, k1;
+  double pos[3], motion[3];
+  double jd0 = date_in < 10000.0 ? (NOVAS_JD_J2000 + (date_in - 2000.0) * NOVAS_JULIAN_YEAR_DAYS) : date_in;
+  double jd1 = date_out < 10000.0 ? (NOVAS_JD_J2000 + (date_out - 2000.0) * NOVAS_JULIAN_YEAR_DAYS) : date_out;
 
-    if(out_id && strlen(out_id) >= SIZE_OF_CAT_NAME)
-      return novas_error(2, EINVAL, fn, "output catalog ID is too long (%lu > %d)", (unsigned long) strlen(out_id), SIZE_OF_CAT_NAME - 1);
+  if(!in || !out)
+    return novas_error(-1, EINVAL, fn, "NULL parameter: in=%p, out=%p", in, out);
 
-    if(option == CHANGE_J2000_TO_ICRS || option == CHANGE_ICRS_TO_J2000) {
-      // ICRS frame ties always assume J2000 for both input and output...
-      jd0 = NOVAS_JD_J2000;
-      jd1 = NOVAS_JD_J2000;
-    }
+  if(out_id && strlen(out_id) >= SIZE_OF_CAT_NAME)
+    return novas_error(2, EINVAL, fn, "output catalog ID is too long (%lu > %d)", (unsigned long) strlen(out_id), SIZE_OF_CAT_NAME - 1);
 
-    // Convert input angular components to vectors
-
-    // If parallax is unknown, undetermined, or zero, set it to 1.0e-6
-    // milliarcsecond, corresponding to a distance of 1 gigaparsec.
-    paralx = in->parallax;
-    if(paralx <= 0.0)
-      paralx = 1.0e-6;
-
-    // Conversion factor from angular motion per year to AU/day
-    u = 1.0 / (paralx * JULIAN_YEAR_DAYS);
-
-    // Change of light travel time corretion factor at initial epoch
-    k0 = 1.0 / (1.0 + in->radialvelocity * NOVAS_KMS / NOVAS_C);
-
-    // Equatorial position and apparent motion vector, including physical radial velocity
-    // converted to apparent radial motion
-    prop_error(fn, starvectors(in, pos, motion), 0);
-
-    // Update star's position vector for apparent motion (only if 'option' = 1 or 'option' = 3).
-    if((option == PROPER_MOTION) || (option == CHANGE_EPOCH))
-      prop_error(fn, proper_motion(jd0, pos, motion, jd1, pos), 0);
-
-    switch(option) {
-      case PROPER_MOTION:
-        break;
-
-      case PRECESSION:
-      case CHANGE_EPOCH: {
-        // Precess position and velocity vectors (only if 'option' = 2 or 'option' = 3).
-        prop_error("transform_cat", precession(jd0, pos, jd1, pos), 0);
-        precession(jd0, motion, jd1, motion);
-        break;
-      }
-
-      case CHANGE_J2000_TO_ICRS:
-        // Rotate dynamical J2000.0 position and velocity vectors to ICRS (only if 'option' = 4).
-        frame_tie(pos, J2000_TO_ICRS, pos);
-        frame_tie(motion, J2000_TO_ICRS, motion);
-        break;
-
-      case CHANGE_ICRS_TO_J2000:
-        // Rotate ICRS position and velocity vectors to dynamical J2000.0 (only if 'option' = 5).
-        frame_tie(pos, ICRS_TO_J2000, pos);
-        frame_tie(motion, ICRS_TO_J2000, motion);
-        break;
-
-      default:
-        if(out != in)
-          *out = *in;
-
-        return novas_error(-1, ERANGE, fn, "invalid option %d", option);
-    }
-
-    // Convert vectors back to angular components for output.
-    vector2radec(pos, &out->ra, &out->dec);
-
-    paralx = 1.0 / novas_vlen(pos) / MAS;
-    out->parallax = (in->parallax > 0.0) ? paralx : 0.0;
-
-    // Transform motion vector back to spherical polar system at star's new position.
-    novas_xyz_to_los(motion, 15.0 * out->ra, out->dec, motion);
-
-    // Final conversion from AU/day to angular motion per year
-    u = paralx * JULIAN_YEAR_DAYS;
-
-    // Change of light-time correction factor at final epoch
-    k1 = (1.0 - motion[2] / C_AUDAY);
-
-    // Convert components of motion to from AU/day to normal catalog units.
-    // Include apparent to physical conversion for radial motion
-    out->promora = motion[0] * u * (k1 / k0);
-    out->promodec = motion[1] * u * (k1 / k0);
-    out->radialvelocity = motion[2] * (AU_KM / DAY) / k1;
-
-    // Set the catalog identification code for the transformed catalog entry.
-    if(out_id)
-      strncpy(out->catalog, out_id, SIZE_OF_CAT_NAME - 1);
-    else if(out != in)
-      strncpy(out->catalog, in->catalog, SIZE_OF_CAT_NAME - 1);
-
-    // Make sure catalog name is terminated.
-    out->catalog[SIZE_OF_CAT_NAME - 1] = '\0';
-
-    if(out != in) {
-      // Copy unchanged quantities from the input catalog entry to the transformed catalog entry.
-      strncpy(out->starname, in->starname, SIZE_OF_OBJ_NAME - 1);
-      out->starname[SIZE_OF_OBJ_NAME - 1] = '\0';
-      out->starnumber = in->starnumber;
-    }
-
-    return 0;
+  if(option == CHANGE_J2000_TO_ICRS || option == CHANGE_ICRS_TO_J2000) {
+    // ICRS frame ties always assume J2000 for both input and output...
+    jd0 = NOVAS_JD_J2000;
+    jd1 = NOVAS_JD_J2000;
   }
 
-  /**
-   * Convert Hipparcos catalog data at epoch J1991.25 to epoch J2000.0, for use within NOVAS.
-   * To be used only for Hipparcos or Tycho stars with linear space motion.  Both input and
-   * output data is in the ICRS.
-   *
-   * @param hipparcos       An entry from the Hipparcos catalog, at epoch J1991.25, with 'ra' in
-   *                        degrees(!) as per Hipparcos catalog units.
-   * @param[out] hip_2000   The transformed input entry, at epoch J2000.0, with 'ra' in hours(!)
-   *                        as per the NOVAS convention. It may be the same as the input.
-   *
-   * @return            0 if successful, or -1 if either of the input pointer arguments is NULL.
-   *
-   * @sa make_cat_entry(), NOVAS_JD_HIP
-   */
-  int transform_hip(const cat_entry *hipparcos, cat_entry *hip_2000) {
-    static const char *fn = "transform_hip";
-    cat_entry scratch;
+  // Convert input angular components to vectors
 
-    if(!hipparcos)
-      return novas_error(-1, EINVAL, fn, "NULL Hipparcos input catalog entry");
+  // If parallax is unknown, undetermined, or zero, set it to 1.0e-6
+  // milliarcsecond, corresponding to a distance of 1 gigaparsec.
+  paralx = in->parallax;
+  if(paralx <= 0.0)
+    paralx = 1.0e-6;
 
-    // Set up a "scratch" catalog entry containing Hipparcos data in
-    // "NOVAS units."
-    scratch = *hipparcos;
-    strncpy(scratch.catalog, "SCR", sizeof(scratch.catalog));
+  // Conversion factor from angular motion per year to AU/day
+  u = 1.0 / (paralx * JULIAN_YEAR_DAYS);
 
-    // Convert right ascension from degrees to hours.
-    scratch.ra /= 15.0;
+  // Change of light travel time corretion factor at initial epoch
+  k0 = 1.0 / (1.0 + in->radialvelocity * NOVAS_KMS / NOVAS_C);
 
-    // Change the epoch of the Hipparcos data from J1991.25 to J2000.0.
-    prop_error(fn, transform_cat(PROPER_MOTION, NOVAS_JD_HIP, &scratch, JD_J2000, "HP2", hip_2000), 0);
-    return 0;
-  }
+  // Equatorial position and apparent motion vector, including physical radial velocity
+  // converted to apparent radial motion
+  prop_error(fn, starvectors(in, pos, motion), 0);
 
-  /**
-   * Applies proper motion, including foreshortening effects, to a star's position.
-   *
-   * NOTES:
-   *
-   *  1. Modified in v1.9 to iteratively account for change of light time between the initial and
-   *     final epochs.
-   *
-   * REFERENCES:
-   *
-   *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
-   *
-   * @param jd_tdb_in  [day] Barycentric Dynamical Time (TDB) based Julian date of the first epoch.
-   * @param pos        [AU] (Equatorial) position vector at first epoch.
-   * @param v_apparent [AU/day] Apparent (equatorial) motion vector at first epoch, including change
-   *                   of light-time, e.g. as obtained from `starvectors()`.
-   * @param jd_tdb_out [day] Barycentric Dynamical Time (TDB) based Julian date of the second epoch.
-   * @param[out] out   Position vector at second epoch. It can be the same vector as the input.
-   * @return           0 if successful, or -1 if any of the vector arguments is NULL (errno set to
-   *                   EINVAL), or if the apparent rate of recession exceeds the speed of light
-   *                   (errno set to EDOM), or if the change of light time correction failed to
-   *                   converge (errno set to ECANCELED).
-   *
-   * @sa starvectors(), transform_cat()
-   */
-  int proper_motion(double jd_tdb_in, const double *pos, const double *restrict v_apparent, double jd_tdb_out, double *out) {
-    static const char *fn = "proper_motion";
+  // Update star's position vector for apparent motion (only if 'option' = 1 or 'option' = 3).
+  if((option == PROPER_MOTION) || (option == CHANGE_EPOCH))
+    prop_error(fn, proper_motion(jd0, pos, motion, jd1, pos), 0);
 
-    const double dt = jd_tdb_out - jd_tdb_in;
-    double b_app, k, lt0, dpt[3];
+  switch(option) {
+    case PROPER_MOTION:
+      break;
 
-    int i;
-
-    if(!pos || !v_apparent || !out)
-      return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: pos=%p, v_app=%p, out=%p", pos, v_apparent, out);
-
-    if(out != pos)
-      memcpy(out, pos, XYZ_VECTOR_SIZE);
-
-    lt0 = novas_vlen(pos) / C_AUDAY; // [day] initial light time
-    if(!lt0 || fabs(dt) < 1e-7)
-      return 0; // Nothing to do...
-
-    b_app = novas_vdot(pos, v_apparent) / (novas_vlen(pos) * C_AUDAY);  // apparent radial motion / c
-    if(b_app > 1.0)
-      return novas_error(-1, EDOM, fn, "apparent radial rate of recession exceeds the speed of light");
-
-    // Change of light time correction at the initial epoch
-    k = (1.0 - b_app);
-
-    // Calculate true geometric 3D motion
-    for(i = 0; i < 3; i++)
-      dpt[i] = v_apparent[i] * dt / k;
-
-    // Iteratively solve for actual change-of-light time correction
-    for(i = 0; i < novas_inv_max_iter; i++) {
-      double lt1, k1, p1[3];
-      int j;
-
-      // estimated geometric position observed at the final epoch
-      for(j = 0; j < 3; j++)
-        p1[j] = pos[j] + dpt[j] * k;
-
-      // [day] final light time
-      lt1 = novas_vlen(p1) / C_AUDAY;
-
-      // k factor for actual light time change between epochs
-      k1 = 1.0 + (lt0 - lt1) / dt;
-
-      if(fabs(1.0 - k1 / k) < 1e-12) { // It may fail if set too tight...
-        // Re-apply aberration for the final epoch
-        memcpy(out, p1, sizeof(p1));
-        return 0; // Hurray, converged!
-      }
-
-      // Keep going...
-      k = k1;
+    case PRECESSION:
+    case CHANGE_EPOCH: {
+      // Precess position and velocity vectors (only if 'option' = 2 or 'option' = 3).
+      prop_error("transform_cat", precession(jd0, pos, jd1, pos), 0);
+      precession(jd0, motion, jd1, motion);
+      break;
     }
 
-    return novas_error(-1, ECANCELED, fn, "failed to converge");
+    case CHANGE_J2000_TO_ICRS:
+      // Rotate dynamical J2000.0 position and velocity vectors to ICRS (only if 'option' = 4).
+      frame_tie(pos, J2000_TO_ICRS, pos);
+      frame_tie(motion, J2000_TO_ICRS, motion);
+      break;
+
+    case CHANGE_ICRS_TO_J2000:
+      // Rotate ICRS position and velocity vectors to dynamical J2000.0 (only if 'option' = 5).
+      frame_tie(pos, ICRS_TO_J2000, pos);
+      frame_tie(motion, ICRS_TO_J2000, motion);
+      break;
+
+    default:
+      if(out != in)
+        *out = *in;
+
+      return novas_error(-1, ERANGE, fn, "invalid option %d", option);
   }
 
-  /**
-   * Returns a Solar-system body's distance from the Sun, and optionally also the rate of recession.
-   * It may be useful, e.g. to calculate the body's heating from the Sun.
-   *
-   * @param jd_tdb      [day] Barycentric Dynamical Time (TDB) based Julian date. You may want to
-   *                    use a time that is antedated to when the observed light originated from the
-   *                    source.
-   * @param source      Observed Solar-system source
-   * @param[out] rate   [AU/day] (optional) Returned rate of recession from Sun
-   * @return            [AU] Distance from the Sun, or NAN if not a Solar-system source.
-   *
-   * @since 1.3
-   * @author Attila Kovacs
-   *
-   * @sa novas_solar_power(), novas_solar_illum()
-   */
-  double novas_helio_dist(double jd_tdb, const object *restrict source, double *restrict rate) {
-    static const char *fn = "novas_helio_dist";
+  // Convert vectors back to angular components for output.
+  prop_error(fn, vector2radec(pos, &out->ra, &out->dec), 0);
 
-    const double jd2[2] = { jd_tdb, 0.0 };
-    double pos[3], vel[3], d;
+  paralx = 1.0 / novas_vlen(pos) / MAS;
+  out->parallax = (in->parallax > 0.0) ? paralx : 0.0;
 
+  // Transform motion vector back to spherical polar system at star's new position.
+  prop_error(fn, novas_xyz_to_los(motion, 15.0 * out->ra, out->dec, motion), 0);
+
+  // Final conversion from AU/day to angular motion per year
+  u = paralx * JULIAN_YEAR_DAYS;
+
+  // Change of light-time correction factor at final epoch
+  k1 = (1.0 - motion[2] / C_AUDAY);
+
+  // Convert components of motion to from AU/day to normal catalog units.
+  // Include apparent to physical conversion for radial motion
+  out->promora = motion[0] * u * (k1 / k0);
+  out->promodec = motion[1] * u * (k1 / k0);
+  out->radialvelocity = motion[2] * (AU_KM / DAY) / k1;
+
+  // Set the catalog identification code for the transformed catalog entry.
+  if(out_id)
+    strncpy(out->catalog, out_id, SIZE_OF_CAT_NAME - 1);
+  else if(out != in)
+    strncpy(out->catalog, in->catalog, SIZE_OF_CAT_NAME - 1);
+
+  // Make sure catalog name is terminated.
+  out->catalog[SIZE_OF_CAT_NAME - 1] = '\0';
+
+  if(out != in) {
+    // Copy unchanged quantities from the input catalog entry to the transformed catalog entry.
+    strncpy(out->starname, in->starname, SIZE_OF_OBJ_NAME - 1);
+    out->starname[SIZE_OF_OBJ_NAME - 1] = '\0';
+    out->starnumber = in->starnumber;
+  }
+
+  return 0;
+}
+
+/**
+ * Convert Hipparcos catalog data at epoch J1991.25 to epoch J2000.0, for use within NOVAS.
+ * To be used only for Hipparcos or Tycho stars with linear space motion.  Both input and
+ * output data is in the ICRS.
+ *
+ * @param hipparcos       An entry from the Hipparcos catalog, at epoch J1991.25, with 'ra' in
+ *                        degrees(!) as per Hipparcos catalog units.
+ * @param[out] hip_2000   The transformed input entry, at epoch J2000.0, with 'ra' in hours(!)
+ *                        as per the NOVAS convention. It may be the same as the input.
+ *
+ * @return            0 if successful, or -1 if either of the input pointer arguments is NULL.
+ *
+ * @sa make_cat_entry(), NOVAS_JD_HIP
+ */
+int transform_hip(const cat_entry *hipparcos, cat_entry *hip_2000) {
+  static const char *fn = "transform_hip";
+  cat_entry scratch;
+
+  if(!hipparcos)
+    return novas_error(-1, EINVAL, fn, "NULL Hipparcos input catalog entry");
+
+  // Set up a "scratch" catalog entry containing Hipparcos data in
+  // "NOVAS units."
+  scratch = *hipparcos;
+  strncpy(scratch.catalog, "SCR", sizeof(scratch.catalog));
+
+  // Convert right ascension from degrees to hours.
+  scratch.ra /= 15.0;
+
+  // Change the epoch of the Hipparcos data from J1991.25 to J2000.0.
+  prop_error(fn, transform_cat(PROPER_MOTION, NOVAS_JD_HIP, &scratch, JD_J2000, "HP2", hip_2000), 0);
+  return 0;
+}
+
+/**
+ * Applies proper motion, including foreshortening effects, to a star's position.
+ *
+ * NOTES:
+ *
+ *  1. Modified in v1.9 to iteratively account for change of light time between the initial and
+ *     final epochs.
+ *
+ * REFERENCES:
+ *
+ *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *
+ * @param jd_tdb_in  [day] Barycentric Dynamical Time (TDB) based Julian date of the first epoch.
+ * @param pos        [AU] (Equatorial) position vector at first epoch.
+ * @param v_apparent [AU/day] Apparent (equatorial) motion vector at first epoch, including change
+ *                   of light-time, e.g. as obtained from `starvectors()`.
+ * @param jd_tdb_out [day] Barycentric Dynamical Time (TDB) based Julian date of the second epoch.
+ * @param[out] out   Position vector at second epoch. It can be the same vector as the input.
+ * @return           0 if successful, or -1 if any of the vector arguments is NULL (errno set to
+ *                   EINVAL), or if the apparent rate of recession exceeds the speed of light
+ *                   (errno set to EDOM), or if the change of light time correction failed to
+ *                   converge (errno set to ECANCELED).
+ *
+ * @sa starvectors(), transform_cat()
+ */
+int proper_motion(double jd_tdb_in, const double *pos, const double *restrict v_apparent, double jd_tdb_out, double *out) {
+  static const char *fn = "proper_motion";
+
+  const double dt = jd_tdb_out - jd_tdb_in;
+  double b_app, k, lt0, dpt[3];
+
+  int i;
+
+  if(!pos || !v_apparent || !out)
+    return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: pos=%p, v_app=%p, out=%p", pos, v_apparent, out);
+
+  if(out != pos)
+    memcpy(out, pos, XYZ_VECTOR_SIZE);
+
+  lt0 = novas_vlen(pos) / C_AUDAY; // [day] initial light time
+  if(!lt0 || fabs(dt) < 1e-7)
+    return 0; // Nothing to do...
+
+  b_app = novas_vdot(pos, v_apparent) / (novas_vlen(pos) * C_AUDAY);  // apparent radial motion / c
+  if(b_app > 1.0)
+    return novas_error(-1, EDOM, fn, "apparent radial rate of recession exceeds the speed of light");
+
+  // Change of light time correction at the initial epoch
+  k = (1.0 - b_app);
+
+  // Calculate true geometric 3D motion
+  for(i = 0; i < 3; i++)
+    dpt[i] = v_apparent[i] * dt / k;
+
+  // Iteratively solve for actual change-of-light time correction
+  for(i = 0; i < novas_inv_max_iter; i++) {
+    double lt1, k1, p1[3];
+    int j;
+
+    // estimated geometric position observed at the final epoch
+    for(j = 0; j < 3; j++)
+      p1[j] = pos[j] + dpt[j] * k;
+
+    // [day] final light time
+    lt1 = novas_vlen(p1) / C_AUDAY;
+
+    // k factor for actual light time change between epochs
+    k1 = 1.0 + (lt0 - lt1) / dt;
+
+    if(fabs(1.0 - k1 / k) < 1e-12) { // It may fail if set too tight...
+      // Re-apply aberration for the final epoch
+      memcpy(out, p1, sizeof(p1));
+      return 0; // Hurray, converged!
+    }
+
+    // Keep going...
+    k = k1;
+  }
+
+  return novas_error(-1, ECANCELED, fn, "failed to converge");
+}
+
+/**
+ * Returns a Solar-system body's distance from the Sun, and optionally also the rate of recession.
+ * It may be useful, e.g. to calculate the body's heating from the Sun.
+ *
+ * @param jd_tdb      [day] Barycentric Dynamical Time (TDB) based Julian date. You may want to
+ *                    use a time that is antedated to when the observed light originated from the
+ *                    source.
+ * @param source      Observed Solar-system source
+ * @param[out] rate   [AU/day] (optional) Returned rate of recession from Sun
+ * @return            [AU] Distance from the Sun, or NAN if not a Solar-system source.
+ *
+ * @since 1.3
+ * @author Attila Kovacs
+ *
+ * @sa novas_solar_power(), novas_solar_illum()
+ */
+double novas_helio_dist(double jd_tdb, const object *restrict source, double *restrict rate) {
+  static const char *fn = "novas_helio_dist";
+
+  const double jd2[2] = { jd_tdb, 0.0 };
+  double pos[3], vel[3], d;
+
+  if(rate)
+    *rate = NAN;
+
+  if(!source) {
+    novas_set_errno(EINVAL, fn, "input source is NULL");
+    return NAN;
+  }
+
+  if(source->type == NOVAS_CATALOG_OBJECT) {
+    novas_set_errno(EINVAL, fn, "input source is not a Solar-system body: type %d", source->type);
+    return NAN;
+  }
+
+  if(ephemeris(jd2, source, NOVAS_HELIOCENTER, NOVAS_REDUCED_ACCURACY, pos, vel) != 0)
+    return novas_trace_nan(fn);
+
+  d = novas_vlen(pos);
+  prop_nan(fn, d);
+
+  if(!d) {
+    // The Sun itself...
     if(rate)
-      *rate = NAN;
-
-    if(!source) {
-      novas_set_errno(EINVAL, fn, "input source is NULL");
-      return NAN;
-    }
-
-    if(source->type == NOVAS_CATALOG_OBJECT) {
-      novas_set_errno(EINVAL, fn, "input source is not a Solar-system body: type %d", source->type);
-      return NAN;
-    }
-
-    if(ephemeris(jd2, source, NOVAS_HELIOCENTER, NOVAS_REDUCED_ACCURACY, pos, vel) != 0)
-      return novas_trace_nan(fn);
-
-    d = novas_vlen(pos);
-    if(!d) {
-      // The Sun itself...
-      if(rate)
-        *rate = 0.0;
-      return 0.0;
-    }
-
-    if(rate)
-      *rate = novas_vdot(pos, vel) / d;
-
-    return d;
+      *rate = 0.0;
+    return 0.0;
   }
 
-  /**
-   * Returns the typical incident Solar power on a Solar-system body at the time of observation.
-   *
-   * @param jd_tdb  [day] Barycentric Dynamical Time (TDB) based Julian date. You may want to
-   *                use a time that is antedated to when the observed light originated (
-   *                was reflected) from the source.
-   * @param source  Observed Solar-system source
-   * @return        [W/m<sup>2</sup>] Incident Solar power on the illuminated side of the object,
-   *                or NAN if not a Solar-system source or if the source is the Sun itself.
-   *
-   * @since 1.3
-   * @author Attila Kovacs
-   *
-   * @sa novas_solar_illum()
-   */
-  double novas_solar_power(double jd_tdb, const object *restrict source) {
-    double d = novas_helio_dist(jd_tdb, source, NULL);
-    return NOVAS_SOLAR_CONSTANT / (d * d);
+  if(rate) {
+    *rate = novas_vdot(pos, vel) / d;
+    if(isnan(*rate))
+      novas_trace_invalid(fn);
   }
+
+  return d;
+}
+
+/**
+ * Returns the typical incident Solar power on a Solar-system body at the time of observation.
+ *
+ * @param jd_tdb  [day] Barycentric Dynamical Time (TDB) based Julian date. You may want to
+ *                use a time that is antedated to when the observed light originated (
+ *                was reflected) from the source.
+ * @param source  Observed Solar-system source
+ * @return        [W/m<sup>2</sup>] Incident Solar power on the illuminated side of the object,
+ *                or NAN if not a Solar-system source or if the source is the Sun itself.
+ *
+ * @since 1.3
+ * @author Attila Kovacs
+ *
+ * @sa novas_solar_illum()
+ */
+double novas_solar_power(double jd_tdb, const object *restrict source) {
+  double d = novas_helio_dist(jd_tdb, source, NULL);
+  prop_nan("novas_solar_power", d);
+  return NOVAS_SOLAR_CONSTANT / (d * d);
+}
+

@@ -70,9 +70,9 @@
  *                    ascension origin of date.
  * @param[out] dec    [deg] Declination in degrees, referred to specified equator of date.
  * @return            0 if successful, or -1 with errno set to EINVAL if the output pointers
- *                    are NULL, or sys and/or accuracy is invalid;
- *                    otherwise &lt;0 if an error from vector2radec(); 10--20 error is 10 +
- *                    error cio_location(); or else 20 + error from cio_basis()
+ *                    are NULL (errno set to EINVAL) or the Julian date is NAN (errno set to
+ *                    EDOM), or sys and/or accuracy is invalid; otherwise &lt;0 if an error from
+ *                    vector2radec(); or the error from ira_equinox().
  *
  * @sa gcrs_to_tod(), gcrs_to_mod(), gcrs_to_cirs(), novas_transform_sky_pos()
  */
@@ -83,6 +83,9 @@ short gcrs2equ(double jd_tt, enum novas_dynamical_type sys, enum novas_accuracy 
 
   if(!ra || !dec)
     return novas_error(-1, EINVAL, fn, "NULL output pointer: ra=%p, dec=%p", ra, dec);
+
+  *ra = NAN;
+  *dec = NAN;
 
   // For these calculations we can assume TDB = TT (< 2 ms difference)
   jd_tdb = jd_tt;
@@ -109,6 +112,9 @@ short gcrs2equ(double jd_tt, enum novas_dynamical_type sys, enum novas_accuracy 
 
   // Convert the position vector to equatorial spherical coordinates.
   prop_error(fn, -vector2radec(pos, ra, dec), 0);
+
+  if(isnan(jd_tt))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
 
   return 0;
 }
@@ -147,7 +153,7 @@ short gcrs2equ(double jd_tt, enum novas_dynamical_type sys, enum novas_accuracy 
  * @param coordType     Output coordinate class NOVAS_REFERENCE_CLASS (0, or any value other than
  *                      1) or NOVAS_DYNAMICAL_CLASS (1). Use the former if the output coordinates
  *                      are to be in the GCRS, and the latter if they are to be in CIRS or TOD
- *                      (the 'erot' parameter selects which dynamical system to use for the
+ *                      (the `erot` parameter selects which dynamical system to use for the
  *                      output.)
  * @param xp            [arcsec] Conventionally-defined X coordinate of celestial intermediate
  *                      pole with respect to ITRS pole. If you have defined pole offsets the old
@@ -159,8 +165,8 @@ short gcrs2equ(double jd_tt, enum novas_dynamical_type sys, enum novas_accuracy 
  *                      referred to ITRS axes (terrestrial system) in the normal case
  *                      where 'option' is NOVAS_GCRS (0).
  * @param[out] out      Position vector, equatorial rectangular coordinates in the specified
- *                      output system (GCRS if 'class' is NOVAS_REFERENCE_CLASS;
- *                      or else either CIRS if 'erot' is EROT_ERA, or TOD if 'erot' is EROT_GST).
+ *                      output system (GCRS if `coordType` is NOVAS_REFERENCE_CLASS;
+ *                      or else either CIRS if `erot` is EROT_ERA, or TOD if `erot` is EROT_GST).
  *                      It may be the same vector as the input.
  * @return              0 if successful, -1 if either of the vector arguments is NULL, 1 if
  *                      `accuracy` is invalid, 2 if `method` is invalid, or else -1 from
@@ -189,13 +195,18 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
   jd_tdb = jd_tt;
 
   switch(erot) {
+    double st;
+
     case EROT_ERA:
       // 'CIO-TIO-THETA' method. See second reference, eq. (3) and (4).
-      wobble(jd_tt, WOBBLE_ITRS_TO_TIRS, xp, yp, in, out);
+      prop_error(fn, wobble(jd_tt, WOBBLE_ITRS_TO_TIRS, xp, yp, in, out), 0);
 
-      // Compute and apply the Earth rotation angle, 'theta', transforming the
-      // vector to the celestial intermediate system.
-      novas_Rz(-era(jd_ut1_high, jd_ut1_low) * DEGREE, out);
+      // Compute and apply the Earth rotation angle, 'theta'
+      st = era(jd_ut1_high, jd_ut1_low) * DEGREE;
+      prop_nan(fn, st);
+
+      // transform the vector to the celestial intermediate system.
+      novas_Rz(-st, out);
 
       if(coordType != NOVAS_DYNAMICAL_CLASS)
         prop_error(fn, cirs_to_gcrs(jd_tdb, accuracy, out, out), 10);
@@ -203,12 +214,16 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
       break;
 
     case EROT_GST: {
-      if(xp || yp)
-        wobble(jd_tt, WOBBLE_ITRS_TO_PEF, xp, yp, in, out);
+      if(xp || yp) {
+        prop_error(fn, wobble(jd_tt, WOBBLE_ITRS_TO_PEF, xp, yp, in, out), 0);
+      }
       else
         memcpy(out, in, XYZ_VECTOR_SIZE);
 
-      novas_Rz(-novas_gast(jd_ut1_high + jd_ut1_low, ut1_to_tt, accuracy) * HOURANGLE, out);
+      st = novas_gast(jd_ut1_high + jd_ut1_low, ut1_to_tt, accuracy) * HOURANGLE;
+      prop_nan(fn, st);
+
+      novas_Rz(-st, out);
 
       if(coordType != NOVAS_DYNAMICAL_CLASS)
         tod_to_gcrs(jd_tdb, accuracy, out, out);
@@ -256,7 +271,7 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
  * @param accuracy      NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
  * @param coordType     Input coordinate class, NOVAS_REFERENCE_CLASS (0) or NOVAS_DYNAMICAL_CLASS
  *                      (1). Use the former if the input coordinates are in the GCRS, and the
- *                      latter if they are CIRS or TOD (the 'erot' parameter selects which
+ *                      latter if they are CIRS or TOD (the `erot` parameter selects which
  *                      dynamical system the input is specified in.)
  * @param xp            [arcsec] Conventionally-defined X coordinate of celestial intermediate
  *                      pole with respect to ITRS pole. If you have defined pole offsets the old
@@ -265,9 +280,9 @@ short ter2cel(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enum nova
  *                      pole with respect to ITRS pole. If you have defined pole offsets the old
  *                      (pre IAU2000) way, via `cel_pole()`, then use 0 here.
  * @param in            Input position vector, geocentric equatorial rectangular coordinates in
- *                      the specified input coordinate system (GCRS if 'class' is
- *                      NOVAS_REFERENCE_CLASS; or else either CIRS if 'erot' is EROT_ERA, or TOD
- *                      if 'erot' is EROT_GST).
+ *                      the specified input coordinate system (GCRS if `coordType` is
+ *                      NOVAS_REFERENCE_CLASS; or else either CIRS if `erot` is EROT_ERA, or TOD
+ *                      if `erot` is EROT_GST).
  * @param[out] out      ITRS position vector, geocentric equatorial rectangular coordinates
  *                      (terrestrial system). It can be the same vector as the input.
  * @return              0 if successful, -1 if either of the vector arguments is NULL, 1 if
@@ -940,12 +955,15 @@ int j2000_to_gcrs(const double *in, double *out) {
 int cirs_to_tod(double jd_tt, enum novas_accuracy accuracy, const double *in, double *out) {
   static const char *fn = "cirs_to_tod";
 
+  double dra;
+
   // Check for valid value of 'accuracy'.
   if(accuracy != NOVAS_FULL_ACCURACY && accuracy != NOVAS_REDUCED_ACCURACY)
     return novas_error(-1, EINVAL, fn, "invalid accuracy: %d", accuracy);
 
   // Obtain the R.A. [h] of the CIO at the given date
-  prop_error(fn, spin(15.0 * ira_equinox(jd_tt, NOVAS_TRUE_EQUINOX, accuracy), in, out), 0);
+  dra = ira_equinox(jd_tt, NOVAS_TRUE_EQUINOX, accuracy);
+  prop_error(fn, spin(15.0 * dra, in, out), 0);
 
   return 0;
 }
@@ -973,12 +991,15 @@ int cirs_to_tod(double jd_tt, enum novas_accuracy accuracy, const double *in, do
 int tod_to_cirs(double jd_tt, enum novas_accuracy accuracy, const double *in, double *out) {
   static const char *fn = "tod_to_cirs";
 
+  double dra;
+
   // Check for valid value of 'accuracy'.
   if(accuracy != NOVAS_FULL_ACCURACY && accuracy != NOVAS_REDUCED_ACCURACY)
     return novas_error(-1, EINVAL, fn, "invalid accuracy: %d", accuracy);
 
   // Obtain the R.A. [h] of the CIO at the given date
-  prop_error(fn, spin(-15.0 * ira_equinox(jd_tt, NOVAS_TRUE_EQUINOX, accuracy), in, out), 0);
+  dra = ira_equinox(jd_tt, NOVAS_TRUE_EQUINOX, accuracy);
+  prop_error(fn, spin(-15.0 * dra, in, out), 0);
 
   return 0;
 }

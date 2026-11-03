@@ -393,13 +393,13 @@ static int set_obs_posvel(novas_frame *frame) {
   if(frame->observer.where == NOVAS_OBSERVER_ON_EARTH || frame->observer.where == NOVAS_AIRBORNE_OBSERVER) {
     const double *v_itrs;
 
-    if(isnan(frame->dx) || isnan(frame->dy))
-      return novas_error(-1, EAGAIN, "set_obs_posvel", "polar offsets undefined for observer type %d", frame->observer.where);
-
     v_itrs = (frame->observer.where == NOVAS_AIRBORNE_OBSERVER) ? frame->observer.near_earth.sc_vel : NULL;
     novas_transform T = {};
 
     res = novas_site_itrs_posvel(&frame->time, &frame->observer.on_surf, v_itrs, frame->obs_pos, frame->obs_vel);
+
+    if(!res && (isnan(frame->dx) || isnan(frame->dy)))
+      res = novas_error(-1, EAGAIN, "set_obs_posvel", "polar offsets undefined for observer type %d", frame->observer.where);
 
     novas_make_transform(frame, NOVAS_ITRS, NOVAS_GCRS, &T);
     novas_transform_vector(frame->obs_pos, &T, frame->obs_pos);
@@ -1571,8 +1571,7 @@ static double novas_cross_el_date(double el, int sign, const object *source, con
     return NAN;
   }
 
-  if(isnan(novas_frame_lst(frame)))
-    return novas_trace_nan(fn);
+  prop_nan(fn, novas_frame_lst(frame));
 
   el *= DEGREE;                     // convert to degrees.
   frame1 = *frame;                  // Time shifted frame
@@ -1643,8 +1642,7 @@ static double novas_cross_el_date(double el, int sign, const object *source, con
  */
 double novas_transit_time(const object *restrict source, const novas_frame *restrict frame) {
   double utc = novas_cross_el_date(NAN, 0, source, frame, NULL);
-  if(isnan(utc))
-    return novas_trace_nan("novas_transit_time");
+  prop_nan("novas_transit_time", utc);
   return utc;
 }
 
@@ -1681,8 +1679,8 @@ double novas_rises_above(double el, const object *restrict source, const novas_f
   errno = 0;
 
   utc = novas_cross_el_date(el, 1, source, frame, ref_model);
-  if(isnan(utc) && errno)
-    return novas_trace_nan("novas_rises_above");
+  if(errno)
+    prop_nan("novas_rises_above", utc);
 
   return utc;
 }
@@ -1720,8 +1718,8 @@ double novas_sets_below(double el, const object *restrict source, const novas_fr
   errno = 0;
 
   utc = novas_cross_el_date(el, -1, source, frame, ref_model);
-  if(isnan(utc) && errno)
-    return novas_trace_nan("novas_sets_below");
+  if(errno)
+    prop_nan("novas_sets_below", utc);
 
   return utc;
 }
@@ -1841,8 +1839,7 @@ double novas_object_sep(const object *source1, const object *source2, const nova
 double novas_sun_angle(const object *restrict source, const novas_frame *restrict frame) {
   object sun = NOVAS_SUN_INIT;
   double d = novas_object_sep(source, &sun, frame);
-  if(isnan(d))
-    return novas_trace_nan("novas_sun_angle");
+  prop_nan("novas_sun_angle", d);
   return d;
 }
 
@@ -1864,8 +1861,7 @@ double novas_sun_angle(const object *restrict source, const novas_frame *restric
 double novas_moon_angle(const object *restrict source, const novas_frame *restrict frame) {
   object moon = NOVAS_MOON_INIT;
   double d = novas_object_sep(source, &moon, frame);
-  if(isnan(d))
-    return novas_trace_nan("novas_moon_angle");
+  prop_nan("novas_moon_angle", d);
   return d;
 }
 

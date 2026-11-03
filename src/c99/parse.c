@@ -246,9 +246,8 @@ double novas_parse_hms(const char *restrict hms, char **restrict tail) {
 double novas_hms_hours(const char *restrict hms) {
   char *tail = (char *) hms;
   double h = novas_parse_hms(hms, &tail);
-  if(isnan(h))
-    return novas_trace_nan("novas_hms_hours");
 
+  prop_nan("novas_hms_hours", h);
   errno = 0;
 
   // Skip trailing white spaces / punctuation
@@ -455,9 +454,8 @@ double novas_parse_dms(const char *restrict dms, char **restrict tail) {
 double novas_dms_degrees(const char *restrict dms) {
   char *tail = (char *) dms;
   double deg = novas_parse_dms(dms, &tail);
-  if(isnan(deg))
-    return novas_trace_nan("novas_dms_degrees");
 
+  prop_nan("novas_dms_degrees", deg);
   errno = 0;
 
   // Skip trailing white spaces / punctuation
@@ -730,9 +728,8 @@ double novas_parse_hours(const char *restrict str, char **restrict tail) {
 double novas_str_degrees(const char *restrict str) {
   char *tail = (char *) str;
   double deg = novas_parse_degrees(str, &tail);
-  if(isnan(deg))
-    return novas_trace_nan("novas_str_degrees");
 
+  prop_nan("novas_str_degrees", deg);
   errno = 0;
 
   // Skip trailing white spaces / punctuation
@@ -769,9 +766,8 @@ double novas_str_degrees(const char *restrict str) {
 double novas_str_hours(const char *restrict str) {
   char *tail = (char *) str;
   double h = novas_parse_hours(str, &tail);
-  if(isnan(h))
-    return novas_trace_nan("novas_str_hours");
 
+  prop_nan("novas_str_hours", h);
   errno = 0;
 
   // Skip trailing white spaces / punctuation
@@ -1067,8 +1063,7 @@ double novas_parse_date_format(enum novas_calendar_type calendar, enum novas_dat
  */
 double novas_parse_date(const char *restrict date, char **restrict tail) {
   double jd = novas_parse_date_format(NOVAS_ASTRONOMICAL_CALENDAR, NOVAS_YMD, date, tail);
-  if(isnan(jd))
-    return novas_trace_nan("novas_parse_date");
+  prop_nan("novas_parse_date", jd);
   return jd;
 }
 
@@ -1100,8 +1095,7 @@ double novas_parse_date(const char *restrict date, char **restrict tail) {
  */
 double novas_parse_iso_date(const char *restrict date, char **restrict tail) {
   double jd = novas_parse_date_format(NOVAS_GREGORIAN_CALENDAR, NOVAS_YMD, date, tail);
-  if(isnan(jd))
-    return novas_trace_nan("novas_parse_iso_date");
+  prop_nan("novas_parse_iso_date", jd);
   return jd;
 }
 

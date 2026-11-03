@@ -152,7 +152,7 @@ double novas_trace_nan(const char *restrict loc) {
 }
 
 /**
- * (_for internal use_) Traces invalid data.
+ * (_for internal use_) Traces invalid data via the error handler.
  *
  * @param loc    function [:location] where error was produced.
  *
@@ -184,7 +184,7 @@ double novas_check_nan(const char *loc, double x) {
 }
 
 /**
- * (_for internal use_) Sets an errno and report errors to the standard error, depending
+ * (_for internal use_) Sets an errno and report errors to the error handler, depending
  * on the current debug mode.
  *
  * @param en    {int} UNIX error number (see errno.h)
@@ -202,6 +202,33 @@ void novas_set_errno(int en, const char *restrict from, const char *restrict des
   va_start(varg, desc);
   if(novas_get_debug_mode() != NOVAS_DEBUG_OFF && error_handler_fn) {
     novas_emit("\n  ERROR! %s: ", from);
+    error_handler_fn(desc, varg);
+    novas_emit("\n");
+  }
+  va_end(varg);
+
+  errno = en;
+}
+
+/**
+ * (_for internal use_) Sets an errno and reports a warning to the error handler, depending
+ * on the current debug mode.
+ *
+ * @param en    {int} UNIX error number (see errno.h)
+ * @param from  {string} Function (:location) where error originated
+ * @param desc  {string} Description of error, with information to convey to user.
+ *
+ * @since 1.8.1
+ * @author Attila Kovacs
+ *
+ * @sa novas_error(), novas_debug()
+ */
+void novas_warn(int en, const char *restrict from, const char *restrict desc, ...) {
+  va_list varg;
+
+  va_start(varg, desc);
+  if(novas_get_debug_mode() != NOVAS_DEBUG_OFF && error_handler_fn) {
+    novas_emit("\n  WARNING! %s: ", from);
     error_handler_fn(desc, varg);
     novas_emit("\n");
   }
@@ -259,6 +286,8 @@ double novas_vdist2(const double *v1, const double *v2) {
     const double d = v1[i] - v2[i];
     d2 += d * d;
   }
+  if(isnan(d2))
+    novas_warn(ERANGE, "novas_vdist2", "returning NAN");
   return d2;
 }
 
@@ -276,7 +305,9 @@ double novas_vdist2(const double *v1, const double *v2) {
  * @sa novas_vlen(), novas_vdot()
  */
 double novas_vdist(const double *v1, const double *v2) {
-  return sqrt(novas_vdist2(v1, v2));
+  double d2 = novas_vdist2(v1, v2);
+  prop_nan("novas_vdist", d2);
+  return sqrt(d2);
 }
 
 /**
@@ -293,7 +324,10 @@ double novas_vdist(const double *v1, const double *v2) {
  * @sa novas_vlen(), novas_vdist()
  */
 double novas_vdot(const double *v1, const double *v2) {
-  return (v1[0] * v2[0]) + (v1[1] * v2[1]) + (v1[2] * v2[2]);
+  double dot = (v1[0] * v2[0]) + (v1[1] * v2[1]) + (v1[2] * v2[2]);
+  if(isnan(dot))
+    novas_warn(ERANGE, "novas_vdot", "returning NAN");
+  return dot;
 }
 
 /**
@@ -381,13 +415,16 @@ void novas_set_max_iter(int n) {
   novas_inv_max_iter = n;
 }
 
-static int novas_rot(double angle, double *x, double *y) {
+static int novas_rot(const char *restrict fn, double angle, double *restrict x, double *restrict y) {
   const double s = sin(angle);
   const double c = cos(angle);
   const double x0 = *x;
 
   *x =  c * x0 + s * (*y);
   *y = -s * x0 + c * (*y);
+
+  if(isnan(angle))
+    return novas_error(-1, EDOM, fn, "input angle is NAN");
 
   return 0;
 }
@@ -407,9 +444,12 @@ static int novas_rot(double angle, double *x, double *y) {
  * @sa novas_Ry(), novas_Rz()
  */
 int novas_Rx(double angle, double *v) {
+  static const char *fn = "novas_Rx";
+
   if(!v)
-    return novas_error(-1, EINVAL, "novas_Rx", "input/output vector is NULL");
-  return novas_rot(angle, &v[1], &v[2]);
+    return novas_error(-1, EINVAL, fn, "input/output vector is NULL");
+
+  return novas_rot(fn, angle, &v[1], &v[2]);
 }
 
 /**
@@ -427,9 +467,12 @@ int novas_Rx(double angle, double *v) {
  * @sa novas_Rx(), novas_Rz()
  */
 int novas_Ry(double angle, double *v) {
+  static const char *fn = "novas_Ry";
+
   if(!v)
-    return novas_error(-1, EINVAL, "novas_Ry", "input/output vector is NULL");
-  return novas_rot(angle, &v[2], &v[0]);
+    return novas_error(-1, EINVAL, fn, "input/output vector is NULL");
+
+  return novas_rot(fn, angle, &v[2], &v[0]);
 }
 
 /**
@@ -447,9 +490,12 @@ int novas_Ry(double angle, double *v) {
  * @sa novas_Rx(), novas_Ry()
  */
 int novas_Rz(double angle, double *v) {
+  static const char *fn = "novas_Rz";
+
   if(!v)
-    return novas_error(-1, EINVAL, "novas_Rz", "input/output vector is NULL");
-  return novas_rot(angle, &v[0], &v[1]);
+    return novas_error(-1, EINVAL, fn, "input/output vector is NULL");
+
+  return novas_rot(fn, angle, &v[0], &v[1]);
 }
 
 /**
@@ -561,6 +607,9 @@ enum novas_debug_mode novas_get_debug_mode() {
 double novas_norm_ang(double angle) {
   double a;
 
+  if(isnan(angle))
+    novas_warn(EDOM, "novas_norm_angle", "input angle is NAN");
+
   a = remainder(angle, TWOPI);
   if(a < 0.0)
     a += TWOPI;
@@ -580,7 +629,10 @@ double novas_norm_ang(double angle) {
  * @sa novas_vdot(), novas_vdist()
  */
 double novas_vlen(const double *restrict v) {
-  return sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+  double l = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+  if(isnan(l))
+    novas_warn(ERANGE, "novas_vlen", "returning NAN");
+  return l;
 }
 
 /**
@@ -597,7 +649,7 @@ double novas_vlen(const double *restrict v) {
  * @param[out] out    Position vector expressed in new coordinate system rotated about z by
  *                    'angle'. It can be the same vector as the input.
  *
- * @return        0 if successful, or -1 if the output vector is NULL.
+ * @return        0 if successful, or -1 if the output vector is NULL, or if the angle is NAN.
  */
 int spin(double angle, const double *in, double *out) {
   if(!in || !out)
@@ -606,7 +658,8 @@ int spin(double angle, const double *in, double *out) {
   if(out != in)
     memcpy(out, in, XYZ_VECTOR_SIZE);
 
-  return novas_Rz(angle * DEGREE, out);
+  prop_error("spin", novas_Rz(angle * DEGREE, out), 0);
+  return 0;
 }
 
 /**
@@ -632,6 +685,7 @@ int spin(double angle, const double *in, double *out) {
 short vector2radec(const double *restrict pos, double *restrict ra, double *restrict dec) {
   static const char *fn = "vector2radec";
   double xyproj;
+  int stat = 0;
 
   // Default return values.
   if(ra)
@@ -659,11 +713,17 @@ short vector2radec(const double *restrict pos, double *restrict ra, double *rest
     *ra = atan2(pos[1], pos[0]) / HOURANGLE;
     if(*ra < 0.0)
       *ra += DAY_HOURS;
+    else if(isnan(*ra))
+      stat = novas_error(-1, EDOM, fn, "returning NAN in 'ra'");
   }
-  if(dec)
-    *dec = atan2(pos[2], xyproj) / DEGREE;
 
-  return 0;
+  if(dec) {
+    *dec = atan2(pos[2], xyproj) / DEGREE;
+    if(isnan(*dec))
+      stat = novas_error(-1, EDOM, fn, "returning NAN in 'dec'");
+  }
+
+  return stat;
 }
 
 /**
@@ -679,10 +739,12 @@ short vector2radec(const double *restrict pos, double *restrict ra, double *rest
  * @sa vector2radec(), starvectors()
  */
 int radec2vector(double ra, double dec, double dist, double *restrict pos) {
+  static const char *fn = "radec2vector";
+
   double cosdec;
 
   if(!pos)
-    return novas_error(-1, EINVAL, "radec2vector", "NULL output 3-vector");
+    return novas_error(-1, EINVAL, fn, "NULL output 3-vector");
 
   dec *= DEGREE;
   ra *= HOURANGLE;
@@ -692,6 +754,9 @@ int radec2vector(double ra, double dec, double dist, double *restrict pos) {
   pos[0] = dist * cosdec * cos(ra);
   pos[1] = dist * cosdec * sin(ra);
   pos[2] = dist * sin(dec);
+
+  if(isnan(ra) || isnan(dec))
+    return novas_error(-1, EDOM, fn, "input R.A. or declination is NAN");
 
   return 0;
 }
@@ -725,14 +790,17 @@ int radec2vector(double ra, double dec, double dist, double *restrict pos) {
  * @sa novas_sky_pos(), novas_geom_posvel()
  */
 double d_light(const double *pos_src, const double *pos_body) {
+  static const char *fn = "d_light";
+
   double d_src;
 
   if(!pos_src || !pos_body) {
-    novas_set_errno(EINVAL, "d_light", "NULL input 3-vector: pos_src=%p, pos_body=%p [=> NAN]", pos_src, pos_body);
+    novas_set_errno(EINVAL, fn, "NULL input 3-vector: pos_src=%p, pos_body=%p [=> NAN]", pos_src, pos_body);
     return NAN;
   }
 
   d_src = novas_vlen(pos_src);
+  prop_nan(fn, d_src);
 
   // Light-time returned is the projection of vector 'pos_obs' onto the
   // unit vector 'u1' (formed from 'pos_body'), divided by the speed of light.
@@ -781,6 +849,9 @@ double novas_sep(double lon1, double lat1, double lon2, double lat2) {
   const double a = cp2 * sin((lon1 - lon2) * DEGREE);
   const double b = cp1 * sp2 - sp1 * cp2 * cdl;
 
+  if(isnan(lon1) || isnan(lat1) || isnan(lon2) || isnan(lat2))
+    novas_warn(EDOM, "novas_sep", "NAN from input: lon1 = %g, lat1 = %g, lon2 = %g, lat2 = %g", lon1, lat1, lon2, lat2);
+
   return atan2(sqrt(a*a + b * b), sp1 * sp2 + cp1 * cp2 * cdl) / DEGREE;
 }
 
@@ -800,7 +871,9 @@ double novas_sep(double lon1, double lat1, double lon2, double lat2) {
  * @sa novas_equ_offset_by()
  */
 double novas_equ_sep(double ra1, double dec1, double ra2, double dec2) {
-  return novas_sep(15.0 * ra1, dec1, 15.0 * ra2, dec2);
+  double d = novas_sep(15.0 * ra1, dec1, 15.0 * ra2, dec2);
+  prop_nan("novas_equ_sep", d);
+  return d;
 }
 
 /**

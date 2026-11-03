@@ -928,13 +928,14 @@ int novas_fetch_eop(double jd, long timeout_millis, novas_eop *eop) {
 
   const novas_eop invalid = NOVAS_EOP_INVALID;
 
-  if(isnan(jd))
-    return novas_error(-1, EINVAL, fn, "input jd is NAN");
 
   if(!eop)
     return novas_error(-1, EINVAL, fn, "output eop is NULL");
 
   memcpy(eop, &invalid, sizeof(novas_eop));
+
+  if(isnan(jd))
+    return novas_error(-1, EINVAL, fn, "input jd is NAN");
 
   eop->jd = jd;
   eop->leap = novas_leap_for_jd(jd);

@@ -88,9 +88,12 @@ double novas_jd_from_date(enum novas_calendar_type calendar, int year, int month
   }
 
   if(day < 1 || day > md[month]) {
-    novas_set_errno(EINVAL, fn, "invalid day-of-month: %d, expected 1-%d", day, md[month]);
+    novas_set_errno(ERANGE, fn, "invalid day-of-month: %d, expected 1-%d", day, md[month]);
     return NAN;
   }
+
+  if(isnan(hour))
+    novas_warn(EDOM, fn, "input hour is NAN", month);
 
   const int m14 = month - 14;
   jd = day - 32123 + floor_div(1461LL * (year + 4800LL + m14 / 12), 4) + 367 * (month - 2 - m14 / 12 * 12) / 12;
@@ -244,8 +247,7 @@ int novas_jd_to_date(double tjd, enum novas_calendar_type calendar, int *restric
  */
 double julian_date(short year, short month, short day, double hour) {
   double jd = novas_jd_from_date(NOVAS_ASTRONOMICAL_CALENDAR, year, month, day, hour);
-  if(isnan(jd))
-    return novas_trace_nan("julian_date");
+  prop_nan("julian_date", jd);
   return jd;
 }
 
@@ -311,14 +313,13 @@ int cal_date(double tjd, short *restrict year, short *restrict month, short *res
  * @sa novas_day_of_year(), novas_jd_to_date()
  */
 int novas_day_of_week(double tjd) {
-  if(isnan(tjd)) {
-    novas_set_errno(EINVAL, "novas_day_of_week", "input Julian date is NAN");
-    return -1;
-  }
-
   int rem = (int) ((long) floor(tjd - NOVAS_JD_J2000 - 1.5) % 7L);
   if(rem < 0)
     rem += 7;
+
+  if(isnan(tjd))
+    return novas_error(-1, EDOM, "novas_day_of_week", "input Julian date is NAN");
+
   return 1 + rem;
 }
 
