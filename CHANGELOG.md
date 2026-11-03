@@ -7,6 +7,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [Unreleased]
+
+Upcoming bug-fix release, expected around 1 February 2027.
+
+### Fixed
+
+ - #400: Fixed `cal_date()` not propagating errors from `novas_jd_to_date()`. 
+
+### Changed
+
+ - #400: Simplified `spin()` to use `novas_Rz()`, and use the latter directly when it makes sense internally.
+ 
+ - Updated documentation.
+
+
+
 ## [1.8.0] - 2026-11-01
 
 Feature release. The highlights are new observer locations, and changes relating to the upcoming abolishment (freeze) 
