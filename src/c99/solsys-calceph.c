@@ -174,9 +174,10 @@ int novas_calceph_use_ids(enum novas_id_type idtype) {
  *                       coordinates in AU referred to the ICRS.
  * @param[out] velocity  [AU/day] Velocity vector of 'body' at jd_tdb; equatorial rectangular
  *                       system referred to the ICRS, in AU/day.
- * @return               0 if successful, or else 1 if the 'body' is invalid, or 2 if the
- *                       'origin' is invalid, or 3 if there was an error providing ephemeris
- *                       data.
+ * @return               0 if successful, -1 if the input date pointer is NULL (errno set to EINVAL)
+ *                       or the Julian date is NAN (errno set to EDOM); or else 1 if the 'body' is
+ *                       invalid, or 2 if the 'origin' is invalid, or 3 if there was an error
+ *                       providing ephemeris data.
  *
  * @author Attila Kovacs
  * @since 1.2
@@ -249,6 +250,9 @@ static short planet_calceph_hp(const double jd_tdb[restrict 2], enum novas_plane
     if(velocity)
       velocity[i] = pv[3 + i] * NORM_VEL;
   }
+
+  if(isnan(jd_tdb[0] + jd_tdb[1]))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN: %g + %g", jd_tdb[0], jd_tdb[1]);
 
   return 0;
 }
@@ -383,6 +387,9 @@ static int novas_calceph(const char *name, long id, double jd_tdb_high, double j
     if(vel)
       vel[i] = pv[3 + i] * NORM_VEL;
   }
+
+  if(isnan(jd_tdb_high + jd_tdb_low))
+    return novas_error(-1, EDOM, fn, "imput Julian date is NAN: %g + %g", jd_tdb_high, jd_tdb_low);
 
   return 0;
 }

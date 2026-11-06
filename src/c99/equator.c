@@ -110,14 +110,19 @@ double EPS_COR = 0.0;
  * @param dpole2    [mas] Value of celestial pole offset in second coordinate,
  *                  (&Delta;&delta;&epsilon; or dy) in milliarcseconds, relative to the IAU2006
  *                  precession/nutation model.
- * @return          0 if successful, or else 1 if 'type' is invalid.
+ * @return          0 if successful, or else 1 if 'type' is invalid, or if the Julian date or
+ *                  either of the pole offsets is NAN.
  *
  * @sa novas_make_frame(), wobble()
  */
 short cel_pole(double jd_tt, enum novas_pole_offset_type type, double dpole1, double dpole2) {
+  static const char *fn = "cel_pole";
+
+  if(isnan(dpole1) || isnan(dpole2))
+    return novas_error(-1, EDOM, fn, "input pole is NAN: dpole1 = %g, dpole2 = %g", dpole1, dpole2);
+
   switch(type) {
     case POLE_OFFSETS_DPSI_DEPS:
-
       // Angular coordinates of modeled pole referred to mean ecliptic of
       // date, that is,delta-delta-psi and delta-delta-epsilon.
       PSI_COR = 1e-3 * dpole1;
@@ -125,12 +130,15 @@ short cel_pole(double jd_tt, enum novas_pole_offset_type type, double dpole1, do
       break;
 
     case POLE_OFFSETS_X_Y: {
+      if(isnan(jd_tt))
+        return novas_error(-1, EDOM, fn, "input Julian date is NAN");
+
       polar_dxdy_to_dpsideps(jd_tt, dpole1, dpole2, &PSI_COR, &EPS_COR);
       break;
     }
 
     default:
-      return novas_error(1, EINVAL, "cel_pole", "invalid polar offset type: %d", type);
+      return novas_error(1, EINVAL, fn, "invalid polar offset type: %d", type);
   }
 
   return 0;
@@ -160,7 +168,7 @@ short cel_pole(double jd_tt, enum novas_pole_offset_type type, double dpole1, do
  *                    Bulletin A.
  * @param[out] dpsi   [arcsec] Calculated correction to the TOD orientation d&psi;.
  * @param[out] deps   [arcsec] Calculated correction to the TOD orientation d&epsilon;.
- * @return            0
+ * @return            0 if successful, or -1 if
  *
  * @sa cel_pole()
  *
@@ -168,9 +176,10 @@ short cel_pole(double jd_tt, enum novas_pole_offset_type type, double dpole1, do
  * @author Attila Kovacs
  */
 int polar_dxdy_to_dpsideps(double jd_tt, double dx, double dy, double *restrict dpsi, double *restrict deps) {
+  static const char *fn = "polar_dxdy_to_dpsideps";
+
   // Components of modeled pole unit vector referred to GCRS axes, that is, dx and dy.
   const double t = (jd_tt - JD_J2000) / JULIAN_CENTURY_DAYS;
-
   // The following algorithm, to transform dx and dy to
   // delta-delta-psi and delta-delta-epsilon, is from eqs. (7)-(9) of the
   // second reference.
@@ -193,6 +202,12 @@ int polar_dxdy_to_dpsideps(double jd_tt, double dx, double dy, double *restrict 
   }
   if(deps)
     *deps = dp[1] / ARCSEC;
+
+  if(isnan(jd_tt))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
+
+  if(isnan(dx) || isnan(dy))
+    return novas_error(-1, EDOM, fn, "polar_dxdy_to_dpsideps", "NAN input offset: dx = %g, dy = %g", dx, dy);
 
   return 0;
 }
@@ -226,10 +241,12 @@ int polar_dxdy_to_dpsideps(double jd_tt, double dx, double dy, double *restrict 
  */
 int e_tilt(double jd_tdb, enum novas_accuracy accuracy, double *restrict mobl, double *restrict tobl,
         double *restrict ee, double *restrict dpsi, double *restrict deps) {
+  static const char *fn = "e_tilt";
+
   double t, d_psi = NAN, d_eps = NAN, mean_ob, true_ob, eqeq;
 
   if(accuracy != NOVAS_FULL_ACCURACY && accuracy != NOVAS_REDUCED_ACCURACY)
-    return novas_error(-1, EINVAL, "e_tilt", "invalid accuracy: %d", accuracy);
+    return novas_error(-1, EINVAL, fn, "invalid accuracy: %d", accuracy);
 
   // Compute time in Julian centuries from epoch J2000.0.
   t = (jd_tdb - JD_J2000) / JULIAN_CENTURY_DAYS;
@@ -260,6 +277,9 @@ int e_tilt(double jd_tdb, enum novas_accuracy accuracy, double *restrict mobl, d
   if(tobl)
     *tobl = true_ob;
 
+  if(isnan(jd_tdb))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
+
   return 0;
 }
 
@@ -276,6 +296,9 @@ int e_tilt(double jd_tdb, enum novas_accuracy accuracy, double *restrict mobl, d
  * @author Attila Kovacs
  */
 double accum_prec(double t) {
+  if(isnan(t))
+    novas_warn(EDOM, "accum_prec", "input time parameter is NAN");
+
   // General precession in longitude (Simon et al. 1994), equivalent
   // to 5028.8200 arcsec/cy at J2000.
   return remainder((0.024380407358 + 0.000005391235 * t) * t, TWOPI);
@@ -300,6 +323,9 @@ double accum_prec(double t) {
 double mean_obliq(double jd_tdb) {
   // Compute time in Julian centuries from epoch J2000.0.
   const double t = (jd_tdb - JD_J2000) / JULIAN_CENTURY_DAYS;
+
+  if(isnan(jd_tdb))
+    novas_warn(EDOM, "mean_obliq", "input Julian date is NAN");
 
   // Compute the mean obliquity in arcseconds.  Use expression from the
   // reference's eq. (39) with obliquity at J2000.0 taken from eq. (37)
@@ -326,6 +352,10 @@ double mean_obliq(double jd_tdb) {
  */
 double novas_gmst_prec(double jd_tdb) {
   const double t = (jd_tdb - JD_J2000) / JULIAN_CENTURY_DAYS;
+
+  if(isnan(t))
+    novas_warn(EDOM, "novas_gmst_prec", "input Julian date is NAN");
+
   return 0.014506 + ((((-0.0000000368 * t - 0.000029956) * t - 0.00000044) * t + 1.3915817) * t + 4612.156534) * t;
 }
 
@@ -352,14 +382,19 @@ double novas_gmst_prec(double jd_tdb) {
  * @param accuracy    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1, or non-zero)
  * @return            [h]  Intermediate right ascension of the equinox, in hours (+ or -).
  *                    If 'equinox' = 1 (i.e true equinox), then the returned value is
- *                    the equation of the origins.
+ *                    the equation of the origins; or NAN if the Julian date is NAN or the
+ *                    accuracy is invalid.
  *
  * @sa cio_ra()
  * @sa gcrs_to_cirs(), cirs_to_gcrs()
  */
 double ira_equinox(double jd_tdb, enum novas_equinox_type equinox, enum novas_accuracy accuracy) {
+  static const char *fn = "ira_equinox";
+
   // Precession in RA in arcseconds taken from the reference in seconds of time.
   double prec_ra = novas_gmst_prec(jd_tdb) / 15.0;
+
+  prop_nan(fn, prec_ra);
 
   // For the true equinox, obtain the equation of the equinoxes in time
   // seconds, which includes the 'complementary terms'.
@@ -371,7 +406,7 @@ double ira_equinox(double jd_tdb, enum novas_equinox_type equinox, enum novas_ac
       accuracy = NOVAS_FULL_ACCURACY;
 
     // Add equation of equinoxes.
-    prop_error("ira_equinox", e_tilt(jd_tdb, accuracy, NULL, NULL, &eqeq, NULL, NULL), 0);
+    prop_error(fn, e_tilt(jd_tdb, accuracy, NULL, NULL, &eqeq, NULL, NULL), 0);
     prec_ra += eqeq;
   }
 
@@ -416,7 +451,7 @@ double ira_equinox(double jd_tdb, enum novas_equinox_type equinox, enum novas_ac
  * @param jd_tt_high  [day] High-order part of TT based Julian date.
  * @param jd_tt_low   [day] Low-order part of TT based Julian date.
  * @param accuracy    NOVAS_FULL_ACCURACY (0) or NOVAS_REDUCED_ACCURACY (1)
- * @return            [rad] Complementary terms, in radians.
+ * @return            [rad] Complementary terms, in radians, or NAN if the Julian date is NAN.
  *
  * @sa e_tilt()
  */
@@ -474,12 +509,19 @@ double ee_ct(double jd_tt_high, double jd_tt_low, enum novas_accuracy accuracy) 
 
   // @formatter:on
 
+  const double jd_tt = jd_tt_high + jd_tt_low;
+
+  if(isnan(jd_tt)) {
+    novas_warn(EDOM, "ee_ct", "input Julian date is NAN");
+    return NAN;
+  }
+
   if(accuracy != NOVAS_FULL_ACCURACY)
     accuracy = NOVAS_REDUCED_ACCURACY;
 
   // Recalc values only if parameters changed.
-  if(!novas_time_equals(jd_tt_high + jd_tt_low, last_tt) || accuracy != last_acc) {
-    const double t = ((jd_tt_high - JD_J2000) + jd_tt_low) / JULIAN_CENTURY_DAYS;
+  if(!novas_time_equals(jd_tt, last_tt) || accuracy != last_acc) {
+    const double t = (jd_tt - JD_J2000) / JULIAN_CENTURY_DAYS;
     double a[9] = {0.0};
     double sum = 0.0;
     int i, Nt = 33; // Number of terms to sum...
@@ -531,13 +573,16 @@ double ee_ct(double jd_tt_high, double jd_tt_low, enum novas_accuracy accuracy) 
  * @param t       [cy] TDB time in Julian centuries since J2000.0
  * @param[out] a  [rad] Fundamental arguments data to populate (5 doubles) [0:2&pi;]
  *
- * @return        0 if successful, or -1 if the output pointer argument is NULL.
+ * @return        0 if successful, or -1 if the output pointer argument is NULL or if
+ *                the time parameter is NAN.
  *
  * @sa nutation_angles(), e_tilt(), NOVAS_JD_J2000
  */
 int fund_args(double t, novas_delaunay_args *restrict a) {
+  static const char *fn = "fund_args";
+
   if(!a)
-    return novas_error(-1, EINVAL, "fund_args", "NULL output pointer");
+    return novas_error(-1, EINVAL, fn, "NULL output pointer");
 
   a->l = 485868.249036 + t * (1717915923.2178 + t * (31.8792 + t * (0.051635 + t * (-0.00024470))));
   a->l1 = 1287104.793048 + t * (129596581.0481 + t * (-0.5532 + t * (0.000136 + t * (-0.00001149))));
@@ -559,6 +604,9 @@ int fund_args(double t, novas_delaunay_args *restrict a) {
   a->F = novas_norm_ang(a->F * ARCSEC);
   a->D = novas_norm_ang(a->D * ARCSEC);
   a->Omega = novas_norm_ang(a->Omega * ARCSEC);
+
+  if(isnan(t))
+    return novas_error(-1, EDOM, fn, "input time parameter is NAN");
 
   return 0;
 }
@@ -602,6 +650,8 @@ int fund_args(double t, novas_delaunay_args *restrict a) {
  *     NOVAS_JD_B1950, NOVAS_JD_B1900
  */
 short precession(double jd_tdb_in, const double *in, double jd_tdb_out, double *out) {
+  static const char *fn = "precession";
+
   static THREAD_LOCAL double djd_last[2] = { NAN, NAN };
   static THREAD_LOCAL double xx[2], yx[2], zx[2], xy[2], yy[2], zy[2], xz[2], yz[2], zz[2];
 
@@ -609,7 +659,7 @@ short precession(double jd_tdb_in, const double *in, double jd_tdb_out, double *
   int i = 0;
 
   if(!in || !out)
-    return novas_error(-1, EINVAL, "precession", "NULL input or output 3-vector: in=%p, out=%p", in, out);
+    return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: in=%p, out=%p", in, out);
 
   if(jd_tdb_in == jd_tdb_out) {
     if(out != in)
@@ -714,6 +764,11 @@ short precession(double jd_tdb_in, const double *in, double jd_tdb_out, double *
     out[2] = xz[0] * x + yz[0] * y + zz[0] * z;
   }
 
+  if(isnan(jd_tdb_in) || isnan(jd_tdb_out)) {
+    out[0] = out[1] = out[2] = NAN;
+    return novas_error(-1, EDOM, fn, "input or output Julian date is NAN: in = %g, out = %g", jd_tdb_in, jd_tdb_out);
+  }
+
   return 0;
 }
 
@@ -744,15 +799,17 @@ short precession(double jd_tdb_in, const double *in, double jd_tdb_out, double *
  * @sa tt2tdb(), novas_get_time(), NOVAS_MOD, NOVAS_TOD
  */
 int nutation(double jd_tdb, enum novas_nutation_direction direction, enum novas_accuracy accuracy, const double *in, double *out) {
+  static const char *fn = "nutation";
+
   double oblm, oblt, psi;
   double cm, sm, ct, st, cp, sp;
   double xx, yx, zx, xy, yy, zy, xz, yz, zz;
 
   if(!in || !out)
-    return novas_error(-1, EINVAL, "nutation", "NULL input or output 3-vector: in=%p, out=%p", in, out);
+    return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: in=%p, out=%p", in, out);
 
   // Call 'e_tilt' to get the obliquity and nutation angles.
-  prop_error("nutation", e_tilt(jd_tdb, accuracy, &oblm, &oblt, NULL, &psi, NULL), 0);
+  prop_error(fn, e_tilt(jd_tdb, accuracy, &oblm, &oblt, NULL, &psi, NULL), 0);
 
   oblm *= DEGREE;
   oblt *= DEGREE;
@@ -789,6 +846,11 @@ int nutation(double jd_tdb, enum novas_nutation_direction direction, enum novas_
     out[0] = xx * x + xy * y + xz * z;
     out[1] = yx * x + yy * y + yz * z;
     out[2] = zx * x + zy * y + zz * z;
+  }
+
+  if(isnan(jd_tdb)) {
+    out[0] = out[1] = out[2] = NAN;
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
   }
 
   return 0;

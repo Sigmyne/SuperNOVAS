@@ -417,6 +417,12 @@ int grav_planets(const double *pos_src, const double *pos_obs, const novas_plane
  */
 double grav_redshift(double M_kg, double r_m) {
   static const double twoGoverC2 = 2.0 * 6.6743e-11 / NOVAS_C2; // 2G/c^2 in SI units.
+
+  if(isnan(M_kg) || isnan(r_m)) {
+    novas_warn(EDOM, "grav_redshift", "NAN input parm(s): M_kg=%g, r_m=%g", M_kg, r_m);
+    return NAN;
+  }
+
   return 1.0 / sqrt(1.0 - twoGoverC2 * M_kg / r_m) - 1.0;
 }
 

@@ -48,7 +48,10 @@
  * @param[out] dec    [deg] Declination in degrees, referred to specified equator and equinox
  *                    of date.
 
- * @return            0 if successful, or else 1 if the value of 'coord_sys' is invalid.
+ * @return            0 if successful, or else 1 if the value of 'coord_sys' is invalid; or else
+ *                    -1 if either of the output pointers are NULL (errno set to EINVAL), or if the
+ *                    Julian date or ecliptic coordinates are NAN (errno set to EDOM), or if the
+ *                    latitude parameter exceeds the [-90:90] range (errno set to ERANGE).
  *
  * @since 1.0
  * @author Attila Kovacs
@@ -59,6 +62,9 @@ int ecl2equ(double jd_tt, enum novas_equator_type coord_sys, enum novas_accuracy
         double *restrict ra, double *restrict dec) {
   static const char *fn = "ecl2equ";
   double coslat, pos[3], xyproj;
+
+  if(fabs(elat) > 90.0)
+    return novas_error(-1, ERANGE, fn, "input latitude %g exceeds +/- 90", elat);
 
   if(!ra || !dec)
     return novas_error(-1, EINVAL, fn, "NULL output pointer: ra=%p, dec=%p", ra, dec);
@@ -83,6 +89,9 @@ int ecl2equ(double jd_tt, enum novas_equator_type coord_sys, enum novas_accuracy
 
   *dec = atan2(pos[2], xyproj) / DEGREE;
 
+  if(isnan(elon) || isnan(elat))
+    return novas_error(-1, EDOM, fn, "NAN input coord(s): elon=%g, elat=%g", elon, elat);
+
   return 0;
 }
 
@@ -101,7 +110,9 @@ int ecl2equ(double jd_tt, enum novas_equator_type coord_sys, enum novas_accuracy
 
  *
  * @return            0 if successful, or -1 if either of the output pointer arguments
- *                    are NULL.
+ *                    are NULL (errno set to EINVAL), or if the input Julian date or coordinates
+ *                    are NAN (errno set to EDOM), or if the latitude exceeds the [-90:90] range
+ *                    (errno set to ERANGE).
  *
  * @since 1.0
  * @author Attila Kovacs
@@ -109,6 +120,8 @@ int ecl2equ(double jd_tt, enum novas_equator_type coord_sys, enum novas_accuracy
  * @sa equ2gal()
  */
 int gal2equ(double glon, double glat, double *restrict ra, double *restrict dec) {
+  static const char *fn = "gal2equ";
+
   double pos1[3], pos2[3], xyproj, coslat;
 
   // Rotation matrix A_g from Liu+2011 Eq. 18
@@ -117,6 +130,10 @@ int gal2equ(double glon, double glat, double *restrict ra, double *restrict dec)
           { -0.054875657707, +0.494109437203, -0.867666137554 }, //
           { -0.873437051953, -0.444829721222, -0.198076337284 }, //
           { -0.483835073621, +0.746982183981, +0.455983813693 } };
+
+
+  if(fabs(glat) > 90.0)
+    return novas_error(-1, ERANGE, fn, "input latitude %g exceeds +/- 90", glat);
 
   if(!ra || !dec)
     return novas_error(-1, EINVAL, "gal2equ", "NULL output pointer: ra=%p, dec=%p", ra, dec);
@@ -142,6 +159,9 @@ int gal2equ(double glon, double glat, double *restrict ra, double *restrict dec)
     *ra += DAY_HOURS;
 
   *dec = atan2(pos2[2], xyproj) / DEGREE;
+
+  if(isnan(glon) || isnan(glat))
+    return novas_error(-1, EDOM, fn, "NAN input coord(s): elon=%g, elat=%g", glon, glat);
 
   return 0;
 }
@@ -308,6 +328,8 @@ int hor_to_itrs(const on_surface *restrict location, double az, double za, doubl
  * @sa gal2equ()
  */
 int equ2gal(double ra, double dec, double *restrict glon, double *restrict glat) {
+  static const char *fn = "equ2gal";
+
   double pos1[3], pos2[3], xyproj, cosd;
 
   // Rotation matrix A_g from Liu+2011 (Eq. 18)
@@ -317,8 +339,11 @@ int equ2gal(double ra, double dec, double *restrict glon, double *restrict glat)
           { +0.494109437203, -0.444829721222, +0.746982183981 }, //
           { -0.867666137554, -0.198076337284, +0.455983813693 } };
 
+  if(fabs(dec) > 90.0)
+    return novas_error(-1, ERANGE, fn, "input declination %g exceeds +/- 90", dec);
+
   if(!glon || !glat)
-    return novas_error(-1, EINVAL, "equ2gal", "NULL output pointer: glon=%p, glat=%p", glon, glat);
+    return novas_error(-1, EINVAL, fn, "NULL output pointer: glon=%p, glat=%p", glon, glat);
 
   // Form position vector in equatorial system from input coordinates
   ra *= HOURANGLE;
@@ -341,6 +366,9 @@ int equ2gal(double ra, double dec, double *restrict glon, double *restrict glat)
     *glon += DEG360;
 
   *glat = atan2(pos2[2], xyproj) / DEGREE;
+
+  if(isnan(ra) || isnan(dec))
+    return novas_error(-1, EDOM, fn, "NAN input coord(s): ra=%g, dec=%g", ra, dec);
 
   return 0;
 }
@@ -375,6 +403,9 @@ short equ2ecl(double jd_tt, enum novas_equator_type coord_sys, enum novas_accura
   static const char *fn = "equ2ecl";
   double cosd, pos[3], xyproj;
 
+  if(fabs(dec) > 90.0)
+    return novas_error(-1, ERANGE, fn, "input declination %g exceeds +/- 90", dec);
+
   if(!elon || !elat)
     return novas_error(-1, EINVAL, fn, "NULL output pointer: elon=%p, elat=%p", elon, elat);
 
@@ -398,6 +429,9 @@ short equ2ecl(double jd_tt, enum novas_equator_type coord_sys, enum novas_accura
     *elon += DEG360;
 
   *elat = atan2(pos[2], xyproj) / DEGREE;
+
+  if(isnan(ra) || isnan(dec))
+    return novas_error(-1, EDOM, fn, "NAN input coord(s): ra=%g, dec=%g", ra, dec);
 
   return 0;
 }
@@ -445,7 +479,7 @@ short equ2ecl_vec(double jd_tt, enum novas_equator_type coord_sys, enum novas_ac
 
       memcpy(pos0, in, sizeof(pos0));
 
-      e_tilt(jd_tdb, accuracy, &oblm, &oblt, NULL, NULL, NULL);
+      prop_error(fn, e_tilt(jd_tdb, accuracy, &oblm, &oblt, NULL, NULL, NULL), 0);
 
       obl = (coord_sys == NOVAS_MEAN_EQUATOR ? oblm : oblt) * DEGREE;
       break;
@@ -521,7 +555,7 @@ short ecl2equ_vec(double jd_tt, enum novas_equator_type coord_sys, enum novas_ac
       // For these calculations we can assume TDB = TT (< 2 ms difference)
       const double jd_tdb = jd_tt;
 
-      e_tilt(jd_tdb, accuracy, &oblm, &oblt, NULL, NULL, NULL);
+      prop_error(fn, e_tilt(jd_tdb, accuracy, &oblm, &oblt, NULL, NULL, NULL), 0);
       obl = (coord_sys == NOVAS_MEAN_EQUATOR ? oblm : oblt) * DEGREE;
       break;
     }
@@ -621,6 +655,7 @@ short ecl2equ_vec(double jd_tt, enum novas_equator_type coord_sys, enum novas_ac
 int equ2hor(double jd_ut1, double ut1_to_tt, enum novas_accuracy accuracy, double xp, double yp,
         const on_surface *restrict location, double ra, double dec, enum novas_refraction_model ref_option,
         double *restrict zd, double *restrict az, double *restrict rar, double *restrict decr) {
+  static const char *fn = "equ2hor";
 
   double lon, lat, sinlat, coslat, sinlon, coslon, cosdec;
   double uze[3], une[3], uwe[3], uz[3], un[3], uw[3], p[3];
@@ -637,7 +672,7 @@ int equ2hor(double jd_ut1, double ut1_to_tt, enum novas_accuracy accuracy, doubl
     *decr = dec;
 
   if(!location || !zd || !az)
-    return novas_error(-1, EINVAL, "equ2hor", "NULL input observer location=%p, output az=%p, or zd=%p pointer", location, az, zd);
+    return novas_error(-1, EINVAL, fn, "NULL input observer location=%p, output az=%p, or zd=%p pointer", location, az, zd);
 
   lon = location->longitude * DEGREE;
   lat = location->latitude * DEGREE;
@@ -679,9 +714,9 @@ int equ2hor(double jd_ut1, double ut1_to_tt, enum novas_accuracy accuracy, doubl
 
   // Rotate Earth-fixed orthonormal basis vectors to celestial system
   // (wrt equator and equinox of date).
-  ter2cel(jd_ut1, 0.0, ut1_to_tt, EROT_GST, accuracy, NOVAS_DYNAMICAL_CLASS, xp, yp, uze, uz);
-  ter2cel(jd_ut1, 0.0, ut1_to_tt, EROT_GST, accuracy, NOVAS_DYNAMICAL_CLASS, xp, yp, une, un);
-  ter2cel(jd_ut1, 0.0, ut1_to_tt, EROT_GST, accuracy, NOVAS_DYNAMICAL_CLASS, xp, yp, uwe, uw);
+  prop_error(fn, ter2cel(jd_ut1, 0.0, ut1_to_tt, EROT_GST, accuracy, NOVAS_DYNAMICAL_CLASS, xp, yp, uze, uz), 0);
+  prop_error(fn, ter2cel(jd_ut1, 0.0, ut1_to_tt, EROT_GST, accuracy, NOVAS_DYNAMICAL_CLASS, xp, yp, une, un), 0);
+  prop_error(fn, ter2cel(jd_ut1, 0.0, ut1_to_tt, EROT_GST, accuracy, NOVAS_DYNAMICAL_CLASS, xp, yp, uwe, uw), 0);
 
   // Compute coordinates of object w.r.t orthonormal basis.
 
@@ -704,6 +739,8 @@ int equ2hor(double jd_ut1, double ut1_to_tt, enum novas_accuracy accuracy, doubl
     // Get refraction in zenith distance.
     const double zd0 = *zd;
     const double refr = refract_astro(location, ref_option, zd0);
+
+    prop_nan(fn, refr);
 
     // Apply refraction to celestial coordinates of object.
     if(refr) {
@@ -735,6 +772,10 @@ int equ2hor(double jd_ut1, double ut1_to_tt, enum novas_accuracy accuracy, doubl
         *decr = atan2(pr[2], proj) / DEGREE;
     }
   }
+
+  if(isnan(lon) || isnan(lat))
+    return novas_error(-1, EDOM, fn, "NAN in site coords: lon=%g, lat=%g", location->longitude, location->latitude);
+
   return 0;
 }
 
@@ -748,7 +789,8 @@ int equ2hor(double jd_ut1, double ut1_to_tt, enum novas_accuracy accuracy, doubl
  * @param[out] xyz    [arb.u.] Output rectangular equatorial 3-vector (&delta;x, &delta;y, &delta;z),
  *                    in the same units as the input. It may be the same vector as the input.
  * @return            0 if successful, or else -1 if either vector argument is NULL (errno will be
- *                    set to EINVAL).
+ *                    set to EINVAL), or if either input coordinate is NAN (errno set to EDOM)
+ *                    or if the latitude exceeds the [-90:90] range (errno set to ERANGE).
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -770,6 +812,9 @@ int novas_los_to_xyz(const double *los, double lon, double lat, double *xyz) {
   if(!los)
     return novas_error(-1, EINVAL, fn, "input los vector is NULL");
 
+  if(fabs(lat) > 90)
+    return novas_error(-1, ERANGE, fn, "input latitude %g is outside the +/- 90 range", lat);
+
   lon *= DEGREE;
   lat *= DEGREE;
 
@@ -789,6 +834,9 @@ int novas_los_to_xyz(const double *los, double lon, double lat, double *xyz) {
   xyz[1] = clon * dlon + slon * clatdr_m_slatdlat;
   xyz[2] = clat * dlat + slat * dr;
 
+  if(isnan(lon) || isnan(lat))
+    return novas_error(-1, EDOM, fn, "NAN input coord(s): lon=%g, lat=%g", lon, lat);
+
   return 0;
 }
 
@@ -803,7 +851,8 @@ int novas_los_to_xyz(const double *los, double lon, double lat, double *xyz) {
  *                    &delta;r), in the same units as the input. It may be the same vector as the
  *                    input.
  * @return            0 if successful, or else -1 if either vector argument is NULL (errno will be
- *                    set to EINVAL).
+ *                    set to EINVAL), or if either input coordinate is NAN (errno set to EDOM) or
+ *                    if the latitude is outside of the [-90:90] range (errno set to ERANGE).
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -825,6 +874,9 @@ int novas_xyz_to_los(const double *xyz, double lon, double lat, double *los) {
   if(!xyz)
     return novas_error(-1, EINVAL, fn, "input xyz vector is NULL");
 
+  if(fabs(lat) > 90)
+    return novas_error(-1, ERANGE, fn, "input latitude %g is outside the +/- 90 range", lat);
+
   lon *= DEGREE;
   lat *= DEGREE;
 
@@ -843,6 +895,9 @@ int novas_xyz_to_los(const double *xyz, double lon, double lat, double *los) {
   los[0] = clon * y - slon * x;
   los[1] = clat * z - slat * clonx_slony;
   los[2] = clat * clonx_slony + slat * z;
+
+  if(isnan(lon) || isnan(lat))
+    return novas_error(-1, EDOM, fn, "NAN input coord(s): lon=%g, lat=%g", lon, lat);
 
   return 0;
 }
@@ -872,8 +927,9 @@ int novas_xyz_to_los(const double *xyz, double lon, double lat, double *los) {
  * @param[out] uvw      [arb.u.] Converted u,v,w coordinates (double[3]), in same units as
  *                      the input xyz. It may be the same vector as the input.
  *
- * @return              0 if successful, or else -1 if either vector argument is NULL (errno will
- *                      be set to EINVAL)
+ * @return              0 if successful, or else -1 if either vector argument is NULL (errno set
+ *                      to EINVAL), or if either input coordinate is NAN (errno set to EDOM), or
+ *                      if the declination exceeds the [-90:90] range (errno set to ERANGE).
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -906,8 +962,9 @@ int novas_xyz_to_uvw(const double *xyz, double ha, double dec, double *uvw) {
  * @param[out] xyz      [arb.u.] Converted x,y,z coordinates (double[3]) in the same unit as uvw,
  *                      in the Pseudo Earth Frame (PEF). It may be the same vector as the input.
  *
- * @return              0 if successful, or else -1 if either vector argument is NULL
- *                      (errno will be set to EINVAL)
+ * @return              0 if successful, or else -1 if either vector argument is NULL (errno set to
+ *                      EINVAL), or if either input coordinate is NAN (errno set to EDOM), or
+ *                      if the declination exceeds the [-90:90] range (errno set to ERANGE).
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -927,8 +984,9 @@ int novas_uvw_to_xyz(const double *uvw, double ha, double dec, double *xyz) {
  * @param lon         [deg] ITRS longitude of site.
  * @param lat         [deg] ITRS latitude of site.
  * @param[out] enu    output East-North-Up (ENU) vector. It may be the same vector as the input.
- * @return            0 if successful, or else -1 if either pointer argument is NULL (errno will be
- *                    set to EINVAL).
+ * @return            0 if successful, or else -1 if either pointer argument is NULL (errno set
+ *                    to EINVAL), or if either input coordinate is NAN (errno set to EDOM), or
+ *                    if the declination exceeds the [-90:90] range (errno set to ERANGE).
  *
  * @since 1.6
  * @author Attila Kovacs
@@ -947,8 +1005,9 @@ int novas_itrs_to_enu(const double *itrf, double lon, double lat, double *enu) {
  * @param lon         [deg] ITRS longitude of site.
  * @param lat         [deg] ITRS latitude of site.
  * @param[out] itrf   output ITRS vector. It may be the same vector as the input.
- * @return            0 if successful, or else -1 if either pointer argument is NULL (errno will be
- *                    set to EINVAL).
+ * @return            0 if successful, or else -1 if either pointer argument is NULL (errno set
+ *                    to EINVAL), or if either input coordinate is NAN (errno set to EDOM), or
+ *                    if the declination exceeds the [-90:90] range (errno set to ERANGE).
  *
  * @since 1.6
  * @author Attila Kovacs
@@ -976,7 +1035,9 @@ int novas_enu_to_itrs(const double *enu, double lon, double lat, double *itrf) {
  * @return      [deg] Parallactic Angle (PA). I.e., the clockwise position angle of the
  *              declination direction w.r.t. the elevation axis in the horizontal system. Same as
  *              the clockwise position angle of the elevation direction w.r.t. the declination
- *              axis in the equatorial system.
+ *              axis in the equatorial system. NAN may be returned if any of
+ *              the parameters is NAN (errno set to EDOM) or if `dec` or `lat` are outside
+ *              of the [-90:90] range.
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -984,7 +1045,18 @@ int novas_enu_to_itrs(const double *enu, double lon, double lat, double *itrf) {
  * @sa novas_epa(), novas_h2e_offset()
  */
 double novas_hpa(double az, double el, double lat) {
+  static const char *fn = "novas_hpa";
+
   double s, c;
+
+  if(isnan(az) || isnan(el) || isnan(lat))
+    novas_warn(EDOM, fn, "NAN input coord(s): az=%g, el=%g, lat=%g", az, el, lat);
+
+  if(fabs(el) > 90)
+    return novas_error(-1, ERANGE, fn, "elevation %g exceeds the +/- 90 range", el);
+
+  if(fabs(lat) > 90)
+    return novas_error(-1, ERANGE, fn, "latitude %g exceeds the +/- 90 range", lat);
 
   lat *= DEGREE;
   az *= DEGREE;
@@ -1013,7 +1085,9 @@ double novas_hpa(double az, double el, double lat) {
  * @return        [deg] Parallactic Angle (PA). I.e., the clockwise position angle of the
  *                elevation direction w.r.t. the declination axis in the equatorial system. Same
  *                as the clockwise position angle of the declination direction w.r.t. the
- *                elevation axis, in the horizontal system.
+ *                elevation axis, in the horizontal system. NAN may be returned if any of
+ *                the parameters is NAN (errno set to EDOM) or if `dec` or `lat` are outside
+ *                of the [-90:90] range.
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -1021,7 +1095,18 @@ double novas_hpa(double az, double el, double lat) {
  * @sa novas_hpa(), novas_e2h_offset()
  */
 double novas_epa(double ha, double dec, double lat) {
+  static const char *fn = "novas_epa";
+
   double coslat;
+
+  if(isnan(ha) || isnan(dec) || isnan(lat))
+    novas_warn(EDOM, fn, "NAN input coord(s): ha=%g, dec=%g, lat=%g", ha, dec, lat);
+
+  if(fabs(dec) > 90)
+    return novas_error(-1, ERANGE, fn, "declination %g exceeds the +/- 90 range", dec);
+
+  if(fabs(lat) > 90)
+    return novas_error(-1, ERANGE, fn, "latitude %g exceeds the +/- 90 range", lat);
 
   ha *= HOURANGLE;
   lat *= DEGREE;
@@ -1050,7 +1135,8 @@ double novas_epa(double ha, double dec, double lat) {
  * @param[out] ddec   [arcsec] Output offset position in the local true-of-date declination
  *                    direction. It can be a pointer to one of the input coordinates, or NULL if
  *                    not required.
- * @return            0
+ * @return            0 if successful, or else -1 if any of the input floating-point values is NAN
+ *                    (errno set to EDOM).
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -1068,6 +1154,9 @@ int novas_h2e_offset(double daz, double del, double pa, double *restrict dra, do
     *dra =  s * dy - c * dx;
   if(ddec)
     *ddec = s * dx + c * dy;
+
+  if(isnan(daz) || isnan(del) || isnan(pa))
+    return novas_error(-1, EDOM, "novas_h2e_offset", "NAN input parameter(s): daz=%g, del=%g, pa=%g", daz, del, pa);
 
   return 0;
 }
@@ -1091,7 +1180,8 @@ int novas_h2e_offset(double daz, double del, double pa, double *restrict dra, do
  *                    pointer to one of the input coordinates, or NULL if not required.
  * @param[out] del    [arcsec] Output offset position in the local elevation direction. It can be a
  *                    pointer to one of the input coordinates, or NULL if not required.
- * @return            0
+ * @return            0 if successful, or else -1 if any of the input floating-point values is NAN
+ *                    (errno set to EDOM).
  *
  * @since 1.3
  * @author Attila Kovacs
@@ -1099,6 +1189,7 @@ int novas_h2e_offset(double daz, double del, double pa, double *restrict dra, do
  * @sa novas_h2e_offset(), novas_epa()
  */
 int novas_e2h_offset(double dra, double ddec, double pa, double *restrict daz, double *restrict del) {
-  return novas_h2e_offset(dra, ddec, pa, daz, del);
+  prop_error("novas_e2h_offset", novas_h2e_offset(dra, ddec, pa, daz, del), 0);
+  return 0;
 }
 

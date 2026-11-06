@@ -299,14 +299,13 @@ static int test_refract() {
   on_surface loc = ON_SURFACE_INIT, loc0 = ON_SURFACE_INIT;
   double r;
 
-
   novas_debug(NOVAS_DEBUG_ON);
   novas_set_error_handler(error_capture);
   reset_captured();
   errno = 0;
 
   r = refract(NULL, NOVAS_STANDARD_ATMOSPHERE, 30.0);
-  if(check("refract:loc", 1, r == 0.0 && errno == EINVAL)) n++;
+  if(check("refract:loc", 1, isnan(r) && errno == EINVAL)) n++;
   if(check_error_captured("refract:loc:err", "NULL")) n++;
 
   novas_set_error_handler(NULL);

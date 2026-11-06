@@ -78,8 +78,9 @@ typedef struct {
  *                    and equinox of date, components in AU/day. (It must be distinct from
  *                    the pos output vector, and may be NULL if no velocity data is required).
  *
- * @return            0 if successful, or -1 if location is NULL or if the pos and vel output
- *                    arguments are identical pointers.
+ * @return            0 if successful, or -1 if location is NULL (errno set to EINVAL), or if
+ *                    the pos and vel output arguments are identical pointers (errno set to
+ *                    EINVAL), or if the `gast` parameter is NAN (errno set to EDOM).
  *
  * @sa novas_site_gcrs_posvel(), geo_posvel()
  * @sa make_gps_site(), make_itrf_site(), make_xyz_site(), novas_gast(), novas_time_gst()
@@ -136,6 +137,9 @@ int terra(const on_surface *restrict location, double gast, double *restrict pos
       vel[j] /= AU_KM / DAY;
   }
 
+  if(isnan(gast))
+    return novas_error(-1, EDOM, fn, "input GaST is NAN");
+
   return 0;
 }
 
@@ -161,6 +165,8 @@ int terra(const on_surface *restrict location, double gast, double *restrict pos
 double novas_gmst(double jd_ut1, double ut1_to_tt) {
   double deg = era(jd_ut1, 0.0) + novas_gmst_prec(jd_ut1 + ut1_to_tt / DAY) / 3600.0;
   double gst = remainder(deg / 15.0, DAY_HOURS);
+
+  prop_nan("novas_gmst", gst);
   return (gst < 0.0) ? gst + DAY_HOURS : gst;
 }
 
@@ -190,16 +196,25 @@ double novas_gmst(double jd_ut1, double ut1_to_tt) {
  * @sa novas_gmst()
  */
 double novas_gast(double jd_ut1, double ut1_to_tt, enum novas_accuracy accuracy) {
+  static const char *fn = "novas_gast";
+
   static THREAD_LOCAL double last_ut1 = NAN, last_gast;
   static THREAD_LOCAL enum novas_accuracy last_acc = (enum novas_accuracy) -1;
+
+  if(accuracy != NOVAS_FULL_ACCURACY && accuracy != NOVAS_REDUCED_ACCURACY) {
+    novas_set_errno(ERANGE, fn, "invalid accuracy: %d", (int) accuracy);
+    return NAN;
+  }
 
   if(accuracy != last_acc || !novas_time_equals(jd_ut1, last_ut1)) {
     double ee = 0.0;
 
     if(e_tilt(jd_ut1 + ut1_to_tt / DAY, accuracy, NULL, NULL, &ee, NULL, NULL) != 0)
-      return novas_trace_nan("novas_gast");
+      novas_trace_nan(fn);
 
     last_gast = remainder(novas_gmst(jd_ut1, ut1_to_tt) + ee / 3600.0, DAY_HOURS);
+    prop_nan(fn, last_gast);
+
     if(last_gast < 0.0)
       last_gast += DAY_HOURS;
 
@@ -264,6 +279,9 @@ short sidereal_time(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enu
   jd_ut1_high += jd_ut1_low;
   *gst = (gst_type == NOVAS_TRUE_EQUINOX) ? novas_gast(jd_ut1_high, ut1_to_tt, accuracy) : novas_gmst(jd_ut1_high, ut1_to_tt);
 
+  if(isnan(*gst))
+    return novas_trace(fn, -1, 0);
+
   return 0;
 }
 
@@ -294,6 +312,9 @@ short sidereal_time(double jd_ut1_high, double jd_ut1_low, double ut1_to_tt, enu
  */
 double era(double jd_ut1_high, double jd_ut1_low) {
   double theta, thet1, thet2, thet3;
+
+  if(isnan(jd_ut1_high + jd_ut1_low))
+    novas_warn(EDOM, "era", "input Julian date is NAN");
 
   thet1 = remainder(0.7790572732640 + 0.00273781191135448 * (jd_ut1_high - JD_J2000), 1.0);
   thet2 = remainder(0.00273781191135448 * jd_ut1_low, 1.0);
@@ -375,11 +396,16 @@ static void sum_eop_terms(const novas_eop_terms *terms, int n, double gmst, cons
  */
 int novas_diurnal_libration(double gmst, const novas_delaunay_args *restrict delaunay, double *restrict dxp, double *restrict dyp,
         double *restrict dut1) {
+  static const char *fn = "novas_diurnal_libration";
+
   if(!delaunay)
-    return novas_error(-1, EINVAL, "novas_diurnal_libration", "Delaunay arguments pointer is NULL.");
+    return novas_error(-1, EINVAL, fn, "Delaunay arguments pointer is NULL.");
 
   if(dxp || dyp) sum_eop_terms(polar_libration_terms, sizeof(polar_libration_terms) / sizeof(novas_eop_terms), gmst, delaunay, dxp, dyp);
   if(dut1) sum_eop_terms(dut1_libration_terms, sizeof(dut1_libration_terms) / sizeof(novas_eop_terms), gmst, delaunay, dut1, NULL);
+
+  if(isnan(gmst))
+    return novas_error(-1, EDOM, fn, "input GmST is NAN");
 
   return 0;
 }
@@ -414,11 +440,16 @@ int novas_diurnal_libration(double gmst, const novas_delaunay_args *restrict del
  */
 int novas_diurnal_ocean_tides(double gmst, const novas_delaunay_args *restrict delaunay, double *restrict dxp, double *restrict dyp,
         double *restrict dut1) {
+  static const char *fn = "novas_diurnal_ocean_tides";
+
   if(!delaunay)
-    return novas_error(-1, EINVAL, "novas_diurnal_ocean_tides", "Delaunay arguments pointer is NULL.");
+    return novas_error(-1, EINVAL, fn, "Delaunay arguments pointer is NULL.");
 
   if(dxp || dyp) sum_eop_terms(polar_tidal_terms, sizeof(polar_tidal_terms) / sizeof(novas_eop_terms), gmst, delaunay, dxp, dyp);
   if(dut1) sum_eop_terms(dut1_tidal_terms, sizeof(dut1_tidal_terms) / sizeof(novas_eop_terms), gmst, delaunay, dut1, NULL);
+
+  if(isnan(gmst))
+    return novas_error(-1, EDOM, fn, "input GmST is NAN");
 
   return 0;
 }
@@ -527,7 +558,12 @@ int novas_diurnal_eop(double gmst, const novas_delaunay_args *restrict delaunay,
   if(!delaunay)
     return novas_error(-1, EINVAL, fn, "Delaunay arguments pointer is NULL.");
 
+  errno = 0;
   prop_error(fn, add_diurnal_eop(gmst, delaunay, dxp, dyp, dut1), 0);
+
+  if(errno == EDOM)
+    novas_trace_invalid(fn);
+
   return 0;
 }
 
@@ -564,17 +600,20 @@ int novas_diurnal_eop(double gmst, const novas_delaunay_args *restrict delaunay,
  * @sa novas_diurnal_eop()
  */
 int novas_diurnal_eop_at_time(const novas_timespec *restrict time, double *restrict dxp, double *restrict dyp, double *restrict dut1) {
+  static const char *fn = "novas_diurnal_eop_at_time";
+
   static THREAD_LOCAL double last_tt = NAN;
   static THREAD_LOCAL double last_x, last_y, last_t;
 
   if(!time)
-    return novas_error(-1, EINVAL, "novas_diurnal_eop_at_time", "time argument is NULL");
+    return novas_error(-1, EINVAL, fn, "time argument is NULL");
 
   if(!novas_time_equals(time->ijd_tt + time->fjd_tt, last_tt)) {
     novas_delaunay_args a = {};
     double gmst = novas_gmst(novas_get_time(time, NOVAS_UT1), time->ut1_to_tt);
     fund_args((time->ijd_tt - NOVAS_JD_J2000 + time->fjd_tt) / JULIAN_CENTURY_DAYS, &a);
     novas_diurnal_eop(gmst, &a, &last_x, &last_y, &last_t);
+    prop_nan(fn, gmst);
     last_tt = time->ijd_tt + time->fjd_tt;
   }
 
@@ -685,6 +724,9 @@ int wobble(double jd_tt, enum novas_wobble_direction direction, double xp, doubl
     novas_tiny_rotate(in, yp, xp, -s1, out);
     out[1] += xp * yp * x;
   }
+
+  if(isnan(jd_tt))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
 
   return 0;
 }

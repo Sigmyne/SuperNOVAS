@@ -87,7 +87,7 @@ int nutation_angles(double t, enum novas_accuracy accuracy, double *restrict dps
   // time to within second.
   if(!(fabs(t - last_t) < 1e-12) || (accuracy != last_acc)) {
     novas_nutation_provider nutate_call = (accuracy == NOVAS_FULL_ACCURACY) ? iau2000a : get_nutation_lp_provider();
-    nutate_call(NOVAS_JD_J2000, t * JULIAN_CENTURY_DAYS, &last_dpsi, &last_deps);
+    prop_error("nutation_angles", nutate_call(NOVAS_JD_J2000, t * JULIAN_CENTURY_DAYS, &last_dpsi, &last_deps), 0);
 
     // Convert output to arcseconds.
     last_dpsi /= ARCSEC;
@@ -129,7 +129,7 @@ static int iau2006_fp(double jd_tt_high, double jd_tt_low, int nA0, int nA1, int
   int i;
 
   // Compute fundamental arguments from Simon et al. (1994), in radians.
-  fund_args(t, (novas_delaunay_args *) a);
+  prop_error("iau2006_fp", fund_args(t, (novas_delaunay_args *) a), 0);
 
   // Planetary longitudes, Mercury through Neptune, wrt mean dynamical
   // ecliptic and equinox of J2000
@@ -308,7 +308,7 @@ int nu2000k(double jd_tt_high, double jd_tt_low, double *restrict dpsi, double *
   int i;
 
   // Compute fundamental arguments from Simon et al. (1994), in radians.
-  fund_args(t, &a);
+  prop_error("nu2000k", fund_args(t, &a), 0);
 
   // ** Luni-solar nutation. **
   // Summation of luni-solar nutation series (in reverse order).

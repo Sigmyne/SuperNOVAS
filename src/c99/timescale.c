@@ -145,6 +145,9 @@ int tdb2tt(double jd_tdb, double *restrict jd_tt, double *restrict secdiff) {
   if(secdiff)
     *secdiff = d;
 
+  if(isnan(jd_tdb))
+    return novas_error(-1, EDOM, "tdb2tt", "input Julian date is NAN");
+
   return 0;
 }
 
@@ -171,6 +174,7 @@ double tt2tdb(double jd_tt) {
   double dt;
 
   tdb2tt(jd_tt, NULL, &dt);
+  prop_nan("tt2tdb", dt);
   return dt;
 }
 
@@ -340,6 +344,9 @@ double tt2tdb_fp(double jd_tt, double limit) {
   double us = 0.0;
   int i;
 
+  if(isnan(jd_tt))
+    novas_warn(EDOM, "tt2tdb_fp", "input Julian date is NAN");
+
   if(limit < 0.0)
     limit = 0.0;
 
@@ -387,6 +394,7 @@ double tt2tdb_hp(double jd_tt) {
   if(!novas_time_equals(jd_tt, last_tt)) {
     last_dt = tt2tdb_fp(jd_tt, 0.0);
     last_tt = jd_tt;
+    prop_nan("tt2tdb_hp", last_dt);
   }
 
   return last_dt;
@@ -434,6 +442,8 @@ double get_utc_to_tt(int leap_seconds) {
  * @sa novas_lookup_leap(), novas_leap_for_jd()
  */
 double get_ut1_to_tt(int leap_seconds, double dut1) {
+  if(isnan(dut1))
+    novas_warn(EDOM, "get_ut1_to_tt", "input dut1 is NAN");
   return get_utc_to_tt(leap_seconds) + dut1;
 }
 
@@ -705,10 +715,10 @@ int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, i
     return novas_error(-1, EINVAL, fn, "NULL output time structure");
 
   if((unsigned) timescale >= NOVAS_TIMESCALES)
-    return novas_error(-1, ERANGE, fn, "timescale %d is out of range", (int) timescale);
+    return novas_error(-1, EDOM, fn, "timescale %d is out of range", (int) timescale);
 
   if(isnan(fjd))
-    return novas_error(-1, EINVAL, fn, "input fractional JD is NAN");
+    return novas_error(-1, EDOM, fn, "input fractional JD is NAN");
 
   if(fjd < (double) LONG_MIN || fjd >= (double) LONG_MAX)
     return novas_error(-1, ERANGE, fn, "fractional JD %13g is outside of long integer range", fjd);
@@ -766,6 +776,7 @@ int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, i
     time->dut1 += dt;
     time->ut1_to_tt -= dt;
   }
+
   return 0;
 }
 
@@ -787,6 +798,7 @@ int novas_set_split_time(enum novas_timescale timescale, long ijd, double fjd, i
  */
 double novas_timescale_offset(const novas_timespec *ts, enum novas_timescale timescale, enum novas_timescale ref_scale) {
   static const char *fn = "novas_timescale_offset";
+  double dt;
 
   if(!ts) {
     novas_set_errno(EINVAL, fn, "time specification is NULL");
@@ -794,16 +806,19 @@ double novas_timescale_offset(const novas_timespec *ts, enum novas_timescale tim
   }
 
   if((unsigned) timescale >= NOVAS_TIMESCALES) {
-    novas_set_errno(ERANGE, fn, "timescale %d is out of range", (int) timescale);
+    novas_set_errno(EDOM, fn, "timescale %d is out of range", (int) timescale);
     return NAN;
   }
 
   if((unsigned) ref_scale >= NOVAS_TIMESCALES) {
-    novas_set_errno(ERANGE, fn, "reference timescale %d is out of range", (int) ref_scale);
+    novas_set_errno(EDOM, fn, "reference timescale %d is out of range", (int) ref_scale);
     return NAN;
   }
 
-  return tt_offset(ts, timescale) - tt_offset(ts, ref_scale);
+  dt = tt_offset(ts, timescale) - tt_offset(ts, ref_scale);
+  if(isnan(dt))
+    novas_warn(EDOM, "novas_timescale_offset", "returning NAN");
+  return dt;
 }
 
 /**
@@ -821,10 +836,12 @@ double novas_timescale_offset(const novas_timespec *ts, enum novas_timescale tim
  * @sa novas_set_time(), novas_diff_time()
  */
 int novas_offset_time(const novas_timespec *time, double seconds, novas_timespec *out) {
+  static const char *fn =  "novas_offset_time";
+
   long dd;
 
   if(!time || !out)
-    return novas_error(-1, EINVAL, "novas_offset_time", "NULL parameter: time=%p, out=%p", time, out);
+    return novas_error(-1, EINVAL, fn, "NULL parameter: time=%p, out=%p", time, out);
 
   if(out != time)
     *out = *time;
@@ -835,6 +852,9 @@ int novas_offset_time(const novas_timespec *time, double seconds, novas_timespec
     out->fjd_tt -= dd;
     out->ijd_tt += dd;
   }
+
+  if(isnan(seconds))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
 
   return 0;
 }
@@ -858,6 +878,7 @@ int novas_offset_time(const novas_timespec *time, double seconds, novas_timespec
 double novas_get_time(const novas_timespec *restrict time, enum novas_timescale timescale) {
   long ijd = 0L;
   double fjd = novas_get_split_time(time, timescale, &ijd);
+  prop_nan("novas_get_time", fjd);
   return ijd + fjd;
 }
 
@@ -887,8 +908,8 @@ double novas_get_time(const novas_timespec *restrict time, enum novas_timescale 
  *                    be NULL if not required.
  * @return            [day] The fractional part of the Julian date in the requested timescale or
  *                    NAN if the time argument is NULL (errno set to EINVAL) or if the integer part
- *                    overflows the long integer range (errno set to ERANGE). In case of error ijd
- *                    will be set to -1 also.
+ *                    overflows the long integer range (errno set to ERANGE), or if the timescale
+ *                    is invalid (errno set to EDOM). In case of error ijd will be set to -1 also.
  *
  * @since 1.1
  * @author Attila Kovacs
@@ -907,7 +928,7 @@ double novas_get_split_time(const novas_timespec *restrict time, enum novas_time
   }
 
   if((unsigned) timescale >= NOVAS_TIMESCALES) {
-    novas_set_errno(ERANGE, fn, "timescale %d is out of range", (int) timescale);
+    novas_set_errno(EDOM, fn, "timescale %d is out of range", (int) timescale);
     return NAN;
   }
 
@@ -925,7 +946,7 @@ double novas_get_split_time(const novas_timespec *restrict time, enum novas_time
   }
 
   if(isnan(f))
-    novas_set_errno(EINVAL, fn, "invalid time (NAN)");
+    novas_warn(EDOM, fn, "invalid time (NAN)");
 
   return f;
 }
@@ -945,12 +966,20 @@ double novas_get_split_time(const novas_timespec *restrict time, enum novas_time
  * @sa novas_diff_time_scale(), novas_diff_tcb(), novas_diff_tcg(), novas_set_time(), novas_offset_time()
  */
 double novas_diff_time(const novas_timespec *t1, const novas_timespec *t2) {
+  static const char *fn = "novas_diff_time";
+
+  double d;
+
   if(!t1 || !t2) {
-    novas_set_errno(EINVAL, "novas_diff_time", "NULL parameter: t1=%p, t2=%p", t1, t2);
+    novas_set_errno(EINVAL, fn, "NULL parameter: t1=%p, t2=%p", t1, t2);
     return NAN;
   }
 
-  return ((t1->ijd_tt - t2->ijd_tt) + (t1->fjd_tt - t2->fjd_tt)) * DAY;
+  d = ((t1->ijd_tt - t2->ijd_tt) + (t1->fjd_tt - t2->fjd_tt)) * DAY;
+  if(isnan(d))
+    novas_warn(EDOM, fn, "returning NAN");
+
+  return d;
 }
 
 /**
@@ -969,21 +998,26 @@ double novas_diff_time(const novas_timespec *t1, const novas_timespec *t2) {
  * @sa novas_diff_time(), novas_diff_tcg(), novas_diff_time()
  */
 double novas_diff_time_scale(const novas_timespec *t1, const novas_timespec *t2, enum novas_timescale timescale) {
+  static const char *fn = "novas_diff_time_scale";
+
   long ijd1 = 0L, ijd2 = 0L;
   double fjd1, fjd2;
 
   if(!t1 || !t2) {
-    novas_set_errno(EINVAL, "novas_diff_time_scale", "NULL parameter: t1=%p, t2=%p", t1, t2);
+    novas_set_errno(EINVAL, fn, "NULL parameter: t1=%p, t2=%p", t1, t2);
     return NAN;
   }
 
   if((unsigned) timescale >= NOVAS_TIMESCALES) {
-    novas_set_errno(EINVAL, "novas_diff_time_scale", "invalid timescale: %d", (int) timescale);
+    novas_set_errno(EDOM, fn, "invalid timescale: %d", (int) timescale);
     return NAN;
   }
 
   fjd1 = novas_get_split_time(t1, timescale, &ijd1);
   fjd2 = novas_get_split_time(t2, timescale, &ijd2);
+
+  prop_nan(fn, fjd1);
+  prop_nan(fn, fjd2);
 
   return  ((ijd1 - ijd2) + (fjd1 - fjd2)) * DAY;
 }
@@ -1007,8 +1041,7 @@ double novas_diff_time_scale(const novas_timespec *t1, const novas_timespec *t2,
  */
 double novas_diff_tcb(const novas_timespec *t1, const novas_timespec *t2) {
   double dt = novas_diff_time(t1, t2) * (1.0 + TC_LB);
-  if(isnan(dt))
-    return novas_trace_nan("novas_diff_tcb");
+  prop_nan("novas_diff_tcb", dt);
   return dt;
 }
 
@@ -1033,8 +1066,7 @@ double novas_diff_tcb(const novas_timespec *t1, const novas_timespec *t2) {
  */
 double novas_diff_tcg(const novas_timespec *t1, const novas_timespec *t2) {
   double dt = novas_diff_time(t1, t2) * (1.0 + TC_LG);
-  if(isnan(dt))
-    return novas_trace_nan("novas_diff_tcg");
+  prop_nan("novas_diff_tcg", dt);
   return dt;
 }
 
@@ -1228,8 +1260,7 @@ time_t novas_get_unix_time(const novas_timespec *restrict time, long *restrict n
  */
 double novas_date(const char *restrict date) {
   double jd = novas_parse_date(date, NULL);
-  if(isnan(jd))
-    return novas_trace_nan("novas_date");
+  prop_nan("novas_date", jd);
   return jd;
 }
 
@@ -1266,9 +1297,7 @@ double novas_date_scale(const char *restrict date, enum novas_timescale *restric
   }
 
   *scale = (enum novas_timescale) -1;
-
-  if(isnan(jd))
-    return novas_trace_nan(fn);
+  prop_nan(fn, jd);
 
   *scale = novas_parse_timescale(tail, &tail);
 
@@ -1523,10 +1552,7 @@ int novas_print_timescale(enum novas_timescale scale, char *restrict buf) {
  */
 double novas_time_gst(const novas_timespec *restrict time, enum novas_accuracy accuracy) {
   double jd_ut1 = novas_get_time(time, NOVAS_UT1);
-
-  if(isnan(jd_ut1))
-    return novas_trace_nan("novas_time_gst");
-
+  prop_nan("novas_time_gst", jd_ut1);
   return novas_gast(jd_ut1, time->ut1_to_tt, accuracy);
 }
 
@@ -1547,8 +1573,7 @@ double novas_time_gst(const novas_timespec *restrict time, enum novas_accuracy a
  */
 double novas_time_lst(const novas_timespec *restrict time, double lon, enum novas_accuracy accuracy) {
   double st = novas_time_gst(time, accuracy);
-  if(isnan(st))
-    return novas_trace_nan("novas_time_lst");
+  prop_nan("novas_time_lst", st);
   st = remainder(st + lon / 15.0, DAY_HOURS);
   return st < 0.0 ? st + DAY_HOURS : st;
 }
@@ -1564,8 +1589,8 @@ double novas_time_lst(const novas_timespec *restrict time, double lon, enum nova
  *
  * @param time    The astronomical time specification.
  * @return        [s] The leap seconds that was used to initialize the time specification, or -1
- *                if the input pointer is NULL (errno is set to EINVAL), or if the calculation
- *                failed to converge (errno is set  to ECANCELED).
+ *                if the input pointer is NULL (errno is set to EINVAL), the time is invalid (errno set
+ *                to EDOM), or if the calculation failed to converge (errno is set  to ECANCELED).
  *
  * @since 1.6
  * @author Attila Kovacs
@@ -1579,7 +1604,7 @@ int novas_time_leap(const novas_timespec *time) {
     return novas_error(-1, EINVAL, fn, "input time specification is NULL");
 
   if(isnan(time->fjd_tt))
-    return novas_error(-1, EINVAL, fn, "input time has NAN fjd_tt field");
+    return novas_error(-1, EDOM, fn, "input time has NAN fjd_tt field");
 
   for(i = 0; i < novas_inv_max_iter; i++) {
     double jd_utc = time->ijd_tt + time->fjd_tt - (DTA + leap) / NOVAS_DAY;
@@ -1608,11 +1633,14 @@ int novas_time_leap(const novas_timespec *time) {
  *                of the major solar-system bodies at the time of observation.
  * @param pos     [AU] The observer's position. If it's near the center of one of the gravitating
  *                bodies, that body's potential is excluded from the calculation.
- * @return        The dimensionless Newtonian Solar-system potential, or NAN (errno set to EAGAIN)
+ * @return        The dimensionless Newtonian Solar-system potential, or NAN
  *                if the frame is configured for full accuracy but not all planet positions are
- *                available.
+ *                available (errno set to EAGAIN) or if the relevant position is invalid / NAN
+ *                (errno set to EDOM).
  */
 static double solar_system_potential(const novas_frame *frame, const double *pos) {
+  static const char *fn = "solar_system_potential";
+
   double V = 0.0;
   int i;
 
@@ -1629,11 +1657,14 @@ static double solar_system_potential(const novas_frame *frame, const double *pos
         d += x * x;
       }
       d = sqrt(d) * NOVAS_AU;
+      if(isnan(d))
+        novas_warn(EDOM, fn, "distance to planet %d is NAN", i);
     }
     else if(i == NOVAS_EARTH) {
       // We might not have an ephemeris position for Earth above, but we always have
       // an Earth-position (possibly less accurate) as part of the frame itself...
       d = novas_vdist(pos, frame->earth_pos) * NOVAS_AU;
+      prop_nan("solar_system_potential: distance to Earth", d);
     }
     else if(frame->accuracy != NOVAS_REDUCED_ACCURACY) {
       novas_set_errno(EAGAIN, "solar_system_potential", "Missing position data for planet %d", i);
@@ -1648,6 +1679,7 @@ static double solar_system_potential(const novas_frame *frame, const double *pos
     V -= NOVAS_G_SUN / (d * iM[i]);
   }
 
+  prop_nan("solar_system_potential", V);
   return V / NOVAS_C2;
 }
 
@@ -1660,14 +1692,18 @@ static double solar_system_potential(const novas_frame *frame, const double *pos
  * @param pos       [AU] The BCRS position of at which to estimate the tidal potential.
  * @param[out] V1   [1/AU] The _xyz_ gradient of the dimensionless potential in rectangular
  *                  equatorial coordinates.
+ * @return          0 if successful, or else -1 if there was an error (errno will indicate the
+ *                  type of error).
  */
-static void solar_system_tidal_potential(const novas_frame *frame, const double *pos, double *V1) {
+static int solar_system_tidal_potential(const novas_frame *frame, const double *pos, double *V1) {
   const double eps = 1e-6;  // [AU] ~ 150 km...
   double x[3];
   int i;
 
   memcpy(x, pos, sizeof(x));
   memset(V1, 0.0, sizeof(x));
+
+  errno = 0;
 
   for(i = 0; i < 3; i++) {
     x[i] += eps;
@@ -1677,6 +1713,11 @@ static void solar_system_tidal_potential(const novas_frame *frame, const double 
     x[i] = pos[i];
     V1[i] /= (2.0 * eps);
   }
+
+  if(errno == EDOM)
+    return novas_trace("solar_system_tidal_potential", -1, 0);
+
+  return 0;
 }
 
 /**
@@ -1707,22 +1748,30 @@ static double kinetic_potential(double b) {
  * @return              _D_.
  */
 static double clock_skew_near_earth(const novas_frame *frame) {
+  static const char *fn = "clock_skew_near_earth";
+
   double dV;
   double vo[3], vr, z, b;
   int i;
 
   dV = solar_system_potential(frame, frame->obs_pos) - solar_system_potential(frame, frame->earth_pos);
+  prop_nan(fn, dV)
 
   // observer velocity vs reference
-  for(i = 3; --i >= 0; )
+  for(i = 3; --i >= 0; ) {
     vo[i] = novas_add_vel(frame->obs_vel[i], -frame->earth_vel[i]);
+    prop_nan(fn, vo[i]);
+  }
 
   vr = novas_vlen(vo) * (NOVAS_AU_PER_DAY); // geocentric motion
+  prop_nan(fn, vr);
+
   if(vr >= NOVAS_C)
     return -1.0;
 
   z = novas_v2z(vr / KMS) / (1.0 + TC_LG); // Reference velocities from TT/TDB to TCG
   b = novas_z2v(z) * KMS / NOVAS_C;
+  prop_nan(fn, b);
 
   return kinetic_potential(b) + sqrt(1.0 - b * b) * dV;
 }
@@ -1739,6 +1788,8 @@ static double clock_skew_near_earth(const novas_frame *frame) {
  * @return              _D_.
  */
 static double tidal_clock_skew(const novas_frame *frame) {
+  static const char *fn = "novas_tidal_clock_skew";
+
   enum novas_observer_place loc;
   double dV = 0.0, VE1[3] = {0.0};
   int i;
@@ -1748,7 +1799,8 @@ static double tidal_clock_skew(const novas_frame *frame) {
     case NOVAS_OBSERVER_ON_EARTH:
     case NOVAS_AIRBORNE_OBSERVER:
     case NOVAS_OBSERVER_IN_EARTH_ORBIT:
-      solar_system_tidal_potential(frame, frame->earth_pos, VE1);
+      if(solar_system_tidal_potential(frame, frame->earth_pos, VE1) < 0)
+        return novas_trace_nan(fn);
 
       for(i = 3; --i >= 0; )
         dV += (frame->obs_pos[i] - frame->earth_pos[i]) * VE1[i];
@@ -1758,6 +1810,9 @@ static double tidal_clock_skew(const novas_frame *frame) {
     default:
       break;
   }
+
+  if(isnan(dV))
+    novas_warn(EDOM, fn, "returning NAN");
 
   return dV;
 }
@@ -1858,9 +1913,7 @@ double novas_clock_skew(const novas_frame *frame, enum novas_timescale timescale
       return NAN;
   }
 
-  if(isnan(D))
-    return novas_trace_nan(fn);
-
+  prop_nan(fn, D);
   return D;
 }
 
@@ -1910,11 +1963,15 @@ double novas_clock_skew(const novas_frame *frame, enum novas_timescale timescale
  * @sa novas_clock_skew()
  */
 double novas_mean_clock_skew(const novas_frame *frame, enum novas_timescale timescale) {
+  static const char *fn = "novas_mean_clock_skew";
+
   double D = novas_clock_skew(frame, timescale);
-  if(isnan(D))
-    return novas_trace_nan("novas_mean_clock_skew");
+  prop_nan(fn, D);
 
   // (1 + D) * (1 - D') = 1 + D - (1 + D) D'
-  return D - (1.0 + D) * tidal_clock_skew(frame);
+  D -= (1.0 + D) * tidal_clock_skew(frame);
+  prop_nan(fn, D);
+
+  return D;
 }
 

@@ -92,6 +92,9 @@ short cio_ra(double jd_tt, enum novas_accuracy accuracy, double *restrict ra_cio
 
   // For these calculations we can assume TDB = TT (< 2 ms difference)
   *ra_cio = -ira_equinox(jd_tt, NOVAS_TRUE_EQUINOX, accuracy);
+  if(isnan(*ra_cio))
+    novas_trace_nan(fn);
+
   return 0;
 }
 
