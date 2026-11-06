@@ -35,7 +35,7 @@ This document has been updated for the `v1.8` and later releases.
 
 ### Citation
 
-If you use __SuperNOVAS__ in your worm please cite as:
+If you use __SuperNOVAS__ in your work please cite as:
 
  - Attila Kovács "The SuperNOVAS high-precision C/C++ astrometry library", __Proc. SPIE__, 14155, 
 _Software and Cyberinfrastructure for Astronomy IX_, 1415533 (2026); https://doi.org/10.1117/12.3104649<br>
