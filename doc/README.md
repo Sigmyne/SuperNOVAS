@@ -149,6 +149,9 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    `coord_sys = 0` and the same date as before would return the results in GCRS coordinates instead of the requested 
    mean equinox of date coordinates.
  
+ - Some remainder calculations in NOVAS C 3.1 used the result from `fmod()` unchecked, which resulted in angles outside
+   of the expected [0:2&pi;] range and was also the reason why `cal_date()` did not work for negative JD values.
+ 
  - Fixes `aberration()` returning NaN vectors if the `ve` argument is 0. It now returns the unmodified input vector 
    appropriately instead.
    
