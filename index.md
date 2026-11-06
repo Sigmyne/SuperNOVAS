@@ -27,9 +27,10 @@ If you use SMA-X for your project, please cite as:
 [[BibTex]](resources/citation-14155_1079.bib) [[EndNote]](resources/citation-14155_1079.enw) 
 [[RIS]](resources/citation-14155_1079.ris) 
 
-__SuperNOVAS__ is easy to use and it is very fast, providing 3--5 orders of magnitude faster position calculations than 
-[astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
-will scale with the number of CPUs when calculations are performed in parallel threads.
+__SuperNOVAS__ is easy to use and it is very fast, providing 3--5 orders of magnitude faster position calculations 
+than [astropy](https://www.astropy.org/) 8.0.2 in a single thread (see the 
+[benchmarks](https://github.com/Sigmyne/SuperNOVAS#benchmarks)), and its performance will scale with the number of 
+CPUs when calculations are performed in parallel threads.
 
 __SuperNOVAS__  is freely available via the [Sigmyne/SuperNOVAS](https://github.com/Sigmyne/SuperNOVAS/) repository 
 on GitHub, without licensing restrictions. Its source code is compatible with the C99 and/or C++11 standards, and 
