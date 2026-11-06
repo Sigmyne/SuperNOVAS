@@ -18,7 +18,7 @@ analyzing astronomical datasets. It started as a fork of the Naval Observatory V
 providing bug fixes, tons of new features, and a much improved API compared to the original NOVAS.
 
 __SuperNOVAS__ is easy to use and it is very fast, with 3--5 orders of magnitude faster position calculations than 
-[astropy](https://www.astropy.org/) 7.0.0 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
+[astropy](https://www.astropy.org/) 8.0.2 in a single thread (see the [benchmarks](#benchmarks)), and its performance 
 will scale further with the number of CPUs when calculations are performed in parallel threads.
 
 __SuperNOVAS__ is suitable for POSIX (e.g. Linux, BSD, MacOS, LynxOS), Windows, Android, as well as embedded and 
@@ -34,6 +34,8 @@ position calculations.
 This document has been updated for the `v1.8` and later releases.
 
 ### Citation
+
+If you use __SuperNOVAS__ in your worm please cite as:
 
  - Attila Kovács "The SuperNOVAS high-precision C/C++ astrometry library", __Proc. SPIE__, 14155, 
 _Software and Cyberinfrastructure for Astronomy IX_, 1415533 (2026); https://doi.org/10.1117/12.3104649<br>
