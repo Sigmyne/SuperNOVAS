@@ -149,9 +149,6 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    `coord_sys = 0` and the same date as before would return the results in GCRS coordinates instead of the requested 
    mean equinox of date coordinates.
  
- - Some remainder calculations in NOVAS C 3.1 used the result from `fmod()` unchecked, which resulted in angles outside
-   of the expected [0:2&pi;] range and was also the reason why `cal_date()` did not work for negative JD values.
- 
  - Fixes `aberration()` returning NaN vectors if the `ve` argument is 0. It now returns the unmodified input vector 
    appropriately instead.
    
@@ -186,7 +183,8 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    
  - [__v1.8__] The NOVAS C `transform_cat()` used the initial angular-to-physical conversion factor, based on the 
    initial distance, when calculating the final quantities. Instead, the conversion factor should be recalculated for 
-   the final distance before calculating the output motion parameters.
+   the final distance before calculating the output motion parameters. The difference is typically negligible, except
+   perhaps for fast moving stars, and/or large time offsets from the catalog epoch.
 
    
 -----------------------------------------------------------------------------
@@ -1299,8 +1297,9 @@ Below is a non-exhaustive overview new features added by __SuperNOVAS__ on top o
 
  - New functions and methods to obtain Earth Orientation Parameters (EOP) from IERS, or from a user-defined remote or 
    local source. EOP can also be fetched automatically when a astrometric time or an observing frame is initialized
-   with undefined (NAN) values for these. If you don't mind the slight latencies involved with getting EOP values 
-   from a remote source, they can make using __SuperNOVAS__ at its full precision a whole lot easier.
+   with undefined (NAN) values for these. If you don't mind the slight latencies (or the occasional outages) involved 
+   with getting EOP values from a remote source, they can make using __SuperNOVAS__ at its full precision a whole lot 
+   easier.
    
  - New practical equality tests, with reasonable tolerances, for data structures and classes.
  
@@ -1313,9 +1312,9 @@ Below is a non-exhaustive overview new features added by __SuperNOVAS__ on top o
    ephemeris location or by Keplerian orbital elements.
    
  - Leap seconds are now hard coded into SuperNOVAS, eliminating the dependence on an external (e.g. online) resource.
-   There will be no more leap seconds introduced after 20 May 2027, leaving the current 37 seconds for many millenia.
-   As a result, SuperNOVAS time functions, which have previously taken a leap seconds input, will now ignore that
-   input parameter, and will use the leap seconds that is appropriate for the time that is defined.
+   There will be no more leap seconds introduced after 20 May 2027, leaving the current 37 seconds for millenia. As a 
+   result, SuperNOVAS time functions, which have previously taken a leap seconds input, will now ignore that input 
+   parameter, and will use the leap seconds that is appropriate for the time that is defined.
 
 
 <a name="api-changes"></a>
