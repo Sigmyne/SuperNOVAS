@@ -793,8 +793,8 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
 
     // Convert proper motion and radial velocity to orthogonal components of
     // motion with units of AU/day.
-    motion[0] = k * star->promora / (paralx * JULIAN_YEAR_DAYS);
-    motion[1] = k * star->promodec / (paralx * JULIAN_YEAR_DAYS);
+    motion[0] = star->promora / (paralx * JULIAN_YEAR_DAYS);
+    motion[1] = star->promodec / (paralx * JULIAN_YEAR_DAYS);
     motion[2] = k * star->radialvelocity * NOVAS_KMS / NOVAS_AU_PER_DAY;
 
     // Transform motion vector to equatorial system.
@@ -909,7 +909,9 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
 
   double paralx, k, u;
   double pos[3], vel[3], xyproj;
-  double djd = (jd_tt_out - jd_tt_in);
+  double jd0 = jd_tt_in >= 10000.0 ? jd_tt_in : (NOVAS_JD_J2000 + (jd_tt_in - 2000.0) * JULIAN_YEAR_DAYS);
+  double jd1 = jd_tt_out >= 10000.0 ? jd_tt_out : (NOVAS_JD_J2000 + (jd_tt_out - 2000.0) * JULIAN_YEAR_DAYS);
+  double djd = (jd1 - jd0);
 
   if(!in || !out)
     return novas_error(-1, EINVAL, fn, "NULL parameter: in=%p, out=%p", in, out);
@@ -945,13 +947,13 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
   radec2vector(in->ra, in->dec, 1.0 / (paralx * MAS), pos);
 
   // Initial Doppler factor, which accounts for change in light travel time to star.
-  k = 1.0 / (1.0 - in->radialvelocity * NOVAS_KMS / NOVAS_C);
+  k = (1.0 - in->radialvelocity * NOVAS_KMS / NOVAS_C);
 
   // Conversion factor from angular motion per year to AU/day
   u = 1.0 / (paralx * JULIAN_YEAR_DAYS);
 
-  vel[0] = k * in->promora * u ;
-  vel[1] = k * in->promodec * u;
+  vel[0] = in->promora * u;
+  vel[1] = in->promodec * u;
   vel[2] = k * in->radialvelocity * DAY / AU_KM;
 
   // Transform motion vector to equatorial system.
@@ -1019,8 +1021,8 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
   u = paralx * JULIAN_YEAR_DAYS;
 
   // Convert components of motion to from AU/day to normal catalog units.
-  out->promora = k * vel[0] * u;
-  out->promodec = k * vel[1] * u;
+  out->promora = vel[0] * u;
+  out->promodec = vel[1] * u;
   out->radialvelocity = k * vel[2] * (AU_KM / DAY);
 
   // Set the catalog identification code for the transformed catalog entry.
