@@ -745,6 +745,11 @@ int make_orbital_object(const char *name, long num, const novas_orbital *orbit, 
  *  1. The velocity returned should not be used for deriving spectroscopic radial velocity. It is
  *     a measure of the perceived change of the stars position, not a true physical velocity.
  *
+ *  2. The original NOVAS C implementation applied a geometric to apparent conversion factor (k =
+ *     1 / (1 - rv/c) for the proper motion parameters. But proper motion is already apparent,
+ *     so the factor is a mistake. Thanks to Mike Kretlow for noticing this. It has been corrected
+ *     for __SuperNOVAS__ v1.8.0__.
+ *
  * REFERENCES:
  *
  *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
@@ -881,17 +886,22 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
  *
  * NOTES:
  *
- *  - The original NOVAS C implementation of proper-motion had several shortcomings in calculating
- *    the motion of the final epoch. These have been corrected in __SuperNOVAS v1.8__.
+ *  1. The original NOVAS C implementation of proper-motion had several shortcomings in calculating
+ *     the motion in the final epoch. These have been corrected in __SuperNOVAS v1.8__.
+ *
+ *  2. The original NOVAS C implementation applied a physical to apparent motion conversion factor
+ *     (k = 1 / (1 - rv/c)) for the proper motion parameters. But proper motion is already apparent,
+ *     so the factor was a mistake. Thanks to Mike Kretlow for noticing this. It has been corrected
+ *     for __SuperNOVAS__ v1.8.1__.
  *
  * @param option      Type of transformation
- * @param jd_tt_in    [day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else year
- *                    (if &lt;10000), of input catalog data. Not used if option is
+ * @param date_in     [day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else
+ *                    calendar year (if &lt;10000), of input catalog data. Not used if option is
  *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
  * @param in          An entry from the input catalog, with units as given in the struct
  *                    definition
- * @param jd_tt_out   [day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else year
- *                    (if &lt;10000) of output catalog data. Not used if option is
+ * @param date_out    [day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else
+ *                    calendar year (if &lt;10000) of output catalog data. Not used if option is
  *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
  * @param out_id      Catalog identifier (0 terminated). It may also be NULL in which case the
  *                    catalog name is inherited from the input.
@@ -903,14 +913,14 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
  * @sa transform_hip(), make_cat_object_sys(), novas_set_catalog()
  * @sa novas_epoch(), NOVAS_JD_J2000, NOVAS_JD_B1950, NOVAS_JD_HIP
  */
-short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat_entry *in, double jd_tt_out, const char *out_id,
+short transform_cat(enum novas_transform_type option, double date_in, const cat_entry *in, double date_out, const char *out_id,
         cat_entry *out) {
   static const char *fn = "transform_cat";
 
   double paralx, k, u;
   double pos[3], vel[3], xyproj;
-  double jd0 = jd_tt_in >= 10000.0 ? jd_tt_in : (NOVAS_JD_J2000 + (jd_tt_in - 2000.0) * JULIAN_YEAR_DAYS);
-  double jd1 = jd_tt_out >= 10000.0 ? jd_tt_out : (NOVAS_JD_J2000 + (jd_tt_out - 2000.0) * JULIAN_YEAR_DAYS);
+  double jd0 = date_in < 10000.0 ? (NOVAS_JD_J2000 + (date_in - 2000.0) * NOVAS_TROPICAL_YEAR_DAYS) : date_in;
+  double jd1 = date_out < 10000.0 ? (NOVAS_JD_J2000 + (date_out - 2000.0) * NOVAS_TROPICAL_YEAR_DAYS) : date_out;
   double djd = (jd1 - jd0);
 
   if(!in || !out)
@@ -921,17 +931,8 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
 
   if(option == CHANGE_J2000_TO_ICRS || option == CHANGE_ICRS_TO_J2000) {
     // ICRS frame ties always assume J2000 for both input and output...
-    jd_tt_in = NOVAS_JD_J2000;
-    jd_tt_out = NOVAS_JD_J2000;
-  }
-  else {
-    // If necessary, compute Julian dates.
-
-    // This function uses TDB Julian dates internally, but no distinction between TDB and TT is necessary.
-    if(jd_tt_in < 10000.0)
-      jd_tt_in = JD_J2000 + (jd_tt_in - 2000.0) * JULIAN_YEAR_DAYS;
-    if(jd_tt_out < 10000.0)
-      jd_tt_out = JD_J2000 + (jd_tt_out - 2000.0) * JULIAN_YEAR_DAYS;
+    jd0 = NOVAS_JD_J2000;
+    jd1 = NOVAS_JD_J2000;
   }
 
   // Convert input angular components to vectors
@@ -973,8 +974,8 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
     case PRECESSION:
     case CHANGE_EPOCH: {
       // Precess position and velocity vectors (only if 'option' = 2 or 'option' = 3).
-      prop_error("transform_cat", precession(jd_tt_in, pos, jd_tt_out, pos), 0);
-      precession(jd_tt_in, vel, jd_tt_out, vel);
+      prop_error("transform_cat", precession(jd0, pos, jd1, pos), 0);
+      precession(jd0, vel, jd1, vel);
       break;
     }
 
