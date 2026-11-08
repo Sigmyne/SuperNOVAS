@@ -20,7 +20,7 @@ Upcoming bug-fix release, expected around 1 February 2027.
    likely to trip up people often, but it must stick for back compatibility. (by attipaci, thanks to mkretlow)
    
  - #404: Dropped misguided `k` factor for ocnverting between proper motion and apparent 3D motion in 
-   `transform_cat()` and in `starvectors()`. The `k` factor is needed to convert between apparent and geometric
+   `transform_cat()` and in `starvectors()`. The `k` factor is needed to convert between physical and apparent
    motions, and accounts for the changing light travel time as the star moves closer to, or further away from, the
    observer. However, proper motion is already apparent motion, by definition, hence the use of `k` is wrong.
    This is a NOVAS C bug, which went undetected until now. (by attipaci, thanks to mkretlow).
