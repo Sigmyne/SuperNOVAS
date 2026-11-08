@@ -205,6 +205,11 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    the final distance before calculating the output motion parameters. The difference is typically negligible, except
    perhaps for fast moving stars, and/or large time offsets from the catalog epoch.
 
+ - [__v1.8.1__] Misguided `k` factor for ocnverting between proper motion and apparent 3D motion in `transform_cat()` 
+   and in `starvectors()`. The `k` factor is needed to convert between apparent and geometric motions, and accounts 
+   for the changing light travel time as the star moves closer to, or further away from, the observer. However, proper 
+   motion is already apparent motion, by definition, hence the use of `k` is wrong. (thanks to mkretlow).
+
 </details>
    
 -----------------------------------------------------------------------------
