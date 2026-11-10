@@ -747,8 +747,9 @@ int make_orbital_object(const char *name, long num, const novas_orbital *orbit, 
  *
  *  2. The original NOVAS C implementation applied a geometric to apparent conversion factor (k =
  *     1 / (1 - rv/c) for the proper motion parameters. But proper motion is already apparent,
- *     so the factor is a mistake. Thanks to Mike Kretlow for noticing this. It has been corrected
- *     for __SuperNOVAS__ v1.8.0__.
+ *     so the factor is a mistake. Also, the factor should be 1 / (1 + rv/c), since the correction
+ *     diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to
+ *     Mike Kretlow for noticing these. It has been correcte for __SuperNOVAS__ v1.8.1__.
  *
  * REFERENCES:
  *
@@ -794,7 +795,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
   if(motion) {
     // Compute Doppler factor, which accounts for change in
     // light travel time to star.
-    const double k = 1.0 / (1.0 - star->radialvelocity * NOVAS_KMS / NOVAS_C);
+    const double k = 1.0 / (1.0 + star->radialvelocity * NOVAS_KMS / NOVAS_C);
 
     // Convert proper motion and radial velocity to orthogonal components of
     // motion with units of AU/day.
@@ -891,8 +892,9 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
  *
  *  2. The original NOVAS C implementation applied a physical to apparent motion conversion factor
  *     (k = 1 / (1 - rv/c)) for the proper motion parameters. But proper motion is already apparent,
- *     so the factor was a mistake. Thanks to Mike Kretlow for noticing this. It has been corrected
- *     for __SuperNOVAS__ v1.8.1__.
+ *     so the factor was a mistake. Also, the factor should be 1 / (1 + rv/c), since the correction
+ *     diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to
+ *     Mike Kretlow for noticing these. It has been correcte for __SuperNOVAS__ v1.8.1__.
  *
  * @param option      Type of transformation
  * @param date_in     [day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else
@@ -900,7 +902,7 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
  *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
  * @param in          An entry from the input catalog, with units as given in the struct
  *                    definition
- * @param date_out    [day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else
+ * @param date_out   [day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else
  *                    calendar year (if &lt;10000) of output catalog data. Not used if option is
  *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
  * @param out_id      Catalog identifier (0 terminated). It may also be NULL in which case the
@@ -948,7 +950,7 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
   radec2vector(in->ra, in->dec, 1.0 / (paralx * MAS), pos);
 
   // Initial Doppler factor, which accounts for change in light travel time to star.
-  k = (1.0 - in->radialvelocity * NOVAS_KMS / NOVAS_C);
+  k = 1.0 / (1.0 + in->radialvelocity * NOVAS_KMS / NOVAS_C);
 
   // Conversion factor from angular motion per year to AU/day
   u = 1.0 / (paralx * JULIAN_YEAR_DAYS);
@@ -1016,7 +1018,7 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
   novas_xyz_to_los(vel, 15.0 * out->ra, out->dec, vel);
 
   // Final Doppler factor, which accounts for change in light travel time to star.
-  k = 1.0 / (1.0 + vel[2] / C_AUDAY);
+  k = (1.0 - vel[2] / C_AUDAY);
 
   // Final conversion from AU/day to angular motion per year
   u = paralx * JULIAN_YEAR_DAYS;
