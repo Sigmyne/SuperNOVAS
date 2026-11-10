@@ -919,8 +919,8 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
         cat_entry *out) {
   static const char *fn = "transform_cat";
 
-  double paralx, k, u;
-  double pos[3], vel[3], xyproj;
+  double paralx, u;
+  double pos[3], motion[3], xyproj;
   double jd0 = date_in < 10000.0 ? (NOVAS_JD_J2000 + (date_in - 2000.0) * NOVAS_JULIAN_YEAR_DAYS) : date_in;
   double jd1 = date_out < 10000.0 ? (NOVAS_JD_J2000 + (date_out - 2000.0) * NOVAS_JULIAN_YEAR_DAYS) : date_out;
   double djd = (jd1 - jd0);
@@ -949,24 +949,22 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
   // vector in equatorial system with units of AU.
   radec2vector(in->ra, in->dec, 1.0 / (paralx * MAS), pos);
 
-  // Initial Doppler factor, which accounts for change in light travel time to star.
-  k = 1.0 / (1.0 + in->radialvelocity * NOVAS_KMS / NOVAS_C);
-
   // Conversion factor from angular motion per year to AU/day
   u = 1.0 / (paralx * JULIAN_YEAR_DAYS);
 
-  vel[0] = in->promora * u;
-  vel[1] = in->promodec * u;
-  vel[2] = k * in->radialvelocity * DAY / AU_KM;
+  // Apparent 3D motion, including physical radial velocity converted to apparent radial motion
+  motion[0] = in->promora * u;
+  motion[1] = in->promodec * u;
+  motion[2] = in->radialvelocity / (1.0 + in->radialvelocity * NOVAS_KMS / NOVAS_C) * DAY / AU_KM;
 
   // Transform motion vector to equatorial system.
-  novas_los_to_xyz(vel, 15.0 * in->ra, in->dec, vel);
+  novas_los_to_xyz(motion, 15.0 * in->ra, in->dec, motion);
 
   // Update star's position vector for space motion (only if 'option' = 1 or 'option' = 3).
   if((option == PROPER_MOTION) || (option == CHANGE_EPOCH)) {
     int j;
     for(j = 0; j < 3; j++)
-      pos[j] += vel[j] * djd;
+      pos[j] += motion[j] * djd;
   }
 
   switch(option) {
@@ -977,20 +975,20 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
     case CHANGE_EPOCH: {
       // Precess position and velocity vectors (only if 'option' = 2 or 'option' = 3).
       prop_error("transform_cat", precession(jd0, pos, jd1, pos), 0);
-      precession(jd0, vel, jd1, vel);
+      precession(jd0, motion, jd1, motion);
       break;
     }
 
     case CHANGE_J2000_TO_ICRS:
       // Rotate dynamical J2000.0 position and velocity vectors to ICRS (only if 'option' = 4).
       frame_tie(pos, J2000_TO_ICRS, pos);
-      frame_tie(vel, J2000_TO_ICRS, vel);
+      frame_tie(motion, J2000_TO_ICRS, motion);
       break;
 
     case CHANGE_ICRS_TO_J2000:
       // Rotate ICRS position and velocity vectors to dynamical J2000.0 (only if 'option' = 5).
       frame_tie(pos, ICRS_TO_J2000, pos);
-      frame_tie(vel, ICRS_TO_J2000, vel);
+      frame_tie(motion, ICRS_TO_J2000, motion);
       break;
 
     default:
@@ -1015,18 +1013,16 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
   out->parallax = (in->parallax > 0.0) ? paralx : 0.0;
 
   // Transform motion vector back to spherical polar system at star's new position.
-  novas_xyz_to_los(vel, 15.0 * out->ra, out->dec, vel);
-
-  // Final Doppler factor, which accounts for change in light travel time to star.
-  k = (1.0 - vel[2] / C_AUDAY);
+  novas_xyz_to_los(motion, 15.0 * out->ra, out->dec, motion);
 
   // Final conversion from AU/day to angular motion per year
   u = paralx * JULIAN_YEAR_DAYS;
 
   // Convert components of motion to from AU/day to normal catalog units.
-  out->promora = vel[0] * u;
-  out->promodec = vel[1] * u;
-  out->radialvelocity = k * vel[2] * (AU_KM / DAY);
+  // Include apparent to physical conversion for radial motion
+  out->promora = motion[0] * u;
+  out->promodec = motion[1] * u;
+  out->radialvelocity = motion[2] / (1.0 - motion[2] / C_AUDAY) * (AU_KM / DAY);
 
   // Set the catalog identification code for the transformed catalog entry.
   if(out_id)
