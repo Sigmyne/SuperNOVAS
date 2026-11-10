@@ -14,6 +14,16 @@ Upcoming bug-fix release, expected around 1 February 2027.
 ### Fixed
 
  - #400: Fixed `cal_date()` not propagating errors from `novas_jd_to_date()`. 
+ 
+ - #402: Fixed `transform_cat()` using input dates as Julian days when values are &lt;10000, which according to the
+   documentation (and the NOVAS C original), signify years rather than Julian dates. It's a bad design that will
+   likely to trip up people often, but it must stick for back compatibility. (by attipaci, thanks to mkretlow)
+   
+ - #404: Dropped misguided `k` factor for ocnverting between proper motion and apparent 3D motion in 
+   `transform_cat()` and in `starvectors()`. The `k` factor is needed to convert between physical and apparent
+   motions, and accounts for the changing light travel time as the star moves closer to, or further away from, the
+   observer. However, proper motion is already apparent motion, by definition, hence the use of `k` is wrong.
+   This is a NOVAS C bug, which went undetected until now. (by attipaci, thanks to mkretlow).
 
 ### Changed
 
