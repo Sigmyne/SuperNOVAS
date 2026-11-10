@@ -898,12 +898,12 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
  *
  * @param option      Type of transformation
  * @param date_in     [day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else
- *                    calendar year (if &lt;10000), of input catalog data. Not used if option is
+ *                    Julian year (if &lt;10000), of input catalog data. Not used if option is
  *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
  * @param in          An entry from the input catalog, with units as given in the struct
  *                    definition
  * @param date_out   [day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else
- *                    calendar year (if &lt;10000) of output catalog data. Not used if option is
+ *                    Julian year (if &lt;10000) of output catalog data. Not used if option is
  *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
  * @param out_id      Catalog identifier (0 terminated). It may also be NULL in which case the
  *                    catalog name is inherited from the input.
@@ -921,8 +921,8 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
 
   double paralx, k, u;
   double pos[3], vel[3], xyproj;
-  double jd0 = date_in < 10000.0 ? (NOVAS_JD_J2000 + (date_in - 2000.0) * NOVAS_TROPICAL_YEAR_DAYS) : date_in;
-  double jd1 = date_out < 10000.0 ? (NOVAS_JD_J2000 + (date_out - 2000.0) * NOVAS_TROPICAL_YEAR_DAYS) : date_out;
+  double jd0 = date_in < 10000.0 ? (NOVAS_JD_J2000 + (date_in - 2000.0) * NOVAS_JULIAN_YEAR_DAYS) : date_in;
+  double jd1 = date_out < 10000.0 ? (NOVAS_JD_J2000 + (date_out - 2000.0) * NOVAS_JULIAN_YEAR_DAYS) : date_out;
   double djd = (jd1 - jd0);
 
   if(!in || !out)
