@@ -17,6 +17,13 @@
 #define __NOVAS_INTERNAL_API__    ///< Use definitions meant for internal use by SuperNOVAS only
 /// \endcond
 
+/// [AU] Minimum source / observer distance from nominal gravitating body position for applying
+/// deflection corrections from that body (10<sup>-6</sup> AU ~ 150 km).
+///
+/// @since 1.8.1
+#define MIN_DEFLECT_DISTANCE      1e-6
+
+
 #include "novas.h"
 
 // Defined in novas.h
@@ -100,6 +107,10 @@ short grav_def(double jd_tdb, enum novas_observer_place unused, enum novas_accur
  *  1. This function is called by grav_def() to calculate appropriate gravitational deflections
  * around the massive Solar-system objects.
  *
+ *  2. As of __v1.8.1__, the implementation was modified to avoid self-deflection. If the source
+ *     or observer is within 10<sup>-6</sup> AU (~ 150 km) of the gravitating body center, then
+ *     no deflection is applied. (thanks to Gregor Baettig)
+ *
  * REFERENCES:
  *
  *  1. Murray, C.A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.
@@ -149,7 +160,7 @@ int grav_vec(const double *pos_src, const double *pos_obs, const double *pos_bod
   qmag = novas_vlen(pq);
 
   // Gravitating body is the observer or the observed object. No deflection.
-  if(!emag || !qmag)
+  if(emag < MIN_DEFLECT_DISTANCE || qmag < MIN_DEFLECT_DISTANCE)
     return 0;
 
   for(i = 3; --i >= 0;) {
@@ -313,6 +324,10 @@ int grav_undef(double jd_tdb, enum novas_accuracy accuracy, const double *pos_ap
  *  1. The gravitational deflection due to planets requires a planet calculator function to be
  *     configured, e.g. via set_planet_provider_hp().
  *
+ *  2. As of __v1.8.1__, the implementation was modified to avoid self-deflection. If the source
+ *     or observer is within 0.9 radii of the gravitating body center, then no deflection is
+ *     applied due to that body. (thanks to Gregor Baettig)
+ *
  * REFERENCES:
  *
  *  1. Klioner, S. (2003), Astronomical Journal 125, 1580-1597, Section 6.
@@ -341,6 +356,7 @@ int grav_undef(double jd_tdb, enum novas_accuracy accuracy, const double *pos_ap
 int grav_planets(const double *pos_src, const double *pos_obs, const novas_planet_bundle *restrict planets, double *out) {
   static const char *fn = "grav_planets";
   static const double rmass[] = NOVAS_RMASS_INIT;
+  static const double r[] = NOVAS_PLANET_RADII_INIT;
 
   double tsrc;
   int i;
@@ -393,6 +409,11 @@ int grav_planets(const double *pos_src, const double *pos_obs, const novas_plane
     // Calculate planet position at the time it is gravitationally acting on light.
     for(k = 3; --k >= 0;)
       p1[k] = pos_obs[k] + planets->pos[i][k] - lt * planets->vel[i][k];
+
+    // If observed source is gravitating body (i.e. within 0.9 radii of the gravitating body)
+    // then skip deflections from that body. (thanks to Gregor Baettig)
+    if(novas_vdist(p1, pos_src) * NOVAS_AU < 0.9 * r[i])
+      continue;
 
     // Compute deflection due to gravitating body.
     grav_vec(out, pos_obs, p1, rmass[i], out);
