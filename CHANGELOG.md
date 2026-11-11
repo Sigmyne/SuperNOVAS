@@ -14,6 +14,9 @@ Upcoming bug-fix release, expected around 1 February 2027.
 ### Fixed
 
  - #400: Fixed `cal_date()` not propagating errors from `novas_jd_to_date()`. 
+ 
+ - #406: Fixed diurnal polar motion corrections in frame, which were added with the wrong magnitude (10<sup>-6</sup>) 
+   times too small). (thanks to rgb)
 
 ### Changed
 

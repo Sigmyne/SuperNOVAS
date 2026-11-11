@@ -602,8 +602,8 @@ int novas_make_frame(enum novas_accuracy accuracy, const observer *obs, const no
   if(accuracy == NOVAS_FULL_ACCURACY) {
     double dxp = 0.0, dyp = 0.0;
     novas_diurnal_eop_at_time(&frame->time, &dxp, &dyp, NULL);
-    frame->dx += 0.001 * dxp;
-    frame->dy += 0.001 * dyp;
+    frame->dx += 1000.0 * dxp;
+    frame->dy += 1000.0 * dyp;
   }
 
   set_frame_tie(frame);
