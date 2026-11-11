@@ -22,8 +22,7 @@ Upcoming bug-fix release, expected around 1 February 2027.
 
  - #400: Simplified `spin()` to use `novas_Rz()`, and use the latter directly when it makes sense internally.
  
- - Updated documentation.
-
+ - #400: `make_comoving_observer` sets `errno` to `EDOM` (was `ERANGE`) when called with a non-solar-system location.
 
 
 ## [1.8.0] - 2026-11-01
@@ -144,9 +143,9 @@ fixes and improvements also.
  - #373: Check for integer overflow in `novas_set_time()` / `novas_set_split_time()`, and return -1 with `errno`
    set to `ERANGE` when the integer part of JD exceeds the `long` storage range. (by attipaci, thanks to csp256) 
    
- - #373: `novas_timestamp()`, and `novas_iso_timestamp()` now print `<invalid-time>` into buffer when date cannot
-   be converted into a calendar date representation (e.g. because of integer year overflow or NAN), and return -1.
-   (by attipaci, thanks to csp256)
+ - #373: `novas_timestamp()`, and `novas_iso_timestamp()` now print `<invalid-time>` into the ouput buffer when the 
+   Julian date cannot be converted into a calendar date representation (e.g. because of integer year overflow or NAN), 
+   and return -1. (by attipaci, thanks to csp256)
    
  - #373: `novas_get_split_time()` now ensures that the fractional part is between 0 and 1 and returns NAN (`errno` set 
    to `ERANGE`) if the split cannot be done within the long integer range, when the integer part is requested.
@@ -184,7 +183,7 @@ fixes and improvements also.
    
  - #395: Given that leap seconds are abolished effective 20 May 2027, the final leap seconds list is now hardcoded,
    making `novas_set_leap_list()` useless. It no longer does anything, except returning 0 (however, it sets `errno` to
-   `ENOSYS`). Or, if debug mode is set to `NOVAS_DEBUG_EXTGRA`, then it returns -1. The same goes for 
+   `ENOSYS`). Or, if debug mode is set to `NOVAS_DEBUG_EXTRA`, then it returns -1. The same goes for 
    `novas_set_eop_url()`, when called with `EOP_LEAP_LIST` as the series.
     
  - #395: `novas_lookup_leap()` no longer needs LIBC support, and will always return a valid leap seconds value, 
@@ -233,7 +232,7 @@ Bug fix release.
 
  - #345: Fixed possible buffer overflows when using `snprintf()` (by officialconfuzius).
  
- - #347: pkgconfig to call `find_dependency(CURL)` when __SuperNOVAS__ is built with `WITHOUT_CURL=FALSE` (by
+ - #347: CMake config to call `find_dependency(CURL)` when __SuperNOVAS__ is built with `WITHOUT_CURL=FALSE` (by
    BillyONeal).
  
  - #350: Possible memleak in `parse_leaps()` if there is a corrupted expiration stamp in an unexpected place (by 

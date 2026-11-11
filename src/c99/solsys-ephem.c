@@ -73,6 +73,9 @@ short planet_ephem_provider_hp(const double jd_tdb[restrict 2], enum novas_plane
     }
   }
 
+  if(isnan(jd_tdb[0] + jd_tdb[1]))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN: %g + %g", jd_tdb[0], jd_tdb[1]);
+
   return 0;
 }
 

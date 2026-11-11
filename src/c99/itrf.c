@@ -301,7 +301,8 @@ int novas_itrf_transform(int from_year, const double *restrict from_coords, cons
  *                        realization, or NULL if not required.
  * @param[out] to_dut1    [s] UT1-UTC time difference in the output ITRF realization, or NULL if
  *                        not required.
- * @return                0
+ * @return                0 if successful, or else -1 if either of the input pole offsets is
+ *                        NAN (errno set to EDOM).
  *
  * @since 1.5
  * @author Attila Kovacs
@@ -330,6 +331,9 @@ int novas_itrf_transform_eop(int from_year, double from_xp, double from_yp, doub
   // Note that Eq. 4.14 has a 1/f factor, which makes no sense. Contacted IERS about it.
   if(to_dut1)
     *to_dut1 = from_dut1 + T0.R[2] * (NOVAS_DAY / TWOPI);
+
+  if(isnan(from_xp) || isnan(from_yp))
+    return novas_error(-1, EDOM, "novas_itrf_transform_eop", "NAN input pole offsets: xp=%g, yp=%g", from_xp, from_yp);
 
   return 0;
 }
@@ -501,6 +505,9 @@ int novas_geodetic_to_cartesian(double lon, double lat, double alt, enum novas_r
   xyz[0] = (N + alt) * coslat * cos(lon);
   xyz[1] = (N + alt) * coslat * sin(lon);
   xyz[2] = (N * (1 - e2) + alt) * sinlat;
+
+  if(isnan(lon) || isnan(lat) || isnan(alt))
+    return novas_error(-1, EDOM, fn, "NAN input coord(s): lon=%g, lat=%g, alt=%g", lon, lat, alt);
 
   return 0;
 }

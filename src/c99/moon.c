@@ -299,6 +299,8 @@ static double elp_pert(double t, const novas_delaunay_args *restrict args, const
  * @sa novas_make_moon_orbit()
  */
 int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
+  static const char *fn = "novas_moon_elp_ecl_pos";
+
   static THREAD_LOCAL double last_tdb = NAN, last_limit = NAN, last_pos[3];
 
   /// \cond PRIVATE
@@ -320,8 +322,9 @@ int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
   double P = 0.0, Q = 0.0, S;
   const double s2 = sqrt(2.0);
 
+
   if(!pos)
-    return novas_error(-1, EINVAL, "novas_moon_elp_ecl_pos", "output position vector is NULL");
+    return novas_error(-1, EINVAL, fn, "output position vector is NULL");
 
   if(novas_time_equals(jd_tdb, last_tdb) && limit == last_limit) {
     memcpy(pos, last_pos, sizeof(last_pos));
@@ -381,6 +384,9 @@ int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
   last_tdb = jd_tdb;
   last_limit = limit;
 
+  if(isnan(jd_tdb))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
+
   return 0;
 }
 #endif // CPPCHECK
@@ -417,13 +423,15 @@ int novas_moon_elp_ecl_pos(double jd_tdb, double limit, double *pos) {
  * @sa novas_make_moon_orbit()
  */
 int novas_moon_elp_ecl_vel(double jd_tdb, double limit, double *vel) {
+  static const char *fn = "novas_moon_elp_ecl_vel";
+
   static THREAD_LOCAL double last_tdb = NAN, last_limit = NAN, last_vel[3];
 
   double p1[3] = {0.0}, p2[3] = {0.0};
   int k;
 
   if(!vel)
-    return novas_error(-1, EINVAL, "novas_moon_elp_ecl_vel", "output velocity vector is NULL");
+    return novas_error(-1, EINVAL, fn, "output velocity vector is NULL");
 
   novas_moon_elp_ecl_pos(jd_tdb - ELP_DELTA, limit, p1);
   novas_moon_elp_ecl_pos(jd_tdb + ELP_DELTA, limit, p2);
@@ -440,6 +448,9 @@ int novas_moon_elp_ecl_vel(double jd_tdb, double limit, double *vel) {
   memcpy(last_vel, vel, sizeof(last_vel));
   last_tdb = jd_tdb;
   last_limit = limit;
+
+  if(isnan(jd_tdb))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
 
   return 0;
 }
@@ -523,7 +534,7 @@ int novas_moon_elp_posvel_fp(const novas_frame *restrict frame, double limit,
   tdb = novas_get_time(&frame->time, NOVAS_TDB);
 
   if(pos) {
-    novas_moon_elp_ecl_pos(tdb, limit, pos);
+    prop_error(fn, novas_moon_elp_ecl_pos(tdb, limit, pos), 0);
     ecl2equ_vec(NOVAS_JD_J2000, NOVAS_MEAN_EQUATOR, acc, pos, pos);
 
     // w.r.t. observer
@@ -534,7 +545,7 @@ int novas_moon_elp_posvel_fp(const novas_frame *restrict frame, double limit,
   }
 
   if(vel) {
-    novas_moon_elp_ecl_vel(tdb, limit, vel);
+    prop_error(fn, novas_moon_elp_ecl_vel(tdb, limit, vel), 0);
     ecl2equ_vec(NOVAS_JD_J2000, NOVAS_MEAN_EQUATOR, acc, vel, vel);
 
     // w.r.t. observer
@@ -722,7 +733,8 @@ int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_referen
  *
  * @param jd_tdb      [day] Barycentric Dynamical Time (TDB) based Julian Date.
  * @param[out] orbit  Orbital elements data structure to populate.
- * @return            0 if successful, or else -1 (`errno` set to `EINVAL`).
+ * @return            0 if successful, or else -1 (`errno` will indicate
+ *                    the type of error).
  *
  * @since 1.4
  * @author Attila Kovacs
@@ -731,12 +743,14 @@ int novas_moon_elp_sky_pos(const novas_frame *restrict frame, enum novas_referen
  * @sa novas_moon_elp_posvel(), novas_moon_elp_sky_pos()
  */
 int novas_make_moon_mean_orbit(double jd_tdb, novas_orbital *restrict orbit) {
+  static const char *fn = "novas_make_moon_orbit";
+
   novas_orbital def = NOVAS_ORBIT_INIT;
   double W1, t;
   double P, Q, pole[3] = {0.0}, dOmega;
 
   if(!orbit)
-    return novas_error(-1, EINVAL, "novas_make_moon_orbit", "output orbital is NULL");
+    return novas_error(-1, EINVAL, fn, "output orbital is NULL");
 
   // Default ecliptic orbital...
   memcpy(orbit, &def, sizeof(novas_orbital));
@@ -801,6 +815,9 @@ int novas_make_moon_mean_orbit(double jd_tdb, novas_orbital *restrict orbit) {
 
   orbit->Omega += dOmega;
   orbit->omega -= dOmega;
+
+  if(isnan(jd_tdb))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
 
   return 0;
 }
@@ -1071,7 +1088,8 @@ int novas_make_moon_orbit(double jd_tdb, novas_orbital *restrict orbit) {
  *                    between the Sun and the Moon, as seen from the geocenter. 0: New Moon, 90:
  *                    1st quarter, +/- 180 Full Moon, -90: 3rd quarter or NAN if the solution
  *                    failed to converge (errno will be set to ECANCELED), or if the JD date is
- *                    outside the range of the orbital model (errno set to EINVAL).
+ *                    NAN (errno set to EDOM) or the date is outside the range of the orbital model
+ *                    (errno set to ERANGE).
  *
  * @since 1.4
  * @author Attila Kovacs
@@ -1091,15 +1109,15 @@ double novas_moon_phase(double jd_tdb) {
   double he, hm;
 
   // EMB ecliptic pos around Sun
-  prop_nan(fn, novas_make_planet_orbit(NOVAS_EMB, jd_tdb, &orbit));
-  prop_nan(fn, novas_orbit_native_posvel(jd_tdb, &orbit, pos, NULL));
+  prop_as_nan(fn, novas_make_planet_orbit(NOVAS_EMB, jd_tdb, &orbit));
+  prop_as_nan(fn, novas_orbit_native_posvel(jd_tdb, &orbit, pos, NULL));
   vector2radec(pos, &he, NULL);
 
   // Moon ecliptic pos around Earth
   //novas_make_moon_orbit(jd_tdb, &orbit);
-  //prop_nan(fn, novas_orbit_native_posvel(jd_tdb, &orbit, pos, NULL));
+  //prop_as_nan(fn, novas_orbit_native_posvel(jd_tdb, &orbit, pos, NULL));
 
-  prop_nan(fn, novas_moon_elp_ecl_pos(jd_tdb, 0.0, pos));
+  prop_as_nan(fn, novas_moon_elp_ecl_pos(jd_tdb, 0.0, pos));
   vector2radec(pos, &hm, NULL);
 
   last_phase = remainder(12.0 + hm - he, 24.0) * 15.0;
@@ -1140,8 +1158,9 @@ double novas_moon_phase(double jd_tdb) {
  * @param jd_tdb  [day] The lower bound date for the phase, as a Barycentric Dynamical Time (TDB)
  *                based Julian Date.
  * @return        [day] The Barycentric Dynamical Time (TDB) based Julian Date when the Moon will
- *                be in the desired phase next after the input date; or NAN if the solution failed
- *                to converge (errno will be set to ECANCELED).
+ *                be in the desired phase next after the input date; or NAN if the input phase or
+ *                Julian date is NAN (errno set to EDOM), or if solution failed to converge (errno
+ *                set to ECANCELED).
  *
  * @since 1.4
  * @author Attila Kovacs
@@ -1160,11 +1179,14 @@ double novas_next_moon_phase(double phase, double jd_tdb) {
   double rate = 445266.793243221 + t * (0.021258 + t * (3.75393e-05 - t * 2.366776e-07));
   rate /= JULIAN_CENTURY_DAYS;
 
+  if(isnan(phase)) {
+    novas_warn(EDOM, fn, "input phase is NAN");
+    return NAN;
+  }
+
   for(i = 0; i < novas_inv_max_iter; i++) {
     double phi = novas_moon_phase(jd_tdb);
-
-    if(isnan(phi))
-      return novas_trace_nan(fn);
+    prop_nan(fn, phi);
 
     phi = remainder(phase - phi, DEG360); // [deg]
     if(fabs(phi) < 1e-6)

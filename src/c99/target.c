@@ -124,6 +124,9 @@ int novas_init_cat_entry(cat_entry *restrict source, const char *restrict name, 
   if(strlen(name) >= SIZE_OF_OBJ_NAME)
      return novas_error(1, ERANGE, fn, "input 'name' is too long (%lu > %d)", (unsigned long) strlen(name), SIZE_OF_OBJ_NAME - 1);
 
+  if(isnan(ra) || isnan(dec))
+    return novas_error(-1, EDOM, fn, "NAN input coord(s): ra=%g, dec=%g", ra, dec);
+
   return 0;
 }
 
@@ -188,6 +191,10 @@ int novas_set_ssb_vel(cat_entry *source, double v_kms) {
     return novas_error(-1, ERANGE, fn, "input velocity exceeds the speed of light");
 
   source->radialvelocity = v_kms;
+
+  if(isnan(v_kms))
+    return novas_error(-1, EDOM, fn, "input radial velocity is NAN");
+
   return 0;
 }
 
@@ -211,7 +218,8 @@ int novas_set_lsr_vel(cat_entry *source, double epoch, double v_kms) {
   if(!source)
     return novas_error(-1, EINVAL, fn, "NULL input 'source'");
 
-  prop_error(fn, novas_set_ssb_vel(source, novas_lsr_to_ssb_vel(epoch, source->ra, source->dec, v_kms)), 0);
+  v_kms = novas_lsr_to_ssb_vel(epoch, source->ra, source->dec, v_kms);
+  prop_error(fn, novas_set_ssb_vel(source, v_kms), 0);
   return 0;
 }
 
@@ -222,7 +230,7 @@ int novas_set_lsr_vel(cat_entry *source, double epoch, double v_kms) {
  * @param z            [-1:inf] The redshift measure _z_, defined as (1 + _z_) =
  *                     sqrt((1 + _v_/_c_) / (1 - _v_/_c_))
  * @return             0 if successful, or else -1 if the source is NULL (errno is set to EINVAL)
- *                     or if the redshift is invalid (errno set to ERANGE).
+ *                     or if the redshift is invalid (errno set to EDOM).
  *
  * @since 1.5
  * @author Attila Kovacs
@@ -233,10 +241,6 @@ int novas_set_redshift(cat_entry *source, double z) {
   static const char *fn = "novas_set_redshift";
 
   double v = novas_z2v(z);
-
-  if(isnan(v))
-    return novas_error(-1, ERANGE, fn, "invalid redshift value: %f\n", z);
-
   prop_error(fn, novas_set_ssb_vel(source, v), 0);
   return 0;
 }
@@ -255,11 +259,17 @@ int novas_set_redshift(cat_entry *source, double z) {
  * @sa novas_set_parallax(), novas_set_distance(), novas_init_cat_entry()
  */
 int novas_set_proper_motion(cat_entry *source, double pm_ra, double pm_dec) {
+  static const char *fn = "novas_set_proper_motion";
+
   if(!source)
-    return novas_error(-1, EINVAL, "novas_set_proper_motion", "NULL input 'source'");
+    return novas_error(-1, EINVAL, fn, "NULL input 'source'");
 
   source->promora = pm_ra;
   source->promodec = pm_dec;
+
+  if(isnan(pm_ra) || isnan(pm_dec))
+    return novas_error(-1, EDOM, fn, "NAN input motion: pm_ra=%g, pm_dec=%g", pm_ra, pm_dec);
+
   return 0;
 }
 
@@ -276,10 +286,16 @@ int novas_set_proper_motion(cat_entry *source, double pm_ra, double pm_dec) {
  * @sa novas_set_distance(), novas_init_cat_entry()
  */
 int novas_set_parallax(cat_entry *source, double mas) {
+  static const char *fn = "novas_set_parallax";
+
   if(!source)
-    return novas_error(-1, EINVAL, "novas_set_parallax", "NULL input 'source'");
+    return novas_error(-1, EINVAL, fn, "NULL input 'source'");
 
   source->parallax = fabs(mas);
+
+  if(isnan(mas))
+    return novas_error(-1, EDOM, fn, "input parallax is NAN");
+
   return 0;
 }
 
@@ -339,8 +355,8 @@ short make_cat_entry(const char *restrict name, const char *restrict catalog, lo
 
   prop_error(fn, novas_init_cat_entry(source, name, ra, dec), 0);
   prop_error(fn, novas_set_catalog(source, catalog, cat_num), 0);
-  novas_set_proper_motion(source, pm_ra, pm_dec);
-  novas_set_parallax(source, parallax);
+  prop_error(fn, novas_set_proper_motion(source, pm_ra, pm_dec), 0);
+  prop_error(fn, novas_set_parallax(source, parallax), 0);
   prop_error(fn, novas_set_ssb_vel(source, rv), 0);
 
   return 0;
@@ -508,14 +524,15 @@ int make_cat_object(const cat_entry *star, object *source) {
 static int cat_to_icrs(cat_entry *restrict star, const char *restrict system) {
   if(strcasecmp(system, NOVAS_SYSTEM_ICRS) != 0 && strcasecmp(system, NOVAS_SYSTEM_FK6) != 0) {
     double jd = novas_epoch(system);
-    if(isnan(jd))
-      return novas_trace("cat_to_icrs", -1, 0);
 
     if(jd != NOVAS_JD_J2000)
       transform_cat(CHANGE_EPOCH, jd, star, NOVAS_JD_J2000, NOVAS_SYSTEM_FK5, star);
 
     // Then convert J2000 coordinates to ICRS (also in place). Here the dates don't matter...
     transform_cat(CHANGE_J2000_TO_ICRS, 0.0, star, 0.0, NOVAS_SYSTEM_ICRS, star);
+
+    if(isnan(jd))
+      return novas_trace("cat_to_icrs", -1, 0);
   }
   return 0;
 }
@@ -784,7 +801,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
   // Convert right ascension, declination, and parallax to position vector
   // in equatorial system with units of AU.
   if(pos)
-    radec2vector(star->ra, star->dec, 1.0 / (paralx * MAS), pos);
+    prop_error(fn, radec2vector(star->ra, star->dec, 1.0 / (paralx * MAS), pos), 0);
 
   if(motion) {
     // Compute Doppler factor, which accounts for change in
@@ -798,7 +815,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
     motion[2] = k * star->radialvelocity * NOVAS_KMS / NOVAS_AU_PER_DAY;
 
     // Transform motion vector to equatorial system.
-    novas_los_to_xyz(motion, 15.0 * star->ra, star->dec, motion);
+    prop_error(fn, novas_los_to_xyz(motion, 15.0 * star->ra, star->dec, motion), 0);
   }
 
   return 0;
@@ -942,7 +959,7 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
 
   // Convert right ascension, declination, and parallax to position
   // vector in equatorial system with units of AU.
-  radec2vector(in->ra, in->dec, 1.0 / (paralx * MAS), pos);
+  prop_error(fn, radec2vector(in->ra, in->dec, 1.0 / (paralx * MAS), pos), 0);
 
   // Initial Doppler factor, which accounts for change in light travel time to star.
   k = 1.0 / (1.0 - in->radialvelocity * NOVAS_KMS / NOVAS_C);
@@ -955,7 +972,7 @@ short transform_cat(enum novas_transform_type option, double jd_tt_in, const cat
   vel[2] = k * in->radialvelocity * DAY / AU_KM;
 
   // Transform motion vector to equatorial system.
-  novas_los_to_xyz(vel, 15.0 * in->ra, in->dec, vel);
+  prop_error(fn, novas_los_to_xyz(vel, 15.0 * in->ra, in->dec, vel), 0);
 
   // Update star's position vector for space motion (only if 'option' = 1 or 'option' = 3).
   if((option == PROPER_MOTION) || (option == CHANGE_EPOCH)) {
@@ -1143,6 +1160,8 @@ double novas_helio_dist(double jd_tdb, const object *restrict source, double *re
     return novas_trace_nan(fn);
 
   d = novas_vlen(pos);
+  prop_nan(fn, d);
+
   if(!d) {
     // The Sun itself...
     if(rate)
@@ -1150,8 +1169,11 @@ double novas_helio_dist(double jd_tdb, const object *restrict source, double *re
     return 0.0;
   }
 
-  if(rate)
+  if(rate) {
     *rate = novas_vdot(pos, vel) / d;
+    if(isnan(*rate))
+      novas_trace_invalid(fn);
+  }
 
   return d;
 }
@@ -1173,5 +1195,6 @@ double novas_helio_dist(double jd_tdb, const object *restrict source, double *re
  */
 double novas_solar_power(double jd_tdb, const object *restrict source) {
   double d = novas_helio_dist(jd_tdb, source, NULL);
+  prop_nan("novas_solar_power", d);
   return NOVAS_SOLAR_CONSTANT / (d * d);
 }

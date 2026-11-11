@@ -362,6 +362,9 @@ static short planet_cspice_hp(const double jd_tdb[restrict 2], enum novas_planet
       velocity[i] = pv[3 + i] * NORM_VEL;
   }
 
+  if(isnan(tdb2000))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
+
   return 0;
 }
 
@@ -517,6 +520,9 @@ static int novas_cspice(const char *name, long id, double jd_tdb_high, double jd
     if(vel)
       vel[i] = pv[3 + i] * NORM_VEL;
   }
+
+  if(isnan(tdb2000))
+    return novas_error(-1, EDOM, fn, "input Julian date is NAN");
 
   return 0;
 }

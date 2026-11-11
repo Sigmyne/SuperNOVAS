@@ -277,9 +277,6 @@ short ephemeris(const double *restrict jd_tdb, const object *restrict body, enum
   if(!jd_tdb || !body)
     return novas_error(-1, EINVAL, fn, "NULL input pointer: jd_tdb=%p, body=%p", jd_tdb, body);
 
-  if(isnan(jd_tdb[0]) || isnan(jd_tdb[1]))
-    return novas_error(-1, EINVAL, fn, "input time is NaN");
-
   if(!pos || !vel)
     return novas_error(-1, EINVAL, fn, "NULL output pointer: pos=%p, vel=%p", pos, vel);
 
@@ -372,6 +369,9 @@ short ephemeris(const double *restrict jd_tdb, const object *restrict body, enum
     default:
       return novas_error(2, EINVAL, fn, "invalid Solar-system body type: %d", body->type);
   }
+
+  if(isnan(jd_tdb[0] + jd_tdb[1]))
+    return novas_error(-1, EINVAL, fn, "input time is NaN: %g + %g", jd_tdb[0], jd_tdb[1]);
 
   return 0;
 }
