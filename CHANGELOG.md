@@ -21,6 +21,8 @@ Upcoming bug-fix release, expected around 1 February 2027.
  
  - #406: Fixed diurnal polar motion corrections in `novas_frame`, which were added with the wrong magnitude 
    (10<sup>-6</sup>) times too small). (thanks to rgb)
+      
+ - #407: `grav_planets()` now accumulates the deflections from the planets in light arrival order from the source.
 
 ### Changed
 
