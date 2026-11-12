@@ -23,8 +23,14 @@
 /// @since 1.8.1
 #define MIN_DEFLECT_DISTANCE      1e-6
 
-
 #include "novas.h"
+
+/// \cond PRIVATE
+typedef struct {
+  enum novas_planet body;
+  double distance;
+} los_distance;
+/// \endcond
 
 // Defined in novas.h
 int grav_bodies_reduced_accuracy = DEFAULT_GRAV_BODIES_REDUCED_ACCURACY;
@@ -314,6 +320,15 @@ int grav_undef(double jd_tdb, enum novas_accuracy accuracy, const double *pos_ap
   return 0;
 }
 
+static int cmp_los_distance(const void *restrict a, const void *restrict b) {
+  const los_distance *A = (const los_distance *) a;
+  const los_distance *B = (const los_distance *) b;
+  if(A->distance == B->distance) return 0;
+
+  // More distant along line of sight comes first (for light arrival order)
+  return (A->distance > B->distance) ? -1 : 1;
+}
+
 /**
  * (_primarily for internal use_) Computes the total gravitational deflection of light for
  * the observed object due to the specified gravitating bodies in the solar system. This function
@@ -327,6 +342,9 @@ int grav_undef(double jd_tdb, enum novas_accuracy accuracy, const double *pos_ap
  *  2. As of __v1.8.1__, the implementation was modified to avoid self-deflection. If the source
  *     or observer is within 0.9 radii of the gravitating body center, then no deflection is
  *     applied due to that body. (thanks to Gregor Baettig)
+ *
+ *  3. As of __v1.8.1__, the deflections from the planets are ordered accoring to line-of-sight
+ *     distance, in light arrival order from the source.
  *
  * REFERENCES:
  *
@@ -358,6 +376,9 @@ int grav_planets(const double *pos_src, const double *pos_obs, const novas_plane
   static const double rmass[] = NOVAS_RMASS_INIT;
   static const double r[] = NOVAS_PLANET_RADII_INIT;
 
+  los_distance los_order[NOVAS_PLANETS] = {};
+  int n_planets = 0;
+
   double tsrc;
   int i;
 
@@ -376,22 +397,38 @@ int grav_planets(const double *pos_src, const double *pos_obs, const novas_plane
 
   tsrc = novas_vlen(pos_src) / C_AUDAY;
 
+  // Calculate the apparent planet distances along the line of sight
   for(i = 1; i < NOVAS_PLANETS; i++) {
-    double lt, dpl, p1[3];
-    int k;
+    los_distance *los = &los_order[n_planets];
 
     if((planets->mask & (1 << i)) == 0)
       continue;
 
+    los->body = (enum novas_planet) i;
+    los->distance = novas_vdot(pos_src, &planets->pos[i][0]) / novas_vlen(&planets->pos[i][0]);
+    n_planets++;
+  }
+
+  // Gravitating bodies in light arrival order from source
+  qsort(los_order, n_planets, sizeof(los_distance), cmp_los_distance);
+
+  for(i = 0; i < n_planets; i++) {
+    const int pl = los_order[i].body;
+    double lt, dpl, p1[3];
+    int k;
+
+    if((planets->mask & (1 << pl)) == 0)
+      continue;
+
     // Distance from observer to gravitating body
-    dpl = novas_vlen(&planets->pos[i][0]);
+    dpl = novas_vlen(&planets->pos[pl][0]);
 
     // If observing from within ~1500 km of the gravitating body, then skip deflections by it...
     if(dpl < 1e-5)
       continue;
 
     // Calculate light time to the point where incoming geometric light ray is closest to gravitating body.
-    lt = d_light(pos_src, &planets->pos[i][0]);
+    lt = d_light(pos_src, &planets->pos[pl][0]);
 
     // If gravitating body is in opposite direction from the source then use the gravitating
     // body position at the time the light is observed.
@@ -408,15 +445,15 @@ int grav_planets(const double *pos_src, const double *pos_obs, const novas_plane
 
     // Calculate planet position at the time it is gravitationally acting on light.
     for(k = 3; --k >= 0;)
-      p1[k] = pos_obs[k] + planets->pos[i][k] - lt * planets->vel[i][k];
+      p1[k] = pos_obs[k] + planets->pos[pl][k] - lt * planets->vel[pl][k];
 
     // If observed source is gravitating body (i.e. within 0.9 radii of the gravitating body)
     // then skip deflections from that body. (thanks to Gregor Baettig)
-    if(novas_vdist(p1, pos_src) * NOVAS_AU < 0.9 * r[i])
+    if(novas_vdist(p1, pos_src) * NOVAS_AU < 0.9 * r[pl])
       continue;
 
     // Compute deflection due to gravitating body.
-    grav_vec(out, pos_obs, p1, rmass[i], out);
+    grav_vec(out, pos_obs, p1, rmass[pl], out);
   }
 
   return 0;
