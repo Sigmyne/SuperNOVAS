@@ -2758,7 +2758,7 @@ short make_cat_entry(const char *restrict name, const char *restrict catalog, lo
         double pm_ra, double pm_dec, double parallax, double rv, cat_entry *source);
 
 /// @c_source
-short transform_cat(enum novas_transform_type, double jd_tt_in, const cat_entry *in, double jd_tt_out, const char *out_id,
+short transform_cat(enum novas_transform_type, double date_in, const cat_entry *in, double date_out, const char *out_id,
         cat_entry *out);
 
 /// @c_source
