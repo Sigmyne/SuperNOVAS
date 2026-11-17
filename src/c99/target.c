@@ -896,21 +896,26 @@ enum novas_planet novas_planet_for_name(const char *restrict name) {
  *     diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to
  *     Mike Kretlow for noticing these. It has been corrected for __v1.8.1__.
  *
+ *  3. Modified in v1.8.1 to iteratively account for change of light time between initial and final
+ *     epochs.
+ *
  * @param option      Type of transformation
  * @param date_in     [day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else
  *                    Julian year (if &lt;10000), of input catalog data. Not used if option is
  *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
  * @param in          An entry from the input catalog, with units as given in the struct
  *                    definition
- * @param date_out   [day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else
+ * @param date_out    [day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else
  *                    Julian year (if &lt;10000) of output catalog data. Not used if option is
  *                    CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5).
  * @param out_id      Catalog identifier (0 terminated). It may also be NULL in which case the
  *                    catalog name is inherited from the input.
  * @param[out] out    The transformed catalog entry, with units as given in the struct definition.
  *                    It may be the same as the input.
- * @return            0 if successful, -1 if either vector argument is NULL or if the 'option' is
- *                    invalid, or else 2 if 'out_id' is too long.
+ * @return            0 if successful, -1 if either vector argument is NULL (errno set to EINVAL)
+ *                    or if the 'option' is invalid (errno set to ERANGE) or if the proper motion
+ *                    failed to converge (errno set to ECANCELED), or else 2 if 'out_id' is too
+ *                    long.
  *
  * @sa transform_hip(), make_cat_object_sys(), novas_set_catalog()
  * @sa novas_epoch(), NOVAS_JD_J2000, NOVAS_JD_B1950, NOVAS_JD_HIP
@@ -919,11 +924,10 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
         cat_entry *out) {
   static const char *fn = "transform_cat";
 
-  double paralx, u;
-  double pos[3], motion[3], xyproj;
+  double paralx, u, k0, k1;
+  double pos[3], motion[3];
   double jd0 = date_in < 10000.0 ? (NOVAS_JD_J2000 + (date_in - 2000.0) * NOVAS_JULIAN_YEAR_DAYS) : date_in;
   double jd1 = date_out < 10000.0 ? (NOVAS_JD_J2000 + (date_out - 2000.0) * NOVAS_JULIAN_YEAR_DAYS) : date_out;
-  double djd = (jd1 - jd0);
 
   if(!in || !out)
     return novas_error(-1, EINVAL, fn, "NULL parameter: in=%p, out=%p", in, out);
@@ -952,20 +956,20 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
   // Conversion factor from angular motion per year to AU/day
   u = 1.0 / (paralx * JULIAN_YEAR_DAYS);
 
+  // Change of light travel time corretion factor at initial epoch
+  k0 = 1.0 / (1.0 + in->radialvelocity * NOVAS_KMS / NOVAS_C);
+
   // Apparent 3D motion, including physical radial velocity converted to apparent radial motion
   motion[0] = in->promora * u;
   motion[1] = in->promodec * u;
-  motion[2] = in->radialvelocity / (1.0 + in->radialvelocity * NOVAS_KMS / NOVAS_C) * DAY / AU_KM;
+  motion[2] = in->radialvelocity * k0 * DAY / AU_KM;
 
   // Transform motion vector to equatorial system.
   novas_los_to_xyz(motion, 15.0 * in->ra, in->dec, motion);
 
-  // Update star's position vector for space motion (only if 'option' = 1 or 'option' = 3).
-  if((option == PROPER_MOTION) || (option == CHANGE_EPOCH)) {
-    int j;
-    for(j = 0; j < 3; j++)
-      pos[j] += motion[j] * djd;
-  }
+  // Update star's position vector for apparent motion (only if 'option' = 1 or 'option' = 3).
+  if((option == PROPER_MOTION) || (option == CHANGE_EPOCH))
+    prop_error(fn, proper_motion(jd0, pos, motion, jd1, pos), 0);
 
   switch(option) {
     case PROPER_MOTION:
@@ -995,19 +999,13 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
       if(out != in)
         *out = *in;
 
-      return novas_error(-1, EINVAL, fn, "invalid option %d", option);
+      return novas_error(-1, ERANGE, fn, "invalid option %d", option);
   }
 
   // Convert vectors back to angular components for output.
 
   // From updated position vector, obtain star's new position expressed as angular quantities.
-  xyproj = sqrt(pos[0] * pos[0] + pos[1] * pos[1]);
-
-  out->ra = (xyproj > 0.0) ? atan2(pos[1], pos[0]) / HOURANGLE : 0.0;
-  if(out->ra < 0.0)
-    out->ra += DAY_HOURS;
-
-  out->dec = atan2(pos[2], xyproj) / DEGREE;
+  vector2radec(pos, &out->ra, &out->dec);
 
   paralx = asin(1.0 / novas_vlen(pos)) / MAS;
   out->parallax = (in->parallax > 0.0) ? paralx : 0.0;
@@ -1018,17 +1016,21 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
   // Final conversion from AU/day to angular motion per year
   u = paralx * JULIAN_YEAR_DAYS;
 
+  // Change of light-time correction factor at final epoch
+  k1 = (1.0 - motion[2] / C_AUDAY);
+
   // Convert components of motion to from AU/day to normal catalog units.
   // Include apparent to physical conversion for radial motion
-  out->promora = motion[0] * u;
-  out->promodec = motion[1] * u;
-  out->radialvelocity = motion[2] / (1.0 - motion[2] / C_AUDAY) * (AU_KM / DAY);
+  out->promora = motion[0] * u * (k1 / k0);
+  out->promodec = motion[1] * u * (k1 / k0);
+  out->radialvelocity = motion[2] * (AU_KM / DAY) / k1;
 
   // Set the catalog identification code for the transformed catalog entry.
   if(out_id)
     strncpy(out->catalog, out_id, SIZE_OF_CAT_NAME - 1);
   else if(out != in)
     strncpy(out->catalog, in->catalog, SIZE_OF_CAT_NAME - 1);
+
   // Make sure catalog name is terminated.
   out->catalog[SIZE_OF_CAT_NAME - 1] = '\0';
 
@@ -1079,30 +1081,72 @@ int transform_hip(const cat_entry *hipparcos, cat_entry *hip_2000) {
 /**
  * Applies proper motion, including foreshortening effects, to a star's position.
  *
+ * NOTES:
+ *
+ *  1. Modified in v1.8.1 to iteratively account for change of light time between initial and final
+ *     epochs.
+ *
  * REFERENCES:
  *
  *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
  *
  * @param jd_tdb_in  [day] Barycentric Dynamical Time (TDB) based Julian date of the first epoch.
- * @param pos        [AU] Position vector at first epoch.
- * @param vel        [AU/day] Velocity vector at first epoch.
+ * @param pos        [AU] (Equatorial) position vector at first epoch.
+ * @param vel        [AU/day] Apparent (equatorial) motion vector at first epoch, including change
+ *                   of light-time, e.g. as obtained from `starvectors()`.
  * @param jd_tdb_out [day] Barycentric Dynamical Time (TDB) based Julian date of the second epoch.
  * @param[out] out   Position vector at second epoch. It can be the same vector as the input.
- * @return           0 if successful, or -1 if any of the vector arguments is NULL.
+ * @return           0 if successful, or -1 if any of the vector arguments is NULL (errno set to
+ *                   EINVAL) or if the change of light time correction failed to converge (errno
+ *                   set to ECANCELED).
  *
- * @sa transform_cat()
+ * @sa starvectors(), transform_cat()
  */
 int proper_motion(double jd_tdb_in, const double *pos, const double *restrict vel, double jd_tdb_out, double *out) {
+  static const char *fn = "proper_motion";
+
   const double dt = jd_tdb_out - jd_tdb_in;
-  int j;
+  double b_app, k, lt0, p0[3], dp_geom[3];
+  int i;
 
   if(!pos || !vel || !out)
-    return novas_error(-1, EINVAL, "proper_motion", "NULL input or output 3-vector: pos=%p, vel=%p, out=%p", pos, vel, out);
+    return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: pos=%p, vel=%p, out=%p", pos, vel, out);
 
-  for(j = 3; --j >= 0;)
-    out[j] = pos[j] + vel[j] * dt;
+  lt0 = novas_vlen(pos) / C_AUDAY; // [day] initial light time
+  b_app = novas_vdot(pos, vel) / novas_vlen(pos) / C_AUDAY;  // radial velocity / c
 
-  return 0;
+  // Change of light time correction at the initial epoch
+  k = (1.0 - b_app);
+
+  // Calculate true geometric 3D motion (undo change of light-time correction)
+  for(i = 0; i < 3; i++) {
+    p0[i] = pos[i];
+    dp_geom[i] = vel[i] * dt / k;
+  }
+
+  // Iteratively solve for actual change-of-light time correction
+  for(i = 0; i < novas_inv_max_iter; i++) {
+    double lt1, k1;
+    int j;
+
+    // projected new position
+    for(j = 0; j < 3; j++)
+      out[j] = p0[j] + dp_geom[j] * k;
+
+    // final light time
+    lt1 = novas_vlen(out) / C_AUDAY;
+
+    // k factor for actual light time change between epochs
+    k1 = 1.0 + (lt0 - lt1) / dt;
+
+    if(fabs(k1 - k) < 1e-15 * k)
+      return 0; // Hurray, converged!
+
+    // Keep going...
+    k = k1;
+  }
+
+  return novas_error(-1, ECANCELED, fn, "failed to converge");
 }
 
 /**

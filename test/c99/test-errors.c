@@ -929,6 +929,10 @@ static int test_proper_motion() {
   if(check("proper_motion:v", -1, proper_motion(0.0, p, NULL, 1.0, p))) n++;
   if(check("proper_motion:out", -1, proper_motion(0.0, p, v, 1.0, NULL))) n++;
 
+  novas_set_max_iter(0);
+  if(check("proper_motion:p", -1, proper_motion(0.0, p, v, 1.0, p))) n++;
+  novas_set_max_iter(NOVAS_DEFAULT_MAX_ITER);
+
   return n;
 }
 
