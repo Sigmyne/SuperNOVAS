@@ -39,8 +39,13 @@ Upcoming bug-fix release, expected around 1 December 2027.
 
  - #400: Simplified `spin()` to use `novas_Rz()`, and use the latter directly when it makes sense internally.
  
+ - #408: Modified `proper_motion()` and `transform_cat()` to hold the true 3D motion constant and calculate the 
+   appropriate light time correction iteratively between the initial and final epochs. This is more similar to what
+   SOFA does. The effect of the change on Barnard's star is about 0.8 mas over a century, and more like a few &mu;as
+   per century for most other stars. Also, `transform_cat()` now calls `proper_motion()` instead of duplicating the 
+   calculation, making it less bug-prone. (thanks to mkretlow)
+ 
  - Updated documentation.
-
 
 
 ## [1.8.0] - 2026-11-01
