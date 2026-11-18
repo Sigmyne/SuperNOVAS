@@ -323,7 +323,7 @@ int grav_undef(double jd_tdb, enum novas_accuracy accuracy, const double *pos_ap
 static int cmp_los_distance(const void *restrict a, const void *restrict b) {
   const los_distance *A = (const los_distance *) a;
   const los_distance *B = (const los_distance *) b;
-  if(A->distance == B->distance) return 0;
+  //if(A->distance == B->distance) return 0; // cannot really happen in usage context
 
   // More distant along line of sight comes first (for light arrival order)
   return (A->distance > B->distance) ? -1 : 1;
@@ -398,7 +398,8 @@ int grav_planets(const double *pos_src, const double *pos_obs, const novas_plane
   tsrc = novas_vlen(pos_src) / C_AUDAY;
 
   // Calculate the apparent planet distances along the line of sight
-  for(i = 1; i < NOVAS_PLANETS; i++) {
+  // (for actual bodies, excluding barycenters.
+  for(i = NOVAS_MERCURY; i < NOVAS_MOON; i++) {
     los_distance *los = &los_order[n_planets];
 
     if((planets->mask & (1 << i)) == 0)

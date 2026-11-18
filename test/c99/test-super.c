@@ -1994,7 +1994,7 @@ static int test_grav_planets() {
   double psrc[3] = {0.0}, pout[3] = {0.0};
   double pose[3] = {0.0}, vele[3] = {0.0};
   double tdb2[2] = { NOVAS_JD_J2000 };
-  int pl_mask = 1 << NOVAS_EARTH;
+  int pl_mask = (1 << NOVAS_SUN) | (1 << NOVAS_EARTH); // at least 2 for sorting...
   object earth = NOVAS_EARTH_INIT;
   novas_planet_bundle pl = NOVAS_PLANET_BUNDLE_INIT;
 
