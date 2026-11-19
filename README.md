@@ -205,14 +205,21 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    the final distance before calculating the output motion parameters. The difference is typically negligible, except
    perhaps for fast moving stars, and/or large time offsets from the catalog epoch.
 
- - [__v1.8.1__] Wrong `k` factor, and used incorrectly, for converting between proper motion and apparent 3D motion in 
-   `transform_cat()` and in `starvectors()`. The `k` factor converts between physical and apparent motions, and 
-   accounts for the changing light travel time as the star moves closer to, or further away from, the observer. 
-   However, proper motion is already apparent motion, by definition, hence the use of `k` is wrong. Also the factor 
-   ought to have been 1 / (1 + _rv_ / _c_), but was 1 / (1 - _rv_ / _c_) -- that is the radial velocity (_rv_) was 
-   included with the wrong sign. (thanks to mkretlow).
+ - [__v1.8.1__] Wrong NOVAS C `k` factor, and used incorrectly, for converting between proper motion and apparent 3D 
+   motion in `transform_cat()` and in `starvectors()`. The `k` factor converts between physical and apparent motions, 
+   and accounts for the changing light travel time as the star moves closer to, or further away from, the observer. 
+   However, proper motion is already apparent motion, by definition, hence the use of `k` for proper motion is wrong. 
+   Also, the factor ought to have been 1 / (1 + _rv_ / _c_), but was 1 / (1 - _rv_ / _c_) -- that is the radial 
+   velocity (_rv_) was included with the wrong sign. The typical errors from the bug are at or below 1 mas over a 
+   century, but for Barnard's star they are close around 0.4 arcsecs per century. (Thanks to Mike Kretlow for bringing 
+   attention to this issue). 
    
- 
+ - [__v1.8.1__] The NOVAS C proper motion model (in `proper_motion()` and `transform_cat()`) holds the light-time 
+   corrected apparent 3D motion constant through the ages, rather than assuming a constant true physical motion like 
+   SOFA. The difference for typical stars, with proper motion below 25 mas/yr, are at the &mu;as level over a century, 
+   but for Barnard's star it is around 1.2 mas over a century. (Thanks to Mike Kretlow for bringing attention to this 
+   issue).
+   
 
 </details>
    
