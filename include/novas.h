@@ -1328,7 +1328,7 @@ typedef struct novas_cat_entry {
   long starnumber;                  ///< integer identifier assigned to object
   double ra;                        ///< [h] ICRS right ascension
   double dec;                       ///< [deg] ICRS declination
-  double promora;                   ///< [mas/yr] ICRS proper motion in right ascension
+  double promora;                   ///< [mas/yr] ICRS proper motion in right ascension (projected i.e., &part;RA / &part;t * __cos__(Dec)).
   double promodec;                  ///< [mas/yr] ICRS proper motion in declination
   double parallax;                  ///< [mas] parallax
   double radialvelocity;            ///< [km/s] catalog radial velocity (w.r.t. SSB)
