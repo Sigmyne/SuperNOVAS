@@ -245,7 +245,8 @@ int novas_set_redshift(cat_entry *source, double z) {
  * Sets the proper-motion for a (Galactic) catalog source.
  *
  * @param[out] source  Output structure to populate with the parameters.
- * @param pm_ra        [mas/yr] Proper motion in right ascension.
+ * @param pm_ra        [mas/yr] Proper motion in right ascension (projected i.e.,
+ *                     &part;RA / &part;t * __cos__(Dec)).
  * @param pm_dec       [mas/yr] Proper motion in declination.
  * @return             0 if successful, or else -1 if the source is NULL (errno is set to EINVAL).
  *
@@ -319,7 +320,8 @@ int novas_set_distance(cat_entry *source, double parsecs) {
  *                    to anything that is meaningful to you, or set it to 0 as a default.
  * @param ra          [h] Right ascension of the object.
  * @param dec         [deg] Declination of the object.
- * @param pm_ra       [mas/yr] Proper motion in right ascension.
+ * @param pm_ra       [mas/yr] Proper motion in right ascension (projected i.e.,
+ *                    &part;RA / &part;t * __cos__(Dec)).
  * @param pm_dec      [mas/yr] Proper motion in declination.
  * @param parallax    [mas] Parallax.
  * @param rv          [km/s] Radial velocity relative to the Solar-System Barycenter (SSB). To
@@ -1104,7 +1106,7 @@ int proper_motion(double jd_tdb_in, const double *pos, const double *restrict ve
     return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: pos=%p, vel=%p, out=%p", pos, vel, out);
 
   lt0 = novas_vlen(pos) / C_AUDAY; // [day] initial light time
-  b_app = novas_vdot(pos, vel) / novas_vlen(pos) / C_AUDAY;  // apparent radial motion / c
+  b_app = novas_vdot(pos, vel) / (novas_vlen(pos) * C_AUDAY);  // apparent radial motion / c
 
   // Change of light time correction at the initial epoch
   k = (1.0 - b_app);
