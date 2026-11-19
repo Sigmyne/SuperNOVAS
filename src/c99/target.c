@@ -760,7 +760,8 @@ int make_orbital_object(const char *name, long num, const novas_orbital *orbit, 
  *                     not required.
  * @param[out] motion  [AU/day] Perceived motion of star, in equatorial rectangular
  *                     coordinates. It must be distinct from the pos output vector, and may be
- *                     NULL if not required. Note, that it is suitable only for calculating the
+ *                     NULL if not required. Note, the motion includes a change of light time
+ *                     correction, and as such it is suitable only for calculating the
  *                     apparent 3D location of the star at a different time, and should not be
  *                     used as a measure of physical velocity, e.g. for spectroscopic radial
  *                     velocity determination.
@@ -949,23 +950,15 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
   if(paralx <= 0.0)
     paralx = 1.0e-6;
 
-  // Convert right ascension, declination, and parallax to position
-  // vector in equatorial system with units of AU.
-  radec2vector(in->ra, in->dec, 1.0 / (paralx * MAS), pos);
-
   // Conversion factor from angular motion per year to AU/day
   u = 1.0 / (paralx * JULIAN_YEAR_DAYS);
 
   // Change of light travel time corretion factor at initial epoch
   k0 = 1.0 / (1.0 + in->radialvelocity * NOVAS_KMS / NOVAS_C);
 
-  // Apparent 3D motion, including physical radial velocity converted to apparent radial motion
-  motion[0] = in->promora * u;
-  motion[1] = in->promodec * u;
-  motion[2] = in->radialvelocity * k0 * DAY / AU_KM;
-
-  // Transform motion vector to equatorial system.
-  novas_los_to_xyz(motion, 15.0 * in->ra, in->dec, motion);
+  // Equatorial position and apparent motion vector, including physical radial velocity
+  // converted to apparent radial motion
+  starvectors(in, pos, motion);
 
   // Update star's position vector for apparent motion (only if 'option' = 1 or 'option' = 3).
   if((option == PROPER_MOTION) || (option == CHANGE_EPOCH))
@@ -1003,11 +996,9 @@ short transform_cat(enum novas_transform_type option, double date_in, const cat_
   }
 
   // Convert vectors back to angular components for output.
-
-  // From updated position vector, obtain star's new position expressed as angular quantities.
   vector2radec(pos, &out->ra, &out->dec);
 
-  paralx = asin(1.0 / novas_vlen(pos)) / MAS;
+  paralx = (1.0 / novas_vlen(pos)) / MAS;
   out->parallax = (in->parallax > 0.0) ? paralx : 0.0;
 
   // Transform motion vector back to spherical polar system at star's new position.
@@ -1113,7 +1104,7 @@ int proper_motion(double jd_tdb_in, const double *pos, const double *restrict ve
     return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: pos=%p, vel=%p, out=%p", pos, vel, out);
 
   lt0 = novas_vlen(pos) / C_AUDAY; // [day] initial light time
-  b_app = novas_vdot(pos, vel) / novas_vlen(pos) / C_AUDAY;  // radial velocity / c
+  b_app = novas_vdot(pos, vel) / novas_vlen(pos) / C_AUDAY;  // apparent radial motion / c
 
   // Change of light time correction at the initial epoch
   k = (1.0 - b_app);
