@@ -20,7 +20,7 @@
 /// [AU] Minimum source / observer distance from nominal gravitating body position for applying
 /// deflection corrections from that body (10<sup>-6</sup> AU ~ 150 km).
 ///
-/// @since 1.8.1
+/// @since 1.9
 #define MIN_DEFLECT_DISTANCE      1e-6
 
 #include "novas.h"
@@ -113,7 +113,7 @@ short grav_def(double jd_tdb, enum novas_observer_place unused, enum novas_accur
  *  1. This function is called by grav_def() to calculate appropriate gravitational deflections
  * around the massive Solar-system objects.
  *
- *  2. As of __v1.8.1__, the implementation was modified to avoid self-deflection. If the source
+ *  2. As of __v1.9__, the implementation was modified to avoid self-deflection. If the source
  *     or observer is within 10<sup>-6</sup> AU (~ 150 km) of the gravitating body center, then
  *     no deflection is applied. (thanks to Gregor Baettig)
  *
@@ -339,11 +339,11 @@ static int cmp_los_distance(const void *restrict a, const void *restrict b) {
  *  1. The gravitational deflection due to planets requires a planet calculator function to be
  *     configured, e.g. via set_planet_provider_hp().
  *
- *  2. As of __v1.8.1__, the implementation was modified to avoid self-deflection. If the source
+ *  2. As of __v1.9__, the implementation was modified to avoid self-deflection. If the source
  *     or observer is within 0.9 radii of the gravitating body center, then no deflection is
  *     applied due to that body. (thanks to Gregor Baettig)
  *
- *  3. As of __v1.8.1__, the deflections from the planets are ordered accoring to line-of-sight
+ *  3. As of __v1.9__, the deflections from the planets are ordered accoring to line-of-sight
  *     distance, in light arrival order from the source.
  *
  * REFERENCES:
