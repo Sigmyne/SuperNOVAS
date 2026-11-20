@@ -230,8 +230,8 @@ public:
   static constexpr double c = NOVAS_C;                  ///< [m/s] speed of light
   static constexpr double G = 6.67428e-11;              ///< [m<sup>3</sup> kg<sup>-1</sup> s<sup>-2</sup>] Gravitational constant
 
-  static constexpr double L_B = 1.550519768e-8;         ///< Barycentric clock rate increment over TT
-  static constexpr double L_G = 6.969290134e-10;        ///< Geocentric clock rate increment over TT
+  static constexpr double L_B = NOVAS_TC_LB;            ///< Barycentric clock rate increment over TT
+  static constexpr double L_G = NOVAS_TC_LG;            ///< Geocentric clock rate increment over TT
 
   /// GRS80 Earth flattening
   static constexpr double F_earth = NOVAS_GRS80_FLATTENING;

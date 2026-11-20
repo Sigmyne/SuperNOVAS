@@ -15,7 +15,7 @@
  *  http://www.usno.navy.mil/USNO/astronomical-applications
  *
  * @author G. Kaplan and Attila Kovacs
- * @version 1.8.1
+ * @version 1.9.0
  */
 
 #ifndef _NOVAS_
@@ -82,10 +82,10 @@
 #define SUPERNOVAS_MAJOR_VERSION  1
 
 /// API minor version
-#define SUPERNOVAS_MINOR_VERSION  8
+#define SUPERNOVAS_MINOR_VERSION  9
 
 /// Integer sub version of the release
-#define SUPERNOVAS_PATCHLEVEL     1
+#define SUPERNOVAS_PATCHLEVEL     0
 
 /// Additional release information in version, e.g. "-1", or "-rc1", or empty string "" for releases.
 #define SUPERNOVAS_RELEASE_STRING "-devel"
@@ -522,6 +522,59 @@
 /// @sa NOVAS_TIMESTAMP_LEN
 #define NOVAS_MAX_TIMESTAMP_LEN       35
 
+/**
+ * [s/s] Relative rate at which Barycentric coordinate time progresses faster than time on Earth
+ * i.e., Terrestrial Time (TT).
+ *
+ * REFERENCES:
+ *
+ *  1. Ryan S. Park et al. 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414
+ *
+ * @since 1.9
+ *
+ * @sa NOVAS_TC_LG, NOVAS_TC_T0, NOVAS_TC_TDB0
+ */
+#define NOVAS_TC_LB          1.550519768e-8
+
+/**
+ * [s/s] Relative rate at which Geocentric coordinate time progresses faster than time on Earth
+ * i.e., Terrestrial Time (TT).
+ *
+ * NOTES:
+ *
+ *  1. Updated to DE440 value (Park et al. 2021) in v1.4
+ *
+ * REFERENCES:
+ *
+ *  1. Ryan S. Park et al. 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414
+ *
+ * @since 1.9
+ *
+ * @sa NOVAS_TC_LB
+ */
+#define NOVAS_TC_LG          6.969290134e-10
+
+/**
+ * Coordinate Time at 1977 January 1, 0h 0m 0s TAI.
+ *
+ * REFERENCES:
+ *
+ *  1. IAU 2006 Resolution B3
+ *
+ * @since 1.9
+ *
+ * @sa NOVAS_TC_TDB0
+ */
+#define NOVAS_TC_T0          2443144.5003725
+
+/**
+ * Barycentric Dynamic Time (TDB) offset from Coordinate time.
+ *
+ * @since 1.9
+ *
+ * @sa NOVAS_TC_T0
+ */
+#define NOVAS_TC_TDB0        6.55e-5            ///< [s] TDB time offset at TC_T0
 
 
 #ifndef COMPAT
@@ -2765,14 +2818,14 @@ short transform_cat(enum novas_transform_type, double date_in, const cat_entry *
 int transform_hip(const cat_entry *hipparcos, cat_entry *hip_2000);
 
 /// @c_source
-int starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict motion);
+int starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict v_apparent);
 
 #ifndef _EXCLUDE_DEPRECATED
 short make_object(enum novas_object_type, long number, const char *name, const cat_entry *star, object *source);
 #endif
 
 /// @c_source
-int proper_motion(double jd_tdb_in, const double *pos, const double *restrict vel, double jd_tdb_out, double *out);
+int proper_motion(double jd_tdb_in, const double *pos, const double *restrict v_apparent, double jd_tdb_out, double *out);
 
 // in observer.c
 #ifndef _EXCLUDE_DEPRECATED
@@ -3693,6 +3746,9 @@ int novas_site_itrs_posvel(const novas_timespec *restrict ts, const on_surface *
 /// @c_time
 int novas_leap_for_jd(double jd_utc);
 
+
+// ---------------------- Added in 1.9.0 -------------------------
+int undo_aberration(const double *pos, const double *vobs, double lighttime, double *out);
 
 
 
