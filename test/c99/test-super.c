@@ -1386,10 +1386,10 @@ static int test_set_time() {
   double fjd = 0.25;
   double dt;
 
-  const double CT0 = 2443144.5003725;
-  const double LB = 1.550519768e-8;
-  const double TDB0 = 6.55e-5;
-  const double LG = 6.969290134e-10;
+  const double CT0 = NOVAS_TC_T0;
+  const double LB = NOVAS_TC_LB;
+  const double TDB0 = NOVAS_TC_TDB0;
+  const double LG = NOVAS_TC_LG;
 
   int leap = novas_lookup_leap((time_t) ((tdb - J2000) * NOVAS_DAY) + 946728000LL);
 
@@ -1449,10 +1449,10 @@ static int test_get_time() {
   double dt;
   long ijd;
 
-  const double CT0 = 2443144.5003725;
-  const double LB = 1.550519768e-8;
-  const double TDB0 = 6.55e-5;
-  const double LG = 6.969290134e-10;
+  const double CT0 = NOVAS_TC_T0;
+  const double LB = NOVAS_TC_LB;
+  const double TDB0 = NOVAS_TC_TDB0;
+  const double LG = NOVAS_TC_LG;
 
   int leap = novas_leap_for_jd(tdb);
 
@@ -2314,8 +2314,8 @@ static int test_diff_time() {
   time_t sec = time(NULL);
   double dt;
 
-  const double LB = 1.550519768e-8;
-  const double LG = 6.969290134e-10;
+  const double LB = NOVAS_TC_LB;
+  const double LG = NOVAS_TC_LG;
 
   if(!is_ok("diff_time:set", novas_set_unix_time(sec, 1, 37, 0.11, &t))) return 1;
   if(!is_ok("diff_time:incr", novas_offset_time(&t, 0.5, &t1))) return 1;
@@ -4772,8 +4772,8 @@ static int test_clock_skew() {
   double pos[3] = { 10000.0, 0.0, 0.0 }, vel[3] = {0.0};
   double dt1;
 
-  const double LB = 1.550519768e-8;
-  const double LG = 6.969290134e-10;
+  const double LB = NOVAS_TC_LB;
+  const double LG = NOVAS_TC_LG;
 
   make_observer_at_geocenter(&obs);
   novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32.0, 0.0, &time);
@@ -5178,9 +5178,8 @@ static int test_moon_elp_sky_pos() {
 
   double v0[3] = {1.3, -2.2, 3.1}; // [km/s]
   double p[3] = {0.0};
-  double vo[3] = {0.0}, p1[3] = {0.0};
+  double v[3] = {0.0}, p1[3] = {0.0};
   double ra = 0.0, dec = 0.0;
-  int i;
 
   make_itrf_site(19.3, -155.2, 4150.0, &site);
   make_observer_at_site(&site, &obs);
@@ -5188,11 +5187,10 @@ static int test_moon_elp_sky_pos() {
   if(!is_ok("moon_elp_sky_pos:make_frame", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f))) n++;
 
   // moon pos at time
-  novas_moon_elp_posvel(&f, NOVAS_TOD, p, NULL);
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p, v);
 
   // observer pos/vel at time (in TOD)
-  novas_site_gcrs_posvel(&ts, &obs.on_surf, NULL, 0.0, 0.0, NOVAS_FULL_ACCURACY, NULL, vo);
-  aberration(p, vo, 0.0, p1);
+  aberration(p, v, 0.0, p1);
 
   if(!is_ok("moon_elp_sky_pos:vector2radec", vector2radec(p1, &ra, &dec))) n++;
   if(!is_ok("moon_elp_sky_pos:site", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
@@ -5203,17 +5201,12 @@ static int test_moon_elp_sky_pos() {
   make_airborne_observer(&site, v0, &obs);
   if(!is_ok("moon_elp_sky_pos:air:make_frame", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f))) n++;
 
-  // geocentric observer velocity (TOD)
-  for(i = 0; i < 3; i++)
-    vo[i] = novas_add_vel(f.obs_vel[i], -f.earth_vel[i]);
-  gcrs_to_tod(NOVAS_JD_B1950, NOVAS_REDUCED_ACCURACY, vo, vo);
-
   // aberration (in TOD)
   novas_moon_elp_posvel(&f, NOVAS_TOD, p1, NULL);
   if(!is_ok("airborne:pos", check_equal_pos(p1, p, 1e-12))) n++;
 
-  novas_moon_elp_posvel(&f, NOVAS_TOD, p, NULL);
-  aberration(p, vo, 0.0, p1);
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p, v);
+  aberration(p, v, 0.0, p1);
 
   if(!is_ok("moon_elp_sky_pos:air:vector2radec", vector2radec(p1, &ra, &dec))) n++;
   if(!is_ok("moon_elp_sky_pos:air", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;

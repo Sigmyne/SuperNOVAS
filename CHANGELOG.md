@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
-Upcoming bug-fix release, expected around 1 February 2027.
+Upcoming feature release, with bug fixes and improvements, expected around 1 February 2027.
 
 ### Fixed
 
@@ -19,7 +19,7 @@ Upcoming bug-fix release, expected around 1 February 2027.
    documentation (and the NOVAS C original), signify years rather than Julian dates. It's a bad design that will
    likely to trip up people often, but it must stick for back compatibility. (by attipaci, thanks to mkretlow)
    
- - #404: Dropped misguided `k` factor for ocnverting between proper motion and apparent 3D motion in 
+ - #404: Dropped misguided `k` factor for converting between proper motion and apparent 3D motion in 
    `transform_cat()` and in `starvectors()`. The `k` factor is needed to convert between physical and apparent
    motions, and accounts for the changing light travel time as the star moves closer to, or further away from, the
    observer. However, proper motion is already apparent motion, by definition, hence the use of `k` is wrong.
@@ -34,12 +34,26 @@ Upcoming bug-fix release, expected around 1 February 2027.
       
  - #407: `grav_planets()` now accumulates the deflections from the planets in light arrival order from the source.
 
+### Added
+
+ - #408: Added `undo_aberration()` to undo aberration corrections. 
+
 ### Changed
 
  - #400: Simplified `spin()` to use `novas_Rz()`, and use the latter directly when it makes sense internally.
  
+ - #408: Modified `proper_motion()` and `transform_cat()` to hold the true 3D motion constant and calculate the 
+   appropriate light time correction iteratively between the initial and final epochs. This is more similar to what
+   SOFA does. The effect of the change on Barnard's star is about 0.8 mas over a century, and more like a few &mu;as
+   per century for most other stars. Also, `transform_cat()` now calls `proper_motion()` instead of duplicating the 
+   calculation, making it less bug-prone. (thanks to mkretlow)
+   
+ - #408: Modified `starvectors()` to account for changes in aberration between the initial and final epochs; the 
+   transverse Doppler effect; and the gravitational potential of an Earth-based observer. Once these are included, the 
+   proper motion discrepancy w.r.t. SOFA drops to 14 &mu;as per century (from 1200 &mu;as / century before) for 
+   Barnard's star, and is now well below 1 &mu;as for the vast majority of stars. 
+ 
  - Updated documentation.
-
 
 
 ## [1.8.0] - 2026-11-01

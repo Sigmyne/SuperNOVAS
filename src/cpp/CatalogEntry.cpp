@@ -396,7 +396,8 @@ CatalogSource CatalogEntry::to_source() const {
  * Sets the proper motion of this source, defined at the same epoch as the catalog
  * coordinates, returning itself to enable builder pattern.
  *
- * @param ra    [rad/s] Proper motion in the R.A. direction
+ * @param ra    [rad/s] Proper motion in the R.A. direction (projected i.e.,
+ *              &part;RA / &part;t * __cos__(Dec)).
  * @param dec   [rad/s] Proper motion in the declination direction
  * @return      itself
  *

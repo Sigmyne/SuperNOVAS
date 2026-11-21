@@ -423,45 +423,9 @@ static int set_obs_posvel(novas_frame *frame) {
 
 
 static int frame_aberration(const novas_frame *frame, int dir, double *pos) {
-  const double pos0[3] = { pos[0], pos[1], pos[2] };
-  double d;
-  int i;
-
-  if(frame->v_obs == 0.0)
-    return 0;
-
-  d = novas_vlen(pos);
-  if(d == 0.0)
-    return 0;
-
-  // Iterate as necessary (for inverse only)
-  for(i = 0; i < novas_inv_max_iter; i++) {
-    const double p = frame->beta * novas_vdot(pos, frame->obs_vel) / (d * frame->v_obs);
-    const double q = (1.0 + p / (1.0 + frame->gamma)) * d / C_AUDAY;
-    const double r = 1.0 + p;
-
-    if(dir < 0) {
-      const double pos1[3] = { pos[0], pos[1], pos[2] };
-
-      // Apparent to geometric
-      pos[0] = (r * pos0[0] - q * frame->obs_vel[0]) / frame->gamma;
-      pos[1] = (r * pos0[1] - q * frame->obs_vel[1]) / frame->gamma;
-      pos[2] = (r * pos0[2] - q * frame->obs_vel[2]) / frame->gamma;
-
-      // Iterate, since p, q, r are defined by unaberrated position.
-      if(novas_vdist(pos, pos1) < 1e-13 * d)
-        return 0;
-    }
-    else {
-      // Geometric to apparent
-      pos[0] = (frame->gamma * pos0[0] + q * frame->obs_vel[0]) / r;
-      pos[1] = (frame->gamma * pos0[1] + q * frame->obs_vel[1]) / r;
-      pos[2] = (frame->gamma * pos0[2] + q * frame->obs_vel[2]) / r;
-      return 0; // No need to iterate...
-    }
-  }
-
-  return novas_error(-1, ECANCELED, "frame_aberration", "failed to converge");
+  prop_error("frame_aberration", dir < 0 ? //
+          undo_aberration(pos, frame->obs_vel, 0, pos) : aberration(pos, frame->obs_vel, 0, pos), 0);
+  return 0;
 }
 
 /// \cond PRIVATE
@@ -773,10 +737,10 @@ int novas_geom_posvel(const object *restrict source, const novas_frame *restrict
 
     // Get position of star updated for its space motion
     // (The motion calculated here is not used for radial velocity in `rad_vel2()`)
-    starvectors(&source->star, pos1, vel1);
+    prop_error(fn, starvectors(&source->star, pos1, vel1), 0);
 
     dt = d_light(pos1, frame->obs_pos);
-    proper_motion(NOVAS_JD_J2000, pos1, vel1, (jd_tdb + dt), pos1);
+    prop_error(fn, proper_motion(NOVAS_JD_J2000, pos1, vel1, (jd_tdb + dt), pos1), 0);
 
     // Get position of star wrt observer (corrected for parallax).
     bary2obs(pos1, frame->obs_pos, pos1, &t_light);
@@ -1848,11 +1812,6 @@ double novas_object_sep(const object *source1, const object *source2, const nova
 
   if(novas_sky_pos(source2, frame, NOVAS_GCRS, &p2) != 0)
     return novas_trace_nan(fn);
-
-  if(p1.dis < 1e-11 || p2.dis < 1e-11) {
-    novas_set_errno(EINVAL, fn, "source is at observer location");
-    return NAN;
-  }
 
   return novas_equ_sep(p1.ra, p1.dec, p2.ra, p2.dec);
 }
