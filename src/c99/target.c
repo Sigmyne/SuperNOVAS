@@ -1166,7 +1166,6 @@ int proper_motion(double jd_tdb_in, const double *pos, const double *restrict v_
     memcpy(out, pos, XYZ_VECTOR_SIZE);
 
   lt0 = novas_vlen(pos) / C_AUDAY; // [day] initial light time
-
   if(!lt0 || fabs(dt) < 1e-7)
     return 0; // Nothing to do...
 
