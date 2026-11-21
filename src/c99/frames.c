@@ -1813,11 +1813,6 @@ double novas_object_sep(const object *source1, const object *source2, const nova
   if(novas_sky_pos(source2, frame, NOVAS_GCRS, &p2) != 0)
     return novas_trace_nan(fn);
 
-  if(p1.dis < 1e-11 || p2.dis < 1e-11) {
-    novas_set_errno(EINVAL, fn, "source is at observer location");
-    return NAN;
-  }
-
   return novas_equ_sep(p1.ra, p1.dec, p2.ra, p2.dec);
 }
 
