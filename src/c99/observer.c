@@ -932,7 +932,7 @@ int undo_aberration(const double *pos, const double *vobs, double lighttime, dou
 
   memcpy(p0, pos, sizeof(p0));
 
-  // Iterate as necessary (for inverse only)
+  // Iterate as necessary
   for(i = 0; i < novas_inv_max_iter; i++) {
     const double p = beta * novas_vdot(out, vobs) / (d * vmag);
     const double q = (1.0 + p / (1.0 + gamma)) * d / C_AUDAY;

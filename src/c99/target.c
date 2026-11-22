@@ -884,7 +884,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
       // Updated light-time correction factor for the estimate of the true radial velocity
       k1 = 1.0 / (1.0 + vr / C_AUDAY);
 
-      if(fabs(1.0 - k1 / k) < 1e-15) {
+      if(fabs(1.0 - k1 / k) < 1e-12) {
         // Hurray! converged.
         v_apparent[2] = vr * k;
 
@@ -1234,22 +1234,22 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
 
     // Iteratively solve for actual change-of-light time correction
     for(i = 0; i < novas_inv_max_iter; i++) {
-      double lt1, k1;
+      double lt1, k1, p1[3];
       int j;
 
       // estimated geometric position observed at the final epoch
       for(j = 0; j < 3; j++)
-        out[j] = p0[j] + dpt[j] * k;
+        p1[j] = p0[j] + dpt[j] * k;
 
       // [day] final light time
-      lt1 = novas_vlen(out) / C_AUDAY;
+      lt1 = novas_vlen(p1) / C_AUDAY;
 
       // k factor for actual light time change between epochs
       k1 = 1.0 + (lt0 - lt1) / dt;
 
-      if(fabs(1.0 - k1 / k) < 1e-15) {
+      if(fabs(1.0 - k1 / k) < 1e-12) { // If too tight, and it may fail...
         // Re-apply aberration for the final epoch
-        aberration(out, v_obs, lt1, out);
+        aberration(p1, v_obs, lt1, out);
         return 0; // Hurray, converged!
       }
 
