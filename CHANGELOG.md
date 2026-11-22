@@ -38,6 +38,14 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
 ### Added
 
  - #408: Added `undo_aberration()` to undo aberration corrections. 
+ 
+ - #408: Added `novas_star_vel()` to return the true physical 3D velocity of a catalog source, in the equatorial
+   system, in which the source was defined.
+   
+ - #408: Added `Vector(double xyz[3], double unit)` public constructor for convenience.
+ 
+ - #408: Added `CatalogEntry::apparent_motion()` and `CatalogEntry::velocity()` to return the observed 3D motion
+   or the true 3D velocity of a catalog souce, in the equatorial system, in which the source was defined.
 
 ### Changed
 
@@ -53,6 +61,9 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
    transverse Doppler effect; and the gravitational potential of an Earth-based observer. Once these are included, the 
    proper motion discrepancy w.r.t. SOFA drops to 14 &mu;as per century (from 1200 &mu;as / century before) for 
    Barnard's star, and is now well below 1 &mu;as for the vast majority of stars. 
+   
+ - #408: Modified `novas_set_ssb_vel()` to set the specified argument even if an error is returned. The change 
+   improves traceability and error propagation.
  
  - Updated documentation.
 

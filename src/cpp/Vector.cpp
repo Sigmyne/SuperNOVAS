@@ -34,6 +34,19 @@ Vector::Vector(double x, double y, double z) : _component{x, y, z} {
 }
 
 /**
+ * Instantiates a new vector from its _xyz_ components, specified in the given physical
+ * unit.
+ *
+ * @param xyz   The _xyz_ 3-vector defining the components
+ * @param unit  (optional) the physical unit (e.g. Unit::km, or Unit::AU_per_day) in which
+ *              the components were specified (default: 1.0).
+ *
+ * @since 1.9
+ */
+Vector::Vector(const double xyz[3], double unit)
+: Vector(xyz[0] * unit, xyz[1] * unit, xyz[2] * unit) {}
+
+/**
  * Scales a vector by a factor, for example to cast it to/from a physical unit.
  *
  * @param r   scaling factor on the right-hand side

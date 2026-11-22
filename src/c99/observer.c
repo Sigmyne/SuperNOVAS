@@ -947,7 +947,7 @@ int undo_aberration(const double *pos, const double *vobs, double lighttime, dou
     out[2] = (r * p0[2] - q * vobs[2]) / gamma;
 
     // Iterate, since p, q, r are defined by unaberrated position.
-    if(novas_vdist(out, pos1) < 1e-13 * d)
+    if(novas_vdist(out, pos1) < 1e-15 * d)
       return 0;
   }
 

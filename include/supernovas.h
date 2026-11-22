@@ -715,6 +715,8 @@ public:
 
   explicit Vector(double x, double y, double z);
 
+  explicit Vector(const double xyz[3], double unit = 1.0);
+
   virtual ~Vector() {}
 
   Vector operator*(double r) const;
@@ -2334,6 +2336,10 @@ public:
   ScalarVelocity v_lsr() const;
 
   ScalarVelocity radial_velocity() const;
+
+  Vector apparent_motion() const;
+
+  Velocity velocity() const;
 
   double redshift() const;
 

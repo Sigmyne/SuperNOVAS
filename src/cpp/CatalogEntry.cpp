@@ -317,6 +317,59 @@ ScalarVelocity CatalogEntry::radial_velocity() const {
 }
 
 /**
+ * Returns the apparent equatorial motion of the source, as it is perceived by an observer located
+ * at the Solar-System Barycenter (SSB). Because the apparent motion includes corrections for the
+ * changing light-travel time to the observer, the magnitude of the motion, and any of its
+ * components may exceed the speed-of-light.
+ *
+ * Not to be confused with the true physical velocity of the source relative to the SSB.
+ *
+ *
+ * @return    [m/s] The apparent rate at which the 3D position of the source is perceived to
+ *            change from the perspective of the observer. This may be quite different from the
+ *            true physical velocity of the source, due to the changing light-arrival time as
+ *            the source moves closer to, or further away from, the observer.
+ *
+ * @since 1.9
+ *
+ * @sa velocity()
+ */
+Vector CatalogEntry::apparent_motion() const {
+  double v_app[3] = {0.0};
+  starvectors(&_entry, NULL, v_app);
+  Vector v(v_app, Unit::AU / Unit::day);
+  if(!v.is_valid())
+    novas_trace_invalid("CatalogEntry::apparent_motion()");
+  return v;
+}
+
+/**
+ * Returns the true physical 3D velocity of the source relative to the Solar System Barycenter,
+ * in the equatorial coordinate system, in which the source is defined.
+ *
+ * The true motion is derived from the observed spectroscopic radial velocity (which includes
+ * both the radial and transverse Doppler effects, and the graviational potential of an
+ * Earth-based observer), and the perceived proper motion (which includes changes in light
+ * arrival time as the objects moves closer to, or further away from, the observer.
+ *
+ * @return    The 3D physical velocity of the source, as derived from the observed spectroscopic
+ *            radial velocity and proper motion parameters.
+ *
+ * @since 1.9
+ *
+ * @sa apparent_motion()
+ */
+Velocity CatalogEntry::velocity() const {
+  double v[3] = {0.0};
+  if(novas_star_vel(&_entry, v) < 0) {
+    novas_trace_invalid("CatalogEntry::velocity()");
+    return Velocity::undefined();
+  }
+
+  return Velocity(v, Unit::AU / Unit::day);
+}
+
+/**
  * Returns the barycentric redshift of the source, that is the redshift measure with respect to
  * the Solar System Barycenter (SSB).
  *
@@ -579,14 +632,16 @@ CatalogEntry& CatalogEntry::v_lsr(const ScalarVelocity& v) {
 CatalogEntry& CatalogEntry::radial_velocity(double v_ms) {
   static const char *fn = "CatalogEntry::radial_velocity()";
 
-  novas_set_ssb_vel(&_entry, v_ms / (Unit::km_per_s));
-
   if(!isfinite(v_ms)) {
     novas_set_errno(EINVAL, fn, "input value is NAN or infinite");
     _valid = false;
   }
   else if(fabs(v_ms) > Constant::c) {
     novas_set_errno(EINVAL, fn, "input radial velocity exceeds the speed of light: %g m/s", v_ms);
+    _valid = false;
+  }
+  if(novas_set_ssb_vel(&_entry, v_ms / (Unit::km_per_s)) != 0) {
+    novas_trace_invalid(fn);
     _valid = false;
   }
   else if(!_valid) {
