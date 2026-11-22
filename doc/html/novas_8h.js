@@ -628,7 +628,7 @@ var novas_8h =
     [ "tod_to_j2000", "group__equatorial.html#ga6205edb1361e56cc0c7aed0f088f7437", null ],
     [ "topo_planet", "novas_8h.html#aaf3d450c87f545acfa7ab7e2b6c229d9", null ],
     [ "topo_star", "novas_8h.html#a86e4f52e832879a33aefc28803e2690f", null ],
-    [ "transform_cat", "group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c", null ],
+    [ "transform_cat", "group__source.html#gae44ab97ef3c8b1ad11e480f156429f39", null ],
     [ "transform_hip", "group__source.html#gaf2c03d540de7a8bfafaed27eb9a753c1", null ],
     [ "tt2tdb", "group__time.html#ga129acca41760da486e1179c93cb9e86d", null ],
     [ "tt2tdb_fp", "group__time.html#gad301a9c74bfbdb8b55513cd005787b22", null ],

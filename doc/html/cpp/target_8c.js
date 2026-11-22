@@ -24,6 +24,6 @@ var target_8c =
     [ "novas_solar_power", "target_8c.html#a763f9a9dd2edb4645a5db05184ca7495", null ],
     [ "proper_motion", "target_8c.html#a24b69e1809a33113d4a041dd3e4082ad", null ],
     [ "starvectors", "target_8c.html#a27bae6c9efdab763dba9f1ae36a04669", null ],
-    [ "transform_cat", "target_8c.html#abe0c6e6fc60a49efa88c365aef8cdc50", null ],
+    [ "transform_cat", "target_8c.html#a9df2887bbd6b76eeba8aa1fb8be204b7", null ],
     [ "transform_hip", "target_8c.html#af2c03d540de7a8bfafaed27eb9a753c1", null ]
 ];

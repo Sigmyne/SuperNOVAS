@@ -128,6 +128,11 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('grav_8c.html',
 <p>Various functions to deal with gravitational effects of the major Solar-system bodies on the astrometry.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a5046e4a2c330a4898b3de1f2c424e9ef" id="r_a5046e4a2c330a4898b3de1f2c424e9ef"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a5046e4a2c330a4898b3de1f2c424e9ef">MIN_DEFLECT_DISTANCE</a>&#160;&#160;&#160;1e-6</td></tr>
+<tr class="memdesc:a5046e4a2c330a4898b3de1f2c424e9ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">[AU] Minimum source / observer distance from nominal gravitating body position for applying deflection corrections from that body (10<sup>-6</sup> AU ~ 150 km).  <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a48f90ac20950507fad9b880a7f7f2383" id="r_a48f90ac20950507fad9b880a7f7f2383"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#a48f90ac20950507fad9b880a7f7f2383">grav_def</a> (double jd_tdb, enum <a class="el" href="novas_8h.html#a6140c39d1526b137f827e2091ecc36b3">novas_observer_place</a> unused, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, const double *pos_src, const double *pos_obs, double *out)</td></tr>
@@ -155,7 +160,27 @@ Variables</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>Created on Mar 6, 2025 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs and G. Kaplan</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="solsys-calceph_8c.html" title="Solar-system ephemeris lookup via the CALCEPH C library.">solsys-calceph.c</a>, <a class="el" href="solsys-cspice_8c.html" title="Solar-system ephemeris lookup via the NAIF CSPICE library.">solsys-cspice.c</a>, <a class="el" href="ephemeris_8c.html" title="Functions that allow to define or access Solar-system ephemeris data.">ephemeris.c</a> </dd></dl>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+</div><a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="a5046e4a2c330a4898b3de1f2c424e9ef" name="a5046e4a2c330a4898b3de1f2c424e9ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5046e4a2c330a4898b3de1f2c424e9ef">&#9670;&#160;</a></span>MIN_DEFLECT_DISTANCE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_DEFLECT_DISTANCE&#160;&#160;&#160;1e-6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>[AU] Minimum source / observer distance from nominal gravitating body position for applying deflection corrections from that body (10<sup>-6</sup> AU ~ 150 km). </p>
+<dl class="section since"><dt>Since</dt><dd>1.8.1 </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
 <a id="a48f90ac20950507fad9b880a7f7f2383" name="a48f90ac20950507fad9b880a7f7f2383"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a48f90ac20950507fad9b880a7f7f2383">&#9670;&#160;</a></span>grav_def()</h2>
 
@@ -263,6 +288,8 @@ Variables</h2></td></tr>
 <p>NOTES:</p>
 <ol type="1">
 <li>The gravitational deflection due to planets requires a planet calculator function to be configured, e.g. via <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>.</li>
+<li>As of <b>v1.8.1</b>, the implementation was modified to avoid self-deflection. If the source or observer is within 0.9 radii of the gravitating body center, then no deflection is applied due to that body. (thanks to Gregor Baettig)</li>
+<li>As of <b>v1.8.1</b>, the deflections from the planets are ordered accoring to line-of-sight distance, in light arrival order from the source.</li>
 </ol>
 <p>REFERENCES:</p>
 <ol type="1">
@@ -284,7 +311,7 @@ Variables</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.1 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs </dd></dl>
 
-<p class="reference">References <a class="el" href="util_8c.html#ad799864f637c483fb49491bde5a93e25">d_light()</a>, <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>, <a class="el" href="novas_8h.html#a5ddc7a011476a8cffaec1866beaa0095">NOVAS_RMASS_INIT</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
+<p class="reference">References <a class="el" href="util_8c.html#ad799864f637c483fb49491bde5a93e25">d_light()</a>, <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045a40678cd248bd2edca8f59ddfee20ab74">NOVAS_MERCURY</a>, <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045a9fcf58133828600a062725ced448cfcf">NOVAS_MOON</a>, <a class="el" href="novas_8h.html#ae48a8495c1ddf3960784aba5189d178e">NOVAS_PLANET_RADII_INIT</a>, <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>, <a class="el" href="novas_8h.html#a5ddc7a011476a8cffaec1866beaa0095">NOVAS_RMASS_INIT</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#a48f90ac20950507fad9b880a7f7f2383">grav_def()</a>, <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="#a1b107a24b9fadc79cc5df8c6f5505d16">grav_undo_planets()</a>, <a class="el" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c">novas_geom_to_app()</a>, <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos()</a>, and <a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>.</p>
 
@@ -450,6 +477,7 @@ Variables</h2></td></tr>
 <p>NOTES:</p>
 <ol type="1">
 <li>This function is called by <a class="el" href="#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a> to calculate appropriate gravitational deflections around the massive Solar-system objects.</li>
+<li>As of <b>v1.8.1</b>, the implementation was modified to avoid self-deflection. If the source or observer is within 10<sup>-6</sup> AU (~ 150 km) of the gravitating body center, then no deflection is applied. (thanks to Gregor Baettig)</li>
 </ol>
 <p>REFERENCES:</p>
 <ol type="1">
@@ -470,7 +498,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the input vectors is NULL.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
+<p class="reference">References <a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="#a5046e4a2c330a4898b3de1f2c424e9ef">MIN_DEFLECT_DISTANCE</a>, <a class="el" href="group__source.html#gabc8f275a2d431e59a1ec9e276abaca1a">NOVAS_AU</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, and <a class="el" href="#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>.</p>
 

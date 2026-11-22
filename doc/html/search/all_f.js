@@ -37,11 +37,12 @@ var searchData=
   ['matrix_34',['matrix',['../structnovas__transform.html#abce5e2fe6c3ef9f7507d7debe0c44897',1,'novas_transform']]],
   ['mean_5fobliq_35',['mean_obliq',['../group__earth.html#gaf182ee8cc4239f581f746aa974827d61',1,'mean_obliq(double jd_tdb):&#160;equator.c'],['../group__earth.html#gaf182ee8cc4239f581f746aa974827d61',1,'mean_obliq(double jd_tdb):&#160;equator.c']]],
   ['mean_5fstar_36',['mean_star',['../place_8c.html#aaf51bf000e993807101a34adf423d36b',1,'mean_star(double jd_tt, double tra, double tdec, enum novas_accuracy accuracy, double *restrict ira, double *restrict idec):&#160;place.c'],['../novas_8h.html#aaf51bf000e993807101a34adf423d36b',1,'mean_star(double jd_tt, double tra, double tdec, enum novas_accuracy accuracy, double *restrict ira, double *restrict idec):&#160;place.c']]],
-  ['mobl_37',['mobl',['../structnovas__frame.html#a6560164407eaa090932f410a33ef68a6',1,'novas_frame']]],
-  ['mod_5fto_5fgcrs_38',['mod_to_gcrs',['../group__equatorial.html#gad9cc07f0e6af9339096e15a440b113e5',1,'mod_to_gcrs(double jd_tdb, const double *in, double *out):&#160;transform.c'],['../group__equatorial.html#gad9cc07f0e6af9339096e15a440b113e5',1,'mod_to_gcrs(double jd_tdb, const double *in, double *out):&#160;transform.c']]],
-  ['modules_39',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55',1,'']]],
-  ['modules_3a_20a_20better_20way_40',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56',1,'']]],
-  ['moon_20s_20position_20and_20phase_41',['Moon s position and phase',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'Moon&apos;s position and phase'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107',1,'Moon&apos;s position and phase']]],
-  ['moon_2ec_42',['moon.c',['../moon_8c.html',1,'']]],
-  ['multi_20threaded_20calculations_43',['Multi-threaded calculations',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md76',1,'']]]
+  ['min_5fdeflect_5fdistance_37',['MIN_DEFLECT_DISTANCE',['../grav_8c.html#a5046e4a2c330a4898b3de1f2c424e9ef',1,'grav.c']]],
+  ['mobl_38',['mobl',['../structnovas__frame.html#a6560164407eaa090932f410a33ef68a6',1,'novas_frame']]],
+  ['mod_5fto_5fgcrs_39',['mod_to_gcrs',['../group__equatorial.html#gad9cc07f0e6af9339096e15a440b113e5',1,'mod_to_gcrs(double jd_tdb, const double *in, double *out):&#160;transform.c'],['../group__equatorial.html#gad9cc07f0e6af9339096e15a440b113e5',1,'mod_to_gcrs(double jd_tdb, const double *in, double *out):&#160;transform.c']]],
+  ['modules_40',['Legacy linking &lt;span class=&quot;tt&quot;&gt;solarsystem()&lt;/span&gt; / &lt;span class=&quot;tt&quot;&gt;solarsystem_hp()&lt;/span&gt; and &lt;span class=&quot;tt&quot;&gt;readeph()&lt;/span&gt; modules',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md55',1,'']]],
+  ['modules_3a_20a_20better_20way_41',['Legacy modules: a better way',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md56',1,'']]],
+  ['moon_20s_20position_20and_20phase_42',['Moon s position and phase',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md70',1,'Moon&apos;s position and phase'],['../md__2github_2workspace_2doc_2USAGE-CPP.html#autotoc_md107',1,'Moon&apos;s position and phase']]],
+  ['moon_2ec_43',['moon.c',['../moon_8c.html',1,'']]],
+  ['multi_20threaded_20calculations_44',['Multi-threaded calculations',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md76',1,'']]]
 ];

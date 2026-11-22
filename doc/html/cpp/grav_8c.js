@@ -1,5 +1,6 @@
 var grav_8c =
 [
+    [ "MIN_DEFLECT_DISTANCE", "grav_8c.html#a5046e4a2c330a4898b3de1f2c424e9ef", null ],
     [ "grav_def", "grav_8c.html#a48f90ac20950507fad9b880a7f7f2383", null ],
     [ "grav_planets", "grav_8c.html#ae36bc31e1dad8a68f94f7a6414f0519f", null ],
     [ "grav_redshift", "grav_8c.html#a3ce6b306bc183387d0aaac97abbd82e8", null ],

@@ -3893,7 +3893,7 @@
           <topic label="tod_to_gcrs" href="novas_8h.html#a6871e7fecde44084c7b4e1b8dda5ac70"/>
           <topic label="tod_to_itrs" href="novas_8h.html#a4551e2ac083e34c1b2b61b3805efb9a3"/>
           <topic label="tod_to_j2000" href="novas_8h.html#a6205edb1361e56cc0c7aed0f088f7437"/>
-          <topic label="transform_cat" href="novas_8h.html#a59caeca70d1fdd02e41ed62f20675e6c"/>
+          <topic label="transform_cat" href="novas_8h.html#ae44ab97ef3c8b1ad11e480f156429f39"/>
           <topic label="transform_hip" href="novas_8h.html#af2c03d540de7a8bfafaed27eb9a753c1"/>
           <topic label="tt2tdb" href="novas_8h.html#a129acca41760da486e1179c93cb9e86d"/>
           <topic label="tt2tdb_fp" href="group__time.html#gad301a9c74bfbdb8b55513cd005787b22"/>
@@ -4072,6 +4072,7 @@
             <topic label="novas_transit_time" href="frames_8c.html#ad04f1ebd7b2d39e5258b152fec231001"/>
           </topic>
           <topic label="grav.c" href="grav_8c.html">
+            <topic label="MIN_DEFLECT_DISTANCE" href="grav_8c.html#a5046e4a2c330a4898b3de1f2c424e9ef"/>
             <topic label="grav_def" href="grav_8c.html#a48f90ac20950507fad9b880a7f7f2383"/>
             <topic label="grav_planets" href="grav_8c.html#ae36bc31e1dad8a68f94f7a6414f0519f"/>
             <topic label="grav_redshift" href="grav_8c.html#a3ce6b306bc183387d0aaac97abbd82e8"/>
@@ -4302,7 +4303,7 @@
             <topic label="novas_solar_power" href="target_8c.html#a763f9a9dd2edb4645a5db05184ca7495"/>
             <topic label="proper_motion" href="target_8c.html#a24b69e1809a33113d4a041dd3e4082ad"/>
             <topic label="starvectors" href="target_8c.html#a27bae6c9efdab763dba9f1ae36a04669"/>
-            <topic label="transform_cat" href="target_8c.html#abe0c6e6fc60a49efa88c365aef8cdc50"/>
+            <topic label="transform_cat" href="target_8c.html#a9df2887bbd6b76eeba8aa1fb8be204b7"/>
             <topic label="transform_hip" href="target_8c.html#af2c03d540de7a8bfafaed27eb9a753c1"/>
           </topic>
           <topic label="timescale.c" href="timescale_8c.html">

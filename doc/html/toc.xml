@@ -258,7 +258,7 @@
       <topic label="novas_to_naif_planet" href="group__source.html#gab51ac9bdf7736e1c1582e0981046daf3"/>
       <topic label="proper_motion" href="group__source.html#ga24b69e1809a33113d4a041dd3e4082ad"/>
       <topic label="starvectors" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669"/>
-      <topic label="transform_cat" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c"/>
+      <topic label="transform_cat" href="group__source.html#gae44ab97ef3c8b1ad11e480f156429f39"/>
       <topic label="transform_hip" href="group__source.html#gaf2c03d540de7a8bfafaed27eb9a753c1"/>
     </topic>
     <topic label="Observer location" href="group__observer.html">
@@ -1643,7 +1643,7 @@
           <topic label="tod_to_j2000" href="group__equatorial.html#ga6205edb1361e56cc0c7aed0f088f7437"/>
           <topic label="topo_planet" href="novas_8h.html#aaf3d450c87f545acfa7ab7e2b6c229d9"/>
           <topic label="topo_star" href="novas_8h.html#a86e4f52e832879a33aefc28803e2690f"/>
-          <topic label="transform_cat" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c"/>
+          <topic label="transform_cat" href="group__source.html#gae44ab97ef3c8b1ad11e480f156429f39"/>
           <topic label="transform_hip" href="group__source.html#gaf2c03d540de7a8bfafaed27eb9a753c1"/>
           <topic label="tt2tdb" href="group__time.html#ga129acca41760da486e1179c93cb9e86d"/>
           <topic label="tt2tdb_fp" href="group__time.html#gad301a9c74bfbdb8b55513cd005787b22"/>
@@ -1764,6 +1764,7 @@
             <topic label="novas_transit_time" href="group__time.html#gad04f1ebd7b2d39e5258b152fec231001"/>
           </topic>
           <topic label="grav.c" href="grav_8c.html">
+            <topic label="MIN_DEFLECT_DISTANCE" href="grav_8c.html#a5046e4a2c330a4898b3de1f2c424e9ef"/>
             <topic label="grav_def" href="grav_8c.html#a48f90ac20950507fad9b880a7f7f2383"/>
             <topic label="grav_planets" href="grav_8c.html#ae36bc31e1dad8a68f94f7a6414f0519f"/>
             <topic label="grav_redshift" href="group__spectral.html#ga3ce6b306bc183387d0aaac97abbd82e8"/>
@@ -1994,7 +1995,7 @@
             <topic label="novas_solar_power" href="group__solar-system.html#ga763f9a9dd2edb4645a5db05184ca7495"/>
             <topic label="proper_motion" href="group__source.html#ga24b69e1809a33113d4a041dd3e4082ad"/>
             <topic label="starvectors" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669"/>
-            <topic label="transform_cat" href="group__source.html#ga59caeca70d1fdd02e41ed62f20675e6c"/>
+            <topic label="transform_cat" href="group__source.html#gae44ab97ef3c8b1ad11e480f156429f39"/>
             <topic label="transform_hip" href="group__source.html#gaf2c03d540de7a8bfafaed27eb9a753c1"/>
           </topic>
           <topic label="timescale.c" href="timescale_8c.html">

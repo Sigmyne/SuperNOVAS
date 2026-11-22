@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422":[4,2,7],
 "group__time.html#ga32d8336084b65fac14d092ab6198c27d":[4,2,35],
 "group__time.html#ga3785083ae52bbbc1e749dbedd7e5d85e":[4,2,5],
 "group__time.html#ga3d487552b2112f93ed7ec9347faf2574":[4,2,42],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "novas_8h.html#a42c084465aedee75965f74e23e6571fe":[6,0,0,3,267],
 "novas_8h.html#a443200f019acf7ec3c2ab46533cb4704":[6,0,0,3,511],
 "novas_8h.html#a44de9d1672290d153a1dfb0685886208":[6,0,0,3,125],
-"novas_8h.html#a48f90ac20950507fad9b880a7f7f2383":[6,0,0,3,228],
-"novas_8h.html#a4912c64aec0c943b7985db6cb61ff83a":[6,0,0,3,126]
+"novas_8h.html#a48f90ac20950507fad9b880a7f7f2383":[6,0,0,3,228]
 };

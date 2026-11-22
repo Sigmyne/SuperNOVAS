@@ -263,7 +263,7 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a1b1e38f90bc3bc3c9f1c04aa2c959444">CHANGE_ICRS_TO_J2000</a>
 <br />
  }</td></tr>
-<tr class="memdesc:gace5e59ce1564bf6c61946c290bb05367"><td class="mdescLeft">&#160;</td><td class="mdescRight">The types of coordinate transformations available for <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a>.  <a href="#gace5e59ce1564bf6c61946c290bb05367">More...</a><br /></td></tr>
+<tr class="memdesc:gace5e59ce1564bf6c61946c290bb05367"><td class="mdescLeft">&#160;</td><td class="mdescRight">The types of coordinate transformations available for <a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a>.  <a href="#gace5e59ce1564bf6c61946c290bb05367">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -333,8 +333,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga24b69e1809a33113d4a041dd3e4082ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies proper motion, including foreshortening effects, to a star's position.  <br /></td></tr>
 <tr class="memitem:ga27bae6c9efdab763dba9f1ae36a04669" id="r_ga27bae6c9efdab763dba9f1ae36a04669"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga27bae6c9efdab763dba9f1ae36a04669">starvectors</a> (const <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *restrict star, double *restrict pos, double *restrict motion)</td></tr>
 <tr class="memdesc:ga27bae6c9efdab763dba9f1ae36a04669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts angular quantities for stars to vectors.  <br /></td></tr>
-<tr class="memitem:ga59caeca70d1fdd02e41ed62f20675e6c" id="r_ga59caeca70d1fdd02e41ed62f20675e6c"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat</a> (enum <a class="el" href="#gace5e59ce1564bf6c61946c290bb05367">novas_transform_type</a>, double jd_tt_in, const <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *in, double jd_tt_out, const char *out_id, <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *out)</td></tr>
-<tr class="memdesc:ga59caeca70d1fdd02e41ed62f20675e6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform a star's catalog quantities for a change the coordinate system and/or the date for which the positions are calculated.  <br /></td></tr>
+<tr class="memitem:gae44ab97ef3c8b1ad11e480f156429f39" id="r_gae44ab97ef3c8b1ad11e480f156429f39"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39">transform_cat</a> (enum <a class="el" href="#gace5e59ce1564bf6c61946c290bb05367">novas_transform_type</a>, double date_in, const <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *in, double date_out, const char *out_id, <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *out)</td></tr>
+<tr class="memdesc:gae44ab97ef3c8b1ad11e480f156429f39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform a star's catalog quantities for a change the coordinate system and/or the date for which the positions are calculated.  <br /></td></tr>
 <tr class="memitem:gaf2c03d540de7a8bfafaed27eb9a753c1" id="r_gaf2c03d540de7a8bfafaed27eb9a753c1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gaf2c03d540de7a8bfafaed27eb9a753c1">transform_hip</a> (const <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *hipparcos, <a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *hip_2000)</td></tr>
 <tr class="memdesc:gaf2c03d540de7a8bfafaed27eb9a753c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert Hipparcos catalog data at epoch J1991.25 to epoch J2000.0, for use within NOVAS.  <br /></td></tr>
 </table>
@@ -378,7 +378,7 @@ Functions</h2></td></tr>
 <p>[m] Astronomical unit (AU). </p>
 <p>IAU definition. See <a href="https://www.iau.org/static/resolutions/IAU2012_English.pdf">IAU 2012 Resolution B2</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="group__solar-system.html#gaf303bf91582509624aa40c6a87eb95ac" title="[m] Astronomical unit (AU).">DE405_AU</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="grav_8c.html#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="#gabf94e216938a5128a00717244dd42e77">novas_equals_orbital()</a>, <a class="el" href="cmp_8c.html#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle()</a>, <a class="el" href="group__observer.html#gaadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel()</a>, <a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="group__nonequatorial.html#ga7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="group__interferometry.html#ga81f4b147c3f132a1498cdd833042d804">novas_uvw()</a>, and <a class="el" href="group__spectral.html#ga37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="grav_8c.html#ae36bc31e1dad8a68f94f7a6414f0519f">grav_planets()</a>, <a class="el" href="grav_8c.html#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>, <a class="el" href="#gabf94e216938a5128a00717244dd42e77">novas_equals_orbital()</a>, <a class="el" href="cmp_8c.html#a78bf876b768b1979395d544e17902f88">novas_equals_planet_bundle()</a>, <a class="el" href="group__observer.html#gaadbd55afe0e21d486c52d319a8e8e6d3">novas_equals_ssb_posvel()</a>, <a class="el" href="#gac5bba418b7f5ebad8a9b44cc7644c99a">novas_make_moon_mean_orbit()</a>, <a class="el" href="#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="group__nonequatorial.html#ga7eba1ad9605f1e334973d42eb1ef765f">novas_moon_elp_ecl_pos()</a>, <a class="el" href="group__interferometry.html#ga81f4b147c3f132a1498cdd833042d804">novas_uvw()</a>, and <a class="el" href="group__spectral.html#ga37f22e463cc06b4e381aa18659e6319d">rad_vel2()</a>.</p>
 
 </div>
 </div>
@@ -470,7 +470,7 @@ Functions</h2></td></tr>
 <p>[m] One km/s in m/s. </p>
 <dl class="section since"><dt>Since</dt><dd>1.3 </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="group__apparent.html#ga59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="group__observer.html#gab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel()</a>, <a class="el" href="group__spectral.html#gaa54cd00024b294d38fa29433c017c65f">novas_v2z()</a>, <a class="el" href="group__spectral.html#ga63621cea3b4985c1bfcc4514a7aa3fb1">novas_z2v()</a>, <a class="el" href="#ga27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>, and <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__apparent.html#ga59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, <a class="el" href="group__observer.html#gab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel()</a>, <a class="el" href="group__spectral.html#gaa54cd00024b294d38fa29433c017c65f">novas_v2z()</a>, <a class="el" href="group__spectral.html#ga63621cea3b4985c1bfcc4514a7aa3fb1">novas_z2v()</a>, <a class="el" href="#ga27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>, and <a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>.</p>
 
 </div>
 </div>
@@ -959,7 +959,7 @@ Functions</h2></td></tr>
 <p>Maximum maximum bytes stored for catalog IDs including string termination. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#gadd575c796128069aa35085c617056a11">novas_equals_cat_entry()</a>, <a class="el" href="#ga5e92f920835111db719e880a61248045">novas_set_catalog()</a>, and <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#gadd575c796128069aa35085c617056a11">novas_equals_cat_entry()</a>, <a class="el" href="#ga5e92f920835111db719e880a61248045">novas_set_catalog()</a>, and <a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>.</p>
 
 </div>
 </div>
@@ -978,7 +978,7 @@ Functions</h2></td></tr>
 <p>Maximum number of bytes stored for object names including string termination. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a> </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="#gadd575c796128069aa35085c617056a11">novas_equals_cat_entry()</a>, <a class="el" href="#ga8e8d07b67babdb5be1737d83b29b65c6">novas_equals_object()</a>, <a class="el" href="#gaf0137aa791dd29278904e53498fb9515">novas_init_cat_entry()</a>, and <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#gadd575c796128069aa35085c617056a11">novas_equals_cat_entry()</a>, <a class="el" href="#ga8e8d07b67babdb5be1737d83b29b65c6">novas_equals_object()</a>, <a class="el" href="#gaf0137aa791dd29278904e53498fb9515">novas_init_cat_entry()</a>, and <a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>.</p>
 
 </div>
 </div>
@@ -1193,8 +1193,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The types of coordinate transformations available for <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a>. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a>, <a class="el" href="#ga5104d7db66ce2d8c61c7ad21599fb45e" title="Populates and object data structure with the data for a catalog source for a given system of catalog ...">make_cat_object_sys()</a>, <a class="el" href="#ga257abae9391aec835dc2b94d9788b9f9" title="Populates a celestial object data structure with the parameters for a redhifted catalog source,...">make_redshifted_object_sys()</a>, <a class="el" href="novas_8h.html#ab5988d52596448e8248d94a4f59d69a1" title="The number of coordinate transfor types in NOVAS.">NOVAS_TRANSFORM_TYPES</a> </dd></dl>
+<p>The types of coordinate transformations available for <a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a>. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a>, <a class="el" href="#ga5104d7db66ce2d8c61c7ad21599fb45e" title="Populates and object data structure with the data for a catalog source for a given system of catalog ...">make_cat_object_sys()</a>, <a class="el" href="#ga257abae9391aec835dc2b94d9788b9f9" title="Populates a celestial object data structure with the parameters for a redhifted catalog source,...">make_redshifted_object_sys()</a>, <a class="el" href="novas_8h.html#ab5988d52596448e8248d94a4f59d69a1" title="The number of coordinate transfor types in NOVAS.">NOVAS_TRANSFORM_TYPES</a> </dd></dl>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065" name="ggace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065"></a>PROPER_MOTION&#160;</td><td class="fielddoc"><p>Updates the star's data to account for the star's space motion between the first and second dates, within a fixed reference frame. </p>
 </td></tr>
@@ -1290,7 +1290,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if the output argument is NULL, 1 if the 'star_name' is too long or 2 if the 'catalog' name is too long.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gaf0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a>, <a class="el" href="#ga11aa3ce6bcdda5b7065b38d6cfaf63d3" title="Populates a celestial object data structure with the parameters for a redhifted catalog source,...">make_redshifted_cat_entry()</a>, <a class="el" href="#ga5104d7db66ce2d8c61c7ad21599fb45e" title="Populates and object data structure with the data for a catalog source for a given system of catalog ...">make_cat_object_sys()</a> </dd>
 <dd>
-<a class="el" href="group__spectral.html#gaad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a>, <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
+<a class="el" href="group__spectral.html#gaad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a>, <a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a06f56cfaa3eac45b5566783e512ce4b2">dec</a>, <a class="el" href="#gabc164144085313b27faa96c838a9d30c">make_cat_entry()</a>, <a class="el" href="#gaf0137aa791dd29278904e53498fb9515">novas_init_cat_entry()</a>, <a class="el" href="#ga5e92f920835111db719e880a61248045">novas_set_catalog()</a>, <a class="el" href="#ga69274f4ac2631335e1e901142d31f541">novas_set_parallax()</a>, <a class="el" href="#ga8ac3513c266181baf92a6b3c22818c99">novas_set_proper_motion()</a>, <a class="el" href="#ga45f7fdc15580138517ce452a236674d7">novas_set_ssb_vel()</a>, and <a class="el" href="novas_8h.html#ada05482d024deb9f801682907522736a">ra</a>.</p>
 
@@ -2775,7 +2775,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the vector arguments is NULL.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>, and <a class="el" href="#ga24b69e1809a33113d4a041dd3e4082ad">proper_motion()</a>.</p>
 
@@ -2811,6 +2811,7 @@ Functions</h2></td></tr>
 <p>NOTES:</p>
 <ol type="1">
 <li>The velocity returned should not be used for deriving spectroscopic radial velocity. It is a measure of the perceived change of the stars position, not a true physical velocity.</li>
+<li>The original NOVAS C implementation applied a geometric to apparent conversion factor (k = 1 / (1 - rv/c) for the proper motion parameters. But proper motion is already apparent, so the factor is a mistake. Also, the factor should be 1 / (1 + rv/c), since the correction diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to Mike Kretlow for noticing these. It has been corrected for <b>v1.8.1</b>.</li>
 </ol>
 <p>REFERENCES:</p>
 <ol type="1">
@@ -2833,8 +2834,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga59caeca70d1fdd02e41ed62f20675e6c" name="ga59caeca70d1fdd02e41ed62f20675e6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga59caeca70d1fdd02e41ed62f20675e6c">&#9670;&#160;</a></span>transform_cat()</h2>
+<a id="gae44ab97ef3c8b1ad11e480f156429f39" name="gae44ab97ef3c8b1ad11e480f156429f39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae44ab97ef3c8b1ad11e480f156429f39">&#9670;&#160;</a></span>transform_cat()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2847,7 +2848,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>jd_tt_in</em></span>, </td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>date_in</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2857,7 +2858,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>jd_tt_out</em></span>, </td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>date_out</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2878,15 +2879,16 @@ Functions</h2></td></tr>
 <p>If 'option' is PROPER_MOTION (1), input data can be in any reference system. If 'option' is PRECESSION (2) or CHANGE_EPOCH (3), input data is assume to be in the dynamical system of 'date_incat' and produces output in the dynamical system of 'date_outcat'. If 'option' is CHANGE_J2000_TO_ICRS (4), the input data should be in the J2000.0 dynamical frame. And if 'option' is CHANGE_ICRS_TO_J2000 (5), the input data must be in the ICRS, and the output will be in the J2000 dynamical frame.</p>
 <p>This function cannot be properly used to bring data from old star catalogs into the modern system, because old catalogs were compiled using a set of constants that are incompatible with modern values. In particular, it should not be used for catalogs whose positions and proper motions were derived by assuming a precession constant significantly different from the value implicit in function <a class="el" href="group__earth.html#ga9178358732325399f3a5e3582080ced3" title="Precesses equatorial rectangular coordinates from one epoch to another using the IAU2006 (P03) preces...">precession()</a>.</p>
 <p>NOTES:</p>
-<ul>
-<li>The original NOVAS C implementation of proper-motion had several shortcomings in calculating the motion of the final epoch. These have been corrected in <b>SuperNOVAS v1.8</b>.</li>
-</ul>
+<ol type="1">
+<li>The original NOVAS C implementation of proper-motion had several shortcomings in calculating the motion in the final epoch. These have been corrected in <b>v1.8</b>.</li>
+<li>The original NOVAS C implementation applied a physical to apparent motion conversion factor (k = 1 / (1 - rv/c)) for the proper motion parameters. But proper motion is already apparent, so the factor was a mistake. Also, the factor should be 1 / (1 + rv/c), since the correction diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to Mike Kretlow for noticing these. It has been corrected for <b>v1.8.1</b>.</li>
+</ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">option</td><td>Type of transformation </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">jd_tt_in</td><td>[day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else year (if &lt;10000), of input catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">date_in</td><td>[day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else Julian year (if &lt;10000), of input catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">in</td><td>An entry from the input catalog, with units as given in the struct definition </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">jd_tt_out</td><td>[day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else year (if &lt;10000) of output catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">date_out</td><td>[day|yr] Terrestrial Time (TT) based Julian date (if &gt;= 10000), or else Julian year (if &lt;10000) of output catalog data. Not used if option is CHANGE_J2000_TO_ICRS (4) or CHANGE_ICRS_TO_J2000 (5). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">out_id</td><td>Catalog identifier (0 terminated). It may also be NULL in which case the catalog name is inherited from the input. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>The transformed catalog entry, with units as given in the struct definition. It may be the same as the input. </td></tr>
   </table>
@@ -2897,9 +2899,9 @@ Functions</h2></td></tr>
 <dd>
 <a class="el" href="group__time.html#gaf4e18885b7d173eb3fe5f18b06f0b4d4" title="Returns the Julian day corresponding to an astronomical coordinate epoch.">novas_epoch()</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="group__time.html#ga3785083ae52bbbc1e749dbedd7e5d85e" title="[day] Julian date at B1950 (NASA / NAIF SPICE definition)">NOVAS_JD_B1950</a>, <a class="el" href="group__time.html#ga4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a882f5d97444df44485d360ce298843b1">CHANGE_EPOCH</a>, <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a1b1e38f90bc3bc3c9f1c04aa2c959444">CHANGE_ICRS_TO_J2000</a>, <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a84da44f7510d8c99353b1b1c6bb4faf8">CHANGE_J2000_TO_ICRS</a>, <a class="el" href="group__equatorial.html#gaa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="group__equatorial.html#ggae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>, <a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a>, <a class="el" href="group__equatorial.html#ggae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>, <a class="el" href="group__util.html#ga5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="#ga7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="group__interferometry.html#ga601d246673742cf72a5dbe1449c97560">novas_los_to_xyz()</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, <a class="el" href="group__interferometry.html#ga14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los()</a>, <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>, <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a6833dbc8bfb3b8ba2cdd7a2da0b82353">PRECESSION</a>, <a class="el" href="group__earth.html#ga9178358732325399f3a5e3582080ced3">precession()</a>, <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065">PROPER_MOTION</a>, <a class="el" href="group__util.html#gae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>, <a class="el" href="#gaf32c72297e36b77bead56044d23082f7">SIZE_OF_CAT_NAME</a>, <a class="el" href="#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>, and <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>.</p>
+<p class="reference">References <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a882f5d97444df44485d360ce298843b1">CHANGE_EPOCH</a>, <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a1b1e38f90bc3bc3c9f1c04aa2c959444">CHANGE_ICRS_TO_J2000</a>, <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a84da44f7510d8c99353b1b1c6bb4faf8">CHANGE_J2000_TO_ICRS</a>, <a class="el" href="group__equatorial.html#gaa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="group__equatorial.html#ggae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>, <a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a>, <a class="el" href="group__equatorial.html#ggae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>, <a class="el" href="group__util.html#ga5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="group__time.html#gabb3df52add3f6fb17e5c1c6a7f428c70">NOVAS_JULIAN_YEAR_DAYS</a>, <a class="el" href="#ga7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="group__interferometry.html#ga601d246673742cf72a5dbe1449c97560">novas_los_to_xyz()</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, <a class="el" href="group__interferometry.html#ga14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los()</a>, <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>, <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a6833dbc8bfb3b8ba2cdd7a2da0b82353">PRECESSION</a>, <a class="el" href="group__earth.html#ga9178358732325399f3a5e3582080ced3">precession()</a>, <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065">PROPER_MOTION</a>, <a class="el" href="group__util.html#gae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>, <a class="el" href="#gaf32c72297e36b77bead56044d23082f7">SIZE_OF_CAT_NAME</a>, <a class="el" href="#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>, and <a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>, and <a class="el" href="#gaf2c03d540de7a8bfafaed27eb9a753c1">transform_hip()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>, and <a class="el" href="#gaf2c03d540de7a8bfafaed27eb9a753c1">transform_hip()</a>.</p>
 
 </div>
 </div>
@@ -2934,7 +2936,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if either of the input pointer arguments is NULL.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#gabc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a>, <a class="el" href="group__time.html#ga4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="structnovas__cat__entry.html#ada95bd9127ffe9e1204a233057869f5a">novas_cat_entry::catalog</a>, <a class="el" href="group__time.html#ga4100ecc5d9badfa07301024baffe9ded">NOVAS_JD_HIP</a>, <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065">PROPER_MOTION</a>, <a class="el" href="structnovas__cat__entry.html#a0bf9261730a8decbfd1d0c63c377dac2">novas_cat_entry::ra</a>, <a class="el" href="#ga59caeca70d1fdd02e41ed62f20675e6c">transform_cat()</a>, and <a class="el" href="#gaf2c03d540de7a8bfafaed27eb9a753c1">transform_hip()</a>.</p>
+<p class="reference">References <a class="el" href="structnovas__cat__entry.html#ada95bd9127ffe9e1204a233057869f5a">novas_cat_entry::catalog</a>, <a class="el" href="group__time.html#ga4100ecc5d9badfa07301024baffe9ded">NOVAS_JD_HIP</a>, <a class="el" href="#ggace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065">PROPER_MOTION</a>, <a class="el" href="structnovas__cat__entry.html#a0bf9261730a8decbfd1d0c63c377dac2">novas_cat_entry::ra</a>, <a class="el" href="#gae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>, and <a class="el" href="#gaf2c03d540de7a8bfafaed27eb9a753c1">transform_hip()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#gaf2c03d540de7a8bfafaed27eb9a753c1">transform_hip()</a>.</p>
 

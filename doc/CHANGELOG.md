@@ -7,13 +7,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [1.8.1-rc1] - 2026-11-22
 
-Upcoming bug-fix release, expected around 1 February 2027.
+Upcoming bug-fix release, expected around 1 December 2027.
 
 ### Fixed
 
  - #400: Fixed `cal_date()` not propagating errors from `novas_jd_to_date()`. 
+
+ - #402: Fixed `transform_cat()` using input dates as Julian days when values are &lt;10000, which according to the
+   documentation (and the NOVAS C original), signify years rather than Julian dates. It's a bad design that will
+   likely to trip up people often, but it must stick for back compatibility. (by attipaci, thanks to mkretlow)
+   
+ - #404: Dropped misguided `k` factor for converting between proper motion and apparent 3D motion in 
+   `transform_cat()` and in `starvectors()`. The `k` factor is needed to convert between physical and apparent
+   motions, and accounts for the changing light travel time as the star moves closer to, or further away from, the
+   observer. However, proper motion is already apparent motion, by definition, hence the use of `k` is wrong.
+   This was a NOVAS C bug, which went undetected until now. (by attipaci, thanks to mkretlow).
+
+ - #405: Exclude Sun or planet from gravitational deflection when it is the observed source or the observer is the
+   gravitating body iself, specifically if the observer or observed source is within 10<sup>-6</sup> AU (about 150 
+   km) or within 0.9 times the equatorial radius of the gravitating body center. (thanks to rgb)
+ 
+ - #406: Fixed diurnal polar motion corrections in `novas_frame`, which were added with the wrong magnitude 
+   (10<sup>-6</sup>) times too small). (thanks to rgb)
+      
+ - #407: `grav_planets()` now accumulates the deflections from the planets in light arrival order from the source.
 
 ### Changed
 

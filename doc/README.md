@@ -149,9 +149,6 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    `coord_sys = 0` and the same date as before would return the results in GCRS coordinates instead of the requested 
    mean equinox of date coordinates.
  
- - Some remainder calculations in NOVAS C 3.1 used the result from `fmod()` unchecked, which resulted in angles outside
-   of the expected [0:2&pi;] range and was also the reason why `cal_date()` did not work for negative JD values.
- 
  - Fixes `aberration()` returning NaN vectors if the `ve` argument is 0. It now returns the unmodified input vector 
    appropriately instead.
    
@@ -188,6 +185,15 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    initial distance, when calculating the final quantities. Instead, the conversion factor should be recalculated for 
    the final distance before calculating the output motion parameters. The difference is typically negligible, except
    perhaps for fast moving stars, and/or large time offsets from the catalog epoch.
+
+ - [__v1.8.1__] Wrong `k` factor, and used incorrectly, for converting between proper motion and apparent 3D motion in 
+   `transform_cat()` and in `starvectors()`. The `k` factor converts between physical and apparent motions, and 
+   accounts for the changing light travel time as the star moves closer to, or further away from, the observer. 
+   However, proper motion is already apparent motion, by definition, hence the use of `k` is wrong. Also the factor 
+   ought to have been 1 / (1 + _rv_ / _c_), but was 1 / (1 - _rv_ / _c_) -- that is the radial velocity (_rv_) was 
+   included with the wrong sign. (thanks to mkretlow).
+   
+ 
 
    
 -----------------------------------------------------------------------------
