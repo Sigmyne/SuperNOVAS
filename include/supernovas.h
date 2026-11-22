@@ -2671,6 +2671,8 @@ public:
 
   double node_rate() const;
 
+  bool is_ssb_aberrated() const;
+
   Position position(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
 
   Velocity velocity(const Time& time, enum novas_accuracy accuracy = NOVAS_FULL_ACCURACY) const;
@@ -2703,6 +2705,8 @@ public:
   Orbital& node_period(const Interval& period);
 
   Orbital& node_rate(double rad_per_sec);
+
+  Orbital& set_ssb_aberrated(bool value);
 
   std::string to_string() const;
 

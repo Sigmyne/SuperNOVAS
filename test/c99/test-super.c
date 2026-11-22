@@ -2816,6 +2816,7 @@ static int test_orbit_place() {
   orbit.Omega = 80.25414;
   orbit.M0 = 145.84905;
   orbit.n = 0.21418047;
+  //orbit.is_aberrated = 1;    // MPC positions include aberration for an observer at the orbital center
 
   make_observer_at_geocenter(&obs);
   make_orbital_object("Ceres", -1, &orbit, &ceres);

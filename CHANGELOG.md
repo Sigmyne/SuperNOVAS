@@ -64,6 +64,11 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
    
  - #408: Modified `novas_set_ssb_vel()` to set the specified argument even if an error is returned. The change 
    improves traceability and error propagation.
+   
+ - #411: Modified `place()` and `novas_sky_pos()` to include aberration corrections for the motion of Solar-system
+   sources, but not for heliocentric or barycentric orbital models (since the short term orbitals of the Minor
+   Planet Center are readily aberration corrected for the source motion to provide a direct comparison against
+   background stars).
  
  - Updated documentation.
 

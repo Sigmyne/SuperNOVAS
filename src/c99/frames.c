@@ -422,9 +422,19 @@ static int set_obs_posvel(novas_frame *frame) {
 }
 
 
-static int frame_aberration(const novas_frame *frame, int dir, double *pos) {
+static int frame_aberration(const novas_frame *restrict frame, int dir, double *restrict pos, const double *restrict vel) {
+  double ovel[3] = {0.0};
+
+  if(!vel)
+    memcpy(ovel, frame->obs_vel, sizeof(ovel));
+  else {
+    int i;
+    for(i = 0; i < 3; i++)
+      ovel[i] = -vel[i];
+  }
+
   prop_error("frame_aberration", dir < 0 ? //
-          undo_aberration(pos, frame->obs_vel, 0, pos) : aberration(pos, frame->obs_vel, 0, pos), 0);
+          undo_aberration(pos, ovel, 0, pos) : aberration(pos, ovel, 0, pos), 0);
   return 0;
 }
 
@@ -808,6 +818,13 @@ int novas_geom_posvel(const object *restrict source, const novas_frame *restrict
  *     spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
  *     LSR-based measures being returned for catalog sources.
  *
+ *  2. As of v1.9, the geometric Solar-system body positions are aberration corrected for their
+ *     velocity vs the observer, not only for the observer's motion relative the Solar-system
+ *     barycenter. However, heliocentric and barycentric orbital models are treated as before
+ *     (with aberration only for the observer motion relative to the SSB), since the short-term
+ *     models published by the Minor Planet Center readily include aberration for the moving
+ *     body, to provide positions that are directly comparable to background stars.
+ *
  * @param object        Pointer to a celestial object data structure that is observed. Catalog
  *                      sources should have coordinates and properties in ICRS. You can use
  *                      `transform_cat()` to convert catalog entries to ICRS as necessary.
@@ -829,8 +846,8 @@ int novas_sky_pos(const object *restrict object, const novas_frame *restrict fra
         sky_pos *restrict out) {
   static const char *fn = "novas_sky_pos";
 
-  double d_sb, pos[3], vel[3], vpos[3];
-  int k;
+  double d_sb, pos[3], vel_obs[3], vel_ssb[3], vpos[3];
+  int k, is_aberrated = 0;
 
   if(!object)
     return novas_error(-1, EINVAL, fn, "NULL input object");
@@ -847,11 +864,11 @@ int novas_sky_pos(const object *restrict object, const novas_frame *restrict fra
   if(frame->accuracy != NOVAS_FULL_ACCURACY && frame->accuracy != NOVAS_REDUCED_ACCURACY)
     return novas_error(-1, EINVAL, fn, "invalid accuracy: %d", frame->accuracy);
 
-  prop_error(fn, novas_geom_posvel(object, frame, NOVAS_ICRS, pos, vel), 0);
+  prop_error(fn, novas_geom_posvel(object, frame, NOVAS_ICRS, pos, vel_obs), 0);
 
   // Change velocity reference from observer to SSB
   for(k = 3; --k >= 0; )
-    vel[k] = novas_add_vel(vel[k], frame->obs_vel[k]);
+    vel_ssb[k] = novas_add_vel(vel_obs[k], frame->obs_vel[k]);
 
   out->dis = novas_vlen(pos);
 
@@ -877,6 +894,7 @@ int novas_sky_pos(const object *restrict object, const novas_frame *restrict fra
   if(object->type == NOVAS_CATALOG_OBJECT) {
     // For sidereal sources the 'velocity' position is the same as the geometric position.
     memcpy(vpos, pos, sizeof(pos));
+    is_aberrated = 1;
   }
   else {
     double psrc[3]; // Barycentric position of Solar-system source (antedated)
@@ -894,24 +912,30 @@ int novas_sky_pos(const object *restrict object, const novas_frame *restrict fra
     // vpos -> direction in which light was emitted from observer's perspective...
     for(k = 3; --k >= 0;)
       vpos[k] = -vpos[k];
+
+    // Check if orbital positions are aberrated for SSB or Sun (such as the MPC orbitals)
+    if(object->type == NOVAS_ORBITAL_OBJECT) { // TODO [v2] && source->orbit.is_aberrated
+      enum novas_planet center = object->orbit.system.center;
+      // Assume that heliocentric / barycentric models are aberration corrected.
+      if(center == NOVAS_SSB || center == NOVAS_SUN) is_aberrated = 1;
+    }
   }
 
-  prop_error(fn, novas_geom_to_app(frame, pos, sys, out), 70);
+  prop_error(fn, novas_posvel_to_app(frame, pos, is_aberrated ? NULL : vel_obs, sys, out), 70);
 
-  out->rv = rad_vel2(object, vpos, vel, pos, frame->obs_vel, novas_vdist(frame->obs_pos, frame->earth_pos),
+  out->rv = rad_vel2(object, vpos, vel_ssb, pos, frame->obs_vel, novas_vdist(frame->obs_pos, frame->earth_pos),
           novas_vdist(frame->obs_pos, frame->sun_pos), d_sb);
 
   return 0;
 }
 
 /**
- * Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate
- * corrections for aberration and gravitational deflection for the observer's frame. Unlike
- * `place()` the output reports the distance calculated from the parallax for sidereal sources.
- * The radial velocity of the output is set to NAN (if needed use novas_sky_pos() instead).
+ * Converts an geometric position and velocity in ICRS to an apparent position on sky, by applying
+ * appropriate corrections for aberration and gravitational deflection for the observer's frame.
  *
  * @param frame     The observer frame, defining the location and time of observation
  * @param pos       [AU] Geometric position of source in ICRS coordinates
+ * @param vel       [AU/day] Geometric, true physical, motion of the source in ICRS.
  * @param sys       The coordinate system in which to return the apparent sky location
  * @param[out] out  Pointer to the data structure which is populated with the calculated apparent
  *                  location in the designated coordinate system. It may be the same pounter as
@@ -919,13 +943,13 @@ int novas_sky_pos(const object *restrict object, const novas_frame *restrict fra
  * @return          0 if successful, or an error from grav_def2(), or else -1 (errno will indicate
  *                  the type of error).
  *
- * @since 1.1
+ * @since 1.9
  * @author Attila Kovacs
  *
- * @sa novas_app_to_geom()
+ * @sa novas_geom_to_app()
  * @sa novas_app_to_hor(), novas_sky_pos(), novas_geom_posvel()
  */
-int novas_geom_to_app(const novas_frame *restrict frame, const double *restrict pos, enum novas_reference_system sys,
+int novas_posvel_to_app(const novas_frame *restrict frame, const double *restrict pos, const double *restrict vel, enum novas_reference_system sys,
         sky_pos *restrict out) {
   const char *fn = "novas_geom_to_app";
   double pos1[3];
@@ -950,7 +974,7 @@ int novas_geom_to_app(const novas_frame *restrict frame, const double *restrict 
   prop_error(fn, grav_planets(pos, frame->obs_pos, &frame->planets, pos1), 0);
 
   // Aberration correction
-  frame_aberration(frame, GEOM_TO_APP, pos1);
+  frame_aberration(frame, GEOM_TO_APP, pos1, vel);
 
   // Transform position to output system
   prop_error(fn, icrs_to_sys(frame, pos1, sys), 0);
@@ -965,6 +989,33 @@ int novas_geom_to_app(const novas_frame *restrict frame, const double *restrict 
 
   return 0;
 
+}
+
+/**
+ * Converts an geometric position in ICRS to an apparent position on sky, by applying appropriate
+ * corrections for aberration and gravitational deflection for the observer's frame. Unlike
+ * `place()` the output reports the distance calculated from the parallax for sidereal sources.
+ * The radial velocity of the output is set to NAN (if needed use novas_sky_pos() instead).
+ *
+ * @param frame     The observer frame, defining the location and time of observation
+ * @param pos       [AU] Geometric position of source in ICRS coordinates
+ * @param sys       The coordinate system in which to return the apparent sky location
+ * @param[out] out  Pointer to the data structure which is populated with the calculated apparent
+ *                  location in the designated coordinate system. It may be the same pounter as
+ *                  the input position.
+ * @return          0 if successful, or an error from grav_def2(), or else -1 (errno will indicate
+ *                  the type of error).
+ *
+ * @since 1.1
+ * @author Attila Kovacs
+ *
+ * @sa novas_posvel_to_app(), novas_app_to_geom()
+ * @sa novas_app_to_hor(), novas_sky_pos(), novas_geom_posvel()
+ */
+int novas_geom_to_app(const novas_frame *restrict frame, const double *restrict pos, enum novas_reference_system sys,
+        sky_pos *restrict out) {
+  prop_error("novas_geom_to_app", novas_posvel_to_app(frame, pos, NULL, sys, out), 0);
+  return 0;
 }
 
 /**
@@ -1226,7 +1277,7 @@ int novas_app_to_geom(const novas_frame *restrict frame, enum novas_reference_sy
   }
 
   // Undo aberration correction
-  frame_aberration(frame, APP_TO_GEOM, app_pos);
+  frame_aberration(frame, APP_TO_GEOM, app_pos, NULL);
 
   // Undo gravitational deflection and aberration.
   prop_error(fn, grav_undo_planets(app_pos, frame->obs_pos, &frame->planets, geom_icrs), 0);

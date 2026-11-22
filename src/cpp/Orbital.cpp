@@ -1136,6 +1136,39 @@ Orbital& Orbital::node_rate(double rad_per_sec) {
 }
 
 /**
+ * Checks if the orbital positions provided by this model include aberration corrections for a
+ * barycentric observer. For example, the Minot Planet Center provides orbital models that
+ * include such corrections, s.t. the orbital positions can be compared to those of background
+ * stars directly. That is, the MPC orbital positions should be handled the same as sidereal
+ * positions.
+ *
+ * @return    TRUE (1) if the positions provided by this orbital model are corrected for
+ *            aberration for a barycentric observer.
+ *
+ * @since 1.9
+ *
+ * @sa set_ssb_aberrated()
+ */
+bool Orbital::is_ssb_aberrated() const {
+  return _orbit.is_ssb_aberrated;
+}
+
+/**
+ *
+ *
+ * @param value
+ * @return
+ *
+ * @since 1.9
+ *
+ * @sa is_ssb_aberrated()
+ */
+Orbital& Orbital::set_ssb_aberrated(bool value) {
+  _orbit.is_ssb_aberrated = (value != 0);
+  return *this;
+}
+
+/**
  * Returns a basic human-readable description of this orbital, with just the major parameters.
  *
  * @return  a basic string description of this orbital.

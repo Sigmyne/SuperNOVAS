@@ -438,7 +438,7 @@ int novas_approx_sky_pos(enum novas_planet id, const novas_frame *restrict frame
   static const char *fn = "novas_approx_sky_pos";
 
   object pl;
-  double d_sun, pos[3], vel[3];
+  double d_sun, pos[3], vel_ssb[3], vel_obs[3];
   int k;
 
   if(!frame)
@@ -451,7 +451,7 @@ int novas_approx_sky_pos(enum novas_planet id, const novas_frame *restrict frame
     return novas_error(-1, EINVAL, fn, "frame at %p not initialized", frame);
 
   prop_error(fn, make_planet(id, &pl), 0);
-  prop_error(fn, novas_approx_heliocentric(id, novas_get_time(&frame->time, NOVAS_TDB), pos, vel), 0);
+  prop_error(fn, novas_approx_heliocentric(id, novas_get_time(&frame->time, NOVAS_TDB), pos, vel_ssb), 0);
 
   d_sun = novas_vlen(pos);
 
@@ -459,13 +459,15 @@ int novas_approx_sky_pos(enum novas_planet id, const novas_frame *restrict frame
     // Heliocentric -> observer pos.
     pos[k] += frame->sun_pos[k] - frame->obs_pos[k];
     // Heliocentric -> barycentric vel.
-    vel[k] += frame->sun_vel[k];
+    vel_ssb[k] = novas_add_vel(vel_ssb[k], frame->sun_vel[k]);
+    // barycentric -> observer vel.
+    vel_obs[k] = novas_add_vel(vel_ssb[k], -frame->obs_vel[k]);
   }
 
-  prop_error(fn, novas_geom_to_app(frame, pos, sys, out), 0);
+  prop_error(fn, novas_posvel_to_app(frame, pos, vel_obs, sys, out), 0);
 
   out->dis = novas_vlen(pos);
-  out->rv = rad_vel2(&pl, pos, vel, pos, frame->obs_vel, novas_vdist(frame->obs_pos, frame->earth_pos),
+  out->rv = rad_vel2(&pl, pos, vel_ssb, pos, frame->obs_vel, novas_vdist(frame->obs_pos, frame->earth_pos),
           novas_vdist(frame->obs_pos, frame->sun_pos), d_sun);
 
   return 0;

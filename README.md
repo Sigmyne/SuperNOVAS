@@ -225,6 +225,11 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    these are included, the proper motion discrepancy w.r.t. SOFA drops to 14 &mu;as per century (from ~1200 &mu;as / 
    century) for Barnard's star, and is now well below 1 &mu;as for the vast majority of stars.
 
+ - [__v1.9__] The original NOVAS C implementation applied aberration corrections for the observer's motion about the
+   Solar System Barycenter (SSB) only. However the appropriate aberration correction from geometric to apparent
+   positions should use the observer's motion relative to the observed body. Thus, effectively NOVAS C did not
+   account for the aberration due to the observed Solar-system body movement.
+
 </details>
    
 -----------------------------------------------------------------------------

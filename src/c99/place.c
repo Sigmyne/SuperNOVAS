@@ -113,6 +113,12 @@
  *  3. As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based
  *     spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
  *     pseudo LSR-based measures being returned for catalog sources.
+ *  4. As of v1.9, the geometric Solar-system body positions are aberration corrected for their
+ *     velocity vs the observer, not only for the observer's motion relative the Solar-system
+ *     barycenter. However, heliocentric and barycentric orbital models are treated as before
+ *     (with aberration only for the observer motion relative to the SSB), since the short-term
+ *     models published by the Minor Planet Center readily include aberration for the moving
+ *     body, to provide positions that are directly comparable to background stars.
  *
  * REFERENCES:
  *
@@ -159,7 +165,7 @@ short place(double jd_tt, const object *restrict source, const observer *restric
 
   observer obs;
   novas_planet_bundle planets = {};
-  double x, jd_tdb, pob[3], vob[3], pos[3] = {0.0}, vel[3], vpos[3], t_light, d_sb;
+  double x, jd_tdb, pob[3], vob[3], pos[3] = {0.0}, vel_ssb[3], vpos[3], t_light, d_sb;
   int i;
 
   if(!source)
@@ -212,10 +218,10 @@ short place(double jd_tt, const object *restrict source, const observer *restric
 
     // Get position of star updated for its space motion.
     // (The motion calculated here is not used for radial velocity in `rad_vel2()`)
-    prop_error(fn, starvectors(&source->star, pos, vel), 0);
+    prop_error(fn, starvectors(&source->star, pos, vel_ssb), 0);
 
     dt = d_light(pos, pob);
-    prop_error(fn, proper_motion(JD_J2000, pos, vel, (jd_tdb + dt), pos), 0);
+    prop_error(fn, proper_motion(JD_J2000, pos, vel_ssb, (jd_tdb + dt), pos), 0);
 
     // Get position of star wrt observer (corrected for parallax).
     bary2obs(pos, pob, pos, &t_light);
@@ -225,7 +231,7 @@ short place(double jd_tt, const object *restrict source, const observer *restric
   }
   else {
     // Get position of body wrt observer, antedated for light-time.
-    prop_error(fn, light_time2(jd_tdb, source, pob, 0.0, accuracy, pos, vel, &t_light), 50);
+    prop_error(fn, light_time2(jd_tdb, source, pob, 0.0, accuracy, pos, vel_ssb, &t_light), 50);
 
     if(novas_vlen(pos) < 1e-11)
       return novas_error(3, EINVAL, fn, "observer is at or very near the observed location");
@@ -275,9 +281,11 @@ short place(double jd_tt, const object *restrict source, const observer *restric
   // ---------------------------------------------------------------------
   // Compute radial velocity (all vectors in ICRS).
   // ---------------------------------------------------------------------
-  output->rv = rad_vel2(source, vpos, vel, pos, vob, novas_vdist(pob, peb), novas_vdist(pob, psb), d_sb);
+  output->rv = rad_vel2(source, vpos, vel_ssb, pos, vob, novas_vdist(pob, peb), novas_vdist(pob, psb), d_sb);
 
   if(coord_sys != NOVAS_ICRS) {
+    int is_aberrated = 0;
+
     // ---------------------------------------------------------------------
     // Apply gravitational deflection
     // ---------------------------------------------------------------------
@@ -286,6 +294,21 @@ short place(double jd_tt, const object *restrict source, const observer *restric
     // ---------------------------------------------------------------------
     // Apply aberration correction.
     // ---------------------------------------------------------------------
+    if(source->type == NOVAS_CATALOG_OBJECT) {
+      is_aberrated = 1;
+    }
+    else if(source->type == NOVAS_ORBITAL_OBJECT) { // TODO [v2] && source->orbit.is_aberrated
+      enum novas_planet center = source->orbit.system.center;
+      // Assume that heliocentric / barycentric models are aberration corrected.
+      if(center == NOVAS_SSB || center == NOVAS_SUN) is_aberrated = 1;
+    }
+
+    // For Solar-system bodies aberrate with observer velocity relative to observed body, as appropriate.
+    if(!is_aberrated) {
+      for(i = 0; i < 3; i++)
+        vob[i] = novas_add_vel(vob[i], -vel_ssb[i]);
+    }
+
     aberration(pos, vob, t_light, pos);
   }
 

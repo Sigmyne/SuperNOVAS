@@ -1494,6 +1494,10 @@ typedef struct novas_orbital {
   double apsis_period;                ///< [day] Precession period of the apsis, if known.
   double node_period;                 ///< [day] Precession period of the ascending node, if known.
 
+  // TODO [v2] Add:
+  //int is_aberrated;                 ///< (boolean) whether the orbital positions are aberation corrected for an observer
+  //                                  ///< at the orbital center. @since 1.9
+
   // TODO [v2] Add tidal perturbation terms for orbits in potential gradients, e.g. for improved Moon orbital model.
   // double tide_angle;               ///< [deg] Tidal direction, measured from ascending node.
   // double elongation;               ///< Tidal elongation as fraction of major axis.
@@ -3748,11 +3752,19 @@ int novas_leap_for_jd(double jd_utc);
 
 
 // ---------------------- Added in 1.9.0 -------------------------
+
+// in observer.c
 /// @c_observer
 int undo_aberration(const double *pos, const double *vobs, double lighttime, double *out);
 
+// in target.c
 /// @c_source
 int novas_star_vel(const cat_entry *restrict star, double *restrict vel);
+
+// in frames.c
+/// @c_apparent
+int novas_posvel_to_app(const novas_frame *restrict frame, const double *restrict pos, const double *restrict vel, enum novas_reference_system sys,
+        sky_pos *restrict out);
 
 
 // <================= END of SuperNOVAS API =====================>
