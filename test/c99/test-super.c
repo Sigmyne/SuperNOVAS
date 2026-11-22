@@ -4193,6 +4193,38 @@ static int test_approx_heliocentric() {
   return n;
 }
 
+static int test_approx_posvel() {
+  int n = 0;
+
+  observer obs = OBSERVER_INIT;
+  novas_timespec ts = NOVAS_TIMESPEC_INIT;
+  novas_frame frame = NOVAS_FRAME_INIT;
+  double pos[3] = {0.0}, vel[3] = {0.0}, rv;
+
+  // Mercury from HORIZONS
+  //                                          RA         DEC      dis               rv
+  // 2025-May-09 12:00 2460805.000000000      27.20660   8.54264  1.12308556678825  26.0009547
+
+  make_observer_at_geocenter(&obs);
+  novas_set_time(NOVAS_TDB, 2460805.0, 37, 0.0, &ts);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &frame);
+
+  if(!is_ok("approx_posvel:mercury", novas_approx_posvel(NOVAS_MERCURY, &frame, NOVAS_TOD, pos, vel))) n++;
+  rv = novas_vdot(pos, vel) / novas_vlen(pos) * NOVAS_AU_PER_DAY / NOVAS_KMS;
+  if(!is_equal("approx_posvel:mercury:rv", rv, 26.0009547, 1e-2)) n++;
+
+  // 2050-May-09 12:00 2469936.000000000      23.80717   6.77730  0.72294869699078  24.4561514
+  novas_set_time(NOVAS_TDB, 2469936.0, 37, 0.0, &ts);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &frame);
+
+  if(!is_ok("approx_posvel:mercury:2050", novas_approx_posvel(NOVAS_MERCURY, &frame, NOVAS_TOD, pos, vel))) n++;
+  rv = novas_vdot(pos, vel) / novas_vlen(pos) * NOVAS_AU_PER_DAY / NOVAS_KMS;
+  if(!is_equal("approx_posvel:mercury:2050:rv", rv, 24.4561514, 1e-2)) n++;
+
+  return n;
+
+}
+
 static int test_approx_sky_pos() {
   int n = 0;
   object sun = NOVAS_SUN_INIT;
@@ -4243,7 +4275,7 @@ static int test_approx_sky_pos() {
   if(!is_equal("approx_sky_pos:mercury:ra", pos.ra, 27.20660 / 15.0, 1e-3)) n++;
   if(!is_equal("approx_sky_pos:mercury:dec", pos.dec, 8.54264, 1e-2)) n++;
   if(!is_equal("approx_sky_pos:mercury:dis", pos.dis, 1.12308556678825, 1e-3)) n++;
-  if(!is_equal("approx_sky_pos:mercury:rv", pos.rv, 26.0009547, 1e-3)) n++;
+  if(!is_equal("approx_sky_pos:mercury:rv", pos.rv, 26.0009547, 1e-2)) n++;
 
   // 2050-May-09 12:00 2469936.000000000      23.80717   6.77730  0.72294869699078  24.4561514
   novas_set_time(NOVAS_TDB, 2469936.0, 37, 0.0, &ts);
@@ -6369,6 +6401,7 @@ int main(int argc, char *argv[]) {
   if(test_star_vel()) n++;
   if(test_proper_motion()) n++;
   if(test_undo_aberration()) n++;
+  if(test_approx_posvel()) n++;
 
   n += test_dates();
 

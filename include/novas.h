@@ -3748,11 +3748,17 @@ int novas_leap_for_jd(double jd_utc);
 
 
 // ---------------------- Added in 1.9.0 -------------------------
+// in observer.c
 /// @c_observer
 int undo_aberration(const double *pos, const double *vobs, double lighttime, double *out);
 
+// in target.c
 /// @c_source
 int novas_star_vel(const cat_entry *restrict star, double *restrict vel);
+
+// in planets.c
+/// @c_geometric
+int novas_approx_posvel(enum novas_planet id, const novas_frame *restrict frame, enum novas_reference_system sys, double *pos, double *vel);
 
 
 // <================= END of SuperNOVAS API =====================>

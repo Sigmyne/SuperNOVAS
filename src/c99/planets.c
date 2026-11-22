@@ -382,10 +382,10 @@ int novas_approx_heliocentric(enum novas_planet id, double jd_tdb, double *restr
 }
 
 /**
- * Calculates an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon
- * Barycenter (EMB) -- typically to arcmin level accuracy -- using Keplerian orbital elements. The
- * returned position is antedated for light-travel time (for Solar-System bodies). It also applies
- * an appropriate aberration correction (but not gravitational deflection).
+ * Calculates the approximate astrometric position and velocity vectors for a major planet, Sun,
+ * Moon, Earth-Moon Barycenter (EMB) using Keplerian orbital elements. The returned position is
+ * antedated for light-travel time (for Solar-System bodies). It also applies an appropriate
+ * aberration correction for the observer motion (but not gravitational deflection).
  *
  * The orbitals can provide planet positions to arcmin-level precision for the rocky inner
  * planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The
@@ -398,7 +398,7 @@ int novas_approx_heliocentric(enum novas_planet id, double jd_tdb, double *restr
  *
  * While this function is generally similar to creating an orbital object with an orbit
  * initialized with `novas_make_planet_orbit()` or `novas_make_moon_orbit()`, and then calling
- * `novas_sky_pos()`, there are a few important differences to note:
+ * `novas_geom_)posvvel()`, there are a few important differences to note:
  *
  * - This function calculates Earth and Moon positions about the Keplerian orbital position
  *   of the Earth-Moon Barycenter (EMB). In constrast, `novas_make_planet_orbit()` does not provide
@@ -423,6 +423,109 @@ int novas_approx_heliocentric(enum novas_planet id, double jd_tdb, double *restr
  *                      the Pluto System Barycenter values are returned.)
  * @param frame         The observer frame, defining the location and time of observation.
  * @param sys           The coordinate system in which to return the apparent sky location.
+ * @param[out] pos      [AU] Calculated geometric position vector of the source relative
+ *                      to the observer location, in the designated coordinate system. It may be
+ *                      NULL if not required.
+ * @param[out] vel      [AU/day] The calculated velocity vector of the source relative to
+ *                      the observer in the designated coordinate system. It must be distinct from
+ *                      the pos output vector, and may be NULL if not required.
+ * @return              0 if successful, or else -1 in case of an error (errno will indicate
+ *                      the type of error).
+ *
+ * @since 1.9
+ * @author Attila Kovacs
+ *
+ * @sa novas_geom_posvel(), novas_approx_sky_pos()
+ * @sa novas_make_frame()
+ */
+int novas_approx_posvel(enum novas_planet id, const novas_frame *restrict frame, enum novas_reference_system sys, double *pos, double *vel) {
+  static const char *fn = "novas_approx_sky_pos";
+
+  object pl;
+  novas_transform T = {};
+  double p[3] = {0.0}, v[3] = {0.0};
+  int k;
+
+  if(!frame)
+    return novas_error(-1, EINVAL, fn, "frame is NULL");
+
+  if(!pos && !vel)
+    return novas_error(-1, EINVAL, fn, "output sky_pos is NULL");
+
+  if(!novas_frame_is_initialized(frame))
+    return novas_error(-1, EINVAL, fn, "frame at %p not initialized", frame);
+
+  prop_error(fn, make_planet(id, &pl), 0);
+  prop_error(fn, novas_approx_heliocentric(id, novas_get_time(&frame->time, NOVAS_TDB), p, v), 0);
+
+  for(k = 3; --k >= 0;) {
+    // Heliocentric -> observer pos.
+    p[k] += frame->sun_pos[k] - frame->obs_pos[k];
+    // Heliocentric -> barycentric vel.
+    v[k] = novas_add_vel(v[k], frame->sun_vel[k]);
+    // barycentric -> observer
+    v[k] = novas_add_vel(v[k], -frame->obs_vel[k]);
+  }
+
+  novas_make_transform(frame, NOVAS_ICRS, sys, &T);
+
+  if(pos)
+    novas_transform_vector(p, &T, pos);
+
+  if(vel)
+    novas_transform_vector(v, &T, vel);
+
+  return 0;
+}
+
+/**
+ * Calculates an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon
+ * Barycenter (EMB) -- typically to arcmin level accuracy -- using Keplerian orbital elements. The
+ * returned position is antedated for light-travel time (for Solar-System bodies). It also applies
+ * an appropriate aberration correction for the observer motion (but not gravitational deflection).
+ *
+ * The orbitals can provide planet positions to arcmin-level precision for the rocky inner
+ * planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The
+ * accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if
+ * used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical
+ * accuracies, see either of the top two references below.
+ *
+ * For accurate positions, you should use planetary ephemerides (such as the JPL ephemerides via
+ * the CALCEPH or CSPICE plugins) and `novas_sky_pos()` instead.
+ *
+ * While this function is generally similar to creating an orbital object with an orbit
+ * initialized with `novas_make_planet_orbit()` or `novas_make_moon_orbit()`, and then calling
+ * `novas_sky_pos()`, there are a few important differences to note:
+ *
+ * - This function calculates Earth and Moon positions about the Keplerian orbital position
+ *   of the Earth-Moon Barycenter (EMB). In constrast, `novas_make_planet_orbit()` does not provide
+ *   orbitals for the Earth directly, and `make_moot_orbit()` references the Moon's orbital to
+ *   the Earth position returned by the currently configured planet calculator function (see
+ *   `set_planet_provider()`).
+ *
+ * - This function ignores gravitational deflection. It makes little sense to bother about
+ *   corrections that are orders of magnitude below the accuracy of the orbital positions
+ *   obtained.
+ *
+ *
+ * NOTES:
+ *
+ *  1. As of v1.9, the calculated spectroscopic radial velocity includes the transverse Doppler
+ *     effect also, which was not included previously.
+ *
+ * REFERENCES:
+ *
+ *  1. E.M. Standish and J.G. Williams 1992.
+ *  2. https://ssd.jpl.nasa.gov/planets/approx_pos.html
+ *  3. Chapront, J. et al., 2002, A&amp;A 387, 700–709
+ *  4. Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361),
+ *     vol. 124, no. 1, July 1983, p. 50-62.
+ *
+ * @param id            NOVAS major planet ID. All major planets, plus the Sun, Moon, Earth-Moon
+ *                      Barycenter (EMB), and Pluto system Barycenter are supported. (For Pluto,
+ *                      the Pluto System Barycenter values are returned.)
+ * @param frame         The observer frame, defining the location and time of observation.
+ * @param sys           The coordinate system in which to return the apparent sky location.
  * @param[out] out      Pointer to the data structure which is populated with the calculated
  *                      approximate apparent location in the designated coordinate system.
  * @return              0 if successful, or else -1 in case of an error (errno will indicate
@@ -431,14 +534,14 @@ int novas_approx_heliocentric(enum novas_planet id, double jd_tdb, double *restr
  * @since 1.4
  * @author Attila Kovacs
  *
- * @sa novas_sky_pos(), novas_app_to_hor()
+ * @sa novas_sky_pos(), novas_approx_posvel(), novas_app_to_hor()
  * @sa novas_make_frame()
  */
 int novas_approx_sky_pos(enum novas_planet id, const novas_frame *restrict frame, enum novas_reference_system sys, sky_pos *restrict out) {
   static const char *fn = "novas_approx_sky_pos";
 
   object pl;
-  double d_sun, pos[3], vel[3];
+  double d_sun, pos[3], vel_ssb[3];
   int k;
 
   if(!frame)
@@ -451,7 +554,7 @@ int novas_approx_sky_pos(enum novas_planet id, const novas_frame *restrict frame
     return novas_error(-1, EINVAL, fn, "frame at %p not initialized", frame);
 
   prop_error(fn, make_planet(id, &pl), 0);
-  prop_error(fn, novas_approx_heliocentric(id, novas_get_time(&frame->time, NOVAS_TDB), pos, vel), 0);
+  prop_error(fn, novas_approx_heliocentric(id, novas_get_time(&frame->time, NOVAS_TDB), pos, vel_ssb), 0);
 
   d_sun = novas_vlen(pos);
 
@@ -459,13 +562,13 @@ int novas_approx_sky_pos(enum novas_planet id, const novas_frame *restrict frame
     // Heliocentric -> observer pos.
     pos[k] += frame->sun_pos[k] - frame->obs_pos[k];
     // Heliocentric -> barycentric vel.
-    vel[k] = novas_add_vel(vel[k], frame->sun_vel[k]);
+    vel_ssb[k] = novas_add_vel(vel_ssb[k], frame->sun_vel[k]);
   }
 
   prop_error(fn, novas_geom_to_app(frame, pos, sys, out), 0);
 
   out->dis = novas_vlen(pos);
-  out->rv = rad_vel2(&pl, pos, vel, pos, frame->obs_vel, novas_vdist(frame->obs_pos, frame->earth_pos),
+  out->rv = rad_vel2(&pl, pos, vel_ssb, pos, frame->obs_vel, novas_vdist(frame->obs_pos, frame->earth_pos),
           novas_vdist(frame->obs_pos, frame->sun_pos), d_sun);
 
   return 0;

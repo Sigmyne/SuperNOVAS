@@ -451,6 +451,8 @@ int rad_vel(const object *restrict source, const double *restrict pos_src, const
  *  2. For major planets (and Sun and Moon), the radial velocity includes gravitational redshift
  *     corrections for light originating at the surface, assuming it's observed from near Earth or
  *     else from a large distance away.
+ *  3. As of __v1.9__, this function includes the tranverse Doppler effect in calculating the
+ *     appropriate spectroscopic radial velocity measure.
  *
  * REFERENCES:
  *
@@ -493,9 +495,10 @@ double rad_vel2(const object *restrict source, const double *pos_emit, const dou
         double d_obs_geo, double d_obs_sun, double d_src_sun) {
   static const char *fn = "rad_vel2";
 
-  double rel; // redshift factor i.e., f_src / fobs = (1 + z)
+  double rel = 1.0; // redshift factor i.e., f_src / fobs = (1 + z)
   double dU = 0.0;  // change in gravitational potential: dU = U_obs - U_src
-  double beta_src, beta_obs, beta;
+  double vel[3], br_src, br_obs, br, b;
+  int i;
 
   if(!source) {
     novas_set_errno(EINVAL, fn, "NULL input source");
@@ -514,17 +517,23 @@ double rad_vel2(const object *restrict source, const double *pos_emit, const dou
 
   // 1. kinetic redshift ----------------------------------------------->
 
+  for(i=0; i < 3; i++)
+    vel[i] = novas_add_vel(vel_src[i], -vel_obs[i]);
+
   // apparent source radial velocity (rel. SSB) in the direction of emission
-  beta_src = novas_vdot(vel_src, pos_emit) / novas_vlen(pos_emit) / C_AUDAY;
+  br_src = novas_vdot(vel_src, pos_emit) / novas_vlen(pos_emit) / C_AUDAY;
 
   // observer radial velocity (rel. SSB) in the direction of detection
-  beta_obs = novas_vdot(vel_obs, pos_det) / novas_vlen(pos_det) / C_AUDAY;
+  br_obs = novas_vdot(vel_obs, pos_det) / novas_vlen(pos_det) / C_AUDAY;
 
-  beta = novas_add_beta(beta_src, -beta_obs);
+  // dimensionless radial velocity (rv / c)
+  br = novas_add_beta(br_src, -br_obs);
 
-  // relativistic redhsift factor due to relative motion
-  rel = sqrt((1.0 + beta) / (1.0 - beta));
+  // |v|/c
+  b = novas_vlen(vel) / C_AUDAY;
 
+  // Doppler factor due to relative motion (includes transverse motion).
+  rel = (1.0 + br) / sqrt(1.0 - b * b);
 
   // 2. gravitational redshift ----------------------------------------->
 

@@ -107,12 +107,14 @@
  *
  *  1. This version fixes a NOVAS C 3.1 issue that velocities and solar-system distances were not
  *     antedated for light-travel time.
- *  2. In a departure from the original NOVAS C, the radial velocity for major planets (and Sun and
- *     Moon) includes gravitational redshift corrections for light originating at the surface, assuming
- *     it's observed from near Earth or else from a large distance away.
+ *  2. In a departure from the original NOVAS C, the radial velocity for major planets (and Sun
+ *     and Moon) includes gravitational redshift corrections for light originating at the surface,
+ *     assuming it's observed from near Earth or else from a large distance away.
  *  3. As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based
  *     spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
  *     pseudo LSR-based measures being returned for catalog sources.
+ *  4. As of v1.9, the calculated spectroscopic radial velocity includes the transverse Doppler
+ *     effect also, which was not included previously.
  *
  * REFERENCES:
  *

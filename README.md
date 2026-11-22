@@ -224,6 +224,9 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    such as described in Stumpff 1985. With it, the proper motion discrepancy w.r.t. SOFA is below to 1 nanoarcsecond
    over a century.
 
+ - [__v1.9__] The NOVAS C calculation of the spectroscopic radial velocity measure has ignored the transverse Dopper
+   effect for Solar-system bodies.
+
 </details>
    
 -----------------------------------------------------------------------------
