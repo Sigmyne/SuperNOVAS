@@ -306,15 +306,29 @@ static int test_equ2hor() {
 }
 
 static int test_aberration() {
+  int n = 0;
+
   double p[3], v[3] = {0.0}, out[3];
 
   //if(source.type != NOVAS_PLANET) return 0;
 
   memcpy(p, pos0, sizeof(p));
 
-  if(!is_ok("aberration:corner:diff", aberration(p, v, 0.0, out))) return 1;
-  if(!is_ok("aberration:corner:same", aberration(p, v, 0.0, p))) return 1;
-  return 0;
+  if(!is_ok("aberration:corner:diff", aberration(p, v, 0.0, out))) n++;
+  if(!is_ok("aberration:corner:same", aberration(p, v, 0.0, p))) n++;
+
+  return n;
+}
+
+static int test_undo_aberration() {
+  int n = 0;
+
+  double p[3] = {0.0}, v[3] = {1.0}, p1[3] = {1.0, 2.0, 3.0};
+
+  if(!is_ok("undo_aberration:origin", undo_aberration(p, v, 0.0, p1))) n++;
+  if(!is_equal("undo_aberration:origin:check", novas_vlen(p1), 0.0, 1e-30)) n++;
+
+  return n;
 }
 
 static int test_starvectors() {
@@ -6126,6 +6140,32 @@ static int test_star_vel() {
   return n;
 }
 
+static int test_proper_motion() {
+  int n = 0;
+
+  cat_entry icrs = {};
+  cat_entry j2100 = {};
+
+  double pos0[3] = {0.0}, pos1[3] = {1.0, 2.0, 3.0}, vel[3] = {1.0};
+
+  if(!is_ok("proper_motion:origin", proper_motion(2000.0, pos0, vel, 2100.0, pos1))) n++;
+  if(!is_equal("proper_motion:origin:check", novas_vlen(pos1), 0.0, 1e-30)) n++;
+
+  novas_init_cat_entry(&icrs, "Barnard", novas_parse_hours("17h 57m 48.498s", NULL), novas_parse_degrees("04 41 36.1", NULL));
+  novas_set_distance(&icrs, 1.83);
+  novas_set_ssb_vel(&icrs, -110.47);
+  novas_set_proper_motion(&icrs, -801.551, 10362.394);
+
+  transform_cat(PROPER_MOTION, 2000.0, &icrs, 2100.0, "ONE", &j2100);
+
+  // Compare to SOFA iauPmsafe() for the same, to within 15 uas in RA & Dec.
+  if(!is_equal("proper_motion:barnard:ra", j2100.ra, 17.9619724432391, 3e-10)) n++;
+  if(!is_equal("proper_motion:barnard:dec", j2100.dec, 4.982990978376, 4e-9)) n++;
+
+  return n;
+}
+
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -6326,6 +6366,8 @@ int main(int argc, char *argv[]) {
   if(test_set_split_time()) n++;
 
   if(test_star_vel()) n++;
+  if(test_proper_motion()) n++;
+  if(test_undo_aberration()) n++;
 
   n += test_dates();
 

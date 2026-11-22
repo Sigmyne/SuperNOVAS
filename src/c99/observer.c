@@ -923,12 +923,11 @@ int undo_aberration(const double *pos, const double *vobs, double lighttime, dou
 
   beta = vmag / C_AUDAY;
   gamma = sqrt(1.0 - beta * beta);
-  if(gamma < 0.0)
+  if(isnan(gamma))
     return novas_error(-1, EDOM, fn, "input observer motion exceeds the speed of light");
 
   d = (lighttime > 0.0) ? lighttime * C_AUDAY : novas_vlen(pos);
-
-  if(d == 0)
+  if(!d)
     return 0;
 
   memcpy(p0, pos, sizeof(p0));

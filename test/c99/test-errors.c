@@ -1191,11 +1191,10 @@ static int test_rad_vel() {
   return n;
 }
 
-
-
 static int test_aberration() {
-  double p[3] = {1.0}, v[3] = {0.0};
   int n = 0;
+
+  double p[3] = {1.0}, v[3] = {0.0};
 
   if(check("aberration:pos", -1, aberration(NULL, v, 0.0, p))) n++;
   if(check("aberration:vel", -1, aberration(p, NULL, 0.0, p))) n++;
@@ -1205,8 +1204,9 @@ static int test_aberration() {
 }
 
 static int test_undo_aberration() {
-  double p[3] = {1.0}, v[3] = {0.0};
   int n = 0;
+
+  double p[3] = {1.0}, v[3] = {0.0};
 
   if(check("undo_aberration:pos", -1, undo_aberration(NULL, v, 0.0, p))) n++;
   if(check("undo_aberration:vel", -1, undo_aberration(p, NULL, 0.0, p))) n++;
@@ -1214,10 +1214,6 @@ static int test_undo_aberration() {
 
   v[0] = NOVAS_C / (NOVAS_AU / NOVAS_DAY) + 0.1;
   if(check("undo_aberration:v>c", -1, undo_aberration(p, v, 0.0, p))) n++;
-
-  v[0] = 1.0;
-  p[0] = 0.0;
-  if(check("undo_aberration:origin", -1, undo_aberration(p, v, 0.0, p))) n++;
 
   return n;
 }
