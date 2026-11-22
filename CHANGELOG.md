@@ -7,9 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [1.8.1-rc1] - 2026-11-22
 
-Upcoming bug-fix release, expected around 1 February 2027.
+Upcoming bug-fix release, expected around 1 December 2027.
 
 ### Fixed
 
@@ -19,7 +19,7 @@ Upcoming bug-fix release, expected around 1 February 2027.
    documentation (and the NOVAS C original), signify years rather than Julian dates. It's a bad design that will
    likely to trip up people often, but it must stick for back compatibility. (by attipaci, thanks to mkretlow)
    
- - #404: Dropped misguided `k` factor for ocnverting between proper motion and apparent 3D motion in 
+ - #404: Dropped misguided `k` factor for converting between proper motion and apparent 3D motion in 
    `transform_cat()` and in `starvectors()`. The `k` factor is needed to convert between physical and apparent
    motions, and accounts for the changing light travel time as the star moves closer to, or further away from, the
    observer. However, proper motion is already apparent motion, by definition, hence the use of `k` is wrong.
