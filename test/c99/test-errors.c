@@ -1212,6 +1212,13 @@ static int test_undo_aberration() {
   if(check("undo_aberration:vel", -1, undo_aberration(p, NULL, 0.0, p))) n++;
   if(check("undo_aberration:out", -1, undo_aberration(p, v, 0.0, NULL))) n++;
 
+  v[0] = NOVAS_C / (NOVAS_AU / NOVAS_DAY) + 0.1;
+  if(check("undo_aberration:v>c", -1, undo_aberration(p, v, 0.0, p))) n++;
+
+  v[0] = 1.0;
+  p[0] = 0.0;
+  if(check("undo_aberration:origin", -1, undo_aberration(p, v, 0.0, p))) n++;
+
   return n;
 }
 
@@ -3216,6 +3223,18 @@ static int test_leap_for_jd() {
   return 0;
 }
 
+static int test_star_vel() {
+  int n = 0;
+
+  cat_entry star = CAT_ENTRY_INIT;
+  double v[3] = {0.0};
+
+  if(check("star_vel:star", -1, novas_star_vel(NULL, v))) n++;
+  if(check("star_vel:vel", -1, novas_star_vel(&star, NULL))) n++;
+
+  return n;
+}
+
 int main(int argc, const char *argv[]) {
   int n = 0;
 
@@ -3463,6 +3482,7 @@ int main(int argc, const char *argv[]) {
   if(test_leap_for_jd()) n++;
 
   if(test_undo_aberration()) n++;
+  if(test_star_vel()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");

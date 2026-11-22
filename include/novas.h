@@ -3748,8 +3748,11 @@ int novas_leap_for_jd(double jd_utc);
 
 
 // ---------------------- Added in 1.9.0 -------------------------
+/// @c_observer
 int undo_aberration(const double *pos, const double *vobs, double lighttime, double *out);
 
+/// @c_source
+int novas_star_vel(const cat_entry *restrict star, double *restrict vel);
 
 
 // <================= END of SuperNOVAS API =====================>

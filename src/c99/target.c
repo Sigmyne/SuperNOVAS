@@ -740,6 +740,44 @@ int make_orbital_object(const char *name, long num, const novas_orbital *orbit, 
 }
 
 /**
+ * Calculates a star's physical 3D velocity relative to the Solar-System Barycenter (SSB)
+ * based on its observed spectroscopic redshift and proper motion. The observed (catalog)
+ * spectrosocpic redshift is partially due to radial morion, but includes also the
+ * transverse Doppler effect, and the gravitational potential for an Earth-based observer.
+ * The observed proper motion derives from the geomnetric transverse motion, but includes
+ * corrections for the changing light-time as the star moves also.
+ *
+ * The true physical motion can be inferred from the observed values iteratively.
+ *
+ * @param star      Pointer to catalog entry structure containing ICRS catalog
+ * @param[out] vel  [AU/day] Output physical velocity vector.
+ * @return          0 if successful, or else -1 if the output velocity is NULL
+ *                  (errno set to EINVAL), or else the error from `starvectors()`.
+ *
+ * @since 1.9
+ * @sa starvectors()
+ */
+int novas_star_vel(const cat_entry *restrict star, double *restrict vel) {
+  static const char *fn = "novas_star_vel";
+
+  double pos[3] = {0.0}, v_app[3] = {0.0};
+  double br, k;
+  int i;
+
+  if(!vel)
+    return novas_error(-1, EINVAL, fn, "output velocity vector is NULL");
+
+  prop_error(fn, starvectors(star, pos, v_app), 0);
+  br = novas_vdot(pos, v_app) / novas_vlen(pos) / C_AUDAY;
+  k = (1.0 - br);
+
+  for(i = 0; i < 3; i++)
+    vel[i] = v_app[i] / k;
+
+  return 0;
+}
+
+/**
  * Converts angular quantities for stars to vectors.
  *
  * NOTES:
@@ -774,7 +812,7 @@ int make_orbital_object(const char *name, long num, const novas_orbital *orbit, 
  *                     used as a measure of physical velocity, e.g. for spectroscopic radial
  *                     velocity determination.
  *
- * @return             0 if successful, or -1 if the star argument is NULL or the output vectors
+ * @return             0 if successful, or -1 if the `star` argument is NULL or the output vectors
  *                     are the same pointer (errno set to EINVAL); or if the star's radial
  *                     velocity is or exceeds the speed of light (errno set to EDOM); or if the
  *                     decomposed physical radial motion exceeds the speed of light (errno set to
@@ -782,6 +820,7 @@ int make_orbital_object(const char *name, long num, const novas_orbital *orbit, 
  *                     radial and transverse components fails to converge (errno set to
  *                     ECANCELED).
  *
+ * @sa novas_star_vel()
  * @sa make_cat_entry(), novas_init_cat_entry()
  */
 int starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict v_apparent) {

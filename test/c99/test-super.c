@@ -6101,6 +6101,31 @@ static int test_set_split_time() {
   return n;
 }
 
+static int test_star_vel() {
+  int n = 0;
+
+  cat_entry star = CAT_ENTRY_INIT;
+  double vel[3] = {0.0}, vapp[3] = {0.0}, k, vm;
+
+  star.radialvelocity = -1.0;
+  star.promora = 10.0;
+  star.promodec = -20.0;
+  star.parallax = 10.0;
+
+  if(!is_ok("star_vel", novas_star_vel(&star, vel))) n++;
+
+  starvectors(&star, NULL, vapp);
+  k = (1.0 - vapp[0] * (NOVAS_AU / NOVAS_DAY) / NOVAS_C);
+
+  vm = novas_vlen(vel);
+
+  if(!is_equal("star_vel:x", vel[0], vapp[0] / k, 1e-12 * vm)) n++;
+  if(!is_equal("star_vel:y", vel[1], vapp[1] / k, 1e-12 * vm)) n++;
+  if(!is_equal("star_vel:z", vel[2], vapp[2] / k, 1e-12 * vm)) n++;
+
+  return n;
+}
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -6299,6 +6324,8 @@ int main(int argc, char *argv[]) {
   if(test_ephem_state()) n++;
   if(test_comoving_observer()) n++;
   if(test_set_split_time()) n++;
+
+  if(test_star_vel()) n++;
 
   n += test_dates();
 
