@@ -792,15 +792,12 @@ int novas_star_vel(const cat_entry *restrict star, double *restrict vel) {
  *     diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to
  *     Mike Kretlow for noticing these. It has been corrected for __v1.9__.
  *
- *  3. The original NOVAS C implemetation did not account for changes in aberration between the
- *     initial and final epochs, nor the transverse Doppler effect, nor the gravitational potential
- *     of an Earth-based observer. Once these are included (starting with __v1.9__), the proper
- *     motion discrepancy w.r.t. SOFA drops to 14 &mu;as per century for Barnard's star, and is now
- *     well below 1 &mu;as / century for the vast majority of stars.
+ *  3. As of __v1.9__ the implementation accounts for the transverse Doppler effect, following the
+ *     prescription of Stumpff 1985.
  *
  * REFERENCES:
  *
- *  1. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *  1. Stumpff, P., Astronomy and Astrophysics (ISSN 0004-6361), vol. 144, no. 1, March 1985, p. 232-240.
  *
  * @param star         Pointer to catalog entry structure containing ICRS catalog
  * @param[out] pos     [AU] Position vector, equatorial rectangular coordinates, It may be NULL if
@@ -847,7 +844,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
     radec2vector(star->ra, star->dec, 1.0 / (paralx * MAS), pos);
 
   if(v_apparent) {
-    double k, z_spec, vr;
+    double br_app, bt_app, br, bt, d;
     int i;
 
     // Convert proper motion and radial velocity to orthogonal components of
@@ -856,44 +853,43 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
     v_apparent[1] = star->promodec / (paralx * JULIAN_YEAR_DAYS);
     v_apparent[2] = NAN; // default in case of errors.
 
-    vr = star->radialvelocity * NOVAS_KM;
-    if(!(fabs(vr) < NOVAS_C))
+    // Initial estimate of radial motion, excluding transverse Doppler effect
+    br_app = star->radialvelocity * NOVAS_KM / NOVAS_C;
+    if(!(fabs(br_app) < 1.0))
       return novas_error(-1, EDOM, fn, "input radial velocity at or above the speed of light");
 
-    // Compute Doppler factor, which accounts for change in
-    // light travel time to star.
-    k = 1.0 / (1.0 + vr / NOVAS_C);
+    // Apparent transverse motion (vT / c)
+    bt_app = sqrt(v_apparent[0] * v_apparent[0] + v_apparent[1] * v_apparent[1]) / C_AUDAY;
 
-    // Observed spectroscopic redshift -- Corrected for Earth-based observer potential.
-    z_spec = (1.0 + novas_v2z(star->radialvelocity)) * (1.0 + NOVAS_TC_LB) * (1.0 + NOVAS_TC_LG) - 1.0;
+    // Initial estimate for the change of light-time factor
+    d = 1.0 / (1.0 - br_app);
 
-    for(i = 0; i < novas_inv_max_iter; i++) {
-      double bt, zr, k1;
+    // Follow recipe from Stumpff 1985
+    br = d * br_app;
+    bt = d * bt_app;
 
-      // physical transverse motion
-      bt = sqrt(v_apparent[0] * v_apparent[0] + v_apparent[1] * v_apparent[1]) / (k * C_AUDAY);
+    for (i = 0; i < novas_inv_max_iter; i++) {
+      double b2 = br * br + bt * bt;
+      double delta = -b2 / (1.0 + sqrt(1.0 - b2));
+      double d1;
 
-      // redshift from radial motion, with transverse motion contribution to spectroscopic z removed
-      zr = (1.0 + z_spec) * sqrt(1.0 - bt * bt) - 1.0;
+      if(b2 > 1.0)
+        return novas_error(-1, ERANGE, fn, "velocity exceeds the speed of light");
 
-      // light-time corrected line-of-sight motion
-      vr = novas_z2v(zr) * NOVAS_KMS / NOVAS_AU_PER_DAY;
-      if(isnan(vr))
-        return novas_error(-1, ERANGE, fn, "decomposed radial motion exceeds the speed of light");
+      br = d * br_app + delta;
+      bt = d * bt_app;
 
-      // Updated light-time correction factor for the estimate of the true radial velocity
-      k1 = 1.0 / (1.0 + vr / C_AUDAY);
+      d1 = 1.0 + br;
 
-      if(fabs(1.0 - k1 / k) < 1e-12) {
-        // Hurray! converged.
-        v_apparent[2] = vr * k;
+      if(fabs(1.0 - d1 / d) < 1e-15) {
+        v_apparent[2] = br * C_AUDAY / d;
 
         // Transform motion vector to equatorial system.
         novas_los_to_xyz(v_apparent, 15.0 * star->ra, star->dec, v_apparent);
         return 0;
       }
 
-      k = k1;
+      d = d1;
     }
 
     return novas_error(-1, ECANCELED, fn, "velocity decomposition failed to converge");
@@ -991,11 +987,13 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
    *  3. Modified in v1.9 to iteratively account for change of light time between initial and final
    *     epochs.
    *
-   *  4. The original NOVAS C implemetation did not account for changes in aberration between the
-   *     initial and final epochs, nor the transverse Doppler effect, nor the gravitational potential
-   *     of an Earth-based observer. Once these are included (starting with __v1.9__), the proper
-   *     motion discrepancy w.r.t. SOFA drops to 14 &mu;as per century for Barnard's star, and is now
-   *     well below 1 &mu;as / century for the vast majority of stars.
+   *  4. As of __v1.9__ the implementation accounts for the transverse Doppler effect, following the
+   *     prescription of Stumpff 1985, and yields consistent results with SOFA below the 1 &mu;as
+   *     level over a century, even for Barnard's star.
+   *
+   * REFERENCES:
+   *
+   *  1. Stumpff, P., Astronomy and Astrophysics (ISSN 0004-6361), vol. 144, no. 1, March 1985, p. 232-240.
    *
    * @param option      Type of transformation
    * @param date_in     [day|yr] Terrestrial Time (TT) based Julian date (if &gt;=10000), or else
@@ -1195,7 +1193,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
     static const char *fn = "proper_motion";
 
     const double dt = jd_tdb_out - jd_tdb_in;
-    double b_app, k, lt0, p0[3], v_obs[3], dpt[3];
+    double b_app, k, lt0, dpt[3];
 
     int i;
 
@@ -1217,20 +1215,8 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
     k = (1.0 - b_app);
 
     // Calculate true geometric 3D motion
-    // (undo change of light-time correction, and gravitational potential)
-    for(i = 0; i < 3; i++) {
-      // Physical SSB motion seen from the star, outside of Earth-based observer potential
-      // (the inverse of the mean physical motion of the star seen by an Earth-based observer)
-      v_obs[i] = -v_apparent[i] / k;
-
-      // Physical displacement in observing interval
-      // (observed displacement is k times this)
-      dpt[i] = -v_obs[i] * dt;
-    }
-
-    // Unaberrated geometric star position at the time the light,
-    // detected in the initial epoch, was was emitted.
-    prop_error(fn, undo_aberration(pos, v_obs, lt0, p0), 0);
+    for(i = 0; i < 3; i++)
+      dpt[i] = v_apparent[i] * dt / k;
 
     // Iteratively solve for actual change-of-light time correction
     for(i = 0; i < novas_inv_max_iter; i++) {
@@ -1239,7 +1225,7 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
 
       // estimated geometric position observed at the final epoch
       for(j = 0; j < 3; j++)
-        p1[j] = p0[j] + dpt[j] * k;
+        p1[j] = pos[j] + dpt[j] * k;
 
       // [day] final light time
       lt1 = novas_vlen(p1) / C_AUDAY;
@@ -1247,9 +1233,9 @@ int starvectors(const cat_entry *restrict star, double *restrict pos, double *re
       // k factor for actual light time change between epochs
       k1 = 1.0 + (lt0 - lt1) / dt;
 
-      if(fabs(1.0 - k1 / k) < 1e-12) { // If too tight, and it may fail...
+      if(fabs(1.0 - k1 / k) < 1e-12) { // It may fail if set too tight...
         // Re-apply aberration for the final epoch
-        aberration(p1, v_obs, lt1, out);
+        memcpy(out, p1, sizeof(p1));
         return 0; // Hurray, converged!
       }
 

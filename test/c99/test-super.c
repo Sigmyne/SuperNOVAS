@@ -332,12 +332,13 @@ static int test_undo_aberration() {
 }
 
 static int test_starvectors() {
-  double p[3], v[3] = {0.0};
+  double p[3] = {0.0}, v[3] = {0.0};
 
   if(source.type != NOVAS_CATALOG_OBJECT) return 0;
 
   if(!is_ok("starvectors:pos:null", starvectors(&source.star, NULL, v))) return 1;
   if(!is_ok("starvectors:vel:null", starvectors(&source.star, p, NULL))) return 1;
+  if(!is_ok("starvectors", starvectors(&source.star, p, v))) return 1;
 
   return 0;
 }
@@ -6158,9 +6159,9 @@ static int test_proper_motion() {
 
   transform_cat(PROPER_MOTION, 2000.0, &icrs, 2100.0, "ONE", &j2100);
 
-  // Compare to SOFA iauPmsafe() for the same, to within 15 uas in RA & Dec.
-  if(!is_equal("proper_motion:barnard:ra", j2100.ra, 17.9619724432391, 3e-10)) n++;
-  if(!is_equal("proper_motion:barnard:dec", j2100.dec, 4.982990978376, 4e-9)) n++;
+  // Compare to SOFA iauPmsafe() for the same, to within ~1 uas in RA & Dec.
+  if(!is_equal("proper_motion:barnard:ra", j2100.ra, 17.9619724432391, 2e-11)) n++;
+  if(!is_equal("proper_motion:barnard:dec", j2100.dec, 4.982990978376, 3e-10)) n++;
 
   return n;
 }

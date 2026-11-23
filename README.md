@@ -220,10 +220,9 @@ __SuperNOVAS__ fixes a number of outstanding issues with NOVAS C 3.1:
    but for Barnard's star it is around 1.2 mas over a century. (Thanks to Mike Kretlow for bringing attention to this 
    issue).
  
- - [__v1.9__] The original NOVAS C implemetation did not account for changes in aberration between the initial and 
-   final epochs, nor the transverse Doppler effect, nor the gravitational potential of an Earth-based observer. Once 
-   these are included, the proper motion discrepancy w.r.t. SOFA drops to 14 &mu;as per century (from ~1200 &mu;as / 
-   century) for Barnard's star, and is now well below 1 &mu;as for the vast majority of stars.
+ - [__v1.9__] The original NOVAS C implemetation did not account for the transverse Doppler effect in `starvectors()`, 
+   such as described in Stumpff 1985. With it, the proper motion discrepancy w.r.t. SOFA is below to 1 nanoarcsecond
+   over a century.
 
 </details>
    
@@ -1409,6 +1408,13 @@ Below is a non-exhaustive overview new features added by __SuperNOVAS__ on top o
    result, SuperNOVAS time functions, which have previously taken a leap seconds input, will now ignore that input 
    parameter, and will use the leap seconds that is appropriate for the time that is defined.
 
+</details>
+
+<details open>
+<summary>New in v1.9</summary>
+
+ - Improved proper motion calculations, now in full agreement with SOFA.
+ 
 </details>
 
 <a name="api-changes"></a>

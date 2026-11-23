@@ -52,15 +52,10 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
  - #400: Simplified `spin()` to use `novas_Rz()`, and use the latter directly when it makes sense internally.
  
  - #408: Modified `proper_motion()` and `transform_cat()` to hold the true 3D motion constant and calculate the 
-   appropriate light time correction iteratively between the initial and final epochs. This is more similar to what
-   SOFA does. The effect of the change on Barnard's star is about 0.8 mas over a century, and more like a few &mu;as
-   per century for most other stars. Also, `transform_cat()` now calls `proper_motion()` instead of duplicating the 
-   calculation, making it less bug-prone. (thanks to mkretlow)
+   appropriate light time correction iteratively between the initial and final epochs. (thanks to mkretlow)
    
- - #408: Modified `starvectors()` to account for changes in aberration between the initial and final epochs; the 
-   transverse Doppler effect; and the gravitational potential of an Earth-based observer. Once these are included, the 
-   proper motion discrepancy w.r.t. SOFA drops to 14 &mu;as per century (from 1200 &mu;as / century before) for 
-   Barnard's star, and is now well below 1 &mu;as for the vast majority of stars. 
+ - #408: Modified `starvectors()` to account for the transverse Doppler effect. After the change the discrepancy 
+   w.r.t. SOFA is below 1 nanoarcsecond, even for Barnard's star over a century. (thanks to mkretlow)
    
  - #408: Modified `novas_set_ssb_vel()` to set the specified argument even if an error is returned. The change 
    improves traceability and error propagation.
