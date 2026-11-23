@@ -742,6 +742,9 @@ int novas_geom_posvel(const object *restrict source, const novas_frame *restrict
     dt = d_light(pos1, frame->obs_pos);
     prop_error(fn, proper_motion(NOVAS_JD_J2000, pos1, vel1, (jd_tdb + dt), pos1), 0);
 
+    // Calculate geometric motion.
+    prop_error(fn, novas_star_vel(&source->star, vel1), 0);
+
     // Get position of star wrt observer (corrected for parallax).
     bary2obs(pos1, frame->obs_pos, pos1, &t_light);
   }

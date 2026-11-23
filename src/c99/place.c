@@ -220,6 +220,9 @@ short place(double jd_tt, const object *restrict source, const observer *restric
     // Get position of star wrt observer (corrected for parallax).
     bary2obs(pos, pob, pos, &t_light);
 
+    // Calculate geometric motion.
+    prop_error(fn, novas_star_vel(&source->star, vel), 0);
+
     output->dis = 0.0;
     d_sb = novas_vlen(pos);
   }
