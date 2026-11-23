@@ -459,7 +459,7 @@ int novas_approx_sky_pos(enum novas_planet id, const novas_frame *restrict frame
     // Heliocentric -> observer pos.
     pos[k] += frame->sun_pos[k] - frame->obs_pos[k];
     // Heliocentric -> barycentric vel.
-    vel[k] += frame->sun_vel[k];
+    vel[k] = novas_add_vel(vel[k], frame->sun_vel[k]);
   }
 
   prop_error(fn, novas_geom_to_app(frame, pos, sys, out), 0);
