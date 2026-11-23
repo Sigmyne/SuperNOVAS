@@ -922,12 +922,21 @@ static int test_frame_tie() {
 
 
 static int test_proper_motion() {
-  double p[3] = {1.0}, v[3] = {1.0};
+  double p[3] = {1.0}, v[3] = {1.0}, p1[3] = {0.0};
   int n = 0;
 
   if(check("proper_motion:p", -1, proper_motion(0.0, NULL, v, 1.0, p))) n++;
   if(check("proper_motion:v", -1, proper_motion(0.0, p, NULL, 1.0, p))) n++;
   if(check("proper_motion:out", -1, proper_motion(0.0, p, v, 1.0, NULL))) n++;
+
+  novas_set_max_iter(0);
+  v[0] = 0.0;
+  if(check("proper_motion:conv", -1, proper_motion(0.0, p, v, 1.0, p))) n++;
+  novas_set_max_iter(NOVAS_DEFAULT_MAX_ITER);
+
+  v[0] = NOVAS_C / (NOVAS_AU / NOVAS_DAY) + 0.1;
+  if(check("proper_motion:rv>c", -1, proper_motion(0.0, p, v, 1.0, p))) n++;
+  if(check("proper_motion:rv>c:out!=pos", -1, proper_motion(0.0, p, v, 1.0, p1))) n++;
 
   return n;
 }
@@ -1050,6 +1059,19 @@ static int test_starvectors() {
   if(check("starvectors:star", -1, starvectors(NULL, p, v))) n++;
   if(check("starvectors:pos+vel", -1, starvectors(&star, NULL, NULL))) n++;
 
+  star.radialvelocity = NOVAS_C / NOVAS_KMS + 0.1;
+  if(check("starvectors:rv>c", -1, starvectors(&star, p, v))) n++;
+
+  star.radialvelocity = 0.0;
+  star.promora = 1000.0;
+  star.parallax = 1e-6; // 1 GPc
+  if(check("starvectors:vr>0", -1, starvectors(&star, p, v))) n++;
+
+  star.promora = 0.0;
+  novas_set_max_iter(0);
+  if(check("starvectors:conv", -1, starvectors(&star, p, v))) n++;
+  novas_set_max_iter(NOVAS_DEFAULT_MAX_ITER);
+
   return n;
 }
 
@@ -1169,15 +1191,29 @@ static int test_rad_vel() {
   return n;
 }
 
-
-
 static int test_aberration() {
-  double p[3] = {1.0}, v[3] = {0.0};
   int n = 0;
+
+  double p[3] = {1.0}, v[3] = {0.0};
 
   if(check("aberration:pos", -1, aberration(NULL, v, 0.0, p))) n++;
   if(check("aberration:vel", -1, aberration(p, NULL, 0.0, p))) n++;
   if(check("aberration:out", -1, aberration(p, v, 0.0, NULL))) n++;
+
+  return n;
+}
+
+static int test_undo_aberration() {
+  int n = 0;
+
+  double p[3] = {1.0}, v[3] = {0.0};
+
+  if(check("undo_aberration:pos", -1, undo_aberration(NULL, v, 0.0, p))) n++;
+  if(check("undo_aberration:vel", -1, undo_aberration(p, NULL, 0.0, p))) n++;
+  if(check("undo_aberration:out", -1, undo_aberration(p, v, 0.0, NULL))) n++;
+
+  v[0] = NOVAS_C / (NOVAS_AU / NOVAS_DAY) + 0.1;
+  if(check("undo_aberration:v>c", -1, undo_aberration(p, v, 0.0, p))) n++;
 
   return n;
 }
@@ -2134,6 +2170,8 @@ static int test_object_sep() {
 
   if(check_nan("object_sep:sun_angle", novas_sun_angle(&earth, &frame))) n++;
   if(check_nan("object_sep:sun_angle", novas_moon_angle(&earth, &frame))) n++;
+
+
 
   return n;
 }
@@ -3181,6 +3219,18 @@ static int test_leap_for_jd() {
   return 0;
 }
 
+static int test_star_vel() {
+  int n = 0;
+
+  cat_entry star = CAT_ENTRY_INIT;
+  double v[3] = {0.0};
+
+  if(check("star_vel:star", -1, novas_star_vel(NULL, v))) n++;
+  if(check("star_vel:vel", -1, novas_star_vel(&star, NULL))) n++;
+
+  return n;
+}
+
 int main(int argc, const char *argv[]) {
   int n = 0;
 
@@ -3426,6 +3476,9 @@ int main(int argc, const char *argv[]) {
   if(test_comoving_observer()) n++;
   if(test_set_leap_list()) n++;
   if(test_leap_for_jd()) n++;
+
+  if(test_undo_aberration()) n++;
+  if(test_star_vel()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");

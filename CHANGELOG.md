@@ -7,9 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.8.1-rc1] - 2026-11-22
+## [Unreleased]
 
-Upcoming bug-fix release, expected around 1 December 2027.
+Upcoming feature release, with bug fixes and improvements, expected around 1 February 2027.
 
 ### Fixed
 
@@ -35,12 +35,32 @@ Upcoming bug-fix release, expected around 1 December 2027.
       
  - #407: `grav_planets()` now accumulates the deflections from the planets in light arrival order from the source.
 
+### Added
+
+ - #408: Added `undo_aberration()` to undo aberration corrections. 
+ 
+ - #408: Added `novas_star_vel()` to return the true physical 3D velocity of a catalog source, in the equatorial
+   system, in which the source was defined.
+   
+ - #408: Added `Vector(double xyz[3], double unit)` public constructor for convenience.
+ 
+ - #408: Added `CatalogEntry::apparent_motion()` and `CatalogEntry::velocity()` to return the observed 3D motion
+   or the true 3D velocity of a catalog souce, in the equatorial system, in which the source was defined.
+
 ### Changed
 
  - #400: Simplified `spin()` to use `novas_Rz()`, and use the latter directly when it makes sense internally.
  
+ - #408: Modified `proper_motion()` and `transform_cat()` to hold the true 3D motion constant and calculate the 
+   appropriate light time correction iteratively between the initial and final epochs. (thanks to mkretlow)
+   
+ - #408: Modified `starvectors()` to account for the transverse Doppler effect. After the change the discrepancy 
+   w.r.t. SOFA is below 1 nanoarcsecond, even for Barnard's star over a century. (thanks to mkretlow)
+   
+ - #408: Modified `novas_set_ssb_vel()` to set the specified argument even if an error is returned. The change 
+   improves traceability and error propagation.
+ 
  - Updated documentation.
-
 
 
 ## [1.8.0] - 2026-11-01

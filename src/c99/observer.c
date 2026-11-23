@@ -837,7 +837,7 @@ short geo_posvel(double jd_tt, double ut1_to_tt, enum novas_accuracy accuracy, c
  *
  * @return            0 if successful, or -1 if any of the vector arguments are NULL.
  *
- * @sa frame_aberration()
+ * @sa undo_aberration()
  */
 int aberration(const double *pos, const double *vobs, double lighttime, double *out) {
   double p1mag, vemag, beta, cosd, gammai, p, q, r;
@@ -873,6 +873,87 @@ int aberration(const double *pos, const double *vobs, double lighttime, double *
 
   return 0;
 }
+
+
+/**
+ * Calculates the geometric position vector from an aberrated position.  Algorithm includes relativistic terms.
+ *
+ * NOTES:
+ *
+ *  1. This function is called by `place()` to account for aberration when calculating the
+ * position of the source.
+ *
+ * REFERENCES:
+ *
+ *  1. Murray, C. A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.
+ *  2. Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.
+ *
+ * @param pos         [AU]  Aberrated position vector of source relative to observer
+ * @param vobs        [AU/day]  Velocity vector of observer, relative to the solar system
+ *                    barycenter.
+ * @param lighttime   [day] Light time from object to Earth (if known). Or set to 0, and this
+ *                    function will compute it as needed.
+ * @param[out] out    [AU] Geometric position vector, referred to origin at center of mass of the Earth,
+ *                    with aberration reversed. It can be the same vector as one of the inputs.
+ *
+ * @return            0 if successful, or -1 if any of the vector arguments are NULL (errno set to
+ *                    EINVAL), or if the observer motion exceeds the speed of light (errno set to
+ *                    EDOM), or if the iterative calculation fails to converge (errno set to
+ *                    ECANCELED).
+ *
+ * @since 1.9.0
+ *
+ * @sa aberration()
+ */
+int undo_aberration(const double *pos, const double *vobs, double lighttime, double *out) {
+  static const char *fn = "undo_aberration";
+
+  double d, vmag, beta, gamma, p0[3];
+  int i;
+
+  if(!pos || !vobs || !out)
+    return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: pos=%p, vobs=%p, out=%p", pos, vobs, out);
+
+  if(out != pos)
+    memcpy(out, pos, XYZ_VECTOR_SIZE);
+
+  vmag = novas_vlen(vobs);
+  if(!vmag)
+    return 0;
+
+  beta = vmag / C_AUDAY;
+  gamma = sqrt(1.0 - beta * beta);
+  if(isnan(gamma))
+    return novas_error(-1, EDOM, fn, "input observer motion exceeds the speed of light");
+
+  d = (lighttime > 0.0) ? lighttime * C_AUDAY : novas_vlen(pos);
+  if(!d)
+    return 0;
+
+  memcpy(p0, pos, sizeof(p0));
+
+  // Iterate as necessary
+  for(i = 0; i < novas_inv_max_iter; i++) {
+    const double p = beta * novas_vdot(out, vobs) / (d * vmag);
+    const double q = (1.0 + p / (1.0 + gamma)) * d / C_AUDAY;
+    const double r = 1.0 + p;
+
+    const double pos1[3] = { out[0], out[1], out[2] };
+
+    // Apparent to geometric
+    out[0] = (r * p0[0] - q * vobs[0]) / gamma;
+    out[1] = (r * p0[1] - q * vobs[1]) / gamma;
+    out[2] = (r * p0[2] - q * vobs[2]) / gamma;
+
+    // Iterate, since p, q, r are defined by unaberrated position.
+    if(novas_vdist(out, pos1) < 1e-15 * d)
+      return 0;
+  }
+
+  return novas_error(-1, ECANCELED, fn, "failed to converge");
+}
+
+
 
 /**
  * Calculates the ICRS position and velocity of the observer relative to the Solar System

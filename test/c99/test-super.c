@@ -306,24 +306,39 @@ static int test_equ2hor() {
 }
 
 static int test_aberration() {
+  int n = 0;
+
   double p[3], v[3] = {0.0}, out[3];
 
   //if(source.type != NOVAS_PLANET) return 0;
 
   memcpy(p, pos0, sizeof(p));
 
-  if(!is_ok("aberration:corner:diff", aberration(p, v, 0.0, out))) return 1;
-  if(!is_ok("aberration:corner:same", aberration(p, v, 0.0, p))) return 1;
-  return 0;
+  if(!is_ok("aberration:corner:diff", aberration(p, v, 0.0, out))) n++;
+  if(!is_ok("aberration:corner:same", aberration(p, v, 0.0, p))) n++;
+
+  return n;
+}
+
+static int test_undo_aberration() {
+  int n = 0;
+
+  double p[3] = {0.0}, v[3] = {1.0}, p1[3] = {1.0, 2.0, 3.0};
+
+  if(!is_ok("undo_aberration:origin", undo_aberration(p, v, 0.0, p1))) n++;
+  if(!is_equal("undo_aberration:origin:check", novas_vlen(p1), 0.0, 1e-30)) n++;
+
+  return n;
 }
 
 static int test_starvectors() {
-  double p[3], v[3] = {0.0};
+  double p[3] = {0.0}, v[3] = {0.0};
 
   if(source.type != NOVAS_CATALOG_OBJECT) return 0;
 
   if(!is_ok("starvectors:pos:null", starvectors(&source.star, NULL, v))) return 1;
   if(!is_ok("starvectors:vel:null", starvectors(&source.star, p, NULL))) return 1;
+  if(!is_ok("starvectors", starvectors(&source.star, p, v))) return 1;
 
   return 0;
 }
@@ -1386,10 +1401,10 @@ static int test_set_time() {
   double fjd = 0.25;
   double dt;
 
-  const double CT0 = 2443144.5003725;
-  const double LB = 1.550519768e-8;
-  const double TDB0 = 6.55e-5;
-  const double LG = 6.969290134e-10;
+  const double CT0 = NOVAS_TC_T0;
+  const double LB = NOVAS_TC_LB;
+  const double TDB0 = NOVAS_TC_TDB0;
+  const double LG = NOVAS_TC_LG;
 
   int leap = novas_lookup_leap((time_t) ((tdb - J2000) * NOVAS_DAY) + 946728000LL);
 
@@ -1449,10 +1464,10 @@ static int test_get_time() {
   double dt;
   long ijd;
 
-  const double CT0 = 2443144.5003725;
-  const double LB = 1.550519768e-8;
-  const double TDB0 = 6.55e-5;
-  const double LG = 6.969290134e-10;
+  const double CT0 = NOVAS_TC_T0;
+  const double LB = NOVAS_TC_LB;
+  const double TDB0 = NOVAS_TC_TDB0;
+  const double LG = NOVAS_TC_LG;
 
   int leap = novas_leap_for_jd(tdb);
 
@@ -2314,8 +2329,8 @@ static int test_diff_time() {
   time_t sec = time(NULL);
   double dt;
 
-  const double LB = 1.550519768e-8;
-  const double LG = 6.969290134e-10;
+  const double LB = NOVAS_TC_LB;
+  const double LG = NOVAS_TC_LG;
 
   if(!is_ok("diff_time:set", novas_set_unix_time(sec, 1, 37, 0.11, &t))) return 1;
   if(!is_ok("diff_time:incr", novas_offset_time(&t, 0.5, &t1))) return 1;
@@ -4772,8 +4787,8 @@ static int test_clock_skew() {
   double pos[3] = { 10000.0, 0.0, 0.0 }, vel[3] = {0.0};
   double dt1;
 
-  const double LB = 1.550519768e-8;
-  const double LG = 6.969290134e-10;
+  const double LB = NOVAS_TC_LB;
+  const double LG = NOVAS_TC_LG;
 
   make_observer_at_geocenter(&obs);
   novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32.0, 0.0, &time);
@@ -5178,9 +5193,8 @@ static int test_moon_elp_sky_pos() {
 
   double v0[3] = {1.3, -2.2, 3.1}; // [km/s]
   double p[3] = {0.0};
-  double vo[3] = {0.0}, p1[3] = {0.0};
+  double v[3] = {0.0}, p1[3] = {0.0};
   double ra = 0.0, dec = 0.0;
-  int i;
 
   make_itrf_site(19.3, -155.2, 4150.0, &site);
   make_observer_at_site(&site, &obs);
@@ -5188,11 +5202,10 @@ static int test_moon_elp_sky_pos() {
   if(!is_ok("moon_elp_sky_pos:make_frame", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f))) n++;
 
   // moon pos at time
-  novas_moon_elp_posvel(&f, NOVAS_TOD, p, NULL);
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p, v);
 
   // observer pos/vel at time (in TOD)
-  novas_site_gcrs_posvel(&ts, &obs.on_surf, NULL, 0.0, 0.0, NOVAS_FULL_ACCURACY, NULL, vo);
-  aberration(p, vo, 0.0, p1);
+  aberration(p, v, 0.0, p1);
 
   if(!is_ok("moon_elp_sky_pos:vector2radec", vector2radec(p1, &ra, &dec))) n++;
   if(!is_ok("moon_elp_sky_pos:site", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
@@ -5203,17 +5216,12 @@ static int test_moon_elp_sky_pos() {
   make_airborne_observer(&site, v0, &obs);
   if(!is_ok("moon_elp_sky_pos:air:make_frame", novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &f))) n++;
 
-  // geocentric observer velocity (TOD)
-  for(i = 0; i < 3; i++)
-    vo[i] = novas_add_vel(f.obs_vel[i], -f.earth_vel[i]);
-  gcrs_to_tod(NOVAS_JD_B1950, NOVAS_REDUCED_ACCURACY, vo, vo);
-
   // aberration (in TOD)
   novas_moon_elp_posvel(&f, NOVAS_TOD, p1, NULL);
   if(!is_ok("airborne:pos", check_equal_pos(p1, p, 1e-12))) n++;
 
-  novas_moon_elp_posvel(&f, NOVAS_TOD, p, NULL);
-  aberration(p, vo, 0.0, p1);
+  novas_moon_elp_posvel(&f, NOVAS_TOD, p, v);
+  aberration(p, v, 0.0, p1);
 
   if(!is_ok("moon_elp_sky_pos:air:vector2radec", vector2radec(p1, &ra, &dec))) n++;
   if(!is_ok("moon_elp_sky_pos:air", novas_moon_elp_sky_pos(&f, NOVAS_TOD, &pos))) n++;
@@ -6108,6 +6116,57 @@ static int test_set_split_time() {
   return n;
 }
 
+static int test_star_vel() {
+  int n = 0;
+
+  cat_entry star = CAT_ENTRY_INIT;
+  double vel[3] = {0.0}, vapp[3] = {0.0}, k, vm;
+
+  star.radialvelocity = -1.0;
+  star.promora = 10.0;
+  star.promodec = -20.0;
+  star.parallax = 10.0;
+
+  if(!is_ok("star_vel", novas_star_vel(&star, vel))) n++;
+
+  starvectors(&star, NULL, vapp);
+  k = (1.0 - vapp[0] * (NOVAS_AU / NOVAS_DAY) / NOVAS_C);
+
+  vm = novas_vlen(vel);
+
+  if(!is_equal("star_vel:x", vel[0], vapp[0] / k, 1e-12 * vm)) n++;
+  if(!is_equal("star_vel:y", vel[1], vapp[1] / k, 1e-12 * vm)) n++;
+  if(!is_equal("star_vel:z", vel[2], vapp[2] / k, 1e-12 * vm)) n++;
+
+  return n;
+}
+
+static int test_proper_motion() {
+  int n = 0;
+
+  cat_entry icrs = {};
+  cat_entry j2100 = {};
+
+  double pos0[3] = {0.0}, pos1[3] = {1.0, 2.0, 3.0}, vel[3] = {1.0};
+
+  if(!is_ok("proper_motion:origin", proper_motion(2000.0, pos0, vel, 2100.0, pos1))) n++;
+  if(!is_equal("proper_motion:origin:check", novas_vlen(pos1), 0.0, 1e-30)) n++;
+
+  novas_init_cat_entry(&icrs, "Barnard", novas_parse_hours("17h 57m 48.498s", NULL), novas_parse_degrees("04 41 36.1", NULL));
+  novas_set_distance(&icrs, 1.83);
+  novas_set_ssb_vel(&icrs, -110.47);
+  novas_set_proper_motion(&icrs, -801.551, 10362.394);
+
+  transform_cat(PROPER_MOTION, 2000.0, &icrs, 2100.0, "ONE", &j2100);
+
+  // Compare to SOFA iauPmsafe() for the same, to within ~1 uas in RA & Dec.
+  if(!is_equal("proper_motion:barnard:ra", j2100.ra, 17.9619724432391, 2e-11)) n++;
+  if(!is_equal("proper_motion:barnard:dec", j2100.dec, 4.982990978376, 3e-10)) n++;
+
+  return n;
+}
+
+
 int main(int argc, char *argv[]) {
   int n = 0;
 
@@ -6306,6 +6365,10 @@ int main(int argc, char *argv[]) {
   if(test_ephem_state()) n++;
   if(test_comoving_observer()) n++;
   if(test_set_split_time()) n++;
+
+  if(test_star_vel()) n++;
+  if(test_proper_motion()) n++;
+  if(test_undo_aberration()) n++;
 
   n += test_dates();
 

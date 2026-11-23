@@ -29,6 +29,8 @@ int main() {
   if(!test.check("dec(invalid)", !x.dec().is_valid())) n++;
   if(!test.check("v_lsr(invalid)", !x.v_lsr().is_valid())) n++;
   if(!test.check("radial_velocity(invalid)", !x.radial_velocity().is_valid())) n++;
+  if(!test.check("apparent_motion(invalid)", !x.apparent_motion().is_valid())) n++;
+  if(!test.check("velocity(invalid)", !x.velocity().is_valid())) n++;
   if(!test.check("distance(invalid)", !x.distance().is_valid())) n++;
   if(!test.check("parallax(invalid)", !x.parallax().is_valid())) n++;
   if(!test.check("equatorial(invalid)", !x.equatorial().is_valid())) n++;
@@ -98,6 +100,15 @@ int main() {
   a.radial_velocity(1.0 * Unit::km_per_s);
   if(!test.check("radial_velocity(OK)", a.is_valid())) n++;
 
+  double vel[3] = {0.0};
+  starvectors(e, NULL, vel);
+  Vector motion = a.apparent_motion();
+  if(!test.equals("apparent_motion().x", motion._array()[0], vel[0] * Unit::AU / Unit::day, 1e-15 * motion.abs())) n++;
+  if(!test.equals("apparent_motion().y", motion._array()[1], vel[1] * Unit::AU / Unit::day, 1e-15 * motion.abs())) n++;
+  if(!test.equals("apparent_motion().z", motion._array()[2], vel[2] * Unit::AU / Unit::day, 1e-15 * motion.abs())) n++;
+
+  novas_star_vel(e, vel);
+  if(!test.check("velocity()", a.velocity() == Velocity(vel, Unit::AU / Unit::day))) n++;
 
   a.v_lsr(ScalarVelocity(1.0 * Unit::km_per_s));
   if(!test.equals("v_lsr(1 km/s)", a.v_lsr().km_per_s(), 1.0, 1e-9)) n++;
@@ -178,6 +189,9 @@ int main() {
   inv = star; inv.radialvelocity = NAN; x = CatalogEntry(inv, Equinox::b1950());
   if(!test.check("is_valid(radialvelocity = NAN)", !x.is_valid())) n++;
 
+  cat_entry *entry = (cat_entry *) a._cat_entry();
+  entry->promora = 1e12;
+  if(!test.check("velocity() invalid", !a.velocity().is_valid())) n++;
 
   std::cout << "CatalogEntry.cpp: " << (n > 0 ? "FAILED" : "OK") << "\n";
   return n;

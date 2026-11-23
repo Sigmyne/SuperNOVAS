@@ -212,13 +212,16 @@ short place(double jd_tt, const object *restrict source, const observer *restric
 
     // Get position of star updated for its space motion.
     // (The motion calculated here is not used for radial velocity in `rad_vel2()`)
-    starvectors(&source->star, pos, vel);
+    prop_error(fn, starvectors(&source->star, pos, vel), 0);
 
     dt = d_light(pos, pob);
-    proper_motion(JD_J2000, pos, vel, (jd_tdb + dt), pos);
+    prop_error(fn, proper_motion(JD_J2000, pos, vel, (jd_tdb + dt), pos), 0);
 
     // Get position of star wrt observer (corrected for parallax).
     bary2obs(pos, pob, pos, &t_light);
+
+    // Calculate geometric motion.
+    prop_error(fn, novas_star_vel(&source->star, vel), 0);
 
     output->dis = 0.0;
     d_sb = novas_vlen(pos);
@@ -1015,7 +1018,7 @@ short mean_star(double jd_tt, double tra, double tdec, enum novas_accuracy accur
   // create a position vector based on the apparent RA and declination of the star.
   star.ra = tra;
   star.dec = tdec;
-  starvectors(&star, pos, NULL);
+  prop_error(fn, starvectors(&star, pos, NULL), 0);
 
   // Get initial approximation by precessing star position at 'jd_tt'
   // to its position at J2000.0.

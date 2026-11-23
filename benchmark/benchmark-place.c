@@ -124,13 +124,14 @@ int main(int argc, const char *argv[]) {
 
     sprintf(star.catalog, "TST");
     sprintf(star.starname, "test-%d", i);
+
     star.starnumber = i;
-    star.ra = (23.0 * rand()) / RAND_MAX;
-    star.dec = (180.0 * rand()) / RAND_MAX - 90.0;
+    star.ra = 23.0 * rand() / RAND_MAX;
+    star.dec = 180.0 * rand() / RAND_MAX - 90.0;
     star.radialvelocity = (1000.0 * rand()) / RAND_MAX - 500.0;
-    star.parallax = (20.0 * rand()) / RAND_MAX;
-    star.promora = (200.0 * rand()) / RAND_MAX - 100.0;
-    star.promodec = (200.0 * rand()) / RAND_MAX - 100.0;
+    star.parallax = 1000.0 / (1.0 + 1000.0 * rand() / RAND_MAX);
+    star.promora = 100.0 * rand() / RAND_MAX - 50.0;
+    star.promodec = 100.0 * rand() / RAND_MAX - 50.0;
 
     make_cat_object(&star, &sources[i]);
   }

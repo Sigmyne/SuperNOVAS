@@ -42,36 +42,15 @@
 
 #define UNIX_UTC_J2000  (UNIX_SECONDS_0UTC_1JAN2000 + (IDAY / 2))
 
-// IAU 2006 Resolution B3
-#define TC_T0       2443144.5003725 ///< 1977 January 1, 0h 0m 0s TAI
+
 
 #define INVALID_TIME_STRING         "<invalid-timestamp>"
 
-/**
- * [s/s] Relative rate at which Barycentric coordinate time progresses faster than time on Earth
- * i.e., Terrestrial Time (TT).
- *
- * REFERENCES:
- *
- *  1. Ryan S. Park et al. 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414
- */
-#define TC_LB          1.550519768e-8
 
-/**
- * [s/s] Relative rate at which Geocentric coordinate time progresses faster than time on Earth
- * i.e., Terrestrial Time (TT).
- *
- * NOTES:
- *
- *  1. Updated to DE440 value (Park et al. 2021) in v1.4
- *
- * REFERENCES:
- *
- *  1. Ryan S. Park et al. 2021 AJ 161 105, DOI 10.3847/1538-3881/abd414
- */
-#define TC_LG          6.969290134e-10
-
-#define TC_TDB0        6.55e-5            ///< [s] TDB time offset at TC_T0
+#define TC_T0       NOVAS_TC_T0
+#define TC_LB       NOVAS_TC_LB
+#define TC_LG       NOVAS_TC_LG
+#define TC_TDB0     NOVAS_TC_TDB0
 
 #define E9             1000000000         ///< 10<sup>9</sup> as integer
 
