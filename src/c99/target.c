@@ -779,12 +779,13 @@ int novas_star_vel(const cat_entry *restrict star, double *restrict vel) {
 }
 
 /**
- * Converts angular quantities for stars to vectors.
+ * Converts angular quantities for stars to apparent position and motion vectors.
  *
  * NOTES:
  *
  *  1. The velocity returned should not be used for deriving spectroscopic radial velocity. It is
- *     a measure of the perceived change of the stars position, not a true physical velocity.
+ *     a measure of the perceived change of the star's position over time, not a true physical
+ *     velocity.
  *
  *  2. The original NOVAS C implementation applied a geometric to apparent conversion factor (k =
  *     1 / (1 - rv/c) for the proper motion parameters. But proper motion is already apparent,
@@ -805,10 +806,10 @@ int novas_star_vel(const cat_entry *restrict star, double *restrict vel) {
  * @param[out] v_apparent  [AU/day] Perceived motion of star, in equatorial rectangular
  *                     coordinates. It must be distinct from the pos output vector, and may be
  *                     NULL if not required. Note, the motion includes a change of light time
- *                     correction, and as such it is suitable only for calculating the
- *                     apparent 3D location of the star at a different time, and should not be
- *                     used as a measure of physical velocity, e.g. for spectroscopic radial
- *                     velocity determination.
+ *                     correction, and as such it is suitable only for estimating the apparent 3D
+ *                     location of the star at a different time, and should not be used as a
+ *                     measure of physical velocity, e.g. for spectroscopic radial velocity
+ *                     determination.
  *
  * @return             0 if successful, or -1 if the `star` argument is NULL or the output vectors
  *                     are the same pointer (errno set to EINVAL); or if the star's radial
