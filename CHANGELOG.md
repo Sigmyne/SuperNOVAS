@@ -34,6 +34,11 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
    (10<sup>-6</sup>) times too small). (thanks to rgb)
       
  - #407: `grav_planets()` now accumulates the deflections from the planets in light arrival order from the source.
+ 
+ - #409: `novas_geom_posvel()` now returns true physical velocity for catalog objects (previously it returned
+   the apparent motion, even though that was not what was documented / expected).
+   
+ - #409: Modified `rad_vel2()` now includes the transverse Doppler effect.
 
 ### Added
 
@@ -46,6 +51,9 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
  
  - #408: Added `CatalogEntry::apparent_motion()` and `CatalogEntry::velocity()` to return the observed 3D motion
    or the true 3D velocity of a catalog souce, in the equatorial system, in which the source was defined.
+   
+ - #409: Added `novas_approx_posvel()` function to calculate an approximate state vector for planets using
+   Keplerian orbital models.
 
 ### Changed
 

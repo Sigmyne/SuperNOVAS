@@ -682,9 +682,11 @@ static int icrs_to_sys(const novas_frame *restrict frame, double *restrict pos, 
  *
  * NOTES:
  *
- *  1. As of SuperNOVAS v1.3, the returned velocity vector is a proper observer-based
+ *  1. As of SuperNOVAS __v1.3__, the returned velocity vector is a proper observer-based
  *     velocity measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
  *     pseudo LSR-based measures being returned for catalog sources.
+ *  2. As of __v1.9__, this function returns the true physical velocity for catalog sources
+ *     (previously, it returned the apparent motion).
  *
  * @param source        Pointer to a celestial source data structure that is observed. Catalog
  *                      sources should have coordinates and properties in ICRS. You can use
@@ -810,6 +812,8 @@ int novas_geom_posvel(const object *restrict source, const novas_frame *restrict
  *  1. As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based
  *     spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with
  *     LSR-based measures being returned for catalog sources.
+ *  2. As of v1.9, the calculated spectroscopic radial velocity includes the transverse Doppler
+ *     effect also, which was not included previously.
  *
  * @param object        Pointer to a celestial object data structure that is observed. Catalog
  *                      sources should have coordinates and properties in ICRS. You can use
@@ -2126,4 +2130,6 @@ int novas_track_pos(const novas_track *track, const novas_timespec *time, double
 
   return 0;
 }
+
+
 

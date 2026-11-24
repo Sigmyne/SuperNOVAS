@@ -2494,12 +2494,34 @@ static int test_approx_heliocentric() {
   return 0;
 }
 
+static int test_approx_posvel() {
+  int n = 0;
+
+  novas_timespec ts = NOVAS_TIMESPEC_INIT;
+  observer obs = OBSERVER_INIT;
+  novas_frame frame = NOVAS_FRAME_INIT;
+
+  double pos[3] = {0.0}, vel[3] = {0.0};
+
+  if(check("approx_posvel:frame:null", -1, novas_approx_posvel(NOVAS_EMB, NULL, NOVAS_ICRS, pos, vel))) n++;
+  if(check("approx_posvel:frame:init", -1, novas_approx_posvel(NOVAS_EMB, &frame, NOVAS_ICRS, pos, vel))) n++;
+
+  novas_set_time(NOVAS_TT, NOVAS_JD_J2000, 32, 0.0, &ts);
+  make_observer_at_geocenter(&obs);
+  novas_make_frame(NOVAS_REDUCED_ACCURACY, &obs, &ts, 0.0, 0.0, &frame);
+
+  if(check("approx_posvel:pos=vel:null", -1, novas_approx_posvel(NOVAS_EMB, &frame, NOVAS_ICRS, NULL, NULL))) n++;
+
+  return n;
+}
+
 static int test_approx_sky_pos() {
+  int n = 0;
+
   novas_timespec ts = NOVAS_TIMESPEC_INIT;
   observer obs = OBSERVER_INIT;
   novas_frame frame = NOVAS_FRAME_INIT;
   sky_pos out = SKY_POS_INIT;
-  int n = 0;
 
   if(check("approx_sky_pos:frame:null", -1, novas_approx_sky_pos(NOVAS_EMB, NULL, NOVAS_ICRS, &out))) n++;
   if(check("approx_sky_pos:frame:init", -1, novas_approx_sky_pos(NOVAS_EMB, &frame, NOVAS_ICRS, &out))) n++;
@@ -3479,6 +3501,7 @@ int main(int argc, const char *argv[]) {
 
   if(test_undo_aberration()) n++;
   if(test_star_vel()) n++;
+  if(test_approx_posvel()) n++;
 
   if(n) fprintf(stderr, " -- FAILED %d tests\n", n);
   else fprintf(stderr, " -- OK\n");
