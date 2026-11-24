@@ -37,7 +37,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.9</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -576,6 +576,7 @@ Functions</h2></td></tr>
 <ol type="1">
 <li>This function is called by <span class="tt"><a class="el" href="novas_8h.html#ac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span> and <span class="tt"><a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to calculate radial velocities along with the apparent position of the source.</li>
 <li>For major planets (and Sun and Moon), the radial velocity includes gravitational redshift corrections for light originating at the surface, assuming it's observed from near Earth or else from a large distance away.</li>
+<li>As of <b>v1.9</b>, this function includes the tranverse Doppler effect in calculating the appropriate spectroscopic radial velocity measure.</li>
 </ol>
 <p>REFERENCES:</p>
 <ol type="1">

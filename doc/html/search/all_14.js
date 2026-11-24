@@ -46,7 +46,7 @@ var searchData=
   ['star_43',['star',['../structnovas__object.html#af6249fc903eaacb4869bdada2987c0cd',1,'novas_object']]],
   ['starname_44',['starname',['../structnovas__cat__entry.html#ac06af140acde272f032a431f6cfeb85d',1,'novas_cat_entry']]],
   ['starnumber_45',['starnumber',['../structnovas__cat__entry.html#a456d93b89cbbc3c13cb0cb9d3b8a4cb0',1,'novas_cat_entry']]],
-  ['starvectors_46',['starvectors',['../group__source.html#ga27bae6c9efdab763dba9f1ae36a04669',1,'starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict motion):&#160;target.c'],['../group__source.html#ga27bae6c9efdab763dba9f1ae36a04669',1,'starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict motion):&#160;target.c']]],
+  ['starvectors_46',['starvectors',['../group__source.html#ga7e369ae89cfc4bd08411b11e410af0f0',1,'starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict v_apparent):&#160;target.c'],['../group__source.html#ga7e369ae89cfc4bd08411b11e410af0f0',1,'starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict v_apparent):&#160;target.c']]],
   ['state_47',['state',['../structnovas__frame.html#a1a565eeb8311e69122226a4dcfbd5d76',1,'novas_frame']]],
   ['state_5fcall_48',['state_call',['../structnovas__observer.html#ab1dfe50fa5103464b44ee41d6d381b17',1,'novas_observer']]],
   ['string_20dates_49',['String dates',['../md__2github_2workspace_2doc_2USAGE-C99.html#autotoc_md79',1,'']]],

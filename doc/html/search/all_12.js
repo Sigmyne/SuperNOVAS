@@ -43,7 +43,7 @@ var searchData=
   ['promodec_40',['promodec',['../structnovas__cat__entry.html#a64faf35923c3c09bb24265a8ddb2b2f1',1,'novas_cat_entry']]],
   ['promora_41',['promora',['../structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560',1,'novas_cat_entry']]],
   ['proper_5fmotion_42',['PROPER_MOTION',['../group__source.html#ggace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065',1,'novas.h']]],
-  ['proper_5fmotion_43',['proper_motion',['../group__source.html#ga24b69e1809a33113d4a041dd3e4082ad',1,'proper_motion(double jd_tdb_in, const double *pos, const double *restrict vel, double jd_tdb_out, double *out):&#160;target.c'],['../group__source.html#ga24b69e1809a33113d4a041dd3e4082ad',1,'proper_motion(double jd_tdb_in, const double *pos, const double *restrict vel, double jd_tdb_out, double *out):&#160;target.c']]],
+  ['proper_5fmotion_43',['proper_motion',['../group__source.html#gabe3fdcae8580368a73cea3aa5624cb74',1,'proper_motion(double jd_tdb_in, const double *pos, const double *restrict v_apparent, double jd_tdb_out, double *out):&#160;target.c'],['../group__source.html#gabe3fdcae8580368a73cea3aa5624cb74',1,'proper_motion(double jd_tdb_in, const double *pos, const double *restrict v_apparent, double jd_tdb_out, double *out):&#160;target.c']]],
   ['provider_44',['Recommendation: set up an ephemeris provider',['../index.html#autotoc_md28',1,'']]],
   ['providers_45',['Solar-system ephemeris providers',['../group__solar-system.html',1,'']]]
 ];

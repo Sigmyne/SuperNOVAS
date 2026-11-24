@@ -37,7 +37,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C API<span id="projectnumber">&#160;v1.8</span>
+   <div id="projectname">SuperNOVAS C API<span id="projectnumber">&#160;v1.9</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -150,6 +150,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga5c940b62732d74e6c6b1c844931aaa76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the geocentric position and velocity of a solar system body, as antedated for light-time.  <br /></td></tr>
 <tr class="memitem:ga9ead627eed7fabd8583f1353e89f42e7" id="r_ga9ead627eed7fabd8583f1353e89f42e7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric</a> (enum <a class="el" href="group__source.html#ga219df36b21dc4476656e708d14d08045">novas_planet</a> id, double jd_tdb, double *restrict pos, double *restrict vel)</td></tr>
 <tr class="memdesc:ga9ead627eed7fabd8583f1353e89f42e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the approximate geometric heliocentric orbital positions and velocities for the major planets, Sun, or Earth-Moon Barycenter (EMB).  <br /></td></tr>
+<tr class="memitem:gae817333eb138aeea5a1063f2c3d14f2a" id="r_gae817333eb138aeea5a1063f2c3d14f2a"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gae817333eb138aeea5a1063f2c3d14f2a">novas_approx_posvel</a> (enum <a class="el" href="group__source.html#ga219df36b21dc4476656e708d14d08045">novas_planet</a> id, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> sys, double *pos, double *vel)</td></tr>
+<tr class="memdesc:gae817333eb138aeea5a1063f2c3d14f2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the approximate astrometric position and velocity vectors for a major planet, Sun, Moon, Earth-Moon Barycenter (EMB) using Keplerian orbital elements.  <br /></td></tr>
 <tr class="memitem:gac6652ee3257621080dac342313d0a0a7" id="r_gac6652ee3257621080dac342313d0a0a7"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gac6652ee3257621080dac342313d0a0a7">novas_geom_posvel</a> (const <a class="el" href="group__source.html#ga8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict source, const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> sys, double *restrict pos, double *restrict vel)</td></tr>
 <tr class="memdesc:gac6652ee3257621080dac342313d0a0a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the geometric position and velocity vectors, relative to the observer, for a source in the given observing frame, in the specified coordinate system of choice.  <br /></td></tr>
 <tr class="memitem:ga4817703c9357f702a27812584c91f87c" id="r_ga4817703c9357f702a27812584c91f87c"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ga4817703c9357f702a27812584c91f87c">novas_geom_to_app</a> (const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict frame, const double *restrict pos, enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a> sys, <a class="el" href="group__apparent.html#ga98a44d2a2c0e4f211b128a94c848ed51">sky_pos</a> *restrict out)</td></tr>
@@ -647,7 +649,80 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="#ga9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric()</a>, <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045adc941f5a3613952d6d6102281e70e5c0">NOVAS_EARTH</a>, <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045ad1785b619d72877c4eb78d61aedf9e1a">NOVAS_EMB</a>, <a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd">novas_make_moon_orbit()</a>, <a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031">novas_make_planet_orbit()</a>, <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045a9fcf58133828600a062725ced448cfcf">NOVAS_MOON</a>, <a class="el" href="group__source.html#ga85243a6b9eee259d3fb84ee1a587e065">NOVAS_ORBIT_INIT</a>, <a class="el" href="group__source.html#ga4510a3235a693f122899983901211c30">novas_orbit_posvel()</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846">NOVAS_REDUCED_ACCURACY</a>, and <a class="el" href="group__source.html#gga219df36b21dc4476656e708d14d08045a170e1c704bd29c8d46f66d4d9a03d9c2">NOVAS_SUN</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#ga9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric()</a>, and <a class="el" href="group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#ga9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric()</a>, <a class="el" href="#gae817333eb138aeea5a1063f2c3d14f2a">novas_approx_posvel()</a>, and <a class="el" href="group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a>.</p>
+
+</div>
+</div>
+<a id="gae817333eb138aeea5a1063f2c3d14f2a" name="gae817333eb138aeea5a1063f2c3d14f2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae817333eb138aeea5a1063f2c3d14f2a">&#9670;&#160;</a></span>novas_approx_posvel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_approx_posvel </td>
+          <td>(</td>
+          <td class="paramtype">enum <a class="el" href="group__source.html#ga219df36b21dc4476656e708d14d08045">novas_planet</a></td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnovas__frame.html">novas_frame</a> *restrict</td>          <td class="paramname"><span class="paramname"><em>frame</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="group__equatorial.html#ga7ba038ea34eb901ccfb8f785708c651e">novas_reference_system</a></td>          <td class="paramname"><span class="paramname"><em>sys</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the approximate astrometric position and velocity vectors for a major planet, Sun, Moon, Earth-Moon Barycenter (EMB) using Keplerian orbital elements. </p>
+<p>The returned position is antedated for light-travel time (for Solar-System bodies). It also applies an appropriate aberration correction for the observer motion (but not gravitational deflection).</p>
+<p>The orbitals can provide planet positions to arcmin-level precision for the rocky inner planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical accuracies, see either of the top two references below.</p>
+<p>For accurate positions, you should use planetary ephemerides (such as the JPL ephemerides via the CALCEPH or CSPICE plugins) and <span class="tt"><a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span> instead.</p>
+<p>While this function is generally similar to creating an orbital object with an orbit initialized with <span class="tt"><a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> or <span class="tt"><a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a></span>, and then calling <span class="tt">novas_geom_)posvvel()</span>, there are a few important differences to note:</p>
+<ul>
+<li>This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In constrast, <span class="tt"><a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>).</li>
+<li>This function ignores gravitational deflection. It makes little sense to bother about corrections that are orders of magnitude below the accuracy of the orbital positions obtained.</li>
+</ul>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>E.M. Standish and J.G. Williams 1992.</li>
+<li><a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">https://ssd.jpl.nasa.gov/planets/approx_pos.html</a></li>
+<li>Chapront, J. et al., 2002, A&amp;A 387, 700–709</li>
+<li>Chapront-Touze, M, and Chapront, J. 1983, Astronomy and Astrophysics (ISSN 0004-6361), vol. 124, no. 1, July 1983, p. 50-62.</li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">id</td><td>NOVAS major planet ID. All major planets, plus the Sun, Moon, Earth-Moon Barycenter (EMB), and Pluto system Barycenter are supported. (For Pluto, the Pluto System Barycenter values are returned.) </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">frame</td><td>The observer frame, defining the location and time of observation. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">sys</td><td>The coordinate system in which to return the apparent sky location. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] Calculated geometric position vector of the source relative to the observer location, in the designated coordinate system. It may be NULL if not required. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">vel</td><td>[AU/day] The calculated velocity vector of the source relative to the observer in the designated coordinate system. It must be distinct from the pos output vector, and may be NULL if not required. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 in case of an error (errno will indicate the type of error).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.9 </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gac6652ee3257621080dac342313d0a0a7" title="Calculates the geometric position and velocity vectors, relative to the observer, for a source in the...">novas_geom_posvel()</a>, <a class="el" href="group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62" title="Calculates an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon Barycent...">novas_approx_sky_pos()</a> </dd>
+<dd>
+<a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="group__source.html#ga4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="#ga9ead627eed7fabd8583f1353e89f42e7">novas_approx_heliocentric()</a>, <a class="el" href="#gae817333eb138aeea5a1063f2c3d14f2a">novas_approx_posvel()</a>, <a class="el" href="group__time.html#gae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea5bf6e497c776a4a8168b23db062e8a10">NOVAS_ICRS</a>, <a class="el" href="group__frame.html#ga4d179c8573319fc25c775ce56ba055dc">novas_make_transform()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, and <a class="el" href="#gaa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#gae817333eb138aeea5a1063f2c3d14f2a">novas_approx_posvel()</a>.</p>
 
 </div>
 </div>
@@ -692,7 +767,8 @@ Functions</h2></td></tr>
 <p>It implements the same geometric transformations as <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> but at a reduced computational cost. See <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> for references.</p>
 <p>NOTES:</p>
 <ol type="1">
-<li>As of SuperNOVAS v1.3, the returned velocity vector is a proper observer-based velocity measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with pseudo LSR-based measures being returned for catalog sources.</li>
+<li>As of SuperNOVAS <b>v1.3</b>, the returned velocity vector is a proper observer-based velocity measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with pseudo LSR-based measures being returned for catalog sources.</li>
+<li>As of <b>v1.9</b>, this function returns the true physical velocity for catalog sources (previously, it returned the apparent motion).</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -711,7 +787,7 @@ Functions</h2></td></tr>
 <dd>
 <a class="el" href="#gaa77895c891e9eeb4b1541f03acfd154e" title="Transforms a position or velocity 3-vector from one coordinate reference system to another.">novas_transform_vector()</a>, <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="observer_8c.html#a1d58fd371e7604f75df315365672941e">bary2obs()</a>, <a class="el" href="util_8c.html#ad799864f637c483fb49491bde5a93e25">d_light()</a>, <a class="el" href="#ga5c940b62732d74e6c6b1c844931aaa76">light_time2()</a>, <a class="el" href="group__source.html#gga1eecb357eeea0de4759e9c8d55af238fa4f9ab9cec85498c41f90c33794d032e5">NOVAS_CATALOG_OBJECT</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, <a class="el" href="#gac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="group__time.html#gae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time()</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="group__source.html#gga1eecb357eeea0de4759e9c8d55af238fad1eeaddaa96b028742a8ba424e311aa8">NOVAS_PLANET</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846">NOVAS_REDUCED_ACCURACY</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="group__source.html#ga24b69e1809a33113d4a041dd3e4082ad">proper_motion()</a>, and <a class="el" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>.</p>
+<p class="reference">References <a class="el" href="observer_8c.html#a1d58fd371e7604f75df315365672941e">bary2obs()</a>, <a class="el" href="util_8c.html#ad799864f637c483fb49491bde5a93e25">d_light()</a>, <a class="el" href="#ga5c940b62732d74e6c6b1c844931aaa76">light_time2()</a>, <a class="el" href="group__source.html#gga1eecb357eeea0de4759e9c8d55af238fa4f9ab9cec85498c41f90c33794d032e5">NOVAS_CATALOG_OBJECT</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56aebffd24170ffab949609a8dcfc201660">NOVAS_FULL_ACCURACY</a>, <a class="el" href="#gac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="group__time.html#gae30e3dd8e30bdcf4e8486cfce696fb98">novas_get_time()</a>, <a class="el" href="group__time.html#ga31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="group__source.html#gga1eecb357eeea0de4759e9c8d55af238fad1eeaddaa96b028742a8ba424e311aa8">NOVAS_PLANET</a>, <a class="el" href="group__frame.html#gga3cba2735c32163fab062b1a904a83b56a2047c8bae25010adb60d895a83079846">NOVAS_REDUCED_ACCURACY</a>, <a class="el" href="group__source.html#ga0edfc4129c502e4765547dfee5307a78">novas_star_vel()</a>, <a class="el" href="group__time.html#ggaa642c4ccc7195dc62fd0dc56567ebd0baf5d992bdf01b4f3fd7b22e3e24c6974d">NOVAS_TDB</a>, <a class="el" href="group__source.html#gabe3fdcae8580368a73cea3aa5624cb74">proper_motion()</a>, and <a class="el" href="group__source.html#ga7e369ae89cfc4bd08411b11e410af0f0">starvectors()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#gac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="group__apparent.html#gac365a1e015ae1f875dc5a66fd5435b2f">novas_sky_pos()</a>, and <a class="el" href="group__apparent.html#gac780bd907a12957995d36ad916dd4ec1">novas_solar_illum()</a>.</p>
 
@@ -999,7 +1075,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="novas_8h.html#a8b91679a5e3886709e7469b642f7cd56">in</a>, <a class="el" href="#gaa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="#ga8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="group__apparent.html#ga59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, and <a class="el" href="#gaa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="#gae817333eb138aeea5a1063f2c3d14f2a">novas_approx_posvel()</a>, <a class="el" href="#ga8b6d81b2cb348dbd6dc157a9724962e0">novas_moon_elp_posvel_fp()</a>, <a class="el" href="group__apparent.html#ga59509eb558c0125e9c5081e712f7c3c7">novas_moon_elp_sky_pos_fp()</a>, and <a class="el" href="#gaa77895c891e9eeb4b1541f03acfd154e">novas_transform_vector()</a>.</p>
 
 </div>
 </div>

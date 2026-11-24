@@ -37,7 +37,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C API<span id="projectnumber">&#160;v1.8</span>
+   <div id="projectname">SuperNOVAS C API<span id="projectnumber">&#160;v1.9</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -241,6 +241,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga65df4b49c0c33285ef5ddcf6814384dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns precise GCRS position and velocity vectors for an observer located on or near Earth's surface.  <br /></td></tr>
 <tr class="memitem:gab7f162ecce55b3d63834ac6ed10761fa" id="r_gab7f162ecce55b3d63834ac6ed10761fa"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel</a> (const <a class="el" href="structnovas__timespec.html">novas_timespec</a> *restrict ts, const <a class="el" href="#gab95cfa1e3e1558f7f99b74df9cd3514a">on_surface</a> *restrict site, const double *restrict v_itrs, double *restrict pos, double *restrict vel)</td></tr>
 <tr class="memdesc:gab7f162ecce55b3d63834ac6ed10761fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns precise ITRS position and velocity vectors for an observer located on or near Earth's surface.  <br /></td></tr>
+<tr class="memitem:gad820e7ba46523b3cba6ddf552428cac8" id="r_gad820e7ba46523b3cba6ddf552428cac8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#gad820e7ba46523b3cba6ddf552428cac8">undo_aberration</a> (const double *pos, const double *vobs, double lighttime, double *out)</td></tr>
+<tr class="memdesc:gad820e7ba46523b3cba6ddf552428cac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the geometric position vector from an aberrated position.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defining the observer location, or accessing properties thereof. </p>
@@ -2067,6 +2069,65 @@ novas_set_weather(), <a class="el" href="#ga7479134485c298faa858d73ee0513a11" ti
 <p class="reference">References <a class="el" href="group__spectral.html#gaddc432c55434789acee7bc2beacd7d69">NOVAS_AU_PER_DAY</a>, <a class="el" href="group__source.html#ga7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="#gab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel()</a>, and <a class="el" href="group__earth.html#gadc81730affa75f5facc8c6bd280c83c9">terra()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ga65df4b49c0c33285ef5ddcf6814384dc">novas_site_gcrs_posvel()</a>, and <a class="el" href="#gab7f162ecce55b3d63834ac6ed10761fa">novas_site_itrs_posvel()</a>.</p>
+
+</div>
+</div>
+<a id="gad820e7ba46523b3cba6ddf552428cac8" name="gad820e7ba46523b3cba6ddf552428cac8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad820e7ba46523b3cba6ddf552428cac8">&#9670;&#160;</a></span>undo_aberration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int undo_aberration </td>
+          <td>(</td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double *</td>          <td class="paramname"><span class="paramname"><em>vobs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>lighttime</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *</td>          <td class="paramname"><span class="paramname"><em>out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates the geometric position vector from an aberrated position. </p>
+<p>Algorithm includes relativistic terms.</p>
+<p>NOTES:</p>
+<ol type="1">
+<li>This function is called by <span class="tt"><a class="el" href="place_8c.html#aca09ed0d2379ac4a4841c9e3edeeee4c" title="Computes the apparent direction of a celestial object at a specified time and in a specified coordina...">place()</a></span> to account for aberration when calculating the position of the source.</li>
+</ol>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Murray, C. A. (1981) Mon. Notices Royal Ast. Society 195, 639-648.</li>
+<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">pos</td><td>[AU] Aberrated position vector of source relative to observer </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">vobs</td><td>[AU/day] Velocity vector of observer, relative to the solar system barycenter. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">lighttime</td><td>[day] Light time from object to Earth (if known). Or set to 0, and this function will compute it as needed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>[AU] Geometric position vector, referred to origin at center of mass of the Earth, with aberration reversed. It can be the same vector as one of the inputs.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the vector arguments are NULL (errno set to EINVAL), or if the observer motion exceeds the speed of light (errno set to EDOM), or if the iterative calculation fails to converge (errno set to ECANCELED).</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.9.0</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="observer_8c.html#a033f1bf4b01e0e21a0e05e13c19c02f6" title="Corrects position vector for aberration of light.">aberration()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="util_8c.html#ad2b933ce2f58e8b04bbe76ffbff99eb0">novas_inv_max_iter</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>, and <a class="el" href="#gad820e7ba46523b3cba6ddf552428cac8">undo_aberration()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="#gad820e7ba46523b3cba6ddf552428cac8">undo_aberration()</a>.</p>
 
 </div>
 </div>

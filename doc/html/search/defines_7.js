@@ -28,9 +28,13 @@ var searchData=
   ['novas_5frmass_5finit_25',['NOVAS_RMASS_INIT',['../novas_8h.html#a5ddc7a011476a8cffaec1866beaa0095',1,'novas.h']]],
   ['novas_5fsolar_5fconstant_26',['NOVAS_SOLAR_CONSTANT',['../novas_8h.html#a5e72489b5d24fa737d04cb9ec303b71e',1,'novas.h']]],
   ['novas_5fsolar_5fradius_27',['NOVAS_SOLAR_RADIUS',['../novas_8h.html#ae548ecdfc646914084936acb32e9c993',1,'novas.h']]],
-  ['novas_5ftimescales_28',['NOVAS_TIMESCALES',['../novas_8h.html#a7505fe27b163e97b60bcf4406eadffa7',1,'novas.h']]],
-  ['novas_5ftimestamp_5flen_29',['NOVAS_TIMESTAMP_LEN',['../novas_8h.html#a923fc797bc707dda3957e8b3c971df2e',1,'novas.h']]],
-  ['novas_5ftransform_5ftypes_30',['NOVAS_TRANSFORM_TYPES',['../novas_8h.html#ab5988d52596448e8248d94a4f59d69a1',1,'novas.h']]],
-  ['novas_5fversion_5fstring_31',['NOVAS_VERSION_STRING',['../novas_8h.html#afc8e7b02d26a13c380dcff4ec2d6530e',1,'novas.h']]],
-  ['novas_5fwobble_5fdirections_32',['NOVAS_WOBBLE_DIRECTIONS',['../novas_8h.html#a3903b6d439f4a25a6482fd073996d9ec',1,'novas.h']]]
+  ['novas_5ftc_5flb_28',['NOVAS_TC_LB',['../novas_8h.html#a526a1d2bfecd8f5049403bbf86253a96',1,'novas.h']]],
+  ['novas_5ftc_5flg_29',['NOVAS_TC_LG',['../novas_8h.html#a6dbbc0cb1643171918d9bd4d2e12bbb5',1,'novas.h']]],
+  ['novas_5ftc_5ft0_30',['NOVAS_TC_T0',['../novas_8h.html#abb052208b6d59662b735eafcb7b4364e',1,'novas.h']]],
+  ['novas_5ftc_5ftdb0_31',['NOVAS_TC_TDB0',['../novas_8h.html#a48c105bf08a66ec46f96bd409a6fe932',1,'novas.h']]],
+  ['novas_5ftimescales_32',['NOVAS_TIMESCALES',['../novas_8h.html#a7505fe27b163e97b60bcf4406eadffa7',1,'novas.h']]],
+  ['novas_5ftimestamp_5flen_33',['NOVAS_TIMESTAMP_LEN',['../novas_8h.html#a923fc797bc707dda3957e8b3c971df2e',1,'novas.h']]],
+  ['novas_5ftransform_5ftypes_34',['NOVAS_TRANSFORM_TYPES',['../novas_8h.html#ab5988d52596448e8248d94a4f59d69a1',1,'novas.h']]],
+  ['novas_5fversion_5fstring_35',['NOVAS_VERSION_STRING',['../novas_8h.html#afc8e7b02d26a13c380dcff4ec2d6530e',1,'novas.h']]],
+  ['novas_5fwobble_5fdirections_36',['NOVAS_WOBBLE_DIRECTIONS',['../novas_8h.html#a3903b6d439f4a25a6482fd073996d9ec',1,'novas.h']]]
 ];

@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"classsupernovas_1_1Ecliptic.html#a0e7796dd54094d855565c3985e7d0637":[6,7,0,12],
+"classsupernovas_1_1Ecliptic.html#a27fdb2ae4ac178709197a635ca5c3d47":[6,7,0,20],
+"classsupernovas_1_1Ecliptic.html#a2986f3e28124b274ba670005d126b0b9":[6,7,0,4],
+"classsupernovas_1_1Ecliptic.html#a3cddea118d722c712a9139c8b44612d3":[6,7,0,5],
 "classsupernovas_1_1Ecliptic.html#a4fe1ee28ce9c07ee116cad3e765d1416":[6,7,0,9],
 "classsupernovas_1_1Ecliptic.html#a5b59a6e417879d8df6301b687d6b7602":[6,7,0,7],
 "classsupernovas_1_1Ecliptic.html#a6a0cfeb643b055e65c48a57c2c624227":[6,7,0,18],
@@ -245,9 +249,5 @@ var NAVTREEINDEX1 =
 "classsupernovas_1_1Orbital.html#a1b51c042026f6e6c5a5c48661de7dc0e":[6,0,3,32],
 "classsupernovas_1_1Orbital.html#a1e8611ace299ad61fb2135e04490311b":[6,0,3,17],
 "classsupernovas_1_1Orbital.html#a2d211c4294833b3d9846ec83d9c8b4f9":[6,0,3,23],
-"classsupernovas_1_1Orbital.html#a37037706239754d40c77a879c233bc31":[6,0,3,19],
-"classsupernovas_1_1Orbital.html#a3a1c415444c0deb54c4f478559d55d7a":[6,0,3,12],
-"classsupernovas_1_1Orbital.html#a4dc7be09a20140029a79833229eef141":[6,0,3,18],
-"classsupernovas_1_1Orbital.html#a54bdb5ea3fa4c40f0e261d9eff830b01":[6,0,3,27],
-"classsupernovas_1_1Orbital.html#a56ab2e63d83df82a2989c209a2b6ac8e":[6,0,3,3]
+"classsupernovas_1_1Orbital.html#a37037706239754d40c77a879c233bc31":[6,0,3,19]
 };

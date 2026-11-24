@@ -22,8 +22,9 @@ var target_8c =
     [ "novas_set_redshift", "target_8c.html#a4efac9e50efec20489d47726217e9c7e", null ],
     [ "novas_set_ssb_vel", "target_8c.html#a45f7fdc15580138517ce452a236674d7", null ],
     [ "novas_solar_power", "target_8c.html#a763f9a9dd2edb4645a5db05184ca7495", null ],
-    [ "proper_motion", "target_8c.html#a24b69e1809a33113d4a041dd3e4082ad", null ],
-    [ "starvectors", "target_8c.html#a27bae6c9efdab763dba9f1ae36a04669", null ],
+    [ "novas_star_vel", "target_8c.html#a0edfc4129c502e4765547dfee5307a78", null ],
+    [ "proper_motion", "target_8c.html#abe3fdcae8580368a73cea3aa5624cb74", null ],
+    [ "starvectors", "target_8c.html#a7e369ae89cfc4bd08411b11e410af0f0", null ],
     [ "transform_cat", "target_8c.html#a9df2887bbd6b76eeba8aa1fb8be204b7", null ],
     [ "transform_hip", "target_8c.html#af2c03d540de7a8bfafaed27eb9a753c1", null ]
 ];

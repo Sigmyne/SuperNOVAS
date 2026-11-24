@@ -28,5 +28,6 @@ var observer_8c =
     [ "novas_site_uvw", "observer_8c.html#aa75f22539fa6135b64f5026c6e1fcba1", null ],
     [ "novas_uvw", "observer_8c.html#a81f4b147c3f132a1498cdd833042d804", null ],
     [ "obs_planets", "observer_8c.html#a07490a134a685fe0842b2b4816559292", null ],
-    [ "obs_posvel", "observer_8c.html#a0e4e5ff7c37e6521ca75ae62aaf4050e", null ]
+    [ "obs_posvel", "observer_8c.html#a0e4e5ff7c37e6521ca75ae62aaf4050e", null ],
+    [ "undo_aberration", "observer_8c.html#ad820e7ba46523b3cba6ddf552428cac8", null ]
 ];

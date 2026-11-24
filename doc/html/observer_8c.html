@@ -37,7 +37,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C API<span id="projectnumber">&#160;v1.8</span>
+   <div id="projectname">SuperNOVAS C API<span id="projectnumber">&#160;v1.9</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -185,6 +185,8 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga07490a134a685fe0842b2b4816559292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the positions and velocities for the Solar-system bodies, e.g.  <br /></td></tr>
 <tr class="memitem:ga0e4e5ff7c37e6521ca75ae62aaf4050e" id="r_ga0e4e5ff7c37e6521ca75ae62aaf4050e"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__geometric.html#ga0e4e5ff7c37e6521ca75ae62aaf4050e">obs_posvel</a> (double jd_tdb, double ut1_to_tt, enum <a class="el" href="group__frame.html#ga3cba2735c32163fab062b1a904a83b56">novas_accuracy</a> accuracy, const <a class="el" href="group__observer.html#gae7963c522d28ce6891b472e079307d03">observer</a> *restrict obs, const double *restrict geo_pos, const double *restrict geo_vel, double *restrict pos, double *restrict vel)</td></tr>
 <tr class="memdesc:ga0e4e5ff7c37e6521ca75ae62aaf4050e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the ICRS position and velocity of the observer relative to the Solar System Barycenter (SSB).  <br /></td></tr>
+<tr class="memitem:gad820e7ba46523b3cba6ddf552428cac8" id="r_gad820e7ba46523b3cba6ddf552428cac8"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="group__observer.html#gad820e7ba46523b3cba6ddf552428cac8">undo_aberration</a> (const double *pos, const double *vobs, double lighttime, double *out)</td></tr>
+<tr class="memdesc:gad820e7ba46523b3cba6ddf552428cac8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the geometric position vector from an aberrated position.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This module provides a set of functions that define an astronomical observer location, or ones that relate to observer location. </p>
@@ -256,7 +258,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the vector arguments are NULL.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>frame_aberration() </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__observer.html#gad820e7ba46523b3cba6ddf552428cac8" title="Calculates the geometric position vector from an aberrated position.">undo_aberration()</a> </dd></dl>
 
 <p class="reference">References <a class="el" href="#a033f1bf4b01e0e21a0e05e13c19c02f6">aberration()</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="novas_8h.html#ab6b014bd66a719d43c7b88713b033988">out</a>.</p>
 

@@ -37,7 +37,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C API<span id="projectnumber">&#160;v1.8</span>
+   <div id="projectname">SuperNOVAS C API<span id="projectnumber">&#160;v1.9</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -669,7 +669,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Calculates an approximate apparent location on sky for a major planet, Sun, Moon, Earth-Moon Barycenter (EMB) &ndash; typically to arcmin level accuracy &ndash; using Keplerian orbital elements. </p>
-<p>The returned position is antedated for light-travel time (for Solar-System bodies). It also applies an appropriate aberration correction (but not gravitational deflection).</p>
+<p>The returned position is antedated for light-travel time (for Solar-System bodies). It also applies an appropriate aberration correction for the observer motion (but not gravitational deflection).</p>
 <p>The orbitals can provide planet positions to arcmin-level precision for the rocky inner planets, and to a fraction of a degree precision for the gas and ice giants and Pluto. The accuracies for Uranus, Neptune, and Pluto are significantly improved (to the arcmin level) if used in the time range of 1800 AD to 2050 AD. For a more detailed summary of the typical accuracies, see either of the top two references below.</p>
 <p>For accurate positions, you should use planetary ephemerides (such as the JPL ephemerides via the CALCEPH or CSPICE plugins) and <span class="tt"><a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span> instead.</p>
 <p>While this function is generally similar to creating an orbital object with an orbit initialized with <span class="tt"><a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> or <span class="tt"><a class="el" href="group__source.html#gad6e6c7f6dc2745030e3fd4d407e982bd" title="Gets an approximation of the current Keplerian orbital elements for the Moon relative to the geocente...">novas_make_moon_orbit()</a></span>, and then calling <span class="tt"><a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a></span>, there are a few important differences to note:</p>
@@ -677,6 +677,10 @@ Variables</h2></td></tr>
 <li>This function calculates Earth and Moon positions about the Keplerian orbital position of the Earth-Moon Barycenter (EMB). In constrast, <span class="tt"><a class="el" href="group__source.html#ga63b094e813d8b752a6f3344419e80031" title="Get approximate current heliocentric orbital elements for the major planets.">novas_make_planet_orbit()</a></span> does not provide orbitals for the Earth directly, and <span class="tt">make_moot_orbit()</span> references the Moon's orbital to the Earth position returned by the currently configured planet calculator function (see <span class="tt"><a class="el" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973" title="Set a custom function to use for regular precision (see NOVAS_REDUCED_ACCURACY) ephemeris calculation...">set_planet_provider()</a></span>).</li>
 <li>This function ignores gravitational deflection. It makes little sense to bother about corrections that are orders of magnitude below the accuracy of the orbital positions obtained.</li>
 </ul>
+<p>NOTES:</p>
+<ol type="1">
+<li>As of v1.9, the calculated spectroscopic radial velocity includes the transverse Doppler effect also, which was not included previously.</li>
+</ol>
 <p>REFERENCES:</p>
 <ol type="1">
 <li>E.M. Standish and J.G. Williams 1992.</li>
@@ -696,7 +700,7 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 in case of an error (errno will indicate the type of error).</dd></dl>
 <dl class="section since"><dt>Since</dt><dd>1.4 </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, <a class="el" href="#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a> </dd>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#gac365a1e015ae1f875dc5a66fd5435b2f" title="Calculates an apparent location on sky for the source.">novas_sky_pos()</a>, <a class="el" href="group__geometric.html#gae817333eb138aeea5a1063f2c3d14f2a" title="Calculates the approximate astrometric position and velocity vectors for a major planet,...">novas_approx_posvel()</a>, <a class="el" href="#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca" title="Converts an observed apparent position vector in the specified coordinate system to local horizontal ...">novas_app_to_hor()</a> </dd>
 <dd>
 <a class="el" href="group__frame.html#gadc72577f99a7b076b23e0e44ddbca838" title="Sets up a observing frame for a specific observer location, time of observation, and accuracy require...">novas_make_frame()</a> </dd></dl>
 
@@ -1053,7 +1057,7 @@ Variables</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Attila Kovacs</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#ga9f33de2b26a19a5e20827e9e918b3375" title="Returns the angular separation of two locations on a sphere.">novas_sep()</a>, <a class="el" href="#ga2d1ef3bc6d99aa473511e45c6e0481e9" title="Returns the apparent angular distance of a source from the Sun from the observer&#39;s point of view.">novas_sun_angle()</a>, <a class="el" href="#ga121940d7f0ef41297d28fab8e6df5998" title="Returns the apparent angular distance of a source from the Moon from the observer&#39;s point of view.">novas_moon_angle()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f">novas_sky_pos::dec</a>, <a class="el" href="structnovas__sky__pos.html#a3c45d500db3a793b89d234d950886e4d">novas_sky_pos::dis</a>, <a class="el" href="#ga4f7e06b2fa5b3145b37aec4f9c2d1602">novas_equ_sep()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea8c3e21e3d68b39b0b0ca28f99b8cacf4">NOVAS_GCRS</a>, <a class="el" href="#gafa5f3a823a895bed01876df6b2a00370">novas_object_sep()</a>, <a class="el" href="structnovas__sky__pos.html#a7d5aa9cc738e19f0891bff94ad148741">novas_sky_pos::ra</a>, and <a class="el" href="#ga462bdac0f370f0c5b421ae5b3f3e35f2">SKY_POS_INIT</a>.</p>
+<p class="reference">References <a class="el" href="structnovas__sky__pos.html#a3538259b8b9a27882db94502bed3548f">novas_sky_pos::dec</a>, <a class="el" href="#ga4f7e06b2fa5b3145b37aec4f9c2d1602">novas_equ_sep()</a>, <a class="el" href="group__equatorial.html#gga7ba038ea34eb901ccfb8f785708c651ea8c3e21e3d68b39b0b0ca28f99b8cacf4">NOVAS_GCRS</a>, <a class="el" href="#gafa5f3a823a895bed01876df6b2a00370">novas_object_sep()</a>, <a class="el" href="structnovas__sky__pos.html#a7d5aa9cc738e19f0891bff94ad148741">novas_sky_pos::ra</a>, and <a class="el" href="#ga462bdac0f370f0c5b421ae5b3f3e35f2">SKY_POS_INIT</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="#ga121940d7f0ef41297d28fab8e6df5998">novas_moon_angle()</a>, <a class="el" href="#gafa5f3a823a895bed01876df6b2a00370">novas_object_sep()</a>, and <a class="el" href="#ga2d1ef3bc6d99aa473511e45c6e0481e9">novas_sun_angle()</a>.</p>
 
@@ -1161,6 +1165,7 @@ Variables</h2></td></tr>
 <p>NOTES:</p>
 <ol type="1">
 <li>As of SuperNOVAS v1.3, the returned radial velocity component is a proper observer-based spectroscopic measure. In prior releases, and in NOVAS C 3.1, this was inconsistent, with LSR-based measures being returned for catalog sources.</li>
+<li>As of v1.9, the calculated spectroscopic radial velocity includes the transverse Doppler effect also, which was not included previously.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

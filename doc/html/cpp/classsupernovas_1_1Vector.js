@@ -2,6 +2,7 @@ var classsupernovas_1_1Vector =
 [
     [ "Vector", "classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc", null ],
     [ "Vector", "classsupernovas_1_1Vector.html#a67f0cc38bb4f768c9f52a2c8227b89eb", null ],
+    [ "Vector", "classsupernovas_1_1Vector.html#ad7484390e5f6c6d86a36e4606129aee3", null ],
     [ "~Vector", "classsupernovas_1_1Vector.html#a6e0deaf0bff9961abfb6fe57160abe3b", null ],
     [ "_array", "classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4", null ],
     [ "abs", "classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610", null ],

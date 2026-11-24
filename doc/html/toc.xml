@@ -254,10 +254,11 @@
       <topic label="novas_set_proper_motion" href="group__source.html#ga8ac3513c266181baf92a6b3c22818c99"/>
       <topic label="novas_set_redshift" href="group__source.html#ga4efac9e50efec20489d47726217e9c7e"/>
       <topic label="novas_set_ssb_vel" href="group__source.html#ga45f7fdc15580138517ce452a236674d7"/>
+      <topic label="novas_star_vel" href="group__source.html#ga0edfc4129c502e4765547dfee5307a78"/>
       <topic label="novas_to_dexxx_planet" href="group__source.html#gac3eb54acf22dc155879163de89c6865e"/>
       <topic label="novas_to_naif_planet" href="group__source.html#gab51ac9bdf7736e1c1582e0981046daf3"/>
-      <topic label="proper_motion" href="group__source.html#ga24b69e1809a33113d4a041dd3e4082ad"/>
-      <topic label="starvectors" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669"/>
+      <topic label="proper_motion" href="group__source.html#gabe3fdcae8580368a73cea3aa5624cb74"/>
+      <topic label="starvectors" href="group__source.html#ga7e369ae89cfc4bd08411b11e410af0f0"/>
       <topic label="transform_cat" href="group__source.html#gae44ab97ef3c8b1ad11e480f156429f39"/>
       <topic label="transform_hip" href="group__source.html#gaf2c03d540de7a8bfafaed27eb9a753c1"/>
     </topic>
@@ -331,6 +332,7 @@
       <topic label="novas_set_default_weather" href="group__observer.html#ga0fc8f315f8606e09571ab49efb13baca"/>
       <topic label="novas_site_gcrs_posvel" href="group__observer.html#ga65df4b49c0c33285ef5ddcf6814384dc"/>
       <topic label="novas_site_itrs_posvel" href="group__observer.html#gab7f162ecce55b3d63834ac6ed10761fa"/>
+      <topic label="undo_aberration" href="group__observer.html#gad820e7ba46523b3cba6ddf552428cac8"/>
     </topic>
     <topic label="Time of observation and astronomical timescales" href="group__time.html">
       <topic label="novas_timespec" href="structnovas__timespec.html">
@@ -524,6 +526,7 @@
       <topic label="light_time" href="group__geometric.html#gafb2cc37c7bdcd34c5c167afe092aed68"/>
       <topic label="light_time2" href="group__geometric.html#ga5c940b62732d74e6c6b1c844931aaa76"/>
       <topic label="novas_approx_heliocentric" href="group__geometric.html#ga9ead627eed7fabd8583f1353e89f42e7"/>
+      <topic label="novas_approx_posvel" href="group__geometric.html#gae817333eb138aeea5a1063f2c3d14f2a"/>
       <topic label="novas_geom_posvel" href="group__geometric.html#gac6652ee3257621080dac342313d0a0a7"/>
       <topic label="novas_geom_to_app" href="group__geometric.html#ga4817703c9357f702a27812584c91f87c"/>
       <topic label="novas_moon_elp_posvel" href="group__geometric.html#ga504a8665bac877f6d06afb24fcf0a68f"/>
@@ -1116,6 +1119,10 @@
           <topic label="NOVAS_SYSTEM_ICRS" href="group__source.html#ga9d170036a074eff7634bdb23e54871b0"/>
           <topic label="NOVAS_SYSTEM_J2000" href="group__source.html#gae67fecc99f46afc9b4f12fc27b4fbe6c"/>
           <topic label="NOVAS_TAI_TO_TT" href="group__time.html#ga68aa01f6e3e0f40bbe1b5ccab3144fda"/>
+          <topic label="NOVAS_TC_LB" href="novas_8h.html#a526a1d2bfecd8f5049403bbf86253a96"/>
+          <topic label="NOVAS_TC_LG" href="novas_8h.html#a6dbbc0cb1643171918d9bd4d2e12bbb5"/>
+          <topic label="NOVAS_TC_T0" href="novas_8h.html#abb052208b6d59662b735eafcb7b4364e"/>
+          <topic label="NOVAS_TC_TDB0" href="novas_8h.html#a48c105bf08a66ec46f96bd409a6fe932"/>
           <topic label="NOVAS_TIMESCALES" href="novas_8h.html#a7505fe27b163e97b60bcf4406eadffa7"/>
           <topic label="NOVAS_TIMESPEC_INIT" href="group__time.html#gaddf3ffbfe4ed05288b689e861600194f"/>
           <topic label="NOVAS_TIMESTAMP_LEN" href="novas_8h.html#a923fc797bc707dda3957e8b3c971df2e"/>
@@ -1431,6 +1438,7 @@
           <topic label="novas_app_to_geom" href="group__apparent.html#gab7db8026c598e8e126a4725ac3b388bf"/>
           <topic label="novas_app_to_hor" href="group__apparent.html#ga3cd947f2e48d6c5cc88ad7a1bab9b8ca"/>
           <topic label="novas_approx_heliocentric" href="group__geometric.html#ga9ead627eed7fabd8583f1353e89f42e7"/>
+          <topic label="novas_approx_posvel" href="group__geometric.html#gae817333eb138aeea5a1063f2c3d14f2a"/>
           <topic label="novas_approx_sky_pos" href="group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62"/>
           <topic label="novas_cartesian_to_geodetic" href="group__observer.html#ga7479134485c298faa858d73ee0513a11"/>
           <topic label="novas_case_sensitive" href="group__source.html#ga8f832afe92680a11c3489aaa224ac2e2"/>
@@ -1575,6 +1583,7 @@
           <topic label="novas_solar_power" href="group__solar-system.html#ga763f9a9dd2edb4645a5db05184ca7495"/>
           <topic label="novas_ssb_to_lsr_vel" href="group__spectral.html#ga99ed25baa029f3980924da8c8af54d1a"/>
           <topic label="novas_standard_refraction" href="group__refract.html#gab04bff3b97c132e358e11c3a5b7a3081"/>
+          <topic label="novas_star_vel" href="group__source.html#ga0edfc4129c502e4765547dfee5307a78"/>
           <topic label="novas_str_degrees" href="group__util.html#ga6d6ada07aab7ce09fb8ea7b12660ebcd"/>
           <topic label="novas_str_hours" href="group__util.html#ga3ed26b6af870f6dbc353f651563afd4a"/>
           <topic label="novas_sun_angle" href="group__apparent.html#ga2d1ef3bc6d99aa473511e45c6e0481e9"/>
@@ -1617,7 +1626,7 @@
           <topic label="planet_ephem_provider_hp" href="group__solar-system.html#ga93d0f96d81f3c52e05163643bd23eb7d"/>
           <topic label="planet_lon" href="novas_8h.html#aacc6a0daf29b8bdc18f46647a94694d3"/>
           <topic label="precession" href="group__earth.html#ga9178358732325399f3a5e3582080ced3"/>
-          <topic label="proper_motion" href="group__source.html#ga24b69e1809a33113d4a041dd3e4082ad"/>
+          <topic label="proper_motion" href="group__source.html#gabe3fdcae8580368a73cea3aa5624cb74"/>
           <topic label="rad_vel" href="group__spectral.html#gafca24d914664bb60d20fb428177f329a"/>
           <topic label="rad_vel2" href="group__spectral.html#ga37f22e463cc06b4e381aa18659e6319d"/>
           <topic label="radec2vector" href="group__util.html#gae104afd1bc638def9bdbce1801e5054a"/>
@@ -1634,7 +1643,7 @@
           <topic label="set_planet_provider_hp" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640"/>
           <topic label="sidereal_time" href="novas_8h.html#a6eacba14d3c382d67307856a2ea290e3"/>
           <topic label="spin" href="group__util.html#gaf4090e519d7ce7ab1fcdb24b10126eb4"/>
-          <topic label="starvectors" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669"/>
+          <topic label="starvectors" href="group__source.html#ga7e369ae89cfc4bd08411b11e410af0f0"/>
           <topic label="tdb2tt" href="group__time.html#ga90d5fae30728b51151c3daf355ca585b"/>
           <topic label="terra" href="group__earth.html#gadc81730affa75f5facc8c6bd280c83c9"/>
           <topic label="tod_to_cirs" href="group__equatorial.html#gadb48b2acaf76cc3a1e3a1412cc42c232"/>
@@ -1648,6 +1657,7 @@
           <topic label="tt2tdb" href="group__time.html#ga129acca41760da486e1179c93cb9e86d"/>
           <topic label="tt2tdb_fp" href="group__time.html#gad301a9c74bfbdb8b55513cd005787b22"/>
           <topic label="tt2tdb_hp" href="group__time.html#ga5709058076f4aea4eeaeeb000342cd94"/>
+          <topic label="undo_aberration" href="group__observer.html#gad820e7ba46523b3cba6ddf552428cac8"/>
           <topic label="unredshift_vrad" href="group__spectral.html#gaea89203030ca831260dec18f83081d23"/>
           <topic label="vector2radec" href="group__util.html#ga84f672dc1c37e3af374198f29cbcfba9"/>
           <topic label="virtual_planet" href="group__apparent.html#ga0dc172d82eec79f78c2d218c1a7b9cbe"/>
@@ -1849,6 +1859,7 @@
             <topic label="novas_uvw" href="group__interferometry.html#ga81f4b147c3f132a1498cdd833042d804"/>
             <topic label="obs_planets" href="group__solar-system.html#ga07490a134a685fe0842b2b4816559292"/>
             <topic label="obs_posvel" href="group__geometric.html#ga0e4e5ff7c37e6521ca75ae62aaf4050e"/>
+            <topic label="undo_aberration" href="group__observer.html#gad820e7ba46523b3cba6ddf552428cac8"/>
           </topic>
           <topic label="orbital.c" href="orbital_8c.html">
             <topic label="novas_orbit_native_posvel" href="group__geometric.html#ga6b88d2403a3051ab32229244cf98d7ab"/>
@@ -1896,6 +1907,7 @@
           </topic>
           <topic label="planets.c" href="planets_8c.html">
             <topic label="novas_approx_heliocentric" href="group__geometric.html#ga9ead627eed7fabd8583f1353e89f42e7"/>
+            <topic label="novas_approx_posvel" href="group__geometric.html#gae817333eb138aeea5a1063f2c3d14f2a"/>
             <topic label="novas_approx_sky_pos" href="group__apparent.html#ga4cb01609f76b0ff8487817b9446a3a62"/>
             <topic label="novas_make_planet_orbit" href="group__source.html#ga63b094e813d8b752a6f3344419e80031"/>
             <topic label="planet_lon" href="planets_8c.html#aacc6a0daf29b8bdc18f46647a94694d3"/>
@@ -1993,8 +2005,9 @@
             <topic label="novas_set_redshift" href="group__source.html#ga4efac9e50efec20489d47726217e9c7e"/>
             <topic label="novas_set_ssb_vel" href="group__source.html#ga45f7fdc15580138517ce452a236674d7"/>
             <topic label="novas_solar_power" href="group__solar-system.html#ga763f9a9dd2edb4645a5db05184ca7495"/>
-            <topic label="proper_motion" href="group__source.html#ga24b69e1809a33113d4a041dd3e4082ad"/>
-            <topic label="starvectors" href="group__source.html#ga27bae6c9efdab763dba9f1ae36a04669"/>
+            <topic label="novas_star_vel" href="group__source.html#ga0edfc4129c502e4765547dfee5307a78"/>
+            <topic label="proper_motion" href="group__source.html#gabe3fdcae8580368a73cea3aa5624cb74"/>
+            <topic label="starvectors" href="group__source.html#ga7e369ae89cfc4bd08411b11e410af0f0"/>
             <topic label="transform_cat" href="group__source.html#gae44ab97ef3c8b1ad11e480f156429f39"/>
             <topic label="transform_hip" href="group__source.html#gaf2c03d540de7a8bfafaed27eb9a753c1"/>
           </topic>

@@ -37,7 +37,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.9</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -174,7 +174,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>[AU] Minimum source / observer distance from nominal gravitating body position for applying deflection corrections from that body (10<sup>-6</sup> AU ~ 150 km). </p>
-<dl class="section since"><dt>Since</dt><dd>1.8.1 </dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.9 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="novas_8h.html#a08a008572e2746a70bec19739b5fb7e6">grav_vec()</a>.</p>
 
@@ -288,8 +288,8 @@ Variables</h2></td></tr>
 <p>NOTES:</p>
 <ol type="1">
 <li>The gravitational deflection due to planets requires a planet calculator function to be configured, e.g. via <a class="el" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640" title="Set a custom function to use for high precision (see NOVAS_FULL_ACCURACY) ephemeris calculations inst...">set_planet_provider_hp()</a>.</li>
-<li>As of <b>v1.8.1</b>, the implementation was modified to avoid self-deflection. If the source or observer is within 0.9 radii of the gravitating body center, then no deflection is applied due to that body. (thanks to Gregor Baettig)</li>
-<li>As of <b>v1.8.1</b>, the deflections from the planets are ordered accoring to line-of-sight distance, in light arrival order from the source.</li>
+<li>As of <b>v1.9</b>, the implementation was modified to avoid self-deflection. If the source or observer is within 0.9 radii of the gravitating body center, then no deflection is applied due to that body. (thanks to Gregor Baettig)</li>
+<li>As of <b>v1.9</b>, the deflections from the planets are ordered accoring to line-of-sight distance, in light arrival order from the source.</li>
 </ol>
 <p>REFERENCES:</p>
 <ol type="1">
@@ -515,7 +515,7 @@ Variables</h2></td></tr>
 <p>NOTES:</p>
 <ol type="1">
 <li>This function is called by <a class="el" href="#a48f90ac20950507fad9b880a7f7f2383" title="(primarily for internal use) Computes the total gravitational deflection of light for the observed ob...">grav_def()</a> to calculate appropriate gravitational deflections around the massive Solar-system objects.</li>
-<li>As of <b>v1.8.1</b>, the implementation was modified to avoid self-deflection. If the source or observer is within 10<sup>-6</sup> AU (~ 150 km) of the gravitating body center, then no deflection is applied. (thanks to Gregor Baettig)</li>
+<li>As of <b>v1.9</b>, the implementation was modified to avoid self-deflection. If the source or observer is within 10<sup>-6</sup> AU (~ 150 km) of the gravitating body center, then no deflection is applied. (thanks to Gregor Baettig)</li>
 </ol>
 <p>REFERENCES:</p>
 <ol type="1">

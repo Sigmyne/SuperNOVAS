@@ -85,7 +85,7 @@ var searchData=
   ['star_82',['star',['../structnovas__object.html#af6249fc903eaacb4869bdada2987c0cd',1,'novas_object']]],
   ['starname_83',['starname',['../structnovas__cat__entry.html#ac06af140acde272f032a431f6cfeb85d',1,'novas_cat_entry']]],
   ['starnumber_84',['starnumber',['../structnovas__cat__entry.html#a456d93b89cbbc3c13cb0cb9d3b8a4cb0',1,'novas_cat_entry']]],
-  ['starvectors_85',['starvectors',['../novas_8h.html#a27bae6c9efdab763dba9f1ae36a04669',1,'starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict motion):&#160;target.c'],['../target_8c.html#a27bae6c9efdab763dba9f1ae36a04669',1,'starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict motion):&#160;target.c']]],
+  ['starvectors_85',['starvectors',['../novas_8h.html#a7e369ae89cfc4bd08411b11e410af0f0',1,'starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict v_apparent):&#160;target.c'],['../target_8c.html#a7e369ae89cfc4bd08411b11e410af0f0',1,'starvectors(const cat_entry *restrict star, double *restrict pos, double *restrict v_apparent):&#160;target.c']]],
   ['state_86',['state',['../structnovas__frame.html#a1a565eeb8311e69122226a4dcfbd5d76',1,'novas_frame']]],
   ['state_5fcall_87',['state_call',['../structnovas__observer.html#ab1dfe50fa5103464b44ee41d6d381b17',1,'novas_observer::state_call'],['../classsupernovas_1_1DynamicObserver.html#a6304e2cc61f6218618e010a63a7c29ed',1,'supernovas::DynamicObserver::state_call() const']]],
   ['state_5fcall_5farg_88',['state_call_arg',['../classsupernovas_1_1DynamicObserver.html#add04f18d917eed1548759128b8b806ed',1,'supernovas::DynamicObserver']]],

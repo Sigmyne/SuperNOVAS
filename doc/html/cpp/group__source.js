@@ -6,6 +6,7 @@ var group__source =
       [ "CatalogEntry", "classsupernovas_1_1CatalogEntry.html#ae4368af65404acdfeaa1365e12ac2f2f", null ],
       [ "CatalogEntry", "classsupernovas_1_1CatalogEntry.html#ab4b85b7dd5b5c430670b1210c2fc9ff7", null ],
       [ "_cat_entry", "classsupernovas_1_1CatalogEntry.html#ab1ba4b71acf87ebd4bfe12fbeb88855c", null ],
+      [ "apparent_motion", "classsupernovas_1_1CatalogEntry.html#aba9db7542493a9bb1a7b6ec90b10abb7", null ],
       [ "dec", "classsupernovas_1_1CatalogEntry.html#ad3fbfae4e65d4cb968bf356f8bad08a3", null ],
       [ "distance", "classsupernovas_1_1CatalogEntry.html#ab5cd489f9c295a94d1e3eece72e7ea5c", null ],
       [ "distance", "classsupernovas_1_1CatalogEntry.html#a82a4ce2d55312b948ac6e12e8987e711", null ],
@@ -30,7 +31,8 @@ var group__source =
       [ "to_string", "classsupernovas_1_1CatalogEntry.html#a809dd3e1a781361694cc1332d5e1f363", null ],
       [ "v_lsr", "classsupernovas_1_1CatalogEntry.html#a23c9875e4a6e480d214c9288f9debe7b", null ],
       [ "v_lsr", "classsupernovas_1_1CatalogEntry.html#a74120ab096b8a9db05ebb87e6dce8f84", null ],
-      [ "v_lsr", "classsupernovas_1_1CatalogEntry.html#a5abe557f04d1f2ed2dccdaac1e2c0b4b", null ]
+      [ "v_lsr", "classsupernovas_1_1CatalogEntry.html#a5abe557f04d1f2ed2dccdaac1e2c0b4b", null ],
+      [ "velocity", "classsupernovas_1_1CatalogEntry.html#a945e14e18f44892958597adfb5ac48ea", null ]
     ] ],
     [ "supernovas::CatalogSource", "classsupernovas_1_1CatalogSource.html", [
       [ "CatalogSource", "classsupernovas_1_1CatalogSource.html#ab309ce8e3bd4d09229aa6eff97248b5e", null ],

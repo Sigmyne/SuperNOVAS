@@ -37,7 +37,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.9</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -146,6 +146,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classsupernova
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ad7484390e5f6c6d86a36e4606129aee3" id="r_ad7484390e5f6c6d86a36e4606129aee3"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ad7484390e5f6c6d86a36e4606129aee3">Vector</a> (const double xyz[3], double unit=1.0)</td></tr>
+<tr class="memdesc:ad7484390e5f6c6d86a36e4606129aee3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new vector from its <em>xyz</em> components, specified in the given physical unit.  <br /></td></tr>
 <tr class="memitem:a67f0cc38bb4f768c9f52a2c8227b89eb" id="r_a67f0cc38bb4f768c9f52a2c8227b89eb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a67f0cc38bb4f768c9f52a2c8227b89eb">Vector</a> (double x, double y, double z)</td></tr>
 <tr class="memdesc:a67f0cc38bb4f768c9f52a2c8227b89eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a vector from its cartesian components.  <br /></td></tr>
 <tr class="memitem:a6e0deaf0bff9961abfb6fe57160abe3b" id="r_a6e0deaf0bff9961abfb6fe57160abe3b"><td class="memItemLeft">virtual&#160;</td><td class="memItemRight"><a class="el" href="#a6e0deaf0bff9961abfb6fe57160abe3b">~Vector</a> ()</td></tr>
@@ -203,7 +205,7 @@ Protected Attributes</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classsupernovas_1_1Position.html" title="A 3D physical position vector in space.">Position</a>, <a class="el" href="classsupernovas_1_1Velocity.html" title="A 3D physical velocity vector in space.">Velocity</a>, <a class="el" href="classsupernovas_1_1Interferometric.html" title="u, v, w projections of an interferometric station along a line of sight.">Interferometric</a> </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="afaf9b317641d3a3aaf1e5a57dc4f3dfc" name="afaf9b317641d3a3aaf1e5a57dc4f3dfc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">&#9670;&#160;</a></span>Vector() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">&#9670;&#160;</a></span>Vector() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -229,12 +231,12 @@ Protected Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Interferometric.html#a7e9c0ca7daa0a70ff05ed8a7dffbb969">supernovas::Interferometric::Interferometric()</a>, <a class="el" href="classsupernovas_1_1Position.html#abac0617b150aa85cea17e9dfec1aac78">supernovas::Position::Position()</a>, <a class="el" href="classsupernovas_1_1Position.html#aad6baaf00a81c50b8e744f7ab21df205">supernovas::Position::Position()</a>, <a class="el" href="classsupernovas_1_1Position.html#afdd4d47f9e694ef44aa7b8719f7a6b45">supernovas::Position::Position()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#a2f26da36dd9c4dba704ec314585ebc2c">supernovas::Velocity::Velocity()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#ac8c45cf5e2a78e9753557a78eab76949">supernovas::Velocity::along()</a>, <a class="el" href="#a17572fd5d9e2127b813c5f0186dde2ee">dot()</a>, <a class="el" href="#a30393fbff5a33c0890031b7302c18791">equals()</a>, <a class="el" href="#a97c4fd36e79bcd6f02d5a8c2d540942b">operator*()</a>, <a class="el" href="#ae0a3cd5be4f0eab813cce7ffe37fce78">projection_on()</a>, <a class="el" href="#a442ce772514302bdb431d74675e12c46">scaled()</a>, and <a class="el" href="#ad761bfcd08771389fced7f7c908c9c52">unit_vector()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Interferometric.html#a7e9c0ca7daa0a70ff05ed8a7dffbb969">supernovas::Interferometric::Interferometric()</a>, <a class="el" href="classsupernovas_1_1Position.html#abac0617b150aa85cea17e9dfec1aac78">supernovas::Position::Position()</a>, <a class="el" href="classsupernovas_1_1Position.html#aad6baaf00a81c50b8e744f7ab21df205">supernovas::Position::Position()</a>, <a class="el" href="classsupernovas_1_1Position.html#afdd4d47f9e694ef44aa7b8719f7a6b45">supernovas::Position::Position()</a>, <a class="el" href="#ad7484390e5f6c6d86a36e4606129aee3">Vector()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#a2f26da36dd9c4dba704ec314585ebc2c">supernovas::Velocity::Velocity()</a>, <a class="el" href="classsupernovas_1_1Velocity.html#ac8c45cf5e2a78e9753557a78eab76949">supernovas::Velocity::along()</a>, <a class="el" href="#a17572fd5d9e2127b813c5f0186dde2ee">dot()</a>, <a class="el" href="#a30393fbff5a33c0890031b7302c18791">equals()</a>, <a class="el" href="#a97c4fd36e79bcd6f02d5a8c2d540942b">operator*()</a>, <a class="el" href="#ae0a3cd5be4f0eab813cce7ffe37fce78">projection_on()</a>, <a class="el" href="#a442ce772514302bdb431d74675e12c46">scaled()</a>, and <a class="el" href="#ad761bfcd08771389fced7f7c908c9c52">unit_vector()</a>.</p>
 
 </div>
 </div>
 <a id="a67f0cc38bb4f768c9f52a2c8227b89eb" name="a67f0cc38bb4f768c9f52a2c8227b89eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67f0cc38bb4f768c9f52a2c8227b89eb">&#9670;&#160;</a></span>Vector() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a67f0cc38bb4f768c9f52a2c8227b89eb">&#9670;&#160;</a></span>Vector() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -277,6 +279,47 @@ Protected Attributes</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">References <a class="el" href="#a2faf9b36e0fdc2bc3f09f9e524b65d18">_component</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, and <a class="el" href="#aab5ce2de6a675909f520087958fe3610">abs()</a>.</p>
+
+</div>
+</div>
+<a id="ad7484390e5f6c6d86a36e4606129aee3" name="ad7484390e5f6c6d86a36e4606129aee3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7484390e5f6c6d86a36e4606129aee3">&#9670;&#160;</a></span>Vector() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">supernovas::Vector::Vector </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>xyz</em></span>[3], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>unit</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1.0</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Instantiates a new vector from its <em>xyz</em> components, specified in the given physical unit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xyz</td><td>The <em>xyz</em> 3-vector defining the components </td></tr>
+    <tr><td class="paramname">unit</td><td>(optional) the physical unit (e.g. <a class="el" href="classsupernovas_1_1Unit.html#a06a5719176ea23f07378bfb5f04a84a2" title="[m] 1 kilometer in meters">Unit::km</a>, or <a class="el" href="classsupernovas_1_1Unit.html#a8637bda425dcc6fe614293e3573668c7" title="[m/s] 1 AU per day in m/s">Unit::AU_per_day</a>) in which the components were specified (default: 1.0).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section since"><dt>Since</dt><dd>1.9 </dd></dl>
+
+<p class="reference">References <a class="el" href="#afaf9b317641d3a3aaf1e5a57dc4f3dfc">Vector()</a>.</p>
 
 </div>
 </div>

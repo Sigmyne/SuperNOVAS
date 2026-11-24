@@ -37,7 +37,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.9</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -173,10 +173,12 @@ Functions</h2></td></tr>
 <tr class="memdesc:a45f7fdc15580138517ce452a236674d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a radial velocity for a catalog source, defined w.r.t.  <br /></td></tr>
 <tr class="memitem:a763f9a9dd2edb4645a5db05184ca7495" id="r_a763f9a9dd2edb4645a5db05184ca7495"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a763f9a9dd2edb4645a5db05184ca7495">novas_solar_power</a> (double jd_tdb, const <a class="el" href="novas_8h.html#a8bb95dd453e33d4c9892266c9af5df2a">object</a> *restrict source)</td></tr>
 <tr class="memdesc:a763f9a9dd2edb4645a5db05184ca7495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the typical incident Solar power on a Solar-system body at the time of observation.  <br /></td></tr>
-<tr class="memitem:a24b69e1809a33113d4a041dd3e4082ad" id="r_a24b69e1809a33113d4a041dd3e4082ad"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a24b69e1809a33113d4a041dd3e4082ad">proper_motion</a> (double jd_tdb_in, const double *pos, const double *restrict vel, double jd_tdb_out, double *out)</td></tr>
-<tr class="memdesc:a24b69e1809a33113d4a041dd3e4082ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies proper motion, including foreshortening effects, to a star's position.  <br /></td></tr>
-<tr class="memitem:a27bae6c9efdab763dba9f1ae36a04669" id="r_a27bae6c9efdab763dba9f1ae36a04669"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a27bae6c9efdab763dba9f1ae36a04669">starvectors</a> (const <a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *restrict star, double *restrict pos, double *restrict motion)</td></tr>
-<tr class="memdesc:a27bae6c9efdab763dba9f1ae36a04669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts angular quantities for stars to vectors.  <br /></td></tr>
+<tr class="memitem:a0edfc4129c502e4765547dfee5307a78" id="r_a0edfc4129c502e4765547dfee5307a78"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a0edfc4129c502e4765547dfee5307a78">novas_star_vel</a> (const <a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *restrict star, double *restrict vel)</td></tr>
+<tr class="memdesc:a0edfc4129c502e4765547dfee5307a78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates a star's physical 3D velocity relative to the Solar-System Barycenter (SSB) based on its observed spectroscopic redshift and proper motion.  <br /></td></tr>
+<tr class="memitem:abe3fdcae8580368a73cea3aa5624cb74" id="r_abe3fdcae8580368a73cea3aa5624cb74"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#abe3fdcae8580368a73cea3aa5624cb74">proper_motion</a> (double jd_tdb_in, const double *pos, const double *restrict v_apparent, double jd_tdb_out, double *out)</td></tr>
+<tr class="memdesc:abe3fdcae8580368a73cea3aa5624cb74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies proper motion, including foreshortening effects, to a star's position.  <br /></td></tr>
+<tr class="memitem:a7e369ae89cfc4bd08411b11e410af0f0" id="r_a7e369ae89cfc4bd08411b11e410af0f0"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a7e369ae89cfc4bd08411b11e410af0f0">starvectors</a> (const <a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *restrict star, double *restrict pos, double *restrict v_apparent)</td></tr>
+<tr class="memdesc:a7e369ae89cfc4bd08411b11e410af0f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts angular quantities for stars to astrometric position and apparent motion vectors.  <br /></td></tr>
 <tr class="memitem:a9df2887bbd6b76eeba8aa1fb8be204b7" id="r_a9df2887bbd6b76eeba8aa1fb8be204b7"><td class="memItemLeft">short&#160;</td><td class="memItemRight"><a class="el" href="#a9df2887bbd6b76eeba8aa1fb8be204b7">transform_cat</a> (enum <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367">novas_transform_type</a> option, double date_in, const <a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *in, double date_out, const char *out_id, <a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *out)</td></tr>
 <tr class="memdesc:a9df2887bbd6b76eeba8aa1fb8be204b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform a star's catalog quantities for a change the coordinate system and/or the date for which the positions are calculated.  <br /></td></tr>
 <tr class="memitem:af2c03d540de7a8bfafaed27eb9a753c1" id="r_af2c03d540de7a8bfafaed27eb9a753c1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#af2c03d540de7a8bfafaed27eb9a753c1">transform_hip</a> (const <a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *hipparcos, <a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *hip_2000)</td></tr>
@@ -253,7 +255,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir"></td><td class="paramname">cat_num</td><td>Object number in the catalog. It is not used internally, so you may set it to anything that is meaningful to you, or set it to 0 as a default. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">ra</td><td>[h] Right ascension of the object. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">dec</td><td>[deg] Declination of the object. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">pm_ra</td><td>[mas/yr] Proper motion in right ascension. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">pm_ra</td><td>[mas/yr] Proper motion in right ascension (projected i.e., &part;RA / &part;t * <b>cos</b>(Dec)). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pm_dec</td><td>[mas/yr] Proper motion in declination. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">parallax</td><td>[mas] Parallax. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">rv</td><td>[km/s] Radial velocity relative to the Solar-System Barycenter (SSB). To convert velocities defined against the Local Standard of Rest (LSR), you may use <span class="tt"><a class="el" href="novas_8h.html#aad80bf94be2efc36c340994829df8207" title="Returns a Solar System Baricentric (SSB) radial velocity for a radial velocity that is referenced to ...">novas_lsr_to_ssb_vel()</a></span> to convert appropriately. Or, to convert from a redshift value, you might use <span class="tt"><a class="el" href="novas_8h.html#a63621cea3b4985c1bfcc4514a7aa3fb1" title="Converts a redshift value (z = Δλ / λrest) to a radial velocity (i.e.">novas_z2v()</a></span>. </td></tr>
@@ -567,7 +569,7 @@ Functions</h2></td></tr>
 
 <p class="reference">References <a class="el" href="#a411f70fb77582d750c5269fcd64b0ce2">make_object()</a>, <a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="novas_8h.html#a1eecb357eeea0de4759e9c8d55af238fad1eeaddaa96b028742a8ba424e311aa8">NOVAS_PLANET</a>, <a class="el" href="novas_8h.html#abbd19f57e31db2ac91cbe22f9a95f390">NOVAS_PLANET_NAMES_INIT</a>, and <a class="el" href="novas_8h.html#a1853540eae9f8699b6aaff9c0b518e08">NOVAS_PLANETS</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Planet.html#a5eab02d5a9e923909b7c959fba5100b3">supernovas::Planet::Planet()</a>, <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a>, <a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="novas_8h.html#a4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a>, and <a class="el" href="novas_8h.html#a07490a134a685fe0842b2b4816559292">obs_planets()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1Planet.html#a5eab02d5a9e923909b7c959fba5100b3">supernovas::Planet::Planet()</a>, <a class="el" href="novas_8h.html#a713982e1f2bae0a72b39d03007f00d23">ephemeris()</a>, <a class="el" href="novas_8h.html#a4c7846be95299769f4d0377bf127bcf5">make_planet()</a>, <a class="el" href="novas_8h.html#ae817333eb138aeea5a1063f2c3d14f2a">novas_approx_posvel()</a>, <a class="el" href="novas_8h.html#a4cb01609f76b0ff8487817b9446a3a62">novas_approx_sky_pos()</a>, and <a class="el" href="novas_8h.html#a07490a134a685fe0842b2b4816559292">obs_planets()</a>.</p>
 
 </div>
 </div>
@@ -1136,7 +1138,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">source</td><td>Output structure to populate with the parameters. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">pm_ra</td><td>[mas/yr] Proper motion in right ascension. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">pm_ra</td><td>[mas/yr] Proper motion in right ascension (projected i.e., &part;RA / &part;t * <b>cos</b>(Dec)). </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pm_dec</td><td>[mas/yr] Proper motion in declination. </td></tr>
   </table>
   </dd>
@@ -1267,8 +1269,47 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a24b69e1809a33113d4a041dd3e4082ad" name="a24b69e1809a33113d4a041dd3e4082ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24b69e1809a33113d4a041dd3e4082ad">&#9670;&#160;</a></span>proper_motion()</h2>
+<a id="a0edfc4129c502e4765547dfee5307a78" name="a0edfc4129c502e4765547dfee5307a78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0edfc4129c502e4765547dfee5307a78">&#9670;&#160;</a></span>novas_star_vel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int novas_star_vel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *restrict</td>          <td class="paramname"><span class="paramname"><em>star</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculates a star's physical 3D velocity relative to the Solar-System Barycenter (SSB) based on its observed spectroscopic redshift and proper motion. </p>
+<p>The observed (catalog) spectrosocpic redshift is partially due to radial morion, but includes also the transverse Doppler effect, and the gravitational potential for an Earth-based observer. The observed proper motion derives from the geomnetric transverse motion, but includes corrections for the changing light-time as the star moves also.</p>
+<p>The true physical motion can be inferred from the observed values iteratively.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">star</td><td>Pointer to catalog entry structure containing ICRS catalog </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">vel</td><td>[AU/day] Output physical velocity vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or else -1 if the output velocity is NULL (errno set to EINVAL), or else the error from <span class="tt"><a class="el" href="#a7e369ae89cfc4bd08411b11e410af0f0" title="Converts angular quantities for stars to astrometric position and apparent motion vectors.">starvectors()</a></span>.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.9 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a7e369ae89cfc4bd08411b11e410af0f0" title="Converts angular quantities for stars to astrometric position and apparent motion vectors.">starvectors()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="novas_8h.html#a0edfc4129c502e4765547dfee5307a78">novas_star_vel()</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="novas_8h.html#a7e369ae89cfc4bd08411b11e410af0f0">starvectors()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="novas_8h.html#a0edfc4129c502e4765547dfee5307a78">novas_star_vel()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="classsupernovas_1_1CatalogEntry.html#a945e14e18f44892958597adfb5ac48ea">supernovas::CatalogEntry::velocity()</a>.</p>
+
+</div>
+</div>
+<a id="abe3fdcae8580368a73cea3aa5624cb74" name="abe3fdcae8580368a73cea3aa5624cb74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe3fdcae8580368a73cea3aa5624cb74">&#9670;&#160;</a></span>proper_motion()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1286,7 +1327,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double *restrict</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>, </td>
+          <td class="paramtype">const double *restrict</td>          <td class="paramname"><span class="paramname"><em>v_apparent</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1302,6 +1343,10 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Applies proper motion, including foreshortening effects, to a star's position. </p>
+<p>NOTES:</p>
+<ol type="1">
+<li>Modified in v1.9 to iteratively account for change of light time between the initial and final epochs.</li>
+</ol>
 <p>REFERENCES:</p>
 <ol type="1">
 <li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
@@ -1309,24 +1354,24 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">jd_tdb_in</td><td>[day] Barycentric Dynamical Time (TDB) based Julian date of the first epoch. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">pos</td><td>[AU] Position vector at first epoch. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">vel</td><td>[AU/day] Velocity vector at first epoch. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">pos</td><td>[AU] (Equatorial) position vector at first epoch. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">v_apparent</td><td>[AU/day] Apparent (equatorial) motion vector at first epoch, including change of light-time, e.g. as obtained from <span class="tt"><a class="el" href="#a7e369ae89cfc4bd08411b11e410af0f0" title="Converts angular quantities for stars to astrometric position and apparent motion vectors.">starvectors()</a></span>. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">jd_tdb_out</td><td>[day] Barycentric Dynamical Time (TDB) based Julian date of the second epoch. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">out</td><td>Position vector at second epoch. It can be the same vector as the input. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the vector arguments is NULL.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a9df2887bbd6b76eeba8aa1fb8be204b7" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if any of the vector arguments is NULL (errno set to EINVAL), or if the apparent rate of recession exceeds the speed of light (errno set to EDOM), or if the change of light time correction failed to converge (errno set to ECANCELED).</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a7e369ae89cfc4bd08411b11e410af0f0" title="Converts angular quantities for stars to astrometric position and apparent motion vectors.">starvectors()</a>, <a class="el" href="#a9df2887bbd6b76eeba8aa1fb8be204b7" title="Transform a star&#39;s catalog quantities for a change the coordinate system and/or the date for which th...">transform_cat()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="novas_8h.html#a24b69e1809a33113d4a041dd3e4082ad">proper_motion()</a>.</p>
+<p class="reference">References <a class="el" href="util_8c.html#ad2b933ce2f58e8b04bbe76ffbff99eb0">novas_inv_max_iter</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, and <a class="el" href="novas_8h.html#abe3fdcae8580368a73cea3aa5624cb74">proper_motion()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="novas_8h.html#a24b69e1809a33113d4a041dd3e4082ad">proper_motion()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, <a class="el" href="novas_8h.html#abe3fdcae8580368a73cea3aa5624cb74">proper_motion()</a>, and <a class="el" href="novas_8h.html#ae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>.</p>
 
 </div>
 </div>
-<a id="a27bae6c9efdab763dba9f1ae36a04669" name="a27bae6c9efdab763dba9f1ae36a04669"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27bae6c9efdab763dba9f1ae36a04669">&#9670;&#160;</a></span>starvectors()</h2>
+<a id="a7e369ae89cfc4bd08411b11e410af0f0" name="a7e369ae89cfc4bd08411b11e410af0f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e369ae89cfc4bd08411b11e410af0f0">&#9670;&#160;</a></span>starvectors()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1344,35 +1389,38 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>motion</em></span>&#160;)</td>
+          <td class="paramtype">double *restrict</td>          <td class="paramname"><span class="paramname"><em>v_apparent</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Converts angular quantities for stars to vectors. </p>
+<p>Converts angular quantities for stars to astrometric position and apparent motion vectors. </p>
 <p>NOTES:</p>
 <ol type="1">
-<li>The velocity returned should not be used for deriving spectroscopic radial velocity. It is a measure of the perceived change of the stars position, not a true physical velocity.</li>
-<li>The original NOVAS C implementation applied a geometric to apparent conversion factor (k = 1 / (1 - rv/c) for the proper motion parameters. But proper motion is already apparent, so the factor is a mistake. Also, the factor should be 1 / (1 + rv/c), since the correction diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to Mike Kretlow for noticing these. It has been corrected for <b>v1.8.1</b>.</li>
+<li>The velocity returned should not be used for deriving spectroscopic radial velocity. It is a measure of the perceived change of the star's position over time, not a true physical velocity.</li>
+<li>The original NOVAS C implementation applied a geometric to apparent conversion factor (k = 1 / (1 - rv/c) for the proper motion parameters. But proper motion is already apparent, so the factor is a mistake. Also, the factor should be 1 / (1 + rv/c), since the correction diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to Mike Kretlow for noticing these. It has been corrected for <b>v1.9</b>.</li>
+<li>As of <b>v1.9</b> the implementation accounts for the transverse Doppler effect, following the prescription of Stumpff 1985.</li>
 </ol>
 <p>REFERENCES:</p>
 <ol type="1">
-<li>Kaplan, G. H. et. al. (1989). Astron. Journ. 97, 1197-1210.</li>
+<li>Stumpff, P., Astronomy and Astrophysics (ISSN 0004-6361), vol. 144, no. 1, March 1985, p. 232-240.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">star</td><td>Pointer to catalog entry structure containing ICRS catalog </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pos</td><td>[AU] Position vector, equatorial rectangular coordinates, It may be NULL if not required. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">motion</td><td>[AU/day] Perceived motion of star, in equatorial rectangular coordinates. It must be distinct from the pos output vector, and may be NULL if not required. Note, that it is suitable only for calculating the apparent 3D location of the star at a different time, and should not be used as a measure of physical velocity, e.g. for spectroscopic radial velocity determination.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">v_apparent</td><td>[AU/day] Perceived motion of star, in equatorial rectangular coordinates. It must be distinct from the pos output vector, and may be NULL if not required. Note, the motion includes a change of light time correction, and as such it is suitable only for estimating the apparent 3D location of the star at a different time, and should not be used as a measure of physical velocity, e.g. for spectroscopic radial velocity determination.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if the star argument is NULL or the output vectors are the same pointer.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="#abc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a>, <a class="el" href="#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, or -1 if the <span class="tt">star</span> argument is NULL or the output vectors are the same pointer (errno set to EINVAL); or if the star's radial velocity is or exceeds the speed of light (errno set to EDOM); or if the decomposed physical radial motion exceeds the speed of light (errno set to ERANGE), or if the iterative decomposition of the physical motion into radial and transverse components fails to converge (errno set to ECANCELED).</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a0edfc4129c502e4765547dfee5307a78" title="Calculates a star&#39;s physical 3D velocity relative to the Solar-System Barycenter (SSB) based on its o...">novas_star_vel()</a> </dd>
+<dd>
+<a class="el" href="#abc164144085313b27faa96c838a9d30c" title="Fully populates the data structure for a catalog source, such as a star, with all parameters provided...">make_cat_entry()</a>, <a class="el" href="#af0137aa791dd29278904e53498fb9515" title="Initializes a catalog entry, such as a star or a distant galaxy, with a name and coordinates.">novas_init_cat_entry()</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="novas_8h.html#addc432c55434789acee7bc2beacd7d69">NOVAS_AU_PER_DAY</a>, <a class="el" href="novas_8h.html#a5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a>, <a class="el" href="novas_8h.html#a7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="novas_8h.html#a601d246673742cf72a5dbe1449c97560">novas_los_to_xyz()</a>, <a class="el" href="novas_8h.html#ae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>, and <a class="el" href="novas_8h.html#a27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>.</p>
+<p class="reference">References <a class="el" href="novas_8h.html#a5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a>, <a class="el" href="util_8c.html#ad2b933ce2f58e8b04bbe76ffbff99eb0">novas_inv_max_iter</a>, <a class="el" href="novas_8h.html#a0a84af1a760ed2aaa01dd93e9e22bdf1">NOVAS_KM</a>, <a class="el" href="novas_8h.html#a601d246673742cf72a5dbe1449c97560">novas_los_to_xyz()</a>, <a class="el" href="novas_8h.html#ae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>, and <a class="el" href="novas_8h.html#a7e369ae89cfc4bd08411b11e410af0f0">starvectors()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="novas_8h.html#aaf51bf000e993807101a34adf423d36b">mean_star()</a>, <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, and <a class="el" href="novas_8h.html#a27bae6c9efdab763dba9f1ae36a04669">starvectors()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogEntry.html#aba9db7542493a9bb1a7b6ec90b10abb7">supernovas::CatalogEntry::apparent_motion()</a>, <a class="el" href="novas_8h.html#aaf51bf000e993807101a34adf423d36b">mean_star()</a>, <a class="el" href="novas_8h.html#ac6652ee3257621080dac342313d0a0a7">novas_geom_posvel()</a>, <a class="el" href="novas_8h.html#a0edfc4129c502e4765547dfee5307a78">novas_star_vel()</a>, <a class="el" href="novas_8h.html#aca09ed0d2379ac4a4841c9e3edeeee4c">place()</a>, <a class="el" href="novas_8h.html#a7e369ae89cfc4bd08411b11e410af0f0">starvectors()</a>, and <a class="el" href="novas_8h.html#ae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>.</p>
 
 </div>
 </div>
@@ -1423,7 +1471,13 @@ Functions</h2></td></tr>
 <p>NOTES:</p>
 <ol type="1">
 <li>The original NOVAS C implementation of proper-motion had several shortcomings in calculating the motion in the final epoch. These have been corrected in <b>v1.8</b>.</li>
-<li>The original NOVAS C implementation applied a physical to apparent motion conversion factor (k = 1 / (1 - rv/c)) for the proper motion parameters. But proper motion is already apparent, so the factor was a mistake. Also, the factor should be 1 / (1 + rv/c), since the correction diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to Mike Kretlow for noticing these. It has been corrected for <b>v1.8.1</b>.</li>
+<li>The original NOVAS C implementation applied a physical to apparent motion conversion factor (k = 1 / (1 - rv/c)) for the proper motion parameters. But proper motion is already apparent, so the factor was a mistake. Also, the factor should be 1 / (1 + rv/c), since the correction diverges when the motion is towards the observer near the speed of light (rv ~ -c). Thanks to Mike Kretlow for noticing these. It has been corrected for <b>v1.9</b>.</li>
+<li>Modified in v1.9 to iteratively account for change of light time between initial and final epochs.</li>
+<li>As of <b>v1.9</b> the implementation accounts for the transverse Doppler effect, following the prescription of Stumpff 1985, and yields consistent results with SOFA below the 1 &mu;as level over a century, even for Barnard's star.</li>
+</ol>
+<p>REFERENCES:</p>
+<ol type="1">
+<li>Stumpff, P., Astronomy and Astrophysics (ISSN 0004-6361), vol. 144, no. 1, March 1985, p. 232-240.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -1436,12 +1490,12 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if either vector argument is NULL or if the 'option' is invalid, or else 2 if 'out_id' is too long.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successful, -1 if either vector argument is NULL (errno set to EINVAL) or if the 'option' is invalid (errno set to ERANGE) or if the proper motion failed to converge (errno set to ECANCELED), or else 2 if 'out_id' is too long.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="#af2c03d540de7a8bfafaed27eb9a753c1" title="Convert Hipparcos catalog data at epoch J1991.25 to epoch J2000.0, for use within NOVAS.">transform_hip()</a>, <a class="el" href="#a5104d7db66ce2d8c61c7ad21599fb45e" title="Populates and object data structure with the data for a catalog source for a given system of catalog ...">make_cat_object_sys()</a>, <a class="el" href="#a5e92f920835111db719e880a61248045" title="Sets the optional catalog information for a sidereal source.">novas_set_catalog()</a> </dd>
 <dd>
 <a class="el" href="novas_8h.html#af4e18885b7d173eb3fe5f18b06f0b4d4" title="Returns the Julian day corresponding to an astronomical coordinate epoch.">novas_epoch()</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422" title="[day] Julian date at J2000">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#a3785083ae52bbbc1e749dbedd7e5d85e" title="[day] Julian date at B1950 (NASA / NAIF SPICE definition)">NOVAS_JD_B1950</a>, <a class="el" href="novas_8h.html#a4100ecc5d9badfa07301024baffe9ded" title="[day] Julian date for J1991.25, which the Hipparcos catalog is referred to.">NOVAS_JD_HIP</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="structnovas__cat__entry.html#ada95bd9127ffe9e1204a233057869f5a">novas_cat_entry::catalog</a>, <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a882f5d97444df44485d360ce298843b1">CHANGE_EPOCH</a>, <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a1b1e38f90bc3bc3c9f1c04aa2c959444">CHANGE_ICRS_TO_J2000</a>, <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a84da44f7510d8c99353b1b1c6bb4faf8">CHANGE_J2000_TO_ICRS</a>, <a class="el" href="structnovas__cat__entry.html#ab539dc076c350cf98ac047453fa18c9c">novas_cat_entry::dec</a>, <a class="el" href="novas_8h.html#aa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="novas_8h.html#ae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>, <a class="el" href="novas_8h.html#ae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>, <a class="el" href="novas_8h.html#a5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#abb3df52add3f6fb17e5c1c6a7f428c70">NOVAS_JULIAN_YEAR_DAYS</a>, <a class="el" href="novas_8h.html#a7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="novas_8h.html#a601d246673742cf72a5dbe1449c97560">novas_los_to_xyz()</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, <a class="el" href="novas_8h.html#a14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los()</a>, <a class="el" href="structnovas__cat__entry.html#ac2e6fe6d5aa8aece4e1d3f2ebc8e5c63">novas_cat_entry::parallax</a>, <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a6833dbc8bfb3b8ba2cdd7a2da0b82353">PRECESSION</a>, <a class="el" href="novas_8h.html#a9178358732325399f3a5e3582080ced3">precession()</a>, <a class="el" href="structnovas__cat__entry.html#a64faf35923c3c09bb24265a8ddb2b2f1">novas_cat_entry::promodec</a>, <a class="el" href="structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560">novas_cat_entry::promora</a>, <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065">PROPER_MOTION</a>, <a class="el" href="structnovas__cat__entry.html#a0bf9261730a8decbfd1d0c63c377dac2">novas_cat_entry::ra</a>, <a class="el" href="novas_8h.html#ae104afd1bc638def9bdbce1801e5054a">radec2vector()</a>, <a class="el" href="structnovas__cat__entry.html#aff726e9a11a48c6ccbd80672a1fa5cc8">novas_cat_entry::radialvelocity</a>, <a class="el" href="group__source.html#gaf32c72297e36b77bead56044d23082f7">SIZE_OF_CAT_NAME</a>, <a class="el" href="group__source.html#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>, <a class="el" href="structnovas__cat__entry.html#ac06af140acde272f032a431f6cfeb85d">novas_cat_entry::starname</a>, <a class="el" href="structnovas__cat__entry.html#a456d93b89cbbc3c13cb0cb9d3b8a4cb0">novas_cat_entry::starnumber</a>, and <a class="el" href="novas_8h.html#ae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>.</p>
+<p class="reference">References <a class="el" href="structnovas__cat__entry.html#ada95bd9127ffe9e1204a233057869f5a">novas_cat_entry::catalog</a>, <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a882f5d97444df44485d360ce298843b1">CHANGE_EPOCH</a>, <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a1b1e38f90bc3bc3c9f1c04aa2c959444">CHANGE_ICRS_TO_J2000</a>, <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a84da44f7510d8c99353b1b1c6bb4faf8">CHANGE_J2000_TO_ICRS</a>, <a class="el" href="structnovas__cat__entry.html#ab539dc076c350cf98ac047453fa18c9c">novas_cat_entry::dec</a>, <a class="el" href="novas_8h.html#aa11d2253a44261370af8d0c32f0715e9">frame_tie()</a>, <a class="el" href="novas_8h.html#ae8b91a9b4fe4af63c7054d1eacdb996ea8557604d6604356e6620b42f78aec999">ICRS_TO_J2000</a>, <a class="el" href="novas_8h.html#ae8b91a9b4fe4af63c7054d1eacdb996ea7e5dc966849295dce29fb339b960da4f">J2000_TO_ICRS</a>, <a class="el" href="novas_8h.html#a5fb4713ad9802152e40a83bf3c1ee242">NOVAS_C</a>, <a class="el" href="novas_8h.html#a31bf4a08940bfa3e97ae6a1abee80422">NOVAS_JD_J2000</a>, <a class="el" href="novas_8h.html#abb3df52add3f6fb17e5c1c6a7f428c70">NOVAS_JULIAN_YEAR_DAYS</a>, <a class="el" href="novas_8h.html#a7822b81ad3f75b448f446ed4da774e75">NOVAS_KMS</a>, <a class="el" href="util_8c.html#a0f41cefb8c872973b07e936b5026d143">novas_vlen()</a>, <a class="el" href="novas_8h.html#a14deb6fdce80ba213e1f1d5238306e17">novas_xyz_to_los()</a>, <a class="el" href="structnovas__cat__entry.html#ac2e6fe6d5aa8aece4e1d3f2ebc8e5c63">novas_cat_entry::parallax</a>, <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a6833dbc8bfb3b8ba2cdd7a2da0b82353">PRECESSION</a>, <a class="el" href="novas_8h.html#a9178358732325399f3a5e3582080ced3">precession()</a>, <a class="el" href="structnovas__cat__entry.html#a64faf35923c3c09bb24265a8ddb2b2f1">novas_cat_entry::promodec</a>, <a class="el" href="structnovas__cat__entry.html#ace5b01365b3371f0ce63b84675f9e560">novas_cat_entry::promora</a>, <a class="el" href="novas_8h.html#ace5e59ce1564bf6c61946c290bb05367a197e40a273d8132592b60efe3f87a065">PROPER_MOTION</a>, <a class="el" href="novas_8h.html#abe3fdcae8580368a73cea3aa5624cb74">proper_motion()</a>, <a class="el" href="structnovas__cat__entry.html#a0bf9261730a8decbfd1d0c63c377dac2">novas_cat_entry::ra</a>, <a class="el" href="structnovas__cat__entry.html#aff726e9a11a48c6ccbd80672a1fa5cc8">novas_cat_entry::radialvelocity</a>, <a class="el" href="group__source.html#gaf32c72297e36b77bead56044d23082f7">SIZE_OF_CAT_NAME</a>, <a class="el" href="group__source.html#ga977a43db51d544f728ea8a22b4a53783">SIZE_OF_OBJ_NAME</a>, <a class="el" href="structnovas__cat__entry.html#ac06af140acde272f032a431f6cfeb85d">novas_cat_entry::starname</a>, <a class="el" href="structnovas__cat__entry.html#a456d93b89cbbc3c13cb0cb9d3b8a4cb0">novas_cat_entry::starnumber</a>, <a class="el" href="novas_8h.html#a7e369ae89cfc4bd08411b11e410af0f0">starvectors()</a>, <a class="el" href="novas_8h.html#ae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>, and <a class="el" href="novas_8h.html#a84f672dc1c37e3af374198f29cbcfba9">vector2radec()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="novas_8h.html#ae44ab97ef3c8b1ad11e480f156429f39">transform_cat()</a>, and <a class="el" href="novas_8h.html#af2c03d540de7a8bfafaed27eb9a753c1">transform_hip()</a>.</p>
 

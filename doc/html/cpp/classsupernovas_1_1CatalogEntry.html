@@ -37,7 +37,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="SuperNOVAS-logo-55x55.png"/></td>
   <td id="projectalign">
-   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.8</span>
+   <div id="projectname">SuperNOVAS C++ API<span id="projectnumber">&#160;v1.9</span>
    </div>
    <div id="projectbrief">High-precision C/C++ astrometry library</div>
   </td>
@@ -152,6 +152,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae4368af65404acdfeaa1365e12ac2f2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates a new catalog entry with a given name and galactic catalog coordinates.  <br /></td></tr>
 <tr class="memitem:ab1ba4b71acf87ebd4bfe12fbeb88855c" id="r_ab1ba4b71acf87ebd4bfe12fbeb88855c"><td class="memItemLeft">const <a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8">cat_entry</a> *&#160;</td><td class="memItemRight"><a class="el" href="#ab1ba4b71acf87ebd4bfe12fbeb88855c">_cat_entry</a> () const</td></tr>
 <tr class="memdesc:ab1ba4b71acf87ebd4bfe12fbeb88855c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the underlying NOVAS C <span class="tt"><a class="el" href="novas_8h.html#a8fa0251d2ffa4e750420bdc86a7d73b8" title="Basic astrometric data for any sidereal object located outside the solar system.">cat_entry</a></span> data structure, for use with the standard C API.  <br /></td></tr>
+<tr class="memitem:aba9db7542493a9bb1a7b6ec90b10abb7" id="r_aba9db7542493a9bb1a7b6ec90b10abb7"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Vector.html">Vector</a>&#160;</td><td class="memItemRight"><a class="el" href="#aba9db7542493a9bb1a7b6ec90b10abb7">apparent_motion</a> () const</td></tr>
+<tr class="memdesc:aba9db7542493a9bb1a7b6ec90b10abb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the apparent equatorial motion of the source, as it is perceived by an observer located at the Solar-System Barycenter (SSB).  <br /></td></tr>
 <tr class="memitem:ad3fbfae4e65d4cb968bf356f8bad08a3" id="r_ad3fbfae4e65d4cb968bf356f8bad08a3"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Angle.html">Angle</a>&#160;</td><td class="memItemRight"><a class="el" href="#ad3fbfae4e65d4cb968bf356f8bad08a3">dec</a> () const</td></tr>
 <tr class="memdesc:ad3fbfae4e65d4cb968bf356f8bad08a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the catalog declination coordinate as a angle.  <br /></td></tr>
 <tr class="memitem:ab5cd489f9c295a94d1e3eece72e7ea5c" id="r_ab5cd489f9c295a94d1e3eece72e7ea5c"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Coordinate.html">Coordinate</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c">distance</a> () const</td></tr>
@@ -202,6 +204,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a74120ab096b8a9db05ebb87e6dce8f84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the motion of this source relative to the Local Standard of Rest (LSR), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern.  <br /></td></tr>
 <tr class="memitem:a5abe557f04d1f2ed2dccdaac1e2c0b4b" id="r_a5abe557f04d1f2ed2dccdaac1e2c0b4b"><td class="memItemLeft"><a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a5abe557f04d1f2ed2dccdaac1e2c0b4b">v_lsr</a> (double v_ms)</td></tr>
 <tr class="memdesc:a5abe557f04d1f2ed2dccdaac1e2c0b4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the motion of this source relative to the Local Standard of Rest (LSR), defined at the same epoch as the catalog coordinates, and returning itself to enable builder pattern.  <br /></td></tr>
+<tr class="memitem:a945e14e18f44892958597adfb5ac48ea" id="r_a945e14e18f44892958597adfb5ac48ea"><td class="memItemLeft"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a>&#160;</td><td class="memItemRight"><a class="el" href="#a945e14e18f44892958597adfb5ac48ea">velocity</a> () const</td></tr>
+<tr class="memdesc:a945e14e18f44892958597adfb5ac48ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the true physical 3D velocity of the source relative to the Solar System Barycenter, in the equatorial coordinate system, in which the source is defined.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classsupernovas_1_1Validating"><td colspan="2" class="dyn-inherit"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classsupernovas_1_1Validating.html">supernovas::Validating</a></td></tr>
 <tr class="memitem:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating" id="r_aa3695f10056563de6ba2f0863cabda53"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">is_valid</a> () const</td></tr>
 <tr class="memdesc:aa3695f10056563de6ba2f0863cabda53 inherit pub_methods_classsupernovas_1_1Validating"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the previously set 'valid' state of the implementing instance.  <br /></td></tr>
@@ -260,7 +264,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line">   .parallax(5.89 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">Unit::arcsec</a>)</div>
 <div class="line">   .radial_velocity(-3.4 * <a class="code hl_variable" href="classsupernovas_1_1Unit.html#ad624dbf1279a18fc9e61873b56e4a534">Unit::km_per_s</a>);</div>
 <div class="ttc" id="aclasssupernovas_1_1CatalogEntry_html_a41899562721a238bb89ac5b5d59dc5c5"><div class="ttname"><a href="#a41899562721a238bb89ac5b5d59dc5c5">supernovas::CatalogEntry::CatalogEntry</a></div><div class="ttdeci">CatalogEntry(const std::string &amp;name, const Equatorial &amp;coords)</div><div class="ttdoc">Instantiates a new catalog entry with a given name and catalog coordinates.</div><div class="ttdef"><b>Definition</b> CatalogEntry.cpp:77</div></div>
-<div class="ttc" id="aclasssupernovas_1_1Equatorial_html"><div class="ttname"><a href="classsupernovas_1_1Equatorial.html">supernovas::Equatorial</a></div><div class="ttdoc">Equatorial coordinates (RA, Dec / α, δ), representing the direction on the sky, for a particular type...</div><div class="ttdef"><b>Definition</b> supernovas.h:1040</div></div>
+<div class="ttc" id="aclasssupernovas_1_1Equatorial_html"><div class="ttname"><a href="classsupernovas_1_1Equatorial.html">supernovas::Equatorial</a></div><div class="ttdoc">Equatorial coordinates (RA, Dec / α, δ), representing the direction on the sky, for a particular type...</div><div class="ttdef"><b>Definition</b> supernovas.h:1042</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Equinox_html_ac8a0a1ea6d912d4a81ddaa7afd34b030"><div class="ttname"><a href="classsupernovas_1_1Equinox.html#ac8a0a1ea6d912d4a81ddaa7afd34b030">supernovas::Equinox::b1950</a></div><div class="ttdeci">static const Equinox &amp; b1950()</div><div class="ttdoc">The system of the dynamical equator at the B1950 epoch (0 UTC, 1 January 1950).</div><div class="ttdef"><b>Definition</b> Equinox.cpp:638</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_a7b59616535bdb57399eac0c8216a34f3"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a7b59616535bdb57399eac0c8216a34f3">supernovas::Unit::arcsec</a></div><div class="ttdeci">static constexpr double arcsec</div><div class="ttdoc">[rad] 1 second or arc in radians</div><div class="ttdef"><b>Definition</b> supernovas.h:178</div></div>
 <div class="ttc" id="aclasssupernovas_1_1Unit_html_a9e80b032a29bd9c9e4baace09f2f859c"><div class="ttname"><a href="classsupernovas_1_1Unit.html#a9e80b032a29bd9c9e4baace09f2f859c">supernovas::Unit::mas</a></div><div class="ttdeci">static constexpr double mas</div><div class="ttdoc">[rad] 1 millisecond of arc in radians</div><div class="ttdef"><b>Definition</b> supernovas.h:179</div></div>
@@ -437,6 +441,32 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section since"><dt>Since</dt><dd>1.6 </dd></dl>
 
 <p class="reference">Referenced by <a class="el" href="classsupernovas_1_1CatalogSource.html#ab309ce8e3bd4d09229aa6eff97248b5e">supernovas::CatalogSource::CatalogSource()</a>.</p>
+
+</div>
+</div>
+<a id="aba9db7542493a9bb1a7b6ec90b10abb7" name="aba9db7542493a9bb1a7b6ec90b10abb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba9db7542493a9bb1a7b6ec90b10abb7">&#9670;&#160;</a></span>apparent_motion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Vector.html">Vector</a> supernovas::CatalogEntry::apparent_motion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the apparent equatorial motion of the source, as it is perceived by an observer located at the Solar-System Barycenter (SSB). </p>
+<p>Because the apparent motion includes corrections for the changing light-travel time to the observer, the magnitude of the motion, and any of its components may exceed the speed-of-light.</p>
+<p>Not to be confused with the true physical velocity of the source relative to the SSB.</p>
+<dl class="section return"><dt>Returns</dt><dd>[m/s] The apparent rate at which the 3D position of the source is perceived to change from the perspective of the observer. This may be quite different from the true physical velocity of the source, due to the changing light-arrival time as the source moves closer to, or further away from, the observer.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.9</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a945e14e18f44892958597adfb5ac48ea" title="Returns the true physical 3D velocity of the source relative to the Solar System Barycenter,...">velocity()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="classsupernovas_1_1Validating.html#aa3695f10056563de6ba2f0863cabda53">supernovas::Validating::is_valid()</a>, and <a class="el" href="novas_8h.html#a7e369ae89cfc4bd08411b11e410af0f0">starvectors()</a>.</p>
 
 </div>
 </div>
@@ -829,7 +859,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Sets the proper motion of this source, defined at the same epoch as the catalog coordinates, returning itself to enable builder pattern. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ra</td><td>[rad/s] Proper motion in the R.A. direction </td></tr>
+    <tr><td class="paramname">ra</td><td>[rad/s] Proper motion in the R.A. direction (projected i.e., &part;RA / &part;t * <b>cos</b>(Dec)). </td></tr>
     <tr><td class="paramname">dec</td><td>[rad/s] Proper motion in the declination direction </td></tr>
   </table>
   </dd>
@@ -1164,6 +1194,31 @@ Additional Inherited Members</h2></td></tr>
 <a class="el" href="#a9e7358ee7c3f4e90550839662cedd5bf" title="Returns the equatorial coordinate system in which this catalog entry is defined.">system()</a>, <a class="el" href="#ab5cd489f9c295a94d1e3eece72e7ea5c" title="Returns the catalog (light-time) distance of the source.">distance()</a>, <a class="el" href="#aa416d2c477d74c3eccd9ca0546289d6a" title="Returns the parallax of the source.">parallax()</a>, <a class="el" href="#a9561e1d23eb50de3b85352ac06792055" title="Sets the proper motion of this source, defined at the same epoch as the catalog coordinates,...">proper_motion()</a>, catalog() </dd></dl>
 
 <p class="reference">References <a class="el" href="#a41899562721a238bb89ac5b5d59dc5c5">CatalogEntry()</a>, <a class="el" href="classsupernovas_1_1Validating.html#a4aa2e66ea6acca6705d87457a08ac2d6">supernovas::Validating::_valid</a>, <a class="el" href="classsupernovas_1_1Constant.html#acb407c995c70664707773b91ff049531">supernovas::Constant::c</a>, <a class="el" href="classsupernovas_1_1Unit.html#ad624dbf1279a18fc9e61873b56e4a534">supernovas::Unit::km_per_s</a>, and <a class="el" href="novas_8h.html#a4aa0c52a1d4838feb4255974486462a7">novas_set_lsr_vel()</a>.</p>
+
+</div>
+</div>
+<a id="a945e14e18f44892958597adfb5ac48ea" name="a945e14e18f44892958597adfb5ac48ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a945e14e18f44892958597adfb5ac48ea">&#9670;&#160;</a></span>velocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsupernovas_1_1Velocity.html">Velocity</a> supernovas::CatalogEntry::velocity </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the true physical 3D velocity of the source relative to the Solar System Barycenter, in the equatorial coordinate system, in which the source is defined. </p>
+<p>The true motion is derived from the observed spectroscopic radial velocity (which includes both the radial and transverse Doppler effects, and the graviational potential of an Earth-based observer), and the perceived proper motion (which includes changes in light arrival time as the objects moves closer to, or further away from, the observer.</p>
+<dl class="section return"><dt>Returns</dt><dd>The 3D physical velocity of the source, as derived from the observed spectroscopic radial velocity and proper motion parameters.</dd></dl>
+<dl class="section since"><dt>Since</dt><dd>1.9</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aba9db7542493a9bb1a7b6ec90b10abb7" title="Returns the apparent equatorial motion of the source, as it is perceived by an observer located at th...">apparent_motion()</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classsupernovas_1_1Unit.html#a595105395ceead45ee25d8093a92a231">supernovas::Unit::AU</a>, <a class="el" href="classsupernovas_1_1Unit.html#a05b77bd972f9be9013c7ec2e3dcc855b">supernovas::Unit::day</a>, <a class="el" href="novas_8h.html#a0edfc4129c502e4765547dfee5307a78">novas_star_vel()</a>, and <a class="el" href="classsupernovas_1_1Velocity.html#a807883f5d42e5b1bef89249a0377c762">supernovas::Velocity::undefined()</a>.</p>
 
 </div>
 </div>

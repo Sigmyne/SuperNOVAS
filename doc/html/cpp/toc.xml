@@ -124,6 +124,7 @@
         <topic label="CatalogEntry" href="classsupernovas_1_1CatalogEntry.html#ae4368af65404acdfeaa1365e12ac2f2f"/>
         <topic label="CatalogEntry" href="classsupernovas_1_1CatalogEntry.html#ab4b85b7dd5b5c430670b1210c2fc9ff7"/>
         <topic label="_cat_entry" href="classsupernovas_1_1CatalogEntry.html#ab1ba4b71acf87ebd4bfe12fbeb88855c"/>
+        <topic label="apparent_motion" href="classsupernovas_1_1CatalogEntry.html#aba9db7542493a9bb1a7b6ec90b10abb7"/>
         <topic label="dec" href="classsupernovas_1_1CatalogEntry.html#ad3fbfae4e65d4cb968bf356f8bad08a3"/>
         <topic label="distance" href="classsupernovas_1_1CatalogEntry.html#ab5cd489f9c295a94d1e3eece72e7ea5c"/>
         <topic label="distance" href="classsupernovas_1_1CatalogEntry.html#a82a4ce2d55312b948ac6e12e8987e711"/>
@@ -149,6 +150,7 @@
         <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a23c9875e4a6e480d214c9288f9debe7b"/>
         <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a74120ab096b8a9db05ebb87e6dce8f84"/>
         <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a5abe557f04d1f2ed2dccdaac1e2c0b4b"/>
+        <topic label="velocity" href="classsupernovas_1_1CatalogEntry.html#a945e14e18f44892958597adfb5ac48ea"/>
       </topic>
       <topic label="supernovas::CatalogSource" href="classsupernovas_1_1CatalogSource.html">
         <topic label="CatalogSource" href="classsupernovas_1_1CatalogSource.html#ab309ce8e3bd4d09229aa6eff97248b5e"/>
@@ -839,6 +841,7 @@
         <topic label="CatalogEntry" href="classsupernovas_1_1CatalogEntry.html#ae4368af65404acdfeaa1365e12ac2f2f"/>
         <topic label="CatalogEntry" href="classsupernovas_1_1CatalogEntry.html#ab4b85b7dd5b5c430670b1210c2fc9ff7"/>
         <topic label="_cat_entry" href="classsupernovas_1_1CatalogEntry.html#ab1ba4b71acf87ebd4bfe12fbeb88855c"/>
+        <topic label="apparent_motion" href="classsupernovas_1_1CatalogEntry.html#aba9db7542493a9bb1a7b6ec90b10abb7"/>
         <topic label="dec" href="classsupernovas_1_1CatalogEntry.html#ad3fbfae4e65d4cb968bf356f8bad08a3"/>
         <topic label="distance" href="classsupernovas_1_1CatalogEntry.html#ab5cd489f9c295a94d1e3eece72e7ea5c"/>
         <topic label="distance" href="classsupernovas_1_1CatalogEntry.html#a82a4ce2d55312b948ac6e12e8987e711"/>
@@ -864,6 +867,7 @@
         <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a23c9875e4a6e480d214c9288f9debe7b"/>
         <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a74120ab096b8a9db05ebb87e6dce8f84"/>
         <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a5abe557f04d1f2ed2dccdaac1e2c0b4b"/>
+        <topic label="velocity" href="classsupernovas_1_1CatalogEntry.html#a945e14e18f44892958597adfb5ac48ea"/>
       </topic>
       <topic label="supernovas::ScalarVelocity" href="classsupernovas_1_1ScalarVelocity.html">
         <topic label="ScalarVelocity" href="classsupernovas_1_1ScalarVelocity.html#a08b7a8a135acb5cd5da7886f6dbace17"/>
@@ -1097,6 +1101,7 @@
       <topic label="supernovas::Vector" href="classsupernovas_1_1Vector.html">
         <topic label="Vector" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc"/>
         <topic label="Vector" href="classsupernovas_1_1Vector.html#a67f0cc38bb4f768c9f52a2c8227b89eb"/>
+        <topic label="Vector" href="classsupernovas_1_1Vector.html#ad7484390e5f6c6d86a36e4606129aee3"/>
         <topic label="~Vector" href="classsupernovas_1_1Vector.html#a6e0deaf0bff9961abfb6fe57160abe3b"/>
         <topic label="_array" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4"/>
         <topic label="abs" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610"/>
@@ -1241,6 +1246,7 @@
           <topic label="CatalogEntry" href="classsupernovas_1_1CatalogEntry.html#ae4368af65404acdfeaa1365e12ac2f2f"/>
           <topic label="CatalogEntry" href="classsupernovas_1_1CatalogEntry.html#ab4b85b7dd5b5c430670b1210c2fc9ff7"/>
           <topic label="_cat_entry" href="classsupernovas_1_1CatalogEntry.html#ab1ba4b71acf87ebd4bfe12fbeb88855c"/>
+          <topic label="apparent_motion" href="classsupernovas_1_1CatalogEntry.html#aba9db7542493a9bb1a7b6ec90b10abb7"/>
           <topic label="dec" href="classsupernovas_1_1CatalogEntry.html#ad3fbfae4e65d4cb968bf356f8bad08a3"/>
           <topic label="distance" href="classsupernovas_1_1CatalogEntry.html#ab5cd489f9c295a94d1e3eece72e7ea5c"/>
           <topic label="distance" href="classsupernovas_1_1CatalogEntry.html#a82a4ce2d55312b948ac6e12e8987e711"/>
@@ -1266,6 +1272,7 @@
           <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a23c9875e4a6e480d214c9288f9debe7b"/>
           <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a74120ab096b8a9db05ebb87e6dce8f84"/>
           <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a5abe557f04d1f2ed2dccdaac1e2c0b4b"/>
+          <topic label="velocity" href="classsupernovas_1_1CatalogEntry.html#a945e14e18f44892958597adfb5ac48ea"/>
         </topic>
         <topic label="CatalogSource" href="classsupernovas_1_1CatalogSource.html">
           <topic label="CatalogSource" href="classsupernovas_1_1CatalogSource.html#ab309ce8e3bd4d09229aa6eff97248b5e"/>
@@ -1935,6 +1942,7 @@
         <topic label="Vector" href="classsupernovas_1_1Vector.html">
           <topic label="Vector" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc"/>
           <topic label="Vector" href="classsupernovas_1_1Vector.html#a67f0cc38bb4f768c9f52a2c8227b89eb"/>
+          <topic label="Vector" href="classsupernovas_1_1Vector.html#ad7484390e5f6c6d86a36e4606129aee3"/>
           <topic label="~Vector" href="classsupernovas_1_1Vector.html#a6e0deaf0bff9961abfb6fe57160abe3b"/>
           <topic label="_array" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4"/>
           <topic label="abs" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610"/>
@@ -2100,6 +2108,7 @@
           <topic label="CatalogEntry" href="classsupernovas_1_1CatalogEntry.html#ae4368af65404acdfeaa1365e12ac2f2f"/>
           <topic label="CatalogEntry" href="classsupernovas_1_1CatalogEntry.html#ab4b85b7dd5b5c430670b1210c2fc9ff7"/>
           <topic label="_cat_entry" href="classsupernovas_1_1CatalogEntry.html#ab1ba4b71acf87ebd4bfe12fbeb88855c"/>
+          <topic label="apparent_motion" href="classsupernovas_1_1CatalogEntry.html#aba9db7542493a9bb1a7b6ec90b10abb7"/>
           <topic label="dec" href="classsupernovas_1_1CatalogEntry.html#ad3fbfae4e65d4cb968bf356f8bad08a3"/>
           <topic label="distance" href="classsupernovas_1_1CatalogEntry.html#ab5cd489f9c295a94d1e3eece72e7ea5c"/>
           <topic label="distance" href="classsupernovas_1_1CatalogEntry.html#a82a4ce2d55312b948ac6e12e8987e711"/>
@@ -2125,6 +2134,7 @@
           <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a23c9875e4a6e480d214c9288f9debe7b"/>
           <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a74120ab096b8a9db05ebb87e6dce8f84"/>
           <topic label="v_lsr" href="classsupernovas_1_1CatalogEntry.html#a5abe557f04d1f2ed2dccdaac1e2c0b4b"/>
+          <topic label="velocity" href="classsupernovas_1_1CatalogEntry.html#a945e14e18f44892958597adfb5ac48ea"/>
         </topic>
         <topic label="CatalogSource" href="classsupernovas_1_1CatalogSource.html">
           <topic label="CatalogSource" href="classsupernovas_1_1CatalogSource.html#ab309ce8e3bd4d09229aa6eff97248b5e"/>
@@ -2794,6 +2804,7 @@
         <topic label="Vector" href="classsupernovas_1_1Vector.html">
           <topic label="Vector" href="classsupernovas_1_1Vector.html#afaf9b317641d3a3aaf1e5a57dc4f3dfc"/>
           <topic label="Vector" href="classsupernovas_1_1Vector.html#a67f0cc38bb4f768c9f52a2c8227b89eb"/>
+          <topic label="Vector" href="classsupernovas_1_1Vector.html#ad7484390e5f6c6d86a36e4606129aee3"/>
           <topic label="~Vector" href="classsupernovas_1_1Vector.html#a6e0deaf0bff9961abfb6fe57160abe3b"/>
           <topic label="_array" href="classsupernovas_1_1Vector.html#a4be107244270ddfd8c803768b46dfdd4"/>
           <topic label="abs" href="classsupernovas_1_1Vector.html#aab5ce2de6a675909f520087958fe3610"/>
@@ -3400,6 +3411,10 @@
           <topic label="NOVAS_SYSTEM_ICRS" href="novas_8h.html#a9d170036a074eff7634bdb23e54871b0"/>
           <topic label="NOVAS_SYSTEM_J2000" href="novas_8h.html#ae67fecc99f46afc9b4f12fc27b4fbe6c"/>
           <topic label="NOVAS_TAI_TO_TT" href="novas_8h.html#a68aa01f6e3e0f40bbe1b5ccab3144fda"/>
+          <topic label="NOVAS_TC_LB" href="novas_8h.html#a526a1d2bfecd8f5049403bbf86253a96"/>
+          <topic label="NOVAS_TC_LG" href="novas_8h.html#a6dbbc0cb1643171918d9bd4d2e12bbb5"/>
+          <topic label="NOVAS_TC_T0" href="novas_8h.html#abb052208b6d59662b735eafcb7b4364e"/>
+          <topic label="NOVAS_TC_TDB0" href="novas_8h.html#a48c105bf08a66ec46f96bd409a6fe932"/>
           <topic label="NOVAS_TIMESCALES" href="novas_8h.html#a7505fe27b163e97b60bcf4406eadffa7"/>
           <topic label="NOVAS_TIMESPEC_INIT" href="novas_8h.html#addf3ffbfe4ed05288b689e861600194f"/>
           <topic label="NOVAS_TIMESTAMP_LEN" href="novas_8h.html#a923fc797bc707dda3957e8b3c971df2e"/>
@@ -3686,6 +3701,7 @@
           <topic label="novas_app_to_geom" href="novas_8h.html#ab7db8026c598e8e126a4725ac3b388bf"/>
           <topic label="novas_app_to_hor" href="novas_8h.html#a3cd947f2e48d6c5cc88ad7a1bab9b8ca"/>
           <topic label="novas_approx_heliocentric" href="novas_8h.html#a9ead627eed7fabd8583f1353e89f42e7"/>
+          <topic label="novas_approx_posvel" href="novas_8h.html#ae817333eb138aeea5a1063f2c3d14f2a"/>
           <topic label="novas_approx_sky_pos" href="novas_8h.html#a4cb01609f76b0ff8487817b9446a3a62"/>
           <topic label="novas_cartesian_to_geodetic" href="novas_8h.html#a7479134485c298faa858d73ee0513a11"/>
           <topic label="novas_case_sensitive" href="novas_8h.html#a8f832afe92680a11c3489aaa224ac2e2"/>
@@ -3830,6 +3846,7 @@
           <topic label="novas_solar_power" href="novas_8h.html#a763f9a9dd2edb4645a5db05184ca7495"/>
           <topic label="novas_ssb_to_lsr_vel" href="novas_8h.html#a99ed25baa029f3980924da8c8af54d1a"/>
           <topic label="novas_standard_refraction" href="group__refract.html#gab04bff3b97c132e358e11c3a5b7a3081"/>
+          <topic label="novas_star_vel" href="novas_8h.html#a0edfc4129c502e4765547dfee5307a78"/>
           <topic label="novas_str_degrees" href="novas_8h.html#a6d6ada07aab7ce09fb8ea7b12660ebcd"/>
           <topic label="novas_str_hours" href="novas_8h.html#a3ed26b6af870f6dbc353f651563afd4a"/>
           <topic label="novas_sun_angle" href="novas_8h.html#a2d1ef3bc6d99aa473511e45c6e0481e9"/>
@@ -3872,7 +3889,7 @@
           <topic label="planet_ephem_provider_hp" href="novas_8h.html#a93d0f96d81f3c52e05163643bd23eb7d"/>
           <topic label="planet_lon" href="novas_8h.html#aacc6a0daf29b8bdc18f46647a94694d3"/>
           <topic label="precession" href="novas_8h.html#a9178358732325399f3a5e3582080ced3"/>
-          <topic label="proper_motion" href="novas_8h.html#a24b69e1809a33113d4a041dd3e4082ad"/>
+          <topic label="proper_motion" href="novas_8h.html#abe3fdcae8580368a73cea3aa5624cb74"/>
           <topic label="rad_vel" href="novas_8h.html#afca24d914664bb60d20fb428177f329a"/>
           <topic label="rad_vel2" href="novas_8h.html#a37f22e463cc06b4e381aa18659e6319d"/>
           <topic label="radec2vector" href="novas_8h.html#ae104afd1bc638def9bdbce1801e5054a"/>
@@ -3886,7 +3903,7 @@
           <topic label="set_planet_provider" href="group__solar-system.html#ga9904c454bc7148b42d0f927b82ea3973"/>
           <topic label="set_planet_provider_hp" href="group__solar-system.html#ga418f45a11ce7f92ba0ef817558415640"/>
           <topic label="spin" href="novas_8h.html#af4090e519d7ce7ab1fcdb24b10126eb4"/>
-          <topic label="starvectors" href="novas_8h.html#a27bae6c9efdab763dba9f1ae36a04669"/>
+          <topic label="starvectors" href="novas_8h.html#a7e369ae89cfc4bd08411b11e410af0f0"/>
           <topic label="tdb2tt" href="novas_8h.html#a90d5fae30728b51151c3daf355ca585b"/>
           <topic label="terra" href="novas_8h.html#adc81730affa75f5facc8c6bd280c83c9"/>
           <topic label="tod_to_cirs" href="novas_8h.html#adb48b2acaf76cc3a1e3a1412cc42c232"/>
@@ -3898,6 +3915,7 @@
           <topic label="tt2tdb" href="novas_8h.html#a129acca41760da486e1179c93cb9e86d"/>
           <topic label="tt2tdb_fp" href="group__time.html#gad301a9c74bfbdb8b55513cd005787b22"/>
           <topic label="tt2tdb_hp" href="novas_8h.html#a5709058076f4aea4eeaeeb000342cd94"/>
+          <topic label="undo_aberration" href="novas_8h.html#ad820e7ba46523b3cba6ddf552428cac8"/>
           <topic label="unredshift_vrad" href="novas_8h.html#aea89203030ca831260dec18f83081d23"/>
           <topic label="vector2radec" href="novas_8h.html#a84f672dc1c37e3af374198f29cbcfba9"/>
           <topic label="virtual_planet" href="novas_8h.html#a0dc172d82eec79f78c2d218c1a7b9cbe"/>
@@ -4157,6 +4175,7 @@
             <topic label="novas_uvw" href="observer_8c.html#a81f4b147c3f132a1498cdd833042d804"/>
             <topic label="obs_planets" href="observer_8c.html#a07490a134a685fe0842b2b4816559292"/>
             <topic label="obs_posvel" href="observer_8c.html#a0e4e5ff7c37e6521ca75ae62aaf4050e"/>
+            <topic label="undo_aberration" href="observer_8c.html#ad820e7ba46523b3cba6ddf552428cac8"/>
           </topic>
           <topic label="orbital.c" href="orbital_8c.html">
             <topic label="novas_orbit_native_posvel" href="orbital_8c.html#a6b88d2403a3051ab32229244cf98d7ab"/>
@@ -4204,6 +4223,7 @@
           </topic>
           <topic label="planets.c" href="planets_8c.html">
             <topic label="novas_approx_heliocentric" href="planets_8c.html#a9ead627eed7fabd8583f1353e89f42e7"/>
+            <topic label="novas_approx_posvel" href="planets_8c.html#ae817333eb138aeea5a1063f2c3d14f2a"/>
             <topic label="novas_approx_sky_pos" href="planets_8c.html#a4cb01609f76b0ff8487817b9446a3a62"/>
             <topic label="novas_make_planet_orbit" href="planets_8c.html#a63b094e813d8b752a6f3344419e80031"/>
             <topic label="planet_lon" href="planets_8c.html#aacc6a0daf29b8bdc18f46647a94694d3"/>
@@ -4301,8 +4321,9 @@
             <topic label="novas_set_redshift" href="target_8c.html#a4efac9e50efec20489d47726217e9c7e"/>
             <topic label="novas_set_ssb_vel" href="target_8c.html#a45f7fdc15580138517ce452a236674d7"/>
             <topic label="novas_solar_power" href="target_8c.html#a763f9a9dd2edb4645a5db05184ca7495"/>
-            <topic label="proper_motion" href="target_8c.html#a24b69e1809a33113d4a041dd3e4082ad"/>
-            <topic label="starvectors" href="target_8c.html#a27bae6c9efdab763dba9f1ae36a04669"/>
+            <topic label="novas_star_vel" href="target_8c.html#a0edfc4129c502e4765547dfee5307a78"/>
+            <topic label="proper_motion" href="target_8c.html#abe3fdcae8580368a73cea3aa5624cb74"/>
+            <topic label="starvectors" href="target_8c.html#a7e369ae89cfc4bd08411b11e410af0f0"/>
             <topic label="transform_cat" href="target_8c.html#a9df2887bbd6b76eeba8aa1fb8be204b7"/>
             <topic label="transform_hip" href="target_8c.html#af2c03d540de7a8bfafaed27eb9a753c1"/>
           </topic>

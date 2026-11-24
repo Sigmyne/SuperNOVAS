@@ -68,5 +68,6 @@ var group__observer =
     [ "novas_itrs_to_enu", "group__observer.html#ga8e7cb3d7902bbecdb9329bf584950367", null ],
     [ "novas_set_default_weather", "group__observer.html#ga0fc8f315f8606e09571ab49efb13baca", null ],
     [ "novas_site_gcrs_posvel", "group__observer.html#ga65df4b49c0c33285ef5ddcf6814384dc", null ],
-    [ "novas_site_itrs_posvel", "group__observer.html#gab7f162ecce55b3d63834ac6ed10761fa", null ]
+    [ "novas_site_itrs_posvel", "group__observer.html#gab7f162ecce55b3d63834ac6ed10761fa", null ],
+    [ "undo_aberration", "group__observer.html#gad820e7ba46523b3cba6ddf552428cac8", null ]
 ];
