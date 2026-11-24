@@ -15,10 +15,9 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
 
  - #400: Fixed `cal_date()` not propagating errors from `novas_jd_to_date()`. 
 
- - #402: Fixed `transform_cat()` using input dates as Julian days when values are &lt;10000, which according to the
-   documentation (and the NOVAS C original), signify years rather than Julian dates. The issue was present since
-   v1.3.0. It's a bad design that will likely to trip up people often, but it must stick for back compatibility. (by 
-   attipaci, thanks to mkretlow)
+ - #402: Fixed regression in `transform_cat()` for input dates &lt;10000, which according to the documentation (and 
+   the NOVAS C original), signify Julian years rather than Julian days. Due to a regression since v1.3.0, all input 
+   values were treated as Julian days. The fix restores the original distintion. (by attipaci, thanks to mkretlow)
    
  - #404: Dropped misguided `k` factor for converting between proper motion and apparent 3D motion in 
    `transform_cat()` and in `starvectors()`. The `k` factor is needed to convert between physical and apparent
@@ -31,14 +30,14 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
    km) or within 0.9 times the equatorial radius of the gravitating body center. (thanks to rgb)
  
  - #406: Fixed diurnal polar motion corrections in `novas_frame`, which were added with the wrong magnitude 
-   (10<sup>-6</sup>) times too small). (thanks to rgb)
+   (10<sup>-6</sup> times too small). (thanks to rgb)
       
 ### Added
 
- - #408: Added `undo_aberration()` to undo aberration corrections. 
+ - #408: Added `undo_aberration()`. 
  
  - #408: Added `novas_star_vel()` to return the true physical 3D velocity of a catalog source, in the equatorial
-   system, in which the source was defined.
+   system, in which the source was defined (as opposed to `starvectors()`, which returns apparent motion).
    
  - #408: Added `Vector(double xyz[3], double unit)` public constructor for convenience.
  
