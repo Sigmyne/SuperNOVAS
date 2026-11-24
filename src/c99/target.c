@@ -779,7 +779,7 @@ int novas_star_vel(const cat_entry *restrict star, double *restrict vel) {
 }
 
 /**
- * Converts angular quantities for stars to apparent position and motion vectors.
+ * Converts angular quantities for stars to astrometric position and apparent motion vectors.
  *
  * NOTES:
  *

@@ -555,7 +555,9 @@ double rad_vel2(const object *restrict source, const double *pos_emit, const dou
 
   // Subtract potential at source.
   switch(source->type) {
-    case NOVAS_CATALOG_OBJECT: break; // no Solar potential at source
+    case NOVAS_CATALOG_OBJECT:
+      // no potential at source (catalogs are referenced to TCB)
+      break;
 
     case NOVAS_PLANET:
       if(d_src_sun >= 0.0) {

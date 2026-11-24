@@ -33,13 +33,6 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
  - #406: Fixed diurnal polar motion corrections in `novas_frame`, which were added with the wrong magnitude 
    (10<sup>-6</sup>) times too small). (thanks to rgb)
       
- - #407: `grav_planets()` now accumulates the deflections from the planets in light arrival order from the source.
- 
- - #409: `novas_geom_posvel()` now returns true physical velocity for catalog objects (previously it returned
-   the apparent motion, even though that was not what was documented / expected).
-   
- - #409: Modified `rad_vel2()` now includes the transverse Doppler effect.
-
 ### Added
 
  - #408: Added `undo_aberration()` to undo aberration corrections. 
@@ -52,12 +45,14 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
  - #408: Added `CatalogEntry::apparent_motion()` and `CatalogEntry::velocity()` to return the observed 3D motion
    or the true 3D velocity of a catalog souce, in the equatorial system, in which the source was defined.
    
- - #409: Added `novas_approx_posvel()` function to calculate an approximate state vector for planets using
+ - #412: Added `novas_approx_posvel()` function to calculate an approximate state vector for planets using
    Keplerian orbital models.
 
 ### Changed
 
  - #400: Simplified `spin()` to use `novas_Rz()`, and use the latter directly when it makes sense internally.
+ 
+ - #407: `grav_planets()` now accumulates the deflections from the planets in light arrival order from the source.
  
  - #408: Modified `proper_motion()` and `transform_cat()` to hold the true 3D motion constant and calculate the 
    appropriate light time correction iteratively between the initial and final epochs. (thanks to mkretlow)
@@ -67,6 +62,11 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
    
  - #408: Modified `novas_set_ssb_vel()` to set the specified argument even if an error is returned. The change 
    improves traceability and error propagation.
+   
+ - #409: `rad_vel2()` now includes the transverse Doppler effect.
+
+ - #412: `novas_geom_posvel()` now returns true physical velocity for catalog objects (previously it returned
+   the apparent motion, even though that was not what was documented / expected).
  
  - Updated documentation.
 
