@@ -31,7 +31,7 @@ Upcoming feature release, with bug fixes and improvements, expected around 1 Feb
    km) or within 0.9 times the equatorial radius of the gravitating body center. (thanks to rgb)
  
  - #406: Fixed diurnal polar motion corrections in `novas_frame`, which were added with the wrong magnitude 
-   (10<sup>-6</sup>) times too small). (thanks to rgb)
+   (10<sup>-6</sup> times too small). (thanks to rgb)
       
 ### Added
 
