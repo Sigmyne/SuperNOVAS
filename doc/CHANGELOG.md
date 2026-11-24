@@ -7,17 +7,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [1.8.1-rc1] - 2026-11-22
+## [Unreleased]
 
-Upcoming bug-fix release, expected around 1 December 2027.
+Upcoming feature release, with bug fixes and improvements, expected around 1 February 2027.
 
 ### Fixed
 
  - #400: Fixed `cal_date()` not propagating errors from `novas_jd_to_date()`. 
 
  - #402: Fixed `transform_cat()` using input dates as Julian days when values are &lt;10000, which according to the
-   documentation (and the NOVAS C original), signify years rather than Julian dates. It's a bad design that will
-   likely to trip up people often, but it must stick for back compatibility. (by attipaci, thanks to mkretlow)
+   documentation (and the NOVAS C original), signify years rather than Julian dates. The issue was present since
+   v1.3.0. It's a bad design that will likely to trip up people often, but it must stick for back compatibility. (by 
+   attipaci, thanks to mkretlow)
    
  - #404: Dropped misguided `k` factor for converting between proper motion and apparent 3D motion in 
    `transform_cat()` and in `starvectors()`. The `k` factor is needed to convert between physical and apparent
@@ -32,14 +33,42 @@ Upcoming bug-fix release, expected around 1 December 2027.
  - #406: Fixed diurnal polar motion corrections in `novas_frame`, which were added with the wrong magnitude 
    (10<sup>-6</sup>) times too small). (thanks to rgb)
       
- - #407: `grav_planets()` now accumulates the deflections from the planets in light arrival order from the source.
+### Added
+
+ - #408: Added `undo_aberration()` to undo aberration corrections. 
+ 
+ - #408: Added `novas_star_vel()` to return the true physical 3D velocity of a catalog source, in the equatorial
+   system, in which the source was defined.
+   
+ - #408: Added `Vector(double xyz[3], double unit)` public constructor for convenience.
+ 
+ - #408: Added `CatalogEntry::apparent_motion()` and `CatalogEntry::velocity()` to return the observed 3D motion
+   or the true 3D velocity of a catalog souce, in the equatorial system, in which the source was defined.
+   
+ - #412: Added `novas_approx_posvel()` function to calculate an approximate state vector for planets using
+   Keplerian orbital models.
 
 ### Changed
 
  - #400: Simplified `spin()` to use `novas_Rz()`, and use the latter directly when it makes sense internally.
  
- - Updated documentation.
+ - #407: `grav_planets()` now accumulates the deflections from the planets in light arrival order from the source.
+ 
+ - #408: Modified `proper_motion()` and `transform_cat()` to hold the true 3D motion constant and calculate the 
+   appropriate light time correction iteratively between the initial and final epochs. (thanks to mkretlow)
+   
+ - #408: Modified `starvectors()` to account for the transverse Doppler effect. After the change the discrepancy 
+   w.r.t. SOFA is below 1 nanoarcsecond, even for Barnard's star over a century. (thanks to mkretlow)
+   
+ - #408: Modified `novas_set_ssb_vel()` to set the specified argument even if an error is returned. The change 
+   improves traceability and error propagation.
+   
+ - #409: `rad_vel2()` now includes the transverse Doppler effect.
 
+ - #412: `novas_geom_posvel()` now returns true physical velocity for catalog objects (previously it returned
+   the apparent motion, even though that was not what was documented / expected).
+ 
+ - Updated documentation.
 
 
 ## [1.8.0] - 2026-11-01
