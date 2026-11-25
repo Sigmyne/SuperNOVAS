@@ -1217,6 +1217,9 @@ int proper_motion(double jd_tdb_in, const double *pos, const double *restrict v_
   if(!pos || !v_apparent || !out)
     return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: pos=%p, v_app=%p, out=%p", pos, v_apparent, out);
 
+  if(isnan(dt))
+    novas_warn(EDOM, fn, "NAN time interval: jd_in = %g, jd_out = %g", jd_tdb_in, jd_tdb_out);
+
   if(out != pos)
     memcpy(out, pos, XYZ_VECTOR_SIZE);
 
