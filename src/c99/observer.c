@@ -415,12 +415,12 @@ int make_itrf_site(double latitude, double longitude, double height, on_surface 
   if(!site)
     return novas_error(-1, EINVAL, fn, "site is NULL");
 
-  if(fabs(latitude) > 90.0)
-    return novas_error(-1, ERANGE, fn, "latitude %g is outside of [-90:90] range.\n", latitude);
-
   site->latitude = latitude;
   site->longitude = longitude;
   site->height = height;
+
+  if(fabs(latitude) > 90.0)
+    return novas_error(-1, ERANGE, fn, "latitude %g is outside of [-90:90] range.\n", latitude);
 
   novas_set_default_weather(site);
   return 0;
@@ -649,7 +649,7 @@ int make_dynamic_observer(novas_state_provider call, const void *restrict arg, o
  *                scope as the observer that is populated here.
  * @param obs     Pointer to the data structure to populate
  * @return        0 if successful, or -1 if either argument is NULL (errno set to EINVAL), or
- *                if the place is not in the Solar-system (errno set to ERANGE).
+ *                if the place is not in the Solar-system (errno set to EDOM).
  *
  * @since 1.8
  *
@@ -668,7 +668,7 @@ int make_comoving_observer(const object *restrict loc, observer *restrict obs) {
     return novas_error(-1, ERANGE, fn, "input place type %d is out of range", (int) loc->type);
 
   if(loc->type == NOVAS_CATALOG_OBJECT)
-    return novas_error(-1, ERANGE, fn, "got catalog source, but need a Solar-system place");
+    return novas_error(-1, EDOM, fn, "got catalog source, but need a Solar-system place");
 
   prop_error(fn, make_dynamic_observer(novas_ephem_state, loc, obs), 0);
   return 0;
@@ -840,10 +840,12 @@ short geo_posvel(double jd_tt, double ut1_to_tt, enum novas_accuracy accuracy, c
  * @sa undo_aberration()
  */
 int aberration(const double *pos, const double *vobs, double lighttime, double *out) {
+  static const char *fn = "aberration";
+
   double p1mag, vemag, beta, cosd, gammai, p, q, r;
 
   if(!pos || !vobs || !out)
-    return novas_error(-1, EINVAL, "aberration", "NULL input or output 3-vector: pos=%p, vobs=%p, out=%p", pos, vobs, out);
+    return novas_error(-1, EINVAL, fn, "NULL input or output 3-vector: pos=%p, vobs=%p, out=%p", pos, vobs, out);
 
   vemag = novas_vlen(vobs);
   if(!vemag) {
@@ -870,6 +872,9 @@ int aberration(const double *pos, const double *vobs, double lighttime, double *
   out[0] = (gammai * pos[0] + q * vobs[0]) / r;
   out[1] = (gammai * pos[1] + q * vobs[1]) / r;
   out[2] = (gammai * pos[2] + q * vobs[2]) / r;
+
+  if(isnan(lighttime))
+    return novas_error(-1, EDOM, fn, "input lighttime is NAN");
 
   return 0;
 }
@@ -930,6 +935,9 @@ int undo_aberration(const double *pos, const double *vobs, double lighttime, dou
   if(!d)
     return 0;
 
+  if(isnan(lighttime))
+    novas_warn(EDOM, fn, "input lighttime is NAN");
+
   memcpy(p0, pos, sizeof(p0));
 
   // Iterate as necessary
@@ -952,7 +960,6 @@ int undo_aberration(const double *pos, const double *vobs, double lighttime, dou
 
   return novas_error(-1, ECANCELED, fn, "failed to converge");
 }
-
 
 
 /**
